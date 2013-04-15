@@ -63,7 +63,7 @@
 
 - (void)presentIntroductionController {
     IntroductionViewController *controller = [[IntroductionViewController alloc] init];
-    [self presentModalViewController:controller animated:YES];
+    [self presentModalViewController:controller animated:NO];
 }
 
 @end
