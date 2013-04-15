@@ -20,6 +20,14 @@
 		EAAA1487171BC911005B9430 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EAAA1485171BC911005B9430 /* Transfer.xcdatamodeld */; };
 		EAAA1490171BD07E005B9430 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAAA148E171BD07E005B9430 /* Localizable.strings */; };
 		EAD39672171BD2A300F6D011 /* ObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39671171BD2A300F6D011 /* ObjectModel.m */; };
+		EAD39676171BD4EE00F6D011 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39674171BD4EE00F6D011 /* MainViewController.m */; };
+		EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39675171BD4EE00F6D011 /* MainViewController.xib */; };
+		EAD3967B171BD51400F6D011 /* TransactionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39679171BD51400F6D011 /* TransactionsViewController.m */; };
+		EAD3967C171BD51400F6D011 /* TransactionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD3967A171BD51400F6D011 /* TransactionsViewController.xib */; };
+		EAD39680171BD57000F6D011 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3967E171BD57000F6D011 /* ContactsViewController.m */; };
+		EAD39681171BD57000F6D011 /* ContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD3967F171BD57000F6D011 /* ContactsViewController.xib */; };
+		EAD39685171BD5B000F6D011 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39683171BD5B000F6D011 /* PaymentViewController.m */; };
+		EAD39686171BD5B000F6D011 /* PaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39684171BD5B000F6D011 /* PaymentViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +49,18 @@
 		EAAA148F171BD07E005B9430 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EAD39670171BD2A300F6D011 /* ObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectModel.h; sourceTree = "<group>"; };
 		EAD39671171BD2A300F6D011 /* ObjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectModel.m; sourceTree = "<group>"; };
+		EAD39673171BD4EE00F6D011 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		EAD39674171BD4EE00F6D011 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		EAD39675171BD4EE00F6D011 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		EAD39678171BD51400F6D011 /* TransactionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionsViewController.h; sourceTree = "<group>"; };
+		EAD39679171BD51400F6D011 /* TransactionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionsViewController.m; sourceTree = "<group>"; };
+		EAD3967A171BD51400F6D011 /* TransactionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionsViewController.xib; sourceTree = "<group>"; };
+		EAD3967D171BD57000F6D011 /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
+		EAD3967E171BD57000F6D011 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
+		EAD3967F171BD57000F6D011 /* ContactsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsViewController.xib; sourceTree = "<group>"; };
+		EAD39682171BD5B000F6D011 /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
+		EAD39683171BD5B000F6D011 /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
+		EAD39684171BD5B000F6D011 /* PaymentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +136,18 @@
 		EAAA148D171BD057005B9430 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				EAD3967D171BD57000F6D011 /* ContactsViewController.h */,
+				EAD3967E171BD57000F6D011 /* ContactsViewController.m */,
+				EAD3967F171BD57000F6D011 /* ContactsViewController.xib */,
+				EAD39673171BD4EE00F6D011 /* MainViewController.h */,
+				EAD39674171BD4EE00F6D011 /* MainViewController.m */,
+				EAD39675171BD4EE00F6D011 /* MainViewController.xib */,
+				EAD39682171BD5B000F6D011 /* PaymentViewController.h */,
+				EAD39683171BD5B000F6D011 /* PaymentViewController.m */,
+				EAD39684171BD5B000F6D011 /* PaymentViewController.xib */,
+				EAD39678171BD51400F6D011 /* TransactionsViewController.h */,
+				EAD39679171BD51400F6D011 /* TransactionsViewController.m */,
+				EAD3967A171BD51400F6D011 /* TransactionsViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -186,6 +218,10 @@
 				EAAA1482171BC911005B9430 /* Default@2x.png in Resources */,
 				EAAA1484171BC911005B9430 /* Default-568h@2x.png in Resources */,
 				EAAA1490171BD07E005B9430 /* Localizable.strings in Resources */,
+				EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */,
+				EAD3967C171BD51400F6D011 /* TransactionsViewController.xib in Resources */,
+				EAD39681171BD57000F6D011 /* ContactsViewController.xib in Resources */,
+				EAD39686171BD5B000F6D011 /* PaymentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +236,10 @@
 				EAAA147E171BC911005B9430 /* AppDelegate.m in Sources */,
 				EAAA1487171BC911005B9430 /* Transfer.xcdatamodeld in Sources */,
 				EAD39672171BD2A300F6D011 /* ObjectModel.m in Sources */,
+				EAD39676171BD4EE00F6D011 /* MainViewController.m in Sources */,
+				EAD3967B171BD51400F6D011 /* TransactionsViewController.m in Sources */,
+				EAD39680171BD57000F6D011 /* ContactsViewController.m in Sources */,
+				EAD39685171BD5B000F6D011 /* PaymentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

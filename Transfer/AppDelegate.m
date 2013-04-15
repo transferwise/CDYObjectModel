@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ObjectModel.h"
+#import "MainViewController.h"
 
 @interface AppDelegate ()
 
@@ -22,6 +23,9 @@
 
     ObjectModel *model = [[ObjectModel alloc] init];
     [self setObjectModel:model];
+
+    MainViewController *controller = [[MainViewController alloc] init];
+    [self.window setRootViewController:controller];
 
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

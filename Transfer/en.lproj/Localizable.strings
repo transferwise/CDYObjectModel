@@ -1,1 +1,7 @@
 "button.title.ok" = "OK";
+
+"contacts.controller.title" = "Contacts";
+
+"payment.controller.title" = "New payment";
+
+"transactions.controller.title" = "Transactions";
