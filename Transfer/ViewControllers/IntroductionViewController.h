@@ -1,5 +1,5 @@
 //
-//  MainViewController.h
+//  IntroductionViewController.h
 //  Transfer
 //
 //  Created by Jaanus Siim on 4/15/13.
@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class ObjectModel;
-
-@interface MainViewController : UIViewController
-
-@property (nonatomic, strong) ObjectModel *objectModel;
+@interface IntroductionViewController : UITableViewController
 
 @end

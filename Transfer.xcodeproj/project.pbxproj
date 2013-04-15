@@ -28,6 +28,9 @@
 		EAD39681171BD57000F6D011 /* ContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD3967F171BD57000F6D011 /* ContactsViewController.xib */; };
 		EAD39685171BD5B000F6D011 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39683171BD5B000F6D011 /* PaymentViewController.m */; };
 		EAD39686171BD5B000F6D011 /* PaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39684171BD5B000F6D011 /* PaymentViewController.xib */; };
+		EAD3968A171BD82300F6D011 /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39688171BD82300F6D011 /* IntroductionViewController.m */; };
+		EAD3968B171BD82300F6D011 /* IntroductionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39689171BD82300F6D011 /* IntroductionViewController.xib */; };
+		EAD3968E171BD87E00F6D011 /* ObjectModel+Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3968D171BD87E00F6D011 /* ObjectModel+Credentials.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +64,11 @@
 		EAD39682171BD5B000F6D011 /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
 		EAD39683171BD5B000F6D011 /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
 		EAD39684171BD5B000F6D011 /* PaymentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentViewController.xib; sourceTree = "<group>"; };
+		EAD39687171BD82300F6D011 /* IntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroductionViewController.h; sourceTree = "<group>"; };
+		EAD39688171BD82300F6D011 /* IntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionViewController.m; sourceTree = "<group>"; };
+		EAD39689171BD82300F6D011 /* IntroductionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroductionViewController.xib; sourceTree = "<group>"; };
+		EAD3968C171BD87E00F6D011 /* ObjectModel+Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+Credentials.h"; sourceTree = "<group>"; };
+		EAD3968D171BD87E00F6D011 /* ObjectModel+Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+Credentials.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +147,9 @@
 				EAD3967D171BD57000F6D011 /* ContactsViewController.h */,
 				EAD3967E171BD57000F6D011 /* ContactsViewController.m */,
 				EAD3967F171BD57000F6D011 /* ContactsViewController.xib */,
+				EAD39687171BD82300F6D011 /* IntroductionViewController.h */,
+				EAD39688171BD82300F6D011 /* IntroductionViewController.m */,
+				EAD39689171BD82300F6D011 /* IntroductionViewController.xib */,
 				EAD39673171BD4EE00F6D011 /* MainViewController.h */,
 				EAD39674171BD4EE00F6D011 /* MainViewController.m */,
 				EAD39675171BD4EE00F6D011 /* MainViewController.xib */,
@@ -155,6 +166,8 @@
 		EAD3966F171BD1DE00F6D011 /* ObjectModel */ = {
 			isa = PBXGroup;
 			children = (
+				EAD3968C171BD87E00F6D011 /* ObjectModel+Credentials.h */,
+				EAD3968D171BD87E00F6D011 /* ObjectModel+Credentials.m */,
 				EAD39670171BD2A300F6D011 /* ObjectModel.h */,
 				EAD39671171BD2A300F6D011 /* ObjectModel.m */,
 				EAAA1485171BC911005B9430 /* Transfer.xcdatamodeld */,
@@ -222,6 +235,7 @@
 				EAD3967C171BD51400F6D011 /* TransactionsViewController.xib in Resources */,
 				EAD39681171BD57000F6D011 /* ContactsViewController.xib in Resources */,
 				EAD39686171BD5B000F6D011 /* PaymentViewController.xib in Resources */,
+				EAD3968B171BD82300F6D011 /* IntroductionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +254,8 @@
 				EAD3967B171BD51400F6D011 /* TransactionsViewController.m in Sources */,
 				EAD39680171BD57000F6D011 /* ContactsViewController.m in Sources */,
 				EAD39685171BD5B000F6D011 /* PaymentViewController.m in Sources */,
+				EAD3968A171BD82300F6D011 /* IntroductionViewController.m in Sources */,
+				EAD3968E171BD87E00F6D011 /* ObjectModel+Credentials.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

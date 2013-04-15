@@ -10,6 +10,9 @@
 #import "TransactionsViewController.h"
 #import "PaymentViewController.h"
 #import "ContactsViewController.h"
+#import "ObjectModel.h"
+#import "IntroductionViewController.h"
+#import "ObjectModel+Credentials.h"
 
 @interface MainViewController ()
 
@@ -47,6 +50,20 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+
+    if (![self.objectModel userLoggedIn]) {
+        [self presentIntroductionController];
+    }
+}
+
+
+- (void)presentIntroductionController {
+    IntroductionViewController *controller = [[IntroductionViewController alloc] init];
+    [self presentModalViewController:controller animated:YES];
 }
 
 @end

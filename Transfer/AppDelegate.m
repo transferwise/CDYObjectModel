@@ -25,6 +25,7 @@
     [self setObjectModel:model];
 
     MainViewController *controller = [[MainViewController alloc] init];
+    [controller setObjectModel:model];
     [self.window setRootViewController:controller];
 
     self.window.backgroundColor = [UIColor whiteColor];
