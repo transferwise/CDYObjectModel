@@ -9,6 +9,8 @@
 "introduction.login.section.title" = "Already a user";
 
 "login.controller.header.message" = "Log-in to your account";
+"login.email.field.title" = "E-mail";
+"login.password.field.title" = "Password";
 
 "payment.controller.title" = "New payment";
 
