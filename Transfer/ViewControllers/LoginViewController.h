@@ -1,5 +1,5 @@
 //
-//  IntroductionHeaderView.h
+//  LoginViewController.h
 //  Transfer
 //
 //  Created by Jaanus Siim on 4/15/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IntroductionHeaderView : UIView
+@interface LoginViewController : UITableViewController
 
 @end
