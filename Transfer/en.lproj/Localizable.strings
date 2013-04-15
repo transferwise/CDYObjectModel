@@ -1,6 +1,12 @@
+"button.title.get.started" = "Get started";
+"button.title.log.in" = "Log in";
 "button.title.ok" = "OK";
 
 "contacts.controller.title" = "Contacts";
+
+"introduction.controller.title" = "Transferwise";
+"introduction.header.title.text" = "Send money abroad";
+"introduction.login.section.title" = "Already a user";
 
 "payment.controller.title" = "New payment";
 

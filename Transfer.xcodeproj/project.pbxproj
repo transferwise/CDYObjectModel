@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA13E032171BDF1A0019FBF0 /* IntroductionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E031171BDF1A0019FBF0 /* IntroductionHeaderView.m */; };
+		EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */; };
+		EA13E038171BE12E0019FBF0 /* MoneyEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */; };
+		EA13E03B171BE2680019FBF0 /* IntroductionControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E03A171BE2680019FBF0 /* IntroductionControlsView.m */; };
 		EAAA146C171BC911005B9430 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146B171BC911005B9430 /* UIKit.framework */; };
 		EAAA146E171BC911005B9430 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146D171BC911005B9430 /* Foundation.framework */; };
 		EAAA1470171BC911005B9430 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146F171BC911005B9430 /* CoreGraphics.framework */; };
@@ -34,6 +38,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA13E030171BDF1A0019FBF0 /* IntroductionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroductionHeaderView.h; sourceTree = "<group>"; };
+		EA13E031171BDF1A0019FBF0 /* IntroductionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionHeaderView.m; sourceTree = "<group>"; };
+		EA13E034171BE1210019FBF0 /* MoneyEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyEntryCell.h; sourceTree = "<group>"; };
+		EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyEntryCell.m; sourceTree = "<group>"; };
+		EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoneyEntryCell.xib; sourceTree = "<group>"; };
+		EA13E039171BE2680019FBF0 /* IntroductionControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroductionControlsView.h; sourceTree = "<group>"; };
+		EA13E03A171BE2680019FBF0 /* IntroductionControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionControlsView.m; sourceTree = "<group>"; };
 		EAAA1468171BC911005B9430 /* Transfer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transfer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAAA146B171BC911005B9430 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EAAA146D171BC911005B9430 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -86,6 +97,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA13E02F171BDF050019FBF0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EA13E039171BE2680019FBF0 /* IntroductionControlsView.h */,
+				EA13E03A171BE2680019FBF0 /* IntroductionControlsView.m */,
+				EA13E030171BDF1A0019FBF0 /* IntroductionHeaderView.h */,
+				EA13E031171BDF1A0019FBF0 /* IntroductionHeaderView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EA13E033171BE0E50019FBF0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EA13E034171BE1210019FBF0 /* MoneyEntryCell.h */,
+				EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */,
+				EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		EAAA145F171BC911005B9430 = {
 			isa = PBXGroup;
 			children = (
@@ -117,9 +149,11 @@
 		EAAA1473171BC911005B9430 /* Transfer */ = {
 			isa = PBXGroup;
 			children = (
+				EA13E033171BE0E50019FBF0 /* Cells */,
 				EAD3966F171BD1DE00F6D011 /* ObjectModel */,
 				EAAA1474171BC911005B9430 /* Supporting Files */,
 				EAAA148D171BD057005B9430 /* ViewControllers */,
+				EA13E02F171BDF050019FBF0 /* Views */,
 				EAAA147C171BC911005B9430 /* AppDelegate.h */,
 				EAAA147D171BC911005B9430 /* AppDelegate.m */,
 			);
@@ -236,6 +270,7 @@
 				EAD39681171BD57000F6D011 /* ContactsViewController.xib in Resources */,
 				EAD39686171BD5B000F6D011 /* PaymentViewController.xib in Resources */,
 				EAD3968B171BD82300F6D011 /* IntroductionViewController.xib in Resources */,
+				EA13E038171BE12E0019FBF0 /* MoneyEntryCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +291,9 @@
 				EAD39685171BD5B000F6D011 /* PaymentViewController.m in Sources */,
 				EAD3968A171BD82300F6D011 /* IntroductionViewController.m in Sources */,
 				EAD3968E171BD87E00F6D011 /* ObjectModel+Credentials.m in Sources */,
+				EA13E032171BDF1A0019FBF0 /* IntroductionHeaderView.m in Sources */,
+				EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */,
+				EA13E03B171BE2680019FBF0 /* IntroductionControlsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

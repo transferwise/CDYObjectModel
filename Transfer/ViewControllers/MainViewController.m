@@ -63,7 +63,8 @@
 
 - (void)presentIntroductionController {
     IntroductionViewController *controller = [[IntroductionViewController alloc] init];
-    [self presentModalViewController:controller animated:NO];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    [self presentModalViewController:navigationController animated:NO];
 }
 
 @end
