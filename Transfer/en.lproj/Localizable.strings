@@ -11,6 +11,7 @@
 "login.controller.header.message" = "Log-in to your account";
 "login.controller.logging.in.message" = "Logging in...";
 "login.email.field.title" = "E-mail";
+"login.error.generic.message" = "Login failed. Please try again";
 "login.error.title" = "Can't log in";
 "login.password.field.title" = "Password";
 "login.validation.email.missing" = "E-mail not entered";

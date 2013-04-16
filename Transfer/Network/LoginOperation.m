@@ -7,7 +7,50 @@
 //
 
 #import "LoginOperation.h"
+#import "TransferwiseOperation+Private.h"
+
+NSString *const kLoginPath = @"/api/v1/token/create";
+
+@interface LoginOperation ()
+
+@property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSString *password;
+
+@end
 
 @implementation LoginOperation
+
+- (id)initWithEmail:(NSString *)email password:(NSString *)password {
+    self = [super init];
+    if (self) {
+        _email = email;
+        _password = password;
+    }
+    return self;
+}
+
++ (LoginOperation *)loginOperationWithEmail:(NSString *)email password:(NSString *)password {
+    return [[LoginOperation alloc] initWithEmail:email password:password];
+}
+
+- (void)execute {
+    MCLog(@"execute");
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"login"] = self.email;
+    params[@"password"] = self.password;
+
+    __block __weak LoginOperation *weakSelf = self;
+    [self setOperationSuccessHandler:^(NSDictionary *response) {
+        weakSelf.responseHandler(nil);
+    }];
+    [self setOperationErrorHandler:^(NSError *error) {
+        MCLog(@"Error:%@", error);
+        weakSelf.responseHandler(error);
+    }];
+
+    [self postData:params toPath:kLoginPath];
+}
+
 
 @end

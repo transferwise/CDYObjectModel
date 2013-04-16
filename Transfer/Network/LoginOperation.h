@@ -7,7 +7,14 @@
 //
 
 #import "TransferwiseOperation.h"
+#import "Constants.h"
+
+typedef void (^LoginResponseBlock)(NSError *);
 
 @interface LoginOperation : TransferwiseOperation
+
+@property (nonatomic, copy) LoginResponseBlock responseHandler;
+
++ (LoginOperation *)loginOperationWithEmail:(NSString *)email password:(NSString *)password;
 
 @end

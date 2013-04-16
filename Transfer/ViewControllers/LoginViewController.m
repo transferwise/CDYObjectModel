@@ -16,6 +16,7 @@
 #import "UIApplication+Keyboard.h"
 #import "TRWAlertView.h"
 #import "TRWProgressHUD.h"
+#import "LoginOperation.h"
 
 static NSUInteger const kTableRowEmail = 0;
 
@@ -25,6 +26,7 @@ static NSUInteger const kTableRowEmail = 0;
 @property (nonatomic, strong) IBOutlet UIButton *loginButton;
 @property (nonatomic, strong) IBOutlet TextEntryCell *emailCell;
 @property (nonatomic, strong) IBOutlet TextEntryCell *passwordCell;
+@property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
 - (IBAction)loginPressed:(id)sender;
 
@@ -141,6 +143,26 @@ static NSUInteger const kTableRowEmail = 0;
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"login.controller.logging.in.message", nil)];
+
+    LoginOperation *loginOperation = [LoginOperation loginOperationWithEmail:[self.emailCell value] password:[self.passwordCell value]];
+    [self setExecutedOperation:loginOperation];
+
+    [loginOperation setResponseHandler:^(NSError *error) {
+        [hud hide];
+
+        if (error) {
+            //TODO jaanus: show message based on error type
+            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
+                                                               message:NSLocalizedString(@"login.error.generic.message", nil)];
+            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+            [alertView show];
+            return;
+        }
+
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+
+    [loginOperation execute];
 }
 
 - (NSString *)validateInput {
