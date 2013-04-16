@@ -21,6 +21,7 @@
 		EA8FF682171D19B50090A658 /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF681171D19B50090A658 /* NSString+Validation.m */; };
 		EA8FF685171D1A320090A658 /* NSMutableString+Issues.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */; };
 		EA8FF688171D1B6D0090A658 /* UIApplication+Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF687171D1B6D0090A658 /* UIApplication+Keyboard.m */; };
+		EA8FF68B171D1FA50090A658 /* TRWAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF68A171D1FA50090A658 /* TRWAlertView.m */; };
 		EAAA146C171BC911005B9430 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146B171BC911005B9430 /* UIKit.framework */; };
 		EAAA146E171BC911005B9430 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146D171BC911005B9430 /* Foundation.framework */; };
 		EAAA1470171BC911005B9430 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146F171BC911005B9430 /* CoreGraphics.framework */; };
@@ -73,6 +74,8 @@
 		EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+Issues.m"; sourceTree = "<group>"; };
 		EA8FF686171D1B6D0090A658 /* UIApplication+Keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+Keyboard.h"; sourceTree = "<group>"; };
 		EA8FF687171D1B6D0090A658 /* UIApplication+Keyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+Keyboard.m"; sourceTree = "<group>"; };
+		EA8FF689171D1FA50090A658 /* TRWAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRWAlertView.h; sourceTree = "<group>"; };
+		EA8FF68A171D1FA50090A658 /* TRWAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRWAlertView.m; sourceTree = "<group>"; };
 		EAAA1468171BC911005B9430 /* Transfer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transfer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAAA146B171BC911005B9430 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EAAA146D171BC911005B9430 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -133,6 +136,8 @@
 				EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */,
 				EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */,
 				EA13E045171BED910019FBF0 /* TableHeaderView.xib */,
+				EA8FF689171D1FA50090A658 /* TRWAlertView.h */,
+				EA8FF68A171D1FA50090A658 /* TRWAlertView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -358,6 +363,7 @@
 				EA8FF682171D19B50090A658 /* NSString+Validation.m in Sources */,
 				EA8FF685171D1A320090A658 /* NSMutableString+Issues.m in Sources */,
 				EA8FF688171D1B6D0090A658 /* UIApplication+Keyboard.m in Sources */,
+				EA8FF68B171D1FA50090A658 /* TRWAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

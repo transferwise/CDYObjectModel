@@ -14,6 +14,7 @@
 #import "NSString+Validation.h"
 #import "NSMutableString+Issues.h"
 #import "UIApplication+Keyboard.h"
+#import "TRWAlertView.h"
 
 static NSUInteger const kTableRowEmail = 0;
 
@@ -125,11 +126,8 @@ static NSUInteger const kTableRowEmail = 0;
 
     NSString *issues = [self validateInput];
     if ([issues length] > 0) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"login.error.title", nil)
-                                                            message:issues
-                                                           delegate:nil
-                                                  cancelButtonTitle:NSLocalizedString(@"button.title.ok", nil)
-                                                  otherButtonTitles:nil];
+        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil) message:issues];
+        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
         [alertView show];
         return;
     }
