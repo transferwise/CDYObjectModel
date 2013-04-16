@@ -62,6 +62,12 @@
 		EAD3968B171BD82300F6D011 /* IntroductionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39689171BD82300F6D011 /* IntroductionViewController.xib */; };
 		EAD3968E171BD87E00F6D011 /* ObjectModel+Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3968D171BD87E00F6D011 /* ObjectModel+Credentials.m */; };
 		EAD7D4C2171D43440099063F /* NSDictionary+SensibleData.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */; };
+		EAD7D4C6171D47BE0099063F /* NavigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C4171D47BE0099063F /* NavigationBar.png */; };
+		EAD7D4C7171D47BE0099063F /* NavigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C5171D47BE0099063F /* NavigationBar@2x.png */; };
+		EAD7D4CA171D4B080099063F /* BlueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C8171D4B080099063F /* BlueButton.png */; };
+		EAD7D4CB171D4B080099063F /* BlueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C9171D4B080099063F /* BlueButton@2x.png */; };
+		EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */; };
+		EAD7D4D1171D4BB20099063F /* BlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4D0171D4BB20099063F /* BlueButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -159,6 +165,14 @@
 		EAD3968D171BD87E00F6D011 /* ObjectModel+Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+Credentials.m"; sourceTree = "<group>"; };
 		EAD7D4C0171D43440099063F /* NSDictionary+SensibleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SensibleData.h"; sourceTree = "<group>"; };
 		EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SensibleData.m"; sourceTree = "<group>"; };
+		EAD7D4C4171D47BE0099063F /* NavigationBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavigationBar.png; sourceTree = "<group>"; };
+		EAD7D4C5171D47BE0099063F /* NavigationBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavigationBar@2x.png"; sourceTree = "<group>"; };
+		EAD7D4C8171D4B080099063F /* BlueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlueButton.png; sourceTree = "<group>"; };
+		EAD7D4C9171D4B080099063F /* BlueButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlueButton@2x.png"; sourceTree = "<group>"; };
+		EAD7D4CC171D4B4C0099063F /* UIButton+Skinning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Skinning.h"; sourceTree = "<group>"; };
+		EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Skinning.m"; sourceTree = "<group>"; };
+		EAD7D4CF171D4BB20099063F /* BlueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueButton.h; sourceTree = "<group>"; };
+		EAD7D4D0171D4BB20099063F /* BlueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +195,8 @@
 		EA13E02F171BDF050019FBF0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EAD7D4CF171D4BB20099063F /* BlueButton.h */,
+				EAD7D4D0171D4BB20099063F /* BlueButton.m */,
 				EA13E039171BE2680019FBF0 /* IntroductionControlsView.h */,
 				EA13E03A171BE2680019FBF0 /* IntroductionControlsView.m */,
 				EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */,
@@ -218,6 +234,8 @@
 				EA8FF681171D19B50090A658 /* NSString+Validation.m */,
 				EA8FF686171D1B6D0090A658 /* UIApplication+Keyboard.h */,
 				EA8FF687171D1B6D0090A658 /* UIApplication+Keyboard.m */,
+				EAD7D4CC171D4B4C0099063F /* UIButton+Skinning.h */,
+				EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */,
 				EA13E042171BEB010019FBF0 /* UIColor+Theme.h */,
 				EA13E043171BEB010019FBF0 /* UIColor+Theme.m */,
 				EA13E047171BEDC40019FBF0 /* UIView+Loading.h */,
@@ -320,6 +338,7 @@
 				EA13E041171BEAF00019FBF0 /* Extensions */,
 				EA8FF6B5171D25530090A658 /* Network */,
 				EAD3966F171BD1DE00F6D011 /* ObjectModel */,
+				EAD7D4C3171D475E0099063F /* Resources */,
 				EAAA1474171BC911005B9430 /* Supporting Files */,
 				EAAA148D171BD057005B9430 /* ViewControllers */,
 				EA13E02F171BDF050019FBF0 /* Views */,
@@ -380,6 +399,17 @@
 				EAAA1485171BC911005B9430 /* Transfer.xcdatamodeld */,
 			);
 			path = ObjectModel;
+			sourceTree = "<group>";
+		};
+		EAD7D4C3171D475E0099063F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EAD7D4C8171D4B080099063F /* BlueButton.png */,
+				EAD7D4C9171D4B080099063F /* BlueButton@2x.png */,
+				EAD7D4C4171D47BE0099063F /* NavigationBar.png */,
+				EAD7D4C5171D47BE0099063F /* NavigationBar@2x.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -447,6 +477,10 @@
 				EA13E040171BE9B00019FBF0 /* LoginViewController.xib in Resources */,
 				EA13E046171BED910019FBF0 /* TableHeaderView.xib in Resources */,
 				EA13E04E171BEF710019FBF0 /* TextEntryCell.xib in Resources */,
+				EAD7D4C6171D47BE0099063F /* NavigationBar.png in Resources */,
+				EAD7D4C7171D47BE0099063F /* NavigationBar@2x.png in Resources */,
+				EAD7D4CA171D4B080099063F /* BlueButton.png in Resources */,
+				EAD7D4CB171D4B080099063F /* BlueButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +526,8 @@
 				EA8FF6B8171D25C20090A658 /* TransferwiseOperation.m in Sources */,
 				EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */,
 				EAD7D4C2171D43440099063F /* NSDictionary+SensibleData.m in Sources */,
+				EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */,
+				EAD7D4D1171D4BB20099063F /* BlueButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
