@@ -33,6 +33,10 @@
 		EA8FF6A9171D221D0090A658 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6A0171D221D0090A658 /* UIImageView+AFNetworking.m */; };
 		EA8FF6AB171D222E0090A658 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8FF6AA171D222E0090A658 /* SystemConfiguration.framework */; };
 		EA8FF6AD171D22340090A658 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8FF6AC171D22340090A658 /* MobileCoreServices.framework */; };
+		EA8FF6B1171D237C0090A658 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6B0171D237C0090A658 /* MBProgressHUD.m */; };
+		EA8FF6B4171D23B20090A658 /* TRWProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6B3171D23B20090A658 /* TRWProgressHUD.m */; };
+		EA8FF6B8171D25C20090A658 /* TransferwiseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */; };
+		EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6BA171D26A00090A658 /* LoginOperation.m */; };
 		EAAA146C171BC911005B9430 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146B171BC911005B9430 /* UIKit.framework */; };
 		EAAA146E171BC911005B9430 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146D171BC911005B9430 /* Foundation.framework */; };
 		EAAA1470171BC911005B9430 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146F171BC911005B9430 /* CoreGraphics.framework */; };
@@ -108,6 +112,14 @@
 		EA8FF6A0171D221D0090A658 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		EA8FF6AA171D222E0090A658 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EA8FF6AC171D22340090A658 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		EA8FF6AF171D237C0090A658 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		EA8FF6B0171D237C0090A658 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		EA8FF6B2171D23B20090A658 /* TRWProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRWProgressHUD.h; sourceTree = "<group>"; };
+		EA8FF6B3171D23B20090A658 /* TRWProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRWProgressHUD.m; sourceTree = "<group>"; };
+		EA8FF6B6171D25C20090A658 /* TransferwiseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferwiseOperation.h; sourceTree = "<group>"; };
+		EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferwiseOperation.m; sourceTree = "<group>"; };
+		EA8FF6B9171D26A00090A658 /* LoginOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginOperation.h; sourceTree = "<group>"; };
+		EA8FF6BA171D26A00090A658 /* LoginOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginOperation.m; sourceTree = "<group>"; };
 		EAAA1468171BC911005B9430 /* Transfer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transfer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAAA146B171BC911005B9430 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EAAA146D171BC911005B9430 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -172,6 +184,8 @@
 				EA13E045171BED910019FBF0 /* TableHeaderView.xib */,
 				EA8FF689171D1FA50090A658 /* TRWAlertView.h */,
 				EA8FF68A171D1FA50090A658 /* TRWAlertView.m */,
+				EA8FF6B2171D23B20090A658 /* TRWProgressHUD.h */,
+				EA8FF6B3171D23B20090A658 /* TRWProgressHUD.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -210,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				EA8FF68D171D221D0090A658 /* AFNetworking */,
+				EA8FF6AE171D237C0090A658 /* MBProgressHUD */,
 			);
 			path = Thirdparty;
 			sourceTree = "<group>";
@@ -238,6 +253,26 @@
 				EA8FF6A0171D221D0090A658 /* UIImageView+AFNetworking.m */,
 			);
 			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		EA8FF6AE171D237C0090A658 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				EA8FF6AF171D237C0090A658 /* MBProgressHUD.h */,
+				EA8FF6B0171D237C0090A658 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		EA8FF6B5171D25530090A658 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				EA8FF6B9171D26A00090A658 /* LoginOperation.h */,
+				EA8FF6BA171D26A00090A658 /* LoginOperation.m */,
+				EA8FF6B6171D25C20090A658 /* TransferwiseOperation.h */,
+				EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		EAAA145F171BC911005B9430 = {
@@ -276,6 +311,7 @@
 			children = (
 				EA13E033171BE0E50019FBF0 /* Cells */,
 				EA13E041171BEAF00019FBF0 /* Extensions */,
+				EA8FF6B5171D25530090A658 /* Network */,
 				EAD3966F171BD1DE00F6D011 /* ObjectModel */,
 				EAAA1474171BC911005B9430 /* Supporting Files */,
 				EAAA148D171BD057005B9430 /* ViewControllers */,
@@ -444,6 +480,10 @@
 				EA8FF6A7171D221D0090A658 /* AFURLConnectionOperation.m in Sources */,
 				EA8FF6A8171D221D0090A658 /* AFXMLRequestOperation.m in Sources */,
 				EA8FF6A9171D221D0090A658 /* UIImageView+AFNetworking.m in Sources */,
+				EA8FF6B1171D237C0090A658 /* MBProgressHUD.m in Sources */,
+				EA8FF6B4171D23B20090A658 /* TRWProgressHUD.m in Sources */,
+				EA8FF6B8171D25C20090A658 /* TransferwiseOperation.m in Sources */,
+				EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

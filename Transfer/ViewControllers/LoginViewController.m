@@ -15,6 +15,7 @@
 #import "NSMutableString+Issues.h"
 #import "UIApplication+Keyboard.h"
 #import "TRWAlertView.h"
+#import "TRWProgressHUD.h"
 
 static NSUInteger const kTableRowEmail = 0;
 
@@ -122,6 +123,12 @@ static NSUInteger const kTableRowEmail = 0;
 }
 
 - (IBAction)loginPressed:(id)sender {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self validateInputAndPerformLogin];
+    });
+}
+
+- (void)validateInputAndPerformLogin {
     [UIApplication dismissKeyboard];
 
     NSString *issues = [self validateInput];
@@ -131,6 +138,9 @@ static NSUInteger const kTableRowEmail = 0;
         [alertView show];
         return;
     }
+
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    [hud setMessage:NSLocalizedString(@"login.controller.logging.in.message", nil)];
 }
 
 - (NSString *)validateInput {
