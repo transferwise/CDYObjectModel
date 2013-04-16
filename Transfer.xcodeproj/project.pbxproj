@@ -18,6 +18,9 @@
 		EA13E049171BEDC40019FBF0 /* UIView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E048171BEDC40019FBF0 /* UIView+Loading.m */; };
 		EA13E04C171BEF5D0019FBF0 /* TextEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */; };
 		EA13E04E171BEF710019FBF0 /* TextEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */; };
+		EA8FF682171D19B50090A658 /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF681171D19B50090A658 /* NSString+Validation.m */; };
+		EA8FF685171D1A320090A658 /* NSMutableString+Issues.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */; };
+		EA8FF688171D1B6D0090A658 /* UIApplication+Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF687171D1B6D0090A658 /* UIApplication+Keyboard.m */; };
 		EAAA146C171BC911005B9430 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146B171BC911005B9430 /* UIKit.framework */; };
 		EAAA146E171BC911005B9430 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146D171BC911005B9430 /* Foundation.framework */; };
 		EAAA1470171BC911005B9430 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146F171BC911005B9430 /* CoreGraphics.framework */; };
@@ -63,6 +66,13 @@
 		EA13E04A171BEF5D0019FBF0 /* TextEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEntryCell.h; sourceTree = "<group>"; };
 		EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEntryCell.m; sourceTree = "<group>"; };
 		EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEntryCell.xib; sourceTree = "<group>"; };
+		EA8FF67F171D167C0090A658 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; wrapsLines = 0; };
+		EA8FF680171D19B50090A658 /* NSString+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validation.h"; sourceTree = "<group>"; };
+		EA8FF681171D19B50090A658 /* NSString+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validation.m"; sourceTree = "<group>"; };
+		EA8FF683171D1A320090A658 /* NSMutableString+Issues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+Issues.h"; sourceTree = "<group>"; };
+		EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+Issues.m"; sourceTree = "<group>"; };
+		EA8FF686171D1B6D0090A658 /* UIApplication+Keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+Keyboard.h"; sourceTree = "<group>"; };
+		EA8FF687171D1B6D0090A658 /* UIApplication+Keyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+Keyboard.m"; sourceTree = "<group>"; };
 		EAAA1468171BC911005B9430 /* Transfer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transfer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAAA146B171BC911005B9430 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EAAA146D171BC911005B9430 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -143,6 +153,12 @@
 		EA13E041171BEAF00019FBF0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				EA8FF683171D1A320090A658 /* NSMutableString+Issues.h */,
+				EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */,
+				EA8FF680171D19B50090A658 /* NSString+Validation.h */,
+				EA8FF681171D19B50090A658 /* NSString+Validation.m */,
+				EA8FF686171D1B6D0090A658 /* UIApplication+Keyboard.h */,
+				EA8FF687171D1B6D0090A658 /* UIApplication+Keyboard.m */,
 				EA13E042171BEB010019FBF0 /* UIColor+Theme.h */,
 				EA13E043171BEB010019FBF0 /* UIColor+Theme.m */,
 				EA13E047171BEDC40019FBF0 /* UIView+Loading.h */,
@@ -190,6 +206,7 @@
 				EA13E02F171BDF050019FBF0 /* Views */,
 				EAAA147C171BC911005B9430 /* AppDelegate.h */,
 				EAAA147D171BC911005B9430 /* AppDelegate.m */,
+				EA8FF67F171D167C0090A658 /* Constants.h */,
 			);
 			path = Transfer;
 			sourceTree = "<group>";
@@ -338,6 +355,9 @@
 				EA13E044171BEB010019FBF0 /* UIColor+Theme.m in Sources */,
 				EA13E049171BEDC40019FBF0 /* UIView+Loading.m in Sources */,
 				EA13E04C171BEF5D0019FBF0 /* TextEntryCell.m in Sources */,
+				EA8FF682171D19B50090A658 /* NSString+Validation.m in Sources */,
+				EA8FF685171D1A320090A658 /* NSMutableString+Issues.m in Sources */,
+				EA8FF688171D1B6D0090A658 /* UIApplication+Keyboard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

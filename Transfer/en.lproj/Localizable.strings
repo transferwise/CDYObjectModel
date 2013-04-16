@@ -10,7 +10,11 @@
 
 "login.controller.header.message" = "Log-in to your account";
 "login.email.field.title" = "E-mail";
+"login.error.title" = "Can't log in";
 "login.password.field.title" = "Password";
+"login.validation.email.missing" = "E-mail not entered";
+"login.validation.email.not.valid" = "Entered e-mail not valid";
+"login.validation.password.missing" = "Password not entered";
 
 "payment.controller.title" = "New payment";
 

@@ -49,4 +49,8 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     [self.entryField setFrame:entryFrame];
 }
 
+- (NSString *)value {
+    return [self.entryField text];
+}
+
 @end

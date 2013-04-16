@@ -12,8 +12,9 @@ extern NSString *const TWTextEntryCellIdentifier;
 
 @interface TextEntryCell : UITableViewCell
 
-@property (nonatomic, strong, readonly) IBOutlet UITextField *entryField;
+@property (nonatomic, strong, readonly) UITextField *entryField;
 
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value;
+- (NSString *)value;
 
 @end
