@@ -7,6 +7,7 @@
 //
 
 #import "ObjectModel.h"
+#import "Constants.h"
 
 @interface ObjectModel ()
 
@@ -17,6 +18,33 @@
 @end
 
 @implementation ObjectModel
+
+- (NSFetchRequest *)fetchRequestForEntity:(NSString *)entity sortDescriptors:(NSArray *)sortDescriptors {
+    return [self fetchRequestForEntity:entity predicate:nil sortDescriptors:sortDescriptors];
+}
+
+- (NSFetchRequest *)fetchRequestForEntity:(NSString *)entity predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:entity];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    return fetchRequest;
+}
+
+- (NSFetchedResultsController *)fetchedControllerForEntity:(NSString *)entityName sortDescriptors:(NSArray *)sortDescriptors {
+    NSFetchRequest *fetchRequest = [self fetchRequestForEntity:entityName sortDescriptors:sortDescriptors];
+    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc]
+            initWithFetchRequest:fetchRequest
+            managedObjectContext:self.managedObjectContext
+              sectionNameKeyPath:nil cacheName:nil];
+
+    NSError *fetchError = nil;
+    [controller performFetch:&fetchError];
+    if (fetchError) {
+        MCLog(@"Fetch error - %@", fetchError);
+    }
+
+    return controller;
+}
 
 - (void)saveContext {
     NSError *error = nil;

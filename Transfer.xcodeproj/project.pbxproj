@@ -65,6 +65,11 @@
 		EAD7368E171E6D5A00A037B1 /* GrayButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */; };
 		EAD73692171E7A1D00A037B1 /* Lockbox.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD73691171E7A1D00A037B1 /* Lockbox.m */; };
 		EAD73694171E7A3200A037B1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD73693171E7A3200A037B1 /* Security.framework */; };
+		EAD73699171E830D00A037B1 /* _Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD73698171E830D00A037B1 /* _Recipient.m */; };
+		EAD7369C171E831300A037B1 /* Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7369B171E831300A037B1 /* Recipient.m */; };
+		EAD7369F171E836D00A037B1 /* ObjectModel+Recipients.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7369E171E836D00A037B1 /* ObjectModel+Recipients.m */; };
+		EAD736A2171E85C300A037B1 /* RecipientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD736A1171E85C300A037B1 /* RecipientCell.m */; };
+		EAD736A4171E85D100A037B1 /* RecipientCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD736A3171E85D100A037B1 /* RecipientCell.xib */; };
 		EAD7D4C2171D43440099063F /* NSDictionary+SensibleData.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */; };
 		EAD7D4C6171D47BE0099063F /* NavigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C4171D47BE0099063F /* NavigationBar.png */; };
 		EAD7D4C7171D47BE0099063F /* NavigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C5171D47BE0099063F /* NavigationBar@2x.png */; };
@@ -172,6 +177,15 @@
 		EAD73690171E7A1D00A037B1 /* Lockbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lockbox.h; sourceTree = "<group>"; };
 		EAD73691171E7A1D00A037B1 /* Lockbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lockbox.m; sourceTree = "<group>"; };
 		EAD73693171E7A3200A037B1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		EAD73697171E830D00A037B1 /* _Recipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Recipient.h; sourceTree = "<group>"; };
+		EAD73698171E830D00A037B1 /* _Recipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Recipient.m; sourceTree = "<group>"; };
+		EAD7369A171E831300A037B1 /* Recipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recipient.h; sourceTree = "<group>"; };
+		EAD7369B171E831300A037B1 /* Recipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recipient.m; sourceTree = "<group>"; };
+		EAD7369D171E836D00A037B1 /* ObjectModel+Recipients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+Recipients.h"; sourceTree = "<group>"; };
+		EAD7369E171E836D00A037B1 /* ObjectModel+Recipients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+Recipients.m"; sourceTree = "<group>"; };
+		EAD736A0171E85C300A037B1 /* RecipientCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientCell.h; sourceTree = "<group>"; };
+		EAD736A1171E85C300A037B1 /* RecipientCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientCell.m; sourceTree = "<group>"; };
+		EAD736A3171E85D100A037B1 /* RecipientCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientCell.xib; sourceTree = "<group>"; };
 		EAD7D4C0171D43440099063F /* NSDictionary+SensibleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SensibleData.h"; sourceTree = "<group>"; };
 		EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SensibleData.m"; sourceTree = "<group>"; };
 		EAD7D4C4171D47BE0099063F /* NavigationBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavigationBar.png; sourceTree = "<group>"; };
@@ -226,6 +240,9 @@
 				EA13E034171BE1210019FBF0 /* MoneyEntryCell.h */,
 				EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */,
 				EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */,
+				EAD736A0171E85C300A037B1 /* RecipientCell.h */,
+				EAD736A1171E85C300A037B1 /* RecipientCell.m */,
+				EAD736A3171E85D100A037B1 /* RecipientCell.xib */,
 				EA13E04A171BEF5D0019FBF0 /* TextEntryCell.h */,
 				EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */,
 				EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */,
@@ -404,10 +421,15 @@
 		EAD3966F171BD1DE00F6D011 /* ObjectModel */ = {
 			isa = PBXGroup;
 			children = (
+				EAD73696171E830600A037B1 /* Generated */,
 				EAD3968C171BD87E00F6D011 /* ObjectModel+Credentials.h */,
 				EAD3968D171BD87E00F6D011 /* ObjectModel+Credentials.m */,
+				EAD7369D171E836D00A037B1 /* ObjectModel+Recipients.h */,
+				EAD7369E171E836D00A037B1 /* ObjectModel+Recipients.m */,
 				EAD39670171BD2A300F6D011 /* ObjectModel.h */,
 				EAD39671171BD2A300F6D011 /* ObjectModel.m */,
+				EAD7369A171E831300A037B1 /* Recipient.h */,
+				EAD7369B171E831300A037B1 /* Recipient.m */,
 				EAAA1485171BC911005B9430 /* Transfer.xcdatamodeld */,
 			);
 			path = ObjectModel;
@@ -420,6 +442,15 @@
 				EAD73691171E7A1D00A037B1 /* Lockbox.m */,
 			);
 			path = LockBox;
+			sourceTree = "<group>";
+		};
+		EAD73696171E830600A037B1 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				EAD73697171E830D00A037B1 /* _Recipient.h */,
+				EAD73698171E830D00A037B1 /* _Recipient.m */,
+			);
+			name = Generated;
 			sourceTree = "<group>";
 		};
 		EAD7D4C3171D475E0099063F /* Resources */ = {
@@ -442,6 +473,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EAAA148A171BC911005B9430 /* Build configuration list for PBXNativeTarget "Transfer" */;
 			buildPhases = (
+				EAD73695171E820100A037B1 /* mogenerator */,
 				EAAA1464171BC911005B9430 /* Sources */,
 				EAAA1465171BC911005B9430 /* Frameworks */,
 				EAAA1466171BC911005B9430 /* Resources */,
@@ -506,10 +538,28 @@
 				EAD7D4CB171D4B080099063F /* BlueButton@2x.png in Resources */,
 				EAD7368D171E6D5A00A037B1 /* GrayButton.png in Resources */,
 				EAD7368E171E6D5A00A037B1 /* GrayButton@2x.png in Resources */,
+				EAD736A4171E85D100A037B1 /* RecipientCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EAD73695171E820100A037B1 /* mogenerator */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = mogenerator;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PATH_TO_MODELD=\"Transfer/Transfer.xcdatamodeld\"\nOUTPUT_PATH=\"Transfer/ObjectModel\"\n\ntype mogenerator >/dev/null 2>&1 || {\n    echo >&2 \"warning: mogenerator not found. You will need it when changing core data model\";\n    exit 0;\n}\n\n#CURRENT_VERSION=$(/usr/libexec/PlistBuddy -c \"Print :_XCCurrentVersionName\" \"${PATH_TO_MODELD}/.xccurrentversion\")\n\nMODEL_PATH=\"${PATH_TO_MODELD}\"\necho \"Used model path ${MODEL_PATH}\"\n\nmogenerator -m $MODEL_PATH -O $OUTPUT_PATH --template-var arc=true";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EAAA1464171BC911005B9430 /* Sources */ = {
@@ -554,6 +604,10 @@
 				EAD7D4D1171D4BB20099063F /* BlueButton.m in Sources */,
 				EAD7368A171E6CB100A037B1 /* GrayButton.m in Sources */,
 				EAD73692171E7A1D00A037B1 /* Lockbox.m in Sources */,
+				EAD73699171E830D00A037B1 /* _Recipient.m in Sources */,
+				EAD7369C171E831300A037B1 /* Recipient.m in Sources */,
+				EAD7369F171E836D00A037B1 /* ObjectModel+Recipients.m in Sources */,
+				EAD736A2171E85C300A037B1 /* RecipientCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

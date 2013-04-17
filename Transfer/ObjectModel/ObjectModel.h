@@ -10,6 +10,7 @@
 
 @interface ObjectModel : NSObject
 
+- (NSFetchedResultsController *)fetchedControllerForEntity:(NSString *)entityName sortDescriptors:(NSArray *)sortDescriptors;
 - (void)saveContext;
 
 @end

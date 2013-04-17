@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class ObjectModel;
+
 @interface ContactsViewController : UITableViewController
+
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 @end
