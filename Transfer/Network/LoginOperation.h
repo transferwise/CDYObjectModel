@@ -9,7 +9,7 @@
 #import "TransferwiseOperation.h"
 #import "Constants.h"
 
-typedef void (^LoginResponseBlock)(NSError *);
+typedef void (^LoginResponseBlock)(NSError *error);
 
 @interface LoginOperation : TransferwiseOperation
 

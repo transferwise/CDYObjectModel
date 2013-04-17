@@ -12,19 +12,23 @@
 #import "Constants.h"
 #import "RecipientCell.h"
 #import "UIColor+Theme.h"
+#import "UserRecipientsOperation.h"
+#import "TRWAlertView.h"
+#import "Recipient.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
 @interface ContactsViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *recipients;
+@property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
 @end
 
 @implementation ContactsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
+- (id)init {
+    self = [super initWithNibName:@"ContactsViewController" bundle:nil];
     if (self) {
         UITabBarItem *barItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"contacts.controller.title", nil) image:nil tag:0];
         [self setTabBarItem:barItem];
@@ -54,10 +58,12 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
         [controller setDelegate:self];
 
         MCLog(@"Fetched %d recipients", [controller.fetchedObjects count]);
-        [self.tableView reloadData];
     }
-}
 
+    [self.tableView reloadData];
+
+    [self refreshRecipients];
+}
 
 #pragma mark - Table view data source
 
@@ -72,6 +78,9 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RecipientCell *cell = [tableView dequeueReusableCellWithIdentifier:kRecipientCellIdentifier];
+
+    Recipient *recipient = [self.recipients objectAtIndexPath:indexPath];
+    [cell configureWithRecipient:recipient];
 
     return cell;
 }
@@ -112,5 +121,27 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [self.tableView endUpdates];
 }
 
+- (void)refreshRecipients {
+    MCLog(@"refreshRecipients");
+    UserRecipientsOperation *operation = [UserRecipientsOperation recipientsOperation];
+    [self setExecutedOperation:operation];
+
+    [operation setObjectModel:self.objectModel];
+    [operation setResponseHandler:^(NSError *error) {
+        [self setExecutedOperation:nil];
+
+        if (!error) {
+            return;
+        }
+
+        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"contacts.refresh.error.title", nil)
+                                                           message:NSLocalizedString(@"contacts.refresh.error.message", nil)];
+        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+        [alertView show];
+
+    }];
+
+    [operation execute];
+}
 
 @end

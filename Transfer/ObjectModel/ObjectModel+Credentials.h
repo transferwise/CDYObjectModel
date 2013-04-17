@@ -12,5 +12,6 @@
 
 - (BOOL)userLoggedIn;
 - (void)setUserToken:(NSString *)token;
+- (NSString *)accessToken;
 
 @end

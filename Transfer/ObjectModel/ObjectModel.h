@@ -10,6 +10,9 @@
 
 @interface ObjectModel : NSObject
 
+@property (strong, nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
+
+- (id)findEntityNamed:(NSString *)entityName withPredicate:(NSPredicate *)predicate;
 - (NSFetchedResultsController *)fetchedControllerForEntity:(NSString *)entityName sortDescriptors:(NSArray *)sortDescriptors;
 - (void)saveContext;
 

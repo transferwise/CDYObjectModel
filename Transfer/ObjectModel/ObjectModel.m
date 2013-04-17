@@ -19,6 +19,10 @@
 
 @implementation ObjectModel
 
+- (NSFetchRequest *)fetchRequestForEntity:(NSString *)entity predicate:(NSPredicate *)predicate {
+    return [self fetchRequestForEntity:entity predicate:predicate sortDescriptors:nil];
+}
+
 - (NSFetchRequest *)fetchRequestForEntity:(NSString *)entity sortDescriptors:(NSArray *)sortDescriptors {
     return [self fetchRequestForEntity:entity predicate:nil sortDescriptors:sortDescriptors];
 }
@@ -28,6 +32,23 @@
     [fetchRequest setPredicate:predicate];
     [fetchRequest setSortDescriptors:sortDescriptors];
     return fetchRequest;
+}
+
+- (id)findEntityNamed:(NSString *)entityName withPredicate:(NSPredicate *)predicate {
+    NSFetchRequest *fetchRequest = [self fetchRequestForEntity:entityName predicate:predicate];
+
+    NSError *error = nil;
+    NSArray *objects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+
+    if (error != nil) {
+        MCLog(@"Fetch error %@", error);
+    }
+
+    if ([objects count] > 1) {
+        MCLog(@"%d objects for fetch with entity %@", [objects count], entityName);
+    }
+
+    return [objects lastObject];
 }
 
 - (NSFetchedResultsController *)fetchedControllerForEntity:(NSString *)entityName sortDescriptors:(NSArray *)sortDescriptors {

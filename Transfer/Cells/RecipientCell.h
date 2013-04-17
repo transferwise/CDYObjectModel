@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Recipient;
+
 @interface RecipientCell : UITableViewCell
+
+- (void)configureWithRecipient:(Recipient *)recipient;
 
 @end

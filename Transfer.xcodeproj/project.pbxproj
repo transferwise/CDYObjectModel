@@ -70,6 +70,7 @@
 		EAD7369F171E836D00A037B1 /* ObjectModel+Recipients.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7369E171E836D00A037B1 /* ObjectModel+Recipients.m */; };
 		EAD736A2171E85C300A037B1 /* RecipientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD736A1171E85C300A037B1 /* RecipientCell.m */; };
 		EAD736A4171E85D100A037B1 /* RecipientCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD736A3171E85D100A037B1 /* RecipientCell.xib */; };
+		EAD736A7171E87ED00A037B1 /* UserRecipientsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD736A6171E87ED00A037B1 /* UserRecipientsOperation.m */; };
 		EAD7D4C2171D43440099063F /* NSDictionary+SensibleData.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */; };
 		EAD7D4C6171D47BE0099063F /* NavigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C4171D47BE0099063F /* NavigationBar.png */; };
 		EAD7D4C7171D47BE0099063F /* NavigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C5171D47BE0099063F /* NavigationBar@2x.png */; };
@@ -186,6 +187,8 @@
 		EAD736A0171E85C300A037B1 /* RecipientCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientCell.h; sourceTree = "<group>"; };
 		EAD736A1171E85C300A037B1 /* RecipientCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientCell.m; sourceTree = "<group>"; };
 		EAD736A3171E85D100A037B1 /* RecipientCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientCell.xib; sourceTree = "<group>"; };
+		EAD736A5171E87ED00A037B1 /* UserRecipientsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRecipientsOperation.h; sourceTree = "<group>"; };
+		EAD736A6171E87ED00A037B1 /* UserRecipientsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRecipientsOperation.m; sourceTree = "<group>"; };
 		EAD7D4C0171D43440099063F /* NSDictionary+SensibleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SensibleData.h"; sourceTree = "<group>"; };
 		EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SensibleData.m"; sourceTree = "<group>"; };
 		EAD7D4C4171D47BE0099063F /* NavigationBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavigationBar.png; sourceTree = "<group>"; };
@@ -324,6 +327,8 @@
 				EA8FF6BC171D30B60090A658 /* TransferwiseOperation+Private.h */,
 				EA8FF6B6171D25C20090A658 /* TransferwiseOperation.h */,
 				EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */,
+				EAD736A5171E87ED00A037B1 /* UserRecipientsOperation.h */,
+				EAD736A6171E87ED00A037B1 /* UserRecipientsOperation.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -608,6 +613,7 @@
 				EAD7369C171E831300A037B1 /* Recipient.m in Sources */,
 				EAD7369F171E836D00A037B1 /* ObjectModel+Recipients.m in Sources */,
 				EAD736A2171E85C300A037B1 /* RecipientCell.m in Sources */,
+				EAD736A7171E87ED00A037B1 /* UserRecipientsOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

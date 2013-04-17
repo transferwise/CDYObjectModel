@@ -21,3 +21,6 @@
 "payment.controller.title" = "New payment";
 
 "transactions.controller.title" = "Transactions";
+
+"contacts.refresh.error.title" = "Refresh error";
+"contacts.refresh.error.message" = "Could not refresh contacts list";

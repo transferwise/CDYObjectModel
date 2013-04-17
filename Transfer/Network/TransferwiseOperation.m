@@ -12,8 +12,10 @@
 #import "AFHTTPRequestOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "NSDictionary+SensibleData.h"
+#import "ObjectModel+Credentials.h"
 
 NSString *const TRWErrorDomain = @"TRWErrorDomain";
+NSString *const kAPIPathBase = @"/api/v1/";
 
 @interface TransferwiseOperation ()
 
@@ -30,10 +32,17 @@ NSString *const TRWErrorDomain = @"TRWErrorDomain";
 
 - (void)postData:(NSDictionary *)data toPath:(NSString *)postPath {
     MCLog(@"Post %@ to %@", [data sensibleDataHidden], postPath);
+    [self executeOperationWithMethod:@"POST" path:postPath parameters:data];
+}
 
+- (void)getDataFromPath:(NSString *)path {
+    MCLog(@"Get data from:%@", [path stringByReplacingOccurrencesOfString:[self.objectModel accessToken] withString:@"**********"]);
+    [self executeOperationWithMethod:@"GET" path:path parameters:@{}];
+}
+
+- (void)executeOperationWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters {
     AFHTTPClient *client = [self httpClient];
-
-    NSMutableURLRequest *request = [client requestWithMethod:@"POST" path:postPath parameters:data];
+    NSMutableURLRequest *request = [client requestWithMethod:method path:path parameters:parameters];
 
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setThreadPriority:0.1];
@@ -46,7 +55,7 @@ NSString *const TRWErrorDomain = @"TRWErrorDomain";
             self.operationErrorHandler(error);
             return;
         }
-        
+
         MCLog(@"Response:%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
         NSError *jsonError = nil;
 
@@ -63,6 +72,10 @@ NSString *const TRWErrorDomain = @"TRWErrorDomain";
         self.operationErrorHandler(error);
     }];
     [operation start];
+}
+
+- (NSString *)addTokenToPath:(NSString *)path {
+    return [NSString stringWithFormat:@"%@%@%@", kAPIPathBase, [self.objectModel accessToken], path];
 }
 
 static AFHTTPClient *__httpClient;

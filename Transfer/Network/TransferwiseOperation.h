@@ -22,5 +22,6 @@ extern NSString *const TRWErrorDomain;
 @property (nonatomic, strong) ObjectModel *objectModel;
 
 - (void)execute;
+- (NSString *)addTokenToPath:(NSString *)path;
 
 @end

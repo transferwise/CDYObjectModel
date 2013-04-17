@@ -11,5 +11,6 @@
 @interface ObjectModel (Recipients)
 
 - (NSFetchedResultsController *)fetchedControllerForAllRecipients;
+- (void)createOrUpdateRecipientWithData:(NSDictionary *)data;
 
 @end

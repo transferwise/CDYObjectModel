@@ -16,4 +16,20 @@
     return [self fetchedControllerForEntity:[Recipient entityName] sortDescriptors:@[nameSortDescriptor]];
 }
 
+- (Recipient *)findRecipientWithID:(NSNumber *)recipientID {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"recipientID = %@", recipientID];
+    return [self findEntityNamed:[Recipient entityName] withPredicate:predicate];
+}
+
+- (void)createOrUpdateRecipientWithData:(NSDictionary *)data {
+    NSNumber *recipientID = data[@"id"];
+    Recipient *recipient = [self findRecipientWithID:recipientID];
+    if (!recipient) {
+        recipient = [Recipient insertInManagedObjectContext:self.managedObjectContext];
+        [recipient setRecipientID:recipientID];
+    }
+
+    [recipient setName:data[@"name"]];
+}
+
 @end
