@@ -1,13 +1,13 @@
 //
-//  IntroductionControlsView.h
+//  GrayButton.h
 //  Transfer
 //
-//  Created by Jaanus Siim on 4/15/13.
+//  Created by Jaanus Siim on 4/17/13.
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface IntroductionControlsView : UIView
+@interface GrayButton : UIButton
 
 @end

@@ -9,14 +9,17 @@
 #import "IntroductionViewController.h"
 #import "TableHeaderView.h"
 #import "MoneyEntryCell.h"
-#import "IntroductionControlsView.h"
 #import "LoginViewController.h"
 #import "UIColor+Theme.h"
 #import "UIView+Loading.h"
 
 @interface IntroductionViewController ()
 
-@property (nonatomic, strong) IBOutlet IntroductionControlsView *controlsView;
+@property (nonatomic, strong) IBOutlet UIView *controlsView;
+@property (nonatomic, strong) IBOutlet UILabel *savingsLabel;
+@property (nonatomic, strong) IBOutlet UILabel *loginTitle;
+@property (nonatomic, strong) IBOutlet UIButton *startedButton;
+@property (nonatomic, strong) IBOutlet UIButton *loginButton;
 
 - (IBAction)loginPressed:(id)sender;
 
@@ -44,6 +47,14 @@
     [header setMessage:NSLocalizedString(@"introduction.header.title.text", nil)];
     [self.tableView setTableHeaderView:header];
     [self.tableView setTableFooterView:self.controlsView];
+
+    [self.savingsLabel setText:@""];
+    [self.savingsLabel setTextColor:[UIColor mainTextColor]];
+    [self.loginTitle setText:NSLocalizedString(@"introduction.login.section.title", nil)];
+    [self.loginTitle setTextColor:[UIColor mainTextColor]];
+
+    [self.startedButton setTitle:NSLocalizedString(@"button.title.get.started", nil) forState:UIControlStateNormal];
+    [self.loginButton setTitle:NSLocalizedString(@"button.title.log.in", nil) forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {

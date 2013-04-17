@@ -7,6 +7,7 @@
 //
 
 #import "TableHeaderView.h"
+#import "UIColor+Theme.h"
 
 @interface TableHeaderView ()
 
@@ -27,8 +28,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 
-    //TODO jaanus: move to theme definion and name color
-    [self.titleLabel setTextColor:[UIColor colorWithRed:0.435 green:0.467 blue:0.529 alpha:1.000]];
+    [self.titleLabel setTextColor:[UIColor mainTextColor]];
     [self.titleLabel setText:NSLocalizedString(@"introduction.header.title.text", nil)];
 }
 

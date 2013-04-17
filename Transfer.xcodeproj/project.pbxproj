@@ -10,7 +10,6 @@
 		EA13E032171BDF1A0019FBF0 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */; };
 		EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */; };
 		EA13E038171BE12E0019FBF0 /* MoneyEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */; };
-		EA13E03B171BE2680019FBF0 /* IntroductionControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E03A171BE2680019FBF0 /* IntroductionControlsView.m */; };
 		EA13E03F171BE9B00019FBF0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E03D171BE9B00019FBF0 /* LoginViewController.m */; };
 		EA13E040171BE9B00019FBF0 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E03E171BE9B00019FBF0 /* LoginViewController.xib */; };
 		EA13E044171BEB010019FBF0 /* UIColor+Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E043171BEB010019FBF0 /* UIColor+Theme.m */; };
@@ -61,6 +60,9 @@
 		EAD3968A171BD82300F6D011 /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39688171BD82300F6D011 /* IntroductionViewController.m */; };
 		EAD3968B171BD82300F6D011 /* IntroductionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39689171BD82300F6D011 /* IntroductionViewController.xib */; };
 		EAD3968E171BD87E00F6D011 /* ObjectModel+Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3968D171BD87E00F6D011 /* ObjectModel+Credentials.m */; };
+		EAD7368A171E6CB100A037B1 /* GrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD73689171E6CB100A037B1 /* GrayButton.m */; };
+		EAD7368D171E6D5A00A037B1 /* GrayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368B171E6D5A00A037B1 /* GrayButton.png */; };
+		EAD7368E171E6D5A00A037B1 /* GrayButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */; };
 		EAD7D4C2171D43440099063F /* NSDictionary+SensibleData.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */; };
 		EAD7D4C6171D47BE0099063F /* NavigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C4171D47BE0099063F /* NavigationBar.png */; };
 		EAD7D4C7171D47BE0099063F /* NavigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C5171D47BE0099063F /* NavigationBar@2x.png */; };
@@ -76,8 +78,6 @@
 		EA13E034171BE1210019FBF0 /* MoneyEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyEntryCell.h; sourceTree = "<group>"; };
 		EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyEntryCell.m; sourceTree = "<group>"; };
 		EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoneyEntryCell.xib; sourceTree = "<group>"; };
-		EA13E039171BE2680019FBF0 /* IntroductionControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroductionControlsView.h; sourceTree = "<group>"; };
-		EA13E03A171BE2680019FBF0 /* IntroductionControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionControlsView.m; sourceTree = "<group>"; };
 		EA13E03C171BE9B00019FBF0 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		EA13E03D171BE9B00019FBF0 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		EA13E03E171BE9B00019FBF0 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -163,6 +163,10 @@
 		EAD39689171BD82300F6D011 /* IntroductionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroductionViewController.xib; sourceTree = "<group>"; };
 		EAD3968C171BD87E00F6D011 /* ObjectModel+Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+Credentials.h"; sourceTree = "<group>"; };
 		EAD3968D171BD87E00F6D011 /* ObjectModel+Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+Credentials.m"; sourceTree = "<group>"; };
+		EAD73688171E6CB100A037B1 /* GrayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrayButton.h; sourceTree = "<group>"; };
+		EAD73689171E6CB100A037B1 /* GrayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrayButton.m; sourceTree = "<group>"; };
+		EAD7368B171E6D5A00A037B1 /* GrayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GrayButton.png; sourceTree = "<group>"; };
+		EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GrayButton@2x.png"; sourceTree = "<group>"; };
 		EAD7D4C0171D43440099063F /* NSDictionary+SensibleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SensibleData.h"; sourceTree = "<group>"; };
 		EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SensibleData.m"; sourceTree = "<group>"; };
 		EAD7D4C4171D47BE0099063F /* NavigationBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavigationBar.png; sourceTree = "<group>"; };
@@ -197,8 +201,8 @@
 			children = (
 				EAD7D4CF171D4BB20099063F /* BlueButton.h */,
 				EAD7D4D0171D4BB20099063F /* BlueButton.m */,
-				EA13E039171BE2680019FBF0 /* IntroductionControlsView.h */,
-				EA13E03A171BE2680019FBF0 /* IntroductionControlsView.m */,
+				EAD73688171E6CB100A037B1 /* GrayButton.h */,
+				EAD73689171E6CB100A037B1 /* GrayButton.m */,
 				EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */,
 				EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */,
 				EA13E045171BED910019FBF0 /* TableHeaderView.xib */,
@@ -406,6 +410,8 @@
 			children = (
 				EAD7D4C8171D4B080099063F /* BlueButton.png */,
 				EAD7D4C9171D4B080099063F /* BlueButton@2x.png */,
+				EAD7368B171E6D5A00A037B1 /* GrayButton.png */,
+				EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */,
 				EAD7D4C4171D47BE0099063F /* NavigationBar.png */,
 				EAD7D4C5171D47BE0099063F /* NavigationBar@2x.png */,
 			);
@@ -481,6 +487,8 @@
 				EAD7D4C7171D47BE0099063F /* NavigationBar@2x.png in Resources */,
 				EAD7D4CA171D4B080099063F /* BlueButton.png in Resources */,
 				EAD7D4CB171D4B080099063F /* BlueButton@2x.png in Resources */,
+				EAD7368D171E6D5A00A037B1 /* GrayButton.png in Resources */,
+				EAD7368E171E6D5A00A037B1 /* GrayButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,7 +511,6 @@
 				EAD3968E171BD87E00F6D011 /* ObjectModel+Credentials.m in Sources */,
 				EA13E032171BDF1A0019FBF0 /* TableHeaderView.m in Sources */,
 				EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */,
-				EA13E03B171BE2680019FBF0 /* IntroductionControlsView.m in Sources */,
 				EA13E03F171BE9B00019FBF0 /* LoginViewController.m in Sources */,
 				EA13E044171BEB010019FBF0 /* UIColor+Theme.m in Sources */,
 				EA13E049171BEDC40019FBF0 /* UIView+Loading.m in Sources */,
@@ -528,6 +535,7 @@
 				EAD7D4C2171D43440099063F /* NSDictionary+SensibleData.m in Sources */,
 				EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */,
 				EAD7D4D1171D4BB20099063F /* BlueButton.m in Sources */,
+				EAD7368A171E6CB100A037B1 /* GrayButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,15 +1,15 @@
 //
-//  BlueButton.m
+//  GrayButton.m
 //  Transfer
 //
-//  Created by Jaanus Siim on 4/16/13.
+//  Created by Jaanus Siim on 4/17/13.
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import "BlueButton.h"
+#import "GrayButton.h"
 #import "UIButton+Skinning.h"
 
-@implementation BlueButton
+@implementation GrayButton
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -23,7 +23,7 @@
     [super awakeFromNib];
 
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self skinWithImage:[UIImage imageNamed:@"BlueButton.png"] insets:UIEdgeInsetsMake(0, 15, 0, 15)];
+    [self skinWithImage:[UIImage imageNamed:@"GrayButton.png"] insets:UIEdgeInsetsMake(0, 15, 0, 15)];
     [self.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
 }
 

@@ -14,4 +14,8 @@
     return [UIColor colorWithWhite:0.949 alpha:1.000];
 }
 
++ (UIColor *)mainTextColor {
+    return [UIColor colorWithRed:0.435 green:0.467 blue:0.529 alpha:1.000];
+}
+
 @end

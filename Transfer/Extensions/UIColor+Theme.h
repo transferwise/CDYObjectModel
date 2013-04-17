@@ -11,5 +11,6 @@
 @interface UIColor (Theme)
 
 + (UIColor *)controllerBackgroundColor;
++ (UIColor *)mainTextColor;
 
 @end
