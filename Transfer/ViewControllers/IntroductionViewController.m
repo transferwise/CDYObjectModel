@@ -91,6 +91,7 @@
 
 - (IBAction)loginPressed:(id)sender {
     LoginViewController *controller = [[LoginViewController alloc] init];
+    [controller setObjectModel:self.objectModel];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

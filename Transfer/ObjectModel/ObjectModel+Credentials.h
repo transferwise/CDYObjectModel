@@ -11,5 +11,6 @@
 @interface ObjectModel (Credentials)
 
 - (BOOL)userLoggedIn;
+- (void)setUserToken:(NSString *)token;
 
 @end

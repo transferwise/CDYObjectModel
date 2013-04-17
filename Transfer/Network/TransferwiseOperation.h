@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class ObjectModel;
+
 typedef NS_ENUM(short, TRWNetworkErrorCode) {
     ResponseFormatError,
     ResponseServerError
@@ -16,6 +18,8 @@ typedef NS_ENUM(short, TRWNetworkErrorCode) {
 extern NSString *const TRWErrorDomain;
 
 @interface TransferwiseOperation : NSObject
+
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 - (void)execute;
 

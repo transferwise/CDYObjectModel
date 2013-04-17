@@ -10,6 +10,7 @@
 #import "UIColor+Theme.h"
 #import "TableHeaderView.h"
 #import "UIView+Loading.h"
+#import "ObjectModel.h"
 #import "TextEntryCell.h"
 #import "NSString+Validation.h"
 #import "NSMutableString+Issues.h"
@@ -146,6 +147,8 @@ static NSUInteger const kTableRowEmail = 0;
 
     LoginOperation *loginOperation = [LoginOperation loginOperationWithEmail:[self.emailCell value] password:[self.passwordCell value]];
     [self setExecutedOperation:loginOperation];
+
+    [loginOperation setObjectModel:self.objectModel];
 
     [loginOperation setResponseHandler:^(NSError *error) {
         [hud hide];

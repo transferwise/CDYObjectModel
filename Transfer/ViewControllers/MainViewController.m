@@ -63,6 +63,7 @@
 
 - (void)presentIntroductionController {
     IntroductionViewController *controller = [[IntroductionViewController alloc] init];
+    [controller setObjectModel:self.objectModel];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     [self presentModalViewController:navigationController animated:NO];
 }

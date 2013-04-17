@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class ObjectModel;
+
 @interface LoginViewController : UITableViewController
+
+@property (nonatomic) ObjectModel *objectModel;
 
 @end

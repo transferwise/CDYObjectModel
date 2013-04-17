@@ -7,11 +7,24 @@
 //
 
 #import "ObjectModel+Credentials.h"
+#import "Lockbox.h"
+#import "NSString+Validation.h"
+
+NSString *const kAccessTokenKey = @"kAccessTokenKey";
 
 @implementation ObjectModel (Credentials)
 
 - (BOOL)userLoggedIn {
-    return NO;
+    return [[self accessToken] hasValue];
+}
+
+- (void)setUserToken:(NSString *)token {
+    [Lockbox setString:token forKey:kAccessTokenKey];
+}
+
+
+- (NSString *)accessToken {
+    return [Lockbox stringForKey:kAccessTokenKey];
 }
 
 @end
