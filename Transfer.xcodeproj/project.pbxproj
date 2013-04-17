@@ -63,6 +63,8 @@
 		EAD7368A171E6CB100A037B1 /* GrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD73689171E6CB100A037B1 /* GrayButton.m */; };
 		EAD7368D171E6D5A00A037B1 /* GrayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368B171E6D5A00A037B1 /* GrayButton.png */; };
 		EAD7368E171E6D5A00A037B1 /* GrayButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */; };
+		EAD73692171E7A1D00A037B1 /* Lockbox.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD73691171E7A1D00A037B1 /* Lockbox.m */; };
+		EAD73694171E7A3200A037B1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD73693171E7A3200A037B1 /* Security.framework */; };
 		EAD7D4C2171D43440099063F /* NSDictionary+SensibleData.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */; };
 		EAD7D4C6171D47BE0099063F /* NavigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C4171D47BE0099063F /* NavigationBar.png */; };
 		EAD7D4C7171D47BE0099063F /* NavigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C5171D47BE0099063F /* NavigationBar@2x.png */; };
@@ -167,6 +169,9 @@
 		EAD73689171E6CB100A037B1 /* GrayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrayButton.m; sourceTree = "<group>"; };
 		EAD7368B171E6D5A00A037B1 /* GrayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GrayButton.png; sourceTree = "<group>"; };
 		EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GrayButton@2x.png"; sourceTree = "<group>"; };
+		EAD73690171E7A1D00A037B1 /* Lockbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lockbox.h; sourceTree = "<group>"; };
+		EAD73691171E7A1D00A037B1 /* Lockbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lockbox.m; sourceTree = "<group>"; };
+		EAD73693171E7A3200A037B1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EAD7D4C0171D43440099063F /* NSDictionary+SensibleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SensibleData.h"; sourceTree = "<group>"; };
 		EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SensibleData.m"; sourceTree = "<group>"; };
 		EAD7D4C4171D47BE0099063F /* NavigationBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavigationBar.png; sourceTree = "<group>"; };
@@ -184,6 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAD73694171E7A3200A037B1 /* Security.framework in Frameworks */,
 				EA8FF6AD171D22340090A658 /* MobileCoreServices.framework in Frameworks */,
 				EA8FF6AB171D222E0090A658 /* SystemConfiguration.framework in Frameworks */,
 				EAAA146C171BC911005B9430 /* UIKit.framework in Frameworks */,
@@ -252,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				EA8FF68D171D221D0090A658 /* AFNetworking */,
+				EAD7368F171E7A1D00A037B1 /* LockBox */,
 				EA8FF6AE171D237C0090A658 /* MBProgressHUD */,
 			);
 			path = Thirdparty;
@@ -325,12 +332,13 @@
 		EAAA146A171BC911005B9430 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EAAA1471171BC911005B9430 /* CoreData.framework */,
+				EAAA146F171BC911005B9430 /* CoreGraphics.framework */,
+				EAAA146D171BC911005B9430 /* Foundation.framework */,
 				EA8FF6AC171D22340090A658 /* MobileCoreServices.framework */,
+				EAD73693171E7A3200A037B1 /* Security.framework */,
 				EA8FF6AA171D222E0090A658 /* SystemConfiguration.framework */,
 				EAAA146B171BC911005B9430 /* UIKit.framework */,
-				EAAA146D171BC911005B9430 /* Foundation.framework */,
-				EAAA146F171BC911005B9430 /* CoreGraphics.framework */,
-				EAAA1471171BC911005B9430 /* CoreData.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -403,6 +411,15 @@
 				EAAA1485171BC911005B9430 /* Transfer.xcdatamodeld */,
 			);
 			path = ObjectModel;
+			sourceTree = "<group>";
+		};
+		EAD7368F171E7A1D00A037B1 /* LockBox */ = {
+			isa = PBXGroup;
+			children = (
+				EAD73690171E7A1D00A037B1 /* Lockbox.h */,
+				EAD73691171E7A1D00A037B1 /* Lockbox.m */,
+			);
+			path = LockBox;
 			sourceTree = "<group>";
 		};
 		EAD7D4C3171D475E0099063F /* Resources */ = {
@@ -536,6 +553,7 @@
 				EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */,
 				EAD7D4D1171D4BB20099063F /* BlueButton.m in Sources */,
 				EAD7368A171E6CB100A037B1 /* GrayButton.m in Sources */,
+				EAD73692171E7A1D00A037B1 /* Lockbox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
