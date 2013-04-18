@@ -36,6 +36,7 @@ NSString *const kPaymentCalculationPath = @"/api/v1/public/payment/calculate";
         CalculationResult *result = [CalculationResult resultWithData:response];
         [result setSourceCurrency:weakSelf.sourceCurrency];
         [result setTargetCurrency:weakSelf.targetCurrency];
+        [result setAmountCurrency:weakSelf.amountCurrency];
         weakSelf.remoteCalculationHandler(result, nil);
     }];
 
@@ -47,7 +48,7 @@ NSString *const kPaymentCalculationPath = @"/api/v1/public/payment/calculate";
     params[@"amount"] = self.amount;
     params[@"sourceCurrency"] = self.sourceCurrency;
     params[@"targetCurrency"] = self.targetCurrency;
-    params[@"amountCurrency"] = @"source";
+    params[@"amountCurrency"] = self.amountCurrency == SourceCurrency ? @"source" : @"target";
     [self getDataFromPath:kPaymentCalculationPath params:params];
 }
 

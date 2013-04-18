@@ -49,6 +49,21 @@
     return [formatter stringFromNumber:self.bankRateMarkup];
 }
 
+- (NSString *)transferwisePayInString {
+    return [self numberStringFrom:self.transferwisePayIn];
+}
+
+- (NSString *)transferwisePayOutString {
+    return [self numberStringFrom:self.transferwisePayOut];
+}
+
+- (NSString *)numberStringFrom:(NSNumber *)number {
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [formatter setLocale:[CalculationResult defaultLocale]];
+    [formatter setCurrencySymbol:@""];
+    return [formatter stringFromNumber:number];
+}
 
 static NSNumberFormatter *__moneyFormatter;
 + (NSNumberFormatter *)moneyFormatter {
@@ -56,6 +71,7 @@ static NSNumberFormatter *__moneyFormatter;
         __moneyFormatter = [[NSNumberFormatter alloc] init];
         //TODO jaanus: check this. Needed because actual user locale may require numbers containing ',' instead of '.'
         [__moneyFormatter setLocale:[CalculationResult defaultLocale]];
+        [__moneyFormatter setGeneratesDecimalNumbers:YES];
     }
 
     return __moneyFormatter;

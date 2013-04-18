@@ -12,9 +12,15 @@
 
 typedef void (^TWRemoteCalculationHandler)(CalculationResult *result, NSError *error);
 
+typedef NS_ENUM(short, CalculationAmountCurrency) {
+    SourceCurrency,
+    TargetCurrency
+};
+
 @interface TransferCalculationsOperation : TransferwiseOperation
 
 @property (nonatomic, copy) TWRemoteCalculationHandler remoteCalculationHandler;
+@property (nonatomic, assign) CalculationAmountCurrency amountCurrency;
 
 + (TransferCalculationsOperation *)operationWithAmount:(NSString *)amount source:(NSString *)source target:(NSString *)target;
 

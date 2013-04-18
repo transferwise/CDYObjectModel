@@ -7,16 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TransferCalculationsOperation.h"
 
 @interface CalculationResult : NSObject
 
-@property (nonatomic, strong, readonly) NSNumber *transferwisePayOut;
 @property (nonatomic, copy) NSString *sourceCurrency;
 @property (nonatomic, copy) NSString *targetCurrency;
+@property (nonatomic) CalculationAmountCurrency amountCurrency;
 
 + (CalculationResult *)resultWithData:(NSDictionary *)data;
 
 - (NSString *)formattedWinAmount;
+- (NSString *)transferwisePayInString;
+- (NSString *)transferwisePayOutString;
 + (NSLocale *)defaultLocale;
 
 @end
