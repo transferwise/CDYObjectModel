@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "ObjectModel.h"
 #import "MainViewController.h"
+#import "Constants.h"
+#import "TestFlight.h"
 
 @interface AppDelegate ()
 
@@ -21,6 +23,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
+#if USE_TESTFLIGHT
+    [TestFlight takeOff:@"4b176dca-177c-48bf-9480-a15001cc9211"];
+#endif
 
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavigationBar.png"] forBarMetrics:UIBarMetricsDefault];
     UIImage *navBarButton = [UIImage imageNamed:@"NavBarButton.png"];

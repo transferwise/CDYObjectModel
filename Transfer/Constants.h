@@ -15,3 +15,5 @@
 typedef void (^TRWActionBlock)();
 
 #define ABSTRACT_METHOD MCLog(@"You must override %@ in a subclass", NSStringFromSelector(_cmd)); [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+
+#define USE_TESTFLIGHT 1
