@@ -12,5 +12,6 @@
 
 + (UIColor *)controllerBackgroundColor;
 + (UIColor *)mainTextColor;
++ (UIColor *)settingsBackgroundColor;
 
 @end

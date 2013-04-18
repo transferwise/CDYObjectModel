@@ -13,6 +13,7 @@
 #import "ObjectModel.h"
 #import "IntroductionViewController.h"
 #import "ObjectModel+Credentials.h"
+#import "SettingsViewController.h"
 
 @interface MainViewController ()
 
@@ -44,8 +45,14 @@
     [tabController setViewControllers:@[transactionsController, paymentController, contactsController]];
     [self setTabsController:tabController];
 
-    [tabController.view setFrame:self.view.bounds];
-    [self.view addSubview:tabController.view];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:tabController];
+    [self addChildViewController:navigationController];
+
+    [navigationController.view setFrame:self.view.bounds];
+    [self.view addSubview:navigationController.view];
+
+    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SettingsButtonIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsPressed)];
+    [tabController.navigationItem setLeftBarButtonItem:settingsButton];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,12 +68,18 @@
     }
 }
 
-
 - (void)presentIntroductionController {
     IntroductionViewController *controller = [[IntroductionViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     [self presentModalViewController:navigationController animated:NO];
+}
+
+- (void)settingsPressed {
+    SettingsViewController *controller = [[SettingsViewController alloc] init];
+    [controller setObjectModel:self.objectModel];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 @end

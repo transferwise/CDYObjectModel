@@ -23,6 +23,8 @@
 
 
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavigationBar.png"] forBarMetrics:UIBarMetricsDefault];
+    UIImage *navBarButton = [UIImage imageNamed:@"NavBarButton.png"];
+    [[UIBarButtonItem appearance] setBackgroundImage:navBarButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 
     ObjectModel *model = [[ObjectModel alloc] init];
     [self setObjectModel:model];

@@ -48,6 +48,14 @@
 		EAAA1484171BC911005B9430 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAAA1483171BC911005B9430 /* Default-568h@2x.png */; };
 		EAAA1487171BC911005B9430 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EAAA1485171BC911005B9430 /* Transfer.xcdatamodeld */; };
 		EAAA1490171BD07E005B9430 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAAA148E171BD07E005B9430 /* Localizable.strings */; };
+		EAB72152171FC34600DE29F5 /* NavBarButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72150171FC34600DE29F5 /* NavBarButton.png */; };
+		EAB72153171FC34600DE29F5 /* NavBarButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */; };
+		EAB72156171FC3E900DE29F5 /* SettingsButtonIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */; };
+		EAB72157171FC3E900DE29F5 /* SettingsButtonIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72155171FC3E900DE29F5 /* SettingsButtonIcon@2x.png */; };
+		EAB7215B171FC61B00DE29F5 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB72159171FC61B00DE29F5 /* SettingsViewController.m */; };
+		EAB7215C171FC61B00DE29F5 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB7215A171FC61B00DE29F5 /* SettingsViewController.xib */; };
+		EAB7215F171FCAAC00DE29F5 /* SettingsTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB7215E171FCAAC00DE29F5 /* SettingsTitleCell.m */; };
+		EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */; };
 		EAD39672171BD2A300F6D011 /* ObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39671171BD2A300F6D011 /* ObjectModel.m */; };
 		EAD39676171BD4EE00F6D011 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39674171BD4EE00F6D011 /* MainViewController.m */; };
 		EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39675171BD4EE00F6D011 /* MainViewController.xib */; };
@@ -152,6 +160,16 @@
 		EAAA1483171BC911005B9430 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EAAA1486171BC911005B9430 /* Transfer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer.xcdatamodel; sourceTree = "<group>"; };
 		EAAA148F171BD07E005B9430 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EAB72150171FC34600DE29F5 /* NavBarButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBarButton.png; sourceTree = "<group>"; };
+		EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarButton@2x.png"; sourceTree = "<group>"; };
+		EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsButtonIcon.png; sourceTree = "<group>"; };
+		EAB72155171FC3E900DE29F5 /* SettingsButtonIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SettingsButtonIcon@2x.png"; sourceTree = "<group>"; };
+		EAB72158171FC61B00DE29F5 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		EAB72159171FC61B00DE29F5 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		EAB7215A171FC61B00DE29F5 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		EAB7215D171FCAAC00DE29F5 /* SettingsTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTitleCell.h; sourceTree = "<group>"; };
+		EAB7215E171FCAAC00DE29F5 /* SettingsTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTitleCell.m; sourceTree = "<group>"; };
+		EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTitleCell.xib; sourceTree = "<group>"; };
 		EAD39670171BD2A300F6D011 /* ObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectModel.h; sourceTree = "<group>"; };
 		EAD39671171BD2A300F6D011 /* ObjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectModel.m; sourceTree = "<group>"; };
 		EAD39673171BD4EE00F6D011 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -246,6 +264,9 @@
 				EAD736A0171E85C300A037B1 /* RecipientCell.h */,
 				EAD736A1171E85C300A037B1 /* RecipientCell.m */,
 				EAD736A3171E85D100A037B1 /* RecipientCell.xib */,
+				EAB7215D171FCAAC00DE29F5 /* SettingsTitleCell.h */,
+				EAB7215E171FCAAC00DE29F5 /* SettingsTitleCell.m */,
+				EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */,
 				EA13E04A171BEF5D0019FBF0 /* TextEntryCell.h */,
 				EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */,
 				EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */,
@@ -416,6 +437,9 @@
 				EAD39682171BD5B000F6D011 /* PaymentViewController.h */,
 				EAD39683171BD5B000F6D011 /* PaymentViewController.m */,
 				EAD39684171BD5B000F6D011 /* PaymentViewController.xib */,
+				EAB72158171FC61B00DE29F5 /* SettingsViewController.h */,
+				EAB72159171FC61B00DE29F5 /* SettingsViewController.m */,
+				EAB7215A171FC61B00DE29F5 /* SettingsViewController.xib */,
 				EAD39678171BD51400F6D011 /* TransactionsViewController.h */,
 				EAD39679171BD51400F6D011 /* TransactionsViewController.m */,
 				EAD3967A171BD51400F6D011 /* TransactionsViewController.xib */,
@@ -465,8 +489,12 @@
 				EAD7D4C9171D4B080099063F /* BlueButton@2x.png */,
 				EAD7368B171E6D5A00A037B1 /* GrayButton.png */,
 				EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */,
+				EAB72150171FC34600DE29F5 /* NavBarButton.png */,
+				EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */,
 				EAD7D4C4171D47BE0099063F /* NavigationBar.png */,
 				EAD7D4C5171D47BE0099063F /* NavigationBar@2x.png */,
+				EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */,
+				EAB72155171FC3E900DE29F5 /* SettingsButtonIcon@2x.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -544,6 +572,12 @@
 				EAD7368D171E6D5A00A037B1 /* GrayButton.png in Resources */,
 				EAD7368E171E6D5A00A037B1 /* GrayButton@2x.png in Resources */,
 				EAD736A4171E85D100A037B1 /* RecipientCell.xib in Resources */,
+				EAB72152171FC34600DE29F5 /* NavBarButton.png in Resources */,
+				EAB72153171FC34600DE29F5 /* NavBarButton@2x.png in Resources */,
+				EAB72156171FC3E900DE29F5 /* SettingsButtonIcon.png in Resources */,
+				EAB72157171FC3E900DE29F5 /* SettingsButtonIcon@2x.png in Resources */,
+				EAB7215C171FC61B00DE29F5 /* SettingsViewController.xib in Resources */,
+				EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +648,8 @@
 				EAD7369F171E836D00A037B1 /* ObjectModel+Recipients.m in Sources */,
 				EAD736A2171E85C300A037B1 /* RecipientCell.m in Sources */,
 				EAD736A7171E87ED00A037B1 /* UserRecipientsOperation.m in Sources */,
+				EAB7215B171FC61B00DE29F5 /* SettingsViewController.m in Sources */,
+				EAB7215F171FCAAC00DE29F5 /* SettingsTitleCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

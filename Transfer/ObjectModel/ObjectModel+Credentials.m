@@ -27,4 +27,8 @@ NSString *const kAccessTokenKey = @"kAccessTokenKey";
     return [Lockbox stringForKey:kAccessTokenKey];
 }
 
+- (void)clearCredentials {
+    [Lockbox setString:@"" forKey:kAccessTokenKey];
+}
+
 @end

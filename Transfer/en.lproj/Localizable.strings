@@ -4,6 +4,9 @@
 
 "contacts.controller.title" = "Contacts";
 
+"contacts.refresh.error.title" = "Refresh error";
+"contacts.refresh.error.message" = "Could not refresh contacts list";
+
 "introduction.controller.title" = "Transferwise";
 "introduction.header.title.text" = "Send money abroad";
 "introduction.login.section.title" = "Already a user";
@@ -22,5 +25,4 @@
 
 "transactions.controller.title" = "Transactions";
 
-"contacts.refresh.error.title" = "Refresh error";
-"contacts.refresh.error.message" = "Could not refresh contacts list";
+"settings.row.logout" = "Sign out";
