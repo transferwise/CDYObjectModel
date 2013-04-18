@@ -1,0 +1,68 @@
+//
+//  CalculationResult.m
+//  Transfer
+//
+//  Created by Jaanus Siim on 4/18/13.
+//  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
+//
+
+#import "CalculationResult.h"
+
+@interface CalculationResult ()
+
+@property (nonatomic, strong) NSNumber *transferwiseRate;
+@property (nonatomic, strong) NSNumber *transferwiseTransferFee;
+@property (nonatomic, strong) NSNumber *transferwisePayIn;
+@property (nonatomic, strong) NSNumber *transferwisePayOut;
+@property (nonatomic, strong) NSNumber *bankRate;
+@property (nonatomic, strong) NSNumber *bankTransferFee;
+@property (nonatomic, strong) NSNumber *bankRateMarkup;
+@property (nonatomic, strong) NSNumber *bankTotalFee;
+@property (nonatomic, strong) NSNumber *bankPayIn;
+@property (nonatomic, strong) NSNumber *bankPayOut;
+
+@end
+
+@implementation CalculationResult
+
++ (CalculationResult *)resultWithData:(NSDictionary *)data {
+    CalculationResult *result = [[CalculationResult alloc] init];
+    NSNumberFormatter *formatter = [CalculationResult moneyFormatter];
+    [result setTransferwiseRate:[formatter numberFromString:data[@"transferwise_rate"]]];
+    [result setTransferwiseTransferFee:[formatter numberFromString:data[@"transferwise_transfer_fee"]]];
+    [result setTransferwisePayIn:[formatter numberFromString:data[@"transferwise_pay_in"]]];
+    [result setTransferwisePayOut:[formatter numberFromString:data[@"transferwise_pay_out"]]];
+    [result setBankRate:[formatter numberFromString:data[@"bank_rate"]]];
+    [result setBankTransferFee:[formatter numberFromString:data[@"bank_transfer_fee"]]];
+    [result setBankRateMarkup:[formatter numberFromString:data[@"bank_rate_markup"]]];
+    [result setBankTotalFee:[formatter numberFromString:data[@"bank_total_fee"]]];
+    [result setBankPayIn:[formatter numberFromString:data[@"bank_pay_in"]]];
+    [result setBankPayOut:[formatter numberFromString:data[@"bank_pay_out"]]];
+    return result;
+}
+
+- (NSString *)formattedWinAmount {
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [formatter setLocale:[CalculationResult defaultLocale]];
+    [formatter setCurrencySymbol:[[CalculationResult defaultLocale] displayNameForKey:NSLocaleCurrencySymbol value:self.targetCurrency]];
+    return [formatter stringFromNumber:self.bankRateMarkup];
+}
+
+
+static NSNumberFormatter *__moneyFormatter;
++ (NSNumberFormatter *)moneyFormatter {
+    if (!__moneyFormatter) {
+        __moneyFormatter = [[NSNumberFormatter alloc] init];
+        //TODO jaanus: check this. Needed because actual user locale may require numbers containing ',' instead of '.'
+        [__moneyFormatter setLocale:[CalculationResult defaultLocale]];
+    }
+
+    return __moneyFormatter;
+}
+
++ (NSLocale *)defaultLocale {
+    return [[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"];
+}
+
+@end

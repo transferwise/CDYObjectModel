@@ -17,5 +17,6 @@ typedef void (^TRWOperationErrorBlock)(NSError *error);
 - (void)setOperationErrorHandler:(TRWOperationErrorBlock)handler;
 - (void)postData:(NSDictionary *)data toPath:(NSString *)postPath;
 - (void)getDataFromPath:(NSString *)path;
+- (void)getDataFromPath:(NSString *)path params:(NSDictionary *)params;
 
 @end

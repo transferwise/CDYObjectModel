@@ -10,6 +10,14 @@
 
 NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
+@interface MoneyEntryCell ()
+
+@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
+@property (nonatomic, strong) IBOutlet UITextField *moneyField;
+@property (nonatomic, strong) IBOutlet UITextField *currencyField;
+
+@end
+
 @implementation MoneyEntryCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -20,10 +28,20 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setTitle:(NSString *)title {
+    [self.titleLabel setText:title];
 }
 
+- (void)setAmount:(NSString *)amount currency:(NSString *)currency {
+    [self.moneyField setText:amount];
+    [self.currencyField setText:currency];
+}
+
+- (NSString *)amount {
+    return [self.moneyField text];
+}
+
+- (NSString *)currency {
+    return [self.currencyField text];
+}
 @end

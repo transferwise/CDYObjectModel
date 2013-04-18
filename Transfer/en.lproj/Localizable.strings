@@ -10,6 +10,7 @@
 "introduction.controller.title" = "Transferwise";
 "introduction.header.title.text" = "Send money abroad";
 "introduction.login.section.title" = "Already a user";
+"introduction.savings.message.base" = "You'll get %@ more vs your bank";
 
 "login.controller.header.message" = "Log-in to your account";
 "login.controller.logging.in.message" = "Logging in...";
@@ -20,6 +21,9 @@
 "login.validation.email.missing" = "E-mail not entered";
 "login.validation.email.not.valid" = "Entered e-mail not valid";
 "login.validation.password.missing" = "Password not entered";
+
+"money.entry.they.receive.title" = "They get";
+"money.entry.you.send.title" = "You send";
 
 "payment.controller.title" = "New payment";
 

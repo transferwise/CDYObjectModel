@@ -12,4 +12,11 @@ extern NSString *const TWMoneyEntryCellIdentifier;
 
 @interface MoneyEntryCell : UITableViewCell
 
+@property (nonatomic, strong, readonly) UITextField *moneyField;
+
+- (void)setTitle:(NSString *)title;
+- (void)setAmount:(NSString *)amount currency:(NSString *)currency;
+- (NSString *)amount;
+- (NSString *)currency;
+
 @end

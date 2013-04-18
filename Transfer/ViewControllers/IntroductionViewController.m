@@ -12,6 +12,11 @@
 #import "LoginViewController.h"
 #import "UIColor+Theme.h"
 #import "UIView+Loading.h"
+#import "MoneyCalculator.h"
+#import "Constants.h"
+#import "CalculationResult.h"
+
+static NSUInteger const kRowYouSend = 0;
 
 @interface IntroductionViewController ()
 
@@ -20,6 +25,9 @@
 @property (nonatomic, strong) IBOutlet UILabel *loginTitle;
 @property (nonatomic, strong) IBOutlet UIButton *startedButton;
 @property (nonatomic, strong) IBOutlet UIButton *loginButton;
+@property (nonatomic, strong) MoneyEntryCell *youSendCell;
+@property (nonatomic, strong) MoneyEntryCell *theyReceiveCell;
+@property (nonatomic, strong) MoneyCalculator *calculator;
 
 - (IBAction)loginPressed:(id)sender;
 
@@ -43,6 +51,14 @@
 
     [self.tableView registerNib:[UINib nibWithNibName:@"MoneyEntryCell" bundle:nil] forCellReuseIdentifier:TWMoneyEntryCellIdentifier];
 
+    [self setYouSendCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
+    [self.youSendCell setTitle:NSLocalizedString(@"money.entry.you.send.title", nil)];
+    [self.youSendCell setAmount:@"1000" currency:@"EUR"];
+
+    [self setTheyReceiveCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
+    [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
+    [self.theyReceiveCell setAmount:@"" currency:@"GBP"];
+
     TableHeaderView *header = [TableHeaderView loadInstance];
     [header setMessage:NSLocalizedString(@"introduction.header.title.text", nil)];
     [self.tableView setTableHeaderView:header];
@@ -55,6 +71,23 @@
 
     [self.startedButton setTitle:NSLocalizedString(@"button.title.get.started", nil) forState:UIControlStateNormal];
     [self.loginButton setTitle:NSLocalizedString(@"button.title.log.in", nil) forState:UIControlStateNormal];
+
+    MoneyCalculator *calculator = [[MoneyCalculator alloc] init];
+    [self setCalculator:calculator];
+
+    [calculator setSendCell:self.youSendCell];
+    [calculator setReceiveCell:self.theyReceiveCell];
+
+    [calculator setCalculationHandler:^(CalculationResult *result, NSError *error) {
+        if (error) {
+            MCLog(@"Calculation error:%@", error);
+            return;
+        }
+
+        [self.savingsLabel setText:[NSString stringWithFormat:NSLocalizedString(@"introduction.savings.message.base", nil), [result formattedWinAmount]]];
+    }];
+
+    [calculator forceCalculate];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,8 +113,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MoneyEntryCell *cell = [tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier];
-    return cell;
+    if (indexPath.row == kRowYouSend) {
+        return self.youSendCell;
+    }
+
+    return self.theyReceiveCell;
 }
 
 #pragma mark - Table view delegate

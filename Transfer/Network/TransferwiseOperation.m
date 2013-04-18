@@ -36,8 +36,13 @@ NSString *const kAPIPathBase = @"/api/v1/";
 }
 
 - (void)getDataFromPath:(NSString *)path {
-    MCLog(@"Get data from:%@", [path stringByReplacingOccurrencesOfString:[self.objectModel accessToken] withString:@"**********"]);
-    [self executeOperationWithMethod:@"GET" path:path parameters:@{}];
+    [self getDataFromPath:path params:@{}];
+}
+
+- (void)getDataFromPath:(NSString *)path params:(NSDictionary *)params {
+    NSString *accessToken = [self.objectModel accessToken];
+    MCLog(@"Get data from:%@", [path stringByReplacingOccurrencesOfString:(accessToken ? accessToken : @"" ) withString:@"**********"]);
+    [self executeOperationWithMethod:@"GET" path:path parameters:params];
 }
 
 - (void)executeOperationWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters {
