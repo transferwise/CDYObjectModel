@@ -555,6 +555,7 @@
 				EAAA1464171BC911005B9430 /* Sources */,
 				EAAA1465171BC911005B9430 /* Frameworks */,
 				EAAA1466171BC911005B9430 /* Resources */,
+				EA2B238E17212099001AE9DE /* Version update */,
 			);
 			buildRules = (
 			);
@@ -629,6 +630,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		EA2B238E17212099001AE9DE /* Version update */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Version update";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo -n ${TARGET_BUILD_DIR}/${INFOPLIST_PATH} \\\n| xargs -0 /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion `git rev-list HEAD | wc -l`\"";
+		};
 		EAD73695171E820100A037B1 /* mogenerator */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
