@@ -46,6 +46,7 @@
 								<string key="NSFrame">{{10, 16}, {69, 21}}</string>
 								<reference key="NSSuperview" ref="375181732"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="69565686"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -79,6 +80,7 @@
 								<string key="NSFrame">{{87, 0}, {131, 53}}</string>
 								<reference key="NSSuperview" ref="375181732"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="373362010"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -96,7 +98,7 @@
 								<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 								<float key="IBUIMinimumFontSize">17</float>
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
-									<int key="IBUIKeyboardType">2</int>
+									<int key="IBUIKeyboardType">8</int>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="908458059">
@@ -115,6 +117,7 @@
 								<string key="NSFrame">{{226, 0}, {54, 54}}</string>
 								<reference key="NSSuperview" ref="375181732"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -251,7 +254,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">9</int>
+			<int key="maxID">14</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

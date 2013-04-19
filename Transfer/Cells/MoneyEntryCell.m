@@ -10,7 +10,7 @@
 
 NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
-@interface MoneyEntryCell ()
+@interface MoneyEntryCell () <UITextFieldDelegate>
 
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UITextField *moneyField;
@@ -26,6 +26,25 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
         // Initialization code
     }
     return self;
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 20, 44)];
+    [toolbar setBarStyle:UIBarStyleBlackTranslucent];
+
+    UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed)];
+    [toolbar setItems:@[flexible, done]];
+    [self.moneyField setInputAccessoryView:toolbar];
+
+    //TODO jaanus: maybe can find a way how to change keyboard locale
+    [self.moneyField setDelegate:self];
+}
+
+- (void)donePressed {
+    [self.moneyField resignFirstResponder];
 }
 
 - (void)setTitle:(NSString *)title {
@@ -44,4 +63,17 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 - (NSString *)currency {
     return [self.currencyField text];
 }
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (![string isEqualToString:@","]) {
+        return YES;
+    }
+
+    if ([textField.text rangeOfString:@"."].location == NSNotFound) {
+        [textField setText:[textField.text stringByAppendingString:@"."]];
+    }
+
+    return NO;
+}
+
 @end
