@@ -18,7 +18,7 @@
 
 static NSUInteger const kRowYouSend = 0;
 
-@interface IntroductionViewController ()
+@interface IntroductionViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) IBOutlet UIView *controlsView;
 @property (nonatomic, strong) IBOutlet UILabel *savingsLabel;
@@ -53,11 +53,15 @@ static NSUInteger const kRowYouSend = 0;
 
     [self setYouSendCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
     [self.youSendCell setTitle:NSLocalizedString(@"money.entry.you.send.title", nil)];
-    [self.youSendCell setAmount:@"1000" currency:@"EUR"];
+    [self.youSendCell setAmount:@"1000.00" currency:@"EUR"];
+    [self.youSendCell.moneyField setDelegate:self];
+    [self.youSendCell.moneyField setReturnKeyType:UIReturnKeyDone];
 
     [self setTheyReceiveCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
     [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
     [self.theyReceiveCell setAmount:@"" currency:@"GBP"];
+    [self.theyReceiveCell.moneyField setDelegate:self];
+    [self.theyReceiveCell.moneyField setReturnKeyType:UIReturnKeyDone];
 
     TableHeaderView *header = [TableHeaderView loadInstance];
     [header setMessage:NSLocalizedString(@"introduction.header.title.text", nil)];
@@ -123,6 +127,17 @@ static NSUInteger const kRowYouSend = 0;
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    if (indexPath.row == kRowYouSend) {
+        [self.youSendCell.moneyField becomeFirstResponder];
+    } else {
+        [self.theyReceiveCell.moneyField becomeFirstResponder];
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (IBAction)loginPressed:(id)sender {
