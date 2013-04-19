@@ -43,7 +43,7 @@
 							<object class="IBUILabel" id="664962358">
 								<reference key="NSNextResponder" ref="375181732"/>
 								<int key="NSvFlags">300</int>
-								<string key="NSFrame">{{10, 16}, {62, 21}}</string>
+								<string key="NSFrame">{{10, 16}, {69, 21}}</string>
 								<reference key="NSSuperview" ref="375181732"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -54,9 +54,8 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">You send</string>
 								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MCAwIDAAA</bytes>
-									<string key="IBUIColorCocoaTouchKeyPath">darkTextColor</string>
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 								</object>
 								<object class="NSColor" key="IBUIHighlightedColor" id="761500192">
 									<int key="NSColorSpace">3</int>
@@ -65,11 +64,11 @@
 								<int key="IBUIBaselineAdjustment">0</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">1</int>
-									<double key="pointSize">13</double>
+									<double key="pointSize">15</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica</string>
-									<double key="NSSize">13</double>
+									<double key="NSSize">15</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
@@ -77,7 +76,7 @@
 							<object class="IBUITextField" id="69565686">
 								<reference key="NSNextResponder" ref="375181732"/>
 								<int key="NSvFlags">301</int>
-								<string key="NSFrame">{{87, 12}, {131, 30}}</string>
+								<string key="NSFrame">{{87, 0}, {131, 53}}</string>
 								<reference key="NSSuperview" ref="375181732"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -100,20 +99,20 @@
 									<int key="IBUIKeyboardType">2</int>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">1</int>
-									<double key="pointSize">14</double>
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="908458059">
+									<int key="type">2</int>
+									<double key="pointSize">18</double>
 								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica</string>
-									<double key="NSSize">14</double>
+								<object class="NSFont" key="IBUIFont" id="411393388">
+									<string key="NSName">Helvetica-Bold</string>
+									<double key="NSSize">18</double>
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
 							<object class="IBUITextField" id="373362010">
 								<reference key="NSNextResponder" ref="375181732"/>
 								<int key="NSvFlags">297</int>
-								<string key="NSFrame">{{226, 12}, {54, 30}}</string>
+								<string key="NSFrame">{{226, 0}, {54, 54}}</string>
 								<reference key="NSSuperview" ref="375181732"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -133,15 +132,8 @@
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">2</int>
-									<double key="pointSize">14</double>
-								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">14</double>
-									<int key="NSfFlags">16</int>
-								</object>
+								<reference key="IBUIFontDescription" ref="908458059"/>
+								<reference key="IBUIFont" ref="411393388"/>
 							</object>
 						</array>
 						<string key="NSFrameSize">{300, 54}</string>
