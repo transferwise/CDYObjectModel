@@ -5,6 +5,7 @@
 //
 
 #import "TSAlertView.h"
+#import "Constants.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface TSAlertOverlayWindow : UIWindow
@@ -44,13 +45,22 @@
 	CGGradientRef backgroundGradient = CGGradientCreateWithColorComponents(colorspace, components, locations, 3);
 	CGColorSpaceRelease(colorspace);
 	
-	CGContextDrawRadialGradient(UIGraphicsGetCurrentContext(), 
-								backgroundGradient, 
+	CGContextDrawRadialGradient(UIGraphicsGetCurrentContext(),
+								backgroundGradient,
 								CGPointMake(width/2, height/2), 0,
 								CGPointMake(width/2, height/2), width,
 								0);
 	
 	CGGradientRelease(backgroundGradient);
+}
+
+- (void) dealloc
+{
+	self.oldKeyWindow = nil;
+	
+	MCLog( @"TSAlertView: TSAlertOverlayWindow dealloc" );
+	
+	[super dealloc];
 }
 
 @end
@@ -88,12 +98,18 @@
 	if (!av || ![av isKindOfClass:[TSAlertView class]])
 		return;
 	// resize the alertview if it wants to make use of any extra space (or needs to contract)
-	[UIView animateWithDuration:duration 
+	[UIView animateWithDuration:duration
 					 animations:^{
 						 [av sizeToFit];
 						 av.center = CGPointMake( CGRectGetMidX( self.view.bounds ), CGRectGetMidY( self.view.bounds ) );;
 						 av.frame = CGRectIntegral( av.frame );
 					 }];
+}
+
+- (void) dealloc
+{
+	MCLog( @"TSAlertView: TSAlertViewController dealloc" );
+	[super dealloc];
 }
 
 @end
@@ -117,7 +133,7 @@ const CGFloat kTSAlertView_BottomMargin = 15.0;
 const CGFloat kTSAlertView_RowMargin	= 5.0;
 const CGFloat kTSAlertView_ColumnMargin = 10.0;
 
-- (id) init 
+- (id) init
 {
 	if ( ( self = [super init] ) )
 	{
@@ -164,7 +180,7 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
 			va_start(args, otherButtonTitles);
 			
 			id arg;
-			while ( nil != ( arg = va_arg( args, id ) ) ) 
+			while ( nil != ( arg = va_arg( args, id ) ) )
 			{
 				if ( ![arg isKindOfClass: [NSString class] ] )
 					return nil;
@@ -213,7 +229,7 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
     return self;
 }
 
-- (CGSize) sizeThatFits: (CGSize) unused 
+- (CGSize) sizeThatFits: (CGSize) unused
 {
 	CGSize s = [self recalcSizeAndLayout: NO];
 	return s;
@@ -229,11 +245,27 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
 	[self.backgroundImage drawInRect: rect];
 }
 
+- (void)dealloc
+{
+	[_backgroundImage release];
+	[_buttons release];
+	[_titleLabel release];
+	[_messageLabel release];
+	[_messageTextView release];
+	[_messageTextViewMaskImageView release];
+	
+	[[NSNotificationCenter defaultCenter] removeObserver: self ];
+	
+	MCLog( @"TSAlertView: TSAlertOverlayWindow dealloc" );
+	
+    [super dealloc];
+}
+
 
 - (void) TSAlertView_commonInit
 {
 	self.backgroundColor = [UIColor clearColor];
-	self.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin; 
+	self.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 	
 	// defaults:
 	style = TSAlertViewStyleNormal;
@@ -312,7 +344,7 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
 		
 		c.y = kbframe.origin.y / 2;
 		
-		[UIView animateWithDuration: 0.2 
+		[UIView animateWithDuration: 0.2
 						 animations: ^{
 							 self.center = c;
 							 self.frame = CGRectIntegral(self.frame);
@@ -322,7 +354,7 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
 
 - (void) onKeyboardWillHide: (NSNotification*) note
 {
-	[UIView animateWithDuration: 0.2 
+	[UIView animateWithDuration: 0.2
 					 animations: ^{
 						 self.center = CGPointMake( CGRectGetMidX( self.superview.bounds ), CGRectGetMidY( self.superview.bounds ));
 						 self.frame = CGRectIntegral(self.frame);
@@ -333,7 +365,7 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
 {
 	if ( _buttons == nil )
 	{
-		_buttons = [NSMutableArray arrayWithCapacity:4];
+		_buttons = [[NSMutableArray arrayWithCapacity:4] retain];
 	}
 	
 	return _buttons;
@@ -429,7 +461,7 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
 	self.titleLabel.text = t;
 }
 
-- (NSString*) title 
+- (NSString*) title
 {
 	return self.titleLabel.text;
 }
@@ -440,7 +472,7 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
 	self.messageTextView.text = t;
 }
 
-- (NSString*) message  
+- (NSString*) message
 {
 	return self.messageLabel.text;
 }
@@ -535,7 +567,7 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
 		self.window.backgroundColor = [UIColor clearColor];
 		self.window.alpha = 1;
 		
-		[UIView animateWithDuration: 0.2 
+		[UIView animateWithDuration: 0.2
 						 animations: ^{
 							 [self.window resignKeyWindow];
 							 self.window.alpha = 0;
@@ -564,13 +596,14 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
 	// the one place we release the window we allocated in "show"
 	// this will propogate releases to us (TSAlertView), and our TSAlertViewController
 	
+	[self.window release];
 }
 
 - (void) show
 {
 	[[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode beforeDate:[NSDate date]];
 	
-	TSAlertViewController* avc = [[TSAlertViewController alloc] init];
+	TSAlertViewController* avc = [[[TSAlertViewController alloc] init] autorelease];
 	avc.view.backgroundColor = [UIColor clearColor];
 	
 	// $important - the window is released only when the user clicks an alert view button
@@ -604,7 +637,7 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
 {
 	// pulse animation thanks to:  http://delackner.com/blog/2009/12/mimicking-uialertviews-animated-transition/
     self.transform = CGAffineTransformMakeScale(0.6, 0.6);
-	[UIView animateWithDuration: 0.2 
+	[UIView animateWithDuration: 0.2
 					 animations: ^{
 						 self.transform = CGAffineTransformMakeScale(1.1, 1.1);
 					 }
@@ -637,7 +670,7 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
 		if ( [self.delegate respondsToSelector: @selector(alertViewCancel:)] )
 		{
 			[self.delegate alertViewCancel: self ];
-		}	
+		}
 	}
 	
 	[self dismissWithClickedButtonIndex: buttonIndex  animated: YES];

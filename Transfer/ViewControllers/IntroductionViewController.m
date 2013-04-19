@@ -15,6 +15,8 @@
 #import "MoneyCalculator.h"
 #import "Constants.h"
 #import "CalculationResult.h"
+#import "WhyAlertView.h"
+#import "../../Thirdparty/TSAlertView/TSAlertView.h"
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -28,6 +30,7 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) MoneyEntryCell *youSendCell;
 @property (nonatomic, strong) MoneyEntryCell *theyReceiveCell;
 @property (nonatomic, strong) MoneyCalculator *calculator;
+@property (nonatomic, strong) WhyAlertView *whyMe;
 
 - (IBAction)loginPressed:(id)sender;
 
@@ -45,6 +48,9 @@ static NSUInteger const kRowYouSend = 0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.whyMe = [[WhyAlertView alloc] init];
+    [self.whyMe showAlert];
 
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];

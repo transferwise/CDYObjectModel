@@ -57,6 +57,31 @@
     return [self numberStringFrom:self.transferwisePayOut];
 }
 
+- (NSString *)transferwiseRateString {
+    return [self numberStringFrom:self.transferwiseRate];
+}
+
+- (NSString *)transferwiseTransferFeeString {
+    return [self numberStringFrom:self.transferwiseTransferFee];
+}
+
+- (NSString *)bankRateString {
+    return [self numberStringFrom:self.bankRate];
+}
+
+- (NSString *)bankTransferFeeString {
+    return [self numberStringFrom:self.bankTransferFee];
+}
+
+- (NSString *)bankPayOutString {
+    return [self numberStringFrom:self.bankPayOut];
+}
+
+- (NSString *)savedAmount {
+    NSNumber *number = [NSNumber numberWithFloat:([self.transferwisePayOut floatValue] - [self.bankPayOut floatValue])];
+    return [self numberStringFrom:number];
+}
+
 - (NSString *)numberStringFrom:(NSNumber *)number {
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
