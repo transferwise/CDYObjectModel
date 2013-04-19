@@ -642,7 +642,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo -n ${TARGET_BUILD_DIR}/${INFOPLIST_PATH} \\\n| xargs -0 /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion `git rev-list HEAD | wc -l`\"";
+			shellScript = "echo -n ${TARGET_BUILD_DIR}/${INFOPLIST_PATH} \\\n| xargs -0 /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion `git rev-list HEAD | wc -l`-`git rev-parse --short HEAD`\"";
 		};
 		EAD73695171E820100A037B1 /* mogenerator */ = {
 			isa = PBXShellScriptBuildPhase;
