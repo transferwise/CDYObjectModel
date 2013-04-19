@@ -17,6 +17,8 @@
 		EA13E049171BEDC40019FBF0 /* UIView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E048171BEDC40019FBF0 /* UIView+Loading.m */; };
 		EA13E04C171BEF5D0019FBF0 /* TextEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */; };
 		EA13E04E171BEF710019FBF0 /* TextEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */; };
+		EA2B2391172131B5001AE9DE /* _CurrencyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B2390172131B5001AE9DE /* _CurrencyPair.m */; };
+		EA2B2394172131BF001AE9DE /* CurrencyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B2393172131BF001AE9DE /* CurrencyPair.m */; };
 		EA8FF682171D19B50090A658 /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF681171D19B50090A658 /* NSString+Validation.m */; };
 		EA8FF685171D1A320090A658 /* NSMutableString+Issues.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */; };
 		EA8FF688171D1B6D0090A658 /* UIApplication+Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF687171D1B6D0090A658 /* UIApplication+Keyboard.m */; };
@@ -110,6 +112,10 @@
 		EA13E04A171BEF5D0019FBF0 /* TextEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEntryCell.h; sourceTree = "<group>"; };
 		EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEntryCell.m; sourceTree = "<group>"; };
 		EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEntryCell.xib; sourceTree = "<group>"; };
+		EA2B238F172131B5001AE9DE /* _CurrencyPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CurrencyPair.h; sourceTree = "<group>"; };
+		EA2B2390172131B5001AE9DE /* _CurrencyPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _CurrencyPair.m; sourceTree = "<group>"; };
+		EA2B2392172131BF001AE9DE /* CurrencyPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyPair.h; sourceTree = "<group>"; };
+		EA2B2393172131BF001AE9DE /* CurrencyPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyPair.m; sourceTree = "<group>"; };
 		EA8FF67F171D167C0090A658 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; wrapsLines = 0; };
 		EA8FF680171D19B50090A658 /* NSString+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validation.h"; sourceTree = "<group>"; };
 		EA8FF681171D19B50090A658 /* NSString+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validation.m"; sourceTree = "<group>"; };
@@ -485,6 +491,8 @@
 			isa = PBXGroup;
 			children = (
 				EAD73696171E830600A037B1 /* Generated */,
+				EA2B2392172131BF001AE9DE /* CurrencyPair.h */,
+				EA2B2393172131BF001AE9DE /* CurrencyPair.m */,
 				EAD3968C171BD87E00F6D011 /* ObjectModel+Credentials.h */,
 				EAD3968D171BD87E00F6D011 /* ObjectModel+Credentials.m */,
 				EAD7369D171E836D00A037B1 /* ObjectModel+Recipients.h */,
@@ -510,6 +518,8 @@
 		EAD73696171E830600A037B1 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				EA2B238F172131B5001AE9DE /* _CurrencyPair.h */,
+				EA2B2390172131B5001AE9DE /* _CurrencyPair.m */,
 				EAD73697171E830D00A037B1 /* _Recipient.h */,
 				EAD73698171E830D00A037B1 /* _Recipient.m */,
 			);
@@ -713,6 +723,8 @@
 				EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */,
 				EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */,
 				EAEA6257172011C500A96770 /* CalculationResult.m in Sources */,
+				EA2B2391172131B5001AE9DE /* _CurrencyPair.m in Sources */,
+				EA2B2394172131BF001AE9DE /* CurrencyPair.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
