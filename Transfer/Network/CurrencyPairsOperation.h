@@ -10,4 +10,6 @@
 
 @interface CurrencyPairsOperation : TransferwiseOperation
 
++ (CurrencyPairsOperation *)pairsOperation;
+
 @end

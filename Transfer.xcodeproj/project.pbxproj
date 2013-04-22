@@ -39,6 +39,8 @@
 		EA8FF6B4171D23B20090A658 /* TRWProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6B3171D23B20090A658 /* TRWProgressHUD.m */; };
 		EA8FF6B8171D25C20090A658 /* TransferwiseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */; };
 		EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6BA171D26A00090A658 /* LoginOperation.m */; };
+		EA9BA540172510DB00AAAB5A /* TransferwiseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9BA53F172510DB00AAAB5A /* TransferwiseClient.m */; };
+		EA9BA543172515D700AAAB5A /* ObjectModel+CurrencyPairs.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9BA542172515D700AAAB5A /* ObjectModel+CurrencyPairs.m */; };
 		EAAA146C171BC911005B9430 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146B171BC911005B9430 /* UIKit.framework */; };
 		EAAA146E171BC911005B9430 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146D171BC911005B9430 /* Foundation.framework */; };
 		EAAA1470171BC911005B9430 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146F171BC911005B9430 /* CoreGraphics.framework */; };
@@ -158,6 +160,10 @@
 		EA8FF6B9171D26A00090A658 /* LoginOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginOperation.h; sourceTree = "<group>"; };
 		EA8FF6BA171D26A00090A658 /* LoginOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginOperation.m; sourceTree = "<group>"; };
 		EA8FF6BC171D30B60090A658 /* TransferwiseOperation+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TransferwiseOperation+Private.h"; sourceTree = "<group>"; };
+		EA9BA53E172510DB00AAAB5A /* TransferwiseClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferwiseClient.h; sourceTree = "<group>"; };
+		EA9BA53F172510DB00AAAB5A /* TransferwiseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferwiseClient.m; sourceTree = "<group>"; };
+		EA9BA541172515D700AAAB5A /* ObjectModel+CurrencyPairs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+CurrencyPairs.h"; sourceTree = "<group>"; };
+		EA9BA542172515D700AAAB5A /* ObjectModel+CurrencyPairs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+CurrencyPairs.m"; sourceTree = "<group>"; };
 		EAAA1468171BC911005B9430 /* Transfer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transfer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAAA146B171BC911005B9430 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EAAA146D171BC911005B9430 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -377,6 +383,8 @@
 				EA8FF6BA171D26A00090A658 /* LoginOperation.m */,
 				EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */,
 				EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */,
+				EA9BA53E172510DB00AAAB5A /* TransferwiseClient.h */,
+				EA9BA53F172510DB00AAAB5A /* TransferwiseClient.m */,
 				EA8FF6BC171D30B60090A658 /* TransferwiseOperation+Private.h */,
 				EA8FF6B6171D25C20090A658 /* TransferwiseOperation.h */,
 				EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */,
@@ -500,6 +508,8 @@
 				EA2B2393172131BF001AE9DE /* CurrencyPair.m */,
 				EAD3968C171BD87E00F6D011 /* ObjectModel+Credentials.h */,
 				EAD3968D171BD87E00F6D011 /* ObjectModel+Credentials.m */,
+				EA9BA541172515D700AAAB5A /* ObjectModel+CurrencyPairs.h */,
+				EA9BA542172515D700AAAB5A /* ObjectModel+CurrencyPairs.m */,
 				EAD7369D171E836D00A037B1 /* ObjectModel+Recipients.h */,
 				EAD7369E171E836D00A037B1 /* ObjectModel+Recipients.m */,
 				EAD39670171BD2A300F6D011 /* ObjectModel.h */,
@@ -731,6 +741,8 @@
 				EA2B2391172131B5001AE9DE /* _CurrencyPair.m in Sources */,
 				EA2B2394172131BF001AE9DE /* CurrencyPair.m in Sources */,
 				EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */,
+				EA9BA540172510DB00AAAB5A /* TransferwiseClient.m in Sources */,
+				EA9BA543172515D700AAAB5A /* ObjectModel+CurrencyPairs.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

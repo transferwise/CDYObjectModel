@@ -11,6 +11,7 @@
 #import "MainViewController.h"
 #import "Constants.h"
 #import "TestFlight.h"
+#import "TransferwiseClient.h"
 
 @interface AppDelegate ()
 
@@ -34,12 +35,17 @@
     ObjectModel *model = [[ObjectModel alloc] init];
     [self setObjectModel:model];
 
+    [[TransferwiseClient sharedClient] setObjectModel:model];
+
     MainViewController *controller = [[MainViewController alloc] init];
     [controller setObjectModel:model];
     [self.window setRootViewController:controller];
 
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+
+    [[TransferwiseClient sharedClient] updateCurrencyPairs];
+
     return YES;
 }
 
