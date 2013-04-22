@@ -41,6 +41,7 @@
 		EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6BA171D26A00090A658 /* LoginOperation.m */; };
 		EA9BA540172510DB00AAAB5A /* TransferwiseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9BA53F172510DB00AAAB5A /* TransferwiseClient.m */; };
 		EA9BA543172515D700AAAB5A /* ObjectModel+CurrencyPairs.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9BA542172515D700AAAB5A /* ObjectModel+CurrencyPairs.m */; };
+		EA9BA54617252BAE00AAAB5A /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */; };
 		EAAA146C171BC911005B9430 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146B171BC911005B9430 /* UIKit.framework */; };
 		EAAA146E171BC911005B9430 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146D171BC911005B9430 /* Foundation.framework */; };
 		EAAA1470171BC911005B9430 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146F171BC911005B9430 /* CoreGraphics.framework */; };
@@ -164,6 +165,8 @@
 		EA9BA53F172510DB00AAAB5A /* TransferwiseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferwiseClient.m; sourceTree = "<group>"; };
 		EA9BA541172515D700AAAB5A /* ObjectModel+CurrencyPairs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+CurrencyPairs.h"; sourceTree = "<group>"; };
 		EA9BA542172515D700AAAB5A /* ObjectModel+CurrencyPairs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+CurrencyPairs.m"; sourceTree = "<group>"; };
+		EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonEditTextField.h; sourceTree = "<group>"; };
+		EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonEditTextField.m; sourceTree = "<group>"; };
 		EAAA1468171BC911005B9430 /* Transfer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transfer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAAA146B171BC911005B9430 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EAAA146D171BC911005B9430 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -277,6 +280,8 @@
 				EAD7D4D0171D4BB20099063F /* BlueButton.m */,
 				EAD73688171E6CB100A037B1 /* GrayButton.h */,
 				EAD73689171E6CB100A037B1 /* GrayButton.m */,
+				EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */,
+				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
 				EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */,
 				EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */,
 				EA13E045171BED910019FBF0 /* TableHeaderView.xib */,
@@ -743,6 +748,7 @@
 				EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */,
 				EA9BA540172510DB00AAAB5A /* TransferwiseClient.m in Sources */,
 				EA9BA543172515D700AAAB5A /* ObjectModel+CurrencyPairs.m in Sources */,
+				EA9BA54617252BAE00AAAB5A /* NonEditTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
