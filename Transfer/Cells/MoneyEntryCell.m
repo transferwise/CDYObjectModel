@@ -16,6 +16,8 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 @property (nonatomic, strong) IBOutlet UITextField *moneyField;
 @property (nonatomic, strong) IBOutlet UITextField *currencyField;
 
+- (IBAction)changeCurrencyTapped:(id)sender;
+
 @end
 
 @implementation MoneyEntryCell
@@ -44,4 +46,9 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 - (NSString *)currency {
     return [self.currencyField text];
 }
+
+- (IBAction)changeCurrencyTapped:(id)sender {
+
+}
+
 @end
