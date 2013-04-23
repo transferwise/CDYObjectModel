@@ -12,7 +12,7 @@
 #import "AFHTTPRequestOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "NSDictionary+SensibleData.h"
-#import "ObjectModel+Credentials.h"
+#import "Credentials.h"
 
 NSString *const TRWErrorDomain = @"TRWErrorDomain";
 NSString *const kAPIPathBase = @"/api/v1/";
@@ -40,7 +40,7 @@ NSString *const kAPIPathBase = @"/api/v1/";
 }
 
 - (void)getDataFromPath:(NSString *)path params:(NSDictionary *)params {
-    NSString *accessToken = [self.objectModel accessToken];
+    NSString *accessToken = [Credentials accessToken];
     MCLog(@"Get data from:%@", [path stringByReplacingOccurrencesOfString:(accessToken ? accessToken : @"" ) withString:@"**********"]);
     [self executeOperationWithMethod:@"GET" path:path parameters:params];
 }
@@ -80,7 +80,7 @@ NSString *const kAPIPathBase = @"/api/v1/";
 }
 
 - (NSString *)addTokenToPath:(NSString *)path {
-    return [NSString stringWithFormat:@"%@%@%@", kAPIPathBase, [self.objectModel accessToken], path];
+    return [NSString stringWithFormat:@"%@%@%@", kAPIPathBase, [Credentials accessToken], path];
 }
 
 static AFHTTPClient *__httpClient;

@@ -57,6 +57,8 @@
 		EAB7215F171FCAAC00DE29F5 /* SettingsTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB7215E171FCAAC00DE29F5 /* SettingsTitleCell.m */; };
 		EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */; };
 		EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */; };
+		EAC5CF0217266AFF004A7663 /* Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF0117266AFF004A7663 /* Recipient.m */; };
+		EAC5CF06172672CA004A7663 /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF05172672CA004A7663 /* Credentials.m */; };
 		EAD39672171BD2A300F6D011 /* ObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39671171BD2A300F6D011 /* ObjectModel.m */; };
 		EAD39676171BD4EE00F6D011 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39674171BD4EE00F6D011 /* MainViewController.m */; };
 		EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39675171BD4EE00F6D011 /* MainViewController.xib */; };
@@ -68,15 +70,11 @@
 		EAD39686171BD5B000F6D011 /* PaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39684171BD5B000F6D011 /* PaymentViewController.xib */; };
 		EAD3968A171BD82300F6D011 /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39688171BD82300F6D011 /* IntroductionViewController.m */; };
 		EAD3968B171BD82300F6D011 /* IntroductionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39689171BD82300F6D011 /* IntroductionViewController.xib */; };
-		EAD3968E171BD87E00F6D011 /* ObjectModel+Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3968D171BD87E00F6D011 /* ObjectModel+Credentials.m */; };
 		EAD7368A171E6CB100A037B1 /* GrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD73689171E6CB100A037B1 /* GrayButton.m */; };
 		EAD7368D171E6D5A00A037B1 /* GrayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368B171E6D5A00A037B1 /* GrayButton.png */; };
 		EAD7368E171E6D5A00A037B1 /* GrayButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */; };
 		EAD73692171E7A1D00A037B1 /* Lockbox.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD73691171E7A1D00A037B1 /* Lockbox.m */; };
 		EAD73694171E7A3200A037B1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD73693171E7A3200A037B1 /* Security.framework */; };
-		EAD73699171E830D00A037B1 /* _Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD73698171E830D00A037B1 /* _Recipient.m */; };
-		EAD7369C171E831300A037B1 /* Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7369B171E831300A037B1 /* Recipient.m */; };
-		EAD7369F171E836D00A037B1 /* ObjectModel+Recipients.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7369E171E836D00A037B1 /* ObjectModel+Recipients.m */; };
 		EAD736A2171E85C300A037B1 /* RecipientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD736A1171E85C300A037B1 /* RecipientCell.m */; };
 		EAD736A4171E85D100A037B1 /* RecipientCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD736A3171E85D100A037B1 /* RecipientCell.xib */; };
 		EAD736A7171E87ED00A037B1 /* UserRecipientsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD736A6171E87ED00A037B1 /* UserRecipientsOperation.m */; };
@@ -177,6 +175,10 @@
 		EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTitleCell.xib; sourceTree = "<group>"; };
 		EAB72163171FDC7F00DE29F5 /* MoneyCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyCalculator.h; sourceTree = "<group>"; };
 		EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyCalculator.m; sourceTree = "<group>"; };
+		EAC5CF0017266AFF004A7663 /* Recipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recipient.h; sourceTree = "<group>"; };
+		EAC5CF0117266AFF004A7663 /* Recipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recipient.m; sourceTree = "<group>"; };
+		EAC5CF04172672CA004A7663 /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Credentials.h; sourceTree = "<group>"; };
+		EAC5CF05172672CA004A7663 /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Credentials.m; sourceTree = "<group>"; };
 		EAD39670171BD2A300F6D011 /* ObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectModel.h; sourceTree = "<group>"; };
 		EAD39671171BD2A300F6D011 /* ObjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectModel.m; sourceTree = "<group>"; };
 		EAD39673171BD4EE00F6D011 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -194,8 +196,6 @@
 		EAD39687171BD82300F6D011 /* IntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroductionViewController.h; sourceTree = "<group>"; };
 		EAD39688171BD82300F6D011 /* IntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionViewController.m; sourceTree = "<group>"; };
 		EAD39689171BD82300F6D011 /* IntroductionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroductionViewController.xib; sourceTree = "<group>"; };
-		EAD3968C171BD87E00F6D011 /* ObjectModel+Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+Credentials.h"; sourceTree = "<group>"; };
-		EAD3968D171BD87E00F6D011 /* ObjectModel+Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+Credentials.m"; sourceTree = "<group>"; };
 		EAD73688171E6CB100A037B1 /* GrayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrayButton.h; sourceTree = "<group>"; };
 		EAD73689171E6CB100A037B1 /* GrayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrayButton.m; sourceTree = "<group>"; };
 		EAD7368B171E6D5A00A037B1 /* GrayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GrayButton.png; sourceTree = "<group>"; };
@@ -203,12 +203,6 @@
 		EAD73690171E7A1D00A037B1 /* Lockbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lockbox.h; sourceTree = "<group>"; };
 		EAD73691171E7A1D00A037B1 /* Lockbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lockbox.m; sourceTree = "<group>"; };
 		EAD73693171E7A3200A037B1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		EAD73697171E830D00A037B1 /* _Recipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Recipient.h; sourceTree = "<group>"; };
-		EAD73698171E830D00A037B1 /* _Recipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Recipient.m; sourceTree = "<group>"; };
-		EAD7369A171E831300A037B1 /* Recipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recipient.h; sourceTree = "<group>"; };
-		EAD7369B171E831300A037B1 /* Recipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recipient.m; sourceTree = "<group>"; };
-		EAD7369D171E836D00A037B1 /* ObjectModel+Recipients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+Recipients.h"; sourceTree = "<group>"; };
-		EAD7369E171E836D00A037B1 /* ObjectModel+Recipients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+Recipients.m"; sourceTree = "<group>"; };
 		EAD736A0171E85C300A037B1 /* RecipientCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientCell.h; sourceTree = "<group>"; };
 		EAD736A1171E85C300A037B1 /* RecipientCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientCell.m; sourceTree = "<group>"; };
 		EAD736A3171E85D100A037B1 /* RecipientCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientCell.xib; sourceTree = "<group>"; };
@@ -412,7 +406,9 @@
 			isa = PBXGroup;
 			children = (
 				EA13E033171BE0E50019FBF0 /* Cells */,
+				EAC5CF03172672BD004A7663 /* Credentials */,
 				EA13E041171BEAF00019FBF0 /* Extensions */,
+				EAC5CEFF17266AB2004A7663 /* Model */,
 				EA8FF6B5171D25530090A658 /* Network */,
 				EAD3966F171BD1DE00F6D011 /* ObjectModel */,
 				EAD7D4C3171D475E0099063F /* Resources */,
@@ -481,18 +477,30 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		EAC5CEFF17266AB2004A7663 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EAC5CF0017266AFF004A7663 /* Recipient.h */,
+				EAC5CF0117266AFF004A7663 /* Recipient.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EAC5CF03172672BD004A7663 /* Credentials */ = {
+			isa = PBXGroup;
+			children = (
+				EAC5CF04172672CA004A7663 /* Credentials.h */,
+				EAC5CF05172672CA004A7663 /* Credentials.m */,
+			);
+			path = Credentials;
+			sourceTree = "<group>";
+		};
 		EAD3966F171BD1DE00F6D011 /* ObjectModel */ = {
 			isa = PBXGroup;
 			children = (
 				EAD73696171E830600A037B1 /* Generated */,
-				EAD3968C171BD87E00F6D011 /* ObjectModel+Credentials.h */,
-				EAD3968D171BD87E00F6D011 /* ObjectModel+Credentials.m */,
-				EAD7369D171E836D00A037B1 /* ObjectModel+Recipients.h */,
-				EAD7369E171E836D00A037B1 /* ObjectModel+Recipients.m */,
 				EAD39670171BD2A300F6D011 /* ObjectModel.h */,
 				EAD39671171BD2A300F6D011 /* ObjectModel.m */,
-				EAD7369A171E831300A037B1 /* Recipient.h */,
-				EAD7369B171E831300A037B1 /* Recipient.m */,
 				EAAA1485171BC911005B9430 /* Transfer.xcdatamodeld */,
 			);
 			path = ObjectModel;
@@ -510,8 +518,6 @@
 		EAD73696171E830600A037B1 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				EAD73697171E830D00A037B1 /* _Recipient.h */,
-				EAD73698171E830D00A037B1 /* _Recipient.m */,
 			);
 			name = Generated;
 			sourceTree = "<group>";
@@ -551,7 +557,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EAAA148A171BC911005B9430 /* Build configuration list for PBXNativeTarget "Transfer" */;
 			buildPhases = (
-				EAD73695171E820100A037B1 /* mogenerator */,
 				EAAA1464171BC911005B9430 /* Sources */,
 				EAAA1465171BC911005B9430 /* Frameworks */,
 				EAAA1466171BC911005B9430 /* Resources */,
@@ -644,20 +649,6 @@
 			shellPath = /bin/sh;
 			shellScript = "echo -n ${TARGET_BUILD_DIR}/${INFOPLIST_PATH} \\\n| xargs -0 /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion `git rev-list HEAD | wc -l`-`git rev-parse --short HEAD`\"";
 		};
-		EAD73695171E820100A037B1 /* mogenerator */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = mogenerator;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "PATH_TO_MODELD=\"Transfer/Transfer.xcdatamodeld\"\nOUTPUT_PATH=\"Transfer/ObjectModel\"\n\ntype mogenerator >/dev/null 2>&1 || {\n    echo >&2 \"warning: mogenerator not found. You will need it when changing core data model\";\n    exit 0;\n}\n\n#CURRENT_VERSION=$(/usr/libexec/PlistBuddy -c \"Print :_XCCurrentVersionName\" \"${PATH_TO_MODELD}/.xccurrentversion\")\n\nMODEL_PATH=\"${PATH_TO_MODELD}\"\necho \"Used model path ${MODEL_PATH}\"\n\nmogenerator -m $MODEL_PATH -O $OUTPUT_PATH --template-var arc=true";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -674,7 +665,6 @@
 				EAD39680171BD57000F6D011 /* ContactsViewController.m in Sources */,
 				EAD39685171BD5B000F6D011 /* PaymentViewController.m in Sources */,
 				EAD3968A171BD82300F6D011 /* IntroductionViewController.m in Sources */,
-				EAD3968E171BD87E00F6D011 /* ObjectModel+Credentials.m in Sources */,
 				EA13E032171BDF1A0019FBF0 /* TableHeaderView.m in Sources */,
 				EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */,
 				EA13E03F171BE9B00019FBF0 /* LoginViewController.m in Sources */,
@@ -703,9 +693,6 @@
 				EAD7D4D1171D4BB20099063F /* BlueButton.m in Sources */,
 				EAD7368A171E6CB100A037B1 /* GrayButton.m in Sources */,
 				EAD73692171E7A1D00A037B1 /* Lockbox.m in Sources */,
-				EAD73699171E830D00A037B1 /* _Recipient.m in Sources */,
-				EAD7369C171E831300A037B1 /* Recipient.m in Sources */,
-				EAD7369F171E836D00A037B1 /* ObjectModel+Recipients.m in Sources */,
 				EAD736A2171E85C300A037B1 /* RecipientCell.m in Sources */,
 				EAD736A7171E87ED00A037B1 /* UserRecipientsOperation.m in Sources */,
 				EAB7215B171FC61B00DE29F5 /* SettingsViewController.m in Sources */,
@@ -713,6 +700,8 @@
 				EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */,
 				EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */,
 				EAEA6257172011C500A96770 /* CalculationResult.m in Sources */,
+				EAC5CF0217266AFF004A7663 /* Recipient.m in Sources */,
+				EAC5CF06172672CA004A7663 /* Credentials.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

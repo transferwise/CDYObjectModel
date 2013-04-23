@@ -1,33 +1,32 @@
 //
-//  ObjectModel+Credentials.m
+//  Credentials.m
 //  Transfer
 //
-//  Created by Jaanus Siim on 4/15/13.
+//  Created by Jaanus Siim on 4/23/13.
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import "ObjectModel+Credentials.h"
-#import "Lockbox.h"
+#import "Credentials.h"
 #import "NSString+Validation.h"
+#import "Lockbox.h"
 
 NSString *const kAccessTokenKey = @"kAccessTokenKey";
 
-@implementation ObjectModel (Credentials)
+@implementation Credentials
 
-- (BOOL)userLoggedIn {
-    return [[self accessToken] hasValue];
++ (BOOL)userLoggedIn {
+    return [[Credentials accessToken] hasValue];
 }
 
-- (void)setUserToken:(NSString *)token {
++ (void)setUserToken:(NSString *)token {
     [Lockbox setString:token forKey:kAccessTokenKey];
 }
 
-
-- (NSString *)accessToken {
++ (NSString *)accessToken {
     return [Lockbox stringForKey:kAccessTokenKey];
 }
 
-- (void)clearCredentials {
++ (void)clearCredentials {
     [Lockbox setString:@"" forKey:kAccessTokenKey];
 }
 

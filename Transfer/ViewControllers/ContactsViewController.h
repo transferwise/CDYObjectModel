@@ -12,6 +12,4 @@
 
 @interface ContactsViewController : UITableViewController
 
-@property (nonatomic, strong) ObjectModel *objectModel;
-
 @end

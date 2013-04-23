@@ -8,7 +8,7 @@
 
 #import "TransferwiseOperation.h"
 
-typedef void (^ListRecipientsBlock)(NSError *error);
+typedef void (^ListRecipientsBlock)(NSArray *recipients, NSError *error);
 
 @interface UserRecipientsOperation : TransferwiseOperation
 

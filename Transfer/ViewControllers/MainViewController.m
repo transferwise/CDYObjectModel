@@ -12,8 +12,8 @@
 #import "ContactsViewController.h"
 #import "ObjectModel.h"
 #import "IntroductionViewController.h"
-#import "ObjectModel+Credentials.h"
 #import "SettingsViewController.h"
+#import "Credentials.h"
 
 @interface MainViewController ()
 
@@ -39,7 +39,6 @@
     PaymentViewController *paymentController = [[PaymentViewController alloc] init];
 
     ContactsViewController *contactsController = [[ContactsViewController alloc] init];
-    [contactsController setObjectModel:self.objectModel];
 
     UITabBarController *tabController = [[UITabBarController alloc] init];
     [tabController setViewControllers:@[transactionsController, paymentController, contactsController]];
@@ -63,7 +62,7 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
 
-    if (![self.objectModel userLoggedIn]) {
+    if (![Credentials userLoggedIn]) {
         [self presentIntroductionController];
     }
 }

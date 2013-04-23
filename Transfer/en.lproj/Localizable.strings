@@ -27,6 +27,9 @@
 
 "payment.controller.title" = "New payment";
 
+"recipient.details.bic.base" = "BIC: %@";
+"recipient.details.iban.base" = "IBAN: %@";
+
 "transactions.controller.title" = "Transactions";
 
 "settings.row.logout" = "Sign out";

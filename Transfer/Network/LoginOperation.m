@@ -8,8 +8,7 @@
 
 #import "LoginOperation.h"
 #import "TransferwiseOperation+Private.h"
-#import "ObjectModel.h"
-#import "ObjectModel+Credentials.h"
+#import "Credentials.h"
 
 NSString *const kLoginPath = @"/api/v1/token/create";
 
@@ -45,7 +44,7 @@ NSString *const kLoginPath = @"/api/v1/token/create";
     __block __weak LoginOperation *weakSelf = self;
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         NSString *token = response[@"token"];
-        [weakSelf.objectModel setUserToken:token];
+        [Credentials setUserToken:token];
         weakSelf.responseHandler(nil);
     }];
     [self setOperationErrorHandler:^(NSError *error) {

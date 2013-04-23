@@ -7,10 +7,9 @@
 //
 
 #import "SettingsViewController.h"
-#import "ObjectModel.h"
-#import "ObjectModel+Credentials.h"
 #import "SettingsTitleCell.h"
 #import "UIColor+Theme.h"
+#import "Credentials.h"
 
 NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
@@ -52,7 +51,7 @@ typedef NS_ENUM(short, SettingsRow) {
     [super viewWillAppear:animated];
 
     NSMutableArray *presented = [NSMutableArray array];
-    if ([self.objectModel userLoggedIn]) {
+    if ([Credentials userLoggedIn]) {
         [presented addObject:@(LogoutRow)];
     } else {
 
@@ -100,7 +99,7 @@ typedef NS_ENUM(short, SettingsRow) {
     SettingsRow code = (SettingsRow) [self.presentedRows[(NSUInteger) indexPath.row] shortValue];
     switch (code) {
         case LogoutRow:
-            [self.objectModel clearCredentials];
+            [Credentials clearCredentials];
             [self dismissViewControllerAnimated:YES completion:nil];
             break;
     }

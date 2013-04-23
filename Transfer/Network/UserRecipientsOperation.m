@@ -9,8 +9,7 @@
 #import "UserRecipientsOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Constants.h"
-#import "ObjectModel.h"
-#import "ObjectModel+Recipients.h"
+#import "Recipient.h"
 
 NSString *const kRecipientsListPath = @"/recipient/list";
 
@@ -23,15 +22,22 @@ NSString *const kRecipientsListPath = @"/recipient/list";
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         NSArray *recipients = response[@"recipients"];
         MCLog(@"Received %d recipients from server", [recipients count]);
-        for (NSDictionary *recipient in recipients) {
-            [weakSelf.objectModel createOrUpdateRecipientWithData:recipient];
+        NSMutableArray *result = [NSMutableArray arrayWithCapacity:[recipients count]];
+        for (NSDictionary *recipientData in recipients) {
+            Recipient *recipient = [Recipient recipientWithData:recipientData];
+            [result addObject:recipient];
         }
-        [weakSelf.objectModel saveContext];
-        weakSelf.responseHandler(nil);
+        [result sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            Recipient *one = obj1;
+            Recipient *two = obj2;
+            return [one.name compare:two.name options:NSCaseInsensitiveSearch];
+        }];
+
+        weakSelf.responseHandler([NSArray arrayWithArray:result], nil);
     }];
 
     [self setOperationErrorHandler:^(NSError *error) {
-        weakSelf.responseHandler(error);
+        weakSelf.responseHandler(nil, error);
     }];
 
     [self getDataFromPath:path];
