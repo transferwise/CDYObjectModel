@@ -10,9 +10,7 @@
 
 @class CalculationResult;
 
-typedef void (^MoneyCalculationHandler)(CalculationResult *result, NSError *error);
-
-@interface WhyAlertView : UIView
+@interface WhyView : UIView
 @property (strong, nonatomic) IBOutlet UILabel *transferwiseRateLabel;
 @property (strong, nonatomic) IBOutlet UILabel *transferwiseTransferFeeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *transferwisePayOutLabel;
@@ -20,9 +18,8 @@ typedef void (^MoneyCalculationHandler)(CalculationResult *result, NSError *erro
 @property (strong, nonatomic) IBOutlet UILabel *bankTransferFeeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *bankPayOutLabel;
 
-@property (nonatomic, copy) MoneyCalculationHandler calculationHandler;
+@property (nonatomic, strong) NSString *title;
 
-- (void)showAlert;
-
+- (void)setupWithResult:(CalculationResult*)result;
 
 @end

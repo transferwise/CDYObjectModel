@@ -96,6 +96,7 @@
             [self setExecutedOperation:nil];
 
             if (result) {
+                self.result = result;
                 if (result.amountCurrency == SourceCurrency) {
                     [self.receiveCell.moneyField setText:result.transferwisePayOutString];
                 } else {

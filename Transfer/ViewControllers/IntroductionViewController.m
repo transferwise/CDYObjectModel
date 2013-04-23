@@ -15,8 +15,8 @@
 #import "MoneyCalculator.h"
 #import "Constants.h"
 #import "CalculationResult.h"
-#import "WhyAlertView.h"
-#import "../../Thirdparty/TSAlertView/TSAlertView.h"
+#import "WhyView.h"
+#import "TSAlertView.h"
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -30,7 +30,6 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) MoneyEntryCell *youSendCell;
 @property (nonatomic, strong) MoneyEntryCell *theyReceiveCell;
 @property (nonatomic, strong) MoneyCalculator *calculator;
-@property (nonatomic, strong) WhyAlertView *whyMe;
 
 - (IBAction)loginPressed:(id)sender;
 
@@ -48,9 +47,6 @@ static NSUInteger const kRowYouSend = 0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.whyMe = [[WhyAlertView alloc] init];
-    [self.whyMe showAlert];
 
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
@@ -150,6 +146,12 @@ static NSUInteger const kRowYouSend = 0;
     LoginViewController *controller = [[LoginViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [self.navigationController pushViewController:controller animated:YES];
+}
+- (IBAction)whyPressed:(id)sender {
+    WhyView *whyView = [[WhyView alloc] init];
+    [whyView setupWithResult:self.calculator.result];
+    TSAlertView *alert = [[TSAlertView alloc]initWithTitle:whyView.title view:whyView delegate:nil cancelButtonTitle:NSLocalizedString(@"Sounds cool", @"Why popup") otherButtonTitles:nil];
+    [alert show];
 }
 
 @end

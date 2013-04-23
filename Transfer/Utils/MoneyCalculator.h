@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WhyAlertView.h"
 
 @class CalculationResult;
 
@@ -19,8 +18,8 @@ typedef void (^MoneyCalculationHandler)(CalculationResult *result, NSError *erro
 
 @property (nonatomic, strong) MoneyEntryCell *sendCell;
 @property (nonatomic, strong) MoneyEntryCell *receiveCell;
-@property (nonatomic, strong) WhyAlertView *whyMe;
 @property (nonatomic, copy) MoneyCalculationHandler calculationHandler;
+@property (nonatomic, strong) CalculationResult *result;
 
 - (void)forceCalculate;
 

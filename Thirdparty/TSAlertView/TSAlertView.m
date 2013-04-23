@@ -45,10 +45,11 @@
 	CGGradientRef backgroundGradient = CGGradientCreateWithColorComponents(colorspace, components, locations, 3);
 	CGColorSpaceRelease(colorspace);
 	
+    CGFloat endRadius = sqrtf(width*width/4 + height*height/4);
 	CGContextDrawRadialGradient(UIGraphicsGetCurrentContext(),
 								backgroundGradient,
 								CGPointMake(width/2, height/2), 0,
-								CGPointMake(width/2, height/2), width,
+								CGPointMake(width/2, height/2), endRadius,
 								0);
 	
 	CGGradientRelease(backgroundGradient);
