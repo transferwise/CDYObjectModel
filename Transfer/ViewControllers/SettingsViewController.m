@@ -11,11 +11,12 @@
 #import "UIColor+Theme.h"
 #import "Credentials.h"
 #import "SWRevealViewController.h"
+#import "LoginViewController.h"
 
 NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
 typedef NS_ENUM(short, SettingsRow) {
-    LogoutRow
+    LogoutRow, LoginRow
 };
 
 @interface SettingsViewController ()
@@ -55,7 +56,7 @@ typedef NS_ENUM(short, SettingsRow) {
     if ([Credentials userLoggedIn]) {
         [presented addObject:@(LogoutRow)];
     } else {
-
+        [presented addObject:@(LoginRow)];
     }
 
     [self setPresentedRows:presented];
@@ -86,6 +87,9 @@ typedef NS_ENUM(short, SettingsRow) {
         case LogoutRow:
             [cell setTitle:NSLocalizedString(@"settings.row.logout", nil)];
             break;
+        case LoginRow:
+            [cell setTitle:@"Login"];
+            break;
         default:
             [cell setTitle:@"Unknown case..."];
     }
@@ -97,13 +101,21 @@ typedef NS_ENUM(short, SettingsRow) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
+    SWRevealViewController *revealController = [self revealViewController];
+    
     SettingsRow code = (SettingsRow) [self.presentedRows[(NSUInteger) indexPath.row] shortValue];
     switch (code) {
         case LogoutRow:
             [Credentials clearCredentials];
-            SWRevealViewController *revealController = [self revealViewController];
             [revealController revealToggle:nil];
             [revealController.frontViewController viewDidAppear:YES];
+            break;
+        case LoginRow:
+            ;
+            LoginViewController *controller = [[LoginViewController alloc] init];
+            [controller setObjectModel:self.objectModel];
+            [((UINavigationController*)revealController.frontViewController) pushViewController:controller animated:YES];
+            [revealController revealToggle:nil];
             break;
     }
 }
