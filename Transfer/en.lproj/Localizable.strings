@@ -30,3 +30,6 @@
 "transactions.controller.title" = "Transactions";
 
 "settings.row.logout" = "Sign out";
+
+"whypopup.title" = "Get %@ more vs a bank";
+"whypopup.button" = "Sounds cool";

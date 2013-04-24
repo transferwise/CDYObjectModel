@@ -30,6 +30,7 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) MoneyEntryCell *youSendCell;
 @property (nonatomic, strong) MoneyEntryCell *theyReceiveCell;
 @property (nonatomic, strong) MoneyCalculator *calculator;
+@property (nonatomic, strong) CalculationResult *result;
 
 - (IBAction)loginPressed:(id)sender;
 
@@ -89,7 +90,7 @@ static NSUInteger const kRowYouSend = 0;
             MCLog(@"Calculation error:%@", error);
             return;
         }
-
+        self.result = result;
         [self.savingsLabel setText:[NSString stringWithFormat:NSLocalizedString(@"introduction.savings.message.base", nil), [result formattedWinAmount]]];
     }];
 
@@ -149,8 +150,8 @@ static NSUInteger const kRowYouSend = 0;
 }
 - (IBAction)whyPressed:(id)sender {
     WhyView *whyView = [[WhyView alloc] init];
-    [whyView setupWithResult:self.calculator.result];
-    TSAlertView *alert = [[TSAlertView alloc]initWithTitle:whyView.title view:whyView delegate:nil cancelButtonTitle:NSLocalizedString(@"Sounds cool", @"Why popup") otherButtonTitles:nil];
+    [whyView setupWithResult:self.result];
+    TSAlertView *alert = [[TSAlertView alloc]initWithTitle:whyView.title view:whyView delegate:nil cancelButtonTitle:NSLocalizedString(@"whypopup.button", nil) otherButtonTitles:nil];
     [alert show];
 }
 

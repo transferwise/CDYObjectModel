@@ -42,7 +42,7 @@
     [self.bankPayOutLabel setText:result.bankPayOutStringWithCurrency];
     [self.bankRateLabel setText:result.bankRateString];
     [self.bankTransferFeeLabel setText:result.bankTransferFeeStringWithCurrency];
-    self.title = [NSString stringWithFormat:NSLocalizedString(@"Get %@ more vs a bank", @"Why popup"), result.savedAmountWithCurrency];
+    self.title = [NSString stringWithFormat:NSLocalizedString(@"whypopup.title", nil), result.savedAmountWithCurrency];
 }
 
 /*
