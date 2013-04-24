@@ -59,6 +59,9 @@
 		EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */; };
 		EAC5CF0217266AFF004A7663 /* Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF0117266AFF004A7663 /* Recipient.m */; };
 		EAC5CF06172672CA004A7663 /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF05172672CA004A7663 /* Credentials.m */; };
+		EAC5CF0917267BC4004A7663 /* UserDetailsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF0817267BC4004A7663 /* UserDetailsOperation.m */; };
+		EAC5CF0C17267EA9004A7663 /* UserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF0B17267EA9004A7663 /* UserDetails.m */; };
+		EAC5CF0F17267EC5004A7663 /* ProfileDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF0E17267EC5004A7663 /* ProfileDetails.m */; };
 		EAD39672171BD2A300F6D011 /* ObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39671171BD2A300F6D011 /* ObjectModel.m */; };
 		EAD39676171BD4EE00F6D011 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39674171BD4EE00F6D011 /* MainViewController.m */; };
 		EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39675171BD4EE00F6D011 /* MainViewController.xib */; };
@@ -179,6 +182,12 @@
 		EAC5CF0117266AFF004A7663 /* Recipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recipient.m; sourceTree = "<group>"; };
 		EAC5CF04172672CA004A7663 /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Credentials.h; sourceTree = "<group>"; };
 		EAC5CF05172672CA004A7663 /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Credentials.m; sourceTree = "<group>"; };
+		EAC5CF0717267BC4004A7663 /* UserDetailsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsOperation.h; sourceTree = "<group>"; };
+		EAC5CF0817267BC4004A7663 /* UserDetailsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsOperation.m; sourceTree = "<group>"; };
+		EAC5CF0A17267EA9004A7663 /* UserDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetails.h; sourceTree = "<group>"; };
+		EAC5CF0B17267EA9004A7663 /* UserDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetails.m; sourceTree = "<group>"; };
+		EAC5CF0D17267EC5004A7663 /* ProfileDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileDetails.h; sourceTree = "<group>"; };
+		EAC5CF0E17267EC5004A7663 /* ProfileDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileDetails.m; sourceTree = "<group>"; };
 		EAD39670171BD2A300F6D011 /* ObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectModel.h; sourceTree = "<group>"; };
 		EAD39671171BD2A300F6D011 /* ObjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectModel.m; sourceTree = "<group>"; };
 		EAD39673171BD4EE00F6D011 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -363,6 +372,8 @@
 				EA8FF6BC171D30B60090A658 /* TransferwiseOperation+Private.h */,
 				EA8FF6B6171D25C20090A658 /* TransferwiseOperation.h */,
 				EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */,
+				EAC5CF0717267BC4004A7663 /* UserDetailsOperation.h */,
+				EAC5CF0817267BC4004A7663 /* UserDetailsOperation.m */,
 				EAD736A5171E87ED00A037B1 /* UserRecipientsOperation.h */,
 				EAD736A6171E87ED00A037B1 /* UserRecipientsOperation.m */,
 			);
@@ -480,8 +491,12 @@
 		EAC5CEFF17266AB2004A7663 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EAC5CF0D17267EC5004A7663 /* ProfileDetails.h */,
+				EAC5CF0E17267EC5004A7663 /* ProfileDetails.m */,
 				EAC5CF0017266AFF004A7663 /* Recipient.h */,
 				EAC5CF0117266AFF004A7663 /* Recipient.m */,
+				EAC5CF0A17267EA9004A7663 /* UserDetails.h */,
+				EAC5CF0B17267EA9004A7663 /* UserDetails.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -702,6 +717,9 @@
 				EAEA6257172011C500A96770 /* CalculationResult.m in Sources */,
 				EAC5CF0217266AFF004A7663 /* Recipient.m in Sources */,
 				EAC5CF06172672CA004A7663 /* Credentials.m in Sources */,
+				EAC5CF0917267BC4004A7663 /* UserDetailsOperation.m in Sources */,
+				EAC5CF0C17267EA9004A7663 /* UserDetails.m in Sources */,
+				EAC5CF0F17267EC5004A7663 /* ProfileDetails.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
