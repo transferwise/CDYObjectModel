@@ -70,13 +70,13 @@
 }
 
 - (void)presentIntroductionController {
-    IntroductionViewController *front = [[IntroductionViewController alloc] init];
-    [front setObjectModel:self.objectModel];
+    IntroductionViewController *controller = [[IntroductionViewController alloc] init];
+    [controller setObjectModel:self.objectModel];
     
     SettingsViewController *rearViewController = [[SettingsViewController alloc] init];
     [rearViewController setObjectModel:self.objectModel];
     
-	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:front];
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     SWRevealViewController *mainRevealController = [[SWRevealViewController alloc]
                                                     initWithRearViewController:rearViewController frontViewController:navigationController];
     [self presentModalViewController:mainRevealController animated:YES];
