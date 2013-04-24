@@ -79,7 +79,7 @@
 	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:front];
     SWRevealViewController *mainRevealController = [[SWRevealViewController alloc]
                                                     initWithRearViewController:rearViewController frontViewController:navigationController];
-    [self presentModalViewController:mainRevealController animated:NO];
+    [self presentModalViewController:mainRevealController animated:YES];
 }
 
 - (void)settingsPressed {
