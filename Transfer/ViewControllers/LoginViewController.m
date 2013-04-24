@@ -18,8 +18,6 @@
 #import "TRWAlertView.h"
 #import "TRWProgressHUD.h"
 #import "LoginOperation.h"
-#import "MainViewController.h"
-#import "SWRevealViewController.h"
 
 static NSUInteger const kTableRowEmail = 0;
 
@@ -164,10 +162,7 @@ static NSUInteger const kTableRowEmail = 0;
             return;
         }
 
-        MainViewController *frontViewController = [[MainViewController alloc] init];
-        [frontViewController setObjectModel:self.objectModel];
-        SWRevealViewController *revealController = [self revealViewController];
-        [revealController setFrontViewController:frontViewController animated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }];
 
     [loginOperation execute];

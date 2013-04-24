@@ -44,15 +44,12 @@
     MainViewController *frontViewController = [[MainViewController alloc] init];
     [frontViewController setObjectModel:model];
     
-    IntroductionViewController *front = [[IntroductionViewController alloc] init];
-    [front setObjectModel:model];
     
     SettingsViewController *rearViewController = [[SettingsViewController alloc] init];
     [rearViewController setObjectModel:model];
     
-	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:front];
     SWRevealViewController *mainRevealController = [[SWRevealViewController alloc]
-                                                    initWithRearViewController:rearViewController frontViewController:navigationController];
+                                                    initWithRearViewController:rearViewController frontViewController:frontViewController];
     
     mainRevealController.delegate = self;
     

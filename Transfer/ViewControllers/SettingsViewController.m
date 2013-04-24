@@ -10,6 +10,7 @@
 #import "SettingsTitleCell.h"
 #import "UIColor+Theme.h"
 #import "Credentials.h"
+#import "SWRevealViewController.h"
 
 NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
@@ -100,7 +101,9 @@ typedef NS_ENUM(short, SettingsRow) {
     switch (code) {
         case LogoutRow:
             [Credentials clearCredentials];
-            [self dismissViewControllerAnimated:YES completion:nil];
+            SWRevealViewController *revealController = [self revealViewController];
+            [revealController revealToggle:nil];
+            [revealController.frontViewController viewDidAppear:YES];
             break;
     }
 }

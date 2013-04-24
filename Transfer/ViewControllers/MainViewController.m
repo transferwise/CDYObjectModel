@@ -63,13 +63,23 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+
+    if (![Credentials userLoggedIn]) {
+        [self presentIntroductionController];
+    }
 }
 
 - (void)presentIntroductionController {
-    IntroductionViewController *controller = [[IntroductionViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-    [self presentModalViewController:navigationController animated:NO];
+    IntroductionViewController *front = [[IntroductionViewController alloc] init];
+    [front setObjectModel:self.objectModel];
+    
+    SettingsViewController *rearViewController = [[SettingsViewController alloc] init];
+    [rearViewController setObjectModel:self.objectModel];
+    
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:front];
+    SWRevealViewController *mainRevealController = [[SWRevealViewController alloc]
+                                                    initWithRearViewController:rearViewController frontViewController:navigationController];
+    [self presentModalViewController:mainRevealController animated:NO];
 }
 
 - (void)settingsPressed {
