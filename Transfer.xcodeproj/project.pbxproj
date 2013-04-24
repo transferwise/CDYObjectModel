@@ -62,6 +62,8 @@
 		EAC5CF0917267BC4004A7663 /* UserDetailsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF0817267BC4004A7663 /* UserDetailsOperation.m */; };
 		EAC5CF0C17267EA9004A7663 /* UserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF0B17267EA9004A7663 /* UserDetails.m */; };
 		EAC5CF0F17267EC5004A7663 /* ProfileDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF0E17267EC5004A7663 /* ProfileDetails.m */; };
+		EAC5CF351727B8FE004A7663 /* TransferwiseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF341727B8FE004A7663 /* TransferwiseClient.m */; };
+		EAC5CF381727C153004A7663 /* PersonalProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF371727C153004A7663 /* PersonalProfile.m */; };
 		EAD39672171BD2A300F6D011 /* ObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39671171BD2A300F6D011 /* ObjectModel.m */; };
 		EAD39676171BD4EE00F6D011 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39674171BD4EE00F6D011 /* MainViewController.m */; };
 		EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39675171BD4EE00F6D011 /* MainViewController.xib */; };
@@ -188,6 +190,10 @@
 		EAC5CF0B17267EA9004A7663 /* UserDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetails.m; sourceTree = "<group>"; };
 		EAC5CF0D17267EC5004A7663 /* ProfileDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileDetails.h; sourceTree = "<group>"; };
 		EAC5CF0E17267EC5004A7663 /* ProfileDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileDetails.m; sourceTree = "<group>"; };
+		EAC5CF331727B8FE004A7663 /* TransferwiseClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferwiseClient.h; sourceTree = "<group>"; };
+		EAC5CF341727B8FE004A7663 /* TransferwiseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferwiseClient.m; sourceTree = "<group>"; };
+		EAC5CF361727C153004A7663 /* PersonalProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfile.h; sourceTree = "<group>"; };
+		EAC5CF371727C153004A7663 /* PersonalProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfile.m; sourceTree = "<group>"; };
 		EAD39670171BD2A300F6D011 /* ObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectModel.h; sourceTree = "<group>"; };
 		EAD39671171BD2A300F6D011 /* ObjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectModel.m; sourceTree = "<group>"; };
 		EAD39673171BD4EE00F6D011 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -369,6 +375,8 @@
 				EA8FF6BA171D26A00090A658 /* LoginOperation.m */,
 				EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */,
 				EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */,
+				EAC5CF331727B8FE004A7663 /* TransferwiseClient.h */,
+				EAC5CF341727B8FE004A7663 /* TransferwiseClient.m */,
 				EA8FF6BC171D30B60090A658 /* TransferwiseOperation+Private.h */,
 				EA8FF6B6171D25C20090A658 /* TransferwiseOperation.h */,
 				EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */,
@@ -491,6 +499,8 @@
 		EAC5CEFF17266AB2004A7663 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EAC5CF361727C153004A7663 /* PersonalProfile.h */,
+				EAC5CF371727C153004A7663 /* PersonalProfile.m */,
 				EAC5CF0D17267EC5004A7663 /* ProfileDetails.h */,
 				EAC5CF0E17267EC5004A7663 /* ProfileDetails.m */,
 				EAC5CF0017266AFF004A7663 /* Recipient.h */,
@@ -720,6 +730,8 @@
 				EAC5CF0917267BC4004A7663 /* UserDetailsOperation.m in Sources */,
 				EAC5CF0C17267EA9004A7663 /* UserDetails.m in Sources */,
 				EAC5CF0F17267EC5004A7663 /* ProfileDetails.m in Sources */,
+				EAC5CF351727B8FE004A7663 /* TransferwiseClient.m in Sources */,
+				EAC5CF381727C153004A7663 /* PersonalProfile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

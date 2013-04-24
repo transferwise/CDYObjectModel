@@ -13,6 +13,7 @@
 #import "TransferwiseOperation+Private.h"
 #import "NSDictionary+SensibleData.h"
 #import "Credentials.h"
+#import "TransferwiseClient.h"
 
 NSString *const TRWErrorDomain = @"TRWErrorDomain";
 NSString *const kAPIPathBase = @"/api/v1/";
@@ -46,7 +47,7 @@ NSString *const kAPIPathBase = @"/api/v1/";
 }
 
 - (void)executeOperationWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters {
-    AFHTTPClient *client = [self httpClient];
+    AFHTTPClient *client = [TransferwiseClient sharedClient];
     NSMutableURLRequest *request = [client requestWithMethod:method path:path parameters:parameters];
 
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
@@ -81,15 +82,6 @@ NSString *const kAPIPathBase = @"/api/v1/";
 
 - (NSString *)addTokenToPath:(NSString *)path {
     return [NSString stringWithFormat:@"%@%@%@", kAPIPathBase, [Credentials accessToken], path];
-}
-
-static AFHTTPClient *__httpClient;
-- (AFHTTPClient *)httpClient {
-    if (!__httpClient) {
-        __httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://api-sandbox.transferwise.com"]];
-    }
-
-    return __httpClient;
 }
 
 @end

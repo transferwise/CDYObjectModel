@@ -14,7 +14,8 @@
 NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
 typedef NS_ENUM(short, SettingsRow) {
-    LogoutRow
+    LogoutRow,
+    UserProfileRow
 };
 
 @interface SettingsViewController ()
@@ -52,6 +53,7 @@ typedef NS_ENUM(short, SettingsRow) {
 
     NSMutableArray *presented = [NSMutableArray array];
     if ([Credentials userLoggedIn]) {
+        [presented addObject:@(UserProfileRow)];
         [presented addObject:@(LogoutRow)];
     } else {
 
@@ -84,6 +86,9 @@ typedef NS_ENUM(short, SettingsRow) {
     switch (code) {
         case LogoutRow:
             [cell setTitle:NSLocalizedString(@"settings.row.logout", nil)];
+            break;
+        case UserProfileRow:
+            [cell setTitle:[Credentials displayName]];
             break;
         default:
             [cell setTitle:@"Unknown case..."];

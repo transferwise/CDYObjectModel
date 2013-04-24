@@ -9,6 +9,7 @@
 #import "LoginOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Credentials.h"
+#import "TransferwiseClient.h"
 
 NSString *const kLoginPath = @"/api/v1/token/create";
 
@@ -45,6 +46,8 @@ NSString *const kLoginPath = @"/api/v1/token/create";
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         NSString *token = response[@"token"];
         [Credentials setUserToken:token];
+        [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:nil];
+
         weakSelf.responseHandler(nil);
     }];
     [self setOperationErrorHandler:^(NSError *error) {

@@ -14,5 +14,8 @@
 + (void)setUserToken:(NSString *)token;
 + (NSString *)accessToken;
 + (void)clearCredentials;
+//TODO jaanus: this feels wrong place for display information
++ (NSString *)displayName;
++ (void)setDisplayName:(NSString *)displayName;
 
 @end

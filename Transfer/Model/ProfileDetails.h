@@ -10,4 +10,8 @@
 
 @interface ProfileDetails : NSObject
 
+- (NSString *)displayName;
+
++ (ProfileDetails *)detailsWithData:(NSDictionary *)data;
+
 @end
