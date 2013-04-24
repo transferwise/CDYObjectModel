@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18EF2A09172806BD003B6862 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EF2A08172806BD003B6862 /* SignUpViewController.m */; };
+		18EF2A0B172806F9003B6862 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EF2A0A172806F9003B6862 /* SignUpViewController.xib */; };
 		BB92B1081727B8B900B6F096 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB92B1061727B8B900B6F096 /* SWRevealViewController.m */; };
 		EA13E032171BDF1A0019FBF0 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */; };
 		EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */; };
@@ -93,6 +95,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18EF2A07172806BD003B6862 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		18EF2A08172806BD003B6862 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		18EF2A0A172806F9003B6862 /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		BB92B1061727B8B900B6F096 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = SWRevealViewController/SWRevealViewController.m; sourceTree = "<group>"; };
 		BB92B1071727B8B900B6F096 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = SWRevealViewController/SWRevealViewController.h; sourceTree = "<group>"; };
 		EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
@@ -475,6 +480,9 @@
 				EAD39678171BD51400F6D011 /* TransactionsViewController.h */,
 				EAD39679171BD51400F6D011 /* TransactionsViewController.m */,
 				EAD3967A171BD51400F6D011 /* TransactionsViewController.xib */,
+				18EF2A07172806BD003B6862 /* SignUpViewController.h */,
+				18EF2A08172806BD003B6862 /* SignUpViewController.m */,
+				18EF2A0A172806F9003B6862 /* SignUpViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -642,6 +650,7 @@
 				EAB72157171FC3E900DE29F5 /* SettingsButtonIcon@2x.png in Resources */,
 				EAB7215C171FC61B00DE29F5 /* SettingsViewController.xib in Resources */,
 				EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */,
+				18EF2A0B172806F9003B6862 /* SignUpViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,6 +725,7 @@
 				EAC5CF0217266AFF004A7663 /* Recipient.m in Sources */,
 				EAC5CF06172672CA004A7663 /* Credentials.m in Sources */,
 				BB92B1081727B8B900B6F096 /* SWRevealViewController.m in Sources */,
+				18EF2A09172806BD003B6862 /* SignUpViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

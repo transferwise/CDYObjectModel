@@ -11,13 +11,13 @@
 #import "UIColor+Theme.h"
 #import "Credentials.h"
 #import "SWRevealViewController.h"
-#import "LoginViewController.h"
+#import "SignUpViewController.h"
 
 NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
 typedef NS_ENUM(short, SettingsRow) {
     LogoutRow,
-    LoginRow
+    SignUpRow
 };
 
 @interface SettingsViewController ()
@@ -57,7 +57,7 @@ typedef NS_ENUM(short, SettingsRow) {
     if ([Credentials userLoggedIn]) {
         [presented addObject:@(LogoutRow)];
     } else {
-        [presented addObject:@(LoginRow)];
+        [presented addObject:@(SignUpRow)];
     }
 
     [self setPresentedRows:presented];
@@ -88,8 +88,8 @@ typedef NS_ENUM(short, SettingsRow) {
         case LogoutRow:
             [cell setTitle:NSLocalizedString(@"settings.row.logout", nil)];
             break;
-        case LoginRow:
-            [cell setTitle:@"Login"];
+        case SignUpRow:
+            [cell setTitle:NSLocalizedString(@"settings.row.signup", nil)];
             break;
         default:
             [cell setTitle:@"Unknown case..."];
@@ -103,7 +103,7 @@ typedef NS_ENUM(short, SettingsRow) {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     SWRevealViewController *revealController = [self revealViewController];
-    LoginViewController *controller = [[LoginViewController alloc] init];
+    SignUpViewController *controller = [[SignUpViewController alloc] init];
     
     SettingsRow code = (SettingsRow) [self.presentedRows[(NSUInteger) indexPath.row] shortValue];
     switch (code) {
@@ -112,7 +112,7 @@ typedef NS_ENUM(short, SettingsRow) {
             [revealController revealToggle:nil];
             [revealController.frontViewController viewDidAppear:YES];
             break;
-        case LoginRow:
+        case SignUpRow:
             [controller setObjectModel:self.objectModel];
             [((UINavigationController*)revealController.frontViewController) pushViewController:controller animated:YES];
             [revealController revealToggle:nil];

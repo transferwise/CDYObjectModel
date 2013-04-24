@@ -33,3 +33,11 @@
 "transactions.controller.title" = "Transactions";
 
 "settings.row.logout" = "Sign out";
+"settings.row.signup" = "Create an account";
+
+"singup.controller.header.message" = "Create a Transferwise account";
+"singup.email.field.title" = "E-mail";
+"singup.password.field.title" = "Password";
+"singup.button.title.log.in" = "Sing up";
+
+"button.title.back" = "Back";
