@@ -52,7 +52,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Label</string>
+								<string key="IBUIText">Recipient name</string>
 								<object class="NSColor" key="IBUITextColor" id="256238042">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MCAwIDAAA</bytes>
@@ -87,7 +87,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Label</string>
+								<string key="IBUIText">Recipient account</string>
 								<reference key="IBUITextColor" ref="256238042"/>
 								<reference key="IBUIHighlightedColor" ref="481189753"/>
 								<int key="IBUIBaselineAdjustment">0</int>
@@ -115,7 +115,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Label</string>
+								<string key="IBUIText">Recipient bank</string>
 								<reference key="IBUITextColor" ref="256238042"/>
 								<reference key="IBUIHighlightedColor" ref="481189753"/>
 								<int key="IBUIBaselineAdjustment">0</int>

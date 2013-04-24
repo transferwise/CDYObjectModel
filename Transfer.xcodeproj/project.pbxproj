@@ -64,6 +64,10 @@
 		EAC5CF0F17267EC5004A7663 /* ProfileDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF0E17267EC5004A7663 /* ProfileDetails.m */; };
 		EAC5CF351727B8FE004A7663 /* TransferwiseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF341727B8FE004A7663 /* TransferwiseClient.m */; };
 		EAC5CF381727C153004A7663 /* PersonalProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF371727C153004A7663 /* PersonalProfile.m */; };
+		EAC5CF3C1727CCAE004A7663 /* PersonalProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF3A1727CCAE004A7663 /* PersonalProfileViewController.m */; };
+		EAC5CF3D1727CCAE004A7663 /* PersonalProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC5CF3B1727CCAE004A7663 /* PersonalProfileViewController.xib */; };
+		EAC5CF401727D044004A7663 /* NavBarBackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAC5CF3E1727D044004A7663 /* NavBarBackButton.png */; };
+		EAC5CF411727D044004A7663 /* NavBarBackButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAC5CF3F1727D044004A7663 /* NavBarBackButton@2x.png */; };
 		EAD39672171BD2A300F6D011 /* ObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39671171BD2A300F6D011 /* ObjectModel.m */; };
 		EAD39676171BD4EE00F6D011 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39674171BD4EE00F6D011 /* MainViewController.m */; };
 		EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39675171BD4EE00F6D011 /* MainViewController.xib */; };
@@ -194,6 +198,11 @@
 		EAC5CF341727B8FE004A7663 /* TransferwiseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferwiseClient.m; sourceTree = "<group>"; };
 		EAC5CF361727C153004A7663 /* PersonalProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfile.h; sourceTree = "<group>"; };
 		EAC5CF371727C153004A7663 /* PersonalProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfile.m; sourceTree = "<group>"; };
+		EAC5CF391727CCAE004A7663 /* PersonalProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileViewController.h; sourceTree = "<group>"; };
+		EAC5CF3A1727CCAE004A7663 /* PersonalProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileViewController.m; sourceTree = "<group>"; };
+		EAC5CF3B1727CCAE004A7663 /* PersonalProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalProfileViewController.xib; sourceTree = "<group>"; };
+		EAC5CF3E1727D044004A7663 /* NavBarBackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBarBackButton.png; sourceTree = "<group>"; };
+		EAC5CF3F1727D044004A7663 /* NavBarBackButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarBackButton@2x.png"; sourceTree = "<group>"; };
 		EAD39670171BD2A300F6D011 /* ObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectModel.h; sourceTree = "<group>"; };
 		EAD39671171BD2A300F6D011 /* ObjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectModel.m; sourceTree = "<group>"; };
 		EAD39673171BD4EE00F6D011 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -475,6 +484,9 @@
 				EAD39682171BD5B000F6D011 /* PaymentViewController.h */,
 				EAD39683171BD5B000F6D011 /* PaymentViewController.m */,
 				EAD39684171BD5B000F6D011 /* PaymentViewController.xib */,
+				EAC5CF391727CCAE004A7663 /* PersonalProfileViewController.h */,
+				EAC5CF3A1727CCAE004A7663 /* PersonalProfileViewController.m */,
+				EAC5CF3B1727CCAE004A7663 /* PersonalProfileViewController.xib */,
 				EAB72158171FC61B00DE29F5 /* SettingsViewController.h */,
 				EAB72159171FC61B00DE29F5 /* SettingsViewController.m */,
 				EAB7215A171FC61B00DE29F5 /* SettingsViewController.xib */,
@@ -554,6 +566,8 @@
 				EAD7D4C9171D4B080099063F /* BlueButton@2x.png */,
 				EAD7368B171E6D5A00A037B1 /* GrayButton.png */,
 				EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */,
+				EAC5CF3E1727D044004A7663 /* NavBarBackButton.png */,
+				EAC5CF3F1727D044004A7663 /* NavBarBackButton@2x.png */,
 				EAB72150171FC34600DE29F5 /* NavBarButton.png */,
 				EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */,
 				EAD7D4C4171D47BE0099063F /* NavigationBar.png */,
@@ -654,6 +668,9 @@
 				EAB72157171FC3E900DE29F5 /* SettingsButtonIcon@2x.png in Resources */,
 				EAB7215C171FC61B00DE29F5 /* SettingsViewController.xib in Resources */,
 				EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */,
+				EAC5CF3D1727CCAE004A7663 /* PersonalProfileViewController.xib in Resources */,
+				EAC5CF401727D044004A7663 /* NavBarBackButton.png in Resources */,
+				EAC5CF411727D044004A7663 /* NavBarBackButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,6 +749,7 @@
 				EAC5CF0F17267EC5004A7663 /* ProfileDetails.m in Sources */,
 				EAC5CF351727B8FE004A7663 /* TransferwiseClient.m in Sources */,
 				EAC5CF381727C153004A7663 /* PersonalProfile.m in Sources */,
+				EAC5CF3C1727CCAE004A7663 /* PersonalProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

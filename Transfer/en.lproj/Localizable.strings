@@ -27,9 +27,21 @@
 
 "payment.controller.title" = "New payment";
 
+"personal.profile.controller.title" = "Your details";
+
 "recipient.details.bic.base" = "BIC: %@";
 "recipient.details.iban.base" = "IBAN: %@";
 
 "transactions.controller.title" = "Transactions";
 
 "settings.row.logout" = "Sign out";
+"settings.row.personal.profile" = "Your personal profile";
+
+"personal.profile.first.name.label" = "First name";
+"personal.profile.last.name.label" = "Last name";
+"personal.profile.email.label" = "E-mail";
+"personal.profile.date.of.birth.label" = "Date of birth";
+"personal.profile.address.label" = "Address";
+"personal.profile.post.code.label" = "Post code";
+"personal.profile.city.label" = "City";
+"personal.profile.country.label" = "Country";

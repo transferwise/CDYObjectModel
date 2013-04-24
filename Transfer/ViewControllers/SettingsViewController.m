@@ -10,12 +10,14 @@
 #import "SettingsTitleCell.h"
 #import "UIColor+Theme.h"
 #import "Credentials.h"
+#import "PersonalProfileViewController.h"
 
 NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
 typedef NS_ENUM(short, SettingsRow) {
     LogoutRow,
-    UserProfileRow
+    UserProfileRow,
+    PersonalProfileRow
 };
 
 @interface SettingsViewController ()
@@ -54,6 +56,7 @@ typedef NS_ENUM(short, SettingsRow) {
     NSMutableArray *presented = [NSMutableArray array];
     if ([Credentials userLoggedIn]) {
         [presented addObject:@(UserProfileRow)];
+        [presented addObject:@(PersonalProfileRow)];
         [presented addObject:@(LogoutRow)];
     } else {
 
@@ -90,6 +93,9 @@ typedef NS_ENUM(short, SettingsRow) {
         case UserProfileRow:
             [cell setTitle:[Credentials displayName]];
             break;
+        case PersonalProfileRow:
+            [cell setTitle:NSLocalizedString(@"settings.row.personal.profile", nil)];
+            break;
         default:
             [cell setTitle:@"Unknown case..."];
     }
@@ -107,6 +113,14 @@ typedef NS_ENUM(short, SettingsRow) {
             [Credentials clearCredentials];
             [self dismissViewControllerAnimated:YES completion:nil];
             break;
+        case PersonalProfileRow: {
+            PersonalProfileViewController *controller = [[PersonalProfileViewController alloc] init];
+            //TODO jaanus: this will change after side view added
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+            break;
+        default:
+            NSLog(@"Unhandled row code %d", code);
     }
 }
 

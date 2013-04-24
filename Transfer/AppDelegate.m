@@ -31,6 +31,9 @@
     UIImage *navBarButton = [UIImage imageNamed:@"NavBarButton.png"];
     [[UIBarButtonItem appearance] setBackgroundImage:navBarButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 
+    UIImage *backButton = [[UIImage imageNamed:@"NavBarBackButton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 5)];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+
     ObjectModel *model = [[ObjectModel alloc] init];
     [self setObjectModel:model];
 
