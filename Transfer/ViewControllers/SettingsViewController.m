@@ -16,7 +16,8 @@
 NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
 typedef NS_ENUM(short, SettingsRow) {
-    LogoutRow, LoginRow
+    LogoutRow,
+    LoginRow
 };
 
 @interface SettingsViewController ()
@@ -102,6 +103,7 @@ typedef NS_ENUM(short, SettingsRow) {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     SWRevealViewController *revealController = [self revealViewController];
+    LoginViewController *controller = [[LoginViewController alloc] init];
     
     SettingsRow code = (SettingsRow) [self.presentedRows[(NSUInteger) indexPath.row] shortValue];
     switch (code) {
@@ -111,8 +113,6 @@ typedef NS_ENUM(short, SettingsRow) {
             [revealController.frontViewController viewDidAppear:YES];
             break;
         case LoginRow:
-            ;
-            LoginViewController *controller = [[LoginViewController alloc] init];
             [controller setObjectModel:self.objectModel];
             [((UINavigationController*)revealController.frontViewController) pushViewController:controller animated:YES];
             [revealController revealToggle:nil];
