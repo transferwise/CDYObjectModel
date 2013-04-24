@@ -14,6 +14,7 @@
 #import "IntroductionViewController.h"
 #import "SettingsViewController.h"
 #import "Credentials.h"
+#import "SWRevealViewController.h"
 
 @interface MainViewController ()
 
@@ -50,7 +51,8 @@
     [navigationController.view setFrame:self.view.bounds];
     [self.view addSubview:navigationController.view];
 
-    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SettingsButtonIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsPressed)];
+    SWRevealViewController *revealController = [self revealViewController];
+    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SettingsButtonIcon.png"] style:UIBarButtonItemStylePlain target:revealController action:@selector(revealToggle:)];
     [tabController.navigationItem setLeftBarButtonItem:settingsButton];
 }
 
@@ -61,10 +63,6 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-
-    if (![Credentials userLoggedIn]) {
-        [self presentIntroductionController];
-    }
 }
 
 - (void)presentIntroductionController {

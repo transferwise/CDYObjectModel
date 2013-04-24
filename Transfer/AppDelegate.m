@@ -9,12 +9,16 @@
 #import "AppDelegate.h"
 #import "ObjectModel.h"
 #import "MainViewController.h"
+#import "SettingsViewController.h"
+#import "IntroductionViewController.h"
 #import "Constants.h"
 #import "TestFlight.h"
+#import "SWRevealViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <SWRevealViewControllerDelegate>
 
 @property (nonatomic, strong) ObjectModel *objectModel;
+@property (strong, nonatomic) SWRevealViewController *viewController;
 
 @end
 
@@ -33,14 +37,40 @@
 
     ObjectModel *model = [[ObjectModel alloc] init];
     [self setObjectModel:model];
+    
+    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	self.window = window;
+    
+    MainViewController *frontViewController = [[MainViewController alloc] init];
+    [frontViewController setObjectModel:model];
+    
+    IntroductionViewController *front = [[IntroductionViewController alloc] init];
+    [front setObjectModel:model];
+    
+    SettingsViewController *rearViewController = [[SettingsViewController alloc] init];
+    [rearViewController setObjectModel:model];
+    
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:front];
+    SWRevealViewController *mainRevealController = [[SWRevealViewController alloc]
+                                                    initWithRearViewController:rearViewController frontViewController:navigationController];
+    
+    mainRevealController.delegate = self;
+    
+	self.viewController = mainRevealController;
+	
+	self.window.rootViewController = self.viewController;
+	[self.window makeKeyAndVisible];
+	return YES;
+}
 
-    MainViewController *controller = [[MainViewController alloc] init];
-    [controller setObjectModel:model];
-    [self.window setRootViewController:controller];
-
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    return YES;
+- (NSString*)stringFromFrontViewPosition:(FrontViewPosition)position
+{
+    NSString *str = nil;
+    if ( position == FrontViewPositionLeft ) str = @"FrontViewPositionLeft";
+    if ( position == FrontViewPositionRight ) str = @"FrontViewPositionRight";
+    if ( position == FrontViewPositionRightMost ) str = @"FrontViewPositionRightMost";
+    if ( position == FrontViewPositionRightMostRemoved ) str = @"FrontViewPositionRightMostRemoved";
+    return str;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
