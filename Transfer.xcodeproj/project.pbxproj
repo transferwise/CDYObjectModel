@@ -60,7 +60,6 @@
 		EAC5CF0217266AFF004A7663 /* Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF0117266AFF004A7663 /* Recipient.m */; };
 		EAC5CF06172672CA004A7663 /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF05172672CA004A7663 /* Credentials.m */; };
 		EAC5CF0917267BC4004A7663 /* UserDetailsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF0817267BC4004A7663 /* UserDetailsOperation.m */; };
-		EAC5CF0C17267EA9004A7663 /* UserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF0B17267EA9004A7663 /* UserDetails.m */; };
 		EAC5CF0F17267EC5004A7663 /* ProfileDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF0E17267EC5004A7663 /* ProfileDetails.m */; };
 		EAC5CF351727B8FE004A7663 /* TransferwiseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF341727B8FE004A7663 /* TransferwiseClient.m */; };
 		EAC5CF381727C153004A7663 /* PersonalProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF371727C153004A7663 /* PersonalProfile.m */; };
@@ -190,8 +189,6 @@
 		EAC5CF05172672CA004A7663 /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Credentials.m; sourceTree = "<group>"; };
 		EAC5CF0717267BC4004A7663 /* UserDetailsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsOperation.h; sourceTree = "<group>"; };
 		EAC5CF0817267BC4004A7663 /* UserDetailsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsOperation.m; sourceTree = "<group>"; };
-		EAC5CF0A17267EA9004A7663 /* UserDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetails.h; sourceTree = "<group>"; };
-		EAC5CF0B17267EA9004A7663 /* UserDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetails.m; sourceTree = "<group>"; };
 		EAC5CF0D17267EC5004A7663 /* ProfileDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileDetails.h; sourceTree = "<group>"; };
 		EAC5CF0E17267EC5004A7663 /* ProfileDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileDetails.m; sourceTree = "<group>"; };
 		EAC5CF331727B8FE004A7663 /* TransferwiseClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferwiseClient.h; sourceTree = "<group>"; };
@@ -517,8 +514,6 @@
 				EAC5CF0E17267EC5004A7663 /* ProfileDetails.m */,
 				EAC5CF0017266AFF004A7663 /* Recipient.h */,
 				EAC5CF0117266AFF004A7663 /* Recipient.m */,
-				EAC5CF0A17267EA9004A7663 /* UserDetails.h */,
-				EAC5CF0B17267EA9004A7663 /* UserDetails.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -745,7 +740,6 @@
 				EAC5CF0217266AFF004A7663 /* Recipient.m in Sources */,
 				EAC5CF06172672CA004A7663 /* Credentials.m in Sources */,
 				EAC5CF0917267BC4004A7663 /* UserDetailsOperation.m in Sources */,
-				EAC5CF0C17267EA9004A7663 /* UserDetails.m in Sources */,
 				EAC5CF0F17267EC5004A7663 /* ProfileDetails.m in Sources */,
 				EAC5CF351727B8FE004A7663 /* TransferwiseClient.m in Sources */,
 				EAC5CF381727C153004A7663 /* PersonalProfile.m in Sources */,

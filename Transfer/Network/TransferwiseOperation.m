@@ -37,7 +37,7 @@ NSString *const kAPIPathBase = @"/api/v1/";
 }
 
 - (void)getDataFromPath:(NSString *)path {
-    [self getDataFromPath:path params:@{}];
+    [self getDataFromPath:path params:nil];
 }
 
 - (void)getDataFromPath:(NSString *)path params:(NSDictionary *)params {

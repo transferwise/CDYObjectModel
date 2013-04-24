@@ -45,3 +45,6 @@
 "personal.profile.post.code.label" = "Post code";
 "personal.profile.city.label" = "City";
 "personal.profile.country.label" = "Country";
+"personal.profile.refreshing.message" = "Loading profile...";
+"personal.profile.refresh.error.title" = "Profile load error";
+"personal.profile.refresh.error.message" = "Could not load user profile. Please try again later.";

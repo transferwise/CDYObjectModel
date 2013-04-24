@@ -11,14 +11,6 @@
 
 @interface PersonalProfile ()
 
-@property (nonatomic, copy) NSString *firstName;
-@property (nonatomic, copy) NSString *lastName;
-@property (nonatomic, copy) NSString *dateOfBirthString;
-@property (nonatomic, copy) NSString *phoneNumber;
-@property (nonatomic, copy) NSString *addressFirstLine;
-@property (nonatomic, copy) NSString *postCode;
-@property (nonatomic, copy) NSString *city;
-@property (nonatomic, copy) NSString *countryCode;
 @property (nonatomic, strong) NSNumber *identityVerified;
 @property (nonatomic, strong) NSNumber *addressVerified;
 

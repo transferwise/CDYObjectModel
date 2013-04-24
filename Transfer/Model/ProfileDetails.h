@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class PersonalProfile;
+
 @interface ProfileDetails : NSObject
+
+@property (nonatomic, copy, readonly) NSString *email;
+@property (nonatomic, strong) PersonalProfile *personalProfile;
 
 - (NSString *)displayName;
 

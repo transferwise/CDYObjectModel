@@ -16,5 +16,6 @@ extern NSString *const TWTextEntryCellIdentifier;
 
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value;
 - (NSString *)value;
+- (void)setValue:(NSString *)value;
 
 @end

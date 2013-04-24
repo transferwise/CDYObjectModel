@@ -14,8 +14,6 @@
 @property (nonatomic, copy) NSString *email;
 @property (nonatomic, copy) NSString *reference;
 
-@property (nonatomic, strong) PersonalProfile *personalProfile;
-
 @end
 
 @implementation ProfileDetails

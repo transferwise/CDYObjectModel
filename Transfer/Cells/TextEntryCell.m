@@ -53,4 +53,8 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     return [self.entryField text];
 }
 
+- (void)setValue:(NSString *)value {
+    [self.entryField setText:value];
+}
+
 @end
