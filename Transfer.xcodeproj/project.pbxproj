@@ -846,6 +846,7 @@
 		EAAA148C171BC911005B9430 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jaanus Siim (JF476YPTEU)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
 				INFOPLIST_FILE = "Transfer/Transfer-Info.plist";
@@ -855,6 +856,7 @@
 					"\"$(SRCROOT)/Thirdparty/TestFlightSDK1.2.4\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6B0100E2-2E13-4603-B39C-04FC8186D942";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
