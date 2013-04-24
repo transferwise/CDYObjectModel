@@ -10,7 +10,6 @@
 #import "ObjectModel.h"
 #import "MainViewController.h"
 #import "SettingsViewController.h"
-#import "IntroductionViewController.h"
 #import "Constants.h"
 #import "TestFlight.h"
 #import "SWRevealViewController.h"
