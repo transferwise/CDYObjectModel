@@ -14,6 +14,7 @@
 #import "IntroductionViewController.h"
 #import "SettingsViewController.h"
 #import "Credentials.h"
+#import "SWRevealViewController.h"
 
 @interface MainViewController ()
 
@@ -50,7 +51,8 @@
     [navigationController.view setFrame:self.view.bounds];
     [self.view addSubview:navigationController.view];
 
-    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SettingsButtonIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsPressed)];
+    SWRevealViewController *revealController = [self revealViewController];
+    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SettingsButtonIcon.png"] style:UIBarButtonItemStylePlain target:revealController action:@selector(revealToggle:)];
     [tabController.navigationItem setLeftBarButtonItem:settingsButton];
 }
 
@@ -70,8 +72,14 @@
 - (void)presentIntroductionController {
     IntroductionViewController *controller = [[IntroductionViewController alloc] init];
     [controller setObjectModel:self.objectModel];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-    [self presentModalViewController:navigationController animated:NO];
+    
+    SettingsViewController *rearViewController = [[SettingsViewController alloc] init];
+    [rearViewController setObjectModel:self.objectModel];
+    
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    SWRevealViewController *mainRevealController = [[SWRevealViewController alloc]
+                                                    initWithRearViewController:rearViewController frontViewController:navigationController];
+    [self presentModalViewController:mainRevealController animated:YES];
 }
 
 - (void)settingsPressed {

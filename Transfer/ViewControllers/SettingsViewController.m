@@ -11,13 +11,16 @@
 #import "UIColor+Theme.h"
 #import "Credentials.h"
 #import "PersonalProfileViewController.h"
+#import "SWRevealViewController.h"
+#import "SignUpViewController.h"
 
 NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
 typedef NS_ENUM(short, SettingsRow) {
     LogoutRow,
     UserProfileRow,
-    PersonalProfileRow
+    PersonalProfileRow,
+    SignUpRow
 };
 
 @interface SettingsViewController ()
@@ -59,7 +62,7 @@ typedef NS_ENUM(short, SettingsRow) {
         [presented addObject:@(PersonalProfileRow)];
         [presented addObject:@(LogoutRow)];
     } else {
-
+        [presented addObject:@(SignUpRow)];
     }
 
     [self setPresentedRows:presented];
@@ -95,6 +98,8 @@ typedef NS_ENUM(short, SettingsRow) {
             break;
         case PersonalProfileRow:
             [cell setTitle:NSLocalizedString(@"settings.row.personal.profile", nil)];
+        case SignUpRow:
+            [cell setTitle:NSLocalizedString(@"settings.row.signup", nil)];
             break;
         default:
             [cell setTitle:@"Unknown case..."];
@@ -107,11 +112,20 @@ typedef NS_ENUM(short, SettingsRow) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
+    SWRevealViewController *revealController = [self revealViewController];
+    SignUpViewController *controller = [[SignUpViewController alloc] init];
+    
     SettingsRow code = (SettingsRow) [self.presentedRows[(NSUInteger) indexPath.row] shortValue];
     switch (code) {
         case LogoutRow:
             [Credentials clearCredentials];
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [revealController revealToggle:nil];
+            [revealController.frontViewController viewDidAppear:YES];
+            break;
+        case SignUpRow:
+            [controller setObjectModel:self.objectModel];
+            [((UINavigationController*)revealController.frontViewController) pushViewController:controller animated:YES];
+            [revealController revealToggle:nil];
             break;
         case PersonalProfileRow: {
             PersonalProfileViewController *controller = [[PersonalProfileViewController alloc] init];

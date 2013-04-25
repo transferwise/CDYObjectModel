@@ -15,6 +15,7 @@
 #import "MoneyCalculator.h"
 #import "Constants.h"
 #import "CalculationResult.h"
+#import "SWRevealViewController.h"
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -79,6 +80,21 @@ static NSUInteger const kRowYouSend = 0;
 
     [calculator setSendCell:self.youSendCell];
     [calculator setReceiveCell:self.theyReceiveCell];
+    
+    SWRevealViewController *revealController = [self revealViewController];
+    
+    UIBarButtonItem *revealButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SettingsButtonIcon.png"]
+                                             style:UIBarButtonItemStyleBordered
+                                            target:revealController
+                                            action:@selector(revealToggle:)];
+    self.navigationItem.leftBarButtonItem = revealButtonItem;
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"button.title.back", nil)
+                                     style:UIBarButtonItemStyleBordered
+                                    target:nil
+                                    action:nil];
+    [backButton setTintColor:[UIColor blackColor]];
+    self.navigationItem.backBarButtonItem = backButton;
 
     [calculator setCalculationHandler:^(CalculationResult *result, NSError *error) {
         if (error) {

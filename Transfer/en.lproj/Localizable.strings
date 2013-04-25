@@ -1,6 +1,8 @@
+"button.title.back" = "Back";
 "button.title.get.started" = "Get started";
 "button.title.log.in" = "Log in";
 "button.title.ok" = "OK";
+
 
 "contacts.controller.title" = "Contacts";
 
@@ -36,6 +38,7 @@
 
 "settings.row.logout" = "Sign out";
 "settings.row.personal.profile" = "Your personal profile";
+"settings.row.signup" = "Create an account";
 
 "personal.profile.first.name.label" = "First name";
 "personal.profile.last.name.label" = "Last name";
@@ -48,3 +51,8 @@
 "personal.profile.refreshing.message" = "Loading profile...";
 "personal.profile.refresh.error.title" = "Profile load error";
 "personal.profile.refresh.error.message" = "Could not load user profile. Please try again later.";
+
+"singup.controller.header.message" = "Create a Transferwise account";
+"singup.email.field.title" = "E-mail";
+"singup.password.field.title" = "Password";
+"singup.button.title.log.in" = "Sing up";
