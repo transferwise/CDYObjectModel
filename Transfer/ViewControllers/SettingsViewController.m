@@ -98,6 +98,7 @@ typedef NS_ENUM(short, SettingsRow) {
             break;
         case PersonalProfileRow:
             [cell setTitle:NSLocalizedString(@"settings.row.personal.profile", nil)];
+            break;
         case SignUpRow:
             [cell setTitle:NSLocalizedString(@"settings.row.signup", nil)];
             break;
@@ -113,8 +114,11 @@ typedef NS_ENUM(short, SettingsRow) {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     SWRevealViewController *revealController = [self revealViewController];
-    SignUpViewController *controller = [[SignUpViewController alloc] init];
-    
+    //TODO jaanus: check if can get rid of this line
+    UINavigationController *pushOnNavigationController = (UINavigationController*)revealController.frontViewController;
+
+    //TODO jaanus: check if can get rid of [revealController revealToggle:nil] call
+
     SettingsRow code = (SettingsRow) [self.presentedRows[(NSUInteger) indexPath.row] shortValue];
     switch (code) {
         case LogoutRow:
@@ -122,15 +126,17 @@ typedef NS_ENUM(short, SettingsRow) {
             [revealController revealToggle:nil];
             [revealController.frontViewController viewDidAppear:YES];
             break;
-        case SignUpRow:
+        case SignUpRow: {
+            SignUpViewController *controller = [[SignUpViewController alloc] init];
             [controller setObjectModel:self.objectModel];
-            [((UINavigationController*)revealController.frontViewController) pushViewController:controller animated:YES];
+            [pushOnNavigationController pushViewController:controller animated:YES];
             [revealController revealToggle:nil];
+        }
             break;
         case PersonalProfileRow: {
             PersonalProfileViewController *controller = [[PersonalProfileViewController alloc] init];
-            //TODO jaanus: this will change after side view added
-            [self.navigationController pushViewController:controller animated:YES];
+            [revealController revealToggle:nil];
+            [pushOnNavigationController pushViewController:controller animated:YES];
         }
             break;
         default:

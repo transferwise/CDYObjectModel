@@ -45,11 +45,7 @@
     [tabController setViewControllers:@[transactionsController, paymentController, contactsController]];
     [self setTabsController:tabController];
 
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:tabController];
-    [self addChildViewController:navigationController];
-
-    [navigationController.view setFrame:self.view.bounds];
-    [self.view addSubview:navigationController.view];
+    [self setViewControllers:@[tabController]];
 
     SWRevealViewController *revealController = [self revealViewController];
     UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SettingsButtonIcon.png"] style:UIBarButtonItemStylePlain target:revealController action:@selector(revealToggle:)];
@@ -80,13 +76,6 @@
     SWRevealViewController *mainRevealController = [[SWRevealViewController alloc]
                                                     initWithRearViewController:rearViewController frontViewController:navigationController];
     [self presentModalViewController:mainRevealController animated:YES];
-}
-
-- (void)settingsPressed {
-    SettingsViewController *controller = [[SettingsViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 @end

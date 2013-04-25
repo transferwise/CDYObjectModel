@@ -10,7 +10,7 @@
 
 @class ObjectModel;
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UINavigationController
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 

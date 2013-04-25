@@ -348,10 +348,10 @@
 		EA8FF68C171D22080090A658 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
-				BB92B1051727B89800B6F096 /* SWRevealViewController */,
 				EA8FF68D171D221D0090A658 /* AFNetworking */,
 				EAD7368F171E7A1D00A037B1 /* LockBox */,
 				EA8FF6AE171D237C0090A658 /* MBProgressHUD */,
+				BB92B1051727B89800B6F096 /* SWRevealViewController */,
 				EAEA625817202CB500A96770 /* TestFlightSDK1.2.4 */,
 			);
 			path = Thirdparty;
