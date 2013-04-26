@@ -104,10 +104,13 @@ static NSUInteger const kRowYouSend = 0;
         paragraphStyle.lineBreakMode = kCTLineBreakByWordWrapping;
         [attrStr setParagraphStyle:paragraphStyle];
         [attrStr setFont:self.savingsLabel.font];
+        [attrStr setTextColor:self.savingsLabel.textColor];
         
         NSString* linkURLString = @"why:"; // build the "why" link
         [attrStr setLink:[NSURL URLWithString:linkURLString] range:[txt rangeOfString:NSLocalizedString(@"introduction.savings.message.why", nil)]];
         self.savingsLabel.attributedText = attrStr;
+        [self.savingsLabel sizeToFit];
+        [self.view sizeToFit];
     }];
 
     [calculator forceCalculate];

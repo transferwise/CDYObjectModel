@@ -115,10 +115,11 @@
 					</object>
 					<object class="IBUIButton" id="48988890">
 						<reference key="NSNextResponder" ref="972926973"/>
-						<int key="NSvFlags">266</int>
+						<int key="NSvFlags">290</int>
 						<string key="NSFrame">{{10, 146}, {300, 45}}</string>
 						<reference key="NSSuperview" ref="972926973"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -143,7 +144,7 @@
 					</object>
 					<object class="IBUILabel" id="131837361">
 						<reference key="NSNextResponder" ref="972926973"/>
-						<int key="NSvFlags">266</int>
+						<int key="NSvFlags">290</int>
 						<string key="NSFrame">{{20, 117}, {280, 21}}</string>
 						<reference key="NSSuperview" ref="972926973"/>
 						<reference key="NSWindow"/>
@@ -176,7 +177,7 @@
 					<object class="IBUILabel" id="278874379">
 						<reference key="NSNextResponder" ref="972926973"/>
 						<int key="NSvFlags">308</int>
-						<string key="NSFrame">{{10, 56}, {300, 21}}</string>
+						<string key="NSFrame">{{10, 56}, {300, 53}}</string>
 						<reference key="NSSuperview" ref="972926973"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="131837361"/>
@@ -187,6 +188,10 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">My savings herE</string>
+						<object class="NSColor" key="IBUITextColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
+						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<int key="IBUINumberOfLines">0</int>
@@ -404,20 +409,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">IntroductionViewController</string>
 					<string key="superclassName">UITableViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="loginPressed:">id</string>
-						<string key="whyPressed:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="loginPressed:">
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">loginPressed:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">loginPressed:</string>
+						<object class="IBActionInfo" key="NS.object.0">
 							<string key="name">loginPressed:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="whyPressed:">
-							<string key="name">whyPressed:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="controlsView">UIView</string>
 						<string key="loginButton">UIButton</string>
