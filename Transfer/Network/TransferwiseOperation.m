@@ -104,8 +104,17 @@ NSString *const kAPIPathBase = @"/api/v1/";
     if ([self containsExpiredTokenError:handledErrors]) {
         //TODO jaanus: check this. Should maybe some error be also posted?
         self.operationErrorHandler(nil);
-        [Credentials clearCredentials];
-        [[NSNotificationCenter defaultCenter] postNotificationName:TRWLoggedOutNotification object:nil];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Ensure notification posted only once. When multiple requests run at once and get expired token error,
+            // then first request clears credentials and posts notification
+            if (![Credentials userLoggedIn]) {
+                return;
+            }
+
+            [Credentials clearCredentials];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TRWLoggedOutNotification object:nil];
+        });
     }
 }
 
