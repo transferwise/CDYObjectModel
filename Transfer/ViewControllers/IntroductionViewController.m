@@ -34,6 +34,7 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) MoneyEntryCell *theyReceiveCell;
 @property (nonatomic, strong) MoneyCalculator *calculator;
 @property (nonatomic, strong) CalculationResult *result;
+@property (nonatomic, strong) WhyView *whyView;
 
 - (IBAction)loginPressed:(id)sender;
 
@@ -55,6 +56,8 @@ static NSUInteger const kRowYouSend = 0;
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"MoneyEntryCell" bundle:nil] forCellReuseIdentifier:TWMoneyEntryCellIdentifier];
+    
+    _whyView = [[WhyView alloc] init];
 
     [self setYouSendCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
     [self.youSendCell setTitle:NSLocalizedString(@"money.entry.you.send.title", nil)];
@@ -161,12 +164,6 @@ static NSUInteger const kRowYouSend = 0;
     [controller setObjectModel:self.objectModel];
     [self.navigationController pushViewController:controller animated:YES];
 }
-- (IBAction)whyPressed:(id)sender {
-    WhyView *whyView = [[WhyView alloc] init];
-    [whyView setupWithResult:self.result];
-    TSAlertView *alert = [[TSAlertView alloc]initWithTitle:whyView.title view:whyView delegate:nil cancelButtonTitle:NSLocalizedString(@"whypopup.button", nil) otherButtonTitles:nil];
-    [alert show];
-}
 
 /////////////////////////////////////////////////////////////////////////////
 #pragma mark - OHAttributedString Delegate Method
@@ -177,9 +174,8 @@ static NSUInteger const kRowYouSend = 0;
 {
 	if ([[linkInfo.URL scheme] isEqualToString:@"why"])
     {
-        WhyView *whyView = [[WhyView alloc] init];
-        [whyView setupWithResult:self.result];
-        TSAlertView *alert = [[TSAlertView alloc]initWithTitle:whyView.title view:whyView delegate:nil cancelButtonTitle:NSLocalizedString(@"whypopup.button", nil) otherButtonTitles:nil];
+        [_whyView setupWithResult:self.result];
+        TSAlertView *alert = [[TSAlertView alloc]initWithTitle:_whyView.title view:_whyView delegate:nil cancelButtonTitle:NSLocalizedString(@"whypopup.button", nil) otherButtonTitles:nil];
         [alert show];
 		return NO;
 	}

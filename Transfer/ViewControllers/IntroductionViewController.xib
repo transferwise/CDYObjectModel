@@ -39,7 +39,6 @@
 				<string key="NSFrame">{{0, 20}, {320, 548}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">2</int>
 					<bytes key="NSRGB">MC45NDkwMTk2NzA1IDAuOTQ5MDE5NjcwNSAwLjk0OTAxOTY3MDUAA</bytes>
@@ -120,7 +119,6 @@
 						<string key="NSFrame">{{10, 146}, {300, 45}}</string>
 						<reference key="NSSuperview" ref="972926973"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -177,7 +175,7 @@
 					</object>
 					<object class="IBUILabel" id="278874379">
 						<reference key="NSNextResponder" ref="972926973"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">308</int>
 						<string key="NSFrame">{{10, 56}, {300, 21}}</string>
 						<reference key="NSSuperview" ref="972926973"/>
 						<reference key="NSWindow"/>
@@ -193,6 +191,7 @@
 						<int key="IBUIBaselineAdjustment">0</int>
 						<int key="IBUINumberOfLines">0</int>
 						<int key="IBUITextAlignment">1</int>
+						<int key="IBUILineBreakMode">0</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
 							<double key="pointSize">15</double>
