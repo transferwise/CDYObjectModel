@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB92B141172A605600B6F096 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B140172A600000B6F096 /* libOHAttributedLabel.a */; };
 		BBC691241721416300F0FB1A /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911C1721416300F0FB1A /* TSAlertViewMessageListViewShadow.png */; };
 		BBC691251721416300F0FB1A /* TSAlertViewCancelButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911D1721416300F0FB1A /* TSAlertViewCancelButtonBackground.png */; };
 		BBC691261721416300F0FB1A /* TSAlertViewButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911E1721416300F0FB1A /* TSAlertViewButtonBackground.png */; };
@@ -102,7 +103,18 @@
 		EAEA626117202D6100A96770 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EAEA626017202D6100A96770 /* libz.dylib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BB92B13F172A600000B6F096 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB92B13B172A5FFF00B6F096 /* OHAttributedLabel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 09E159E8160F573A003025B4;
+			remoteInfo = OHAttributedLabel;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		BB92B13B172A5FFF00B6F096 /* OHAttributedLabel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OHAttributedLabel.xcodeproj; path = OHAttributedLabel/OHAttributedLabel.xcodeproj; sourceTree = "<group>"; };
 		BBC6911C1721416300F0FB1A /* TSAlertViewMessageListViewShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewMessageListViewShadow.png; path = TSAlertView/TSAlertViewMessageListViewShadow.png; sourceTree = "<group>"; };
 		BBC6911D1721416300F0FB1A /* TSAlertViewCancelButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewCancelButtonBackground.png; path = TSAlertView/TSAlertViewCancelButtonBackground.png; sourceTree = "<group>"; };
 		BBC6911E1721416300F0FB1A /* TSAlertViewButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewButtonBackground.png; path = TSAlertView/TSAlertViewButtonBackground.png; sourceTree = "<group>"; };
@@ -260,6 +272,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB92B141172A605600B6F096 /* libOHAttributedLabel.a in Frameworks */,
 				EAEA626117202D6100A96770 /* libz.dylib in Frameworks */,
 				EAD73694171E7A3200A037B1 /* Security.framework in Frameworks */,
 				EA8FF6AD171D22340090A658 /* MobileCoreServices.framework in Frameworks */,
@@ -275,6 +288,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB92B13C172A5FFF00B6F096 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BB92B140172A600000B6F096 /* libOHAttributedLabel.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		BBC6911B1721414300F0FB1A /* TSAlertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +374,7 @@
 		EA8FF68C171D22080090A658 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
+				BB92B13B172A5FFF00B6F096 /* OHAttributedLabel.xcodeproj */,
 				BBC6911B1721414300F0FB1A /* TSAlertView */,
 				EA8FF68D171D221D0090A658 /* AFNetworking */,
 				EAD7368F171E7A1D00A037B1 /* LockBox */,
@@ -624,12 +646,28 @@
 			mainGroup = EAAA145F171BC911005B9430;
 			productRefGroup = EAAA1469171BC911005B9430 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = BB92B13C172A5FFF00B6F096 /* Products */;
+					ProjectRef = BB92B13B172A5FFF00B6F096 /* OHAttributedLabel.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				EAAA1467171BC911005B9430 /* Transfer */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		BB92B140172A600000B6F096 /* libOHAttributedLabel.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libOHAttributedLabel.a;
+			remoteRef = BB92B13F172A600000B6F096 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		EAAA1466171BC911005B9430 /* Resources */ = {
