@@ -17,13 +17,16 @@
 #import "CalculationResult.h"
 #import "WhyView.h"
 #import "TSAlertView.h"
+#import <OHAttributedLabel/OHAttributedLabel.h>
+#import <OHAttributedLabel/NSAttributedString+Attributes.h>
+#import <OHAttributedLabel/OHASBasicMarkupParser.h>
 
 static NSUInteger const kRowYouSend = 0;
 
-@interface IntroductionViewController () <UITextFieldDelegate>
+@interface IntroductionViewController () <UITextFieldDelegate, OHAttributedLabelDelegate>
 
 @property (nonatomic, strong) IBOutlet UIView *controlsView;
-@property (nonatomic, strong) IBOutlet UILabel *savingsLabel;
+@property (nonatomic, strong) IBOutlet OHAttributedLabel *savingsLabel;
 @property (nonatomic, strong) IBOutlet UILabel *loginTitle;
 @property (nonatomic, strong) IBOutlet UIButton *startedButton;
 @property (nonatomic, strong) IBOutlet UIButton *loginButton;
@@ -35,7 +38,6 @@ static NSUInteger const kRowYouSend = 0;
 - (IBAction)loginPressed:(id)sender;
 
 @end
-
 @implementation IntroductionViewController
 
 - (id)init {
@@ -91,7 +93,18 @@ static NSUInteger const kRowYouSend = 0;
             return;
         }
         self.result = result;
-        [self.savingsLabel setText:[NSString stringWithFormat:NSLocalizedString(@"introduction.savings.message.base", nil), [result formattedWinAmount]]];
+        NSString* txt = [NSMutableString stringWithFormat:@"%@. %@", [NSString stringWithFormat:NSLocalizedString(@"introduction.savings.message.base", nil), [result formattedWinAmount]], NSLocalizedString(@"introduction.savings.message.why", nil)];
+        NSMutableAttributedString* attrStr = [NSMutableAttributedString attributedStringWithString:txt];
+        
+        OHParagraphStyle* paragraphStyle = [OHParagraphStyle defaultParagraphStyle];
+        paragraphStyle.textAlignment = kCTTextAlignmentCenter;
+        paragraphStyle.lineBreakMode = kCTLineBreakByWordWrapping;
+        [attrStr setParagraphStyle:paragraphStyle];
+        [attrStr setFont:self.savingsLabel.font];
+        
+        NSString* linkURLString = @"why:"; // build the "why" link
+        [attrStr setLink:[NSURL URLWithString:linkURLString] range:[txt rangeOfString:NSLocalizedString(@"introduction.savings.message.why", nil)]];
+        self.savingsLabel.attributedText = attrStr;
     }];
 
     [calculator forceCalculate];
@@ -154,5 +167,27 @@ static NSUInteger const kRowYouSend = 0;
     TSAlertView *alert = [[TSAlertView alloc]initWithTitle:whyView.title view:whyView delegate:nil cancelButtonTitle:NSLocalizedString(@"whypopup.button", nil) otherButtonTitles:nil];
     [alert show];
 }
+
+/////////////////////////////////////////////////////////////////////////////
+#pragma mark - OHAttributedString Delegate Method
+/////////////////////////////////////////////////////////////////////////////
+
+
+-(BOOL)attributedLabel:(OHAttributedLabel *)attributedLabel shouldFollowLink:(NSTextCheckingResult *)linkInfo
+{
+	if ([[linkInfo.URL scheme] isEqualToString:@"why"])
+    {
+        WhyView *whyView = [[WhyView alloc] init];
+        [whyView setupWithResult:self.result];
+        TSAlertView *alert = [[TSAlertView alloc]initWithTitle:whyView.title view:whyView delegate:nil cancelButtonTitle:NSLocalizedString(@"whypopup.button", nil) otherButtonTitles:nil];
+        [alert show];
+		return NO;
+	}
+    else
+    {
+        return NO;
+	}
+}
+
 
 @end
