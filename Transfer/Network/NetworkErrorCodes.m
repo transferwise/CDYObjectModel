@@ -6,4 +6,8 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
+NSString *const TRWErrorDomain = @"TRWErrorDomain";
+
+NSString *const TRWErrors = @"TRWErrors";
+
 NSString *const TRWNetworkErrorExpiredToken = @"EXPIRED_TOKEN";

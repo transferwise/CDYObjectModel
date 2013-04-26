@@ -15,8 +15,6 @@ typedef NS_ENUM(short, TRWNetworkErrorCode) {
     ResponseServerError
 };
 
-extern NSString *const TRWErrorDomain;
-
 @interface TransferwiseOperation : NSObject
 
 @property (nonatomic, strong) ObjectModel *objectModel;

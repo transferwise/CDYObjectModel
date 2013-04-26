@@ -17,7 +17,6 @@
 #import "NSString+Validation.h"
 #import "NetworkErrorCodes.h"
 
-NSString *const TRWErrorDomain = @"TRWErrorDomain";
 NSString *const kAPIPathBase = @"/api/v1/";
 
 @interface TransferwiseOperation ()
@@ -101,7 +100,11 @@ NSString *const kAPIPathBase = @"/api/v1/";
     }
 
     NSArray *handledErrors = errors;
+
+    MCLog(@"Received %d errors", [handledErrors count]);
+
     if ([self containsExpiredTokenError:handledErrors]) {
+        MCLog(@"Expired token error");
         //TODO jaanus: check this. Should maybe some error be also posted?
         self.operationErrorHandler(nil);
 
@@ -115,7 +118,18 @@ NSString *const kAPIPathBase = @"/api/v1/";
             [Credentials clearCredentials];
             [[NSNotificationCenter defaultCenter] postNotificationName:TRWLoggedOutNotification object:nil];
         });
+    } else {
+        MCLog(@"Other errors");
+        NSError *cumulativeError = [self createCumulativeError:handledErrors];
+        self.operationErrorHandler(cumulativeError);
     }
+}
+
+- (NSError *)createCumulativeError:(NSArray *)errors {
+    //TODO jaanus: maybe can improve this
+    NSDictionary *userInfo = @{TRWErrors: errors};
+    NSError *error = [[NSError alloc] initWithDomain:TRWErrorDomain code:0 userInfo:userInfo];
+    return error;
 }
 
 - (BOOL)containsExpiredTokenError:(NSArray *)errors {

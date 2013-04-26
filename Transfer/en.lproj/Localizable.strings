@@ -56,3 +56,6 @@
 "singup.email.field.title" = "E-mail";
 "singup.password.field.title" = "Password";
 "singup.button.title.log.in" = "Sing up";
+
+
+"errors.CRD_NOT_VALID.message" = "Incorrect credentials.";

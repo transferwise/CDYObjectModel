@@ -6,4 +6,8 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
+extern NSString *const TRWErrorDomain;
+
+extern NSString *const TRWErrors;
+
 extern NSString *const TRWNetworkErrorExpiredToken;

@@ -10,7 +10,6 @@
 #import "UIColor+Theme.h"
 #import "TableHeaderView.h"
 #import "UIView+Loading.h"
-#import "ObjectModel.h"
 #import "TextEntryCell.h"
 #import "NSString+Validation.h"
 #import "NSMutableString+Issues.h"
@@ -18,6 +17,7 @@
 #import "TRWAlertView.h"
 #import "TRWProgressHUD.h"
 #import "LoginOperation.h"
+#import "NSError+TRWErrors.h"
 
 static NSUInteger const kTableRowEmail = 0;
 
@@ -153,16 +153,23 @@ static NSUInteger const kTableRowEmail = 0;
     [loginOperation setResponseHandler:^(NSError *error) {
         [hud hide];
 
-        if (error) {
-            //TODO jaanus: show message based on error type
-            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
-                                                               message:NSLocalizedString(@"login.error.generic.message", nil)];
-            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-            [alertView show];
+        if (!error) {
+            [self dismissViewControllerAnimated:YES completion:nil];
             return;
         }
 
-        [self dismissViewControllerAnimated:YES completion:nil];
+        TRWAlertView *alertView;
+        if ([error isTransferwiseError]) {
+            NSString *message = [error localizedTransferwiseMessage];
+            alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil) message:message];
+        } else {
+            alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
+                                                 message:NSLocalizedString(@"login.error.generic.message", nil)];
+        }
+
+        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+
+        [alertView show];
     }];
 
     [loginOperation execute];
