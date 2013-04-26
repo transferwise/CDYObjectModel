@@ -25,3 +25,5 @@ typedef void (^TRWActionBlock)();
     _sharedObject = block(); \
   }); \
   return _sharedObject; \
+
+extern NSString *const TRWLoggedOutNotification;

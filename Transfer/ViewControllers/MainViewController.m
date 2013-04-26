@@ -10,11 +10,11 @@
 #import "TransactionsViewController.h"
 #import "PaymentViewController.h"
 #import "ContactsViewController.h"
-#import "ObjectModel.h"
 #import "IntroductionViewController.h"
 #import "SettingsViewController.h"
 #import "Credentials.h"
 #import "SWRevealViewController.h"
+#import "Constants.h"
 
 @interface MainViewController ()
 
@@ -27,9 +27,13 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loggedOut) name:TRWLoggedOutNotification object:nil];
     }
     return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad {
@@ -76,6 +80,10 @@
     SWRevealViewController *mainRevealController = [[SWRevealViewController alloc]
                                                     initWithRearViewController:rearViewController frontViewController:navigationController];
     [self presentModalViewController:mainRevealController animated:YES];
+}
+
+- (void)loggedOut {
+    [self presentIntroductionController];
 }
 
 @end

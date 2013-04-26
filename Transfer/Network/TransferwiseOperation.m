@@ -14,6 +14,8 @@
 #import "NSDictionary+SensibleData.h"
 #import "Credentials.h"
 #import "TransferwiseClient.h"
+#import "NSString+Validation.h"
+#import "NetworkErrorCodes.h"
 
 NSString *const TRWErrorDomain = @"TRWErrorDomain";
 NSString *const kAPIPathBase = @"/api/v1/";
@@ -75,9 +77,47 @@ NSString *const kAPIPathBase = @"/api/v1/";
         self.operationSuccessHandler(response);
     } failure:^(AFHTTPRequestOperation *op, NSError *error) {
         MCLog(@"Error:%@", error);
-        self.operationErrorHandler(error);
+        NSString *recovery = [error localizedRecoverySuggestion];
+        if ([recovery hasValue]) {
+            [self createErrorAndNotifyFromResponse:recovery];
+        } else {
+            self.operationErrorHandler(error);
+        }
     }];
     [operation start];
+}
+
+- (void)createErrorAndNotifyFromResponse:(NSString *)errorResponse {
+    NSData *data = [errorResponse dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *jsonError = nil;
+    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+    if (jsonError) {
+        NSLog(@"Erro JSON read error:%@", jsonError);
+    }
+
+    id errors = response[@"errors"];
+    if ([errors isKindOfClass:[NSDictionary class]]) {
+        errors = @[errors];
+    }
+
+    NSArray *handledErrors = errors;
+    if ([self containsExpiredTokenError:handledErrors]) {
+        //TODO jaanus: check this. Should maybe some error be also posted?
+        self.operationErrorHandler(nil);
+        [Credentials clearCredentials];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TRWLoggedOutNotification object:nil];
+    }
+}
+
+- (BOOL)containsExpiredTokenError:(NSArray *)errors {
+    for (NSDictionary *data in errors) {
+        NSString *code = data[@"code"];
+        if ([TRWNetworkErrorExpiredToken isEqualToString:code]) {
+            return YES;
+        }
+    }
+
+    return NO;
 }
 
 - (NSString *)addTokenToPath:(NSString *)path {
