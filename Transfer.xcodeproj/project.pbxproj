@@ -754,6 +754,7 @@
 				EA7A3876172A6AC5009E9578 /* Icon.png in Resources */,
 				EA7A3877172A6AC5009E9578 /* Icon@2x.png in Resources */,
 				BBE715B0172E431800442C46 /* BusinessProfileViewController.xib in Resources */,
+				EAF1CE18172E47A30052D94B /* DateEntryCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -837,6 +838,10 @@
 				EA7A386A172A5664009E9578 /* NetworkErrorCodes.m in Sources */,
 				EA7A386C172A5842009E9578 /* Constants.m in Sources */,
 				EA7A386F172A6422009E9578 /* NSError+TRWErrors.m in Sources */,
+				EA7A387A172A6E91009E9578 /* DataEntryViewController.m in Sources */,
+				EA7A387D172A71B8009E9578 /* UIView+Container.m in Sources */,
+				EAF1CE16172E478C0052D94B /* DateEntryCell.m in Sources */,
+				EAF1CE1E172E48630052D94B /* NonEditTextField.m in Sources */,
 				BBE715AE172E42EB00442C46 /* BusinessProfileViewController.m in Sources */,
 				BBE715B3172E473200442C46 /* BusinessProfile.m in Sources */,
 			);
