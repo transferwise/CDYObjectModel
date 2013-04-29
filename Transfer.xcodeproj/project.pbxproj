@@ -27,6 +27,8 @@
 		EA7A3875172A6AC5009E9578 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7A3871172A6AC5009E9578 /* Icon-Small@2x.png */; };
 		EA7A3876172A6AC5009E9578 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7A3872172A6AC5009E9578 /* Icon.png */; };
 		EA7A3877172A6AC5009E9578 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7A3873172A6AC5009E9578 /* Icon@2x.png */; };
+		EA7A387A172A6E91009E9578 /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7A3879172A6E91009E9578 /* DataEntryViewController.m */; };
+		EA7A387D172A71B8009E9578 /* UIView+Container.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7A387C172A71B8009E9578 /* UIView+Container.m */; };
 		EA8FF682171D19B50090A658 /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF681171D19B50090A658 /* NSString+Validation.m */; };
 		EA8FF685171D1A320090A658 /* NSMutableString+Issues.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */; };
 		EA8FF688171D1B6D0090A658 /* UIApplication+Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF687171D1B6D0090A658 /* UIApplication+Keyboard.m */; };
@@ -140,6 +142,10 @@
 		EA7A3871172A6AC5009E9578 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		EA7A3872172A6AC5009E9578 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		EA7A3873172A6AC5009E9578 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		EA7A3878172A6E91009E9578 /* DataEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryViewController.h; sourceTree = "<group>"; };
+		EA7A3879172A6E91009E9578 /* DataEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryViewController.m; sourceTree = "<group>"; };
+		EA7A387B172A71B8009E9578 /* UIView+Container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Container.h"; sourceTree = "<group>"; };
+		EA7A387C172A71B8009E9578 /* UIView+Container.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Container.m"; sourceTree = "<group>"; };
 		EA8FF67F171D167C0090A658 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; wrapsLines = 0; };
 		EA8FF680171D19B50090A658 /* NSString+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validation.h"; sourceTree = "<group>"; };
 		EA8FF681171D19B50090A658 /* NSString+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validation.m"; sourceTree = "<group>"; };
@@ -357,6 +363,8 @@
 				EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */,
 				EA13E042171BEB010019FBF0 /* UIColor+Theme.h */,
 				EA13E043171BEB010019FBF0 /* UIColor+Theme.m */,
+				EA7A387B172A71B8009E9578 /* UIView+Container.h */,
+				EA7A387C172A71B8009E9578 /* UIView+Container.m */,
 				EA13E047171BEDC40019FBF0 /* UIView+Loading.h */,
 				EA13E048171BEDC40019FBF0 /* UIView+Loading.m */,
 			);
@@ -508,6 +516,8 @@
 				EAD3967D171BD57000F6D011 /* ContactsViewController.h */,
 				EAD3967E171BD57000F6D011 /* ContactsViewController.m */,
 				EAD3967F171BD57000F6D011 /* ContactsViewController.xib */,
+				EA7A3878172A6E91009E9578 /* DataEntryViewController.h */,
+				EA7A3879172A6E91009E9578 /* DataEntryViewController.m */,
 				EAD39687171BD82300F6D011 /* IntroductionViewController.h */,
 				EAD39688171BD82300F6D011 /* IntroductionViewController.m */,
 				EAD39689171BD82300F6D011 /* IntroductionViewController.xib */,
@@ -526,12 +536,12 @@
 				EAB72158171FC61B00DE29F5 /* SettingsViewController.h */,
 				EAB72159171FC61B00DE29F5 /* SettingsViewController.m */,
 				EAB7215A171FC61B00DE29F5 /* SettingsViewController.xib */,
-				EAD39678171BD51400F6D011 /* TransactionsViewController.h */,
-				EAD39679171BD51400F6D011 /* TransactionsViewController.m */,
-				EAD3967A171BD51400F6D011 /* TransactionsViewController.xib */,
 				18EF2A07172806BD003B6862 /* SignUpViewController.h */,
 				18EF2A08172806BD003B6862 /* SignUpViewController.m */,
 				18EF2A0A172806F9003B6862 /* SignUpViewController.xib */,
+				EAD39678171BD51400F6D011 /* TransactionsViewController.h */,
+				EAD39679171BD51400F6D011 /* TransactionsViewController.m */,
+				EAD3967A171BD51400F6D011 /* TransactionsViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -800,6 +810,8 @@
 				EA7A386A172A5664009E9578 /* NetworkErrorCodes.m in Sources */,
 				EA7A386C172A5842009E9578 /* Constants.m in Sources */,
 				EA7A386F172A6422009E9578 /* NSError+TRWErrors.m in Sources */,
+				EA7A387A172A6E91009E9578 /* DataEntryViewController.m in Sources */,
+				EA7A387D172A71B8009E9578 /* UIView+Container.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
