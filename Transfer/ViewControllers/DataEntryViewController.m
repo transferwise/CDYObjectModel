@@ -103,6 +103,7 @@
         if ([self isEntryCell:viewCell]) {
             TextEntryCell *entryCell = (TextEntryCell *) viewCell;
             [entryCell.entryField becomeFirstResponder];
+            [self.tableView scrollToRowAtIndexPath:moveToIndexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
             return YES;
         }
     }
