@@ -34,7 +34,7 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithNibName:@"PersonalProfileViewController" bundle:nil];
+    self = [super initWithNibName:@"BusinessProfileViewController" bundle:nil];
     if (self) {
         // Custom initialization
     }
@@ -160,6 +160,7 @@
                 return;
             }
             
+            [self setPresentedSectionCells:self.presentedCells];
             [self setUserDetails:result];
             [self loadDetailsToCells];
             [self.tableView reloadData];
