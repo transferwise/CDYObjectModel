@@ -14,6 +14,7 @@
 #import "TransferwiseClient.h"
 #import "TRWAlertView.h"
 #import "PersonalProfile.h"
+#import "DateEntryCell.h"
 
 @interface PersonalProfileViewController ()
 
@@ -48,6 +49,7 @@
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"DateEntryCell" bundle:nil] forCellReuseIdentifier:TWDateEntryCellIdentifier];
 
     NSMutableArray *personalCells = [NSMutableArray array];
 
@@ -66,7 +68,7 @@
     [personalCells addObject:emailCell];
     [emailCell configureWithTitle:NSLocalizedString(@"personal.profile.email.label", nil) value:@""];
 
-    TextEntryCell *dateOfBirthCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+    DateEntryCell *dateOfBirthCell = [self.tableView dequeueReusableCellWithIdentifier:TWDateEntryCellIdentifier];
     [self setDateOfBirthCell:dateOfBirthCell];
     [personalCells addObject:dateOfBirthCell];
     [dateOfBirthCell configureWithTitle:NSLocalizedString(@"personal.profile.date.of.birth.label", nil) value:@""];
