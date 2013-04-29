@@ -112,6 +112,10 @@
 		EAF1CE16172E478C0052D94B /* DateEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF1CE15172E478C0052D94B /* DateEntryCell.m */; };
 		EAF1CE18172E47A30052D94B /* DateEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF1CE17172E47A30052D94B /* DateEntryCell.xib */; };
 		EAF1CE1E172E48630052D94B /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF1CE1D172E48630052D94B /* NonEditTextField.m */; };
+		EAF1CE21172E5F480052D94B /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF1CE20172E5F480052D94B /* Country.m */; };
+		EAF1CE24172E5F680052D94B /* CountriesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF1CE23172E5F680052D94B /* CountriesOperation.m */; };
+		EAF1CE27172E62480052D94B /* CountrySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF1CE26172E62480052D94B /* CountrySelectionCell.m */; };
+		EAF1CE29172E62560052D94B /* CountrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF1CE28172E62560052D94B /* CountrySelectionCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -286,6 +290,13 @@
 		EAF1CE17172E47A30052D94B /* DateEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateEntryCell.xib; sourceTree = "<group>"; };
 		EAF1CE1C172E48630052D94B /* NonEditTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonEditTextField.h; sourceTree = "<group>"; };
 		EAF1CE1D172E48630052D94B /* NonEditTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonEditTextField.m; sourceTree = "<group>"; };
+		EAF1CE1F172E5F480052D94B /* Country.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Country.h; sourceTree = "<group>"; };
+		EAF1CE20172E5F480052D94B /* Country.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
+		EAF1CE22172E5F680052D94B /* CountriesOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountriesOperation.h; sourceTree = "<group>"; };
+		EAF1CE23172E5F680052D94B /* CountriesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountriesOperation.m; sourceTree = "<group>"; };
+		EAF1CE25172E62480052D94B /* CountrySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountrySelectionCell.h; sourceTree = "<group>"; };
+		EAF1CE26172E62480052D94B /* CountrySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountrySelectionCell.m; sourceTree = "<group>"; };
+		EAF1CE28172E62560052D94B /* CountrySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountrySelectionCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -340,6 +351,9 @@
 		EA13E033171BE0E50019FBF0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				EAF1CE25172E62480052D94B /* CountrySelectionCell.h */,
+				EAF1CE26172E62480052D94B /* CountrySelectionCell.m */,
+				EAF1CE28172E62560052D94B /* CountrySelectionCell.xib */,
 				EAF1CE14172E478C0052D94B /* DateEntryCell.h */,
 				EAF1CE15172E478C0052D94B /* DateEntryCell.m */,
 				EAF1CE17172E47A30052D94B /* DateEntryCell.xib */,
@@ -434,6 +448,8 @@
 		EA8FF6B5171D25530090A658 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				EAF1CE22172E5F680052D94B /* CountriesOperation.h */,
+				EAF1CE23172E5F680052D94B /* CountriesOperation.m */,
 				EA8FF6B9171D26A00090A658 /* LoginOperation.h */,
 				EA8FF6BA171D26A00090A658 /* LoginOperation.m */,
 				EA7A3868172A5664009E9578 /* NetworkErrorCodes.h */,
@@ -573,6 +589,8 @@
 		EAC5CEFF17266AB2004A7663 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EAF1CE1F172E5F480052D94B /* Country.h */,
+				EAF1CE20172E5F480052D94B /* Country.m */,
 				EAC5CF361727C153004A7663 /* PersonalProfile.h */,
 				EAC5CF371727C153004A7663 /* PersonalProfile.m */,
 				EAC5CF0D17267EC5004A7663 /* ProfileDetails.h */,
@@ -741,6 +759,7 @@
 				EA7A3876172A6AC5009E9578 /* Icon.png in Resources */,
 				EA7A3877172A6AC5009E9578 /* Icon@2x.png in Resources */,
 				EAF1CE18172E47A30052D94B /* DateEntryCell.xib in Resources */,
+				EAF1CE29172E62560052D94B /* CountrySelectionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -828,6 +847,9 @@
 				EA7A387D172A71B8009E9578 /* UIView+Container.m in Sources */,
 				EAF1CE16172E478C0052D94B /* DateEntryCell.m in Sources */,
 				EAF1CE1E172E48630052D94B /* NonEditTextField.m in Sources */,
+				EAF1CE21172E5F480052D94B /* Country.m in Sources */,
+				EAF1CE24172E5F680052D94B /* CountriesOperation.m in Sources */,
+				EAF1CE27172E62480052D94B /* CountrySelectionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
