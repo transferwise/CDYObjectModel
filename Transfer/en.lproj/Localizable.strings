@@ -38,6 +38,7 @@
 
 "settings.row.logout" = "Sign out";
 "settings.row.personal.profile" = "Your personal profile";
+"settings.row.business.profile" = "Your business profile";
 "settings.row.signup" = "Create an account";
 
 "personal.profile.first.name.label" = "First name";
@@ -51,6 +52,19 @@
 "personal.profile.refreshing.message" = "Loading profile...";
 "personal.profile.refresh.error.title" = "Profile load error";
 "personal.profile.refresh.error.message" = "Could not load user profile. Please try again later.";
+
+"business.profile.controller.title" = "Business profile";
+"business.profile.name.label" = "Business name";
+"business.profile.registration.number.label" = "Registration number";
+"business.profile.description.label" = "Business description";
+"business.profile.address.label" = "Address";
+"business.profile.post.code.label" = "Post code";
+"business.profile.city.label" = "City";
+"business.profile.country.label" = "Country";
+"business.profile.refreshing.message" = "Loading profile...";
+"business.profile.refresh.error.title" = "Profile load error";
+"business.profile.refresh.error.message" = "Could not load business profile. Please try again later.";
+
 
 "singup.controller.header.message" = "Create a Transferwise account";
 "singup.email.field.title" = "E-mail";

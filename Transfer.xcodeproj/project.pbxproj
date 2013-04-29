@@ -10,6 +10,9 @@
 		18EF2A09172806BD003B6862 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EF2A08172806BD003B6862 /* SignUpViewController.m */; };
 		18EF2A0B172806F9003B6862 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EF2A0A172806F9003B6862 /* SignUpViewController.xib */; };
 		BB92B1081727B8B900B6F096 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB92B1061727B8B900B6F096 /* SWRevealViewController.m */; };
+		BBE715AE172E42EB00442C46 /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE715AD172E42EB00442C46 /* BusinessProfileViewController.m */; };
+		BBE715B0172E431800442C46 /* BusinessProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBE715AF172E431800442C46 /* BusinessProfileViewController.xib */; };
+		BBE715B3172E473200442C46 /* BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE715B2172E473200442C46 /* BusinessProfile.m */; };
 		EA13E032171BDF1A0019FBF0 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */; };
 		EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */; };
 		EA13E038171BE12E0019FBF0 /* MoneyEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */; };
@@ -115,6 +118,11 @@
 		18EF2A0A172806F9003B6862 /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		BB92B1061727B8B900B6F096 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = SWRevealViewController/SWRevealViewController.m; sourceTree = "<group>"; };
 		BB92B1071727B8B900B6F096 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = SWRevealViewController/SWRevealViewController.h; sourceTree = "<group>"; };
+		BBE715AC172E42EB00442C46 /* BusinessProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileViewController.h; sourceTree = "<group>"; };
+		BBE715AD172E42EB00442C46 /* BusinessProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileViewController.m; sourceTree = "<group>"; };
+		BBE715AF172E431800442C46 /* BusinessProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessProfileViewController.xib; sourceTree = "<group>"; };
+		BBE715B1172E473200442C46 /* BusinessProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfile.h; sourceTree = "<group>"; };
+		BBE715B2172E473200442C46 /* BusinessProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfile.m; sourceTree = "<group>"; };
 		EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
 		EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
 		EA13E034171BE1210019FBF0 /* MoneyEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyEntryCell.h; sourceTree = "<group>"; };
@@ -505,6 +513,9 @@
 		EAAA148D171BD057005B9430 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				BBE715AC172E42EB00442C46 /* BusinessProfileViewController.h */,
+				BBE715AD172E42EB00442C46 /* BusinessProfileViewController.m */,
+				BBE715AF172E431800442C46 /* BusinessProfileViewController.xib */,
 				EAD3967D171BD57000F6D011 /* ContactsViewController.h */,
 				EAD3967E171BD57000F6D011 /* ContactsViewController.m */,
 				EAD3967F171BD57000F6D011 /* ContactsViewController.xib */,
@@ -550,6 +561,8 @@
 		EAC5CEFF17266AB2004A7663 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BBE715B1172E473200442C46 /* BusinessProfile.h */,
+				BBE715B2172E473200442C46 /* BusinessProfile.m */,
 				EAC5CF361727C153004A7663 /* PersonalProfile.h */,
 				EAC5CF371727C153004A7663 /* PersonalProfile.m */,
 				EAC5CF0D17267EC5004A7663 /* ProfileDetails.h */,
@@ -717,6 +730,7 @@
 				EA7A3875172A6AC5009E9578 /* Icon-Small@2x.png in Resources */,
 				EA7A3876172A6AC5009E9578 /* Icon.png in Resources */,
 				EA7A3877172A6AC5009E9578 /* Icon@2x.png in Resources */,
+				BBE715B0172E431800442C46 /* BusinessProfileViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,6 +814,8 @@
 				EA7A386A172A5664009E9578 /* NetworkErrorCodes.m in Sources */,
 				EA7A386C172A5842009E9578 /* Constants.m in Sources */,
 				EA7A386F172A6422009E9578 /* NSError+TRWErrors.m in Sources */,
+				BBE715AE172E42EB00442C46 /* BusinessProfileViewController.m in Sources */,
+				BBE715B3172E473200442C46 /* BusinessProfile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,7 @@
 
 #import "ProfileDetails.h"
 #import "PersonalProfile.h"
+#import "BusinessProfile.h"
 
 @interface ProfileDetails ()
 
@@ -30,6 +31,11 @@
     if (personalProfileData && [personalProfileData class] != [NSNull class]) {
         PersonalProfile *profile = [PersonalProfile profileWithData:personalProfileData];
         [details setPersonalProfile:profile];
+    }
+    NSDictionary *businessProfileData = data[@"business_profile"];
+    if (businessProfileData && [businessProfileData class] != [NSNull class]) {
+        BusinessProfile *profile = [BusinessProfile profileWithData:businessProfileData];
+        [details setBusinessProfile:profile];
     }
     return details;
 }
