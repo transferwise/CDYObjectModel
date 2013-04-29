@@ -35,7 +35,7 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value {
     [self.titleLabel setText:title];
-    [self.entryField setText:value];
+    [self setValue:value];
 
     CGRect titleFrame = self.titleLabel.frame;
     CGSize titleSize = [self.titleLabel sizeThatFits:CGSizeMake(NSUIntegerMax, CGRectGetHeight(titleFrame))];

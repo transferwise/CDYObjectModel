@@ -30,6 +30,8 @@
 		EA7A3875172A6AC5009E9578 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7A3871172A6AC5009E9578 /* Icon-Small@2x.png */; };
 		EA7A3876172A6AC5009E9578 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7A3872172A6AC5009E9578 /* Icon.png */; };
 		EA7A3877172A6AC5009E9578 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7A3873172A6AC5009E9578 /* Icon@2x.png */; };
+		EA7A387A172A6E91009E9578 /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7A3879172A6E91009E9578 /* DataEntryViewController.m */; };
+		EA7A387D172A71B8009E9578 /* UIView+Container.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7A387C172A71B8009E9578 /* UIView+Container.m */; };
 		EA8FF682171D19B50090A658 /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF681171D19B50090A658 /* NSString+Validation.m */; };
 		EA8FF685171D1A320090A658 /* NSMutableString+Issues.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */; };
 		EA8FF688171D1B6D0090A658 /* UIApplication+Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF687171D1B6D0090A658 /* UIApplication+Keyboard.m */; };
@@ -110,6 +112,9 @@
 		EAEA6257172011C500A96770 /* CalculationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6256172011C500A96770 /* CalculationResult.m */; };
 		EAEA625D17202CB500A96770 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAEA625917202CB500A96770 /* libTestFlight.a */; };
 		EAEA626117202D6100A96770 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EAEA626017202D6100A96770 /* libz.dylib */; };
+		EAF1CE16172E478C0052D94B /* DateEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF1CE15172E478C0052D94B /* DateEntryCell.m */; };
+		EAF1CE18172E47A30052D94B /* DateEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF1CE17172E47A30052D94B /* DateEntryCell.xib */; };
+		EAF1CE1E172E48630052D94B /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF1CE1D172E48630052D94B /* NonEditTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -148,6 +153,10 @@
 		EA7A3871172A6AC5009E9578 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		EA7A3872172A6AC5009E9578 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		EA7A3873172A6AC5009E9578 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		EA7A3878172A6E91009E9578 /* DataEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryViewController.h; sourceTree = "<group>"; };
+		EA7A3879172A6E91009E9578 /* DataEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryViewController.m; sourceTree = "<group>"; };
+		EA7A387B172A71B8009E9578 /* UIView+Container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Container.h"; sourceTree = "<group>"; };
+		EA7A387C172A71B8009E9578 /* UIView+Container.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Container.m"; sourceTree = "<group>"; };
 		EA8FF67F171D167C0090A658 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; wrapsLines = 0; };
 		EA8FF680171D19B50090A658 /* NSString+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validation.h"; sourceTree = "<group>"; };
 		EA8FF681171D19B50090A658 /* NSString+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validation.m"; sourceTree = "<group>"; };
@@ -280,6 +289,11 @@
 		EAEA625B17202CB500A96770 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
 		EAEA625C17202CB500A96770 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		EAEA626017202D6100A96770 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		EAF1CE14172E478C0052D94B /* DateEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateEntryCell.h; sourceTree = "<group>"; };
+		EAF1CE15172E478C0052D94B /* DateEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateEntryCell.m; sourceTree = "<group>"; };
+		EAF1CE17172E47A30052D94B /* DateEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateEntryCell.xib; sourceTree = "<group>"; };
+		EAF1CE1C172E48630052D94B /* NonEditTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonEditTextField.h; sourceTree = "<group>"; };
+		EAF1CE1D172E48630052D94B /* NonEditTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonEditTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +332,8 @@
 				EAD7D4D0171D4BB20099063F /* BlueButton.m */,
 				EAD73688171E6CB100A037B1 /* GrayButton.h */,
 				EAD73689171E6CB100A037B1 /* GrayButton.m */,
+				EAF1CE1C172E48630052D94B /* NonEditTextField.h */,
+				EAF1CE1D172E48630052D94B /* NonEditTextField.m */,
 				EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */,
 				EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */,
 				EA13E045171BED910019FBF0 /* TableHeaderView.xib */,
@@ -332,6 +348,9 @@
 		EA13E033171BE0E50019FBF0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				EAF1CE14172E478C0052D94B /* DateEntryCell.h */,
+				EAF1CE15172E478C0052D94B /* DateEntryCell.m */,
+				EAF1CE17172E47A30052D94B /* DateEntryCell.xib */,
 				EA13E034171BE1210019FBF0 /* MoneyEntryCell.h */,
 				EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */,
 				EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */,
@@ -365,6 +384,8 @@
 				EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */,
 				EA13E042171BEB010019FBF0 /* UIColor+Theme.h */,
 				EA13E043171BEB010019FBF0 /* UIColor+Theme.m */,
+				EA7A387B172A71B8009E9578 /* UIView+Container.h */,
+				EA7A387C172A71B8009E9578 /* UIView+Container.m */,
 				EA13E047171BEDC40019FBF0 /* UIView+Loading.h */,
 				EA13E048171BEDC40019FBF0 /* UIView+Loading.m */,
 			);
@@ -519,6 +540,8 @@
 				EAD3967D171BD57000F6D011 /* ContactsViewController.h */,
 				EAD3967E171BD57000F6D011 /* ContactsViewController.m */,
 				EAD3967F171BD57000F6D011 /* ContactsViewController.xib */,
+				EA7A3878172A6E91009E9578 /* DataEntryViewController.h */,
+				EA7A3879172A6E91009E9578 /* DataEntryViewController.m */,
 				EAD39687171BD82300F6D011 /* IntroductionViewController.h */,
 				EAD39688171BD82300F6D011 /* IntroductionViewController.m */,
 				EAD39689171BD82300F6D011 /* IntroductionViewController.xib */,
@@ -537,12 +560,12 @@
 				EAB72158171FC61B00DE29F5 /* SettingsViewController.h */,
 				EAB72159171FC61B00DE29F5 /* SettingsViewController.m */,
 				EAB7215A171FC61B00DE29F5 /* SettingsViewController.xib */,
-				EAD39678171BD51400F6D011 /* TransactionsViewController.h */,
-				EAD39679171BD51400F6D011 /* TransactionsViewController.m */,
-				EAD3967A171BD51400F6D011 /* TransactionsViewController.xib */,
 				18EF2A07172806BD003B6862 /* SignUpViewController.h */,
 				18EF2A08172806BD003B6862 /* SignUpViewController.m */,
 				18EF2A0A172806F9003B6862 /* SignUpViewController.xib */,
+				EAD39678171BD51400F6D011 /* TransactionsViewController.h */,
+				EAD39679171BD51400F6D011 /* TransactionsViewController.m */,
+				EAD3967A171BD51400F6D011 /* TransactionsViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

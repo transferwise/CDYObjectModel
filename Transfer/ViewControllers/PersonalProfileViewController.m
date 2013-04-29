@@ -14,6 +14,7 @@
 #import "TransferwiseClient.h"
 #import "TRWAlertView.h"
 #import "PersonalProfile.h"
+#import "DateEntryCell.h"
 
 @interface PersonalProfileViewController ()
 
@@ -48,6 +49,7 @@
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"DateEntryCell" bundle:nil] forCellReuseIdentifier:TWDateEntryCellIdentifier];
 
     NSMutableArray *personalCells = [NSMutableArray array];
 
@@ -66,7 +68,7 @@
     [personalCells addObject:emailCell];
     [emailCell configureWithTitle:NSLocalizedString(@"personal.profile.email.label", nil) value:@""];
 
-    TextEntryCell *dateOfBirthCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+    DateEntryCell *dateOfBirthCell = [self.tableView dequeueReusableCellWithIdentifier:TWDateEntryCellIdentifier];
     [self setDateOfBirthCell:dateOfBirthCell];
     [personalCells addObject:dateOfBirthCell];
     [dateOfBirthCell configureWithTitle:NSLocalizedString(@"personal.profile.date.of.birth.label", nil) value:@""];
@@ -110,43 +112,6 @@
 }
 
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (!self.userDetails) {
-        return 0;
-    }
-
-    return [self.presentedCells count];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (!self.userDetails) {
-        return 0;
-    }
-
-    NSArray *sectionCells = self.presentedCells[(NSUInteger) section];
-    return [sectionCells count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self cellAtIndexPath:indexPath];
-}
-
-#pragma mark - Table view delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
-    TextEntryCell *cell = [self cellAtIndexPath:indexPath];
-    [cell.entryField becomeFirstResponder];
-}
-
-- (TextEntryCell *)cellAtIndexPath:(NSIndexPath *)indexPath {
-    NSUInteger section = (NSUInteger) indexPath.section;
-    NSUInteger row = (NSUInteger) indexPath.row;
-    return self.presentedCells[section][row];
-}
-
 - (void)pullUserDetails {
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.refreshing.message", nil)];
@@ -163,6 +128,7 @@
                 return;
             }
 
+            [self setPresentedSectionCells:self.presentedCells];
             [self setUserDetails:result];
             [self loadDetailsToCells];
             [self.tableView reloadData];

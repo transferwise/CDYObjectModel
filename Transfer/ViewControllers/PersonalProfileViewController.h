@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataEntryViewController.h"
 
-@interface PersonalProfileViewController : UITableViewController
+@interface PersonalProfileViewController : DataEntryViewController
 
 @end
