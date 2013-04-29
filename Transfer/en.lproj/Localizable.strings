@@ -51,6 +51,8 @@
 "personal.profile.refreshing.message" = "Loading profile...";
 "personal.profile.refresh.error.title" = "Profile load error";
 "personal.profile.refresh.error.message" = "Could not load user profile. Please try again later.";
+"personal.profile.address.section.title" = "Address";
+"personal.profile.personal.section.title" = "Personal details";
 
 "singup.controller.header.message" = "Create a Transferwise account";
 "singup.email.field.title" = "E-mail";

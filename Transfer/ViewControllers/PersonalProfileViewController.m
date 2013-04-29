@@ -16,6 +16,8 @@
 #import "PersonalProfile.h"
 #import "DateEntryCell.h"
 
+static NSUInteger const kPersonalSection = 0;
+
 @interface PersonalProfileViewController ()
 
 @property (nonatomic, strong) NSArray *presentedCells;
@@ -111,6 +113,13 @@
     [self pullUserDetails];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == kPersonalSection) {
+        return NSLocalizedString(@"personal.profile.personal.section.title", nil);
+    } else {
+        return NSLocalizedString(@"personal.profile.address.section.title", nil);
+    }
+}
 
 - (void)pullUserDetails {
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
