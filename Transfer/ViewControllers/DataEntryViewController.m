@@ -38,7 +38,15 @@
 
             TextEntryCell *entryCell = cell;
             [entryCell.entryField setDelegate:self];
+
+            [entryCell.entryField setReturnKeyType:UIReturnKeyNext];
         }
+    }
+
+    UITableViewCell *lastCell = [[presentedSectionCells lastObject] lastObject];
+    if ([self isEntryCell:lastCell]) {
+        TextEntryCell *entryCell = (TextEntryCell *) lastCell;
+        [entryCell.entryField setReturnKeyType:UIReturnKeyDone];
     }
 }
 
