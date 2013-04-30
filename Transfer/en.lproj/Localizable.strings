@@ -13,6 +13,7 @@
 "introduction.header.title.text" = "Send money abroad";
 "introduction.login.section.title" = "Already a user";
 "introduction.savings.message.base" = "You'll get %@ more vs your bank";
+"introduction.savings.message.why" = "Why?";
 
 "login.controller.header.message" = "Log-in to your account";
 "login.controller.logging.in.message" = "Logging in...";
@@ -59,5 +60,7 @@
 "singup.password.field.title" = "Password";
 "singup.button.title.log.in" = "Sing up";
 
+"whypopup.title" = "Get %@ more vs a bank";
+"whypopup.button" = "Sounds cool";
 
 "errors.CRD_NOT_VALID.message" = "Incorrect credentials.";

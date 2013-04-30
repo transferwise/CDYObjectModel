@@ -57,11 +57,68 @@
     return [self numberStringFrom:self.transferwisePayOut];
 }
 
+- (NSString *)transferwisePayInStringWithCurrency {
+    return [self inNumberStringFrom:self.transferwisePayIn];
+}
+
+- (NSString *)transferwisePayOutStringWithCurrency {
+    return [self outNumberStringFrom:self.transferwisePayOut];
+}
+
+- (NSString *)transferwiseRateString {
+    return [self rateStringFrom:self.transferwiseRate];
+}
+
+- (NSString *)transferwiseTransferFeeStringWithCurrency {
+    return [self inNumberStringFrom:self.transferwiseTransferFee];
+}
+
+- (NSString *)bankRateString {
+    return [self rateStringFrom:self.bankRate];
+}
+
+- (NSString *)bankTransferFeeStringWithCurrency {
+    return [self outNumberStringFrom:self.bankTransferFee];
+}
+
+- (NSString *)bankPayOutStringWithCurrency{
+    return [self outNumberStringFrom:self.bankPayOut];
+}
+
+- (NSString *)savedAmountWithCurrency {
+    NSNumber *number = [NSNumber numberWithFloat:([self.transferwisePayOut floatValue] - [self.bankPayOut floatValue])];
+    return [self outNumberStringFrom:number];
+}
+
+- (NSString *)rateStringFrom:(NSNumber *)number {
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [formatter setLocale:[CalculationResult defaultLocale]];
+    [formatter setMinimumFractionDigits:4];
+    return [formatter stringFromNumber:number];
+}
+
 - (NSString *)numberStringFrom:(NSNumber *)number {
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
     [formatter setLocale:[CalculationResult defaultLocale]];
     [formatter setCurrencySymbol:@""];
+    return [formatter stringFromNumber:number];
+}
+
+- (NSString *)inNumberStringFrom:(NSNumber *)number {
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [formatter setLocale:[CalculationResult defaultLocale]];
+    [formatter setCurrencySymbol:[[CalculationResult defaultLocale] displayNameForKey:NSLocaleCurrencySymbol value:self.sourceCurrency]];
+    return [formatter stringFromNumber:number];
+}
+
+- (NSString *)outNumberStringFrom:(NSNumber *)number {
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [formatter setLocale:[CalculationResult defaultLocale]];
+    [formatter setCurrencySymbol:[[CalculationResult defaultLocale] displayNameForKey:NSLocaleCurrencySymbol value:self.targetCurrency]];
     return [formatter stringFromNumber:number];
 }
 

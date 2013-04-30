@@ -7,9 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18EF2A09172806BD003B6862 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EF2A08172806BD003B6862 /* SignUpViewController.m */; };
-		18EF2A0B172806F9003B6862 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EF2A0A172806F9003B6862 /* SignUpViewController.xib */; };
-		BB92B1081727B8B900B6F096 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB92B1061727B8B900B6F096 /* SWRevealViewController.m */; };
+		BB92B144172A747300B6F096 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B143172A747300B6F096 /* CoreText.framework */; };
+		BB92B147172A754100B6F096 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B140172A600000B6F096 /* libOHAttributedLabel.a */; };
+		BBC691241721416300F0FB1A /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911C1721416300F0FB1A /* TSAlertViewMessageListViewShadow.png */; };
+		BBC691251721416300F0FB1A /* TSAlertViewCancelButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911D1721416300F0FB1A /* TSAlertViewCancelButtonBackground.png */; };
+		BBC691261721416300F0FB1A /* TSAlertViewButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911E1721416300F0FB1A /* TSAlertViewButtonBackground.png */; };
+		BBC691271721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911F1721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png */; };
+		BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC691201721416300F0FB1A /* TSAlertViewBackground2.png */; };
+		BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC691211721416300F0FB1A /* TSAlertViewBackground.png */; };
+		BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC691221721416300F0FB1A /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BBC6912C172147FC00F0FB1A /* WhyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC6912B172147FC00F0FB1A /* WhyView.xib */; };
+		BBCC6338172169980094EABB /* WhyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC6337172169980094EABB /* WhyView.m */; };
 		EA13E032171BDF1A0019FBF0 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */; };
 		EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */; };
 		EA13E038171BE12E0019FBF0 /* MoneyEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */; };
@@ -20,15 +28,29 @@
 		EA13E049171BEDC40019FBF0 /* UIView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E048171BEDC40019FBF0 /* UIView+Loading.m */; };
 		EA13E04C171BEF5D0019FBF0 /* TextEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */; };
 		EA13E04E171BEF710019FBF0 /* TextEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */; };
-		EA7A386A172A5664009E9578 /* NetworkErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7A3869172A5664009E9578 /* NetworkErrorCodes.m */; };
-		EA7A386C172A5842009E9578 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7A386B172A5842009E9578 /* Constants.m */; };
-		EA7A386F172A6422009E9578 /* NSError+TRWErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7A386E172A6422009E9578 /* NSError+TRWErrors.m */; };
-		EA7A3874172A6AC5009E9578 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7A3870172A6AC5009E9578 /* Icon-Small.png */; };
-		EA7A3875172A6AC5009E9578 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7A3871172A6AC5009E9578 /* Icon-Small@2x.png */; };
-		EA7A3876172A6AC5009E9578 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7A3872172A6AC5009E9578 /* Icon.png */; };
-		EA7A3877172A6AC5009E9578 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7A3873172A6AC5009E9578 /* Icon@2x.png */; };
-		EA7A387A172A6E91009E9578 /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7A3879172A6E91009E9578 /* DataEntryViewController.m */; };
-		EA7A387D172A71B8009E9578 /* UIView+Container.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7A387C172A71B8009E9578 /* UIView+Container.m */; };
+		EA88E65B172F96490021492C /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
+		EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
+		EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
+		EA88E667172F979F0021492C /* PersonalProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E664172F979F0021492C /* PersonalProfileViewController.m */; };
+		EA88E668172F979F0021492C /* PersonalProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E665172F979F0021492C /* PersonalProfileViewController.xib */; };
+		EA88E672172F97B10021492C /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E66B172F97B10021492C /* Country.m */; };
+		EA88E673172F97B10021492C /* PersonalProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E66D172F97B10021492C /* PersonalProfile.m */; };
+		EA88E674172F97B10021492C /* ProfileDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E66F172F97B10021492C /* ProfileDetails.m */; };
+		EA88E675172F97B10021492C /* Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E671172F97B10021492C /* Recipient.m */; };
+		EA88E67A172F97C40021492C /* NSError+TRWErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E677172F97C40021492C /* NSError+TRWErrors.m */; };
+		EA88E67B172F97C40021492C /* UIView+Container.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E679172F97C40021492C /* UIView+Container.m */; };
+		EA88E684172F97D50021492C /* CountriesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E67D172F97D50021492C /* CountriesOperation.m */; };
+		EA88E685172F97D50021492C /* NetworkErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E67F172F97D50021492C /* NetworkErrorCodes.m */; };
+		EA88E686172F97D50021492C /* TransferwiseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E681172F97D50021492C /* TransferwiseClient.m */; };
+		EA88E687172F97D50021492C /* UserDetailsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E683172F97D50021492C /* UserDetailsOperation.m */; };
+		EA88E68E172F97E20021492C /* CountrySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E689172F97E20021492C /* CountrySelectionCell.m */; };
+		EA88E68F172F97E20021492C /* CountrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E68A172F97E20021492C /* CountrySelectionCell.xib */; };
+		EA88E690172F97E20021492C /* DateEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E68C172F97E20021492C /* DateEntryCell.m */; };
+		EA88E691172F97E20021492C /* DateEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E68D172F97E20021492C /* DateEntryCell.xib */; };
+		EA88E693172F97F50021492C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E692172F97F50021492C /* Constants.m */; };
+		EA88E697172F980A0021492C /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E695172F980A0021492C /* SignUpViewController.m */; };
+		EA88E698172F980A0021492C /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E696172F980A0021492C /* SignUpViewController.xib */; };
+		EA88E69B172F98610021492C /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E69A172F98610021492C /* NonEditTextField.m */; };
 		EA8FF682171D19B50090A658 /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF681171D19B50090A658 /* NSString+Validation.m */; };
 		EA8FF685171D1A320090A658 /* NSMutableString+Issues.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */; };
 		EA8FF688171D1B6D0090A658 /* UIApplication+Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF687171D1B6D0090A658 /* UIApplication+Keyboard.m */; };
@@ -69,16 +91,6 @@
 		EAB7215F171FCAAC00DE29F5 /* SettingsTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB7215E171FCAAC00DE29F5 /* SettingsTitleCell.m */; };
 		EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */; };
 		EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */; };
-		EAC5CF0217266AFF004A7663 /* Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF0117266AFF004A7663 /* Recipient.m */; };
-		EAC5CF06172672CA004A7663 /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF05172672CA004A7663 /* Credentials.m */; };
-		EAC5CF0917267BC4004A7663 /* UserDetailsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF0817267BC4004A7663 /* UserDetailsOperation.m */; };
-		EAC5CF0F17267EC5004A7663 /* ProfileDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF0E17267EC5004A7663 /* ProfileDetails.m */; };
-		EAC5CF351727B8FE004A7663 /* TransferwiseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF341727B8FE004A7663 /* TransferwiseClient.m */; };
-		EAC5CF381727C153004A7663 /* PersonalProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF371727C153004A7663 /* PersonalProfile.m */; };
-		EAC5CF3C1727CCAE004A7663 /* PersonalProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC5CF3A1727CCAE004A7663 /* PersonalProfileViewController.m */; };
-		EAC5CF3D1727CCAE004A7663 /* PersonalProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC5CF3B1727CCAE004A7663 /* PersonalProfileViewController.xib */; };
-		EAC5CF401727D044004A7663 /* NavBarBackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAC5CF3E1727D044004A7663 /* NavBarBackButton.png */; };
-		EAC5CF411727D044004A7663 /* NavBarBackButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAC5CF3F1727D044004A7663 /* NavBarBackButton@2x.png */; };
 		EAD39672171BD2A300F6D011 /* ObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39671171BD2A300F6D011 /* ObjectModel.m */; };
 		EAD39676171BD4EE00F6D011 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39674171BD4EE00F6D011 /* MainViewController.m */; };
 		EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39675171BD4EE00F6D011 /* MainViewController.xib */; };
@@ -109,21 +121,32 @@
 		EAEA6257172011C500A96770 /* CalculationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6256172011C500A96770 /* CalculationResult.m */; };
 		EAEA625D17202CB500A96770 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAEA625917202CB500A96770 /* libTestFlight.a */; };
 		EAEA626117202D6100A96770 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EAEA626017202D6100A96770 /* libz.dylib */; };
-		EAF1CE16172E478C0052D94B /* DateEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF1CE15172E478C0052D94B /* DateEntryCell.m */; };
-		EAF1CE18172E47A30052D94B /* DateEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF1CE17172E47A30052D94B /* DateEntryCell.xib */; };
-		EAF1CE1E172E48630052D94B /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF1CE1D172E48630052D94B /* NonEditTextField.m */; };
-		EAF1CE21172E5F480052D94B /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF1CE20172E5F480052D94B /* Country.m */; };
-		EAF1CE24172E5F680052D94B /* CountriesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF1CE23172E5F680052D94B /* CountriesOperation.m */; };
-		EAF1CE27172E62480052D94B /* CountrySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF1CE26172E62480052D94B /* CountrySelectionCell.m */; };
-		EAF1CE29172E62560052D94B /* CountrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF1CE28172E62560052D94B /* CountrySelectionCell.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BB92B13F172A600000B6F096 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB92B13B172A5FFF00B6F096 /* OHAttributedLabel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 09E159E8160F573A003025B4;
+			remoteInfo = OHAttributedLabel;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		18EF2A07172806BD003B6862 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
-		18EF2A08172806BD003B6862 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
-		18EF2A0A172806F9003B6862 /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
-		BB92B1061727B8B900B6F096 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = SWRevealViewController/SWRevealViewController.m; sourceTree = "<group>"; };
-		BB92B1071727B8B900B6F096 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = SWRevealViewController/SWRevealViewController.h; sourceTree = "<group>"; };
+		BB92B13B172A5FFF00B6F096 /* OHAttributedLabel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OHAttributedLabel.xcodeproj; path = OHAttributedLabel/OHAttributedLabel.xcodeproj; sourceTree = "<group>"; };
+		BB92B143172A747300B6F096 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		BBC6911C1721416300F0FB1A /* TSAlertViewMessageListViewShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewMessageListViewShadow.png; path = TSAlertView/TSAlertViewMessageListViewShadow.png; sourceTree = "<group>"; };
+		BBC6911D1721416300F0FB1A /* TSAlertViewCancelButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewCancelButtonBackground.png; path = TSAlertView/TSAlertViewCancelButtonBackground.png; sourceTree = "<group>"; };
+		BBC6911E1721416300F0FB1A /* TSAlertViewButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewButtonBackground.png; path = TSAlertView/TSAlertViewButtonBackground.png; sourceTree = "<group>"; };
+		BBC6911F1721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewButtonBackground_Highlighted.png; path = TSAlertView/TSAlertViewButtonBackground_Highlighted.png; sourceTree = "<group>"; };
+		BBC691201721416300F0FB1A /* TSAlertViewBackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewBackground2.png; path = TSAlertView/TSAlertViewBackground2.png; sourceTree = "<group>"; };
+		BBC691211721416300F0FB1A /* TSAlertViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewBackground.png; path = TSAlertView/TSAlertViewBackground.png; sourceTree = "<group>"; };
+		BBC691221721416300F0FB1A /* TSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSAlertView.m; path = TSAlertView/TSAlertView.m; sourceTree = "<group>"; };
+		BBC691231721416300F0FB1A /* TSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSAlertView.h; path = TSAlertView/TSAlertView.h; sourceTree = "<group>"; };
+		BBC6912B172147FC00F0FB1A /* WhyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhyView.xib; sourceTree = "<group>"; };
+		BBCC6336172169980094EABB /* WhyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhyView.h; sourceTree = "<group>"; };
+		BBCC6337172169980094EABB /* WhyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhyView.m; sourceTree = "<group>"; };
 		EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
 		EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
 		EA13E034171BE1210019FBF0 /* MoneyEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyEntryCell.h; sourceTree = "<group>"; };
@@ -140,19 +163,47 @@
 		EA13E04A171BEF5D0019FBF0 /* TextEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEntryCell.h; sourceTree = "<group>"; };
 		EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEntryCell.m; sourceTree = "<group>"; };
 		EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEntryCell.xib; sourceTree = "<group>"; };
-		EA7A3868172A5664009E9578 /* NetworkErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkErrorCodes.h; sourceTree = "<group>"; };
-		EA7A3869172A5664009E9578 /* NetworkErrorCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkErrorCodes.m; sourceTree = "<group>"; };
-		EA7A386B172A5842009E9578 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
-		EA7A386D172A6422009E9578 /* NSError+TRWErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+TRWErrors.h"; sourceTree = "<group>"; };
-		EA7A386E172A6422009E9578 /* NSError+TRWErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+TRWErrors.m"; sourceTree = "<group>"; };
-		EA7A3870172A6AC5009E9578 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
-		EA7A3871172A6AC5009E9578 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
-		EA7A3872172A6AC5009E9578 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		EA7A3873172A6AC5009E9578 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		EA7A3878172A6E91009E9578 /* DataEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryViewController.h; sourceTree = "<group>"; };
-		EA7A3879172A6E91009E9578 /* DataEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryViewController.m; sourceTree = "<group>"; };
-		EA7A387B172A71B8009E9578 /* UIView+Container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Container.h"; sourceTree = "<group>"; };
-		EA7A387C172A71B8009E9578 /* UIView+Container.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Container.m"; sourceTree = "<group>"; };
+		EA88E659172F96490021492C /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credentials.h; path = Credentials/Credentials.h; sourceTree = "<group>"; };
+		EA88E65A172F96490021492C /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Credentials.m; path = Credentials/Credentials.m; sourceTree = "<group>"; };
+		EA88E65D172F96660021492C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		EA88E65E172F96660021492C /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		EA88E661172F979F0021492C /* DataEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryViewController.h; sourceTree = "<group>"; };
+		EA88E662172F979F0021492C /* DataEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryViewController.m; sourceTree = "<group>"; };
+		EA88E663172F979F0021492C /* PersonalProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileViewController.h; sourceTree = "<group>"; };
+		EA88E664172F979F0021492C /* PersonalProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileViewController.m; sourceTree = "<group>"; };
+		EA88E665172F979F0021492C /* PersonalProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalProfileViewController.xib; sourceTree = "<group>"; };
+		EA88E66A172F97B10021492C /* Country.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Country.h; sourceTree = "<group>"; };
+		EA88E66B172F97B10021492C /* Country.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
+		EA88E66C172F97B10021492C /* PersonalProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfile.h; sourceTree = "<group>"; };
+		EA88E66D172F97B10021492C /* PersonalProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfile.m; sourceTree = "<group>"; };
+		EA88E66E172F97B10021492C /* ProfileDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileDetails.h; sourceTree = "<group>"; };
+		EA88E66F172F97B10021492C /* ProfileDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileDetails.m; sourceTree = "<group>"; };
+		EA88E670172F97B10021492C /* Recipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recipient.h; sourceTree = "<group>"; };
+		EA88E671172F97B10021492C /* Recipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recipient.m; sourceTree = "<group>"; };
+		EA88E676172F97C40021492C /* NSError+TRWErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+TRWErrors.h"; sourceTree = "<group>"; };
+		EA88E677172F97C40021492C /* NSError+TRWErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+TRWErrors.m"; sourceTree = "<group>"; };
+		EA88E678172F97C40021492C /* UIView+Container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Container.h"; sourceTree = "<group>"; };
+		EA88E679172F97C40021492C /* UIView+Container.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Container.m"; sourceTree = "<group>"; };
+		EA88E67C172F97D50021492C /* CountriesOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountriesOperation.h; sourceTree = "<group>"; };
+		EA88E67D172F97D50021492C /* CountriesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountriesOperation.m; sourceTree = "<group>"; };
+		EA88E67E172F97D50021492C /* NetworkErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkErrorCodes.h; sourceTree = "<group>"; };
+		EA88E67F172F97D50021492C /* NetworkErrorCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkErrorCodes.m; sourceTree = "<group>"; };
+		EA88E680172F97D50021492C /* TransferwiseClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferwiseClient.h; sourceTree = "<group>"; };
+		EA88E681172F97D50021492C /* TransferwiseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferwiseClient.m; sourceTree = "<group>"; };
+		EA88E682172F97D50021492C /* UserDetailsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsOperation.h; sourceTree = "<group>"; };
+		EA88E683172F97D50021492C /* UserDetailsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsOperation.m; sourceTree = "<group>"; };
+		EA88E688172F97E20021492C /* CountrySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountrySelectionCell.h; sourceTree = "<group>"; };
+		EA88E689172F97E20021492C /* CountrySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountrySelectionCell.m; sourceTree = "<group>"; };
+		EA88E68A172F97E20021492C /* CountrySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountrySelectionCell.xib; sourceTree = "<group>"; };
+		EA88E68B172F97E20021492C /* DateEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateEntryCell.h; sourceTree = "<group>"; };
+		EA88E68C172F97E20021492C /* DateEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateEntryCell.m; sourceTree = "<group>"; };
+		EA88E68D172F97E20021492C /* DateEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateEntryCell.xib; sourceTree = "<group>"; };
+		EA88E692172F97F50021492C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		EA88E694172F980A0021492C /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		EA88E695172F980A0021492C /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		EA88E696172F980A0021492C /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
+		EA88E699172F98610021492C /* NonEditTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonEditTextField.h; sourceTree = "<group>"; };
+		EA88E69A172F98610021492C /* NonEditTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonEditTextField.m; sourceTree = "<group>"; };
 		EA8FF67F171D167C0090A658 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; wrapsLines = 0; };
 		EA8FF680171D19B50090A658 /* NSString+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validation.h"; sourceTree = "<group>"; };
 		EA8FF681171D19B50090A658 /* NSString+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validation.m"; sourceTree = "<group>"; };
@@ -220,23 +271,6 @@
 		EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTitleCell.xib; sourceTree = "<group>"; };
 		EAB72163171FDC7F00DE29F5 /* MoneyCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyCalculator.h; sourceTree = "<group>"; };
 		EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyCalculator.m; sourceTree = "<group>"; };
-		EAC5CF0017266AFF004A7663 /* Recipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recipient.h; sourceTree = "<group>"; };
-		EAC5CF0117266AFF004A7663 /* Recipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recipient.m; sourceTree = "<group>"; };
-		EAC5CF04172672CA004A7663 /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Credentials.h; sourceTree = "<group>"; };
-		EAC5CF05172672CA004A7663 /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Credentials.m; sourceTree = "<group>"; };
-		EAC5CF0717267BC4004A7663 /* UserDetailsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsOperation.h; sourceTree = "<group>"; };
-		EAC5CF0817267BC4004A7663 /* UserDetailsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsOperation.m; sourceTree = "<group>"; };
-		EAC5CF0D17267EC5004A7663 /* ProfileDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileDetails.h; sourceTree = "<group>"; };
-		EAC5CF0E17267EC5004A7663 /* ProfileDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileDetails.m; sourceTree = "<group>"; };
-		EAC5CF331727B8FE004A7663 /* TransferwiseClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferwiseClient.h; sourceTree = "<group>"; };
-		EAC5CF341727B8FE004A7663 /* TransferwiseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferwiseClient.m; sourceTree = "<group>"; };
-		EAC5CF361727C153004A7663 /* PersonalProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfile.h; sourceTree = "<group>"; };
-		EAC5CF371727C153004A7663 /* PersonalProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfile.m; sourceTree = "<group>"; };
-		EAC5CF391727CCAE004A7663 /* PersonalProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileViewController.h; sourceTree = "<group>"; };
-		EAC5CF3A1727CCAE004A7663 /* PersonalProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileViewController.m; sourceTree = "<group>"; };
-		EAC5CF3B1727CCAE004A7663 /* PersonalProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalProfileViewController.xib; sourceTree = "<group>"; };
-		EAC5CF3E1727D044004A7663 /* NavBarBackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBarBackButton.png; sourceTree = "<group>"; };
-		EAC5CF3F1727D044004A7663 /* NavBarBackButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarBackButton@2x.png"; sourceTree = "<group>"; };
 		EAD39670171BD2A300F6D011 /* ObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectModel.h; sourceTree = "<group>"; };
 		EAD39671171BD2A300F6D011 /* ObjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectModel.m; sourceTree = "<group>"; };
 		EAD39673171BD4EE00F6D011 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -285,18 +319,6 @@
 		EAEA625B17202CB500A96770 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
 		EAEA625C17202CB500A96770 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		EAEA626017202D6100A96770 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		EAF1CE14172E478C0052D94B /* DateEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateEntryCell.h; sourceTree = "<group>"; };
-		EAF1CE15172E478C0052D94B /* DateEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateEntryCell.m; sourceTree = "<group>"; };
-		EAF1CE17172E47A30052D94B /* DateEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateEntryCell.xib; sourceTree = "<group>"; };
-		EAF1CE1C172E48630052D94B /* NonEditTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonEditTextField.h; sourceTree = "<group>"; };
-		EAF1CE1D172E48630052D94B /* NonEditTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonEditTextField.m; sourceTree = "<group>"; };
-		EAF1CE1F172E5F480052D94B /* Country.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Country.h; sourceTree = "<group>"; };
-		EAF1CE20172E5F480052D94B /* Country.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
-		EAF1CE22172E5F680052D94B /* CountriesOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountriesOperation.h; sourceTree = "<group>"; };
-		EAF1CE23172E5F680052D94B /* CountriesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountriesOperation.m; sourceTree = "<group>"; };
-		EAF1CE25172E62480052D94B /* CountrySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountrySelectionCell.h; sourceTree = "<group>"; };
-		EAF1CE26172E62480052D94B /* CountrySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountrySelectionCell.m; sourceTree = "<group>"; };
-		EAF1CE28172E62560052D94B /* CountrySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountrySelectionCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +326,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB92B147172A754100B6F096 /* libOHAttributedLabel.a in Frameworks */,
+				BB92B144172A747300B6F096 /* CoreText.framework in Frameworks */,
 				EAEA626117202D6100A96770 /* libz.dylib in Frameworks */,
 				EAD73694171E7A3200A037B1 /* Security.framework in Frameworks */,
 				EA8FF6AD171D22340090A658 /* MobileCoreServices.framework in Frameworks */,
@@ -319,13 +343,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BB92B1051727B89800B6F096 /* SWRevealViewController */ = {
+		BB92B13C172A5FFF00B6F096 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BB92B1061727B8B900B6F096 /* SWRevealViewController.m */,
-				BB92B1071727B8B900B6F096 /* SWRevealViewController.h */,
+				BB92B140172A600000B6F096 /* libOHAttributedLabel.a */,
 			);
-			name = SWRevealViewController;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BBC6911B1721414300F0FB1A /* TSAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				BBC6911C1721416300F0FB1A /* TSAlertViewMessageListViewShadow.png */,
+				BBC6911D1721416300F0FB1A /* TSAlertViewCancelButtonBackground.png */,
+				BBC6911E1721416300F0FB1A /* TSAlertViewButtonBackground.png */,
+				BBC6911F1721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png */,
+				BBC691201721416300F0FB1A /* TSAlertViewBackground2.png */,
+				BBC691211721416300F0FB1A /* TSAlertViewBackground.png */,
+				BBC691221721416300F0FB1A /* TSAlertView.m */,
+				BBC691231721416300F0FB1A /* TSAlertView.h */,
+			);
+			name = TSAlertView;
 			sourceTree = "<group>";
 		};
 		EA13E02F171BDF050019FBF0 /* Views */ = {
@@ -335,8 +373,8 @@
 				EAD7D4D0171D4BB20099063F /* BlueButton.m */,
 				EAD73688171E6CB100A037B1 /* GrayButton.h */,
 				EAD73689171E6CB100A037B1 /* GrayButton.m */,
-				EAF1CE1C172E48630052D94B /* NonEditTextField.h */,
-				EAF1CE1D172E48630052D94B /* NonEditTextField.m */,
+				EA88E699172F98610021492C /* NonEditTextField.h */,
+				EA88E69A172F98610021492C /* NonEditTextField.m */,
 				EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */,
 				EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */,
 				EA13E045171BED910019FBF0 /* TableHeaderView.xib */,
@@ -344,6 +382,8 @@
 				EA8FF68A171D1FA50090A658 /* TRWAlertView.m */,
 				EA8FF6B2171D23B20090A658 /* TRWProgressHUD.h */,
 				EA8FF6B3171D23B20090A658 /* TRWProgressHUD.m */,
+				BBCC6336172169980094EABB /* WhyView.h */,
+				BBCC6337172169980094EABB /* WhyView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -351,12 +391,12 @@
 		EA13E033171BE0E50019FBF0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				EAF1CE25172E62480052D94B /* CountrySelectionCell.h */,
-				EAF1CE26172E62480052D94B /* CountrySelectionCell.m */,
-				EAF1CE28172E62560052D94B /* CountrySelectionCell.xib */,
-				EAF1CE14172E478C0052D94B /* DateEntryCell.h */,
-				EAF1CE15172E478C0052D94B /* DateEntryCell.m */,
-				EAF1CE17172E47A30052D94B /* DateEntryCell.xib */,
+				EA88E688172F97E20021492C /* CountrySelectionCell.h */,
+				EA88E689172F97E20021492C /* CountrySelectionCell.m */,
+				EA88E68A172F97E20021492C /* CountrySelectionCell.xib */,
+				EA88E68B172F97E20021492C /* DateEntryCell.h */,
+				EA88E68C172F97E20021492C /* DateEntryCell.m */,
+				EA88E68D172F97E20021492C /* DateEntryCell.xib */,
 				EA13E034171BE1210019FBF0 /* MoneyEntryCell.h */,
 				EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */,
 				EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */,
@@ -378,8 +418,8 @@
 			children = (
 				EAD7D4C0171D43440099063F /* NSDictionary+SensibleData.h */,
 				EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */,
-				EA7A386D172A6422009E9578 /* NSError+TRWErrors.h */,
-				EA7A386E172A6422009E9578 /* NSError+TRWErrors.m */,
+				EA88E676172F97C40021492C /* NSError+TRWErrors.h */,
+				EA88E677172F97C40021492C /* NSError+TRWErrors.m */,
 				EA8FF683171D1A320090A658 /* NSMutableString+Issues.h */,
 				EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */,
 				EA8FF680171D19B50090A658 /* NSString+Validation.h */,
@@ -390,12 +430,45 @@
 				EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */,
 				EA13E042171BEB010019FBF0 /* UIColor+Theme.h */,
 				EA13E043171BEB010019FBF0 /* UIColor+Theme.m */,
-				EA7A387B172A71B8009E9578 /* UIView+Container.h */,
-				EA7A387C172A71B8009E9578 /* UIView+Container.m */,
+				EA88E678172F97C40021492C /* UIView+Container.h */,
+				EA88E679172F97C40021492C /* UIView+Container.m */,
 				EA13E047171BEDC40019FBF0 /* UIView+Loading.h */,
 				EA13E048171BEDC40019FBF0 /* UIView+Loading.m */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EA88E658172F963B0021492C /* Credentials */ = {
+			isa = PBXGroup;
+			children = (
+				EA88E659172F96490021492C /* Credentials.h */,
+				EA88E65A172F96490021492C /* Credentials.m */,
+			);
+			name = Credentials;
+			sourceTree = "<group>";
+		};
+		EA88E65C172F96660021492C /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EA88E65D172F96660021492C /* SWRevealViewController.h */,
+				EA88E65E172F96660021492C /* SWRevealViewController.m */,
+			);
+			path = SWRevealViewController;
+			sourceTree = "<group>";
+		};
+		EA88E669172F97B10021492C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EA88E66A172F97B10021492C /* Country.h */,
+				EA88E66B172F97B10021492C /* Country.m */,
+				EA88E66C172F97B10021492C /* PersonalProfile.h */,
+				EA88E66D172F97B10021492C /* PersonalProfile.m */,
+				EA88E66E172F97B10021492C /* ProfileDetails.h */,
+				EA88E66F172F97B10021492C /* ProfileDetails.m */,
+				EA88E670172F97B10021492C /* Recipient.h */,
+				EA88E671172F97B10021492C /* Recipient.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		EA8FF68C171D22080090A658 /* Thirdparty */ = {
@@ -404,8 +477,10 @@
 				EA8FF68D171D221D0090A658 /* AFNetworking */,
 				EAD7368F171E7A1D00A037B1 /* LockBox */,
 				EA8FF6AE171D237C0090A658 /* MBProgressHUD */,
-				BB92B1051727B89800B6F096 /* SWRevealViewController */,
+				BB92B13B172A5FFF00B6F096 /* OHAttributedLabel.xcodeproj */,
+				EA88E65C172F96660021492C /* SWRevealViewController */,
 				EAEA625817202CB500A96770 /* TestFlightSDK1.2.4 */,
+				BBC6911B1721414300F0FB1A /* TSAlertView */,
 			);
 			path = Thirdparty;
 			sourceTree = "<group>";
@@ -448,21 +523,21 @@
 		EA8FF6B5171D25530090A658 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				EAF1CE22172E5F680052D94B /* CountriesOperation.h */,
-				EAF1CE23172E5F680052D94B /* CountriesOperation.m */,
+				EA88E67C172F97D50021492C /* CountriesOperation.h */,
+				EA88E67D172F97D50021492C /* CountriesOperation.m */,
 				EA8FF6B9171D26A00090A658 /* LoginOperation.h */,
 				EA8FF6BA171D26A00090A658 /* LoginOperation.m */,
-				EA7A3868172A5664009E9578 /* NetworkErrorCodes.h */,
-				EA7A3869172A5664009E9578 /* NetworkErrorCodes.m */,
+				EA88E67E172F97D50021492C /* NetworkErrorCodes.h */,
+				EA88E67F172F97D50021492C /* NetworkErrorCodes.m */,
 				EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */,
 				EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */,
-				EAC5CF331727B8FE004A7663 /* TransferwiseClient.h */,
-				EAC5CF341727B8FE004A7663 /* TransferwiseClient.m */,
+				EA88E680172F97D50021492C /* TransferwiseClient.h */,
+				EA88E681172F97D50021492C /* TransferwiseClient.m */,
 				EA8FF6BC171D30B60090A658 /* TransferwiseOperation+Private.h */,
 				EA8FF6B6171D25C20090A658 /* TransferwiseOperation.h */,
 				EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */,
-				EAC5CF0717267BC4004A7663 /* UserDetailsOperation.h */,
-				EAC5CF0817267BC4004A7663 /* UserDetailsOperation.m */,
+				EA88E682172F97D50021492C /* UserDetailsOperation.h */,
+				EA88E683172F97D50021492C /* UserDetailsOperation.m */,
 				EAD736A5171E87ED00A037B1 /* UserRecipientsOperation.h */,
 				EAD736A6171E87ED00A037B1 /* UserRecipientsOperation.m */,
 			);
@@ -490,6 +565,7 @@
 		EAAA146A171BC911005B9430 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BB92B143172A747300B6F096 /* CoreText.framework */,
 				EAAA1471171BC911005B9430 /* CoreData.framework */,
 				EAAA146F171BC911005B9430 /* CoreGraphics.framework */,
 				EAAA146D171BC911005B9430 /* Foundation.framework */,
@@ -506,9 +582,9 @@
 			isa = PBXGroup;
 			children = (
 				EA13E033171BE0E50019FBF0 /* Cells */,
-				EAC5CF03172672BD004A7663 /* Credentials */,
+				EA88E658172F963B0021492C /* Credentials */,
 				EA13E041171BEAF00019FBF0 /* Extensions */,
-				EAC5CEFF17266AB2004A7663 /* Model */,
+				EA88E669172F97B10021492C /* Model */,
 				EA8FF6B5171D25530090A658 /* Network */,
 				EAD3966F171BD1DE00F6D011 /* ObjectModel */,
 				EAD7D4C3171D475E0099063F /* Resources */,
@@ -519,7 +595,7 @@
 				EAAA147C171BC911005B9430 /* AppDelegate.h */,
 				EAAA147D171BC911005B9430 /* AppDelegate.m */,
 				EA8FF67F171D167C0090A658 /* Constants.h */,
-				EA7A386B172A5842009E9578 /* Constants.m */,
+				EA88E692172F97F50021492C /* Constants.m */,
 			);
 			path = Transfer;
 			sourceTree = "<group>";
@@ -527,6 +603,7 @@
 		EAAA1474171BC911005B9430 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BBC6912B172147FC00F0FB1A /* WhyView.xib */,
 				EAAA1483171BC911005B9430 /* Default-568h@2x.png */,
 				EAAA147F171BC911005B9430 /* Default.png */,
 				EAAA1481171BC911005B9430 /* Default@2x.png */,
@@ -545,8 +622,8 @@
 				EAD3967D171BD57000F6D011 /* ContactsViewController.h */,
 				EAD3967E171BD57000F6D011 /* ContactsViewController.m */,
 				EAD3967F171BD57000F6D011 /* ContactsViewController.xib */,
-				EA7A3878172A6E91009E9578 /* DataEntryViewController.h */,
-				EA7A3879172A6E91009E9578 /* DataEntryViewController.m */,
+				EA88E661172F979F0021492C /* DataEntryViewController.h */,
+				EA88E662172F979F0021492C /* DataEntryViewController.m */,
 				EAD39687171BD82300F6D011 /* IntroductionViewController.h */,
 				EAD39688171BD82300F6D011 /* IntroductionViewController.m */,
 				EAD39689171BD82300F6D011 /* IntroductionViewController.xib */,
@@ -559,15 +636,15 @@
 				EAD39682171BD5B000F6D011 /* PaymentViewController.h */,
 				EAD39683171BD5B000F6D011 /* PaymentViewController.m */,
 				EAD39684171BD5B000F6D011 /* PaymentViewController.xib */,
-				EAC5CF391727CCAE004A7663 /* PersonalProfileViewController.h */,
-				EAC5CF3A1727CCAE004A7663 /* PersonalProfileViewController.m */,
-				EAC5CF3B1727CCAE004A7663 /* PersonalProfileViewController.xib */,
+				EA88E663172F979F0021492C /* PersonalProfileViewController.h */,
+				EA88E664172F979F0021492C /* PersonalProfileViewController.m */,
+				EA88E665172F979F0021492C /* PersonalProfileViewController.xib */,
 				EAB72158171FC61B00DE29F5 /* SettingsViewController.h */,
 				EAB72159171FC61B00DE29F5 /* SettingsViewController.m */,
 				EAB7215A171FC61B00DE29F5 /* SettingsViewController.xib */,
-				18EF2A07172806BD003B6862 /* SignUpViewController.h */,
-				18EF2A08172806BD003B6862 /* SignUpViewController.m */,
-				18EF2A0A172806F9003B6862 /* SignUpViewController.xib */,
+				EA88E694172F980A0021492C /* SignUpViewController.h */,
+				EA88E695172F980A0021492C /* SignUpViewController.m */,
+				EA88E696172F980A0021492C /* SignUpViewController.xib */,
 				EAD39678171BD51400F6D011 /* TransactionsViewController.h */,
 				EAD39679171BD51400F6D011 /* TransactionsViewController.m */,
 				EAD3967A171BD51400F6D011 /* TransactionsViewController.xib */,
@@ -584,30 +661,6 @@
 				EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		EAC5CEFF17266AB2004A7663 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				EAF1CE1F172E5F480052D94B /* Country.h */,
-				EAF1CE20172E5F480052D94B /* Country.m */,
-				EAC5CF361727C153004A7663 /* PersonalProfile.h */,
-				EAC5CF371727C153004A7663 /* PersonalProfile.m */,
-				EAC5CF0D17267EC5004A7663 /* ProfileDetails.h */,
-				EAC5CF0E17267EC5004A7663 /* ProfileDetails.m */,
-				EAC5CF0017266AFF004A7663 /* Recipient.h */,
-				EAC5CF0117266AFF004A7663 /* Recipient.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		EAC5CF03172672BD004A7663 /* Credentials */ = {
-			isa = PBXGroup;
-			children = (
-				EAC5CF04172672CA004A7663 /* Credentials.h */,
-				EAC5CF05172672CA004A7663 /* Credentials.m */,
-			);
-			path = Credentials;
 			sourceTree = "<group>";
 		};
 		EAD3966F171BD1DE00F6D011 /* ObjectModel */ = {
@@ -644,12 +697,6 @@
 				EAD7D4C9171D4B080099063F /* BlueButton@2x.png */,
 				EAD7368B171E6D5A00A037B1 /* GrayButton.png */,
 				EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */,
-				EA7A3870172A6AC5009E9578 /* Icon-Small.png */,
-				EA7A3871172A6AC5009E9578 /* Icon-Small@2x.png */,
-				EA7A3872172A6AC5009E9578 /* Icon.png */,
-				EA7A3873172A6AC5009E9578 /* Icon@2x.png */,
-				EAC5CF3E1727D044004A7663 /* NavBarBackButton.png */,
-				EAC5CF3F1727D044004A7663 /* NavBarBackButton@2x.png */,
 				EAB72150171FC34600DE29F5 /* NavBarButton.png */,
 				EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */,
 				EAD7D4C4171D47BE0099063F /* NavigationBar.png */,
@@ -678,6 +725,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EAAA148A171BC911005B9430 /* Build configuration list for PBXNativeTarget "Transfer" */;
 			buildPhases = (
+				EAD73695171E820100A037B1 /* mogenerator */,
 				EAAA1464171BC911005B9430 /* Sources */,
 				EAAA1465171BC911005B9430 /* Frameworks */,
 				EAAA1466171BC911005B9430 /* Resources */,
@@ -711,12 +759,28 @@
 			mainGroup = EAAA145F171BC911005B9430;
 			productRefGroup = EAAA1469171BC911005B9430 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = BB92B13C172A5FFF00B6F096 /* Products */;
+					ProjectRef = BB92B13B172A5FFF00B6F096 /* OHAttributedLabel.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				EAAA1467171BC911005B9430 /* Transfer */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		BB92B140172A600000B6F096 /* libOHAttributedLabel.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libOHAttributedLabel.a;
+			remoteRef = BB92B13F172A600000B6F096 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		EAAA1466171BC911005B9430 /* Resources */ = {
@@ -750,16 +814,17 @@
 				EAB72157171FC3E900DE29F5 /* SettingsButtonIcon@2x.png in Resources */,
 				EAB7215C171FC61B00DE29F5 /* SettingsViewController.xib in Resources */,
 				EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */,
-				EAC5CF3D1727CCAE004A7663 /* PersonalProfileViewController.xib in Resources */,
-				EAC5CF401727D044004A7663 /* NavBarBackButton.png in Resources */,
-				EAC5CF411727D044004A7663 /* NavBarBackButton@2x.png in Resources */,
-				18EF2A0B172806F9003B6862 /* SignUpViewController.xib in Resources */,
-				EA7A3874172A6AC5009E9578 /* Icon-Small.png in Resources */,
-				EA7A3875172A6AC5009E9578 /* Icon-Small@2x.png in Resources */,
-				EA7A3876172A6AC5009E9578 /* Icon.png in Resources */,
-				EA7A3877172A6AC5009E9578 /* Icon@2x.png in Resources */,
-				EAF1CE18172E47A30052D94B /* DateEntryCell.xib in Resources */,
-				EAF1CE29172E62560052D94B /* CountrySelectionCell.xib in Resources */,
+				BBC691241721416300F0FB1A /* TSAlertViewMessageListViewShadow.png in Resources */,
+				BBC691251721416300F0FB1A /* TSAlertViewCancelButtonBackground.png in Resources */,
+				BBC691261721416300F0FB1A /* TSAlertViewButtonBackground.png in Resources */,
+				BBC691271721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
+				BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */,
+				BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */,
+				BBC6912C172147FC00F0FB1A /* WhyView.xib in Resources */,
+				EA88E668172F979F0021492C /* PersonalProfileViewController.xib in Resources */,
+				EA88E68F172F97E20021492C /* CountrySelectionCell.xib in Resources */,
+				EA88E691172F97E20021492C /* DateEntryCell.xib in Resources */,
+				EA88E698172F980A0021492C /* SignUpViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -778,7 +843,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo -n ${TARGET_BUILD_DIR}/${INFOPLIST_PATH} \\\n| xargs -0 /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion `git rev-list HEAD | wc -l`\"";
+			shellScript = "echo -n ${TARGET_BUILD_DIR}/${INFOPLIST_PATH} \\\n| xargs -0 /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion `git rev-list HEAD | wc -l`-`git rev-parse --short HEAD`\"";
+		};
+		EAD73695171E820100A037B1 /* mogenerator */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = mogenerator;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PATH_TO_MODELD=\"Transfer/Transfer.xcdatamodeld\"\nOUTPUT_PATH=\"Transfer/ObjectModel\"\n\ntype mogenerator >/dev/null 2>&1 || {\n    echo >&2 \"warning: mogenerator not found. You will need it when changing core data model\";\n    exit 0;\n}\n\n#CURRENT_VERSION=$(/usr/libexec/PlistBuddy -c \"Print :_XCCurrentVersionName\" \"${PATH_TO_MODELD}/.xccurrentversion\")\n\nMODEL_PATH=\"${PATH_TO_MODELD}\"\necho \"Used model path ${MODEL_PATH}\"\n\nmogenerator -m $MODEL_PATH -O $OUTPUT_PATH --template-var arc=true";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -831,25 +910,27 @@
 				EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */,
 				EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */,
 				EAEA6257172011C500A96770 /* CalculationResult.m in Sources */,
-				EAC5CF0217266AFF004A7663 /* Recipient.m in Sources */,
-				EAC5CF06172672CA004A7663 /* Credentials.m in Sources */,
-				EAC5CF0917267BC4004A7663 /* UserDetailsOperation.m in Sources */,
-				EAC5CF0F17267EC5004A7663 /* ProfileDetails.m in Sources */,
-				EAC5CF351727B8FE004A7663 /* TransferwiseClient.m in Sources */,
-				EAC5CF381727C153004A7663 /* PersonalProfile.m in Sources */,
-				EAC5CF3C1727CCAE004A7663 /* PersonalProfileViewController.m in Sources */,
-				BB92B1081727B8B900B6F096 /* SWRevealViewController.m in Sources */,
-				18EF2A09172806BD003B6862 /* SignUpViewController.m in Sources */,
-				EA7A386A172A5664009E9578 /* NetworkErrorCodes.m in Sources */,
-				EA7A386C172A5842009E9578 /* Constants.m in Sources */,
-				EA7A386F172A6422009E9578 /* NSError+TRWErrors.m in Sources */,
-				EA7A387A172A6E91009E9578 /* DataEntryViewController.m in Sources */,
-				EA7A387D172A71B8009E9578 /* UIView+Container.m in Sources */,
-				EAF1CE16172E478C0052D94B /* DateEntryCell.m in Sources */,
-				EAF1CE1E172E48630052D94B /* NonEditTextField.m in Sources */,
-				EAF1CE21172E5F480052D94B /* Country.m in Sources */,
-				EAF1CE24172E5F680052D94B /* CountriesOperation.m in Sources */,
-				EAF1CE27172E62480052D94B /* CountrySelectionCell.m in Sources */,
+				BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */,
+				BBCC6338172169980094EABB /* WhyView.m in Sources */,
+				EA88E65B172F96490021492C /* Credentials.m in Sources */,
+				EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */,
+				EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */,
+				EA88E667172F979F0021492C /* PersonalProfileViewController.m in Sources */,
+				EA88E672172F97B10021492C /* Country.m in Sources */,
+				EA88E673172F97B10021492C /* PersonalProfile.m in Sources */,
+				EA88E674172F97B10021492C /* ProfileDetails.m in Sources */,
+				EA88E675172F97B10021492C /* Recipient.m in Sources */,
+				EA88E67A172F97C40021492C /* NSError+TRWErrors.m in Sources */,
+				EA88E67B172F97C40021492C /* UIView+Container.m in Sources */,
+				EA88E684172F97D50021492C /* CountriesOperation.m in Sources */,
+				EA88E685172F97D50021492C /* NetworkErrorCodes.m in Sources */,
+				EA88E686172F97D50021492C /* TransferwiseClient.m in Sources */,
+				EA88E687172F97D50021492C /* UserDetailsOperation.m in Sources */,
+				EA88E68E172F97E20021492C /* CountrySelectionCell.m in Sources */,
+				EA88E690172F97E20021492C /* DateEntryCell.m in Sources */,
+				EA88E693172F97F50021492C /* Constants.m in Sources */,
+				EA88E697172F980A0021492C /* SignUpViewController.m in Sources */,
+				EA88E69B172F98610021492C /* NonEditTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -943,6 +1024,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Thirdparty/TestFlightSDK1.2.4\"",
 				);
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -952,8 +1034,6 @@
 		EAAA148C171BC911005B9430 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
 				INFOPLIST_FILE = "Transfer/Transfer-Info.plist";
@@ -962,9 +1042,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Thirdparty/TestFlightSDK1.2.4\"",
 				);
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

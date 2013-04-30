@@ -20,6 +20,14 @@
 - (NSString *)formattedWinAmount;
 - (NSString *)transferwisePayInString;
 - (NSString *)transferwisePayOutString;
+- (NSString *)transferwisePayInStringWithCurrency;
+- (NSString *)transferwisePayOutStringWithCurrency;
+- (NSString *)transferwiseRateString;
+- (NSString *)transferwiseTransferFeeStringWithCurrency;
+- (NSString *)bankRateString;
+- (NSString *)bankTransferFeeStringWithCurrency;
+- (NSString *)bankPayOutStringWithCurrency;
+- (NSString *)savedAmountWithCurrency;
 + (NSLocale *)defaultLocale;
 
 @end
