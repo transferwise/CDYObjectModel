@@ -124,7 +124,6 @@ static NSUInteger const kRowYouSend = 0;
         [attrStr setLink:[NSURL URLWithString:linkURLString] range:[txt rangeOfString:NSLocalizedString(@"introduction.savings.message.why", nil)]];
         self.savingsLabel.attributedText = attrStr;
         [self.savingsLabel sizeToFit];
-        [self.view sizeToFit];
     }];
 
     [calculator forceCalculate];
