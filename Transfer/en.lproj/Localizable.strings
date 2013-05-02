@@ -36,8 +36,6 @@
 "recipient.details.bic.base" = "BIC: %@";
 "recipient.details.iban.base" = "IBAN: %@";
 
-"transactions.controller.title" = "Transactions";
-
 "settings.row.logout" = "Sign out";
 "settings.row.personal.profile" = "Your personal profile";
 "settings.row.signup" = "Create an account";
@@ -61,7 +59,17 @@
 "singup.password.field.title" = "Password";
 "singup.button.title.log.in" = "Sing up";
 
+"transactions.controller.refreshing.message" = "Refreshing payments...";
+"transactions.controller.title" = "Transactions";
+
 "whypopup.title" = "Get %@ more vs a bank";
 "whypopup.button" = "Sounds cool";
 
 "errors.CRD_NOT_VALID.message" = "Incorrect credentials.";
+
+"payment.status.submitted.description" = "Submitted";
+"payment.status.received.description" = "Received";
+"payment.status.matched.description" = "Matched";
+"payment.status.transferred.description" = "Transferred";
+"payment.status.cancelled.description" = "Cancelled";
+"payment.status.refunded.description" = "Refunded";
