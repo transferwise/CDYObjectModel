@@ -22,6 +22,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 
+    [self setBackgroundColor:[UIColor clearColor]];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self skinWithImage:[UIImage imageNamed:@"BlueButton.png"] insets:UIEdgeInsetsMake(0, 15, 0, 15)];
     [self.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];

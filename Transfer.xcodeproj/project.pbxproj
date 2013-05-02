@@ -28,6 +28,14 @@
 		EA13E049171BEDC40019FBF0 /* UIView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E048171BEDC40019FBF0 /* UIView+Loading.m */; };
 		EA13E04C171BEF5D0019FBF0 /* TextEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */; };
 		EA13E04E171BEF710019FBF0 /* TextEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */; };
+		EA35C73A17324AF2005602F7 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73417324AF2005602F7 /* Icon-Small.png */; };
+		EA35C73B17324AF2005602F7 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73517324AF2005602F7 /* Icon-Small@2x.png */; };
+		EA35C73C17324AF2005602F7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73617324AF2005602F7 /* Icon.png */; };
+		EA35C73D17324AF2005602F7 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73717324AF2005602F7 /* Icon@2x.png */; };
+		EA35C73E17324AF2005602F7 /* NavBarBackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73817324AF2005602F7 /* NavBarBackButton.png */; };
+		EA35C73F17324AF2005602F7 /* NavBarBackButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73917324AF2005602F7 /* NavBarBackButton@2x.png */; };
+		EA35C74317324AFE005602F7 /* SeparatorLine.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C74117324AFE005602F7 /* SeparatorLine.png */; };
+		EA35C74417324AFE005602F7 /* SeparatorLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */; };
 		EA88E65B172F96490021492C /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
 		EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
 		EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
@@ -163,6 +171,14 @@
 		EA13E04A171BEF5D0019FBF0 /* TextEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEntryCell.h; sourceTree = "<group>"; };
 		EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEntryCell.m; sourceTree = "<group>"; };
 		EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEntryCell.xib; sourceTree = "<group>"; };
+		EA35C73417324AF2005602F7 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		EA35C73517324AF2005602F7 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		EA35C73617324AF2005602F7 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		EA35C73717324AF2005602F7 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		EA35C73817324AF2005602F7 /* NavBarBackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBarBackButton.png; sourceTree = "<group>"; };
+		EA35C73917324AF2005602F7 /* NavBarBackButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarBackButton@2x.png"; sourceTree = "<group>"; };
+		EA35C74117324AFE005602F7 /* SeparatorLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeparatorLine.png; sourceTree = "<group>"; };
+		EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SeparatorLine@2x.png"; sourceTree = "<group>"; };
 		EA88E659172F96490021492C /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credentials.h; path = Credentials/Credentials.h; sourceTree = "<group>"; };
 		EA88E65A172F96490021492C /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Credentials.m; path = Credentials/Credentials.m; sourceTree = "<group>"; };
 		EA88E65D172F96660021492C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -697,10 +713,18 @@
 				EAD7D4C9171D4B080099063F /* BlueButton@2x.png */,
 				EAD7368B171E6D5A00A037B1 /* GrayButton.png */,
 				EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */,
+				EA35C73417324AF2005602F7 /* Icon-Small.png */,
+				EA35C73517324AF2005602F7 /* Icon-Small@2x.png */,
+				EA35C73617324AF2005602F7 /* Icon.png */,
+				EA35C73717324AF2005602F7 /* Icon@2x.png */,
+				EA35C73817324AF2005602F7 /* NavBarBackButton.png */,
+				EA35C73917324AF2005602F7 /* NavBarBackButton@2x.png */,
 				EAB72150171FC34600DE29F5 /* NavBarButton.png */,
 				EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */,
 				EAD7D4C4171D47BE0099063F /* NavigationBar.png */,
 				EAD7D4C5171D47BE0099063F /* NavigationBar@2x.png */,
+				EA35C74117324AFE005602F7 /* SeparatorLine.png */,
+				EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */,
 				EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */,
 				EAB72155171FC3E900DE29F5 /* SettingsButtonIcon@2x.png */,
 			);
@@ -825,6 +849,14 @@
 				EA88E68F172F97E20021492C /* CountrySelectionCell.xib in Resources */,
 				EA88E691172F97E20021492C /* DateEntryCell.xib in Resources */,
 				EA88E698172F980A0021492C /* SignUpViewController.xib in Resources */,
+				EA35C73A17324AF2005602F7 /* Icon-Small.png in Resources */,
+				EA35C73B17324AF2005602F7 /* Icon-Small@2x.png in Resources */,
+				EA35C73C17324AF2005602F7 /* Icon.png in Resources */,
+				EA35C73D17324AF2005602F7 /* Icon@2x.png in Resources */,
+				EA35C73E17324AF2005602F7 /* NavBarBackButton.png in Resources */,
+				EA35C73F17324AF2005602F7 /* NavBarBackButton@2x.png in Resources */,
+				EA35C74317324AFE005602F7 /* SeparatorLine.png in Resources */,
+				EA35C74417324AFE005602F7 /* SeparatorLine@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
