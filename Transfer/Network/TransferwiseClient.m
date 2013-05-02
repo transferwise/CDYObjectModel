@@ -70,10 +70,11 @@
     [operation setCompletionHandler:handler];
 }
 
-- (void)updateCurrencyPairs {
+- (void)updateCurrencyPairsWithCompletionHandler:(CurrencyPairsBlock)handler {
     MCLog(@"Update pairs");
     CurrencyPairsOperation *operation = [CurrencyPairsOperation pairsOperation];
     [self setCurrencyOperation:operation];
+    [operation setCurrenciesHandler:handler];
 
     [operation setObjectModel:self.objectModel];
     [operation execute];

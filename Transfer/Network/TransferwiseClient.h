@@ -9,6 +9,7 @@
 #import "AFHTTPClient.h"
 #import "UserDetailsOperation.h"
 #import "CountriesOperation.h"
+#import "CurrencyPairsOperation.h"
 
 @class ObjectModel;
 
@@ -19,6 +20,6 @@
 + (TransferwiseClient *)sharedClient;
 - (void)updateUserDetailsWithCompletionHandler:(TWProfileDetailsHandler)completion;
 - (void)updateCountriesWithCompletionHandler:(CountriesResponseBlock)handler;
-- (void)updateCurrencyPairs;
+- (void)updateCurrencyPairsWithCompletionHandler:(CurrencyPairsBlock)handler;
 
 @end
