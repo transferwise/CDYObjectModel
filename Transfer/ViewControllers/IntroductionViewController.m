@@ -19,8 +19,6 @@
 #import "WhyView.h"
 #import "TSAlertView.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
-#import "CurrencyPair.h"
-#import "ObjectModel+CurrencyPairs.h"
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -61,16 +59,14 @@ static NSUInteger const kRowYouSend = 0;
     
     self.whyView = [[WhyView alloc] init];
 
-    CurrencyPair *defaultPair = [self.objectModel defaultPair];
-
     [self setYouSendCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
     [self.youSendCell setTitle:NSLocalizedString(@"money.entry.you.send.title", nil)];
-    [self.youSendCell setAmount:@"1000.00" currency:[defaultPair source]];
+    [self.youSendCell setAmount:@"1000.00" currency:@"EUR"];
     [self.youSendCell.moneyField setReturnKeyType:UIReturnKeyDone];
 
     [self setTheyReceiveCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
     [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
-    [self.theyReceiveCell setAmount:@"" currency:[defaultPair target]];
+    [self.theyReceiveCell setAmount:@"" currency:@"GBP"];
     [self.theyReceiveCell.moneyField setReturnKeyType:UIReturnKeyDone];
 
     TableHeaderView *header = [TableHeaderView loadInstance];
