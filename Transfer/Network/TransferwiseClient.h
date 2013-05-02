@@ -19,5 +19,6 @@
 + (TransferwiseClient *)sharedClient;
 - (void)updateUserDetailsWithCompletionHandler:(TWProfileDetailsHandler)completion;
 - (void)updateCountriesWithCompletionHandler:(CountriesResponseBlock)handler;
+- (void)updateCurrencyPairs;
 
 @end
