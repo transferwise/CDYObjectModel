@@ -13,6 +13,7 @@
 #import "UserRecipientsOperation.h"
 #import "TRWAlertView.h"
 #import "Recipient.h"
+#import "TRWProgressHUD.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
@@ -78,11 +79,17 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
 - (void)refreshRecipients {
     MCLog(@"refreshRecipients");
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    [hud setMessage:NSLocalizedString(@"contacts.controller.refreshing.message", nil)];
+
     UserRecipientsOperation *operation = [UserRecipientsOperation recipientsOperation];
     [self setExecutedOperation:operation];
 
     [operation setResponseHandler:^(NSArray *recipients, NSError *error) {
         MCLog(@"Received %d recipients", [recipients count]);
+
+        [hud hide];
+
         [self setExecutedOperation:nil];
 
         if (error) {

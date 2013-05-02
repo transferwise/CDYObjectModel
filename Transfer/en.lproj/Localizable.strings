@@ -5,6 +5,7 @@
 
 
 "contacts.controller.title" = "Contacts";
+"contacts.controller.refreshing.message" = "Refreshing contacts";
 
 "contacts.refresh.error.title" = "Refresh error";
 "contacts.refresh.error.message" = "Could not refresh contacts list";
