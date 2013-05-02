@@ -17,7 +17,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        UITabBarItem *barItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"payment.controller.title", nil) image:nil tag:0];
+        UITabBarItem *barItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"payment.controller.title", nil)
+                                                              image:[UIImage imageNamed:@"NewPaymentTabIcon.png"] tag:0];
         [self setTabBarItem:barItem];
     }
     return self;
