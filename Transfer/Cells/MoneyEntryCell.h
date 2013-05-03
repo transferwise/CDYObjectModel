@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class Currency;
+
 extern NSString *const TWMoneyEntryCellIdentifier;
 
 @interface MoneyEntryCell : UITableViewCell
@@ -15,7 +17,7 @@ extern NSString *const TWMoneyEntryCellIdentifier;
 @property (nonatomic, strong, readonly) UITextField *moneyField;
 
 - (void)setTitle:(NSString *)title;
-- (void)setAmount:(NSString *)amount currency:(NSString *)currency;
+- (void)setAmount:(NSString *)amount currency:(Currency *)currency;
 - (NSString *)amount;
 - (NSString *)currency;
 

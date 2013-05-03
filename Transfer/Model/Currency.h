@@ -10,6 +10,10 @@
 
 @interface Currency : NSObject
 
+@property (nonatomic, copy, readonly) NSString *code;
+@property (nonatomic, strong, readonly) NSArray *targets;
+
 + (Currency *)currencyWithSourceData:(NSDictionary *)data;
++ (Currency *)currencyWithCode:(NSString *)code;
 
 @end

@@ -45,4 +45,17 @@
     return target;
 }
 
++ (Currency *)currencyWithCode:(NSString *)code {
+    Currency *currency = [[Currency alloc] init];
+    [currency setCode:code];
+    return currency;
+}
+
+- (NSString *)description {
+    NSMutableString *description = [NSMutableString stringWithFormat:@"<%@: ", NSStringFromClass([self class])];
+    [description appendFormat:@"Code:%@", self.code];
+    [description appendString:@">"];
+    return description;
+}
+
 @end

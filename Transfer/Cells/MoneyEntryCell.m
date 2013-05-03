@@ -7,6 +7,7 @@
 //
 
 #import "MoneyEntryCell.h"
+#import "Currency.h"
 
 NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
@@ -59,9 +60,9 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     [self.titleLabel setText:title];
 }
 
-- (void)setAmount:(NSString *)amount currency:(NSString *)currency {
+- (void)setAmount:(NSString *)amount currency:(Currency *)currency {
     [self.moneyField setText:amount];
-    [self.currencyField setText:currency];
+    [self.currencyField setText:currency.code];
 }
 
 - (NSString *)amount {

@@ -20,6 +20,7 @@
 #import "TSAlertView.h"
 #import "TransferwiseClient.h"
 #import "TRWProgressHUD.h"
+#import "Currency.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
@@ -63,12 +64,12 @@ static NSUInteger const kRowYouSend = 0;
 
     [self setYouSendCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
     [self.youSendCell setTitle:NSLocalizedString(@"money.entry.you.send.title", nil)];
-    [self.youSendCell setAmount:@"1000.00" currency:@"EUR"];
+    [self.youSendCell setAmount:@"1000.00" currency:[Currency currencyWithCode:@"GBP"]];
     [self.youSendCell.moneyField setReturnKeyType:UIReturnKeyDone];
 
     [self setTheyReceiveCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
     [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
-    [self.theyReceiveCell setAmount:@"" currency:@"GBP"];
+    [self.theyReceiveCell setAmount:@"" currency:[Currency currencyWithCode:@"EUR"]];
     [self.theyReceiveCell.moneyField setReturnKeyType:UIReturnKeyDone];
 
     TableHeaderView *header = [TableHeaderView loadInstance];
@@ -144,6 +145,7 @@ static NSUInteger const kRowYouSend = 0;
 
     [[TransferwiseClient sharedClient] updateCurrencyPairsWithCompletionHandler:^(NSArray *currencies, NSError *error) {
         [hud hide];
+        [self.calculator setCurrencies:currencies];
         [self.calculator forceCalculate];
     }];
 }
