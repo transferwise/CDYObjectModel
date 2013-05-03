@@ -13,6 +13,7 @@
 #import "Constants.h"
 #import "TestFlight.h"
 #import "SWRevealViewController.h"
+#import "TransferwiseClient.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -45,8 +46,7 @@
     
     MainViewController *frontViewController = [[MainViewController alloc] init];
     [frontViewController setObjectModel:model];
-    
-    
+
     SettingsViewController *rearViewController = [[SettingsViewController alloc] init];
     [rearViewController setObjectModel:model];
     
@@ -60,16 +60,6 @@
 	self.window.rootViewController = self.viewController;
 	[self.window makeKeyAndVisible];
 	return YES;
-}
-
-- (NSString*)stringFromFrontViewPosition:(FrontViewPosition)position
-{
-    NSString *str = nil;
-    if ( position == FrontViewPositionLeft ) str = @"FrontViewPositionLeft";
-    if ( position == FrontViewPositionRight ) str = @"FrontViewPositionRight";
-    if ( position == FrontViewPositionRightMost ) str = @"FrontViewPositionRightMost";
-    if ( position == FrontViewPositionRightMostRemoved ) str = @"FrontViewPositionRightMostRemoved";
-    return str;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

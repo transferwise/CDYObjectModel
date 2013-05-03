@@ -18,6 +18,7 @@
 #import "SWRevealViewController.h"
 #import "WhyView.h"
 #import "TSAlertView.h"
+#import "TransferwiseClient.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
@@ -138,6 +139,10 @@ static NSUInteger const kRowYouSend = 0;
     [super viewWillAppear:animated];
 
     [self.navigationItem setTitle:NSLocalizedString(@"introduction.controller.title", nil)];
+
+    [[TransferwiseClient sharedClient] updateCurrencyPairsWithCompletionHandler:^(NSArray *currencies, NSError *error) {
+
+    }];
 }
 
 
