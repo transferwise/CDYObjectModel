@@ -15,5 +15,6 @@
 
 + (Currency *)currencyWithSourceData:(NSDictionary *)data;
 + (Currency *)currencyWithCode:(NSString *)code;
++ (Currency *)currencyWithRecipientData:(NSDictionary *)data;
 
 @end

@@ -8,8 +8,13 @@
 
 #import "RecipientViewController.h"
 #import "UIColor+Theme.h"
+#import "TRWProgressHUD.h"
+#import "TransferwiseOperation.h"
+#import "CurrenciesOperation.h"
 
 @interface RecipientViewController ()
+
+@property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
 @end
 
@@ -35,6 +40,24 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
+
+    CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
+    [self setExecutedOperation:currenciesOperation];
+    [currenciesOperation setResultHandler:^(NSArray *currencies, NSError *error) {
+        if (error) {
+            [hud hide];
+            return;
+        }
+    }];
+
+    [currenciesOperation execute];
 }
 
 @end

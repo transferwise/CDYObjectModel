@@ -55,6 +55,8 @@
 "personal.profile.address.section.title" = "Address";
 "personal.profile.personal.section.title" = "Personal details";
 
+"recipient.controller.refreshing.message" = "Pulling data...";
+
 "recipient.details.bic.base" = "BIC: %@";
 "recipient.details.iban.base" = "IBAN: %@";
 

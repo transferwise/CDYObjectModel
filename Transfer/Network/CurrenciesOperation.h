@@ -8,6 +8,13 @@
 
 #import "TransferwiseOperation.h"
 
+typedef void (^CurrencyBlock)(NSArray *currencies, NSError *error);
+
+
 @interface CurrenciesOperation : TransferwiseOperation
+
+@property (nonatomic, strong) CurrencyBlock resultHandler;
+
++ (CurrenciesOperation *)operation;
 
 @end
