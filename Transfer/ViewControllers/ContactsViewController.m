@@ -51,6 +51,9 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self refreshRecipients];
+
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addContactPressed)];
+    [self.tabBarController.navigationItem setRightBarButtonItem:addButton];
 }
 
 #pragma mark - Table view data source
@@ -108,6 +111,10 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     }];
 
     [operation execute];
+}
+
+- (void)addContactPressed {
+
 }
 
 @end
