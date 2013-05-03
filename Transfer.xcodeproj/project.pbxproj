@@ -925,7 +925,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo -n ${TARGET_BUILD_DIR}/${INFOPLIST_PATH} \\\n| xargs -0 /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion `git rev-list HEAD | wc -l`-`git rev-parse --short HEAD`\"";
+			shellScript = "echo -n ${TARGET_BUILD_DIR}/${INFOPLIST_PATH} \\\n| xargs -0 /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion `git rev-list HEAD | wc -l`\"";
 		};
 		EAD73695171E820100A037B1 /* mogenerator */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1118,6 +1118,8 @@
 		EAAA148C171BC911005B9430 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: TransferWise LTD (W53MTDV45J)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: TransferWise LTD (W53MTDV45J)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
 				INFOPLIST_FILE = "Transfer/Transfer-Info.plist";
@@ -1128,6 +1130,8 @@
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3CE15A09-E624-4A5D-A578-523B38D9D132";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3CE15A09-E624-4A5D-A578-523B38D9D132";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
