@@ -19,6 +19,7 @@ typedef void (^MoneyCalculationHandler)(CalculationResult *result, NSError *erro
 @property (nonatomic, strong) MoneyEntryCell *sendCell;
 @property (nonatomic, strong) MoneyEntryCell *receiveCell;
 @property (nonatomic, copy) MoneyCalculationHandler calculationHandler;
+@property (nonatomic, strong) NSArray *currencies;
 
 - (void)forceCalculate;
 

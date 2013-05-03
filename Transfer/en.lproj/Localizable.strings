@@ -13,6 +13,7 @@
 "introduction.controller.title" = "Transferwise";
 "introduction.header.title.text" = "Send money abroad";
 "introduction.login.section.title" = "Already a user";
+"introduction.refreshing.currencies.message" = "Refreshing currencies...";
 "introduction.savings.message.base" = "You'll get %@ more vs your bank";
 "introduction.savings.message.why" = "Why?";
 
