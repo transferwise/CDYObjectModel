@@ -14,6 +14,7 @@
 #import "TRWAlertView.h"
 #import "Recipient.h"
 #import "TRWProgressHUD.h"
+#import "RecipientViewController.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
@@ -114,7 +115,8 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 }
 
 - (void)addContactPressed {
-
+    RecipientViewController *controller = [[RecipientViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end
