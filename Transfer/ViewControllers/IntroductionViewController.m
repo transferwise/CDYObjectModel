@@ -59,7 +59,7 @@ static NSUInteger const kRowYouSend = 0;
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"MoneyEntryCell" bundle:nil] forCellReuseIdentifier:TWMoneyEntryCellIdentifier];
-    
+
     self.whyView = [[WhyView alloc] init];
 
     [self setYouSendCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
@@ -90,19 +90,19 @@ static NSUInteger const kRowYouSend = 0;
 
     [calculator setSendCell:self.youSendCell];
     [calculator setReceiveCell:self.theyReceiveCell];
-    
+
     SWRevealViewController *revealController = [self revealViewController];
-    
+
     UIBarButtonItem *revealButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SettingsButtonIcon.png"]
-                                             style:UIBarButtonItemStyleBordered
-                                            target:revealController
-                                            action:@selector(revealToggle:)];
+                                                                         style:UIBarButtonItemStyleBordered
+                                                                        target:revealController
+                                                                        action:@selector(revealToggle:)];
     self.navigationItem.leftBarButtonItem = revealButtonItem;
-    
+
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"button.title.back", nil)
-                                     style:UIBarButtonItemStyleBordered
-                                    target:nil
-                                    action:nil];
+                                                                   style:UIBarButtonItemStyleBordered
+                                                                  target:nil
+                                                                  action:nil];
     [backButton setTintColor:[UIColor blackColor]];
     self.navigationItem.backBarButtonItem = backButton;
 
@@ -113,17 +113,17 @@ static NSUInteger const kRowYouSend = 0;
         }
 
         self.result = result;
-        NSString* txt = [NSMutableString stringWithFormat:@"%@. %@", [NSString stringWithFormat:NSLocalizedString(@"introduction.savings.message.base", nil), [result formattedWinAmount]], NSLocalizedString(@"introduction.savings.message.why", nil)];
-        NSMutableAttributedString* attrStr = [NSMutableAttributedString attributedStringWithString:txt];
-        
-        OHParagraphStyle* paragraphStyle = [OHParagraphStyle defaultParagraphStyle];
+        NSString *txt = [NSMutableString stringWithFormat:@"%@. %@", [NSString stringWithFormat:NSLocalizedString(@"introduction.savings.message.base", nil), [result formattedWinAmount]], NSLocalizedString(@"introduction.savings.message.why", nil)];
+        NSMutableAttributedString *attrStr = [NSMutableAttributedString attributedStringWithString:txt];
+
+        OHParagraphStyle *paragraphStyle = [OHParagraphStyle defaultParagraphStyle];
         paragraphStyle.textAlignment = kCTTextAlignmentCenter;
         paragraphStyle.lineBreakMode = kCTLineBreakByWordWrapping;
         [attrStr setParagraphStyle:paragraphStyle];
         [attrStr setFont:self.savingsLabel.font];
         [attrStr setTextColor:self.savingsLabel.textColor];
-        
-        NSString* linkURLString = @"why:"; // build the "why" link
+
+        NSString *linkURLString = @"why:"; // build the "why" link
         [attrStr setLink:[NSURL URLWithString:linkURLString] range:[txt rangeOfString:NSLocalizedString(@"introduction.savings.message.why", nil)]];
         self.savingsLabel.attributedText = attrStr;
         [self.savingsLabel sizeToFit];
@@ -191,19 +191,16 @@ static NSUInteger const kRowYouSend = 0;
 /////////////////////////////////////////////////////////////////////////////
 
 
--(BOOL)attributedLabel:(OHAttributedLabel *)attributedLabel shouldFollowLink:(NSTextCheckingResult *)linkInfo
-{
-	if ([[linkInfo.URL scheme] isEqualToString:@"why"])
-    {
+- (BOOL)attributedLabel:(OHAttributedLabel *)attributedLabel shouldFollowLink:(NSTextCheckingResult *)linkInfo {
+    if ([[linkInfo.URL scheme] isEqualToString:@"why"]) {
         [self.whyView setupWithResult:self.result];
-        TSAlertView *alert = [[TSAlertView alloc]initWithTitle:self.whyView.title view:self.whyView delegate:nil cancelButtonTitle:NSLocalizedString(@"whypopup.button", nil) otherButtonTitles:nil];
+        TSAlertView *alert = [[TSAlertView alloc] initWithTitle:self.whyView.title view:self.whyView delegate:nil cancelButtonTitle:NSLocalizedString(@"whypopup.button", nil) otherButtonTitles:nil];
         [alert show];
-		return NO;
-	}
-    else
-    {
         return NO;
-	}
+    }
+    else {
+        return NO;
+    }
 }
 
 

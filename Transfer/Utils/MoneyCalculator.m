@@ -18,8 +18,8 @@
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, assign) CalculationAmountCurrency amountCurrency;
 @property (nonatomic, copy) NSString *waitingAmount;
-@property (nonatomic, copy) NSString *waitingSourceCurrency;
-@property (nonatomic, copy) NSString *waitingTargetCurrency;
+@property (nonatomic, strong) Currency *waitingSourceCurrency;
+@property (nonatomic, strong) Currency *waitingTargetCurrency;
 
 @end
 
@@ -49,7 +49,8 @@
 
     [_receiveCell.moneyField addTarget:self action:@selector(receiveAmountChanged:) forControlEvents:UIControlEventEditingChanged];
     [receiveCell setCurrencyChangedHandler:^(Currency *currency) {
-
+        [self setWaitingTargetCurrency:currency];
+        [self performCalculation];
     }];
 }
 
@@ -80,14 +81,16 @@
 }
 
 - (void)sourceCurrencyChanged:(Currency *)currency {
+    [self setWaitingSourceCurrency:currency];
     NSArray *targets = currency.targets;
     [self.receiveCell setPresentedCurrencies:targets];
+    [self setWaitingTargetCurrency:targets[0]];
+
+    [self performCalculation];
 }
 
 - (void)forceCalculate {
     [self setWaitingAmount:[self.sendCell amount]];
-    [self setWaitingSourceCurrency:[self.sendCell currency]];
-    [self setWaitingTargetCurrency:[self.receiveCell currency]];
 
     [self performCalculation];
 }
@@ -100,8 +103,8 @@
         }
 
         NSString *amount = self.waitingAmount;
-        NSString *sourceCurrency = self.waitingSourceCurrency;
-        NSString *targetCurrency = self.waitingTargetCurrency;
+        NSString *sourceCurrency = self.waitingSourceCurrency.code;
+        NSString *targetCurrency = self.waitingTargetCurrency.code;
 
         if (![amount hasValue]) {
             return;
@@ -126,8 +129,8 @@
             self.calculationHandler(result, error);
 
             if (![amount isEqualToString:self.waitingAmount]
-                    || ![sourceCurrency isEqualToString:self.waitingSourceCurrency]
-                    || ![targetCurrency isEqualToString:self.waitingTargetCurrency]) {
+                    || ![sourceCurrency isEqualToString:self.waitingSourceCurrency.code]
+                    || ![targetCurrency isEqualToString:self.waitingTargetCurrency.code]) {
                 [self performCalculation];
             }
         }];

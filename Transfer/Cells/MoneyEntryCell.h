@@ -23,6 +23,6 @@ typedef void (^CurrencyChangBlock)(Currency *currency);
 - (void)setTitle:(NSString *)title;
 - (void)setAmount:(NSString *)amount currency:(Currency *)currency;
 - (NSString *)amount;
-- (NSString *)currency;
+- (Currency *)currency;
 
 @end
