@@ -9,20 +9,29 @@
 #import "CurrencyPairsOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Constants.h"
+#import "Currency.h"
 
 NSString *const kCurrencyPairsPath = @"/api/v1/public/currency/pairs";
 
 @implementation CurrencyPairsOperation
 
 - (void)execute {
+    __block __weak CurrencyPairsOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
         MCLog(@"Cueency pairs error:%@", error);
+        weakSelf.currenciesHandler(nil, error);
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        NSArray *pairs = response[@"pairs"];
+        NSArray *pairs = response[@"source_currencies"];
         MCLog(@"Retrieved %d paris", [pairs count]);
+        NSMutableArray *result = [NSMutableArray arrayWithCapacity:[pairs count]];
+        for (NSDictionary *data in pairs) {
+            Currency *currency = [Currency currencyWithSourceData:data];
+            [result addObject:currency];
+        }
 
+        weakSelf.currenciesHandler([NSArray arrayWithArray:result], nil);
     }];
 
     [self getDataFromPath:kCurrencyPairsPath];

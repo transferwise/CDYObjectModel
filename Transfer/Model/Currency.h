@@ -1,5 +1,5 @@
 //
-//  CurrencyPair.h
+//  Currency.h
 //  Transfer
 //
 //  Created by Jaanus Siim on 5/2/13.
@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CurrencyPair : NSObject
+@interface Currency : NSObject
+
++ (Currency *)currencyWithSourceData:(NSDictionary *)data;
 
 @end

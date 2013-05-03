@@ -19,6 +19,7 @@
 #import "WhyView.h"
 #import "TSAlertView.h"
 #import "TransferwiseClient.h"
+#import "TRWProgressHUD.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
@@ -126,8 +127,6 @@ static NSUInteger const kRowYouSend = 0;
         self.savingsLabel.attributedText = attrStr;
         [self.savingsLabel sizeToFit];
     }];
-
-    [calculator forceCalculate];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -140,8 +139,12 @@ static NSUInteger const kRowYouSend = 0;
 
     [self.navigationItem setTitle:NSLocalizedString(@"introduction.controller.title", nil)];
 
-    [[TransferwiseClient sharedClient] updateCurrencyPairsWithCompletionHandler:^(NSArray *currencies, NSError *error) {
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    [hud setMessage:NSLocalizedString(@"introduction.refreshing.currencies.message", nil)];
 
+    [[TransferwiseClient sharedClient] updateCurrencyPairsWithCompletionHandler:^(NSArray *currencies, NSError *error) {
+        [hud hide];
+        [self.calculator forceCalculate];
     }];
 }
 

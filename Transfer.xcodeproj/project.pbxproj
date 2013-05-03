@@ -37,7 +37,7 @@
 		EA35C73F17324AF2005602F7 /* NavBarBackButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73917324AF2005602F7 /* NavBarBackButton@2x.png */; };
 		EA35C74317324AFE005602F7 /* SeparatorLine.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C74117324AFE005602F7 /* SeparatorLine.png */; };
 		EA35C74417324AFE005602F7 /* SeparatorLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */; };
-		EA35C76817326AF4005602F7 /* CurrencyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76717326AF4005602F7 /* CurrencyPair.m */; };
+		EA35C76817326AF4005602F7 /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76717326AF4005602F7 /* Currency.m */; };
 		EA88E65B172F96490021492C /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
 		EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
 		EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
@@ -183,8 +183,8 @@
 		EA35C73917324AF2005602F7 /* NavBarBackButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarBackButton@2x.png"; sourceTree = "<group>"; };
 		EA35C74117324AFE005602F7 /* SeparatorLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeparatorLine.png; sourceTree = "<group>"; };
 		EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SeparatorLine@2x.png"; sourceTree = "<group>"; };
-		EA35C76617326AF4005602F7 /* CurrencyPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyPair.h; sourceTree = "<group>"; };
-		EA35C76717326AF4005602F7 /* CurrencyPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyPair.m; sourceTree = "<group>"; };
+		EA35C76617326AF4005602F7 /* Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Currency.h; sourceTree = "<group>"; };
+		EA35C76717326AF4005602F7 /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
 		EA88E659172F96490021492C /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credentials.h; path = Credentials/Credentials.h; sourceTree = "<group>"; };
 		EA88E65A172F96490021492C /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Credentials.m; path = Credentials/Credentials.m; sourceTree = "<group>"; };
 		EA88E65D172F96660021492C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -489,8 +489,8 @@
 			children = (
 				EA88E66A172F97B10021492C /* Country.h */,
 				EA88E66B172F97B10021492C /* Country.m */,
-				EA35C76617326AF4005602F7 /* CurrencyPair.h */,
-				EA35C76717326AF4005602F7 /* CurrencyPair.m */,
+				EA35C76617326AF4005602F7 /* Currency.h */,
+				EA35C76717326AF4005602F7 /* Currency.m */,
 				EA88E66C172F97B10021492C /* PersonalProfile.h */,
 				EA88E66D172F97B10021492C /* PersonalProfile.m */,
 				EA88E66E172F97B10021492C /* ProfileDetails.h */,
@@ -982,7 +982,7 @@
 				EA88E697172F980A0021492C /* SignUpViewController.m in Sources */,
 				EA88E69B172F98610021492C /* NonEditTextField.m in Sources */,
 				EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */,
-				EA35C76817326AF4005602F7 /* CurrencyPair.m in Sources */,
+				EA35C76817326AF4005602F7 /* Currency.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
