@@ -13,6 +13,8 @@
 #import "Constants.h"
 #import "CalculationResult.h"
 #import "Currency.h"
+#import "TransferwiseClient.h"
+#import "TRWProgressHUD.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
@@ -82,8 +84,6 @@ static NSUInteger const kRowYouSend = 0;
         [self.tableView setTableFooterView:self.footerView];
     }];
 
-    [calculator forceCalculate];
-
     [self.continueToDetailsButton setTitle:NSLocalizedString(@"payment.controller.continue.to.details.button.title", nil) forState:UIControlStateNormal];
 
     [self.depositTitleLabel setText:NSLocalizedString(@"payment.controller.deposit.label", nil)];
@@ -94,6 +94,20 @@ static NSUInteger const kRowYouSend = 0;
     [self.exchangeRateTitleLabel setText:NSLocalizedString(@"payment.controller.estimated.exchange.rate.label", nil)];
     [self.youGetTitleLabel setText:NSLocalizedString(@"payment.controller.you.get.label", nil)];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    [hud setMessage:NSLocalizedString(@"introduction.refreshing.currencies.message", nil)];
+
+    [[TransferwiseClient sharedClient] updateCurrencyPairsWithCompletionHandler:^(NSArray *currencies, NSError *error) {
+        [hud hide];
+        [self.calculator setCurrencies:currencies];
+        [self.calculator forceCalculate];
+    }];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
