@@ -11,6 +11,7 @@
 #import "Constants.h"
 #import "CalculationResult.h"
 #import "NSString+Validation.h"
+#import "Currency.h"
 
 @interface MoneyCalculator ()
 
@@ -38,12 +39,18 @@
     _sendCell = sendCell;
 
     [_sendCell.moneyField addTarget:self action:@selector(sendAmountChanged:) forControlEvents:UIControlEventEditingChanged];
+    [sendCell setCurrencyChangedHandler:^(Currency *currency) {
+        [self sourceCurrencyChanged:currency];
+    }];
 }
 
 - (void)setReceiveCell:(MoneyEntryCell *)receiveCell {
     _receiveCell = receiveCell;
 
     [_receiveCell.moneyField addTarget:self action:@selector(receiveAmountChanged:) forControlEvents:UIControlEventEditingChanged];
+    [receiveCell setCurrencyChangedHandler:^(Currency *currency) {
+
+    }];
 }
 
 - (void)sendAmountChanged:(UITextField *)field {
@@ -62,6 +69,19 @@
         [self setWaitingAmount:field.text];
         [self performCalculation];
     });
+}
+
+- (void)setCurrencies:(NSArray *)currencies {
+    _currencies = currencies;
+
+    [self.sendCell setPresentedCurrencies:currencies];
+    Currency *selected = currencies[0];
+    [self sourceCurrencyChanged:selected];
+}
+
+- (void)sourceCurrencyChanged:(Currency *)currency {
+    NSArray *targets = currency.targets;
+    [self.receiveCell setPresentedCurrencies:targets];
 }
 
 - (void)forceCalculate {
