@@ -14,6 +14,7 @@
 @interface TransferwiseClient ()
 
 @property (nonatomic, strong) UserDetailsOperation *detailsOperation;
+@property (nonatomic, strong) UpdateBusinessProfileOperation *updateBusinessProfileOperation;
 
 @end
 
@@ -60,5 +61,26 @@
 
     [detailsOperation execute];
 }
+
+- (void)updateBusinessProfileWithDictionary:(NSDictionary *)dict CompletionHandler:(TWUpdateBusinessDetailsHandler)completion
+{
+    MCLog(@"Update/Create business profile");
+    UpdateBusinessProfileOperation *updateBusinessOperation = [UpdateBusinessProfileOperation updateWithWithDictionary:dict completionHandler:completion];
+    [self setUpdateBusinessProfileOperation:updateBusinessOperation];
+    
+    [updateBusinessOperation setCompletionHandler:^(ProfileDetails *result, NSError *error) {
+        if (result) {
+            [Credentials setDisplayName:[result displayName]];
+        }
+        
+        if (completion) {
+            completion(result, error);
+        }
+    }];
+    
+    [updateBusinessOperation execute];
+    
+}
+
 
 @end

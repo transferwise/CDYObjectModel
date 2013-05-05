@@ -50,10 +50,13 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 }
 
 - (NSString *)value {
-    return [self.entryField text];
+    if([self.entryField text])
+        return [self.entryField text];
+    else
+        return @"";
 }
 
-- (void)setValue:(NSString *)value {
+- (void)setValue:(NSString *)value { 
     [self.entryField setText:value];
 }
 

@@ -14,6 +14,7 @@
 #import "TRWProgressHUD.h"
 #import "TRWAlertView.h"
 #import "UIColor+Theme.h"
+#import "UpdateBusinessProfileOperation.h"
 
 @interface BusinessProfileViewController ()
 
@@ -90,6 +91,8 @@
     [countryCell configureWithTitle:NSLocalizedString(@"business.profile.country.label", nil) value:@""];
     
     [self setPresentedCells:@[businessCells, addressCells]];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveBusinessDetails)];
 
 }
 
@@ -177,5 +180,50 @@
     [self.postCodeCell setValue:profile.postCode];
     [self.cityCell setValue:profile.city];
     [self.countryCell setValue:profile.countryCode];
+}
+
+- (void)saveBusinessDetails {
+    NSArray *objects = [[NSArray alloc] initWithObjects:
+                        self.businessNameCell.value,
+                        self.registrationNumberCell.value,
+                        self.descriptionCell.value,
+                        self.addressCell.value,
+                        self.postCodeCell.value,
+                        self.cityCell.value,
+                        self.countryCell.value, nil];
+    
+    NSArray *keys = [[NSArray alloc] initWithObjects:
+                     @"businessName",
+                     @"registrationNumber",
+                     @"descriptionOfBusiness",
+                     @"addressFirstLine",
+                     @"postCode",
+                     @"city",
+                     @"countryCode", nil];
+    
+    NSDictionary *businessProfile = [[NSDictionary alloc]initWithObjects:objects forKeys:keys];
+    
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    [hud setMessage:NSLocalizedString(@"business.profile.refreshing.message", nil)];
+    
+    [[TransferwiseClient sharedClient] updateBusinessProfileWithDictionary:businessProfile CompletionHandler:^(ProfileDetails *result, NSError *error) {
+        [hud hide];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"business.profile.refresh.error.title", nil)
+                                                                   message:NSLocalizedString(@"business.profile.refresh.error.message", nil)];
+                [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                [alertView show];
+                return;
+            }
+            
+            // compare returned profile details with current profile details
+            
+            // what to do if not the same?
+            
+        });
+    }];
+    
 }
 @end

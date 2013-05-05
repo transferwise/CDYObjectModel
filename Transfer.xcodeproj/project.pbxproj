@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18C616C417319E1D00041F0B /* UpdateBusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C616C317319E1C00041F0B /* UpdateBusinessProfileOperation.m */; };
 		18EF2A09172806BD003B6862 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EF2A08172806BD003B6862 /* SignUpViewController.m */; };
 		18EF2A0B172806F9003B6862 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EF2A0A172806F9003B6862 /* SignUpViewController.xib */; };
 		BB92B1081727B8B900B6F096 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB92B1061727B8B900B6F096 /* SWRevealViewController.m */; };
@@ -118,6 +119,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18C616C217319E1C00041F0B /* UpdateBusinessProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateBusinessProfileOperation.h; sourceTree = "<group>"; };
+		18C616C317319E1C00041F0B /* UpdateBusinessProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateBusinessProfileOperation.m; sourceTree = "<group>"; };
 		18EF2A07172806BD003B6862 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		18EF2A08172806BD003B6862 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		18EF2A0A172806F9003B6862 /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
@@ -455,6 +458,8 @@
 				EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */,
 				EAC5CF0717267BC4004A7663 /* UserDetailsOperation.h */,
 				EAC5CF0817267BC4004A7663 /* UserDetailsOperation.m */,
+				18C616C217319E1C00041F0B /* UpdateBusinessProfileOperation.h */,
+				18C616C317319E1C00041F0B /* UpdateBusinessProfileOperation.m */,
 				EAD736A5171E87ED00A037B1 /* UserRecipientsOperation.h */,
 				EAD736A6171E87ED00A037B1 /* UserRecipientsOperation.m */,
 			);
@@ -844,6 +849,7 @@
 				EAF1CE1E172E48630052D94B /* NonEditTextField.m in Sources */,
 				BBE715AE172E42EB00442C46 /* BusinessProfileViewController.m in Sources */,
 				BBE715B3172E473200442C46 /* BusinessProfile.m in Sources */,
+				18C616C417319E1D00041F0B /* UpdateBusinessProfileOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

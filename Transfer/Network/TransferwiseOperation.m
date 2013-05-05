@@ -55,6 +55,7 @@ NSString *const kAPIPathBase = @"/api/v1/";
 
 - (void)executeOperationWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters {
     AFHTTPClient *client = [TransferwiseClient sharedClient];
+    [client setParameterEncoding:AFJSONParameterEncoding];
     NSMutableURLRequest *request = [client requestWithMethod:method path:path parameters:parameters];
 
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
