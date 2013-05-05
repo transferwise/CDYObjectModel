@@ -13,6 +13,7 @@
 #import "UserRecipientsOperation.h"
 #import "TRWAlertView.h"
 #import "Recipient.h"
+#import "TRWProgressHUD.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
@@ -28,7 +29,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 - (id)init {
     self = [super initWithNibName:@"ContactsViewController" bundle:nil];
     if (self) {
-        UITabBarItem *barItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"contacts.controller.title", nil) image:nil tag:0];
+        UITabBarItem *barItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"contacts.controller.title", nil) image:[UIImage imageNamed:@"ContactsTabIcon.png"] tag:0];
         [self setTabBarItem:barItem];
     }
     return self;
@@ -78,11 +79,17 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
 - (void)refreshRecipients {
     MCLog(@"refreshRecipients");
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    [hud setMessage:NSLocalizedString(@"contacts.controller.refreshing.message", nil)];
+
     UserRecipientsOperation *operation = [UserRecipientsOperation recipientsOperation];
     [self setExecutedOperation:operation];
 
     [operation setResponseHandler:^(NSArray *recipients, NSError *error) {
         MCLog(@"Received %d recipients", [recipients count]);
+
+        [hud hide];
+
         [self setExecutedOperation:nil];
 
         if (error) {

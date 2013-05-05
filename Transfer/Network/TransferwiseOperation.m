@@ -16,6 +16,7 @@
 #import "TransferwiseClient.h"
 #import "NSString+Validation.h"
 #import "NetworkErrorCodes.h"
+#import "TransferwiseClient.h"
 
 NSString *const kAPIPathBase = @"/api/v1/";
 

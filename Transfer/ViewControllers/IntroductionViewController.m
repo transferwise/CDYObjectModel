@@ -16,19 +16,27 @@
 #import "Constants.h"
 #import "CalculationResult.h"
 #import "SWRevealViewController.h"
+#import "WhyView.h"
+#import "TSAlertView.h"
+#import "TransferwiseClient.h"
+#import "TRWProgressHUD.h"
+#import "Currency.h"
+#import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
 
-@interface IntroductionViewController ()
+@interface IntroductionViewController () <UITextFieldDelegate, OHAttributedLabelDelegate>
 
 @property (nonatomic, strong) IBOutlet UIView *controlsView;
-@property (nonatomic, strong) IBOutlet UILabel *savingsLabel;
+@property (nonatomic, strong) IBOutlet OHAttributedLabel *savingsLabel;
 @property (nonatomic, strong) IBOutlet UILabel *loginTitle;
 @property (nonatomic, strong) IBOutlet UIButton *startedButton;
 @property (nonatomic, strong) IBOutlet UIButton *loginButton;
 @property (nonatomic, strong) MoneyEntryCell *youSendCell;
 @property (nonatomic, strong) MoneyEntryCell *theyReceiveCell;
 @property (nonatomic, strong) MoneyCalculator *calculator;
+@property (nonatomic, strong) CalculationResult *result;
+@property (nonatomic, strong) WhyView *whyView;
 
 - (IBAction)loginPressed:(id)sender;
 
@@ -52,14 +60,16 @@ static NSUInteger const kRowYouSend = 0;
 
     [self.tableView registerNib:[UINib nibWithNibName:@"MoneyEntryCell" bundle:nil] forCellReuseIdentifier:TWMoneyEntryCellIdentifier];
 
+    self.whyView = [[WhyView alloc] init];
+
     [self setYouSendCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
     [self.youSendCell setTitle:NSLocalizedString(@"money.entry.you.send.title", nil)];
-    [self.youSendCell setAmount:@"1000.00" currency:@"EUR"];
+    [self.youSendCell setAmount:@"1000.00" currency:[Currency currencyWithCode:@"GBP"]];
     [self.youSendCell.moneyField setReturnKeyType:UIReturnKeyDone];
 
     [self setTheyReceiveCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
     [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
-    [self.theyReceiveCell setAmount:@"" currency:@"GBP"];
+    [self.theyReceiveCell setAmount:@"" currency:[Currency currencyWithCode:@"EUR"]];
     [self.theyReceiveCell.moneyField setReturnKeyType:UIReturnKeyDone];
 
     TableHeaderView *header = [TableHeaderView loadInstance];
@@ -80,19 +90,19 @@ static NSUInteger const kRowYouSend = 0;
 
     [calculator setSendCell:self.youSendCell];
     [calculator setReceiveCell:self.theyReceiveCell];
-    
+
     SWRevealViewController *revealController = [self revealViewController];
-    
+
     UIBarButtonItem *revealButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SettingsButtonIcon.png"]
-                                             style:UIBarButtonItemStyleBordered
-                                            target:revealController
-                                            action:@selector(revealToggle:)];
+                                                                         style:UIBarButtonItemStyleBordered
+                                                                        target:revealController
+                                                                        action:@selector(revealToggle:)];
     self.navigationItem.leftBarButtonItem = revealButtonItem;
-    
+
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"button.title.back", nil)
-                                     style:UIBarButtonItemStyleBordered
-                                    target:nil
-                                    action:nil];
+                                                                   style:UIBarButtonItemStyleBordered
+                                                                  target:nil
+                                                                  action:nil];
     [backButton setTintColor:[UIColor blackColor]];
     self.navigationItem.backBarButtonItem = backButton;
 
@@ -102,10 +112,22 @@ static NSUInteger const kRowYouSend = 0;
             return;
         }
 
-        [self.savingsLabel setText:[NSString stringWithFormat:NSLocalizedString(@"introduction.savings.message.base", nil), [result formattedWinAmount]]];
-    }];
+        self.result = result;
+        NSString *txt = [NSMutableString stringWithFormat:@"%@. %@", [NSString stringWithFormat:NSLocalizedString(@"introduction.savings.message.base", nil), [result formattedWinAmount]], NSLocalizedString(@"introduction.savings.message.why", nil)];
+        NSMutableAttributedString *attrStr = [NSMutableAttributedString attributedStringWithString:txt];
 
-    [calculator forceCalculate];
+        OHParagraphStyle *paragraphStyle = [OHParagraphStyle defaultParagraphStyle];
+        paragraphStyle.textAlignment = kCTTextAlignmentCenter;
+        paragraphStyle.lineBreakMode = kCTLineBreakByWordWrapping;
+        [attrStr setParagraphStyle:paragraphStyle];
+        [attrStr setFont:self.savingsLabel.font];
+        [attrStr setTextColor:self.savingsLabel.textColor];
+
+        NSString *linkURLString = @"why:"; // build the "why" link
+        [attrStr setLink:[NSURL URLWithString:linkURLString] range:[txt rangeOfString:NSLocalizedString(@"introduction.savings.message.why", nil)]];
+        self.savingsLabel.attributedText = attrStr;
+        [self.savingsLabel sizeToFit];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -117,6 +139,15 @@ static NSUInteger const kRowYouSend = 0;
     [super viewWillAppear:animated];
 
     [self.navigationItem setTitle:NSLocalizedString(@"introduction.controller.title", nil)];
+
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    [hud setMessage:NSLocalizedString(@"introduction.refreshing.currencies.message", nil)];
+
+    [[TransferwiseClient sharedClient] updateCurrencyPairsWithCompletionHandler:^(NSArray *currencies, NSError *error) {
+        [hud hide];
+        [self.calculator setCurrencies:currencies];
+        [self.calculator forceCalculate];
+    }];
 }
 
 
@@ -154,5 +185,23 @@ static NSUInteger const kRowYouSend = 0;
     [controller setObjectModel:self.objectModel];
     [self.navigationController pushViewController:controller animated:YES];
 }
+
+/////////////////////////////////////////////////////////////////////////////
+#pragma mark - OHAttributedString Delegate Method
+/////////////////////////////////////////////////////////////////////////////
+
+
+- (BOOL)attributedLabel:(OHAttributedLabel *)attributedLabel shouldFollowLink:(NSTextCheckingResult *)linkInfo {
+    if ([[linkInfo.URL scheme] isEqualToString:@"why"]) {
+        [self.whyView setupWithResult:self.result];
+        TSAlertView *alert = [[TSAlertView alloc] initWithTitle:self.whyView.title view:self.whyView delegate:nil cancelButtonTitle:NSLocalizedString(@"whypopup.button", nil) otherButtonTitles:nil];
+        [alert show];
+        return NO;
+    }
+    else {
+        return NO;
+    }
+}
+
 
 @end

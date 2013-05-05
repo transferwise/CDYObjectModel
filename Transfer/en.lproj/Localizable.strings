@@ -5,6 +5,7 @@
 
 
 "contacts.controller.title" = "Contacts";
+"contacts.controller.refreshing.message" = "Refreshing contacts";
 
 "contacts.refresh.error.title" = "Refresh error";
 "contacts.refresh.error.message" = "Could not refresh contacts list";
@@ -12,7 +13,9 @@
 "introduction.controller.title" = "Transferwise";
 "introduction.header.title.text" = "Send money abroad";
 "introduction.login.section.title" = "Already a user";
+"introduction.refreshing.currencies.message" = "Refreshing currencies...";
 "introduction.savings.message.base" = "You'll get %@ more vs your bank";
+"introduction.savings.message.why" = "Why?";
 
 "login.controller.header.message" = "Log-in to your account";
 "login.controller.logging.in.message" = "Logging in...";
@@ -28,6 +31,13 @@
 "money.entry.you.send.title" = "You send";
 
 "payment.controller.title" = "New payment";
+"payment.controller.payment.date.message" = "Payment will be received no later than\n%@";
+"payment.controller.continue.to.details.button.title" = "Continue to your details";
+"payment.controller.deposit.label" = "Deposit";
+"payment.controller.transfer.fee.label" = "Transfer fee";
+"payment.controller.currency.cost.label" = "Currency cost";
+"payment.controller.estimated.exchange.rate.label" = "Estimated exchange rate";
+"payment.controller.you.get.label" = "You get (estimated)";
 
 "personal.profile.controller.title" = "Your details";
 
@@ -52,6 +62,15 @@
 "personal.profile.refreshing.message" = "Loading profile...";
 "personal.profile.refresh.error.title" = "Profile load error";
 "personal.profile.refresh.error.message" = "Could not load user profile. Please try again later.";
+"personal.profile.address.section.title" = "Address";
+"personal.profile.personal.section.title" = "Personal details";
+
+"recipient.details.bic.base" = "BIC: %@";
+"recipient.details.iban.base" = "IBAN: %@";
+
+"settings.row.logout" = "Sign out";
+"settings.row.personal.profile" = "Your personal profile";
+"settings.row.signup" = "Create an account";
 
 "business.profile.controller.title" = "Business profile";
 "business.profile.name.label" = "Business name";
@@ -71,5 +90,9 @@
 "singup.password.field.title" = "Password";
 "singup.button.title.log.in" = "Sing up";
 
+"transactions.controller.title" = "Transactions";
+
+"whypopup.title" = "Get %@ more vs a bank";
+"whypopup.button" = "Sounds cool";
 
 "errors.CRD_NOT_VALID.message" = "Incorrect credentials.";

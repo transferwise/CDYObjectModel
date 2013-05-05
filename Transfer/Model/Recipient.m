@@ -27,8 +27,8 @@
     [recipient setName:data[@"name"]];
     [recipient setCurrency:data[@"currency"]];
     [recipient setType:data[@"type"]];
-    [recipient setIban:data[@"iban"]];
-    [recipient setBic:data[@"bic"]];
+    [recipient setIban:data[@"IBAN"]];
+    [recipient setBic:data[@"BIC"]];
     return recipient;
 }
 

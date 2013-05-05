@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "Credentials.h"
 #import "ProfileDetails.h"
+#import "CurrencyPairsOperation.h"
 
 @interface TransferwiseClient ()
 
@@ -21,7 +22,7 @@
 @implementation TransferwiseClient
 
 - (id)initSingleton {
-    self = [super initWithBaseURL:[NSURL URLWithString:@"http://api-sandbox.transferwise.com"]];
+    self = [super initWithBaseURL:[NSURL URLWithString:@"https://api-sandbox.transferwise.com"]];
     if (self) {
 
     }

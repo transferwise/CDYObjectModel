@@ -15,6 +15,9 @@
 #import "TRWAlertView.h"
 #import "PersonalProfile.h"
 #import "DateEntryCell.h"
+#import "CountrySelectionCell.h"
+
+static NSUInteger const kPersonalSection = 0;
 
 @interface PersonalProfileViewController ()
 
@@ -27,7 +30,7 @@
 @property (nonatomic, strong) TextEntryCell *addressCell;
 @property (nonatomic, strong) TextEntryCell *postCodeCell;
 @property (nonatomic, strong) TextEntryCell *cityCell;
-@property (nonatomic, strong) TextEntryCell *countryCell;
+@property (nonatomic, strong) CountrySelectionCell *countryCell;
 @property (nonatomic, strong) ProfileDetails *userDetails;
 
 @end
@@ -50,6 +53,7 @@
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"DateEntryCell" bundle:nil] forCellReuseIdentifier:TWDateEntryCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
 
     NSMutableArray *personalCells = [NSMutableArray array];
 
@@ -90,7 +94,7 @@
     [addressCells addObject:cityCell];
     [cityCell configureWithTitle:NSLocalizedString(@"personal.profile.city.label", nil) value:@""];
 
-    TextEntryCell *countryCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+    CountrySelectionCell *countryCell = [self.tableView dequeueReusableCellWithIdentifier:TWCountrySelectionCellIdentifier];
     [self setCountryCell:countryCell];
     [addressCells addObject:countryCell];
     [countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
@@ -111,28 +115,48 @@
     [self pullUserDetails];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == kPersonalSection) {
+        return NSLocalizedString(@"personal.profile.personal.section.title", nil);
+    } else {
+        return NSLocalizedString(@"personal.profile.address.section.title", nil);
+    }
+}
 
 - (void)pullUserDetails {
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.refreshing.message", nil)];
 
-    [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(ProfileDetails *result, NSError *error) {
-        [hud hide];
+    [[TransferwiseClient sharedClient] updateCountriesWithCompletionHandler:^(NSArray *countries, NSError *error) {
+        if (error) {
+            [hud hide];
+            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.refresh.error.title", nil)
+                                                               message:NSLocalizedString(@"personal.profile.refresh.error.message", nil)];
+            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+            [alertView show];
+            return;
+        }
 
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (error) {
-                TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.refresh.error.title", nil)
-                                                                   message:NSLocalizedString(@"personal.profile.refresh.error.message", nil)];
-                [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-                [alertView show];
-                return;
-            }
+        [self.countryCell setAllCountries:countries];
 
-            [self setPresentedSectionCells:self.presentedCells];
-            [self setUserDetails:result];
-            [self loadDetailsToCells];
-            [self.tableView reloadData];
-        });
+        [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(ProfileDetails *result, NSError *error) {
+            [hud hide];
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (error) {
+                    TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.refresh.error.title", nil)
+                                                                       message:NSLocalizedString(@"personal.profile.refresh.error.message", nil)];
+                    [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                    [alertView show];
+                    return;
+                }
+
+                [self setPresentedSectionCells:self.presentedCells];
+                [self setUserDetails:result];
+                [self loadDetailsToCells];
+                [self.tableView reloadData];
+            });
+        }];
     }];
 }
 
