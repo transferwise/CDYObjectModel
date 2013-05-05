@@ -15,6 +15,8 @@
 @interface TransferwiseClient ()
 
 @property (nonatomic, strong) UserDetailsOperation *detailsOperation;
+@property (nonatomic, strong) CountriesOperation *countriesOperation;
+@property (nonatomic, strong) CurrencyPairsOperation *currencyOperation;
 @property (nonatomic, strong) UpdateBusinessProfileOperation *updateBusinessProfileOperation;
 
 @end
@@ -62,6 +64,12 @@
 
     [detailsOperation execute];
 }
+- (void)updateCountriesWithCompletionHandler:(CountriesResponseBlock)handler {
+    CountriesOperation *operation = [CountriesOperation operation];
+    [self setCountriesOperation:operation];
+    [operation setCompletionHandler:handler];
+    [operation execute];
+}
 
 - (void)updateBusinessProfileWithDictionary:(NSDictionary *)dict CompletionHandler:(TWUpdateBusinessDetailsHandler)completion
 {
@@ -80,8 +88,16 @@
     }];
     
     [updateBusinessOperation execute];
-    
 }
 
+- (void)updateCurrencyPairsWithCompletionHandler:(CurrencyPairsBlock)handler {
+    MCLog(@"Update pairs");
+    CurrencyPairsOperation *operation = [CurrencyPairsOperation pairsOperation];
+    [self setCurrencyOperation:operation];
+    [operation setCurrenciesHandler:handler];
+
+    [operation setObjectModel:self.objectModel];
+    [operation execute];
+}
 
 @end

@@ -8,6 +8,8 @@
 
 #import "AFHTTPClient.h"
 #import "UserDetailsOperation.h"
+#import "CountriesOperation.h"
+#import "CurrencyPairsOperation.h"
 #import "UpdateBusinessProfileOperation.h"
 
 @class ObjectModel;
@@ -18,6 +20,8 @@
 
 + (TransferwiseClient *)sharedClient;
 - (void)updateUserDetailsWithCompletionHandler:(TWProfileDetailsHandler)completion;
+- (void)updateCountriesWithCompletionHandler:(CountriesResponseBlock)handler;
+- (void)updateCurrencyPairsWithCompletionHandler:(CurrencyPairsBlock)handler;
 - (void)updateBusinessProfileWithDictionary:(NSDictionary*)dict CompletionHandler:(TWUpdateBusinessDetailsHandler)completion;
 
 @end

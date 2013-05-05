@@ -7,13 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18C616C417319E1D00041F0B /* UpdateBusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C616C317319E1C00041F0B /* UpdateBusinessProfileOperation.m */; };
-		18EF2A09172806BD003B6862 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EF2A08172806BD003B6862 /* SignUpViewController.m */; };
-		18EF2A0B172806F9003B6862 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EF2A0A172806F9003B6862 /* SignUpViewController.xib */; };
-		BB92B1081727B8B900B6F096 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB92B1061727B8B900B6F096 /* SWRevealViewController.m */; };
-		BBE715AE172E42EB00442C46 /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE715AD172E42EB00442C46 /* BusinessProfileViewController.m */; };
-		BBE715B0172E431800442C46 /* BusinessProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBE715AF172E431800442C46 /* BusinessProfileViewController.xib */; };
-		BBE715B3172E473200442C46 /* BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE715B2172E473200442C46 /* BusinessProfile.m */; };
+		18882CCE1736D46200508866 /* BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 18882CCD1736D46200508866 /* BusinessProfile.m */; };
+		18882CD21736D47100508866 /* UpdateBusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18882CD11736D47100508866 /* UpdateBusinessProfileOperation.m */; };
+		18882CD61736D47F00508866 /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18882CD41736D47F00508866 /* BusinessProfileViewController.m */; };
+		18882CD71736D47F00508866 /* BusinessProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18882CD51736D47F00508866 /* BusinessProfileViewController.xib */; };
+		BB92B144172A747300B6F096 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B143172A747300B6F096 /* CoreText.framework */; };
+		BB92B147172A754100B6F096 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B140172A600000B6F096 /* libOHAttributedLabel.a */; };
+		BBC691241721416300F0FB1A /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911C1721416300F0FB1A /* TSAlertViewMessageListViewShadow.png */; };
+		BBC691251721416300F0FB1A /* TSAlertViewCancelButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911D1721416300F0FB1A /* TSAlertViewCancelButtonBackground.png */; };
+		BBC691261721416300F0FB1A /* TSAlertViewButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911E1721416300F0FB1A /* TSAlertViewButtonBackground.png */; };
+		BBC691271721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911F1721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png */; };
+		BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC691201721416300F0FB1A /* TSAlertViewBackground2.png */; };
+		BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC691211721416300F0FB1A /* TSAlertViewBackground.png */; };
+		BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC691221721416300F0FB1A /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BBC6912C172147FC00F0FB1A /* WhyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC6912B172147FC00F0FB1A /* WhyView.xib */; };
+		BBCC6338172169980094EABB /* WhyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC6337172169980094EABB /* WhyView.m */; };
 		EA13E032171BDF1A0019FBF0 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */; };
 		EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */; };
 		EA13E038171BE12E0019FBF0 /* MoneyEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */; };
@@ -148,18 +156,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		18C616C217319E1C00041F0B /* UpdateBusinessProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateBusinessProfileOperation.h; sourceTree = "<group>"; };
-		18C616C317319E1C00041F0B /* UpdateBusinessProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateBusinessProfileOperation.m; sourceTree = "<group>"; };
-		18EF2A07172806BD003B6862 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
-		18EF2A08172806BD003B6862 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
-		18EF2A0A172806F9003B6862 /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
-		BB92B1061727B8B900B6F096 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = SWRevealViewController/SWRevealViewController.m; sourceTree = "<group>"; };
-		BB92B1071727B8B900B6F096 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = SWRevealViewController/SWRevealViewController.h; sourceTree = "<group>"; };
-		BBE715AC172E42EB00442C46 /* BusinessProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileViewController.h; sourceTree = "<group>"; };
-		BBE715AD172E42EB00442C46 /* BusinessProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileViewController.m; sourceTree = "<group>"; };
-		BBE715AF172E431800442C46 /* BusinessProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessProfileViewController.xib; sourceTree = "<group>"; };
-		BBE715B1172E473200442C46 /* BusinessProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfile.h; sourceTree = "<group>"; };
-		BBE715B2172E473200442C46 /* BusinessProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfile.m; sourceTree = "<group>"; };
+		18882CCC1736D46200508866 /* BusinessProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfile.h; sourceTree = "<group>"; };
+		18882CCD1736D46200508866 /* BusinessProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfile.m; sourceTree = "<group>"; };
+		18882CD01736D47100508866 /* UpdateBusinessProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateBusinessProfileOperation.h; sourceTree = "<group>"; };
+		18882CD11736D47100508866 /* UpdateBusinessProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateBusinessProfileOperation.m; sourceTree = "<group>"; };
+		18882CD31736D47F00508866 /* BusinessProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileViewController.h; sourceTree = "<group>"; };
+		18882CD41736D47F00508866 /* BusinessProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileViewController.m; sourceTree = "<group>"; };
+		18882CD51736D47F00508866 /* BusinessProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessProfileViewController.xib; sourceTree = "<group>"; };
+		BB92B13B172A5FFF00B6F096 /* OHAttributedLabel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OHAttributedLabel.xcodeproj; path = OHAttributedLabel/OHAttributedLabel.xcodeproj; sourceTree = "<group>"; };
+		BB92B143172A747300B6F096 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		BBC6911C1721416300F0FB1A /* TSAlertViewMessageListViewShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewMessageListViewShadow.png; path = TSAlertView/TSAlertViewMessageListViewShadow.png; sourceTree = "<group>"; };
+		BBC6911D1721416300F0FB1A /* TSAlertViewCancelButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewCancelButtonBackground.png; path = TSAlertView/TSAlertViewCancelButtonBackground.png; sourceTree = "<group>"; };
+		BBC6911E1721416300F0FB1A /* TSAlertViewButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewButtonBackground.png; path = TSAlertView/TSAlertViewButtonBackground.png; sourceTree = "<group>"; };
+		BBC6911F1721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewButtonBackground_Highlighted.png; path = TSAlertView/TSAlertViewButtonBackground_Highlighted.png; sourceTree = "<group>"; };
+		BBC691201721416300F0FB1A /* TSAlertViewBackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewBackground2.png; path = TSAlertView/TSAlertViewBackground2.png; sourceTree = "<group>"; };
+		BBC691211721416300F0FB1A /* TSAlertViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewBackground.png; path = TSAlertView/TSAlertViewBackground.png; sourceTree = "<group>"; };
+		BBC691221721416300F0FB1A /* TSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSAlertView.m; path = TSAlertView/TSAlertView.m; sourceTree = "<group>"; };
+		BBC691231721416300F0FB1A /* TSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSAlertView.h; path = TSAlertView/TSAlertView.h; sourceTree = "<group>"; };
+		BBC6912B172147FC00F0FB1A /* WhyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhyView.xib; sourceTree = "<group>"; };
+		BBCC6336172169980094EABB /* WhyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhyView.h; sourceTree = "<group>"; };
+		BBCC6337172169980094EABB /* WhyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhyView.m; sourceTree = "<group>"; };
 		EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
 		EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
 		EA13E034171BE1210019FBF0 /* MoneyEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyEntryCell.h; sourceTree = "<group>"; };
@@ -498,6 +514,8 @@
 		EA88E669172F97B10021492C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18882CCC1736D46200508866 /* BusinessProfile.h */,
+				18882CCD1736D46200508866 /* BusinessProfile.m */,
 				EA88E66A172F97B10021492C /* Country.h */,
 				EA88E66B172F97B10021492C /* Country.m */,
 				EA35C76617326AF4005602F7 /* Currency.h */,
@@ -564,6 +582,8 @@
 		EA8FF6B5171D25530090A658 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				18882CD01736D47100508866 /* UpdateBusinessProfileOperation.h */,
+				18882CD11736D47100508866 /* UpdateBusinessProfileOperation.m */,
 				EA88E67C172F97D50021492C /* CountriesOperation.h */,
 				EA88E67D172F97D50021492C /* CountriesOperation.m */,
 				EA2B23951721323E001AE9DE /* CurrencyPairsOperation.h */,
@@ -581,10 +601,8 @@
 				EA8FF6BC171D30B60090A658 /* TransferwiseOperation+Private.h */,
 				EA8FF6B6171D25C20090A658 /* TransferwiseOperation.h */,
 				EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */,
-				EAC5CF0717267BC4004A7663 /* UserDetailsOperation.h */,
-				EAC5CF0817267BC4004A7663 /* UserDetailsOperation.m */,
-				18C616C217319E1C00041F0B /* UpdateBusinessProfileOperation.h */,
-				18C616C317319E1C00041F0B /* UpdateBusinessProfileOperation.m */,
+				EA88E682172F97D50021492C /* UserDetailsOperation.h */,
+				EA88E683172F97D50021492C /* UserDetailsOperation.m */,
 				EAD736A5171E87ED00A037B1 /* UserRecipientsOperation.h */,
 				EAD736A6171E87ED00A037B1 /* UserRecipientsOperation.m */,
 			);
@@ -666,9 +684,9 @@
 		EAAA148D171BD057005B9430 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				BBE715AC172E42EB00442C46 /* BusinessProfileViewController.h */,
-				BBE715AD172E42EB00442C46 /* BusinessProfileViewController.m */,
-				BBE715AF172E431800442C46 /* BusinessProfileViewController.xib */,
+				18882CD31736D47F00508866 /* BusinessProfileViewController.h */,
+				18882CD41736D47F00508866 /* BusinessProfileViewController.m */,
+				18882CD51736D47F00508866 /* BusinessProfileViewController.xib */,
 				EAD3967D171BD57000F6D011 /* ContactsViewController.h */,
 				EAD3967E171BD57000F6D011 /* ContactsViewController.m */,
 				EAD3967F171BD57000F6D011 /* ContactsViewController.xib */,
@@ -711,30 +729,6 @@
 				EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		EAC5CEFF17266AB2004A7663 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				BBE715B1172E473200442C46 /* BusinessProfile.h */,
-				BBE715B2172E473200442C46 /* BusinessProfile.m */,
-				EAC5CF361727C153004A7663 /* PersonalProfile.h */,
-				EAC5CF371727C153004A7663 /* PersonalProfile.m */,
-				EAC5CF0D17267EC5004A7663 /* ProfileDetails.h */,
-				EAC5CF0E17267EC5004A7663 /* ProfileDetails.m */,
-				EAC5CF0017266AFF004A7663 /* Recipient.h */,
-				EAC5CF0117266AFF004A7663 /* Recipient.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		EAC5CF03172672BD004A7663 /* Credentials */ = {
-			isa = PBXGroup;
-			children = (
-				EAC5CF04172672CA004A7663 /* Credentials.h */,
-				EAC5CF05172672CA004A7663 /* Credentials.m */,
-			);
-			path = Credentials;
 			sourceTree = "<group>";
 		};
 		EAD3966F171BD1DE00F6D011 /* ObjectModel */ = {
@@ -904,16 +898,34 @@
 				EAB72157171FC3E900DE29F5 /* SettingsButtonIcon@2x.png in Resources */,
 				EAB7215C171FC61B00DE29F5 /* SettingsViewController.xib in Resources */,
 				EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */,
-				EAC5CF3D1727CCAE004A7663 /* PersonalProfileViewController.xib in Resources */,
-				EAC5CF401727D044004A7663 /* NavBarBackButton.png in Resources */,
-				EAC5CF411727D044004A7663 /* NavBarBackButton@2x.png in Resources */,
-				18EF2A0B172806F9003B6862 /* SignUpViewController.xib in Resources */,
-				EA7A3874172A6AC5009E9578 /* Icon-Small.png in Resources */,
-				EA7A3875172A6AC5009E9578 /* Icon-Small@2x.png in Resources */,
-				EA7A3876172A6AC5009E9578 /* Icon.png in Resources */,
-				EA7A3877172A6AC5009E9578 /* Icon@2x.png in Resources */,
-				BBE715B0172E431800442C46 /* BusinessProfileViewController.xib in Resources */,
-				EAF1CE18172E47A30052D94B /* DateEntryCell.xib in Resources */,
+				BBC691241721416300F0FB1A /* TSAlertViewMessageListViewShadow.png in Resources */,
+				BBC691251721416300F0FB1A /* TSAlertViewCancelButtonBackground.png in Resources */,
+				BBC691261721416300F0FB1A /* TSAlertViewButtonBackground.png in Resources */,
+				BBC691271721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
+				BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */,
+				BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */,
+				BBC6912C172147FC00F0FB1A /* WhyView.xib in Resources */,
+				EA88E668172F979F0021492C /* PersonalProfileViewController.xib in Resources */,
+				EA88E68F172F97E20021492C /* CountrySelectionCell.xib in Resources */,
+				EA88E691172F97E20021492C /* DateEntryCell.xib in Resources */,
+				EA88E698172F980A0021492C /* SignUpViewController.xib in Resources */,
+				EA35C73A17324AF2005602F7 /* Icon-Small.png in Resources */,
+				EA35C73B17324AF2005602F7 /* Icon-Small@2x.png in Resources */,
+				EA35C73C17324AF2005602F7 /* Icon.png in Resources */,
+				EA35C73D17324AF2005602F7 /* Icon@2x.png in Resources */,
+				EA35C73E17324AF2005602F7 /* NavBarBackButton.png in Resources */,
+				EA35C73F17324AF2005602F7 /* NavBarBackButton@2x.png in Resources */,
+				EA35C74317324AFE005602F7 /* SeparatorLine.png in Resources */,
+				EA35C74417324AFE005602F7 /* SeparatorLine@2x.png in Resources */,
+				EAA54F3E1733CA7800B65BF3 /* ContactsTabIcon.png in Resources */,
+				EAA54F3F1733CA7800B65BF3 /* ContactsTabIcon@2x.png in Resources */,
+				EAA54F401733CA7800B65BF3 /* Logo.png in Resources */,
+				EAA54F411733CA7800B65BF3 /* Logo@2x.png in Resources */,
+				EAA54F421733CA7800B65BF3 /* NewPaymentTabIcon.png in Resources */,
+				EAA54F431733CA7800B65BF3 /* NewPaymentTabIcon@2x.png in Resources */,
+				EAA54F441733CA7800B65BF3 /* TransactionsTabIcon.png in Resources */,
+				EAA54F451733CA7800B65BF3 /* TransactionsTabIcon@2x.png in Resources */,
+				18882CD71736D47F00508866 /* BusinessProfileViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -999,25 +1011,32 @@
 				EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */,
 				EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */,
 				EAEA6257172011C500A96770 /* CalculationResult.m in Sources */,
-				EAC5CF0217266AFF004A7663 /* Recipient.m in Sources */,
-				EAC5CF06172672CA004A7663 /* Credentials.m in Sources */,
-				EAC5CF0917267BC4004A7663 /* UserDetailsOperation.m in Sources */,
-				EAC5CF0F17267EC5004A7663 /* ProfileDetails.m in Sources */,
-				EAC5CF351727B8FE004A7663 /* TransferwiseClient.m in Sources */,
-				EAC5CF381727C153004A7663 /* PersonalProfile.m in Sources */,
-				EAC5CF3C1727CCAE004A7663 /* PersonalProfileViewController.m in Sources */,
-				BB92B1081727B8B900B6F096 /* SWRevealViewController.m in Sources */,
-				18EF2A09172806BD003B6862 /* SignUpViewController.m in Sources */,
-				EA7A386A172A5664009E9578 /* NetworkErrorCodes.m in Sources */,
-				EA7A386C172A5842009E9578 /* Constants.m in Sources */,
-				EA7A386F172A6422009E9578 /* NSError+TRWErrors.m in Sources */,
-				EA7A387A172A6E91009E9578 /* DataEntryViewController.m in Sources */,
-				EA7A387D172A71B8009E9578 /* UIView+Container.m in Sources */,
-				EAF1CE16172E478C0052D94B /* DateEntryCell.m in Sources */,
-				EAF1CE1E172E48630052D94B /* NonEditTextField.m in Sources */,
-				BBE715AE172E42EB00442C46 /* BusinessProfileViewController.m in Sources */,
-				BBE715B3172E473200442C46 /* BusinessProfile.m in Sources */,
-				18C616C417319E1D00041F0B /* UpdateBusinessProfileOperation.m in Sources */,
+				BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */,
+				BBCC6338172169980094EABB /* WhyView.m in Sources */,
+				EA88E65B172F96490021492C /* Credentials.m in Sources */,
+				EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */,
+				EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */,
+				EA88E667172F979F0021492C /* PersonalProfileViewController.m in Sources */,
+				EA88E672172F97B10021492C /* Country.m in Sources */,
+				EA88E673172F97B10021492C /* PersonalProfile.m in Sources */,
+				EA88E674172F97B10021492C /* ProfileDetails.m in Sources */,
+				EA88E675172F97B10021492C /* Recipient.m in Sources */,
+				EA88E67A172F97C40021492C /* NSError+TRWErrors.m in Sources */,
+				EA88E67B172F97C40021492C /* UIView+Container.m in Sources */,
+				EA88E684172F97D50021492C /* CountriesOperation.m in Sources */,
+				EA88E685172F97D50021492C /* NetworkErrorCodes.m in Sources */,
+				EA88E686172F97D50021492C /* TransferwiseClient.m in Sources */,
+				EA88E687172F97D50021492C /* UserDetailsOperation.m in Sources */,
+				EA88E68E172F97E20021492C /* CountrySelectionCell.m in Sources */,
+				EA88E690172F97E20021492C /* DateEntryCell.m in Sources */,
+				EA88E693172F97F50021492C /* Constants.m in Sources */,
+				EA88E697172F980A0021492C /* SignUpViewController.m in Sources */,
+				EA88E69B172F98610021492C /* NonEditTextField.m in Sources */,
+				EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */,
+				EA35C76817326AF4005602F7 /* Currency.m in Sources */,
+				18882CCE1736D46200508866 /* BusinessProfile.m in Sources */,
+				18882CD21736D47100508866 /* UpdateBusinessProfileOperation.m in Sources */,
+				18882CD61736D47F00508866 /* BusinessProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

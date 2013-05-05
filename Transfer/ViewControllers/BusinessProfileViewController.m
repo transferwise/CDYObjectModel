@@ -15,6 +15,9 @@
 #import "TRWAlertView.h"
 #import "UIColor+Theme.h"
 #import "UpdateBusinessProfileOperation.h"
+#import "CountrySelectionCell.h"
+
+static NSUInteger const kDetailsSection = 0;
 
 @interface BusinessProfileViewController ()
 
@@ -26,7 +29,7 @@
 @property (nonatomic, strong) TextEntryCell *addressCell;
 @property (nonatomic, strong) TextEntryCell *postCodeCell;
 @property (nonatomic, strong) TextEntryCell *cityCell;
-@property (nonatomic, strong) TextEntryCell *countryCell;
+@property (nonatomic, strong) CountrySelectionCell *countryCell;
 @property (nonatomic, strong) ProfileDetails *userDetails;
 
 @end
@@ -50,6 +53,8 @@
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
     
     NSMutableArray *businessCells = [NSMutableArray array];
     
@@ -85,7 +90,7 @@
     [addressCells addObject:cityCell];
     [cityCell configureWithTitle:NSLocalizedString(@"business.profile.city.label", nil) value:@""];
     
-    TextEntryCell *countryCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+    CountrySelectionCell *countryCell = [self.tableView dequeueReusableCellWithIdentifier:TWCountrySelectionCellIdentifier];
     [self setCountryCell:countryCell];
     [addressCells addObject:countryCell];
     [countryCell configureWithTitle:NSLocalizedString(@"business.profile.country.label", nil) value:@""];
@@ -120,6 +125,14 @@
     return [self.presentedCells count];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == kDetailsSection) {
+        return NSLocalizedString(@"business.profile.details.section.title", nil);
+    } else {
+        return NSLocalizedString(@"buisiness.profile.address.section.title", nil);
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (!self.userDetails) {
         return 0;
@@ -151,23 +164,36 @@
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"business.profile.refreshing.message", nil)];
     
-    [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(ProfileDetails *result, NSError *error) {
-        [hud hide];
+    [[TransferwiseClient sharedClient] updateCountriesWithCompletionHandler:^(NSArray *countries, NSError *error) {
+        if (error) {
+            [hud hide];
+            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.refresh.error.title", nil)
+                                                               message:NSLocalizedString(@"personal.profile.refresh.error.message", nil)];
+            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+            [alertView show];
+            return;
+        }
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (error) {
-                TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"business.profile.refresh.error.title", nil)
-                                                                   message:NSLocalizedString(@"business.profile.refresh.error.message", nil)];
-                [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-                [alertView show];
-                return;
-            }
+        [self.countryCell setAllCountries:countries];
+    
+        [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(ProfileDetails *result, NSError *error) {
+            [hud hide];
             
-            [self setPresentedSectionCells:self.presentedCells];
-            [self setUserDetails:result];
-            [self loadDetailsToCells];
-            [self.tableView reloadData];
-        });
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (error) {
+                    TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"business.profile.refresh.error.title", nil)
+                                                                       message:NSLocalizedString(@"business.profile.refresh.error.message", nil)];
+                    [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                    [alertView show];
+                    return;
+                }
+                
+                [self setPresentedSectionCells:self.presentedCells];
+                [self setUserDetails:result];
+                [self loadDetailsToCells];
+                [self.tableView reloadData];
+                });
+            }];
     }];
 }
 
@@ -190,7 +216,7 @@
                         self.addressCell.value,
                         self.postCodeCell.value,
                         self.cityCell.value,
-                        self.countryCell.value, nil];
+                        self.countryCell.contentMode, nil];
     
     NSArray *keys = [[NSArray alloc] initWithObjects:
                      @"businessName",
