@@ -216,7 +216,7 @@ static NSUInteger const kDetailsSection = 0;
                         self.addressCell.value,
                         self.postCodeCell.value,
                         self.cityCell.value,
-                        self.countryCell.contentMode, nil];
+                        self.countryCell.value, nil];
     
     NSArray *keys = [[NSArray alloc] initWithObjects:
                      @"businessName",
