@@ -9,6 +9,7 @@
 #import "RecipientTypesOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Constants.h"
+#import "RecipientType.h"
 
 NSString *const kRecipientTypesPath = @"/recipient/listTypes";
 
@@ -24,7 +25,15 @@ NSString *const kRecipientTypesPath = @"/recipient/listTypes";
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         NSArray *recipients = response[@"recipients"];
-        MCLog(@"Pulled %d receipients", [recipients count]);
+        MCLog(@"Pulled %d receipient types", [recipients count]);
+
+        NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:[recipients count]];
+        for (NSDictionary *data in recipients) {
+            RecipientType *type = [RecipientType typeWithData:data];
+            [result addObject:type];
+        }
+
+        weakSelf.resultHandler([NSArray arrayWithArray:result], nil);
     }];
 
     [self getDataFromPath:path];

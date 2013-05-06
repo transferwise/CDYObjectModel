@@ -38,6 +38,10 @@
 		EA35C74317324AFE005602F7 /* SeparatorLine.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C74117324AFE005602F7 /* SeparatorLine.png */; };
 		EA35C74417324AFE005602F7 /* SeparatorLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */; };
 		EA35C76817326AF4005602F7 /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76717326AF4005602F7 /* Currency.m */; };
+		EA4AA6061737940900E99150 /* RecipientType.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA6051737940900E99150 /* RecipientType.m */; };
+		EA4AA60A173794A600E99150 /* RecipientTypeField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA609173794A600E99150 /* RecipientTypeField.m */; };
+		EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */; };
+		EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */; };
 		EA88E65B172F96490021492C /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
 		EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
 		EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
@@ -197,6 +201,13 @@
 		EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SeparatorLine@2x.png"; sourceTree = "<group>"; };
 		EA35C76617326AF4005602F7 /* Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Currency.h; sourceTree = "<group>"; };
 		EA35C76717326AF4005602F7 /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
+		EA4AA6041737940900E99150 /* RecipientType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientType.h; sourceTree = "<group>"; };
+		EA4AA6051737940900E99150 /* RecipientType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientType.m; sourceTree = "<group>"; };
+		EA4AA608173794A600E99150 /* RecipientTypeField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientTypeField.h; sourceTree = "<group>"; };
+		EA4AA609173794A600E99150 /* RecipientTypeField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientTypeField.m; sourceTree = "<group>"; };
+		EA4AA60B17379C9D00E99150 /* CurrencySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencySelectionCell.h; sourceTree = "<group>"; };
+		EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencySelectionCell.m; sourceTree = "<group>"; };
+		EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencySelectionCell.xib; sourceTree = "<group>"; };
 		EA88E659172F96490021492C /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credentials.h; path = Credentials/Credentials.h; sourceTree = "<group>"; };
 		EA88E65A172F96490021492C /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Credentials.m; path = Credentials/Credentials.m; sourceTree = "<group>"; };
 		EA88E65D172F96660021492C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -447,6 +458,9 @@
 				EA88E688172F97E20021492C /* CountrySelectionCell.h */,
 				EA88E689172F97E20021492C /* CountrySelectionCell.m */,
 				EA88E68A172F97E20021492C /* CountrySelectionCell.xib */,
+				EA4AA60B17379C9D00E99150 /* CurrencySelectionCell.h */,
+				EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */,
+				EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */,
 				EA88E68B172F97E20021492C /* DateEntryCell.h */,
 				EA88E68C172F97E20021492C /* DateEntryCell.m */,
 				EA88E68D172F97E20021492C /* DateEntryCell.xib */,
@@ -522,6 +536,10 @@
 				EA88E66F172F97B10021492C /* ProfileDetails.m */,
 				EA88E670172F97B10021492C /* Recipient.h */,
 				EA88E671172F97B10021492C /* Recipient.m */,
+				EA4AA6041737940900E99150 /* RecipientType.h */,
+				EA4AA6051737940900E99150 /* RecipientType.m */,
+				EA4AA608173794A600E99150 /* RecipientTypeField.h */,
+				EA4AA609173794A600E99150 /* RecipientTypeField.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -922,6 +940,7 @@
 				EAA54F441733CA7800B65BF3 /* TransactionsTabIcon.png in Resources */,
 				EAA54F451733CA7800B65BF3 /* TransactionsTabIcon@2x.png in Resources */,
 				EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */,
+				EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1033,6 +1052,9 @@
 				EAA54F501733DC3500B65BF3 /* CurrenciesOperation.m in Sources */,
 				EAA54F581733E8F700B65BF3 /* TransferwiseClient.m in Sources */,
 				EAA54F5B1733EF1A00B65BF3 /* RecipientTypesOperation.m in Sources */,
+				EA4AA6061737940900E99150 /* RecipientType.m in Sources */,
+				EA4AA60A173794A600E99150 /* RecipientTypeField.m in Sources */,
+				EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

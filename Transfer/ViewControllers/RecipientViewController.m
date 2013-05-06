@@ -12,10 +12,19 @@
 #import "TransferwiseOperation.h"
 #import "CurrenciesOperation.h"
 #import "RecipientTypesOperation.h"
+#import "TextEntryCell.h"
+#import "CurrencySelectionCell.h"
+#import "Constants.h"
 
 @interface RecipientViewController ()
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
+
+@property (nonatomic, strong) NSArray *recipientCells;
+@property (nonatomic, strong) TextEntryCell *nameCell;
+
+@property (nonatomic, strong) NSArray *currencyCells;
+@property (nonatomic, strong) CurrencySelectionCell *currencyCell;
 
 @end
 
@@ -35,7 +44,28 @@
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
 
+    [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"CurrencySelectionCell" bundle:nil] forCellReuseIdentifier:TWCurrencySelectionCellIdentifier];
+
     NSMutableArray *recipientCells = [NSMutableArray array];
+
+    TextEntryCell *nameCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+    [self setNameCell:nameCell];
+    [nameCell configureWithTitle:NSLocalizedString(@"recipient.controller.cell.label.name", nil) value:@""];
+    [recipientCells addObject:nameCell];
+
+    [self setRecipientCells:recipientCells];
+
+    NSMutableArray *currencyCells = [NSMutableArray array];
+
+    CurrencySelectionCell *currencyCell = [self.tableView dequeueReusableCellWithIdentifier:TWCurrencySelectionCellIdentifier];
+    [self setCurrencyCell:currencyCell];
+    [currencyCell setSelectionHandler:^(Currency *currency) {
+        MCLog(@"Did select currency:%@", currency);
+    }];
+    [currencyCells addObject:currencyCell];
+
+    [self setCurrencyCells:currencyCells];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,10 +90,19 @@
         RecipientTypesOperation *operation = [RecipientTypesOperation operation];
         [self setExecutedOperation:operation];
 
-        [operation setResultHandler:^(NSArray *recipients, NSError *error) {
-            [hud hide];
+        [operation setResultHandler:^(NSArray *recipients, NSError *typesError) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hide];
 
+                if (typesError) {
+                    return;
+                }
 
+                [self.currencyCell setAllCurrencies:currencies];
+
+                [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells]];
+                [self.tableView reloadData];
+            });
         }];
 
         [operation execute];

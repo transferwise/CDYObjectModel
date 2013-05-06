@@ -55,6 +55,7 @@
 "personal.profile.address.section.title" = "Address";
 "personal.profile.personal.section.title" = "Personal details";
 
+"recipient.controller.cell.label.name" = "Name";
 "recipient.controller.refreshing.message" = "Pulling data...";
 
 "recipient.details.bic.base" = "BIC: %@";

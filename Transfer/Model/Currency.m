@@ -72,4 +72,8 @@
     return description;
 }
 
+- (NSString *)formattedCodeAndName {
+    return [NSString stringWithFormat:@"%@ %@", self.code, self.name];
+}
+
 @end
