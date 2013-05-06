@@ -11,6 +11,7 @@
 @interface RecipientTypeField : NSObject
 
 @property (nonatomic, copy, readonly) NSString *title;
+@property (nonatomic, copy, readonly) NSString *name;
 
 + (RecipientTypeField *)fieldWithData:(NSDictionary *)data;
 

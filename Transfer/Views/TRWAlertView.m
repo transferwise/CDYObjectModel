@@ -7,6 +7,7 @@
 //
 
 #import "TRWAlertView.h"
+#import "NSError+TRWErrors.h"
 
 @implementation TRWAlertView
 
@@ -21,6 +22,13 @@
 
 - (void)setConfirmButtonTitle:(NSString *)title {
     [self addButtonWithTitle:title];
+}
+
++ (TRWAlertView *)errorAlertWithTitle:(NSString *)errorTitle error:(NSError *)error {
+    NSString *errorMessage = [error isTransferwiseError] ? [error localizedTransferwiseMessage] : [error localizedFailureReason];
+    TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:errorTitle message:errorMessage];
+    [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+    return alertView;
 }
 
 @end

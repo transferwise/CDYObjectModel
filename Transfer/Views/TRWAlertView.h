@@ -10,7 +10,9 @@
 
 @interface TRWAlertView : UIAlertView
 
-+ (TRWAlertView *)alertViewWithTitle:(NSString *)title message:(NSString *)message;
 - (void)setConfirmButtonTitle:(NSString *)title;
+
++ (TRWAlertView *)alertViewWithTitle:(NSString *)title message:(NSString *)message;
++ (TRWAlertView *)errorAlertWithTitle:(NSString *)errorTitle error:(NSError *)error;
 
 @end

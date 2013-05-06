@@ -22,6 +22,8 @@
 #import "NSString+Validation.h"
 #import "TRWAlertView.h"
 #import "NSMutableString+Issues.h"
+#import "CreateRecipientOperation.h"
+#import "UIApplication+Keyboard.h"
 
 static NSUInteger const kRecipientFieldsSection = 2;
 
@@ -40,6 +42,9 @@ static NSUInteger const kRecipientFieldsSection = 2;
 
 @property (nonatomic, strong) IBOutlet UIView *footer;
 @property (nonatomic, strong) IBOutlet UIButton *addButton;
+
+@property (nonatomic, strong) Currency *selectedCurrency;
+@property (nonatomic, strong) RecipientType *selectedRecipientType;
 
 - (IBAction)addButtonPressed:(id)sender;
 
@@ -143,6 +148,9 @@ static NSUInteger const kRecipientFieldsSection = 2;
         RecipientType *type = [self findTypeWithCode:currency.defaultRecipientType];
         MCLog(@"Have %d fields", [type.fields count]);
 
+        [self setSelectedCurrency:currency];
+        [self setSelectedRecipientType:type];
+
         NSArray *cells = [self buildCellsForType:type];
         [self setRecipientTypeFieldCells:cells];
         [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, cells]];
@@ -172,6 +180,8 @@ static NSUInteger const kRecipientFieldsSection = 2;
 }
 
 - (IBAction)addButtonPressed:(id)sender {
+    [UIApplication dismissKeyboard];
+
     NSString *issues = [self validateInput];
     if ([issues hasValue]) {
         TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"recipient.save.error.title", nil) message:issues];
@@ -179,6 +189,35 @@ static NSUInteger const kRecipientFieldsSection = 2;
         [alertView show];
         return;
     }
+
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"name"] = [self.nameCell value];
+    data[@"currency"] = [self.selectedCurrency code];
+    data[@"type"] = [self.selectedRecipientType type];
+    for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
+        NSString *value = [cell value];
+        NSString *field = [cell.type name];
+        data[field] = value;
+    }
+
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    [hud setMessage:NSLocalizedString(@"recipient.controller.creating.message", nil)];
+
+    CreateRecipientOperation *operation = [CreateRecipientOperation operationWithData:data];
+    [self setExecutedOperation:operation];
+    [operation setResponseHandler:^(Recipient *recipient, NSError *error) {
+        [hud hide];
+
+        if (error) {
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.save.error.title", nil) error:error];
+            [alertView show];
+            return;
+        }
+
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+
+    [operation execute];
 }
 
 - (NSString *)validateInput {
