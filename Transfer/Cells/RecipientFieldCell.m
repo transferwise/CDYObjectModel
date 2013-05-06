@@ -13,7 +13,7 @@ NSString *const TWRecipientFieldCellIdentifier = @"TWRecipientFieldCellIdentifie
 
 @interface RecipientFieldCell ()
 
-@property RecipientTypeField *type;
+@property (nonatomic, strong) RecipientTypeField *type;
 
 @end
 

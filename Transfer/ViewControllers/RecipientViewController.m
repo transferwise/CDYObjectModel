@@ -19,6 +19,9 @@
 #import "RecipientType.h"
 #import "RecipientTypeField.h"
 #import "RecipientFieldCell.h"
+#import "NSString+Validation.h"
+#import "TRWAlertView.h"
+#import "NSMutableString+Issues.h"
 
 static NSUInteger const kRecipientFieldsSection = 2;
 
@@ -34,6 +37,11 @@ static NSUInteger const kRecipientFieldsSection = 2;
 
 @property (nonatomic, strong) NSArray *recipientTypes;
 @property (nonatomic, strong) NSArray *recipientTypeFieldCells;
+
+@property (nonatomic, strong) IBOutlet UIView *footer;
+@property (nonatomic, strong) IBOutlet UIButton *addButton;
+
+- (IBAction)addButtonPressed:(id)sender;
 
 @end
 
@@ -76,6 +84,10 @@ static NSUInteger const kRecipientFieldsSection = 2;
     [currencyCells addObject:currencyCell];
 
     [self setCurrencyCells:currencyCells];
+
+    [self.tableView setTableFooterView:self.footer];
+
+    [self.addButton setTitle:NSLocalizedString(@"recipient.controller.add.button.title", nil) forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -85,6 +97,8 @@ static NSUInteger const kRecipientFieldsSection = 2;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+
+    [self.navigationItem setTitle:NSLocalizedString(@"recipient.controller.title", nil)];
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
@@ -155,6 +169,36 @@ static NSUInteger const kRecipientFieldsSection = 2;
         return type;
     }
     return nil;
+}
+
+- (IBAction)addButtonPressed:(id)sender {
+    NSString *issues = [self validateInput];
+    if ([issues hasValue]) {
+        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"recipient.save.error.title", nil) message:issues];
+        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+        [alertView show];
+        return;
+    }
+}
+
+- (NSString *)validateInput {
+    NSMutableString *issues = [NSMutableString string];
+
+    NSString *name = [self.nameCell value];
+    if (![name hasValue]) {
+        [issues appendIssue:NSLocalizedString(@"recipient.controller.validation.error.empty.name", nil)];
+    }
+
+    for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
+        NSString *value = [cell value];
+        if ([value hasValue]) {
+            continue;
+        }
+
+        [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.field.empty", nil), cell.type.title]];
+    }
+
+    return [NSString stringWithString:issues];
 }
 
 @end

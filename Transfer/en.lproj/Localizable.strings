@@ -55,8 +55,14 @@
 "personal.profile.address.section.title" = "Address";
 "personal.profile.personal.section.title" = "Personal details";
 
+"recipient.controller.add.button.title" = "Add recipient";
 "recipient.controller.cell.label.name" = "Name";
 "recipient.controller.refreshing.message" = "Pulling data...";
+"recipient.controller.title" = "Recipient details";
+"recipient.controller.validation.error.empty.name" = "Name not entered";
+"recipient.controller.validation.error.field.empty" = "%@ not entered";
+
+"recipient.save.error.title" = "Can't save";
 
 "recipient.details.bic.base" = "BIC: %@";
 "recipient.details.iban.base" = "IBAN: %@";
