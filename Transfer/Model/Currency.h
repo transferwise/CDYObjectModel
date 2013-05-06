@@ -13,6 +13,7 @@
 @property (nonatomic, copy, readonly) NSString *code;
 @property (nonatomic, strong, readonly) NSArray *targets;
 @property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, copy, readonly) NSString *defaultRecipientType;
 
 - (NSString *)formattedCodeAndName;
 

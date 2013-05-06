@@ -10,6 +10,8 @@
 
 @interface RecipientTypeField : NSObject
 
+@property (nonatomic, copy, readonly) NSString *title;
+
 + (RecipientTypeField *)fieldWithData:(NSDictionary *)data;
 
 @end

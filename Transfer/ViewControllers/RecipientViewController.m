@@ -15,6 +15,12 @@
 #import "TextEntryCell.h"
 #import "CurrencySelectionCell.h"
 #import "Constants.h"
+#import "Currency.h"
+#import "RecipientType.h"
+#import "RecipientTypeField.h"
+#import "RecipientFieldCell.h"
+
+static NSUInteger const kRecipientFieldsSection = 2;
 
 @interface RecipientViewController ()
 
@@ -25,6 +31,9 @@
 
 @property (nonatomic, strong) NSArray *currencyCells;
 @property (nonatomic, strong) CurrencySelectionCell *currencyCell;
+
+@property (nonatomic, strong) NSArray *recipientTypes;
+@property (nonatomic, strong) NSArray *recipientTypeFieldCells;
 
 @end
 
@@ -46,6 +55,7 @@
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"CurrencySelectionCell" bundle:nil] forCellReuseIdentifier:TWCurrencySelectionCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"RecipientFieldCell" bundle:nil] forCellReuseIdentifier:TWRecipientFieldCellIdentifier];
 
     NSMutableArray *recipientCells = [NSMutableArray array];
 
@@ -61,7 +71,7 @@
     CurrencySelectionCell *currencyCell = [self.tableView dequeueReusableCellWithIdentifier:TWCurrencySelectionCellIdentifier];
     [self setCurrencyCell:currencyCell];
     [currencyCell setSelectionHandler:^(Currency *currency) {
-        MCLog(@"Did select currency:%@", currency);
+        [self handleCurrencySelection:currency];
     }];
     [currencyCells addObject:currencyCell];
 
@@ -99,8 +109,9 @@
                 }
 
                 [self.currencyCell setAllCurrencies:currencies];
+                [self setRecipientTypes:recipients];
 
-                [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells]];
+                [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, @[]]];
                 [self.tableView reloadData];
             });
         }];
@@ -109,6 +120,41 @@
     }];
 
     [currenciesOperation execute];
+}
+
+- (void)handleCurrencySelection:(Currency *)currency {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MCLog(@"Did select currency:%@. Default type:%@", currency, currency.defaultRecipientType);
+
+        RecipientType *type = [self findTypeWithCode:currency.defaultRecipientType];
+        MCLog(@"Have %d fields", [type.fields count]);
+
+        NSArray *cells = [self buildCellsForType:type];
+        [self setRecipientTypeFieldCells:cells];
+        [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, cells]];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kRecipientFieldsSection] withRowAnimation:UITableViewRowAnimationFade];
+    });
+}
+
+- (NSArray *)buildCellsForType:(RecipientType *)type {
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:[type.fields count]];
+    for (RecipientTypeField *field in type.fields) {
+        RecipientFieldCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWRecipientFieldCellIdentifier];
+        [cell setFieldType:field];
+        [result addObject:cell];
+    }
+    return [NSArray arrayWithArray:result];
+}
+
+- (RecipientType *)findTypeWithCode:(NSString *)typeString {
+    for (RecipientType *type in self.recipientTypes) {
+        if (![typeString isEqualToString:type.type]) {
+            continue;
+        }
+
+        return type;
+    }
+    return nil;
 }
 
 @end

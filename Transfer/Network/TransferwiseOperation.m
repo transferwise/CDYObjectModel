@@ -138,6 +138,8 @@ NSString *const kAPIPathBase = @"/api/v1/";
         NSString *code = data[@"code"];
         if ([TRWNetworkErrorExpiredToken isEqualToString:code]) {
             return YES;
+        } else if ([TRWNetworkErrorInvalidToken isEqualToString:code]) {
+            return YES;
         }
     }
 
