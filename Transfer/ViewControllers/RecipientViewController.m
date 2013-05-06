@@ -11,6 +11,7 @@
 #import "TRWProgressHUD.h"
 #import "TransferwiseOperation.h"
 #import "CurrenciesOperation.h"
+#import "RecipientTypesOperation.h"
 
 @interface RecipientViewController ()
 
@@ -55,6 +56,17 @@
             [hud hide];
             return;
         }
+
+        RecipientTypesOperation *operation = [RecipientTypesOperation operation];
+        [self setExecutedOperation:operation];
+
+        [operation setResultHandler:^(NSArray *recipients, NSError *error) {
+            [hud hide];
+
+
+        }];
+
+        [operation execute];
     }];
 
     [currenciesOperation execute];
