@@ -30,7 +30,7 @@
 "money.entry.they.receive.title" = "They get";
 "money.entry.you.send.title" = "You send";
 
-"payment.controller.title" = "New payment";
+"payment.controller.calculation.error.title" = "Calculation failed";
 "payment.controller.payment.date.message" = "Payment will be received no later than\n%@";
 "payment.controller.continue.to.details.button.title" = "Continue to your details";
 "payment.controller.deposit.label" = "Deposit";
@@ -38,6 +38,7 @@
 "payment.controller.currency.cost.label" = "Currency cost";
 "payment.controller.estimated.exchange.rate.label" = "Estimated exchange rate";
 "payment.controller.you.get.label" = "You get (estimated)";
+"payment.controller.title" = "New payment";
 
 "personal.profile.controller.title" = "Your details";
 

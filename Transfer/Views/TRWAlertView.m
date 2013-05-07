@@ -25,7 +25,7 @@
 }
 
 + (TRWAlertView *)errorAlertWithTitle:(NSString *)errorTitle error:(NSError *)error {
-    NSString *errorMessage = [error isTransferwiseError] ? [error localizedTransferwiseMessage] : [error localizedFailureReason];
+    NSString *errorMessage = [error isTransferwiseError] ? [error localizedTransferwiseMessage] : [error localizedDescription];
     TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:errorTitle message:errorMessage];
     [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
     return alertView;
