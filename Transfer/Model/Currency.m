@@ -26,10 +26,10 @@
 
 + (Currency *)currencyWithSourceData:(NSDictionary *)data {
     Currency *currency = [[Currency alloc] init];
-    [currency setCode:data[@"currency_code"]];
-    [currency setMaxInvoiceAmount:data[@"max_invoice_amount"]];
+    [currency setCode:data[@"currencyCode"]];
+    [currency setMaxInvoiceAmount:data[@"maxInvoiceAmount"]];
 
-    NSArray *targetCurrencies = data[@"target_currencies"];
+    NSArray *targetCurrencies = data[@"targetCurrencies"];
     NSMutableArray *targets = [NSMutableArray arrayWithCapacity:[targetCurrencies count]];
     for (NSDictionary *targetData in targetCurrencies) {
         Currency *target = [Currency currencyWithTargetData:targetData];
@@ -43,9 +43,9 @@
 
 + (Currency *)currencyWithTargetData:(NSDictionary *)data {
     Currency *target = [[Currency alloc] init];
-    [target setCode:data[@"currency_code"]];
-    [target setMinInvoiceAmount:data[@"min_invoice_amount"]];
-    [target setFixedTargetPaymentAllowed:[data[@"fixed_target_payment_allowed"] boolValue]];
+    [target setCode:data[@"currencyCode"]];
+    [target setMinInvoiceAmount:data[@"minInvoiceAmount"]];
+    [target setFixedTargetPaymentAllowed:[data[@"fixedTargetPaymentAllowed"] boolValue]];
     return target;
 }
 
@@ -60,8 +60,8 @@
     [currency setCode:data[@"code"]];
     [currency setSymbol:data[@"symbol"]];
     [currency setName:data[@"name"]];
-    [currency setDefaultRecipientType:data[@"default_recipient_type"]];
-    [currency setRecipientTypes:data[@"recipient_types"]];
+    [currency setDefaultRecipientType:data[@"defaultRecipientType"]];
+    [currency setRecipientTypes:data[@"recipientTypes"]];
     return currency;
 }
 

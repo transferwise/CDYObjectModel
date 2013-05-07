@@ -37,16 +37,16 @@
 
 + (PersonalProfile *)profileWithData:(NSDictionary *)data {
     PersonalProfile *profile = [[PersonalProfile alloc] init];
-    [profile setFirstName:data[@"first_name"]];
-    [profile setLastName:data[@"last_name"]];
-    [profile setDateOfBirthString:data[@"date_of_birth"]];
-    [profile setPhoneNumber:data[@"phone_number"]];
-    [profile setAddressFirstLine:data[@"address_first_line"]];
-    [profile setPostCode:data[@"post_code"]];
+    [profile setFirstName:data[@"firstName"]];
+    [profile setLastName:data[@"lastName"]];
+    [profile setDateOfBirthString:data[@"dateOfBirth"]];
+    [profile setPhoneNumber:data[@"phoneNumber"]];
+    [profile setAddressFirstLine:data[@"addressFirstLine"]];
+    [profile setPostCode:data[@"postCode"]];
     [profile setCity:data[@"city"]];
-    [profile setCountryCode:data[@"country_code"]];
-    [profile setIdentityVerified:data[@"identity_verified"]];
-    [profile setAddressVerified:data[@"address_verified"]];
+    [profile setCountryCode:data[@"countryCode"]];
+    [profile setIdentityVerified:data[@"identityVerified"]];
+    [profile setAddressVerified:data[@"addressVerified"]];
     return profile;
 }
 

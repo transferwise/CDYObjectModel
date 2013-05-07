@@ -25,8 +25,8 @@
 + (ProfileDetails *)detailsWithData:(NSDictionary *)data {
     ProfileDetails *details = [[ProfileDetails alloc] init];
     [details setEmail:data[@"email"]];
-    [details setReference:data[@"p_reference"]];
-    NSDictionary *personalProfileData = data[@"personal_profile"];
+    [details setReference:data[@"pReference"]];
+    NSDictionary *personalProfileData = data[@"personalProfile"];
     if (personalProfileData && [personalProfileData class] != [NSNull class]) {
         PersonalProfile *profile = [PersonalProfile profileWithData:personalProfileData];
         [details setPersonalProfile:profile];

@@ -23,7 +23,7 @@ NSString *const kCurrencyPairsPath = @"/api/v1/public/currency/pairs";
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        NSArray *pairs = response[@"source_currencies"];
+        NSArray *pairs = response[@"sourceCurrencies"];
         MCLog(@"Retrieved %d paris", [pairs count]);
         NSMutableArray *result = [NSMutableArray arrayWithCapacity:[pairs count]];
         for (NSDictionary *data in pairs) {
