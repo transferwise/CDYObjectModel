@@ -148,6 +148,7 @@
 		EAD7D4CB171D4B080099063F /* BlueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C9171D4B080099063F /* BlueButton@2x.png */; };
 		EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */; };
 		EAD7D4D1171D4BB20099063F /* BlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4D0171D4BB20099063F /* BlueButton.m */; };
+		EAD85B0B173920C300C22211 /* SavePersonalProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD85B0A173920C300C22211 /* SavePersonalProfileOperation.m */; };
 		EAEA31131738DB8600CCF1A2 /* CheckUnselected.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA310F1738DB8600CCF1A2 /* CheckUnselected.png */; };
 		EAEA31141738DB8600CCF1A2 /* CheckUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31101738DB8600CCF1A2 /* CheckUnselected@2x.png */; };
 		EAEA31151738DB8600CCF1A2 /* CheckSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31111738DB8600CCF1A2 /* CheckSelected.png */; };
@@ -389,6 +390,8 @@
 		EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Skinning.m"; sourceTree = "<group>"; };
 		EAD7D4CF171D4BB20099063F /* BlueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueButton.h; sourceTree = "<group>"; };
 		EAD7D4D0171D4BB20099063F /* BlueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueButton.m; sourceTree = "<group>"; };
+		EAD85B09173920C300C22211 /* SavePersonalProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavePersonalProfileOperation.h; sourceTree = "<group>"; };
+		EAD85B0A173920C300C22211 /* SavePersonalProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavePersonalProfileOperation.m; sourceTree = "<group>"; };
 		EAEA310F1738DB8600CCF1A2 /* CheckUnselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckUnselected.png; sourceTree = "<group>"; };
 		EAEA31101738DB8600CCF1A2 /* CheckUnselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckUnselected@2x.png"; sourceTree = "<group>"; };
 		EAEA31111738DB8600CCF1A2 /* CheckSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckSelected.png; sourceTree = "<group>"; };
@@ -626,6 +629,8 @@
 			children = (
 				EA88E67C172F97D50021492C /* CountriesOperation.h */,
 				EA88E67D172F97D50021492C /* CountriesOperation.m */,
+				EAD069081737CF57007C8DEE /* CreateRecipientOperation.h */,
+				EAD069091737CF57007C8DEE /* CreateRecipientOperation.m */,
 				EAA54F4E1733DC3500B65BF3 /* CurrenciesOperation.h */,
 				EAA54F4F1733DC3500B65BF3 /* CurrenciesOperation.m */,
 				EA2B23951721323E001AE9DE /* CurrencyPairsOperation.h */,
@@ -634,10 +639,10 @@
 				EA8FF6BA171D26A00090A658 /* LoginOperation.m */,
 				EA88E67E172F97D50021492C /* NetworkErrorCodes.h */,
 				EA88E67F172F97D50021492C /* NetworkErrorCodes.m */,
-				EAD069081737CF57007C8DEE /* CreateRecipientOperation.h */,
-				EAD069091737CF57007C8DEE /* CreateRecipientOperation.m */,
 				EAA54F591733EF1A00B65BF3 /* RecipientTypesOperation.h */,
 				EAA54F5A1733EF1A00B65BF3 /* RecipientTypesOperation.m */,
+				EAD85B09173920C300C22211 /* SavePersonalProfileOperation.h */,
+				EAD85B0A173920C300C22211 /* SavePersonalProfileOperation.m */,
 				EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */,
 				EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */,
 				EA88E680172F97D50021492C /* TransferwiseClient.h */,
@@ -1102,6 +1107,7 @@
 				EAD0690A1737CF57007C8DEE /* CreateRecipientOperation.m in Sources */,
 				EAD0690E1737E457007C8DEE /* RecipientSectionHeaderView.m in Sources */,
 				EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */,
+				EAD85B0B173920C300C22211 /* SavePersonalProfileOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

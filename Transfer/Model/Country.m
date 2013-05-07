@@ -22,8 +22,8 @@
     Country *country = [[Country alloc] init];
     //TODO jaanus: take country name from locale?
     [country setName:data[@"name"]];
-    [country setIsoCode2:data[@"iso2_code"]];
-    [country setIsoCode3:data[@"iso3_code"]];
+    [country setIsoCode2:data[@"iso2Code"]];
+    [country setIsoCode3:data[@"iso3Code"]];
     return country;
 }
 

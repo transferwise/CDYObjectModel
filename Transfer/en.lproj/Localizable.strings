@@ -49,12 +49,18 @@
 "personal.profile.address.label" = "Address";
 "personal.profile.post.code.label" = "Post code";
 "personal.profile.city.label" = "City";
+"personal.profile.phone.label" = "Phone";
 "personal.profile.country.label" = "Country";
 "personal.profile.refreshing.message" = "Loading profile...";
 "personal.profile.refresh.error.title" = "Profile load error";
 "personal.profile.refresh.error.message" = "Could not load user profile. Please try again later.";
 "personal.profile.address.section.title" = "Address";
 "personal.profile.personal.section.title" = "Personal details";
+"personal.profile.validation.error.title" = "Check input";
+"personal.profile.validation.error.message" = "Please check that all fields are filled.";
+"personal.profile.save.button.title" = "Save profile";
+"personal.profile.saving.message" = "Saving profile...";
+"personal.profile.save.error.title" = "Save profile error";
 
 "recipient.controller.add.button.title" = "Add recipient";
 "recipient.controller.cell.label.name" = "Name";
