@@ -69,17 +69,21 @@ static NSUInteger const kPersonalSection = 0;
     [self setFirstNameCell:firstNameCell];
     [personalCells addObject:firstNameCell];
     [firstNameCell configureWithTitle:NSLocalizedString(@"personal.profile.first.name.label", nil) value:@""];
+    [firstNameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
 
     TextEntryCell *lastNameCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setLastNameCell:lastNameCell];
     [personalCells addObject:lastNameCell];
     [lastNameCell configureWithTitle:NSLocalizedString(@"personal.profile.last.name.label", nil) value:@""];
+    [lastNameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
 
     TextEntryCell *emailCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setEmailCell:emailCell];
     [personalCells addObject:emailCell];
     [emailCell configureWithTitle:NSLocalizedString(@"personal.profile.email.label", nil) value:@""];
+    [emailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
 
+    //TODO jaanus: phone pad with custom accessory view
     TextEntryCell *phoneCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setPhoneNumberCell:phoneCell];
     [personalCells addObject:phoneCell];
@@ -96,6 +100,7 @@ static NSUInteger const kPersonalSection = 0;
     [self setAddressCell:addressCell];
     [addressCells addObject:addressCell];
     [addressCell configureWithTitle:NSLocalizedString(@"personal.profile.address.label", nil) value:@""];
+    [addressCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
 
     TextEntryCell *postCodeCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setPostCodeCell:postCodeCell];
@@ -106,6 +111,7 @@ static NSUInteger const kPersonalSection = 0;
     [self setCityCell:cityCell];
     [addressCells addObject:cityCell];
     [cityCell configureWithTitle:NSLocalizedString(@"personal.profile.city.label", nil) value:@""];
+    [cityCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
 
     CountrySelectionCell *countryCell = [self.tableView dequeueReusableCellWithIdentifier:TWCountrySelectionCellIdentifier];
     [self setCountryCell:countryCell];
