@@ -12,6 +12,7 @@
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
+			<string>IBUIImageView</string>
 			<string>IBUITableViewCell</string>
 			<string>IBUITextField</string>
 		</array>
@@ -42,10 +43,10 @@
 							<object class="IBUITextField" id="75709955">
 								<reference key="NSNextResponder" ref="457937651"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{10, 0}, {300, 43}}</string>
+								<string key="NSFrame">{{10, 0}, {268, 43}}</string>
 								<reference key="NSSuperview" ref="457937651"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="441438203"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -72,6 +73,21 @@
 									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">17</double>
 									<int key="NSfFlags">16</int>
+								</object>
+							</object>
+							<object class="IBUIImageView" id="441438203">
+								<reference key="NSNextResponder" ref="457937651"/>
+								<int key="NSvFlags">297</int>
+								<string key="NSFrame">{{286, 18}, {14, 12}}</string>
+								<reference key="NSSuperview" ref="457937651"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">Down.png</string>
 								</object>
 							</object>
 						</array>
@@ -114,6 +130,14 @@
 					</object>
 					<int key="connectionID">9</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">entryField</string>
+						<reference key="source" ref="826932837"/>
+						<reference key="destination" ref="75709955"/>
+					</object>
+					<int key="connectionID">10</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -139,6 +163,7 @@
 						<reference key="object" ref="826932837"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="75709955"/>
+							<reference ref="441438203"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -147,12 +172,18 @@
 						<reference key="object" ref="75709955"/>
 						<reference key="parent" ref="826932837"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">11</int>
+						<reference key="object" ref="441438203"/>
+						<reference key="parent" ref="826932837"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
 				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="2.CustomClassName">CurrencySelectionCell</string>
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.CustomClassName">NonEditTextField</string>
@@ -162,13 +193,13 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">9</int>
+			<int key="maxID">11</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">CurrencySelectionCell</string>
-					<string key="superclassName">UITableViewCell</string>
+					<string key="superclassName">TextEntryCell</string>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">currencyField</string>
 						<string key="NS.object.0">UITextField</string>
@@ -193,12 +224,38 @@
 						<string key="minorKey">./Classes/NonEditTextField.h</string>
 					</object>
 				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">TextEntryCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="entryField">UITextField</string>
+						<string key="titleLabel">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="entryField">
+							<string key="name">entryField</string>
+							<string key="candidateClassName">UITextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="titleLabel">
+							<string key="name">titleLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/TextEntryCell.h</string>
+					</object>
+				</object>
 			</array>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">Down.png</string>
+			<string key="NS.object.0">{14, 12}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>

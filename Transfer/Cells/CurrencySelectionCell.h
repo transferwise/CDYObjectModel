@@ -14,7 +14,7 @@ extern NSString *const TWCurrencySelectionCellIdentifier;
 
 typedef void (^TRWCurrencySelectionBlock)(Currency *currency);
 
-@interface CurrencySelectionCell : UITableViewCell
+@interface CurrencySelectionCell : TextEntryCell
 
 @property (nonatomic, copy) TRWCurrencySelectionBlock selectionHandler;
 

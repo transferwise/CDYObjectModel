@@ -89,7 +89,7 @@
 
 - (UIButton *)createButton {
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
-    [button.titleLabel setFont:[UIFont boldSystemFontOfSize:13]];
+    [button.titleLabel setFont:[UIFont boldSystemFontOfSize:11]];
     [button setImage:self.uncheckedImage forState:UIControlStateNormal];
     [button setTitleColor:[UIColor mainTextColor] forState:UIControlStateNormal];
     [button setAdjustsImageWhenHighlighted:NO];
