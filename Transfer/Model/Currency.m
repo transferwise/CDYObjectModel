@@ -15,6 +15,10 @@
 @property (nonatomic, assign) BOOL fixedTargetPaymentAllowed;
 @property (nonatomic, strong) NSNumber *maxInvoiceAmount;
 @property (nonatomic, strong) NSNumber *minInvoiceAmount;
+@property (nonatomic, copy) NSString *symbol;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *defaultRecipientType;
+@property (nonatomic, strong) NSArray *recipientTypes;
 
 @end
 
@@ -51,11 +55,25 @@
     return currency;
 }
 
++ (Currency *)currencyWithRecipientData:(NSDictionary *)data {
+    Currency *currency = [[Currency alloc] init];
+    [currency setCode:data[@"code"]];
+    [currency setSymbol:data[@"symbol"]];
+    [currency setName:data[@"name"]];
+    [currency setDefaultRecipientType:data[@"default_recipient_type"]];
+    [currency setRecipientTypes:data[@"recipient_types"]];
+    return currency;
+}
+
 - (NSString *)description {
     NSMutableString *description = [NSMutableString stringWithFormat:@"<%@: ", NSStringFromClass([self class])];
     [description appendFormat:@"Code:%@", self.code];
     [description appendString:@">"];
     return description;
+}
+
+- (NSString *)formattedCodeAndName {
+    return [NSString stringWithFormat:@"%@ %@", self.code, self.name];
 }
 
 @end

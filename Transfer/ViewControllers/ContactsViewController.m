@@ -14,6 +14,7 @@
 #import "TRWAlertView.h"
 #import "Recipient.h"
 #import "TRWProgressHUD.h"
+#import "RecipientViewController.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
@@ -51,6 +52,9 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self refreshRecipients];
+
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addContactPressed)];
+    [self.tabBarController.navigationItem setRightBarButtonItem:addButton];
 }
 
 #pragma mark - Table view data source
@@ -108,6 +112,11 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     }];
 
     [operation execute];
+}
+
+- (void)addContactPressed {
+    RecipientViewController *controller = [[RecipientViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

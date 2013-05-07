@@ -38,6 +38,10 @@
 		EA35C74317324AFE005602F7 /* SeparatorLine.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C74117324AFE005602F7 /* SeparatorLine.png */; };
 		EA35C74417324AFE005602F7 /* SeparatorLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */; };
 		EA35C76817326AF4005602F7 /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76717326AF4005602F7 /* Currency.m */; };
+		EA4AA6061737940900E99150 /* RecipientType.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA6051737940900E99150 /* RecipientType.m */; };
+		EA4AA60A173794A600E99150 /* RecipientTypeField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA609173794A600E99150 /* RecipientTypeField.m */; };
+		EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */; };
+		EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */; };
 		EA88E65B172F96490021492C /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
 		EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
 		EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
@@ -51,7 +55,6 @@
 		EA88E67B172F97C40021492C /* UIView+Container.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E679172F97C40021492C /* UIView+Container.m */; };
 		EA88E684172F97D50021492C /* CountriesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E67D172F97D50021492C /* CountriesOperation.m */; };
 		EA88E685172F97D50021492C /* NetworkErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E67F172F97D50021492C /* NetworkErrorCodes.m */; };
-		EA88E686172F97D50021492C /* TransferwiseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E681172F97D50021492C /* TransferwiseClient.m */; };
 		EA88E687172F97D50021492C /* UserDetailsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E683172F97D50021492C /* UserDetailsOperation.m */; };
 		EA88E68E172F97E20021492C /* CountrySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E689172F97E20021492C /* CountrySelectionCell.m */; };
 		EA88E68F172F97E20021492C /* CountrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E68A172F97E20021492C /* CountrySelectionCell.xib */; };
@@ -60,7 +63,6 @@
 		EA88E693172F97F50021492C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E692172F97F50021492C /* Constants.m */; };
 		EA88E697172F980A0021492C /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E695172F980A0021492C /* SignUpViewController.m */; };
 		EA88E698172F980A0021492C /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E696172F980A0021492C /* SignUpViewController.xib */; };
-		EA88E69B172F98610021492C /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E69A172F98610021492C /* NonEditTextField.m */; };
 		EA8FF682171D19B50090A658 /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF681171D19B50090A658 /* NSString+Validation.m */; };
 		EA8FF685171D1A320090A658 /* NSMutableString+Issues.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */; };
 		EA8FF688171D1B6D0090A658 /* UIApplication+Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF687171D1B6D0090A658 /* UIApplication+Keyboard.m */; };
@@ -88,6 +90,11 @@
 		EAA54F431733CA7800B65BF3 /* NewPaymentTabIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F3B1733CA7800B65BF3 /* NewPaymentTabIcon@2x.png */; };
 		EAA54F441733CA7800B65BF3 /* TransactionsTabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F3C1733CA7800B65BF3 /* TransactionsTabIcon.png */; };
 		EAA54F451733CA7800B65BF3 /* TransactionsTabIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F3D1733CA7800B65BF3 /* TransactionsTabIcon@2x.png */; };
+		EAA54F4B1733DA1400B65BF3 /* RecipientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F491733DA1400B65BF3 /* RecipientViewController.m */; };
+		EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F4A1733DA1400B65BF3 /* RecipientViewController.xib */; };
+		EAA54F501733DC3500B65BF3 /* CurrenciesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F4F1733DC3500B65BF3 /* CurrenciesOperation.m */; };
+		EAA54F581733E8F700B65BF3 /* TransferwiseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F571733E8F700B65BF3 /* TransferwiseClient.m */; };
+		EAA54F5B1733EF1A00B65BF3 /* RecipientTypesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F5A1733EF1A00B65BF3 /* RecipientTypesOperation.m */; };
 		EAAA146C171BC911005B9430 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146B171BC911005B9430 /* UIKit.framework */; };
 		EAAA146E171BC911005B9430 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146D171BC911005B9430 /* Foundation.framework */; };
 		EAAA1470171BC911005B9430 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146F171BC911005B9430 /* CoreGraphics.framework */; };
@@ -109,6 +116,12 @@
 		EAB7215F171FCAAC00DE29F5 /* SettingsTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB7215E171FCAAC00DE29F5 /* SettingsTitleCell.m */; };
 		EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */; };
 		EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */; };
+		EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */; };
+		EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */; };
+		EAD0690A1737CF57007C8DEE /* CreateRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069091737CF57007C8DEE /* CreateRecipientOperation.m */; };
+		EAD0690E1737E457007C8DEE /* RecipientSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD0690D1737E457007C8DEE /* RecipientSectionHeaderView.m */; };
+		EAD069111737E462007C8DEE /* RecipientSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD069101737E462007C8DEE /* RecipientSectionHeaderView.xib */; };
+		EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */; };
 		EAD39672171BD2A300F6D011 /* ObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39671171BD2A300F6D011 /* ObjectModel.m */; };
 		EAD39676171BD4EE00F6D011 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39674171BD4EE00F6D011 /* MainViewController.m */; };
 		EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39675171BD4EE00F6D011 /* MainViewController.xib */; };
@@ -135,6 +148,10 @@
 		EAD7D4CB171D4B080099063F /* BlueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C9171D4B080099063F /* BlueButton@2x.png */; };
 		EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */; };
 		EAD7D4D1171D4BB20099063F /* BlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4D0171D4BB20099063F /* BlueButton.m */; };
+		EAEA31131738DB8600CCF1A2 /* CheckUnselected.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA310F1738DB8600CCF1A2 /* CheckUnselected.png */; };
+		EAEA31141738DB8600CCF1A2 /* CheckUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31101738DB8600CCF1A2 /* CheckUnselected@2x.png */; };
+		EAEA31151738DB8600CCF1A2 /* CheckSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31111738DB8600CCF1A2 /* CheckSelected.png */; };
+		EAEA31161738DB8600CCF1A2 /* CheckSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31121738DB8600CCF1A2 /* CheckSelected@2x.png */; };
 		EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */; };
 		EAEA6257172011C500A96770 /* CalculationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6256172011C500A96770 /* CalculationResult.m */; };
 		EAEA625D17202CB500A96770 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAEA625917202CB500A96770 /* libTestFlight.a */; };
@@ -193,6 +210,13 @@
 		EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SeparatorLine@2x.png"; sourceTree = "<group>"; };
 		EA35C76617326AF4005602F7 /* Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Currency.h; sourceTree = "<group>"; };
 		EA35C76717326AF4005602F7 /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
+		EA4AA6041737940900E99150 /* RecipientType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientType.h; sourceTree = "<group>"; };
+		EA4AA6051737940900E99150 /* RecipientType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientType.m; sourceTree = "<group>"; };
+		EA4AA608173794A600E99150 /* RecipientTypeField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientTypeField.h; sourceTree = "<group>"; };
+		EA4AA609173794A600E99150 /* RecipientTypeField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientTypeField.m; sourceTree = "<group>"; };
+		EA4AA60B17379C9D00E99150 /* CurrencySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencySelectionCell.h; sourceTree = "<group>"; };
+		EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencySelectionCell.m; sourceTree = "<group>"; };
+		EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencySelectionCell.xib; sourceTree = "<group>"; };
 		EA88E659172F96490021492C /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credentials.h; path = Credentials/Credentials.h; sourceTree = "<group>"; };
 		EA88E65A172F96490021492C /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Credentials.m; path = Credentials/Credentials.m; sourceTree = "<group>"; };
 		EA88E65D172F96660021492C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -219,7 +243,6 @@
 		EA88E67E172F97D50021492C /* NetworkErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkErrorCodes.h; sourceTree = "<group>"; };
 		EA88E67F172F97D50021492C /* NetworkErrorCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkErrorCodes.m; sourceTree = "<group>"; };
 		EA88E680172F97D50021492C /* TransferwiseClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferwiseClient.h; sourceTree = "<group>"; };
-		EA88E681172F97D50021492C /* TransferwiseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferwiseClient.m; sourceTree = "<group>"; };
 		EA88E682172F97D50021492C /* UserDetailsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsOperation.h; sourceTree = "<group>"; };
 		EA88E683172F97D50021492C /* UserDetailsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsOperation.m; sourceTree = "<group>"; };
 		EA88E688172F97E20021492C /* CountrySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountrySelectionCell.h; sourceTree = "<group>"; };
@@ -232,8 +255,6 @@
 		EA88E694172F980A0021492C /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		EA88E695172F980A0021492C /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		EA88E696172F980A0021492C /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
-		EA88E699172F98610021492C /* NonEditTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonEditTextField.h; sourceTree = "<group>"; };
-		EA88E69A172F98610021492C /* NonEditTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonEditTextField.m; sourceTree = "<group>"; };
 		EA8FF67F171D167C0090A658 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; wrapsLines = 0; };
 		EA8FF680171D19B50090A658 /* NSString+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validation.h"; sourceTree = "<group>"; };
 		EA8FF681171D19B50090A658 /* NSString+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validation.m"; sourceTree = "<group>"; };
@@ -273,8 +294,6 @@
 		EA8FF6B9171D26A00090A658 /* LoginOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginOperation.h; sourceTree = "<group>"; };
 		EA8FF6BA171D26A00090A658 /* LoginOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginOperation.m; sourceTree = "<group>"; };
 		EA8FF6BC171D30B60090A658 /* TransferwiseOperation+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TransferwiseOperation+Private.h"; sourceTree = "<group>"; };
-		EA9BA53E172510DB00AAAB5A /* TransferwiseClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferwiseClient.h; sourceTree = "<group>"; };
-		EA9BA53F172510DB00AAAB5A /* TransferwiseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferwiseClient.m; sourceTree = "<group>"; };
 		EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonEditTextField.h; sourceTree = "<group>"; };
 		EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonEditTextField.m; sourceTree = "<group>"; };
 		EAA54F361733CA7800B65BF3 /* ContactsTabIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContactsTabIcon.png; sourceTree = "<group>"; };
@@ -285,6 +304,14 @@
 		EAA54F3B1733CA7800B65BF3 /* NewPaymentTabIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NewPaymentTabIcon@2x.png"; sourceTree = "<group>"; };
 		EAA54F3C1733CA7800B65BF3 /* TransactionsTabIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TransactionsTabIcon.png; sourceTree = "<group>"; };
 		EAA54F3D1733CA7800B65BF3 /* TransactionsTabIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TransactionsTabIcon@2x.png"; sourceTree = "<group>"; };
+		EAA54F481733DA1400B65BF3 /* RecipientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientViewController.h; sourceTree = "<group>"; };
+		EAA54F491733DA1400B65BF3 /* RecipientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientViewController.m; sourceTree = "<group>"; };
+		EAA54F4A1733DA1400B65BF3 /* RecipientViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientViewController.xib; sourceTree = "<group>"; };
+		EAA54F4E1733DC3500B65BF3 /* CurrenciesOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrenciesOperation.h; sourceTree = "<group>"; };
+		EAA54F4F1733DC3500B65BF3 /* CurrenciesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrenciesOperation.m; sourceTree = "<group>"; };
+		EAA54F571733E8F700B65BF3 /* TransferwiseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferwiseClient.m; sourceTree = "<group>"; };
+		EAA54F591733EF1A00B65BF3 /* RecipientTypesOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientTypesOperation.h; sourceTree = "<group>"; };
+		EAA54F5A1733EF1A00B65BF3 /* RecipientTypesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientTypesOperation.m; sourceTree = "<group>"; };
 		EAAA1468171BC911005B9430 /* Transfer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transfer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAAA146B171BC911005B9430 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EAAA146D171BC911005B9430 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -313,6 +340,14 @@
 		EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTitleCell.xib; sourceTree = "<group>"; };
 		EAB72163171FDC7F00DE29F5 /* MoneyCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyCalculator.h; sourceTree = "<group>"; };
 		EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyCalculator.m; sourceTree = "<group>"; };
+		EAD069021737B8AE007C8DEE /* RecipientFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientFieldCell.h; sourceTree = "<group>"; };
+		EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientFieldCell.m; sourceTree = "<group>"; };
+		EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientFieldCell.xib; sourceTree = "<group>"; };
+		EAD069081737CF57007C8DEE /* CreateRecipientOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRecipientOperation.h; sourceTree = "<group>"; };
+		EAD069091737CF57007C8DEE /* CreateRecipientOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateRecipientOperation.m; sourceTree = "<group>"; };
+		EAD0690C1737E457007C8DEE /* RecipientSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientSectionHeaderView.h; sourceTree = "<group>"; };
+		EAD0690D1737E457007C8DEE /* RecipientSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientSectionHeaderView.m; sourceTree = "<group>"; };
+		EAD069101737E462007C8DEE /* RecipientSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientSectionHeaderView.xib; sourceTree = "<group>"; };
 		EAD39670171BD2A300F6D011 /* ObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectModel.h; sourceTree = "<group>"; };
 		EAD39671171BD2A300F6D011 /* ObjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectModel.m; sourceTree = "<group>"; };
 		EAD39673171BD4EE00F6D011 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -352,6 +387,10 @@
 		EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Skinning.m"; sourceTree = "<group>"; };
 		EAD7D4CF171D4BB20099063F /* BlueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueButton.h; sourceTree = "<group>"; };
 		EAD7D4D0171D4BB20099063F /* BlueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueButton.m; sourceTree = "<group>"; };
+		EAEA310F1738DB8600CCF1A2 /* CheckUnselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckUnselected.png; sourceTree = "<group>"; };
+		EAEA31101738DB8600CCF1A2 /* CheckUnselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckUnselected@2x.png"; sourceTree = "<group>"; };
+		EAEA31111738DB8600CCF1A2 /* CheckSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckSelected.png; sourceTree = "<group>"; };
+		EAEA31121738DB8600CCF1A2 /* CheckSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckSelected@2x.png"; sourceTree = "<group>"; };
 		EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferCalculationsOperation.h; sourceTree = "<group>"; };
 		EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferCalculationsOperation.m; sourceTree = "<group>"; };
 		EAEA6255172011C500A96770 /* CalculationResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculationResult.h; sourceTree = "<group>"; };
@@ -415,10 +454,11 @@
 				EAD7D4D0171D4BB20099063F /* BlueButton.m */,
 				EAD73688171E6CB100A037B1 /* GrayButton.h */,
 				EAD73689171E6CB100A037B1 /* GrayButton.m */,
-				EA88E699172F98610021492C /* NonEditTextField.h */,
-				EA88E69A172F98610021492C /* NonEditTextField.m */,
 				EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */,
 				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
+				EAD0690C1737E457007C8DEE /* RecipientSectionHeaderView.h */,
+				EAD0690D1737E457007C8DEE /* RecipientSectionHeaderView.m */,
+				EAD069101737E462007C8DEE /* RecipientSectionHeaderView.xib */,
 				EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */,
 				EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */,
 				EA13E045171BED910019FBF0 /* TableHeaderView.xib */,
@@ -428,6 +468,7 @@
 				EA8FF6B3171D23B20090A658 /* TRWProgressHUD.m */,
 				BBCC6336172169980094EABB /* WhyView.h */,
 				BBCC6337172169980094EABB /* WhyView.m */,
+				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -438,6 +479,9 @@
 				EA88E688172F97E20021492C /* CountrySelectionCell.h */,
 				EA88E689172F97E20021492C /* CountrySelectionCell.m */,
 				EA88E68A172F97E20021492C /* CountrySelectionCell.xib */,
+				EA4AA60B17379C9D00E99150 /* CurrencySelectionCell.h */,
+				EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */,
+				EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */,
 				EA88E68B172F97E20021492C /* DateEntryCell.h */,
 				EA88E68C172F97E20021492C /* DateEntryCell.m */,
 				EA88E68D172F97E20021492C /* DateEntryCell.xib */,
@@ -447,6 +491,9 @@
 				EAD736A0171E85C300A037B1 /* RecipientCell.h */,
 				EAD736A1171E85C300A037B1 /* RecipientCell.m */,
 				EAD736A3171E85D100A037B1 /* RecipientCell.xib */,
+				EAD069021737B8AE007C8DEE /* RecipientFieldCell.h */,
+				EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */,
+				EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */,
 				EAB7215D171FCAAC00DE29F5 /* SettingsTitleCell.h */,
 				EAB7215E171FCAAC00DE29F5 /* SettingsTitleCell.m */,
 				EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */,
@@ -513,6 +560,10 @@
 				EA88E66F172F97B10021492C /* ProfileDetails.m */,
 				EA88E670172F97B10021492C /* Recipient.h */,
 				EA88E671172F97B10021492C /* Recipient.m */,
+				EA4AA6041737940900E99150 /* RecipientType.h */,
+				EA4AA6051737940900E99150 /* RecipientType.m */,
+				EA4AA608173794A600E99150 /* RecipientTypeField.h */,
+				EA4AA609173794A600E99150 /* RecipientTypeField.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -571,18 +622,22 @@
 			children = (
 				EA88E67C172F97D50021492C /* CountriesOperation.h */,
 				EA88E67D172F97D50021492C /* CountriesOperation.m */,
+				EAA54F4E1733DC3500B65BF3 /* CurrenciesOperation.h */,
+				EAA54F4F1733DC3500B65BF3 /* CurrenciesOperation.m */,
 				EA2B23951721323E001AE9DE /* CurrencyPairsOperation.h */,
 				EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */,
 				EA8FF6B9171D26A00090A658 /* LoginOperation.h */,
 				EA8FF6BA171D26A00090A658 /* LoginOperation.m */,
 				EA88E67E172F97D50021492C /* NetworkErrorCodes.h */,
 				EA88E67F172F97D50021492C /* NetworkErrorCodes.m */,
+				EAD069081737CF57007C8DEE /* CreateRecipientOperation.h */,
+				EAD069091737CF57007C8DEE /* CreateRecipientOperation.m */,
+				EAA54F591733EF1A00B65BF3 /* RecipientTypesOperation.h */,
+				EAA54F5A1733EF1A00B65BF3 /* RecipientTypesOperation.m */,
 				EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */,
 				EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */,
 				EA88E680172F97D50021492C /* TransferwiseClient.h */,
-				EA88E681172F97D50021492C /* TransferwiseClient.m */,
-				EA9BA53E172510DB00AAAB5A /* TransferwiseClient.h */,
-				EA9BA53F172510DB00AAAB5A /* TransferwiseClient.m */,
+				EAA54F571733E8F700B65BF3 /* TransferwiseClient.m */,
 				EA8FF6BC171D30B60090A658 /* TransferwiseOperation+Private.h */,
 				EA8FF6B6171D25C20090A658 /* TransferwiseOperation.h */,
 				EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */,
@@ -689,6 +744,9 @@
 				EA88E663172F979F0021492C /* PersonalProfileViewController.h */,
 				EA88E664172F979F0021492C /* PersonalProfileViewController.m */,
 				EA88E665172F979F0021492C /* PersonalProfileViewController.xib */,
+				EAA54F481733DA1400B65BF3 /* RecipientViewController.h */,
+				EAA54F491733DA1400B65BF3 /* RecipientViewController.m */,
+				EAA54F4A1733DA1400B65BF3 /* RecipientViewController.xib */,
 				EAB72158171FC61B00DE29F5 /* SettingsViewController.h */,
 				EAB72159171FC61B00DE29F5 /* SettingsViewController.m */,
 				EAB7215A171FC61B00DE29F5 /* SettingsViewController.xib */,
@@ -745,6 +803,10 @@
 			children = (
 				EAD7D4C8171D4B080099063F /* BlueButton.png */,
 				EAD7D4C9171D4B080099063F /* BlueButton@2x.png */,
+				EAEA31111738DB8600CCF1A2 /* CheckSelected.png */,
+				EAEA31121738DB8600CCF1A2 /* CheckSelected@2x.png */,
+				EAEA310F1738DB8600CCF1A2 /* CheckUnselected.png */,
+				EAEA31101738DB8600CCF1A2 /* CheckUnselected@2x.png */,
 				EAA54F361733CA7800B65BF3 /* ContactsTabIcon.png */,
 				EAA54F371733CA7800B65BF3 /* ContactsTabIcon@2x.png */,
 				EAD7368B171E6D5A00A037B1 /* GrayButton.png */,
@@ -907,6 +969,14 @@
 				EAA54F431733CA7800B65BF3 /* NewPaymentTabIcon@2x.png in Resources */,
 				EAA54F441733CA7800B65BF3 /* TransactionsTabIcon.png in Resources */,
 				EAA54F451733CA7800B65BF3 /* TransactionsTabIcon@2x.png in Resources */,
+				EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */,
+				EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */,
+				EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */,
+				EAD069111737E462007C8DEE /* RecipientSectionHeaderView.xib in Resources */,
+				EAEA31131738DB8600CCF1A2 /* CheckUnselected.png in Resources */,
+				EAEA31141738DB8600CCF1A2 /* CheckUnselected@2x.png in Resources */,
+				EAEA31151738DB8600CCF1A2 /* CheckSelected.png in Resources */,
+				EAEA31161738DB8600CCF1A2 /* CheckSelected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1006,15 +1076,24 @@
 				EA88E67B172F97C40021492C /* UIView+Container.m in Sources */,
 				EA88E684172F97D50021492C /* CountriesOperation.m in Sources */,
 				EA88E685172F97D50021492C /* NetworkErrorCodes.m in Sources */,
-				EA88E686172F97D50021492C /* TransferwiseClient.m in Sources */,
 				EA88E687172F97D50021492C /* UserDetailsOperation.m in Sources */,
 				EA88E68E172F97E20021492C /* CountrySelectionCell.m in Sources */,
 				EA88E690172F97E20021492C /* DateEntryCell.m in Sources */,
 				EA88E693172F97F50021492C /* Constants.m in Sources */,
 				EA88E697172F980A0021492C /* SignUpViewController.m in Sources */,
-				EA88E69B172F98610021492C /* NonEditTextField.m in Sources */,
 				EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */,
 				EA35C76817326AF4005602F7 /* Currency.m in Sources */,
+				EAA54F4B1733DA1400B65BF3 /* RecipientViewController.m in Sources */,
+				EAA54F501733DC3500B65BF3 /* CurrenciesOperation.m in Sources */,
+				EAA54F581733E8F700B65BF3 /* TransferwiseClient.m in Sources */,
+				EAA54F5B1733EF1A00B65BF3 /* RecipientTypesOperation.m in Sources */,
+				EA4AA6061737940900E99150 /* RecipientType.m in Sources */,
+				EA4AA60A173794A600E99150 /* RecipientTypeField.m in Sources */,
+				EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */,
+				EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */,
+				EAD0690A1737CF57007C8DEE /* CreateRecipientOperation.m in Sources */,
+				EAD0690E1737E457007C8DEE /* RecipientSectionHeaderView.m in Sources */,
+				EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1100,6 +1179,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
 				INFOPLIST_FILE = "Transfer/Transfer-Info.plist";
@@ -1111,6 +1191,7 @@
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
