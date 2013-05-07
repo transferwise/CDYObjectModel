@@ -60,6 +60,9 @@
 "recipient.controller.creating.message" = "Creating...";
 "recipient.controller.refreshing.message" = "Pulling data...";
 "recipient.controller.save.error.title" = "Add error";
+"recipient.controller.section.title.currency" = "Currency";
+"recipient.controller.section.title.recipient" = "Recipient";
+"recipient.controller.section.title.type.fields" = "Transfer details";
 "recipient.controller.title" = "Recipient details";
 "recipient.controller.validation.error.empty.name" = "Name not entered";
 "recipient.controller.validation.error.field.empty" = "%@ not entered";
@@ -84,3 +87,5 @@
 "whypopup.button" = "Sounds cool";
 
 "errors.CRD_NOT_VALID.message" = "Incorrect credentials.";
+"recipient.type.IBAN.name" = "IBAN";
+"recipient.type.SORT_CODE.name" = "UK SORT";

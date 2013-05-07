@@ -24,7 +24,11 @@
 #import "NSMutableString+Issues.h"
 #import "CreateRecipientOperation.h"
 #import "UIApplication+Keyboard.h"
+#import "RecipientSectionHeaderView.h"
+#import "UIView+Loading.h"
 
+static NSUInteger const kRecipientSection = 0;
+static NSUInteger const kCurrencySection = 1;
 static NSUInteger const kRecipientFieldsSection = 2;
 
 @interface RecipientViewController ()
@@ -45,6 +49,10 @@ static NSUInteger const kRecipientFieldsSection = 2;
 
 @property (nonatomic, strong) Currency *selectedCurrency;
 @property (nonatomic, strong) RecipientType *selectedRecipientType;
+
+@property (nonatomic, strong) RecipientSectionHeaderView *recipientSectionHeader;
+@property (nonatomic, strong) RecipientSectionHeaderView *currencySectionHeader;
+@property (nonatomic, strong) RecipientSectionHeaderView *fieldsSectionHeader;
 
 - (IBAction)addButtonPressed:(id)sender;
 
@@ -90,9 +98,21 @@ static NSUInteger const kRecipientFieldsSection = 2;
 
     [self setCurrencyCells:currencyCells];
 
-    [self.tableView setTableFooterView:self.footer];
-
     [self.addButton setTitle:NSLocalizedString(@"recipient.controller.add.button.title", nil) forState:UIControlStateNormal];
+
+    [self setRecipientSectionHeader:[RecipientSectionHeaderView loadInstance]];
+    [self.recipientSectionHeader setText:NSLocalizedString(@"recipient.controller.section.title.recipient", nil)];
+
+    [self setCurrencySectionHeader:[RecipientSectionHeaderView loadInstance]];
+    [self.currencySectionHeader setText:NSLocalizedString(@"recipient.controller.section.title.currency", nil)];
+
+    [self setFieldsSectionHeader:[RecipientSectionHeaderView loadInstance]];
+    [self.fieldsSectionHeader setText:NSLocalizedString(@"recipient.controller.section.title.type.fields", nil)];
+
+    __block __weak RecipientViewController *weakSelf = self;
+    [self.fieldsSectionHeader setSelectionChangeHandler:^(RecipientType *type) {
+        [weakSelf handleSelectionChangeToType:type];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -131,6 +151,7 @@ static NSUInteger const kRecipientFieldsSection = 2;
                 [self setRecipientTypes:recipients];
 
                 [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, @[]]];
+                [self.tableView setTableFooterView:self.footer];
                 [self.tableView reloadData];
             });
         }];
@@ -151,11 +172,33 @@ static NSUInteger const kRecipientFieldsSection = 2;
         [self setSelectedCurrency:currency];
         [self setSelectedRecipientType:type];
 
-        NSArray *cells = [self buildCellsForType:type];
-        [self setRecipientTypeFieldCells:cells];
-        [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, cells]];
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kRecipientFieldsSection] withRowAnimation:UITableViewRowAnimationFade];
+        NSArray *allTypes = [self findAllTypesWithCodes:currency.recipientTypes];
+        [self.fieldsSectionHeader setSelectedType:type allTypes:allTypes];
+
+        [self handleSelectionChangeToType:type];
     });
+}
+
+- (void)handleSelectionChangeToType:(RecipientType *)type {
+    NSArray *cells = [self buildCellsForType:type];
+    [self setRecipientTypeFieldCells:cells];
+    [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, cells]];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kRecipientFieldsSection] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (NSArray *)findAllTypesWithCodes:(NSArray *)codes {
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:[codes count]];
+    for (NSString *code in codes) {
+        RecipientType *type = [self findTypeWithCode:code];
+        if (!code) {
+            MCLog(@"Did not find type for code %@", code);
+            continue;
+        }
+
+        [result addObject:type];
+    }
+
+    return [NSArray arrayWithArray:result];
 }
 
 - (NSArray *)buildCellsForType:(RecipientType *)type {
@@ -238,6 +281,24 @@ static NSUInteger const kRecipientFieldsSection = 2;
     }
 
     return [NSString stringWithString:issues];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    switch (section) {
+        case kRecipientSection:
+            return self.recipientSectionHeader;
+        case kCurrencySection:
+            return self.currencySectionHeader;
+        case kRecipientFieldsSection:
+            return self.fieldsSectionHeader;
+        default:
+            MCLog(@"Unhandled section:%d", section);
+            return nil;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return CGRectGetHeight(self.recipientSectionHeader.frame);
 }
 
 @end

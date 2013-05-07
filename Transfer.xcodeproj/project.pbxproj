@@ -63,7 +63,6 @@
 		EA88E693172F97F50021492C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E692172F97F50021492C /* Constants.m */; };
 		EA88E697172F980A0021492C /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E695172F980A0021492C /* SignUpViewController.m */; };
 		EA88E698172F980A0021492C /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E696172F980A0021492C /* SignUpViewController.xib */; };
-		EA88E69B172F98610021492C /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E69A172F98610021492C /* NonEditTextField.m */; };
 		EA8FF682171D19B50090A658 /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF681171D19B50090A658 /* NSString+Validation.m */; };
 		EA8FF685171D1A320090A658 /* NSMutableString+Issues.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */; };
 		EA8FF688171D1B6D0090A658 /* UIApplication+Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF687171D1B6D0090A658 /* UIApplication+Keyboard.m */; };
@@ -120,6 +119,9 @@
 		EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */; };
 		EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */; };
 		EAD0690A1737CF57007C8DEE /* CreateRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069091737CF57007C8DEE /* CreateRecipientOperation.m */; };
+		EAD0690E1737E457007C8DEE /* RecipientSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD0690D1737E457007C8DEE /* RecipientSectionHeaderView.m */; };
+		EAD069111737E462007C8DEE /* RecipientSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD069101737E462007C8DEE /* RecipientSectionHeaderView.xib */; };
+		EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */; };
 		EAD39672171BD2A300F6D011 /* ObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39671171BD2A300F6D011 /* ObjectModel.m */; };
 		EAD39676171BD4EE00F6D011 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39674171BD4EE00F6D011 /* MainViewController.m */; };
 		EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39675171BD4EE00F6D011 /* MainViewController.xib */; };
@@ -146,6 +148,10 @@
 		EAD7D4CB171D4B080099063F /* BlueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C9171D4B080099063F /* BlueButton@2x.png */; };
 		EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */; };
 		EAD7D4D1171D4BB20099063F /* BlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4D0171D4BB20099063F /* BlueButton.m */; };
+		EAEA31131738DB8600CCF1A2 /* CheckUnselected.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA310F1738DB8600CCF1A2 /* CheckUnselected.png */; };
+		EAEA31141738DB8600CCF1A2 /* CheckUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31101738DB8600CCF1A2 /* CheckUnselected@2x.png */; };
+		EAEA31151738DB8600CCF1A2 /* CheckSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31111738DB8600CCF1A2 /* CheckSelected.png */; };
+		EAEA31161738DB8600CCF1A2 /* CheckSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31121738DB8600CCF1A2 /* CheckSelected@2x.png */; };
 		EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */; };
 		EAEA6257172011C500A96770 /* CalculationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6256172011C500A96770 /* CalculationResult.m */; };
 		EAEA625D17202CB500A96770 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAEA625917202CB500A96770 /* libTestFlight.a */; };
@@ -249,8 +255,6 @@
 		EA88E694172F980A0021492C /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		EA88E695172F980A0021492C /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		EA88E696172F980A0021492C /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
-		EA88E699172F98610021492C /* NonEditTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonEditTextField.h; sourceTree = "<group>"; };
-		EA88E69A172F98610021492C /* NonEditTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonEditTextField.m; sourceTree = "<group>"; };
 		EA8FF67F171D167C0090A658 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; wrapsLines = 0; };
 		EA8FF680171D19B50090A658 /* NSString+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validation.h"; sourceTree = "<group>"; };
 		EA8FF681171D19B50090A658 /* NSString+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validation.m"; sourceTree = "<group>"; };
@@ -341,6 +345,9 @@
 		EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientFieldCell.xib; sourceTree = "<group>"; };
 		EAD069081737CF57007C8DEE /* CreateRecipientOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRecipientOperation.h; sourceTree = "<group>"; };
 		EAD069091737CF57007C8DEE /* CreateRecipientOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateRecipientOperation.m; sourceTree = "<group>"; };
+		EAD0690C1737E457007C8DEE /* RecipientSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientSectionHeaderView.h; sourceTree = "<group>"; };
+		EAD0690D1737E457007C8DEE /* RecipientSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientSectionHeaderView.m; sourceTree = "<group>"; };
+		EAD069101737E462007C8DEE /* RecipientSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientSectionHeaderView.xib; sourceTree = "<group>"; };
 		EAD39670171BD2A300F6D011 /* ObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectModel.h; sourceTree = "<group>"; };
 		EAD39671171BD2A300F6D011 /* ObjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectModel.m; sourceTree = "<group>"; };
 		EAD39673171BD4EE00F6D011 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -380,6 +387,10 @@
 		EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Skinning.m"; sourceTree = "<group>"; };
 		EAD7D4CF171D4BB20099063F /* BlueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueButton.h; sourceTree = "<group>"; };
 		EAD7D4D0171D4BB20099063F /* BlueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueButton.m; sourceTree = "<group>"; };
+		EAEA310F1738DB8600CCF1A2 /* CheckUnselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckUnselected.png; sourceTree = "<group>"; };
+		EAEA31101738DB8600CCF1A2 /* CheckUnselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckUnselected@2x.png"; sourceTree = "<group>"; };
+		EAEA31111738DB8600CCF1A2 /* CheckSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckSelected.png; sourceTree = "<group>"; };
+		EAEA31121738DB8600CCF1A2 /* CheckSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckSelected@2x.png"; sourceTree = "<group>"; };
 		EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferCalculationsOperation.h; sourceTree = "<group>"; };
 		EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferCalculationsOperation.m; sourceTree = "<group>"; };
 		EAEA6255172011C500A96770 /* CalculationResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculationResult.h; sourceTree = "<group>"; };
@@ -443,10 +454,11 @@
 				EAD7D4D0171D4BB20099063F /* BlueButton.m */,
 				EAD73688171E6CB100A037B1 /* GrayButton.h */,
 				EAD73689171E6CB100A037B1 /* GrayButton.m */,
-				EA88E699172F98610021492C /* NonEditTextField.h */,
-				EA88E69A172F98610021492C /* NonEditTextField.m */,
 				EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */,
 				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
+				EAD0690C1737E457007C8DEE /* RecipientSectionHeaderView.h */,
+				EAD0690D1737E457007C8DEE /* RecipientSectionHeaderView.m */,
+				EAD069101737E462007C8DEE /* RecipientSectionHeaderView.xib */,
 				EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */,
 				EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */,
 				EA13E045171BED910019FBF0 /* TableHeaderView.xib */,
@@ -456,6 +468,7 @@
 				EA8FF6B3171D23B20090A658 /* TRWProgressHUD.m */,
 				BBCC6336172169980094EABB /* WhyView.h */,
 				BBCC6337172169980094EABB /* WhyView.m */,
+				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -790,6 +803,10 @@
 			children = (
 				EAD7D4C8171D4B080099063F /* BlueButton.png */,
 				EAD7D4C9171D4B080099063F /* BlueButton@2x.png */,
+				EAEA31111738DB8600CCF1A2 /* CheckSelected.png */,
+				EAEA31121738DB8600CCF1A2 /* CheckSelected@2x.png */,
+				EAEA310F1738DB8600CCF1A2 /* CheckUnselected.png */,
+				EAEA31101738DB8600CCF1A2 /* CheckUnselected@2x.png */,
 				EAA54F361733CA7800B65BF3 /* ContactsTabIcon.png */,
 				EAA54F371733CA7800B65BF3 /* ContactsTabIcon@2x.png */,
 				EAD7368B171E6D5A00A037B1 /* GrayButton.png */,
@@ -955,6 +972,11 @@
 				EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */,
 				EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */,
 				EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */,
+				EAD069111737E462007C8DEE /* RecipientSectionHeaderView.xib in Resources */,
+				EAEA31131738DB8600CCF1A2 /* CheckUnselected.png in Resources */,
+				EAEA31141738DB8600CCF1A2 /* CheckUnselected@2x.png in Resources */,
+				EAEA31151738DB8600CCF1A2 /* CheckSelected.png in Resources */,
+				EAEA31161738DB8600CCF1A2 /* CheckSelected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1059,7 +1081,6 @@
 				EA88E690172F97E20021492C /* DateEntryCell.m in Sources */,
 				EA88E693172F97F50021492C /* Constants.m in Sources */,
 				EA88E697172F980A0021492C /* SignUpViewController.m in Sources */,
-				EA88E69B172F98610021492C /* NonEditTextField.m in Sources */,
 				EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */,
 				EA35C76817326AF4005602F7 /* Currency.m in Sources */,
 				EAA54F4B1733DA1400B65BF3 /* RecipientViewController.m in Sources */,
@@ -1071,6 +1092,8 @@
 				EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */,
 				EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */,
 				EAD0690A1737CF57007C8DEE /* CreateRecipientOperation.m in Sources */,
+				EAD0690E1737E457007C8DEE /* RecipientSectionHeaderView.m in Sources */,
+				EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1156,6 +1179,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
 				INFOPLIST_FILE = "Transfer/Transfer-Info.plist";
@@ -1167,6 +1191,7 @@
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

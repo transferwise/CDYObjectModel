@@ -37,4 +37,11 @@
     return type;
 }
 
+- (NSString *)description {
+    NSMutableString *description = [NSMutableString stringWithFormat:@"<%@: ", NSStringFromClass([self class])];
+    [description appendFormat:@"type = %@, fields %d", self.type, [self.fields count]];
+    [description appendString:@">"];
+    return description;
+}
+
 @end
