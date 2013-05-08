@@ -13,5 +13,6 @@
 + (UIColor *)controllerBackgroundColor;
 + (UIColor *)mainTextColor;
 + (UIColor *)settingsBackgroundColor;
++ (UIColor *)disabledEntryTextColor;
 
 @end

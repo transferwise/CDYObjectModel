@@ -23,6 +23,7 @@
                                                          delegate:nil
                                                 cancelButtonTitle:nil
                                                 otherButtonTitles:nil];
+    [alertView setLeftButtonIndex:NSNotFound];
     [alertView setDelegate:alertView];
     return alertView;
 }

@@ -194,6 +194,15 @@ static NSUInteger const kPersonalSection = 0;
     [self.postCodeCell setValue:profile.postCode];
     [self.cityCell setValue:profile.city];
     [self.countryCell setValue:profile.countryCode];
+
+    [self.firstNameCell setEditable:![profile identityVerifiedValue]];
+    [self.lastNameCell setEditable:![profile identityVerifiedValue]];
+    [self.dateOfBirthCell setEditable:![profile identityVerifiedValue]];
+
+    [self.addressCell setEditable:![profile addressVerifiedValue]];
+    [self.postCodeCell setEditable:![profile addressVerifiedValue]];
+    [self.cityCell setEditable:![profile addressVerifiedValue]];
+    [self.countryCell setEditable:![profile addressVerifiedValue]];
 }
 
 - (IBAction)footerButtonPressed:(id)sender {

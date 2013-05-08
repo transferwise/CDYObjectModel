@@ -136,6 +136,11 @@
                 continue;
             }
 
+            TextEntryCell *entryCell = cell;
+            if (![entryCell.entryField isEnabled]) {
+                continue;
+            }
+
             return path;
         }
 

@@ -7,6 +7,7 @@
 //
 
 #import "TextEntryCell.h"
+#import "UIColor+Theme.h"
 
 NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
@@ -55,6 +56,11 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 - (void)setValue:(NSString *)value {
     [self.entryField setText:value];
+}
+
+- (void)setEditable:(BOOL)editable {
+    [self.entryField setEnabled:editable];
+    [self.entryField setTextColor:(editable ? [UIColor blueColor] : [UIColor disabledEntryTextColor])];
 }
 
 @end
