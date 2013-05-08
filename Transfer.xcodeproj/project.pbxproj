@@ -28,6 +28,7 @@
 		EA13E049171BEDC40019FBF0 /* UIView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E048171BEDC40019FBF0 /* UIView+Loading.m */; };
 		EA13E04C171BEF5D0019FBF0 /* TextEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */; };
 		EA13E04E171BEF710019FBF0 /* TextEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */; };
+		EA222E2E173A3A6500C5D613 /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E2D173A3A6500C5D613 /* DeleteRecipientOperation.m */; };
 		EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */; };
 		EA35C73A17324AF2005602F7 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73417324AF2005602F7 /* Icon-Small.png */; };
 		EA35C73B17324AF2005602F7 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73517324AF2005602F7 /* Icon-Small@2x.png */; };
@@ -201,6 +202,8 @@
 		EA13E04A171BEF5D0019FBF0 /* TextEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEntryCell.h; sourceTree = "<group>"; };
 		EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEntryCell.m; sourceTree = "<group>"; };
 		EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEntryCell.xib; sourceTree = "<group>"; };
+		EA222E2C173A3A6500C5D613 /* DeleteRecipientOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteRecipientOperation.h; sourceTree = "<group>"; };
+		EA222E2D173A3A6500C5D613 /* DeleteRecipientOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteRecipientOperation.m; sourceTree = "<group>"; };
 		EA2B23951721323E001AE9DE /* CurrencyPairsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyPairsOperation.h; sourceTree = "<group>"; };
 		EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyPairsOperation.m; sourceTree = "<group>"; };
 		EA35C73417324AF2005602F7 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
@@ -635,6 +638,8 @@
 				EAA54F4F1733DC3500B65BF3 /* CurrenciesOperation.m */,
 				EA2B23951721323E001AE9DE /* CurrencyPairsOperation.h */,
 				EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */,
+				EA222E2C173A3A6500C5D613 /* DeleteRecipientOperation.h */,
+				EA222E2D173A3A6500C5D613 /* DeleteRecipientOperation.m */,
 				EA8FF6B9171D26A00090A658 /* LoginOperation.h */,
 				EA8FF6BA171D26A00090A658 /* LoginOperation.m */,
 				EA88E67E172F97D50021492C /* NetworkErrorCodes.h */,
@@ -1108,6 +1113,7 @@
 				EAD0690E1737E457007C8DEE /* RecipientSectionHeaderView.m in Sources */,
 				EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */,
 				EAD85B0B173920C300C22211 /* SavePersonalProfileOperation.m in Sources */,
+				EA222E2E173A3A6500C5D613 /* DeleteRecipientOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1192,8 +1198,8 @@
 		EAAA148B171BC911005B9430 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jaanus Siim (7V62BBBL4N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaanus Siim (7V62BBBL4N)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
 				INFOPLIST_FILE = "Transfer/Transfer-Info.plist";

@@ -1,11 +1,17 @@
 "button.title.back" = "Back";
+"button.title.cancel" = "Cancel";
+"button.title.delete" = "Delete";
 "button.title.get.started" = "Get started";
 "button.title.log.in" = "Log in";
 "button.title.ok" = "OK";
 
 
+
 "contacts.controller.title" = "Contacts";
 "contacts.controller.refreshing.message" = "Refreshing contacts";
+"contacts.controller.delete.confirmation.message" = "Are you sure you wish to remove %@ from contacts?";
+"contacts.controller.delete.conformation.title" = "Delete contact";
+"contacts.controller.deleting.message" = "Removing...";
 
 "contacts.refresh.error.title" = "Refresh error";
 "contacts.refresh.error.message" = "Could not refresh contacts list";

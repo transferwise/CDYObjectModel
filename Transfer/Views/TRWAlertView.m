@@ -9,6 +9,12 @@
 #import "TRWAlertView.h"
 #import "NSError+TRWErrors.h"
 
+@interface TRWAlertView () <UIAlertViewDelegate>
+
+@property (nonatomic, assign) NSInteger leftButtonIndex;
+
+@end
+
 @implementation TRWAlertView
 
 + (TRWAlertView *)alertViewWithTitle:(NSString *)title message:(NSString *)message {
@@ -17,6 +23,7 @@
                                                          delegate:nil
                                                 cancelButtonTitle:nil
                                                 otherButtonTitles:nil];
+    [alertView setDelegate:alertView];
     return alertView;
 }
 
@@ -29,6 +36,18 @@
     TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:errorTitle message:errorMessage];
     [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
     return alertView;
+}
+
+- (void)setLeftButtonTitle:(NSString *)leftButtonTitle rightButtonTitle:(NSString *)rightButtonTitle {
+    self.leftButtonIndex = [self addButtonWithTitle:leftButtonTitle];
+    [self addButtonWithTitle:rightButtonTitle];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    MCLog(@"alertView:didDismissWithButtonIndex:%d", buttonIndex);
+    if (buttonIndex == self.leftButtonIndex) {
+        self.leftButtonAction();
+    }
 }
 
 @end

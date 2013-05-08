@@ -48,6 +48,10 @@ NSString *const kAPIPathBase = @"/api/v1/";
     [self executeOperationWithMethod:@"GET" path:path parameters:params];
 }
 
+- (void)performDelete:(NSString *)path withParams:(NSDictionary *)params {
+    [self executeOperationWithMethod:@"DELETE" path:path parameters:params];
+}
+
 - (void)executeOperationWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters {
     AFHTTPClient *client = [TransferwiseClient sharedClient];
     NSMutableURLRequest *request = [client requestWithMethod:method path:path parameters:parameters];

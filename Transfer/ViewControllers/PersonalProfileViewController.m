@@ -18,6 +18,7 @@
 #import "CountrySelectionCell.h"
 #import "NSString+Validation.h"
 #import "SavePersonalProfileOperation.h"
+#import "UIApplication+Keyboard.h"
 
 static NSUInteger const kPersonalSection = 0;
 
@@ -196,6 +197,8 @@ static NSUInteger const kPersonalSection = 0;
 }
 
 - (IBAction)footerButtonPressed:(id)sender {
+    [UIApplication dismissKeyboard];
+
     if (![self inputValid]) {
         TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
                                                            message:NSLocalizedString(@"personal.profile.validation.error.message", nil)];
