@@ -51,11 +51,11 @@
 }
 
 - (BOOL)identityVerifiedValue {
-    return YES;//[self.identityVerified boolValue];
+    return [self.identityVerified boolValue];
 }
 
 - (BOOL)addressVerifiedValue {
-    return YES;//[self.addressVerified boolValue];
+    return [self.addressVerified boolValue];
 }
 
 @end
