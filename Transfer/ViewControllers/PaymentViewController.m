@@ -15,8 +15,8 @@
 #import "Currency.h"
 #import "TransferwiseClient.h"
 #import "TRWProgressHUD.h"
-#import "PersonalProfileViewController.h"
 #import "TRWAlertView.h"
+#import "PaymentFlow.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
@@ -39,6 +39,8 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) IBOutlet UILabel *exchangeRateValueLabel;
 @property (nonatomic, strong) IBOutlet UILabel *youGetTitleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *youGetValueLabel;
+@property (nonatomic, strong) CalculationResult *calculationResult;
+@property (nonatomic, strong) PaymentFlow *paymentFlow;
 
 - (IBAction)continuePressed:(id)sender;
 
@@ -88,6 +90,8 @@ static NSUInteger const kRowYouSend = 0;
             [alertView show];
             return;
         }
+        
+        [self setCalculationResult:result];
 
         [self showPaymentReceivedOnDate:[[NSDate date] dateByAddingTimeInterval:60 * 60 * 24]];
         [self fillDepositFieldsWithResult:result];
@@ -177,8 +181,14 @@ static NSUInteger const kRowYouSend = 0;
 }
 
 - (IBAction)continuePressed:(id)sender {
-    PersonalProfileViewController *controller = [[PersonalProfileViewController alloc] init];
-    [self.navigationController pushViewController:controller animated:YES];
+    if (!self.calculationResult) {
+        return;
+    }
+
+    PaymentFlow *paymentFlow = [[PaymentFlow alloc] initWithPresentingController:self.navigationController];
+    [self setPaymentFlow:paymentFlow];
+
+    [paymentFlow presentSenderDetails];
 }
 
 NSDateFormatter *__paymentDateFormatter;

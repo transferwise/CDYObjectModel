@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "DataEntryViewController.h"
+#import "Constants.h"
 
 @interface PersonalProfileViewController : DataEntryViewController
+
+@property (nonatomic, copy) TRWActionBlock afterSaveAction;
+@property (nonatomic, copy) NSString *footerButtonTitle;
 
 @end

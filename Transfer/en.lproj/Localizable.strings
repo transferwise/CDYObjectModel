@@ -48,6 +48,7 @@
 
 "personal.profile.controller.title" = "Your details";
 
+"personal.profile.continue.to.recipient.button.title" = "Continue to recipient details";
 "personal.profile.first.name.label" = "First name";
 "personal.profile.last.name.label" = "Last name";
 "personal.profile.email.label" = "E-mail";

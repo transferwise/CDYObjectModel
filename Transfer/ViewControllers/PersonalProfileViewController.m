@@ -121,7 +121,7 @@ static NSUInteger const kPersonalSection = 0;
 
     [self setPresentedCells:@[personalCells, addressCells]];
 
-    [self.footerButton setTitle:NSLocalizedString(@"personal.profile.save.button.title", nil) forState:UIControlStateNormal];
+    [self.footerButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -216,6 +216,12 @@ static NSUInteger const kPersonalSection = 0;
         return;
     }
 
+    if (![self valuesChanged]) {
+        MCLog(@"Values not changed");
+        self.afterSaveAction();
+        return;
+    }
+
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.saving.message", nil)];
 
@@ -243,9 +249,25 @@ static NSUInteger const kPersonalSection = 0;
 
         [self setUserDetails:result];
         [self loadDetailsToCells];
+
+        self.afterSaveAction();
     }];
 
     [operation execute];
+}
+
+- (BOOL)valuesChanged {
+    PersonalProfile *profile = self.userDetails.personalProfile;
+
+    return ![[self.firstNameCell value] isEqualToString:profile.firstName]
+            || ![[self.lastNameCell value] isEqualToString:profile.lastName]
+            || ![[self.emailCell value] isEqualToString:self.userDetails.email]
+            || ![[self.phoneNumberCell value] isEqualToString:profile.phoneNumber]
+            || ![[self.dateOfBirthCell value] isEqualToString:profile.dateOfBirthString]
+            || ![[self.addressCell value] isEqualToString:profile.addressFirstLine]
+            || ![[self.postCodeCell value] isEqualToString:profile.postCode]
+            || ![[self.cityCell value] isEqualToString:profile.city]
+            || ![[self.countryCell value] isEqualToString:profile.countryCode];
 }
 
 - (BOOL)inputValid {
