@@ -8,6 +8,7 @@
 
 #import "PaymentFlow.h"
 #import "PersonalProfileViewController.h"
+#import "RecipientViewController.h"
 
 @interface PaymentFlow ()
 
@@ -31,9 +32,22 @@
     PersonalProfileViewController *controller = [[PersonalProfileViewController alloc] init];
     [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.continue.to.recipient.button.title", nil)];
     [controller setAfterSaveAction:^{
-
+        [self presentRecipientDetails];
     }];
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)presentRecipientDetails {
+    RecipientViewController *controller = [[RecipientViewController alloc] init];
+    [controller setFooterButtonTitle:NSLocalizedString(@"recipient.controller.confirm.payment.button.title", nil)];
+    [controller setAfterSaveAction:^{
+        [self presentPaymentConfirmation];
+    }];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)presentPaymentConfirmation {
+    MCLog(@"presentPaymentConfirmation");
 }
 
 @end

@@ -80,6 +80,7 @@
 "recipient.controller.title" = "Recipient details";
 "recipient.controller.validation.error.empty.name" = "Name not entered";
 "recipient.controller.validation.error.field.empty" = "%@ not entered";
+"recipient.controller.confirm.payment.button.title" = "Confirm payment";
 
 "recipient.save.error.title" = "Can't save";
 

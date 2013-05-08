@@ -98,8 +98,6 @@ static NSUInteger const kRecipientFieldsSection = 2;
 
     [self setCurrencyCells:currencyCells];
 
-    [self.addButton setTitle:NSLocalizedString(@"recipient.controller.add.button.title", nil) forState:UIControlStateNormal];
-
     [self setRecipientSectionHeader:[RecipientSectionHeaderView loadInstance]];
     [self.recipientSectionHeader setText:NSLocalizedString(@"recipient.controller.section.title.recipient", nil)];
 
@@ -113,6 +111,8 @@ static NSUInteger const kRecipientFieldsSection = 2;
     [self.fieldsSectionHeader setSelectionChangeHandler:^(RecipientType *type) {
         [weakSelf handleSelectionChangeToType:type];
     }];
+
+    [self.addButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -257,7 +257,7 @@ static NSUInteger const kRecipientFieldsSection = 2;
             return;
         }
 
-        [self.navigationController popViewControllerAnimated:YES];
+        self.afterSaveAction();
     }];
 
     [operation execute];

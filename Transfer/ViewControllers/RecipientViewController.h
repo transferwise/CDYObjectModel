@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "DataEntryViewController.h"
+#import "Constants.h"
 
 @interface RecipientViewController : DataEntryViewController
+
+@property (nonatomic, copy) TRWActionBlock afterSaveAction;
+@property (nonatomic, copy) NSString *footerButtonTitle;
 
 @end
