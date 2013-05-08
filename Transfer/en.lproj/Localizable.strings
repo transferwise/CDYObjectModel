@@ -96,3 +96,15 @@
 "errors.CRD_NOT_VALID.message" = "Incorrect credentials.";
 "recipient.type.IBAN.name" = "IBAN";
 "recipient.type.SORT_CODE.name" = "UK SORT";
+
+"identification.title" = "Identification";
+"identification.id.document" = "ID document";
+"identification.proof.of.address" = "Proof of address";
+"identification.take.photo" = "Take Photo";
+"identification.reason" = "The reason for your transfer";
+"identification.skip.send" = "Skip and send later";
+"identification.upload.and.continue.button" = "Upload and continue";
+"identification.reason.title" = "We need your proof of identity and address";
+"identification.explanation" = "To proceed with your payment we have to identify you. Similar to any bank or other financial institution we follow anti-money laundering guidelines from HMRC and FSA which require us to verify of our customers";
+"identification.excuse" = "Don't worry. This is slightly upleasant, but normal procedure";
+

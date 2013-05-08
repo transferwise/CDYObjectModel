@@ -18,6 +18,7 @@
 #import "PersonalProfileViewController.h"
 #import "TRWAlertView.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
+#import "IdentificationViewController.h"
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -177,7 +178,11 @@ static NSUInteger const kRowYouSend = 0;
 }
 
 - (IBAction)continuePressed:(id)sender {
+    /*
     PersonalProfileViewController *controller = [[PersonalProfileViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+     */
+    IdentificationViewController *controller = [[IdentificationViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
