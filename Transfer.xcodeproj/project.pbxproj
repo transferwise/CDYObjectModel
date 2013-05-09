@@ -12,7 +12,7 @@
 		1864AC97173B7C2E008773FC /* BusinessProfileViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC91173B7C28008773FC /* BusinessProfileViewController.h */; };
 		1864AC9A173B7C4D008773FC /* BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC99173B7C4D008773FC /* BusinessProfile.m */; };
 		1864AC9B173B7C5E008773FC /* BusinessProfile.h in Resources */ = {isa = PBXBuildFile; fileRef = 1864AC98173B7C4D008773FC /* BusinessProfile.h */; };
-		1864AC9E173B7C80008773FC /* UpdateBusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC9D173B7C80008773FC /* UpdateBusinessProfileOperation.m */; };
+		1864AC9E173B7C80008773FC /* SaveBusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC9D173B7C80008773FC /* SaveBusinessProfileOperation.m */; };
 		1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */; };
 		BB92B144172A747300B6F096 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B143172A747300B6F096 /* CoreText.framework */; };
 		BB92B147172A754100B6F096 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B140172A600000B6F096 /* libOHAttributedLabel.a */; };
@@ -184,8 +184,8 @@
 		1864AC93173B7C28008773FC /* BusinessProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessProfileViewController.xib; sourceTree = "<group>"; };
 		1864AC98173B7C4D008773FC /* BusinessProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfile.h; sourceTree = "<group>"; };
 		1864AC99173B7C4D008773FC /* BusinessProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfile.m; sourceTree = "<group>"; };
-		1864AC9C173B7C80008773FC /* UpdateBusinessProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateBusinessProfileOperation.h; sourceTree = "<group>"; };
-		1864AC9D173B7C80008773FC /* UpdateBusinessProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateBusinessProfileOperation.m; sourceTree = "<group>"; };
+		1864AC9C173B7C80008773FC /* SaveBusinessProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveBusinessProfileOperation.h; sourceTree = "<group>"; };
+		1864AC9D173B7C80008773FC /* SaveBusinessProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveBusinessProfileOperation.m; sourceTree = "<group>"; };
 		1864AC9F173B7C95008773FC /* DeleteRecipientOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteRecipientOperation.h; sourceTree = "<group>"; };
 		1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteRecipientOperation.m; sourceTree = "<group>"; };
 		BB92B13B172A5FFF00B6F096 /* OHAttributedLabel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OHAttributedLabel.xcodeproj; path = OHAttributedLabel/OHAttributedLabel.xcodeproj; sourceTree = "<group>"; };
@@ -647,8 +647,8 @@
 			children = (
 				1864AC9F173B7C95008773FC /* DeleteRecipientOperation.h */,
 				1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */,
-				1864AC9C173B7C80008773FC /* UpdateBusinessProfileOperation.h */,
-				1864AC9D173B7C80008773FC /* UpdateBusinessProfileOperation.m */,
+				1864AC9C173B7C80008773FC /* SaveBusinessProfileOperation.h */,
+				1864AC9D173B7C80008773FC /* SaveBusinessProfileOperation.m */,
 				EA88E67C172F97D50021492C /* CountriesOperation.h */,
 				EA88E67D172F97D50021492C /* CountriesOperation.m */,
 				EAD069081737CF57007C8DEE /* CreateRecipientOperation.h */,
@@ -1138,7 +1138,7 @@
 				EAD85B0B173920C300C22211 /* SavePersonalProfileOperation.m in Sources */,
 				1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */,
 				1864AC9A173B7C4D008773FC /* BusinessProfile.m in Sources */,
-				1864AC9E173B7C80008773FC /* UpdateBusinessProfileOperation.m in Sources */,
+				1864AC9E173B7C80008773FC /* SaveBusinessProfileOperation.m in Sources */,
 				1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,7 +14,7 @@
 #import "TRWProgressHUD.h"
 #import "TRWAlertView.h"
 #import "UIColor+Theme.h"
-#import "UpdateBusinessProfileOperation.h"
+#import "SaveBusinessProfileOperation.h"
 #import "CountrySelectionCell.h"
 
 static NSUInteger const kDetailsSection = 0;
@@ -31,6 +31,7 @@ static NSUInteger const kDetailsSection = 0;
 @property (nonatomic, strong) TextEntryCell *cityCell;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
 @property (nonatomic, strong) ProfileDetails *userDetails;
+@property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
 @end
 
@@ -209,6 +210,7 @@ static NSUInteger const kDetailsSection = 0;
 }
 
 - (void)saveBusinessDetails {
+    /*
     NSArray *objects = [[NSArray alloc] initWithObjects:
                         self.businessNameCell.value,
                         self.registrationNumberCell.value,
@@ -227,12 +229,39 @@ static NSUInteger const kDetailsSection = 0;
                      @"city",
                      @"countryCode", nil];
     
-    NSDictionary *businessProfile = [[NSDictionary alloc]initWithObjects:objects forKeys:keys];
+    NSDictionary *businessProfile = [[NSDictionary alloc]initWithObjects:objects forKeys:keys];*/
+    
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"businessName"] = [self.businessNameCell value];
+    data[@"registrationNumber"] = [self.registrationNumberCell value];
+    data[@"descriptionOfBusiness"] = [self.descriptionCell value];
+    data[@"addressFirstLine"] = [self.addressCell value];
+    data[@"postCode"] = [self.postCodeCell value];
+    data[@"city"] = [self.cityCell value];
+    data[@"countryCode"] = [self.countryCell value];
     
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"business.profile.refreshing.message", nil)];
     
-    [[TransferwiseClient sharedClient] updateBusinessProfileWithDictionary:businessProfile CompletionHandler:^(ProfileDetails *result, NSError *error) {
+    SaveBusinessProfileOperation *operation = [SaveBusinessProfileOperation operationWithData:data];
+    [self setExecutedOperation:operation];
+    
+    [operation setSaveResultHandler:^(ProfileDetails *result, NSError *error) {
+        [hud hide];
+        
+        if (error) {
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"personal.profile.save.error.title", nil) error:error];
+            [alertView show];
+            return;
+        }
+        
+        [self setUserDetails:result];
+        [self loadDetailsToCells];
+    }];
+    
+    [operation execute];
+    
+    /*[[TransferwiseClient sharedClient] updateBusinessProfileWithDictionary:data CompletionHandler:^(ProfileDetails *result, NSError *error) {
         [hud hide];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -250,6 +279,6 @@ static NSUInteger const kDetailsSection = 0;
             
         });
     }];
-    
+    */
 }
 @end

@@ -17,7 +17,6 @@
 @property (nonatomic, strong) UserDetailsOperation *detailsOperation;
 @property (nonatomic, strong) CountriesOperation *countriesOperation;
 @property (nonatomic, strong) CurrencyPairsOperation *currencyOperation;
-@property (nonatomic, strong) UpdateBusinessProfileOperation *updateBusinessProfileOperation;
 
 @end
 
@@ -69,25 +68,6 @@
     [self setCountriesOperation:operation];
     [operation setCompletionHandler:handler];
     [operation execute];
-}
-
-- (void)updateBusinessProfileWithDictionary:(NSDictionary *)dict CompletionHandler:(TWUpdateBusinessDetailsHandler)completion
-{
-    MCLog(@"Update/Create business profile");
-    UpdateBusinessProfileOperation *updateBusinessOperation = [UpdateBusinessProfileOperation updateWithWithDictionary:dict completionHandler:completion];
-    [self setUpdateBusinessProfileOperation:updateBusinessOperation];
-    
-    [updateBusinessOperation setCompletionHandler:^(ProfileDetails *result, NSError *error) {
-        if (result) {
-            [Credentials setDisplayName:[result displayName]];
-        }
-        
-        if (completion) {
-            completion(result, error);
-        }
-    }];
-    
-    [updateBusinessOperation execute];
 }
 
 - (void)updateCurrencyPairsWithCompletionHandler:(CurrencyPairsBlock)handler {
