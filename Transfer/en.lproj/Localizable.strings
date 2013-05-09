@@ -96,7 +96,7 @@
 "recipient.details.iban.base" = "IBAN: %@";
 
 "business.profile.details.section.title" = "Business details";
-"buisiness.profile.address.section.title" = "Address";
+"business.profile.address.section.title" = "Address";
 "business.profile.controller.title" = "Business profile";
 "business.profile.name.label" = "Business name";
 "business.profile.registration.number.label" = "Registration number";
@@ -111,7 +111,8 @@
 "business.profile.save.button.title" = "Save profile";
 "business.profile.validation.error.message" = "Please check that all fields are filled.";
 "business.profile.validation.error.title" = "Check input";
-
+"business.profile.refresh.error.title" = "Refresh error";
+"business.profile.refreshing.message" = "Refreshing...";
 
 "settings.row.logout" = "Sign out";
 "settings.row.personal.profile" = "Your personal profile";

@@ -32,4 +32,8 @@
     return profile;
 }
 
+- (BOOL)businessVerifiedValue {
+    return [self.businessVerified boolValue];
+}
+
 @end

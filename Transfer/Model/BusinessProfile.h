@@ -20,4 +20,6 @@
 
 + (BusinessProfile *)profileWithData:(NSDictionary *)data;
 
+- (BOOL)businessVerifiedValue;
+
 @end

@@ -139,7 +139,7 @@ static NSUInteger const kDetailsSection = 0;
     if (section == kDetailsSection) {
         return NSLocalizedString(@"business.profile.details.section.title", nil);
     } else {
-        return NSLocalizedString(@"buisiness.profile.address.section.title", nil);
+        return NSLocalizedString(@"business.profile.address.section.title", nil);
     }
 }
 
@@ -218,14 +218,14 @@ static NSUInteger const kDetailsSection = 0;
     [self.cityCell setValue:profile.city];
     [self.countryCell setValue:profile.countryCode];
     
-    [self.businessNameCell setEditable:YES];
-    [self.registrationNumberCell setEditable:YES];
-    [self.descriptionCell setEditable:YES];
+    [self.businessNameCell setEditable:![profile businessVerifiedValue]];
+    [self.registrationNumberCell setEditable:![profile businessVerifiedValue]];
+    [self.descriptionCell setEditable:![profile businessVerifiedValue]];
     
-    [self.addressCell setEditable:YES];
-    [self.postCodeCell setEditable:YES];
-    [self.cityCell setEditable:YES];
-    [self.countryCell setEditable:YES];
+    [self.addressCell setEditable:![profile businessVerifiedValue]];
+    [self.postCodeCell setEditable:![profile businessVerifiedValue]];
+    [self.cityCell setEditable:![profile businessVerifiedValue]];
+    [self.countryCell setEditable:![profile businessVerifiedValue]];
 }
 
 
