@@ -21,14 +21,14 @@
 {
     BusinessProfile *profile = [[BusinessProfile alloc] init];
     [profile setBusinessName:data[@"name"]];
-    [profile setRegistrationNumber:data[@"registration_number"]];
+    [profile setRegistrationNumber:data[@"registrationNumber"]];
     [profile setDescriptionOfBusiness:data[@"description"]];
-    [profile setIsDirector:data[@"is_director"]];
-    [profile setAddressFirstLine:data[@"address_first_line"]];
-    [profile setPostCode:data[@"post_code"]];
+    [profile setIsDirector:data[@"isDirector"]];
+    [profile setAddressFirstLine:data[@"addressFirstLine"]];
+    [profile setPostCode:data[@"postCode"]];
     [profile setCity:data[@"city"]];
-    [profile setCountryCode:data[@"country_code"]];
-    [profile setBusinessVerified:data[@"business_verified"]];
+    [profile setCountryCode:data[@"countryCode"]];
+    [profile setBusinessVerified:data[@"businessVerified"]];
     return profile;
 }
 

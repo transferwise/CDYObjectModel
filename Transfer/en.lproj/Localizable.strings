@@ -108,6 +108,7 @@
 "business.profile.refreshing.message" = "Loading profile...";
 "business.profile.refresh.error.title" = "Profile load error";
 "business.profile.refresh.error.message" = "Could not load business profile. Please try again later.";
+"business.profile.save.button.title" = "Save profile";
 
 "settings.row.logout" = "Sign out";
 "settings.row.personal.profile" = "Your personal profile";

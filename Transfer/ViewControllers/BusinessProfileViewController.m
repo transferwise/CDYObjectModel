@@ -16,6 +16,7 @@
 #import "UIColor+Theme.h"
 #import "SaveBusinessProfileOperation.h"
 #import "CountrySelectionCell.h"
+#import "BlueButton.h"
 
 static NSUInteger const kDetailsSection = 0;
 
@@ -32,6 +33,8 @@ static NSUInteger const kDetailsSection = 0;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
 @property (nonatomic, strong) ProfileDetails *userDetails;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
+@property (strong, nonatomic) IBOutlet UIView *footerView;
+@property (strong, nonatomic) IBOutlet BlueButton *footerButton;
 
 @end
 
@@ -96,9 +99,9 @@ static NSUInteger const kDetailsSection = 0;
     [addressCells addObject:countryCell];
     [countryCell configureWithTitle:NSLocalizedString(@"business.profile.country.label", nil) value:@""];
     
-    [self setPresentedCells:@[businessCells, addressCells]];
+    [self.footerButton setTitle:NSLocalizedString(@"business.profile.save.button.title", nil) forState:UIControlStateNormal];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveBusinessDetails)];
+    [self setPresentedCells:@[businessCells, addressCells]];
 
 }
 
@@ -192,6 +195,7 @@ static NSUInteger const kDetailsSection = 0;
                 [self setPresentedSectionCells:self.presentedCells];
                 [self setUserDetails:result];
                 [self loadDetailsToCells];
+                [self.tableView setTableFooterView:self.footerView];
                 [self.tableView reloadData];
                 });
             }];
@@ -209,27 +213,8 @@ static NSUInteger const kDetailsSection = 0;
     [self.countryCell setValue:profile.countryCode];
 }
 
-- (void)saveBusinessDetails {
-    /*
-    NSArray *objects = [[NSArray alloc] initWithObjects:
-                        self.businessNameCell.value,
-                        self.registrationNumberCell.value,
-                        self.descriptionCell.value,
-                        self.addressCell.value,
-                        self.postCodeCell.value,
-                        self.cityCell.value,
-                        self.countryCell.value, nil];
-    
-    NSArray *keys = [[NSArray alloc] initWithObjects:
-                     @"businessName",
-                     @"registrationNumber",
-                     @"descriptionOfBusiness",
-                     @"addressFirstLine",
-                     @"postCode",
-                     @"city",
-                     @"countryCode", nil];
-    
-    NSDictionary *businessProfile = [[NSDictionary alloc]initWithObjects:objects forKeys:keys];*/
+
+- (IBAction)footerButtonClicked:(id)sender {
     
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     data[@"businessName"] = [self.businessNameCell value];
@@ -260,25 +245,10 @@ static NSUInteger const kDetailsSection = 0;
     }];
     
     [operation execute];
-    
-    /*[[TransferwiseClient sharedClient] updateBusinessProfileWithDictionary:data CompletionHandler:^(ProfileDetails *result, NSError *error) {
-        [hud hide];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (error) {
-                TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"business.profile.refresh.error.title", nil)
-                                                                   message:NSLocalizedString(@"business.profile.refresh.error.message", nil)];
-                [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-                [alertView show];
-                return;
-            }
-            
-            // compare returned profile details with current profile details
-            
-            // what to do if not the same?
-            
-        });
-    }];
-    */
+}
+- (void)viewDidUnload {
+    [self setFooterView:nil];
+    [self setFooterButton:nil];
+    [super viewDidUnload];
 }
 @end

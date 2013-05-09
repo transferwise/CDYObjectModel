@@ -32,7 +32,7 @@
         PersonalProfile *profile = [PersonalProfile profileWithData:personalProfileData];
         [details setPersonalProfile:profile];
     }
-    NSDictionary *businessProfileData = data[@"business_profile"];
+    NSDictionary *businessProfileData = data[@"businessProfile"];
     if (businessProfileData && [businessProfileData class] != [NSNull class]) {
         BusinessProfile *profile = [BusinessProfile profileWithData:businessProfileData];
         [details setBusinessProfile:profile];
