@@ -5,7 +5,9 @@
 "button.title.log.in" = "Log in";
 "button.title.ok" = "OK";
 
-
+"confirm.payment.controller.title" = "Confirm";
+"confirm.payment.sender.marker.label" = "Sender (you)";
+"confirm.payment.email.label" = "E-mail";
 
 "contacts.controller.title" = "Contacts";
 "contacts.controller.refreshing.message" = "Refreshing contacts";

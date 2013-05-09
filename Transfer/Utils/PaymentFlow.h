@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class ProfileDetails;
+
 @interface PaymentFlow : NSObject
 
 - (id)initWithPresentingController:(UINavigationController *)controller;

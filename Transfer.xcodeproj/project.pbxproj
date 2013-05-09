@@ -30,6 +30,12 @@
 		EA13E04E171BEF710019FBF0 /* TextEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */; };
 		EA222E2E173A3A6500C5D613 /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E2D173A3A6500C5D613 /* DeleteRecipientOperation.m */; };
 		EA222E33173A676000C5D613 /* PaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E32173A676000C5D613 /* PaymentFlow.m */; };
+		EA222E38173A861000C5D613 /* ConfirmPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E36173A861000C5D613 /* ConfirmPaymentViewController.m */; };
+		EA222E39173A861000C5D613 /* ConfirmPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E37173A861000C5D613 /* ConfirmPaymentViewController.xib */; };
+		EA222E3C173A8A7100C5D613 /* ConfirmPaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E3B173A8A7100C5D613 /* ConfirmPaymentCell.m */; };
+		EA222E3E173A8A7C00C5D613 /* ConfirmPaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E3D173A8A7C00C5D613 /* ConfirmPaymentCell.xib */; };
+		EA222E41173A8D0900C5D613 /* ProfileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA222E3F173A8D0900C5D613 /* ProfileIcon.png */; };
+		EA222E42173A8D0900C5D613 /* ProfileIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA222E40173A8D0900C5D613 /* ProfileIcon@2x.png */; };
 		EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */; };
 		EA35C73A17324AF2005602F7 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73417324AF2005602F7 /* Icon-Small.png */; };
 		EA35C73B17324AF2005602F7 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73517324AF2005602F7 /* Icon-Small@2x.png */; };
@@ -207,6 +213,14 @@
 		EA222E2D173A3A6500C5D613 /* DeleteRecipientOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteRecipientOperation.m; sourceTree = "<group>"; };
 		EA222E31173A676000C5D613 /* PaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentFlow.h; sourceTree = "<group>"; };
 		EA222E32173A676000C5D613 /* PaymentFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentFlow.m; sourceTree = "<group>"; };
+		EA222E35173A861000C5D613 /* ConfirmPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmPaymentViewController.h; sourceTree = "<group>"; };
+		EA222E36173A861000C5D613 /* ConfirmPaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmPaymentViewController.m; sourceTree = "<group>"; };
+		EA222E37173A861000C5D613 /* ConfirmPaymentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfirmPaymentViewController.xib; sourceTree = "<group>"; };
+		EA222E3A173A8A7100C5D613 /* ConfirmPaymentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmPaymentCell.h; sourceTree = "<group>"; };
+		EA222E3B173A8A7100C5D613 /* ConfirmPaymentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmPaymentCell.m; sourceTree = "<group>"; };
+		EA222E3D173A8A7C00C5D613 /* ConfirmPaymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfirmPaymentCell.xib; sourceTree = "<group>"; };
+		EA222E3F173A8D0900C5D613 /* ProfileIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProfileIcon.png; sourceTree = "<group>"; };
+		EA222E40173A8D0900C5D613 /* ProfileIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProfileIcon@2x.png"; sourceTree = "<group>"; };
 		EA2B23951721323E001AE9DE /* CurrencyPairsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyPairsOperation.h; sourceTree = "<group>"; };
 		EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyPairsOperation.m; sourceTree = "<group>"; };
 		EA35C73417324AF2005602F7 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
@@ -489,6 +503,9 @@
 		EA13E033171BE0E50019FBF0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				EA222E3A173A8A7100C5D613 /* ConfirmPaymentCell.h */,
+				EA222E3B173A8A7100C5D613 /* ConfirmPaymentCell.m */,
+				EA222E3D173A8A7C00C5D613 /* ConfirmPaymentCell.xib */,
 				EA88E688172F97E20021492C /* CountrySelectionCell.h */,
 				EA88E689172F97E20021492C /* CountrySelectionCell.m */,
 				EA88E68A172F97E20021492C /* CountrySelectionCell.xib */,
@@ -741,6 +758,9 @@
 		EAAA148D171BD057005B9430 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				EA222E35173A861000C5D613 /* ConfirmPaymentViewController.h */,
+				EA222E36173A861000C5D613 /* ConfirmPaymentViewController.m */,
+				EA222E37173A861000C5D613 /* ConfirmPaymentViewController.xib */,
 				EAD3967D171BD57000F6D011 /* ContactsViewController.h */,
 				EAD3967E171BD57000F6D011 /* ContactsViewController.m */,
 				EAD3967F171BD57000F6D011 /* ContactsViewController.xib */,
@@ -846,6 +866,8 @@
 				EAD7D4C5171D47BE0099063F /* NavigationBar@2x.png */,
 				EAA54F3A1733CA7800B65BF3 /* NewPaymentTabIcon.png */,
 				EAA54F3B1733CA7800B65BF3 /* NewPaymentTabIcon@2x.png */,
+				EA222E3F173A8D0900C5D613 /* ProfileIcon.png */,
+				EA222E40173A8D0900C5D613 /* ProfileIcon@2x.png */,
 				EA35C74117324AFE005602F7 /* SeparatorLine.png */,
 				EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */,
 				EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */,
@@ -1000,6 +1022,10 @@
 				EAEA31161738DB8600CCF1A2 /* CheckSelected@2x.png in Resources */,
 				EAEA311C1738F01600CCF1A2 /* Down.png in Resources */,
 				EAEA311D1738F01600CCF1A2 /* Down@2x.png in Resources */,
+				EA222E39173A861000C5D613 /* ConfirmPaymentViewController.xib in Resources */,
+				EA222E3E173A8A7C00C5D613 /* ConfirmPaymentCell.xib in Resources */,
+				EA222E41173A8D0900C5D613 /* ProfileIcon.png in Resources */,
+				EA222E42173A8D0900C5D613 /* ProfileIcon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1120,6 +1146,8 @@
 				EAD85B0B173920C300C22211 /* SavePersonalProfileOperation.m in Sources */,
 				EA222E2E173A3A6500C5D613 /* DeleteRecipientOperation.m in Sources */,
 				EA222E33173A676000C5D613 /* PaymentFlow.m in Sources */,
+				EA222E38173A861000C5D613 /* ConfirmPaymentViewController.m in Sources */,
+				EA222E3C173A8A7100C5D613 /* ConfirmPaymentCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

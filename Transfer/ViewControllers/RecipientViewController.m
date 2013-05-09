@@ -82,6 +82,7 @@ static NSUInteger const kRecipientFieldsSection = 2;
 
     TextEntryCell *nameCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setNameCell:nameCell];
+    [nameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [nameCell configureWithTitle:NSLocalizedString(@"recipient.controller.cell.label.name", nil) value:@""];
     [recipientCells addObject:nameCell];
 

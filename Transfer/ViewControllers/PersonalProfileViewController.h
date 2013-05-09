@@ -10,9 +10,12 @@
 #import "DataEntryViewController.h"
 #import "Constants.h"
 
+@class ProfileDetails;
+
 @interface PersonalProfileViewController : DataEntryViewController
 
 @property (nonatomic, copy) TRWActionBlock afterSaveAction;
 @property (nonatomic, copy) NSString *footerButtonTitle;
+@property (nonatomic, strong, readonly) ProfileDetails *userDetails;
 
 @end

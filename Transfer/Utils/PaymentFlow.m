@@ -9,10 +9,13 @@
 #import "PaymentFlow.h"
 #import "PersonalProfileViewController.h"
 #import "RecipientViewController.h"
+#import "ProfileDetails.h"
+#import "ConfirmPaymentViewController.h"
 
 @interface PaymentFlow ()
 
 @property (nonatomic, strong) UINavigationController *navigationController;
+@property (nonatomic, strong) ProfileDetails *userDetails;
 
 @end
 
@@ -30,8 +33,10 @@
 
 - (void)presentSenderDetails {
     PersonalProfileViewController *controller = [[PersonalProfileViewController alloc] init];
+    __block __weak  PersonalProfileViewController *weakController = controller;
     [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.continue.to.recipient.button.title", nil)];
     [controller setAfterSaveAction:^{
+        [self setUserDetails:weakController.userDetails];
         [self presentRecipientDetails];
     }];
     [self.navigationController pushViewController:controller animated:YES];
@@ -48,6 +53,9 @@
 
 - (void)presentPaymentConfirmation {
     MCLog(@"presentPaymentConfirmation");
+    ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
+    [controller setSenderDetails:self.userDetails];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end
