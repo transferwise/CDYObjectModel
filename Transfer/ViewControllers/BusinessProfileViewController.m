@@ -17,6 +17,8 @@
 #import "SaveBusinessProfileOperation.h"
 #import "CountrySelectionCell.h"
 #import "BlueButton.h"
+#import "UIApplication+Keyboard.h"
+#import "NSString+Validation.h"
 
 static NSUInteger const kDetailsSection = 0;
 
@@ -215,6 +217,15 @@ static NSUInteger const kDetailsSection = 0;
 
 
 - (IBAction)footerButtonClicked:(id)sender {
+    [UIApplication dismissKeyboard];
+    
+    if (![self inputValid]) {
+        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"business.profile.validation.error.title", nil)
+                                                           message:NSLocalizedString(@"business.profile.validation.error.message", nil)];
+        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+        [alertView show];
+        return;
+    }
     
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     data[@"businessName"] = [self.businessNameCell value];
@@ -226,7 +237,7 @@ static NSUInteger const kDetailsSection = 0;
     data[@"countryCode"] = [self.countryCell value];
     
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
-    [hud setMessage:NSLocalizedString(@"business.profile.refreshing.message", nil)];
+    [hud setMessage:NSLocalizedString(@"business.profile.saving.message", nil)];
     
     SaveBusinessProfileOperation *operation = [SaveBusinessProfileOperation operationWithData:data];
     [self setExecutedOperation:operation];
@@ -235,7 +246,7 @@ static NSUInteger const kDetailsSection = 0;
         [hud hide];
         
         if (error) {
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"personal.profile.save.error.title", nil) error:error];
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"business.profile.save.error.title", nil) error:error];
             [alertView show];
             return;
         }
@@ -246,6 +257,13 @@ static NSUInteger const kDetailsSection = 0;
     
     [operation execute];
 }
+
+- (BOOL)inputValid {
+    return [[self.businessNameCell value] hasValue] && [[self.registrationNumberCell value] hasValue] && [[self.descriptionCell value] hasValue]
+    && [[self.addressCell value] hasValue] && [[self.postCodeCell value] hasValue] && [[self.cityCell value] hasValue]
+    && [[self.countryCell value] hasValue];
+}
+
 - (void)viewDidUnload {
     [self setFooterView:nil];
     [self setFooterButton:nil];

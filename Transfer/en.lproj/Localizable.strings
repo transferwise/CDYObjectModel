@@ -105,10 +105,13 @@
 "business.profile.post.code.label" = "Post code";
 "business.profile.city.label" = "City";
 "business.profile.country.label" = "Country";
-"business.profile.refreshing.message" = "Loading profile...";
-"business.profile.refresh.error.title" = "Profile load error";
+"business.profile.saving.message" = "Loading profile...";
+"business.profile.save.error.title" = "Save profile error";
 "business.profile.refresh.error.message" = "Could not load business profile. Please try again later.";
 "business.profile.save.button.title" = "Save profile";
+"business.profile.validation.error.message" = "Please check that all fields are filled.";
+"business.profile.validation.error.title" = "Check input";
+
 
 "settings.row.logout" = "Sign out";
 "settings.row.personal.profile" = "Your personal profile";
