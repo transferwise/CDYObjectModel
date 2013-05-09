@@ -68,6 +68,7 @@ static NSUInteger const kDetailsSection = 0;
     [self setBusinessNameCell:businessNameCell];
     [businessCells addObject:businessNameCell];
     [businessNameCell configureWithTitle:NSLocalizedString(@"business.profile.name.label", nil) value:@""];
+    [businessNameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     
     TextEntryCell *registrationNumberCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setRegistrationNumberCell:registrationNumberCell];
@@ -78,6 +79,7 @@ static NSUInteger const kDetailsSection = 0;
     [self setDescriptionCell:descriptionCell];
     [businessCells addObject:descriptionCell];
     [descriptionCell configureWithTitle:NSLocalizedString(@"business.profile.description.label", nil) value:@""];
+    [descriptionCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     
     NSMutableArray *addressCells = [NSMutableArray array];
     
@@ -85,6 +87,7 @@ static NSUInteger const kDetailsSection = 0;
     [self setAddressCell:addressCell];
     [addressCells addObject:addressCell];
     [addressCell configureWithTitle:NSLocalizedString(@"business.profile.address.label", nil) value:@""];
+    [addressCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     
     TextEntryCell *postCodeCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setPostCodeCell:postCodeCell];
@@ -95,6 +98,7 @@ static NSUInteger const kDetailsSection = 0;
     [self setCityCell:cityCell];
     [addressCells addObject:cityCell];
     [cityCell configureWithTitle:NSLocalizedString(@"business.profile.city.label", nil) value:@""];
+    [cityCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     
     CountrySelectionCell *countryCell = [self.tableView dequeueReusableCellWithIdentifier:TWCountrySelectionCellIdentifier];
     [self setCountryCell:countryCell];
@@ -213,6 +217,15 @@ static NSUInteger const kDetailsSection = 0;
     [self.postCodeCell setValue:profile.postCode];
     [self.cityCell setValue:profile.city];
     [self.countryCell setValue:profile.countryCode];
+    
+    [self.businessNameCell setEditable:YES];
+    [self.registrationNumberCell setEditable:YES];
+    [self.descriptionCell setEditable:YES];
+    
+    [self.addressCell setEditable:YES];
+    [self.postCodeCell setEditable:YES];
+    [self.cityCell setEditable:YES];
+    [self.countryCell setEditable:YES];
 }
 
 
