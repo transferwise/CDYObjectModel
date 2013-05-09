@@ -12,8 +12,14 @@
 
 @property (nonatomic, copy, readonly) NSString *code;
 @property (nonatomic, strong, readonly) NSArray *targets;
+@property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, copy, readonly) NSString *defaultRecipientType;
+@property (nonatomic, strong, readonly) NSArray *recipientTypes;
+
+- (NSString *)formattedCodeAndName;
 
 + (Currency *)currencyWithSourceData:(NSDictionary *)data;
 + (Currency *)currencyWithCode:(NSString *)code;
++ (Currency *)currencyWithRecipientData:(NSDictionary *)data;
 
 @end

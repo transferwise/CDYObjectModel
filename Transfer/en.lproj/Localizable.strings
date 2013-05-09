@@ -1,11 +1,17 @@
 "button.title.back" = "Back";
+"button.title.cancel" = "Cancel";
+"button.title.delete" = "Delete";
 "button.title.get.started" = "Get started";
 "button.title.log.in" = "Log in";
 "button.title.ok" = "OK";
 
 
+
 "contacts.controller.title" = "Contacts";
 "contacts.controller.refreshing.message" = "Refreshing contacts";
+"contacts.controller.delete.confirmation.message" = "Are you sure you wish to remove %@ from contacts?";
+"contacts.controller.delete.conformation.title" = "Delete contact";
+"contacts.controller.deleting.message" = "Removing...";
 
 "contacts.refresh.error.title" = "Refresh error";
 "contacts.refresh.error.message" = "Could not refresh contacts list";
@@ -30,7 +36,7 @@
 "money.entry.they.receive.title" = "They get";
 "money.entry.you.send.title" = "You send";
 
-"payment.controller.title" = "New payment";
+"payment.controller.calculation.error.title" = "Calculation failed";
 "payment.controller.payment.date.message" = "Payment will be received no later than\n%@";
 "payment.controller.continue.to.details.button.title" = "Continue to your details";
 "payment.controller.deposit.label" = "Deposit";
@@ -38,6 +44,7 @@
 "payment.controller.currency.cost.label" = "Currency cost";
 "payment.controller.estimated.exchange.rate.label" = "Estimated exchange rate";
 "payment.controller.you.get.label" = "You get (estimated)";
+"payment.controller.title" = "New payment";
 
 "personal.profile.controller.title" = "Your details";
 
@@ -58,12 +65,32 @@
 "personal.profile.address.label" = "Address";
 "personal.profile.post.code.label" = "Post code";
 "personal.profile.city.label" = "City";
+"personal.profile.phone.label" = "Phone";
 "personal.profile.country.label" = "Country";
 "personal.profile.refreshing.message" = "Loading profile...";
 "personal.profile.refresh.error.title" = "Profile load error";
 "personal.profile.refresh.error.message" = "Could not load user profile. Please try again later.";
 "personal.profile.address.section.title" = "Address";
 "personal.profile.personal.section.title" = "Personal details";
+"personal.profile.validation.error.title" = "Check input";
+"personal.profile.validation.error.message" = "Please check that all fields are filled.";
+"personal.profile.save.button.title" = "Save profile";
+"personal.profile.saving.message" = "Saving profile...";
+"personal.profile.save.error.title" = "Save profile error";
+
+"recipient.controller.add.button.title" = "Add recipient";
+"recipient.controller.cell.label.name" = "Name";
+"recipient.controller.creating.message" = "Creating...";
+"recipient.controller.refreshing.message" = "Pulling data...";
+"recipient.controller.save.error.title" = "Add error";
+"recipient.controller.section.title.currency" = "Currency";
+"recipient.controller.section.title.recipient" = "Recipient";
+"recipient.controller.section.title.type.fields" = "Transfer details";
+"recipient.controller.title" = "Recipient details";
+"recipient.controller.validation.error.empty.name" = "Name not entered";
+"recipient.controller.validation.error.field.empty" = "%@ not entered";
+
+"recipient.save.error.title" = "Can't save";
 
 "recipient.details.bic.base" = "BIC: %@";
 "recipient.details.iban.base" = "IBAN: %@";
@@ -97,3 +124,5 @@
 "whypopup.button" = "Sounds cool";
 
 "errors.CRD_NOT_VALID.message" = "Incorrect credentials.";
+"recipient.type.IBAN.name" = "IBAN";
+"recipient.type.SORT_CODE.name" = "UK SORT";

@@ -21,6 +21,13 @@
 
 @implementation Recipient
 
+- (NSString *)description {
+    NSMutableString *description = [NSMutableString stringWithFormat:@"<%@: ", NSStringFromClass([self class])];
+    [description appendString:self.name];
+    [description appendString:@">"];
+    return description;
+}
+
 + (Recipient *)recipientWithData:(NSDictionary *)data {
     Recipient *recipient = [[Recipient alloc] init];
     [recipient setRecipientId:data[@"id"]];

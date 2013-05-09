@@ -30,9 +30,14 @@
     NSMutableString *errorsString = [NSMutableString string];
 
     for (NSDictionary *error in errors) {
-        NSString *code = error[@"code"];
-        NSString *messageKey = [NSString stringWithFormat:@"errors.%@.message", code];
-        NSString *message = NSLocalizedString(messageKey, nil);
+        NSString *message = error[@"message"];
+
+        if (!message) {
+            NSString *code = error[@"code"];
+            NSString *messageKey = [NSString stringWithFormat:@"errors.%@.message", code];
+            message = NSLocalizedString(messageKey, nil);
+        }
+
         [errorsString appendIssue:message];
     }
 

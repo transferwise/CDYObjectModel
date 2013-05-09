@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Constants.h"
 
 @interface TRWAlertView : UIAlertView
 
-+ (TRWAlertView *)alertViewWithTitle:(NSString *)title message:(NSString *)message;
+@property (nonatomic, copy) TRWActionBlock leftButtonAction;
+
 - (void)setConfirmButtonTitle:(NSString *)title;
+- (void)setLeftButtonTitle:(NSString *)leftButtonTitle rightButtonTitle:(NSString *)rightButtonTitle;
+
++ (TRWAlertView *)alertViewWithTitle:(NSString *)title message:(NSString *)message;
++ (TRWAlertView *)errorAlertWithTitle:(NSString *)errorTitle error:(NSError *)error;
 
 @end

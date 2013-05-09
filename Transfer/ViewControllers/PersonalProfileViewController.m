@@ -16,6 +16,9 @@
 #import "PersonalProfile.h"
 #import "DateEntryCell.h"
 #import "CountrySelectionCell.h"
+#import "NSString+Validation.h"
+#import "SavePersonalProfileOperation.h"
+#import "UIApplication+Keyboard.h"
 
 static NSUInteger const kPersonalSection = 0;
 
@@ -26,12 +29,18 @@ static NSUInteger const kPersonalSection = 0;
 @property (nonatomic, strong) TextEntryCell *firstNameCell;
 @property (nonatomic, strong) TextEntryCell *lastNameCell;
 @property (nonatomic, strong) TextEntryCell *emailCell;
+@property (nonatomic, strong) TextEntryCell *phoneNumberCell;
 @property (nonatomic, strong) TextEntryCell *dateOfBirthCell;
 @property (nonatomic, strong) TextEntryCell *addressCell;
 @property (nonatomic, strong) TextEntryCell *postCodeCell;
 @property (nonatomic, strong) TextEntryCell *cityCell;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
 @property (nonatomic, strong) ProfileDetails *userDetails;
+@property (nonatomic, strong) IBOutlet UIView *footer;
+@property (nonatomic, strong) IBOutlet UIButton *footerButton;
+@property (nonatomic, strong) TransferwiseOperation *executedOperation;
+
+- (IBAction)footerButtonPressed:(id)sender;
 
 @end
 
@@ -61,16 +70,25 @@ static NSUInteger const kPersonalSection = 0;
     [self setFirstNameCell:firstNameCell];
     [personalCells addObject:firstNameCell];
     [firstNameCell configureWithTitle:NSLocalizedString(@"personal.profile.first.name.label", nil) value:@""];
+    [firstNameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
 
     TextEntryCell *lastNameCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setLastNameCell:lastNameCell];
     [personalCells addObject:lastNameCell];
     [lastNameCell configureWithTitle:NSLocalizedString(@"personal.profile.last.name.label", nil) value:@""];
+    [lastNameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
 
     TextEntryCell *emailCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setEmailCell:emailCell];
     [personalCells addObject:emailCell];
     [emailCell configureWithTitle:NSLocalizedString(@"personal.profile.email.label", nil) value:@""];
+    [emailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
+
+    //TODO jaanus: phone pad with custom accessory view
+    TextEntryCell *phoneCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+    [self setPhoneNumberCell:phoneCell];
+    [personalCells addObject:phoneCell];
+    [phoneCell configureWithTitle:NSLocalizedString(@"personal.profile.phone.label", nil) value:@""];
 
     DateEntryCell *dateOfBirthCell = [self.tableView dequeueReusableCellWithIdentifier:TWDateEntryCellIdentifier];
     [self setDateOfBirthCell:dateOfBirthCell];
@@ -83,6 +101,7 @@ static NSUInteger const kPersonalSection = 0;
     [self setAddressCell:addressCell];
     [addressCells addObject:addressCell];
     [addressCell configureWithTitle:NSLocalizedString(@"personal.profile.address.label", nil) value:@""];
+    [addressCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
 
     TextEntryCell *postCodeCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setPostCodeCell:postCodeCell];
@@ -93,6 +112,7 @@ static NSUInteger const kPersonalSection = 0;
     [self setCityCell:cityCell];
     [addressCells addObject:cityCell];
     [cityCell configureWithTitle:NSLocalizedString(@"personal.profile.city.label", nil) value:@""];
+    [cityCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
 
     CountrySelectionCell *countryCell = [self.tableView dequeueReusableCellWithIdentifier:TWCountrySelectionCellIdentifier];
     [self setCountryCell:countryCell];
@@ -100,6 +120,8 @@ static NSUInteger const kPersonalSection = 0;
     [countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
 
     [self setPresentedCells:@[personalCells, addressCells]];
+
+    [self.footerButton setTitle:NSLocalizedString(@"personal.profile.save.button.title", nil) forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -154,6 +176,7 @@ static NSUInteger const kPersonalSection = 0;
                 [self setPresentedSectionCells:self.presentedCells];
                 [self setUserDetails:result];
                 [self loadDetailsToCells];
+                [self.tableView setTableFooterView:self.footer];
                 [self.tableView reloadData];
             });
         }];
@@ -165,11 +188,71 @@ static NSUInteger const kPersonalSection = 0;
     [self.firstNameCell setValue:profile.firstName];
     [self.lastNameCell setValue:profile.lastName];
     [self.emailCell setValue:self.userDetails.email];
+    [self.phoneNumberCell setValue:profile.phoneNumber];
     [self.dateOfBirthCell setValue:profile.dateOfBirthString];
     [self.addressCell setValue:profile.addressFirstLine];
     [self.postCodeCell setValue:profile.postCode];
     [self.cityCell setValue:profile.city];
     [self.countryCell setValue:profile.countryCode];
+
+    [self.firstNameCell setEditable:![profile identityVerifiedValue]];
+    [self.lastNameCell setEditable:![profile identityVerifiedValue]];
+    [self.dateOfBirthCell setEditable:![profile identityVerifiedValue]];
+
+    [self.addressCell setEditable:![profile addressVerifiedValue]];
+    [self.postCodeCell setEditable:![profile addressVerifiedValue]];
+    [self.cityCell setEditable:![profile addressVerifiedValue]];
+    [self.countryCell setEditable:![profile addressVerifiedValue]];
+}
+
+- (IBAction)footerButtonPressed:(id)sender {
+    [UIApplication dismissKeyboard];
+
+    if (![self inputValid]) {
+        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
+                                                           message:NSLocalizedString(@"personal.profile.validation.error.message", nil)];
+        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+        [alertView show];
+        return;
+    }
+
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    [hud setMessage:NSLocalizedString(@"personal.profile.saving.message", nil)];
+
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"firstName"] = [self.firstNameCell value];
+    data[@"lastName"] = [self.lastNameCell value];
+    data[@"dateOfBirth"] = [self.dateOfBirthCell value];
+    data[@"phoneNumber"] = [self.phoneNumberCell value];
+    data[@"addressFirstLine"] = [self.addressCell value];
+    data[@"postCode"] = [self.postCodeCell value];
+    data[@"city"] = [self.cityCell value];
+    data[@"countryCode"] = [self.countryCell value];
+
+    SavePersonalProfileOperation *operation = [SavePersonalProfileOperation operationWithData:data];
+    [self setExecutedOperation:operation];
+
+    [operation setSaveResultHandler:^(ProfileDetails *result, NSError *error) {
+        [hud hide];
+
+        if (error) {
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"personal.profile.save.error.title", nil) error:error];
+            [alertView show];
+            return;
+        }
+
+        [self setUserDetails:result];
+        [self loadDetailsToCells];
+    }];
+
+    [operation execute];
+}
+
+- (BOOL)inputValid {
+    return [[self.firstNameCell value] hasValue] && [[self.lastNameCell value] hasValue] && [[self.emailCell value] hasValue]
+            && [[self.phoneNumberCell value] hasValue] && [[self.dateOfBirthCell value] hasValue]
+            && [[self.addressCell value] hasValue] && [[self.postCodeCell value] hasValue] && [[self.cityCell value] hasValue]
+            && [[self.countryCell value] hasValue];
 }
 
 @end

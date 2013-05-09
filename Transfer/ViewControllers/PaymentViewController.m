@@ -15,6 +15,8 @@
 #import "Currency.h"
 #import "TransferwiseClient.h"
 #import "TRWProgressHUD.h"
+#import "PersonalProfileViewController.h"
+#import "TRWAlertView.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
@@ -37,6 +39,8 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) IBOutlet UILabel *exchangeRateValueLabel;
 @property (nonatomic, strong) IBOutlet UILabel *youGetTitleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *youGetValueLabel;
+
+- (IBAction)continuePressed:(id)sender;
 
 @end
 
@@ -79,6 +83,12 @@ static NSUInteger const kRowYouSend = 0;
         MCLog(@"Calculation result:%@", result);
         MCLog(@"Calculation error:%@", error);
 
+        if (error) {
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"payment.controller.calculation.error.title", nil) error:error];
+            [alertView show];
+            return;
+        }
+
         [self showPaymentReceivedOnDate:[[NSDate date] dateByAddingTimeInterval:60 * 60 * 24]];
         [self fillDepositFieldsWithResult:result];
 
@@ -99,11 +109,20 @@ static NSUInteger const kRowYouSend = 0;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    [self.tabBarController.navigationItem setRightBarButtonItem:nil];
+
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"introduction.refreshing.currencies.message", nil)];
 
     [[TransferwiseClient sharedClient] updateCurrencyPairsWithCompletionHandler:^(NSArray *currencies, NSError *error) {
         [hud hide];
+
+        if (error) {
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"payment.controller.calculation.error.title", nil) error:error];
+            [alertView show];
+            return;
+        }
+
         [self.calculator setCurrencies:currencies];
         [self.calculator forceCalculate];
     }];
@@ -155,6 +174,11 @@ static NSUInteger const kRowYouSend = 0;
     [self.currencyCostValueLabel setText:[result transferwisePayOutStringWithCurrency]];
     [self.exchangeRateValueLabel setText:[result transferwiseRateString]];
     [self.youGetValueLabel setText:[result transferwisePayOutStringWithCurrency]];
+}
+
+- (IBAction)continuePressed:(id)sender {
+    PersonalProfileViewController *controller = [[PersonalProfileViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 NSDateFormatter *__paymentDateFormatter;
