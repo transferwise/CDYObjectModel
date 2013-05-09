@@ -48,6 +48,10 @@ NSString *const kAPIPathBase = @"/api/v1/";
     [self executeOperationWithMethod:@"GET" path:path parameters:params];
 }
 
+- (void)performDelete:(NSString *)path withParams:(NSDictionary *)params {
+    [self executeOperationWithMethod:@"DELETE" path:path parameters:params];
+}
+
 - (void)putData:(NSDictionary *)data toPath:(NSString *)putPath {
     NSString *accessToken = [Credentials accessToken];
     MCLog(@"Put %@ to: %@", [data sensibleDataHidden], [putPath stringByReplacingOccurrencesOfString:(accessToken ? accessToken : @"" ) withString:@"**********"]);
