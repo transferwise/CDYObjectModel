@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18882CCE1736D46200508866 /* BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 18882CCD1736D46200508866 /* BusinessProfile.m */; };
-		18882CD21736D47100508866 /* UpdateBusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18882CD11736D47100508866 /* UpdateBusinessProfileOperation.m */; };
-		18882CD61736D47F00508866 /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18882CD41736D47F00508866 /* BusinessProfileViewController.m */; };
-		18882CD71736D47F00508866 /* BusinessProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18882CD51736D47F00508866 /* BusinessProfileViewController.xib */; };
+		1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC92173B7C28008773FC /* BusinessProfileViewController.m */; };
+		1864AC95173B7C28008773FC /* BusinessProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1864AC93173B7C28008773FC /* BusinessProfileViewController.xib */; };
+		1864AC97173B7C2E008773FC /* BusinessProfileViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC91173B7C28008773FC /* BusinessProfileViewController.h */; };
+		1864AC9A173B7C4D008773FC /* BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC99173B7C4D008773FC /* BusinessProfile.m */; };
+		1864AC9B173B7C5E008773FC /* BusinessProfile.h in Resources */ = {isa = PBXBuildFile; fileRef = 1864AC98173B7C4D008773FC /* BusinessProfile.h */; };
+		1864AC9E173B7C80008773FC /* UpdateBusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC9D173B7C80008773FC /* UpdateBusinessProfileOperation.m */; };
+		1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */; };
 		BB92B144172A747300B6F096 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B143172A747300B6F096 /* CoreText.framework */; };
 		BB92B147172A754100B6F096 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B140172A600000B6F096 /* libOHAttributedLabel.a */; };
 		BBC691241721416300F0FB1A /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911C1721416300F0FB1A /* TSAlertViewMessageListViewShadow.png */; };
@@ -32,7 +35,6 @@
 		EA13E049171BEDC40019FBF0 /* UIView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E048171BEDC40019FBF0 /* UIView+Loading.m */; };
 		EA13E04C171BEF5D0019FBF0 /* TextEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */; };
 		EA13E04E171BEF710019FBF0 /* TextEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */; };
-		EA222E2E173A3A6500C5D613 /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E2D173A3A6500C5D613 /* DeleteRecipientOperation.m */; };
 		EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */; };
 		EA35C73A17324AF2005602F7 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73417324AF2005602F7 /* Icon-Small.png */; };
 		EA35C73B17324AF2005602F7 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73517324AF2005602F7 /* Icon-Small@2x.png */; };
@@ -177,13 +179,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		18882CCC1736D46200508866 /* BusinessProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfile.h; sourceTree = "<group>"; };
-		18882CCD1736D46200508866 /* BusinessProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfile.m; sourceTree = "<group>"; };
-		18882CD01736D47100508866 /* UpdateBusinessProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateBusinessProfileOperation.h; sourceTree = "<group>"; };
-		18882CD11736D47100508866 /* UpdateBusinessProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateBusinessProfileOperation.m; sourceTree = "<group>"; };
-		18882CD31736D47F00508866 /* BusinessProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileViewController.h; sourceTree = "<group>"; };
-		18882CD41736D47F00508866 /* BusinessProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileViewController.m; sourceTree = "<group>"; };
-		18882CD51736D47F00508866 /* BusinessProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessProfileViewController.xib; sourceTree = "<group>"; };
+		1864AC91173B7C28008773FC /* BusinessProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileViewController.h; sourceTree = "<group>"; };
+		1864AC92173B7C28008773FC /* BusinessProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileViewController.m; sourceTree = "<group>"; };
+		1864AC93173B7C28008773FC /* BusinessProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessProfileViewController.xib; sourceTree = "<group>"; };
+		1864AC98173B7C4D008773FC /* BusinessProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfile.h; sourceTree = "<group>"; };
+		1864AC99173B7C4D008773FC /* BusinessProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfile.m; sourceTree = "<group>"; };
+		1864AC9C173B7C80008773FC /* UpdateBusinessProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateBusinessProfileOperation.h; sourceTree = "<group>"; };
+		1864AC9D173B7C80008773FC /* UpdateBusinessProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateBusinessProfileOperation.m; sourceTree = "<group>"; };
+		1864AC9F173B7C95008773FC /* DeleteRecipientOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteRecipientOperation.h; sourceTree = "<group>"; };
+		1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteRecipientOperation.m; sourceTree = "<group>"; };
 		BB92B13B172A5FFF00B6F096 /* OHAttributedLabel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OHAttributedLabel.xcodeproj; path = OHAttributedLabel/OHAttributedLabel.xcodeproj; sourceTree = "<group>"; };
 		BB92B143172A747300B6F096 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		BBC6911C1721416300F0FB1A /* TSAlertViewMessageListViewShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewMessageListViewShadow.png; path = TSAlertView/TSAlertViewMessageListViewShadow.png; sourceTree = "<group>"; };
@@ -213,8 +217,6 @@
 		EA13E04A171BEF5D0019FBF0 /* TextEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEntryCell.h; sourceTree = "<group>"; };
 		EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEntryCell.m; sourceTree = "<group>"; };
 		EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEntryCell.xib; sourceTree = "<group>"; };
-		EA222E2C173A3A6500C5D613 /* DeleteRecipientOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteRecipientOperation.h; sourceTree = "<group>"; };
-		EA222E2D173A3A6500C5D613 /* DeleteRecipientOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteRecipientOperation.m; sourceTree = "<group>"; };
 		EA2B23951721323E001AE9DE /* CurrencyPairsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyPairsOperation.h; sourceTree = "<group>"; };
 		EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyPairsOperation.m; sourceTree = "<group>"; };
 		EA35C73417324AF2005602F7 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
@@ -571,8 +573,8 @@
 		EA88E669172F97B10021492C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				18882CCC1736D46200508866 /* BusinessProfile.h */,
-				18882CCD1736D46200508866 /* BusinessProfile.m */,
+				1864AC98173B7C4D008773FC /* BusinessProfile.h */,
+				1864AC99173B7C4D008773FC /* BusinessProfile.m */,
 				EA88E66A172F97B10021492C /* Country.h */,
 				EA88E66B172F97B10021492C /* Country.m */,
 				EA35C76617326AF4005602F7 /* Currency.h */,
@@ -643,8 +645,10 @@
 		EA8FF6B5171D25530090A658 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				18882CD01736D47100508866 /* UpdateBusinessProfileOperation.h */,
-				18882CD11736D47100508866 /* UpdateBusinessProfileOperation.m */,
+				1864AC9F173B7C95008773FC /* DeleteRecipientOperation.h */,
+				1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */,
+				1864AC9C173B7C80008773FC /* UpdateBusinessProfileOperation.h */,
+				1864AC9D173B7C80008773FC /* UpdateBusinessProfileOperation.m */,
 				EA88E67C172F97D50021492C /* CountriesOperation.h */,
 				EA88E67D172F97D50021492C /* CountriesOperation.m */,
 				EAD069081737CF57007C8DEE /* CreateRecipientOperation.h */,
@@ -653,8 +657,6 @@
 				EAA54F4F1733DC3500B65BF3 /* CurrenciesOperation.m */,
 				EA2B23951721323E001AE9DE /* CurrencyPairsOperation.h */,
 				EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */,
-				EA222E2C173A3A6500C5D613 /* DeleteRecipientOperation.h */,
-				EA222E2D173A3A6500C5D613 /* DeleteRecipientOperation.m */,
 				EA8FF6B9171D26A00090A658 /* LoginOperation.h */,
 				EA8FF6BA171D26A00090A658 /* LoginOperation.m */,
 				EA88E67E172F97D50021492C /* NetworkErrorCodes.h */,
@@ -666,7 +668,7 @@
 				EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */,
 				EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */,
 				EA88E680172F97D50021492C /* TransferwiseClient.h */,
-				EA88E681172F97D50021492C /* TransferwiseClient.m */,
+				EAA54F571733E8F700B65BF3 /* TransferwiseClient.m */,
 				EA8FF6BC171D30B60090A658 /* TransferwiseOperation+Private.h */,
 				EA8FF6B6171D25C20090A658 /* TransferwiseOperation.h */,
 				EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */,
@@ -753,9 +755,9 @@
 		EAAA148D171BD057005B9430 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				18882CD31736D47F00508866 /* BusinessProfileViewController.h */,
-				18882CD41736D47F00508866 /* BusinessProfileViewController.m */,
-				18882CD51736D47F00508866 /* BusinessProfileViewController.xib */,
+				1864AC91173B7C28008773FC /* BusinessProfileViewController.h */,
+				1864AC92173B7C28008773FC /* BusinessProfileViewController.m */,
+				1864AC93173B7C28008773FC /* BusinessProfileViewController.xib */,
 				EAD3967D171BD57000F6D011 /* ContactsViewController.h */,
 				EAD3967E171BD57000F6D011 /* ContactsViewController.m */,
 				EAD3967F171BD57000F6D011 /* ContactsViewController.xib */,
@@ -974,6 +976,7 @@
 				EAB72153171FC34600DE29F5 /* NavBarButton@2x.png in Resources */,
 				EAB72156171FC3E900DE29F5 /* SettingsButtonIcon.png in Resources */,
 				EAB72157171FC3E900DE29F5 /* SettingsButtonIcon@2x.png in Resources */,
+				1864AC9B173B7C5E008773FC /* BusinessProfile.h in Resources */,
 				EAB7215C171FC61B00DE29F5 /* SettingsViewController.xib in Resources */,
 				EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */,
 				BBC691241721416300F0FB1A /* TSAlertViewMessageListViewShadow.png in Resources */,
@@ -1003,7 +1006,17 @@
 				EAA54F431733CA7800B65BF3 /* NewPaymentTabIcon@2x.png in Resources */,
 				EAA54F441733CA7800B65BF3 /* TransactionsTabIcon.png in Resources */,
 				EAA54F451733CA7800B65BF3 /* TransactionsTabIcon@2x.png in Resources */,
-				18882CD71736D47F00508866 /* BusinessProfileViewController.xib in Resources */,
+				EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */,
+				EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */,
+				EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */,
+				EAD069111737E462007C8DEE /* RecipientSectionHeaderView.xib in Resources */,
+				EAEA31131738DB8600CCF1A2 /* CheckUnselected.png in Resources */,
+				EAEA31141738DB8600CCF1A2 /* CheckUnselected@2x.png in Resources */,
+				EAEA31151738DB8600CCF1A2 /* CheckSelected.png in Resources */,
+				EAEA31161738DB8600CCF1A2 /* CheckSelected@2x.png in Resources */,
+				EAEA311C1738F01600CCF1A2 /* Down.png in Resources */,
+				EAEA311D1738F01600CCF1A2 /* Down@2x.png in Resources */,
+				1864AC95173B7C28008773FC /* BusinessProfileViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1084,6 +1097,7 @@
 				EAD73692171E7A1D00A037B1 /* Lockbox.m in Sources */,
 				EAD736A2171E85C300A037B1 /* RecipientCell.m in Sources */,
 				EAD736A7171E87ED00A037B1 /* UserRecipientsOperation.m in Sources */,
+				1864AC97173B7C2E008773FC /* BusinessProfileViewController.h in Sources */,
 				EAB7215B171FC61B00DE29F5 /* SettingsViewController.m in Sources */,
 				EAB7215F171FCAAC00DE29F5 /* SettingsTitleCell.m in Sources */,
 				EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */,
@@ -1110,9 +1124,22 @@
 				EA88E697172F980A0021492C /* SignUpViewController.m in Sources */,
 				EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */,
 				EA35C76817326AF4005602F7 /* Currency.m in Sources */,
-				18882CCE1736D46200508866 /* BusinessProfile.m in Sources */,
-				18882CD21736D47100508866 /* UpdateBusinessProfileOperation.m in Sources */,
-				18882CD61736D47F00508866 /* BusinessProfileViewController.m in Sources */,
+				EAA54F4B1733DA1400B65BF3 /* RecipientViewController.m in Sources */,
+				EAA54F501733DC3500B65BF3 /* CurrenciesOperation.m in Sources */,
+				EAA54F581733E8F700B65BF3 /* TransferwiseClient.m in Sources */,
+				EAA54F5B1733EF1A00B65BF3 /* RecipientTypesOperation.m in Sources */,
+				EA4AA6061737940900E99150 /* RecipientType.m in Sources */,
+				EA4AA60A173794A600E99150 /* RecipientTypeField.m in Sources */,
+				EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */,
+				EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */,
+				EAD0690A1737CF57007C8DEE /* CreateRecipientOperation.m in Sources */,
+				EAD0690E1737E457007C8DEE /* RecipientSectionHeaderView.m in Sources */,
+				EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */,
+				EAD85B0B173920C300C22211 /* SavePersonalProfileOperation.m in Sources */,
+				1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */,
+				1864AC9A173B7C4D008773FC /* BusinessProfile.m in Sources */,
+				1864AC9E173B7C80008773FC /* UpdateBusinessProfileOperation.m in Sources */,
+				1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1197,8 +1224,8 @@
 		EAAA148B171BC911005B9430 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jaanus Siim (7V62BBBL4N)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaanus Siim (7V62BBBL4N)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
 				INFOPLIST_FILE = "Transfer/Transfer-Info.plist";
