@@ -24,8 +24,6 @@ static NSUInteger const kDetailsSection = 0;
 
 @interface BusinessProfileViewController ()
 
-@property (nonatomic, strong) NSArray *presentedCells;
-
 @property (nonatomic, strong) TextEntryCell *businessNameCell;
 @property (nonatomic, strong) TextEntryCell *registrationNumberCell;
 @property (nonatomic, strong) TextEntryCell *descriptionCell;
@@ -37,6 +35,8 @@ static NSUInteger const kDetailsSection = 0;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 @property (strong, nonatomic) IBOutlet BlueButton *footerButton;
+@property (nonatomic, strong) NSArray *businessCells;
+@property (nonatomic, strong) NSArray *addressCells;
 
 @end
 
@@ -80,6 +80,8 @@ static NSUInteger const kDetailsSection = 0;
     [businessCells addObject:descriptionCell];
     [descriptionCell configureWithTitle:NSLocalizedString(@"business.profile.description.label", nil) value:@""];
     [descriptionCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
+
+    [self setBusinessCells:businessCells];
     
     NSMutableArray *addressCells = [NSMutableArray array];
     
@@ -106,9 +108,14 @@ static NSUInteger const kDetailsSection = 0;
     [countryCell configureWithTitle:NSLocalizedString(@"business.profile.country.label", nil) value:@""];
     
     [self.footerButton setTitle:NSLocalizedString(@"business.profile.save.button.title", nil) forState:UIControlStateNormal];
-    
-    [self setPresentedCells:@[businessCells, addressCells]];
 
+    [self setAddressCells:addressCells];
+}
+
+- (void)viewDidUnload {
+    [self setFooterView:nil];
+    [self setFooterButton:nil];
+    [super viewDidUnload];
 }
 
 - (void)didReceiveMemoryWarning
@@ -125,49 +132,12 @@ static NSUInteger const kDetailsSection = 0;
     [self pullUserDetails];
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (!self.userDetails) {
-        return 0;
-    }
-    
-    return [self.presentedCells count];
-}
-
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == kDetailsSection) {
         return NSLocalizedString(@"business.profile.details.section.title", nil);
     } else {
         return NSLocalizedString(@"business.profile.address.section.title", nil);
     }
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (!self.userDetails) {
-        return 0;
-    }
-    
-    NSArray *sectionCells = self.presentedCells[(NSUInteger) section];
-    return [sectionCells count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self cellAtIndexPath:indexPath];
-}
-
-#pragma mark - Table view delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    TextEntryCell *cell = [self cellAtIndexPath:indexPath];
-    [cell.entryField becomeFirstResponder];
-}
-
-- (TextEntryCell *)cellAtIndexPath:(NSIndexPath *)indexPath {
-    NSUInteger section = (NSUInteger) indexPath.section;
-    NSUInteger row = (NSUInteger) indexPath.row;
-    return self.presentedCells[section][row];
 }
 
 - (void)pullUserDetails {
@@ -198,7 +168,7 @@ static NSUInteger const kDetailsSection = 0;
                     return;
                 }
                 
-                [self setPresentedSectionCells:self.presentedCells];
+                [self setPresentedSectionCells:@[self.businessCells, self.addressCells]];
                 [self setUserDetails:result];
                 [self loadDetailsToCells];
                 [self.tableView setTableFooterView:self.footerView];
@@ -277,9 +247,4 @@ static NSUInteger const kDetailsSection = 0;
     && [[self.countryCell value] hasValue];
 }
 
-- (void)viewDidUnload {
-    [self setFooterView:nil];
-    [self setFooterButton:nil];
-    [super viewDidUnload];
-}
 @end
