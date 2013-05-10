@@ -10,6 +10,7 @@
 
 @class ProfileDetails;
 @class Currency;
+@class RecipientType;
 
 @interface PaymentFlow : NSObject
 

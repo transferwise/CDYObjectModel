@@ -11,6 +11,9 @@
 #import "ConfirmPaymentCell.h"
 #import "ProfileDetails.h"
 #import "PersonalProfile.h"
+#import "Recipient.h"
+#import "RecipientType.h"
+#import "RecipientTypeField.h"
 
 static NSUInteger const kReceiverSection = 1;
 
@@ -68,7 +71,7 @@ static NSUInteger const kReceiverSection = 1;
     [receiverNameCell.imageView setImage:[UIImage imageNamed:@"ProfileIcon.png"]];
     [receiverCells addObject:receiverNameCell];
 
-    NSArray *fieldCells = @[];
+    NSArray *fieldCells = [self buildFieldCells];
     [self setReceiverFieldCells:fieldCells];
     [receiverCells addObjectsFromArray:fieldCells];
 
@@ -81,6 +84,20 @@ static NSUInteger const kReceiverSection = 1;
     [receiverCells addObject:receiverEmailCell];
 
     [self setPresentedSectionCells:@[senderCells, receiverCells]];
+
+    [self.footerButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
+}
+
+- (NSArray *)buildFieldCells {
+    NSArray *fields = self.recipientType.fields;
+    NSMutableArray *cells = [NSMutableArray arrayWithCapacity:[fields count]];
+    for (RecipientTypeField *field in fields) {
+        ConfirmPaymentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWRConfirmPaymentCellIdentifier];
+        [cell.textLabel setText:field.title];
+        [cell.detailTextLabel setText:[self.recipient valueForKeyPath:field.name]];
+        [cells addObject:cell];
+    }
+    return [NSArray arrayWithArray:cells];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,6 +119,15 @@ static NSUInteger const kReceiverSection = 1;
 
     [self.senderEmailCell.textLabel setText:NSLocalizedString(@"confirm.payment.email.label", nil)];
     [self.senderEmailCell.detailTextLabel setText:self.senderDetails.email];
+
+    [self.receiverNameCell.textLabel setText:[self.recipient name]];
+    [self.receiverNameCell.detailTextLabel setText:NSLocalizedString(@"confirm.payment.recipient.marker.label", nil)];
+
+    [self.receiverEmailCell.textLabel setText:NSLocalizedString(@"confirm.payment.email.label", nil)];
+    [self.receiverEmailCell.detailTextLabel setText:[self.recipient email]];
+
+    [self.referenceCell.textLabel setText:NSLocalizedString(@"confirm.payment.reference.label", nil)];
+    [self.referenceCell.detailTextLabel setText:@""];
 }
 
 - (IBAction)footerButtonPressed:(id)sender {

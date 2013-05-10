@@ -11,11 +11,15 @@
 #import "RecipientViewController.h"
 #import "ProfileDetails.h"
 #import "ConfirmPaymentViewController.h"
+#import "Recipient.h"
+#import "RecipientType.h"
 
 @interface PaymentFlow ()
 
 @property (nonatomic, strong) UINavigationController *navigationController;
 @property (nonatomic, strong) ProfileDetails *userDetails;
+@property (nonatomic, strong) Recipient *recipient;
+@property (nonatomic, strong) RecipientType *recipientType;
 
 @end
 
@@ -44,9 +48,12 @@
 
 - (void)presentRecipientDetails {
     RecipientViewController *controller = [[RecipientViewController alloc] init];
+    __block __weak  RecipientViewController *weakController = controller;
     [controller setTitle:NSLocalizedString(@"recipient.controller.payment.mode.title", nil)];
     [controller setFooterButtonTitle:NSLocalizedString(@"recipient.controller.confirm.payment.button.title", nil)];
     [controller setAfterSaveAction:^{
+        [self setRecipient:weakController.selectedRecipient];
+        [self setRecipientType:weakController.selectedRecipientType];
         [self presentPaymentConfirmation];
     }];
     [controller setPreloadRecipientsWithCurrency:self.targetCurrency];
@@ -57,6 +64,9 @@
     MCLog(@"presentPaymentConfirmation");
     ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
     [controller setSenderDetails:self.userDetails];
+    [controller setRecipient:self.recipient];
+    [controller setRecipientType:self.recipientType];
+    [controller setFooterButtonTitle:NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

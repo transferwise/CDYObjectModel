@@ -8,6 +8,9 @@
 "confirm.payment.controller.title" = "Confirm";
 "confirm.payment.sender.marker.label" = "Sender (you)";
 "confirm.payment.email.label" = "E-mail";
+"confirm.payment.recipient.marker.label" = "Receiver";
+"confirm.payment.reference.label" = "Reference";
+"confirm.payment.footer.button.title" = "Confirm payment";
 
 "contacts.controller.title" = "Contacts";
 "contacts.controller.refreshing.message" = "Refreshing contacts";

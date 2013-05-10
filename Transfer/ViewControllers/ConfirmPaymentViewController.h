@@ -10,9 +10,14 @@
 #import "DataEntryViewController.h"
 
 @class ProfileDetails;
+@class Recipient;
+@class RecipientType;
 
 @interface ConfirmPaymentViewController : DataEntryViewController
 
 @property (nonatomic, strong) ProfileDetails *senderDetails;
+@property (nonatomic, strong) Recipient *recipient;
+@property (nonatomic, strong) RecipientType *recipientType;
+@property (nonatomic, copy) NSString *footerButtonTitle;
 
 @end

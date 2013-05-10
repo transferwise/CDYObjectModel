@@ -22,6 +22,7 @@
 @property (nonatomic, copy) NSString *sortCode;
 @property (nonatomic, copy) NSString *swiftCode;
 @property (nonatomic, copy) NSString *bankCode;
+@property (nonatomic, copy) NSString *email;
 
 @end
 

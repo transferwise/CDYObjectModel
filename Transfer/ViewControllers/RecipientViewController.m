@@ -19,6 +19,7 @@
 #import "RecipientTypeField.h"
 #import "RecipientFieldCell.h"
 #import "NSString+Validation.h"
+#import "Recipient.h"
 #import "TRWAlertView.h"
 #import "NSMutableString+Issues.h"
 #import "CreateRecipientOperation.h"
@@ -27,7 +28,6 @@
 #import "UIView+Loading.h"
 #import "UserRecipientsOperation.h"
 #import "RecipientEntrySelectionCell.h"
-#import "Recipient.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
@@ -150,6 +150,8 @@ static NSUInteger const kRecipientFieldsSection = 2;
         [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, @[]]];
         [self.tableView setTableFooterView:self.footer];
         [self.tableView reloadData];
+
+        [self didSelectRecipient:self.selectedRecipient];
     };
 
     UserRecipientsOperation *recipientsOperation = nil;
@@ -322,6 +324,11 @@ static NSUInteger const kRecipientFieldsSection = 2;
         return;
     }
 
+    if (self.selectedRecipient) {
+        self.afterSaveAction();
+        return;
+    }
+
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     data[@"name"] = [self.nameCell value];
     data[@"currency"] = [self.selectedCurrency code];
@@ -344,6 +351,10 @@ static NSUInteger const kRecipientFieldsSection = 2;
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.save.error.title", nil) error:error];
             [alertView show];
             return;
+        }
+
+        if (self.preloadRecipientsWithCurrency) {
+            [self setSelectedRecipient:recipient];
         }
 
         self.afterSaveAction();
