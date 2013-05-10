@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UploadMoneyViewController : UIViewController
+@interface UploadMoneyViewController : UITableViewController
 
 @end

@@ -131,3 +131,17 @@
 "errors.CRD_NOT_VALID.message" = "Incorrect credentials.";
 "recipient.type.IBAN.name" = "IBAN";
 "recipient.type.SORT_CODE.name" = "UK SORT";
+
+"upload.money.header.label" = "We are waiting your deposit";
+"upload.money.footer.label" = "56 Shoreditch High Street, London E1 6JJ, United Kingdom";
+"upload.money.toggle.button.debit.card.title" = "Debit card";
+"upload.money.toggle.button.bank.transfer.title" = "Bank transfer";
+"upload.money.done.button.title" = "I have made the payment";
+"upload.money.notification.label" = "Your payment will be activated when we receive your deposit.";
+"upload.money.amount.title" = "Amount";
+"upload.money.iban.title" = "IBAN";
+"upload.money.account.nr.title" = "Account number";
+"upload.money.bic.title" = "BIC";
+"upload.money.bank.name.title" = "Bank name";
+"upload.money.reference.title" = "Reference";
+"upload.money.uksort.title" = "UK Sort code";
