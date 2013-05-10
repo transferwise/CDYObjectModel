@@ -89,8 +89,13 @@
 
 "recipient.save.error.title" = "Can't save";
 
-"recipient.details.bic.base" = "BIC: %@";
-"recipient.details.iban.base" = "IBAN: %@";
+"recipient.details.BIC.base" = "BIC: %@";
+"recipient.details.IBAN.base" = "IBAN: %@";
+"recipient.details.SORT_CODE.base" = "UK Sort code: %@";
+"recipient.details.account.number.base" = "Account number: %@";
+"recipient.details.ABA.base" = "ABA RTN: %@, State:%@";
+"recipient.details.SWIFT_CODE.base" = "SWIFT code: %@";
+"recipient.details.bank.code.base" = "Bank code: %@";
 
 "settings.row.logout" = "Sign out";
 "settings.row.personal.profile" = "Your personal profile";

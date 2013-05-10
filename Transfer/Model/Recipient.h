@@ -15,6 +15,9 @@
 @property (nonatomic, copy, readonly) NSString *BIC;
 @property (nonatomic, strong, readonly) NSNumber *recipientId;
 
+- (NSString *)detailsRowOne;
+- (NSString *)detailsRowTwo;
+
 + (Recipient *)recipientWithData:(NSDictionary *)data;
 
 @end
