@@ -11,6 +11,8 @@
 #import "TextCell.h"
 #import "UIColor+Theme.h"
 #import "BankTransfer.h"
+#import "ProfileDetails.h"
+#import "TransferwiseClient.h"
 
 @interface UploadMoneyViewController ()
 @property (strong, nonatomic) IBOutlet UIView *headerView;
@@ -51,8 +53,6 @@
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
     [self.headerView setBackgroundColor:[UIColor controllerBackgroundColor]];
     [self.footerView setBackgroundColor:[UIColor controllerBackgroundColor]];
-    self.tableView.tableHeaderView = self.headerView;
-    self.tableView.tableFooterView = self.footerView;
     
     [self setTitle:NSLocalizedString(@"upload.money.title", @"")];
     
@@ -83,14 +83,16 @@
 
 - (void)createGbpPaymentWithDummyData
 {
-    BankTransfer* data = [[BankTransfer alloc] init];
-    [data setAmount:@"3.00 EUR"];
-    [data setUkSort:@"209561"];
-    [data setAccountNr:@"53640809"];
-    [data setBankName:@"Barclays, United Kingdom"];
-    [data setReference:@"P35412"];
-    
-    [self fillFieldsWithData:data];
+    [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(ProfileDetails *result, NSError *error) {
+        BankTransfer* data = [[BankTransfer alloc] init];
+        [data setAmount:@"3.00 EUR"];
+        [data setUkSort:@"209561"];
+        [data setAccountNr:@"53640809"];
+        [data setBankName:@"Barclays, United Kingdom"];
+        [data setReference:result.reference];
+        
+        [self fillFieldsWithData:data];
+    }];
 }
 
 - (void)fillFieldsWithData:(BankTransfer*)data
@@ -138,6 +140,10 @@
     [referenceCell configureWithTitle:NSLocalizedString(@"upload.money.reference.title", @"") text:data.reference];
     
     [self setPresentedSectionCells:@[transferCells]];
+    
+    [self.tableView reloadData];
+    self.tableView.tableHeaderView = self.headerView;
+    self.tableView.tableFooterView = self.footerView;
 }
 
 #pragma mark - UITableView dataSource

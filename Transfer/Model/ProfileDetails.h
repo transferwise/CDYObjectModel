@@ -15,6 +15,7 @@
 @property (nonatomic, copy, readonly) NSString *email;
 @property (nonatomic, strong) PersonalProfile *personalProfile;
 @property (nonatomic, strong) BusinessProfile *businessProfile;
+@property (nonatomic, copy, readonly) NSString *reference;
 
 - (NSString *)displayName;
 
