@@ -8,6 +8,12 @@
 
 #import "BankTransfer.h"
 
+@interface BankTransfer ()
+
+@property (nonatomic, strong) NSNumber* isIban;
+
+@end
+
 @implementation BankTransfer
 
 +(BankTransfer *)initWithData:(NSDictionary *)data
@@ -15,6 +21,11 @@
     BankTransfer *transfer = [[BankTransfer alloc]init];
     
     return transfer;
+}
+
+-(BOOL)isIbanValue
+{
+    return [self.isIban boolValue];
 }
 
 @end

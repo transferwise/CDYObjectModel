@@ -16,7 +16,10 @@
 @property (strong, nonatomic) NSString* bic;
 @property (strong, nonatomic) NSString* bankName;
 @property (strong, nonatomic) NSString* reference;
+@property (strong, nonatomic) NSString* ukSort;
 
 +(BankTransfer *)initWithData:(NSDictionary *)data;
+
+-(BOOL)isIbanValue;
 
 @end
