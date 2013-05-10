@@ -9,8 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @class ProfileDetails;
+@class Currency;
 
 @interface PaymentFlow : NSObject
+
+@property (nonatomic, strong) Currency *sourceCurrency;
+@property (nonatomic, strong) Currency *targetCurrency;
 
 - (id)initWithPresentingController:(UINavigationController *)controller;
 - (void)presentSenderDetails;

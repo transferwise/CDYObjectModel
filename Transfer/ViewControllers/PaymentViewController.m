@@ -188,6 +188,9 @@ static NSUInteger const kRowYouSend = 0;
     PaymentFlow *paymentFlow = [[PaymentFlow alloc] initWithPresentingController:self.navigationController];
     [self setPaymentFlow:paymentFlow];
 
+    [paymentFlow setSourceCurrency:[self.youSendCell currency]];
+    [paymentFlow setTargetCurrency:[self.theyReceiveCell currency]];
+    
     [paymentFlow presentSenderDetails];
 }
 

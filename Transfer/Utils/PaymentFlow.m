@@ -48,6 +48,7 @@
     [controller setAfterSaveAction:^{
         [self presentPaymentConfirmation];
     }];
+    [controller setPreloadRecipientsWithCurrency:self.targetCurrency];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

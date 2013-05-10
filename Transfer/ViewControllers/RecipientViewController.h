@@ -10,9 +10,12 @@
 #import "DataEntryViewController.h"
 #import "Constants.h"
 
+@class Currency;
+
 @interface RecipientViewController : DataEntryViewController
 
 @property (nonatomic, copy) TRWActionBlock afterSaveAction;
 @property (nonatomic, copy) NSString *footerButtonTitle;
+@property (nonatomic) Currency *preloadRecipientsWithCurrency;
 
 @end

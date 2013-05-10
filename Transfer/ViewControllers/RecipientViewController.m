@@ -54,6 +54,8 @@ static NSUInteger const kRecipientFieldsSection = 2;
 @property (nonatomic, strong) RecipientSectionHeaderView *currencySectionHeader;
 @property (nonatomic, strong) RecipientSectionHeaderView *fieldsSectionHeader;
 
+@property (nonatomic, strong) NSArray *allCurrencies;
+
 - (IBAction)addButtonPressed:(id)sender;
 
 @end
@@ -114,6 +116,10 @@ static NSUInteger const kRecipientFieldsSection = 2;
     }];
 
     [self.addButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
+
+    if (self.preloadRecipientsWithCurrency) {
+        [self.currencyCell setEditable:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -137,6 +143,8 @@ static NSUInteger const kRecipientFieldsSection = 2;
             return;
         }
 
+        [self setAllCurrencies:currencies];
+
         RecipientTypesOperation *operation = [RecipientTypesOperation operation];
         [self setExecutedOperation:operation];
 
@@ -148,7 +156,7 @@ static NSUInteger const kRecipientFieldsSection = 2;
                     return;
                 }
 
-                [self.currencyCell setAllCurrencies:currencies];
+                [self.currencyCell setAllCurrencies:[self currenciesToShow]];
                 [self setRecipientTypes:recipients];
 
                 [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, @[]]];
@@ -161,6 +169,18 @@ static NSUInteger const kRecipientFieldsSection = 2;
     }];
 
     [currenciesOperation execute];
+}
+
+- (NSArray *)currenciesToShow {
+    if (self.preloadRecipientsWithCurrency) {
+        for (Currency *currency in self.allCurrencies) {
+            if ([currency.code isEqualToString:self.preloadRecipientsWithCurrency.code]) {
+                return @[currency];
+            }
+        }
+    }
+
+    return self.allCurrencies;
 }
 
 - (void)handleCurrencySelection:(Currency *)currency {
