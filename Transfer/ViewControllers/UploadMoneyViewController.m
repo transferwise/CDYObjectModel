@@ -65,7 +65,7 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"TextCell" bundle:nil] forCellReuseIdentifier:TWTextCellIdentifier];
     
-    [self createGbpPaymentWithDummyData];
+    [self createEurPaymentWithDummyData];
 }
 
 - (void)createEurPaymentWithDummyData
@@ -157,11 +157,13 @@
         [ukSortCodeCell configureWithTitle:NSLocalizedString(@"upload.money.uksort.title", @"") text:data.settlementAccount.sortCode];
     }
     
+    //TODO: currently no bank data
+    /*
     TextCell *bankNameCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
     [self setBankNameCell:bankNameCell];
     [transferCells addObject:bankNameCell];
     [bankNameCell configureWithTitle:NSLocalizedString(@"upload.money.bank.name.title", @"") text:@""];
-    
+    */
     TextCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
     [self setReferenceCell:referenceCell];
     [transferCells addObject:referenceCell];
