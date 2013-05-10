@@ -174,9 +174,11 @@ static NSUInteger const kRecipientFieldsSection = 2;
 - (NSArray *)currenciesToShow {
     if (self.preloadRecipientsWithCurrency) {
         for (Currency *currency in self.allCurrencies) {
-            if ([currency.code isEqualToString:self.preloadRecipientsWithCurrency.code]) {
-                return @[currency];
+            if (![currency.code isEqualToString:self.preloadRecipientsWithCurrency.code]) {
+                continue;
             }
+
+            return @[currency];
         }
     }
 
