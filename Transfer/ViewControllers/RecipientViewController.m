@@ -220,12 +220,16 @@ static NSUInteger const kRecipientFieldsSection = 2;
         return;
     }
 
+    RecipientType *type = [self findTypeWithCode:recipient.type];
+    [self.fieldsSectionHeader changeSelectedTypeTo:type];
 
-    [self.nameCell setValue:recipient.name];
-    for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
-        RecipientTypeField *field = fieldCell.type;
-        [fieldCell setValue:[recipient valueForKeyPath:field.name]];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.nameCell setValue:recipient.name];
+        for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
+            RecipientTypeField *field = fieldCell.type;
+            [fieldCell setValue:[recipient valueForKeyPath:field.name]];
+        }
+    });
 }
 
 - (NSArray *)currenciesToShow {
