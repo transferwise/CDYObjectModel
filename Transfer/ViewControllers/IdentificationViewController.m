@@ -154,7 +154,7 @@
 // For responding to the user tapping Cancel.
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
     
-    [[picker parentViewController] dismissModalViewControllerAnimated: YES];
+    [picker dismissModalViewControllerAnimated: YES];
 }
 
 // For responding to the user accepting a newly-captured picture or movie
@@ -187,7 +187,7 @@
             self.proofOfAddressImage = imageToSave;
     }
     
-    [[picker parentViewController] dismissModalViewControllerAnimated: YES];
+    [picker dismissModalViewControllerAnimated: YES];
 }
 
 
