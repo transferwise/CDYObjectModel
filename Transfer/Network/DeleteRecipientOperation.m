@@ -55,7 +55,7 @@ NSString *const kDeleteRecipientPath = @"/recipient/delete";
         weakSelf.completionHandler([NSArray arrayWithArray:result], nil);
     }];
 
-    [self performDelete:path withParams:@{@"recipientId": self.recipientId}];
+    [self postData:@{@"recipientId" : self.recipientId} toPath:path];
 }
 
 + (DeleteRecipientOperation *)operationWithRecipient:(Recipient *)recipient {
