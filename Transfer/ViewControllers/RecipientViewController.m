@@ -25,6 +25,7 @@
 #import "UIApplication+Keyboard.h"
 #import "RecipientSectionHeaderView.h"
 #import "UIView+Loading.h"
+#import "UserRecipientsOperation.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
@@ -54,6 +55,8 @@ static NSUInteger const kRecipientFieldsSection = 2;
 @property (nonatomic, strong) RecipientSectionHeaderView *fieldsSectionHeader;
 
 @property (nonatomic, strong) NSArray *allCurrencies;
+
+@property (nonatomic, strong) NSArray *recipientsForCurrency;
 
 - (IBAction)addButtonPressed:(id)sender;
 
@@ -139,6 +142,20 @@ static NSUInteger const kRecipientFieldsSection = 2;
         [self.tableView reloadData];
     };
 
+    UserRecipientsOperation *recipientsOperation = nil;
+    if (self.preloadRecipientsWithCurrency) {
+        recipientsOperation = [UserRecipientsOperation recipientsOperationWithCurrency:self.preloadRecipientsWithCurrency];
+        [recipientsOperation setResponseHandler:^(NSArray *recipients, NSError *error) {
+            if (error) {
+                return;
+            }
+
+            MCLog(@"Loaded %d recipients for %@", [recipients count], self.preloadRecipientsWithCurrency.code);
+            [self setRecipientsForCurrency:recipients];
+            dataLoadCompletionBlock();
+        }];
+    }
+
     RecipientTypesOperation *typesOperation = [RecipientTypesOperation operation];
     [typesOperation setResultHandler:^(NSArray *recipients, NSError *typesError) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -150,7 +167,12 @@ static NSUInteger const kRecipientFieldsSection = 2;
 
             [self setRecipientTypes:recipients];
 
-            dataLoadCompletionBlock();
+            if (recipientsOperation) {
+                [self setExecutedOperation:recipientsOperation];
+                [recipientsOperation execute];
+            } else {
+                dataLoadCompletionBlock();
+            }
         });
     }];
 
