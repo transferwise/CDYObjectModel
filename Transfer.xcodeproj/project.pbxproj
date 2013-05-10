@@ -18,6 +18,8 @@
 		BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC691221721416300F0FB1A /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BBC6912C172147FC00F0FB1A /* WhyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC6912B172147FC00F0FB1A /* WhyView.xib */; };
 		BBCC6338172169980094EABB /* WhyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC6337172169980094EABB /* WhyView.m */; };
+		EA042600173CF5C50048BFBD /* RecipientEntrySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */; };
+		EA042603173CF5E20048BFBD /* RecipientEntrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */; };
 		EA13E032171BDF1A0019FBF0 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */; };
 		EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */; };
 		EA13E038171BE12E0019FBF0 /* MoneyEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */; };
@@ -193,6 +195,9 @@
 		BBC6912B172147FC00F0FB1A /* WhyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhyView.xib; sourceTree = "<group>"; };
 		BBCC6336172169980094EABB /* WhyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhyView.h; sourceTree = "<group>"; };
 		BBCC6337172169980094EABB /* WhyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhyView.m; sourceTree = "<group>"; };
+		EA0425FE173CF5C50048BFBD /* RecipientEntrySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientEntrySelectionCell.h; sourceTree = "<group>"; };
+		EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientEntrySelectionCell.m; sourceTree = "<group>"; };
+		EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientEntrySelectionCell.xib; sourceTree = "<group>"; };
 		EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
 		EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
 		EA13E034171BE1210019FBF0 /* MoneyEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyEntryCell.h; sourceTree = "<group>"; };
@@ -521,6 +526,9 @@
 				EAD736A0171E85C300A037B1 /* RecipientCell.h */,
 				EAD736A1171E85C300A037B1 /* RecipientCell.m */,
 				EAD736A3171E85D100A037B1 /* RecipientCell.xib */,
+				EA0425FE173CF5C50048BFBD /* RecipientEntrySelectionCell.h */,
+				EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */,
+				EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */,
 				EAD069021737B8AE007C8DEE /* RecipientFieldCell.h */,
 				EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */,
 				EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */,
@@ -1026,6 +1034,7 @@
 				EA222E3E173A8A7C00C5D613 /* ConfirmPaymentCell.xib in Resources */,
 				EA222E41173A8D0900C5D613 /* ProfileIcon.png in Resources */,
 				EA222E42173A8D0900C5D613 /* ProfileIcon@2x.png in Resources */,
+				EA042603173CF5E20048BFBD /* RecipientEntrySelectionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1148,6 +1157,7 @@
 				EA222E33173A676000C5D613 /* PaymentFlow.m in Sources */,
 				EA222E38173A861000C5D613 /* ConfirmPaymentViewController.m in Sources */,
 				EA222E3C173A8A7100C5D613 /* ConfirmPaymentCell.m in Sources */,
+				EA042600173CF5C50048BFBD /* RecipientEntrySelectionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

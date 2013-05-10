@@ -26,6 +26,7 @@
 #import "RecipientSectionHeaderView.h"
 #import "UIView+Loading.h"
 #import "UserRecipientsOperation.h"
+#import "RecipientEntrySelectionCell.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
@@ -36,7 +37,7 @@ static NSUInteger const kRecipientFieldsSection = 2;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
 @property (nonatomic, strong) NSArray *recipientCells;
-@property (nonatomic, strong) TextEntryCell *nameCell;
+@property (nonatomic, strong) RecipientEntrySelectionCell *nameCell;
 
 @property (nonatomic, strong) NSArray *currencyCells;
 @property (nonatomic, strong) CurrencySelectionCell *currencyCell;
@@ -81,13 +82,17 @@ static NSUInteger const kRecipientFieldsSection = 2;
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"CurrencySelectionCell" bundle:nil] forCellReuseIdentifier:TWCurrencySelectionCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"RecipientFieldCell" bundle:nil] forCellReuseIdentifier:TWRecipientFieldCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"RecipientEntrySelectionCell" bundle:nil] forCellReuseIdentifier:TRWRecipientEntrySelectionCellIdentifier];
 
     NSMutableArray *recipientCells = [NSMutableArray array];
 
-    TextEntryCell *nameCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+    RecipientEntrySelectionCell *nameCell = [self.tableView dequeueReusableCellWithIdentifier:TRWRecipientEntrySelectionCellIdentifier];
     [self setNameCell:nameCell];
     [nameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [nameCell configureWithTitle:NSLocalizedString(@"recipient.controller.cell.label.name", nil) value:@""];
+    [nameCell setSelectionHandler:^(Recipient *recipient) {
+
+    }];
     [recipientCells addObject:nameCell];
 
     [self setRecipientCells:recipientCells];
@@ -137,6 +142,7 @@ static NSUInteger const kRecipientFieldsSection = 2;
 
     void (^dataLoadCompletionBlock)() = ^() {
         [hud hide];
+        [self.nameCell setAutoCompleteRecipients:self.recipientsForCurrency];
         [self.currencyCell setAllCurrencies:[self currenciesToShow]];
         [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, @[]]];
         [self.tableView setTableFooterView:self.footer];
