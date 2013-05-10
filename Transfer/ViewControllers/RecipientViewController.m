@@ -132,6 +132,13 @@ static NSUInteger const kRecipientFieldsSection = 2;
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
 
+    void (^dataLoadCompletionBlock)() = ^() {
+        [self.currencyCell setAllCurrencies:[self currenciesToShow]];
+        [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, @[]]];
+        [self.tableView setTableFooterView:self.footer];
+        [self.tableView reloadData];
+    };
+
     RecipientTypesOperation *typesOperation = [RecipientTypesOperation operation];
     [typesOperation setResultHandler:^(NSArray *recipients, NSError *typesError) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -141,12 +148,9 @@ static NSUInteger const kRecipientFieldsSection = 2;
                 return;
             }
 
-            [self.currencyCell setAllCurrencies:[self currenciesToShow]];
             [self setRecipientTypes:recipients];
 
-            [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, @[]]];
-            [self.tableView setTableFooterView:self.footer];
-            [self.tableView reloadData];
+            dataLoadCompletionBlock();
         });
     }];
 
