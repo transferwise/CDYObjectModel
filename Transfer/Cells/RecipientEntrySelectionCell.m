@@ -84,13 +84,11 @@ NSString *const TRWRecipientEntrySelectionCellIdentifier = @"TRWRecipientEntrySe
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if (row == 0) {
-        [self.entryField setText:@""];
         self.selectionHandler(nil);
         return;
     }
 
     Recipient *recipient = self.autoCompleteRecipients[row - 1];
-    [self.entryField setText:recipient.name];
     self.selectionHandler(recipient);
 }
 

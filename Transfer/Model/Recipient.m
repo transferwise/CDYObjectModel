@@ -14,8 +14,8 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *currency;
 @property (nonatomic, copy) NSString *type;
-@property (nonatomic, copy) NSString *iban;
-@property (nonatomic, copy) NSString *bic;
+@property (nonatomic, copy) NSString *IBAN;
+@property (nonatomic, copy) NSString *BIC;
 
 @end
 
@@ -34,8 +34,8 @@
     [recipient setName:data[@"name"]];
     [recipient setCurrency:data[@"currency"]];
     [recipient setType:data[@"type"]];
-    [recipient setIban:data[@"IBAN"]];
-    [recipient setBic:data[@"BIC"]];
+    [recipient setIBAN:data[@"IBAN"]];
+    [recipient setBIC:data[@"BIC"]];
     return recipient;
 }
 

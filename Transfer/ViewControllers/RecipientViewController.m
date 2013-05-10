@@ -27,6 +27,7 @@
 #import "UIView+Loading.h"
 #import "UserRecipientsOperation.h"
 #import "RecipientEntrySelectionCell.h"
+#import "Recipient.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
@@ -58,6 +59,8 @@ static NSUInteger const kRecipientFieldsSection = 2;
 @property (nonatomic, strong) NSArray *allCurrencies;
 
 @property (nonatomic, strong) NSArray *recipientsForCurrency;
+
+@property (nonatomic, strong) Recipient *selectedRecipient;
 
 - (IBAction)addButtonPressed:(id)sender;
 
@@ -91,7 +94,7 @@ static NSUInteger const kRecipientFieldsSection = 2;
     [nameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [nameCell configureWithTitle:NSLocalizedString(@"recipient.controller.cell.label.name", nil) value:@""];
     [nameCell setSelectionHandler:^(Recipient *recipient) {
-
+        [self didSelectRecipient:recipient];
     }];
     [recipientCells addObject:nameCell];
 
@@ -204,6 +207,25 @@ static NSUInteger const kRecipientFieldsSection = 2;
     }];
 
     [currenciesOperation execute];
+}
+
+- (void)didSelectRecipient:(Recipient *)recipient {
+    [self setSelectedRecipient:recipient];
+    if (!recipient) {
+        [self.nameCell setValue:@""];
+
+        for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
+            [fieldCell setValue:@""];
+        }
+        return;
+    }
+
+
+    [self.nameCell setValue:recipient.name];
+    for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
+        RecipientTypeField *field = fieldCell.type;
+        [fieldCell setValue:[recipient valueForKeyPath:field.name]];
+    }
 }
 
 - (NSArray *)currenciesToShow {
