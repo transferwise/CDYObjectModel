@@ -84,6 +84,8 @@
 "recipient.controller.validation.error.field.empty" = "%@ not entered";
 "recipient.controller.confirm.payment.button.title" = "Confirm payment";
 "recipient.controller.add.mode.title" = "Add recipient";
+"recipient.controller.recipients.preload.error.title" = "Can't load contacts";
+"recipient.controller.recipient.types.load.error.title" = "Data error";
 
 "recipient.save.error.title" = "Can't save";
 

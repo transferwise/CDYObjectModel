@@ -136,6 +136,7 @@ static NSUInteger const kRecipientFieldsSection = 2;
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
 
     void (^dataLoadCompletionBlock)() = ^() {
+        [hud hide];
         [self.currencyCell setAllCurrencies:[self currenciesToShow]];
         [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, @[]]];
         [self.tableView setTableFooterView:self.footer];
@@ -147,6 +148,9 @@ static NSUInteger const kRecipientFieldsSection = 2;
         recipientsOperation = [UserRecipientsOperation recipientsOperationWithCurrency:self.preloadRecipientsWithCurrency];
         [recipientsOperation setResponseHandler:^(NSArray *recipients, NSError *error) {
             if (error) {
+                [hud hide];
+                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipients.preload.error.title", nil) error:error];
+                [alertView show];
                 return;
             }
 
@@ -159,9 +163,10 @@ static NSUInteger const kRecipientFieldsSection = 2;
     RecipientTypesOperation *typesOperation = [RecipientTypesOperation operation];
     [typesOperation setResultHandler:^(NSArray *recipients, NSError *typesError) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [hud hide];
-
             if (typesError) {
+                [hud hide];
+                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipient.types.load.error.title", nil) error:typesError];
+                [alertView show];
                 return;
             }
 
@@ -181,6 +186,8 @@ static NSUInteger const kRecipientFieldsSection = 2;
     [currenciesOperation setResultHandler:^(NSArray *currencies, NSError *error) {
         if (error) {
             [hud hide];
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipient.types.load.error.title", nil) error:error];
+            [alertView show];
             return;
         }
 
