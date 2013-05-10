@@ -132,6 +132,7 @@
 "recipient.type.IBAN.name" = "IBAN";
 "recipient.type.SORT_CODE.name" = "UK SORT";
 
+"upload.money.title" = "Upload money";
 "upload.money.header.label" = "We are waiting your deposit";
 "upload.money.footer.label" = "56 Shoreditch High Street, London E1 6JJ, United Kingdom";
 "upload.money.toggle.button.debit.card.title" = "Debit card";

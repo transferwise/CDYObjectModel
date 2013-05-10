@@ -16,6 +16,8 @@
 @property (nonatomic, copy) NSString *type;
 @property (nonatomic, copy) NSString *iban;
 @property (nonatomic, copy) NSString *bic;
+@property (nonatomic, copy) NSString *sortCode;
+@property (nonatomic, copy) NSString *accountNumber;
 
 @end
 
@@ -36,6 +38,8 @@
     [recipient setType:data[@"type"]];
     [recipient setIban:data[@"IBAN"]];
     [recipient setBic:data[@"BIC"]];
+    [recipient setSortCode:data[@"sortCode"]];
+    [recipient setAccountNumber:data[@"accountNumber"]];
     return recipient;
 }
 

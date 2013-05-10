@@ -54,6 +54,8 @@
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = self.footerView;
     
+    [self setTitle:NSLocalizedString(@"upload.money.title", @"")];
+    
     [self.headerLabel setText:NSLocalizedString(@"upload.money.header.label", @"")];
     [self.footerLabel setText:NSLocalizedString(@"upload.money.footer.label", @"")];
     [self.toggleButton setTitle:NSLocalizedString(@"upload.money.toggle.button.debit.card.title", @"") forSegmentAtIndex:0];
@@ -62,6 +64,33 @@
     [self.notificationLabel setText:NSLocalizedString(@"upload.money.notification.label", @"")];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"TextCell" bundle:nil] forCellReuseIdentifier:TWTextCellIdentifier];
+    
+    [self createGbpPaymentWithDummyData];
+}
+
+- (void)createEurPaymentWithDummyData
+{
+    BankTransfer* data = [[BankTransfer alloc] init];
+    [data setAmount:@"3.00 EUR"];
+    [data setIban:@"EE297700771000701243"];
+    [data setAccountNr:@"771000701243"];
+    [data setBic:@"LHVBEE22"];
+    [data setBankName:@"LHV Bank, Estonia"];
+    [data setReference:@"P35412"];
+    
+    [self fillFieldsWithData:data];
+}
+
+- (void)createGbpPaymentWithDummyData
+{
+    BankTransfer* data = [[BankTransfer alloc] init];
+    [data setAmount:@"3.00 EUR"];
+    [data setUkSort:@"209561"];
+    [data setAccountNr:@"53640809"];
+    [data setBankName:@"Barclays, United Kingdom"];
+    [data setReference:@"P35412"];
+    
+    [self fillFieldsWithData:data];
 }
 
 - (void)fillFieldsWithData:(BankTransfer*)data
@@ -107,6 +136,8 @@
     [self setReferenceCell:referenceCell];
     [transferCells addObject:referenceCell];
     [referenceCell configureWithTitle:NSLocalizedString(@"upload.money.reference.title", @"") text:data.reference];
+    
+    [self setPresentedSectionCells:@[transferCells]];
 }
 
 #pragma mark - UITableView dataSource
