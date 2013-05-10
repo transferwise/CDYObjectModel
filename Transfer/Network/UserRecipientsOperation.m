@@ -10,10 +10,25 @@
 #import "TransferwiseOperation+Private.h"
 #import "Constants.h"
 #import "Recipient.h"
+#import "Currency.h"
 
 NSString *const kRecipientsListPath = @"/recipient/list";
 
+@interface UserRecipientsOperation ()
+
+@property (nonatomic, strong) Currency *currency;
+
+@end
+
 @implementation UserRecipientsOperation
+
+- (id)initWithCurrency:(Currency *)currency {
+    self = [super init];
+    if (self) {
+        _currency = currency;
+    }
+    return self;
+}
 
 - (void)execute {
     NSString *path = [self addTokenToPath:kRecipientsListPath];
@@ -40,11 +55,16 @@ NSString *const kRecipientsListPath = @"/recipient/list";
         weakSelf.responseHandler(nil, error);
     }];
 
-    [self getDataFromPath:path];
+    NSDictionary *params = self.currency ? @{@"currency" : self.currency.code} : @{};
+    [self getDataFromPath:path params:params];
 }
 
 + (UserRecipientsOperation *)recipientsOperation {
     return [[UserRecipientsOperation alloc] init];
+}
+
++ (UserRecipientsOperation *)recipientsOperationWithCurrency:(Currency *)currency {
+    return [[UserRecipientsOperation alloc] initWithCurrency:currency];
 }
 
 @end

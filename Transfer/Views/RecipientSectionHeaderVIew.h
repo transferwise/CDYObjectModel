@@ -18,5 +18,6 @@ typedef void (^RecipientTypeChangedBlock)(RecipientType *type);
 
 - (void)setText:(NSString *)text;
 - (void)setSelectedType:(RecipientType *)selected allTypes:(NSArray *)allTypes;
+- (void)changeSelectedTypeTo:(RecipientType *)tappedOn;
 
 @end

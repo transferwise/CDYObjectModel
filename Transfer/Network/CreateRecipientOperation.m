@@ -37,7 +37,8 @@ NSString *const kCreateRecipientPath = @"/recipient/createRecipient";
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-
+        Recipient *recipient = [Recipient recipientWithData:response];
+        weakSelf.responseHandler(recipient, nil);
     }];
 
     [self postData:self.data toPath:path];

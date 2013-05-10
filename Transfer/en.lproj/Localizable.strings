@@ -5,7 +5,9 @@
 "button.title.log.in" = "Log in";
 "button.title.ok" = "OK";
 
-
+"confirm.payment.controller.title" = "Confirm";
+"confirm.payment.sender.marker.label" = "Sender (you)";
+"confirm.payment.email.label" = "E-mail";
 
 "contacts.controller.title" = "Contacts";
 "contacts.controller.refreshing.message" = "Refreshing contacts";
@@ -58,6 +60,7 @@
 "settings.row.business.profile" = "Your business profile";
 "settings.row.signup" = "Create an account";
 
+"personal.profile.continue.to.recipient.button.title" = "Continue to recipient details";
 "personal.profile.first.name.label" = "First name";
 "personal.profile.last.name.label" = "Last name";
 "personal.profile.email.label" = "E-mail";
@@ -78,7 +81,7 @@
 "personal.profile.saving.message" = "Saving profile...";
 "personal.profile.save.error.title" = "Save profile error";
 
-"recipient.controller.add.button.title" = "Add recipient";
+"recipient.controller.add.button.title" = "Add";
 "recipient.controller.cell.label.name" = "Name";
 "recipient.controller.creating.message" = "Creating...";
 "recipient.controller.refreshing.message" = "Pulling data...";
@@ -86,14 +89,23 @@
 "recipient.controller.section.title.currency" = "Currency";
 "recipient.controller.section.title.recipient" = "Recipient";
 "recipient.controller.section.title.type.fields" = "Transfer details";
-"recipient.controller.title" = "Recipient details";
+"recipient.controller.payment.mode.title" = "Recipient details";
 "recipient.controller.validation.error.empty.name" = "Name not entered";
 "recipient.controller.validation.error.field.empty" = "%@ not entered";
+"recipient.controller.confirm.payment.button.title" = "Confirm payment";
+"recipient.controller.add.mode.title" = "Add recipient";
+"recipient.controller.recipients.preload.error.title" = "Can't load contacts";
+"recipient.controller.recipient.types.load.error.title" = "Data error";
 
 "recipient.save.error.title" = "Can't save";
 
-"recipient.details.bic.base" = "BIC: %@";
-"recipient.details.iban.base" = "IBAN: %@";
+"recipient.details.BIC.base" = "BIC: %@";
+"recipient.details.IBAN.base" = "IBAN: %@";
+"recipient.details.SORT_CODE.base" = "UK Sort code: %@";
+"recipient.details.account.number.base" = "Account number: %@";
+"recipient.details.ABA.base" = "ABA RTN: %@, State:%@";
+"recipient.details.SWIFT_CODE.base" = "SWIFT code: %@";
+"recipient.details.bank.code.base" = "Bank code: %@";
 
 "business.profile.details.section.title" = "Business details";
 "business.profile.address.section.title" = "Address";
