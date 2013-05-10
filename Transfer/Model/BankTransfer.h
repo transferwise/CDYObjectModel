@@ -7,19 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Recipient.h"
 
 @interface BankTransfer : NSObject
 
-@property (strong, nonatomic) NSString* amount;
-@property (strong, nonatomic) NSString* iban;
-@property (strong, nonatomic) NSString* accountNr;
-@property (strong, nonatomic) NSString* bic;
-@property (strong, nonatomic) NSString* bankName;
-@property (strong, nonatomic) NSString* reference;
-@property (strong, nonatomic) NSString* ukSort;
+@property (strong, nonatomic, readonly) NSString *paymentId;
+@property (strong, nonatomic, readonly) NSString *currency;
+@property (strong, nonatomic, readonly) Recipient *settlementAccount;
 
 +(BankTransfer *)initWithData:(NSDictionary *)data;
 
--(BOOL)isIbanValue;
-
+- (NSString *)formattedAmount;
 @end

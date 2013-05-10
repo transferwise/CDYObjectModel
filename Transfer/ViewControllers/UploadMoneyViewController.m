@@ -70,74 +70,103 @@
 
 - (void)createEurPaymentWithDummyData
 {
-    BankTransfer* data = [[BankTransfer alloc] init];
-    [data setAmount:@"3.00 EUR"];
-    [data setIban:@"EE297700771000701243"];
-    [data setAccountNr:@"771000701243"];
-    [data setBic:@"LHVBEE22"];
-    [data setBankName:@"LHV Bank, Estonia"];
-    [data setReference:@"P35412"];
-    
-    [self fillFieldsWithData:data];
+    [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(ProfileDetails *result, NSError *error) {
+        NSMutableDictionary *data = [NSMutableDictionary dictionary];
+        data[@"payment_id"] = @"10868";
+        data[@"amount"] = @"3.0";
+        data[@"currency"] = @"EUR";
+        
+        NSMutableDictionary *settlementAccount = [NSMutableDictionary dictionary];
+        {
+            settlementAccount[@"id"] = @"1";
+            settlementAccount[@"name"] = @"Exchange Solutions";
+            settlementAccount[@"currency"] = @"EUR";
+            settlementAccount[@"type"] = @"IBAN";
+            settlementAccount[@"IBAN"] = @"EE297700771000701243";
+            settlementAccount[@"BIC"] = @"EE297700771000701243";
+            settlementAccount[@"accountNumber"] = @"771000701243";
+            //settlementAccount[@"sortCode"] = [NSNull null];
+        }
+        
+        data[@"settlementAccount"] = settlementAccount;
+
+        BankTransfer* bank = [BankTransfer initWithData:data];
+        
+        [self fillFieldsWithData:bank forUser:result];
+    }];
 }
 
 - (void)createGbpPaymentWithDummyData
 {
     [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(ProfileDetails *result, NSError *error) {
-        BankTransfer* data = [[BankTransfer alloc] init];
-        [data setAmount:@"3.00 EUR"];
-        [data setUkSort:@"209561"];
-        [data setAccountNr:@"53640809"];
-        [data setBankName:@"Barclays, United Kingdom"];
-        [data setReference:result.reference];
         
-        [self fillFieldsWithData:data];
+        NSMutableDictionary *data = [NSMutableDictionary dictionary];
+        data[@"payment_id"] = @"10868";
+        data[@"amount"] = @"3.0";
+        data[@"currency"] = @"GBP";
+        
+        NSMutableDictionary *settlementAccount = [NSMutableDictionary dictionary];
+        {
+            settlementAccount[@"id"] = @"1";
+            settlementAccount[@"name"] = @"Exchange Solutions";
+            settlementAccount[@"currency"] = @"GBP";
+            settlementAccount[@"type"] = @"SORT_CODE";
+            settlementAccount[@"accountNumber"] = @"53640809";
+            settlementAccount[@"sortCode"] = @"209561";
+        }
+        
+        data[@"settlementAccount"] = settlementAccount;
+        
+        BankTransfer* bank = [BankTransfer initWithData:data];
+        
+        [self fillFieldsWithData:bank forUser:result];
     }];
 }
 
-- (void)fillFieldsWithData:(BankTransfer*)data
+- (void)fillFieldsWithData:(BankTransfer*)data forUser:(ProfileDetails*)details
 {
     NSMutableArray *transferCells = [NSMutableArray array];
     
     TextCell *amountCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
     [self setAmountCell:amountCell];
     [transferCells addObject:amountCell];
-    [amountCell configureWithTitle:NSLocalizedString(@"upload.money.amount.title", @"") text:data.amount];
+    [amountCell configureWithTitle:NSLocalizedString(@"upload.money.amount.title", @"") text:[data formattedAmount]];
 
-    if(data.iban){
+    if(data.settlementAccount.iban){
         TextCell *ibanCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
         [self setIbanCell:ibanCell];
         [transferCells addObject:ibanCell];
-        [ibanCell configureWithTitle:NSLocalizedString(@"upload.money.iban.title", @"") text:data.iban];
+        [ibanCell configureWithTitle:NSLocalizedString(@"upload.money.iban.title", @"") text:data.settlementAccount.iban];
     }
-    if(data.accountNr){
+    if(data.settlementAccount.accountNumber){
         TextCell *accountNrCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
         [self setAccountNrCell:accountNrCell];
         [transferCells addObject:accountNrCell];
-        [accountNrCell configureWithTitle:NSLocalizedString(@"upload.money.account.nr.title", @"") text:data.accountNr];
+        [accountNrCell configureWithTitle:NSLocalizedString(@"upload.money.account.nr.title", @"") text:data.settlementAccount.accountNumber];
     }
-    if(data.bic){
+    if(data.settlementAccount.bic){
         TextCell *bicCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
         [self setBicCell:bicCell];
         [transferCells addObject:bicCell];
-        [bicCell configureWithTitle:NSLocalizedString(@"upload.money.bic.title", @"") text:data.bic];
+        [bicCell configureWithTitle:NSLocalizedString(@"upload.money.bic.title", @"") text:data.settlementAccount.bic];
     }
-    if(data.ukSort){
+    if(data.settlementAccount.sortCode){
         TextCell *ukSortCodeCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
         [self setUkSortCodeCell:ukSortCodeCell];
         [transferCells addObject:ukSortCodeCell];
-        [ukSortCodeCell configureWithTitle:NSLocalizedString(@"upload.money.uksort.title", @"") text:data.ukSort];
+        [ukSortCodeCell configureWithTitle:NSLocalizedString(@"upload.money.uksort.title", @"") text:data.settlementAccount.sortCode];
     }
     
     TextCell *bankNameCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
     [self setBankNameCell:bankNameCell];
     [transferCells addObject:bankNameCell];
-    [bankNameCell configureWithTitle:NSLocalizedString(@"upload.money.bank.name.title", @"") text:data.bankName];
+    [bankNameCell configureWithTitle:NSLocalizedString(@"upload.money.bank.name.title", @"") text:@""];
     
     TextCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
     [self setReferenceCell:referenceCell];
     [transferCells addObject:referenceCell];
-    [referenceCell configureWithTitle:NSLocalizedString(@"upload.money.reference.title", @"") text:data.reference];
+    [referenceCell configureWithTitle:NSLocalizedString(@"upload.money.reference.title", @"") text:details.reference];
+
     
     [self setPresentedSectionCells:@[transferCells]];
     

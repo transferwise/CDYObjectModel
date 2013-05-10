@@ -14,6 +14,8 @@
 @property (nonatomic, copy, readonly) NSString *iban;
 @property (nonatomic, copy, readonly) NSString *bic;
 @property (nonatomic, strong, readonly) NSNumber *recipientId;
+@property (nonatomic, copy, readonly) NSString *accountNumber;
+@property (nonatomic, copy, readonly) NSString *sortCode;
 
 + (Recipient *)recipientWithData:(NSDictionary *)data;
 
