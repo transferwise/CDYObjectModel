@@ -71,7 +71,7 @@
 "personal.profile.saving.message" = "Saving profile...";
 "personal.profile.save.error.title" = "Save profile error";
 
-"recipient.controller.add.button.title" = "Add recipient";
+"recipient.controller.add.button.title" = "Add";
 "recipient.controller.cell.label.name" = "Name";
 "recipient.controller.creating.message" = "Creating...";
 "recipient.controller.refreshing.message" = "Pulling data...";
@@ -79,10 +79,11 @@
 "recipient.controller.section.title.currency" = "Currency";
 "recipient.controller.section.title.recipient" = "Recipient";
 "recipient.controller.section.title.type.fields" = "Transfer details";
-"recipient.controller.title" = "Recipient details";
+"recipient.controller.payment.mode.title" = "Recipient details";
 "recipient.controller.validation.error.empty.name" = "Name not entered";
 "recipient.controller.validation.error.field.empty" = "%@ not entered";
 "recipient.controller.confirm.payment.button.title" = "Confirm payment";
+"recipient.controller.add.mode.title" = "Add recipient";
 
 "recipient.save.error.title" = "Can't save";
 

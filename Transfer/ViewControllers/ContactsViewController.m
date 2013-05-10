@@ -105,6 +105,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
 - (void)addContactPressed {
     RecipientViewController *controller = [[RecipientViewController alloc] init];
+    [controller setTitle:NSLocalizedString(@"recipient.controller.add.mode.title", nil)];
     [controller setFooterButtonTitle:NSLocalizedString(@"recipient.controller.add.button.title", nil)];
     [controller setAfterSaveAction:^{
         [self.navigationController popViewControllerAnimated:YES];

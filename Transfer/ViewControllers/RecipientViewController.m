@@ -14,7 +14,6 @@
 #import "RecipientTypesOperation.h"
 #import "TextEntryCell.h"
 #import "CurrencySelectionCell.h"
-#import "Constants.h"
 #import "Currency.h"
 #import "RecipientType.h"
 #import "RecipientTypeField.h"
@@ -130,10 +129,26 @@ static NSUInteger const kRecipientFieldsSection = 2;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    [self.navigationItem setTitle:NSLocalizedString(@"recipient.controller.title", nil)];
-
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
+
+    RecipientTypesOperation *typesOperation = [RecipientTypesOperation operation];
+    [typesOperation setResultHandler:^(NSArray *recipients, NSError *typesError) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [hud hide];
+
+            if (typesError) {
+                return;
+            }
+
+            [self.currencyCell setAllCurrencies:[self currenciesToShow]];
+            [self setRecipientTypes:recipients];
+
+            [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, @[]]];
+            [self.tableView setTableFooterView:self.footer];
+            [self.tableView reloadData];
+        });
+    }];
 
     CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
     [self setExecutedOperation:currenciesOperation];
@@ -145,27 +160,8 @@ static NSUInteger const kRecipientFieldsSection = 2;
 
         [self setAllCurrencies:currencies];
 
-        RecipientTypesOperation *operation = [RecipientTypesOperation operation];
-        [self setExecutedOperation:operation];
-
-        [operation setResultHandler:^(NSArray *recipients, NSError *typesError) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [hud hide];
-
-                if (typesError) {
-                    return;
-                }
-
-                [self.currencyCell setAllCurrencies:[self currenciesToShow]];
-                [self setRecipientTypes:recipients];
-
-                [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, @[]]];
-                [self.tableView setTableFooterView:self.footer];
-                [self.tableView reloadData];
-            });
-        }];
-
-        [operation execute];
+        [self setExecutedOperation:typesOperation];
+        [typesOperation execute];
     }];
 
     [currenciesOperation execute];

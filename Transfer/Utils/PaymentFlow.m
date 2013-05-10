@@ -44,6 +44,7 @@
 
 - (void)presentRecipientDetails {
     RecipientViewController *controller = [[RecipientViewController alloc] init];
+    [controller setTitle:NSLocalizedString(@"recipient.controller.payment.mode.title", nil)];
     [controller setFooterButtonTitle:NSLocalizedString(@"recipient.controller.confirm.payment.button.title", nil)];
     [controller setAfterSaveAction:^{
         [self presentPaymentConfirmation];
