@@ -213,9 +213,11 @@ static NSUInteger const kRecipientFieldsSection = 2;
     [self setSelectedRecipient:recipient];
     if (!recipient) {
         [self.nameCell setValue:@""];
+        [self.nameCell setEditable:YES];
 
         for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
             [fieldCell setValue:@""];
+            [self.nameCell setEditable:YES];
         }
         return;
     }
@@ -225,9 +227,12 @@ static NSUInteger const kRecipientFieldsSection = 2;
 
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.nameCell setValue:recipient.name];
+        [self.nameCell setEditable:NO];
+
         for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
             RecipientTypeField *field = fieldCell.type;
             [fieldCell setValue:[recipient valueForKeyPath:field.name]];
+            [fieldCell setEditable:NO];
         }
     });
 }
