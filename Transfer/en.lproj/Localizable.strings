@@ -150,6 +150,7 @@
 "payment.status.transferred.description" = "Transferred";
 "payment.status.cancelled.description" = "Cancelled";
 "payment.status.refunded.description" = "Refunded";
+"payment.status.unknown.description" = "Unknown";
 "recipient.type.IBAN.name" = "IBAN";
 "recipient.type.SORT_CODE.name" = "UK SORT";
 

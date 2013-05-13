@@ -12,5 +12,7 @@
 
 + (Payment *)paymentWithData:(NSDictionary *)data;
 - (NSString *)localizedStatus;
+- (NSString *)recipientName;
+- (NSString *)transferredAmountString;
 
 @end

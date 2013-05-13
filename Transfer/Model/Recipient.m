@@ -84,6 +84,10 @@
 }
 
 + (Recipient *)recipientWithData:(NSDictionary *)data {
+    if (!data || [data isKindOfClass:[NSNull class]]) {
+        return nil;
+    }
+
     Recipient *recipient = [[Recipient alloc] init];
     [recipient setRecipientId:data[@"id"]];
     [recipient setName:data[@"name"]];

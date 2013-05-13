@@ -29,7 +29,20 @@
 }
 
 - (void)configureWithPayment:(Payment *)payment {
+    [self.nameLabel setText:[payment recipientName]];
     [self.statusLabel setText:[payment localizedStatus]];
+    [self.moneyLabel setText:[payment transferredAmountString]];
+
+    CGRect moneyFrame = self.moneyLabel.frame;
+    CGSize moneySize = [self.moneyLabel sizeThatFits:CGSizeMake(NSUIntegerMax, CGRectGetWidth(moneyFrame))];
+    CGFloat widthChange = moneySize.width - CGRectGetWidth(moneyFrame);
+    moneyFrame.origin.x -= widthChange;
+    moneyFrame.size.width += widthChange;
+    [self.moneyLabel setFrame:moneyFrame];
+
+    CGRect nameFrame = self.nameLabel.frame;
+    nameFrame.size.width -= widthChange;
+    [self.nameLabel setFrame:nameFrame];
 }
 
 @end
