@@ -72,6 +72,27 @@
     return [NSString stringWithFormat:@"%@ %@ > %@", self.payIn, self.sourceCurrency, self.targetCurrency];
 }
 
+- (NSDate *)latestChangeDate {
+    NSDate *result = self.submittedDate;
+    result = [result laterDate:self.receivedDate];
+    result = [result laterDate:self.transferredDate];
+    result = [result laterDate:self.cancelledDate];
+    return result;
+}
+
+static NSDateFormatter *__changeTimeFormatter;
+- (NSString *)latestChangeTimeString {
+    NSDate *latestChangeDate = [self latestChangeDate];
+
+    if (!__changeTimeFormatter) {
+        __changeTimeFormatter = [[NSDateFormatter alloc] init];
+        [__changeTimeFormatter setTimeStyle:NSDateFormatterShortStyle];
+        [__changeTimeFormatter setDateStyle:NSDateFormatterShortStyle];
+    }
+
+    return [__changeTimeFormatter stringFromDate:latestChangeDate];
+}
+
 static NSDateFormatter *__dateFormatter;
 + (NSDate *)dateFromString:(NSString *)dateString {
     if (!dateString || [dateString isKindOfClass:[NSNull class]]) {

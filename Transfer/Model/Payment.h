@@ -14,5 +14,6 @@
 - (NSString *)localizedStatus;
 - (NSString *)recipientName;
 - (NSString *)transferredAmountString;
+- (NSString *)latestChangeTimeString;
 
 @end

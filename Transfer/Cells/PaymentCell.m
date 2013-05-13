@@ -32,6 +32,7 @@
     [self.nameLabel setText:[payment recipientName]];
     [self.statusLabel setText:[payment localizedStatus]];
     [self.moneyLabel setText:[payment transferredAmountString]];
+    [self.timeLabel setText:[payment latestChangeTimeString]];
 
     CGRect moneyFrame = self.moneyLabel.frame;
     CGSize moneySize = [self.moneyLabel sizeThatFits:CGSizeMake(NSUIntegerMax, CGRectGetWidth(moneyFrame))];
