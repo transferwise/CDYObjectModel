@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSNumber *bankTotalFee;
 @property (nonatomic, strong) NSNumber *bankPayIn;
 @property (nonatomic, strong) NSNumber *bankPayOut;
+@property (nonatomic, strong) NSDate *paymentDate;
 
 @end
 
@@ -28,16 +29,17 @@
 + (CalculationResult *)resultWithData:(NSDictionary *)data {
     CalculationResult *result = [[CalculationResult alloc] init];
     NSNumberFormatter *formatter = [CalculationResult moneyFormatter];
-    [result setTransferwiseRate:[formatter numberFromString:data[@"transferwise_rate"]]];
-    [result setTransferwiseTransferFee:[formatter numberFromString:data[@"transferwise_transfer_fee"]]];
-    [result setTransferwisePayIn:[formatter numberFromString:data[@"transferwise_pay_in"]]];
-    [result setTransferwisePayOut:[formatter numberFromString:data[@"transferwise_pay_out"]]];
-    [result setBankRate:[formatter numberFromString:data[@"bank_rate"]]];
-    [result setBankTransferFee:[formatter numberFromString:data[@"bank_transfer_fee"]]];
-    [result setBankRateMarkup:[formatter numberFromString:data[@"bank_rate_markup"]]];
-    [result setBankTotalFee:[formatter numberFromString:data[@"bank_total_fee"]]];
-    [result setBankPayIn:[formatter numberFromString:data[@"bank_pay_in"]]];
-    [result setBankPayOut:[formatter numberFromString:data[@"bank_pay_out"]]];
+    [result setTransferwiseRate:[formatter numberFromString:data[@"transferwiseRate"]]];
+    [result setTransferwiseTransferFee:[formatter numberFromString:data[@"transferwiseTransferFee"]]];
+    [result setTransferwisePayIn:[formatter numberFromString:data[@"transferwisePayIn"]]];
+    [result setTransferwisePayOut:[formatter numberFromString:data[@"transferwisePayOut"]]];
+    [result setBankRate:[formatter numberFromString:data[@"bankRate"]]];
+    [result setBankTransferFee:[formatter numberFromString:data[@"bankTransferFee"]]];
+    [result setBankRateMarkup:[formatter numberFromString:data[@"bankRateMarkup"]]];
+    [result setBankTotalFee:[formatter numberFromString:data[@"bankTotalFee"]]];
+    [result setBankPayIn:[formatter numberFromString:data[@"bankPayIn"]]];
+    [result setBankPayOut:[formatter numberFromString:data[@"bankPayOut"]]];
+    [result setPaymentDate:[[NSDate date] dateByAddingTimeInterval:(60 * 60 * 24)]];
     return result;
 }
 
@@ -134,8 +136,23 @@ static NSNumberFormatter *__moneyFormatter;
     return __moneyFormatter;
 }
 
+- (NSString *)paymentDateString {
+    return [[CalculationResult paymentDateFormatter] stringFromDate:self.paymentDate];
+}
+
 + (NSLocale *)defaultLocale {
     return [[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"];
+}
+
+NSDateFormatter *__paymentDateFormatter;
++ (NSDateFormatter *)paymentDateFormatter {
+    if (!__paymentDateFormatter) {
+        __paymentDateFormatter = [[NSDateFormatter alloc] init];
+        [__paymentDateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        [__paymentDateFormatter setDateStyle:NSDateFormatterFullStyle];
+    }
+
+    return __paymentDateFormatter;
 }
 
 @end

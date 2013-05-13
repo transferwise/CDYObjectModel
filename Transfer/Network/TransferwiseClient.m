@@ -10,11 +10,13 @@
 #import "Constants.h"
 #import "Credentials.h"
 #import "ProfileDetails.h"
+#import "CurrencyPairsOperation.h"
 
 @interface TransferwiseClient ()
 
 @property (nonatomic, strong) UserDetailsOperation *detailsOperation;
 @property (nonatomic, strong) CountriesOperation *countriesOperation;
+@property (nonatomic, strong) CurrencyPairsOperation *currencyOperation;
 
 @end
 
@@ -61,11 +63,20 @@
 
     [detailsOperation execute];
 }
-
 - (void)updateCountriesWithCompletionHandler:(CountriesResponseBlock)handler {
     CountriesOperation *operation = [CountriesOperation operation];
     [self setCountriesOperation:operation];
     [operation setCompletionHandler:handler];
+    [operation execute];
+}
+
+- (void)updateCurrencyPairsWithCompletionHandler:(CurrencyPairsBlock)handler {
+    MCLog(@"Update pairs");
+    CurrencyPairsOperation *operation = [CurrencyPairsOperation pairsOperation];
+    [self setCurrencyOperation:operation];
+    [operation setCurrenciesHandler:handler];
+
+    [operation setObjectModel:self.objectModel];
     [operation execute];
 }
 

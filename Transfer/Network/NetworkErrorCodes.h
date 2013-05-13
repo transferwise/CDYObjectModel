@@ -11,3 +11,4 @@ extern NSString *const TRWErrorDomain;
 extern NSString *const TRWErrors;
 
 extern NSString *const TRWNetworkErrorExpiredToken;
+extern NSString *const TRWNetworkErrorInvalidToken;

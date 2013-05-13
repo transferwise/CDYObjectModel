@@ -1,11 +1,22 @@
 "button.title.back" = "Back";
+"button.title.cancel" = "Cancel";
+"button.title.delete" = "Delete";
 "button.title.get.started" = "Get started";
 "button.title.log.in" = "Log in";
 "button.title.ok" = "OK";
 
+"confirm.payment.controller.title" = "Confirm";
+"confirm.payment.sender.marker.label" = "Sender (you)";
+"confirm.payment.email.label" = "E-mail";
+"confirm.payment.recipient.marker.label" = "Receiver";
+"confirm.payment.reference.label" = "Reference";
+"confirm.payment.footer.button.title" = "Confirm payment";
 
 "contacts.controller.title" = "Contacts";
 "contacts.controller.refreshing.message" = "Refreshing contacts";
+"contacts.controller.delete.confirmation.message" = "Are you sure you wish to remove %@ from contacts?";
+"contacts.controller.delete.conformation.title" = "Delete contact";
+"contacts.controller.deleting.message" = "Removing...";
 
 "contacts.refresh.error.title" = "Refresh error";
 "contacts.refresh.error.message" = "Could not refresh contacts list";
@@ -13,6 +24,7 @@
 "introduction.controller.title" = "Transferwise";
 "introduction.header.title.text" = "Send money abroad";
 "introduction.login.section.title" = "Already a user";
+"introduction.refreshing.currencies.message" = "Refreshing currencies...";
 "introduction.savings.message.base" = "You'll get %@ more vs your bank";
 "introduction.savings.message.why" = "Why?";
 
@@ -29,6 +41,14 @@
 "money.entry.they.receive.title" = "They get";
 "money.entry.you.send.title" = "You send";
 
+"payment.controller.calculation.error.title" = "Calculation failed";
+"payment.controller.payment.date.message" = "Payment will be received no later than\n%@";
+"payment.controller.continue.to.details.button.title" = "Continue to your details";
+"payment.controller.deposit.label" = "Deposit";
+"payment.controller.transfer.fee.label" = "Transfer fee";
+"payment.controller.currency.cost.label" = "Currency cost";
+"payment.controller.estimated.exchange.rate.label" = "Estimated exchange rate";
+"payment.controller.you.get.label" = "You get (estimated)";
 "payment.controller.title" = "New payment";
 
 "personal.profile.controller.title" = "Your details";
@@ -38,8 +58,10 @@
 
 "settings.row.logout" = "Sign out";
 "settings.row.personal.profile" = "Your personal profile";
+"settings.row.business.profile" = "Your business profile";
 "settings.row.signup" = "Create an account";
 
+"personal.profile.continue.to.recipient.button.title" = "Continue to recipient details";
 "personal.profile.first.name.label" = "First name";
 "personal.profile.last.name.label" = "Last name";
 "personal.profile.email.label" = "E-mail";
@@ -47,12 +69,67 @@
 "personal.profile.address.label" = "Address";
 "personal.profile.post.code.label" = "Post code";
 "personal.profile.city.label" = "City";
+"personal.profile.phone.label" = "Phone";
 "personal.profile.country.label" = "Country";
 "personal.profile.refreshing.message" = "Loading profile...";
 "personal.profile.refresh.error.title" = "Profile load error";
 "personal.profile.refresh.error.message" = "Could not load user profile. Please try again later.";
 "personal.profile.address.section.title" = "Address";
 "personal.profile.personal.section.title" = "Personal details";
+"personal.profile.validation.error.title" = "Check input";
+"personal.profile.validation.error.message" = "Please check that all fields are filled.";
+"personal.profile.save.button.title" = "Save profile";
+"personal.profile.saving.message" = "Saving profile...";
+"personal.profile.save.error.title" = "Save profile error";
+
+"recipient.controller.add.button.title" = "Add";
+"recipient.controller.cell.label.name" = "Name";
+"recipient.controller.creating.message" = "Creating...";
+"recipient.controller.refreshing.message" = "Pulling data...";
+"recipient.controller.save.error.title" = "Add error";
+"recipient.controller.section.title.currency" = "Currency";
+"recipient.controller.section.title.recipient" = "Recipient";
+"recipient.controller.section.title.type.fields" = "Transfer details";
+"recipient.controller.payment.mode.title" = "Recipient details";
+"recipient.controller.validation.error.empty.name" = "Name not entered";
+"recipient.controller.validation.error.field.empty" = "%@ not entered";
+"recipient.controller.confirm.payment.button.title" = "Confirm payment";
+"recipient.controller.add.mode.title" = "Add recipient";
+"recipient.controller.recipients.preload.error.title" = "Can't load contacts";
+"recipient.controller.recipient.types.load.error.title" = "Data error";
+
+"recipient.save.error.title" = "Can't save";
+
+"recipient.details.BIC.base" = "BIC: %@";
+"recipient.details.IBAN.base" = "IBAN: %@";
+"recipient.details.SORT_CODE.base" = "UK Sort code: %@";
+"recipient.details.account.number.base" = "Account number: %@";
+"recipient.details.ABA.base" = "ABA RTN: %@, State:%@";
+"recipient.details.SWIFT_CODE.base" = "SWIFT code: %@";
+"recipient.details.bank.code.base" = "Bank code: %@";
+
+"business.profile.details.section.title" = "Business details";
+"business.profile.address.section.title" = "Address";
+"business.profile.controller.title" = "Business profile";
+"business.profile.name.label" = "Business name";
+"business.profile.registration.number.label" = "Registration number";
+"business.profile.description.label" = "Business description";
+"business.profile.address.label" = "Address";
+"business.profile.post.code.label" = "Post code";
+"business.profile.city.label" = "City";
+"business.profile.country.label" = "Country";
+"business.profile.saving.message" = "Loading profile...";
+"business.profile.save.error.title" = "Save profile error";
+"business.profile.refresh.error.message" = "Could not load business profile. Please try again later.";
+"business.profile.save.button.title" = "Save profile";
+"business.profile.validation.error.message" = "Please check that all fields are filled.";
+"business.profile.validation.error.title" = "Check input";
+"business.profile.refresh.error.title" = "Refresh error";
+"business.profile.refreshing.message" = "Refreshing...";
+
+"settings.row.logout" = "Sign out";
+"settings.row.personal.profile" = "Your personal profile";
+"settings.row.signup" = "Create an account";
 
 "singup.controller.header.message" = "Create a Transferwise account";
 "singup.email.field.title" = "E-mail";
@@ -73,3 +150,10 @@
 "payment.status.transferred.description" = "Transferred";
 "payment.status.cancelled.description" = "Cancelled";
 "payment.status.refunded.description" = "Refunded";
+"recipient.type.IBAN.name" = "IBAN";
+"recipient.type.SORT_CODE.name" = "UK SORT";
+
+"confirm.payment.deposit.title.label" = "Your deposit";
+"confirm.payment.exchanged.to.title.label" = "Will be exchanged to";
+"confirm.payment.estimated.exchange.rate.message" = "Estimated exchange rate %@";
+"confirm.payment.delivery.date.message" = "Delivery by %@";

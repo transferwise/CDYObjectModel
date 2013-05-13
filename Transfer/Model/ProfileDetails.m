@@ -8,6 +8,7 @@
 
 #import "ProfileDetails.h"
 #import "PersonalProfile.h"
+#import "BusinessProfile.h"
 
 @interface ProfileDetails ()
 
@@ -25,11 +26,16 @@
 + (ProfileDetails *)detailsWithData:(NSDictionary *)data {
     ProfileDetails *details = [[ProfileDetails alloc] init];
     [details setEmail:data[@"email"]];
-    [details setReference:data[@"p_reference"]];
-    NSDictionary *personalProfileData = data[@"personal_profile"];
+    [details setReference:data[@"pReference"]];
+    NSDictionary *personalProfileData = data[@"personalProfile"];
     if (personalProfileData && [personalProfileData class] != [NSNull class]) {
         PersonalProfile *profile = [PersonalProfile profileWithData:personalProfileData];
         [details setPersonalProfile:profile];
+    }
+    NSDictionary *businessProfileData = data[@"businessProfile"];
+    if (businessProfileData && [businessProfileData class] != [NSNull class]) {
+        BusinessProfile *profile = [BusinessProfile profileWithData:businessProfileData];
+        [details setBusinessProfile:profile];
     }
     return details;
 }

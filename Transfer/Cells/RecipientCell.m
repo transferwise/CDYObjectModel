@@ -37,8 +37,8 @@
 
 - (void)configureWithRecipient:(Recipient *)recipient {
     [self.nameLabel setText:[recipient name]];
-    [self.accountLabel setText:[NSString stringWithFormat:NSLocalizedString(@"recipient.details.iban.base", nil), recipient.iban]];
-    [self.bankLabel setText:[NSString stringWithFormat:NSLocalizedString(@"recipient.details.bic.base", nil), recipient.bic]];
+    [self.accountLabel setText:[recipient detailsRowOne]];
+    [self.bankLabel setText:[recipient detailsRowTwo]];
 }
 
 @end

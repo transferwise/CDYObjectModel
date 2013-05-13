@@ -11,6 +11,7 @@
 #import "UIColor+Theme.h"
 #import "Credentials.h"
 #import "PersonalProfileViewController.h"
+#import "BusinessProfileViewController.h"
 #import "SWRevealViewController.h"
 #import "SignUpViewController.h"
 
@@ -20,6 +21,7 @@ typedef NS_ENUM(short, SettingsRow) {
     LogoutRow,
     UserProfileRow,
     PersonalProfileRow,
+    BusinessProfileRow,
     SignUpRow
 };
 
@@ -60,6 +62,7 @@ typedef NS_ENUM(short, SettingsRow) {
     if ([Credentials userLoggedIn]) {
         [presented addObject:@(UserProfileRow)];
         [presented addObject:@(PersonalProfileRow)];
+        [presented addObject:@(BusinessProfileRow)];
         [presented addObject:@(LogoutRow)];
     } else {
         [presented addObject:@(SignUpRow)];
@@ -99,6 +102,9 @@ typedef NS_ENUM(short, SettingsRow) {
         case PersonalProfileRow:
             [cell setTitle:NSLocalizedString(@"settings.row.personal.profile", nil)];
             break;
+        case BusinessProfileRow:
+            [cell setTitle:NSLocalizedString(@"settings.row.business.profile", nil)];
+            break;
         case SignUpRow:
             [cell setTitle:NSLocalizedString(@"settings.row.signup", nil)];
             break;
@@ -136,6 +142,16 @@ typedef NS_ENUM(short, SettingsRow) {
             break;
         case PersonalProfileRow: {
             PersonalProfileViewController *controller = [[PersonalProfileViewController alloc] init];
+            [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.save.button.title", nil)];
+            [controller setAfterSaveAction:^{
+
+            }];
+            [revealController revealToggle:nil];
+            [pushOnNavigationController pushViewController:controller animated:YES];
+        }
+            break;
+        case BusinessProfileRow: {
+            BusinessProfileViewController *controller = [[BusinessProfileViewController alloc] init];
             [revealController revealToggle:nil];
             [pushOnNavigationController pushViewController:controller animated:YES];
         }

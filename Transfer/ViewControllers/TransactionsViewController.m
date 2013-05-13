@@ -54,6 +54,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [super viewWillAppear:animated];
 
     [self refreshPaymentsList];
+    [self.tabBarController.navigationItem setRightBarButtonItem:nil];
 }
 
 #pragma mark - Table view data source

@@ -16,6 +16,7 @@
 #import "TransferwiseClient.h"
 #import "NSString+Validation.h"
 #import "NetworkErrorCodes.h"
+#import "TransferwiseClient.h"
 
 NSString *const kAPIPathBase = @"/api/v1/";
 
@@ -45,6 +46,16 @@ NSString *const kAPIPathBase = @"/api/v1/";
     NSString *accessToken = [Credentials accessToken];
     MCLog(@"Get data from:%@", [path stringByReplacingOccurrencesOfString:(accessToken ? accessToken : @"" ) withString:@"**********"]);
     [self executeOperationWithMethod:@"GET" path:path parameters:params];
+}
+
+- (void)performDelete:(NSString *)path withParams:(NSDictionary *)params {
+    [self executeOperationWithMethod:@"DELETE" path:path parameters:params];
+}
+
+- (void)putData:(NSDictionary *)data toPath:(NSString *)putPath {
+    NSString *accessToken = [Credentials accessToken];
+    MCLog(@"Put %@ to: %@", [data sensibleDataHidden], [putPath stringByReplacingOccurrencesOfString:(accessToken ? accessToken : @"" ) withString:@"**********"]);
+    [self executeOperationWithMethod:@"PUT" path:putPath parameters:data];
 }
 
 - (void)executeOperationWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters {
@@ -136,6 +147,8 @@ NSString *const kAPIPathBase = @"/api/v1/";
     for (NSDictionary *data in errors) {
         NSString *code = data[@"code"];
         if ([TRWNetworkErrorExpiredToken isEqualToString:code]) {
+            return YES;
+        } else if ([TRWNetworkErrorInvalidToken isEqualToString:code]) {
             return YES;
         }
     }
