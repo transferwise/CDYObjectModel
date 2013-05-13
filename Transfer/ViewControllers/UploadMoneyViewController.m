@@ -22,6 +22,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *footerLabel;
 @property (strong, nonatomic) IBOutlet BlueButton *doneButton;
 @property (strong, nonatomic) IBOutlet UILabel *notificationLabel;
+@property (strong, nonatomic) IBOutlet UIView *footerBottomMessageView;
 @property (strong, nonatomic) BankTransfer *transferDetails;
 
 @property (strong, nonatomic) TextCell *amountCell;
@@ -65,7 +66,7 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"TextCell" bundle:nil] forCellReuseIdentifier:TWTextCellIdentifier];
     
-    [self createEurPaymentWithDummyData];
+    [self createGbpPaymentWithDummyData];
 }
 
 - (void)createEurPaymentWithDummyData
@@ -175,6 +176,25 @@
     [self.tableView reloadData];
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = self.footerView;
+    [self adjustFooterView];
+}
+
+- (void)adjustFooterView
+{
+    CGFloat sizeDiff = self.tableView.frame.size.height - self.tableView.contentSize.height;
+    if(sizeDiff > 0)
+    {
+        CGRect footerFrame = self.footerView.frame;
+        footerFrame.size.height += sizeDiff;
+        self.footerView.frame = footerFrame;
+        
+        //Where from is the 20?
+        CGRect footerBottomMessageFrame = self.footerBottomMessageView.frame;
+        footerBottomMessageFrame.origin.y = footerFrame.size.height - footerBottomMessageFrame.size.height + 20;
+        self.footerBottomMessageView.frame = footerBottomMessageFrame;
+        
+        [self.tableView setScrollEnabled:NO];
+    }
 }
 
 #pragma mark - UITableView dataSource
@@ -218,6 +238,7 @@
     [self setFooterLabel:nil];
     [self setDoneButton:nil];
     [self setNotificationLabel:nil];
+    [self setFooterBottomMessageView:nil];
     [super viewDidUnload];
 }
 @end
