@@ -11,11 +11,13 @@
 @class ProfileDetails;
 @class Currency;
 @class RecipientType;
+@class CalculationResult;
 
 @interface PaymentFlow : NSObject
 
 @property (nonatomic, strong) Currency *sourceCurrency;
 @property (nonatomic, strong) Currency *targetCurrency;
+@property (nonatomic, strong) CalculationResult *calculationResult;
 
 - (id)initWithPresentingController:(UINavigationController *)controller;
 - (void)presentSenderDetails;

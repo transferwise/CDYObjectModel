@@ -146,3 +146,8 @@
 "errors.CRD_NOT_VALID.message" = "Incorrect credentials.";
 "recipient.type.IBAN.name" = "IBAN";
 "recipient.type.SORT_CODE.name" = "UK SORT";
+
+"confirm.payment.deposit.title.label" = "Your deposit";
+"confirm.payment.exchanged.to.title.label" = "Will be exchanged to";
+"confirm.payment.estimated.exchange.rate.message" = "Estimated exchange rate %@";
+"confirm.payment.delivery.date.message" = "Delivery by %@";

@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSNumber *bankTotalFee;
 @property (nonatomic, strong) NSNumber *bankPayIn;
 @property (nonatomic, strong) NSNumber *bankPayOut;
+@property (nonatomic, strong) NSDate *paymentDate;
 
 @end
 
@@ -38,6 +39,7 @@
     [result setBankTotalFee:[formatter numberFromString:data[@"bankTotalFee"]]];
     [result setBankPayIn:[formatter numberFromString:data[@"bankPayIn"]]];
     [result setBankPayOut:[formatter numberFromString:data[@"bankPayOut"]]];
+    [result setPaymentDate:[[NSDate date] dateByAddingTimeInterval:(60 * 60 * 24)]];
     return result;
 }
 
@@ -134,8 +136,23 @@ static NSNumberFormatter *__moneyFormatter;
     return __moneyFormatter;
 }
 
+- (NSString *)paymentDateString {
+    return [[CalculationResult paymentDateFormatter] stringFromDate:self.paymentDate];
+}
+
 + (NSLocale *)defaultLocale {
     return [[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"];
+}
+
+NSDateFormatter *__paymentDateFormatter;
++ (NSDateFormatter *)paymentDateFormatter {
+    if (!__paymentDateFormatter) {
+        __paymentDateFormatter = [[NSDateFormatter alloc] init];
+        [__paymentDateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        [__paymentDateFormatter setDateStyle:NSDateFormatterFullStyle];
+    }
+
+    return __paymentDateFormatter;
 }
 
 @end

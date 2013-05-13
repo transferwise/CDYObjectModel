@@ -14,6 +14,7 @@
 @property (nonatomic, copy) NSString *sourceCurrency;
 @property (nonatomic, copy) NSString *targetCurrency;
 @property (nonatomic) CalculationAmountCurrency amountCurrency;
+@property (nonatomic, strong, readonly) NSNumber *transferwiseRate;
 
 + (CalculationResult *)resultWithData:(NSDictionary *)data;
 
@@ -28,6 +29,7 @@
 - (NSString *)bankTransferFeeStringWithCurrency;
 - (NSString *)bankPayOutStringWithCurrency;
 - (NSString *)savedAmountWithCurrency;
+- (NSString *)paymentDateString;
 + (NSLocale *)defaultLocale;
 
 @end

@@ -66,6 +66,7 @@
     [controller setSenderDetails:self.userDetails];
     [controller setRecipient:self.recipient];
     [controller setRecipientType:self.recipientType];
+    [controller setCalculationResult:self.calculationResult];
     [controller setFooterButtonTitle:NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
     [self.navigationController pushViewController:controller animated:YES];
 }

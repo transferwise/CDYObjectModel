@@ -14,6 +14,8 @@
 #import "Recipient.h"
 #import "RecipientType.h"
 #import "RecipientTypeField.h"
+#import "OHAttributedLabel/OHAttributedLabel.h"
+#import "CalculationResult.h"
 
 static NSUInteger const kReceiverSection = 1;
 
@@ -29,6 +31,13 @@ static NSUInteger const kReceiverSection = 1;
 @property (nonatomic, strong) NSArray *receiverFieldCells;
 @property (nonatomic, strong) ConfirmPaymentCell *referenceCell;
 @property (nonatomic, strong) ConfirmPaymentCell *receiverEmailCell;
+
+@property (nonatomic, strong) IBOutlet UILabel *yourDepositTitleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *yourDepositValueLabel;
+@property (nonatomic, strong) IBOutlet UILabel *exchangedToTitleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *exchangedToValueLabel;
+@property (nonatomic, strong) IBOutlet OHAttributedLabel *estimatedExchangeRateLabel;
+@property (nonatomic, strong) IBOutlet OHAttributedLabel *deliveryDateLabelLabel;
 
 - (IBAction)footerButtonPressed:(id)sender;
 
@@ -86,6 +95,31 @@ static NSUInteger const kReceiverSection = 1;
     [self setPresentedSectionCells:@[senderCells, receiverCells]];
 
     [self.footerButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
+
+    [self.yourDepositTitleLabel setText:NSLocalizedString(@"confirm.payment.deposit.title.label", nil)];
+
+    CGRect depositTitleFrame = self.yourDepositTitleLabel.frame;
+    CGSize depositTitleSize = [self.yourDepositTitleLabel sizeThatFits:CGSizeMake(NSUIntegerMax, CGRectGetHeight(depositTitleFrame))];
+    depositTitleFrame.size.width = depositTitleSize.width;
+    [self.yourDepositTitleLabel setFrame:depositTitleFrame];
+
+    CGRect depositValueFrame = self.yourDepositValueLabel.frame;
+    depositValueFrame.size.width = depositTitleSize.width;
+    [self.yourDepositValueLabel setFrame:depositValueFrame];
+
+    [self.exchangedToTitleLabel setText:NSLocalizedString(@"confirm.payment.exchanged.to.title.label", nil)];
+
+    CGRect exchangedTitleFrame = self.exchangedToTitleLabel.frame;
+    CGSize exchangedSize = [self.exchangedToTitleLabel sizeThatFits:CGSizeMake(NSUIntegerMax, CGRectGetHeight(exchangedTitleFrame))];
+    CGFloat widthChange = exchangedSize.width - CGRectGetWidth(exchangedTitleFrame);
+    exchangedTitleFrame.origin.x -= widthChange;
+    exchangedTitleFrame.size.width += widthChange;
+    [self.exchangedToTitleLabel setFrame:exchangedTitleFrame];
+
+    CGRect exchangedValueFrame = self.exchangedToValueLabel.frame;
+    exchangedValueFrame.origin.x = exchangedTitleFrame.origin.x;
+    exchangedValueFrame.size.width = exchangedTitleFrame.size.width;
+    [self.exchangedToValueLabel setFrame:exchangedValueFrame];
 }
 
 - (NSArray *)buildFieldCells {
@@ -114,6 +148,19 @@ static NSUInteger const kReceiverSection = 1;
 }
 
 - (void)fillDataCells {
+    [self.yourDepositValueLabel setText:[self.calculationResult transferwisePayInStringWithCurrency]];
+    [self.exchangedToValueLabel setText:[self.calculationResult transferwisePayOutStringWithCurrency]];
+
+    NSString *rateString = [NSString stringWithFormat:@"%@", self.calculationResult.transferwiseRate];
+    NSString *messageString = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.estimated.exchange.rate.message", nil), rateString];
+    NSAttributedString *exchangeRateString = [self attributedStringWithBase:messageString markedString:rateString];
+    [self.estimatedExchangeRateLabel setAttributedText:exchangeRateString];
+
+    NSString *dateString = self.calculationResult.paymentDateString;
+    NSString *dateMessageString = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.delivery.date.message", nil), dateString];
+    NSAttributedString *paymentDateString = [self attributedStringWithBase:dateMessageString markedString:dateString];
+    [self.deliveryDateLabelLabel setAttributedText:paymentDateString];
+
     [self.senderNameCell.textLabel setText:[self.senderDetails.personalProfile fullName]];
     [self.senderNameCell.detailTextLabel setText:NSLocalizedString(@"confirm.payment.sender.marker.label", nil)];
 
@@ -132,6 +179,21 @@ static NSUInteger const kReceiverSection = 1;
 
 - (IBAction)footerButtonPressed:(id)sender {
 
+}
+
+- (NSAttributedString *)attributedStringWithBase:(NSString *)baseString markedString:(NSString *)marked {
+    NSRange rateRange = [baseString rangeOfString:marked];
+
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:baseString];
+
+    OHParagraphStyle *paragraphStyle = [OHParagraphStyle defaultParagraphStyle];
+    paragraphStyle.textAlignment = kCTTextAlignmentLeft;
+    paragraphStyle.lineBreakMode = kCTLineBreakByWordWrapping;
+    [attributedString setParagraphStyle:paragraphStyle];
+    [attributedString setFont:[UIFont systemFontOfSize:12]];
+    [attributedString setFont:[UIFont boldSystemFontOfSize:12] range:rateRange];
+    [attributedString setTextColor:[UIColor blackColor]];
+    return [[NSAttributedString alloc] initWithAttributedString:attributedString];
 }
 
 @end
