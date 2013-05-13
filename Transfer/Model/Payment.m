@@ -80,17 +80,40 @@
     return result;
 }
 
-static NSDateFormatter *__changeTimeFormatter;
 - (NSString *)latestChangeTimeString {
     NSDate *latestChangeDate = [self latestChangeDate];
+    NSDateComponents *components = [[Payment gregorian] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:latestChangeDate toDate:[NSDate date] options:0];
 
-    if (!__changeTimeFormatter) {
-        __changeTimeFormatter = [[NSDateFormatter alloc] init];
-        [__changeTimeFormatter setTimeStyle:NSDateFormatterShortStyle];
-        [__changeTimeFormatter setDateStyle:NSDateFormatterShortStyle];
+    if (components.year > 1) {
+        return [NSString stringWithFormat:NSLocalizedString(@"payment.change.time.years.ago", nil), components.year];
+    } else if (components.year == 1) {
+        return NSLocalizedString(@"payment.change.time.one.year.ago", nil);
+    } else if (components.month > 1) {
+        return [NSString stringWithFormat:NSLocalizedString(@"payment.change.time.months.ago", nil), components.month];
+    } else if (components.month == 1) {
+        return NSLocalizedString(@"payment.change.time.one.month.ago", nil);
+    } else if (components.day > 1) {
+        return [NSString stringWithFormat:NSLocalizedString(@"payment.change.time.days.ago", nil), components.day];
+    } else if (components.day == 1) {
+        return NSLocalizedString(@"payment.change.time.one.day.ago", nil);
+    } else if (components.hour > 1) {
+        return [NSString stringWithFormat:NSLocalizedString(@"payment.change.time.hours.ago", nil), components.hour];
+    } else if (components.hour == 1) {
+        return NSLocalizedString(@"payment.change.time.one.hour.ago", nil);
+    } else if (components.minute > 1) {
+        return [NSString stringWithFormat:NSLocalizedString(@"payment.change.time.minutes.ago", nil), components.minute];
+    } else {
+        return NSLocalizedString(@"payment.change.time.one.minute.ago", nil);
+    }
+}
+
+static NSCalendar *__gregorian;
++ (NSCalendar *)gregorian {
+    if (!__gregorian) {
+        __gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     }
 
-    return [__changeTimeFormatter stringFromDate:latestChangeDate];
+    return __gregorian;
 }
 
 static NSDateFormatter *__dateFormatter;
@@ -102,6 +125,7 @@ static NSDateFormatter *__dateFormatter;
     if (!__dateFormatter) {
         __dateFormatter = [[NSDateFormatter alloc] init];
         [__dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+        [__dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     }
     return [__dateFormatter dateFromString:dateString];
 }

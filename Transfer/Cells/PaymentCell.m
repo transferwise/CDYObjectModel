@@ -28,6 +28,14 @@
     return self;
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+
+    [self.statusLabel setTextColor:[UIColor grayColor]];
+    [self.timeLabel setTextColor:[UIColor grayColor]];
+}
+
+
 - (void)configureWithPayment:(Payment *)payment {
     [self.nameLabel setText:[payment recipientName]];
     [self.statusLabel setText:[payment localizedStatus]];

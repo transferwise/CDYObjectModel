@@ -158,3 +158,14 @@
 "confirm.payment.exchanged.to.title.label" = "Will be exchanged to";
 "confirm.payment.estimated.exchange.rate.message" = "Estimated exchange rate %@";
 "confirm.payment.delivery.date.message" = "Delivery by %@";
+
+"payment.change.time.years.ago" = "%d years ago";
+"payment.change.time.one.year.ago" = "1 year ago";
+"payment.change.time.months.ago" = "%d months ago";
+"payment.change.time.one.month.ago" = "1 month ago";
+"payment.change.time.days.ago" = "%d days ago";
+"payment.change.time.one.day.ago" = "1 day ago";
+"payment.change.time.hours.ago" = "%d hours ago";
+"payment.change.time.one.hour.ago" = "1 hour ago";
+"payment.change.time.minutes.ago" = "%d minutes ago";
+"payment.change.time.one.minute.ago" = "1 minute ago";
