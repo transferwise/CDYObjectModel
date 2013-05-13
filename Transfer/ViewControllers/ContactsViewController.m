@@ -84,7 +84,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
 - (void)refreshRecipients {
     MCLog(@"refreshRecipients");
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"contacts.controller.refreshing.message", nil)];
 
     UserRecipientsOperation *operation = [UserRecipientsOperation recipientsOperation];
@@ -133,7 +133,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 - (void)deleteRecipient:(Recipient *)recipient {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"Delete recipient:%@", recipient);
-        TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+        TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
         [hud setMessage:NSLocalizedString(@"contacts.controller.deleting.message", nil)];
 
         DeleteRecipientOperation *operation = [DeleteRecipientOperation operationWithRecipient:recipient];

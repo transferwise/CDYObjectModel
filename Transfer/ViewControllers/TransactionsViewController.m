@@ -82,7 +82,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 }
 
 - (void)refreshPaymentsList {
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"transactions.controller.refreshing.message", nil)];
 
     PaymentsOperation *operation = [[PaymentsOperation alloc] init];
