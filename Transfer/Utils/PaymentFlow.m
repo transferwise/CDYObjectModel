@@ -13,6 +13,7 @@
 #import "ConfirmPaymentViewController.h"
 #import "Recipient.h"
 #import "RecipientType.h"
+#import "IdentificationViewController.h"
 
 @interface PaymentFlow ()
 
@@ -68,6 +69,14 @@
     [controller setRecipientType:self.recipientType];
     [controller setCalculationResult:self.calculationResult];
     [controller setFooterButtonTitle:NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
+    [controller setFooterButtonAction:^{
+        [self presentVerificationScreen];
+    }];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)presentVerificationScreen {
+    IdentificationViewController *controller = [[IdentificationViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

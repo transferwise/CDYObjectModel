@@ -165,6 +165,7 @@
 "identification.reason.title" = "We need your proof of identity and address";
 "identification.explanation" = "To proceed with your payment we have to identify you. Similar to any bank or other financial institution we follow anti-money laundering guidelines from HMRC and FSA which require us to verify of our customers";
 "identification.excuse" = "Don't worry. This is slightly upleasant, but normal procedure";
+"identification.controller.title" = "Identification";
 
 "confirm.payment.deposit.title.label" = "Your deposit";
 "confirm.payment.exchanged.to.title.label" = "Will be exchanged to";

@@ -28,8 +28,6 @@
 @property (strong, nonatomic) UIImage* proofOfAddressImage;
 @property NSInteger selectedRow;
 
-@property (strong, nonatomic) NSArray* presentedSectionCells;
-
 @end
 
 @implementation IdentificationViewController
@@ -48,8 +46,6 @@
     
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
-    [self.headerView setBackgroundColor:[UIColor controllerBackgroundColor]];
-    [self.footerView setBackgroundColor:[UIColor controllerBackgroundColor]];
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = self.footerView;
     
@@ -90,19 +86,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - UITableView dataSource
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.presentedSectionCells count];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSArray *sectionArray = [self.presentedSectionCells objectAtIndex:section];
-    return [sectionArray count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.presentedSectionCells[indexPath.section][indexPath.row];
+    [self.navigationItem setTitle:NSLocalizedString(@"identification.controller.title", nil)];
 }
 
 #pragma mark - UITableView delegate

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DataEntryViewController.h"
+#import "Constants.h"
 
 @class ProfileDetails;
 @class Recipient;
@@ -21,5 +22,6 @@
 @property (nonatomic, strong) RecipientType *recipientType;
 @property (nonatomic, copy) NSString *footerButtonTitle;
 @property (nonatomic, strong) CalculationResult *calculationResult;
+@property (nonatomic, copy) TRWActionBlock footerButtonAction;
 
 @end

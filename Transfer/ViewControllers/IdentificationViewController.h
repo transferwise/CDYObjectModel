@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataEntryViewController.h"
 
-@interface IdentificationViewController : UITableViewController
+@interface IdentificationViewController : DataEntryViewController
 
 @end

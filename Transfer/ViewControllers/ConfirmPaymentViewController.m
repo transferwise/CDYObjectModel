@@ -178,7 +178,7 @@ static NSUInteger const kReceiverSection = 1;
 }
 
 - (IBAction)footerButtonPressed:(id)sender {
-
+    self.footerButtonAction();
 }
 
 - (NSAttributedString *)attributedStringWithBase:(NSString *)baseString markedString:(NSString *)marked {
