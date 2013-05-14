@@ -126,6 +126,10 @@
 		EAAA1484171BC911005B9430 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAAA1483171BC911005B9430 /* Default-568h@2x.png */; };
 		EAAA1487171BC911005B9430 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EAAA1485171BC911005B9430 /* Transfer.xcdatamodeld */; };
 		EAAA1490171BD07E005B9430 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAAA148E171BD07E005B9430 /* Localizable.strings */; };
+		EAAC20341742241B001DDE7A /* StatesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAC20331742241B001DDE7A /* StatesOperation.m */; };
+		EAAC2038174226D3001DDE7A /* USState.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAC2037174226D3001DDE7A /* USState.m */; };
+		EAAC203B17422AB3001DDE7A /* DropdownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAC203A17422AB3001DDE7A /* DropdownCell.m */; };
+		EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAAC203C17422ADB001DDE7A /* DropdownCell.xib */; };
 		EAB72152171FC34600DE29F5 /* NavBarButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72150171FC34600DE29F5 /* NavBarButton.png */; };
 		EAB72153171FC34600DE29F5 /* NavBarButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */; };
 		EAB72156171FC3E900DE29F5 /* SettingsButtonIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */; };
@@ -379,6 +383,13 @@
 		EAAA1483171BC911005B9430 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EAAA1486171BC911005B9430 /* Transfer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer.xcdatamodel; sourceTree = "<group>"; };
 		EAAA148F171BD07E005B9430 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EAAC20321742241B001DDE7A /* StatesOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatesOperation.h; sourceTree = "<group>"; };
+		EAAC20331742241B001DDE7A /* StatesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatesOperation.m; sourceTree = "<group>"; };
+		EAAC2036174226D3001DDE7A /* USState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USState.h; sourceTree = "<group>"; };
+		EAAC2037174226D3001DDE7A /* USState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USState.m; sourceTree = "<group>"; };
+		EAAC203917422AB3001DDE7A /* DropdownCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropdownCell.h; sourceTree = "<group>"; };
+		EAAC203A17422AB3001DDE7A /* DropdownCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropdownCell.m; sourceTree = "<group>"; };
+		EAAC203C17422ADB001DDE7A /* DropdownCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropdownCell.xib; sourceTree = "<group>"; };
 		EAB72150171FC34600DE29F5 /* NavBarButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBarButton.png; sourceTree = "<group>"; };
 		EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarButton@2x.png"; sourceTree = "<group>"; };
 		EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsButtonIcon.png; sourceTree = "<group>"; };
@@ -543,6 +554,9 @@
 				EA88E68B172F97E20021492C /* DateEntryCell.h */,
 				EA88E68C172F97E20021492C /* DateEntryCell.m */,
 				EA88E68D172F97E20021492C /* DateEntryCell.xib */,
+				EAAC203917422AB3001DDE7A /* DropdownCell.h */,
+				EAAC203A17422AB3001DDE7A /* DropdownCell.m */,
+				EAAC203C17422ADB001DDE7A /* DropdownCell.xib */,
 				EA13E034171BE1210019FBF0 /* MoneyEntryCell.h */,
 				EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */,
 				EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */,
@@ -618,10 +632,10 @@
 				1864AC99173B7C4D008773FC /* BusinessProfile.m */,
 				EA88E66A172F97B10021492C /* Country.h */,
 				EA88E66B172F97B10021492C /* Country.m */,
-				EA35C7731732851C005602F7 /* Payment.h */,
-				EA35C7741732851C005602F7 /* Payment.m */,
 				EA35C76617326AF4005602F7 /* Currency.h */,
 				EA35C76717326AF4005602F7 /* Currency.m */,
+				EA35C7731732851C005602F7 /* Payment.h */,
+				EA35C7741732851C005602F7 /* Payment.m */,
 				EA88E66C172F97B10021492C /* PersonalProfile.h */,
 				EA88E66D172F97B10021492C /* PersonalProfile.m */,
 				EA88E66E172F97B10021492C /* ProfileDetails.h */,
@@ -632,6 +646,8 @@
 				EA4AA6051737940900E99150 /* RecipientType.m */,
 				EA4AA608173794A600E99150 /* RecipientTypeField.h */,
 				EA4AA609173794A600E99150 /* RecipientTypeField.m */,
+				EAAC2036174226D3001DDE7A /* USState.h */,
+				EAAC2037174226D3001DDE7A /* USState.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -688,10 +704,6 @@
 		EA8FF6B5171D25530090A658 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				1864AC9F173B7C95008773FC /* DeleteRecipientOperation.h */,
-				1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */,
-				1864AC9C173B7C80008773FC /* SaveBusinessProfileOperation.h */,
-				1864AC9D173B7C80008773FC /* SaveBusinessProfileOperation.m */,
 				EA88E67C172F97D50021492C /* CountriesOperation.h */,
 				EA88E67D172F97D50021492C /* CountriesOperation.m */,
 				EAD069081737CF57007C8DEE /* CreateRecipientOperation.h */,
@@ -700,6 +712,8 @@
 				EAA54F4F1733DC3500B65BF3 /* CurrenciesOperation.m */,
 				EA2B23951721323E001AE9DE /* CurrencyPairsOperation.h */,
 				EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */,
+				1864AC9F173B7C95008773FC /* DeleteRecipientOperation.h */,
+				1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */,
 				EA8FF6B9171D26A00090A658 /* LoginOperation.h */,
 				EA8FF6BA171D26A00090A658 /* LoginOperation.m */,
 				EA88E67E172F97D50021492C /* NetworkErrorCodes.h */,
@@ -708,8 +722,12 @@
 				EA35C76B1732790D005602F7 /* PaymentsOperation.m */,
 				EAA54F591733EF1A00B65BF3 /* RecipientTypesOperation.h */,
 				EAA54F5A1733EF1A00B65BF3 /* RecipientTypesOperation.m */,
+				1864AC9C173B7C80008773FC /* SaveBusinessProfileOperation.h */,
+				1864AC9D173B7C80008773FC /* SaveBusinessProfileOperation.m */,
 				EAD85B09173920C300C22211 /* SavePersonalProfileOperation.h */,
 				EAD85B0A173920C300C22211 /* SavePersonalProfileOperation.m */,
+				EAAC20321742241B001DDE7A /* StatesOperation.h */,
+				EAAC20331742241B001DDE7A /* StatesOperation.m */,
 				EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */,
 				EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */,
 				EA88E680172F97D50021492C /* TransferwiseClient.h */,
@@ -1075,6 +1093,7 @@
 				EA222E41173A8D0900C5D613 /* ProfileIcon.png in Resources */,
 				EA222E42173A8D0900C5D613 /* ProfileIcon@2x.png in Resources */,
 				EA042603173CF5E20048BFBD /* RecipientEntrySelectionCell.xib in Resources */,
+				EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1204,6 +1223,9 @@
 				EA222E38173A861000C5D613 /* ConfirmPaymentViewController.m in Sources */,
 				EA222E3C173A8A7100C5D613 /* ConfirmPaymentCell.m in Sources */,
 				EA042600173CF5C50048BFBD /* RecipientEntrySelectionCell.m in Sources */,
+				EAAC20341742241B001DDE7A /* StatesOperation.m in Sources */,
+				EAAC2038174226D3001DDE7A /* USState.m in Sources */,
+				EAAC203B17422AB3001DDE7A /* DropdownCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

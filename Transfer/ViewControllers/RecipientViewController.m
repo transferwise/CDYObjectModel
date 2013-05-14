@@ -28,6 +28,8 @@
 #import "UIView+Loading.h"
 #import "UserRecipientsOperation.h"
 #import "RecipientEntrySelectionCell.h"
+#import "StatesOperation.h"
+#import "DropdownCell.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
@@ -57,10 +59,9 @@ static NSUInteger const kRecipientFieldsSection = 2;
 @property (nonatomic, strong) RecipientSectionHeaderView *fieldsSectionHeader;
 
 @property (nonatomic, strong) NSArray *allCurrencies;
-
 @property (nonatomic, strong) NSArray *recipientsForCurrency;
-
 @property (nonatomic, strong) Recipient *selectedRecipient;
+@property (nonatomic, strong) NSArray *states;
 
 - (IBAction)addButtonPressed:(id)sender;
 
@@ -86,6 +87,7 @@ static NSUInteger const kRecipientFieldsSection = 2;
     [self.tableView registerNib:[UINib nibWithNibName:@"CurrencySelectionCell" bundle:nil] forCellReuseIdentifier:TWCurrencySelectionCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"RecipientFieldCell" bundle:nil] forCellReuseIdentifier:TWRecipientFieldCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"RecipientEntrySelectionCell" bundle:nil] forCellReuseIdentifier:TRWRecipientEntrySelectionCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"DropdownCell" bundle:nil] forCellReuseIdentifier:TWDropdownCellIdentifier];
 
     NSMutableArray *recipientCells = [NSMutableArray array];
 
@@ -192,6 +194,21 @@ static NSUInteger const kRecipientFieldsSection = 2;
         });
     }];
 
+    StatesOperation *statesOperation = [StatesOperation operation];
+    [statesOperation setCompletionHandler:^(NSArray *states, NSError *error) {
+        if (error) {
+            [hud hide];
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.sattes.load.error.title", nil) error:error];
+            [alertView show];
+            return;
+        }
+
+        [self setStates:states];
+
+        [self setExecutedOperation:typesOperation];
+        [typesOperation execute];
+    }];
+
     CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
     [self setExecutedOperation:currenciesOperation];
     [currenciesOperation setResultHandler:^(NSArray *currencies, NSError *error) {
@@ -204,8 +221,8 @@ static NSUInteger const kRecipientFieldsSection = 2;
 
         [self setAllCurrencies:currencies];
 
-        [self setExecutedOperation:typesOperation];
-        [typesOperation execute];
+        [self setExecutedOperation:statesOperation];
+        [statesOperation execute];
     }];
 
     [currenciesOperation execute];
@@ -295,9 +312,16 @@ static NSUInteger const kRecipientFieldsSection = 2;
 - (NSArray *)buildCellsForType:(RecipientType *)type {
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:[type.fields count]];
     for (RecipientTypeField *field in type.fields) {
-        RecipientFieldCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWRecipientFieldCellIdentifier];
-        [cell setFieldType:field];
-        [result addObject:cell];
+        if ([field.name isEqualToString:@"usState"]) {
+            DropdownCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWDropdownCellIdentifier];
+            [cell setAllElements:self.states];
+            [cell configureWithTitle:field.title value:@""];
+            [result addObject:cell];
+        } else {
+            RecipientFieldCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWRecipientFieldCellIdentifier];
+            [cell setFieldType:field];
+            [result addObject:cell];
+        }
     }
     return [NSArray arrayWithArray:result];
 }
@@ -334,6 +358,11 @@ static NSUInteger const kRecipientFieldsSection = 2;
     data[@"currency"] = [self.selectedCurrency code];
     data[@"type"] = [self.selectedRecipientType type];
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
+        if ([cell isKindOfClass:[DropdownCell class]]) {
+            data[@"usState"] = [cell value];
+            continue;
+        }
+
         NSString *value = [cell value];
         NSString *field = [cell.type name];
         data[field] = value;
