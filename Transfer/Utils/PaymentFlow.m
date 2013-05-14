@@ -14,6 +14,7 @@
 #import "Recipient.h"
 #import "RecipientType.h"
 #import "IdentificationViewController.h"
+#import "UploadMoneyViewController.h"
 
 @interface PaymentFlow ()
 
@@ -77,6 +78,14 @@
 
 - (void)presentVerificationScreen {
     IdentificationViewController *controller = [[IdentificationViewController alloc] init];
+    [controller setAfterSaveBlock:^{
+        [self presentUploadMoneyController];
+    }];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)presentUploadMoneyController {
+    UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

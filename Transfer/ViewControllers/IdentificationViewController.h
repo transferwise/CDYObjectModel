@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "DataEntryViewController.h"
+#import "Constants.h"
 
 @interface IdentificationViewController : DataEntryViewController
+
+@property (nonatomic, copy) TRWActionBlock afterSaveBlock;
 
 @end

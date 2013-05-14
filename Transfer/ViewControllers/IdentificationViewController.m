@@ -181,6 +181,7 @@
 #pragma mark - Continue
 
 - (IBAction)continueClicked:(id)sender {
+    self.afterSaveBlock();
 }
 
 - (void)viewDidUnload {
