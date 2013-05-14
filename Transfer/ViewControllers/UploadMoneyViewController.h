@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataEntryViewController.h"
 
-@interface UploadMoneyViewController : UITableViewController
+@interface UploadMoneyViewController : DataEntryViewController
 
 @end

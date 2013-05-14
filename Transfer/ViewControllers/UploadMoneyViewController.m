@@ -15,6 +15,7 @@
 #import "TransferwiseClient.h"
 
 @interface UploadMoneyViewController ()
+
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *toggleButton;
@@ -32,8 +33,6 @@
 @property (strong, nonatomic) TextCell *bankNameCell;
 @property (strong, nonatomic) TextCell *referenceCell;
 @property (strong, nonatomic) TextCell *ukSortCodeCell;
-
-@property (strong, nonatomic) NSArray* presentedSectionCells;
 
 @end
 
@@ -196,27 +195,6 @@
         [self.tableView setScrollEnabled:NO];
     }
 }
-
-#pragma mark - UITableView dataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.presentedSectionCells count];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSArray *sectionArray = [self.presentedSectionCells objectAtIndex:section];
-    return [sectionArray count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.presentedSectionCells[indexPath.section][indexPath.row];
-}
-
-#pragma mark - UITableView delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-}
-
 
 - (void)didReceiveMemoryWarning
 {
