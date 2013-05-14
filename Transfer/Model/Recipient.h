@@ -11,8 +11,14 @@
 @interface Recipient : NSObject
 
 @property (nonatomic, copy, readonly) NSString *name;
-@property (nonatomic, copy, readonly) NSString *iban;
-@property (nonatomic, copy, readonly) NSString *bic;
+@property (nonatomic, copy, readonly) NSString *IBAN;
+@property (nonatomic, copy, readonly) NSString *BIC;
+@property (nonatomic, strong, readonly) NSNumber *recipientId;
+@property (nonatomic, copy, readonly) NSString *type;
+@property (nonatomic, copy, readonly) NSString *email;
+
+- (NSString *)detailsRowOne;
+- (NSString *)detailsRowTwo;
 
 + (Recipient *)recipientWithData:(NSDictionary *)data;
 

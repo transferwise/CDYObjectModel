@@ -117,6 +117,7 @@
 					<bytes key="NSWhite">MQA</bytes>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="457937651"/>
 			</object>
 		</array>

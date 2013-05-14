@@ -18,6 +18,7 @@
 #import "CountrySelectionCell.h"
 #import "NSString+Validation.h"
 #import "SavePersonalProfileOperation.h"
+#import "UIApplication+Keyboard.h"
 
 static NSUInteger const kPersonalSection = 0;
 
@@ -120,7 +121,7 @@ static NSUInteger const kPersonalSection = 0;
 
     [self setPresentedCells:@[personalCells, addressCells]];
 
-    [self.footerButton setTitle:NSLocalizedString(@"personal.profile.save.button.title", nil) forState:UIControlStateNormal];
+    [self.footerButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -193,14 +194,31 @@ static NSUInteger const kPersonalSection = 0;
     [self.postCodeCell setValue:profile.postCode];
     [self.cityCell setValue:profile.city];
     [self.countryCell setValue:profile.countryCode];
+
+    [self.firstNameCell setEditable:![profile identityVerifiedValue]];
+    [self.lastNameCell setEditable:![profile identityVerifiedValue]];
+    [self.dateOfBirthCell setEditable:![profile identityVerifiedValue]];
+
+    [self.addressCell setEditable:![profile addressVerifiedValue]];
+    [self.postCodeCell setEditable:![profile addressVerifiedValue]];
+    [self.cityCell setEditable:![profile addressVerifiedValue]];
+    [self.countryCell setEditable:![profile addressVerifiedValue]];
 }
 
 - (IBAction)footerButtonPressed:(id)sender {
+    [UIApplication dismissKeyboard];
+
     if (![self inputValid]) {
         TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
                                                            message:NSLocalizedString(@"personal.profile.validation.error.message", nil)];
         [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
         [alertView show];
+        return;
+    }
+
+    if (![self valuesChanged]) {
+        MCLog(@"Values not changed");
+        self.afterSaveAction();
         return;
     }
 
@@ -231,9 +249,25 @@ static NSUInteger const kPersonalSection = 0;
 
         [self setUserDetails:result];
         [self loadDetailsToCells];
+
+        self.afterSaveAction();
     }];
 
     [operation execute];
+}
+
+- (BOOL)valuesChanged {
+    PersonalProfile *profile = self.userDetails.personalProfile;
+
+    return ![[self.firstNameCell value] isEqualToString:profile.firstName]
+            || ![[self.lastNameCell value] isEqualToString:profile.lastName]
+            || ![[self.emailCell value] isEqualToString:self.userDetails.email]
+            || ![[self.phoneNumberCell value] isEqualToString:profile.phoneNumber]
+            || ![[self.dateOfBirthCell value] isEqualToString:profile.dateOfBirthString]
+            || ![[self.addressCell value] isEqualToString:profile.addressFirstLine]
+            || ![[self.postCodeCell value] isEqualToString:profile.postCode]
+            || ![[self.cityCell value] isEqualToString:profile.city]
+            || ![[self.countryCell value] isEqualToString:profile.countryCode];
 }
 
 - (BOOL)inputValid {

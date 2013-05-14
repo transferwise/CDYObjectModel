@@ -15,8 +15,8 @@
 #import "Currency.h"
 #import "TransferwiseClient.h"
 #import "TRWProgressHUD.h"
-#import "PersonalProfileViewController.h"
 #import "TRWAlertView.h"
+#import "PaymentFlow.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 #import "IdentificationViewController.h"
 
@@ -40,6 +40,8 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) IBOutlet UILabel *exchangeRateValueLabel;
 @property (nonatomic, strong) IBOutlet UILabel *youGetTitleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *youGetValueLabel;
+@property (nonatomic, strong) CalculationResult *calculationResult;
+@property (nonatomic, strong) PaymentFlow *paymentFlow;
 
 - (IBAction)continuePressed:(id)sender;
 
@@ -89,8 +91,10 @@ static NSUInteger const kRowYouSend = 0;
             [alertView show];
             return;
         }
+        
+        [self setCalculationResult:result];
 
-        [self showPaymentReceivedOnDate:[[NSDate date] dateByAddingTimeInterval:60 * 60 * 24]];
+        [self showPaymentReceivedOnDate:result.paymentDateString];
         [self fillDepositFieldsWithResult:result];
 
         [self.tableView setTableFooterView:self.footerView];
@@ -112,7 +116,7 @@ static NSUInteger const kRowYouSend = 0;
 
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
 
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"introduction.refreshing.currencies.message", nil)];
 
     [[TransferwiseClient sharedClient] updateCurrencyPairsWithCompletionHandler:^(NSArray *currencies, NSError *error) {
@@ -151,8 +155,8 @@ static NSUInteger const kRowYouSend = 0;
     return self.theyReceiveCell;
 }
 
-- (void)showPaymentReceivedOnDate:(NSDate *)date {
-    NSString *dateString = [[PaymentViewController paymentDateFormatter] stringFromDate:date];
+- (void)showPaymentReceivedOnDate:(NSString *)paymentDateString {
+    NSString *dateString = paymentDateString;
     NSString *messageString = [NSString stringWithFormat:NSLocalizedString(@"payment.controller.payment.date.message", nil), dateString];
     NSRange dateRange = [messageString rangeOfString:dateString];
 
@@ -178,23 +182,18 @@ static NSUInteger const kRowYouSend = 0;
 }
 
 - (IBAction)continuePressed:(id)sender {
-    /*
-    PersonalProfileViewController *controller = [[PersonalProfileViewController alloc] init];
-    [self.navigationController pushViewController:controller animated:YES];
-     */
-    IdentificationViewController *controller = [[IdentificationViewController alloc] init];
-    [self.navigationController pushViewController:controller animated:YES];
-}
-
-NSDateFormatter *__paymentDateFormatter;
-+ (NSDateFormatter *)paymentDateFormatter {
-    if (!__paymentDateFormatter) {
-        __paymentDateFormatter = [[NSDateFormatter alloc] init];
-        [__paymentDateFormatter setTimeStyle:NSDateFormatterNoStyle];
-        [__paymentDateFormatter setDateStyle:NSDateFormatterFullStyle];
+    if (!self.calculationResult) {
+        return;
     }
 
-    return __paymentDateFormatter;
+    PaymentFlow *paymentFlow = [[PaymentFlow alloc] initWithPresentingController:self.navigationController];
+    [self setPaymentFlow:paymentFlow];
+
+    [paymentFlow setSourceCurrency:[self.youSendCell currency]];
+    [paymentFlow setTargetCurrency:[self.theyReceiveCell currency]];
+    [paymentFlow setCalculationResult:self.calculationResult];
+
+    [paymentFlow presentSenderDetails];
 }
 
 @end

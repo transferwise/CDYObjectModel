@@ -63,7 +63,6 @@
 
     [detailsOperation execute];
 }
-
 - (void)updateCountriesWithCompletionHandler:(CountriesResponseBlock)handler {
     CountriesOperation *operation = [CountriesOperation operation];
     [self setCountriesOperation:operation];

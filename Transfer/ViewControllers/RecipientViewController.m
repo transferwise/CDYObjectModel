@@ -14,18 +14,22 @@
 #import "RecipientTypesOperation.h"
 #import "TextEntryCell.h"
 #import "CurrencySelectionCell.h"
-#import "Constants.h"
 #import "Currency.h"
 #import "RecipientType.h"
 #import "RecipientTypeField.h"
 #import "RecipientFieldCell.h"
 #import "NSString+Validation.h"
+#import "Recipient.h"
 #import "TRWAlertView.h"
 #import "NSMutableString+Issues.h"
 #import "CreateRecipientOperation.h"
 #import "UIApplication+Keyboard.h"
 #import "RecipientSectionHeaderView.h"
 #import "UIView+Loading.h"
+#import "UserRecipientsOperation.h"
+#import "RecipientEntrySelectionCell.h"
+#import "StatesOperation.h"
+#import "DropdownCell.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
@@ -36,7 +40,7 @@ static NSUInteger const kRecipientFieldsSection = 2;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
 @property (nonatomic, strong) NSArray *recipientCells;
-@property (nonatomic, strong) TextEntryCell *nameCell;
+@property (nonatomic, strong) RecipientEntrySelectionCell *nameCell;
 
 @property (nonatomic, strong) NSArray *currencyCells;
 @property (nonatomic, strong) CurrencySelectionCell *currencyCell;
@@ -53,6 +57,11 @@ static NSUInteger const kRecipientFieldsSection = 2;
 @property (nonatomic, strong) RecipientSectionHeaderView *recipientSectionHeader;
 @property (nonatomic, strong) RecipientSectionHeaderView *currencySectionHeader;
 @property (nonatomic, strong) RecipientSectionHeaderView *fieldsSectionHeader;
+
+@property (nonatomic, strong) NSArray *allCurrencies;
+@property (nonatomic, strong) NSArray *recipientsForCurrency;
+@property (nonatomic, strong) Recipient *selectedRecipient;
+@property (nonatomic, strong) NSArray *states;
 
 - (IBAction)addButtonPressed:(id)sender;
 
@@ -77,12 +86,18 @@ static NSUInteger const kRecipientFieldsSection = 2;
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"CurrencySelectionCell" bundle:nil] forCellReuseIdentifier:TWCurrencySelectionCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"RecipientFieldCell" bundle:nil] forCellReuseIdentifier:TWRecipientFieldCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"RecipientEntrySelectionCell" bundle:nil] forCellReuseIdentifier:TRWRecipientEntrySelectionCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"DropdownCell" bundle:nil] forCellReuseIdentifier:TWDropdownCellIdentifier];
 
     NSMutableArray *recipientCells = [NSMutableArray array];
 
-    TextEntryCell *nameCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+    RecipientEntrySelectionCell *nameCell = [self.tableView dequeueReusableCellWithIdentifier:TRWRecipientEntrySelectionCellIdentifier];
     [self setNameCell:nameCell];
+    [nameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [nameCell configureWithTitle:NSLocalizedString(@"recipient.controller.cell.label.name", nil) value:@""];
+    [nameCell setSelectionHandler:^(Recipient *recipient) {
+        [self didSelectRecipient:recipient];
+    }];
     [recipientCells addObject:nameCell];
 
     [self setRecipientCells:recipientCells];
@@ -98,8 +113,6 @@ static NSUInteger const kRecipientFieldsSection = 2;
 
     [self setCurrencyCells:currencyCells];
 
-    [self.addButton setTitle:NSLocalizedString(@"recipient.controller.add.button.title", nil) forState:UIControlStateNormal];
-
     [self setRecipientSectionHeader:[RecipientSectionHeaderView loadInstance]];
     [self.recipientSectionHeader setText:NSLocalizedString(@"recipient.controller.section.title.recipient", nil)];
 
@@ -113,6 +126,12 @@ static NSUInteger const kRecipientFieldsSection = 2;
     [self.fieldsSectionHeader setSelectionChangeHandler:^(RecipientType *type) {
         [weakSelf handleSelectionChangeToType:type];
     }];
+
+    [self.addButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
+
+    if (self.preloadRecipientsWithCurrency) {
+        [self.currencyCell setEditable:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -123,43 +142,132 @@ static NSUInteger const kRecipientFieldsSection = 2;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    [self.navigationItem setTitle:NSLocalizedString(@"recipient.controller.title", nil)];
-
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
+
+    void (^dataLoadCompletionBlock)() = ^() {
+        [hud hide];
+        [self.nameCell setAutoCompleteRecipients:self.recipientsForCurrency];
+        [self.currencyCell setAllCurrencies:[self currenciesToShow]];
+        [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, @[]]];
+        [self.tableView setTableFooterView:self.footer];
+        [self.tableView reloadData];
+
+        [self didSelectRecipient:self.selectedRecipient];
+    };
+
+    UserRecipientsOperation *recipientsOperation = nil;
+    if (self.preloadRecipientsWithCurrency) {
+        recipientsOperation = [UserRecipientsOperation recipientsOperationWithCurrency:self.preloadRecipientsWithCurrency];
+        [recipientsOperation setResponseHandler:^(NSArray *recipients, NSError *error) {
+            if (error) {
+                [hud hide];
+                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipients.preload.error.title", nil) error:error];
+                [alertView show];
+                return;
+            }
+
+            MCLog(@"Loaded %d recipients for %@", [recipients count], self.preloadRecipientsWithCurrency.code);
+            [self setRecipientsForCurrency:recipients];
+            dataLoadCompletionBlock();
+        }];
+    }
+
+    RecipientTypesOperation *typesOperation = [RecipientTypesOperation operation];
+    [typesOperation setResultHandler:^(NSArray *recipients, NSError *typesError) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (typesError) {
+                [hud hide];
+                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipient.types.load.error.title", nil) error:typesError];
+                [alertView show];
+                return;
+            }
+
+            [self setRecipientTypes:recipients];
+
+            if (recipientsOperation) {
+                [self setExecutedOperation:recipientsOperation];
+                [recipientsOperation execute];
+            } else {
+                dataLoadCompletionBlock();
+            }
+        });
+    }];
+
+    StatesOperation *statesOperation = [StatesOperation operation];
+    [statesOperation setCompletionHandler:^(NSArray *states, NSError *error) {
+        if (error) {
+            [hud hide];
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.sattes.load.error.title", nil) error:error];
+            [alertView show];
+            return;
+        }
+
+        [self setStates:states];
+
+        [self setExecutedOperation:typesOperation];
+        [typesOperation execute];
+    }];
 
     CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
     [self setExecutedOperation:currenciesOperation];
     [currenciesOperation setResultHandler:^(NSArray *currencies, NSError *error) {
         if (error) {
             [hud hide];
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipient.types.load.error.title", nil) error:error];
+            [alertView show];
             return;
         }
 
-        RecipientTypesOperation *operation = [RecipientTypesOperation operation];
-        [self setExecutedOperation:operation];
+        [self setAllCurrencies:currencies];
 
-        [operation setResultHandler:^(NSArray *recipients, NSError *typesError) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [hud hide];
-
-                if (typesError) {
-                    return;
-                }
-
-                [self.currencyCell setAllCurrencies:currencies];
-                [self setRecipientTypes:recipients];
-
-                [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, @[]]];
-                [self.tableView setTableFooterView:self.footer];
-                [self.tableView reloadData];
-            });
-        }];
-
-        [operation execute];
+        [self setExecutedOperation:statesOperation];
+        [statesOperation execute];
     }];
 
     [currenciesOperation execute];
+}
+
+- (void)didSelectRecipient:(Recipient *)recipient {
+    [self setSelectedRecipient:recipient];
+    if (!recipient) {
+        [self.nameCell setValue:@""];
+        [self.nameCell setEditable:YES];
+
+        for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
+            [fieldCell setValue:@""];
+            [self.nameCell setEditable:YES];
+        }
+        return;
+    }
+
+    RecipientType *type = [self findTypeWithCode:recipient.type];
+    [self.fieldsSectionHeader changeSelectedTypeTo:type];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.nameCell setValue:recipient.name];
+        [self.nameCell setEditable:NO];
+
+        for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
+            RecipientTypeField *field = fieldCell.type;
+            [fieldCell setValue:[recipient valueForKeyPath:field.name]];
+            [fieldCell setEditable:NO];
+        }
+    });
+}
+
+- (NSArray *)currenciesToShow {
+    if (self.preloadRecipientsWithCurrency) {
+        for (Currency *currency in self.allCurrencies) {
+            if (![currency.code isEqualToString:self.preloadRecipientsWithCurrency.code]) {
+                continue;
+            }
+
+            return @[currency];
+        }
+    }
+
+    return self.allCurrencies;
 }
 
 - (void)handleCurrencySelection:(Currency *)currency {
@@ -204,9 +312,16 @@ static NSUInteger const kRecipientFieldsSection = 2;
 - (NSArray *)buildCellsForType:(RecipientType *)type {
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:[type.fields count]];
     for (RecipientTypeField *field in type.fields) {
-        RecipientFieldCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWRecipientFieldCellIdentifier];
-        [cell setFieldType:field];
-        [result addObject:cell];
+        if ([field.name isEqualToString:@"usState"]) {
+            DropdownCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWDropdownCellIdentifier];
+            [cell setAllElements:self.states];
+            [cell configureWithTitle:field.title value:@""];
+            [result addObject:cell];
+        } else {
+            RecipientFieldCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWRecipientFieldCellIdentifier];
+            [cell setFieldType:field];
+            [result addObject:cell];
+        }
     }
     return [NSArray arrayWithArray:result];
 }
@@ -233,11 +348,21 @@ static NSUInteger const kRecipientFieldsSection = 2;
         return;
     }
 
+    if (self.selectedRecipient) {
+        self.afterSaveAction();
+        return;
+    }
+
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     data[@"name"] = [self.nameCell value];
     data[@"currency"] = [self.selectedCurrency code];
     data[@"type"] = [self.selectedRecipientType type];
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
+        if ([cell isKindOfClass:[DropdownCell class]]) {
+            data[@"usState"] = [cell value];
+            continue;
+        }
+
         NSString *value = [cell value];
         NSString *field = [cell.type name];
         data[field] = value;
@@ -257,7 +382,11 @@ static NSUInteger const kRecipientFieldsSection = 2;
             return;
         }
 
-        [self.navigationController popViewControllerAnimated:YES];
+        if (self.preloadRecipientsWithCurrency) {
+            [self setSelectedRecipient:recipient];
+        }
+
+        self.afterSaveAction();
     }];
 
     [operation execute];

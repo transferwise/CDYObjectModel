@@ -102,6 +102,10 @@
     UIButton *button = sender;
     NSUInteger index = [self.presentedButtons indexOfObject:button];
     RecipientType *tappedOn = self.allRecipientTypes[index];
+    [self changeSelectedTypeTo:tappedOn];
+}
+
+- (void)changeSelectedTypeTo:(RecipientType *)tappedOn {
     if ([tappedOn.type isEqualToString:self.selectedType.type]) {
         MCLog(@"Tapped on selected one");
         return;

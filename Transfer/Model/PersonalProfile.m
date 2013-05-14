@@ -50,4 +50,12 @@
     return profile;
 }
 
+- (BOOL)identityVerifiedValue {
+    return [self.identityVerified boolValue];
+}
+
+- (BOOL)addressVerifiedValue {
+    return [self.addressVerified boolValue];
+}
+
 @end

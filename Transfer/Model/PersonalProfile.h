@@ -23,4 +23,7 @@
 
 + (PersonalProfile *)profileWithData:(NSDictionary *)data;
 
+- (BOOL)identityVerifiedValue;
+- (BOOL)addressVerifiedValue;
+
 @end

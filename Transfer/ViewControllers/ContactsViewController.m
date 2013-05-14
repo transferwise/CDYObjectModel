@@ -15,6 +15,7 @@
 #import "Recipient.h"
 #import "TRWProgressHUD.h"
 #import "RecipientViewController.h"
+#import "DeleteRecipientOperation.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
@@ -83,7 +84,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
 - (void)refreshRecipients {
     MCLog(@"refreshRecipients");
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"contacts.controller.refreshing.message", nil)];
 
     UserRecipientsOperation *operation = [UserRecipientsOperation recipientsOperation];
@@ -96,6 +97,58 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
         [self setExecutedOperation:nil];
 
+        [self handleListRefreshWithRecipients:recipients error:error];
+    }];
+
+    [operation execute];
+}
+
+- (void)addContactPressed {
+    RecipientViewController *controller = [[RecipientViewController alloc] init];
+    [controller setTitle:NSLocalizedString(@"recipient.controller.add.mode.title", nil)];
+    [controller setFooterButtonTitle:NSLocalizedString(@"recipient.controller.add.button.title", nil)];
+    [controller setAfterSaveAction:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle != UITableViewCellEditingStyleDelete) {
+        return;
+    }
+
+    Recipient *recipient = [self.recipients objectAtIndex:indexPath.row];
+    TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"contacts.controller.delete.conformation.title", nil)
+                                                       message:[NSString stringWithFormat:NSLocalizedString(@"contacts.controller.delete.confirmation.message", nil), recipient.name]];
+    [alertView setLeftButtonTitle:NSLocalizedString(@"button.title.delete", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
+
+    [alertView setLeftButtonAction:^{
+        [self deleteRecipient:recipient];
+    }];
+
+    [alertView show];
+}
+
+- (void)deleteRecipient:(Recipient *)recipient {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MCLog(@"Delete recipient:%@", recipient);
+        TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+        [hud setMessage:NSLocalizedString(@"contacts.controller.deleting.message", nil)];
+
+        DeleteRecipientOperation *operation = [DeleteRecipientOperation operationWithRecipient:recipient];
+        [self setExecutedOperation:operation];
+        [operation setCompletionHandler:^(NSArray *recipients, NSError *error) {
+            [hud hide];
+            [self handleListRefreshWithRecipients:recipients error:error];
+        }];
+
+        [operation execute];
+    });
+}
+
+- (void)handleListRefreshWithRecipients:(NSArray *)recipients error:(NSError *)error {
+    dispatch_async(dispatch_get_main_queue(), ^{
         if (error) {
             TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"contacts.refresh.error.title", nil)
                                                                message:NSLocalizedString(@"contacts.refresh.error.message", nil)];
@@ -105,18 +158,9 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
             return;
         }
 
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self setRecipients:recipients];
-            [self.tableView reloadData];
-        });
-    }];
-
-    [operation execute];
-}
-
-- (void)addContactPressed {
-    RecipientViewController *controller = [[RecipientViewController alloc] init];
-    [self.navigationController pushViewController:controller animated:YES];
+        [self setRecipients:recipients];
+        [self.tableView reloadData];
+    });
 }
 
 @end

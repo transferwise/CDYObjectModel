@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC92173B7C28008773FC /* BusinessProfileViewController.m */; };
+		1864AC95173B7C28008773FC /* BusinessProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1864AC93173B7C28008773FC /* BusinessProfileViewController.xib */; };
+		1864AC9A173B7C4D008773FC /* BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC99173B7C4D008773FC /* BusinessProfile.m */; };
+		1864AC9B173B7C5E008773FC /* BusinessProfile.h in Resources */ = {isa = PBXBuildFile; fileRef = 1864AC98173B7C4D008773FC /* BusinessProfile.h */; };
+		1864AC9E173B7C80008773FC /* SaveBusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC9D173B7C80008773FC /* SaveBusinessProfileOperation.m */; };
+		1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */; };
 		18D47900173A3B5300FC317E /* IdentificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D478FF173A3B5300FC317E /* IdentificationViewController.m */; };
 		18D47903173A3B6E00FC317E /* IdentificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D47902173A3B6E00FC317E /* IdentificationViewController.xib */; };
 		18D47906173A6B7700FC317E /* TextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D47905173A6B7700FC317E /* TextCell.m */; };
@@ -22,6 +28,8 @@
 		BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC691221721416300F0FB1A /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BBC6912C172147FC00F0FB1A /* WhyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC6912B172147FC00F0FB1A /* WhyView.xib */; };
 		BBCC6338172169980094EABB /* WhyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC6337172169980094EABB /* WhyView.m */; };
+		EA042600173CF5C50048BFBD /* RecipientEntrySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */; };
+		EA042603173CF5E20048BFBD /* RecipientEntrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */; };
 		EA13E032171BDF1A0019FBF0 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */; };
 		EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */; };
 		EA13E038171BE12E0019FBF0 /* MoneyEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */; };
@@ -32,6 +40,13 @@
 		EA13E049171BEDC40019FBF0 /* UIView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E048171BEDC40019FBF0 /* UIView+Loading.m */; };
 		EA13E04C171BEF5D0019FBF0 /* TextEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */; };
 		EA13E04E171BEF710019FBF0 /* TextEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */; };
+		EA222E33173A676000C5D613 /* PaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E32173A676000C5D613 /* PaymentFlow.m */; };
+		EA222E38173A861000C5D613 /* ConfirmPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E36173A861000C5D613 /* ConfirmPaymentViewController.m */; };
+		EA222E39173A861000C5D613 /* ConfirmPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E37173A861000C5D613 /* ConfirmPaymentViewController.xib */; };
+		EA222E3C173A8A7100C5D613 /* ConfirmPaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E3B173A8A7100C5D613 /* ConfirmPaymentCell.m */; };
+		EA222E3E173A8A7C00C5D613 /* ConfirmPaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E3D173A8A7C00C5D613 /* ConfirmPaymentCell.xib */; };
+		EA222E41173A8D0900C5D613 /* ProfileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA222E3F173A8D0900C5D613 /* ProfileIcon.png */; };
+		EA222E42173A8D0900C5D613 /* ProfileIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA222E40173A8D0900C5D613 /* ProfileIcon@2x.png */; };
 		EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */; };
 		EA35C73A17324AF2005602F7 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73417324AF2005602F7 /* Icon-Small.png */; };
 		EA35C73B17324AF2005602F7 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73517324AF2005602F7 /* Icon-Small@2x.png */; };
@@ -42,6 +57,10 @@
 		EA35C74317324AFE005602F7 /* SeparatorLine.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C74117324AFE005602F7 /* SeparatorLine.png */; };
 		EA35C74417324AFE005602F7 /* SeparatorLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */; };
 		EA35C76817326AF4005602F7 /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76717326AF4005602F7 /* Currency.m */; };
+		EA35C76C1732790D005602F7 /* PaymentsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76B1732790D005602F7 /* PaymentsOperation.m */; };
+		EA35C77017327973005602F7 /* PaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76F17327973005602F7 /* PaymentCell.m */; };
+		EA35C77217327981005602F7 /* PaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA35C77117327981005602F7 /* PaymentCell.xib */; };
+		EA35C7751732851C005602F7 /* Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C7741732851C005602F7 /* Payment.m */; };
 		EA4AA6061737940900E99150 /* RecipientType.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA6051737940900E99150 /* RecipientType.m */; };
 		EA4AA60A173794A600E99150 /* RecipientTypeField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA609173794A600E99150 /* RecipientTypeField.m */; };
 		EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */; };
@@ -111,6 +130,10 @@
 		EAAA1484171BC911005B9430 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAAA1483171BC911005B9430 /* Default-568h@2x.png */; };
 		EAAA1487171BC911005B9430 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EAAA1485171BC911005B9430 /* Transfer.xcdatamodeld */; };
 		EAAA1490171BD07E005B9430 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAAA148E171BD07E005B9430 /* Localizable.strings */; };
+		EAAC20341742241B001DDE7A /* StatesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAC20331742241B001DDE7A /* StatesOperation.m */; };
+		EAAC2038174226D3001DDE7A /* USState.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAC2037174226D3001DDE7A /* USState.m */; };
+		EAAC203B17422AB3001DDE7A /* DropdownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAC203A17422AB3001DDE7A /* DropdownCell.m */; };
+		EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAAC203C17422ADB001DDE7A /* DropdownCell.xib */; };
 		EAB72152171FC34600DE29F5 /* NavBarButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72150171FC34600DE29F5 /* NavBarButton.png */; };
 		EAB72153171FC34600DE29F5 /* NavBarButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */; };
 		EAB72156171FC3E900DE29F5 /* SettingsButtonIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */; };
@@ -176,6 +199,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1864AC91173B7C28008773FC /* BusinessProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileViewController.h; sourceTree = "<group>"; };
+		1864AC92173B7C28008773FC /* BusinessProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileViewController.m; sourceTree = "<group>"; };
+		1864AC93173B7C28008773FC /* BusinessProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessProfileViewController.xib; sourceTree = "<group>"; };
+		1864AC98173B7C4D008773FC /* BusinessProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfile.h; sourceTree = "<group>"; };
+		1864AC99173B7C4D008773FC /* BusinessProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfile.m; sourceTree = "<group>"; };
+		1864AC9C173B7C80008773FC /* SaveBusinessProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveBusinessProfileOperation.h; sourceTree = "<group>"; };
+		1864AC9D173B7C80008773FC /* SaveBusinessProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveBusinessProfileOperation.m; sourceTree = "<group>"; };
+		1864AC9F173B7C95008773FC /* DeleteRecipientOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteRecipientOperation.h; sourceTree = "<group>"; };
+		1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteRecipientOperation.m; sourceTree = "<group>"; };
 		18D478FE173A3B5300FC317E /* IdentificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentificationViewController.h; sourceTree = "<group>"; };
 		18D478FF173A3B5300FC317E /* IdentificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentificationViewController.m; sourceTree = "<group>"; };
 		18D47902173A3B6E00FC317E /* IdentificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IdentificationViewController.xib; sourceTree = "<group>"; };
@@ -195,6 +227,9 @@
 		BBC6912B172147FC00F0FB1A /* WhyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhyView.xib; sourceTree = "<group>"; };
 		BBCC6336172169980094EABB /* WhyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhyView.h; sourceTree = "<group>"; };
 		BBCC6337172169980094EABB /* WhyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhyView.m; sourceTree = "<group>"; };
+		EA0425FE173CF5C50048BFBD /* RecipientEntrySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientEntrySelectionCell.h; sourceTree = "<group>"; };
+		EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientEntrySelectionCell.m; sourceTree = "<group>"; };
+		EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientEntrySelectionCell.xib; sourceTree = "<group>"; };
 		EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
 		EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
 		EA13E034171BE1210019FBF0 /* MoneyEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyEntryCell.h; sourceTree = "<group>"; };
@@ -211,6 +246,16 @@
 		EA13E04A171BEF5D0019FBF0 /* TextEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEntryCell.h; sourceTree = "<group>"; };
 		EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEntryCell.m; sourceTree = "<group>"; };
 		EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEntryCell.xib; sourceTree = "<group>"; };
+		EA222E31173A676000C5D613 /* PaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentFlow.h; sourceTree = "<group>"; };
+		EA222E32173A676000C5D613 /* PaymentFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentFlow.m; sourceTree = "<group>"; };
+		EA222E35173A861000C5D613 /* ConfirmPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmPaymentViewController.h; sourceTree = "<group>"; };
+		EA222E36173A861000C5D613 /* ConfirmPaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmPaymentViewController.m; sourceTree = "<group>"; };
+		EA222E37173A861000C5D613 /* ConfirmPaymentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfirmPaymentViewController.xib; sourceTree = "<group>"; };
+		EA222E3A173A8A7100C5D613 /* ConfirmPaymentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmPaymentCell.h; sourceTree = "<group>"; };
+		EA222E3B173A8A7100C5D613 /* ConfirmPaymentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmPaymentCell.m; sourceTree = "<group>"; };
+		EA222E3D173A8A7C00C5D613 /* ConfirmPaymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfirmPaymentCell.xib; sourceTree = "<group>"; };
+		EA222E3F173A8D0900C5D613 /* ProfileIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProfileIcon.png; sourceTree = "<group>"; };
+		EA222E40173A8D0900C5D613 /* ProfileIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProfileIcon@2x.png"; sourceTree = "<group>"; };
 		EA2B23951721323E001AE9DE /* CurrencyPairsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyPairsOperation.h; sourceTree = "<group>"; };
 		EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyPairsOperation.m; sourceTree = "<group>"; };
 		EA35C73417324AF2005602F7 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
@@ -223,6 +268,13 @@
 		EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SeparatorLine@2x.png"; sourceTree = "<group>"; };
 		EA35C76617326AF4005602F7 /* Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Currency.h; sourceTree = "<group>"; };
 		EA35C76717326AF4005602F7 /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
+		EA35C76A1732790D005602F7 /* PaymentsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentsOperation.h; sourceTree = "<group>"; };
+		EA35C76B1732790D005602F7 /* PaymentsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentsOperation.m; sourceTree = "<group>"; };
+		EA35C76E17327973005602F7 /* PaymentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentCell.h; sourceTree = "<group>"; };
+		EA35C76F17327973005602F7 /* PaymentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentCell.m; sourceTree = "<group>"; };
+		EA35C77117327981005602F7 /* PaymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentCell.xib; sourceTree = "<group>"; };
+		EA35C7731732851C005602F7 /* Payment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Payment.h; sourceTree = "<group>"; };
+		EA35C7741732851C005602F7 /* Payment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Payment.m; sourceTree = "<group>"; };
 		EA4AA6041737940900E99150 /* RecipientType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientType.h; sourceTree = "<group>"; };
 		EA4AA6051737940900E99150 /* RecipientType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientType.m; sourceTree = "<group>"; };
 		EA4AA608173794A600E99150 /* RecipientTypeField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientTypeField.h; sourceTree = "<group>"; };
@@ -341,6 +393,13 @@
 		EAAA1483171BC911005B9430 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EAAA1486171BC911005B9430 /* Transfer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer.xcdatamodel; sourceTree = "<group>"; };
 		EAAA148F171BD07E005B9430 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EAAC20321742241B001DDE7A /* StatesOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatesOperation.h; sourceTree = "<group>"; };
+		EAAC20331742241B001DDE7A /* StatesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatesOperation.m; sourceTree = "<group>"; };
+		EAAC2036174226D3001DDE7A /* USState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USState.h; sourceTree = "<group>"; };
+		EAAC2037174226D3001DDE7A /* USState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USState.m; sourceTree = "<group>"; };
+		EAAC203917422AB3001DDE7A /* DropdownCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropdownCell.h; sourceTree = "<group>"; };
+		EAAC203A17422AB3001DDE7A /* DropdownCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropdownCell.m; sourceTree = "<group>"; };
+		EAAC203C17422ADB001DDE7A /* DropdownCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropdownCell.xib; sourceTree = "<group>"; };
 		EAB72150171FC34600DE29F5 /* NavBarButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBarButton.png; sourceTree = "<group>"; };
 		EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarButton@2x.png"; sourceTree = "<group>"; };
 		EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsButtonIcon.png; sourceTree = "<group>"; };
@@ -493,6 +552,9 @@
 		EA13E033171BE0E50019FBF0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				EA222E3A173A8A7100C5D613 /* ConfirmPaymentCell.h */,
+				EA222E3B173A8A7100C5D613 /* ConfirmPaymentCell.m */,
+				EA222E3D173A8A7C00C5D613 /* ConfirmPaymentCell.xib */,
 				EA88E688172F97E20021492C /* CountrySelectionCell.h */,
 				EA88E689172F97E20021492C /* CountrySelectionCell.m */,
 				EA88E68A172F97E20021492C /* CountrySelectionCell.xib */,
@@ -502,12 +564,21 @@
 				EA88E68B172F97E20021492C /* DateEntryCell.h */,
 				EA88E68C172F97E20021492C /* DateEntryCell.m */,
 				EA88E68D172F97E20021492C /* DateEntryCell.xib */,
+				EAAC203917422AB3001DDE7A /* DropdownCell.h */,
+				EAAC203A17422AB3001DDE7A /* DropdownCell.m */,
+				EAAC203C17422ADB001DDE7A /* DropdownCell.xib */,
 				EA13E034171BE1210019FBF0 /* MoneyEntryCell.h */,
 				EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */,
 				EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */,
+				EA35C76E17327973005602F7 /* PaymentCell.h */,
+				EA35C76F17327973005602F7 /* PaymentCell.m */,
+				EA35C77117327981005602F7 /* PaymentCell.xib */,
 				EAD736A0171E85C300A037B1 /* RecipientCell.h */,
 				EAD736A1171E85C300A037B1 /* RecipientCell.m */,
 				EAD736A3171E85D100A037B1 /* RecipientCell.xib */,
+				EA0425FE173CF5C50048BFBD /* RecipientEntrySelectionCell.h */,
+				EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */,
+				EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */,
 				EAD069021737B8AE007C8DEE /* RecipientFieldCell.h */,
 				EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */,
 				EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */,
@@ -570,10 +641,14 @@
 		EA88E669172F97B10021492C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1864AC98173B7C4D008773FC /* BusinessProfile.h */,
+				1864AC99173B7C4D008773FC /* BusinessProfile.m */,
 				EA88E66A172F97B10021492C /* Country.h */,
 				EA88E66B172F97B10021492C /* Country.m */,
 				EA35C76617326AF4005602F7 /* Currency.h */,
 				EA35C76717326AF4005602F7 /* Currency.m */,
+				EA35C7731732851C005602F7 /* Payment.h */,
+				EA35C7741732851C005602F7 /* Payment.m */,
 				EA88E66C172F97B10021492C /* PersonalProfile.h */,
 				EA88E66D172F97B10021492C /* PersonalProfile.m */,
 				EA88E66E172F97B10021492C /* ProfileDetails.h */,
@@ -584,6 +659,8 @@
 				EA4AA6051737940900E99150 /* RecipientType.m */,
 				EA4AA608173794A600E99150 /* RecipientTypeField.h */,
 				EA4AA609173794A600E99150 /* RecipientTypeField.m */,
+				EAAC2036174226D3001DDE7A /* USState.h */,
+				EAAC2037174226D3001DDE7A /* USState.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -648,14 +725,22 @@
 				EAA54F4F1733DC3500B65BF3 /* CurrenciesOperation.m */,
 				EA2B23951721323E001AE9DE /* CurrencyPairsOperation.h */,
 				EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */,
+				1864AC9F173B7C95008773FC /* DeleteRecipientOperation.h */,
+				1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */,
 				EA8FF6B9171D26A00090A658 /* LoginOperation.h */,
 				EA8FF6BA171D26A00090A658 /* LoginOperation.m */,
 				EA88E67E172F97D50021492C /* NetworkErrorCodes.h */,
 				EA88E67F172F97D50021492C /* NetworkErrorCodes.m */,
+				EA35C76A1732790D005602F7 /* PaymentsOperation.h */,
+				EA35C76B1732790D005602F7 /* PaymentsOperation.m */,
 				EAA54F591733EF1A00B65BF3 /* RecipientTypesOperation.h */,
 				EAA54F5A1733EF1A00B65BF3 /* RecipientTypesOperation.m */,
+				1864AC9C173B7C80008773FC /* SaveBusinessProfileOperation.h */,
+				1864AC9D173B7C80008773FC /* SaveBusinessProfileOperation.m */,
 				EAD85B09173920C300C22211 /* SavePersonalProfileOperation.h */,
 				EAD85B0A173920C300C22211 /* SavePersonalProfileOperation.m */,
+				EAAC20321742241B001DDE7A /* StatesOperation.h */,
+				EAAC20331742241B001DDE7A /* StatesOperation.m */,
 				EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */,
 				EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */,
 				EA88E680172F97D50021492C /* TransferwiseClient.h */,
@@ -746,6 +831,12 @@
 		EAAA148D171BD057005B9430 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1864AC91173B7C28008773FC /* BusinessProfileViewController.h */,
+				1864AC92173B7C28008773FC /* BusinessProfileViewController.m */,
+				1864AC93173B7C28008773FC /* BusinessProfileViewController.xib */,
+				EA222E35173A861000C5D613 /* ConfirmPaymentViewController.h */,
+				EA222E36173A861000C5D613 /* ConfirmPaymentViewController.m */,
+				EA222E37173A861000C5D613 /* ConfirmPaymentViewController.xib */,
 				EAD3967D171BD57000F6D011 /* ContactsViewController.h */,
 				EAD3967E171BD57000F6D011 /* ContactsViewController.m */,
 				EAD3967F171BD57000F6D011 /* ContactsViewController.xib */,
@@ -792,6 +883,8 @@
 				EAEA6256172011C500A96770 /* CalculationResult.m */,
 				EAB72163171FDC7F00DE29F5 /* MoneyCalculator.h */,
 				EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */,
+				EA222E31173A676000C5D613 /* PaymentFlow.h */,
+				EA222E32173A676000C5D613 /* PaymentFlow.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -852,6 +945,8 @@
 				EAD7D4C5171D47BE0099063F /* NavigationBar@2x.png */,
 				EAA54F3A1733CA7800B65BF3 /* NewPaymentTabIcon.png */,
 				EAA54F3B1733CA7800B65BF3 /* NewPaymentTabIcon@2x.png */,
+				EA222E3F173A8D0900C5D613 /* ProfileIcon.png */,
+				EA222E40173A8D0900C5D613 /* ProfileIcon@2x.png */,
 				EA35C74117324AFE005602F7 /* SeparatorLine.png */,
 				EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */,
 				EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */,
@@ -967,6 +1062,7 @@
 				EAB72153171FC34600DE29F5 /* NavBarButton@2x.png in Resources */,
 				EAB72156171FC3E900DE29F5 /* SettingsButtonIcon.png in Resources */,
 				EAB72157171FC3E900DE29F5 /* SettingsButtonIcon@2x.png in Resources */,
+				1864AC9B173B7C5E008773FC /* BusinessProfile.h in Resources */,
 				EAB7215C171FC61B00DE29F5 /* SettingsViewController.xib in Resources */,
 				EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */,
 				BBC691241721416300F0FB1A /* TSAlertViewMessageListViewShadow.png in Resources */,
@@ -980,6 +1076,7 @@
 				EA88E68F172F97E20021492C /* CountrySelectionCell.xib in Resources */,
 				EA88E691172F97E20021492C /* DateEntryCell.xib in Resources */,
 				EA88E698172F980A0021492C /* SignUpViewController.xib in Resources */,
+				EA35C77217327981005602F7 /* PaymentCell.xib in Resources */,
 				EA35C73A17324AF2005602F7 /* Icon-Small.png in Resources */,
 				EA35C73B17324AF2005602F7 /* Icon-Small@2x.png in Resources */,
 				EA35C73C17324AF2005602F7 /* Icon.png in Resources */,
@@ -1008,6 +1105,13 @@
 				EAEA311D1738F01600CCF1A2 /* Down@2x.png in Resources */,
 				18D47903173A3B6E00FC317E /* IdentificationViewController.xib in Resources */,
 				18D47908173A6B8900FC317E /* TextCell.xib in Resources */,
+				1864AC95173B7C28008773FC /* BusinessProfileViewController.xib in Resources */,
+				EA222E39173A861000C5D613 /* ConfirmPaymentViewController.xib in Resources */,
+				EA222E3E173A8A7C00C5D613 /* ConfirmPaymentCell.xib in Resources */,
+				EA222E41173A8D0900C5D613 /* ProfileIcon.png in Resources */,
+				EA222E42173A8D0900C5D613 /* ProfileIcon@2x.png in Resources */,
+				EA042603173CF5E20048BFBD /* RecipientEntrySelectionCell.xib in Resources */,
+				EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1112,6 +1216,9 @@
 				EA88E690172F97E20021492C /* DateEntryCell.m in Sources */,
 				EA88E693172F97F50021492C /* Constants.m in Sources */,
 				EA88E697172F980A0021492C /* SignUpViewController.m in Sources */,
+				EA35C76C1732790D005602F7 /* PaymentsOperation.m in Sources */,
+				EA35C77017327973005602F7 /* PaymentCell.m in Sources */,
+				EA35C7751732851C005602F7 /* Payment.m in Sources */,
 				EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */,
 				EA35C76817326AF4005602F7 /* Currency.m in Sources */,
 				EAA54F4B1733DA1400B65BF3 /* RecipientViewController.m in Sources */,
@@ -1128,6 +1235,17 @@
 				EAD85B0B173920C300C22211 /* SavePersonalProfileOperation.m in Sources */,
 				18D47900173A3B5300FC317E /* IdentificationViewController.m in Sources */,
 				18D47906173A6B7700FC317E /* TextCell.m in Sources */,
+				1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */,
+				1864AC9A173B7C4D008773FC /* BusinessProfile.m in Sources */,
+				1864AC9E173B7C80008773FC /* SaveBusinessProfileOperation.m in Sources */,
+				1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */,
+				EA222E33173A676000C5D613 /* PaymentFlow.m in Sources */,
+				EA222E38173A861000C5D613 /* ConfirmPaymentViewController.m in Sources */,
+				EA222E3C173A8A7100C5D613 /* ConfirmPaymentCell.m in Sources */,
+				EA042600173CF5C50048BFBD /* RecipientEntrySelectionCell.m in Sources */,
+				EAAC20341742241B001DDE7A /* StatesOperation.m in Sources */,
+				EAAC2038174226D3001DDE7A /* USState.m in Sources */,
+				EAAC203B17422AB3001DDE7A /* DropdownCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

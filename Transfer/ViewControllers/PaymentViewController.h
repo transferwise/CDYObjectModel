@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class MoneyCalculator;
-
 @interface PaymentViewController : UITableViewController
 
 @end

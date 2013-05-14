@@ -8,6 +8,8 @@
 
 #import "TransferwiseOperation.h"
 
+@class Currency;
+
 typedef void (^ListRecipientsBlock)(NSArray *recipients, NSError *error);
 
 @interface UserRecipientsOperation : TransferwiseOperation
@@ -15,5 +17,6 @@ typedef void (^ListRecipientsBlock)(NSArray *recipients, NSError *error);
 @property (nonatomic, copy) ListRecipientsBlock responseHandler;
 
 + (UserRecipientsOperation *)recipientsOperation;
++ (UserRecipientsOperation *)recipientsOperationWithCurrency:(Currency *)currency;
 
 @end
