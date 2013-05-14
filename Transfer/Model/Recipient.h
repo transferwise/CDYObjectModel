@@ -16,6 +16,8 @@
 @property (nonatomic, strong, readonly) NSNumber *recipientId;
 @property (nonatomic, copy, readonly) NSString *type;
 @property (nonatomic, copy, readonly) NSString *email;
+@property (nonatomic, copy, readonly) NSString *accountNumber;
+@property (nonatomic, copy, readonly) NSString *sortCode;
 
 - (NSString *)detailsRowOne;
 - (NSString *)detailsRowTwo;

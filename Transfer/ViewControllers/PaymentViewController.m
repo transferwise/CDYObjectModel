@@ -18,7 +18,6 @@
 #import "TRWAlertView.h"
 #import "PaymentFlow.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
-#import "IdentificationViewController.h"
 
 static NSUInteger const kRowYouSend = 0;
 
