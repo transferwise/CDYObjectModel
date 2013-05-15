@@ -70,4 +70,8 @@ NSString *const kCreatePaymentPath = @"/payment/create";
     self.data[@"paymentReference"] = reference;
 }
 
+- (void)setEmail:(NSString *)email {
+    self.data[@"recipientEmail"] = email;
+}
+
 @end

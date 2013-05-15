@@ -22,8 +22,9 @@ typedef void (^CreatePaymentBlock)(Payment *payment, NSError *error);
 - (void)setSourceCurrency:(NSString *)sourceCurrency;
 - (void)setTargetCurrency:(NSString *)targetCurrency;
 - (void)setAmount:(NSString *)amount;
+- (void)addReference:(NSString *)reference;
+- (void)setEmail:(NSString *)email;
 
 + (CreatePaymentOperation *)operation;
-- (void)addReference:(NSString *)reference;
 
 @end

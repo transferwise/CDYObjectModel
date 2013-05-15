@@ -15,6 +15,7 @@
 #import "Payment.h"
 #import "RecipientType.h"
 #import "RecipientTypeField.h"
+#import "Constants.h"
 
 @interface UploadMoneyViewController ()
 
@@ -77,6 +78,7 @@
 }
 
 - (void)loadDataToCells {
+    MCLog(@"loadDataToCells");
     NSMutableArray *presentedCells = [NSMutableArray array];
 
     TextCell *amountCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];

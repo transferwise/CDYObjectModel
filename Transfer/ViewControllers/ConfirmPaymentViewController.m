@@ -36,7 +36,7 @@ static NSUInteger const kReceiverSection = 1;
 @property (nonatomic, strong) ConfirmPaymentCell *receiverNameCell;
 @property (nonatomic, strong) NSArray *receiverFieldCells;
 @property (nonatomic, strong) TextEntryCell *referenceCell;
-@property (nonatomic, strong) ConfirmPaymentCell *receiverEmailCell;
+@property (nonatomic, strong) TextEntryCell *receiverEmailCell;
 
 @property (nonatomic, strong) IBOutlet UILabel *yourDepositTitleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *yourDepositValueLabel;
@@ -99,8 +99,10 @@ static NSUInteger const kReceiverSection = 1;
     [referenceCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
     [receiverCells addObject:referenceCell];
 
-    ConfirmPaymentCell *receiverEmailCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
+    TextEntryCell *receiverEmailCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setReceiverEmailCell:receiverEmailCell];
+    [receiverEmailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
+    [receiverEmailCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [receiverCells addObject:receiverEmailCell];
 
     [self setPresentedSectionCells:@[senderCells, receiverCells]];
@@ -181,8 +183,8 @@ static NSUInteger const kReceiverSection = 1;
     [self.receiverNameCell.textLabel setText:[self.recipient name]];
     [self.receiverNameCell.detailTextLabel setText:NSLocalizedString(@"confirm.payment.recipient.marker.label", nil)];
 
-    [self.receiverEmailCell.textLabel setText:NSLocalizedString(@"confirm.payment.email.label", nil)];
-    [self.receiverEmailCell.detailTextLabel setText:[self.recipient email]];
+    [self.receiverEmailCell setEditable:YES];
+    [self.receiverEmailCell configureWithTitle:NSLocalizedString(@"confirm.payment.email.label", nil) value:[self.recipient email]];
 
     [self.referenceCell setEditable:YES];
     [self.referenceCell configureWithTitle:NSLocalizedString(@"confirm.payment.reference.label", nil) value:@""];
@@ -201,6 +203,10 @@ static NSUInteger const kReceiverSection = 1;
     NSString *reference = [self.referenceCell value];
     if ([reference hasValue]) {
         [operation addReference:reference];
+    }
+    NSString *email = [self.receiverEmailCell value];
+    if ([email hasValue]) {
+        [operation setEmail:email];
     }
 
     [operation setResponseHandler:^(Payment *payment, NSError *error) {
