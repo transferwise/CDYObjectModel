@@ -24,5 +24,6 @@ typedef void (^CreatePaymentBlock)(Payment *payment, NSError *error);
 - (void)setAmount:(NSString *)amount;
 
 + (CreatePaymentOperation *)operation;
+- (void)addReference:(NSString *)reference;
 
 @end

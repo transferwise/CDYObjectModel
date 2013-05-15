@@ -8,7 +8,7 @@
 
 #import "ConfirmPaymentCell.h"
 
-NSString *const TWRConfirmPaymentCellIdentifier = @"TWRConfirmPaymentCellIdentifier";
+NSString *const TWConfirmPaymentCellIdentifier = @"TWConfirmPaymentCellIdentifier";
 
 @implementation ConfirmPaymentCell
 

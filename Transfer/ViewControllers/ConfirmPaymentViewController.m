@@ -20,6 +20,8 @@
 #import "TRWProgressHUD.h"
 #import "TRWAlertView.h"
 #import "Payment.h"
+#import "TextEntryCell.h"
+#import "NSString+Validation.h"
 
 static NSUInteger const kReceiverSection = 1;
 
@@ -33,7 +35,7 @@ static NSUInteger const kReceiverSection = 1;
 @property (nonatomic, strong) ConfirmPaymentCell *senderEmailCell;
 @property (nonatomic, strong) ConfirmPaymentCell *receiverNameCell;
 @property (nonatomic, strong) NSArray *receiverFieldCells;
-@property (nonatomic, strong) ConfirmPaymentCell *referenceCell;
+@property (nonatomic, strong) TextEntryCell *referenceCell;
 @property (nonatomic, strong) ConfirmPaymentCell *receiverEmailCell;
 
 @property (nonatomic, strong) IBOutlet UILabel *yourDepositTitleLabel;
@@ -69,20 +71,21 @@ static NSUInteger const kReceiverSection = 1;
     [self.tableView setTableHeaderView:self.headerView];
     [self.tableView setTableFooterView:self.footerView];
 
-    [self.tableView registerNib:[UINib nibWithNibName:@"ConfirmPaymentCell" bundle:nil] forCellReuseIdentifier:TWRConfirmPaymentCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ConfirmPaymentCell" bundle:nil] forCellReuseIdentifier:TWConfirmPaymentCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
 
     NSMutableArray *senderCells = [NSMutableArray array];
-    ConfirmPaymentCell *senderNameCell = [self.tableView dequeueReusableCellWithIdentifier:TWRConfirmPaymentCellIdentifier];
+    ConfirmPaymentCell *senderNameCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
     [self setSenderNameCell:senderNameCell];
     [senderNameCell.imageView setImage:[UIImage imageNamed:@"ProfileIcon.png"]];
     [senderCells addObject:senderNameCell];
 
-    ConfirmPaymentCell *senderEmailCell = [self.tableView dequeueReusableCellWithIdentifier:TWRConfirmPaymentCellIdentifier];
+    ConfirmPaymentCell *senderEmailCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
     [self setSenderEmailCell:senderEmailCell];
     [senderCells addObject:senderEmailCell];
 
     NSMutableArray *receiverCells = [NSMutableArray array];
-    ConfirmPaymentCell *receiverNameCell = [self.tableView dequeueReusableCellWithIdentifier:TWRConfirmPaymentCellIdentifier];
+    ConfirmPaymentCell *receiverNameCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
     [self setReceiverNameCell:receiverNameCell];
     [receiverNameCell.imageView setImage:[UIImage imageNamed:@"ProfileIcon.png"]];
     [receiverCells addObject:receiverNameCell];
@@ -91,11 +94,12 @@ static NSUInteger const kReceiverSection = 1;
     [self setReceiverFieldCells:fieldCells];
     [receiverCells addObjectsFromArray:fieldCells];
 
-    ConfirmPaymentCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:TWRConfirmPaymentCellIdentifier];
+    TextEntryCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setReferenceCell:referenceCell];
+    [referenceCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
     [receiverCells addObject:referenceCell];
 
-    ConfirmPaymentCell *receiverEmailCell = [self.tableView dequeueReusableCellWithIdentifier:TWRConfirmPaymentCellIdentifier];
+    ConfirmPaymentCell *receiverEmailCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
     [self setReceiverEmailCell:receiverEmailCell];
     [receiverCells addObject:receiverEmailCell];
 
@@ -133,7 +137,7 @@ static NSUInteger const kReceiverSection = 1;
     NSArray *fields = self.recipientType.fields;
     NSMutableArray *cells = [NSMutableArray arrayWithCapacity:[fields count]];
     for (RecipientTypeField *field in fields) {
-        ConfirmPaymentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWRConfirmPaymentCellIdentifier];
+        ConfirmPaymentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
         [cell.textLabel setText:field.title];
         [cell.detailTextLabel setText:[self.recipient valueForKeyPath:field.name]];
         [cells addObject:cell];
@@ -180,8 +184,8 @@ static NSUInteger const kReceiverSection = 1;
     [self.receiverEmailCell.textLabel setText:NSLocalizedString(@"confirm.payment.email.label", nil)];
     [self.receiverEmailCell.detailTextLabel setText:[self.recipient email]];
 
-    [self.referenceCell.textLabel setText:NSLocalizedString(@"confirm.payment.reference.label", nil)];
-    [self.referenceCell.detailTextLabel setText:@""];
+    [self.referenceCell setEditable:YES];
+    [self.referenceCell configureWithTitle:NSLocalizedString(@"confirm.payment.reference.label", nil) value:@""];
 }
 
 - (IBAction)footerButtonPressed:(id)sender {
@@ -194,6 +198,10 @@ static NSUInteger const kReceiverSection = 1;
     [operation setSourceCurrency:self.calculationResult.sourceCurrency];
     [operation setTargetCurrency:self.calculationResult.targetCurrency];
     [operation setAmount:self.calculationResult.amount];
+    NSString *reference = [self.referenceCell value];
+    if ([reference hasValue]) {
+        [operation addReference:reference];
+    }
 
     [operation setResponseHandler:^(Payment *payment, NSError *error) {
         [hud hide];

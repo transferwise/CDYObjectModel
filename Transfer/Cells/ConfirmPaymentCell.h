@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString *const TWRConfirmPaymentCellIdentifier;
+extern NSString *const TWConfirmPaymentCellIdentifier;
 
 @interface ConfirmPaymentCell : UITableViewCell
 

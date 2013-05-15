@@ -66,4 +66,8 @@ NSString *const kCreatePaymentPath = @"/payment/create";
     self.data[@"amount"] = amount;
 }
 
+- (void)addReference:(NSString *)reference {
+    self.data[@"paymentReference"] = reference;
+}
+
 @end
