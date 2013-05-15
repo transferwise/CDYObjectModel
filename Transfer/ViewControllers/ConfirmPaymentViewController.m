@@ -16,6 +16,10 @@
 #import "RecipientTypeField.h"
 #import "OHAttributedLabel/OHAttributedLabel.h"
 #import "CalculationResult.h"
+#import "CreatePaymentOperation.h"
+#import "TRWProgressHUD.h"
+#import "TRWAlertView.h"
+#import "Payment.h"
 
 static NSUInteger const kReceiverSection = 1;
 
@@ -38,6 +42,9 @@ static NSUInteger const kReceiverSection = 1;
 @property (nonatomic, strong) IBOutlet UILabel *exchangedToValueLabel;
 @property (nonatomic, strong) IBOutlet OHAttributedLabel *estimatedExchangeRateLabel;
 @property (nonatomic, strong) IBOutlet OHAttributedLabel *deliveryDateLabelLabel;
+
+@property (nonatomic, strong) TransferwiseOperation *executedOperation;
+@property (nonatomic, strong) Payment *createdPayment;
 
 - (IBAction)footerButtonPressed:(id)sender;
 
@@ -178,7 +185,29 @@ static NSUInteger const kReceiverSection = 1;
 }
 
 - (IBAction)footerButtonPressed:(id)sender {
-    self.footerButtonAction();
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    [hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
+    CreatePaymentOperation *operation = [CreatePaymentOperation operation];
+    [self setExecutedOperation:operation];
+
+    [operation setRecipientId:self.recipient.recipientId];
+    [operation setSourceCurrency:self.calculationResult.sourceCurrency];
+    [operation setTargetCurrency:self.calculationResult.targetCurrency];
+    [operation setAmount:self.calculationResult.amount];
+
+    [operation setResponseHandler:^(Payment *payment, NSError *error) {
+        [hud hide];
+        if (error) {
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
+            [alertView show];
+            return;
+        }
+
+        [self setCreatedPayment:payment];
+        self.afterSaveAction();
+    }];
+
+    [operation execute];
 }
 
 - (NSAttributedString *)attributedStringWithBase:(NSString *)baseString markedString:(NSString *)marked {

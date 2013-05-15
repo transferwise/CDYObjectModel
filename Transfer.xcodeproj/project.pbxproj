@@ -137,6 +137,7 @@
 		EAAC2038174226D3001DDE7A /* USState.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAC2037174226D3001DDE7A /* USState.m */; };
 		EAAC203B17422AB3001DDE7A /* DropdownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAC203A17422AB3001DDE7A /* DropdownCell.m */; };
 		EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAAC203C17422ADB001DDE7A /* DropdownCell.xib */; };
+		EAAF8FB017436730008DF9E2 /* CreatePaymentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAF8FAF17436730008DF9E2 /* CreatePaymentOperation.m */; };
 		EAB72152171FC34600DE29F5 /* NavBarButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72150171FC34600DE29F5 /* NavBarButton.png */; };
 		EAB72153171FC34600DE29F5 /* NavBarButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */; };
 		EAB72156171FC3E900DE29F5 /* SettingsButtonIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */; };
@@ -408,6 +409,8 @@
 		EAAC203917422AB3001DDE7A /* DropdownCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropdownCell.h; sourceTree = "<group>"; };
 		EAAC203A17422AB3001DDE7A /* DropdownCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropdownCell.m; sourceTree = "<group>"; };
 		EAAC203C17422ADB001DDE7A /* DropdownCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropdownCell.xib; sourceTree = "<group>"; };
+		EAAF8FAE17436730008DF9E2 /* CreatePaymentOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatePaymentOperation.h; sourceTree = "<group>"; };
+		EAAF8FAF17436730008DF9E2 /* CreatePaymentOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatePaymentOperation.m; sourceTree = "<group>"; };
 		EAB72150171FC34600DE29F5 /* NavBarButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBarButton.png; sourceTree = "<group>"; };
 		EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarButton@2x.png"; sourceTree = "<group>"; };
 		EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsButtonIcon.png; sourceTree = "<group>"; };
@@ -729,6 +732,8 @@
 			children = (
 				EA88E67C172F97D50021492C /* CountriesOperation.h */,
 				EA88E67D172F97D50021492C /* CountriesOperation.m */,
+				EAAF8FAE17436730008DF9E2 /* CreatePaymentOperation.h */,
+				EAAF8FAF17436730008DF9E2 /* CreatePaymentOperation.m */,
 				EAD069081737CF57007C8DEE /* CreateRecipientOperation.h */,
 				EAD069091737CF57007C8DEE /* CreateRecipientOperation.m */,
 				EAA54F4E1733DC3500B65BF3 /* CurrenciesOperation.h */,
@@ -1262,6 +1267,7 @@
 				BB29BD43173CCD580016A6E9 /* BankTransfer.m in Sources */,
 				BB29BD47173CD2FF0016A6E9 /* UploadMoneyViewController.m in Sources */,
 				BB29BD4E173CDF6F0016A6E9 /* TextCell.m in Sources */,
+				EAAF8FB017436730008DF9E2 /* CreatePaymentOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

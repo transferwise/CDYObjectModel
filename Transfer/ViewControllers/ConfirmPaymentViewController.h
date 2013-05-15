@@ -14,6 +14,7 @@
 @class Recipient;
 @class RecipientType;
 @class CalculationResult;
+@class Payment;
 
 @interface ConfirmPaymentViewController : DataEntryViewController
 
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) RecipientType *recipientType;
 @property (nonatomic, copy) NSString *footerButtonTitle;
 @property (nonatomic, strong) CalculationResult *calculationResult;
-@property (nonatomic, copy) TRWActionBlock footerButtonAction;
+@property (nonatomic, copy) TRWActionBlock afterSaveAction;
+@property (nonatomic, strong, readonly) Payment *createdPayment;
 
 @end

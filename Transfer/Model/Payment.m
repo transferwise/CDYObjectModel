@@ -107,6 +107,10 @@
     }
 }
 
+- (NSString *)payInWithCurrency {
+    return [self.payIn description];
+}
+
 static NSCalendar *__gregorian;
 + (NSCalendar *)gregorian {
     if (!__gregorian) {

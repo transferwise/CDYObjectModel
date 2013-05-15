@@ -8,12 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+@class Recipient;
+
 @interface Payment : NSObject
+
+@property (nonatomic, strong, readonly) Recipient *settlementRecipient;
 
 + (Payment *)paymentWithData:(NSDictionary *)data;
 - (NSString *)localizedStatus;
 - (NSString *)recipientName;
 - (NSString *)transferredAmountString;
 - (NSString *)latestChangeTimeString;
+- (NSString *)payInWithCurrency;
 
 @end

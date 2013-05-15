@@ -21,5 +21,6 @@
 @property (nonatomic) Currency *preloadRecipientsWithCurrency;
 @property (nonatomic, strong, readonly) Recipient *selectedRecipient;
 @property (nonatomic, strong, readonly) RecipientType *selectedRecipientType;
+@property (nonatomic, strong, readonly) NSArray *recipientTypes;
 
 @end

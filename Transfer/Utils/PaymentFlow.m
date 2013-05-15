@@ -15,6 +15,7 @@
 #import "RecipientType.h"
 #import "IdentificationViewController.h"
 #import "UploadMoneyViewController.h"
+#import "Payment.h"
 
 @interface PaymentFlow ()
 
@@ -22,6 +23,8 @@
 @property (nonatomic, strong) ProfileDetails *userDetails;
 @property (nonatomic, strong) Recipient *recipient;
 @property (nonatomic, strong) RecipientType *recipientType;
+@property (nonatomic, strong) Payment *createdPayment;
+@property (nonatomic, strong) NSArray *recipientTypes;
 
 @end
 
@@ -56,6 +59,7 @@
     [controller setAfterSaveAction:^{
         [self setRecipient:weakController.selectedRecipient];
         [self setRecipientType:weakController.selectedRecipientType];
+        [self setRecipientTypes:weakController.recipientTypes];
         [self presentPaymentConfirmation];
     }];
     [controller setPreloadRecipientsWithCurrency:self.targetCurrency];
@@ -65,12 +69,14 @@
 - (void)presentPaymentConfirmation {
     MCLog(@"presentPaymentConfirmation");
     ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
+    __block __weak ConfirmPaymentViewController *weakController = controller;
     [controller setSenderDetails:self.userDetails];
     [controller setRecipient:self.recipient];
     [controller setRecipientType:self.recipientType];
     [controller setCalculationResult:self.calculationResult];
     [controller setFooterButtonTitle:NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
-    [controller setFooterButtonAction:^{
+    [controller setAfterSaveAction:^{
+        [self setCreatedPayment:weakController.createdPayment];
         [self presentVerificationScreen];
     }];
     [self.navigationController pushViewController:controller animated:YES];
@@ -86,6 +92,9 @@
 
 - (void)presentUploadMoneyController {
     UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+    [controller setUserDetails:self.userDetails];
+    [controller setPayment:self.createdPayment];
+    [controller setRecipientTypes:self.recipientTypes];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

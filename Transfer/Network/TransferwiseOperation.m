@@ -34,7 +34,8 @@ NSString *const kAPIPathBase = @"/api/v1/";
 }
 
 - (void)postData:(NSDictionary *)data toPath:(NSString *)postPath {
-    MCLog(@"Post %@ to %@", [data sensibleDataHidden], postPath);
+    NSString *accessToken = [Credentials accessToken];
+    MCLog(@"Post %@ to %@", [data sensibleDataHidden], [postPath stringByReplacingOccurrencesOfString:(accessToken ? accessToken : @"" ) withString:@"**********"]);
     [self executeOperationWithMethod:@"POST" path:postPath parameters:data];
 }
 

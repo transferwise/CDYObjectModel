@@ -171,6 +171,8 @@
 "confirm.payment.exchanged.to.title.label" = "Will be exchanged to";
 "confirm.payment.estimated.exchange.rate.message" = "Estimated exchange rate %@";
 "confirm.payment.delivery.date.message" = "Delivery by %@";
+"confirm.payment.creating.message" = "Creating payment";
+"confirm.payment.payment.error.title" = "Can't make payment";
 
 "payment.change.time.years.ago" = "%d years ago";
 "payment.change.time.one.year.ago" = "1 year ago";
@@ -197,3 +199,4 @@
 "upload.money.bank.name.title" = "Bank name";
 "upload.money.reference.title" = "Reference";
 "upload.money.uksort.title" = "UK Sort code";
+"upload.money.to.title" = "To";

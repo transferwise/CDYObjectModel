@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "DataEntryViewController.h"
 
+@class Recipient;
+@class ProfileDetails;
+@class Payment;
+
 @interface UploadMoneyViewController : DataEntryViewController
+
+@property (nonatomic, strong) Payment *payment;
+@property (nonatomic, strong) ProfileDetails *userDetails;
+@property (nonatomic, strong) NSArray *recipientTypes;
 
 @end

@@ -12,7 +12,9 @@
 #import "UIColor+Theme.h"
 #import "BankTransfer.h"
 #import "ProfileDetails.h"
-#import "TransferwiseClient.h"
+#import "Payment.h"
+#import "RecipientType.h"
+#import "RecipientTypeField.h"
 
 @interface UploadMoneyViewController ()
 
@@ -60,138 +62,80 @@
     [self.footerLabel setText:NSLocalizedString(@"upload.money.footer.label", @"")];
     [self.toggleButton setTitle:NSLocalizedString(@"upload.money.toggle.button.debit.card.title", @"") forSegmentAtIndex:0];
     [self.toggleButton setTitle:NSLocalizedString(@"upload.money.toggle.button.bank.transfer.title", @"") forSegmentAtIndex:1];
+    [self.toggleButton setSelectedSegmentIndex:1];
+    [self.toggleButton setUserInteractionEnabled:NO];
     [self.doneButton setTitle:NSLocalizedString(@"upload.money.done.button.title", @"") forState:UIControlStateNormal];
     [self.notificationLabel setText:NSLocalizedString(@"upload.money.notification.label", @"")];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"TextCell" bundle:nil] forCellReuseIdentifier:TWTextCellIdentifier];
-    
-    [self createGbpPaymentWithDummyData];
 }
 
-- (void)createEurPaymentWithDummyData
-{
-    [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(ProfileDetails *result, NSError *error) {
-        NSMutableDictionary *data = [NSMutableDictionary dictionary];
-        data[@"payment_id"] = @"10868";
-        data[@"amount"] = @"3.0";
-        data[@"currency"] = @"EUR";
-        
-        NSMutableDictionary *settlementAccount = [NSMutableDictionary dictionary];
-        {
-            settlementAccount[@"id"] = @"1";
-            settlementAccount[@"name"] = @"Exchange Solutions";
-            settlementAccount[@"currency"] = @"EUR";
-            settlementAccount[@"type"] = @"IBAN";
-            settlementAccount[@"IBAN"] = @"EE297700771000701243";
-            settlementAccount[@"BIC"] = @"EE297700771000701243";
-            settlementAccount[@"accountNumber"] = @"771000701243";
-            //settlementAccount[@"sortCode"] = [NSNull null];
-        }
-        
-        data[@"settlementAccount"] = settlementAccount;
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 
-        BankTransfer* bank = [BankTransfer transferWithData:data];
-        
-        [self fillFieldsWithData:bank forUser:result];
-    }];
+    [self loadDataToCells];
 }
 
-- (void)createGbpPaymentWithDummyData
-{
-    [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(ProfileDetails *result, NSError *error) {
-        
-        NSMutableDictionary *data = [NSMutableDictionary dictionary];
-        data[@"payment_id"] = @"10868";
-        data[@"amount"] = @"3.0";
-        data[@"currency"] = @"GBP";
-        
-        NSMutableDictionary *settlementAccount = [NSMutableDictionary dictionary];
-        {
-            settlementAccount[@"id"] = @"1";
-            settlementAccount[@"name"] = @"Exchange Solutions";
-            settlementAccount[@"currency"] = @"GBP";
-            settlementAccount[@"type"] = @"SORT_CODE";
-            settlementAccount[@"accountNumber"] = @"53640809";
-            settlementAccount[@"sortCode"] = @"209561";
-        }
-        
-        data[@"settlementAccount"] = settlementAccount;
-        
-        BankTransfer* bank = [BankTransfer transferWithData:data];
-        
-        [self fillFieldsWithData:bank forUser:result];
-    }];
-}
+- (void)loadDataToCells {
+    NSMutableArray *presentedCells = [NSMutableArray array];
 
-- (void)fillFieldsWithData:(BankTransfer*)data forUser:(ProfileDetails*)details
-{
-    NSMutableArray *transferCells = [NSMutableArray array];
-    
     TextCell *amountCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
-    [self setAmountCell:amountCell];
-    [transferCells addObject:amountCell];
-    [amountCell configureWithTitle:NSLocalizedString(@"upload.money.amount.title", @"") text:[data formattedAmount]];
+    [amountCell configureWithTitle:NSLocalizedString(@"upload.money.amount.title", nil) text:self.payment.payInWithCurrency];
+    [presentedCells addObject:presentedCells];
 
-    if(data.settlementAccount.IBAN){
-        TextCell *ibanCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
-        [self setIbanCell:ibanCell];
-        [transferCells addObject:ibanCell];
-        [ibanCell configureWithTitle:NSLocalizedString(@"upload.money.iban.title", @"") text:data.settlementAccount.IBAN];
-    }
-    if(data.settlementAccount.accountNumber){
-        TextCell *accountNrCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
-        [self setAccountNrCell:accountNrCell];
-        [transferCells addObject:accountNrCell];
-        [accountNrCell configureWithTitle:NSLocalizedString(@"upload.money.account.nr.title", @"") text:data.settlementAccount.accountNumber];
-    }
-    if(data.settlementAccount.BIC){
-        TextCell *bicCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
-        [self setBicCell:bicCell];
-        [transferCells addObject:bicCell];
-        [bicCell configureWithTitle:NSLocalizedString(@"upload.money.bic.title", @"") text:data.settlementAccount.BIC];
-    }
-    if(data.settlementAccount.sortCode){
-        TextCell *ukSortCodeCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
-        [self setUkSortCodeCell:ukSortCodeCell];
-        [transferCells addObject:ukSortCodeCell];
-        [ukSortCodeCell configureWithTitle:NSLocalizedString(@"upload.money.uksort.title", @"") text:data.settlementAccount.sortCode];
-    }
-    
-    //TODO: currently no bank data
-    /*
-    TextCell *bankNameCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
-    [self setBankNameCell:bankNameCell];
-    [transferCells addObject:bankNameCell];
-    [bankNameCell configureWithTitle:NSLocalizedString(@"upload.money.bank.name.title", @"") text:@""];
-    */
+    TextCell *toCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
+    [toCell configureWithTitle:NSLocalizedString(@"upload.money.to.title", nil) text:self.payment.settlementRecipient.name];
+    [presentedCells addObject:toCell];
+
+    RecipientType *type = [self findTypeForCode:self.payment.settlementRecipient.type];
+    NSArray *accountCells = [self buildAccountCellForType:type recipient:self.payment.settlementRecipient];
+    [presentedCells addObjectsFromArray:accountCells];
+
+    //TODO jaanus: bank name cell
     TextCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
-    [self setReferenceCell:referenceCell];
-    [transferCells addObject:referenceCell];
-    [referenceCell configureWithTitle:NSLocalizedString(@"upload.money.reference.title", @"") text:details.reference];
+    [referenceCell configureWithTitle:NSLocalizedString(@"upload.money.reference.title", nil) text:self.userDetails.reference];
+    [presentedCells addObject:referenceCell];
 
-    
-    [self setPresentedSectionCells:@[transferCells]];
-    
+    [self setPresentedSectionCells:@[presentedCells]];
+
     [self.tableView reloadData];
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = self.footerView;
     [self adjustFooterView];
 }
 
-- (void)adjustFooterView
-{
+- (NSArray *)buildAccountCellForType:(RecipientType *)type recipient:(Recipient *)recipient {
+    NSMutableArray *result = [NSMutableArray array];
+    for (RecipientTypeField *field in type.fields) {
+        TextCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
+        [cell configureWithTitle:field.title text:[result valueForKeyPath:field.name]];
+        [result addObject:cell];
+    }
+    return result;
+}
+
+- (RecipientType *)findTypeForCode:(NSString *)code {
+    for (RecipientType *type in self.recipientTypes) {
+        if ([type.type isEqualToString:code]) {
+            return type;
+        }
+    }
+
+    return nil;
+}
+
+- (void)adjustFooterView {
     CGFloat sizeDiff = self.tableView.frame.size.height - self.tableView.contentSize.height;
-    if(sizeDiff > 0)
-    {
+    if (sizeDiff > 0) {
         CGRect footerFrame = self.footerView.frame;
         footerFrame.size.height += sizeDiff;
         self.footerView.frame = footerFrame;
-        
+
         //Where from is the 20?
         CGRect footerBottomMessageFrame = self.footerBottomMessageView.frame;
         footerBottomMessageFrame.origin.y = footerFrame.size.height - footerBottomMessageFrame.size.height + 20;
         self.footerBottomMessageView.frame = footerBottomMessageFrame;
-        
+
         [self.tableView setScrollEnabled:NO];
     }
 }
@@ -203,10 +147,12 @@
 }
 
 - (IBAction)doneBtnClicked:(id)sender {
-}
-- (IBAction)toggleButtonValueChanged:(id)sender {
+
 }
 
+- (IBAction)toggleButtonValueChanged:(id)sender {
+
+}
 
 - (void)viewDidUnload {
     [self setHeaderView:nil];
