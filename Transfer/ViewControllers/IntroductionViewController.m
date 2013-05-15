@@ -92,6 +92,7 @@ static NSUInteger const kRowYouSend = 0;
     [calculator setReceiveCell:self.theyReceiveCell];
 
     SWRevealViewController *revealController = [self revealViewController];
+    [self.navigationController.navigationBar addGestureRecognizer:revealController.panGestureRecognizer];
 
     UIBarButtonItem *revealButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SettingsButtonIcon.png"]
                                                                          style:UIBarButtonItemStyleBordered

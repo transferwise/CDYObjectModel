@@ -20,6 +20,7 @@
 		BB29BD49173CD30D0016A6E9 /* UploadMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD48173CD30C0016A6E9 /* UploadMoneyViewController.xib */; };
 		BB29BD4B173CDF480016A6E9 /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD4A173CDF480016A6E9 /* TextCell.xib */; };
 		BB29BD4E173CDF6F0016A6E9 /* TextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29BD4C173CDF6F0016A6E9 /* TextCell.m */; };
+		BB6998911743B4D200779D37 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB6998901743B4D200779D37 /* QuartzCore.framework */; };
 		BB92B144172A747300B6F096 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B143172A747300B6F096 /* CoreText.framework */; };
 		BB92B147172A754100B6F096 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B140172A600000B6F096 /* libOHAttributedLabel.a */; };
 		BBC691241721416300F0FB1A /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911C1721416300F0FB1A /* TSAlertViewMessageListViewShadow.png */; };
@@ -222,6 +223,7 @@
 		BB29BD4A173CDF480016A6E9 /* TextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextCell.xib; sourceTree = "<group>"; };
 		BB29BD4C173CDF6F0016A6E9 /* TextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextCell.m; sourceTree = "<group>"; };
 		BB29BD4D173CDF6F0016A6E9 /* TextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextCell.h; sourceTree = "<group>"; };
+		BB6998901743B4D200779D37 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BB92B13B172A5FFF00B6F096 /* OHAttributedLabel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OHAttributedLabel.xcodeproj; path = OHAttributedLabel/OHAttributedLabel.xcodeproj; sourceTree = "<group>"; };
 		BB92B143172A747300B6F096 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		BBC6911C1721416300F0FB1A /* TSAlertViewMessageListViewShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewMessageListViewShadow.png; path = TSAlertView/TSAlertViewMessageListViewShadow.png; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB6998911743B4D200779D37 /* QuartzCore.framework in Frameworks */,
 				BB92B147172A754100B6F096 /* libOHAttributedLabel.a in Frameworks */,
 				BB92B144172A747300B6F096 /* CoreText.framework in Frameworks */,
 				EAEA626117202D6100A96770 /* libz.dylib in Frameworks */,
@@ -769,6 +772,7 @@
 		EAAA145F171BC911005B9430 = {
 			isa = PBXGroup;
 			children = (
+				BB6998901743B4D200779D37 /* QuartzCore.framework */,
 				EAAA1473171BC911005B9430 /* Transfer */,
 				EAAA146A171BC911005B9430 /* Frameworks */,
 				EAAA1469171BC911005B9430 /* Products */,
@@ -1346,8 +1350,8 @@
 		EAAA148B171BC911005B9430 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jaanus Siim (7V62BBBL4N)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaanus Siim (7V62BBBL4N)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
 				INFOPLIST_FILE = "Transfer/Transfer-Info.plist";
@@ -1358,8 +1362,8 @@
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "99A7B50D-6AB1-44B8-BB69-3BE5DD01304B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "99A7B50D-6AB1-44B8-BB69-3BE5DD01304B";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

@@ -109,6 +109,7 @@ typedef enum
 @property (nonatomic, readonly) UIView *rightView;
 @property (nonatomic, readonly) UIView *frontView;
 @property (nonatomic, assign) BOOL disableLayout;
+@property (nonatomic, strong) CALayer *shadowLayer;
 
 @end
 
@@ -229,6 +230,28 @@ typedef enum
     
     CGFloat rightWidth = _c.rightViewRevealWidth + _c.rightViewRevealOverdraw;
     _rightView.frame = CGRectMake(bounds.size.width-rightWidth, 0.0f, rightWidth, bounds.size.height);
+    
+    if(_shadowLayer == nil)
+    {
+        _shadowLayer = [CALayer layer];
+        _shadowLayer.backgroundColor = [UIColor blackColor].CGColor;
+        _shadowLayer.frame = _rearView.frame;
+    }
+    
+    if([[_shadowLayer animationKeys] count] != 0){
+        CABasicAnimation *flash = [CABasicAnimation animationWithKeyPath:@"opacity"];
+        flash.fromValue = [NSNumber numberWithFloat:0.0];
+        flash.toValue = [NSNumber numberWithFloat:1.0];
+        flash.duration = 1.0;
+        
+        [_shadowLayer addAnimation:flash forKey:@"flashAnimation"];
+    }
+
+    [_rearView.layer addSublayer:_shadowLayer];
+    
+
+    
+    _shadowLayer.frame = _rearView.frame;
 }
 
 
@@ -356,8 +379,8 @@ const int FrontViewPositionNone = 0xff;
     _stableDragOnOverdraw = NO;
     _stableDragOnLeftOverdraw = NO;
     _quickFlickVelocity = 250.0f;
-    _toggleAnimationDuration = 0.25;
-    _frontViewShadowRadius = 2.5f;
+    _toggleAnimationDuration = 1.0;
+    _frontViewShadowRadius = 25.0f;
     _frontViewShadowOffset = CGSizeMake(0.0f, 2.5f);
     _userInteractionStore = YES;
     _animationQueue = [NSMutableArray array];
