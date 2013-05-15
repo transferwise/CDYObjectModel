@@ -238,13 +238,14 @@ typedef enum
         _shadowLayer.frame = _rearView.frame;
     }
     
-    if([[_shadowLayer animationKeys] count] != 0){
+    if([_shadowLayer animationForKey:@"animation"] == nil){
+        CGFloat xPosition = [self frontLocationForPosition:_c.frontViewPosition];
         CABasicAnimation *flash = [CABasicAnimation animationWithKeyPath:@"opacity"];
-        flash.fromValue = [NSNumber numberWithFloat:0.0];
-        flash.toValue = [NSNumber numberWithFloat:1.0];
+        flash.fromValue = [NSNumber numberWithFloat:_frontView.frame.origin.x/160];
+        flash.toValue = [NSNumber numberWithFloat:xPosition/160.0];
         flash.duration = 1.0;
         
-        [_shadowLayer addAnimation:flash forKey:@"flashAnimation"];
+        [_shadowLayer addAnimation:flash forKey:@"animation"];
     }
 
     [_rearView.layer addSublayer:_shadowLayer];
