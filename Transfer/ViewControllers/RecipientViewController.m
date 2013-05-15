@@ -236,7 +236,7 @@ static NSUInteger const kRecipientFieldsSection = 2;
 
         for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
             [fieldCell setValue:@""];
-            [self.nameCell setEditable:YES];
+            [fieldCell setEditable:YES];
         }
         return;
     }
@@ -249,6 +249,12 @@ static NSUInteger const kRecipientFieldsSection = 2;
         [self.nameCell setEditable:NO];
 
         for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
+            if ([fieldCell isKindOfClass:[DropdownCell class]]) {
+                [fieldCell setValue:recipient.usState];
+                [fieldCell setEditable:NO];
+                continue;
+            }
+
             RecipientTypeField *field = fieldCell.type;
             [fieldCell setValue:[recipient valueForKeyPath:field.name]];
             [fieldCell setEditable:NO];

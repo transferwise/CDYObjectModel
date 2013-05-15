@@ -61,12 +61,24 @@ NSString *const TWDropdownCellIdentifier = @"TWDropdownCellIdentifier";
 }
 
 - (void)setValue:(NSString *)value {
-    NSUInteger index = [self.allElements indexOfObject:value];
-    if (index == NSNotFound) {
+    id element = [self findValueWithName:value];
+    if (!element) {
         return;
     }
 
+    [self selectedElement:element];
+    NSUInteger index = [self.allElements indexOfObject:element];
     [self.picker selectRow:index inComponent:0 animated:NO];
+}
+
+- (id)findValueWithName:(NSString *)name {
+    for (id element in self.allElements) {
+        NSString *elementName = [element valueForKeyPath:@"name"];
+        if ([elementName isEqualToString:name]) {
+            return element;
+        }
+    }
+    return nil;
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
