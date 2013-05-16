@@ -8,6 +8,7 @@
 
 #import "Payment.h"
 #import "Recipient.h"
+#import "MoneyFormatter.h"
 
 @interface Payment ()
 
@@ -69,7 +70,7 @@
 }
 
 - (NSString *)transferredAmountString {
-    return [NSString stringWithFormat:@"%@ %@ > %@", self.payIn, self.sourceCurrency, self.targetCurrency];
+    return [NSString stringWithFormat:@"%@ %@ > %@", [[MoneyFormatter sharedInstance] formatAmount:self.payIn withCurrency:self.sourceCurrency], self.sourceCurrency, self.targetCurrency];
 }
 
 - (NSDate *)latestChangeDate {

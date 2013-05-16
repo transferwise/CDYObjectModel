@@ -40,7 +40,6 @@
 				<string key="NSFrameSize">{320, 568}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
@@ -173,7 +172,6 @@
 						<string key="NSFrame">{{20, 120}, {280, 75}}</string>
 						<reference key="NSSuperview" ref="738969527"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -260,7 +258,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<bool key="IBUIOn">YES</bool>
 					</object>
 					<object class="IBUIButton" id="100382068">
 						<reference key="NSNextResponder" ref="13276920"/>
@@ -268,7 +265,6 @@
 						<string key="NSFrame">{{9, 74}, {302, 44}}</string>
 						<reference key="NSSuperview" ref="13276920"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -526,8 +522,27 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">IdentificationViewController</string>
+					<string key="className">DataEntryViewController</string>
 					<string key="superclassName">UITableViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/DataEntryViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">IdentificationViewController</string>
+					<string key="superclassName">DataEntryViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">continueClicked:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">continueClicked:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">continueClicked:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="continueButton">BlueButton</string>
 						<string key="excuseLabel">UILabel</string>

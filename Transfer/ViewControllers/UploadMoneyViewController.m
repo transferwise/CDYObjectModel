@@ -54,9 +54,7 @@
     [super viewDidLoad];
 	[self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
-    [self.headerView setBackgroundColor:[UIColor controllerBackgroundColor]];
-    [self.footerView setBackgroundColor:[UIColor controllerBackgroundColor]];
-    
+
     [self setTitle:NSLocalizedString(@"upload.money.title", @"")];
     
     [self.headerLabel setText:NSLocalizedString(@"upload.money.header.label", @"")];
@@ -83,7 +81,7 @@
 
     TextCell *amountCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
     [amountCell configureWithTitle:NSLocalizedString(@"upload.money.amount.title", nil) text:self.payment.payInWithCurrency];
-    [presentedCells addObject:presentedCells];
+    [presentedCells addObject:amountCell];
 
     TextCell *toCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
     [toCell configureWithTitle:NSLocalizedString(@"upload.money.to.title", nil) text:self.payment.settlementRecipient.name];
@@ -104,13 +102,15 @@
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = self.footerView;
     [self adjustFooterView];
+
+    MCLog(@"loadDataToCells complete");
 }
 
 - (NSArray *)buildAccountCellForType:(RecipientType *)type recipient:(Recipient *)recipient {
     NSMutableArray *result = [NSMutableArray array];
     for (RecipientTypeField *field in type.fields) {
         TextCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
-        [cell configureWithTitle:field.title text:[result valueForKeyPath:field.name]];
+        [cell configureWithTitle:field.title text:[recipient valueForKeyPath:field.name]];
         [result addObject:cell];
     }
     return result;

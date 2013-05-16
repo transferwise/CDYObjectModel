@@ -138,6 +138,7 @@
 		EAAC203B17422AB3001DDE7A /* DropdownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAC203A17422AB3001DDE7A /* DropdownCell.m */; };
 		EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAAC203C17422ADB001DDE7A /* DropdownCell.xib */; };
 		EAAF8FB017436730008DF9E2 /* CreatePaymentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAF8FAF17436730008DF9E2 /* CreatePaymentOperation.m */; };
+		EAAF8FB81743B3E4008DF9E2 /* MoneyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAF8FB71743B3E4008DF9E2 /* MoneyFormatter.m */; };
 		EAB72152171FC34600DE29F5 /* NavBarButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72150171FC34600DE29F5 /* NavBarButton.png */; };
 		EAB72153171FC34600DE29F5 /* NavBarButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */; };
 		EAB72156171FC3E900DE29F5 /* SettingsButtonIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */; };
@@ -411,6 +412,8 @@
 		EAAC203C17422ADB001DDE7A /* DropdownCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropdownCell.xib; sourceTree = "<group>"; };
 		EAAF8FAE17436730008DF9E2 /* CreatePaymentOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatePaymentOperation.h; sourceTree = "<group>"; };
 		EAAF8FAF17436730008DF9E2 /* CreatePaymentOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatePaymentOperation.m; sourceTree = "<group>"; };
+		EAAF8FB61743B3E4008DF9E2 /* MoneyFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyFormatter.h; sourceTree = "<group>"; };
+		EAAF8FB71743B3E4008DF9E2 /* MoneyFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyFormatter.m; sourceTree = "<group>"; };
 		EAB72150171FC34600DE29F5 /* NavBarButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBarButton.png; sourceTree = "<group>"; };
 		EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarButton@2x.png"; sourceTree = "<group>"; };
 		EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsButtonIcon.png; sourceTree = "<group>"; };
@@ -857,6 +860,9 @@
 				EAD3967F171BD57000F6D011 /* ContactsViewController.xib */,
 				EA88E661172F979F0021492C /* DataEntryViewController.h */,
 				EA88E662172F979F0021492C /* DataEntryViewController.m */,
+				18D478FE173A3B5300FC317E /* IdentificationViewController.h */,
+				18D478FF173A3B5300FC317E /* IdentificationViewController.m */,
+				18D47902173A3B6E00FC317E /* IdentificationViewController.xib */,
 				EAD39687171BD82300F6D011 /* IntroductionViewController.h */,
 				EAD39688171BD82300F6D011 /* IntroductionViewController.m */,
 				EAD39689171BD82300F6D011 /* IntroductionViewController.xib */,
@@ -884,9 +890,6 @@
 				EAD39678171BD51400F6D011 /* TransactionsViewController.h */,
 				EAD39679171BD51400F6D011 /* TransactionsViewController.m */,
 				EAD3967A171BD51400F6D011 /* TransactionsViewController.xib */,
-				18D478FE173A3B5300FC317E /* IdentificationViewController.h */,
-				18D478FF173A3B5300FC317E /* IdentificationViewController.m */,
-				18D47902173A3B6E00FC317E /* IdentificationViewController.xib */,
 				BB29BD45173CD2FF0016A6E9 /* UploadMoneyViewController.h */,
 				BB29BD46173CD2FF0016A6E9 /* UploadMoneyViewController.m */,
 				BB29BD48173CD30C0016A6E9 /* UploadMoneyViewController.xib */,
@@ -901,6 +904,8 @@
 				EAEA6256172011C500A96770 /* CalculationResult.m */,
 				EAB72163171FDC7F00DE29F5 /* MoneyCalculator.h */,
 				EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */,
+				EAAF8FB61743B3E4008DF9E2 /* MoneyFormatter.h */,
+				EAAF8FB71743B3E4008DF9E2 /* MoneyFormatter.m */,
 				EA222E31173A676000C5D613 /* PaymentFlow.h */,
 				EA222E32173A676000C5D613 /* PaymentFlow.m */,
 			);
@@ -1268,6 +1273,7 @@
 				BB29BD47173CD2FF0016A6E9 /* UploadMoneyViewController.m in Sources */,
 				BB29BD4E173CDF6F0016A6E9 /* TextCell.m in Sources */,
 				EAAF8FB017436730008DF9E2 /* CreatePaymentOperation.m in Sources */,
+				EAAF8FB81743B3E4008DF9E2 /* MoneyFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
