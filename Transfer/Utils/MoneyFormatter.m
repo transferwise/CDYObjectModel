@@ -9,14 +9,18 @@
 #import "MoneyFormatter.h"
 #import "Constants.h"
 
+@interface MoneyFormatter ()
+
+@property (nonatomic, strong) NSNumberFormatter *formatterWithCurrency;
+@property (nonatomic, strong) NSNumberFormatter *formatterWithoutCurrency;
+
+@end
+
 @implementation MoneyFormatter
 
 + (MoneyFormatter *)sharedInstance {
     DEFINE_SHARED_INSTANCE_USING_BLOCK(^{
         MoneyFormatter *formatter = [[self alloc] initSingleton];
-        [formatter setGeneratesDecimalNumbers:YES];
-        [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"]];
-        [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
         return formatter;
     });
 }
@@ -33,15 +37,28 @@
 - (id)initSingleton {
     self = [super init];
     if (self) {
-        // Custom initialization code
+       _formatterWithCurrency = [[NSNumberFormatter alloc] init];
+        [_formatterWithCurrency setGeneratesDecimalNumbers:YES];
+        [_formatterWithCurrency setNumberStyle:NSNumberFormatterCurrencyStyle];
+        [_formatterWithCurrency setCurrencyDecimalSeparator:@"."];
+
+        _formatterWithoutCurrency = [[NSNumberFormatter alloc] init];
+        [_formatterWithoutCurrency setGeneratesDecimalNumbers:YES];
+        [_formatterWithoutCurrency setNumberStyle:NSNumberFormatterCurrencyStyle];
+        [_formatterWithoutCurrency setCurrencyDecimalSeparator:@"."];
+        [_formatterWithoutCurrency setCurrencySymbol:@""];
     }
+
     return self;
 }
 
 - (NSString *)formatAmount:(NSNumber *)amount withCurrency:(NSString *)currencyCode {
-    [self setCurrencyCode:currencyCode];
+    [self.formatterWithCurrency setCurrencyCode:currencyCode];
+    return [self.formatterWithCurrency stringFromNumber:amount];
+}
 
-    return [self stringFromNumber:amount];
+- (NSString *)formatAmount:(NSNumber *)amount {
+    return [self.formatterWithoutCurrency stringFromNumber:amount];
 }
 
 @end

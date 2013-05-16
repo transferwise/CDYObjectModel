@@ -7,6 +7,7 @@
 //
 
 #import "CalculationResult.h"
+#import "MoneyFormatter.h"
 
 @interface CalculationResult ()
 
@@ -28,7 +29,7 @@
 
 + (CalculationResult *)resultWithData:(NSDictionary *)data {
     CalculationResult *result = [[CalculationResult alloc] init];
-    NSNumberFormatter *formatter = [CalculationResult moneyFormatter];
+    NSNumberFormatter *formatter = [CalculationResult moneyReadFormatter];
     [result setTransferwiseRate:[formatter numberFromString:data[@"transferwiseRate"]]];
     [result setTransferwiseTransferFee:[formatter numberFromString:data[@"transferwiseTransferFee"]]];
     [result setTransferwisePayIn:[formatter numberFromString:data[@"transferwisePayIn"]]];
@@ -44,27 +45,23 @@
 }
 
 - (NSString *)formattedWinAmount {
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    [formatter setLocale:[CalculationResult defaultLocale]];
-    [formatter setCurrencySymbol:[[CalculationResult defaultLocale] displayNameForKey:NSLocaleCurrencySymbol value:self.targetCurrency]];
-    return [formatter stringFromNumber:self.bankRateMarkup];
+    return [[MoneyFormatter sharedInstance] formatAmount:self.bankRateMarkup withCurrency:self.targetCurrency];
 }
 
 - (NSString *)transferwisePayInString {
-    return [self numberStringFrom:self.transferwisePayIn];
+    return [[MoneyFormatter sharedInstance] formatAmount:self.transferwisePayIn];
 }
 
 - (NSString *)transferwisePayOutString {
-    return [self numberStringFrom:self.transferwisePayOut];
+    return [[MoneyFormatter sharedInstance] formatAmount:self.transferwisePayOut];
 }
 
 - (NSString *)transferwisePayInStringWithCurrency {
-    return [self inNumberStringFrom:self.transferwisePayIn];
+    return [[MoneyFormatter sharedInstance] formatAmount:self.transferwisePayIn withCurrency:self.sourceCurrency];
 }
 
 - (NSString *)transferwisePayOutStringWithCurrency {
-    return [self outNumberStringFrom:self.transferwisePayOut];
+    return [[MoneyFormatter sharedInstance] formatAmount:self.transferwisePayOut withCurrency:self.targetCurrency];
 }
 
 - (NSString *)transferwiseRateString {
@@ -72,7 +69,7 @@
 }
 
 - (NSString *)transferwiseTransferFeeStringWithCurrency {
-    return [self inNumberStringFrom:self.transferwiseTransferFee];
+    return [[MoneyFormatter sharedInstance] formatAmount:self.transferwiseTransferFee withCurrency:self.sourceCurrency];
 }
 
 - (NSString *)bankRateString {
@@ -80,16 +77,16 @@
 }
 
 - (NSString *)bankTransferFeeStringWithCurrency {
-    return [self outNumberStringFrom:self.bankTransferFee];
+    return [[MoneyFormatter sharedInstance] formatAmount:self.bankTransferFee withCurrency:self.targetCurrency];
 }
 
 - (NSString *)bankPayOutStringWithCurrency{
-    return [self outNumberStringFrom:self.bankPayOut];
+    return [[MoneyFormatter sharedInstance] formatAmount:self.bankPayOut withCurrency:self.targetCurrency];
 }
 
 - (NSString *)savedAmountWithCurrency {
     NSNumber *number = [NSNumber numberWithFloat:([self.transferwisePayOut floatValue] - [self.bankPayOut floatValue])];
-    return [self outNumberStringFrom:number];
+    return [[MoneyFormatter sharedInstance] formatAmount:number withCurrency:self.targetCurrency];
 }
 
 - (NSString *)rateStringFrom:(NSNumber *)number {
@@ -100,32 +97,8 @@
     return [formatter stringFromNumber:number];
 }
 
-- (NSString *)numberStringFrom:(NSNumber *)number {
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    [formatter setLocale:[CalculationResult defaultLocale]];
-    [formatter setCurrencySymbol:@""];
-    return [formatter stringFromNumber:number];
-}
-
-- (NSString *)inNumberStringFrom:(NSNumber *)number {
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    [formatter setLocale:[CalculationResult defaultLocale]];
-    [formatter setCurrencySymbol:[[CalculationResult defaultLocale] displayNameForKey:NSLocaleCurrencySymbol value:self.sourceCurrency]];
-    return [formatter stringFromNumber:number];
-}
-
-- (NSString *)outNumberStringFrom:(NSNumber *)number {
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    [formatter setLocale:[CalculationResult defaultLocale]];
-    [formatter setCurrencySymbol:[[CalculationResult defaultLocale] displayNameForKey:NSLocaleCurrencySymbol value:self.targetCurrency]];
-    return [formatter stringFromNumber:number];
-}
-
 static NSNumberFormatter *__moneyFormatter;
-+ (NSNumberFormatter *)moneyFormatter {
++ (NSNumberFormatter *)moneyReadFormatter {
     if (!__moneyFormatter) {
         __moneyFormatter = [[NSNumberFormatter alloc] init];
         //TODO jaanus: check this. Needed because actual user locale may require numbers containing ',' instead of '.'

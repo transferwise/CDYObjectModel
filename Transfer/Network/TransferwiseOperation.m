@@ -89,23 +89,20 @@ NSString *const kAPIPathBase = @"/api/v1/";
     } failure:^(AFHTTPRequestOperation *op, NSError *error) {
         MCLog(@"Error:%@", error);
         NSString *recovery = [error localizedRecoverySuggestion];
-        if ([recovery hasValue]) {
-            [self createErrorAndNotifyFromResponse:recovery];
-        } else {
+        NSData *data = [recovery dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *jsonError = nil;
+        NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+        if (jsonError) {
+            NSLog(@"Error JSON read error:%@", jsonError);
             self.operationErrorHandler(error);
+        } else {
+            [self createErrorAndNotifyFromResponse:response];
         }
     }];
     [operation start];
 }
 
-- (void)createErrorAndNotifyFromResponse:(NSString *)errorResponse {
-    NSData *data = [errorResponse dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *jsonError = nil;
-    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
-    if (jsonError) {
-        NSLog(@"Erro JSON read error:%@", jsonError);
-    }
-
+- (void)createErrorAndNotifyFromResponse:(NSDictionary *)response {
     id errors = response[@"errors"];
     if ([errors isKindOfClass:[NSDictionary class]]) {
         errors = @[errors];

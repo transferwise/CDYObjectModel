@@ -31,6 +31,5 @@
 - (NSString *)bankPayOutStringWithCurrency;
 - (NSString *)savedAmountWithCurrency;
 - (NSString *)paymentDateString;
-+ (NSLocale *)defaultLocale;
 
 @end

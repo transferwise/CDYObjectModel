@@ -70,7 +70,7 @@
 }
 
 - (NSString *)transferredAmountString {
-    return [NSString stringWithFormat:@"%@ %@ > %@", [[MoneyFormatter sharedInstance] formatAmount:self.payIn withCurrency:self.sourceCurrency], self.sourceCurrency, self.targetCurrency];
+    return [NSString stringWithFormat:@"%@ %@ > %@", [[MoneyFormatter sharedInstance] formatAmount:self.payIn], self.sourceCurrency, self.targetCurrency];
 }
 
 - (NSDate *)latestChangeDate {
@@ -109,7 +109,7 @@
 }
 
 - (NSString *)payInWithCurrency {
-    return [self.payIn description];
+    return [[MoneyFormatter sharedInstance] formatAmount:self.payIn withCurrency:self.sourceCurrency];
 }
 
 static NSCalendar *__gregorian;

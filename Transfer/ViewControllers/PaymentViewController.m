@@ -17,6 +17,7 @@
 #import "TRWProgressHUD.h"
 #import "TRWAlertView.h"
 #import "PaymentFlow.h"
+#import "MoneyFormatter.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
@@ -68,7 +69,7 @@ static NSUInteger const kRowYouSend = 0;
 
     [self setYouSendCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
     [self.youSendCell setTitle:NSLocalizedString(@"money.entry.you.send.title", nil)];
-    [self.youSendCell setAmount:@"1000.00" currency:[Currency currencyWithCode:@"GBP"]];
+    [self.youSendCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:[Currency currencyWithCode:@"GBP"]];
     [self.youSendCell.moneyField setReturnKeyType:UIReturnKeyDone];
 
     [self setTheyReceiveCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];

@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MoneyFormatter : NSNumberFormatter
+@interface MoneyFormatter : NSObject
 
 + (MoneyFormatter *)sharedInstance;
 
 - (NSString *)formatAmount:(NSNumber *)amount withCurrency:(NSString *)currencyCode;
+- (NSString *)formatAmount:(NSNumber *)amount;
 
 @end
