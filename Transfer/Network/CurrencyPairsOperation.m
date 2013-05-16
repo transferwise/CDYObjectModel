@@ -11,11 +11,13 @@
 #import "Constants.h"
 #import "Currency.h"
 
-NSString *const kCurrencyPairsPath = @"/api/v1/public/currency/pairs";
+NSString *const kCurrencyPairsPath = @"/currency/pairs";
 
 @implementation CurrencyPairsOperation
 
 - (void)execute {
+    NSString *path = [self addTokenToPath:kCurrencyPairsPath];
+
     __block __weak CurrencyPairsOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
         MCLog(@"Cueency pairs error:%@", error);
@@ -34,7 +36,7 @@ NSString *const kCurrencyPairsPath = @"/api/v1/public/currency/pairs";
         weakSelf.currenciesHandler([NSArray arrayWithArray:result], nil);
     }];
 
-    [self getDataFromPath:kCurrencyPairsPath];
+    [self getDataFromPath:path];
 }
 
 + (CurrencyPairsOperation *)pairsOperation {

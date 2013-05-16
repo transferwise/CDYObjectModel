@@ -19,6 +19,7 @@
 #import "TransferwiseClient.h"
 
 NSString *const kAPIPathBase = @"/api/v1/";
+NSString *const kPublicToken = @"public";
 
 @interface TransferwiseOperation ()
 
@@ -155,7 +156,8 @@ NSString *const kAPIPathBase = @"/api/v1/";
 }
 
 - (NSString *)addTokenToPath:(NSString *)path {
-    return [NSString stringWithFormat:@"%@%@%@", kAPIPathBase, [Credentials accessToken], path];
+    NSString *token = [Credentials userLoggedIn] ? [Credentials accessToken] : kPublicToken;
+    return [NSString stringWithFormat:@"%@%@%@", kAPIPathBase, token, path];
 }
 
 @end
