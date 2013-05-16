@@ -772,7 +772,6 @@
 		EAAA145F171BC911005B9430 = {
 			isa = PBXGroup;
 			children = (
-				BB6998901743B4D200779D37 /* QuartzCore.framework */,
 				EAAA1473171BC911005B9430 /* Transfer */,
 				EAAA146A171BC911005B9430 /* Frameworks */,
 				EAAA1469171BC911005B9430 /* Products */,
@@ -791,6 +790,7 @@
 		EAAA146A171BC911005B9430 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BB6998901743B4D200779D37 /* QuartzCore.framework */,
 				BB92B143172A747300B6F096 /* CoreText.framework */,
 				EAAA1471171BC911005B9430 /* CoreData.framework */,
 				EAAA146F171BC911005B9430 /* CoreGraphics.framework */,
