@@ -22,6 +22,7 @@
 #import "Payment.h"
 #import "TextEntryCell.h"
 #import "NSString+Validation.h"
+#import "RecipientTypesOperation.h"
 
 static NSUInteger const kReceiverSection = 1;
 
@@ -68,11 +69,13 @@ static NSUInteger const kReceiverSection = 1;
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
 
-    [self.tableView setTableHeaderView:self.headerView];
-    [self.tableView setTableFooterView:self.footerView];
-
     [self.tableView registerNib:[UINib nibWithNibName:@"ConfirmPaymentCell" bundle:nil] forCellReuseIdentifier:TWConfirmPaymentCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
+}
+
+- (void)createContent {
+    [self.tableView setTableHeaderView:self.headerView];
+    [self.tableView setTableFooterView:self.footerView];
 
     NSMutableArray *senderCells = [NSMutableArray array];
     ConfirmPaymentCell *senderNameCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
@@ -157,7 +160,41 @@ static NSUInteger const kReceiverSection = 1;
 
     [self.navigationItem setTitle:NSLocalizedString(@"confirm.payment.controller.title", nil)];
 
-    [self fillDataCells];
+    TRWActionBlock completion = ^{
+        [self createContent];
+        [self fillDataCells];
+        [self.tableView reloadData];
+    };
+
+    if (!self.recipientType) {
+        TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+        [hud setMessage:NSLocalizedString(@"confirm.payment.pulling.data", nil)];
+        RecipientTypesOperation *operation = [RecipientTypesOperation operation];
+        [self setExecutedOperation:operation];
+
+        [operation setResultHandler:^(NSArray *recipients, NSError *error) {
+            [hud hide];
+
+            if (error) {
+                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.data.error.title", nil) error:error];
+                [alertView show];
+                return;
+            }
+
+            NSArray *filtered = [recipients filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+                RecipientType *type = evaluatedObject;
+
+                return [type.type isEqualToString:self.recipient.type];
+            }]];
+
+            [self setRecipientType:[filtered lastObject]];
+            completion();
+        }];
+
+        [operation execute];
+    } else {
+        completion();
+    }
 }
 
 - (void)fillDataCells {

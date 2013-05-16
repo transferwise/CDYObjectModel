@@ -10,6 +10,7 @@
 #import "MoneyEntryCell.h"
 #import "UIColor+Theme.h"
 #import "MoneyCalculator.h"
+#import "Recipient.h"
 #import "Constants.h"
 #import "CalculationResult.h"
 #import "Currency.h"
@@ -74,8 +75,10 @@ static NSUInteger const kRowYouSend = 0;
 
     [self setTheyReceiveCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
     [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
-    [self.theyReceiveCell setAmount:@"" currency:[Currency currencyWithCode:@"EUR"]];
+    NSString *defaultTargetCode = self.recipient ? self.recipient.currency : @"EUR";
+    [self.theyReceiveCell setAmount:@"" currency:[Currency currencyWithCode:defaultTargetCode]];
     [self.theyReceiveCell.moneyField setReturnKeyType:UIReturnKeyDone];
+    [self.theyReceiveCell setOnlyPresentedCurrency:self.recipient.currency];
 
     MoneyCalculator *calculator = [[MoneyCalculator alloc] init];
     [self setCalculator:calculator];
@@ -128,7 +131,32 @@ static NSUInteger const kRowYouSend = 0;
             return;
         }
 
-        [self.calculator setCurrencies:currencies];
+        NSArray *usedCurrencies = currencies;
+        if (self.recipient) {
+            usedCurrencies = [currencies filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+                Currency *currency = evaluatedObject;
+                for (Currency *checked in currency.targets) {
+                    if ([checked.code isEqualToString:self.recipient.currency]) {
+                        return YES;
+                    }
+                }
+
+                return NO;
+            }]];
+        }
+
+        if (self.recipient && [usedCurrencies count] == 0) {
+            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"payment.controller.currency.payment.error.title", nil)
+                                                               message:[NSString stringWithFormat:NSLocalizedString(@"payment.controller.currency.payment.error.message", nil), self.recipient.currency]];
+            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil) action:^{
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+
+            [alertView show];
+            return;
+        }
+
+        [self.calculator setCurrencies:usedCurrencies];
         [self.calculator forceCalculate];
     }];
 }
@@ -192,6 +220,7 @@ static NSUInteger const kRowYouSend = 0;
     [paymentFlow setSourceCurrency:[self.youSendCell currency]];
     [paymentFlow setTargetCurrency:[self.theyReceiveCell currency]];
     [paymentFlow setCalculationResult:self.calculationResult];
+    [paymentFlow setRecipient:self.recipient];
 
     [paymentFlow presentSenderDetails];
 }

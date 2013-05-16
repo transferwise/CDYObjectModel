@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Recipient;
+
 @interface PaymentViewController : UITableViewController
+
+@property (nonatomic, strong) Recipient *recipient;
 
 @end

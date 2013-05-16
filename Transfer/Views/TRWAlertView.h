@@ -14,6 +14,7 @@
 @property (nonatomic, copy) TRWActionBlock leftButtonAction;
 
 - (void)setConfirmButtonTitle:(NSString *)title;
+- (void)setConfirmButtonTitle:(NSString *)title action:(TRWActionBlock)action;
 - (void)setLeftButtonTitle:(NSString *)leftButtonTitle rightButtonTitle:(NSString *)rightButtonTitle;
 
 + (TRWAlertView *)alertViewWithTitle:(NSString *)title message:(NSString *)message;

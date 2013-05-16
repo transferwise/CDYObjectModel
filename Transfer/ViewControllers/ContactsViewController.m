@@ -16,6 +16,7 @@
 #import "TRWProgressHUD.h"
 #import "RecipientViewController.h"
 #import "DeleteRecipientOperation.h"
+#import "PaymentViewController.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
@@ -80,6 +81,11 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    Recipient *recipient = [self.recipients objectAtIndex:indexPath.row];
+    PaymentViewController *controller = [[PaymentViewController alloc] init];
+    [controller setRecipient:recipient];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)refreshRecipients {

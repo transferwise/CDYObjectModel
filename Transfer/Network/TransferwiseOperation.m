@@ -1,3 +1,4 @@
+
 //
 //  TransferwiseOperation.m
 //  Transfer
@@ -16,7 +17,6 @@
 #import "TransferwiseClient.h"
 #import "NSString+Validation.h"
 #import "NetworkErrorCodes.h"
-#import "TransferwiseClient.h"
 
 NSString *const kAPIPathBase = @"/api/v1/";
 NSString *const kPublicToken = @"public";
@@ -90,6 +90,12 @@ NSString *const kPublicToken = @"public";
     } failure:^(AFHTTPRequestOperation *op, NSError *error) {
         MCLog(@"Error:%@", error);
         NSString *recovery = [error localizedRecoverySuggestion];
+
+        if (![recovery hasValue]) {
+            self.operationErrorHandler(error);
+            return;
+        }
+
         NSData *data = [recovery dataUsingEncoding:NSUTF8StringEncoding];
         NSError *jsonError = nil;
         NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];

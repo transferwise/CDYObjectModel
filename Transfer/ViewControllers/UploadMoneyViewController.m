@@ -16,6 +16,10 @@
 #import "RecipientType.h"
 #import "RecipientTypeField.h"
 #import "Constants.h"
+#import "TransferwiseOperation.h"
+#import "RecipientTypesOperation.h"
+#import "TRWProgressHUD.h"
+#import "TRWAlertView.h"
 
 @interface UploadMoneyViewController ()
 
@@ -36,6 +40,8 @@
 @property (strong, nonatomic) TextCell *bankNameCell;
 @property (strong, nonatomic) TextCell *referenceCell;
 @property (strong, nonatomic) TextCell *ukSortCodeCell;
+
+@property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
 @end
 
@@ -72,7 +78,29 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    [self loadDataToCells];
+    if (!self.recipientTypes) {
+        TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+        [hud setMessage:NSLocalizedString(@"upload.money.pulling.data.message", nil)];
+
+        RecipientTypesOperation *operation = [RecipientTypesOperation operation];
+        [self setExecutedOperation:operation];
+        [operation setResultHandler:^(NSArray *recipients, NSError *error) {
+            [hud hide];
+
+            if (error) {
+                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"upload.money.data.error.title", nil) error:error];
+                [alertView show];;
+                return;
+            }
+
+            [self setRecipientTypes:recipients];
+            [self loadDataToCells];
+        }];
+
+        [operation execute];
+    } else {
+        [self loadDataToCells];
+    }
 }
 
 - (void)loadDataToCells {
@@ -102,8 +130,6 @@
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = self.footerView;
     [self adjustFooterView];
-
-    MCLog(@"loadDataToCells complete");
 }
 
 - (NSArray *)buildAccountCellForType:(RecipientType *)type recipient:(Recipient *)recipient {
@@ -167,4 +193,5 @@
     [self setFooterBottomMessageView:nil];
     [super viewDidUnload];
 }
+
 @end

@@ -21,7 +21,6 @@
 
 @property (nonatomic, strong) UINavigationController *navigationController;
 @property (nonatomic, strong) ProfileDetails *userDetails;
-@property (nonatomic, strong) Recipient *recipient;
 @property (nonatomic, strong) RecipientType *recipientType;
 @property (nonatomic, strong) Payment *createdPayment;
 @property (nonatomic, strong) NSArray *recipientTypes;
@@ -43,10 +42,18 @@
 - (void)presentSenderDetails {
     PersonalProfileViewController *controller = [[PersonalProfileViewController alloc] init];
     __block __weak  PersonalProfileViewController *weakController = controller;
-    [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.continue.to.recipient.button.title", nil)];
+    if (self.recipient) {
+        [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.confirm.payment.button.title", nil)];
+    } else {
+        [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.continue.to.recipient.button.title", nil)];
+    }
     [controller setAfterSaveAction:^{
         [self setUserDetails:weakController.userDetails];
-        [self presentRecipientDetails];
+        if (self.recipient) {
+            [self presentPaymentConfirmation];
+        } else {
+            [self presentRecipientDetails];
+        }
     }];
     [self.navigationController pushViewController:controller animated:YES];
 }
