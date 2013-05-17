@@ -15,7 +15,7 @@
 #import "Credentials.h"
 #import "Constants.h"
 
-@interface MainViewController ()
+@interface MainViewController () <UINavigationControllerDelegate>
 
 @property (nonatomic, strong) UITabBarController *tabsController;
 @property (nonatomic, strong) UIView *revealTapView;
@@ -59,6 +59,8 @@
 
     UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Logo.png"]];
     [tabController.navigationItem setTitleView:logoView];
+
+    [self setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -84,6 +86,8 @@
 	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     SWRevealViewController *mainRevealController = [[SWRevealViewController alloc]
                                                     initWithRearViewController:rearViewController frontViewController:navigationController];
+    [navigationController setDelegate:self];
+
     mainRevealController.delegate = self;
 
     [self presentModalViewController:mainRevealController animated:YES];
@@ -111,5 +115,12 @@
     [self setRevealTapView:tapView];
 }
 
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    NSUInteger numberOfControllers = [navigationController.viewControllers count];
+    NSArray *recognizers = [navigationController.navigationBar gestureRecognizers];
+    for (UIGestureRecognizer *recognizer in recognizers) {
+        [recognizer setEnabled:numberOfControllers == 1];
+    }
+}
 
 @end
