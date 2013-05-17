@@ -20,6 +20,7 @@
 #import "RecipientTypesOperation.h"
 #import "TRWProgressHUD.h"
 #import "TRWAlertView.h"
+#import "UINavigationController+StackManipulations.h"
 
 @interface UploadMoneyViewController ()
 
@@ -101,6 +102,8 @@
     } else {
         [self loadDataToCells];
     }
+
+    [self.navigationController flattenStack];
 }
 
 - (void)loadDataToCells {
