@@ -146,7 +146,7 @@ static NSUInteger const kPersonalSection = 0;
 }
 
 - (void)pullUserDetails {
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.refreshing.message", nil)];
 
     [[TransferwiseClient sharedClient] updateCountriesWithCompletionHandler:^(NSArray *countries, NSError *error) {
@@ -222,7 +222,7 @@ static NSUInteger const kPersonalSection = 0;
         return;
     }
 
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.saving.message", nil)];
 
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
