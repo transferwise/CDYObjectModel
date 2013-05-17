@@ -127,7 +127,6 @@ static NSUInteger const kRowYouSend = 0;
         NSString *linkURLString = @"why:"; // build the "why" link
         [attrStr setLink:[NSURL URLWithString:linkURLString] range:[txt rangeOfString:NSLocalizedString(@"introduction.savings.message.why", nil)]];
         self.savingsLabel.attributedText = attrStr;
-        [self.savingsLabel sizeToFit];
     }];
 }
 
