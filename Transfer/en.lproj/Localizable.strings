@@ -37,6 +37,7 @@
 "login.validation.email.missing" = "E-mail not entered";
 "login.validation.email.not.valid" = "Entered e-mail not valid";
 "login.validation.password.missing" = "Password not entered";
+"login.controller.title" = "Log in";
 
 "money.entry.they.receive.title" = "They get";
 "money.entry.you.send.title" = "You send";

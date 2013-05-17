@@ -77,6 +77,13 @@ static NSUInteger const kTableRowEmail = 0;
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    [self.navigationItem setTitle:NSLocalizedString(@"login.controller.title", nil)];
+}
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
