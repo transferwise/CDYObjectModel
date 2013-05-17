@@ -22,7 +22,8 @@ typedef NS_ENUM(short, SettingsRow) {
     UserProfileRow,
     PersonalProfileRow,
     BusinessProfileRow,
-    SignUpRow
+    SignUpRow,
+    FillerRow
 };
 
 @interface SettingsViewController ()
@@ -63,6 +64,7 @@ typedef NS_ENUM(short, SettingsRow) {
         [presented addObject:@(UserProfileRow)];
         [presented addObject:@(PersonalProfileRow)];
         [presented addObject:@(BusinessProfileRow)];
+        [presented addObject:@(FillerRow)];
         [presented addObject:@(LogoutRow)];
     } else {
         [presented addObject:@(SignUpRow)];
@@ -90,6 +92,8 @@ typedef NS_ENUM(short, SettingsRow) {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SettingsTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:kSettingsTitleCellIdentifier];
+    [cell.imageView setImage:nil];
+    [cell.textLabel setTextColor:[UIColor whiteColor]];
 
     SettingsRow code = (SettingsRow) [self.presentedRows[(NSUInteger) indexPath.row] shortValue];
     switch (code) {
@@ -98,6 +102,8 @@ typedef NS_ENUM(short, SettingsRow) {
             break;
         case UserProfileRow:
             [cell setTitle:[Credentials displayName]];
+            [cell.imageView setImage:[UIImage imageNamed:@"ProfileIcon.png"]];
+            [cell.textLabel setTextColor:[UIColor lightGrayColor]];
             break;
         case PersonalProfileRow:
             [cell setTitle:NSLocalizedString(@"settings.row.personal.profile", nil)];
@@ -108,6 +114,9 @@ typedef NS_ENUM(short, SettingsRow) {
         case SignUpRow:
             [cell setTitle:NSLocalizedString(@"settings.row.signup", nil)];
             break;
+        case FillerRow:
+            [cell setTitle:@""];
+            break;
         default:
             [cell setTitle:@"Unknown case..."];
     }
@@ -116,6 +125,15 @@ typedef NS_ENUM(short, SettingsRow) {
 }
 
 #pragma mark - Table view delegate
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSNumber *row = self.presentedRows[indexPath.row];
+    if ([row shortValue] == UserProfileRow || [row shortValue] == FillerRow) {
+        return nil;
+    }
+
+    return indexPath;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
@@ -160,5 +178,18 @@ typedef NS_ENUM(short, SettingsRow) {
             NSLog(@"Unhandled row code %d", code);
     }
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSNumber *row = self.presentedRows[indexPath.row];
+    CGFloat rowHeight = self.tableView.rowHeight;
+    if ([row shortValue] != FillerRow) {
+        return rowHeight;
+    }
+
+    CGFloat filledRows = ([self.presentedRows count] - 1) * rowHeight;
+    CGFloat fillHeight = CGRectGetHeight(self.tableView.frame) - filledRows;
+    return fillHeight;
+}
+
 
 @end

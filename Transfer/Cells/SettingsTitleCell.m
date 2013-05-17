@@ -10,8 +10,6 @@
 
 @interface SettingsTitleCell ()
 
-@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
-
 @end
 
 @implementation SettingsTitleCell
@@ -24,14 +22,8 @@
     return self;
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-
-    [self.titleLabel setTextColor:[UIColor whiteColor]];
-}
-
 - (void)setTitle:(NSString *)title {
-    [self.titleLabel setText:title];
+    [self.textLabel setText:title];
 }
 
 @end
