@@ -28,15 +28,20 @@
     return alertView;
 }
 
-- (void)setConfirmButtonTitle:(NSString *)title {
-    [self addButtonWithTitle:title];
-}
-
 + (TRWAlertView *)errorAlertWithTitle:(NSString *)errorTitle error:(NSError *)error {
     NSString *errorMessage = [error isTransferwiseError] ? [error localizedTransferwiseMessage] : [error localizedDescription];
     TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:errorTitle message:errorMessage];
     [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
     return alertView;
+}
+
+- (void)setConfirmButtonTitle:(NSString *)title {
+    [self setConfirmButtonTitle:title action:nil];
+}
+
+- (void)setConfirmButtonTitle:(NSString *)title action:(TRWActionBlock)action {
+    self.leftButtonIndex = [self addButtonWithTitle:title];
+    self.leftButtonAction = action;
 }
 
 - (void)setLeftButtonTitle:(NSString *)leftButtonTitle rightButtonTitle:(NSString *)rightButtonTitle {
@@ -46,7 +51,7 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     MCLog(@"alertView:didDismissWithButtonIndex:%d", buttonIndex);
-    if (buttonIndex == self.leftButtonIndex) {
+    if (buttonIndex == self.leftButtonIndex && self.leftButtonAction) {
         self.leftButtonAction();
     }
 }

@@ -24,5 +24,6 @@ typedef void (^CurrencyChangBlock)(Currency *currency);
 - (void)setAmount:(NSString *)amount currency:(Currency *)currency;
 - (NSString *)amount;
 - (Currency *)currency;
+- (void)setOnlyPresentedCurrency:(NSString *)currencyCode;
 
 @end

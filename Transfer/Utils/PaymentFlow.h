@@ -12,12 +12,14 @@
 @class Currency;
 @class RecipientType;
 @class CalculationResult;
+@class Recipient;
 
 @interface PaymentFlow : NSObject
 
 @property (nonatomic, strong) Currency *sourceCurrency;
 @property (nonatomic, strong) Currency *targetCurrency;
 @property (nonatomic, strong) CalculationResult *calculationResult;
+@property (nonatomic, strong) Recipient *recipient;
 
 - (id)initWithPresentingController:(UINavigationController *)controller;
 - (void)presentSenderDetails;

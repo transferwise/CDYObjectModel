@@ -8,6 +8,7 @@
 
 #import "MoneyEntryCell.h"
 #import "Currency.h"
+#import "UIColor+Theme.h"
 
 NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
@@ -18,6 +19,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 @property (nonatomic, strong) IBOutlet UITextField *currencyField;
 @property (nonatomic, strong) UIPickerView *picker;
 @property (nonatomic, strong) Currency *selectedCurrency;
+@property (nonatomic, copy) NSString *forcedCurrencyCode;
 
 @end
 
@@ -72,10 +74,26 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     _presentedCurrencies = presentedCurrencies;
 
     Currency *selected = presentedCurrencies[0];
+
+    if (self.forcedCurrencyCode) {
+        selected = [self findCurrencyWithCode:self.forcedCurrencyCode];
+        [self.currencyField setUserInteractionEnabled:NO];
+        [self.currencyField setTextColor:[UIColor disabledEntryTextColor]];
+    }
+
     [self setSelectedCurrency:selected];
     [self.currencyField setText:selected.code];
     [self.picker reloadAllComponents];
     [self.picker selectRow:0 inComponent:0 animated:NO];
+}
+
+- (Currency *)findCurrencyWithCode:(NSString *)code {
+    for (Currency *currency in self.presentedCurrencies) {
+        if ([currency.code isEqualToString:code]) {
+            return currency;
+        }
+    }
+    return nil;
 }
 
 - (NSString *)amount {
@@ -116,6 +134,10 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     [self setSelectedCurrency:selected];
     [self.currencyField setText:selected.code];
     self.currencyChangedHandler(selected);
+}
+
+- (void)setOnlyPresentedCurrency:(NSString *)currencyCode {
+    self.forcedCurrencyCode = currencyCode;
 }
 
 @end

@@ -11,6 +11,8 @@
 "confirm.payment.recipient.marker.label" = "Receiver";
 "confirm.payment.reference.label" = "Reference";
 "confirm.payment.footer.button.title" = "Confirm payment";
+"confirm.payment.pulling.data" = "Pulling data...";
+"confirm.payment.data.error.title" = "Data error";
 
 "contacts.controller.title" = "Contacts";
 "contacts.controller.refreshing.message" = "Refreshing contacts";
@@ -82,6 +84,7 @@
 "personal.profile.save.button.title" = "Save profile";
 "personal.profile.saving.message" = "Saving profile...";
 "personal.profile.save.error.title" = "Save profile error";
+"personal.profile.confirm.payment.button.title" = "Confirm payment";
 
 "recipient.controller.add.button.title" = "Add";
 "recipient.controller.cell.label.name" = "Name";
@@ -201,3 +204,8 @@
 "upload.money.reference.title" = "Reference";
 "upload.money.uksort.title" = "UK Sort code";
 "upload.money.to.title" = "To";
+"upload.money.pulling.data.message" = "Pulling data...";
+"upload.money.data.error.title" = "Data error";
+
+"payment.controller.currency.payment.error.message" = "Can't make payments to recipients using %@";
+"payment.controller.currency.payment.error.title" = "Can't make payment";

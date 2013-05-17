@@ -10,7 +10,7 @@
 #import "TransferwiseOperation+Private.h"
 #import "CalculationResult.h"
 
-NSString *const kPaymentCalculationPath = @"/api/v1/public/payment/calculate";
+NSString *const kPaymentCalculationPath = @"/payment/calculate";
 
 @interface TransferCalculationsOperation ()
 
@@ -31,6 +31,8 @@ NSString *const kPaymentCalculationPath = @"/api/v1/public/payment/calculate";
 }
 
 - (void)execute {
+    NSString *path = [self addTokenToPath:kPaymentCalculationPath];
+
     __block __weak TransferCalculationsOperation *weakSelf = self;
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         CalculationResult *result = [CalculationResult resultWithData:response];
@@ -50,7 +52,8 @@ NSString *const kPaymentCalculationPath = @"/api/v1/public/payment/calculate";
     params[@"sourceCurrency"] = self.sourceCurrency;
     params[@"targetCurrency"] = self.targetCurrency;
     params[@"amountCurrency"] = self.amountCurrency == SourceCurrency ? @"source" : @"target";
-    [self getDataFromPath:kPaymentCalculationPath params:params];
+
+    [self getDataFromPath:path params:params];
 }
 
 @end
