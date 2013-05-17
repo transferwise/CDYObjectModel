@@ -109,6 +109,7 @@ typedef enum
 @property (nonatomic, readonly) UIView *rightView;
 @property (nonatomic, readonly) UIView *frontView;
 @property (nonatomic, assign) BOOL disableLayout;
+@property (nonatomic, strong) UIView *shadowView;
 
 @end
 
@@ -170,6 +171,9 @@ typedef enum
         _rearView = [[UIView alloc] initWithFrame:self.bounds];
         _rearView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         [self insertSubview:_rearView belowSubview:_frontView];
+        _shadowView = [[UIView alloc] initWithFrame:_rearView.frame];
+        _shadowView.backgroundColor = [UIColor blackColor];
+        [self insertSubview:_shadowView aboveSubview:_rearView];
     }
     [self _layoutRearViews];
     [self _prepareForNewPosition:newPosition];
@@ -202,6 +206,7 @@ typedef enum
     CGRect bounds = self.bounds;
     xPosition = [self _adjustedDragLocationForLocation:xPosition];
     _frontView.frame = CGRectMake(xPosition, 0.0f, bounds.size.width, bounds.size.height);
+    [_shadowView setAlpha:1- xPosition/260.0];
 }
 
 
@@ -229,6 +234,11 @@ typedef enum
     
     CGFloat rightWidth = _c.rightViewRevealWidth + _c.rightViewRevealOverdraw;
     _rightView.frame = CGRectMake(bounds.size.width-rightWidth, 0.0f, rightWidth, bounds.size.height);
+    
+    CGFloat xPosition = [self frontLocationForPosition:_c.frontViewPosition];
+    CGFloat postOpacity = 1 - xPosition/260.0;
+    
+    [_shadowView setAlpha:postOpacity];
 }
 
 
@@ -356,8 +366,8 @@ const int FrontViewPositionNone = 0xff;
     _stableDragOnOverdraw = NO;
     _stableDragOnLeftOverdraw = NO;
     _quickFlickVelocity = 250.0f;
-    _toggleAnimationDuration = 0.25;
-    _frontViewShadowRadius = 2.5f;
+    _toggleAnimationDuration = 0.4;
+    _frontViewShadowRadius = 25.0f;
     _frontViewShadowOffset = CGSizeMake(0.0f, 2.5f);
     _userInteractionStore = YES;
     _animationQueue = [NSMutableArray array];

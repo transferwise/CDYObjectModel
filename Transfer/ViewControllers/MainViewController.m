@@ -52,6 +52,8 @@
     [self setViewControllers:@[tabController]];
 
     SWRevealViewController *revealController = [self revealViewController];
+    [self.navigationBar addGestureRecognizer:revealController.panGestureRecognizer];
+    
     UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SettingsButtonIcon.png"] style:UIBarButtonItemStylePlain target:revealController action:@selector(revealToggle:)];
     [tabController.navigationItem setLeftBarButtonItem:settingsButton];
 
