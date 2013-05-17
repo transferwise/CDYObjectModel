@@ -108,8 +108,10 @@ static NSUInteger const kRowYouSend = 0;
     [self.depositTitleLabel setText:NSLocalizedString(@"payment.controller.deposit.label", nil)];
     [self.transferFeeTitleLabel setText:NSLocalizedString(@"payment.controller.transfer.fee.label", nil)];
     [self.transferFeeTitleLabel setTextColor:[UIColor mainTextColor]];
+    [self.transferFeeValueLabel setTextColor:[UIColor mainTextColor]];
     [self.currencyCostTitleLabel setText:NSLocalizedString(@"payment.controller.currency.cost.label", nil)];
     [self.currencyCostTitleLabel setTextColor:[UIColor mainTextColor]];
+    [self.currencyCostValueLabel setTextColor:[UIColor mainTextColor]];
     [self.exchangeRateTitleLabel setText:NSLocalizedString(@"payment.controller.estimated.exchange.rate.label", nil)];
     [self.youGetTitleLabel setText:NSLocalizedString(@"payment.controller.you.get.label", nil)];
 }

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-NSString *const kCreateRecipientPath = @"/recipient/createRecipient";
+NSString *const kCreateRecipientPath = @"/recipient/create";
 
 #import "CreateRecipientOperation.h"
 #import "Recipient.h"
