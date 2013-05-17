@@ -113,7 +113,7 @@
 						</object>
 					</object>
 				</array>
-				<string key="NSFrameSize">{320, 153}</string>
+				<string key="NSFrameSize">{320, 75}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="174223424"/>
@@ -248,8 +248,16 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">SignUpViewController</string>
+					<string key="className">DataEntryViewController</string>
 					<string key="superclassName">UITableViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/DataEntryViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SignUpViewController</string>
+					<string key="superclassName">DataEntryViewController</string>
 					<object class="NSMutableDictionary" key="actions">
 						<string key="NS.key.0">signUpPressed:</string>
 						<string key="NS.object.0">id</string>
@@ -262,23 +270,13 @@
 						</object>
 					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="emailCell">TextEntryCell</string>
 						<string key="footerView">UIView</string>
-						<string key="passwordCell">TextEntryCell</string>
 						<string key="singUpButton">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="emailCell">
-							<string key="name">emailCell</string>
-							<string key="candidateClassName">TextEntryCell</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="footerView">
 							<string key="name">footerView</string>
 							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="passwordCell">
-							<string key="name">passwordCell</string>
-							<string key="candidateClassName">TextEntryCell</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="singUpButton">
 							<string key="name">singUpButton</string>
@@ -288,28 +286,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/SignUpViewController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">TextEntryCell</string>
-					<string key="superclassName">UITableViewCell</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="entryField">UITextField</string>
-						<string key="titleLabel">UILabel</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="entryField">
-							<string key="name">entryField</string>
-							<string key="candidateClassName">UITextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="titleLabel">
-							<string key="name">titleLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/TextEntryCell.h</string>
 					</object>
 				</object>
 			</array>

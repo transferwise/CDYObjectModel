@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataEntryViewController.h"
 
 @class ObjectModel;
 
-@interface SignUpViewController : UITableViewController
+@interface SignUpViewController : DataEntryViewController
 
 @property (nonatomic) ObjectModel *objectModel;
 

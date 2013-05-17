@@ -10,28 +10,32 @@
 #import "UIColor+Theme.h"
 #import "TableHeaderView.h"
 #import "UIView+Loading.h"
-#import "ObjectModel.h"
 #import "TextEntryCell.h"
 #import "NSString+Validation.h"
 #import "NSMutableString+Issues.h"
 #import "UIApplication+Keyboard.h"
 #import "TRWAlertView.h"
 #import "TRWProgressHUD.h"
+#import "RegisterOperation.h"
 
 static NSUInteger const kTableRowEmail = 0;
 
 @interface SignUpViewController () <UITextFieldDelegate>
+
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 @property (strong, nonatomic) IBOutlet UIButton *singUpButton;
-@property (nonatomic, strong) IBOutlet TextEntryCell *emailCell;
-@property (nonatomic, strong) IBOutlet TextEntryCell *passwordCell;
+@property (nonatomic, strong) TextEntryCell *emailCell;
+@property (nonatomic, strong) TextEntryCell *passwordCell;
+@property (nonatomic, strong) TextEntryCell *passwordAgainCell;
+@property (nonatomic, strong) TransferwiseOperation *executedOperation;
+
 - (IBAction)signUpPressed:(id)sender;
+
 @end
 
 @implementation SignUpViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithNibName:@"SignUpViewController" bundle:nil];
     if (self) {
         // Custom initialization
@@ -39,72 +43,51 @@ static NSUInteger const kTableRowEmail = 0;
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
-    
+
     TableHeaderView *header = [TableHeaderView loadInstance];
     [header setMessage:NSLocalizedString(@"singup.controller.header.message", nil)];
     [self.tableView setTableHeaderView:header];
-    
+
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
-    
+
+    NSMutableArray *cells = [NSMutableArray arrayWithCapacity:3];
+
     TextEntryCell *email = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setEmailCell:email];
     [email configureWithTitle:NSLocalizedString(@"singup.email.field.title", nil) value:@""];
-    [email.entryField setDelegate:self];
     [email.entryField setReturnKeyType:UIReturnKeyNext];
     [email.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
-    
+    [cells addObject:email];
+
     TextEntryCell *password = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setPasswordCell:password];
     [password configureWithTitle:NSLocalizedString(@"singup.password.field.title", nil) value:@""];
-    [password.entryField setDelegate:self];
     [password.entryField setReturnKeyType:UIReturnKeyDone];
     [password.entryField setSecureTextEntry:YES];
-    
+    [cells addObject:password];
+
+    TextEntryCell *passwordAgain = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+    [self setPasswordAgainCell:passwordAgain];
+    [passwordAgain configureWithTitle:NSLocalizedString(@"singup.password.again.field.title", nil) value:@""];
+    [passwordAgain.entryField setReturnKeyType:UIReturnKeyDone];
+    [passwordAgain.entryField setSecureTextEntry:YES];
+    [cells addObject:passwordAgain];
+
     [self.singUpButton setTitle:NSLocalizedString(@"singup.button.title.log.in", nil) forState:UIControlStateNormal];
-    
-    [self.navigationItem setTitle:@"Sign up"];
+
+    [self.navigationItem setTitle:NSLocalizedString(@"sign.up.controller.title", nil)];
+
+    [self setPresentedSectionCells:@[cells]];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == kTableRowEmail) {
-        return self.emailCell;
-    } else {
-        return self.passwordCell;
-    }
-}
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    if (indexPath.row == kTableRowEmail) {
-        [self.emailCell.entryField becomeFirstResponder];
-    } else {
-        [self.passwordCell.entryField becomeFirstResponder];
-    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
@@ -115,21 +98,67 @@ static NSUInteger const kTableRowEmail = 0;
     return CGRectGetHeight(self.footerView.frame);
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if (textField == self.emailCell.entryField) {
-        [self.passwordCell.entryField becomeFirstResponder];
-    } else {
-        [textField resignFirstResponder];
-    }
-    
-    return YES;
-}
-
 - (void)viewDidUnload {
     [self setFooterView:nil];
     [self setSingUpButton:nil];
     [super viewDidUnload];
 }
+
 - (IBAction)signUpPressed:(id)sender {
+    [UIApplication dismissKeyboard];
+
+    NSString *issues = [self validateInput];
+
+    if ([issues hasValue]) {
+        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"signup.error.title", nil) message:issues];
+        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+        [alertView show];
+        return;
+    }
+
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    [hud setMessage:NSLocalizedString(@"sign.up.controller.creating.message", nil)];
+    RegisterOperation *operation = [RegisterOperation operationWithEmail:self.emailCell.value password:self.passwordCell.value];
+    [self setExecutedOperation:operation];
+    [operation setCompletionHandler:^(NSError *error) {
+        [hud hide];
+
+        if (error) {
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"sign.up.controller.signup.error.message", nil) error:error];
+            [alertView show];
+            return;
+        }
+
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    }];
+
+    [operation execute];
 }
+
+- (NSString *)validateInput {
+    NSString *email = self.emailCell.value;
+    NSString *passwordOne = self.passwordCell.value;
+    NSString *passwordTwo = self.passwordAgainCell.value;
+
+    NSMutableString *issues = [NSMutableString string];
+
+    if (![email hasValue]) {
+        [issues appendIssue:NSLocalizedString(@"sign.up.controller.validation.email.missing", nil)];
+    }
+
+    if (![email isValidEmail]) {
+        [issues appendIssue:NSLocalizedString(@"sign.up.controller.validation.email.invalid", nil)];
+    }
+
+    if (![passwordOne hasValue] || ![passwordTwo hasValue]) {
+        [issues appendIssue:NSLocalizedString(@"sign.up.controller.validation.password.missing", nil)];
+    }
+
+    if ([passwordOne hasValue] && [passwordTwo hasValue] && ![passwordOne isEqualToString:passwordTwo]) {
+        [issues appendIssue:NSLocalizedString(@"sign.up.controller.validation.passwords.dont.match", nil)];
+    }
+
+    return [NSString stringWithString:issues];
+}
+
 @end

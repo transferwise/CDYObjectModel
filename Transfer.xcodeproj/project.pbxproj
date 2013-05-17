@@ -44,6 +44,7 @@
 		EA13E04C171BEF5D0019FBF0 /* TextEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */; };
 		EA13E04E171BEF710019FBF0 /* TextEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */; };
 		EA1861E017463F8D00BD01BB /* UINavigationController+StackManipulations.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1861DF17463F8D00BD01BB /* UINavigationController+StackManipulations.m */; };
+		EA1861E31746442900BD01BB /* RegisterOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1861E21746442900BD01BB /* RegisterOperation.m */; };
 		EA222E33173A676000C5D613 /* PaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E32173A676000C5D613 /* PaymentFlow.m */; };
 		EA222E38173A861000C5D613 /* ConfirmPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E36173A861000C5D613 /* ConfirmPaymentViewController.m */; };
 		EA222E39173A861000C5D613 /* ConfirmPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E37173A861000C5D613 /* ConfirmPaymentViewController.xib */; };
@@ -259,6 +260,8 @@
 		EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEntryCell.xib; sourceTree = "<group>"; };
 		EA1861DE17463F8D00BD01BB /* UINavigationController+StackManipulations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+StackManipulations.h"; sourceTree = "<group>"; };
 		EA1861DF17463F8D00BD01BB /* UINavigationController+StackManipulations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+StackManipulations.m"; sourceTree = "<group>"; };
+		EA1861E11746442900BD01BB /* RegisterOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterOperation.h; sourceTree = "<group>"; };
+		EA1861E21746442900BD01BB /* RegisterOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterOperation.m; sourceTree = "<group>"; };
 		EA222E31173A676000C5D613 /* PaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentFlow.h; sourceTree = "<group>"; };
 		EA222E32173A676000C5D613 /* PaymentFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentFlow.m; sourceTree = "<group>"; };
 		EA222E35173A861000C5D613 /* ConfirmPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmPaymentViewController.h; sourceTree = "<group>"; };
@@ -758,6 +761,8 @@
 				EA35C76B1732790D005602F7 /* PaymentsOperation.m */,
 				EAA54F591733EF1A00B65BF3 /* RecipientTypesOperation.h */,
 				EAA54F5A1733EF1A00B65BF3 /* RecipientTypesOperation.m */,
+				EA1861E11746442900BD01BB /* RegisterOperation.h */,
+				EA1861E21746442900BD01BB /* RegisterOperation.m */,
 				1864AC9C173B7C80008773FC /* SaveBusinessProfileOperation.h */,
 				1864AC9D173B7C80008773FC /* SaveBusinessProfileOperation.m */,
 				EAD85B09173920C300C22211 /* SavePersonalProfileOperation.h */,
@@ -1280,6 +1285,7 @@
 				EAAF8FB017436730008DF9E2 /* CreatePaymentOperation.m in Sources */,
 				EAAF8FB81743B3E4008DF9E2 /* MoneyFormatter.m in Sources */,
 				EA1861E017463F8D00BD01BB /* UINavigationController+StackManipulations.m in Sources */,
+				EA1861E31746442900BD01BB /* RegisterOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

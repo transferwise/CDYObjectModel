@@ -92,6 +92,7 @@ NSString *const kPublicToken = @"public";
         NSString *recovery = [error localizedRecoverySuggestion];
 
         if (![recovery hasValue]) {
+            MCLog(@"No recovery information");
             self.operationErrorHandler(error);
             return;
         }

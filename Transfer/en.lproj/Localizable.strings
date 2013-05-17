@@ -139,6 +139,7 @@
 "singup.controller.header.message" = "Create a Transferwise account";
 "singup.email.field.title" = "E-mail";
 "singup.password.field.title" = "Password";
+"singup.password.again.field.title" = "Password again";
 "singup.button.title.log.in" = "Sing up";
 
 "transactions.controller.refreshing.message" = "Refreshing payments...";
@@ -209,3 +210,12 @@
 
 "payment.controller.currency.payment.error.message" = "Can't make payments to recipients using %@";
 "payment.controller.currency.payment.error.title" = "Can't make payment";
+
+"sign.up.controller.title" = "Sign up";
+"sign.up.controller.validation.email.missing" = "Email not entered";
+"sign.up.controller.validation.email.invalid" = "Email not valid";
+"sign.up.controller.validation.password.missing" = "Both passwords needed";
+"sign.up.controller.validation.passwords.dont.match" = "Passwords don't match";
+"signup.error.title" = "Can't continue";
+"sign.up.controller.creating.message" = "Creating account...";
+"sign.up.controller.signup.error.message" = "Sign up error";
