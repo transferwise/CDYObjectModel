@@ -119,6 +119,8 @@ static NSUInteger const kRowYouSend = 0;
 
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
 
+    [self.navigationItem setTitle:NSLocalizedString(@"payment.controller.title", nil)];
+
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"introduction.refreshing.currencies.message", nil)];
 
