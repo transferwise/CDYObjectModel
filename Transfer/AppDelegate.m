@@ -53,7 +53,7 @@
     SWRevealViewController *mainRevealController = [[SWRevealViewController alloc]
                                                     initWithRearViewController:rearViewController frontViewController:frontViewController];
     
-    mainRevealController.delegate = self;
+    mainRevealController.delegate = frontViewController;
     
 	self.viewController = mainRevealController;
 	

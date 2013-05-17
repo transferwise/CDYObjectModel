@@ -13,12 +13,12 @@
 #import "IntroductionViewController.h"
 #import "SettingsViewController.h"
 #import "Credentials.h"
-#import "SWRevealViewController.h"
 #import "Constants.h"
 
 @interface MainViewController ()
 
 @property (nonatomic, strong) UITabBarController *tabsController;
+@property (nonatomic, strong) UIView *revealTapView;
 
 @end
 
@@ -84,11 +84,32 @@
 	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     SWRevealViewController *mainRevealController = [[SWRevealViewController alloc]
                                                     initWithRearViewController:rearViewController frontViewController:navigationController];
+    mainRevealController.delegate = self;
+
     [self presentModalViewController:mainRevealController animated:YES];
 }
 
 - (void)loggedOut {
     [self presentIntroductionController];
 }
+
+- (void)revealController:(SWRevealViewController *)revealController didMoveToPosition:(FrontViewPosition)position {
+    if (position != FrontViewPositionRight) {
+        [self.revealTapView removeFromSuperview];
+        return;
+    }
+
+    UIViewController *front = revealController.frontViewController;
+    UIView *tapView = [[UIView alloc] initWithFrame:front.view.bounds];
+    tapView.backgroundColor = [UIColor clearColor];
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:revealController action:@selector(revealToggle:)];
+    tapRecognizer.numberOfTapsRequired = 1;
+    tapRecognizer.numberOfTouchesRequired = 1;
+    [tapView addGestureRecognizer:tapRecognizer];
+    [front.view addSubview:tapView];
+
+    [self setRevealTapView:tapView];
+}
+
 
 @end

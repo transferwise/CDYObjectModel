@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SWRevealViewController.h"
 
 @class ObjectModel;
 
-@interface MainViewController : UINavigationController
+@interface MainViewController : UINavigationController <SWRevealViewControllerDelegate>
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 
