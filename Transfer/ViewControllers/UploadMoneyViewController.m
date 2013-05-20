@@ -178,7 +178,7 @@
 }
 
 - (IBAction)doneBtnClicked:(id)sender {
-
+    [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
 }
 
 - (IBAction)toggleButtonValueChanged:(id)sender {

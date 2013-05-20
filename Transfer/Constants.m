@@ -7,3 +7,4 @@
 //
 
 NSString *const TRWLoggedOutNotification = @"TRWLoggedOutNotification";
+NSString *const TRWMoveToPaymentsListNotification = @"TRWMoveToPaymentsListNotification";

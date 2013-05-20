@@ -19,6 +19,7 @@
 
 @property (nonatomic, strong) UITabBarController *tabsController;
 @property (nonatomic, strong) UIView *revealTapView;
+@property (nonatomic, strong) UIViewController *transactionsController;
 
 @end
 
@@ -28,6 +29,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loggedOut) name:TRWLoggedOutNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentsList) name:TRWMoveToPaymentsListNotification object:nil];
     }
     return self;
 }
@@ -40,6 +42,7 @@
     [super viewDidLoad];
 
     TransactionsViewController *transactionsController = [[TransactionsViewController alloc] init];
+    [self setTransactionsController:transactionsController];
 
     PaymentViewController *paymentController = [[PaymentViewController alloc] init];
 
@@ -121,6 +124,11 @@
     for (UIGestureRecognizer *recognizer in recognizers) {
         [recognizer setEnabled:numberOfControllers == 1];
     }
+}
+
+- (void)moveToPaymentsList {
+    self.tabsController.selectedViewController = self.transactionsController;
+    [self popToRootViewControllerAnimated:YES];
 }
 
 @end
