@@ -12,6 +12,7 @@
 #import "Credentials.h"
 
 NSString *const kUpdatePersonalProfilePath = @"/user/updatePersonalProfile";
+NSString *const kValidatePersonalProfilePath = @"/user/validatePersonalProfile";
 
 @interface SavePersonalProfileOperation ()
 
@@ -30,7 +31,12 @@ NSString *const kUpdatePersonalProfilePath = @"/user/updatePersonalProfile";
 }
 
 - (void)execute {
-    NSString *path = [self addTokenToPath:kUpdatePersonalProfilePath];
+    NSString *path;
+    if ([Credentials userLoggedIn]) {
+        path = [self addTokenToPath:kUpdatePersonalProfilePath];
+    } else {
+        path = [self addTokenToPath:kValidatePersonalProfilePath];
+    }
 
     __block __weak SavePersonalProfileOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {

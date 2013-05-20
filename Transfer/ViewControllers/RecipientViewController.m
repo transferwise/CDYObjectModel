@@ -30,6 +30,7 @@
 #import "RecipientEntrySelectionCell.h"
 #import "StatesOperation.h"
 #import "DropdownCell.h"
+#import "Credentials.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
@@ -157,7 +158,7 @@ static NSUInteger const kRecipientFieldsSection = 2;
     };
 
     UserRecipientsOperation *recipientsOperation = nil;
-    if (self.preloadRecipientsWithCurrency) {
+    if (self.preloadRecipientsWithCurrency && [Credentials userLoggedIn]) {
         recipientsOperation = [UserRecipientsOperation recipientsOperationWithCurrency:self.preloadRecipientsWithCurrency];
         [recipientsOperation setResponseHandler:^(NSArray *recipients, NSError *error) {
             if (error) {
@@ -375,7 +376,11 @@ static NSUInteger const kRecipientFieldsSection = 2;
     }
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
-    [hud setMessage:NSLocalizedString(@"recipient.controller.creating.message", nil)];
+    if ([Credentials userLoggedIn]) {
+        [hud setMessage:NSLocalizedString(@"recipient.controller.creating.message", nil)];
+    } else {
+        [hud setMessage:NSLocalizedString(@"recipient.controller.validating.message", nil)];
+    }
 
     CreateRecipientOperation *operation = [CreateRecipientOperation operationWithData:data];
     [self setExecutedOperation:operation];
@@ -383,7 +388,13 @@ static NSUInteger const kRecipientFieldsSection = 2;
         [hud hide];
 
         if (error) {
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.save.error.title", nil) error:error];
+            NSString *title;
+            if ([Credentials userLoggedIn]) {
+                title = NSLocalizedString(@"recipient.controller.save.error.title", nil);
+            } else {
+                title = NSLocalizedString(@"recipient.controller.validate.error.title", nil);
+            }
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:title error:error];
             [alertView show];
             return;
         }

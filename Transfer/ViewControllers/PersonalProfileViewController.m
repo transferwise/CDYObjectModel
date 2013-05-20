@@ -19,6 +19,7 @@
 #import "NSString+Validation.h"
 #import "SavePersonalProfileOperation.h"
 #import "UIApplication+Keyboard.h"
+#import "Credentials.h"
 
 static NSUInteger const kPersonalSection = 0;
 
@@ -134,7 +135,32 @@ static NSUInteger const kPersonalSection = 0;
 
     [self.navigationItem setTitle:NSLocalizedString(@"personal.profile.controller.title", nil)];
 
-    [self pullUserDetails];
+    if ([Credentials userLoggedIn]) {
+        [self pullUserDetails];
+    } else {
+        [self pullCountries];
+    }
+}
+
+- (void)pullCountries {
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    [hud setMessage:NSLocalizedString(@"personal.profile.refreshing.countries.message", nil)];
+
+    [[TransferwiseClient sharedClient] updateCountriesWithCompletionHandler:^(NSArray *countries, NSError *error) {
+        [hud hide];
+        if (error) {
+            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.countries.refresh.error.title", nil)
+                                                               message:NSLocalizedString(@"personal.profile.countries.refresh.error.message", nil)];
+            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+            [alertView show];
+            return;
+        }
+
+        [self.countryCell setAllCountries:countries];
+        [self setPresentedSectionCells:self.presentedCells];
+        [self.tableView setTableFooterView:self.footer];
+        [self.tableView reloadData];
+    }];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -223,7 +249,11 @@ static NSUInteger const kPersonalSection = 0;
     }
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-    [hud setMessage:NSLocalizedString(@"personal.profile.saving.message", nil)];
+    if ([Credentials userLoggedIn]) {
+        [hud setMessage:NSLocalizedString(@"personal.profile.saving.message", nil)];
+    } else {
+        [hud setMessage:NSLocalizedString(@"personal.profile.verify.message", nil)];
+    }
 
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     data[@"firstName"] = [self.firstNameCell value];
@@ -242,7 +272,13 @@ static NSUInteger const kPersonalSection = 0;
         [hud hide];
 
         if (error) {
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"personal.profile.save.error.title", nil) error:error];
+            NSString *title;
+            if ([Credentials userLoggedIn]) {
+                title = NSLocalizedString(@"personal.profile.save.error.title", nil);
+            } else {
+                title = NSLocalizedString(@"personal.profile.verify.error.title", nil);
+            }
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:title error:error];
             [alertView show];
             return;
         }

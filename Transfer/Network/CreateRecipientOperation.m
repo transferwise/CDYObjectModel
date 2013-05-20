@@ -7,10 +7,12 @@
 //
 
 NSString *const kCreateRecipientPath = @"/recipient/create";
+NSString *const kValidateRecipientPath = @"/recipient/validate";
 
 #import "CreateRecipientOperation.h"
 #import "Recipient.h"
 #import "TransferwiseOperation+Private.h"
+#import "Credentials.h"
 
 @interface CreateRecipientOperation ()
 
@@ -29,7 +31,12 @@ NSString *const kCreateRecipientPath = @"/recipient/create";
 }
 
 - (void)execute {
-    NSString *path = [self addTokenToPath:kCreateRecipientPath];
+    NSString *path;
+    if ([Credentials userLoggedIn]) {
+        path = [self addTokenToPath:kCreateRecipientPath];
+    } else {
+        path = [self addTokenToPath:kValidateRecipientPath];
+    }
 
     __block __weak CreateRecipientOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {

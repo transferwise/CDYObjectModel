@@ -22,6 +22,7 @@
 #import "TRWProgressHUD.h"
 #import "Currency.h"
 #import "MoneyFormatter.h"
+#import "PaymentFlow.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
@@ -38,8 +39,10 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) MoneyCalculator *calculator;
 @property (nonatomic, strong) CalculationResult *result;
 @property (nonatomic, strong) WhyView *whyView;
+@property (nonatomic, strong) PaymentFlow *paymentFlow;
 
 - (IBAction)loginPressed:(id)sender;
+- (IBAction)getStartedPressed:(id)sender;
 
 @end
 
@@ -185,6 +188,21 @@ static NSUInteger const kRowYouSend = 0;
     LoginViewController *controller = [[LoginViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (IBAction)getStartedPressed:(id)sender {
+    if (!self.result) {
+        return;
+    }
+
+    PaymentFlow *paymentFlow = [[PaymentFlow alloc] initWithPresentingController:self.navigationController];
+    [self setPaymentFlow:paymentFlow];
+
+    [paymentFlow setSourceCurrency:[self.youSendCell currency]];
+    [paymentFlow setTargetCurrency:[self.theyReceiveCell currency]];
+    [paymentFlow setCalculationResult:self.result];
+
+    [paymentFlow presentSenderDetails];
 }
 
 /////////////////////////////////////////////////////////////////////////////

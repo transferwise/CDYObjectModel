@@ -85,6 +85,13 @@
 "personal.profile.saving.message" = "Saving profile...";
 "personal.profile.save.error.title" = "Save profile error";
 "personal.profile.confirm.payment.button.title" = "Confirm payment";
+"personal.profile.refreshing.countries.message" = "Pulling data...";
+"personal.profile.countries.refresh.error.title" = "Data error";
+"personal.profile.countries.refresh.error.message" = "Could not retrieve data.";
+"personal.profile.verify.message" = "Checking data...";
+"personal.profile.verify.error.title" = "Verify error";
+"recipient.controller.validating.message" = "Validating...";
+"recipient.controller.validate.error.title" = "Validation error";
 
 "recipient.controller.add.button.title" = "Add";
 "recipient.controller.cell.label.name" = "Name";
