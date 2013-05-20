@@ -20,7 +20,7 @@ NSString *const kCurrencyPairsPath = @"/currency/pairs";
 
     __block __weak CurrencyPairsOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
-        MCLog(@"Cueency pairs error:%@", error);
+        MCLog(@"Currency pairs error:%@", error);
         weakSelf.currenciesHandler(nil, error);
     }];
 

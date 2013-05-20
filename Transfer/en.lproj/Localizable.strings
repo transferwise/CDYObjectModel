@@ -4,6 +4,7 @@
 "button.title.get.started" = "Get started";
 "button.title.log.in" = "Log in";
 "button.title.ok" = "OK";
+"button.title.retry" = "Retry";
 
 "confirm.payment.controller.title" = "Confirm";
 "confirm.payment.sender.marker.label" = "Sender (you)";
@@ -29,6 +30,8 @@
 "introduction.refreshing.currencies.message" = "Refreshing currencies...";
 "introduction.savings.message.base" = "You'll get %@ more vs your bank";
 "introduction.savings.message.why" = "Why?";
+"introduction.currencies.retrieve.error.title" = "Currencies error";
+"introduction.currencies.retrieve.error.message" = "Could not retrieve currencies from server";
 
 "login.controller.header.message" = "Log-in to your account";
 "login.controller.logging.in.message" = "Logging in...";

@@ -12,8 +12,6 @@
 #import "SettingsViewController.h"
 #import "Constants.h"
 #import "TestFlight.h"
-#import "SWRevealViewController.h"
-#import "TransferwiseClient.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 

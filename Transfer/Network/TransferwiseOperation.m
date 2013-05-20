@@ -120,10 +120,13 @@ NSString *const kPublicToken = @"public";
 
     MCLog(@"Received %d errors", [handledErrors count]);
 
+    NSError *cumulativeError = [self createCumulativeError:handledErrors];
     if ([self containsExpiredTokenError:handledErrors]) {
         MCLog(@"Expired token error");
-        //TODO jaanus: check this. Should maybe some error be also posted?
-        self.operationErrorHandler(nil);
+        //TODO jaanus: Do other action also need given error?
+        //This if is added here because most operations don't need this error. Screen where user was on
+        //will be covered by login view controller.
+        self.operationErrorHandler([self isCurrencyPairsOperation] ? cumulativeError : nil);
 
         dispatch_async(dispatch_get_main_queue(), ^{
             // Ensure notification posted only once. When multiple requests run at once and get expired token error,
@@ -137,9 +140,12 @@ NSString *const kPublicToken = @"public";
         });
     } else {
         MCLog(@"Other errors");
-        NSError *cumulativeError = [self createCumulativeError:handledErrors];
         self.operationErrorHandler(cumulativeError);
     }
+}
+
+- (BOOL)isCurrencyPairsOperation {
+    return [self isKindOfClass:[CurrencyPairsOperation class]];
 }
 
 - (NSError *)createCumulativeError:(NSArray *)errors {

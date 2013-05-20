@@ -22,6 +22,7 @@
 #import "TRWProgressHUD.h"
 #import "Currency.h"
 #import "MoneyFormatter.h"
+#import "TRWAlertView.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
@@ -141,16 +142,29 @@ static NSUInteger const kRowYouSend = 0;
 
     [self.navigationItem setTitle:NSLocalizedString(@"introduction.controller.title", nil)];
 
+    [self retrieveCurrencyPairs];
+}
+
+- (void)retrieveCurrencyPairs {
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"introduction.refreshing.currencies.message", nil)];
 
     [[TransferwiseClient sharedClient] updateCurrencyPairsWithCompletionHandler:^(NSArray *currencies, NSError *error) {
         [hud hide];
+        if (error) {
+            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"introduction.currencies.retrieve.error.title", nil)
+                                                               message:NSLocalizedString(@"introduction.currencies.retrieve.error.message", nil)];
+            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.retry", nil) action:^{
+                [self retrieveCurrencyPairs];
+            }];
+            [alertView show];
+            return;
+        }
+
         [self.calculator setCurrencies:currencies];
         [self.calculator forceCalculate];
     }];
 }
-
 
 #pragma mark - Table view data source
 
