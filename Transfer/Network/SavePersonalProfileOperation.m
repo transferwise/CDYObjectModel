@@ -10,22 +10,23 @@
 #import "TransferwiseOperation+Private.h"
 #import "ProfileDetails.h"
 #import "Credentials.h"
+#import "PersonalProfile.h"
 
 NSString *const kUpdatePersonalProfilePath = @"/user/updatePersonalProfile";
 NSString *const kValidatePersonalProfilePath = @"/user/validatePersonalProfile";
 
 @interface SavePersonalProfileOperation ()
 
-@property (nonatomic, strong) NSDictionary *data;
+@property (nonatomic, strong) PersonalProfile *profile;
 
 @end
 
 @implementation SavePersonalProfileOperation
 
-- (id)initWithData:(NSDictionary *)data {
+- (id)initWithProfile:(PersonalProfile *)data {
     self = [super init];
     if (self) {
-        _data = data;
+        _profile = data;
     }
     return self;
 }
@@ -49,11 +50,11 @@ NSString *const kValidatePersonalProfilePath = @"/user/validatePersonalProfile";
         weakSelf.saveResultHandler(details, nil);
     }];
 
-    [self postData:self.data toPath:path];
+    [self postData:[self.profile data] toPath:path];
 }
 
-+ (SavePersonalProfileOperation *)operationWithData:(NSDictionary *)data {
-    return [[SavePersonalProfileOperation alloc] initWithData:data];
++ (SavePersonalProfileOperation *)operationWithProfile:(PersonalProfile *)profile {
+    return [[SavePersonalProfileOperation alloc] initWithProfile:profile];
 }
 
 @end

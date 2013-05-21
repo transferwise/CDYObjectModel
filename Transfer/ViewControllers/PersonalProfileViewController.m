@@ -255,17 +255,17 @@ static NSUInteger const kPersonalSection = 0;
         [hud setMessage:NSLocalizedString(@"personal.profile.verify.message", nil)];
     }
 
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    data[@"firstName"] = [self.firstNameCell value];
-    data[@"lastName"] = [self.lastNameCell value];
-    data[@"dateOfBirth"] = [self.dateOfBirthCell value];
-    data[@"phoneNumber"] = [self.phoneNumberCell value];
-    data[@"addressFirstLine"] = [self.addressCell value];
-    data[@"postCode"] = [self.postCodeCell value];
-    data[@"city"] = [self.cityCell value];
-    data[@"countryCode"] = [self.countryCell value];
+    PersonalProfile *profile = [[PersonalProfile alloc] init];
+    profile.firstName = self.firstNameCell.value;
+    profile.lastName = self.lastNameCell.value;
+    profile.phoneNumber = self.phoneNumberCell.value;
+    profile.addressFirstLine = self.addressCell.value;
+    profile.postCode = self.postCodeCell.value;
+    profile.city = self.cityCell.value;
+    profile.countryCode = self.countryCell.value;
+    profile.dateOfBirthString = [self.dateOfBirthCell value];
 
-    SavePersonalProfileOperation *operation = [SavePersonalProfileOperation operationWithData:data];
+    SavePersonalProfileOperation *operation = [SavePersonalProfileOperation operationWithProfile:profile];
     [self setExecutedOperation:operation];
 
     [operation setSaveResultHandler:^(ProfileDetails *result, NSError *error) {
@@ -283,7 +283,14 @@ static NSUInteger const kPersonalSection = 0;
             return;
         }
 
-        [self setUserDetails:result];
+        if (![Credentials userLoggedIn]) {
+            ProfileDetails *details = [[ProfileDetails alloc] init];
+            [details setPersonalProfile:profile];
+            [self setUserDetails:result];
+        } else {
+            [self setUserDetails:result];
+        }
+
         [self loadDetailsToCells];
 
         self.afterSaveAction();
