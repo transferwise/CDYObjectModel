@@ -167,6 +167,10 @@
 		EAD39686171BD5B000F6D011 /* PaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39684171BD5B000F6D011 /* PaymentViewController.xib */; };
 		EAD3968A171BD82300F6D011 /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39688171BD82300F6D011 /* IntroductionViewController.m */; };
 		EAD3968B171BD82300F6D011 /* IntroductionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39689171BD82300F6D011 /* IntroductionViewController.xib */; };
+		EAD66759174A51B900D29BCB /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66758174A51B900D29BCB /* ButtonCell.m */; };
+		EAD6675B174A51C700D29BCB /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD6675A174A51C700D29BCB /* ButtonCell.xib */; };
+		EAD6675E174A565500D29BCB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD6675C174A565500D29BCB /* AddressBook.framework */; };
+		EAD6675F174A565500D29BCB /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD6675D174A565500D29BCB /* AddressBookUI.framework */; };
 		EAD7368A171E6CB100A037B1 /* GrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD73689171E6CB100A037B1 /* GrayButton.m */; };
 		EAD7368D171E6D5A00A037B1 /* GrayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368B171E6D5A00A037B1 /* GrayButton.png */; };
 		EAD7368E171E6D5A00A037B1 /* GrayButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */; };
@@ -457,6 +461,11 @@
 		EAD39687171BD82300F6D011 /* IntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroductionViewController.h; sourceTree = "<group>"; };
 		EAD39688171BD82300F6D011 /* IntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionViewController.m; sourceTree = "<group>"; };
 		EAD39689171BD82300F6D011 /* IntroductionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroductionViewController.xib; sourceTree = "<group>"; };
+		EAD66757174A51B900D29BCB /* ButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonCell.h; sourceTree = "<group>"; };
+		EAD66758174A51B900D29BCB /* ButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonCell.m; sourceTree = "<group>"; };
+		EAD6675A174A51C700D29BCB /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
+		EAD6675C174A565500D29BCB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		EAD6675D174A565500D29BCB /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		EAD73688171E6CB100A037B1 /* GrayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrayButton.h; sourceTree = "<group>"; };
 		EAD73689171E6CB100A037B1 /* GrayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrayButton.m; sourceTree = "<group>"; };
 		EAD7368B171E6D5A00A037B1 /* GrayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GrayButton.png; sourceTree = "<group>"; };
@@ -503,6 +512,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAD6675E174A565500D29BCB /* AddressBook.framework in Frameworks */,
+				EAD6675F174A565500D29BCB /* AddressBookUI.framework in Frameworks */,
 				BB92B147172A754100B6F096 /* libOHAttributedLabel.a in Frameworks */,
 				BB92B144172A747300B6F096 /* CoreText.framework in Frameworks */,
 				EAEA626117202D6100A96770 /* libz.dylib in Frameworks */,
@@ -572,6 +583,9 @@
 		EA13E033171BE0E50019FBF0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				EAD66757174A51B900D29BCB /* ButtonCell.h */,
+				EAD66758174A51B900D29BCB /* ButtonCell.m */,
+				EAD6675A174A51C700D29BCB /* ButtonCell.xib */,
 				EA222E3A173A8A7100C5D613 /* ConfirmPaymentCell.h */,
 				EA222E3B173A8A7100C5D613 /* ConfirmPaymentCell.m */,
 				EA222E3D173A8A7C00C5D613 /* ConfirmPaymentCell.xib */,
@@ -605,12 +619,12 @@
 				EAB7215D171FCAAC00DE29F5 /* SettingsTitleCell.h */,
 				EAB7215E171FCAAC00DE29F5 /* SettingsTitleCell.m */,
 				EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */,
+				BB29BD4D173CDF6F0016A6E9 /* TextCell.h */,
+				BB29BD4C173CDF6F0016A6E9 /* TextCell.m */,
+				BB29BD4A173CDF480016A6E9 /* TextCell.xib */,
 				EA13E04A171BEF5D0019FBF0 /* TextEntryCell.h */,
 				EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */,
 				EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */,
-				BB29BD4C173CDF6F0016A6E9 /* TextCell.m */,
-				BB29BD4D173CDF6F0016A6E9 /* TextCell.h */,
-				BB29BD4A173CDF480016A6E9 /* TextCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -805,9 +819,11 @@
 		EAAA146A171BC911005B9430 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BB92B143172A747300B6F096 /* CoreText.framework */,
+				EAD6675C174A565500D29BCB /* AddressBook.framework */,
+				EAD6675D174A565500D29BCB /* AddressBookUI.framework */,
 				EAAA1471171BC911005B9430 /* CoreData.framework */,
 				EAAA146F171BC911005B9430 /* CoreGraphics.framework */,
+				BB92B143172A747300B6F096 /* CoreText.framework */,
 				EAAA146D171BC911005B9430 /* Foundation.framework */,
 				EAEA626017202D6100A96770 /* libz.dylib */,
 				EA8FF6AC171D22340090A658 /* MobileCoreServices.framework */,
@@ -1146,6 +1162,7 @@
 				EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */,
 				BB29BD49173CD30D0016A6E9 /* UploadMoneyViewController.xib in Resources */,
 				BB29BD4B173CDF480016A6E9 /* TextCell.xib in Resources */,
+				EAD6675B174A51C700D29BCB /* ButtonCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1286,6 +1303,7 @@
 				EAAF8FB81743B3E4008DF9E2 /* MoneyFormatter.m in Sources */,
 				EA1861E017463F8D00BD01BB /* UINavigationController+StackManipulations.m in Sources */,
 				EA1861E31746442900BD01BB /* RegisterOperation.m in Sources */,
+				EAD66759174A51B900D29BCB /* ButtonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

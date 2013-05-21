@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSArray *presentedSectionCells;
 
+- (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath;
+
 @end

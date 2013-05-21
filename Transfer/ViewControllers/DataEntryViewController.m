@@ -9,6 +9,7 @@
 #import "DataEntryViewController.h"
 #import "TextEntryCell.h"
 #import "UIView+Container.h"
+#import "Constants.h"
 
 @interface DataEntryViewController () <UITextFieldDelegate>
 
@@ -81,7 +82,13 @@
     if ([self isEntryCell:cell]) {
         TextEntryCell *entryCell = cell;
         [entryCell.entryField becomeFirstResponder];
+    } else {
+        [self tappedCellAtIndexPath:indexPath];
     }
+}
+
+- (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath {
+    MCLog(@"tappedCellAtIndexPath:%@", indexPath);
 }
 
 #pragma mark - Text field delegate

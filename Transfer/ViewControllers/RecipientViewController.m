@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
+#import <AddressBook/AddressBook.h>
 #import "RecipientViewController.h"
 #import "UIColor+Theme.h"
 #import "TRWProgressHUD.h"
@@ -30,14 +31,21 @@
 #import "RecipientEntrySelectionCell.h"
 #import "StatesOperation.h"
 #import "DropdownCell.h"
+#import "ButtonCell.h"
+#import "AddressBookUI/ABPeoplePickerNavigationController.h"
 
-static NSUInteger const kRecipientSection = 0;
-static NSUInteger const kCurrencySection = 1;
-static NSUInteger const kRecipientFieldsSection = 2;
+static NSUInteger const kImportSection = 0;
+static NSUInteger const kRecipientSection = 1;
+static NSUInteger const kCurrencySection = 2;
+static NSUInteger const kRecipientFieldsSection = 3;
 
-@interface RecipientViewController ()
+NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
+
+@interface RecipientViewController () <ABPeoplePickerNavigationControllerDelegate>
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
+
+@property (nonatomic, strong) ButtonCell *importCell;
 
 @property (nonatomic, strong) NSArray *recipientCells;
 @property (nonatomic, strong) RecipientEntrySelectionCell *nameCell;
@@ -88,6 +96,10 @@ static NSUInteger const kRecipientFieldsSection = 2;
     [self.tableView registerNib:[UINib nibWithNibName:@"RecipientFieldCell" bundle:nil] forCellReuseIdentifier:TWRecipientFieldCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"RecipientEntrySelectionCell" bundle:nil] forCellReuseIdentifier:TRWRecipientEntrySelectionCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"DropdownCell" bundle:nil] forCellReuseIdentifier:TWDropdownCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ButtonCell" bundle:nil] forCellReuseIdentifier:kButtonCellIdentifier];
+
+    self.importCell = [self.tableView dequeueReusableCellWithIdentifier:kButtonCellIdentifier];
+    [self.importCell.textLabel setText:NSLocalizedString(@"recipient.import.from.phonebook.label", nil)];
 
     NSMutableArray *recipientCells = [NSMutableArray array];
 
@@ -149,7 +161,7 @@ static NSUInteger const kRecipientFieldsSection = 2;
         [hud hide];
         [self.nameCell setAutoCompleteRecipients:self.recipientsForCurrency];
         [self.currencyCell setAllCurrencies:[self currenciesToShow]];
-        [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, @[]]];
+        [self setPresentedSectionCells:@[@[self.importCell], self.recipientCells, self.currencyCells, @[]]];
         [self.tableView setTableFooterView:self.footer];
         [self.tableView reloadData];
 
@@ -228,6 +240,18 @@ static NSUInteger const kRecipientFieldsSection = 2;
     [currenciesOperation execute];
 }
 
+- (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section != kImportSection) {
+        return;
+    }
+
+    ABPeoplePickerNavigationController *controller = [[ABPeoplePickerNavigationController alloc] init];
+    [controller setDisplayedProperties:@[@(kABPersonFirstNameProperty), @(kABPersonLastNameProperty), @(kABPersonEmailProperty), @(kABPersonBirthdayProperty), @(kABPersonAddressProperty)]];
+    [controller setPeoplePickerDelegate:self];
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+
 - (void)didSelectRecipient:(Recipient *)recipient {
     [self setSelectedRecipient:recipient];
     if (!recipient) {
@@ -296,7 +320,7 @@ static NSUInteger const kRecipientFieldsSection = 2;
 - (void)handleSelectionChangeToType:(RecipientType *)type {
     NSArray *cells = [self buildCellsForType:type];
     [self setRecipientTypeFieldCells:cells];
-    [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, cells]];
+    [self setPresentedSectionCells:@[@[self.importCell], self.recipientCells, self.currencyCells, cells]];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kRecipientFieldsSection] withRowAnimation:UITableViewRowAnimationFade];
 }
 
@@ -434,6 +458,18 @@ static NSUInteger const kRecipientFieldsSection = 2;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return CGRectGetHeight(self.recipientSectionHeader.frame);
+}
+
+- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
+    return YES;
+}
+
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
+    return YES;
 }
 
 @end

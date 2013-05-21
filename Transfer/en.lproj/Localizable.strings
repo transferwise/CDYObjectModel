@@ -105,6 +105,7 @@
 "recipient.controller.recipients.preload.error.title" = "Can't load contacts";
 "recipient.controller.recipient.types.load.error.title" = "Data error";
 "recipient.controller.sattes.load.error.title" = "Data error";
+"recipient.import.from.phonebook.label" = "Import from phonebook";
 
 "recipient.save.error.title" = "Can't save";
 
