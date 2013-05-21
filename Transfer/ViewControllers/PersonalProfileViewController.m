@@ -286,7 +286,7 @@ static NSUInteger const kPersonalSection = 0;
         if (![Credentials userLoggedIn]) {
             ProfileDetails *details = [[ProfileDetails alloc] init];
             [details setPersonalProfile:profile];
-            [self setUserDetails:result];
+            [self setUserDetails:details];
         } else {
             [self setUserDetails:result];
         }

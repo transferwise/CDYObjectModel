@@ -16,16 +16,16 @@ NSString *const kValidateRecipientPath = @"/recipient/validate";
 
 @interface CreateRecipientOperation ()
 
-@property (nonatomic, strong) NSDictionary *data;
+@property (nonatomic, strong) Recipient *recipient;
 
 @end
 
 @implementation CreateRecipientOperation
 
-- (id)initWithData:(NSDictionary *)data {
+- (id)initWithRecipient:(Recipient *)recipient {
     self = [super init];
     if (self) {
-        _data = data;
+        _recipient = recipient;
     }
     return self;
 }
@@ -48,11 +48,11 @@ NSString *const kValidateRecipientPath = @"/recipient/validate";
         weakSelf.responseHandler(recipient, nil);
     }];
 
-    [self postData:self.data toPath:path];
+    [self postData:[self.recipient data] toPath:path];
 }
 
-+ (CreateRecipientOperation *)operationWithData:(NSDictionary *)data {
-    return [[CreateRecipientOperation alloc] initWithData:data];
++ (CreateRecipientOperation *)operationWithRecipient:(Recipient *)recipient {
+    return [[CreateRecipientOperation alloc] initWithRecipient:recipient];
 }
 
 @end

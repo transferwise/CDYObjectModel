@@ -16,6 +16,6 @@ typedef void (^RecipientResponseBlock)(Recipient *recipient, NSError *error);
 
 @property (nonatomic, copy) RecipientResponseBlock responseHandler;
 
-+ (CreateRecipientOperation *)operationWithData:(NSDictionary *)data;
++ (CreateRecipientOperation *)operationWithRecipient:(Recipient *)recipient;
 
 @end
