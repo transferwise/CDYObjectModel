@@ -162,6 +162,10 @@ static NSUInteger const kPersonalSection = 1;
 }
 
 - (void)pullUserDetails {
+    if ([self.countryCell.allCountries count] > 0) {
+        return;
+    }
+
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.refreshing.message", nil)];
 
