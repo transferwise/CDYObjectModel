@@ -12,4 +12,6 @@ extern NSString *const TWDateEntryCellIdentifier;
 
 @interface DateEntryCell : TextEntryCell
 
+- (void)setDateValue:(NSDate *)date;
+
 @end

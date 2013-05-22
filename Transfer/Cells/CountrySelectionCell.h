@@ -14,4 +14,6 @@ extern NSString *const TWCountrySelectionCellIdentifier;
 
 @property (nonatomic, strong) NSArray *allCountries;
 
+- (void)setTwoLetterCountryCode:(NSString *)code;
+
 @end

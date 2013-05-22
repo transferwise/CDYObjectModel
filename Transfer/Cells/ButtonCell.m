@@ -8,6 +8,8 @@
 
 #import "ButtonCell.h"
 
+NSString *const TWButtonCellIdentifier = @"TWButtonCellIdentifier";
+
 @implementation ButtonCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

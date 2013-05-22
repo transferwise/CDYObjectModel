@@ -52,6 +52,10 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 
 - (void)setValue:(NSString *)value {
     NSDate *date = [[DateEntryCell rawDateFormatter] dateFromString:value];
+    [self setDateValue:date];
+}
+
+- (void)setDateValue:(NSDate *)date {
     [self presentDate:date];
 
     if (!date) {

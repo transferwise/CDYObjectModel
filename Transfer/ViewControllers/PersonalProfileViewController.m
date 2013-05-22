@@ -19,10 +19,17 @@
 #import "NSString+Validation.h"
 #import "SavePersonalProfileOperation.h"
 #import "UIApplication+Keyboard.h"
+#import "ButtonCell.h"
+#import "PhoneBookProfileSelector.h"
+#import "PhoneBookProfile.h"
+#import "PhoneBookAddress.h"
 
-static NSUInteger const kPersonalSection = 0;
+static NSUInteger const kButtonSection = 0;
+static NSUInteger const kPersonalSection = 1;
 
 @interface PersonalProfileViewController ()
+
+@property (nonatomic, strong) ButtonCell *buttonCell;
 
 @property (nonatomic, strong) NSArray *presentedCells;
 
@@ -30,7 +37,7 @@ static NSUInteger const kPersonalSection = 0;
 @property (nonatomic, strong) TextEntryCell *lastNameCell;
 @property (nonatomic, strong) TextEntryCell *emailCell;
 @property (nonatomic, strong) TextEntryCell *phoneNumberCell;
-@property (nonatomic, strong) TextEntryCell *dateOfBirthCell;
+@property (nonatomic, strong) DateEntryCell *dateOfBirthCell;
 @property (nonatomic, strong) TextEntryCell *addressCell;
 @property (nonatomic, strong) TextEntryCell *postCodeCell;
 @property (nonatomic, strong) TextEntryCell *cityCell;
@@ -39,6 +46,7 @@ static NSUInteger const kPersonalSection = 0;
 @property (nonatomic, strong) IBOutlet UIView *footer;
 @property (nonatomic, strong) IBOutlet UIButton *footerButton;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
+@property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
 
 - (IBAction)footerButtonPressed:(id)sender;
 
@@ -63,6 +71,10 @@ static NSUInteger const kPersonalSection = 0;
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"DateEntryCell" bundle:nil] forCellReuseIdentifier:TWDateEntryCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ButtonCell" bundle:nil] forCellReuseIdentifier:TWButtonCellIdentifier];
+
+    self.buttonCell = [self.tableView dequeueReusableCellWithIdentifier:TWButtonCellIdentifier];
+    self.buttonCell.textLabel.text = NSLocalizedString(@"button.title.import.from.phonebook", nil);
 
     NSMutableArray *personalCells = [NSMutableArray array];
 
@@ -119,7 +131,7 @@ static NSUInteger const kPersonalSection = 0;
     [addressCells addObject:countryCell];
     [countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
 
-    [self setPresentedCells:@[personalCells, addressCells]];
+    [self setPresentedCells:@[@[self.buttonCell], personalCells, addressCells]];
 
     [self.footerButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
 }
@@ -138,6 +150,10 @@ static NSUInteger const kPersonalSection = 0;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == kButtonSection) {
+        return nil;
+    }
+
     if (section == kPersonalSection) {
         return NSLocalizedString(@"personal.profile.personal.section.title", nil);
     } else {
@@ -203,6 +219,31 @@ static NSUInteger const kPersonalSection = 0;
     [self.postCodeCell setEditable:![profile addressVerifiedValue]];
     [self.cityCell setEditable:![profile addressVerifiedValue]];
     [self.countryCell setEditable:![profile addressVerifiedValue]];
+}
+
+- (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section != kButtonSection) {
+        return;
+    }
+
+    PhoneBookProfileSelector *selector = [[PhoneBookProfileSelector alloc] init];
+    [self setProfileSelector:selector];
+    [selector presentOnController:self completionHandler:^(PhoneBookProfile *profile) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            MCLog(@"Did load:%@", profile);
+            self.firstNameCell.value = profile.firstName;
+            self.lastNameCell.value = profile.lastName;
+            self.emailCell.value = profile.email;
+            self.phoneNumberCell.value = profile.phone;
+            [self.dateOfBirthCell setDateValue:profile.dateOfBirth];
+
+            PhoneBookAddress *address = profile.address;
+            self.addressCell.value = address.street;
+            self.postCodeCell.value = address.zipCode;
+            self.cityCell.value = address.city;
+            [self.countryCell setTwoLetterCountryCode:address.countryCode];
+        });
+    }];
 }
 
 - (IBAction)footerButtonPressed:(id)sender {

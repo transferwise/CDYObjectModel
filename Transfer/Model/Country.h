@@ -11,6 +11,7 @@
 @interface Country : NSObject
 
 @property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, copy, readonly) NSString *isoCode2;
 @property (nonatomic, copy, readonly) NSString *isoCode3;
 
 + (Country *)countryWithData:(NSDictionary *)data;

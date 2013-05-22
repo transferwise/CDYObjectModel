@@ -33,6 +33,8 @@
 #import "DropdownCell.h"
 #import "ButtonCell.h"
 #import "AddressBookUI/ABPeoplePickerNavigationController.h"
+#import "PhoneBookProfileSelector.h"
+#import "PhoneBookProfile.h"
 
 static NSUInteger const kImportSection = 0;
 static NSUInteger const kRecipientSection = 1;
@@ -70,6 +72,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, strong) NSArray *recipientsForCurrency;
 @property (nonatomic, strong) Recipient *selectedRecipient;
 @property (nonatomic, strong) NSArray *states;
+
+@property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
 
 - (IBAction)addButtonPressed:(id)sender;
 
@@ -153,6 +157,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+
+    if ([self.recipientTypes count] != 0) {
+        return;
+    }
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
@@ -245,12 +253,16 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         return;
     }
 
-    ABPeoplePickerNavigationController *controller = [[ABPeoplePickerNavigationController alloc] init];
-    [controller setDisplayedProperties:@[@(kABPersonFirstNameProperty), @(kABPersonLastNameProperty), @(kABPersonEmailProperty), @(kABPersonBirthdayProperty), @(kABPersonAddressProperty)]];
-    [controller setPeoplePickerDelegate:self];
-    [self presentViewController:controller animated:YES completion:nil];
+    PhoneBookProfileSelector *selector = [[PhoneBookProfileSelector alloc] init];
+    [self setProfileSelector:selector];
+    [selector presentOnController:self completionHandler:^(PhoneBookProfile *profile) {
+        [self loadDataFromProfile:profile];
+    }];
 }
 
+- (void)loadDataFromProfile:(PhoneBookProfile *)profile {
+    self.nameCell.value = profile.fullName;
+}
 
 - (void)didSelectRecipient:(Recipient *)recipient {
     [self setSelectedRecipient:recipient];

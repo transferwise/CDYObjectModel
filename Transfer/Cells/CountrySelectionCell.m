@@ -107,4 +107,23 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
 }
 
 
+- (void)setTwoLetterCountryCode:(NSString *)code {
+    Country *country = nil;
+    for (Country *checked in self.allCountries) {
+        if (![checked.isoCode2 isEqualToString:code]) {
+            continue;
+        }
+
+        country = checked;
+        break;
+    }
+
+    if (!country) {
+        return;
+    }
+
+    self.selectedCountry = country;
+    self.entryField.text = country.name;
+}
+
 @end

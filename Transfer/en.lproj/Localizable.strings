@@ -5,6 +5,7 @@
 "button.title.log.in" = "Log in";
 "button.title.ok" = "OK";
 "button.title.retry" = "Retry";
+"button.title.import.from.phonebook" = "Import from phonebook";
 
 "confirm.payment.controller.title" = "Confirm";
 "confirm.payment.sender.marker.label" = "Sender (you)";

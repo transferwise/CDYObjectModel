@@ -171,6 +171,9 @@
 		EAD6675B174A51C700D29BCB /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD6675A174A51C700D29BCB /* ButtonCell.xib */; };
 		EAD6675E174A565500D29BCB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD6675C174A565500D29BCB /* AddressBook.framework */; };
 		EAD6675F174A565500D29BCB /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD6675D174A565500D29BCB /* AddressBookUI.framework */; };
+		EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66780174CB34600D29BCB /* PhoneBookProfile.m */; };
+		EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */; };
+		EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */; };
 		EAD7368A171E6CB100A037B1 /* GrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD73689171E6CB100A037B1 /* GrayButton.m */; };
 		EAD7368D171E6D5A00A037B1 /* GrayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368B171E6D5A00A037B1 /* GrayButton.png */; };
 		EAD7368E171E6D5A00A037B1 /* GrayButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */; };
@@ -466,6 +469,12 @@
 		EAD6675A174A51C700D29BCB /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
 		EAD6675C174A565500D29BCB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		EAD6675D174A565500D29BCB /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		EAD6677F174CB34600D29BCB /* PhoneBookProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneBookProfile.h; sourceTree = "<group>"; };
+		EAD66780174CB34600D29BCB /* PhoneBookProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneBookProfile.m; sourceTree = "<group>"; };
+		EAD66782174CB3AE00D29BCB /* PhoneBookProfileSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneBookProfileSelector.h; sourceTree = "<group>"; };
+		EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneBookProfileSelector.m; sourceTree = "<group>"; };
+		EAD66785174CD3FE00D29BCB /* PhoneBookAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneBookAddress.h; sourceTree = "<group>"; };
+		EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneBookAddress.m; sourceTree = "<group>"; };
 		EAD73688171E6CB100A037B1 /* GrayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrayButton.h; sourceTree = "<group>"; };
 		EAD73689171E6CB100A037B1 /* GrayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrayButton.m; sourceTree = "<group>"; };
 		EAD7368B171E6D5A00A037B1 /* GrayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GrayButton.png; sourceTree = "<group>"; };
@@ -677,6 +686,8 @@
 		EA88E669172F97B10021492C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BB29BD41173CCD580016A6E9 /* BankTransfer.h */,
+				BB29BD42173CCD580016A6E9 /* BankTransfer.m */,
 				1864AC98173B7C4D008773FC /* BusinessProfile.h */,
 				1864AC99173B7C4D008773FC /* BusinessProfile.m */,
 				EA88E66A172F97B10021492C /* Country.h */,
@@ -687,6 +698,10 @@
 				EA35C7741732851C005602F7 /* Payment.m */,
 				EA88E66C172F97B10021492C /* PersonalProfile.h */,
 				EA88E66D172F97B10021492C /* PersonalProfile.m */,
+				EAD66785174CD3FE00D29BCB /* PhoneBookAddress.h */,
+				EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */,
+				EAD6677F174CB34600D29BCB /* PhoneBookProfile.h */,
+				EAD66780174CB34600D29BCB /* PhoneBookProfile.m */,
 				EA88E66E172F97B10021492C /* ProfileDetails.h */,
 				EA88E66F172F97B10021492C /* ProfileDetails.m */,
 				EA88E670172F97B10021492C /* Recipient.h */,
@@ -697,8 +712,6 @@
 				EA4AA609173794A600E99150 /* RecipientTypeField.m */,
 				EAAC2036174226D3001DDE7A /* USState.h */,
 				EAAC2037174226D3001DDE7A /* USState.m */,
-				BB29BD41173CCD580016A6E9 /* BankTransfer.h */,
-				BB29BD42173CCD580016A6E9 /* BankTransfer.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -934,6 +947,8 @@
 				EAAF8FB71743B3E4008DF9E2 /* MoneyFormatter.m */,
 				EA222E31173A676000C5D613 /* PaymentFlow.h */,
 				EA222E32173A676000C5D613 /* PaymentFlow.m */,
+				EAD66782174CB3AE00D29BCB /* PhoneBookProfileSelector.h */,
+				EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1304,6 +1319,9 @@
 				EA1861E017463F8D00BD01BB /* UINavigationController+StackManipulations.m in Sources */,
 				EA1861E31746442900BD01BB /* RegisterOperation.m in Sources */,
 				EAD66759174A51B900D29BCB /* ButtonCell.m in Sources */,
+				EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */,
+				EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */,
+				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1402,6 +1420,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "99A7B50D-6AB1-44B8-BB69-3BE5DD01304B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "99A7B50D-6AB1-44B8-BB69-3BE5DD01304B";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1423,6 +1442,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3CE15A09-E624-4A5D-A578-523B38D9D132";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3CE15A09-E624-4A5D-A578-523B38D9D132";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
