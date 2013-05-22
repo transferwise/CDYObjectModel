@@ -20,6 +20,8 @@
 @property (nonatomic, copy) NSString *phone;
 @property (nonatomic, strong) NSDate *dateOfBirth;
 @property (nonatomic, strong) PhoneBookAddress *address;
+@property (nonatomic, copy) NSString *organisation;
+@property (nonatomic, assign) ABMultiValueIdentifier selectedAddressIdentifier;
 
 @end
 
@@ -28,9 +30,14 @@
 }
 
 - (id)initWithRecord:(ABRecordRef)person {
+    return [self initWithRecord:person selectedAddressIdentifier:kABMultiValueInvalidIdentifier];
+}
+
+- (id)initWithRecord:(ABRecordRef)person selectedAddressIdentifier:(ABMultiValueIdentifier)identifier {
     self = [super init];
     if (self) {
         _record = CFRetain(person);
+        _selectedAddressIdentifier = identifier;
     }
     return self;
 }
@@ -49,14 +56,30 @@
     self.email = [[self arrayForProperty:kABPersonEmailProperty] lastObject];
     self.phone = [[self arrayForProperty:kABPersonPhoneProperty] lastObject];
     self.dateOfBirth = [self getRecordDate:kABPersonBirthdayProperty];
-    self.address = [[self allAddressObjects] lastObject];
+    if (self.selectedAddressIdentifier == kABMultiValueInvalidIdentifier) {
+        self.address = [[self allAddressObjects] lastObject];
+    } else {
+        self.address = [self addressWithIdentifier:self.selectedAddressIdentifier];
+    }
+    self.organisation = [self getRecordString:kABPersonOrganizationProperty];
 
 }
+
+- (PhoneBookAddress *)addressWithIdentifier:(ABMultiValueIdentifier)identifier {
+    CFTypeRef theProperty = ABRecordCopyValue(_record, kABPersonAddressProperty);
+    NSDictionary *items = (__bridge_transfer NSDictionary *) ABMultiValueCopyValueAtIndex(theProperty, self.selectedAddressIdentifier);
+    CFRelease(theProperty);
+    return [PhoneBookAddress addressWithData:items];
+}
+
+- (NSUInteger)addressesCount {
+    return [[self arrayForProperty:kABPersonAddressProperty] count];
+}
+
 
 - (NSArray *)allAddressObjects {
     NSArray *addresses = [self arrayForProperty:kABPersonAddressProperty];
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:[addresses count]];
-    NSLog(@">>> %@", [addresses lastObject]);
     for (NSDictionary *data in addresses) {
         PhoneBookAddress *address = [PhoneBookAddress addressWithData:data];
         [result addObject:address];

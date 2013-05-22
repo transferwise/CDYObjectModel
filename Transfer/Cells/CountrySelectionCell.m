@@ -110,7 +110,7 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
 - (void)setTwoLetterCountryCode:(NSString *)code {
     Country *country = nil;
     for (Country *checked in self.allCountries) {
-        if (![checked.isoCode2 isEqualToString:code]) {
+        if (![[checked.isoCode2 lowercaseString] isEqualToString:code]) {
             continue;
         }
 

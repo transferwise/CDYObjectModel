@@ -19,11 +19,17 @@
 #import "BlueButton.h"
 #import "UIApplication+Keyboard.h"
 #import "NSString+Validation.h"
+#import "ButtonCell.h"
+#import "PhoneBookProfileSelector.h"
+#import "PhoneBookProfile.h"
+#import "PhoneBookAddress.h"
 
-static NSUInteger const kDetailsSection = 0;
+static NSUInteger const kButtonSection = 0;
+static NSUInteger const kDetailsSection = 1;
 
 @interface BusinessProfileViewController ()
 
+@property (nonatomic, strong) ButtonCell *buttonCell;
 @property (nonatomic, strong) TextEntryCell *businessNameCell;
 @property (nonatomic, strong) TextEntryCell *registrationNumberCell;
 @property (nonatomic, strong) TextEntryCell *descriptionCell;
@@ -37,6 +43,7 @@ static NSUInteger const kDetailsSection = 0;
 @property (strong, nonatomic) IBOutlet BlueButton *footerButton;
 @property (nonatomic, strong) NSArray *businessCells;
 @property (nonatomic, strong) NSArray *addressCells;
+@property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
 
 @end
 
@@ -57,11 +64,14 @@ static NSUInteger const kDetailsSection = 0;
     
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
-    
+
+    [self.tableView registerNib:[UINib nibWithNibName:@"ButtonCell" bundle:nil] forCellReuseIdentifier:TWButtonCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
-    
     [self.tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
-    
+
+    self.buttonCell = [self.tableView dequeueReusableCellWithIdentifier:TWButtonCellIdentifier];
+    self.buttonCell.textLabel.text = NSLocalizedString(@"button.title.import.from.phonebook", nil);
+
     NSMutableArray *businessCells = [NSMutableArray array];
     
     TextEntryCell *businessNameCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
@@ -128,11 +138,19 @@ static NSUInteger const kDetailsSection = 0;
     [super viewWillAppear:animated];
     
     [self.navigationItem setTitle:NSLocalizedString(@"business.profile.controller.title", nil)];
-    
+
+    if ([self.countryCell.allCountries count] > 0) {
+        return;
+    }
+
     [self pullUserDetails];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == kButtonSection) {
+        return nil;
+    }
+
     if (section == kDetailsSection) {
         return NSLocalizedString(@"business.profile.details.section.title", nil);
     } else {
@@ -168,7 +186,7 @@ static NSUInteger const kDetailsSection = 0;
                     return;
                 }
                 
-                [self setPresentedSectionCells:@[self.businessCells, self.addressCells]];
+                [self setPresentedSectionCells:@[@[self.buttonCell], self.businessCells, self.addressCells]];
                 [self setUserDetails:result];
                 [self loadDetailsToCells];
                 [self.tableView setTableFooterView:self.footerView];
@@ -198,6 +216,25 @@ static NSUInteger const kDetailsSection = 0;
     [self.countryCell setEditable:![profile businessVerifiedValue]];
 }
 
+- (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath {
+    if (!indexPath.section == kButtonSection) {
+        return;
+    }
+
+    PhoneBookProfileSelector *selector = [[PhoneBookProfileSelector alloc] init];
+    [self setProfileSelector:selector];
+    [selector presentOnController:self completionHandler:^(PhoneBookProfile *profile) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.businessNameCell.value = profile.organisation;
+
+            PhoneBookAddress *address = profile.address;
+            self.addressCell.value = address.street;
+            self.postCodeCell.value = address.zipCode;
+            self.cityCell.value = address.city;
+            [self.countryCell setTwoLetterCountryCode:address.countryCode];
+        });
+    }];
+}
 
 - (IBAction)footerButtonClicked:(id)sender {
     [UIApplication dismissKeyboard];

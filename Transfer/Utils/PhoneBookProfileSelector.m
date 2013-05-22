@@ -10,6 +10,7 @@
 #import <AddressBookUI/AddressBookUI.h>
 #import "PhoneBookProfileSelector.h"
 #import "PhoneBookProfile.h"
+#import "Constants.h"
 
 @interface PhoneBookProfileSelector () <ABPeoplePickerNavigationControllerDelegate>
 
@@ -34,12 +35,27 @@
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
     PhoneBookProfile *profile = [[PhoneBookProfile alloc] initWithRecord:person];
     [profile loadData];
+
+    if ([profile addressesCount] > 1) {
+        return YES;
+    }
+
     self.completionHandler(profile);
     [peoplePicker dismissViewControllerAnimated:YES completion:nil];
     return NO;
 }
 
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
+    if (property != kABPersonAddressProperty) {
+        return NO;
+    }
+
+    MCLog(@"Tapped on address...");
+    PhoneBookProfile *profile = [[PhoneBookProfile alloc] initWithRecord:person selectedAddressIdentifier:identifier];
+    [profile loadData];
+    self.completionHandler(profile);
+    [peoplePicker dismissViewControllerAnimated:YES completion:nil];
+
     return NO;
 }
 
