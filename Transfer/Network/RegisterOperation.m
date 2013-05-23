@@ -47,8 +47,7 @@ NSString *const kRegisterPath = @"/api/v1/token/register";
         weakSelf.completionHandler(nil);
     };
 
-    //TODO jaanus: remove pass2 after server change
-    [self postData:@{@"email" : self.email, @"password" : self.password, @"password2" : self.password} toPath:kRegisterPath];
+    [self postData:@{@"email" : self.email, @"password" : self.password} toPath:kRegisterPath];
 }
 
 + (RegisterOperation *)operationWithEmail:(NSString *)email password:(NSString *)password {

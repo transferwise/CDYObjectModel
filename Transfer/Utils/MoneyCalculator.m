@@ -117,7 +117,6 @@
 
         [operation setRemoteCalculationHandler:^(CalculationResult *result, NSError *error) {
             [self setExecutedOperation:nil];
-
             if (result) {
                 if (result.amountCurrency == SourceCurrency) {
                     [self.receiveCell.moneyField setText:result.transferwisePayOutString];

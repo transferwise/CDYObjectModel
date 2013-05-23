@@ -456,6 +456,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     switch (section) {
+        case kImportSection:
+            return nil;
         case kRecipientSection:
             return self.recipientSectionHeader;
         case kCurrencySection:

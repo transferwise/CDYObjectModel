@@ -21,7 +21,7 @@
 @property (nonatomic, strong) NSNumber *bankTotalFee;
 @property (nonatomic, strong) NSNumber *bankPayIn;
 @property (nonatomic, strong) NSNumber *bankPayOut;
-@property (nonatomic, strong) NSDate *paymentDate;
+@property (nonatomic, strong) NSDate *estimatedDelivery;
 
 @end
 
@@ -29,18 +29,17 @@
 
 + (CalculationResult *)resultWithData:(NSDictionary *)data {
     CalculationResult *result = [[CalculationResult alloc] init];
-    NSNumberFormatter *formatter = [CalculationResult moneyReadFormatter];
-    [result setTransferwiseRate:[formatter numberFromString:data[@"transferwiseRate"]]];
-    [result setTransferwiseTransferFee:[formatter numberFromString:data[@"transferwiseTransferFee"]]];
-    [result setTransferwisePayIn:[formatter numberFromString:data[@"transferwisePayIn"]]];
-    [result setTransferwisePayOut:[formatter numberFromString:data[@"transferwisePayOut"]]];
-    [result setBankRate:[formatter numberFromString:data[@"bankRate"]]];
-    [result setBankTransferFee:[formatter numberFromString:data[@"bankTransferFee"]]];
-    [result setBankRateMarkup:[formatter numberFromString:data[@"bankRateMarkup"]]];
-    [result setBankTotalFee:[formatter numberFromString:data[@"bankTotalFee"]]];
-    [result setBankPayIn:[formatter numberFromString:data[@"bankPayIn"]]];
-    [result setBankPayOut:[formatter numberFromString:data[@"bankPayOut"]]];
-    [result setPaymentDate:[[NSDate date] dateByAddingTimeInterval:(60 * 60 * 24)]];
+    [result setTransferwiseRate:data[@"transferwiseRate"]];
+    [result setTransferwiseTransferFee:data[@"transferwiseTransferFee"]];
+    [result setTransferwisePayIn:data[@"transferwisePayIn"]];
+    [result setTransferwisePayOut:data[@"transferwisePayOut"]];
+    [result setBankRate:data[@"bankRate"]];
+    [result setBankTransferFee:data[@"bankTransferFee"]];
+    [result setBankRateMarkup:data[@"bankRateMarkup"]];
+    [result setBankTotalFee:data[@"bankTotalFee"]];
+    [result setBankPayIn:data[@"bankPayIn"]];
+    [result setBankPayOut:data[@"bankPayOut"]];
+    [result setEstimatedDelivery:[self deliveryDate:data[@"estimatedDelivery"]]];
     return result;
 }
 
@@ -89,28 +88,20 @@
     return [[MoneyFormatter sharedInstance] formatAmount:number withCurrency:self.targetCurrency];
 }
 
+NSNumberFormatter *__formatter;
 - (NSString *)rateStringFrom:(NSNumber *)number {
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    [formatter setLocale:[CalculationResult defaultLocale]];
-    [formatter setMinimumFractionDigits:4];
-    return [formatter stringFromNumber:number];
-}
-
-static NSNumberFormatter *__moneyFormatter;
-+ (NSNumberFormatter *)moneyReadFormatter {
-    if (!__moneyFormatter) {
-        __moneyFormatter = [[NSNumberFormatter alloc] init];
-        //TODO jaanus: check this. Needed because actual user locale may require numbers containing ',' instead of '.'
-        [__moneyFormatter setLocale:[CalculationResult defaultLocale]];
-        [__moneyFormatter setGeneratesDecimalNumbers:YES];
+    if (!__formatter) {
+        __formatter = [[NSNumberFormatter alloc] init];
+        [__formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        [__formatter setLocale:[CalculationResult defaultLocale]];
+        [__formatter setMinimumFractionDigits:4];
     }
 
-    return __moneyFormatter;
+    return [__formatter stringFromNumber:number];
 }
 
 - (NSString *)paymentDateString {
-    return [[CalculationResult paymentDateFormatter] stringFromDate:self.paymentDate];
+    return [[CalculationResult paymentDateFormatter] stringFromDate:self.estimatedDelivery];
 }
 
 + (NSLocale *)defaultLocale {
@@ -126,6 +117,16 @@ NSDateFormatter *__paymentDateFormatter;
     }
 
     return __paymentDateFormatter;
+}
+
+NSDateFormatter *__deliveryDateFormatter;
++ (NSDate *)deliveryDate:(NSString *)dateString {
+    if (!__deliveryDateFormatter) {
+        __deliveryDateFormatter = [[NSDateFormatter alloc] init];
+        [__deliveryDateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+        [__deliveryDateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    }
+    return [__deliveryDateFormatter dateFromString:dateString];
 }
 
 @end
