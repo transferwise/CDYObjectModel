@@ -331,6 +331,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (void)handleSelectionChangeToType:(RecipientType *)type {
     NSArray *cells = [self buildCellsForType:type];
+    [self setSelectedRecipientType:type];
     [self setRecipientTypeFieldCells:cells];
     [self setPresentedSectionCells:@[@[self.importCell], self.recipientCells, self.currencyCells, cells]];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kRecipientFieldsSection] withRowAnimation:UITableViewRowAnimationFade];
