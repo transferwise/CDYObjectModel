@@ -34,6 +34,7 @@
 #import "AddressBookUI/ABPeoplePickerNavigationController.h"
 #import "PhoneBookProfileSelector.h"
 #import "PhoneBookProfile.h"
+#import "Credentials.h"
 
 static NSUInteger const kImportSection = 0;
 static NSUInteger const kRecipientSection = 1;
@@ -175,7 +176,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     };
 
     UserRecipientsOperation *recipientsOperation = nil;
-    if (self.preloadRecipientsWithCurrency) {
+    if (self.preloadRecipientsWithCurrency && [Credentials userLoggedIn]) {
         recipientsOperation = [UserRecipientsOperation recipientsOperationWithCurrency:self.preloadRecipientsWithCurrency];
         [recipientsOperation setResponseHandler:^(NSArray *recipients, NSError *error) {
             if (error) {
@@ -380,37 +381,50 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         return;
     }
 
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    data[@"name"] = [self.nameCell value];
-    data[@"currency"] = [self.selectedCurrency code];
-    data[@"type"] = [self.selectedRecipientType type];
+    Recipient *recipient = [[Recipient alloc] init];
+    recipient.name = self.nameCell.value;
+    recipient.currency = self.selectedCurrency.code;
+    recipient.type = self.selectedRecipientType.type;
+
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
         if ([cell isKindOfClass:[DropdownCell class]]) {
-            data[@"usState"] = [cell value];
+            recipient.usState = cell.value;
             continue;
         }
 
         NSString *value = [cell value];
         NSString *field = [cell.type name];
-        data[field] = value;
+        [recipient setValue:value forKeyPath:field];
     }
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
-    [hud setMessage:NSLocalizedString(@"recipient.controller.creating.message", nil)];
+    if ([Credentials userLoggedIn]) {
+        [hud setMessage:NSLocalizedString(@"recipient.controller.creating.message", nil)];
+    } else {
+        [hud setMessage:NSLocalizedString(@"recipient.controller.validating.message", nil)];
+    }
 
-    CreateRecipientOperation *operation = [CreateRecipientOperation operationWithData:data];
+    CreateRecipientOperation *operation = [CreateRecipientOperation operationWithRecipient:recipient];
     [self setExecutedOperation:operation];
-    [operation setResponseHandler:^(Recipient *recipient, NSError *error) {
+    [operation setResponseHandler:^(Recipient *serverRecipient, NSError *error) {
         [hud hide];
 
         if (error) {
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.save.error.title", nil) error:error];
+            NSString *title;
+            if ([Credentials userLoggedIn]) {
+                title = NSLocalizedString(@"recipient.controller.save.error.title", nil);
+            } else {
+                title = NSLocalizedString(@"recipient.controller.validate.error.title", nil);
+            }
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:title error:error];
             [alertView show];
             return;
         }
 
-        if (self.preloadRecipientsWithCurrency) {
+        if (![Credentials userLoggedIn]) {
             [self setSelectedRecipient:recipient];
+        } else if (self.preloadRecipientsWithCurrency) {
+            [self setSelectedRecipient:serverRecipient];
         }
 
         self.afterSaveAction();

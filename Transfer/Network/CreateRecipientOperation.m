@@ -7,29 +7,36 @@
 //
 
 NSString *const kCreateRecipientPath = @"/recipient/create";
+NSString *const kValidateRecipientPath = @"/recipient/validate";
 
 #import "CreateRecipientOperation.h"
 #import "Recipient.h"
 #import "TransferwiseOperation+Private.h"
+#import "Credentials.h"
 
 @interface CreateRecipientOperation ()
 
-@property (nonatomic, strong) NSDictionary *data;
+@property (nonatomic, strong) Recipient *recipient;
 
 @end
 
 @implementation CreateRecipientOperation
 
-- (id)initWithData:(NSDictionary *)data {
+- (id)initWithRecipient:(Recipient *)recipient {
     self = [super init];
     if (self) {
-        _data = data;
+        _recipient = recipient;
     }
     return self;
 }
 
 - (void)execute {
-    NSString *path = [self addTokenToPath:kCreateRecipientPath];
+    NSString *path;
+    if ([Credentials userLoggedIn]) {
+        path = [self addTokenToPath:kCreateRecipientPath];
+    } else {
+        path = [self addTokenToPath:kValidateRecipientPath];
+    }
 
     __block __weak CreateRecipientOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
@@ -41,11 +48,11 @@ NSString *const kCreateRecipientPath = @"/recipient/create";
         weakSelf.responseHandler(recipient, nil);
     }];
 
-    [self postData:self.data toPath:path];
+    [self postData:[self.recipient data] toPath:path];
 }
 
-+ (CreateRecipientOperation *)operationWithData:(NSDictionary *)data {
-    return [[CreateRecipientOperation alloc] initWithData:data];
++ (CreateRecipientOperation *)operationWithRecipient:(Recipient *)recipient {
+    return [[CreateRecipientOperation alloc] initWithRecipient:recipient];
 }
 
 @end

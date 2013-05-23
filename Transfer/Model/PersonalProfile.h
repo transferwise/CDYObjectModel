@@ -25,5 +25,6 @@
 
 - (BOOL)identityVerifiedValue;
 - (BOOL)addressVerifiedValue;
+- (NSDictionary *)data;
 
 @end

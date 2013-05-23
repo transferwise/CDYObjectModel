@@ -11,20 +11,7 @@
 
 @interface Recipient ()
 
-@property (nonatomic, strong) NSNumber *recipientId;
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *currency;
-@property (nonatomic, copy) NSString *type;
-@property (nonatomic, copy) NSString *IBAN;
-@property (nonatomic, copy) NSString *BIC;
-@property (nonatomic, copy) NSString *abartn;
-@property (nonatomic, copy) NSString *accountNumber;
-@property (nonatomic, copy) NSString *usState;
-@property (nonatomic, copy) NSString *sortCode;
-@property (nonatomic, copy) NSString *swiftCode;
-@property (nonatomic, copy) NSString *bankCode;
-@property (nonatomic, copy) NSString *email;
-@property (nonatomic, strong) NSNumber *totalTransferred;
+@property (nonatomic, strong) NSNumber *id;
 
 @end
 
@@ -95,7 +82,7 @@
     }
 
     Recipient *recipient = [[Recipient alloc] init];
-    [recipient setRecipientId:data[@"id"]];
+    [recipient setId:data[@"id"]];
     [recipient setName:data[@"name"]];
     [recipient setCurrency:data[@"currency"]];
     [recipient setType:data[@"type"]];
@@ -109,6 +96,32 @@
     [recipient setBankCode:data[@"bankCode"]];
     recipient.totalTransferred = data[@"totalTransferred"];
     return recipient;
+}
+
+- (NSDictionary *)data {
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    [self appendData:@"id" data:dictionary];
+    [self appendData:@"name" data:dictionary];
+    [self appendData:@"currency" data:dictionary];
+    [self appendData:@"type" data:dictionary];
+    [self appendData:@"IBAN" data:dictionary];
+    [self appendData:@"BIC" data:dictionary];
+    [self appendData:@"abartn" data:dictionary];
+    [self appendData:@"accountNumber" data:dictionary];
+    [self appendData:@"usState" data:dictionary];
+    [self appendData:@"sortCode" data:dictionary];
+    [self appendData:@"swiftCode" data:dictionary];
+    [self appendData:@"bankCode" data:dictionary];
+    return [NSDictionary dictionaryWithDictionary:dictionary];
+}
+
+- (void)appendData:(NSString *)key data:(NSMutableDictionary *)data {
+    id value = [self valueForKeyPath:key];
+    if (!value) {
+        return;
+    }
+
+    data[key] = value;
 }
 
 @end

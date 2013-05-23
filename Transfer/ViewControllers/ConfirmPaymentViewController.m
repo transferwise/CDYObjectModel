@@ -201,7 +201,7 @@ static NSUInteger const kReceiverSection = 1;
     [self.yourDepositValueLabel setText:[self.calculationResult transferwisePayInStringWithCurrency]];
     [self.exchangedToValueLabel setText:[self.calculationResult transferwisePayOutStringWithCurrency]];
 
-    NSString *rateString = [NSString stringWithFormat:@"%@", self.calculationResult.transferwiseRate];
+    NSString *rateString = self.calculationResult.transferwiseRateString;
     NSString *messageString = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.estimated.exchange.rate.message", nil), rateString];
     NSAttributedString *exchangeRateString = [self attributedStringWithBase:messageString markedString:rateString];
     [self.estimatedExchangeRateLabel setAttributedText:exchangeRateString];
@@ -233,7 +233,7 @@ static NSUInteger const kReceiverSection = 1;
     CreatePaymentOperation *operation = [CreatePaymentOperation operation];
     [self setExecutedOperation:operation];
 
-    [operation setRecipientId:self.recipient.recipientId];
+    [operation setRecipientId:self.recipient.id];
     [operation setSourceCurrency:self.calculationResult.sourceCurrency];
     [operation setTargetCurrency:self.calculationResult.targetCurrency];
     [operation setAmount:self.calculationResult.amount];

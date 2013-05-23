@@ -9,10 +9,12 @@
 #import "TransferwiseOperation.h"
 #import "UserDetailsOperation.h"
 
+@class PersonalProfile;
+
 @interface SavePersonalProfileOperation : TransferwiseOperation
 
 @property (nonatomic, copy) TWProfileDetailsHandler saveResultHandler;
 
-+ (SavePersonalProfileOperation *)operationWithData:(NSDictionary *)data;
++ (SavePersonalProfileOperation *)operationWithProfile:(PersonalProfile *)profile;
 
 @end

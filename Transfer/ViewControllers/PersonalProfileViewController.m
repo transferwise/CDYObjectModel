@@ -23,6 +23,7 @@
 #import "PhoneBookProfileSelector.h"
 #import "PhoneBookProfile.h"
 #import "PhoneBookAddress.h"
+#import "Credentials.h"
 
 static NSUInteger const kButtonSection = 0;
 static NSUInteger const kPersonalSection = 1;
@@ -146,7 +147,32 @@ static NSUInteger const kPersonalSection = 1;
 
     [self.navigationItem setTitle:NSLocalizedString(@"personal.profile.controller.title", nil)];
 
-    [self pullUserDetails];
+    if ([Credentials userLoggedIn]) {
+        [self pullUserDetails];
+    } else {
+        [self pullCountries];
+    }
+}
+
+- (void)pullCountries {
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    [hud setMessage:NSLocalizedString(@"personal.profile.refreshing.countries.message", nil)];
+
+    [[TransferwiseClient sharedClient] updateCountriesWithCompletionHandler:^(NSArray *countries, NSError *error) {
+        [hud hide];
+        if (error) {
+            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.countries.refresh.error.title", nil)
+                                                               message:NSLocalizedString(@"personal.profile.countries.refresh.error.message", nil)];
+            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+            [alertView show];
+            return;
+        }
+
+        [self.countryCell setAllCountries:countries];
+        [self setPresentedSectionCells:self.presentedCells];
+        [self.tableView setTableFooterView:self.footer];
+        [self.tableView reloadData];
+    }];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -268,31 +294,48 @@ static NSUInteger const kPersonalSection = 1;
     }
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-    [hud setMessage:NSLocalizedString(@"personal.profile.saving.message", nil)];
+    if ([Credentials userLoggedIn]) {
+        [hud setMessage:NSLocalizedString(@"personal.profile.saving.message", nil)];
+    } else {
+        [hud setMessage:NSLocalizedString(@"personal.profile.verify.message", nil)];
+    }
 
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    data[@"firstName"] = [self.firstNameCell value];
-    data[@"lastName"] = [self.lastNameCell value];
-    data[@"dateOfBirth"] = [self.dateOfBirthCell value];
-    data[@"phoneNumber"] = [self.phoneNumberCell value];
-    data[@"addressFirstLine"] = [self.addressCell value];
-    data[@"postCode"] = [self.postCodeCell value];
-    data[@"city"] = [self.cityCell value];
-    data[@"countryCode"] = [self.countryCell value];
+    PersonalProfile *profile = [[PersonalProfile alloc] init];
+    profile.firstName = self.firstNameCell.value;
+    profile.lastName = self.lastNameCell.value;
+    profile.phoneNumber = self.phoneNumberCell.value;
+    profile.addressFirstLine = self.addressCell.value;
+    profile.postCode = self.postCodeCell.value;
+    profile.city = self.cityCell.value;
+    profile.countryCode = self.countryCell.value;
+    profile.dateOfBirthString = [self.dateOfBirthCell value];
 
-    SavePersonalProfileOperation *operation = [SavePersonalProfileOperation operationWithData:data];
+    SavePersonalProfileOperation *operation = [SavePersonalProfileOperation operationWithProfile:profile];
     [self setExecutedOperation:operation];
 
     [operation setSaveResultHandler:^(ProfileDetails *result, NSError *error) {
         [hud hide];
 
         if (error) {
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"personal.profile.save.error.title", nil) error:error];
+            NSString *title;
+            if ([Credentials userLoggedIn]) {
+                title = NSLocalizedString(@"personal.profile.save.error.title", nil);
+            } else {
+                title = NSLocalizedString(@"personal.profile.verify.error.title", nil);
+            }
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:title error:error];
             [alertView show];
             return;
         }
 
-        [self setUserDetails:result];
+        if (![Credentials userLoggedIn]) {
+            ProfileDetails *details = [[ProfileDetails alloc] init];
+            [details setPersonalProfile:profile];
+            [self setUserDetails:details];
+        } else {
+            [self setUserDetails:result];
+        }
+
         [self loadDetailsToCells];
 
         self.afterSaveAction();
