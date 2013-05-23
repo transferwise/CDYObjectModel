@@ -26,5 +26,6 @@
 - (NSString *)detailsRowTwo;
 
 + (Recipient *)recipientWithData:(NSDictionary *)data;
+- (NSString *)totalTransferredString;
 
 @end

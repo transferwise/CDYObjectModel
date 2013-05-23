@@ -7,6 +7,7 @@
 //
 
 #import "Recipient.h"
+#import "MoneyFormatter.h"
 
 @interface Recipient ()
 
@@ -34,6 +35,10 @@
     [description appendString:self.name];
     [description appendString:@">"];
     return description;
+}
+
+- (NSString *)totalTransferredString {
+    return [[MoneyFormatter sharedInstance] formatAmount:self.totalTransferred withCurrency:self.currency];
 }
 
 - (NSString *)detailsRowOne {
