@@ -135,8 +135,6 @@
 		EAAA1484171BC911005B9430 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAAA1483171BC911005B9430 /* Default-568h@2x.png */; };
 		EAAA1487171BC911005B9430 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EAAA1485171BC911005B9430 /* Transfer.xcdatamodeld */; };
 		EAAA1490171BD07E005B9430 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAAA148E171BD07E005B9430 /* Localizable.strings */; };
-		EAAC20341742241B001DDE7A /* StatesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAC20331742241B001DDE7A /* StatesOperation.m */; };
-		EAAC2038174226D3001DDE7A /* USState.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAC2037174226D3001DDE7A /* USState.m */; };
 		EAAC203B17422AB3001DDE7A /* DropdownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAC203A17422AB3001DDE7A /* DropdownCell.m */; };
 		EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAAC203C17422ADB001DDE7A /* DropdownCell.xib */; };
 		EAAF8FB017436730008DF9E2 /* CreatePaymentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAF8FAF17436730008DF9E2 /* CreatePaymentOperation.m */; };
@@ -174,6 +172,7 @@
 		EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66780174CB34600D29BCB /* PhoneBookProfile.m */; };
 		EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */; };
 		EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */; };
+		EAD667AB174E250600D29BCB /* StringValue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD667AA174E250600D29BCB /* StringValue.m */; };
 		EAD7368A171E6CB100A037B1 /* GrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD73689171E6CB100A037B1 /* GrayButton.m */; };
 		EAD7368D171E6D5A00A037B1 /* GrayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368B171E6D5A00A037B1 /* GrayButton.png */; };
 		EAD7368E171E6D5A00A037B1 /* GrayButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */; };
@@ -416,10 +415,6 @@
 		EAAA1483171BC911005B9430 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EAAA1486171BC911005B9430 /* Transfer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer.xcdatamodel; sourceTree = "<group>"; };
 		EAAA148F171BD07E005B9430 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		EAAC20321742241B001DDE7A /* StatesOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatesOperation.h; sourceTree = "<group>"; };
-		EAAC20331742241B001DDE7A /* StatesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatesOperation.m; sourceTree = "<group>"; };
-		EAAC2036174226D3001DDE7A /* USState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USState.h; sourceTree = "<group>"; };
-		EAAC2037174226D3001DDE7A /* USState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USState.m; sourceTree = "<group>"; };
 		EAAC203917422AB3001DDE7A /* DropdownCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropdownCell.h; sourceTree = "<group>"; };
 		EAAC203A17422AB3001DDE7A /* DropdownCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropdownCell.m; sourceTree = "<group>"; };
 		EAAC203C17422ADB001DDE7A /* DropdownCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropdownCell.xib; sourceTree = "<group>"; };
@@ -475,6 +470,8 @@
 		EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneBookProfileSelector.m; sourceTree = "<group>"; };
 		EAD66785174CD3FE00D29BCB /* PhoneBookAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneBookAddress.h; sourceTree = "<group>"; };
 		EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneBookAddress.m; sourceTree = "<group>"; };
+		EAD667A9174E250600D29BCB /* StringValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringValue.h; sourceTree = "<group>"; };
+		EAD667AA174E250600D29BCB /* StringValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringValue.m; sourceTree = "<group>"; };
 		EAD73688171E6CB100A037B1 /* GrayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrayButton.h; sourceTree = "<group>"; };
 		EAD73689171E6CB100A037B1 /* GrayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrayButton.m; sourceTree = "<group>"; };
 		EAD7368B171E6D5A00A037B1 /* GrayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GrayButton.png; sourceTree = "<group>"; };
@@ -710,8 +707,8 @@
 				EA4AA6051737940900E99150 /* RecipientType.m */,
 				EA4AA608173794A600E99150 /* RecipientTypeField.h */,
 				EA4AA609173794A600E99150 /* RecipientTypeField.m */,
-				EAAC2036174226D3001DDE7A /* USState.h */,
-				EAAC2037174226D3001DDE7A /* USState.m */,
+				EAD667A9174E250600D29BCB /* StringValue.h */,
+				EAD667AA174E250600D29BCB /* StringValue.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -794,8 +791,6 @@
 				1864AC9D173B7C80008773FC /* SaveBusinessProfileOperation.m */,
 				EAD85B09173920C300C22211 /* SavePersonalProfileOperation.h */,
 				EAD85B0A173920C300C22211 /* SavePersonalProfileOperation.m */,
-				EAAC20321742241B001DDE7A /* StatesOperation.h */,
-				EAAC20331742241B001DDE7A /* StatesOperation.m */,
 				EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */,
 				EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */,
 				EA88E680172F97D50021492C /* TransferwiseClient.h */,
@@ -1308,8 +1303,6 @@
 				EA222E38173A861000C5D613 /* ConfirmPaymentViewController.m in Sources */,
 				EA222E3C173A8A7100C5D613 /* ConfirmPaymentCell.m in Sources */,
 				EA042600173CF5C50048BFBD /* RecipientEntrySelectionCell.m in Sources */,
-				EAAC20341742241B001DDE7A /* StatesOperation.m in Sources */,
-				EAAC2038174226D3001DDE7A /* USState.m in Sources */,
 				EAAC203B17422AB3001DDE7A /* DropdownCell.m in Sources */,
 				BB29BD43173CCD580016A6E9 /* BankTransfer.m in Sources */,
 				BB29BD47173CD2FF0016A6E9 /* UploadMoneyViewController.m in Sources */,
@@ -1322,6 +1315,7 @@
 				EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */,
 				EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */,
 				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
+				EAD667AB174E250600D29BCB /* StringValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

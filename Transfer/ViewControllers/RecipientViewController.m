@@ -29,7 +29,6 @@
 #import "UIView+Loading.h"
 #import "UserRecipientsOperation.h"
 #import "RecipientEntrySelectionCell.h"
-#import "StatesOperation.h"
 #import "DropdownCell.h"
 #import "ButtonCell.h"
 #import "AddressBookUI/ABPeoplePickerNavigationController.h"
@@ -71,7 +70,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, strong) NSArray *allCurrencies;
 @property (nonatomic, strong) NSArray *recipientsForCurrency;
 @property (nonatomic, strong) Recipient *selectedRecipient;
-@property (nonatomic, strong) NSArray *states;
 
 @property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
 
@@ -214,21 +212,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         });
     }];
 
-    StatesOperation *statesOperation = [StatesOperation operation];
-    [statesOperation setCompletionHandler:^(NSArray *states, NSError *error) {
-        if (error) {
-            [hud hide];
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.sattes.load.error.title", nil) error:error];
-            [alertView show];
-            return;
-        }
-
-        [self setStates:states];
-
-        [self setExecutedOperation:typesOperation];
-        [typesOperation execute];
-    }];
-
     CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
     [self setExecutedOperation:currenciesOperation];
     [currenciesOperation setResultHandler:^(NSArray *currencies, NSError *error) {
@@ -241,8 +224,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
         [self setAllCurrencies:currencies];
 
-        [self setExecutedOperation:statesOperation];
-        [statesOperation execute];
+        [self setExecutedOperation:typesOperation];
+        [typesOperation execute];
     }];
 
     [currenciesOperation execute];
@@ -355,9 +338,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 - (NSArray *)buildCellsForType:(RecipientType *)type {
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:[type.fields count]];
     for (RecipientTypeField *field in type.fields) {
+        //TODO jaanus: make this more generic
         if ([field.name isEqualToString:@"usState"]) {
             DropdownCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWDropdownCellIdentifier];
-            [cell setAllElements:self.states];
+            [cell setAllElements:field.possibleValues];
             [cell configureWithTitle:field.title value:@""];
             [result addObject:cell];
         } else {

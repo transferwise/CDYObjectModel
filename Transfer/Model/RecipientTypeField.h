@@ -12,6 +12,7 @@
 
 @property (nonatomic, copy, readonly) NSString *title;
 @property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, strong, readonly) NSArray *possibleValues;
 
 + (RecipientTypeField *)fieldWithData:(NSDictionary *)data;
 
