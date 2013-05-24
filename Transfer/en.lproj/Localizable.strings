@@ -37,9 +37,11 @@
 "confirm.payment.footer.button.title" = "Confirm payment";
 "confirm.payment.payment.error.title" = "Can't make payment";
 "confirm.payment.pulling.data" = "Pulling data...";
+"confirm.payment.receiver.section.title" = "Receiver";
 "confirm.payment.recipient.marker.label" = "Receiver";
 "confirm.payment.reference.label" = "Reference";
 "confirm.payment.sender.marker.label" = "Sender (you)";
+"confirm.payment.sender.section.title" = "Sender";
 
 "contacts.controller.delete.confirmation.message" = "Are you sure you wish to remove %@ from contacts?";
 "contacts.controller.delete.conformation.title" = "Delete contact";
@@ -217,4 +219,3 @@
 
 "recipient.type.IBAN.name" = "IBAN";
 "recipient.type.SORT_CODE.name" = "UK SORT";
-

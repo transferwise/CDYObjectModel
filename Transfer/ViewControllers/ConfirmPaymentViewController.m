@@ -24,6 +24,7 @@
 #import "NSString+Validation.h"
 #import "RecipientTypesOperation.h"
 
+static NSUInteger const kSenderSection = 0;
 static NSUInteger const kReceiverSection = 1;
 
 @interface ConfirmPaymentViewController ()
@@ -274,6 +275,18 @@ static NSUInteger const kReceiverSection = 1;
     [attributedString setFont:[UIFont boldSystemFontOfSize:12] range:rateRange];
     [attributedString setTextColor:[UIColor blackColor]];
     return [[NSAttributedString alloc] initWithAttributedString:attributedString];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == kSenderSection) {
+        return NSLocalizedString(@"confirm.payment.sender.section.title", nil);
+    }
+
+    if (section == kReceiverSection) {
+        return NSLocalizedString(@"confirm.payment.receiver.section.title", nil);
+    }
+
+    return nil;
 }
 
 @end
