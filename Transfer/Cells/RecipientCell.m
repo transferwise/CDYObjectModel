@@ -15,7 +15,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *nameLabel;
 @property (nonatomic, strong) IBOutlet UILabel *accountLabel;
 @property (nonatomic, strong) IBOutlet UILabel *bankLabel;
-@property (nonatomic, strong) IBOutlet UILabel *totalTransferredLabel;
 
 @end
 
@@ -40,22 +39,6 @@
     [self.nameLabel setText:[recipient name]];
     [self.accountLabel setText:[recipient detailsRowOne]];
     [self.bankLabel setText:[recipient detailsRowTwo]];
-    [self.totalTransferredLabel setText:[recipient totalTransferredString]];
-
-    [self sizeLeftLabel:self.nameLabel rightLabel:self.totalTransferredLabel];
-}
-
-- (void)sizeLeftLabel:(UILabel *)leftLabel rightLabel:(UILabel *)rightLabel {
-    CGRect rightFrame = rightLabel.frame;
-    CGSize rightSize = [rightLabel sizeThatFits:CGSizeMake(NSUIntegerMax, CGRectGetHeight(rightFrame))];
-    CGFloat rightWidthChange = rightSize.width - CGRectGetWidth(rightFrame);
-    rightFrame.origin.x -= rightWidthChange;
-    rightFrame.size.width += rightWidthChange;
-    [rightLabel setFrame:rightFrame];
-
-    CGRect leftFrame = leftLabel.frame;
-    leftFrame.size.width -= rightWidthChange;
-    [leftLabel setFrame:leftFrame];
 }
 
 @end

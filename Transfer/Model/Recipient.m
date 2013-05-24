@@ -24,7 +24,6 @@
 @property (nonatomic, copy) NSString *swiftCode;
 @property (nonatomic, copy) NSString *bankCode;
 @property (nonatomic, copy) NSString *email;
-@property (nonatomic, strong) NSNumber *totalTransferred;
 
 @end
 
@@ -35,10 +34,6 @@
     [description appendString:self.name];
     [description appendString:@">"];
     return description;
-}
-
-- (NSString *)totalTransferredString {
-    return [[MoneyFormatter sharedInstance] formatAmount:self.totalTransferred withCurrency:self.currency];
 }
 
 - (NSString *)detailsRowOne {
@@ -107,7 +102,7 @@
     [recipient setSortCode:data[@"sortCode"]];
     [recipient setSwiftCode:data[@"swiftCode"]];
     [recipient setBankCode:data[@"bankCode"]];
-    recipient.totalTransferred = data[@"totalTransferred"];
+
     return recipient;
 }
 

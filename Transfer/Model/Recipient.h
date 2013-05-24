@@ -20,12 +20,10 @@
 @property (nonatomic, copy, readonly) NSString *accountNumber;
 @property (nonatomic, copy, readonly) NSString *sortCode;
 @property (nonatomic, copy, readonly) NSString *usState;
-@property (nonatomic, strong, readonly) NSNumber *totalTransferred;
 
 - (NSString *)detailsRowOne;
 - (NSString *)detailsRowTwo;
 
 + (Recipient *)recipientWithData:(NSDictionary *)data;
-- (NSString *)totalTransferredString;
 
 @end
