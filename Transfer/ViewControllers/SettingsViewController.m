@@ -14,6 +14,7 @@
 #import "BusinessProfileViewController.h"
 #import "SWRevealViewController.h"
 #import "SignUpViewController.h"
+#import "LoginViewController.h"
 
 NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
@@ -23,7 +24,8 @@ typedef NS_ENUM(short, SettingsRow) {
     PersonalProfileRow,
     BusinessProfileRow,
     SignUpRow,
-    FillerRow
+    FillerRow,
+    LogInRow
 };
 
 @interface SettingsViewController ()
@@ -67,6 +69,7 @@ typedef NS_ENUM(short, SettingsRow) {
         [presented addObject:@(FillerRow)];
         [presented addObject:@(LogoutRow)];
     } else {
+        [presented addObject:@(LogInRow)];
         [presented addObject:@(SignUpRow)];
     }
 
@@ -113,6 +116,9 @@ typedef NS_ENUM(short, SettingsRow) {
             break;
         case SignUpRow:
             [cell setTitle:NSLocalizedString(@"settings.row.signup", nil)];
+            break;
+        case LogInRow:
+            [cell setTitle:NSLocalizedString(@"settings.row.log.in", nil)];
             break;
         case FillerRow:
             [cell setTitle:@""];
@@ -170,6 +176,13 @@ typedef NS_ENUM(short, SettingsRow) {
             break;
         case BusinessProfileRow: {
             BusinessProfileViewController *controller = [[BusinessProfileViewController alloc] init];
+            [revealController revealToggle:nil];
+            [pushOnNavigationController pushViewController:controller animated:YES];
+        }
+        case LogInRow: {
+            LoginViewController *controller = [[LoginViewController alloc] init];
+            [controller setObjectModel:self.objectModel];
+            [self.navigationController pushViewController:controller animated:YES];
             [revealController revealToggle:nil];
             [pushOnNavigationController pushViewController:controller animated:YES];
         }

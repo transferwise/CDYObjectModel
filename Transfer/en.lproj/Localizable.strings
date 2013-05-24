@@ -67,6 +67,7 @@
 "settings.row.personal.profile" = "Your personal profile";
 "settings.row.business.profile" = "Your business profile";
 "settings.row.signup" = "Create an account";
+"settings.row.log.in" = "Log in";
 
 "personal.profile.continue.to.recipient.button.title" = "Continue to recipient details";
 "personal.profile.first.name.label" = "First name";
