@@ -113,6 +113,9 @@
     tapRecognizer.numberOfTapsRequired = 1;
     tapRecognizer.numberOfTouchesRequired = 1;
     [tapView addGestureRecognizer:tapRecognizer];
+    UIPanGestureRecognizer *directionPanGestureRecognizer = [revealController directionPanGestureRecognizer];
+    [directionPanGestureRecognizer setDelegate:nil];
+    [tapView addGestureRecognizer:directionPanGestureRecognizer];
     [front.view addSubview:tapView];
 
     [self setRevealTapView:tapView];
