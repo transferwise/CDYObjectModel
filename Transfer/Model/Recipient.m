@@ -11,7 +11,7 @@
 
 @interface Recipient ()
 
-@property (nonatomic, strong) NSNumber *id;
+@property (nonatomic, strong) NSNumber *recipientId;
 
 @end
 
@@ -22,10 +22,6 @@
     [description appendString:self.name];
     [description appendString:@">"];
     return description;
-}
-
-- (NSString *)totalTransferredString {
-    return [[MoneyFormatter sharedInstance] formatAmount:self.totalTransferred withCurrency:self.currency];
 }
 
 - (NSString *)detailsRowOne {
@@ -82,7 +78,7 @@
     }
 
     Recipient *recipient = [[Recipient alloc] init];
-    [recipient setId:data[@"id"]];
+    [recipient setRecipientId:data[@"id"]];
     [recipient setName:data[@"name"]];
     [recipient setCurrency:data[@"currency"]];
     [recipient setType:data[@"type"]];
@@ -94,7 +90,7 @@
     [recipient setSortCode:data[@"sortCode"]];
     [recipient setSwiftCode:data[@"swiftCode"]];
     [recipient setBankCode:data[@"bankCode"]];
-    recipient.totalTransferred = data[@"totalTransferred"];
+
     return recipient;
 }
 

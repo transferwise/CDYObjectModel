@@ -60,7 +60,7 @@
     UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SettingsButtonIcon.png"] style:UIBarButtonItemStylePlain target:revealController action:@selector(revealToggle:)];
     [tabController.navigationItem setLeftBarButtonItem:settingsButton];
 
-    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Logo.png"]];
+    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
     [tabController.navigationItem setTitleView:logoView];
 
     [self setDelegate:self];
@@ -113,6 +113,9 @@
     tapRecognizer.numberOfTapsRequired = 1;
     tapRecognizer.numberOfTouchesRequired = 1;
     [tapView addGestureRecognizer:tapRecognizer];
+    UIPanGestureRecognizer *directionPanGestureRecognizer = [revealController directionPanGestureRecognizer];
+    [directionPanGestureRecognizer setDelegate:nil];
+    [tapView addGestureRecognizer:directionPanGestureRecognizer];
     [front.view addSubview:tapView];
 
     [self setRevealTapView:tapView];

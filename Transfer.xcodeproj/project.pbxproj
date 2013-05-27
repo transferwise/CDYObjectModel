@@ -112,8 +112,6 @@
 		EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6BA171D26A00090A658 /* LoginOperation.m */; };
 		EAA54F3E1733CA7800B65BF3 /* ContactsTabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F361733CA7800B65BF3 /* ContactsTabIcon.png */; };
 		EAA54F3F1733CA7800B65BF3 /* ContactsTabIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F371733CA7800B65BF3 /* ContactsTabIcon@2x.png */; };
-		EAA54F401733CA7800B65BF3 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F381733CA7800B65BF3 /* Logo.png */; };
-		EAA54F411733CA7800B65BF3 /* Logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F391733CA7800B65BF3 /* Logo@2x.png */; };
 		EAA54F421733CA7800B65BF3 /* NewPaymentTabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F3A1733CA7800B65BF3 /* NewPaymentTabIcon.png */; };
 		EAA54F431733CA7800B65BF3 /* NewPaymentTabIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F3B1733CA7800B65BF3 /* NewPaymentTabIcon@2x.png */; };
 		EAA54F441733CA7800B65BF3 /* TransactionsTabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F3C1733CA7800B65BF3 /* TransactionsTabIcon.png */; };
@@ -173,6 +171,9 @@
 		EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */; };
 		EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */; };
 		EAD667AB174E250600D29BCB /* StringValue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD667AA174E250600D29BCB /* StringValue.m */; };
+		EAD667C6174F4C7300D29BCB /* TWlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD667C4174F4C7200D29BCB /* TWlogo.png */; };
+		EAD667C7174F4C7300D29BCB /* TWlogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD667C5174F4C7300D29BCB /* TWlogo@2x.png */; };
+		EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */; };
 		EAD7368A171E6CB100A037B1 /* GrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD73689171E6CB100A037B1 /* GrayButton.m */; };
 		EAD7368D171E6D5A00A037B1 /* GrayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368B171E6D5A00A037B1 /* GrayButton.png */; };
 		EAD7368E171E6D5A00A037B1 /* GrayButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */; };
@@ -385,8 +386,6 @@
 		EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonEditTextField.m; sourceTree = "<group>"; };
 		EAA54F361733CA7800B65BF3 /* ContactsTabIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContactsTabIcon.png; sourceTree = "<group>"; };
 		EAA54F371733CA7800B65BF3 /* ContactsTabIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ContactsTabIcon@2x.png"; sourceTree = "<group>"; };
-		EAA54F381733CA7800B65BF3 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
-		EAA54F391733CA7800B65BF3 /* Logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo@2x.png"; sourceTree = "<group>"; };
 		EAA54F3A1733CA7800B65BF3 /* NewPaymentTabIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewPaymentTabIcon.png; sourceTree = "<group>"; };
 		EAA54F3B1733CA7800B65BF3 /* NewPaymentTabIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NewPaymentTabIcon@2x.png"; sourceTree = "<group>"; };
 		EAA54F3C1733CA7800B65BF3 /* TransactionsTabIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TransactionsTabIcon.png; sourceTree = "<group>"; };
@@ -472,6 +471,10 @@
 		EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneBookAddress.m; sourceTree = "<group>"; };
 		EAD667A9174E250600D29BCB /* StringValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringValue.h; sourceTree = "<group>"; };
 		EAD667AA174E250600D29BCB /* StringValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringValue.m; sourceTree = "<group>"; };
+		EAD667C4174F4C7200D29BCB /* TWlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TWlogo.png; sourceTree = "<group>"; };
+		EAD667C5174F4C7300D29BCB /* TWlogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TWlogo@2x.png"; sourceTree = "<group>"; };
+		EAD667C9174F6F7B00D29BCB /* DismissKeyboardTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissKeyboardTableView.h; sourceTree = "<group>"; };
+		EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissKeyboardTableView.m; sourceTree = "<group>"; };
 		EAD73688171E6CB100A037B1 /* GrayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrayButton.h; sourceTree = "<group>"; };
 		EAD73689171E6CB100A037B1 /* GrayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrayButton.m; sourceTree = "<group>"; };
 		EAD7368B171E6D5A00A037B1 /* GrayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GrayButton.png; sourceTree = "<group>"; };
@@ -565,6 +568,8 @@
 			children = (
 				EAD7D4CF171D4BB20099063F /* BlueButton.h */,
 				EAD7D4D0171D4BB20099063F /* BlueButton.m */,
+				EAD667C9174F6F7B00D29BCB /* DismissKeyboardTableView.h */,
+				EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */,
 				EAD73688171E6CB100A037B1 /* GrayButton.h */,
 				EAD73689171E6CB100A037B1 /* GrayButton.m */,
 				EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */,
@@ -994,8 +999,6 @@
 				EA35C73517324AF2005602F7 /* Icon-Small@2x.png */,
 				EA35C73617324AF2005602F7 /* Icon.png */,
 				EA35C73717324AF2005602F7 /* Icon@2x.png */,
-				EAA54F381733CA7800B65BF3 /* Logo.png */,
-				EAA54F391733CA7800B65BF3 /* Logo@2x.png */,
 				EA35C73817324AF2005602F7 /* NavBarBackButton.png */,
 				EA35C73917324AF2005602F7 /* NavBarBackButton@2x.png */,
 				EAB72150171FC34600DE29F5 /* NavBarButton.png */,
@@ -1012,6 +1015,8 @@
 				EAB72155171FC3E900DE29F5 /* SettingsButtonIcon@2x.png */,
 				EAA54F3C1733CA7800B65BF3 /* TransactionsTabIcon.png */,
 				EAA54F3D1733CA7800B65BF3 /* TransactionsTabIcon@2x.png */,
+				EAD667C4174F4C7200D29BCB /* TWlogo.png */,
+				EAD667C5174F4C7300D29BCB /* TWlogo@2x.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1146,8 +1151,6 @@
 				EA35C74417324AFE005602F7 /* SeparatorLine@2x.png in Resources */,
 				EAA54F3E1733CA7800B65BF3 /* ContactsTabIcon.png in Resources */,
 				EAA54F3F1733CA7800B65BF3 /* ContactsTabIcon@2x.png in Resources */,
-				EAA54F401733CA7800B65BF3 /* Logo.png in Resources */,
-				EAA54F411733CA7800B65BF3 /* Logo@2x.png in Resources */,
 				EAA54F421733CA7800B65BF3 /* NewPaymentTabIcon.png in Resources */,
 				EAA54F431733CA7800B65BF3 /* NewPaymentTabIcon@2x.png in Resources */,
 				EAA54F441733CA7800B65BF3 /* TransactionsTabIcon.png in Resources */,
@@ -1173,6 +1176,8 @@
 				BB29BD49173CD30D0016A6E9 /* UploadMoneyViewController.xib in Resources */,
 				BB29BD4B173CDF480016A6E9 /* TextCell.xib in Resources */,
 				EAD6675B174A51C700D29BCB /* ButtonCell.xib in Resources */,
+				EAD667C6174F4C7300D29BCB /* TWlogo.png in Resources */,
+				EAD667C7174F4C7300D29BCB /* TWlogo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1316,6 +1321,7 @@
 				EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */,
 				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
 				EAD667AB174E250600D29BCB /* StringValue.m in Sources */,
+				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

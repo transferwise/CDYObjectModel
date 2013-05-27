@@ -59,7 +59,7 @@ NSString *const kDeleteRecipientPath = @"/recipient/delete";
 }
 
 + (DeleteRecipientOperation *)operationWithRecipient:(Recipient *)recipient {
-    return [[DeleteRecipientOperation alloc] initWithRecipientId:recipient.id];
+    return [[DeleteRecipientOperation alloc] initWithRecipientId:recipient.recipientId];
 }
 
 

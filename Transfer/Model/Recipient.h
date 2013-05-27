@@ -10,7 +10,7 @@
 
 @interface Recipient : NSObject
 
-@property (nonatomic, strong, readonly) NSNumber *id;
+@property (nonatomic, strong, readonly) NSNumber *recipientId;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *currency;
 @property (nonatomic, copy) NSString *IBAN;
@@ -20,7 +20,6 @@
 @property (nonatomic, copy) NSString *accountNumber;
 @property (nonatomic, copy) NSString *sortCode;
 @property (nonatomic, copy) NSString *usState;
-@property (nonatomic, strong) NSNumber *totalTransferred;
 @property (nonatomic, copy) NSString *abartn;
 @property (nonatomic, copy) NSString *swiftCode;
 @property (nonatomic, copy) NSString *bankCode;
@@ -29,7 +28,6 @@
 - (NSString *)detailsRowTwo;
 
 + (Recipient *)recipientWithData:(NSDictionary *)data;
-- (NSString *)totalTransferredString;
 - (NSDictionary *)data;
 
 @end

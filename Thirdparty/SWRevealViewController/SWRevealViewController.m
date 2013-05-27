@@ -594,14 +594,18 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
 {
     if ( _panGestureRecognizer == nil )
     {
-        SWDirectionPanGestureRecognizer *customRecognizer =
-            [[SWDirectionPanGestureRecognizer alloc] initWithTarget:self action:@selector(_handleRevealGesture:)];
-        
-        customRecognizer.direction = SWDirectionPanGestureRecognizerHorizontal;
-        customRecognizer.delegate = self;
-        _panGestureRecognizer = customRecognizer ;
+        _panGestureRecognizer = [self directionPanGestureRecognizer];
     }
     return _panGestureRecognizer;
+}
+
+- (UIPanGestureRecognizer *)directionPanGestureRecognizer {
+    SWDirectionPanGestureRecognizer *customRecognizer =
+            [[SWDirectionPanGestureRecognizer alloc] initWithTarget:self action:@selector(_handleRevealGesture:)];
+
+    customRecognizer.direction = SWDirectionPanGestureRecognizerHorizontal;
+    customRecognizer.delegate = self;
+    return customRecognizer;
 }
 
 
