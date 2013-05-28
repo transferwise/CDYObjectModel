@@ -234,7 +234,7 @@ static NSUInteger const kReceiverSection = 1;
     CreatePaymentOperation *operation = [CreatePaymentOperation operation];
     [self setExecutedOperation:operation];
 
-    [operation setRecipientId:self.recipient.recipientId];
+    [operation setRecipientId:self.recipient.id];
     [operation setSourceCurrency:self.calculationResult.sourceCurrency];
     [operation setTargetCurrency:self.calculationResult.targetCurrency];
     [operation setAmount:self.calculationResult.amount];

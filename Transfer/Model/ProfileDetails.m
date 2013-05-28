@@ -12,7 +12,6 @@
 
 @interface ProfileDetails ()
 
-@property (nonatomic, copy) NSString *email;
 @property (nonatomic, copy) NSString *reference;
 
 @end

@@ -414,7 +414,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             if ([Credentials userLoggedIn]) {
                 title = NSLocalizedString(@"recipient.controller.save.error.title", nil);
             } else {
-                title = NSLocalizedString(@"recipient.controller.validate.error.title", nil);
+                title = NSLocalizedString(@"recipient.controller.validation.error.title", nil);
             }
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:title error:error];
             [alertView show];

@@ -152,8 +152,10 @@
 "recipient.controller.section.title.currency" = "Currency";
 "recipient.controller.section.title.recipient" = "Recipient";
 "recipient.controller.section.title.type.fields" = "Transfer details";
+"recipient.controller.validating.message" = "Validating...";
 "recipient.controller.validation.error.empty.name" = "Name not entered";
 "recipient.controller.validation.error.field.empty" = "%@ not entered";
+"recipient.controller.validation.error.title" = "Validation error";
 
 "recipient.details.ABA.base" = "ABA RTN: %@, State:%@";
 "recipient.details.BIC.base" = "BIC: %@";

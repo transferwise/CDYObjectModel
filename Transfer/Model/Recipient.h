@@ -10,7 +10,7 @@
 
 @interface Recipient : NSObject
 
-@property (nonatomic, strong, readonly) NSNumber *recipientId;
+@property (nonatomic, strong, readonly) NSNumber *id;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *currency;
 @property (nonatomic, copy) NSString *IBAN;

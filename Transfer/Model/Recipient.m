@@ -7,11 +7,10 @@
 //
 
 #import "Recipient.h"
-#import "MoneyFormatter.h"
 
 @interface Recipient ()
 
-@property (nonatomic, strong) NSNumber *recipientId;
+@property (nonatomic, strong) NSNumber *id;
 
 @end
 
@@ -78,7 +77,7 @@
     }
 
     Recipient *recipient = [[Recipient alloc] init];
-    [recipient setRecipientId:data[@"id"]];
+    [recipient setId:data[@"id"]];
     [recipient setName:data[@"name"]];
     [recipient setCurrency:data[@"currency"]];
     [recipient setType:data[@"type"]];

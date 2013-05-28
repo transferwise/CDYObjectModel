@@ -329,7 +329,11 @@ static NSUInteger const kPersonalSection = 1;
         }
 
         if (![Credentials userLoggedIn]) {
-            ProfileDetails *details = [[ProfileDetails alloc] init];
+            ProfileDetails *details = self.userDetails;
+            if (!details) {
+                details = [[ProfileDetails alloc] init];
+            }
+            [details setEmail:self.emailCell.value];
             [details setPersonalProfile:profile];
             [self setUserDetails:details];
         } else {
