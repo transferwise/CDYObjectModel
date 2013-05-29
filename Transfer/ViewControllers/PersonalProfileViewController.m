@@ -207,11 +207,11 @@ static NSUInteger const kPersonalSection = 1;
 
         [self.countryCell setAllCountries:countries];
 
-        [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(ProfileDetails *result, NSError *error) {
+        [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(ProfileDetails *result, NSError *userError) {
             [hud hide];
 
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (error) {
+                if (userError) {
                     TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.refresh.error.title", nil)
                                                                        message:NSLocalizedString(@"personal.profile.refresh.error.message", nil)];
                     [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
