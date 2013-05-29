@@ -16,6 +16,8 @@
 #import "IdentificationViewController.h"
 #import "UploadMoneyViewController.h"
 #import "Payment.h"
+#import "PaymentInput.h"
+#import "CreatePaymentOperation.h"
 
 @interface PaymentFlow ()
 
@@ -24,6 +26,8 @@
 @property (nonatomic, strong) RecipientType *recipientType;
 @property (nonatomic, strong) Payment *createdPayment;
 @property (nonatomic, strong) NSArray *recipientTypes;
+@property (nonatomic, copy) PaymentErrorBlock paymentErrorHandler;
+@property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
 @end
 
@@ -76,16 +80,12 @@
 - (void)presentPaymentConfirmation {
     MCLog(@"presentPaymentConfirmation");
     ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
-    __block __weak ConfirmPaymentViewController *weakController = controller;
     [controller setSenderDetails:self.userDetails];
     [controller setRecipient:self.recipient];
     [controller setRecipientType:self.recipientType];
     [controller setCalculationResult:self.calculationResult];
     [controller setFooterButtonTitle:NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
-    [controller setAfterSaveAction:^{
-        [self setCreatedPayment:weakController.createdPayment];
-        [self presentVerificationScreen];
-    }];
+    [controller setPaymentFlow:self];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -103,6 +103,25 @@
     [controller setPayment:self.createdPayment];
     [controller setRecipientTypes:self.recipientTypes];
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)validatePayment:(PaymentInput *)paymentInput errorHandler:(PaymentErrorBlock)errorHandler {
+    MCLog(@"Validate payment");
+    self.paymentErrorHandler = errorHandler;
+
+    CreatePaymentOperation *operation = [CreatePaymentOperation validateOperationWithInput:paymentInput];
+    [self setExecutedOperation:operation];
+
+    [operation setResponseHandler:^(Payment *payment, NSError *error) {
+        if (error) {
+            self.paymentErrorHandler(error);
+            return;
+        }
+
+        MCLog(@"Payment valid");
+    }];
+
+    [operation execute];
 }
 
 @end

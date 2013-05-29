@@ -13,6 +13,9 @@
 @class RecipientType;
 @class CalculationResult;
 @class Recipient;
+@class PaymentInput;
+
+typedef void (^PaymentErrorBlock)(NSError *error);
 
 @interface PaymentFlow : NSObject
 
@@ -23,5 +26,6 @@
 
 - (id)initWithPresentingController:(UINavigationController *)controller;
 - (void)presentSenderDetails;
+- (void)validatePayment:(PaymentInput *)paymentInput errorHandler:(PaymentErrorBlock)errorHandler;
 
 @end

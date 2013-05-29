@@ -70,6 +70,7 @@
 		EA4AA60A173794A600E99150 /* RecipientTypeField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA609173794A600E99150 /* RecipientTypeField.m */; };
 		EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */; };
 		EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */; };
+		EA592929175613FB007C0072 /* PaymentInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EA592928175613FB007C0072 /* PaymentInput.m */; };
 		EA88E65B172F96490021492C /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
 		EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
 		EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
@@ -305,6 +306,8 @@
 		EA4AA60B17379C9D00E99150 /* CurrencySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencySelectionCell.h; sourceTree = "<group>"; };
 		EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencySelectionCell.m; sourceTree = "<group>"; };
 		EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencySelectionCell.xib; sourceTree = "<group>"; };
+		EA592927175613FB007C0072 /* PaymentInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentInput.h; sourceTree = "<group>"; };
+		EA592928175613FB007C0072 /* PaymentInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentInput.m; sourceTree = "<group>"; };
 		EA88E659172F96490021492C /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credentials.h; path = Credentials/Credentials.h; sourceTree = "<group>"; };
 		EA88E65A172F96490021492C /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Credentials.m; path = Credentials/Credentials.m; sourceTree = "<group>"; };
 		EA88E65D172F96660021492C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -698,6 +701,8 @@
 				EA35C76717326AF4005602F7 /* Currency.m */,
 				EA35C7731732851C005602F7 /* Payment.h */,
 				EA35C7741732851C005602F7 /* Payment.m */,
+				EA592927175613FB007C0072 /* PaymentInput.h */,
+				EA592928175613FB007C0072 /* PaymentInput.m */,
 				EA88E66C172F97B10021492C /* PersonalProfile.h */,
 				EA88E66D172F97B10021492C /* PersonalProfile.m */,
 				EAD66785174CD3FE00D29BCB /* PhoneBookAddress.h */,
@@ -1322,6 +1327,7 @@
 				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
 				EAD667AB174E250600D29BCB /* StringValue.m in Sources */,
 				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,
+				EA592929175613FB007C0072 /* PaymentInput.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

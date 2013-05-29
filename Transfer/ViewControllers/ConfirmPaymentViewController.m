@@ -19,10 +19,11 @@
 #import "CreatePaymentOperation.h"
 #import "TRWProgressHUD.h"
 #import "TRWAlertView.h"
-#import "Payment.h"
 #import "TextEntryCell.h"
 #import "NSString+Validation.h"
 #import "RecipientTypesOperation.h"
+#import "PaymentInput.h"
+#import "PaymentFlow.h"
 
 static NSUInteger const kSenderSection = 0;
 static NSUInteger const kReceiverSection = 1;
@@ -48,7 +49,6 @@ static NSUInteger const kReceiverSection = 1;
 @property (nonatomic, strong) IBOutlet OHAttributedLabel *deliveryDateLabelLabel;
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
-@property (nonatomic, strong) Payment *createdPayment;
 
 - (IBAction)footerButtonPressed:(id)sender;
 
@@ -234,32 +234,26 @@ static NSUInteger const kReceiverSection = 1;
     CreatePaymentOperation *operation = [CreatePaymentOperation operation];
     [self setExecutedOperation:operation];
 
-    [operation setRecipientId:self.recipient.id];
-    [operation setSourceCurrency:self.calculationResult.sourceCurrency];
-    [operation setTargetCurrency:self.calculationResult.targetCurrency];
-    [operation setAmount:self.calculationResult.amount];
+    PaymentInput *input = [[PaymentInput alloc] init];
+    [input setRecipientId:self.recipient.id];
+    [input setSourceCurrency:self.calculationResult.sourceCurrency];
+    [input setTargetCurrency:self.calculationResult.targetCurrency];
+    [input setAmount:self.calculationResult.amount];
+
     NSString *reference = [self.referenceCell value];
     if ([reference hasValue]) {
-        [operation addReference:reference];
+        [input setReference:reference];
     }
+
     NSString *email = [self.receiverEmailCell value];
     if ([email hasValue]) {
-        [operation setEmail:email];
+        [input setEmail:email];
     }
 
-    [operation setResponseHandler:^(Payment *payment, NSError *error) {
-        [hud hide];
-        if (error) {
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
-            [alertView show];
-            return;
-        }
-
-        [self setCreatedPayment:payment];
-        self.afterSaveAction();
+    [self.paymentFlow validatePayment:input errorHandler:^(NSError *error) {
+        TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
+        [alertView show];
     }];
-
-    [operation execute];
 }
 
 - (NSAttributedString *)attributedStringWithBase:(NSString *)baseString markedString:(NSString *)marked {

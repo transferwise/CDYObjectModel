@@ -10,28 +10,32 @@
 #import "CreatePaymentOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Payment.h"
+#import "PaymentInput.h"
 
 NSString *const kCreatePaymentPath = @"/payment/create";
+NSString *const kValidatePaymentPath = @"/payment/validate";
 
 @interface CreatePaymentOperation ()
 
-@property (nonatomic, strong) NSMutableDictionary *data;
+@property (nonatomic, copy) NSString *path;
+@property (nonatomic, strong) PaymentInput *input;
 
 @end
 
 @implementation CreatePaymentOperation
 
-- (id)init {
+- (id)initWithPath:(NSString *)path input:(PaymentInput *)input {
     self = [super init];
     if (self) {
-        _data = [[NSMutableDictionary alloc] init];
+        _path = path;
+        _input = input;
     }
 
     return self;
 }
 
 - (void)execute {
-    NSString *path = [self addTokenToPath:kCreatePaymentPath];
+    NSString *path = [self addTokenToPath:self.path];
 
     __block __weak CreatePaymentOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
@@ -43,35 +47,15 @@ NSString *const kCreatePaymentPath = @"/payment/create";
         weakSelf.responseHandler(payment, nil);
     }];
 
-    [self postData:self.data toPath:path];
+    [self postData:[self.input data] toPath:path];
 }
 
 + (CreatePaymentOperation *)operation {
     return [[CreatePaymentOperation alloc] init];
 }
 
-- (void)setRecipientId:(NSNumber *)recipientId {
-    self.data[@"recipientId"] = recipientId;
-}
-
-- (void)setSourceCurrency:(NSString *)sourceCurrency {
-    self.data[@"sourceCurrency"] = sourceCurrency;
-}
-
-- (void)setTargetCurrency:(NSString *)targetCurrency {
-    self.data[@"targetCurrency"] = targetCurrency;
-}
-
-- (void)setAmount:(NSString *)amount {
-    self.data[@"amount"] = amount;
-}
-
-- (void)addReference:(NSString *)reference {
-    self.data[@"paymentReference"] = reference;
-}
-
-- (void)setEmail:(NSString *)email {
-    self.data[@"recipientEmail"] = email;
++ (CreatePaymentOperation *)validateOperationWithInput:(PaymentInput *)input {
+    return [[CreatePaymentOperation alloc] initWithPath:kValidatePaymentPath input:input];
 }
 
 @end
