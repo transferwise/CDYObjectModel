@@ -11,13 +11,14 @@
 #import "RecipientViewController.h"
 #import "ProfileDetails.h"
 #import "ConfirmPaymentViewController.h"
-#import "Recipient.h"
 #import "RecipientType.h"
 #import "IdentificationViewController.h"
 #import "UploadMoneyViewController.h"
 #import "Payment.h"
 #import "PaymentInput.h"
 #import "CreatePaymentOperation.h"
+#import "VerificationRequiredOperation.h"
+#import "PaymentVerificationRequired.h"
 
 @interface PaymentFlow ()
 
@@ -119,6 +120,24 @@
         }
 
         MCLog(@"Payment valid");
+        [self checkVerificationNeeded];
+    }];
+
+    [operation execute];
+}
+
+- (void)checkVerificationNeeded {
+    MCLog(@"checkVerificationNeeded");
+    VerificationRequiredOperation *operation = [[VerificationRequiredOperation alloc] init];
+    [self setExecutedOperation:operation];
+
+    [operation setCompletionHandler:^(PaymentVerificationRequired *verificationRequired, NSError *error) {
+        if (error) {
+            self.paymentErrorHandler(error);
+            return;
+        }
+
+        MCLog(@"Any verification required? %d", verificationRequired.anyVerificationRequired);
     }];
 
     [operation execute];

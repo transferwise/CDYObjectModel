@@ -71,6 +71,8 @@
 		EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */; };
 		EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */; };
 		EA592929175613FB007C0072 /* PaymentInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EA592928175613FB007C0072 /* PaymentInput.m */; };
+		EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */; };
+		EA59292F1756231C007C0072 /* PaymentVerificationRequired.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292E1756231C007C0072 /* PaymentVerificationRequired.m */; };
 		EA88E65B172F96490021492C /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
 		EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
 		EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
@@ -308,6 +310,10 @@
 		EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencySelectionCell.xib; sourceTree = "<group>"; };
 		EA592927175613FB007C0072 /* PaymentInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentInput.h; sourceTree = "<group>"; };
 		EA592928175613FB007C0072 /* PaymentInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentInput.m; sourceTree = "<group>"; };
+		EA59292A175621D0007C0072 /* VerificationRequiredOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationRequiredOperation.h; sourceTree = "<group>"; };
+		EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationRequiredOperation.m; sourceTree = "<group>"; };
+		EA59292D1756231C007C0072 /* PaymentVerificationRequired.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentVerificationRequired.h; sourceTree = "<group>"; };
+		EA59292E1756231C007C0072 /* PaymentVerificationRequired.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentVerificationRequired.m; sourceTree = "<group>"; };
 		EA88E659172F96490021492C /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credentials.h; path = Credentials/Credentials.h; sourceTree = "<group>"; };
 		EA88E65A172F96490021492C /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Credentials.m; path = Credentials/Credentials.m; sourceTree = "<group>"; };
 		EA88E65D172F96660021492C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -703,6 +709,8 @@
 				EA35C7741732851C005602F7 /* Payment.m */,
 				EA592927175613FB007C0072 /* PaymentInput.h */,
 				EA592928175613FB007C0072 /* PaymentInput.m */,
+				EA59292D1756231C007C0072 /* PaymentVerificationRequired.h */,
+				EA59292E1756231C007C0072 /* PaymentVerificationRequired.m */,
 				EA88E66C172F97B10021492C /* PersonalProfile.h */,
 				EA88E66D172F97B10021492C /* PersonalProfile.m */,
 				EAD66785174CD3FE00D29BCB /* PhoneBookAddress.h */,
@@ -812,6 +820,8 @@
 				EA88E683172F97D50021492C /* UserDetailsOperation.m */,
 				EAD736A5171E87ED00A037B1 /* UserRecipientsOperation.h */,
 				EAD736A6171E87ED00A037B1 /* UserRecipientsOperation.m */,
+				EA59292A175621D0007C0072 /* VerificationRequiredOperation.h */,
+				EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1328,6 +1338,8 @@
 				EAD667AB174E250600D29BCB /* StringValue.m in Sources */,
 				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,
 				EA592929175613FB007C0072 /* PaymentInput.m in Sources */,
+				EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */,
+				EA59292F1756231C007C0072 /* PaymentVerificationRequired.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
