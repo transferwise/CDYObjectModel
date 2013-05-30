@@ -14,6 +14,7 @@
 @class CalculationResult;
 @class Recipient;
 @class PaymentInput;
+@class PaymentVerificationRequired;
 
 typedef void (^PaymentErrorBlock)(NSError *error);
 
@@ -27,5 +28,6 @@ typedef void (^PaymentErrorBlock)(NSError *error);
 - (id)initWithPresentingController:(UINavigationController *)controller;
 - (void)presentSenderDetails;
 - (void)validatePayment:(PaymentInput *)paymentInput errorHandler:(PaymentErrorBlock)errorHandler;
+- (void)commitPaymentWithErrorHandler:(PaymentErrorBlock)errorHandler;
 
 @end

@@ -11,10 +11,11 @@
 #import "Constants.h"
 
 @class PaymentVerificationRequired;
+@class PaymentFlow;
 
 @interface IdentificationViewController : DataEntryViewController
 
-@property (nonatomic, copy) TRWActionBlock afterSaveBlock;
 @property (nonatomic, strong) PaymentVerificationRequired *requiredVerification;
+@property (nonatomic, weak) PaymentFlow *paymentFlow;
 
 @end

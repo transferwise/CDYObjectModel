@@ -19,7 +19,7 @@ typedef void (^CreatePaymentBlock)(Payment *payment, NSError *error);
 
 @property (nonatomic, copy) CreatePaymentBlock responseHandler;
 
-+ (CreatePaymentOperation *)operation;
++ (CreatePaymentOperation *)commitOperationWithPayment:(PaymentInput *)input;
 + (CreatePaymentOperation *)validateOperationWithInput:(PaymentInput *)input;
 
 @end

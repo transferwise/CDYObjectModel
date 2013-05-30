@@ -19,6 +19,7 @@
 #import "CreatePaymentOperation.h"
 #import "VerificationRequiredOperation.h"
 #import "PaymentVerificationRequired.h"
+#import "Credentials.h"
 
 @interface PaymentFlow ()
 
@@ -29,6 +30,8 @@
 @property (nonatomic, strong) NSArray *recipientTypes;
 @property (nonatomic, copy) PaymentErrorBlock paymentErrorHandler;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
+@property (nonatomic, strong) PaymentVerificationRequired *verificationRequired;
+@property (nonatomic, strong) PaymentInput *paymentInput;
 
 @end
 
@@ -93,10 +96,12 @@
 - (void)presentVerificationScreen:(PaymentVerificationRequired *)requiredVerification {
     IdentificationViewController *controller = [[IdentificationViewController alloc] init];
     controller.requiredVerification = requiredVerification;
+    controller.paymentFlow = self;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)presentUploadMoneyController {
+    MCLog(@"presentUploadMoneyController");
     UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
     [controller setUserDetails:self.userDetails];
     [controller setPayment:self.createdPayment];
@@ -116,6 +121,8 @@
             self.paymentErrorHandler(error);
             return;
         }
+        
+        [self setPaymentInput:paymentInput];
 
         MCLog(@"Payment valid");
         [self checkVerificationNeeded];
@@ -126,7 +133,7 @@
 
 - (void)checkVerificationNeeded {
     MCLog(@"checkVerificationNeeded");
-    VerificationRequiredOperation *operation = [[VerificationRequiredOperation alloc] init];
+    VerificationRequiredOperation *operation = [[VerificationRequiredOperation alloc] init];    
     [self setExecutedOperation:operation];
 
     [operation setCompletionHandler:^(PaymentVerificationRequired *verificationRequired, NSError *error) {
@@ -135,10 +142,53 @@
             return;
         }
 
-        MCLog(@"Any verification required? %d", verificationRequired.anyVerificationRequired);
-        if (verificationRequired.anyVerificationRequired) {
+        [self setVerificationRequired:verificationRequired];
+
+        MCLog(@"Any verification required? %d", verificationRequired.isAnyVerificationRequired);
+        if (verificationRequired.isAnyVerificationRequired) {
+            self.paymentErrorHandler(nil);
             [self presentVerificationScreen:verificationRequired];
+        } else {
+            [self commitPaymentWithErrorHandler:self.paymentErrorHandler];
         }
+    }];
+
+    [operation execute];
+}
+
+- (void)commitPaymentWithErrorHandler:(PaymentErrorBlock)errorHandler {
+    MCLog(@"Commit payment");
+    self.paymentErrorHandler = errorHandler;
+
+    if ([Credentials userLoggedIn]) {
+        [self uploadVerificationData];
+    } else {
+        MCLog(@"Handle user creation");
+    }
+}
+
+- (void)uploadVerificationData {
+    MCLog(@"Upload verification data:%d", self.verificationRequired.isAnyVerificationRequired);
+    if ([self.verificationRequired isAnyVerificationRequired]) {
+
+    } else {
+        [self commitPayment];
+    }
+}
+
+- (void)commitPayment {
+    MCLog(@"Commit payment");
+    CreatePaymentOperation *operation = [CreatePaymentOperation commitOperationWithPayment:self.paymentInput];
+    [self setExecutedOperation:operation];
+
+    [operation setResponseHandler:^(Payment *payment, NSError *error) {
+        if (error) {
+            self.paymentErrorHandler(error);
+            return;
+        }
+
+        self.createdPayment = payment;
+        [self presentUploadMoneyController];
     }];
 
     [operation execute];

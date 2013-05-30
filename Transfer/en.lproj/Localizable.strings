@@ -53,11 +53,13 @@
 
 "identification.address.image.missing.message" = "Address verification image missing";
 "identification.controller.title" = "Identification";
+"identification.creating.payment.message" = "Creating payment...";
 "identification.input.error.title" = "Input missing";
 "identification.excuse" = "Don't worry. This is slightly upleasant, but normal procedure";
 "identification.explanation" = "To proceed with your payment we have to identify you. Similar to any bank or other financial institution we follow anti-money laundering guidelines from HMRC and FSA which require us to verify of our customers";
 "identification.id.document" = "ID document";
 "identification.id.image.missing.message" = "ID verification image missing";
+"identification.payment.error.title" = "Payment error";
 "identification.proof.of.address" = "Proof of address";
 "identification.reason" = "The reason for your transfer";
 "identification.reason.title" = "We need your proof of identity and address";

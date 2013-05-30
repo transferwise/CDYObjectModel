@@ -14,6 +14,8 @@
 #import "NSMutableString+Issues.h"
 #import "NSString+Validation.h"
 #import "TRWAlertView.h"
+#import "TRWProgressHUD.h"
+#import "PaymentFlow.h"
 
 @interface IdentificationViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -162,6 +164,17 @@
         [alertView show];
         return;
     }
+
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    [hud setMessage:NSLocalizedString(@"identification.creating.payment.message", nil)];
+
+    [self.paymentFlow commitPaymentWithErrorHandler:^(NSError *error) {
+        [hud hide];
+        if (error) {
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) error:error];
+            [alertView show];
+        }
+    }];
 }
 
 - (NSString *)validateInput {

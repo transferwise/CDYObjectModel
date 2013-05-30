@@ -14,7 +14,7 @@ NSString *kAddressVerificationImageName = @"~/Documents/addressVerification.jpg"
 
 @implementation PaymentVerificationRequired
 
-- (BOOL)anyVerificationRequired {
+- (BOOL)isAnyVerificationRequired {
     return self.idVerificationRequired || self.addressVerificationRequired;
 }
 

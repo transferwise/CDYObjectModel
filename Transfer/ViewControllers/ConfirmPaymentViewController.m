@@ -231,8 +231,6 @@ static NSUInteger const kReceiverSection = 1;
 - (IBAction)footerButtonPressed:(id)sender {
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
-    CreatePaymentOperation *operation = [CreatePaymentOperation operation];
-    [self setExecutedOperation:operation];
 
     PaymentInput *input = [[PaymentInput alloc] init];
     [input setRecipientId:self.recipient.id];
@@ -251,8 +249,11 @@ static NSUInteger const kReceiverSection = 1;
     }
 
     [self.paymentFlow validatePayment:input errorHandler:^(NSError *error) {
-        TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
-        [alertView show];
+        [hud hide];
+        if (error) {
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
+            [alertView show];
+        }
     }];
 }
 

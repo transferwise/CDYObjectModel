@@ -14,7 +14,7 @@
 @property (nonatomic, assign) BOOL addressVerificationRequired;
 @property (nonatomic, assign) BOOL sendLater;
 
-- (BOOL)anyVerificationRequired;
+- (BOOL)isAnyVerificationRequired;
 - (void)removePossibleImages;
 - (void)setIdPhoto:(UIImage *)image;
 - (void)setAddressPhoto:(UIImage *)image;

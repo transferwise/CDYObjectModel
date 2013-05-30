@@ -50,8 +50,8 @@ NSString *const kValidatePaymentPath = @"/payment/validate";
     [self postData:[self.input data] toPath:path];
 }
 
-+ (CreatePaymentOperation *)operation {
-    return [[CreatePaymentOperation alloc] init];
++ (CreatePaymentOperation *)commitOperationWithPayment:(PaymentInput *)input {
+    return [[CreatePaymentOperation alloc] initWithPath:kCreatePaymentPath input:input];
 }
 
 + (CreatePaymentOperation *)validateOperationWithInput:(PaymentInput *)input {
