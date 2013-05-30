@@ -21,6 +21,7 @@
 #import "PaymentVerificationRequired.h"
 #import "Credentials.h"
 #import "CalculationResult.h"
+#import "UploadVerificationFileOperation.h"
 
 @interface PaymentFlow ()
 
@@ -170,17 +171,67 @@
 
 - (void)uploadVerificationData {
     MCLog(@"Upload verification data:%d", self.verificationRequired.isAnyVerificationRequired);
-    if ([NSNumber numberWithBool:self.verificationRequired.sendLater]) {
+    MCLog(@"Send later:%d", self.verificationRequired.sendLater);
+    if (self.verificationRequired.sendLater) {
         [self.paymentInput setVerificationProvideLater:@"true"];
     } else {
         [self.paymentInput setVerificationProvideLater:@"false"];
     }
 
     if (self.verificationRequired.isAnyVerificationRequired && !self.verificationRequired.sendLater) {
-
+        [self uploadNextVerificationData];
     } else {
         [self commitPayment];
     }
+}
+
+- (void)uploadNextVerificationData {
+    MCLog(@"uploadNextVerificationData");
+    if (self.verificationRequired.idVerificationRequired) {
+        [self uploadIdVerification];
+    } else if (self.verificationRequired.addressVerificationRequired) {
+        [self uploadAddressVerification];
+    } else {
+        [self commitPayment];
+    }
+}
+
+- (void)uploadAddressVerification {
+    MCLog(@"uploadAddressVerification");
+    UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:@"address" filePath:self.verificationRequired.addressPhotoPath];
+    [self setExecutedOperation:operation];
+
+    [operation setCompletionHandler:^(NSError *error) {
+        if (error) {
+            self.paymentErrorHandler(error);
+            return;
+        }
+
+        MCLog(@"uploadAddressVerification done");
+        self.verificationRequired.addressVerificationRequired = NO;
+        [self uploadNextVerificationData];
+    }];
+
+    [operation execute];
+}
+
+- (void)uploadIdVerification {
+    MCLog(@"uploadIdVerification");
+    UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:@"id" filePath:self.verificationRequired.idPhotoPath];
+    [self setExecutedOperation:operation];
+
+    [operation setCompletionHandler:^(NSError *error) {
+        if (error) {
+            self.paymentErrorHandler(error);
+            return;
+        }
+
+        MCLog(@"uploadIdVerification done");
+        self.verificationRequired.idVerificationRequired = NO;
+        [self uploadNextVerificationData];
+    }];
+
+    [operation execute];
 }
 
 - (void)commitPayment {

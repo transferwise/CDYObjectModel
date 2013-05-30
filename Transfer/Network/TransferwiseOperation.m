@@ -61,10 +61,20 @@ NSString *const kPublicToken = @"public";
     [self executeOperationWithMethod:@"PUT" path:putPath parameters:data];
 }
 
-- (void)executeOperationWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters {
-    AFHTTPClient *client = [TransferwiseClient sharedClient];
-    NSMutableURLRequest *request = [client requestWithMethod:method path:path parameters:parameters];
+- (void)postBinaryDataFromFile:(NSString *)filePath withName:(NSString *)fileName usingParams:(NSDictionary *)params toPath:(NSString *)postPath {
+    NSURLRequest *request = [[TransferwiseClient sharedClient] multipartFormRequestWithMethod:@"POST" path:postPath parameters:params constructingBodyWithBlock: ^(id <AFMultipartFormData> formData) {
+        [formData appendPartWithFileURL:[NSURL fileURLWithPath:filePath] name:fileName error:nil];
+    }];
 
+    [self executeRequest:request];
+}
+
+- (void)executeOperationWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters {
+    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:method path:path parameters:parameters];
+    [self executeRequest:request];
+}
+
+- (void)executeRequest:(NSURLRequest *)request {
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setThreadPriority:0.1];
     [operation setQueuePriority:NSOperationQueuePriorityLow];

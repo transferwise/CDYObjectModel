@@ -47,4 +47,12 @@ NSString *kAddressVerificationImageName = @"~/Documents/addressVerification.jpg"
     return [[NSFileManager defaultManager] fileExistsAtPath:[kAddressVerificationImageName stringByExpandingTildeInPath]];
 }
 
+- (NSString *)idPhotoPath {
+    return [kIdVerificationImageName stringByExpandingTildeInPath];
+}
+
+- (NSString *)addressPhotoPath {
+    return [kAddressVerificationImageName stringByExpandingTildeInPath];
+}
+
 @end

@@ -20,5 +20,7 @@
 - (void)setAddressPhoto:(UIImage *)image;
 - (BOOL)isIdVerificationImagePresent;
 - (BOOL)isAddressVerificationImagePresent;
+- (NSString *)idPhotoPath;
+- (NSString *)addressPhotoPath;
 
 @end
