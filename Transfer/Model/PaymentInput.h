@@ -16,6 +16,7 @@
 @property (nonatomic, copy) NSString *amount;
 @property (nonatomic, copy) NSString *reference;
 @property (nonatomic, copy) NSString *email;
+@property (nonatomic, copy) NSString *verificationProvideLater;
 
 - (NSDictionary *)data;
 

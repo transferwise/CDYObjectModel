@@ -186,7 +186,9 @@
 
     if (self.requiredVerification.idVerificationRequired && !self.requiredVerification.isIdVerificationImagePresent) {
         [issues appendIssue:NSLocalizedString(@"identification.id.image.missing.message", nil)];
-    } else if (self.requiredVerification.addressVerificationRequired && !self.requiredVerification.isAddressVerificationImagePresent) {
+    }
+
+    if (self.requiredVerification.addressVerificationRequired && !self.requiredVerification.isAddressVerificationImagePresent) {
         [issues appendIssue:NSLocalizedString(@"identification.address.image.missing.message", nil)];
     }
 

@@ -170,7 +170,13 @@
 
 - (void)uploadVerificationData {
     MCLog(@"Upload verification data:%d", self.verificationRequired.isAnyVerificationRequired);
-    if ([self.verificationRequired isAnyVerificationRequired]) {
+    if ([NSNumber numberWithBool:self.verificationRequired.sendLater]) {
+        [self.paymentInput setVerificationProvideLater:@"true"];
+    } else {
+        [self.paymentInput setVerificationProvideLater:@"false"];
+    }
+
+    if (self.verificationRequired.isAnyVerificationRequired && !self.verificationRequired.sendLater) {
 
     } else {
         [self commitPayment];

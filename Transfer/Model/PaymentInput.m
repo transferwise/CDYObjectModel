@@ -18,6 +18,7 @@
     [self appendData:@"amount" data:dictionary];
     [self appendData:@"reference" data:dictionary];
     [self appendData:@"email" data:dictionary];
+    [self appendData:@"verificationProvideLater" data:dictionary];
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 

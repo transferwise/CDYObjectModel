@@ -11,7 +11,7 @@
 #import "TransferwiseClient.h"
 #import "Credentials.h"
 
-NSString *const kRegisterPath = @"/api/v1/token/register";
+NSString *const kRegisterPath = @"/api/v1/account/register";
 
 @interface RegisterOperation ()
 
