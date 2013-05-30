@@ -20,6 +20,7 @@
 #import "VerificationRequiredOperation.h"
 #import "PaymentVerificationRequired.h"
 #import "Credentials.h"
+#import "CalculationResult.h"
 
 @interface PaymentFlow ()
 
@@ -133,7 +134,7 @@
 
 - (void)checkVerificationNeeded {
     MCLog(@"checkVerificationNeeded");
-    VerificationRequiredOperation *operation = [[VerificationRequiredOperation alloc] init];    
+    VerificationRequiredOperation *operation = [VerificationRequiredOperation operationWithData:@{@"payIn" : self.calculationResult.transferwisePayIn, @"sourceCurrency" : self.calculationResult.sourceCurrency}];
     [self setExecutedOperation:operation];
 
     [operation setCompletionHandler:^(PaymentVerificationRequired *verificationRequired, NSError *error) {

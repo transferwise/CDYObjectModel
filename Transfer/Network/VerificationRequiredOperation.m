@@ -12,7 +12,21 @@
 
 NSString *const kVerificationRequiredPath = @"/verification/required";
 
+@interface VerificationRequiredOperation ()
+
+@property (nonatomic, strong) NSDictionary *data;
+
+@end
+
 @implementation VerificationRequiredOperation
+
+- (id)initWithData:(NSDictionary *)dictionary {
+    self = [super init];
+    if (self) {
+        _data = dictionary;
+    }
+    return self;
+}
 
 - (void)execute {
     NSString *path = [self addTokenToPath:kVerificationRequiredPath];
@@ -29,7 +43,11 @@ NSString *const kVerificationRequiredPath = @"/verification/required";
         weakSelf.completionHandler(required, nil);
     }];
 
-    [self getDataFromPath:path];
+    [self getDataFromPath:path params:self.data];
+}
+
++ (VerificationRequiredOperation *)operationWithData:(NSDictionary *)data {
+    return [[VerificationRequiredOperation alloc] initWithData:data];
 }
 
 @end

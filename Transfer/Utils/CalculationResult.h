@@ -16,6 +16,7 @@
 @property (nonatomic) CalculationAmountCurrency amountCurrency;
 @property (nonatomic, strong, readonly) NSNumber *transferwiseRate;
 @property (nonatomic, copy) NSString *amount;
+@property (nonatomic, strong, readonly) NSNumber *transferwisePayIn;
 
 + (CalculationResult *)resultWithData:(NSDictionary *)data;
 

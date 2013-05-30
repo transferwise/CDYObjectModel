@@ -17,4 +17,6 @@ typedef void (^VerificationRequiredBlock)(PaymentVerificationRequired *verificat
 
 @property (nonatomic, copy) VerificationRequiredBlock completionHandler;
 
++ (VerificationRequiredOperation *)operationWithData:(NSDictionary *)data;
+
 @end

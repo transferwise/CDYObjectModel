@@ -47,6 +47,7 @@ NSString *const kPublicToken = @"public";
 - (void)getDataFromPath:(NSString *)path params:(NSDictionary *)params {
     NSString *accessToken = [Credentials accessToken];
     MCLog(@"Get data from:%@", [path stringByReplacingOccurrencesOfString:(accessToken ? accessToken : @"" ) withString:@"**********"]);
+    MCLog(@"Params:%@", [params sensibleDataHidden]);
     [self executeOperationWithMethod:@"GET" path:path parameters:params];
 }
 
