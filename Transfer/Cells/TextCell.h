@@ -11,8 +11,6 @@
 extern NSString *const TWTextCellIdentifier;
 
 @interface TextCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *textLabel;
 
 - (void)configureWithTitle:(NSString *)title text:(NSString *)text;
 

@@ -90,11 +90,9 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)presentVerificationScreen {
+- (void)presentVerificationScreen:(PaymentVerificationRequired *)requiredVerification {
     IdentificationViewController *controller = [[IdentificationViewController alloc] init];
-    [controller setAfterSaveBlock:^{
-        [self presentUploadMoneyController];
-    }];
+    controller.requiredVerification = requiredVerification;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -138,6 +136,9 @@
         }
 
         MCLog(@"Any verification required? %d", verificationRequired.anyVerificationRequired);
+        if (verificationRequired.anyVerificationRequired) {
+            [self presentVerificationScreen:verificationRequired];
+        }
     }];
 
     [operation execute];

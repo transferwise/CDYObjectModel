@@ -29,19 +29,8 @@ NSString *const TWTextCellIdentifier = @"TextCell";
 }
 
 - (void)configureWithTitle:(NSString *)title text:(NSString *)text {
-    [self.titleLabel setText:title];
-    [self.textLabel setText:text];
-    
-    CGRect titleFrame = self.titleLabel.frame;
-    CGSize titleSize = [self.titleLabel sizeThatFits:CGSizeMake(NSUIntegerMax, CGRectGetHeight(titleFrame))];
-    CGFloat widthChange = titleSize.width - CGRectGetWidth(titleFrame);
-    titleFrame.size.width += widthChange;
-    [self.titleLabel setFrame:titleFrame];
-    
-    CGRect textFrame = self.textLabel.frame;
-    textFrame.origin.x += widthChange;
-    textFrame.size.width -= widthChange;
-    [self.textLabel setFrame:textFrame];
+    [self.textLabel setText:title];
+    [self.detailTextLabel setText:text];
 }
 
 @end
