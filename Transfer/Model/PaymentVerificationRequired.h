@@ -12,10 +12,13 @@
 
 @property (nonatomic, assign) BOOL idVerificationRequired;
 @property (nonatomic, assign) BOOL addressVerificationRequired;
+@property (nonatomic, assign) BOOL sendLater;
 
 - (BOOL)anyVerificationRequired;
 - (void)removePossibleImages;
 - (void)setIdPhoto:(UIImage *)image;
 - (void)setAddressPhoto:(UIImage *)image;
+- (BOOL)isIdVerificationImagePresent;
+- (BOOL)isAddressVerificationImagePresent;
 
 @end

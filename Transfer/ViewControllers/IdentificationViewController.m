@@ -11,6 +11,9 @@
 #import "TextCell.h"
 #import "BlueButton.h"
 #import "PaymentVerificationRequired.h"
+#import "NSMutableString+Issues.h"
+#import "NSString+Validation.h"
+#import "TRWAlertView.h"
 
 @interface IdentificationViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -150,7 +153,31 @@
 #pragma mark - Continue
 
 - (IBAction)continueClicked:(id)sender {
-    self.afterSaveBlock();
+    [self.requiredVerification setSendLater:self.skipSwitch.isOn];
+
+    NSString *issues = [self validateInput];
+    if ([issues hasValue]) {
+        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"identification.input.error.title", nil) message:issues];
+        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+        [alertView show];
+        return;
+    }
+}
+
+- (NSString *)validateInput {
+    if (self.requiredVerification.sendLater) {
+        return @"";
+    }
+
+    NSMutableString *issues = [NSMutableString string];
+
+    if (self.requiredVerification.idVerificationRequired && !self.requiredVerification.isIdVerificationImagePresent) {
+        [issues appendIssue:NSLocalizedString(@"identification.id.image.missing.message", nil)];
+    } else if (self.requiredVerification.addressVerificationRequired && !self.requiredVerification.isAddressVerificationImagePresent) {
+        [issues appendIssue:NSLocalizedString(@"identification.address.image.missing.message", nil)];
+    }
+
+    return [NSString stringWithString:issues];
 }
 
 - (void)viewDidUnload {

@@ -39,4 +39,12 @@ NSString *kAddressVerificationImageName = @"~/Documents/addressVerification.jpg"
     [imageData writeToFile:[path stringByExpandingTildeInPath] atomically:NO];
 }
 
+- (BOOL)isIdVerificationImagePresent {
+    return [[NSFileManager defaultManager] fileExistsAtPath:[kIdVerificationImageName stringByExpandingTildeInPath]];
+}
+
+- (BOOL)isAddressVerificationImagePresent {
+    return [[NSFileManager defaultManager] fileExistsAtPath:[kAddressVerificationImageName stringByExpandingTildeInPath]];
+}
+
 @end
