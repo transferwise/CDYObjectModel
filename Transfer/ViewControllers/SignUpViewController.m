@@ -17,6 +17,7 @@
 #import "TRWAlertView.h"
 #import "TRWProgressHUD.h"
 #import "RegisterOperation.h"
+#import "OpenIDViewController.h"
 
 static NSUInteger const kTableRowEmail = 0;
 
@@ -30,6 +31,8 @@ static NSUInteger const kTableRowEmail = 0;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
 - (IBAction)signUpPressed:(id)sender;
+- (IBAction)googleSignUpPressed:(id)sender;
+- (IBAction)yahooSignUpPressed:(id)sender;
 
 @end
 
@@ -83,19 +86,13 @@ static NSUInteger const kTableRowEmail = 0;
     [self.navigationItem setTitle:NSLocalizedString(@"sign.up.controller.title", nil)];
 
     [self setPresentedSectionCells:@[cells]];
+
+    [self.tableView setTableFooterView:self.footerView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return self.footerView;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return CGRectGetHeight(self.footerView.frame);
 }
 
 - (void)viewDidUnload {
@@ -159,6 +156,22 @@ static NSUInteger const kTableRowEmail = 0;
     }
 
     return [NSString stringWithString:issues];
+}
+
+- (IBAction)googleSignUpPressed:(id)sender {
+    [self presentOpenIDSignUpWithProvider:@"google" name:@"Google"];
+}
+
+- (IBAction)yahooSignUpPressed:(id)sender {
+    [self presentOpenIDSignUpWithProvider:@"yahoo" name:@"Yahoo"];
+}
+
+- (void)presentOpenIDSignUpWithProvider:(NSString *)provider name:(NSString *)providerName {
+    OpenIDViewController *controller = [[OpenIDViewController alloc] init];
+    [controller setProvider:provider];
+    [controller setEmail:self.emailCell.value];
+    [controller setProviderName:providerName];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

@@ -74,6 +74,12 @@
 		EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */; };
 		EA59292F1756231C007C0072 /* PaymentVerificationRequired.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292E1756231C007C0072 /* PaymentVerificationRequired.m */; };
 		EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */; };
+		EA5929861758CAAC007C0072 /* SignInWithGoogleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5929821758CAAC007C0072 /* SignInWithGoogleButton.png */; };
+		EA5929871758CAAC007C0072 /* SignInWithGoogleButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5929831758CAAC007C0072 /* SignInWithGoogleButton@2x.png */; };
+		EA5929881758CAAC007C0072 /* SignInWithYahooButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5929841758CAAC007C0072 /* SignInWithYahooButton.png */; };
+		EA5929891758CAAC007C0072 /* SignInWithYahooButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5929851758CAAC007C0072 /* SignInWithYahooButton@2x.png */; };
+		EA59298E1758CD6C007C0072 /* OpenIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59298C1758CD6C007C0072 /* OpenIDViewController.m */; };
+		EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */; };
 		EA88E65B172F96490021492C /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
 		EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
 		EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
@@ -317,6 +323,13 @@
 		EA59292E1756231C007C0072 /* PaymentVerificationRequired.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentVerificationRequired.m; sourceTree = "<group>"; };
 		EA59293C17577CCA007C0072 /* UploadVerificationFileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadVerificationFileOperation.h; sourceTree = "<group>"; };
 		EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadVerificationFileOperation.m; sourceTree = "<group>"; };
+		EA5929821758CAAC007C0072 /* SignInWithGoogleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SignInWithGoogleButton.png; sourceTree = "<group>"; };
+		EA5929831758CAAC007C0072 /* SignInWithGoogleButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SignInWithGoogleButton@2x.png"; sourceTree = "<group>"; };
+		EA5929841758CAAC007C0072 /* SignInWithYahooButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SignInWithYahooButton.png; sourceTree = "<group>"; };
+		EA5929851758CAAC007C0072 /* SignInWithYahooButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SignInWithYahooButton@2x.png"; sourceTree = "<group>"; };
+		EA59298B1758CD6C007C0072 /* OpenIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenIDViewController.h; sourceTree = "<group>"; };
+		EA59298C1758CD6C007C0072 /* OpenIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenIDViewController.m; sourceTree = "<group>"; };
+		EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenIDViewController.xib; sourceTree = "<group>"; };
 		EA88E659172F96490021492C /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credentials.h; path = Credentials/Credentials.h; sourceTree = "<group>"; };
 		EA88E65A172F96490021492C /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Credentials.m; path = Credentials/Credentials.m; sourceTree = "<group>"; };
 		EA88E65D172F96660021492C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -931,6 +944,9 @@
 				EAD39673171BD4EE00F6D011 /* MainViewController.h */,
 				EAD39674171BD4EE00F6D011 /* MainViewController.m */,
 				EAD39675171BD4EE00F6D011 /* MainViewController.xib */,
+				EA59298B1758CD6C007C0072 /* OpenIDViewController.h */,
+				EA59298C1758CD6C007C0072 /* OpenIDViewController.m */,
+				EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */,
 				EAD39682171BD5B000F6D011 /* PaymentViewController.h */,
 				EAD39683171BD5B000F6D011 /* PaymentViewController.m */,
 				EAD39684171BD5B000F6D011 /* PaymentViewController.xib */,
@@ -1033,6 +1049,10 @@
 				EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */,
 				EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */,
 				EAB72155171FC3E900DE29F5 /* SettingsButtonIcon@2x.png */,
+				EA5929821758CAAC007C0072 /* SignInWithGoogleButton.png */,
+				EA5929831758CAAC007C0072 /* SignInWithGoogleButton@2x.png */,
+				EA5929841758CAAC007C0072 /* SignInWithYahooButton.png */,
+				EA5929851758CAAC007C0072 /* SignInWithYahooButton@2x.png */,
 				EAA54F3C1733CA7800B65BF3 /* TransactionsTabIcon.png */,
 				EAA54F3D1733CA7800B65BF3 /* TransactionsTabIcon@2x.png */,
 				EAD667C4174F4C7200D29BCB /* TWlogo.png */,
@@ -1198,6 +1218,11 @@
 				EAD6675B174A51C700D29BCB /* ButtonCell.xib in Resources */,
 				EAD667C6174F4C7300D29BCB /* TWlogo.png in Resources */,
 				EAD667C7174F4C7300D29BCB /* TWlogo@2x.png in Resources */,
+				EA5929861758CAAC007C0072 /* SignInWithGoogleButton.png in Resources */,
+				EA5929871758CAAC007C0072 /* SignInWithGoogleButton@2x.png in Resources */,
+				EA5929881758CAAC007C0072 /* SignInWithYahooButton.png in Resources */,
+				EA5929891758CAAC007C0072 /* SignInWithYahooButton@2x.png in Resources */,
+				EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1346,6 +1371,7 @@
 				EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */,
 				EA59292F1756231C007C0072 /* PaymentVerificationRequired.m in Sources */,
 				EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */,
+				EA59298E1758CD6C007C0072 /* OpenIDViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
