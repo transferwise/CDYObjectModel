@@ -57,6 +57,7 @@
     } else {
         [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.continue.to.recipient.button.title", nil)];
     }
+    [controller setProfileValidation:self];
     [controller setAfterSaveAction:^{
         [self setUserDetails:weakController.userDetails];
         if (self.recipient) {

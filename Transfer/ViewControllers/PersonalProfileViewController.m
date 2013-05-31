@@ -17,13 +17,15 @@
 #import "DateEntryCell.h"
 #import "CountrySelectionCell.h"
 #import "NSString+Validation.h"
-#import "SavePersonalProfileOperation.h"
+#import "PersonalProfileOperation.h"
 #import "UIApplication+Keyboard.h"
+#import "PersonalProfileValidation.h"
 #import "ButtonCell.h"
 #import "PhoneBookProfileSelector.h"
 #import "PhoneBookProfile.h"
 #import "PhoneBookAddress.h"
 #import "Credentials.h"
+#import "PersonalProfileInput.h"
 
 static NSUInteger const kButtonSection = 0;
 static NSUInteger const kPersonalSection = 1;
@@ -293,16 +295,10 @@ static NSUInteger const kPersonalSection = 1;
         return;
     }
 
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-    if ([Credentials userLoggedIn]) {
-        [hud setMessage:NSLocalizedString(@"personal.profile.saving.message", nil)];
-    } else {
-        [hud setMessage:NSLocalizedString(@"personal.profile.verify.message", nil)];
-    }
-
-    PersonalProfile *profile = [[PersonalProfile alloc] init];
+    PersonalProfileInput *profile = [[PersonalProfileInput alloc] init];
     profile.firstName = self.firstNameCell.value;
     profile.lastName = self.lastNameCell.value;
+    profile.email = self.emailCell.value;
     profile.phoneNumber = self.phoneNumberCell.value;
     profile.addressFirstLine = self.addressCell.value;
     profile.postCode = self.postCodeCell.value;
@@ -310,42 +306,59 @@ static NSUInteger const kPersonalSection = 1;
     profile.countryCode = self.countryCell.value;
     profile.dateOfBirthString = [self.dateOfBirthCell value];
 
-    SavePersonalProfileOperation *operation = [SavePersonalProfileOperation operationWithProfile:profile];
-    [self setExecutedOperation:operation];
 
-    [operation setSaveResultHandler:^(ProfileDetails *result, NSError *error) {
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    [hud setMessage:NSLocalizedString(@"personal.profile.verify.message", nil)];
+
+    [self.profileValidation validateProfile:profile withHandler:^(ProfileDetails *details, NSError *error) {
         [hud hide];
 
         if (error) {
-            NSString *title;
-            if ([Credentials userLoggedIn]) {
-                title = NSLocalizedString(@"personal.profile.save.error.title", nil);
-            } else {
-                title = NSLocalizedString(@"personal.profile.verify.error.title", nil);
-            }
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:title error:error];
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"personal.profile.verify.error.title", nil) error:error];
             [alertView show];
             return;
         }
 
-        if (![Credentials userLoggedIn]) {
-            ProfileDetails *details = self.userDetails;
-            if (!details) {
-                details = [[ProfileDetails alloc] init];
-            }
-            [details setEmail:self.emailCell.value];
-            [details setPersonalProfile:profile];
-            [self setUserDetails:details];
-        } else {
-            [self setUserDetails:result];
-        }
-
+        [self setUserDetails:details];
         [self loadDetailsToCells];
-
-        self.afterSaveAction();
     }];
 
-    [operation execute];
+//    PersonalProfileOperation *operation = [PersonalProfileOperation operationWithProfile:profile];
+//    [self setExecutedOperation:operation];
+//
+//    [operation setSaveResultHandler:^(ProfileDetails *result, NSError *error) {
+//        [hud hide];
+//
+//        if (error) {
+//            NSString *title;
+//            if ([Credentials userLoggedIn]) {
+//                title = NSLocalizedString(@"personal.profile.save.error.title", nil);
+//            } else {
+//                title = NSLocalizedString(@"personal.profile.verify.error.title", nil);
+//            }
+//            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:title error:error];
+//            [alertView show];
+//            return;
+//        }
+//
+//        if (![Credentials userLoggedIn]) {
+//            ProfileDetails *details = self.userDetails;
+//            if (!details) {
+//                details = [[ProfileDetails alloc] init];
+//            }
+//            [details setEmail:self.emailCell.value];
+//            [details setPersonalProfile:profile];
+//            [self setUserDetails:details];
+//        } else {
+//            [self setUserDetails:result];
+//        }
+//
+//        [self loadDetailsToCells];
+//
+//        self.afterSaveAction();
+//    }];
+//
+//    [operation execute];
 }
 
 - (BOOL)valuesChanged {

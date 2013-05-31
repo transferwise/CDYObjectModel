@@ -1,60 +1,60 @@
 //
-//  SavePersonalProfileOperation.m
+//  PersonalProfileOperation.m
 //  Transfer
 //
 //  Created by Jaanus Siim on 5/7/13.
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import "SavePersonalProfileOperation.h"
+#import "PersonalProfileOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "ProfileDetails.h"
 #import "Credentials.h"
 #import "PersonalProfile.h"
+#import "PersonalProfileInput.h"
 
 NSString *const kUpdatePersonalProfilePath = @"/user/updatePersonalProfile";
 NSString *const kValidatePersonalProfilePath = @"/user/validatePersonalProfile";
 
-@interface SavePersonalProfileOperation ()
+@interface PersonalProfileOperation ()
 
-@property (nonatomic, strong) PersonalProfile *profile;
+@property (nonatomic, copy) NSString *path;
+@property (nonatomic, strong) PersonalProfileInput *profile;
 
 @end
 
-@implementation SavePersonalProfileOperation
+@implementation PersonalProfileOperation
 
-- (id)initWithProfile:(PersonalProfile *)data {
+- (id)initWithPath:(NSString *)path profile:(PersonalProfileInput *)data {
     self = [super init];
     if (self) {
+        _path = path;
         _profile = data;
     }
     return self;
 }
 
 - (void)execute {
-    NSString *path;
-    if ([Credentials userLoggedIn]) {
-        path = [self addTokenToPath:kUpdatePersonalProfilePath];
-    } else {
-        path = [self addTokenToPath:kValidatePersonalProfilePath];
-    }
+    NSString *path = [self addTokenToPath:self.path];
 
-    __block __weak SavePersonalProfileOperation *weakSelf = self;
+    __block __weak PersonalProfileOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
         weakSelf.saveResultHandler(nil, error);
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         ProfileDetails *details = [ProfileDetails detailsWithData:response];
-        [Credentials setDisplayName:[details displayName]];
+        if (details.personalProfile) {
+            [Credentials setDisplayName:[details displayName]];
+        }
         weakSelf.saveResultHandler(details, nil);
     }];
 
     [self postData:[self.profile data] toPath:path];
 }
 
-+ (SavePersonalProfileOperation *)operationWithProfile:(PersonalProfile *)profile {
-    return [[SavePersonalProfileOperation alloc] initWithProfile:profile];
++ (PersonalProfileOperation *)commitOperationWithProfile:(PersonalProfileInput *)profile {
+    return [[PersonalProfileOperation alloc] initWithPath:kUpdatePersonalProfilePath profile:profile];
 }
 
 @end

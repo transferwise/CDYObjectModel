@@ -74,6 +74,9 @@
 		EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */; };
 		EA59292F1756231C007C0072 /* PaymentVerificationRequired.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292E1756231C007C0072 /* PaymentVerificationRequired.m */; };
 		EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */; };
+		EA59297117589F5C007C0072 /* PersonalProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297017589F5C007C0072 /* PersonalProfileCommitter.m */; };
+		EA59297417589F72007C0072 /* RecipientProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297317589F71007C0072 /* RecipientProfileCommitter.m */; };
+		EA5929771758A1E1007C0072 /* PersonalProfileInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5929761758A1E1007C0072 /* PersonalProfileInput.m */; };
 		EA88E65B172F96490021492C /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
 		EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
 		EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
@@ -193,7 +196,7 @@
 		EAD7D4CB171D4B080099063F /* BlueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C9171D4B080099063F /* BlueButton@2x.png */; };
 		EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */; };
 		EAD7D4D1171D4BB20099063F /* BlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4D0171D4BB20099063F /* BlueButton.m */; };
-		EAD85B0B173920C300C22211 /* SavePersonalProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD85B0A173920C300C22211 /* SavePersonalProfileOperation.m */; };
+		EAD85B0B173920C300C22211 /* PersonalProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */; };
 		EAEA31131738DB8600CCF1A2 /* CheckUnselected.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA310F1738DB8600CCF1A2 /* CheckUnselected.png */; };
 		EAEA31141738DB8600CCF1A2 /* CheckUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31101738DB8600CCF1A2 /* CheckUnselected@2x.png */; };
 		EAEA31151738DB8600CCF1A2 /* CheckSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31111738DB8600CCF1A2 /* CheckSelected.png */; };
@@ -317,6 +320,14 @@
 		EA59292E1756231C007C0072 /* PaymentVerificationRequired.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentVerificationRequired.m; sourceTree = "<group>"; };
 		EA59293C17577CCA007C0072 /* UploadVerificationFileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadVerificationFileOperation.h; sourceTree = "<group>"; };
 		EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadVerificationFileOperation.m; sourceTree = "<group>"; };
+		EA59296C17589F22007C0072 /* PersonalProfileValidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalProfileValidation.h; sourceTree = "<group>"; };
+		EA59296E17589F3A007C0072 /* RecipientProfileValidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecipientProfileValidation.h; sourceTree = "<group>"; };
+		EA59296F17589F5C007C0072 /* PersonalProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileCommitter.h; sourceTree = "<group>"; };
+		EA59297017589F5C007C0072 /* PersonalProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileCommitter.m; sourceTree = "<group>"; };
+		EA59297217589F71007C0072 /* RecipientProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientProfileCommitter.h; sourceTree = "<group>"; };
+		EA59297317589F71007C0072 /* RecipientProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientProfileCommitter.m; sourceTree = "<group>"; };
+		EA5929751758A1E1007C0072 /* PersonalProfileInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileInput.h; sourceTree = "<group>"; };
+		EA5929761758A1E1007C0072 /* PersonalProfileInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileInput.m; sourceTree = "<group>"; };
 		EA88E659172F96490021492C /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credentials.h; path = Credentials/Credentials.h; sourceTree = "<group>"; };
 		EA88E65A172F96490021492C /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Credentials.m; path = Credentials/Credentials.m; sourceTree = "<group>"; };
 		EA88E65D172F96660021492C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -509,8 +520,8 @@
 		EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Skinning.m"; sourceTree = "<group>"; };
 		EAD7D4CF171D4BB20099063F /* BlueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueButton.h; sourceTree = "<group>"; };
 		EAD7D4D0171D4BB20099063F /* BlueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueButton.m; sourceTree = "<group>"; };
-		EAD85B09173920C300C22211 /* SavePersonalProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavePersonalProfileOperation.h; sourceTree = "<group>"; };
-		EAD85B0A173920C300C22211 /* SavePersonalProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavePersonalProfileOperation.m; sourceTree = "<group>"; };
+		EAD85B09173920C300C22211 /* PersonalProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileOperation.h; sourceTree = "<group>"; };
+		EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileOperation.m; sourceTree = "<group>"; };
 		EAEA310F1738DB8600CCF1A2 /* CheckUnselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckUnselected.png; sourceTree = "<group>"; };
 		EAEA31101738DB8600CCF1A2 /* CheckUnselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckUnselected@2x.png"; sourceTree = "<group>"; };
 		EAEA31111738DB8600CCF1A2 /* CheckSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckSelected.png; sourceTree = "<group>"; };
@@ -716,6 +727,8 @@
 				EA59292E1756231C007C0072 /* PaymentVerificationRequired.m */,
 				EA88E66C172F97B10021492C /* PersonalProfile.h */,
 				EA88E66D172F97B10021492C /* PersonalProfile.m */,
+				EA5929751758A1E1007C0072 /* PersonalProfileInput.h */,
+				EA5929761758A1E1007C0072 /* PersonalProfileInput.m */,
 				EAD66785174CD3FE00D29BCB /* PhoneBookAddress.h */,
 				EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */,
 				EAD6677F174CB34600D29BCB /* PhoneBookProfile.h */,
@@ -810,8 +823,8 @@
 				EA1861E21746442900BD01BB /* RegisterOperation.m */,
 				1864AC9C173B7C80008773FC /* SaveBusinessProfileOperation.h */,
 				1864AC9D173B7C80008773FC /* SaveBusinessProfileOperation.m */,
-				EAD85B09173920C300C22211 /* SavePersonalProfileOperation.h */,
-				EAD85B0A173920C300C22211 /* SavePersonalProfileOperation.m */,
+				EAD85B09173920C300C22211 /* PersonalProfileOperation.h */,
+				EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */,
 				EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */,
 				EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */,
 				EA88E680172F97D50021492C /* TransferwiseClient.h */,
@@ -967,8 +980,14 @@
 				EAAF8FB71743B3E4008DF9E2 /* MoneyFormatter.m */,
 				EA222E31173A676000C5D613 /* PaymentFlow.h */,
 				EA222E32173A676000C5D613 /* PaymentFlow.m */,
+				EA59296F17589F5C007C0072 /* PersonalProfileCommitter.h */,
+				EA59297017589F5C007C0072 /* PersonalProfileCommitter.m */,
+				EA59296C17589F22007C0072 /* PersonalProfileValidation.h */,
 				EAD66782174CB3AE00D29BCB /* PhoneBookProfileSelector.h */,
 				EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */,
+				EA59297217589F71007C0072 /* RecipientProfileCommitter.h */,
+				EA59297317589F71007C0072 /* RecipientProfileCommitter.m */,
+				EA59296E17589F3A007C0072 /* RecipientProfileValidation.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1318,7 +1337,7 @@
 				EAD0690A1737CF57007C8DEE /* CreateRecipientOperation.m in Sources */,
 				EAD0690E1737E457007C8DEE /* RecipientSectionHeaderView.m in Sources */,
 				EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */,
-				EAD85B0B173920C300C22211 /* SavePersonalProfileOperation.m in Sources */,
+				EAD85B0B173920C300C22211 /* PersonalProfileOperation.m in Sources */,
 				18D47900173A3B5300FC317E /* IdentificationViewController.m in Sources */,
 				1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */,
 				1864AC9A173B7C4D008773FC /* BusinessProfile.m in Sources */,
@@ -1346,6 +1365,9 @@
 				EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */,
 				EA59292F1756231C007C0072 /* PaymentVerificationRequired.m in Sources */,
 				EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */,
+				EA59297117589F5C007C0072 /* PersonalProfileCommitter.m in Sources */,
+				EA59297417589F72007C0072 /* RecipientProfileCommitter.m in Sources */,
+				EA5929771758A1E1007C0072 /* PersonalProfileInput.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

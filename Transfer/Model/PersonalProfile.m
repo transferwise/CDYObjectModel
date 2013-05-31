@@ -58,17 +58,4 @@
     return [self.addressVerified boolValue];
 }
 
-- (NSDictionary *)data {
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    data[@"firstName"] = self.firstName;
-    data[@"lastName"] = self.lastName;
-    data[@"dateOfBirth"] = self.dateOfBirthString;
-    data[@"phoneNumber"] = self.phoneNumber;
-    data[@"addressFirstLine"] = self.addressFirstLine;
-    data[@"postCode"] = self.postCode;
-    data[@"city"] = self.city;
-    data[@"countryCode"] = self.countryCode;
-    return [NSDictionary dictionaryWithDictionary:data];
-}
-
 @end

@@ -1,5 +1,5 @@
 //
-//  SavePersonalProfileOperation.h
+//  PersonalProfileOperation.h
 //  Transfer
 //
 //  Created by Jaanus Siim on 5/7/13.
@@ -10,11 +10,12 @@
 #import "UserDetailsOperation.h"
 
 @class PersonalProfile;
+@class PersonalProfileInput;
 
-@interface SavePersonalProfileOperation : TransferwiseOperation
+@interface PersonalProfileOperation : TransferwiseOperation
 
 @property (nonatomic, copy) TWProfileDetailsHandler saveResultHandler;
 
-+ (SavePersonalProfileOperation *)operationWithProfile:(PersonalProfile *)profile;
++ (PersonalProfileOperation *)commitOperationWithProfile:(PersonalProfileInput *)profile;
 
 @end
