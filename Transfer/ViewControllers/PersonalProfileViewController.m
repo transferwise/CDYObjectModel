@@ -151,7 +151,7 @@ static NSUInteger const kPersonalSection = 1;
 
     if ([Credentials userLoggedIn]) {
         [self pullUserDetails];
-    } else {
+    } else if ([self.countryCell.allCountries count] == 0) {
         [self pullCountries];
     }
 }
@@ -289,12 +289,8 @@ static NSUInteger const kPersonalSection = 1;
         return;
     }
 
-    if (![self valuesChanged]) {
-        MCLog(@"Values not changed");
-        self.afterSaveAction();
-        return;
-    }
-
+    BOOL changed = [self valuesChanged];
+    
     PersonalProfileInput *profile = [[PersonalProfileInput alloc] init];
     profile.firstName = self.firstNameCell.value;
     profile.lastName = self.lastNameCell.value;
@@ -305,7 +301,7 @@ static NSUInteger const kPersonalSection = 1;
     profile.city = self.cityCell.value;
     profile.countryCode = self.countryCell.value;
     profile.dateOfBirthString = [self.dateOfBirthCell value];
-
+    profile.changed = changed;
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.verify.message", nil)];
@@ -319,46 +315,11 @@ static NSUInteger const kPersonalSection = 1;
             return;
         }
 
-        [self setUserDetails:details];
+        if (details) {
+            [self setUserDetails:details];
+        }
         [self loadDetailsToCells];
     }];
-
-//    PersonalProfileOperation *operation = [PersonalProfileOperation operationWithProfile:profile];
-//    [self setExecutedOperation:operation];
-//
-//    [operation setSaveResultHandler:^(ProfileDetails *result, NSError *error) {
-//        [hud hide];
-//
-//        if (error) {
-//            NSString *title;
-//            if ([Credentials userLoggedIn]) {
-//                title = NSLocalizedString(@"personal.profile.save.error.title", nil);
-//            } else {
-//                title = NSLocalizedString(@"personal.profile.verify.error.title", nil);
-//            }
-//            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:title error:error];
-//            [alertView show];
-//            return;
-//        }
-//
-//        if (![Credentials userLoggedIn]) {
-//            ProfileDetails *details = self.userDetails;
-//            if (!details) {
-//                details = [[ProfileDetails alloc] init];
-//            }
-//            [details setEmail:self.emailCell.value];
-//            [details setPersonalProfile:profile];
-//            [self setUserDetails:details];
-//        } else {
-//            [self setUserDetails:result];
-//        }
-//
-//        [self loadDetailsToCells];
-//
-//        self.afterSaveAction();
-//    }];
-//
-//    [operation execute];
 }
 
 - (BOOL)valuesChanged {

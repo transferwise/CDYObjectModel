@@ -15,7 +15,6 @@
 
 @interface PersonalProfileViewController : DataEntryViewController
 
-@property (nonatomic, copy) TRWActionBlock afterSaveAction;
 @property (nonatomic, copy) NSString *footerButtonTitle;
 @property (nonatomic, strong, readonly) ProfileDetails *userDetails;
 @property (nonatomic, strong) id<PersonalProfileValidation> profileValidation;

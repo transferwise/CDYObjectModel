@@ -19,6 +19,7 @@
 @property (nonatomic, copy) NSString *city;
 @property (nonatomic, copy) NSString *countryCode;
 @property (nonatomic, copy) NSString *dateOfBirthString;
+@property (nonatomic, assign) BOOL changed;
 
 - (NSDictionary *)data;
 

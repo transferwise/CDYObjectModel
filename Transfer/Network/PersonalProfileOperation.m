@@ -57,4 +57,8 @@ NSString *const kValidatePersonalProfilePath = @"/user/validatePersonalProfile";
     return [[PersonalProfileOperation alloc] initWithPath:kUpdatePersonalProfilePath profile:profile];
 }
 
++ (PersonalProfileOperation *)validateOperationWithProfile:(PersonalProfileInput *)profile {
+    return [[PersonalProfileOperation alloc] initWithPath:kValidatePersonalProfilePath profile:profile];
+}
+
 @end

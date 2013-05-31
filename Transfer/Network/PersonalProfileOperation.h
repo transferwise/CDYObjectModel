@@ -17,5 +17,6 @@
 @property (nonatomic, copy) TWProfileDetailsHandler saveResultHandler;
 
 + (PersonalProfileOperation *)commitOperationWithProfile:(PersonalProfileInput *)profile;
++ (PersonalProfileOperation *)validateOperationWithProfile:(PersonalProfileInput *)profile;
 
 @end

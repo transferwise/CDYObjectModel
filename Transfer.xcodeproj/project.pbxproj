@@ -77,6 +77,7 @@
 		EA59297117589F5C007C0072 /* PersonalProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297017589F5C007C0072 /* PersonalProfileCommitter.m */; };
 		EA59297417589F72007C0072 /* RecipientProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297317589F71007C0072 /* RecipientProfileCommitter.m */; };
 		EA5929771758A1E1007C0072 /* PersonalProfileInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5929761758A1E1007C0072 /* PersonalProfileInput.m */; };
+		EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */; };
 		EA88E65B172F96490021492C /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
 		EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
 		EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
@@ -328,6 +329,8 @@
 		EA59297317589F71007C0072 /* RecipientProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientProfileCommitter.m; sourceTree = "<group>"; };
 		EA5929751758A1E1007C0072 /* PersonalProfileInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileInput.h; sourceTree = "<group>"; };
 		EA5929761758A1E1007C0072 /* PersonalProfileInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileInput.m; sourceTree = "<group>"; };
+		EA59297D1758AE1C007C0072 /* EmailCheckOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailCheckOperation.h; sourceTree = "<group>"; };
+		EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailCheckOperation.m; sourceTree = "<group>"; };
 		EA88E659172F96490021492C /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credentials.h; path = Credentials/Credentials.h; sourceTree = "<group>"; };
 		EA88E65A172F96490021492C /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Credentials.m; path = Credentials/Credentials.m; sourceTree = "<group>"; };
 		EA88E65D172F96660021492C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -811,20 +814,22 @@
 				EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */,
 				1864AC9F173B7C95008773FC /* DeleteRecipientOperation.h */,
 				1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */,
+				EA59297D1758AE1C007C0072 /* EmailCheckOperation.h */,
+				EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */,
 				EA8FF6B9171D26A00090A658 /* LoginOperation.h */,
 				EA8FF6BA171D26A00090A658 /* LoginOperation.m */,
 				EA88E67E172F97D50021492C /* NetworkErrorCodes.h */,
 				EA88E67F172F97D50021492C /* NetworkErrorCodes.m */,
 				EA35C76A1732790D005602F7 /* PaymentsOperation.h */,
 				EA35C76B1732790D005602F7 /* PaymentsOperation.m */,
+				EAD85B09173920C300C22211 /* PersonalProfileOperation.h */,
+				EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */,
 				EAA54F591733EF1A00B65BF3 /* RecipientTypesOperation.h */,
 				EAA54F5A1733EF1A00B65BF3 /* RecipientTypesOperation.m */,
 				EA1861E11746442900BD01BB /* RegisterOperation.h */,
 				EA1861E21746442900BD01BB /* RegisterOperation.m */,
 				1864AC9C173B7C80008773FC /* SaveBusinessProfileOperation.h */,
 				1864AC9D173B7C80008773FC /* SaveBusinessProfileOperation.m */,
-				EAD85B09173920C300C22211 /* PersonalProfileOperation.h */,
-				EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */,
 				EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */,
 				EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */,
 				EA88E680172F97D50021492C /* TransferwiseClient.h */,
@@ -1368,6 +1373,7 @@
 				EA59297117589F5C007C0072 /* PersonalProfileCommitter.m in Sources */,
 				EA59297417589F72007C0072 /* RecipientProfileCommitter.m in Sources */,
 				EA5929771758A1E1007C0072 /* PersonalProfileInput.m in Sources */,
+				EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

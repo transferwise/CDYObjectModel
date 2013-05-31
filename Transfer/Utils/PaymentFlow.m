@@ -22,6 +22,9 @@
 #import "Credentials.h"
 #import "CalculationResult.h"
 #import "UploadVerificationFileOperation.h"
+#import "PersonalProfileInput.h"
+#import "PersonalProfileOperation.h"
+#import "EmailCheckOperation.h"
 
 @interface PaymentFlow ()
 
@@ -34,6 +37,7 @@
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) PaymentVerificationRequired *verificationRequired;
 @property (nonatomic, strong) PaymentInput *paymentInput;
+@property (nonatomic, strong) PersonalProfileInput *personalProfile;
 
 @end
 
@@ -51,22 +55,65 @@
 
 - (void)presentSenderDetails {
     PersonalProfileViewController *controller = [[PersonalProfileViewController alloc] init];
-    __block __weak  PersonalProfileViewController *weakController = controller;
     if (self.recipient) {
         [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.confirm.payment.button.title", nil)];
     } else {
         [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.continue.to.recipient.button.title", nil)];
     }
     [controller setProfileValidation:self];
-    [controller setAfterSaveAction:^{
-        [self setUserDetails:weakController.userDetails];
-        if (self.recipient) {
-            [self presentPaymentConfirmation];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)validateProfile:(PersonalProfileInput *)profile withHandler:(PersonalProfileValidationBlock)handler {
+    MCLog(@"validateProfile");
+    PersonalProfileOperation *operation = [PersonalProfileOperation validateOperationWithProfile:profile];
+    [self setExecutedOperation:operation];
+
+    [operation setSaveResultHandler:^(ProfileDetails *result, NSError *error) {
+        if (error) {
+            handler(result, error);
+            return;
+        }
+
+        if ([Credentials userLoggedIn]) {
+            handler(nil, nil);
+            [self pushNextScreenAfterPersonalProfile];
+            return;
+        }
+
+        [self verifyEmail:profile.email withHandler:handler];
+    }];
+
+    [operation execute];
+}
+
+- (void)verifyEmail:(NSString *)email withHandler:(PersonalProfileValidationBlock)handler {
+    MCLog(@"Verify email %@ available", email);
+    EmailCheckOperation *operation = [EmailCheckOperation operationWithEmail:email];
+    [self setExecutedOperation:operation];
+
+    [operation setResultHandler:^(BOOL available, NSError *error) {
+
+        if (error) {
+            handler(nil, error);
+        } else if (!available) {
+            NSError *emailError = [[NSError alloc] initWithDomain:@"" code:0 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"personal.profile.email.taken.message", nil)}];
+            handler(nil, emailError);
         } else {
-            [self presentRecipientDetails];
+            handler(nil, nil);
+            [self pushNextScreenAfterPersonalProfile];
         }
     }];
-    [self.navigationController pushViewController:controller animated:YES];
+
+    [operation execute];
+}
+
+- (void)pushNextScreenAfterPersonalProfile {
+    if (self.recipient) {
+        [self presentPaymentConfirmation];
+    } else {
+        [self presentRecipientDetails];
+    }
 }
 
 - (void)presentRecipientDetails {
