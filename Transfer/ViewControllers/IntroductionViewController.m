@@ -205,7 +205,7 @@ static NSUInteger const kRowYouSend = 0;
 }
 
 - (IBAction)getStartedPressed:(id)sender {
-    if (!self.result) {
+    if (YES || !self.result) {
         return;
     }
 
