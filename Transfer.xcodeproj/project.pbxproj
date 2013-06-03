@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0286BD7B9CD44CD1BAB42E42 /* libPods-TransferTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1FBDCF7CCD414999CC7D3D /* libPods-TransferTests.a */; };
 		1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC92173B7C28008773FC /* BusinessProfileViewController.m */; };
 		1864AC95173B7C28008773FC /* BusinessProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1864AC93173B7C28008773FC /* BusinessProfileViewController.xib */; };
 		1864AC9A173B7C4D008773FC /* BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC99173B7C4D008773FC /* BusinessProfile.m */; };
@@ -77,6 +78,17 @@
 		EA59297117589F5C007C0072 /* PersonalProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297017589F5C007C0072 /* PersonalProfileCommitter.m */; };
 		EA5929771758A1E1007C0072 /* PersonalProfileInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5929761758A1E1007C0072 /* PersonalProfileInput.m */; };
 		EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */; };
+		EA5929861758CAAC007C0072 /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = EA5929821758CAAC007C0072 /* SignInWithGoogleButton.png */; };
+		EA5929871758CAAC007C0072 /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = EA5929831758CAAC007C0072 /* SignInWithGoogleButton@2x.png */; };
+		EA5929881758CAAC007C0072 /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = EA5929841758CAAC007C0072 /* SignInWithYahooButton.png */; };
+		EA5929891758CAAC007C0072 /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = EA5929851758CAAC007C0072 /* SignInWithYahooButton@2x.png */; };
+		EA59298E1758CD6C007C0072 /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = EA59298C1758CD6C007C0072 /* OpenIDViewController.m */; };
+		EA59298F1758CD6C007C0072 /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */; };
+		EA76D90E175CF80100AE3F86 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */; };
+		EA76D90F175CF80100AE3F86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146B171BC911005B9430 /* UIKit.framework */; };
+		EA76D910175CF80100AE3F86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146D171BC911005B9430 /* Foundation.framework */; };
+		EA76D916175CF80100AE3F86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA76D914175CF80100AE3F86 /* InfoPlist.strings */; };
+		EA76D925175CFAEA00AE3F86 /* SampleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EA76D924175CFAEA00AE3F86 /* SampleSpec.m */; };
 		EA88E65B172F96490021492C /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
 		EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
 		EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
@@ -219,6 +231,13 @@
 			remoteGlobalIDString = 09E159E8160F573A003025B4;
 			remoteInfo = OHAttributedLabel;
 		};
+		EA76D921175CFA6E00AE3F86 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EAAA1460171BC911005B9430 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EAAA1467171BC911005B9430;
+			remoteInfo = Transfer;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -234,6 +253,8 @@
 		18D478FE173A3B5300FC317E /* IdentificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentificationViewController.h; sourceTree = "<group>"; };
 		18D478FF173A3B5300FC317E /* IdentificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentificationViewController.m; sourceTree = "<group>"; };
 		18D47902173A3B6E00FC317E /* IdentificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IdentificationViewController.xib; sourceTree = "<group>"; };
+		9C1FBDCF7CCD414999CC7D3D /* libPods-TransferTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TransferTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9D5DEC1F8394C87A604EF4F /* Pods-TransferTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransferTests.xcconfig"; path = "Pods/Pods-TransferTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		BB29BD41173CCD580016A6E9 /* BankTransfer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BankTransfer.h; sourceTree = "<group>"; };
 		BB29BD42173CCD580016A6E9 /* BankTransfer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BankTransfer.m; sourceTree = "<group>"; };
 		BB29BD45173CD2FF0016A6E9 /* UploadMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadMoneyViewController.h; sourceTree = "<group>"; };
@@ -330,6 +351,19 @@
 		EA5929761758A1E1007C0072 /* PersonalProfileInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileInput.m; sourceTree = "<group>"; };
 		EA59297D1758AE1C007C0072 /* EmailCheckOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailCheckOperation.h; sourceTree = "<group>"; };
 		EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailCheckOperation.m; sourceTree = "<group>"; };
+		EA5929821758CAAC007C0072 /* SignInWithGoogleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SignInWithGoogleButton.png; sourceTree = "<group>"; };
+		EA5929831758CAAC007C0072 /* SignInWithGoogleButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SignInWithGoogleButton@2x.png"; sourceTree = "<group>"; };
+		EA5929841758CAAC007C0072 /* SignInWithYahooButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SignInWithYahooButton.png; sourceTree = "<group>"; };
+		EA5929851758CAAC007C0072 /* SignInWithYahooButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SignInWithYahooButton@2x.png"; sourceTree = "<group>"; };
+		EA59298B1758CD6C007C0072 /* OpenIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenIDViewController.h; sourceTree = "<group>"; };
+		EA59298C1758CD6C007C0072 /* OpenIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenIDViewController.m; sourceTree = "<group>"; };
+		EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenIDViewController.xib; sourceTree = "<group>"; };
+		EA76D90C175CF80100AE3F86 /* TransferTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransferTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		EA76D913175CF80100AE3F86 /* TransferTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TransferTests-Info.plist"; sourceTree = "<group>"; };
+		EA76D915175CF80100AE3F86 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EA76D91A175CF80100AE3F86 /* TransferTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TransferTests-Prefix.pch"; sourceTree = "<group>"; };
+		EA76D924175CFAEA00AE3F86 /* SampleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleSpec.m; sourceTree = "<group>"; };
 		EA88E659172F96490021492C /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credentials.h; path = Credentials/Credentials.h; sourceTree = "<group>"; };
 		EA88E65A172F96490021492C /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Credentials.m; path = Credentials/Credentials.m; sourceTree = "<group>"; };
 		EA88E65D172F96660021492C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -546,6 +580,17 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EA76D908175CF80100AE3F86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA76D90E175CF80100AE3F86 /* SenTestingKit.framework in Frameworks */,
+				EA76D90F175CF80100AE3F86 /* UIKit.framework in Frameworks */,
+				EA76D910175CF80100AE3F86 /* Foundation.framework in Frameworks */,
+				0286BD7B9CD44CD1BAB42E42 /* libPods-TransferTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EAAA1465171BC911005B9430 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -694,6 +739,25 @@
 				EA13E048171BEDC40019FBF0 /* UIView+Loading.m */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EA76D911175CF80100AE3F86 /* TransferTests */ = {
+			isa = PBXGroup;
+			children = (
+				EA76D912175CF80100AE3F86 /* Supporting Files */,
+				EA76D924175CFAEA00AE3F86 /* SampleSpec.m */,
+			);
+			path = TransferTests;
+			sourceTree = "<group>";
+		};
+		EA76D912175CF80100AE3F86 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EA76D913175CF80100AE3F86 /* TransferTests-Info.plist */,
+				EA76D914175CF80100AE3F86 /* InfoPlist.strings */,
+				EA76D91A175CF80100AE3F86 /* TransferTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		EA88E658172F963B0021492C /* Credentials */ = {
@@ -858,9 +922,11 @@
 			isa = PBXGroup;
 			children = (
 				EAAA1473171BC911005B9430 /* Transfer */,
+				EA76D911175CF80100AE3F86 /* TransferTests */,
 				EAAA146A171BC911005B9430 /* Frameworks */,
 				EAAA1469171BC911005B9430 /* Products */,
 				EA8FF68C171D22080090A658 /* Thirdparty */,
+				B9D5DEC1F8394C87A604EF4F /* Pods-TransferTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -868,6 +934,7 @@
 			isa = PBXGroup;
 			children = (
 				EAAA1468171BC911005B9430 /* Transfer.app */,
+				EA76D90C175CF80100AE3F86 /* TransferTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -886,6 +953,8 @@
 				EAD73693171E7A3200A037B1 /* Security.framework */,
 				EA8FF6AA171D222E0090A658 /* SystemConfiguration.framework */,
 				EAAA146B171BC911005B9430 /* UIKit.framework */,
+				EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */,
+				9C1FBDCF7CCD414999CC7D3D /* libPods-TransferTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1084,6 +1153,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		EA76D90B175CF80100AE3F86 /* TransferTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA76D91E175CF80100AE3F86 /* Build configuration list for PBXNativeTarget "TransferTests" */;
+			buildPhases = (
+				56A90A46AE7B423883F2D031 /* Check Pods Manifest.lock */,
+				EA76D907175CF80100AE3F86 /* Sources */,
+				EA76D908175CF80100AE3F86 /* Frameworks */,
+				EA76D909175CF80100AE3F86 /* Resources */,
+				EA76D90A175CF80100AE3F86 /* ShellScript */,
+				01B41B0E4D0842479723F7DD /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA76D922175CFA6E00AE3F86 /* PBXTargetDependency */,
+			);
+			name = TransferTests;
+			productName = TransferTests;
+			productReference = EA76D90C175CF80100AE3F86 /* TransferTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		EAAA1467171BC911005B9430 /* Transfer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EAAA148A171BC911005B9430 /* Build configuration list for PBXNativeTarget "Transfer" */;
@@ -1131,6 +1221,7 @@
 			projectRoot = "";
 			targets = (
 				EAAA1467171BC911005B9430 /* Transfer */,
+				EA76D90B175CF80100AE3F86 /* TransferTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1146,6 +1237,14 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		EA76D909175CF80100AE3F86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA76D916175CF80100AE3F86 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EAAA1466171BC911005B9430 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1233,6 +1332,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		01B41B0E4D0842479723F7DD /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-TransferTests-resources.sh\"\n";
+		};
+		56A90A46AE7B423883F2D031 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+		};
 		EA2B238E17212099001AE9DE /* Version update */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1246,6 +1373,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "echo -n ${TARGET_BUILD_DIR}/${INFOPLIST_PATH} \\\n| xargs -0 /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion `git rev-list HEAD | wc -l`\"";
+		};
+		EA76D90A175CF80100AE3F86 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 		EAD73695171E820100A037B1 /* mogenerator */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1264,6 +1404,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EA76D907175CF80100AE3F86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA76D925175CFAEA00AE3F86 /* SampleSpec.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EAAA1464171BC911005B9430 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1385,7 +1533,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		EA76D922175CFA6E00AE3F86 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EAAA1467171BC911005B9430 /* Transfer */;
+			targetProxy = EA76D921175CFA6E00AE3F86 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		EA76D914175CF80100AE3F86 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA76D915175CF80100AE3F86 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		EAAA1476171BC911005B9430 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1405,6 +1569,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		EA76D91B175CF80100AE3F86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9D5DEC1F8394C87A604EF4F /* Pods-TransferTests.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Transfer.app/Transfer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TransferTests/TransferTests-Prefix.pch";
+				INFOPLIST_FILE = "TransferTests/TransferTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		EA76D91C175CF80100AE3F86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9D5DEC1F8394C87A604EF4F /* Pods-TransferTests.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Transfer.app/Transfer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TransferTests/TransferTests-Prefix.pch";
+				INFOPLIST_FILE = "TransferTests/TransferTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		EAAA1488171BC911005B9430 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1508,6 +1712,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EA76D91E175CF80100AE3F86 /* Build configuration list for PBXNativeTarget "TransferTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA76D91B175CF80100AE3F86 /* Debug */,
+				EA76D91C175CF80100AE3F86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EAAA1463171BC911005B9430 /* Build configuration list for PBXProject "Transfer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
