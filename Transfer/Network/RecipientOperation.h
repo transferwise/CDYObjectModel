@@ -1,5 +1,5 @@
 //
-//  CreateRecipientOperation.h
+//  RecipientOperation.h
 //  Transfer
 //
 //  Created by Jaanus Siim on 5/6/13.
@@ -9,13 +9,14 @@
 #import "TransferwiseOperation.h"
 
 @class Recipient;
+@class RecipientProfileInput;
 
 typedef void (^RecipientResponseBlock)(Recipient *recipient, NSError *error);
 
-@interface CreateRecipientOperation : TransferwiseOperation
+@interface RecipientOperation : TransferwiseOperation
 
 @property (nonatomic, copy) RecipientResponseBlock responseHandler;
 
-+ (CreateRecipientOperation *)operationWithRecipient:(Recipient *)recipient;
++ (RecipientOperation *)createOperationWithRecipient:(RecipientProfileInput *)recipient;
 
 @end

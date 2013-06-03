@@ -75,7 +75,6 @@
 		EA59292F1756231C007C0072 /* PaymentVerificationRequired.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292E1756231C007C0072 /* PaymentVerificationRequired.m */; };
 		EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */; };
 		EA59297117589F5C007C0072 /* PersonalProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297017589F5C007C0072 /* PersonalProfileCommitter.m */; };
-		EA59297417589F72007C0072 /* RecipientProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297317589F71007C0072 /* RecipientProfileCommitter.m */; };
 		EA5929771758A1E1007C0072 /* PersonalProfileInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5929761758A1E1007C0072 /* PersonalProfileInput.m */; };
 		EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */; };
 		EA88E65B172F96490021492C /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
@@ -154,9 +153,11 @@
 		EAB7215F171FCAAC00DE29F5 /* SettingsTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB7215E171FCAAC00DE29F5 /* SettingsTitleCell.m */; };
 		EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */; };
 		EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */; };
+		EACF763C175C7138008F2A03 /* RecipientProfileInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF763B175C7138008F2A03 /* RecipientProfileInput.m */; };
+		EACF7640175C71B4008F2A03 /* RecipientProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */; };
 		EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */; };
 		EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */; };
-		EAD0690A1737CF57007C8DEE /* CreateRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069091737CF57007C8DEE /* CreateRecipientOperation.m */; };
+		EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069091737CF57007C8DEE /* RecipientOperation.m */; };
 		EAD0690E1737E457007C8DEE /* RecipientSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD0690D1737E457007C8DEE /* RecipientSectionHeaderView.m */; };
 		EAD069111737E462007C8DEE /* RecipientSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD069101737E462007C8DEE /* RecipientSectionHeaderView.xib */; };
 		EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */; };
@@ -325,8 +326,6 @@
 		EA59296E17589F3A007C0072 /* RecipientProfileValidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecipientProfileValidation.h; sourceTree = "<group>"; };
 		EA59296F17589F5C007C0072 /* PersonalProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileCommitter.h; sourceTree = "<group>"; };
 		EA59297017589F5C007C0072 /* PersonalProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileCommitter.m; sourceTree = "<group>"; };
-		EA59297217589F71007C0072 /* RecipientProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientProfileCommitter.h; sourceTree = "<group>"; };
-		EA59297317589F71007C0072 /* RecipientProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientProfileCommitter.m; sourceTree = "<group>"; };
 		EA5929751758A1E1007C0072 /* PersonalProfileInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileInput.h; sourceTree = "<group>"; };
 		EA5929761758A1E1007C0072 /* PersonalProfileInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileInput.m; sourceTree = "<group>"; };
 		EA59297D1758AE1C007C0072 /* EmailCheckOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailCheckOperation.h; sourceTree = "<group>"; };
@@ -459,11 +458,15 @@
 		EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTitleCell.xib; sourceTree = "<group>"; };
 		EAB72163171FDC7F00DE29F5 /* MoneyCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyCalculator.h; sourceTree = "<group>"; };
 		EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyCalculator.m; sourceTree = "<group>"; };
+		EACF763A175C7138008F2A03 /* RecipientProfileInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientProfileInput.h; sourceTree = "<group>"; };
+		EACF763B175C7138008F2A03 /* RecipientProfileInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientProfileInput.m; sourceTree = "<group>"; };
+		EACF763E175C71B4008F2A03 /* RecipientProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientProfileCommitter.h; sourceTree = "<group>"; };
+		EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientProfileCommitter.m; sourceTree = "<group>"; };
 		EAD069021737B8AE007C8DEE /* RecipientFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientFieldCell.h; sourceTree = "<group>"; };
 		EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientFieldCell.m; sourceTree = "<group>"; };
 		EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientFieldCell.xib; sourceTree = "<group>"; };
-		EAD069081737CF57007C8DEE /* CreateRecipientOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRecipientOperation.h; sourceTree = "<group>"; };
-		EAD069091737CF57007C8DEE /* CreateRecipientOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateRecipientOperation.m; sourceTree = "<group>"; };
+		EAD069081737CF57007C8DEE /* RecipientOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientOperation.h; sourceTree = "<group>"; };
+		EAD069091737CF57007C8DEE /* RecipientOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientOperation.m; sourceTree = "<group>"; };
 		EAD0690C1737E457007C8DEE /* RecipientSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientSectionHeaderView.h; sourceTree = "<group>"; };
 		EAD0690D1737E457007C8DEE /* RecipientSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientSectionHeaderView.m; sourceTree = "<group>"; };
 		EAD069101737E462007C8DEE /* RecipientSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientSectionHeaderView.xib; sourceTree = "<group>"; };
@@ -740,6 +743,8 @@
 				EA88E66F172F97B10021492C /* ProfileDetails.m */,
 				EA88E670172F97B10021492C /* Recipient.h */,
 				EA88E671172F97B10021492C /* Recipient.m */,
+				EACF763A175C7138008F2A03 /* RecipientProfileInput.h */,
+				EACF763B175C7138008F2A03 /* RecipientProfileInput.m */,
 				EA4AA6041737940900E99150 /* RecipientType.h */,
 				EA4AA6051737940900E99150 /* RecipientType.m */,
 				EA4AA608173794A600E99150 /* RecipientTypeField.h */,
@@ -806,8 +811,8 @@
 				EA88E67D172F97D50021492C /* CountriesOperation.m */,
 				EAAF8FAE17436730008DF9E2 /* CreatePaymentOperation.h */,
 				EAAF8FAF17436730008DF9E2 /* CreatePaymentOperation.m */,
-				EAD069081737CF57007C8DEE /* CreateRecipientOperation.h */,
-				EAD069091737CF57007C8DEE /* CreateRecipientOperation.m */,
+				EAD069081737CF57007C8DEE /* RecipientOperation.h */,
+				EAD069091737CF57007C8DEE /* RecipientOperation.m */,
 				EAA54F4E1733DC3500B65BF3 /* CurrenciesOperation.h */,
 				EAA54F4F1733DC3500B65BF3 /* CurrenciesOperation.m */,
 				EA2B23951721323E001AE9DE /* CurrencyPairsOperation.h */,
@@ -990,8 +995,8 @@
 				EA59296C17589F22007C0072 /* PersonalProfileValidation.h */,
 				EAD66782174CB3AE00D29BCB /* PhoneBookProfileSelector.h */,
 				EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */,
-				EA59297217589F71007C0072 /* RecipientProfileCommitter.h */,
-				EA59297317589F71007C0072 /* RecipientProfileCommitter.m */,
+				EACF763E175C71B4008F2A03 /* RecipientProfileCommitter.h */,
+				EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */,
 				EA59296E17589F3A007C0072 /* RecipientProfileValidation.h */,
 			);
 			path = Utils;
@@ -1339,7 +1344,7 @@
 				EA4AA60A173794A600E99150 /* RecipientTypeField.m in Sources */,
 				EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */,
 				EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */,
-				EAD0690A1737CF57007C8DEE /* CreateRecipientOperation.m in Sources */,
+				EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */,
 				EAD0690E1737E457007C8DEE /* RecipientSectionHeaderView.m in Sources */,
 				EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */,
 				EAD85B0B173920C300C22211 /* PersonalProfileOperation.m in Sources */,
@@ -1371,9 +1376,10 @@
 				EA59292F1756231C007C0072 /* PaymentVerificationRequired.m in Sources */,
 				EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */,
 				EA59297117589F5C007C0072 /* PersonalProfileCommitter.m in Sources */,
-				EA59297417589F72007C0072 /* RecipientProfileCommitter.m in Sources */,
 				EA5929771758A1E1007C0072 /* PersonalProfileInput.m in Sources */,
 				EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */,
+				EACF763C175C7138008F2A03 /* RecipientProfileInput.m in Sources */,
+				EACF7640175C71B4008F2A03 /* RecipientProfileCommitter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

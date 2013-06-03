@@ -23,10 +23,11 @@
 #import "Recipient.h"
 #import "TRWAlertView.h"
 #import "NSMutableString+Issues.h"
-#import "CreateRecipientOperation.h"
+#import "RecipientOperation.h"
 #import "UIApplication+Keyboard.h"
 #import "RecipientSectionHeaderView.h"
 #import "UIView+Loading.h"
+#import "RecipientProfileValidation.h"
 #import "UserRecipientsOperation.h"
 #import "RecipientEntrySelectionCell.h"
 #import "DropdownCell.h"
@@ -35,6 +36,7 @@
 #import "PhoneBookProfileSelector.h"
 #import "PhoneBookProfile.h"
 #import "Credentials.h"
+#import "RecipientProfileInput.h"
 
 static NSUInteger const kImportSection = 0;
 static NSUInteger const kRecipientSection = 1;
@@ -381,56 +383,36 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         return;
     }
 
-    Recipient *recipient = [[Recipient alloc] init];
-    recipient.name = self.nameCell.value;
-    recipient.currency = self.selectedCurrency.code;
-    recipient.type = self.selectedRecipientType.type;
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    [hud setMessage:NSLocalizedString(@"recipient.controller.validating.message", nil)];
+
+    RecipientProfileInput *recipientInput = [[RecipientProfileInput alloc] init];
+    recipientInput.name = self.nameCell.value;
+    recipientInput.currency = self.selectedCurrency.code;
+    recipientInput.type = self.selectedRecipientType.type;
 
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
         if ([cell isKindOfClass:[DropdownCell class]]) {
-            recipient.usState = cell.value;
+            recipientInput.usState = cell.value;
             continue;
         }
 
         NSString *value = [cell value];
         NSString *field = [cell.type name];
-        [recipient setValue:value forKeyPath:field];
+        [recipientInput setValue:value forKeyPath:field];
     }
 
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
-    if ([Credentials userLoggedIn]) {
-        [hud setMessage:NSLocalizedString(@"recipient.controller.creating.message", nil)];
-    } else {
-        [hud setMessage:NSLocalizedString(@"recipient.controller.validating.message", nil)];
-    }
-
-    CreateRecipientOperation *operation = [CreateRecipientOperation operationWithRecipient:recipient];
-    [self setExecutedOperation:operation];
-    [operation setResponseHandler:^(Recipient *serverRecipient, NSError *error) {
+    [self.recipientValidation validateRecipient:recipientInput completion:^(Recipient *recipient, NSError *error) {
         [hud hide];
 
         if (error) {
-            NSString *title;
-            if ([Credentials userLoggedIn]) {
-                title = NSLocalizedString(@"recipient.controller.save.error.title", nil);
-            } else {
-                title = NSLocalizedString(@"recipient.controller.validation.error.title", nil);
-            }
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:title error:error];
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) error:error];
             [alertView show];
             return;
         }
 
-        if (![Credentials userLoggedIn]) {
-            [self setSelectedRecipient:recipient];
-        } else if (self.preloadRecipientsWithCurrency) {
-            [self setSelectedRecipient:serverRecipient];
-        }
-
         self.afterSaveAction();
     }];
-
-    [operation execute];
 }
 
 - (NSString *)validateInput {

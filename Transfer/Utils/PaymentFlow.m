@@ -25,6 +25,7 @@
 #import "PersonalProfileInput.h"
 #import "PersonalProfileOperation.h"
 #import "EmailCheckOperation.h"
+#import "RecipientProfileInput.h"
 
 @interface PaymentFlow ()
 
@@ -298,6 +299,10 @@
     }];
 
     [operation execute];
+}
+
+- (void)validateRecipient:(RecipientProfileInput *)recipientProfile completion:(RecipientProfileValidationBlock)completion {
+
 }
 
 @end

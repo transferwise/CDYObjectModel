@@ -2,7 +2,7 @@
 //  RecipientProfileCommitter.h
 //  Transfer
 //
-//  Created by Jaanus Siim on 5/31/13.
+//  Created by Jaanus Siim on 6/3/13.
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 

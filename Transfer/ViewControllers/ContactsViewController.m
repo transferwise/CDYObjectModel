@@ -17,6 +17,7 @@
 #import "RecipientViewController.h"
 #import "DeleteRecipientOperation.h"
 #import "PaymentViewController.h"
+#import "RecipientProfileCommitter.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
@@ -113,6 +114,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     RecipientViewController *controller = [[RecipientViewController alloc] init];
     [controller setTitle:NSLocalizedString(@"recipient.controller.add.mode.title", nil)];
     [controller setFooterButtonTitle:NSLocalizedString(@"recipient.controller.add.button.title", nil)];
+    [controller setRecipientValidation:[[RecipientProfileCommitter alloc] init]];
     [controller setAfterSaveAction:^{
         [self.navigationController popViewControllerAnimated:YES];
     }];
