@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "OpenIDViewController.h"
 #import "TransferwiseClient.h"
 #import "Constants.h"
