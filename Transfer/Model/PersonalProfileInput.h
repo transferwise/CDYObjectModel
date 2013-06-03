@@ -20,6 +20,7 @@
 @property (nonatomic, copy) NSString *countryCode;
 @property (nonatomic, copy) NSString *dateOfBirthString;
 @property (nonatomic, assign) BOOL changed;
+@property (nonatomic, copy) NSString *fullName;
 
 - (NSDictionary *)data;
 

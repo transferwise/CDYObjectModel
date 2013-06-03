@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class RecipientProfileInput;
+
 @interface Recipient : NSObject
 
 @property (nonatomic, strong, readonly) NSNumber *id;
@@ -26,6 +28,7 @@
 
 - (NSString *)detailsRowOne;
 - (NSString *)detailsRowTwo;
+- (RecipientProfileInput *)profileInput;
 
 + (Recipient *)recipientWithData:(NSDictionary *)data;
 

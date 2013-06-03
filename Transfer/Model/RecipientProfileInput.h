@@ -22,6 +22,7 @@
 @property (nonatomic, copy) NSString *abartn;
 @property (nonatomic, copy) NSString *swiftCode;
 @property (nonatomic, copy) NSString *bankCode;
+@property (nonatomic, strong) NSNumber *id;
 
 - (NSDictionary *)data;
 

@@ -9,6 +9,7 @@
 #import "ProfileDetails.h"
 #import "PersonalProfile.h"
 #import "BusinessProfile.h"
+#import "PersonalProfileInput.h"
 
 @interface ProfileDetails ()
 
@@ -37,6 +38,17 @@
         [details setBusinessProfile:profile];
     }
     return details;
+}
+
+- (PersonalProfileInput *)profileInput {
+    PersonalProfileInput *input = [self.personalProfile input];
+
+    if (!input) {
+        input = [[PersonalProfileInput alloc] init];
+    }
+
+    [input setEmail:self.email];
+    return input;
 }
 
 @end

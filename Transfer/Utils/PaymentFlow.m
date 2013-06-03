@@ -26,6 +26,8 @@
 #import "PersonalProfileOperation.h"
 #import "EmailCheckOperation.h"
 #import "RecipientProfileInput.h"
+#import "RecipientOperation.h"
+#import "Recipient.h"
 
 @interface PaymentFlow ()
 
@@ -39,6 +41,7 @@
 @property (nonatomic, strong) PaymentVerificationRequired *verificationRequired;
 @property (nonatomic, strong) PaymentInput *paymentInput;
 @property (nonatomic, strong) PersonalProfileInput *personalProfile;
+@property (nonatomic, strong) RecipientProfileInput *recipientProfile;
 
 @end
 
@@ -52,6 +55,21 @@
     }
 
     return self;
+}
+
+- (void)setRecipient:(Recipient *)recipient {
+    _recipient = recipient;
+    if (_recipient) {
+        [self setRecipientProfile:[recipient profileInput]];
+    }
+}
+
+- (void)setUserDetails:(ProfileDetails *)userDetails {
+    _userDetails = userDetails;
+
+    if (userDetails) {
+        [self setPersonalProfile:[userDetails profileInput]];
+    }
 }
 
 - (void)presentSenderDetails {
@@ -75,6 +93,8 @@
             handler(result, error);
             return;
         }
+
+        [self setPersonalProfile:profile];
 
         if ([Credentials userLoggedIn]) {
             handler(nil, nil);
@@ -122,6 +142,7 @@
     __block __weak  RecipientViewController *weakController = controller;
     [controller setTitle:NSLocalizedString(@"recipient.controller.payment.mode.title", nil)];
     [controller setFooterButtonTitle:NSLocalizedString(@"recipient.controller.confirm.payment.button.title", nil)];
+    [controller setRecipientValidation:self];
     [controller setAfterSaveAction:^{
         [self setRecipient:weakController.selectedRecipient];
         [self setRecipientType:weakController.selectedRecipientType];
@@ -135,8 +156,8 @@
 - (void)presentPaymentConfirmation {
     MCLog(@"presentPaymentConfirmation");
     ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
-    [controller setSenderDetails:self.userDetails];
-    [controller setRecipient:self.recipient];
+    [controller setSenderDetails:self.personalProfile];
+    [controller setRecipientProfile:self.recipientProfile];
     [controller setRecipientType:self.recipientType];
     [controller setCalculationResult:self.calculationResult];
     [controller setFooterButtonTitle:NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
@@ -302,7 +323,17 @@
 }
 
 - (void)validateRecipient:(RecipientProfileInput *)recipientProfile completion:(RecipientProfileValidationBlock)completion {
+    MCLog(@"Validate recipient");
+    RecipientOperation *operation = [RecipientOperation validateOperationWithRecipient:recipientProfile];
+    [self setExecutedOperation:operation];
 
+    [operation setResponseHandler:^(Recipient *recipient, NSError *error) {
+        [self setRecipientProfile:recipientProfile];
+
+        completion(recipient, error);
+    }];
+
+    [operation execute];
 }
 
 @end

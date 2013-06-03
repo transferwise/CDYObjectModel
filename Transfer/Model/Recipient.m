@@ -7,6 +7,7 @@
 //
 
 #import "Recipient.h"
+#import "RecipientProfileInput.h"
 
 @interface Recipient ()
 
@@ -81,6 +82,23 @@
     }
 
     return @"";
+}
+
+- (RecipientProfileInput *)profileInput {
+    RecipientProfileInput *input = [[RecipientProfileInput alloc] init];
+    [input setId:self.id];
+    [input setName:self.name];
+    [input setCurrency:self.currency];
+    [input setType:self.type];
+    [input setIBAN:self.IBAN];
+    [input setBIC:self.BIC];
+    [input setAbartn:self.abartn];
+    [input setAccountNumber:self.accountNumber];
+    [input setUsState:self.usState];
+    [input setSortCode:self.sortCode];
+    [input setSwiftCode:self.swiftCode];
+    [input setBankCode:self.bankCode];
+    return input;
 }
 
 + (Recipient *)recipientWithData:(NSDictionary *)data {

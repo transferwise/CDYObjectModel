@@ -8,6 +8,7 @@
 
 #import "PersonalProfile.h"
 #import "NSString+Validation.h"
+#import "PersonalProfileInput.h"
 
 @interface PersonalProfile ()
 
@@ -56,6 +57,20 @@
 
 - (BOOL)addressVerifiedValue {
     return [self.addressVerified boolValue];
+}
+
+- (PersonalProfileInput *)input {
+    PersonalProfileInput *profile = [[PersonalProfileInput alloc] init];
+    [profile setFullName:self.fullName];
+    [profile setFirstName:self.firstName];
+    [profile setLastName:self.lastName];
+    [profile setDateOfBirthString:self.dateOfBirthString];
+    [profile setPhoneNumber:self.phoneNumber];
+    [profile setAddressFirstLine:self.addressFirstLine];
+    [profile setPostCode:self.postCode];
+    [profile setCity:self.city];
+    [profile setCountryCode:self.countryCode];
+    return profile;
 }
 
 @end

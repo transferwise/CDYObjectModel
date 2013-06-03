@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class PersonalProfileInput;
+
 @interface PersonalProfile : NSObject
 
 @property (nonatomic, copy) NSString *firstName;
@@ -25,5 +27,6 @@
 
 - (BOOL)identityVerifiedValue;
 - (BOOL)addressVerifiedValue;
+- (PersonalProfileInput *)input;
 
 @end

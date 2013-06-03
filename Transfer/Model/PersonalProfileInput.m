@@ -23,4 +23,11 @@
     return [NSDictionary dictionaryWithDictionary:data];
 }
 
+- (NSString *)fullName {
+    if (!_fullName) {
+        [self setFullName:[NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName]];
+    }
+    return _fullName;
+}
+
 @end
