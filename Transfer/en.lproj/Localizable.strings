@@ -92,6 +92,9 @@
 "money.entry.they.receive.title" = "They get";
 "money.entry.you.send.title" = "You send";
 
+"openid.login.error.title" = "Login failed";
+"openid.login.generic.error.message" = "Login failed. Please try again later.";
+
 "payment.change.time.days.ago" = "%d days ago";
 "payment.change.time.hours.ago" = "%d hours ago";
 "payment.change.time.minutes.ago" = "%d minutes ago";

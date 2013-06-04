@@ -9,6 +9,8 @@
 #import "OpenIDViewController.h"
 #import "TransferwiseClient.h"
 #import "Constants.h"
+#import "Credentials.h"
+#import "TRWAlertView.h"
 
 @interface OpenIDViewController () <UIWebViewDelegate>
 
@@ -39,34 +41,53 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"POST" path:@"/api/v1/account/registerWithOpenID" parameters:@{@"provider" : self.provider, @"email" : self.email}];
-    [self.webView loadRequest:request];
+    NSString *loadingPagePath = [[NSBundle mainBundle] pathForResource:@"spinner" ofType:@"html"];
+    NSString *loadingPageContent = [[NSString alloc] initWithContentsOfFile:loadingPagePath encoding:NSUTF8StringEncoding error:nil];
+    [self.webView loadHTMLString:loadingPageContent baseURL:[[NSBundle mainBundle] bundleURL]];
 
     self.navigationItem.title = self.providerName;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"POST" path:@"/api/v1/account/registerWithOpenID" parameters:@{@"provider" : self.provider, @"email" : self.email}];
+    [self.webView loadRequest:request];
+}
+
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     MCLog(@"shouldStartLoading:%@", [request.URL host]);
     NSString *host = [[[TransferwiseClient sharedClient] baseURL] host];
-    if ([host isEqualToString:[request.URL host]]) {
-        MCLog(@">>>> %@", [request.URL path]);
-
-        NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-        NSArray *cookies = [storage cookies];
-        for (NSHTTPCookie *cookie in cookies) {
-            if ([cookie.domain rangeOfString:@"transferwise"].location == NSNotFound) {
-                continue;
-            }
-
-            MCLog(@"Domain:%@", cookie.domain);
-            MCLog(@"Path:%@", cookie.path);
-            MCLog(@"Name:%@", cookie.name);
-            MCLog(@"Properties:%@", cookie.properties);
-        }
-
-        MCLog(@"\n\n\n\n\n");
+    if (![host isEqualToString:[request.URL host]]) {
+        return YES;
     }
-    return YES;
+
+    NSString *absoluteString = [request.URL absoluteString];
+    if ([absoluteString rangeOfString:@"token="].location == NSNotFound) {
+        return YES;
+    }
+
+    NSUInteger paramsStart = [absoluteString rangeOfString:@"?"].location + 1;
+    NSString *parameters = [absoluteString substringFromIndex:paramsStart];
+    NSArray *values = [parameters componentsSeparatedByString:@"&"];
+    for (NSString *component in values) {
+        if ([component rangeOfString:@"token="].location == 0) {
+            NSString *token = [component substringFromIndex:6];
+            [Credentials setUserToken:token];
+        }
+    }
+
+    if ([Credentials userLoggedIn]) {
+        [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"openid.login.error.title", nil) message:NSLocalizedString(@"openid.login.generic.error.message", nil)];
+        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+        [alertView show];
+    }
+
+    return NO;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
