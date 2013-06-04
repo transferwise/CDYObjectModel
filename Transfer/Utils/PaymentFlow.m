@@ -28,6 +28,7 @@
 #import "RecipientProfileInput.h"
 #import "RecipientOperation.h"
 #import "Recipient.h"
+#import "RegisterWithoutPasswordOperation.h"
 
 @interface PaymentFlow ()
 
@@ -235,8 +236,70 @@
     if ([Credentials userLoggedIn]) {
         [self uploadVerificationData];
     } else {
-        MCLog(@"Handle user creation");
+       [self registerUser];
     }
+}
+
+- (void)registerUser {
+    MCLog(@"registerUser");
+    PSPDFAssert(self.personalProfile);
+    PSPDFAssert(self.personalProfile.email);
+
+    RegisterWithoutPasswordOperation *operation = [RegisterWithoutPasswordOperation operationWithEmail:self.personalProfile.email];
+    [self setExecutedOperation:operation];
+    [operation setCompletionHandler:^(NSError *error) {
+        MCLog(@"Register result:%@", error);
+        if (error) {
+            self.paymentErrorHandler(error);
+            return;
+        }
+
+        [self updateSenderProfile];
+    }];
+
+    [operation execute];
+}
+
+- (void)updateSenderProfile {
+    MCLog(@"updateSenderProfile");
+    PersonalProfileOperation *operation = [PersonalProfileOperation commitOperationWithProfile:self.personalProfile];
+    [self setExecutedOperation:operation];
+
+    [operation setSaveResultHandler:^(ProfileDetails *result, NSError *error) {
+        if (error) {
+            self.paymentErrorHandler(error);
+            return;
+        }
+
+        [self setUserDetails:result];
+
+        if ([self.recipientProfile.id integerValue] == 0) {
+            [self commitRecipientData];
+        } else {
+            [self uploadVerificationData];
+        }
+    }];
+
+    [operation execute];
+}
+
+- (void)commitRecipientData {
+    MCLog(@"commitRecipientData");
+    RecipientOperation *operation = [RecipientOperation createOperationWithRecipient:self.recipientProfile];
+    [self setExecutedOperation:operation];
+
+    [operation setResponseHandler:^(Recipient *recipient, NSError *error) {
+        if (error) {
+            self.paymentErrorHandler(error);
+            return;
+        }
+
+        [self setRecipient:recipient];
+        [self.paymentInput setRecipientId:recipient.id];
+        [self commitPayment];
+    }];
+
+    [operation execute];
 }
 
 - (void)uploadVerificationData {
@@ -306,6 +369,8 @@
 
 - (void)commitPayment {
     MCLog(@"Commit payment");
+    PSPDFAssert(self.paymentInput.recipientId);
+
     CreatePaymentOperation *operation = [CreatePaymentOperation commitOperationWithPayment:self.paymentInput];
     [self setExecutedOperation:operation];
 

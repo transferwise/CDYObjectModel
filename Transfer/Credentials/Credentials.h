@@ -12,6 +12,7 @@
 
 + (BOOL)userLoggedIn;
 + (void)setUserToken:(NSString *)token;
++ (void)setUserSecret:(NSString *)secret;
 + (NSString *)accessToken;
 + (void)clearCredentials;
 //TODO jaanus: this feels wrong place for display information

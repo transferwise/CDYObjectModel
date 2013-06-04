@@ -12,6 +12,7 @@
 
 NSString *const kAccessTokenKey = @"kAccessTokenKey";
 NSString *const kDisplayNameKey = @"kDisplayNameKey";
+NSString *const kUserSecretKey = @"kUserSecretKey";
 
 @implementation Credentials
 
@@ -23,6 +24,10 @@ NSString *const kDisplayNameKey = @"kDisplayNameKey";
     [Lockbox setString:token forKey:kAccessTokenKey];
 }
 
++ (void)setUserSecret:(NSString *)secret {
+    [Lockbox setString:secret forKey:kUserSecretKey];
+}
+
 + (NSString *)accessToken {
     return [Lockbox stringForKey:kAccessTokenKey];
 }
@@ -30,6 +35,7 @@ NSString *const kDisplayNameKey = @"kDisplayNameKey";
 + (void)clearCredentials {
     [Lockbox setString:@"" forKey:kAccessTokenKey];
     [Lockbox setString:@"" forKey:kDisplayNameKey];
+    [Lockbox setString:@"" forKey:kUserSecretKey];
 }
 
 + (NSString *)displayName {
