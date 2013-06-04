@@ -78,12 +78,6 @@
 		EA59297117589F5C007C0072 /* PersonalProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297017589F5C007C0072 /* PersonalProfileCommitter.m */; };
 		EA5929771758A1E1007C0072 /* PersonalProfileInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5929761758A1E1007C0072 /* PersonalProfileInput.m */; };
 		EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */; };
-		EA5929861758CAAC007C0072 /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = EA5929821758CAAC007C0072 /* SignInWithGoogleButton.png */; };
-		EA5929871758CAAC007C0072 /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = EA5929831758CAAC007C0072 /* SignInWithGoogleButton@2x.png */; };
-		EA5929881758CAAC007C0072 /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = EA5929841758CAAC007C0072 /* SignInWithYahooButton.png */; };
-		EA5929891758CAAC007C0072 /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = EA5929851758CAAC007C0072 /* SignInWithYahooButton@2x.png */; };
-		EA59298E1758CD6C007C0072 /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = EA59298C1758CD6C007C0072 /* OpenIDViewController.m */; };
-		EA59298F1758CD6C007C0072 /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */; };
 		EA76D90E175CF80100AE3F86 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */; };
 		EA76D90F175CF80100AE3F86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146B171BC911005B9430 /* UIKit.framework */; };
 		EA76D910175CF80100AE3F86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146D171BC911005B9430 /* Foundation.framework */; };
@@ -129,6 +123,11 @@
 		EA8FF6B4171D23B20090A658 /* TRWProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6B3171D23B20090A658 /* TRWProgressHUD.m */; };
 		EA8FF6B8171D25C20090A658 /* TransferwiseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */; };
 		EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6BA171D26A00090A658 /* LoginOperation.m */; };
+		EAA053D2175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */; };
+		EAA053D6175DD5EE00ACD3F6 /* NoUserPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D5175DD5EE00ACD3F6 /* NoUserPaymentFlow.m */; };
+		EAA053DA175DD63100ACD3F6 /* PaymentFlowSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D9175DD63100ACD3F6 /* PaymentFlowSpec.m */; };
+		EAA053E0175DD64D00ACD3F6 /* NoUserPaymentFlowSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053DF175DD64D00ACD3F6 /* NoUserPaymentFlowSpec.m */; };
+		EAA053E4175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053E3175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m */; };
 		EAA54F3E1733CA7800B65BF3 /* ContactsTabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F361733CA7800B65BF3 /* ContactsTabIcon.png */; };
 		EAA54F3F1733CA7800B65BF3 /* ContactsTabIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F371733CA7800B65BF3 /* ContactsTabIcon@2x.png */; };
 		EAA54F421733CA7800B65BF3 /* NewPaymentTabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F3A1733CA7800B65BF3 /* NewPaymentTabIcon.png */; };
@@ -351,13 +350,6 @@
 		EA5929761758A1E1007C0072 /* PersonalProfileInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileInput.m; sourceTree = "<group>"; };
 		EA59297D1758AE1C007C0072 /* EmailCheckOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailCheckOperation.h; sourceTree = "<group>"; };
 		EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailCheckOperation.m; sourceTree = "<group>"; };
-		EA5929821758CAAC007C0072 /* SignInWithGoogleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SignInWithGoogleButton.png; sourceTree = "<group>"; };
-		EA5929831758CAAC007C0072 /* SignInWithGoogleButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SignInWithGoogleButton@2x.png"; sourceTree = "<group>"; };
-		EA5929841758CAAC007C0072 /* SignInWithYahooButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SignInWithYahooButton.png; sourceTree = "<group>"; };
-		EA5929851758CAAC007C0072 /* SignInWithYahooButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SignInWithYahooButton@2x.png"; sourceTree = "<group>"; };
-		EA59298B1758CD6C007C0072 /* OpenIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenIDViewController.h; sourceTree = "<group>"; };
-		EA59298C1758CD6C007C0072 /* OpenIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenIDViewController.m; sourceTree = "<group>"; };
-		EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenIDViewController.xib; sourceTree = "<group>"; };
 		EA76D90C175CF80100AE3F86 /* TransferTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransferTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		EA76D913175CF80100AE3F86 /* TransferTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TransferTests-Info.plist"; sourceTree = "<group>"; };
@@ -443,6 +435,13 @@
 		EA8FF6BC171D30B60090A658 /* TransferwiseOperation+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TransferwiseOperation+Private.h"; sourceTree = "<group>"; };
 		EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonEditTextField.h; sourceTree = "<group>"; };
 		EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonEditTextField.m; sourceTree = "<group>"; };
+		EAA053D0175DD5DC00ACD3F6 /* LoggedInPaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggedInPaymentFlow.h; sourceTree = "<group>"; };
+		EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggedInPaymentFlow.m; sourceTree = "<group>"; };
+		EAA053D4175DD5EE00ACD3F6 /* NoUserPaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoUserPaymentFlow.h; sourceTree = "<group>"; };
+		EAA053D5175DD5EE00ACD3F6 /* NoUserPaymentFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoUserPaymentFlow.m; sourceTree = "<group>"; };
+		EAA053D9175DD63100ACD3F6 /* PaymentFlowSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentFlowSpec.m; sourceTree = "<group>"; };
+		EAA053DF175DD64D00ACD3F6 /* NoUserPaymentFlowSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoUserPaymentFlowSpec.m; sourceTree = "<group>"; };
+		EAA053E3175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggedInPaymentFlowSpec.m; sourceTree = "<group>"; };
 		EAA54F361733CA7800B65BF3 /* ContactsTabIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContactsTabIcon.png; sourceTree = "<group>"; };
 		EAA54F371733CA7800B65BF3 /* ContactsTabIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ContactsTabIcon@2x.png"; sourceTree = "<group>"; };
 		EAA54F3A1733CA7800B65BF3 /* NewPaymentTabIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewPaymentTabIcon.png; sourceTree = "<group>"; };
@@ -745,6 +744,7 @@
 			isa = PBXGroup;
 			children = (
 				EA76D912175CF80100AE3F86 /* Supporting Files */,
+				EAA053D7175DD61400ACD3F6 /* Utils */,
 				EA76D924175CFAEA00AE3F86 /* SampleSpec.m */,
 			);
 			path = TransferTests;
@@ -918,6 +918,16 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		EAA053D7175DD61400ACD3F6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				EAA053E3175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m */,
+				EAA053DF175DD64D00ACD3F6 /* NoUserPaymentFlowSpec.m */,
+				EAA053D9175DD63100ACD3F6 /* PaymentFlowSpec.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		EAAA145F171BC911005B9430 = {
 			isa = PBXGroup;
 			children = (
@@ -1053,10 +1063,14 @@
 			children = (
 				EAEA6255172011C500A96770 /* CalculationResult.h */,
 				EAEA6256172011C500A96770 /* CalculationResult.m */,
+				EAA053D0175DD5DC00ACD3F6 /* LoggedInPaymentFlow.h */,
+				EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */,
 				EAB72163171FDC7F00DE29F5 /* MoneyCalculator.h */,
 				EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */,
 				EAAF8FB61743B3E4008DF9E2 /* MoneyFormatter.h */,
 				EAAF8FB71743B3E4008DF9E2 /* MoneyFormatter.m */,
+				EAA053D4175DD5EE00ACD3F6 /* NoUserPaymentFlow.h */,
+				EAA053D5175DD5EE00ACD3F6 /* NoUserPaymentFlow.m */,
 				EA222E31173A676000C5D613 /* PaymentFlow.h */,
 				EA222E32173A676000C5D613 /* PaymentFlow.m */,
 				EA59296F17589F5C007C0072 /* PersonalProfileCommitter.h */,
@@ -1409,6 +1423,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA76D925175CFAEA00AE3F86 /* SampleSpec.m in Sources */,
+				EAA053DA175DD63100ACD3F6 /* PaymentFlowSpec.m in Sources */,
+				EAA053E0175DD64D00ACD3F6 /* NoUserPaymentFlowSpec.m in Sources */,
+				EAA053E4175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1528,6 +1545,8 @@
 				EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */,
 				EACF763C175C7138008F2A03 /* RecipientProfileInput.m in Sources */,
 				EACF7640175C71B4008F2A03 /* RecipientProfileCommitter.m in Sources */,
+				EAA053D2175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m in Sources */,
+				EAA053D6175DD5EE00ACD3F6 /* NoUserPaymentFlow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

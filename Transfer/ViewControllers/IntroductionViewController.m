@@ -24,6 +24,7 @@
 #import "MoneyFormatter.h"
 #import "TRWAlertView.h"
 #import "PaymentFlow.h"
+#import "NoUserPaymentFlow.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
@@ -209,7 +210,7 @@ static NSUInteger const kRowYouSend = 0;
         return;
     }
 
-    PaymentFlow *paymentFlow = [[PaymentFlow alloc] initWithPresentingController:self.navigationController];
+    PaymentFlow *paymentFlow = [[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
     [self setPaymentFlow:paymentFlow];
 
     [paymentFlow setSourceCurrency:[self.youSendCell currency]];
