@@ -78,6 +78,7 @@
 "introduction.savings.message.base" = "You'll get %@ more vs your bank";
 "introduction.savings.message.why" = "Why?";
 
+"login.controller.footer.message" = "You will be remembered on this device until you manually log out of the app";
 "login.controller.header.message" = "Log-in to your account";
 "login.controller.logging.in.message" = "Logging in...";
 "login.controller.title" = "Log in";

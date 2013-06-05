@@ -18,6 +18,7 @@
 #import "TRWProgressHUD.h"
 #import "LoginOperation.h"
 #import "NSError+TRWErrors.h"
+#import "OpenIDViewController.h"
 
 static NSUInteger const kTableRowEmail = 0;
 
@@ -28,8 +29,11 @@ static NSUInteger const kTableRowEmail = 0;
 @property (nonatomic, strong) IBOutlet TextEntryCell *emailCell;
 @property (nonatomic, strong) IBOutlet TextEntryCell *passwordCell;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
+@property (nonatomic, strong) IBOutlet UILabel *footerMessageLabel;
 
 - (IBAction)loginPressed:(id)sender;
+- (IBAction)googleLogInPressed:(id)sender;
+- (IBAction)yahooLogInPressed:(id)sender;
 
 @end
 
@@ -70,6 +74,8 @@ static NSUInteger const kTableRowEmail = 0;
     [password.entryField setSecureTextEntry:YES];
 
     [self.loginButton setTitle:NSLocalizedString(@"button.title.log.in", nil) forState:UIControlStateNormal];
+
+    [self.footerMessageLabel setText:NSLocalizedString(@"login.controller.footer.message", nil)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -199,6 +205,22 @@ static NSUInteger const kTableRowEmail = 0;
     }
 
     return [NSString stringWithString:issues];
+}
+
+- (IBAction)googleLogInPressed:(id)sender {
+    [self presentOpenIDLogInWithProvider:@"google" name:@"Google"];
+}
+
+- (IBAction)yahooLogInPressed:(id)sender {
+    [self presentOpenIDLogInWithProvider:@"yahoo" name:@"Yahoo"];
+}
+
+- (void)presentOpenIDLogInWithProvider:(NSString *)provider name:(NSString *)providerName {
+    OpenIDViewController *controller = [[OpenIDViewController alloc] init];
+    [controller setProvider:provider];
+    [controller setEmail:self.emailCell.value];
+    [controller setProviderName:providerName];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end
