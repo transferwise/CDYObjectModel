@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PersonalProfileValidation.h"
+#import "RecipientProfileValidation.h"
 
 @class ProfileDetails;
 @class Currency;
@@ -18,7 +20,7 @@
 
 typedef void (^PaymentErrorBlock)(NSError *error);
 
-@interface PaymentFlow : NSObject
+@interface PaymentFlow : NSObject <PersonalProfileValidation, RecipientProfileValidation>
 
 @property (nonatomic, strong) Currency *sourceCurrency;
 @property (nonatomic, strong) Currency *targetCurrency;

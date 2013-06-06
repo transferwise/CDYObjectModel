@@ -13,6 +13,7 @@
 @class Currency;
 @class Recipient;
 @class RecipientType;
+@protocol RecipientProfileValidation;
 
 @interface RecipientViewController : DataEntryViewController
 
@@ -22,5 +23,6 @@
 @property (nonatomic, strong, readonly) Recipient *selectedRecipient;
 @property (nonatomic, strong, readonly) RecipientType *selectedRecipientType;
 @property (nonatomic, strong, readonly) NSArray *recipientTypes;
+@property (nonatomic, strong) id<RecipientProfileValidation> recipientValidation;
 
 @end

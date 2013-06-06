@@ -136,6 +136,7 @@
 "personal.profile.country.label" = "Country";
 "personal.profile.date.of.birth.label" = "Date of birth";
 "personal.profile.email.label" = "E-mail";
+"personal.profile.email.taken.message" = "Email taken, please use another one or log in.";
 "personal.profile.first.name.label" = "First name";
 "personal.profile.last.name.label" = "Last name";
 "personal.profile.personal.section.title" = "Personal details";

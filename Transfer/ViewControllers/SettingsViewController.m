@@ -15,6 +15,7 @@
 #import "SWRevealViewController.h"
 #import "SignUpViewController.h"
 #import "LoginViewController.h"
+#import "PersonalProfileCommitter.h"
 
 NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
@@ -167,9 +168,7 @@ typedef NS_ENUM(short, SettingsRow) {
         case PersonalProfileRow: {
             PersonalProfileViewController *controller = [[PersonalProfileViewController alloc] init];
             [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.save.button.title", nil)];
-            [controller setAfterSaveAction:^{
-
-            }];
+            [controller setProfileValidation:[[PersonalProfileCommitter alloc] init]];
             [revealController revealToggle:nil];
             [pushOnNavigationController pushViewController:controller animated:YES];
             break;

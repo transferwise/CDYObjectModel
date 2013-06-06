@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class PersonalProfile, BusinessProfile;
+@class PersonalProfile;
+@class BusinessProfile;
+@class PersonalProfileInput;
 
 @interface ProfileDetails : NSObject
 
@@ -18,6 +20,7 @@
 @property (nonatomic, copy, readonly) NSString *reference;
 
 - (NSString *)displayName;
+- (PersonalProfileInput *)profileInput;
 
 + (ProfileDetails *)detailsWithData:(NSDictionary *)data;
 

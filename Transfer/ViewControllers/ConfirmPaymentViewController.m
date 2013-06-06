@@ -9,15 +9,13 @@
 #import "ConfirmPaymentViewController.h"
 #import "UIColor+Theme.h"
 #import "ConfirmPaymentCell.h"
-#import "ProfileDetails.h"
-#import "PersonalProfile.h"
-#import "Recipient.h"
 #import "RecipientType.h"
 #import "RecipientTypeField.h"
 #import "OHAttributedLabel/OHAttributedLabel.h"
 #import "CalculationResult.h"
-#import "CreatePaymentOperation.h"
+#import "PersonalProfileInput.h"
 #import "TRWProgressHUD.h"
+#import "RecipientProfileInput.h"
 #import "TRWAlertView.h"
 #import "TextEntryCell.h"
 #import "NSString+Validation.h"
@@ -145,7 +143,7 @@ static NSUInteger const kReceiverSection = 1;
     for (RecipientTypeField *field in fields) {
         ConfirmPaymentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
         [cell.textLabel setText:field.title];
-        [cell.detailTextLabel setText:[self.recipient valueForKeyPath:field.name]];
+        [cell.detailTextLabel setText:[self.recipientProfile valueForKeyPath:field.name]];
         [cells addObject:cell];
     }
     return [NSArray arrayWithArray:cells];
@@ -185,7 +183,7 @@ static NSUInteger const kReceiverSection = 1;
             NSArray *filtered = [recipients filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
                 RecipientType *type = evaluatedObject;
 
-                return [type.type isEqualToString:self.recipient.type];
+                return [type.type isEqualToString:self.recipientProfile.type];
             }]];
 
             [self setRecipientType:[filtered lastObject]];
@@ -212,17 +210,17 @@ static NSUInteger const kReceiverSection = 1;
     NSAttributedString *paymentDateString = [self attributedStringWithBase:dateMessageString markedString:dateString];
     [self.deliveryDateLabelLabel setAttributedText:paymentDateString];
 
-    [self.senderNameCell.textLabel setText:[self.senderDetails.personalProfile fullName]];
+    [self.senderNameCell.textLabel setText:[self.senderDetails fullName]];
     [self.senderNameCell.detailTextLabel setText:NSLocalizedString(@"confirm.payment.sender.marker.label", nil)];
 
     [self.senderEmailCell.textLabel setText:NSLocalizedString(@"confirm.payment.email.label", nil)];
     [self.senderEmailCell.detailTextLabel setText:self.senderDetails.email];
 
-    [self.receiverNameCell.textLabel setText:[self.recipient name]];
+    [self.receiverNameCell.textLabel setText:[self.recipientProfile name]];
     [self.receiverNameCell.detailTextLabel setText:NSLocalizedString(@"confirm.payment.recipient.marker.label", nil)];
 
     [self.receiverEmailCell setEditable:YES];
-    [self.receiverEmailCell configureWithTitle:NSLocalizedString(@"confirm.payment.email.label", nil) value:[self.recipient email]];
+    [self.receiverEmailCell configureWithTitle:NSLocalizedString(@"confirm.payment.email.label", nil) value:[self.recipientProfile email]];
 
     [self.referenceCell setEditable:YES];
     [self.referenceCell configureWithTitle:NSLocalizedString(@"confirm.payment.reference.label", nil) value:@""];
@@ -233,7 +231,9 @@ static NSUInteger const kReceiverSection = 1;
     [hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
 
     PaymentInput *input = [[PaymentInput alloc] init];
-    [input setRecipientId:self.recipient.id];
+    if (self.recipientProfile.id) {
+        [input setRecipientId:self.recipientProfile.id];
+    }
     [input setSourceCurrency:self.calculationResult.sourceCurrency];
     [input setTargetCurrency:self.calculationResult.targetCurrency];
     [input setAmount:self.calculationResult.amount];

@@ -1,32 +1,27 @@
 //
-//  PersonalProfile.h
+//  PersonalProfileInput.h
 //  Transfer
 //
-//  Created by Jaanus Siim on 4/24/13.
+//  Created by Jaanus Siim on 5/31/13.
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@class PersonalProfileInput;
-
-@interface PersonalProfile : NSObject
+@interface PersonalProfileInput : NSObject
 
 @property (nonatomic, copy) NSString *firstName;
 @property (nonatomic, copy) NSString *lastName;
-@property (nonatomic, copy) NSString *dateOfBirthString;
+@property (nonatomic, copy) NSString *email;
 @property (nonatomic, copy) NSString *phoneNumber;
 @property (nonatomic, copy) NSString *addressFirstLine;
 @property (nonatomic, copy) NSString *postCode;
 @property (nonatomic, copy) NSString *city;
 @property (nonatomic, copy) NSString *countryCode;
+@property (nonatomic, copy) NSString *dateOfBirthString;
+@property (nonatomic, assign) BOOL changed;
+@property (nonatomic, copy) NSString *fullName;
 
-- (NSString *)fullName;
-
-+ (PersonalProfile *)profileWithData:(NSDictionary *)data;
-
-- (BOOL)identityVerifiedValue;
-- (BOOL)addressVerifiedValue;
-- (PersonalProfileInput *)input;
+- (NSDictionary *)data;
 
 @end
