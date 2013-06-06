@@ -46,4 +46,8 @@ NSString *const kUserSecretKey = @"kUserSecretKey";
     [Lockbox setString:displayName forKey:kDisplayNameKey];
 }
 
++ (BOOL)temporaryAccount {
+    return [[Lockbox stringForKey:kUserSecretKey] hasValue];
+}
+
 @end

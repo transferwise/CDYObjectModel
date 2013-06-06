@@ -68,7 +68,7 @@
 - (void)setUserDetails:(ProfileDetails *)userDetails {
     _userDetails = userDetails;
 
-    if (userDetails) {
+    if (userDetails.personalProfile) {
         [self setPersonalProfile:[userDetails profileInput]];
     }
 }
@@ -218,11 +218,17 @@
         [self setVerificationRequired:verificationRequired];
 
         MCLog(@"Any verification required? %d", verificationRequired.isAnyVerificationRequired);
+        MCLog(@"Logged in? %d", [Credentials userLoggedIn]);
         if (verificationRequired.isAnyVerificationRequired) {
+            MCLog(@"Present verification screen");
             self.paymentErrorHandler(nil);
             [self presentVerificationScreen:verificationRequired];
-        } else {
+        } else if ([Credentials userLoggedIn]) {
+            MCLog(@"Update sender profile");
             [self updateSenderProfile];
+        } else {
+            MCLog(@"Register user");
+            [self registerUser];
         }
     }];
 
@@ -296,6 +302,8 @@
             return;
         }
 
+        MCLog(@"Recipient:%@", recipient);
+        MCLog(@"Recipient id:%@", recipient.id);
         [self setRecipient:recipient];
         [self.paymentInput setRecipientId:recipient.id];
         [self commitPayment];
@@ -371,6 +379,10 @@
 
 - (void)commitPayment {
     MCLog(@"Commit payment");
+    if (!self.paymentInput.recipientId) {
+        [self.paymentInput setRecipientId:self.recipientProfile.id];
+    }
+
     PSPDFAssert(self.paymentInput.recipientId);
 
     CreatePaymentOperation *operation = [CreatePaymentOperation commitOperationWithPayment:self.paymentInput];

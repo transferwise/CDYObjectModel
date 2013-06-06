@@ -21,6 +21,8 @@
 #import "TRWProgressHUD.h"
 #import "TRWAlertView.h"
 #import "UINavigationController+StackManipulations.h"
+#import "Credentials.h"
+#import "ClaimAccountViewController.h"
 
 @interface UploadMoneyViewController ()
 
@@ -178,7 +180,12 @@
 }
 
 - (IBAction)doneBtnClicked:(id)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+    if ([Credentials temporaryAccount]) {
+        ClaimAccountViewController *controller = [[ClaimAccountViewController alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+    }
 }
 
 - (IBAction)toggleButtonValueChanged:(id)sender {

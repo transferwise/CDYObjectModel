@@ -296,7 +296,7 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">getStartedPressed:</string>
+						<string key="label">startPaymentPressed:</string>
 						<reference key="source" ref="964621262"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
