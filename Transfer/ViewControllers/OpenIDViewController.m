@@ -11,6 +11,7 @@
 #import "Constants.h"
 #import "Credentials.h"
 #import "TRWAlertView.h"
+#import "NSString+Validation.h"
 
 @interface OpenIDViewController () <UIWebViewDelegate>
 
@@ -51,7 +52,13 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"POST" path:@"/api/v1/account/registerWithOpenID" parameters:@{@"provider" : self.provider, @"email" : self.email}];
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"provider"] = self.provider;
+    if ([self.email hasValue]) {
+        data[@"email"] = self.email;
+    }
+    MCLog(@"Params:%@", data);
+    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"POST" path:@"/api/v1/account/registerWithOpenID" parameters:data];
     [self.webView loadRequest:request];
 }
 
