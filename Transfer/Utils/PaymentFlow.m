@@ -222,7 +222,7 @@
             self.paymentErrorHandler(nil);
             [self presentVerificationScreen:verificationRequired];
         } else {
-            [self commitPaymentWithErrorHandler:self.paymentErrorHandler];
+            [self updateSenderProfile];
         }
     }];
 
@@ -272,6 +272,8 @@
         }
 
         [self setUserDetails:result];
+
+        MCLog(@"Recipient created?%d", [self.recipientProfile.id integerValue] != 0);
 
         if ([self.recipientProfile.id integerValue] == 0) {
             [self commitRecipientData];
