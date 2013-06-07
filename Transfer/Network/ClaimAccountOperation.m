@@ -10,7 +10,7 @@
 #import "TransferwiseOperation+Private.h"
 #import "Credentials.h"
 
-NSString *const kSetPasswordPath = @"/api/v1/account/setPassword";
+NSString *const kSetPasswordPath = @"/account/setPassword";
 
 @interface ClaimAccountOperation ()
 
@@ -29,6 +29,8 @@ NSString *const kSetPasswordPath = @"/api/v1/account/setPassword";
 }
 
 - (void)execute {
+    NSString *path = [self addTokenToPath:kSetPasswordPath];
+
     __block __weak ClaimAccountOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
         weakSelf.resultHandler(error);
@@ -39,7 +41,7 @@ NSString *const kSetPasswordPath = @"/api/v1/account/setPassword";
         weakSelf.resultHandler(nil);
     }];
 
-    [self postData:@{@"password": self.password, @"secret":[Credentials userSecret]} toPath:kSetPasswordPath];
+    [self postData:@{@"password": self.password, @"secret":[Credentials userSecret]} toPath:path];
 }
 
 

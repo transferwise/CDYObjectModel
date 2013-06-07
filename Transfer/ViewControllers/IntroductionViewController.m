@@ -25,6 +25,7 @@
 #import "TRWAlertView.h"
 #import "PaymentFlow.h"
 #import "NoUserPaymentFlow.h"
+#import "Credentials.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
@@ -147,6 +148,14 @@ static NSUInteger const kRowYouSend = 0;
     [self.navigationItem setTitle:NSLocalizedString(@"introduction.controller.title", nil)];
 
     [self retrieveCurrencyPairs];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    if ([Credentials temporaryAccount]) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (void)retrieveCurrencyPairs {
