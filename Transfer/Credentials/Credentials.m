@@ -13,6 +13,7 @@
 NSString *const kAccessTokenKey = @"kAccessTokenKey";
 NSString *const kDisplayNameKey = @"kDisplayNameKey";
 NSString *const kUserSecretKey = @"kUserSecretKey";
+NSString *const kUserEmailKey = @"kUserEmailKey";
 
 @implementation Credentials
 
@@ -28,6 +29,10 @@ NSString *const kUserSecretKey = @"kUserSecretKey";
     [Lockbox setString:secret forKey:kUserSecretKey];
 }
 
++ (void)setUserEmail:(NSString *)email {
+    [Lockbox setString:email forKey:kUserEmailKey];
+}
+
 + (NSString *)accessToken {
     return [Lockbox stringForKey:kAccessTokenKey];
 }
@@ -36,6 +41,7 @@ NSString *const kUserSecretKey = @"kUserSecretKey";
     [Lockbox setString:@"" forKey:kAccessTokenKey];
     [Lockbox setString:@"" forKey:kDisplayNameKey];
     [Lockbox setString:@"" forKey:kUserSecretKey];
+    [Lockbox setString:@"" forKey:kUserEmailKey];
 }
 
 + (NSString *)displayName {
@@ -44,6 +50,19 @@ NSString *const kUserSecretKey = @"kUserSecretKey";
 
 + (void)setDisplayName:(NSString *)displayName {
     [Lockbox setString:displayName forKey:kDisplayNameKey];
+}
+
++ (BOOL)temporaryAccount {
+    return [[Credentials userSecret] hasValue];
+}
+
++ (NSString *)userEmail {
+    return [Lockbox stringForKey:kUserEmailKey];
+}
+
+
++ (NSString *)userSecret {
+    return [Lockbox stringForKey:kUserSecretKey];
 }
 
 @end

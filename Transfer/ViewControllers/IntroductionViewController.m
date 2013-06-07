@@ -44,7 +44,7 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) PaymentFlow *paymentFlow;
 
 - (IBAction)loginPressed:(id)sender;
-- (IBAction)getStartedPressed:(id)sender;
+- (IBAction)startPaymentPressed:(id)sender;
 
 @end
 
@@ -205,8 +205,8 @@ static NSUInteger const kRowYouSend = 0;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (IBAction)getStartedPressed:(id)sender {
-    if (YES || !self.result) {
+- (IBAction)startPaymentPressed:(id)sender {
+    if (!self.result) {
         return;
     }
 

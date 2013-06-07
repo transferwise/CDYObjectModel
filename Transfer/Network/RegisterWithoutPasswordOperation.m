@@ -41,6 +41,7 @@ NSString *const kRegisterPasslessPath = @"/api/v1/account/registerWithNoPassword
         }
         [Credentials setUserToken:token];
         [Credentials setUserSecret:response[@"secret"]];
+        [Credentials setUserEmail:weakSelf.email];
         weakSelf.completionHandler(nil);
     }];
 
