@@ -69,7 +69,8 @@
 "identification.payment.error.title" = "Payment error";
 "identification.proof.of.address" = "Proof of address";
 "identification.reason" = "The reason for your transfer";
-"identification.reason.title" = "We need your proof of identity and address";
+"identification.reason.title" = "We need your proof of
+identity and address";
 "identification.skip.send" = "Skip and send later";
 "identification.take.photo" = "Take Photo";
 "identification.title" = "Identification";
