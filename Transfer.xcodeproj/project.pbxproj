@@ -154,9 +154,6 @@
 		EAAA1478171BC911005B9430 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAAA1476171BC911005B9430 /* InfoPlist.strings */; };
 		EAAA147A171BC911005B9430 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA1479171BC911005B9430 /* main.m */; };
 		EAAA147E171BC911005B9430 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA147D171BC911005B9430 /* AppDelegate.m */; };
-		EAAA1480171BC911005B9430 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EAAA147F171BC911005B9430 /* Default.png */; };
-		EAAA1482171BC911005B9430 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAAA1481171BC911005B9430 /* Default@2x.png */; };
-		EAAA1484171BC911005B9430 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAAA1483171BC911005B9430 /* Default-568h@2x.png */; };
 		EAAA1487171BC911005B9430 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EAAA1485171BC911005B9430 /* Transfer.xcdatamodeld */; };
 		EAAA1490171BD07E005B9430 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAAA148E171BD07E005B9430 /* Localizable.strings */; };
 		EAAC203B17422AB3001DDE7A /* DropdownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAC203A17422AB3001DDE7A /* DropdownCell.m */; };
@@ -488,9 +485,6 @@
 		EAAA147B171BC911005B9430 /* Transfer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Transfer-Prefix.pch"; sourceTree = "<group>"; };
 		EAAA147C171BC911005B9430 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EAAA147D171BC911005B9430 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		EAAA147F171BC911005B9430 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		EAAA1481171BC911005B9430 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		EAAA1483171BC911005B9430 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EAAA1486171BC911005B9430 /* Transfer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer.xcdatamodel; sourceTree = "<group>"; };
 		EAAA148F171BD07E005B9430 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EAAC203917422AB3001DDE7A /* DropdownCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropdownCell.h; sourceTree = "<group>"; };
@@ -1021,9 +1015,6 @@
 			isa = PBXGroup;
 			children = (
 				BBC6912B172147FC00F0FB1A /* WhyView.xib */,
-				EAAA1483171BC911005B9430 /* Default-568h@2x.png */,
-				EAAA147F171BC911005B9430 /* Default.png */,
-				EAAA1481171BC911005B9430 /* Default@2x.png */,
 				EAAA1476171BC911005B9430 /* InfoPlist.strings */,
 				EAAA148E171BD07E005B9430 /* Localizable.strings */,
 				EAAA1479171BC911005B9430 /* main.m */,
@@ -1301,9 +1292,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAAA1478171BC911005B9430 /* InfoPlist.strings in Resources */,
-				EAAA1480171BC911005B9430 /* Default.png in Resources */,
-				EAAA1482171BC911005B9430 /* Default@2x.png in Resources */,
-				EAAA1484171BC911005B9430 /* Default-568h@2x.png in Resources */,
 				EAAA1490171BD07E005B9430 /* Localizable.strings in Resources */,
 				EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */,
 				EAD3967C171BD51400F6D011 /* TransactionsViewController.xib in Resources */,
