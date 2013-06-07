@@ -68,7 +68,7 @@
     [self setPresentedSectionCells:@[cells]];
 
     [self.tableView setTableFooterView:self.footerView];
-    [self.footerButton setTitle:NSLocalizedString(@"button.title.sign.up", nil) forState:UIControlStateNormal];
+    [self.footerButton setTitle:NSLocalizedString(@"button.title.done", nil) forState:UIControlStateNormal];
     [self.footerMessageLabel setText:NSLocalizedString(@"claim.account.footer.message.text", nil)];
     [self.footerMessageLabel setTextColor:[UIColor mainTextColor]];
     CGRect messageFrame = self.footerMessageLabel.frame;
@@ -113,7 +113,7 @@
         if (error) {
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"claim.account.error.title", nil) error:error];
             [alertView show];
-            //return;
+            return;
         }
 
         [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];

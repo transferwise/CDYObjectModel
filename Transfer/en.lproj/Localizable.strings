@@ -20,12 +20,12 @@
 "button.title.back" = "Back";
 "button.title.cancel" = "Cancel";
 "button.title.delete" = "Delete";
+"button.title.done" = "Done";
 "button.title.get.started" = "Get started";
 "button.title.import.from.phonebook" = "Import from phonebook";
 "button.title.log.in" = "Log in";
 "button.title.ok" = "OK";
 "button.title.retry" = "Retry";
-"button.title.sign.up" = "Sign up";
 
 "confirm.payment.controller.title" = "Confirm";
 "confirm.payment.creating.message" = "Creating payment";
