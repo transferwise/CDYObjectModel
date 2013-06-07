@@ -172,6 +172,7 @@
 		EAB7215F171FCAAC00DE29F5 /* SettingsTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB7215E171FCAAC00DE29F5 /* SettingsTitleCell.m */; };
 		EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */; };
 		EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */; };
+		EAB93B481761C74700A7337C /* ClaimAccountOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB93B471761C74700A7337C /* ClaimAccountOperation.m */; };
 		EAC1051A17607C4600B3B018 /* ClaimAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */; };
 		EAC1051B17607C4600B3B018 /* ClaimAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */; };
 		EACF763C175C7138008F2A03 /* RecipientProfileInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF763B175C7138008F2A03 /* RecipientProfileInput.m */; };
@@ -511,6 +512,8 @@
 		EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTitleCell.xib; sourceTree = "<group>"; };
 		EAB72163171FDC7F00DE29F5 /* MoneyCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyCalculator.h; sourceTree = "<group>"; };
 		EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyCalculator.m; sourceTree = "<group>"; };
+		EAB93B461761C74700A7337C /* ClaimAccountOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimAccountOperation.h; sourceTree = "<group>"; };
+		EAB93B471761C74700A7337C /* ClaimAccountOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimAccountOperation.m; sourceTree = "<group>"; };
 		EAC1051717607C4600B3B018 /* ClaimAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimAccountViewController.h; sourceTree = "<group>"; };
 		EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimAccountViewController.m; sourceTree = "<group>"; };
 		EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClaimAccountViewController.xib; sourceTree = "<group>"; };
@@ -894,6 +897,8 @@
 		EA8FF6B5171D25530090A658 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				EAB93B461761C74700A7337C /* ClaimAccountOperation.h */,
+				EAB93B471761C74700A7337C /* ClaimAccountOperation.m */,
 				EA88E67C172F97D50021492C /* CountriesOperation.h */,
 				EA88E67D172F97D50021492C /* CountriesOperation.m */,
 				EAAF8FAE17436730008DF9E2 /* CreatePaymentOperation.h */,
@@ -1593,6 +1598,7 @@
 				EAA053D6175DD5EE00ACD3F6 /* NoUserPaymentFlow.m in Sources */,
 				EAA053EC175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m in Sources */,
 				EAC1051A17607C4600B3B018 /* ClaimAccountViewController.m in Sources */,
+				EAB93B481761C74700A7337C /* ClaimAccountOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,6 +25,7 @@
 "button.title.log.in" = "Log in";
 "button.title.ok" = "OK";
 "button.title.retry" = "Retry";
+"button.title.sign.up" = "Sign up";
 
 "confirm.payment.controller.title" = "Confirm";
 "confirm.payment.creating.message" = "Creating payment";
@@ -50,6 +51,12 @@
 "contacts.controller.title" = "Contacts";
 "contacts.refresh.error.message" = "Could not refresh contacts list";
 "contacts.refresh.error.title" = "Refresh error";
+
+"claim.account.controller.title" = "Register";
+"claim.account.error.title" = "Error";
+"claim.account.footer.message.text" = "To be able to access your contacts and list of transactions on both web and mobile, register for a user now.";
+"claim.account.password.not.entered" = "Password not entered";
+"claim.account.setting.password.message" = "Working...";
 
 "identification.address.image.missing.message" = "Address verification image missing";
 "identification.controller.title" = "Identification";
@@ -187,6 +194,7 @@
 "recipient.save.error.title" = "Can't save";
 
 "settings.row.business.profile" = "Your business profile";
+"settings.row.claim.account" = "Register account";
 "settings.row.log.in" = "Log in";
 "settings.row.logout" = "Sign out";
 "settings.row.logout" = "Sign out";

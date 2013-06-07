@@ -232,6 +232,7 @@ static NSUInteger const kPersonalSection = 1;
 }
 
 - (void)loadDetailsToCells {
+    MCLog(@"loadDetailsToCells");
     PersonalProfile *profile = self.userDetails.personalProfile;
     [self.firstNameCell setValue:profile.firstName];
     [self.lastNameCell setValue:profile.lastName];

@@ -23,7 +23,7 @@
 }
 
 + (UIColor *)disabledEntryTextColor {
-    return [UIColor colorWithRed:0.220 green:0.329 blue:0.529 alpha:1.000];
+    return [UIColor darkGrayColor];
 }
 
 @end

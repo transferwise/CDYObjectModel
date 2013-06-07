@@ -20,6 +20,7 @@
 @property (nonatomic, strong) UITabBarController *tabsController;
 @property (nonatomic, strong) UIView *revealTapView;
 @property (nonatomic, strong) UIViewController *transactionsController;
+@property (nonatomic, assign) BOOL launchTableViewGamAdjustmentDone;
 
 @end
 
@@ -69,6 +70,18 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    if (self.launchTableViewGamAdjustmentDone) {
+        return;
+    }
+
+    [self.tabsController setSelectedIndex:1];
+    [self.tabsController setSelectedIndex:0];
+    [self setLaunchTableViewGamAdjustmentDone:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -132,6 +145,7 @@
 - (void)moveToPaymentsList {
     self.tabsController.selectedViewController = self.transactionsController;
     [self popToRootViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

@@ -16,6 +16,7 @@
 #import "SignUpViewController.h"
 #import "LoginViewController.h"
 #import "PersonalProfileCommitter.h"
+#import "ClaimAccountViewController.h"
 
 NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
@@ -26,7 +27,8 @@ typedef NS_ENUM(short, SettingsRow) {
     BusinessProfileRow,
     SignUpRow,
     FillerRow,
-    LogInRow
+    LogInRow,
+    ClaimAccountRow
 };
 
 @interface SettingsViewController ()
@@ -67,6 +69,9 @@ typedef NS_ENUM(short, SettingsRow) {
         [presented addObject:@(UserProfileRow)];
         [presented addObject:@(PersonalProfileRow)];
         [presented addObject:@(BusinessProfileRow)];
+        if ([Credentials temporaryAccount]) {
+            [presented addObject:@(ClaimAccountRow)];
+        }
         [presented addObject:@(FillerRow)];
         [presented addObject:@(LogoutRow)];
     } else {
@@ -123,6 +128,9 @@ typedef NS_ENUM(short, SettingsRow) {
             break;
         case FillerRow:
             [cell setTitle:@""];
+            break;
+        case ClaimAccountRow:
+            [cell setTitle:NSLocalizedString(@"settings.row.claim.account", nil)];
             break;
         default:
             [cell setTitle:@"Unknown case..."];
@@ -187,6 +195,12 @@ typedef NS_ENUM(short, SettingsRow) {
             [pushOnNavigationController pushViewController:controller animated:YES];
         }
             break;
+        case ClaimAccountRow:{
+            ClaimAccountViewController *controller = [[ClaimAccountViewController alloc] init];
+            [revealController revealToggle:nil];
+            [pushOnNavigationController pushViewController:controller animated:YES];
+            break;
+        }
         default:
             NSLog(@"Unhandled row code %d", code);
     }
