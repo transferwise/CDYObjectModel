@@ -76,6 +76,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 @property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
 
+@property (nonatomic, strong) NSArray *presentedSections;
+
 - (IBAction)addButtonPressed:(id)sender;
 
 @end
@@ -320,7 +322,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setSelectedRecipientType:type];
     [self setRecipientTypeFieldCells:cells];
     [self setPresentedSectionCells:@[@[self.importCell], self.recipientCells, self.currencyCells, cells]];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kRecipientFieldsSection] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:[self.presentedSections count] - 1] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (NSArray *)findAllTypesWithCodes:(NSArray *)codes {
@@ -436,7 +438,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    switch (section) {
+    NSNumber *sectionCode = self.presentedSections[(NSUInteger) section];
+    switch ([sectionCode integerValue]) {
         case kImportSection:
             return nil;
         case kRecipientSection:
@@ -466,5 +469,19 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
     return YES;
 }
+
+- (void)setPresentedSectionCells:(NSArray *)presentedSectionCells {
+    if (!self.preloadRecipientsWithCurrency) {
+        [self setPresentedSections:@[@(kImportSection), @(kRecipientSection), @(kCurrencySection), @(kRecipientFieldsSection)]];
+        [super setPresentedSectionCells:presentedSectionCells];
+        return;
+    }
+
+    [self setPresentedSections:@[@(kImportSection), @(kRecipientSection), @(kRecipientFieldsSection)]];
+    NSMutableArray *cells = [NSMutableArray arrayWithArray:presentedSectionCells];
+    [cells removeObject:self.currencyCells];
+    [super setPresentedSectionCells:cells];
+}
+
 
 @end
