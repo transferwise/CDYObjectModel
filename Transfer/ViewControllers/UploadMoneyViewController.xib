@@ -40,7 +40,6 @@
 				<string key="NSFrameSize">{320, 568}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
@@ -86,7 +85,6 @@
 						<string key="NSFrame">{{10, 10}, {300, 45}}</string>
 						<reference key="NSSuperview" ref="484328832"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -132,7 +130,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIView" id="760465534">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="585193010">
@@ -144,6 +142,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{61, 8}, {198, 30}}</string>
 								<reference key="NSSuperview" ref="585193010"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1018055959"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -177,21 +176,20 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrameSize">{320, 45}</string>
+						<string key="NSFrame">{{0, 36}, {320, 45}}</string>
 						<reference key="NSSuperview" ref="760465534"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="968262000"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">2</int>
-							<bytes key="NSRGB">MC4xMzcyNTQ5MDg3IDAuMTQ5MDE5NjEzOSAwLjE2ODYyNzQ1NTgAA</bytes>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="1068110883"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 					<object class="IBUILabel" id="1018055959">
 						<reference key="NSNextResponder" ref="760465534"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{10, 59}, {298, 21}}</string>
+						<string key="NSFrame">{{10, 7}, {298, 21}}</string>
 						<reference key="NSSuperview" ref="760465534"/>
+						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -205,6 +203,7 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
+						<int key="IBUITextAlignment">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
 							<double key="pointSize">17</double>
@@ -218,6 +217,8 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 81}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="585193010"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="1068110883"/>
@@ -421,11 +422,9 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="doneButton">BlueButton</string>
 						<string key="footerBottomMessageView">UIView</string>
-						<string key="footerLabel">UILabel</string>
 						<string key="footerView">UIView</string>
 						<string key="headerLabel">UILabel</string>
 						<string key="headerView">UIView</string>
-						<string key="notificationLabel">UILabel</string>
 						<string key="toggleButton">UISegmentedControl</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -436,10 +435,6 @@
 						<object class="IBToOneOutletInfo" key="footerBottomMessageView">
 							<string key="name">footerBottomMessageView</string>
 							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="footerLabel">
-							<string key="name">footerLabel</string>
-							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="footerView">
 							<string key="name">footerView</string>
@@ -452,10 +447,6 @@
 						<object class="IBToOneOutletInfo" key="headerView">
 							<string key="name">headerView</string>
 							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="notificationLabel">
-							<string key="name">notificationLabel</string>
-							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="toggleButton">
 							<string key="name">toggleButton</string>
