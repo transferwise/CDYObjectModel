@@ -10,6 +10,8 @@
 #import "Recipient.h"
 #import "MoneyFormatter.h"
 
+static NSArray *__activeStatuses;
+
 @interface Payment ()
 
 @property (nonatomic, strong) NSNumber *paymentId;
@@ -34,6 +36,10 @@
 @end
 
 @implementation Payment
+
++ (void)initialize {
+    __activeStatuses = @[@"submitted", @"received", @"matched"];
+}
 
 + (Payment *)paymentWithData:(NSDictionary *)data {
     Payment *payment = [[Payment alloc] init];
@@ -106,6 +112,10 @@
     } else {
         return NSLocalizedString(@"payment.change.time.one.minute.ago", nil);
     }
+}
+
+- (BOOL)isActive {
+    return [__activeStatuses containsObject:self.status];
 }
 
 - (NSString *)payInWithCurrency {

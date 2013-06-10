@@ -218,6 +218,8 @@ identity and address";
 "singup.password.again.field.title" = "Password again";
 "singup.password.field.title" = "Password";
 
+"transactions.controller.active.transfers.section.title" = "Active transfers";
+"transactions.controller.completed.transfers.section.title" = "Completed payments";
 "transactions.controller.refreshing.message" = "Refreshing payments...";
 "transactions.controller.title" = "Transactions";
 

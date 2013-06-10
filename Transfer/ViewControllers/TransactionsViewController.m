@@ -18,7 +18,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @interface TransactionsViewController ()
 
 @property (nonatomic, strong) PaymentsOperation *executedOperation;
-@property (nonatomic, strong) NSArray *payments;
+@property (nonatomic, strong) NSArray *activeTransfers;
+@property (nonatomic, strong) NSArray *completePayments;
+@property (nonatomic, strong) NSArray *presentedSections;
+@property (nonatomic, strong) NSArray *presentedSectionTitles;
 
 @end
 
@@ -60,21 +63,27 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return [self.presentedSections count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.payments count];
+    return [self.presentedSections[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PaymentCell *cell = [tableView dequeueReusableCellWithIdentifier:kPaymentCellIdentifier];
 
-    Payment *payment = [self.payments objectAtIndex:(NSUInteger) indexPath.row];
+    Payment *payment = self.presentedSections[indexPath.section][indexPath.row];
+
     [cell configureWithPayment:payment];
 
     return cell;
 }
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return self.presentedSectionTitles[section];
+}
+
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -98,6 +107,34 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     }];
 
     [operation execute];
+}
+
+- (void)setPayments:(NSArray *)allPayments {
+    [self setActiveTransfers:[allPayments filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        Payment *payment = evaluatedObject;
+        return [payment isActive];
+    }]]];
+
+    [self setCompletePayments:[allPayments filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        Payment *payment = evaluatedObject;
+        return ![payment isActive];
+    }]]];
+
+    NSMutableArray *sections = [NSMutableArray array];
+    NSMutableArray *titles = [NSMutableArray array];
+    if ([self.activeTransfers count] > 0) {
+        [sections addObject:self.activeTransfers];
+        [titles addObject:NSLocalizedString(@"transactions.controller.active.transfers.section.title", nil)];
+    }
+
+    if ([self.completePayments count] > 0) {
+        [sections addObject:self.completePayments];
+        [titles addObject:NSLocalizedString(@"transactions.controller.completed.transfers.section.title", nil)];
+    }
+
+    [self setPresentedSections:sections];
+    [self setPresentedSectionTitles:titles];
+    [self.tableView reloadData];
 }
 
 @end

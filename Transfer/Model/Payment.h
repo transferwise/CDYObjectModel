@@ -20,5 +20,6 @@
 - (NSString *)transferredAmountString;
 - (NSString *)latestChangeTimeString;
 - (NSString *)payInWithCurrency;
+- (BOOL)isActive;
 
 @end
