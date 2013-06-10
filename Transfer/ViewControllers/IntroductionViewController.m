@@ -105,6 +105,7 @@ static NSUInteger const kRowYouSend = 0;
                                                                          style:UIBarButtonItemStyleBordered
                                                                         target:revealController
                                                                         action:@selector(revealToggle:)];
+    revealButtonItem.width = revealButtonItem.width * 2;
     self.navigationItem.leftBarButtonItem = revealButtonItem;
 
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"button.title.back", nil)
