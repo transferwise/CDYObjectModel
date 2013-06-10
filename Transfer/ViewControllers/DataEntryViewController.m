@@ -52,6 +52,11 @@
 }
 
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = self.presentedSectionCells[indexPath.section][indexPath.row];
+    return CGRectGetHeight(cell.frame);
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

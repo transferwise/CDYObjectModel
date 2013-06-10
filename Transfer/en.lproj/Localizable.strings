@@ -222,12 +222,13 @@ identity and address";
 "transactions.controller.title" = "Transactions";
 
 "upload.money.account.nr.title" = "Account number";
+"upload.money.address.title" = "Our address";
 "upload.money.amount.title" = "Amount";
 "upload.money.bank.name.title" = "Bank name";
 "upload.money.bic.title" = "BIC";
 "upload.money.data.error.title" = "Data error";
 "upload.money.done.button.title" = "I have made the payment";
-"upload.money.footer.label" = "56 Shoreditch High Street, London E1 6JJ, United Kingdom";
+"upload.money.our.address.label" = "56 Shoreditch High Street, London E1 6JJ, United Kingdom";
 "upload.money.header.label" = "We are waiting your deposit";
 "upload.money.iban.title" = "IBAN";
 "upload.money.notification.label" = "Your payment will be activated when we receive your deposit.";

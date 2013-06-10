@@ -7,13 +7,13 @@
 //
 
 #import "TextCell.h"
+#import "UIColor+Theme.h"
 
 NSString *const TWTextCellIdentifier = @"TextCell";
 
 @implementation TextCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
@@ -21,11 +21,11 @@ NSString *const TWTextCellIdentifier = @"TextCell";
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
+- (void)awakeFromNib {
+    [super awakeFromNib];
 
-    // Configure the view for the selected state
+    [self.textLabel setTextColor:[UIColor disabledEntryTextColor]];
+    [self.detailTextLabel setTextColor:[UIColor disabledEntryTextColor]];
 }
 
 - (void)configureWithTitle:(NSString *)title text:(NSString *)text {

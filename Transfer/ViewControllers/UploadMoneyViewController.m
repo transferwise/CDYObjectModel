@@ -30,19 +30,9 @@
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *toggleButton;
 @property (strong, nonatomic) IBOutlet UILabel *headerLabel;
-@property (strong, nonatomic) IBOutlet UILabel *footerLabel;
 @property (strong, nonatomic) IBOutlet BlueButton *doneButton;
-@property (strong, nonatomic) IBOutlet UILabel *notificationLabel;
 @property (strong, nonatomic) IBOutlet UIView *footerBottomMessageView;
 @property (strong, nonatomic) BankTransfer *transferDetails;
-
-@property (strong, nonatomic) TextCell *amountCell;
-@property (strong, nonatomic) TextCell *ibanCell;
-@property (strong, nonatomic) TextCell *accountNrCell;
-@property (strong, nonatomic) TextCell *bicCell;
-@property (strong, nonatomic) TextCell *bankNameCell;
-@property (strong, nonatomic) TextCell *referenceCell;
-@property (strong, nonatomic) TextCell *ukSortCodeCell;
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
@@ -67,14 +57,12 @@
     [self setTitle:NSLocalizedString(@"upload.money.title", @"")];
     
     [self.headerLabel setText:NSLocalizedString(@"upload.money.header.label", @"")];
-    [self.footerLabel setText:NSLocalizedString(@"upload.money.footer.label", @"")];
     [self.toggleButton setTitle:NSLocalizedString(@"upload.money.toggle.button.debit.card.title", @"") forSegmentAtIndex:0];
     [self.toggleButton setTitle:NSLocalizedString(@"upload.money.toggle.button.bank.transfer.title", @"") forSegmentAtIndex:1];
     [self.toggleButton setSelectedSegmentIndex:1];
     [self.toggleButton setUserInteractionEnabled:NO];
     [self.doneButton setTitle:NSLocalizedString(@"upload.money.done.button.title", @"") forState:UIControlStateNormal];
-    [self.notificationLabel setText:NSLocalizedString(@"upload.money.notification.label", @"")];
-    
+
     [self.tableView registerNib:[UINib nibWithNibName:@"TextCell" bundle:nil] forCellReuseIdentifier:TWTextCellIdentifier];
 }
 
@@ -128,6 +116,14 @@
     TextCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
     [referenceCell configureWithTitle:NSLocalizedString(@"upload.money.reference.title", nil) text:self.userDetails.reference];
     [presentedCells addObject:referenceCell];
+
+    TextCell *addressCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
+    [addressCell configureWithTitle:NSLocalizedString(@"upload.money.address.title", nil) text:NSLocalizedString(@"upload.money.our.address.label", @"")];
+    [presentedCells addObject:addressCell];
+    CGRect addressFrame = addressCell.frame;
+    //TODO jaanus: calculate actual height
+    addressFrame.size.height = 80;
+    [addressCell setFrame:addressFrame];
 
     [self setPresentedSectionCells:@[presentedCells]];
 
@@ -197,9 +193,7 @@
     [self setFooterView:nil];
     [self setToggleButton:nil];
     [self setHeaderLabel:nil];
-    [self setFooterLabel:nil];
     [self setDoneButton:nil];
-    [self setNotificationLabel:nil];
     [self setFooterBottomMessageView:nil];
     [super viewDidUnload];
 }

@@ -7,6 +7,7 @@
 //
 
 #import "ConfirmPaymentCell.h"
+#import "UIColor+Theme.h"
 
 NSString *const TWConfirmPaymentCellIdentifier = @"TWConfirmPaymentCellIdentifier";
 
@@ -18,6 +19,13 @@ NSString *const TWConfirmPaymentCellIdentifier = @"TWConfirmPaymentCellIdentifie
         // Initialization code
     }
     return self;
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+
+    [self.textLabel setTextColor:[UIColor disabledEntryTextColor]];
+    [self.detailTextLabel setTextColor:[UIColor disabledEntryTextColor]];
 }
 
 @end
