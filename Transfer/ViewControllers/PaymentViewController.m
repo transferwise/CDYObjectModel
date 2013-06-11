@@ -73,6 +73,7 @@ static NSUInteger const kRowYouSend = 0;
     [self.youSendCell setTitle:NSLocalizedString(@"money.entry.you.send.title", nil)];
     [self.youSendCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:[Currency currencyWithCode:@"GBP"]];
     [self.youSendCell.moneyField setReturnKeyType:UIReturnKeyDone];
+    [self.youSendCell setRoundedCorner:UIRectCornerTopRight];
 
     [self setTheyReceiveCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
     [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
@@ -80,6 +81,7 @@ static NSUInteger const kRowYouSend = 0;
     [self.theyReceiveCell setAmount:@"" currency:[Currency currencyWithCode:defaultTargetCode]];
     [self.theyReceiveCell.moneyField setReturnKeyType:UIReturnKeyDone];
     [self.theyReceiveCell setOnlyPresentedCurrency:self.recipient.currency];
+    [self.theyReceiveCell setRoundedCorner:UIRectCornerBottomRight];
 
     MoneyCalculator *calculator = [[MoneyCalculator alloc] init];
     [self setCalculator:calculator];

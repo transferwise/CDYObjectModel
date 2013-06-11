@@ -73,11 +73,13 @@ static NSUInteger const kRowYouSend = 0;
     [self.youSendCell setTitle:NSLocalizedString(@"money.entry.you.send.title", nil)];
     [self.youSendCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:[Currency currencyWithCode:@"GBP"]];
     [self.youSendCell.moneyField setReturnKeyType:UIReturnKeyDone];
+    [self.youSendCell setRoundedCorner:UIRectCornerTopRight];
 
     [self setTheyReceiveCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
     [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
     [self.theyReceiveCell setAmount:@"" currency:[Currency currencyWithCode:@"EUR"]];
     [self.theyReceiveCell.moneyField setReturnKeyType:UIReturnKeyDone];
+    [self.theyReceiveCell setRoundedCorner:UIRectCornerBottomRight];
 
     TableHeaderView *header = [TableHeaderView loadInstance];
     [header setMessage:NSLocalizedString(@"introduction.header.title.text", nil)];
@@ -105,7 +107,6 @@ static NSUInteger const kRowYouSend = 0;
                                                                          style:UIBarButtonItemStyleBordered
                                                                         target:revealController
                                                                         action:@selector(revealToggle:)];
-    revealButtonItem.width = revealButtonItem.width * 2;
     self.navigationItem.leftBarButtonItem = revealButtonItem;
 
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"button.title.back", nil)

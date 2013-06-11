@@ -9,6 +9,7 @@
 #import "MoneyEntryCell.h"
 #import "Currency.h"
 #import "UIColor+Theme.h"
+#import "RoundedCellBackgroundView.h"
 
 NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
@@ -20,6 +21,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 @property (nonatomic, strong) UIPickerView *picker;
 @property (nonatomic, strong) Currency *selectedCurrency;
 @property (nonatomic, copy) NSString *forcedCurrencyCode;
+@property (nonatomic, strong) IBOutlet RoundedCellBackgroundView *roundedBackground;
 
 @end
 
@@ -138,6 +140,11 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
 - (void)setOnlyPresentedCurrency:(NSString *)currencyCode {
     self.forcedCurrencyCode = currencyCode;
+}
+
+- (void)setRoundedCorner:(UIRectCorner)corner {
+    [self.roundedBackground setRoundedCorner:corner];
+    [self.roundedBackground setNeedsDisplay];
 }
 
 @end

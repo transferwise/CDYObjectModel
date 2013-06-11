@@ -25,5 +25,6 @@ typedef void (^CurrencyChangBlock)(Currency *currency);
 - (NSString *)amount;
 - (Currency *)currency;
 - (void)setOnlyPresentedCurrency:(NSString *)currencyCode;
+- (void)setRoundedCorner:(UIRectCorner)corner;
 
 @end

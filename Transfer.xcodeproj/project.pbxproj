@@ -32,6 +32,7 @@
 		BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC691221721416300F0FB1A /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BBC6912C172147FC00F0FB1A /* WhyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC6912B172147FC00F0FB1A /* WhyView.xib */; };
 		BBCC6338172169980094EABB /* WhyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC6337172169980094EABB /* WhyView.m */; };
+		EA01331E1765FC7700D63C82 /* RoundedCellBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */; };
 		EA042600173CF5C50048BFBD /* RecipientEntrySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */; };
 		EA042603173CF5E20048BFBD /* RecipientEntrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */; };
 		EA13E032171BDF1A0019FBF0 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */; };
@@ -286,6 +287,8 @@
 		BBC6912B172147FC00F0FB1A /* WhyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhyView.xib; sourceTree = "<group>"; };
 		BBCC6336172169980094EABB /* WhyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhyView.h; sourceTree = "<group>"; };
 		BBCC6337172169980094EABB /* WhyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhyView.m; sourceTree = "<group>"; };
+		EA01331C1765FC7700D63C82 /* RoundedCellBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedCellBackgroundView.h; sourceTree = "<group>"; };
+		EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedCellBackgroundView.m; sourceTree = "<group>"; };
 		EA0425FE173CF5C50048BFBD /* RecipientEntrySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientEntrySelectionCell.h; sourceTree = "<group>"; };
 		EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientEntrySelectionCell.m; sourceTree = "<group>"; };
 		EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientEntrySelectionCell.xib; sourceTree = "<group>"; };
@@ -676,6 +679,8 @@
 				EAD0690C1737E457007C8DEE /* RecipientSectionHeaderView.h */,
 				EAD0690D1737E457007C8DEE /* RecipientSectionHeaderView.m */,
 				EAD069101737E462007C8DEE /* RecipientSectionHeaderView.xib */,
+				EA01331C1765FC7700D63C82 /* RoundedCellBackgroundView.h */,
+				EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */,
 				EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */,
 				EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */,
 				EA13E045171BED910019FBF0 /* TableHeaderView.xib */,
@@ -1599,6 +1604,7 @@
 				EAA053EC175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m in Sources */,
 				EAC1051A17607C4600B3B018 /* ClaimAccountViewController.m in Sources */,
 				EAB93B481761C74700A7337C /* ClaimAccountOperation.m in Sources */,
+				EA01331E1765FC7700D63C82 /* RoundedCellBackgroundView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
