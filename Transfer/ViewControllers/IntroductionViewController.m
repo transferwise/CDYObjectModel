@@ -147,9 +147,10 @@ static NSUInteger const kRowYouSend = 0;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    [self.navigationItem setTitle:NSLocalizedString(@"introduction.controller.title", nil)];
-
     [self retrieveCurrencyPairs];
+
+    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
+    [self.navigationItem setTitleView:logoView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
