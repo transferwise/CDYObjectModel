@@ -21,6 +21,7 @@
 @property (nonatomic, strong) UIView *revealTapView;
 @property (nonatomic, strong) UIViewController *transactionsController;
 @property (nonatomic, assign) BOOL launchTableViewGamAdjustmentDone;
+@property (nonatomic, assign) BOOL shown;
 
 @end
 
@@ -57,7 +58,7 @@
 
     SWRevealViewController *revealController = [self revealViewController];
     [self.navigationBar addGestureRecognizer:revealController.panGestureRecognizer];
-    
+
     UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SettingsButtonIcon.png"] style:UIBarButtonItemStylePlain target:revealController action:@selector(revealToggle:)];
     [tabController.navigationItem setLeftBarButtonItem:settingsButton];
 
@@ -82,35 +83,48 @@
     [self.tabsController setSelectedIndex:1];
     [self.tabsController setSelectedIndex:0];
     [self setLaunchTableViewGamAdjustmentDone:YES];
-}
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-
-    if (![Credentials userLoggedIn]) {
-        [self presentIntroductionController];
+    if (![Credentials userLoggedIn] && !self.shown) {
+        IntroductionViewController *controller = [[IntroductionViewController alloc] init];
+        [controller setDummyPresentation:YES];
+        [self pushViewController:controller animated:NO];
     }
 }
 
-- (void)presentIntroductionController {
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    if (![Credentials userLoggedIn]) {
+        [self presentIntroductionController:self.shown];
+        [self popToRootViewControllerAnimated:NO];
+    }
+
+    [self setShown:YES];
+}
+
+- (void)presentIntroductionController:(BOOL)animated {
+    SWRevealViewController *mainRevealController = [self createIntroductionViewController];
+    [self presentModalViewController:mainRevealController animated:animated];
+}
+
+- (SWRevealViewController *)createIntroductionViewController {
     IntroductionViewController *controller = [[IntroductionViewController alloc] init];
     [controller setObjectModel:self.objectModel];
-    
+
     SettingsViewController *rearViewController = [[SettingsViewController alloc] init];
     [rearViewController setObjectModel:self.objectModel];
-    
-	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     SWRevealViewController *mainRevealController = [[SWRevealViewController alloc]
-                                                    initWithRearViewController:rearViewController frontViewController:navigationController];
+            initWithRearViewController:rearViewController frontViewController:navigationController];
     [navigationController setDelegate:self];
 
     mainRevealController.delegate = self;
-
-    [self presentModalViewController:mainRevealController animated:YES];
+    return mainRevealController;
 }
 
 - (void)loggedOut {
-    [self presentIntroductionController];
+    [self presentIntroductionController:YES];
 }
 
 - (void)revealController:(SWRevealViewController *)revealController didMoveToPosition:(FrontViewPosition)position {

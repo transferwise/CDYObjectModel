@@ -162,6 +162,11 @@ static NSUInteger const kRowYouSend = 0;
 }
 
 - (void)retrieveCurrencyPairs {
+    if (self.dummyPresentation) {
+        //It is dummy instance used on app launch
+        return;
+    }
+
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"introduction.refreshing.currencies.message", nil)];
 
