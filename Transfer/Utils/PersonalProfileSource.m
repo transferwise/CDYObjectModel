@@ -17,8 +17,10 @@
 #import "PhoneBookAddress.h"
 #import "NSString+Validation.h"
 #import "PersonalProfileInput.h"
-#import "TRWProgressHUD.h"
 #import "PersonalProfileValidation.h"
+
+NSUInteger const kUserButtonSection = 0;
+NSUInteger const kUserPersonalSection = 1;
 
 @interface PersonalProfileSource ()
 
@@ -215,5 +217,16 @@
     }];
 }
 
+- (NSString *)titleForHeaderInSection:(NSInteger)section {
+    if (section == kUserButtonSection) {
+        return nil;
+    }
+
+    if (section == kUserPersonalSection) {
+        return NSLocalizedString(@"personal.profile.personal.section.title", nil);
+    } else {
+        return NSLocalizedString(@"personal.profile.address.section.title", nil);
+    }
+}
 
 @end

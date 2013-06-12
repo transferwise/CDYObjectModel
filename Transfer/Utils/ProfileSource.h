@@ -24,4 +24,5 @@ typedef void (^ProfileActionBlock)(NSError *error);
 - (id)enteredProfile;
 - (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion;
 
+- (NSString *)titleForHeaderInSection:(NSInteger)section;
 @end

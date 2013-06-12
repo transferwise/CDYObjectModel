@@ -200,5 +200,8 @@ static NSUInteger const kButtonSection = 0;
     }];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [self.profileSource titleForHeaderInSection:section];
+}
 
 @end

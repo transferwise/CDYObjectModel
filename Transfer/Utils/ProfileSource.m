@@ -39,4 +39,8 @@
 
 }
 
+- (NSString *)titleForHeaderInSection:(NSInteger)section {
+    return nil;
+}
+
 @end

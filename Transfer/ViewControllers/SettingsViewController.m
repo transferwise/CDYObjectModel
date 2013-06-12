@@ -176,8 +176,7 @@ typedef NS_ENUM(short, SettingsRow) {
             break;
         }
         case PersonalProfileRow: {
-            ProfileEditViewController *controller = [[ProfileEditViewController alloc] initWithSource:[[PersonalProfileSource alloc] init]];
-            //PersonalProfileViewController *controller = [[PersonalProfileViewController alloc] init];
+            PersonalProfileViewController *controller = [[PersonalProfileViewController alloc] init];
             [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.save.button.title", nil)];
             [controller setProfileValidation:[[PersonalProfileCommitter alloc] init]];
             [revealController revealToggle:nil];
