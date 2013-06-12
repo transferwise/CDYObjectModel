@@ -68,6 +68,12 @@
 		EA35C77017327973005602F7 /* PaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76F17327973005602F7 /* PaymentCell.m */; };
 		EA35C77217327981005602F7 /* PaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA35C77117327981005602F7 /* PaymentCell.xib */; };
 		EA35C7751732851C005602F7 /* Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C7741732851C005602F7 /* Payment.m */; };
+		EA416E2B176860EA00904D97 /* ProfileEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E29176860EA00904D97 /* ProfileEditViewController.m */; };
+		EA416E2C176860EA00904D97 /* ProfileEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */; };
+		EA416E301768673500904D97 /* ProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E2F1768673500904D97 /* ProfileSource.m */; };
+		EA416E331768674700904D97 /* PersonalProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E321768674700904D97 /* PersonalProfileSource.m */; };
+		EA416E361768675400904D97 /* BusinessProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E351768675400904D97 /* BusinessProfileSource.m */; };
+		EA416E39176886AF00904D97 /* PersonalProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA416E38176886AF00904D97 /* PersonalProfileViewController.xib */; };
 		EA4AA6061737940900E99150 /* RecipientType.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA6051737940900E99150 /* RecipientType.m */; };
 		EA4AA60A173794A600E99150 /* RecipientTypeField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA609173794A600E99150 /* RecipientTypeField.m */; };
 		EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */; };
@@ -94,7 +100,6 @@
 		EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
 		EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
 		EA88E667172F979F0021492C /* PersonalProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E664172F979F0021492C /* PersonalProfileViewController.m */; };
-		EA88E668172F979F0021492C /* PersonalProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E665172F979F0021492C /* PersonalProfileViewController.xib */; };
 		EA88E672172F97B10021492C /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E66B172F97B10021492C /* Country.m */; };
 		EA88E673172F97B10021492C /* PersonalProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E66D172F97B10021492C /* PersonalProfile.m */; };
 		EA88E674172F97B10021492C /* ProfileDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E66F172F97B10021492C /* ProfileDetails.m */; };
@@ -341,6 +346,16 @@
 		EA35C77117327981005602F7 /* PaymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentCell.xib; sourceTree = "<group>"; };
 		EA35C7731732851C005602F7 /* Payment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Payment.h; sourceTree = "<group>"; };
 		EA35C7741732851C005602F7 /* Payment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Payment.m; sourceTree = "<group>"; };
+		EA416E28176860EA00904D97 /* ProfileEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileEditViewController.h; sourceTree = "<group>"; };
+		EA416E29176860EA00904D97 /* ProfileEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileEditViewController.m; sourceTree = "<group>"; };
+		EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileEditViewController.xib; sourceTree = "<group>"; };
+		EA416E2E1768673500904D97 /* ProfileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileSource.h; sourceTree = "<group>"; };
+		EA416E2F1768673500904D97 /* ProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSource.m; sourceTree = "<group>"; };
+		EA416E311768674700904D97 /* PersonalProfileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileSource.h; sourceTree = "<group>"; };
+		EA416E321768674700904D97 /* PersonalProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileSource.m; sourceTree = "<group>"; };
+		EA416E341768675400904D97 /* BusinessProfileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileSource.h; sourceTree = "<group>"; };
+		EA416E351768675400904D97 /* BusinessProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileSource.m; sourceTree = "<group>"; };
+		EA416E38176886AF00904D97 /* PersonalProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalProfileViewController.xib; sourceTree = "<group>"; };
 		EA4AA6041737940900E99150 /* RecipientType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientType.h; sourceTree = "<group>"; };
 		EA4AA6051737940900E99150 /* RecipientType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientType.m; sourceTree = "<group>"; };
 		EA4AA608173794A600E99150 /* RecipientTypeField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientTypeField.h; sourceTree = "<group>"; };
@@ -385,7 +400,6 @@
 		EA88E662172F979F0021492C /* DataEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryViewController.m; sourceTree = "<group>"; };
 		EA88E663172F979F0021492C /* PersonalProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileViewController.h; sourceTree = "<group>"; };
 		EA88E664172F979F0021492C /* PersonalProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileViewController.m; sourceTree = "<group>"; };
-		EA88E665172F979F0021492C /* PersonalProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalProfileViewController.xib; sourceTree = "<group>"; };
 		EA88E66A172F97B10021492C /* Country.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Country.h; sourceTree = "<group>"; };
 		EA88E66B172F97B10021492C /* Country.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
 		EA88E66C172F97B10021492C /* PersonalProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfile.h; sourceTree = "<group>"; };
@@ -1076,7 +1090,10 @@
 				EAD39684171BD5B000F6D011 /* PaymentViewController.xib */,
 				EA88E663172F979F0021492C /* PersonalProfileViewController.h */,
 				EA88E664172F979F0021492C /* PersonalProfileViewController.m */,
-				EA88E665172F979F0021492C /* PersonalProfileViewController.xib */,
+				EA416E38176886AF00904D97 /* PersonalProfileViewController.xib */,
+				EA416E28176860EA00904D97 /* ProfileEditViewController.h */,
+				EA416E29176860EA00904D97 /* ProfileEditViewController.m */,
+				EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */,
 				EAA54F481733DA1400B65BF3 /* RecipientViewController.h */,
 				EAA54F491733DA1400B65BF3 /* RecipientViewController.m */,
 				EAA54F4A1733DA1400B65BF3 /* RecipientViewController.xib */,
@@ -1099,6 +1116,8 @@
 		EAB72162171FDC6700DE29F5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				EA416E341768675400904D97 /* BusinessProfileSource.h */,
+				EA416E351768675400904D97 /* BusinessProfileSource.m */,
 				EAEA6255172011C500A96770 /* CalculationResult.h */,
 				EAEA6256172011C500A96770 /* CalculationResult.m */,
 				EAA053D0175DD5DC00ACD3F6 /* LoggedInPaymentFlow.h */,
@@ -1113,9 +1132,13 @@
 				EA222E32173A676000C5D613 /* PaymentFlow.m */,
 				EA59296F17589F5C007C0072 /* PersonalProfileCommitter.h */,
 				EA59297017589F5C007C0072 /* PersonalProfileCommitter.m */,
+				EA416E311768674700904D97 /* PersonalProfileSource.h */,
+				EA416E321768674700904D97 /* PersonalProfileSource.m */,
 				EA59296C17589F22007C0072 /* PersonalProfileValidation.h */,
 				EAD66782174CB3AE00D29BCB /* PhoneBookProfileSelector.h */,
 				EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */,
+				EA416E2E1768673500904D97 /* ProfileSource.h */,
+				EA416E2F1768673500904D97 /* ProfileSource.m */,
 				EACF763E175C71B4008F2A03 /* RecipientProfileCommitter.h */,
 				EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */,
 				EA59296E17589F3A007C0072 /* RecipientProfileValidation.h */,
@@ -1341,7 +1364,6 @@
 				BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */,
 				BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */,
 				BBC6912C172147FC00F0FB1A /* WhyView.xib in Resources */,
-				EA88E668172F979F0021492C /* PersonalProfileViewController.xib in Resources */,
 				EA88E68F172F97E20021492C /* CountrySelectionCell.xib in Resources */,
 				EA88E691172F97E20021492C /* DateEntryCell.xib in Resources */,
 				EA88E698172F980A0021492C /* SignUpViewController.xib in Resources */,
@@ -1393,6 +1415,8 @@
 				EAB93B4F1761D1EF00A7337C /* Default-568h@2x.png in Resources */,
 				EAB93B501761D1EF00A7337C /* Default.png in Resources */,
 				EAB93B511761D1EF00A7337C /* Default@2x.png in Resources */,
+				EA416E2C176860EA00904D97 /* ProfileEditViewController.xib in Resources */,
+				EA416E39176886AF00904D97 /* PersonalProfileViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1605,6 +1629,10 @@
 				EAC1051A17607C4600B3B018 /* ClaimAccountViewController.m in Sources */,
 				EAB93B481761C74700A7337C /* ClaimAccountOperation.m in Sources */,
 				EA01331E1765FC7700D63C82 /* RoundedCellBackgroundView.m in Sources */,
+				EA416E2B176860EA00904D97 /* ProfileEditViewController.m in Sources */,
+				EA416E301768673500904D97 /* ProfileSource.m in Sources */,
+				EA416E331768674700904D97 /* PersonalProfileSource.m in Sources */,
+				EA416E361768675400904D97 /* BusinessProfileSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
