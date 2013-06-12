@@ -18,7 +18,7 @@
 #import "NSString+Validation.h"
 #import "NetworkErrorCodes.h"
 
-NSString *const kAPIPathBase = @"/api/v1/";
+NSString *const kAPIPathBase = @"/api/v1";
 NSString *const kPublicToken = @"public";
 
 @interface TransferwiseOperation ()
@@ -62,7 +62,7 @@ NSString *const kPublicToken = @"public";
 }
 
 - (void)postBinaryDataFromFile:(NSString *)filePath withName:(NSString *)fileName usingParams:(NSDictionary *)params toPath:(NSString *)postPath {
-    NSURLRequest *request = [[TransferwiseClient sharedClient] multipartFormRequestWithMethod:@"POST" path:postPath parameters:params constructingBodyWithBlock: ^(id <AFMultipartFormData> formData) {
+    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] multipartFormRequestWithMethod:@"POST" path:postPath parameters:params constructingBodyWithBlock: ^(id <AFMultipartFormData> formData) {
         [formData appendPartWithFileURL:[NSURL fileURLWithPath:filePath] name:fileName error:nil];
     }];
 
@@ -74,7 +74,11 @@ NSString *const kPublicToken = @"public";
     [self executeRequest:request];
 }
 
-- (void)executeRequest:(NSURLRequest *)request {
+- (void)executeRequest:(NSMutableURLRequest *)request {
+    if ([Credentials userLoggedIn]) {
+        [request setValue:[Credentials accessToken] forHTTPHeaderField:@"Authorization"];
+    }
+
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setThreadPriority:0.1];
     [operation setQueuePriority:NSOperationQueuePriorityLow];
@@ -180,8 +184,7 @@ NSString *const kPublicToken = @"public";
 }
 
 - (NSString *)addTokenToPath:(NSString *)path {
-    NSString *token = [Credentials userLoggedIn] ? [Credentials accessToken] : kPublicToken;
-    return [NSString stringWithFormat:@"%@%@%@", kAPIPathBase, token, path];
+    return [NSString stringWithFormat:@"%@%@", kAPIPathBase, path];
 }
 
 @end
