@@ -1,0 +1,14 @@
+{
+    "countries": [
+        {
+            "name": "Albania",
+            "iso2Code": "AL",
+            "iso3Code": "alb"
+        },
+        {
+            "name": "Andorra",
+            "iso2Code": "AD",
+            "iso3Code": "and"
+        }
+    ]
+}
