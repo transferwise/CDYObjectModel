@@ -14,6 +14,8 @@
 #import "NSString+Validation.h"
 #import "BusinessProfileInput.h"
 #import "BusinessProfileValidation.h"
+#import "PhoneBookProfile.h"
+#import "PhoneBookAddress.h"
 
 static NSUInteger const kButtonSection = 0;
 static NSUInteger const kDetailsSection = 1;
@@ -165,5 +167,14 @@ static NSUInteger const kDetailsSection = 1;
     }];
 }
 
+- (void)loadDataFromProfile:(PhoneBookProfile *)profile {
+    self.businessNameCell.value = profile.organisation;
+
+    PhoneBookAddress *address = profile.address;
+    self.addressCell.value = address.street;
+    self.postCodeCell.value = address.zipCode;
+    self.cityCell.value = address.city;
+    [self.countryCell setTwoLetterCountryCode:address.countryCode];
+}
 
 @end
