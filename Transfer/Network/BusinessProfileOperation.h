@@ -16,5 +16,6 @@
 @property (nonatomic, copy) TWProfileDetailsHandler saveResultHandler;
 
 + (BusinessProfileOperation *)commitWithData:(BusinessProfileInput *)data;
++ (BusinessProfileOperation *)validateWithData:(BusinessProfileInput *)data;
 
 @end

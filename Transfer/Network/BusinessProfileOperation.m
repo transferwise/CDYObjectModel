@@ -13,15 +13,18 @@
 #import "BusinessProfileInput.h"
 
 NSString *const kUpdateBusinessProfilePath = @"/user/updateBusinessProfile";
+NSString *const kValidateBusinessProfilePath = @"/user/validateBusinessProfile";
+
 @interface BusinessProfileOperation ()
 
 @property (strong, nonatomic) BusinessProfileInput *data;
+@property (nonatomic, copy) NSString *path;
 
 @end
 
 @implementation BusinessProfileOperation
 
-- (id)initWithData:(BusinessProfileInput *)data {
+- (id)initWithPath:(NSString *)path data:(BusinessProfileInput *)data {
     self = [super init];
     if (self) {
         _data = data;
@@ -30,7 +33,7 @@ NSString *const kUpdateBusinessProfilePath = @"/user/updateBusinessProfile";
 }
 
 - (void)execute {
-    NSString *path = [self addTokenToPath:kUpdateBusinessProfilePath];
+    NSString *path = [self addTokenToPath:self.path];
     
     __block __weak BusinessProfileOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
@@ -39,7 +42,9 @@ NSString *const kUpdateBusinessProfilePath = @"/user/updateBusinessProfile";
     
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         ProfileDetails *details = [ProfileDetails detailsWithData:response];
-        [Credentials setDisplayName:[details displayName]];
+        if (details) {
+            [Credentials setDisplayName:[details displayName]];
+        }
         weakSelf.saveResultHandler(details, nil);
     }];
     
@@ -47,7 +52,11 @@ NSString *const kUpdateBusinessProfilePath = @"/user/updateBusinessProfile";
 }
 
 + (BusinessProfileOperation *)commitWithData:(BusinessProfileInput *)data {
-    return [[BusinessProfileOperation alloc] initWithData:data];
+    return [[BusinessProfileOperation alloc] initWithPath:kUpdateBusinessProfilePath data:data];
+}
+
++ (BusinessProfileOperation *)validateWithData:(BusinessProfileInput *)data {
+    return [[BusinessProfileOperation alloc] initWithPath:kValidateBusinessProfilePath data:data];
 }
 
 

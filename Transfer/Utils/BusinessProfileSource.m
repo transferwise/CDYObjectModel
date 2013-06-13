@@ -155,13 +155,16 @@ static NSUInteger const kDetailsSection = 1;
 }
 
 - (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion {
-    [validation validateProfile:profile withHandler:^(ProfileDetails *details, NSError *error) {
+    [validation validateBusinessProfile:profile withHandler:^(ProfileDetails *details, NSError *error) {
         if (error) {
             completion(error);
             return;
         }
 
-        [self setUserDetails:details];
+        if (details) {
+            [self setUserDetails:details];
+        }
+
         [self loadDetailsToCells];
         completion(nil);
     }];

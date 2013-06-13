@@ -18,7 +18,7 @@
 
 @implementation BusinessProfileCommitter
 
-- (void)validateProfile:(BusinessProfileInput *)profile withHandler:(BusinessProfileValidationBlock)handler {
+- (void)validateBusinessProfile:(BusinessProfileInput *)profile withHandler:(BusinessProfileValidationBlock)handler{
     BusinessProfileOperation *operation = [BusinessProfileOperation commitWithData:profile];
     [self setExecutedOperation:operation];
 

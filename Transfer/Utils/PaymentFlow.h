@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PersonalProfileValidation.h"
 #import "RecipientProfileValidation.h"
+#import "BusinessProfileValidation.h"
 
 @class ProfileDetails;
 @class Currency;
@@ -17,10 +18,11 @@
 @class Recipient;
 @class PaymentInput;
 @class PaymentVerificationRequired;
+@class BusinessProfileInput;
 
 typedef void (^PaymentErrorBlock)(NSError *error);
 
-@interface PaymentFlow : NSObject <PersonalProfileValidation, RecipientProfileValidation>
+@interface PaymentFlow : NSObject <PersonalProfileValidation, RecipientProfileValidation, BusinessProfileValidation>
 
 @property (nonatomic, strong) Currency *sourceCurrency;
 @property (nonatomic, strong) Currency *targetCurrency;

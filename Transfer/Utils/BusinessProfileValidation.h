@@ -15,6 +15,6 @@ typedef void (^BusinessProfileValidationBlock)(ProfileDetails *details, NSError 
 
 @protocol BusinessProfileValidation <NSObject>
 
-- (void)validateProfile:(BusinessProfileInput *)profile withHandler:(BusinessProfileValidationBlock)handler;
+- (void)validateBusinessProfile:(BusinessProfileInput *)profile withHandler:(BusinessProfileValidationBlock)handler;
 
 @end
