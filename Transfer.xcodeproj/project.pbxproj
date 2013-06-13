@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0286BD7B9CD44CD1BAB42E42 /* libPods-TransferTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1FBDCF7CCD414999CC7D3D /* libPods-TransferTests.a */; };
 		1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC92173B7C28008773FC /* BusinessProfileViewController.m */; };
-		1864AC95173B7C28008773FC /* BusinessProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1864AC93173B7C28008773FC /* BusinessProfileViewController.xib */; };
 		1864AC9A173B7C4D008773FC /* BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC99173B7C4D008773FC /* BusinessProfile.m */; };
 		1864AC9B173B7C5E008773FC /* BusinessProfile.h in Resources */ = {isa = PBXBuildFile; fileRef = 1864AC98173B7C4D008773FC /* BusinessProfile.h */; };
 		1864AC9E173B7C80008773FC /* BusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */; };
@@ -260,7 +259,6 @@
 /* Begin PBXFileReference section */
 		1864AC91173B7C28008773FC /* BusinessProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileViewController.h; sourceTree = "<group>"; };
 		1864AC92173B7C28008773FC /* BusinessProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileViewController.m; sourceTree = "<group>"; };
-		1864AC93173B7C28008773FC /* BusinessProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessProfileViewController.xib; sourceTree = "<group>"; };
 		1864AC98173B7C4D008773FC /* BusinessProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfile.h; sourceTree = "<group>"; };
 		1864AC99173B7C4D008773FC /* BusinessProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfile.m; sourceTree = "<group>"; };
 		1864AC9C173B7C80008773FC /* BusinessProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileOperation.h; sourceTree = "<group>"; };
@@ -1065,7 +1063,6 @@
 			children = (
 				1864AC91173B7C28008773FC /* BusinessProfileViewController.h */,
 				1864AC92173B7C28008773FC /* BusinessProfileViewController.m */,
-				1864AC93173B7C28008773FC /* BusinessProfileViewController.xib */,
 				EAC1051717607C4600B3B018 /* ClaimAccountViewController.h */,
 				EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */,
 				EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */,
@@ -1402,7 +1399,6 @@
 				EAEA311C1738F01600CCF1A2 /* Down.png in Resources */,
 				EAEA311D1738F01600CCF1A2 /* Down@2x.png in Resources */,
 				18D47903173A3B6E00FC317E /* IdentificationViewController.xib in Resources */,
-				1864AC95173B7C28008773FC /* BusinessProfileViewController.xib in Resources */,
 				EA222E39173A861000C5D613 /* ConfirmPaymentViewController.xib in Resources */,
 				EA222E3E173A8A7C00C5D613 /* ConfirmPaymentCell.xib in Resources */,
 				EA222E41173A8D0900C5D613 /* ProfileIcon.png in Resources */,
