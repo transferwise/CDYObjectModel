@@ -11,7 +11,7 @@
 #import "TransferwiseClient.h"
 #import "Credentials.h"
 
-NSString *const kRegisterPath = @"/api/v1/account/register";
+NSString *const kRegisterPath = @"/account/register";
 
 @interface RegisterOperation ()
 
@@ -32,6 +32,8 @@ NSString *const kRegisterPath = @"/api/v1/account/register";
 }
 
 - (void)execute {
+    NSString *path = [self addTokenToPath:kRegisterPath];
+
     __block __weak RegisterOperation *weakSelf = self;
 
     self.operationErrorHandler = ^(NSError *error) {
@@ -47,7 +49,7 @@ NSString *const kRegisterPath = @"/api/v1/account/register";
         weakSelf.completionHandler(nil);
     };
 
-    [self postData:@{@"email" : self.email, @"password" : self.password} toPath:kRegisterPath];
+    [self postData:@{@"email" : self.email, @"password" : self.password} toPath:path];
 }
 
 + (RegisterOperation *)operationWithEmail:(NSString *)email password:(NSString *)password {

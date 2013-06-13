@@ -10,7 +10,7 @@
 #import "TransferwiseOperation+Private.h"
 #import "Credentials.h"
 
-NSString *const kRegisterPasslessPath = @"/api/v1/account/registerWithNoPassword";
+NSString *const kRegisterPasslessPath = @"/account/registerWithNoPassword";
 
 @interface RegisterWithoutPasswordOperation ()
 
@@ -29,6 +29,8 @@ NSString *const kRegisterPasslessPath = @"/api/v1/account/registerWithNoPassword
 }
 
 - (void)execute {
+    NSString *path = [self addTokenToPath:kRegisterPasslessPath];
+
     __block __weak RegisterWithoutPasswordOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
         weakSelf.completionHandler(error);
@@ -45,7 +47,7 @@ NSString *const kRegisterPasslessPath = @"/api/v1/account/registerWithNoPassword
         weakSelf.completionHandler(nil);
     }];
 
-    [self postData:@{@"email":self.email} toPath:kRegisterPasslessPath];
+    [self postData:@{@"email":self.email} toPath:path];
 }
 
 + (RegisterWithoutPasswordOperation *)operationWithEmail:(NSString *)email {

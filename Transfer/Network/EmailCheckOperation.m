@@ -9,7 +9,7 @@
 #import "EmailCheckOperation.h"
 #import "TransferwiseOperation+Private.h"
 
-NSString *const kEmailCheckPath = @"/api/v1/account/checkEmail";
+NSString *const kEmailCheckPath = @"account/checkEmail";
 
 @interface EmailCheckOperation ()
 
@@ -28,6 +28,8 @@ NSString *const kEmailCheckPath = @"/api/v1/account/checkEmail";
 }
 
 - (void)execute {
+    NSString *path = [self addTokenToPath:kEmailCheckPath];
+
     __block __weak EmailCheckOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
         weakSelf.resultHandler(NO, error);
@@ -38,7 +40,7 @@ NSString *const kEmailCheckPath = @"/api/v1/account/checkEmail";
         weakSelf.resultHandler(available, nil);
     }];
 
-    [self getDataFromPath:kEmailCheckPath params:@{@"email" : self.email}];
+    [self getDataFromPath:path params:@{@"email" : self.email}];
 }
 
 + (EmailCheckOperation *)operationWithEmail:(NSString *)email {
