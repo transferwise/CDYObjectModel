@@ -12,7 +12,7 @@
 		1864AC95173B7C28008773FC /* BusinessProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1864AC93173B7C28008773FC /* BusinessProfileViewController.xib */; };
 		1864AC9A173B7C4D008773FC /* BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC99173B7C4D008773FC /* BusinessProfile.m */; };
 		1864AC9B173B7C5E008773FC /* BusinessProfile.h in Resources */ = {isa = PBXBuildFile; fileRef = 1864AC98173B7C4D008773FC /* BusinessProfile.h */; };
-		1864AC9E173B7C80008773FC /* SaveBusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC9D173B7C80008773FC /* SaveBusinessProfileOperation.m */; };
+		1864AC9E173B7C80008773FC /* BusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */; };
 		1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */; };
 		18D47900173A3B5300FC317E /* IdentificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D478FF173A3B5300FC317E /* IdentificationViewController.m */; };
 		18D47903173A3B6E00FC317E /* IdentificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D47902173A3B6E00FC317E /* IdentificationViewController.xib */; };
@@ -134,6 +134,8 @@
 		EA8FF6B4171D23B20090A658 /* TRWProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6B3171D23B20090A658 /* TRWProgressHUD.m */; };
 		EA8FF6B8171D25C20090A658 /* TransferwiseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */; };
 		EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6BA171D26A00090A658 /* LoginOperation.m */; };
+		EA92D94E1769BB330078D0C4 /* BusinessProfileInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D94D1769BB330078D0C4 /* BusinessProfileInput.m */; };
+		EA92D9541769BD9D0078D0C4 /* BusinessProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D9531769BD9D0078D0C4 /* BusinessProfileCommitter.m */; };
 		EAA053D2175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */; };
 		EAA053D6175DD5EE00ACD3F6 /* NoUserPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D5175DD5EE00ACD3F6 /* NoUserPaymentFlow.m */; };
 		EAA053DA175DD63100ACD3F6 /* PaymentFlowSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D9175DD63100ACD3F6 /* PaymentFlowSpec.m */; };
@@ -261,8 +263,8 @@
 		1864AC93173B7C28008773FC /* BusinessProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessProfileViewController.xib; sourceTree = "<group>"; };
 		1864AC98173B7C4D008773FC /* BusinessProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfile.h; sourceTree = "<group>"; };
 		1864AC99173B7C4D008773FC /* BusinessProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfile.m; sourceTree = "<group>"; };
-		1864AC9C173B7C80008773FC /* SaveBusinessProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveBusinessProfileOperation.h; sourceTree = "<group>"; };
-		1864AC9D173B7C80008773FC /* SaveBusinessProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveBusinessProfileOperation.m; sourceTree = "<group>"; };
+		1864AC9C173B7C80008773FC /* BusinessProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileOperation.h; sourceTree = "<group>"; };
+		1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileOperation.m; sourceTree = "<group>"; };
 		1864AC9F173B7C95008773FC /* DeleteRecipientOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteRecipientOperation.h; sourceTree = "<group>"; };
 		1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteRecipientOperation.m; sourceTree = "<group>"; };
 		18D478FE173A3B5300FC317E /* IdentificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentificationViewController.h; sourceTree = "<group>"; };
@@ -466,6 +468,11 @@
 		EA8FF6B9171D26A00090A658 /* LoginOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginOperation.h; sourceTree = "<group>"; };
 		EA8FF6BA171D26A00090A658 /* LoginOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginOperation.m; sourceTree = "<group>"; };
 		EA8FF6BC171D30B60090A658 /* TransferwiseOperation+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TransferwiseOperation+Private.h"; sourceTree = "<group>"; };
+		EA92D94C1769BB330078D0C4 /* BusinessProfileInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileInput.h; sourceTree = "<group>"; };
+		EA92D94D1769BB330078D0C4 /* BusinessProfileInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileInput.m; sourceTree = "<group>"; };
+		EA92D9511769BD870078D0C4 /* BusinessProfileValidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessProfileValidation.h; sourceTree = "<group>"; };
+		EA92D9521769BD9D0078D0C4 /* BusinessProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileCommitter.h; sourceTree = "<group>"; };
+		EA92D9531769BD9D0078D0C4 /* BusinessProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileCommitter.m; sourceTree = "<group>"; };
 		EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonEditTextField.h; sourceTree = "<group>"; };
 		EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonEditTextField.m; sourceTree = "<group>"; };
 		EAA053D0175DD5DC00ACD3F6 /* LoggedInPaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggedInPaymentFlow.h; sourceTree = "<group>"; };
@@ -828,6 +835,8 @@
 				BB29BD42173CCD580016A6E9 /* BankTransfer.m */,
 				1864AC98173B7C4D008773FC /* BusinessProfile.h */,
 				1864AC99173B7C4D008773FC /* BusinessProfile.m */,
+				EA92D94C1769BB330078D0C4 /* BusinessProfileInput.h */,
+				EA92D94D1769BB330078D0C4 /* BusinessProfileInput.m */,
 				EA88E66A172F97B10021492C /* Country.h */,
 				EA88E66B172F97B10021492C /* Country.m */,
 				EA35C76617326AF4005602F7 /* Currency.h */,
@@ -944,8 +953,8 @@
 				EA1861E21746442900BD01BB /* RegisterOperation.m */,
 				EAA053EA175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.h */,
 				EAA053EB175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m */,
-				1864AC9C173B7C80008773FC /* SaveBusinessProfileOperation.h */,
-				1864AC9D173B7C80008773FC /* SaveBusinessProfileOperation.m */,
+				1864AC9C173B7C80008773FC /* BusinessProfileOperation.h */,
+				1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */,
 				EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */,
 				EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */,
 				EA88E680172F97D50021492C /* TransferwiseClient.h */,
@@ -1113,8 +1122,11 @@
 		EAB72162171FDC6700DE29F5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				EA92D9521769BD9D0078D0C4 /* BusinessProfileCommitter.h */,
+				EA92D9531769BD9D0078D0C4 /* BusinessProfileCommitter.m */,
 				EA416E341768675400904D97 /* BusinessProfileSource.h */,
 				EA416E351768675400904D97 /* BusinessProfileSource.m */,
+				EA92D9511769BD870078D0C4 /* BusinessProfileValidation.h */,
 				EAEA6255172011C500A96770 /* CalculationResult.h */,
 				EAEA6256172011C500A96770 /* CalculationResult.m */,
 				EAA053D0175DD5DC00ACD3F6 /* LoggedInPaymentFlow.h */,
@@ -1589,7 +1601,7 @@
 				18D47900173A3B5300FC317E /* IdentificationViewController.m in Sources */,
 				1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */,
 				1864AC9A173B7C4D008773FC /* BusinessProfile.m in Sources */,
-				1864AC9E173B7C80008773FC /* SaveBusinessProfileOperation.m in Sources */,
+				1864AC9E173B7C80008773FC /* BusinessProfileOperation.m in Sources */,
 				1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */,
 				EA222E33173A676000C5D613 /* PaymentFlow.m in Sources */,
 				EA222E38173A861000C5D613 /* ConfirmPaymentViewController.m in Sources */,
@@ -1629,6 +1641,8 @@
 				EA416E301768673500904D97 /* ProfileSource.m in Sources */,
 				EA416E331768674700904D97 /* PersonalProfileSource.m in Sources */,
 				EA416E361768675400904D97 /* BusinessProfileSource.m in Sources */,
+				EA92D94E1769BB330078D0C4 /* BusinessProfileInput.m in Sources */,
+				EA92D9541769BD9D0078D0C4 /* BusinessProfileCommitter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

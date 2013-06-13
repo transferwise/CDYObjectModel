@@ -6,21 +6,22 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import "SaveBusinessProfileOperation.h"
+#import "BusinessProfileOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "ProfileDetails.h"
 #import "Credentials.h"
+#import "BusinessProfileInput.h"
 
 NSString *const kUpdateBusinessProfilePath = @"/user/updateBusinessProfile";
-@interface SaveBusinessProfileOperation ()
+@interface BusinessProfileOperation ()
 
-@property (strong, nonatomic)NSDictionary* data;
+@property (strong, nonatomic) BusinessProfileInput *data;
 
 @end
 
-@implementation SaveBusinessProfileOperation
+@implementation BusinessProfileOperation
 
-- (id)initWithData:(NSDictionary *)data {
+- (id)initWithData:(BusinessProfileInput *)data {
     self = [super init];
     if (self) {
         _data = data;
@@ -31,7 +32,7 @@ NSString *const kUpdateBusinessProfilePath = @"/user/updateBusinessProfile";
 - (void)execute {
     NSString *path = [self addTokenToPath:kUpdateBusinessProfilePath];
     
-    __block __weak SaveBusinessProfileOperation *weakSelf = self;
+    __block __weak BusinessProfileOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
         weakSelf.saveResultHandler(nil, error);
     }];
@@ -42,11 +43,11 @@ NSString *const kUpdateBusinessProfilePath = @"/user/updateBusinessProfile";
         weakSelf.saveResultHandler(details, nil);
     }];
     
-    [self postData:self.data toPath:path];
+    [self postData:[self.data data] toPath:path];
 }
 
-+ (SaveBusinessProfileOperation *)operationWithData:(NSDictionary *)data {
-    return [[SaveBusinessProfileOperation alloc] initWithData:data];
++ (BusinessProfileOperation *)commitWithData:(BusinessProfileInput *)data {
+    return [[BusinessProfileOperation alloc] initWithData:data];
 }
 
 

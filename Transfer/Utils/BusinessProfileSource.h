@@ -8,6 +8,8 @@
 
 #import "ProfileSource.h"
 
+@class ProfileDetails;
+
 @interface BusinessProfileSource : ProfileSource
 
 @end

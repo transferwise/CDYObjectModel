@@ -23,7 +23,8 @@
 @implementation TransferwiseClient
 
 - (id)initSingleton {
-    self = [super initWithBaseURL:[NSURL URLWithString:@"https://api-sandbox.transferwise.com"]];
+    //self = [super initWithBaseURL:[NSURL URLWithString:@"https://api-sandbox.transferwise.com"]];
+    self = [super initWithBaseURL:[NSURL URLWithString:@"http://localhost:12345"]];
     if (self) {
 
     }

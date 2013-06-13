@@ -119,7 +119,6 @@ NSUInteger const kUserPersonalSection = 1;
     }];
 }
 
-
 - (void)loadDetailsToCells {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"loadDetailsToCells");

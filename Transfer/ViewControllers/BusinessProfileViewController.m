@@ -14,7 +14,7 @@
 #import "TRWProgressHUD.h"
 #import "TRWAlertView.h"
 #import "UIColor+Theme.h"
-#import "SaveBusinessProfileOperation.h"
+#import "BusinessProfileOperation.h"
 #import "CountrySelectionCell.h"
 #import "BlueButton.h"
 #import "UIApplication+Keyboard.h"
@@ -259,7 +259,7 @@ static NSUInteger const kDetailsSection = 1;
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"business.profile.saving.message", nil)];
     
-    SaveBusinessProfileOperation *operation = [SaveBusinessProfileOperation operationWithData:data];
+    BusinessProfileOperation *operation = [BusinessProfileOperation commitWithData:data];
     [self setExecutedOperation:operation];
     
     [operation setSaveResultHandler:^(ProfileDetails *result, NSError *error) {
