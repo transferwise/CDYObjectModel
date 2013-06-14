@@ -1,0 +1,24 @@
+{
+    "total": 2,
+    "currencies": [
+        {
+            "code": "EUR",
+            "symbol": "€",
+            "name": "Euro",
+            "defaultRecipientType": "IBAN",
+            "recipientTypes": [
+                "IBAN"
+            ]
+        },
+        {
+            "code": "GBP",
+            "symbol": "£",
+            "name": "Pound Sterling",
+            "defaultRecipientType": "SORT_CODE",
+            "recipientTypes": [
+                "IBAN",
+                "SORT_CODE"
+            ]
+        }
+    ]
+}

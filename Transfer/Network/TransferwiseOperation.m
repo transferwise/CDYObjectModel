@@ -18,9 +18,8 @@
 #import "NSString+Validation.h"
 #import "NetworkErrorCodes.h"
 
-//NSString *const kAPIPathBase = @"/api/v1";
-NSString *const kAPIPathBase = @"/fx-test/api/v1";
-NSString *const kPublicToken = @"public";
+NSString *const kAPIPathBase = @"/api/v1";
+//NSString *const kAPIPathBase = @"/fx-test/api/v1";
 
 @interface TransferwiseOperation ()
 

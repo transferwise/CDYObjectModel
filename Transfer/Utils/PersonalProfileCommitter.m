@@ -20,7 +20,7 @@
 
 @implementation PersonalProfileCommitter
 
-- (void)validateProfile:(PersonalProfileInput *)profile withHandler:(PersonalProfileValidationBlock)handler {
+- (void)validatePersonalProfile:(PersonalProfileInput *)profile withHandler:(PersonalProfileValidationBlock)handler {
     MCLog(@"Validate profile");
     PersonalProfileOperation *operation = [PersonalProfileOperation commitOperationWithProfile:profile];
     [self setExecutedOperation:operation];

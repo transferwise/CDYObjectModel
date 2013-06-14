@@ -1,16 +1,14 @@
 //
-//  BusinessProfile.h
+//  BusinessProfileInput.h
 //  Transfer
 //
-//  Created by Henri Mägi on 29.04.13.
+//  Created by Jaanus Siim on 6/13/13.
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@class BusinessProfileInput;
-
-@interface BusinessProfile : NSObject
+@interface BusinessProfileInput : NSObject
 
 @property (nonatomic, copy) NSString *businessName;
 @property (nonatomic, copy) NSString *registrationNumber;
@@ -20,9 +18,6 @@
 @property (nonatomic, copy) NSString *city;
 @property (nonatomic, copy) NSString *countryCode;
 
-+ (BusinessProfile *)profileWithData:(NSDictionary *)data;
-
-- (BOOL)businessVerifiedValue;
-- (BusinessProfileInput *)input;
+- (NSDictionary *)data;
 
 @end

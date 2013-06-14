@@ -7,6 +7,7 @@
 //
 
 #import "BusinessProfile.h"
+#import "BusinessProfileInput.h"
 
 @interface BusinessProfile ()
 
@@ -34,6 +35,18 @@
 
 - (BOOL)businessVerifiedValue {
     return [self.businessVerified boolValue];
+}
+
+- (BusinessProfileInput *)input {
+    BusinessProfileInput *input = [[BusinessProfileInput alloc] init];
+    [input setBusinessName:self.businessName];
+    [input setRegistrationNumber:self.registrationNumber];
+    [input setDescriptionOfBusiness:self.descriptionOfBusiness];
+    [input setAddressFirstLine:self.addressFirstLine];
+    [input setPostCode:self.postCode];
+    [input setCity:self.city];
+    [input setCountryCode:self.countryCode];
+    return input;
 }
 
 @end

@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "DataEntryViewController.h"
 
-@interface BusinessProfileViewController : DataEntryViewController
+@interface BusinessProfileViewController : ProfileEditViewController
 
 @end

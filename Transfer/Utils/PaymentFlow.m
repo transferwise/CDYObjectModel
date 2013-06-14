@@ -29,11 +29,16 @@
 #import "RecipientOperation.h"
 #import "Recipient.h"
 #import "RegisterWithoutPasswordOperation.h"
+#import "BusinessProfileInput.h"
+#import "BusinessProfileOperation.h"
+#import "PaymentProfileViewController.h"
+#import "BusinessProfile.h"
 
 @interface PaymentFlow ()
 
 @property (nonatomic, strong) UINavigationController *navigationController;
 @property (nonatomic, strong) ProfileDetails *userDetails;
+@property (nonatomic, strong) ProfileDetails *businessDetails;
 @property (nonatomic, strong) RecipientType *recipientType;
 @property (nonatomic, strong) Payment *createdPayment;
 @property (nonatomic, strong) NSArray *recipientTypes;
@@ -44,6 +49,7 @@
 @property (nonatomic, strong) PersonalProfileInput *personalProfile;
 @property (nonatomic, strong) RecipientProfileInput *recipientProfile;
 
+@property (nonatomic, strong) BusinessProfileInput *businessProfile;
 @end
 
 @implementation PaymentFlow
@@ -73,8 +79,16 @@
     }
 }
 
+- (void)setBusinessDetails:(ProfileDetails *)businessDetails {
+    _businessDetails = businessDetails;
+
+    if (businessDetails.businessProfile) {
+        [self setBusinessProfile:[businessDetails.businessProfile input]];
+    }
+}
+
 - (void)presentSenderDetails {
-    PersonalProfileViewController *controller = [[PersonalProfileViewController alloc] init];
+    PaymentProfileViewController *controller = [[PaymentProfileViewController alloc] init];
     if (self.recipient) {
         [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.confirm.payment.button.title", nil)];
     } else {
@@ -84,7 +98,28 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)validateProfile:(PersonalProfileInput *)profile withHandler:(PersonalProfileValidationBlock)handler {
+- (void)validateBusinessProfile:(BusinessProfileInput *)profile withHandler:(BusinessProfileValidationBlock)handler {
+    MCLog(@"validateBusinessProfile");
+    BusinessProfileOperation *operation = [BusinessProfileOperation validateWithData:profile];
+    [self setExecutedOperation:operation];
+    
+    [operation setSaveResultHandler:^(ProfileDetails *result, NSError *error) {
+        if (error) {
+            handler(result, error);
+            return;
+        }
+
+        [self setBusinessProfile:profile];
+        [self setPersonalProfile:nil];
+
+        handler(nil, nil);
+        [self pushNextScreenAfterPersonalProfile];
+    }];
+    
+    [operation execute];
+}
+
+- (void)validatePersonalProfile:(PersonalProfileInput *)profile withHandler:(PersonalProfileValidationBlock)handler {
     MCLog(@"validateProfile");
     PersonalProfileOperation *operation = [PersonalProfileOperation validateOperationWithProfile:profile];
     [self setExecutedOperation:operation];
@@ -96,6 +131,7 @@
         }
 
         [self setPersonalProfile:profile];
+        [self setBusinessProfile:nil];
 
         if ([Credentials userLoggedIn]) {
             handler(nil, nil);
@@ -186,6 +222,8 @@
     MCLog(@"Validate payment");
     self.paymentErrorHandler = errorHandler;
 
+    [paymentInput setProfile:self.personalProfile ? @"personal" : @"business"];
+
     CreatePaymentOperation *operation = [CreatePaymentOperation validateOperationWithInput:paymentInput];
     [self setExecutedOperation:operation];
 
@@ -268,6 +306,40 @@
 
 - (void)updateSenderProfile {
     MCLog(@"updateSenderProfile");
+    if (self.personalProfile) {
+        [self updatePersonalProfile];
+    } else {
+        [self updateBusinessProfile];
+    }
+}
+
+- (void)updateBusinessProfile {
+    MCLog(@"updateBusinessProfile");
+    BusinessProfileOperation *operation = [BusinessProfileOperation commitWithData:self.businessProfile];
+    [self setExecutedOperation:operation];
+
+    [operation setSaveResultHandler:^(ProfileDetails *result, NSError *error) {
+        if (error) {
+            self.paymentErrorHandler(error);
+            return;
+        }
+
+        [self setBusinessDetails:result];
+
+        MCLog(@"Recipient created?%d", [self.recipientProfile.id integerValue] != 0);
+
+        if ([self.recipientProfile.id integerValue] == 0) {
+            [self commitRecipientData];
+        } else {
+            [self uploadVerificationData];
+        }
+    }];
+
+    [operation execute];
+}
+
+- (void)updatePersonalProfile {
+    MCLog(@"updatePersonalProfile");
     PersonalProfileOperation *operation = [PersonalProfileOperation commitOperationWithProfile:self.personalProfile];
     [self setExecutedOperation:operation];
 
@@ -382,6 +454,8 @@
     if (!self.paymentInput.recipientId) {
         [self.paymentInput setRecipientId:self.recipientProfile.id];
     }
+
+    [self.paymentInput setProfile:self.personalProfile ? @"personal" : @"business"];
 
     PSPDFAssert(self.paymentInput.recipientId);
 
