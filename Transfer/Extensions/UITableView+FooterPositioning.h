@@ -10,4 +10,6 @@
 
 @interface UITableView (FooterPositioning)
 
+- (void)adjustFooterViewSize;
+
 @end
