@@ -37,6 +37,7 @@
 #import "PhoneBookProfile.h"
 #import "Credentials.h"
 #import "RecipientProfileInput.h"
+#import <QuartzCore/QuartzCore.h>
 
 static NSUInteger const kImportSection = 0;
 static NSUInteger const kRecipientSection = 1;
@@ -175,6 +176,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self setPresentedSectionCells:@[@[self.importCell], self.recipientCells, self.currencyCells, @[]]];
         [self.tableView setTableFooterView:self.footer];
         [self.tableView reloadData];
+        [self performSelector:@selector(positionActionButton) withObject:nil afterDelay:0.5];
+        //[self positionActionButton];
 
         [self didSelectRecipient:self.selectedRecipient];
     };
@@ -322,7 +325,23 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setSelectedRecipientType:type];
     [self setRecipientTypeFieldCells:cells];
     [self setPresentedSectionCells:@[@[self.importCell], self.recipientCells, self.currencyCells, cells]];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:[self.presentedSections count] - 1] withRowAnimation:UITableViewRowAnimationFade];
+    [CATransaction begin];
+    
+    [self.tableView beginUpdates];
+    
+    //...
+    
+    [CATransaction setCompletionBlock: ^{
+        // Code to be executed upon completion
+        NSLog(@"done");
+        //[self positionActionButton];
+    }];
+    
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:[self.presentedSections count] - 1] withRowAnimation:UITableViewRowAnimationFade];
+    
+    [self.tableView endUpdates];
+    
+    [CATransaction commit];
 }
 
 - (NSArray *)findAllTypesWithCodes:(NSArray *)codes {
@@ -481,6 +500,25 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     NSMutableArray *cells = [NSMutableArray arrayWithArray:presentedSectionCells];
     [cells removeObject:self.currencyCells];
     [super setPresentedSectionCells:cells];
+}
+
+- (void)positionActionButton
+{    NSLog(@"positioning");
+    [self.tableView setTableFooterView:self.footer];
+    CGFloat sizeDiff = self.tableView.frame.size.height - self.tableView.contentSize.height-5;
+    if (sizeDiff > 0) {
+        CGRect footerFrame = self.footer.frame;
+        footerFrame.size.height += sizeDiff;
+        CGRect oldFrame = self.addButton.frame;
+        self.footer.frame = footerFrame;
+        [UIView animateWithDuration:0.5 animations:^{
+            CGRect footerButtonFrame = oldFrame;
+            footerButtonFrame.origin.y +=sizeDiff;
+            self.addButton.frame = footerButtonFrame;
+            [self.tableView setTableFooterView:self.footer];
+            [self.tableView reloadData];
+        }];
+    }
 }
 
 
