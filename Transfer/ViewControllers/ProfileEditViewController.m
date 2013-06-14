@@ -32,6 +32,7 @@ static NSUInteger const kButtonSection = 0;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
 @property (nonatomic, strong) NSArray *presentationCells;
 @property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
+@property (nonatomic, strong) NSArray *allCountries;
 
 - (IBAction)footerButtonPressed:(id)sender;
 
@@ -60,6 +61,13 @@ static NSUInteger const kButtonSection = 0;
 
     [self.profileSource setTableView:self.tableView];
 
+
+    [self createPresentationCells];
+
+    [self.footerButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
+}
+
+- (void)createPresentationCells {
     NSMutableArray *presented = [NSMutableArray array];
     [presented addObject:@[self.buttonCell]];
     [presented addObjectsFromArray:[self.profileSource presentedCells]];
@@ -78,11 +86,41 @@ static NSUInteger const kButtonSection = 0;
         }
     }
     [self setCountryCell:(CountrySelectionCell *) countryCell];
+    [self.countryCell setAllCountries:self.allCountries];
 
     [self setPresentationCells:presented];
+}
 
+- (void)setPresentProfileSource:(ProfileSource *)source reloadView:(BOOL)reload {
+    [self setProfileSource:source];
+    [self.profileSource setTableView:self.tableView];
+    [self.navigationItem setTitle:[self.profileSource editViewTitle]];
+    [self createPresentationCells];
 
-    [self.footerButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
+    if (!reload) {
+        return;
+    }
+
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    [hud setMessage:NSLocalizedString(@"personal.profile.refreshing.message", nil)];
+
+    [self.profileSource pullDetailsWithHandler:^(NSError *profileError) {
+        [hud hide];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (profileError) {
+                TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.refresh.error.title", nil)
+                                                                   message:NSLocalizedString(@"personal.profile.refresh.error.message", nil)];
+                [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                [alertView show];
+                return;
+            }
+
+            [self setPresentedSectionCells:self.presentationCells];
+            [self.tableView setTableFooterView:self.footer];
+            [self.tableView reloadData];
+        });
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -115,6 +153,7 @@ static NSUInteger const kButtonSection = 0;
             return;
         }
 
+        [self setAllCountries:countries];
         [self.countryCell setAllCountries:countries];
         [self setPresentedSectionCells:self.presentationCells];
         [self.tableView setTableFooterView:self.footer];
@@ -140,6 +179,7 @@ static NSUInteger const kButtonSection = 0;
             return;
         }
 
+        [self setAllCountries:countries];
         [self.countryCell setAllCountries:countries];
 
         [self.profileSource pullDetailsWithHandler:^(NSError *profileError) {

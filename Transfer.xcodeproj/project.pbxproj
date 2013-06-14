@@ -135,6 +135,9 @@
 		EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6BA171D26A00090A658 /* LoginOperation.m */; };
 		EA92D94E1769BB330078D0C4 /* BusinessProfileInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D94D1769BB330078D0C4 /* BusinessProfileInput.m */; };
 		EA92D9541769BD9D0078D0C4 /* BusinessProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D9531769BD9D0078D0C4 /* BusinessProfileCommitter.m */; };
+		EA92D97F176AF1200078D0C4 /* PaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D97E176AF1200078D0C4 /* PaymentProfileViewController.m */; };
+		EA92D983176AF1DF0078D0C4 /* ProfileSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D982176AF1DF0078D0C4 /* ProfileSelectionView.m */; };
+		EA92D985176AF1F20078D0C4 /* ProfileSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA92D984176AF1F20078D0C4 /* ProfileSelectionView.xib */; };
 		EAA053D2175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */; };
 		EAA053D6175DD5EE00ACD3F6 /* NoUserPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D5175DD5EE00ACD3F6 /* NoUserPaymentFlow.m */; };
 		EAA053DA175DD63100ACD3F6 /* PaymentFlowSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D9175DD63100ACD3F6 /* PaymentFlowSpec.m */; };
@@ -471,6 +474,11 @@
 		EA92D9511769BD870078D0C4 /* BusinessProfileValidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessProfileValidation.h; sourceTree = "<group>"; };
 		EA92D9521769BD9D0078D0C4 /* BusinessProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileCommitter.h; sourceTree = "<group>"; };
 		EA92D9531769BD9D0078D0C4 /* BusinessProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileCommitter.m; sourceTree = "<group>"; };
+		EA92D97D176AF1200078D0C4 /* PaymentProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentProfileViewController.h; sourceTree = "<group>"; };
+		EA92D97E176AF1200078D0C4 /* PaymentProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentProfileViewController.m; sourceTree = "<group>"; };
+		EA92D981176AF1DF0078D0C4 /* ProfileSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileSelectionView.h; sourceTree = "<group>"; };
+		EA92D982176AF1DF0078D0C4 /* ProfileSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSelectionView.m; sourceTree = "<group>"; };
+		EA92D984176AF1F20078D0C4 /* ProfileSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSelectionView.xib; sourceTree = "<group>"; };
 		EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonEditTextField.h; sourceTree = "<group>"; };
 		EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonEditTextField.m; sourceTree = "<group>"; };
 		EAA053D0175DD5DC00ACD3F6 /* LoggedInPaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggedInPaymentFlow.h; sourceTree = "<group>"; };
@@ -693,6 +701,9 @@
 				EAD73689171E6CB100A037B1 /* GrayButton.m */,
 				EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */,
 				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
+				EA92D981176AF1DF0078D0C4 /* ProfileSelectionView.h */,
+				EA92D982176AF1DF0078D0C4 /* ProfileSelectionView.m */,
+				EA92D984176AF1F20078D0C4 /* ProfileSelectionView.xib */,
 				EAD0690C1737E457007C8DEE /* RecipientSectionHeaderView.h */,
 				EAD0690D1737E457007C8DEE /* RecipientSectionHeaderView.m */,
 				EAD069101737E462007C8DEE /* RecipientSectionHeaderView.xib */,
@@ -1089,6 +1100,8 @@
 				EA59298B1758CD6C007C0072 /* OpenIDViewController.h */,
 				EA59298C1758CD6C007C0072 /* OpenIDViewController.m */,
 				EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */,
+				EA92D97D176AF1200078D0C4 /* PaymentProfileViewController.h */,
+				EA92D97E176AF1200078D0C4 /* PaymentProfileViewController.m */,
 				EAD39682171BD5B000F6D011 /* PaymentViewController.h */,
 				EAD39683171BD5B000F6D011 /* PaymentViewController.m */,
 				EAD39684171BD5B000F6D011 /* PaymentViewController.xib */,
@@ -1421,6 +1434,7 @@
 				EAB93B501761D1EF00A7337C /* Default.png in Resources */,
 				EAB93B511761D1EF00A7337C /* Default@2x.png in Resources */,
 				EA416E2C176860EA00904D97 /* ProfileEditViewController.xib in Resources */,
+				EA92D985176AF1F20078D0C4 /* ProfileSelectionView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1639,6 +1653,8 @@
 				EA416E361768675400904D97 /* BusinessProfileSource.m in Sources */,
 				EA92D94E1769BB330078D0C4 /* BusinessProfileInput.m in Sources */,
 				EA92D9541769BD9D0078D0C4 /* BusinessProfileCommitter.m in Sources */,
+				EA92D97F176AF1200078D0C4 /* PaymentProfileViewController.m in Sources */,
+				EA92D983176AF1DF0078D0C4 /* ProfileSelectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

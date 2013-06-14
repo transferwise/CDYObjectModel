@@ -11,7 +11,7 @@
 #import "Credentials.h"
 #import "TransferwiseClient.h"
 
-NSString *const kLoginPath = @"/api/v1/token/create";
+NSString *const kLoginPath = @"/token/create";
 
 @interface LoginOperation ()
 
@@ -38,6 +38,8 @@ NSString *const kLoginPath = @"/api/v1/token/create";
 - (void)execute {
     MCLog(@"execute");
 
+    NSString *path = [self addTokenToPath:kLoginPath];
+
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"login"] = self.email;
     params[@"password"] = self.password;
@@ -55,7 +57,7 @@ NSString *const kLoginPath = @"/api/v1/token/create";
         weakSelf.responseHandler(error);
     }];
 
-    [self postData:params toPath:kLoginPath];
+    [self postData:params toPath:path];
 }
 
 

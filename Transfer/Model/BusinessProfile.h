@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class BusinessProfileInput;
+
 @interface BusinessProfile : NSObject
 
 @property (nonatomic, copy) NSString *businessName;
@@ -21,5 +23,6 @@
 + (BusinessProfile *)profileWithData:(NSDictionary *)data;
 
 - (BOOL)businessVerifiedValue;
+- (BusinessProfileInput *)input;
 
 @end

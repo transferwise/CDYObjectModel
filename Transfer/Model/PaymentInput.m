@@ -19,6 +19,7 @@
     [self appendData:@"reference" data:dictionary];
     [self appendData:@"email" data:dictionary];
     [self appendData:@"verificationProvideLater" data:dictionary];
+    [self appendData:@"profile" data:dictionary];
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 

@@ -17,6 +17,7 @@
 @property (nonatomic, copy) NSString *reference;
 @property (nonatomic, copy) NSString *email;
 @property (nonatomic, copy) NSString *verificationProvideLater;
+@property (nonatomic, copy) NSString *profile;
 
 - (NSDictionary *)data;
 

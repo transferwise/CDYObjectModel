@@ -16,6 +16,7 @@
 #import "BusinessProfileValidation.h"
 #import "PhoneBookProfile.h"
 #import "PhoneBookAddress.h"
+#import "Credentials.h"
 
 static NSUInteger const kButtonSection = 0;
 static NSUInteger const kDetailsSection = 1;
@@ -29,6 +30,7 @@ static NSUInteger const kDetailsSection = 1;
 @property (nonatomic, strong) TextEntryCell *postCodeCell;
 @property (nonatomic, strong) TextEntryCell *cityCell;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
+@property (nonatomic, strong) NSArray *cells;
 
 @property (nonatomic, strong) ProfileDetails *userDetails;
 @end
@@ -40,6 +42,10 @@ static NSUInteger const kDetailsSection = 1;
 }
 
 - (NSArray *)presentedCells {
+    if (self.cells) {
+        return self.cells;
+    }
+
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
 
@@ -86,11 +92,18 @@ static NSUInteger const kDetailsSection = 1;
     [addressCells addObject:countryCell];
     [countryCell configureWithTitle:NSLocalizedString(@"business.profile.country.label", nil) value:@""];
 
-    return @[businessCells, addressCells];
+    [self setCells:@[businessCells, addressCells]];
+
+    return self.cells;
 }
 
 
 - (void)pullDetailsWithHandler:(ProfileActionBlock)handler {
+    if (![Credentials userLoggedIn]) {
+        handler(nil);
+        return;
+    }
+
     [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(ProfileDetails *result, NSError *userError) {
         if (userError) {
             handler(userError);

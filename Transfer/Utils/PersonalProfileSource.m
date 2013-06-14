@@ -18,6 +18,7 @@
 #import "NSString+Validation.h"
 #import "PersonalProfileInput.h"
 #import "PersonalProfileValidation.h"
+#import "Credentials.h"
 
 NSUInteger const kUserButtonSection = 0;
 NSUInteger const kUserPersonalSection = 1;
@@ -34,6 +35,7 @@ NSUInteger const kUserPersonalSection = 1;
 @property (nonatomic, strong) TextEntryCell *cityCell;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
 @property (nonatomic, strong) ProfileDetails *userDetails;
+@property (nonatomic, strong) NSArray *cells;
 
 @end
 
@@ -44,6 +46,10 @@ NSUInteger const kUserPersonalSection = 1;
 }
 
 - (NSArray *)presentedCells {
+    if (self.cells) {
+        return self.cells;
+    }
+
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"DateEntryCell" bundle:nil] forCellReuseIdentifier:TWDateEntryCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
@@ -103,10 +109,17 @@ NSUInteger const kUserPersonalSection = 1;
     [addressCells addObject:countryCell];
     [countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
 
-    return @[personalCells, addressCells];
+    [self setCells:@[personalCells, addressCells]];
+
+    return self.cells;
 }
 
 - (void)pullDetailsWithHandler:(ProfileActionBlock)handler {
+    if (![Credentials userLoggedIn]) {
+        handler(nil);
+        return;
+    }
+
     [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(ProfileDetails *result, NSError *userError) {
         if (userError) {
             handler(userError);

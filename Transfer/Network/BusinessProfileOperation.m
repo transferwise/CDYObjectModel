@@ -28,6 +28,7 @@ NSString *const kValidateBusinessProfilePath = @"/user/validateBusinessProfile";
     self = [super init];
     if (self) {
         _data = data;
+        _path = path;
     }
     return self;
 }
@@ -58,6 +59,5 @@ NSString *const kValidateBusinessProfilePath = @"/user/validateBusinessProfile";
 + (BusinessProfileOperation *)validateWithData:(BusinessProfileInput *)data {
     return [[BusinessProfileOperation alloc] initWithPath:kValidateBusinessProfilePath data:data];
 }
-
 
 @end

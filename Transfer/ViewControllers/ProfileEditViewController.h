@@ -17,5 +17,6 @@
 @property (nonatomic, strong) id profileValidation;
 
 - (id)initWithSource:(ProfileSource *)source;
+- (void)setPresentProfileSource:(ProfileSource *)source reloadView:(BOOL)reload;
 
 @end

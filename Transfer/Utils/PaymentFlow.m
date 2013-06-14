@@ -30,14 +30,15 @@
 #import "Recipient.h"
 #import "RegisterWithoutPasswordOperation.h"
 #import "BusinessProfileInput.h"
-#import "BusinessProfileInput.h"
 #import "BusinessProfileOperation.h"
-#import "BusinessProfileViewController.h"
+#import "PaymentProfileViewController.h"
+#import "BusinessProfile.h"
 
 @interface PaymentFlow ()
 
 @property (nonatomic, strong) UINavigationController *navigationController;
 @property (nonatomic, strong) ProfileDetails *userDetails;
+@property (nonatomic, strong) ProfileDetails *businessDetails;
 @property (nonatomic, strong) RecipientType *recipientType;
 @property (nonatomic, strong) Payment *createdPayment;
 @property (nonatomic, strong) NSArray *recipientTypes;
@@ -78,8 +79,16 @@
     }
 }
 
+- (void)setBusinessDetails:(ProfileDetails *)businessDetails {
+    _businessDetails = businessDetails;
+
+    if (businessDetails.businessProfile) {
+        [self setBusinessProfile:[businessDetails.businessProfile input]];
+    }
+}
+
 - (void)presentSenderDetails {
-    BusinessProfileViewController *controller = [[BusinessProfileViewController alloc] init];
+    PaymentProfileViewController *controller = [[PaymentProfileViewController alloc] init];
     if (self.recipient) {
         [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.confirm.payment.button.title", nil)];
     } else {
@@ -213,6 +222,8 @@
     MCLog(@"Validate payment");
     self.paymentErrorHandler = errorHandler;
 
+    [paymentInput setProfile:self.personalProfile ? @"personal" : @"business"];
+
     CreatePaymentOperation *operation = [CreatePaymentOperation validateOperationWithInput:paymentInput];
     [self setExecutedOperation:operation];
 
@@ -313,7 +324,7 @@
             return;
         }
 
-        [self setUserDetails:result];
+        [self setBusinessDetails:result];
 
         MCLog(@"Recipient created?%d", [self.recipientProfile.id integerValue] != 0);
 
@@ -443,6 +454,8 @@
     if (!self.paymentInput.recipientId) {
         [self.paymentInput setRecipientId:self.recipientProfile.id];
     }
+
+    [self.paymentInput setProfile:self.personalProfile ? @"personal" : @"business"];
 
     PSPDFAssert(self.paymentInput.recipientId);
 
