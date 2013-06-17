@@ -66,23 +66,26 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     MCLog(@"shouldStartLoading:%@", [request.URL host]);
     NSString *host = [[[TransferwiseClient sharedClient] baseURL] host];
+    
     if (![host isEqualToString:[request.URL host]]) {
         return YES;
     }
 
     NSString *absoluteString = [request.URL absoluteString];
-    if ([absoluteString rangeOfString:@"token="].location == NSNotFound) {
+    NSLog(@"absoluteString:%@", absoluteString);
+
+    if (![self isLoginPath:absoluteString]) {
         return YES;
     }
 
-    NSUInteger paramsStart = [absoluteString rangeOfString:@"?"].location + 1;
-    NSString *parameters = [absoluteString substringFromIndex:paramsStart];
-    NSArray *values = [parameters componentsSeparatedByString:@"&"];
-    for (NSString *component in values) {
-        if ([component rangeOfString:@"token="].location == 0) {
-            NSString *token = [component substringFromIndex:6];
-            [Credentials setUserToken:token];
-        }
+    NSString *token = [self valueForCookie:@"userApiToken"];
+    NSString *email = [self valueForCookie:@"userEmail"];
+
+    MCLog(@"Token:%@ email:%@", token, email);
+
+    [Credentials setUserToken:token];
+    if ([email hasValue]) {
+        [Credentials setUserEmail:email];
     }
 
     if ([Credentials userLoggedIn]) {
@@ -95,6 +98,29 @@
     }
 
     return NO;
+}
+
+- (NSString *)valueForCookie:(NSString *)name {
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSArray *cookies = [storage cookies];
+    for (NSHTTPCookie *cookie in cookies) {
+        if ([cookie.domain rangeOfString:@"transferwise"].location == NSNotFound) {
+            continue;
+        }
+
+        if (![cookie.name isEqualToString:name]) {
+            continue;
+        }
+
+        return cookie.value;
+    }
+
+    return nil;
+}
+
+- (BOOL)isLoginPath:(NSString *)absoluteString {
+    return [absoluteString rangeOfString:@"/account/loginWithOpenID"].location != NSNotFound
+            || [absoluteString rangeOfString:@"/openId/mobileLoggedIn"].location != NSNotFound;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
