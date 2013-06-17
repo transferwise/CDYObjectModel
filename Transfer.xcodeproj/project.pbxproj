@@ -23,6 +23,8 @@
 		BB92B144172A747300B6F096 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B143172A747300B6F096 /* CoreText.framework */; };
 		BB92B147172A754100B6F096 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B140172A600000B6F096 /* libOHAttributedLabel.a */; };
 		BB9A2E83176B711400C5E058 /* UITableView+FooterPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9A2E82176B711400C5E058 /* UITableView+FooterPositioning.m */; };
+		BB9A2EB9176F495700C5E058 /* TransferTypeSelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB9A2EB8176F495600C5E058 /* TransferTypeSelectionCell.xib */; };
+		BB9A2EBC176F4BC600C5E058 /* TransferTypeSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9A2EBB176F4BC600C5E058 /* TransferTypeSelectionCell.m */; };
 		BBC691241721416300F0FB1A /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911C1721416300F0FB1A /* TSAlertViewMessageListViewShadow.png */; };
 		BBC691251721416300F0FB1A /* TSAlertViewCancelButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911D1721416300F0FB1A /* TSAlertViewCancelButtonBackground.png */; };
 		BBC691261721416300F0FB1A /* TSAlertViewButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911E1721416300F0FB1A /* TSAlertViewButtonBackground.png */; };
@@ -287,6 +289,9 @@
 		BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BB9A2E81176B711400C5E058 /* UITableView+FooterPositioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FooterPositioning.h"; sourceTree = "<group>"; };
 		BB9A2E82176B711400C5E058 /* UITableView+FooterPositioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FooterPositioning.m"; sourceTree = "<group>"; };
+		BB9A2EB8176F495600C5E058 /* TransferTypeSelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferTypeSelectionCell.xib; sourceTree = "<group>"; };
+		BB9A2EBA176F4BC500C5E058 /* TransferTypeSelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferTypeSelectionCell.h; sourceTree = "<group>"; };
+		BB9A2EBB176F4BC600C5E058 /* TransferTypeSelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferTypeSelectionCell.m; sourceTree = "<group>"; };
 		BBC6911C1721416300F0FB1A /* TSAlertViewMessageListViewShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewMessageListViewShadow.png; path = TSAlertView/TSAlertViewMessageListViewShadow.png; sourceTree = "<group>"; };
 		BBC6911D1721416300F0FB1A /* TSAlertViewCancelButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewCancelButtonBackground.png; path = TSAlertView/TSAlertViewCancelButtonBackground.png; sourceTree = "<group>"; };
 		BBC6911E1721416300F0FB1A /* TSAlertViewButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewButtonBackground.png; path = TSAlertView/TSAlertViewButtonBackground.png; sourceTree = "<group>"; };
@@ -772,6 +777,9 @@
 				EA13E04A171BEF5D0019FBF0 /* TextEntryCell.h */,
 				EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */,
 				EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */,
+				BB9A2EB8176F495600C5E058 /* TransferTypeSelectionCell.xib */,
+				BB9A2EBA176F4BC500C5E058 /* TransferTypeSelectionCell.h */,
+				BB9A2EBB176F4BC600C5E058 /* TransferTypeSelectionCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1442,6 +1450,7 @@
 				EAB93B511761D1EF00A7337C /* Default@2x.png in Resources */,
 				EA416E2C176860EA00904D97 /* ProfileEditViewController.xib in Resources */,
 				EA92D985176AF1F20078D0C4 /* ProfileSelectionView.xib in Resources */,
+				BB9A2EB9176F495700C5E058 /* TransferTypeSelectionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1663,6 +1672,7 @@
 				EA92D97F176AF1200078D0C4 /* PaymentProfileViewController.m in Sources */,
 				EA92D983176AF1DF0078D0C4 /* ProfileSelectionView.m in Sources */,
 				BB9A2E83176B711400C5E058 /* UITableView+FooterPositioning.m in Sources */,
+				BB9A2EBC176F4BC600C5E058 /* TransferTypeSelectionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
