@@ -25,9 +25,6 @@
 
 - (void)adjustFooterViewSizeForMinimumHeight:(CGFloat)height
 {
-    NSLog(@"frame: %f", self.frame.size.height);
-    NSLog(@"content: %f", self.contentSize.height);
-    
     CGFloat footerDiff = self.tableFooterView.frame.size.height - height;
     CGFloat sizeDiff = self.frame.size.height - self.contentSize.height-5;
     CGFloat newHeight = 0;
