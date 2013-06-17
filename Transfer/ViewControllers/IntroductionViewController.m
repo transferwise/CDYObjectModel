@@ -115,6 +115,9 @@ static NSUInteger const kRowYouSend = 0;
                                                                   action:nil];
     [backButton setTintColor:[UIColor blackColor]];
     self.navigationItem.backBarButtonItem = backButton;
+    
+    [[OHAttributedLabel appearance] setLinkUnderlineStyle:kOHBoldStyleTraitSetBold];
+    [[OHAttributedLabel appearance] setLinkColor:[UIColor colorWithRed:50.0/255.0 green:58.0/255.0 blue:69.0/255.0 alpha:1]];
 
     [calculator setCalculationHandler:^(CalculationResult *result, NSError *error) {
         if (error) {
@@ -252,11 +255,6 @@ static NSUInteger const kRowYouSend = 0;
     else {
         return NO;
     }
-}
-
--(UIColor*)attributedLabel:(OHAttributedLabel *)attributedLabel colorForLink:(NSTextCheckingResult *)linkInfo underlineStyle:(int32_t *)underlineStyle
-{
-    return self.savingsLabel.textColor;
 }
 
 

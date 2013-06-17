@@ -11,5 +11,6 @@
 @interface UITableView (FooterPositioning)
 
 - (void)adjustFooterViewSize;
+- (void)adjustFooterViewSizeForMinimumHeight:(CGFloat)height;
 
 @end

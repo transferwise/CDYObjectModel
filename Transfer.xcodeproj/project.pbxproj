@@ -22,7 +22,6 @@
 		BB29BD4E173CDF6F0016A6E9 /* TextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29BD4C173CDF6F0016A6E9 /* TextCell.m */; };
 		BB92B144172A747300B6F096 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B143172A747300B6F096 /* CoreText.framework */; };
 		BB92B147172A754100B6F096 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B140172A600000B6F096 /* libOHAttributedLabel.a */; };
-		BB9A2E7E176B5DB300C5E058 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */; };
 		BB9A2E83176B711400C5E058 /* UITableView+FooterPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9A2E82176B711400C5E058 /* UITableView+FooterPositioning.m */; };
 		BBC691241721416300F0FB1A /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911C1721416300F0FB1A /* TSAlertViewMessageListViewShadow.png */; };
 		BBC691251721416300F0FB1A /* TSAlertViewCancelButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911D1721416300F0FB1A /* TSAlertViewCancelButtonBackground.png */; };
@@ -653,7 +652,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB9A2E7E176B5DB300C5E058 /* QuartzCore.framework in Frameworks */,
 				EAD6675E174A565500D29BCB /* AddressBook.framework in Frameworks */,
 				EAD6675F174A565500D29BCB /* AddressBookUI.framework in Frameworks */,
 				BB92B147172A754100B6F096 /* libOHAttributedLabel.a in Frameworks */,

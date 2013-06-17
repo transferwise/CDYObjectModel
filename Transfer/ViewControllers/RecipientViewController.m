@@ -78,6 +78,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
 
 @property (nonatomic, strong) NSArray *presentedSections;
+@property CGFloat minimumFooterHeight;
 
 - (IBAction)addButtonPressed:(id)sender;
 
@@ -152,6 +153,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     if (self.preloadRecipientsWithCurrency) {
         [self.currencyCell setEditable:NO];
     }
+    
+    self.minimumFooterHeight = self.footer.frame.size.height;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -176,8 +179,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self setPresentedSectionCells:@[@[self.importCell], self.recipientCells, self.currencyCells, @[]]];
         [self.tableView setTableFooterView:self.footer];
         [self.tableView reloadData];
-        [self.tableView performSelector:@selector(adjustFooterViewSize) withObject:nil afterDelay:0.5];
-
         [self didSelectRecipient:self.selectedRecipient];
     };
 
@@ -324,7 +325,15 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setSelectedRecipientType:type];
     [self setRecipientTypeFieldCells:cells];
     [self setPresentedSectionCells:@[@[self.importCell], self.recipientCells, self.currencyCells, cells]];
+    
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:[self.presentedSections count] - 1] withRowAnimation:UITableViewRowAnimationFade];
+    [self performSelector:@selector(updateFooterSize) withObject:nil afterDelay:0.5];
+
+}
+
+- (void)updateFooterSize
+{
+    [self.tableView adjustFooterViewSizeForMinimumHeight:self.minimumFooterHeight];
 }
 
 - (NSArray *)findAllTypesWithCodes:(NSArray *)codes {
@@ -369,6 +378,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         return type;
     }
     return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
 }
 
 - (IBAction)addButtonPressed:(id)sender {
