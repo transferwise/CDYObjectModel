@@ -18,9 +18,6 @@
 #import "NSString+Validation.h"
 #import "NetworkErrorCodes.h"
 
-NSString *const kAPIPathBase = @"/api/v1";
-//NSString *const kAPIPathBase = @"/fx-test/api/v1";
-
 @interface TransferwiseOperation ()
 
 @property (nonatomic, copy) TRWOperationSuccessBlock operationSuccessHandler;
@@ -184,7 +181,7 @@ NSString *const kAPIPathBase = @"/api/v1";
 }
 
 - (NSString *)addTokenToPath:(NSString *)path {
-    return [NSString stringWithFormat:@"%@%@", kAPIPathBase, path];
+    return [[TransferwiseClient sharedClient] addTokenToPath:path];
 }
 
 @end

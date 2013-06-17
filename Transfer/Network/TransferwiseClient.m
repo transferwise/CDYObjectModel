@@ -10,13 +10,17 @@
 #import "Constants.h"
 #import "Credentials.h"
 #import "ProfileDetails.h"
-#import "CurrencyPairsOperation.h"
+#import "RemoveTokenOperation.h"
+
+NSString *const kAPIPathBase = @"/api/v1";
+//NSString *const kAPIPathBase = @"/fx-test/api/v1";
 
 @interface TransferwiseClient ()
 
 @property (nonatomic, strong) UserDetailsOperation *detailsOperation;
 @property (nonatomic, strong) CountriesOperation *countriesOperation;
 @property (nonatomic, strong) CurrencyPairsOperation *currencyOperation;
+@property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
 @end
 
@@ -81,6 +85,34 @@
 
     [operation setObjectModel:self.objectModel];
     [operation execute];
+}
+
+- (void)clearCredentials {
+    NSString *token = [Credentials accessToken];
+    [Credentials clearCredentials];
+    [self clearCookies];
+
+    RemoveTokenOperation *operation = [[RemoveTokenOperation alloc] initWithToken:token];
+    [self setExecutedOperation:operation];
+    [operation execute];
+}
+
+- (void)clearCookies {
+    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+    for (NSHTTPCookie *cookie in cookies) {
+        NSString *domain = cookie.domain;
+        if ([domain rangeOfString:@"transferwise"].location != NSNotFound) {
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+        } else if ([domain rangeOfString:@"yahoo"].location != NSNotFound) {
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+        } else if ([domain rangeOfString:@"google"].location != NSNotFound) {
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+        }
+    }
+}
+
+- (NSString *)addTokenToPath:(NSString *)path {
+    return [NSString stringWithFormat:@"%@%@", kAPIPathBase, path];
 }
 
 @end

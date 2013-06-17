@@ -21,5 +21,7 @@
 - (void)updateUserDetailsWithCompletionHandler:(TWProfileDetailsHandler)completion;
 - (void)updateCountriesWithCompletionHandler:(CountriesResponseBlock)handler;
 - (void)updateCurrencyPairsWithCompletionHandler:(CurrencyPairsBlock)handler;
+- (void)clearCredentials;
+- (NSString *)addTokenToPath:(NSString *)path;
 
 @end

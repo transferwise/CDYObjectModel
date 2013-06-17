@@ -18,6 +18,7 @@
 #import "PersonalProfileCommitter.h"
 #import "ClaimAccountViewController.h"
 #import "BusinessProfileCommitter.h"
+#import "TransferwiseClient.h"
 
 NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
@@ -162,8 +163,7 @@ typedef NS_ENUM(short, SettingsRow) {
     SettingsRow code = (SettingsRow) [self.presentedRows[(NSUInteger) indexPath.row] shortValue];
     switch (code) {
         case LogoutRow:
-            //TODO jaanus: logout request not sent
-            [Credentials clearCredentials];
+            [[TransferwiseClient sharedClient] clearCredentials];
             [revealController revealToggle:nil];
             [revealController.frontViewController viewDidAppear:YES];
             break;

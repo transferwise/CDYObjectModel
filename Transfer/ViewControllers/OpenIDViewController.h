@@ -13,5 +13,6 @@
 @property (nonatomic, copy) NSString *provider;
 @property (nonatomic, copy) NSString *email;
 @property (nonatomic, copy) NSString *providerName;
+@property (nonatomic, assign) BOOL registerUser;
 
 @end

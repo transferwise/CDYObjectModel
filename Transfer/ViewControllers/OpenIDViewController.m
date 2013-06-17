@@ -24,7 +24,8 @@
 - (id)init {
     self = [super initWithNibName:@"OpenIDViewController" bundle:nil];
     if (self) {
-        // Custom initialization
+        //TODO jaanus: fix this workaround. loginWithOpenID is also entry URL anc causes some problems
+        [self setRegisterUser:YES];
     }
     return self;
 }
@@ -58,7 +59,8 @@
         data[@"email"] = self.email;
     }
     MCLog(@"Params:%@", data);
-    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"POST" path:@"/api/v1/account/registerWithOpenID" parameters:data];
+    NSString *path = [[TransferwiseClient sharedClient] addTokenToPath:(self.registerUser ? @"/account/registerWithOpenID" : @"/account/loginWithOpenID")];
+    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"POST" path:path parameters:data];
     [self.webView loadRequest:request];
 }
 

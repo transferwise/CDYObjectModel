@@ -171,6 +171,7 @@ static NSUInteger const kTableRowEmail = 0;
     [controller setProvider:provider];
     [controller setEmail:self.emailCell.value];
     [controller setProviderName:providerName];
+    [controller setRegisterUser:YES];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

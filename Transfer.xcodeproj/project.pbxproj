@@ -94,6 +94,7 @@
 		EA76D910175CF80100AE3F86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146D171BC911005B9430 /* Foundation.framework */; };
 		EA76D916175CF80100AE3F86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA76D914175CF80100AE3F86 /* InfoPlist.strings */; };
 		EA76D925175CFAEA00AE3F86 /* SampleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EA76D924175CFAEA00AE3F86 /* SampleSpec.m */; };
+		EA7F8816176F2B44003B0F46 /* RemoveTokenOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7F8815176F2B44003B0F46 /* RemoveTokenOperation.m */; };
 		EA88E65B172F96490021492C /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
 		EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
 		EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
@@ -393,6 +394,8 @@
 		EA76D915175CF80100AE3F86 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EA76D91A175CF80100AE3F86 /* TransferTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TransferTests-Prefix.pch"; sourceTree = "<group>"; };
 		EA76D924175CFAEA00AE3F86 /* SampleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleSpec.m; sourceTree = "<group>"; };
+		EA7F8814176F2B44003B0F46 /* RemoveTokenOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveTokenOperation.h; sourceTree = "<group>"; };
+		EA7F8815176F2B44003B0F46 /* RemoveTokenOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveTokenOperation.m; sourceTree = "<group>"; };
 		EA88E659172F96490021492C /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credentials.h; path = Credentials/Credentials.h; sourceTree = "<group>"; };
 		EA88E65A172F96490021492C /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Credentials.m; path = Credentials/Credentials.m; sourceTree = "<group>"; };
 		EA88E65D172F96660021492C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -932,6 +935,8 @@
 		EA8FF6B5171D25530090A658 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				1864AC9C173B7C80008773FC /* BusinessProfileOperation.h */,
+				1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */,
 				EAB93B461761C74700A7337C /* ClaimAccountOperation.h */,
 				EAB93B471761C74700A7337C /* ClaimAccountOperation.m */,
 				EA88E67C172F97D50021492C /* CountriesOperation.h */,
@@ -962,8 +967,8 @@
 				EA1861E21746442900BD01BB /* RegisterOperation.m */,
 				EAA053EA175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.h */,
 				EAA053EB175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m */,
-				1864AC9C173B7C80008773FC /* BusinessProfileOperation.h */,
-				1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */,
+				EA7F8814176F2B44003B0F46 /* RemoveTokenOperation.h */,
+				EA7F8815176F2B44003B0F46 /* RemoveTokenOperation.m */,
 				EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */,
 				EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */,
 				EA88E680172F97D50021492C /* TransferwiseClient.h */,
@@ -1655,6 +1660,7 @@
 				EA92D9541769BD9D0078D0C4 /* BusinessProfileCommitter.m in Sources */,
 				EA92D97F176AF1200078D0C4 /* PaymentProfileViewController.m in Sources */,
 				EA92D983176AF1DF0078D0C4 /* ProfileSelectionView.m in Sources */,
+				EA7F8816176F2B44003B0F46 /* RemoveTokenOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
