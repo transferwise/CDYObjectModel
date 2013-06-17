@@ -23,6 +23,7 @@ static NSUInteger const kDetailsSection = 1;
 
 @interface BusinessProfileSource ()
 
+@property (nonatomic, strong) TextEntryCell *emailCell;
 @property (nonatomic, strong) TextEntryCell *businessNameCell;
 @property (nonatomic, strong) TextEntryCell *registrationNumberCell;
 @property (nonatomic, strong) TextEntryCell *descriptionCell;
@@ -50,6 +51,15 @@ static NSUInteger const kDetailsSection = 1;
     [self.tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
 
     NSMutableArray *businessCells = [NSMutableArray array];
+
+    TextEntryCell *emailCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+    [self setEmailCell:emailCell];
+    [emailCell configureWithTitle:NSLocalizedString(@"business.profile.email.label", nil) value:@""];
+    [emailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
+
+    if (![Credentials userLoggedIn]) {
+        [businessCells addObject:emailCell];
+    }
 
     TextEntryCell *businessNameCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setBusinessNameCell:businessNameCell];
@@ -149,13 +159,15 @@ static NSUInteger const kDetailsSection = 1;
 }
 
 - (BOOL)inputValid {
-    return [[self.businessNameCell value] hasValue] && [[self.registrationNumberCell value] hasValue] && [[self.descriptionCell value] hasValue]
+    return ([Credentials userLoggedIn] || [self.emailCell.value hasValue]) && [[self.businessNameCell value] hasValue]
+            && [[self.registrationNumberCell value] hasValue] && [[self.descriptionCell value] hasValue]
             && [[self.addressCell value] hasValue] && [[self.postCodeCell value] hasValue] && [[self.cityCell value] hasValue]
             && [[self.countryCell value] hasValue];
 }
 
 - (id)enteredProfile {
     BusinessProfileInput *data = [[BusinessProfileInput alloc] init];
+    [data setEmail:self.emailCell.value];
     data.businessName = [self.businessNameCell value];
     data.registrationNumber = [self.registrationNumberCell value];
     data.descriptionOfBusiness = [self.descriptionCell value];

@@ -39,7 +39,6 @@
 
             TextEntryCell *entryCell = cell;
             [entryCell.entryField setDelegate:self];
-
             [entryCell.entryField setReturnKeyType:UIReturnKeyNext];
         }
     }

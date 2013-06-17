@@ -112,8 +112,13 @@
         [self setBusinessProfile:profile];
         [self setPersonalProfile:nil];
 
-        handler(nil, nil);
-        [self pushNextScreenAfterPersonalProfile];
+        if ([Credentials userLoggedIn]) {
+            handler(nil, nil);
+            [self pushNextScreenAfterPersonalProfile];
+            return;
+        }
+
+        [self verifyEmail:profile.email withHandler:handler];
     }];
     
     [operation execute];

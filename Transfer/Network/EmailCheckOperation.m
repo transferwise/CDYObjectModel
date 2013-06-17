@@ -9,7 +9,7 @@
 #import "EmailCheckOperation.h"
 #import "TransferwiseOperation+Private.h"
 
-NSString *const kEmailCheckPath = @"/api/v1/account/checkEmail";
+NSString *const kEmailCheckPath = @"/account/checkEmail";
 
 @interface EmailCheckOperation ()
 
