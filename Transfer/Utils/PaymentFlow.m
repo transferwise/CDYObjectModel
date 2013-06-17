@@ -198,6 +198,14 @@
 - (void)presentPaymentConfirmation {
     MCLog(@"presentPaymentConfirmation");
     ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
+    if (self.personalProfile) {
+        [controller setSenderName:self.personalProfile.fullName];
+        [controller setSenderEmail:self.personalProfile.email];
+    } else {
+        [controller setSenderIsBusiness:YES];
+        [controller setSenderName:self.businessProfile.businessName];
+        [controller setSenderEmail:[Credentials userLoggedIn] ? [Credentials userEmail] : self.businessProfile.email];
+    }
     [controller setSenderDetails:self.personalProfile];
     [controller setRecipientProfile:self.recipientProfile];
     [controller setRecipientType:self.recipientType];

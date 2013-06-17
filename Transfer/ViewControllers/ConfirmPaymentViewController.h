@@ -27,5 +27,8 @@
 @property (nonatomic, copy) NSString *footerButtonTitle;
 @property (nonatomic, strong) CalculationResult *calculationResult;
 @property (nonatomic, assign) PaymentFlow *paymentFlow;
+@property (nonatomic, copy) NSString *senderName;
+@property (nonatomic, copy) NSString *senderEmail;
+@property (nonatomic, assign) BOOL senderIsBusiness;
 
 @end

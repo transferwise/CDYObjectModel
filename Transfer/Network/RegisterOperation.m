@@ -44,6 +44,7 @@ NSString *const kRegisterPath = @"/account/register";
         //TODO jaanus: copy/paste from Login operation
         NSString *token = response[@"token"];
         [Credentials setUserToken:token];
+        [Credentials setUserEmail:weakSelf.email];
         [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:nil];
 
         weakSelf.completionHandler(nil);

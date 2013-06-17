@@ -79,7 +79,9 @@ static NSUInteger const kReceiverSection = 1;
     NSMutableArray *senderCells = [NSMutableArray array];
     ConfirmPaymentCell *senderNameCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
     [self setSenderNameCell:senderNameCell];
-    [senderNameCell.imageView setImage:[UIImage imageNamed:@"ProfileIcon.png"]];
+    if (!self.senderIsBusiness) {
+        [senderNameCell.imageView setImage:[UIImage imageNamed:@"ProfileIcon.png"]];
+    }
     [senderCells addObject:senderNameCell];
 
     ConfirmPaymentCell *senderEmailCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
@@ -210,11 +212,11 @@ static NSUInteger const kReceiverSection = 1;
     NSAttributedString *paymentDateString = [self attributedStringWithBase:dateMessageString markedString:dateString];
     [self.deliveryDateLabelLabel setAttributedText:paymentDateString];
 
-    [self.senderNameCell.textLabel setText:[self.senderDetails fullName]];
+    [self.senderNameCell.textLabel setText:self.senderName];
     [self.senderNameCell.detailTextLabel setText:NSLocalizedString(@"confirm.payment.sender.marker.label", nil)];
 
     [self.senderEmailCell.textLabel setText:NSLocalizedString(@"confirm.payment.email.label", nil)];
-    [self.senderEmailCell.detailTextLabel setText:self.senderDetails.email];
+    [self.senderEmailCell.detailTextLabel setText:self.senderEmail];
 
     [self.receiverNameCell.textLabel setText:[self.recipientProfile name]];
     [self.receiverNameCell.detailTextLabel setText:NSLocalizedString(@"confirm.payment.recipient.marker.label", nil)];
