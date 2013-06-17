@@ -123,7 +123,7 @@ static NSUInteger const kRowYouSend = 0;
         }
 
         self.result = result;
-        NSString *txt = [NSMutableString stringWithFormat:@"%@. %@", [NSString stringWithFormat:NSLocalizedString(@"introduction.savings.message.base", nil), [result formattedWinAmount]], NSLocalizedString(@"introduction.savings.message.why", nil)];
+        NSString *txt = [NSMutableString stringWithFormat:@"%@.\n%@", [NSString stringWithFormat:NSLocalizedString(@"introduction.savings.message.base", nil), [result formattedWinAmount]], NSLocalizedString(@"introduction.savings.message.why", nil)];
         NSMutableAttributedString *attrStr = [NSMutableAttributedString attributedStringWithString:txt];
 
         OHParagraphStyle *paragraphStyle = [OHParagraphStyle defaultParagraphStyle];
@@ -252,6 +252,11 @@ static NSUInteger const kRowYouSend = 0;
     else {
         return NO;
     }
+}
+
+-(UIColor*)attributedLabel:(OHAttributedLabel *)attributedLabel colorForLink:(NSTextCheckingResult *)linkInfo underlineStyle:(int32_t *)underlineStyle
+{
+    return self.savingsLabel.textColor;
 }
 
 
