@@ -48,6 +48,7 @@ NSString *const kLoginPath = @"/token/create";
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         NSString *token = response[@"token"];
         [Credentials setUserToken:token];
+        [Credentials setUserEmail:weakSelf.email];
         [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:nil];
 
         weakSelf.responseHandler(nil);

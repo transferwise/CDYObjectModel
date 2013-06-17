@@ -112,8 +112,13 @@
         [self setBusinessProfile:profile];
         [self setPersonalProfile:nil];
 
-        handler(nil, nil);
-        [self pushNextScreenAfterPersonalProfile];
+        if ([Credentials userLoggedIn]) {
+            handler(nil, nil);
+            [self pushNextScreenAfterPersonalProfile];
+            return;
+        }
+
+        [self verifyEmail:profile.email withHandler:handler];
     }];
     
     [operation execute];
@@ -193,6 +198,14 @@
 - (void)presentPaymentConfirmation {
     MCLog(@"presentPaymentConfirmation");
     ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
+    if (self.personalProfile) {
+        [controller setSenderName:self.personalProfile.fullName];
+        [controller setSenderEmail:self.personalProfile.email];
+    } else {
+        [controller setSenderIsBusiness:YES];
+        [controller setSenderName:self.businessProfile.businessName];
+        [controller setSenderEmail:[Credentials userLoggedIn] ? [Credentials userEmail] : self.businessProfile.email];
+    }
     [controller setSenderDetails:self.personalProfile];
     [controller setRecipientProfile:self.recipientProfile];
     [controller setRecipientType:self.recipientType];
@@ -286,10 +299,12 @@
 
 - (void)registerUser {
     MCLog(@"registerUser");
-    PSPDFAssert(self.personalProfile);
-    PSPDFAssert(self.personalProfile.email);
+    PSPDFAssert(self.personalProfile || self.businessProfile);
+    PSPDFAssert(self.personalProfile.email || self.businessProfile.email);
 
-    RegisterWithoutPasswordOperation *operation = [RegisterWithoutPasswordOperation operationWithEmail:self.personalProfile.email];
+    NSString *email = self.personalProfile ? self.personalProfile.email : self.businessProfile.email;
+
+    RegisterWithoutPasswordOperation *operation = [RegisterWithoutPasswordOperation operationWithEmail:email];
     [self setExecutedOperation:operation];
     [operation setCompletionHandler:^(NSError *error) {
         MCLog(@"Register result:%@", error);

@@ -5,6 +5,7 @@
 "business.profile.country.label" = "Country";
 "business.profile.description.label" = "Business description";
 "business.profile.details.section.title" = "Business details";
+"business.profile.email.label" = "E-mail";
 "business.profile.name.label" = "Business name";
 "business.profile.post.code.label" = "Post code";
 "business.profile.refresh.error.message" = "Could not load business profile. Please try again later.";

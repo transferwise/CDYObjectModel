@@ -56,6 +56,7 @@
     [detailsOperation setCompletionHandler:^(ProfileDetails *result, NSError *error) {
         if (result) {
             [Credentials setDisplayName:[result displayName]];
+            [Credentials setUserEmail:[result email]];
         }
 
         if (completion) {
