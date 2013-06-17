@@ -29,6 +29,8 @@ NSString *const kEmailCheckPath = @"/account/checkEmail";
 
 - (void)execute {
     __block __weak EmailCheckOperation *weakSelf = self;
+    NSString *path = [self addTokenToPath:kEmailCheckPath];
+
     [self setOperationErrorHandler:^(NSError *error) {
         weakSelf.resultHandler(NO, error);
     }];
@@ -38,7 +40,7 @@ NSString *const kEmailCheckPath = @"/account/checkEmail";
         weakSelf.resultHandler(available, nil);
     }];
 
-    [self getDataFromPath:kEmailCheckPath params:@{@"email" : self.email}];
+    [self getDataFromPath:path params:@{@"email" : self.email}];
 }
 
 + (EmailCheckOperation *)operationWithEmail:(NSString *)email {

@@ -291,10 +291,12 @@
 
 - (void)registerUser {
     MCLog(@"registerUser");
-    PSPDFAssert(self.personalProfile);
-    PSPDFAssert(self.personalProfile.email);
+    PSPDFAssert(self.personalProfile || self.businessProfile);
+    PSPDFAssert(self.personalProfile.email || self.businessProfile.email);
 
-    RegisterWithoutPasswordOperation *operation = [RegisterWithoutPasswordOperation operationWithEmail:self.personalProfile.email];
+    NSString *email = self.personalProfile ? self.personalProfile.email : self.businessProfile.email;
+
+    RegisterWithoutPasswordOperation *operation = [RegisterWithoutPasswordOperation operationWithEmail:email];
     [self setExecutedOperation:operation];
     [operation setCompletionHandler:^(NSError *error) {
         MCLog(@"Register result:%@", error);
