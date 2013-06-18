@@ -38,6 +38,7 @@
 #import "Credentials.h"
 #import "RecipientProfileInput.h"
 #import "UITableView+FooterPositioning.h"
+#import "TransferTypeSelectionCell.h"
 
 static NSUInteger const kImportSection = 0;
 static NSUInteger const kRecipientSection = 1;
@@ -106,6 +107,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self.tableView registerNib:[UINib nibWithNibName:@"RecipientEntrySelectionCell" bundle:nil] forCellReuseIdentifier:TRWRecipientEntrySelectionCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"DropdownCell" bundle:nil] forCellReuseIdentifier:TWDropdownCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"ButtonCell" bundle:nil] forCellReuseIdentifier:kButtonCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"TransferTypeSelectionCell" bundle:nil] forCellReuseIdentifier:TWTypeSelectionCellIdentifier];
 
     self.importCell = [self.tableView dequeueReusableCellWithIdentifier:kButtonCellIdentifier];
     [self.importCell.textLabel setText:NSLocalizedString(@"recipient.import.from.phonebook.label", nil)];
@@ -353,6 +355,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (NSArray *)buildCellsForType:(RecipientType *)type {
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:[type.fields count]];
+    if([self.selectedCurrency.code isEqualToString:@"GBP"]){
+        result = [NSMutableArray arrayWithCapacity:type.fields.count + 1];
+        TransferTypeSelectionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWTypeSelectionCellIdentifier];
+        [result addObject:cell];
+    }
     for (RecipientTypeField *field in type.fields) {
         //TODO jaanus: make this more generic
         if ([field.name isEqualToString:@"usState"]) {
