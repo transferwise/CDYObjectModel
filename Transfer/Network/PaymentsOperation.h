@@ -8,10 +8,12 @@
 
 #import "TransferwiseOperation.h"
 
-typedef void (^PaymentsResponseBlock)(NSArray *payments, NSError *error);
+typedef void (^PaymentsResponseBlock)(NSInteger totalCount, NSArray *payments, NSError *error);
 
 @interface PaymentsOperation : TransferwiseOperation
 
 @property (nonatomic, copy) PaymentsResponseBlock completion;
+
++ (PaymentsOperation *)operationWithOffset:(NSInteger)offset;
 
 @end

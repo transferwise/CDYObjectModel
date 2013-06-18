@@ -12,17 +12,32 @@
 
 NSString *const kPaymentsListPath = @"/payment/list";
 
+@interface PaymentsOperation ()
+
+@property (nonatomic, assign) NSInteger offset;
+
+@end
+
 @implementation PaymentsOperation
+
+- (id)initWithOffset:(NSInteger)offset {
+    self = [super init];
+    if (self) {
+        _offset = offset;
+    }
+    return self;
+}
 
 - (void)execute {
     NSString *path = [self addTokenToPath:kPaymentsListPath];
 
     __block __weak PaymentsOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
-        weakSelf.completion(nil, error);
+        weakSelf.completion(0, nil, error);
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
+        NSNumber *totalCount = response[@"total"];
         NSArray *payments = response[@"payments"];
         NSMutableArray *result = [NSMutableArray arrayWithCapacity:[payments count]];
         for (NSDictionary *data in payments) {
@@ -30,10 +45,14 @@ NSString *const kPaymentsListPath = @"/payment/list";
             [result addObject:payment];
         }
 
-        weakSelf.completion([NSArray arrayWithArray:result], nil);
+        weakSelf.completion([totalCount integerValue], [NSArray arrayWithArray:result], nil);
     }];
 
-    [self getDataFromPath:path];
+    [self getDataFromPath:path params:@{@"offset" : @(self.offset)}];
+}
+
++ (PaymentsOperation *)operationWithOffset:(NSInteger)offset {
+    return [[PaymentsOperation alloc] initWithOffset:offset];
 }
 
 @end

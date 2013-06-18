@@ -15,13 +15,15 @@
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
-@interface TransactionsViewController ()
+@interface TransactionsViewController () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) PaymentsOperation *executedOperation;
 @property (nonatomic, strong) NSArray *activeTransfers;
 @property (nonatomic, strong) NSArray *completePayments;
 @property (nonatomic, strong) NSArray *presentedSections;
 @property (nonatomic, strong) NSArray *presentedSectionTitles;
+@property (nonatomic, strong) IBOutlet UIView *loadingFooterView;
+@property (nonatomic, strong) NSArray *allPayments;
 
 @end
 
@@ -67,7 +69,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.presentedSections[section] count];
+    NSInteger count = [self.presentedSections[section] count];
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -91,17 +94,32 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 }
 
 - (void)refreshPaymentsList {
+    [self setAllPayments:@[]];
+    [self setPayments:@[]];
+    [self.tableView setTableFooterView:nil];
+
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"transactions.controller.refreshing.message", nil)];
 
-    PaymentsOperation *operation = [[PaymentsOperation alloc] init];
+    [self refreshPaymentsWithOffset:0 hud:hud];
+}
+
+- (void)refreshPaymentsWithOffset:(NSInteger)offset hud:(TRWProgressHUD *)hud {
+    PaymentsOperation *operation = [PaymentsOperation operationWithOffset:offset];
     [self setExecutedOperation:operation];
 
-    [operation setCompletion:^(NSArray *payments, NSError *error) {
+    [operation setCompletion:^(NSInteger totalCount, NSArray *payments, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hide];
 
-            [self setPayments:payments];
+            [self setExecutedOperation:nil];
+            [self setAllPayments:[self.allPayments arrayByAddingObjectsFromArray:payments]];
+            [self setPayments:self.allPayments];
+            if (totalCount > [self.allPayments count]) {
+                [self.tableView setTableFooterView:self.loadingFooterView];
+            } else {
+                [self.tableView setTableFooterView:nil];
+            }
             [self.tableView reloadData];
         });
     }];
@@ -135,6 +153,33 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [self setPresentedSections:sections];
     [self setPresentedSectionTitles:titles];
     [self.tableView reloadData];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    [self checkReloadNeeded];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (!decelerate) {
+        [self checkReloadNeeded];
+    }
+}
+
+- (void)checkReloadNeeded {
+    if (!self.tableView.tableFooterView) {
+        return;
+    }
+
+    if (self.executedOperation) {
+        return;
+    }
+
+    BOOL footerVisible = CGRectIntersectsRect(self.view.bounds, self.loadingFooterView.frame);
+    if (!footerVisible) {
+        return;
+    }
+
+    [self refreshPaymentsWithOffset:[self.allPayments count] hud:nil];
 }
 
 @end
