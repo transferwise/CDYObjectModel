@@ -76,6 +76,9 @@
         [request setValue:[Credentials accessToken] forHTTPHeaderField:@"Authorization"];
     }
 
+    [request setValue:@"ad8d836d18ec18fbd4ccc7bffd71eb54" forHTTPHeaderField:@"Authorization-key"];
+    //TODO jaanus: Also client id (the one from google analytics) should be in header 'Customer-identifier'
+
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setThreadPriority:0.1];
     [operation setQueuePriority:NSOperationQueuePriorityLow];

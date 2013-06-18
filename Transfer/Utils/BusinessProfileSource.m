@@ -196,6 +196,10 @@ static NSUInteger const kDetailsSection = 1;
 }
 
 - (void)loadDataFromProfile:(PhoneBookProfile *)profile {
+    if ([self.userDetails.businessProfile businessVerifiedValue]) {
+        return;
+    }
+
     self.businessNameCell.value = profile.organisation;
 
     PhoneBookAddress *address = profile.address;

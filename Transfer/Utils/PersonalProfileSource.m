@@ -160,17 +160,22 @@ NSUInteger const kUserPersonalSection = 1;
 - (void)loadDataFromProfile:(PhoneBookProfile *)profile {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"Did load:%@", profile);
-        self.firstNameCell.value = profile.firstName;
-        self.lastNameCell.value = profile.lastName;
-        self.emailCell.value = profile.email;
-        self.phoneNumberCell.value = profile.phone;
-        [self.dateOfBirthCell setDateValue:profile.dateOfBirth];
+        if (![self.userDetails.personalProfile identityVerifiedValue]) {
+            self.firstNameCell.value = profile.firstName;
+            self.lastNameCell.value = profile.lastName;
+            self.phoneNumberCell.value = profile.phone;
+            [self.dateOfBirthCell setDateValue:profile.dateOfBirth];
+        }
 
-        PhoneBookAddress *address = profile.address;
-        self.addressCell.value = address.street;
-        self.postCodeCell.value = address.zipCode;
-        self.cityCell.value = address.city;
-        [self.countryCell setTwoLetterCountryCode:address.countryCode];
+        self.emailCell.value = profile.email;
+
+        if (![self.userDetails.personalProfile addressVerifiedValue]) {
+            PhoneBookAddress *address = profile.address;
+            self.addressCell.value = address.street;
+            self.postCodeCell.value = address.zipCode;
+            self.cityCell.value = address.city;
+            [self.countryCell setTwoLetterCountryCode:address.countryCode];
+        }
     });
 }
 

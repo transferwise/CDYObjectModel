@@ -24,7 +24,7 @@
 - (id)init {
     self = [super initWithNibName:@"OpenIDViewController" bundle:nil];
     if (self) {
-        //TODO jaanus: fix this workaround. loginWithOpenID is also entry URL anc causes some problems
+        //TODO jaanus: fix this workaround. loginWithOpenID is also entry URL and causes some problems
         [self setRegisterUser:YES];
     }
     return self;
