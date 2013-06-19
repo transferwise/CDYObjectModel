@@ -10,4 +10,6 @@
 
 @interface PaymentProfileViewController : ProfileEditViewController
 
+@property (nonatomic) BOOL allowProfileSwitch;
+
 @end

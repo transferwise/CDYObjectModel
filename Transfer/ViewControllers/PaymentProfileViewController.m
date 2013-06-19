@@ -30,8 +30,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self setProfileSelectionView:[ProfileSelectionView loadInstance]];
-    [self setPresentProfileSource:[self.profileSelectionView presentedSource] reloadView:NO];
+    if (self.allowProfileSwitch) {
+        [self setProfileSelectionView:[ProfileSelectionView loadInstance]];
+        [self setPresentProfileSource:[self.profileSelectionView presentedSource] reloadView:NO];
+    } else {
+        [self setPresentProfileSource:[[PersonalProfileSource alloc] init] reloadView:NO];
+    }
 
     __block __weak PaymentProfileViewController *weakSelf = self;
     [self.profileSelectionView setSelectionHandler:^(ProfileSource *selected) {

@@ -22,6 +22,7 @@
 "button.title.cancel" = "Cancel";
 "button.title.delete" = "Delete";
 "button.title.done" = "Done";
+"button.title.fill" = "Fill it";
 "button.title.get.started" = "Get started";
 "button.title.import.from.phonebook" = "Import from phonebook";
 "button.title.log.in" = "Log in";
@@ -162,6 +163,9 @@ identity and address";
 "personal.profile.validation.error.title" = "Check input";
 "personal.profile.verify.error.title" = "Verify error";
 "personal.profile.verify.message" = "Checking profile";
+
+"personal.profile.needed.popup.message" = "You need to fill personal profile also to continue payment.";
+"personal.profile.needed.popup.title" = "Missing data";
 
 "profile.selection.text.base" = "Or %@";
 "profile.selection.text.business.profile" = "add business profile";

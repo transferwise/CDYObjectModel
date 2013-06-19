@@ -28,6 +28,7 @@ typedef void (^PaymentErrorBlock)(NSError *error);
 @property (nonatomic, strong) Currency *targetCurrency;
 @property (nonatomic, strong) CalculationResult *calculationResult;
 @property (nonatomic, strong) Recipient *recipient;
+@property (nonatomic, strong) ProfileDetails *userDetails;
 
 - (id)initWithPresentingController:(UINavigationController *)controller;
 - (void)presentSenderDetails;

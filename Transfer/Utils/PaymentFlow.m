@@ -33,11 +33,11 @@
 #import "BusinessProfileOperation.h"
 #import "PaymentProfileViewController.h"
 #import "BusinessProfile.h"
+#import "TRWAlertView.h"
 
 @interface PaymentFlow ()
 
 @property (nonatomic, strong) UINavigationController *navigationController;
-@property (nonatomic, strong) ProfileDetails *userDetails;
 @property (nonatomic, strong) ProfileDetails *businessDetails;
 @property (nonatomic, strong) RecipientType *recipientType;
 @property (nonatomic, strong) Payment *createdPayment;
@@ -48,8 +48,8 @@
 @property (nonatomic, strong) PaymentInput *paymentInput;
 @property (nonatomic, strong) PersonalProfileInput *personalProfile;
 @property (nonatomic, strong) RecipientProfileInput *recipientProfile;
-
 @property (nonatomic, strong) BusinessProfileInput *businessProfile;
+
 @end
 
 @implementation PaymentFlow
@@ -88,7 +88,12 @@
 }
 
 - (void)presentSenderDetails {
+    [self presentSenderDetails:YES];
+}
+
+- (void)presentSenderDetails:(BOOL)allowProfileSwitch {
     PaymentProfileViewController *controller = [[PaymentProfileViewController alloc] init];
+    [controller setAllowProfileSwitch:allowProfileSwitch];
     if (self.recipient) {
         [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.confirm.payment.button.title", nil)];
     } else {
@@ -110,18 +115,29 @@
         }
 
         [self setBusinessProfile:profile];
-        [self setPersonalProfile:nil];
 
-        if ([Credentials userLoggedIn]) {
-            handler(nil, nil);
+        handler(nil, nil);
+
+        if ([self personalProfileFilled]) {
             [self pushNextScreenAfterPersonalProfile];
-            return;
-        }
+        } else {
+            //TODO jaanus: this class should not show anything on screen
+            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.needed.popup.title", nil) message:NSLocalizedString(@"personal.profile.needed.popup.message", nil)];
+            [alertView setLeftButtonTitle:NSLocalizedString(@"button.title.fill", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
 
-        [self verifyEmail:profile.email withHandler:handler];
+            [alertView setLeftButtonAction:^{
+                [self presentSenderDetails:NO];
+            }];
+
+            [alertView show];
+        }
     }];
     
     [operation execute];
+}
+
+- (BOOL)personalProfileFilled {
+    return  self.personalProfile != nil || self.userDetails.personalProfile != nil;
 }
 
 - (void)validatePersonalProfile:(PersonalProfileInput *)profile withHandler:(PersonalProfileValidationBlock)handler {
@@ -136,7 +152,6 @@
         }
 
         [self setPersonalProfile:profile];
-        [self setBusinessProfile:nil];
 
         if ([Credentials userLoggedIn]) {
             handler(nil, nil);
@@ -198,13 +213,13 @@
 - (void)presentPaymentConfirmation {
     MCLog(@"presentPaymentConfirmation");
     ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
-    if (self.personalProfile) {
-        [controller setSenderName:self.personalProfile.fullName];
-        [controller setSenderEmail:self.personalProfile.email];
-    } else {
+    if (self.businessProfile) {
         [controller setSenderIsBusiness:YES];
         [controller setSenderName:self.businessProfile.businessName];
-        [controller setSenderEmail:[Credentials userLoggedIn] ? [Credentials userEmail] : self.businessProfile.email];
+        [controller setSenderEmail:self.userDetails.email];
+    } else {
+        [controller setSenderName:self.personalProfile.fullName];
+        [controller setSenderEmail:self.personalProfile.email];
     }
     [controller setSenderDetails:self.personalProfile];
     [controller setRecipientProfile:self.recipientProfile];
@@ -235,7 +250,7 @@
     MCLog(@"Validate payment");
     self.paymentErrorHandler = errorHandler;
 
-    [paymentInput setProfile:self.personalProfile ? @"personal" : @"business"];
+    [paymentInput setProfile:self.businessProfile ? @"business" : @"personal"];
 
     CreatePaymentOperation *operation = [CreatePaymentOperation validateOperationWithInput:paymentInput];
     [self setExecutedOperation:operation];
@@ -299,10 +314,10 @@
 
 - (void)registerUser {
     MCLog(@"registerUser");
-    PSPDFAssert(self.personalProfile || self.businessProfile);
-    PSPDFAssert(self.personalProfile.email || self.businessProfile.email);
+    PSPDFAssert(self.personalProfile || (self.personalProfile && self.businessProfile));
+    PSPDFAssert(self.personalProfile.email);
 
-    NSString *email = self.personalProfile ? self.personalProfile.email : self.businessProfile.email;
+    NSString *email = self.personalProfile.email;
 
     RegisterWithoutPasswordOperation *operation = [RegisterWithoutPasswordOperation operationWithEmail:email];
     [self setExecutedOperation:operation];
@@ -321,10 +336,10 @@
 
 - (void)updateSenderProfile {
     MCLog(@"updateSenderProfile");
-    if (self.personalProfile) {
-        [self updatePersonalProfile];
-    } else {
+    if (self.businessProfile) {
         [self updateBusinessProfile];
+    } else {
+        [self updatePersonalProfile];
     }
 }
 
@@ -341,13 +356,7 @@
 
         [self setBusinessDetails:result];
 
-        MCLog(@"Recipient created?%d", [self.recipientProfile.id integerValue] != 0);
-
-        if ([self.recipientProfile.id integerValue] == 0) {
-            [self commitRecipientData];
-        } else {
-            [self uploadVerificationData];
-        }
+        [self updatePersonalProfile];
     }];
 
     [operation execute];
@@ -470,7 +479,7 @@
         [self.paymentInput setRecipientId:self.recipientProfile.id];
     }
 
-    [self.paymentInput setProfile:self.personalProfile ? @"personal" : @"business"];
+    [self.paymentInput setProfile:self.businessProfile ? @"business" : @"personal"];
 
     PSPDFAssert(self.paymentInput.recipientId);
 

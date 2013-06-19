@@ -116,6 +116,10 @@ static NSUInteger const kButtonSection = 0;
                 return;
             }
 
+            id o = self.profileValidation;
+            if ([o respondsToSelector:@selector(setUserDetails:)]) {
+                [o setUserDetails:self.profileSource.userDetails];
+            }
             [self setPresentedSectionCells:self.presentationCells];
             [self.tableView setTableFooterView:self.footer];
             [self.tableView reloadData];
@@ -243,5 +247,10 @@ static NSUInteger const kButtonSection = 0;
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return [self.profileSource titleForHeaderInSection:section];
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 44;
+}
+
 
 @end

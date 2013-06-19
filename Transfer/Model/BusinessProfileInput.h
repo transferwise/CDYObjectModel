@@ -17,7 +17,6 @@
 @property (nonatomic, copy) NSString *postCode;
 @property (nonatomic, copy) NSString *city;
 @property (nonatomic, copy) NSString *countryCode;
-@property (nonatomic, copy) NSString *email;
 
 - (NSDictionary *)data;
 
