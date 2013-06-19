@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @class PhoneBookProfile;
+@class ProfileDetails;
 
 typedef void (^ProfileActionBlock)(NSError *error);
 
 @interface ProfileSource : NSObject
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) ProfileDetails *userDetails;
 
 - (NSArray *)presentedCells;
 - (NSString *)editViewTitle;
@@ -23,6 +25,7 @@ typedef void (^ProfileActionBlock)(NSError *error);
 - (BOOL)inputValid;
 - (id)enteredProfile;
 - (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion;
-
 - (NSString *)titleForHeaderInSection:(NSInteger)section;
+- (void)loadDetailsToCells;
+
 @end

@@ -33,7 +33,6 @@ static NSUInteger const kDetailsSection = 1;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
 @property (nonatomic, strong) NSArray *cells;
 
-@property (nonatomic, strong) ProfileDetails *userDetails;
 @end
 
 @implementation BusinessProfileSource
@@ -105,25 +104,6 @@ static NSUInteger const kDetailsSection = 1;
     [self setCells:@[businessCells, addressCells]];
 
     return self.cells;
-}
-
-
-- (void)pullDetailsWithHandler:(ProfileActionBlock)handler {
-    if (![Credentials userLoggedIn]) {
-        handler(nil);
-        return;
-    }
-
-    [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(ProfileDetails *result, NSError *userError) {
-        if (userError) {
-            handler(userError);
-            return;
-        }
-
-        [self setUserDetails:result];
-        [self loadDetailsToCells];
-        handler(nil);
-    }];
 }
 
 - (void)loadDetailsToCells {

@@ -34,7 +34,6 @@ NSUInteger const kUserPersonalSection = 1;
 @property (nonatomic, strong) TextEntryCell *postCodeCell;
 @property (nonatomic, strong) TextEntryCell *cityCell;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
-@property (nonatomic, strong) ProfileDetails *userDetails;
 @property (nonatomic, strong) NSArray *cells;
 
 @end
@@ -112,24 +111,6 @@ NSUInteger const kUserPersonalSection = 1;
     [self setCells:@[personalCells, addressCells]];
 
     return self.cells;
-}
-
-- (void)pullDetailsWithHandler:(ProfileActionBlock)handler {
-    if (![Credentials userLoggedIn]) {
-        handler(nil);
-        return;
-    }
-
-    [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(ProfileDetails *result, NSError *userError) {
-        if (userError) {
-            handler(userError);
-            return;
-        }
-
-        [self setUserDetails:result];
-        [self loadDetailsToCells];
-        handler(nil);
-    }];
 }
 
 - (void)loadDetailsToCells {
