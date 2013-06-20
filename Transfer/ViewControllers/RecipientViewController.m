@@ -317,7 +317,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self setSelectedCurrency:currency];
         [self setSelectedRecipientType:type];
 
-        NSArray *allTypes = [self findAllTypesWithCodes:currency.recipientTypes];
+        //NSArray *allTypes = [self findAllTypesWithCodes:currency.recipientTypes];
         //[self.fieldsSectionHeader setSelectedType:type allTypes:allTypes];
 
         [self handleSelectionChangeToType:type];
@@ -357,14 +357,14 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (NSArray *)buildCellsForType:(RecipientType *)type {
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:[type.fields count]];
-    if([self.selectedCurrency.code isEqualToString:@"GBP"]){
+    NSArray *allTypes = [self findAllTypesWithCodes:self.selectedCurrency.recipientTypes];
+    if(allTypes.count > 1){
         result = [NSMutableArray arrayWithCapacity:type.fields.count + 1];
         self.transferTypeSelectionCell = [self.tableView dequeueReusableCellWithIdentifier:TWTypeSelectionCellIdentifier];
         __block __weak RecipientViewController *weakSelf = self;
         [self.transferTypeSelectionCell setSelectionChangeHandler:^(RecipientType *type) {
             [weakSelf handleSelectionChangeToType:type];
         }];
-        NSArray *allTypes = [self findAllTypesWithCodes:self.selectedCurrency.recipientTypes];
         [self.transferTypeSelectionCell setSelectedType:type allTypes:allTypes];
         [result addObject:self.transferTypeSelectionCell];
     }
