@@ -43,10 +43,6 @@
     return result;
 }
 
-- (NSString *)formattedWinAmount {
-    return [[MoneyFormatter sharedInstance] formatAmount:self.bankRateMarkup withCurrency:self.targetCurrency];
-}
-
 - (NSString *)transferwisePayInString {
     return [[MoneyFormatter sharedInstance] formatAmount:self.transferwisePayIn];
 }

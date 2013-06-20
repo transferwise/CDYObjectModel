@@ -20,7 +20,6 @@
 
 + (CalculationResult *)resultWithData:(NSDictionary *)data;
 
-- (NSString *)formattedWinAmount;
 - (NSString *)transferwisePayInString;
 - (NSString *)transferwisePayOutString;
 - (NSString *)transferwisePayInStringWithCurrency;

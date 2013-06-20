@@ -123,7 +123,7 @@ static NSUInteger const kRowYouSend = 0;
         }
 
         self.result = result;
-        NSString *txt = [NSMutableString stringWithFormat:@"%@. %@", [NSString stringWithFormat:NSLocalizedString(@"introduction.savings.message.base", nil), [result formattedWinAmount]], NSLocalizedString(@"introduction.savings.message.why", nil)];
+        NSString *txt = [NSMutableString stringWithFormat:@"%@. %@", [NSString stringWithFormat:NSLocalizedString(@"introduction.savings.message.base", nil), [result savedAmountWithCurrency]], NSLocalizedString(@"introduction.savings.message.why", nil)];
         NSMutableAttributedString *attrStr = [NSMutableAttributedString attributedStringWithString:txt];
 
         OHParagraphStyle *paragraphStyle = [OHParagraphStyle defaultParagraphStyle];

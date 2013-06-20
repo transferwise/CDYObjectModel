@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12D78</string>
+		<string key="IBDocument.SystemVersion">12E55</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
 		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -48,7 +48,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Transferwise</string>
+						<string key="IBUIText">TransferWise</string>
 						<object class="NSColor" key="IBUITextColor" id="645380875">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC45Njg2Mjc0NTEgMC45Njg2Mjc0NTEgMC45Njg2Mjc0NTEAA</bytes>
@@ -149,7 +149,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">the exchange rate</string>
+						<string key="IBUIText">The exchange ratE</string>
 						<reference key="IBUITextColor" ref="645380875"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
@@ -177,7 +177,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">bank's exchange rate</string>
+						<string key="IBUIText">Bank's exchange ratE</string>
 						<reference key="IBUITextColor" ref="645380875"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
@@ -240,7 +240,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Fee</string>
+						<string key="IBUIText">FeE</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC45Njg2Mjc0NTEgMC45Njg2Mjc0NTEgMC45Njg2Mjc0NTEAA</bytes>
@@ -264,7 +264,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">fee + hidden profit</string>
+						<string key="IBUIText">Fee + hidden profiT</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC45Njg2Mjc0NTEgMC45Njg2Mjc0NTEgMC45Njg2Mjc0NTEAA</bytes>
@@ -333,7 +333,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">You get</string>
+						<string key="IBUIText">You geT</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC45Njg2Mjc0NTEgMC45Njg2Mjc0NTEgMC45Njg2Mjc0NTEAA</bytes>
@@ -350,13 +350,14 @@
 						<string key="NSFrame">{{140, 128}, {118, 13}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">You would have got</string>
+						<string key="IBUIText">You would have goT</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC45Njg2Mjc0NTEgMC45Njg2Mjc0NTEgMC45Njg2Mjc0NTEAA</bytes>
@@ -424,6 +425,62 @@
 						<reference key="destination" ref="222803545"/>
 					</object>
 					<int key="connectionID">656</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">bankColumnTitleLabel</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="779137679"/>
+					</object>
+					<int key="connectionID">657</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">twTransferRateTitleLabel</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="818026618"/>
+					</object>
+					<int key="connectionID">658</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">bankTransferRateTitleLabel</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="472644169"/>
+					</object>
+					<int key="connectionID">659</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">twFeeTitleLabel</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="176749972"/>
+					</object>
+					<int key="connectionID">660</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">bankFeeTitleLabel</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="674461082"/>
+					</object>
+					<int key="connectionID">661</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">twYouGetTitleLabel</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="968106214"/>
+					</object>
+					<int key="connectionID">662</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">bankYouGetTitleLabel</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="464657449"/>
+					</object>
+					<int key="connectionID">663</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -577,7 +634,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">656</int>
+			<int key="maxID">663</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -585,14 +642,29 @@
 					<string key="className">WhyView</string>
 					<string key="superclassName">UIView</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="bankColumnTitleLabel">UILabel</string>
+						<string key="bankFeeTitleLabel">UILabel</string>
 						<string key="bankPayOutLabel">UILabel</string>
 						<string key="bankRateLabel">UILabel</string>
 						<string key="bankTransferFeeLabel">UILabel</string>
+						<string key="bankTransferRateTitleLabel">UILabel</string>
+						<string key="bankYouGetTitleLabel">UILabel</string>
 						<string key="transferwisePayOutLabel">UILabel</string>
 						<string key="transferwiseRateLabel">UILabel</string>
 						<string key="transferwiseTransferFeeLabel">UILabel</string>
+						<string key="twFeeTitleLabel">UILabel</string>
+						<string key="twTransferRateTitleLabel">UILabel</string>
+						<string key="twYouGetTitleLabel">UILabel</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="bankColumnTitleLabel">
+							<string key="name">bankColumnTitleLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="bankFeeTitleLabel">
+							<string key="name">bankFeeTitleLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="bankPayOutLabel">
 							<string key="name">bankPayOutLabel</string>
 							<string key="candidateClassName">UILabel</string>
@@ -605,6 +677,14 @@
 							<string key="name">bankTransferFeeLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="bankTransferRateTitleLabel">
+							<string key="name">bankTransferRateTitleLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="bankYouGetTitleLabel">
+							<string key="name">bankYouGetTitleLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="transferwisePayOutLabel">
 							<string key="name">transferwisePayOutLabel</string>
 							<string key="candidateClassName">UILabel</string>
@@ -615,6 +695,18 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="transferwiseTransferFeeLabel">
 							<string key="name">transferwiseTransferFeeLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="twFeeTitleLabel">
+							<string key="name">twFeeTitleLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="twTransferRateTitleLabel">
+							<string key="name">twTransferRateTitleLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="twYouGetTitleLabel">
+							<string key="name">twYouGetTitleLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 					</dictionary>

@@ -11,21 +11,36 @@
 #import "CalculationResult.h"
 
 @interface WhyView ()
+
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, assign) CalculationAmountCurrency amountCurrency;
+@property (strong, nonatomic) IBOutlet UILabel *transferwiseRateLabel;
+@property (strong, nonatomic) IBOutlet UILabel *transferwiseTransferFeeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *transferwisePayOutLabel;
+@property (strong, nonatomic) IBOutlet UILabel *bankRateLabel;
+@property (strong, nonatomic) IBOutlet UILabel *bankTransferFeeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *bankPayOutLabel;
+
+@property (nonatomic, strong) IBOutlet UILabel *bankColumnTitleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *twTransferRateTitleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *bankTransferRateTitleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *twFeeTitleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *bankFeeTitleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *twYouGetTitleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *bankYouGetTitleLabel;
+
+
 @end
 
 @implementation WhyView
 
-- (id)init
-{
+- (id)init {
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"WhyView" owner:self options:nil];
-    self = (WhyView*)[nib objectAtIndex:0];
+    self = (WhyView *) [nib objectAtIndex:0];
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
@@ -33,9 +48,18 @@
     return self;
 }
 
+- (void)awakeFromNib {
+    [self.bankColumnTitleLabel setText:NSLocalizedString(@"why.popup.bank.column.label", nil)];
+    [self.twTransferRateTitleLabel setText:NSLocalizedString(@"why.popup.tw.rate.title", nil)];
+    [self.bankTransferRateTitleLabel setText:NSLocalizedString(@"why.popup.bank.rate.title", nil)];
+    [self.twFeeTitleLabel setText:NSLocalizedString(@"why.popup.tw.fee.title", nil)];
+    [self.bankFeeTitleLabel setText:NSLocalizedString(@"why.popup.bank.fee.title", nil)];
+    [self.twYouGetTitleLabel setText:NSLocalizedString(@"why.popup.tw.you.get.title", nil)];
+    [self.bankYouGetTitleLabel setText:NSLocalizedString(@"why.popup.bank.you.get.title", nil)];
+}
 
-- (void)setupWithResult:(CalculationResult*)result
-{
+
+- (void)setupWithResult:(CalculationResult *)result {
     [self.transferwisePayOutLabel setText:result.transferwisePayOutStringWithCurrency];
     [self.transferwiseRateLabel setText:result.transferwiseRateString];
     [self.transferwiseTransferFeeLabel setText:result.transferwiseTransferFeeStringWithCurrency];
@@ -44,14 +68,5 @@
     [self.bankTransferFeeLabel setText:result.bankTransferFeeStringWithCurrency];
     self.title = [NSString stringWithFormat:NSLocalizedString(@"whypopup.title", nil), result.savedAmountWithCurrency];
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

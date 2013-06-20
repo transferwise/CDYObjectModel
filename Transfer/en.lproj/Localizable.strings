@@ -251,6 +251,8 @@ identity and address";
 "upload.money.toggle.button.debit.card.title" = "Debit card";
 "upload.money.uksort.title" = "UK Sort code";
 
+"why.popup.bank.column.label" = "Average bank";
+
 "whypopup.button" = "Sounds cool";
 "whypopup.title" = "Get %@ more vs a bank";
 
@@ -258,3 +260,10 @@ identity and address";
 
 "recipient.type.IBAN.name" = "IBAN";
 "recipient.type.SORT_CODE.name" = "UK SORT";
+
+"why.popup.tw.rate.title" = "The exchange rate";
+"why.popup.bank.rate.title" = "Bank's exchange rate";
+"why.popup.tw.fee.title" = "Fee";
+"why.popup.bank.fee.title" = "Fee + hidden profit";
+"why.popup.tw.you.get.title" = "You get";
+"why.popup.bank.you.get.title" = "You would have got";
