@@ -20,6 +20,10 @@
 		BB29BD49173CD30D0016A6E9 /* UploadMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD48173CD30C0016A6E9 /* UploadMoneyViewController.xib */; };
 		BB29BD4B173CDF480016A6E9 /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD4A173CDF480016A6E9 /* TextCell.xib */; };
 		BB29BD4E173CDF6F0016A6E9 /* TextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29BD4C173CDF6F0016A6E9 /* TextCell.m */; };
+		BB704E741772D4370042F8A9 /* tableTabButtonRight.png in Resources */ = {isa = PBXBuildFile; fileRef = BB704E701772D4370042F8A9 /* tableTabButtonRight.png */; };
+		BB704E751772D4370042F8A9 /* tableTabButtonRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB704E711772D4370042F8A9 /* tableTabButtonRight@2x.png */; };
+		BB704E761772D4370042F8A9 /* tableTabButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BB704E721772D4370042F8A9 /* tableTabButton.png */; };
+		BB704E771772D4370042F8A9 /* tableTabButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB704E731772D4370042F8A9 /* tableTabButton@2x.png */; };
 		BB92B144172A747300B6F096 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B143172A747300B6F096 /* CoreText.framework */; };
 		BB92B147172A754100B6F096 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B140172A600000B6F096 /* libOHAttributedLabel.a */; };
 		BB9A2E83176B711400C5E058 /* UITableView+FooterPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9A2E82176B711400C5E058 /* UITableView+FooterPositioning.m */; };
@@ -284,6 +288,10 @@
 		BB29BD4A173CDF480016A6E9 /* TextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextCell.xib; sourceTree = "<group>"; };
 		BB29BD4C173CDF6F0016A6E9 /* TextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextCell.m; sourceTree = "<group>"; };
 		BB29BD4D173CDF6F0016A6E9 /* TextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextCell.h; sourceTree = "<group>"; };
+		BB704E701772D4370042F8A9 /* tableTabButtonRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableTabButtonRight.png; sourceTree = "<group>"; };
+		BB704E711772D4370042F8A9 /* tableTabButtonRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableTabButtonRight@2x.png"; sourceTree = "<group>"; };
+		BB704E721772D4370042F8A9 /* tableTabButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableTabButton.png; sourceTree = "<group>"; };
+		BB704E731772D4370042F8A9 /* tableTabButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableTabButton@2x.png"; sourceTree = "<group>"; };
 		BB92B13B172A5FFF00B6F096 /* OHAttributedLabel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OHAttributedLabel.xcodeproj; path = OHAttributedLabel/OHAttributedLabel.xcodeproj; sourceTree = "<group>"; };
 		BB92B143172A747300B6F096 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1210,6 +1218,10 @@
 		EAD7D4C3171D475E0099063F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BB704E701772D4370042F8A9 /* tableTabButtonRight.png */,
+				BB704E711772D4370042F8A9 /* tableTabButtonRight@2x.png */,
+				BB704E721772D4370042F8A9 /* tableTabButton.png */,
+				BB704E731772D4370042F8A9 /* tableTabButton@2x.png */,
 				EAD7D4C8171D4B080099063F /* BlueButton.png */,
 				EAD7D4C9171D4B080099063F /* BlueButton@2x.png */,
 				EAEA31111738DB8600CCF1A2 /* CheckSelected.png */,
@@ -1451,6 +1463,10 @@
 				EA416E2C176860EA00904D97 /* ProfileEditViewController.xib in Resources */,
 				EA92D985176AF1F20078D0C4 /* ProfileSelectionView.xib in Resources */,
 				BB9A2EB9176F495700C5E058 /* TransferTypeSelectionCell.xib in Resources */,
+				BB704E741772D4370042F8A9 /* tableTabButtonRight.png in Resources */,
+				BB704E751772D4370042F8A9 /* tableTabButtonRight@2x.png in Resources */,
+				BB704E761772D4370042F8A9 /* tableTabButton.png in Resources */,
+				BB704E771772D4370042F8A9 /* tableTabButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

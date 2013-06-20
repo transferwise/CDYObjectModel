@@ -78,6 +78,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 @property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
 
+@property (nonatomic, strong) TransferTypeSelectionCell *transferTypeSelectionCell;
+
 @property (nonatomic, strong) NSArray *presentedSections;
 @property CGFloat minimumFooterHeight;
 
@@ -316,7 +318,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self setSelectedRecipientType:type];
 
         NSArray *allTypes = [self findAllTypesWithCodes:currency.recipientTypes];
-        [self.fieldsSectionHeader setSelectedType:type allTypes:allTypes];
+        //[self.fieldsSectionHeader setSelectedType:type allTypes:allTypes];
 
         [self handleSelectionChangeToType:type];
     });
@@ -357,8 +359,14 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:[type.fields count]];
     if([self.selectedCurrency.code isEqualToString:@"GBP"]){
         result = [NSMutableArray arrayWithCapacity:type.fields.count + 1];
-        TransferTypeSelectionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWTypeSelectionCellIdentifier];
-        [result addObject:cell];
+        self.transferTypeSelectionCell = [self.tableView dequeueReusableCellWithIdentifier:TWTypeSelectionCellIdentifier];
+        __block __weak RecipientViewController *weakSelf = self;
+        [self.transferTypeSelectionCell setSelectionChangeHandler:^(RecipientType *type) {
+            [weakSelf handleSelectionChangeToType:type];
+        }];
+        NSArray *allTypes = [self findAllTypesWithCodes:self.selectedCurrency.recipientTypes];
+        [self.transferTypeSelectionCell setSelectedType:type allTypes:allTypes];
+        [result addObject:self.transferTypeSelectionCell];
     }
     for (RecipientTypeField *field in type.fields) {
         //TODO jaanus: make this more generic

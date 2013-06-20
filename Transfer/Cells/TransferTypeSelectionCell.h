@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class RecipientType;
+
+typedef void (^RecipientTypeChangedInSelectionCellBlock)(RecipientType *type);
+
 extern NSString *const TWTypeSelectionCellIdentifier;
 
 @interface TransferTypeSelectionCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet UILabel *leftLabel;
-@property (strong, nonatomic) IBOutlet UILabel *rightLabel;
+
+@property (nonatomic, copy) RecipientTypeChangedInSelectionCellBlock selectionChangeHandler;
+
+- (void)setSelectedType:(RecipientType *)selected allTypes:(NSArray *)allTypes;
+- (void)changeSelectedTypeTo:(RecipientType *)tappedOn;
 
 @end
