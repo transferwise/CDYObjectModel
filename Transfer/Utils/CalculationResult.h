@@ -26,10 +26,14 @@
 - (NSString *)transferwisePayOutStringWithCurrency;
 - (NSString *)transferwiseRateString;
 - (NSString *)transferwiseTransferFeeStringWithCurrency;
+- (NSString *)transferwiseCurrencyCostStringWithCurrency;
 - (NSString *)bankRateString;
 - (NSString *)bankTransferFeeStringWithCurrency;
+- (NSString *)bankTotalFeeStringWithCurrency;
 - (NSString *)bankPayOutStringWithCurrency;
-- (NSString *)savedAmountWithCurrency;
+- (NSString *)bankPayInStringWithCurrency;
+- (NSString *)receiveWinAmountWithCurrency;
 - (NSString *)paymentDateString;
+- (NSString *)payWinAmountWithCurrency;
 
 @end

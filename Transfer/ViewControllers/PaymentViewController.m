@@ -211,7 +211,7 @@ static NSUInteger const kRowYouSend = 0;
 - (void)fillDepositFieldsWithResult:(CalculationResult *)result {
     [self.depositValueLabel setText:[result transferwisePayInStringWithCurrency]];
     [self.transferFeeValueLabel setText:[result transferwiseTransferFeeStringWithCurrency]];
-    [self.currencyCostValueLabel setText:[result transferwisePayOutStringWithCurrency]];
+    [self.currencyCostValueLabel setText:[result transferwiseCurrencyCostStringWithCurrency]];
     [self.exchangeRateValueLabel setText:[result transferwiseRateString]];
     [self.youGetValueLabel setText:[result transferwisePayOutStringWithCurrency]];
 }

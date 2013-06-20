@@ -54,19 +54,26 @@
     [self.bankTransferRateTitleLabel setText:NSLocalizedString(@"why.popup.bank.rate.title", nil)];
     [self.twFeeTitleLabel setText:NSLocalizedString(@"why.popup.tw.fee.title", nil)];
     [self.bankFeeTitleLabel setText:NSLocalizedString(@"why.popup.bank.fee.title", nil)];
-    [self.twYouGetTitleLabel setText:NSLocalizedString(@"why.popup.tw.you.get.title", nil)];
-    [self.bankYouGetTitleLabel setText:NSLocalizedString(@"why.popup.bank.you.get.title", nil)];
 }
 
 
 - (void)setupWithResult:(CalculationResult *)result {
-    [self.transferwisePayOutLabel setText:result.transferwisePayOutStringWithCurrency];
     [self.transferwiseRateLabel setText:result.transferwiseRateString];
     [self.transferwiseTransferFeeLabel setText:result.transferwiseTransferFeeStringWithCurrency];
-    [self.bankPayOutLabel setText:result.bankPayOutStringWithCurrency];
     [self.bankRateLabel setText:result.bankRateString];
-    [self.bankTransferFeeLabel setText:result.bankTransferFeeStringWithCurrency];
-    self.title = [NSString stringWithFormat:NSLocalizedString(@"whypopup.title", nil), result.savedAmountWithCurrency];
+    [self.bankTransferFeeLabel setText:result.bankTotalFeeStringWithCurrency];
+
+    if (result.amountCurrency == SourceCurrency) {
+        [self.transferwisePayOutLabel setText:result.transferwisePayOutStringWithCurrency];
+        [self.bankPayOutLabel setText:result.bankPayOutStringWithCurrency];
+        [self.twYouGetTitleLabel setText:NSLocalizedString(@"why.popup.tw.you.get.title", nil)];
+        [self.bankYouGetTitleLabel setText:NSLocalizedString(@"why.popup.bank.you.get.title", nil)];
+    } else {
+        [self.transferwisePayOutLabel setText:result.transferwisePayInStringWithCurrency];
+        [self.bankPayOutLabel setText:result.bankPayInStringWithCurrency];
+        [self.twYouGetTitleLabel setText:NSLocalizedString(@"why.popup.tw.you.pay.title", nil)];
+        [self.bankYouGetTitleLabel setText:NSLocalizedString(@"why.popup.bank.you.pay.title", nil)];
+    }
 }
 
 @end

@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSNumber *bankPayIn;
 @property (nonatomic, strong) NSNumber *bankPayOut;
 @property (nonatomic, strong) NSDate *estimatedDelivery;
+@property (nonatomic, strong) NSNumber *transferwiseRefund;
 
 @end
 
@@ -39,12 +40,13 @@
     [result setBankTotalFee:data[@"bankTotalFee"]];
     [result setBankPayIn:data[@"bankPayIn"]];
     [result setBankPayOut:data[@"bankPayOut"]];
+    [result setTransferwiseRefund:data[@"transferwiseRefund"]];
     [result setEstimatedDelivery:[self deliveryDate:data[@"estimatedDelivery"]]];
     return result;
 }
 
 - (NSString *)transferwisePayInString {
-    return [[MoneyFormatter sharedInstance] formatAmount:self.transferwisePayIn];
+    return [[MoneyFormatter sharedInstance] formatAmount:[self transferwisePayInAmount]];
 }
 
 - (NSString *)transferwisePayOutString {
@@ -52,7 +54,15 @@
 }
 
 - (NSString *)transferwisePayInStringWithCurrency {
-    return [[MoneyFormatter sharedInstance] formatAmount:self.transferwisePayIn withCurrency:self.sourceCurrency];
+    return [[MoneyFormatter sharedInstance] formatAmount:[self transferwisePayInAmount] withCurrency:self.sourceCurrency];
+}
+
+- (NSNumber *)transferwisePayInAmount {
+    if (self.amountCurrency == SourceCurrency) {
+        return self.transferwisePayIn;
+    }
+
+    return [NSNumber numberWithFloat:[self.transferwisePayIn floatValue] - [self.transferwiseRefund floatValue]];
 }
 
 - (NSString *)transferwisePayOutStringWithCurrency {
@@ -67,6 +77,12 @@
     return [[MoneyFormatter sharedInstance] formatAmount:self.transferwiseTransferFee withCurrency:self.sourceCurrency];
 }
 
+- (NSString *)transferwiseCurrencyCostStringWithCurrency {
+    NSNumber *cost = [NSNumber numberWithFloat:[self.transferwisePayInAmount floatValue] - [self.transferwiseTransferFee floatValue]];
+    return [[MoneyFormatter sharedInstance] formatAmount:cost withCurrency:self.sourceCurrency];
+}
+
+
 - (NSString *)bankRateString {
     return [self rateStringFrom:self.bankRate];
 }
@@ -75,11 +91,19 @@
     return [[MoneyFormatter sharedInstance] formatAmount:self.bankTransferFee withCurrency:self.targetCurrency];
 }
 
+- (NSString *)bankTotalFeeStringWithCurrency {
+    return [[MoneyFormatter sharedInstance] formatAmount:self.bankTotalFee withCurrency:self.targetCurrency];
+}
+
 - (NSString *)bankPayOutStringWithCurrency{
     return [[MoneyFormatter sharedInstance] formatAmount:self.bankPayOut withCurrency:self.targetCurrency];
 }
 
-- (NSString *)savedAmountWithCurrency {
+- (NSString *)bankPayInStringWithCurrency {
+    return [[MoneyFormatter sharedInstance] formatAmount:self.bankPayIn withCurrency:self.sourceCurrency];
+}
+
+- (NSString *)receiveWinAmountWithCurrency {
     NSNumber *number = [NSNumber numberWithFloat:([self.transferwisePayOut floatValue] - [self.bankPayOut floatValue])];
     return [[MoneyFormatter sharedInstance] formatAmount:number withCurrency:self.targetCurrency];
 }
@@ -99,6 +123,12 @@ NSNumberFormatter *__formatter;
 - (NSString *)paymentDateString {
     return [[CalculationResult paymentDateFormatter] stringFromDate:self.estimatedDelivery];
 }
+
+- (NSString *)payWinAmountWithCurrency {
+    NSNumber *win = [NSNumber numberWithFloat:([self.bankPayIn floatValue] - [self.transferwisePayIn floatValue] + [self.transferwiseRefund floatValue])];
+    return [[MoneyFormatter sharedInstance] formatAmount:win withCurrency:self.sourceCurrency];
+}
+
 
 + (NSLocale *)defaultLocale {
     return [[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"];

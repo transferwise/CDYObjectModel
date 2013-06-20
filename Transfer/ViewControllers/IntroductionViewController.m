@@ -123,7 +123,8 @@ static NSUInteger const kRowYouSend = 0;
         }
 
         self.result = result;
-        NSString *txt = [NSMutableString stringWithFormat:@"%@. %@", [NSString stringWithFormat:NSLocalizedString(@"introduction.savings.message.base", nil), [result savedAmountWithCurrency]], NSLocalizedString(@"introduction.savings.message.why", nil)];
+        NSString *winMessage = [self winMessage:result];
+        NSString *txt = [NSMutableString stringWithFormat:@"%@. %@", winMessage, NSLocalizedString(@"introduction.savings.message.why", nil)];
         NSMutableAttributedString *attrStr = [NSMutableAttributedString attributedStringWithString:txt];
 
         OHParagraphStyle *paragraphStyle = [OHParagraphStyle defaultParagraphStyle];
@@ -137,6 +138,16 @@ static NSUInteger const kRowYouSend = 0;
         [attrStr setLink:[NSURL URLWithString:linkURLString] range:[txt rangeOfString:NSLocalizedString(@"introduction.savings.message.why", nil)]];
         self.savingsLabel.attributedText = attrStr;
     }];
+}
+
+- (NSString *)winMessage:(CalculationResult *)result {
+    NSString *winMessage;
+    if (result.amountCurrency == SourceCurrency) {
+        winMessage = [NSString stringWithFormat:NSLocalizedString(@"introduction.savings.receive.message.base", nil), [result receiveWinAmountWithCurrency]];
+    } else {
+        winMessage = [NSString stringWithFormat:NSLocalizedString(@"introduction.savings.pay.message.base", nil), [result payWinAmountWithCurrency]];
+    }
+    return winMessage;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -245,6 +256,7 @@ static NSUInteger const kRowYouSend = 0;
 - (BOOL)attributedLabel:(OHAttributedLabel *)attributedLabel shouldFollowLink:(NSTextCheckingResult *)linkInfo {
     if ([[linkInfo.URL scheme] isEqualToString:@"why"]) {
         [self.whyView setupWithResult:self.result];
+        [self.whyView setTitle:[self winMessage:self.result]];
         TSAlertView *alert = [[TSAlertView alloc] initWithTitle:self.whyView.title view:self.whyView delegate:nil cancelButtonTitle:NSLocalizedString(@"whypopup.button", nil) otherButtonTitles:nil];
         [alert show];
         return NO;

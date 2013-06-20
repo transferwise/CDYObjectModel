@@ -85,7 +85,8 @@ identity and address";
 "introduction.header.title.text" = "Send money abroad";
 "introduction.login.section.title" = "Already a user";
 "introduction.refreshing.currencies.message" = "Refreshing currencies...";
-"introduction.savings.message.base" = "You'll get %@ more vs your bank";
+"introduction.savings.receive.message.base" = "You'll get %@ more vs your bank";
+"introduction.savings.pay.message.base" = "You'll pay %@ less vs your bank";
 "introduction.savings.message.why" = "Why?";
 
 "login.controller.footer.message" = "You will be remembered on this device until you manually log out of the app";
@@ -252,7 +253,14 @@ identity and address";
 "upload.money.uksort.title" = "UK Sort code";
 
 "why.popup.bank.column.label" = "Average bank";
-
+"why.popup.tw.rate.title" = "The exchange rate";
+"why.popup.bank.rate.title" = "Bank's exchange rate";
+"why.popup.tw.fee.title" = "Fee";
+"why.popup.bank.fee.title" = "Fee + hidden profit";
+"why.popup.tw.you.get.title" = "You get";
+"why.popup.bank.you.get.title" = "You would have got";
+"why.popup.tw.you.pay.title" = "You pay";
+"why.popup.bank.you.pay.title" = "You would have payed";
 "whypopup.button" = "Sounds cool";
 "whypopup.title" = "Get %@ more vs a bank";
 
@@ -260,10 +268,3 @@ identity and address";
 
 "recipient.type.IBAN.name" = "IBAN";
 "recipient.type.SORT_CODE.name" = "UK SORT";
-
-"why.popup.tw.rate.title" = "The exchange rate";
-"why.popup.bank.rate.title" = "Bank's exchange rate";
-"why.popup.tw.fee.title" = "Fee";
-"why.popup.bank.fee.title" = "Fee + hidden profit";
-"why.popup.tw.you.get.title" = "You get";
-"why.popup.bank.you.get.title" = "You would have got";
