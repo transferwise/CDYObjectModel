@@ -10,6 +10,7 @@
 #import "Currency.h"
 #import "UIColor+Theme.h"
 #import "RoundedCellBackgroundView.h"
+#import "Constants.h"
 
 NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
@@ -136,6 +137,10 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     [self setSelectedCurrency:selected];
     [self.currencyField setText:selected.code];
     self.currencyChangedHandler(selected);
+
+    delayedExecution(0.3, ^{
+        [self.currencyField resignFirstResponder];
+    });
 }
 
 - (void)setOnlyPresentedCurrency:(NSString *)currencyCode {

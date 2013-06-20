@@ -40,3 +40,5 @@ typedef void (^TRWActionBlock)();
 
 extern NSString *const TRWLoggedOutNotification;
 extern NSString *const TRWMoveToPaymentsListNotification;
+
+void delayedExecution(CGFloat seconds, TRWActionBlock action);
