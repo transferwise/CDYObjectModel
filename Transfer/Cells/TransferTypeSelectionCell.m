@@ -128,7 +128,6 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTapped:)];
     [label addGestureRecognizer:tap];
     [label setUserInteractionEnabled:YES];
-    NSLog(@"new label");
     return label;
 }
 
@@ -136,7 +135,6 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
     MCLog(@"Tapped");
     UITapGestureRecognizer *tap = sender;
     UILabel *label = (UILabel*)tap.view;
-    NSLog(@"%@", label.text);
     NSUInteger index = [self.presentedLabels indexOfObject:label];
     RecipientType *tappedOn = self.allRecipientTypes[index];
     [self changeSelectedTypeTo:tappedOn];
