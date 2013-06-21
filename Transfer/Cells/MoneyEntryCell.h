@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TextEntryCell.h"
 
 @class Currency;
 
@@ -14,7 +15,7 @@ extern NSString *const TWMoneyEntryCellIdentifier;
 
 typedef void (^CurrencyChangBlock)(Currency *currency);
 
-@interface MoneyEntryCell : UITableViewCell
+@interface MoneyEntryCell : TextEntryCell
 
 @property (nonatomic, strong, readonly) UITextField *moneyField;
 @property (nonatomic, strong) NSArray *presentedCurrencies;

@@ -42,15 +42,17 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 20, 44)];
     [toolbar setBarStyle:UIBarStyleBlackTranslucent];
 
-    UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed)];
-    [toolbar setItems:@[flexible, done]];
-    [self.moneyField setInputAccessoryView:toolbar];
+    __block __weak MoneyEntryCell *weakSelf = self;
+    [self addDoneButtonToField:self.moneyField withAction:^{
+        [weakSelf.moneyField resignFirstResponder];
+        [weakSelf.currencyField resignFirstResponder];
+    }];
+
+    [self.currencyField setInputAccessoryView:self.moneyField.inputAccessoryView];
 
     //TODO jaanus: maybe can find a way how to change keyboard locale
     [self.moneyField setDelegate:self];
 
-    [self.currencyField setInputAccessoryView:toolbar];
     UIPickerView *picker = [[UIPickerView alloc] initWithFrame:CGRectZero];
     [self setPicker:picker];
     [picker setShowsSelectionIndicator:YES];
