@@ -21,6 +21,7 @@
 #import "MoneyFormatter.h"
 #import "LoggedInPaymentFlow.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
+#import "UITableView+FooterPositioning.h"
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -104,6 +105,8 @@ static NSUInteger const kRowYouSend = 0;
         [self fillDepositFieldsWithResult:result];
 
         [self.tableView setTableFooterView:self.footerView];
+        [self.tableView adjustFooterViewSize];
+        
     }];
 
     [self.continueToDetailsButton setTitle:NSLocalizedString(@"payment.controller.continue.to.details.button.title", nil) forState:UIControlStateNormal];
