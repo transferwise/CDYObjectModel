@@ -16,7 +16,7 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
 
 @interface TransferTypeSelectionCell ()
 
-@property (strong, nonatomic) IBOutlet RoundedCellWhiteBackgroundView *backgroundView;
+@property (strong, nonatomic) IBOutlet RoundedCellWhiteBackgroundView *selectedView;
 
 @property (nonatomic, strong) RecipientType *selectedType;
 @property (nonatomic, strong) NSArray *allRecipientTypes;
@@ -37,7 +37,7 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
 
 - (void)awakeFromNib
 {
-    [self setPresentedLabels:[NSMutableArray array]];
+    //[self setPresentedLabels:[NSMutableArray array]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -47,38 +47,34 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
     // Configure the view for the selected state
 }
 
-- (void)setSelectedType:(RecipientType *)selected allTypes:(NSArray *)allTypes {
-    /*MCLog(@"Selected:%@", selected);
-    MCLog(@"All types:%@", allTypes);
-    
-    [self.backgroundView setRoundedCorner:UIRectCornerTopLeft];
-    
-    [self setSelectedType:selected];
-    [self setAllRecipientTypes:allTypes];
-    
-    if(allTypes.count < 2)
-        return;
-    
-    RecipientType *type1 = [allTypes objectAtIndex:0];
-    NSString *titleKey1 = [NSString stringWithFormat:@"recipient.type.%@.name", type1.type];
-    [self.leftLabel setText:NSLocalizedString(titleKey1, nil)];
-    
-    UITapGestureRecognizer *leftTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(buttonTapped:)];
-    UITapGestureRecognizer *rightTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(buttonTapped:)];
-    [self.leftLabel addGestureRecognizer:leftTap];
-    [self.rightLabel addGestureRecognizer:rightTap];
-    
-    RecipientType *type2 = [allTypes objectAtIndex:1];
-    NSString *titleKey2 = [NSString stringWithFormat:@"recipient.type.%@.name", type2.type];
-    [self.rightLabel setText:NSLocalizedString(titleKey2, nil)];
-    
-    [self changeSelectedTypeTo:selected];
-    */
+- (void)adjustSelectedView
+{
+    for(RecipientType *type in self.allRecipientTypes){
+        NSUInteger index = [self.allRecipientTypes indexOfObject:type];
+        CGFloat groupedCellWidth = CGRectGetWidth(self.frame)-20;
+        if (type == self.selectedType) {
+            if(index == 0){
+                [self.selectedView setRoundedCorner:UIRectCornerTopLeft];
+            } else if(index == (self.allRecipientTypes.count-1)){
+                [self.selectedView setRoundedCorner:UIRectCornerTopRight];
+            }
+            CGRect frame = self.selectedView.frame;
+            frame.origin.x = groupedCellWidth/self.allRecipientTypes.count*index;
+            frame.size.width = groupedCellWidth/self.allRecipientTypes.count;
+            self.selectedView.frame = frame;
+            [self.selectedView setNeedsDisplay];
+        }
+    }
+}
+
+- (void)setSelectedType:(RecipientType *)selected allTypes:(NSArray *)allTypes
+{
     MCLog(@"Selected:%@", selected);
     MCLog(@"All types:%@", allTypes);
     
     if([allTypes isEqualToArray:self.allRecipientTypes]){
-        [self changeSelectedTypeTo:selected];
+        [self setSelectedType:selected];
+        [self adjustSelectedView];
         return;
     }
     
@@ -88,31 +84,39 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
     for (UILabel *presented in self.presentedLabels) {
         [presented removeFromSuperview];
     }
-    [self.presentedLabels setArray:@[]];
-
     
-    CGFloat xOffset = CGRectGetWidth(self.frame)/(allTypes.count+1);
+    self.presentedLabels = [NSMutableArray array];
+
+    CGFloat groupedCellWidth = CGRectGetWidth(self.frame)-20;
+    CGFloat xStep = groupedCellWidth/(allTypes.count+1);
+    CGFloat xOffset = xStep;
+    NSUInteger index = 0;
     
     for (RecipientType *type in allTypes) {
         UILabel *label = [self createLabel];
         NSString *titleKey = [NSString stringWithFormat:@"recipient.type.%@.name", type.type];
         [label setText:NSLocalizedString(titleKey, nil)];
-        [label sizeToFit];
-        
-        if ([type.type isEqualToString:selected.type]) {
-            //TODO: 
-        }
-        
-        CGRect frame = label.frame;
-        frame.origin.x = xOffset - CGRectGetWidth(frame)/2;
-        frame.origin.y = (CGRectGetHeight(self.frame) - CGRectGetHeight(frame)) / 2;
+        [label setTextAlignment:NSTextAlignmentCenter];
+        CGRect frame = CGRectMake(groupedCellWidth/allTypes.count*index + 10, 0, groupedCellWidth/allTypes.count, CGRectGetHeight(self.frame));
         [label setFrame:frame];
         
         [self addSubview:label];
         [self.presentedLabels addObject:label];
         
-        xOffset += CGRectGetWidth(self.frame)/(allTypes.count+1);
+        if(index > 0)
+        {
+            CGFloat lineStep = groupedCellWidth/(self.allRecipientTypes.count);
+            CGRect lineFrame = CGRectMake(lineStep*index+10, 0, 1, CGRectGetHeight(self.frame)+1);
+            UIView *line = [[UIView alloc]initWithFrame:lineFrame];
+            [line setBackgroundColor:[UIColor grayColor]];
+            [self addSubview:line];
+        }
+        
+        xOffset += xStep;
+        index += 1;
     }
+    
+    [self adjustSelectedView];
     
 }
 
@@ -124,6 +128,7 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTapped:)];
     [label addGestureRecognizer:tap];
     [label setUserInteractionEnabled:YES];
+    NSLog(@"new label");
     return label;
 }
 
@@ -131,32 +136,17 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
     MCLog(@"Tapped");
     UITapGestureRecognizer *tap = sender;
     UILabel *label = (UILabel*)tap.view;
+    NSLog(@"%@", label.text);
     NSUInteger index = [self.presentedLabels indexOfObject:label];
     RecipientType *tappedOn = self.allRecipientTypes[index];
     [self changeSelectedTypeTo:tappedOn];
 }
 
 - (void)changeSelectedTypeTo:(RecipientType *)tappedOn {
-
-    
-    // TODO: More generic
-    /*
-    if([self.allRecipientTypes indexOfObject:tappedOn] == 0){
-        [self.leftImage setHidden:NO];
-        [self.rightImage setHidden:YES];
-    }
-    else{
-        [self.leftImage setHidden:YES];
-        [self.rightImage setHidden:NO];
-    }*/
-    
     if ([tappedOn.type isEqualToString:self.selectedType.type]) {
         MCLog(@"Tapped on selected one");
         return;
     }
-    
-    
-    [self setSelectedType:tappedOn];
     self.selectionChangeHandler(tappedOn);
 }
 
