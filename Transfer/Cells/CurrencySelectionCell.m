@@ -42,17 +42,7 @@ NSString *const TWCurrencySelectionCellIdentifier = @"TWCurrencySelectionCellIde
 
     [self.currencyField setInputView:pickerView];
 
-    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 20, 44)];
-    [toolbar setBarStyle:UIBarStyleBlackTranslucent];
-    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed)];
-    [toolbar setItems:@[spacer, doneButton]];
-
-    [self.currencyField setInputAccessoryView:toolbar];
-}
-
-- (void)donePressed {
-    [self.currencyField resignFirstResponder];
+    [self addDoneButton];
 }
 
 - (void)setAllCurrencies:(NSArray *)currencies {

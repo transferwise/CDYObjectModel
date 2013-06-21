@@ -15,6 +15,7 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UITextField *entryField;
+@property (nonatomic, copy) TRWActionBlock doneButtonAction;
 
 @end
 
@@ -65,6 +66,32 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     [self.entryField setEnabled:editable];
     [self.titleLabel setTextColor:(editable ? [UIColor blackColor] : [UIColor disabledEntryTextColor])];
     [self.entryField setTextColor:(editable ? [UIColor blackColor] : [UIColor disabledEntryTextColor])];
+}
+
+- (void)addDoneButton {
+    __block __weak TextEntryCell *weakSelf = self;
+    [self addDoneButtonToField:self.entryField withAction:^{
+        [weakSelf.entryField.delegate textFieldShouldReturn:weakSelf.entryField];
+    }];
+}
+
+- (void)addDoneButtonToField:(UITextField *)field withAction:(TRWActionBlock)action {
+    [self setDoneButtonAction:action];
+
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 20, 44)];
+    [toolbar setBarStyle:UIBarStyleBlackTranslucent];
+
+    UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    //TODO jaanus: button title based on entry return key type
+    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed)];
+    [toolbar setItems:@[flexible, done]];
+    [field setInputAccessoryView:toolbar];
+}
+
+- (void)donePressed {
+    if (self.doneButtonAction) {
+        self.doneButtonAction();
+    }
 }
 
 @end

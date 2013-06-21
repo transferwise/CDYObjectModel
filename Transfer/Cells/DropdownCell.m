@@ -38,17 +38,7 @@ NSString *const TWDropdownCellIdentifier = @"TWDropdownCellIdentifier";
 
     [self.entryField setInputView:pickerView];
 
-    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 20, 44)];
-    [toolbar setBarStyle:UIBarStyleBlackTranslucent];
-    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed)];
-    [toolbar setItems:@[spacer, doneButton]];
-
-    [self.entryField setInputAccessoryView:toolbar];
-}
-
-- (void)donePressed {
-    [self.entryField resignFirstResponder];
+    [self addDoneButton];
 }
 
 - (NSString *)value {

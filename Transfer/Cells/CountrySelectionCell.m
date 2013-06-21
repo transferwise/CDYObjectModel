@@ -39,15 +39,7 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
     [pickerView setDataSource:self];
     [pickerView setShowsSelectionIndicator:YES];
 
-    //TODO jaanus: copy/paste from money cell
-    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 20, 44)];
-    [toolbar setBarStyle:UIBarStyleBlackTranslucent];
-
-    UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    //TODO jaanus: button title based on entry return key type
-    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed)];
-    [toolbar setItems:@[flexible, done]];
-    [self.entryField setInputAccessoryView:toolbar];
+    [self addDoneButton];
 }
 
 - (void)setValue:(NSString *)value {
@@ -80,11 +72,6 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
     }
 
     return nil;
-}
-
-
-- (void)donePressed {
-    [self.entryField.delegate textFieldShouldReturn:self.entryField];
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {

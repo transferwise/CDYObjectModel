@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Constants.h"
 
 extern NSString *const TWTextEntryCellIdentifier;
 
@@ -18,5 +19,7 @@ extern NSString *const TWTextEntryCellIdentifier;
 - (NSString *)value;
 - (void)setValue:(NSString *)value;
 - (void)setEditable:(BOOL)editable;
+- (void)addDoneButton;
+- (void)addDoneButtonToField:(UITextField *)field withAction:(TRWActionBlock)action;
 
 @end

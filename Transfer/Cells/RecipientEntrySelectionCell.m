@@ -40,20 +40,11 @@ NSString *const TRWRecipientEntrySelectionCellIdentifier = @"TRWRecipientEntrySe
 
     [self.autoCompleteField setInputView:pickerView];
 
-    //TODO jaanus: copy/paste from money cell
-    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 20, 44)];
-    [toolbar setBarStyle:UIBarStyleBlackTranslucent];
-
-    UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed)];
-    [toolbar setItems:@[flexible, done]];
-    [self.autoCompleteField setInputAccessoryView:toolbar];
+    __block __weak RecipientEntrySelectionCell *weakSelf = self;
+    [self addDoneButtonToField:self.autoCompleteField withAction:^{
+        [weakSelf.autoCompleteField resignFirstResponder];
+    }];
 }
-
-- (void)donePressed {
-    [self.autoCompleteField resignFirstResponder];
-}
-
 
 - (void)setAutoCompleteRecipients:(NSArray *)autoCompleteRecipients {
     _autoCompleteRecipients = autoCompleteRecipients;
