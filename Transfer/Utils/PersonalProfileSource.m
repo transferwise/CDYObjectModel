@@ -73,10 +73,11 @@ NSUInteger const kUserPersonalSection = 1;
     [emailCell configureWithTitle:NSLocalizedString(@"personal.profile.email.label", nil) value:@""];
     [emailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
 
-    //TODO jaanus: phone pad with custom accessory view
     TextEntryCell *phoneCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setPhoneNumberCell:phoneCell];
     [personalCells addObject:phoneCell];
+    [phoneCell.entryField setKeyboardType:UIKeyboardTypePhonePad];
+    [phoneCell addDoneButton];
     [phoneCell configureWithTitle:NSLocalizedString(@"personal.profile.phone.label", nil) value:@""];
 
     DateEntryCell *dateOfBirthCell = [self.tableView dequeueReusableCellWithIdentifier:TWDateEntryCellIdentifier];
