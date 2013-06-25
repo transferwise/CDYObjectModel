@@ -50,7 +50,6 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
     [self.currencyField setInputAccessoryView:self.moneyField.inputAccessoryView];
 
-    //TODO jaanus: maybe can find a way how to change keyboard locale
     [self.moneyField setDelegate:self];
 
     UIPickerView *picker = [[UIPickerView alloc] initWithFrame:CGRectZero];
@@ -59,11 +58,6 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     [self.currencyField setInputView:picker];
     [picker setDataSource:self];
     [picker setDelegate:self];
-}
-
-- (void)donePressed {
-    [self.moneyField resignFirstResponder];
-    [self.currencyField resignFirstResponder];
 }
 
 - (void)setTitle:(NSString *)title {
@@ -110,7 +104,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    if (![string isEqualToString:@","]) {
+    if (![string isEqualToString:@","] && ![string isEqualToString:@"."]) {
         return YES;
     }
 
