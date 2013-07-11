@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TextEntryCell.h"
 
 @class RecipientType;
 
@@ -14,11 +15,10 @@ typedef void (^RecipientTypeChangedInSelectionCellBlock)(RecipientType *type);
 
 extern NSString *const TWTypeSelectionCellIdentifier;
 
-@interface TransferTypeSelectionCell : UITableViewCell
+@interface TransferTypeSelectionCell : TextEntryCell
 
 @property (nonatomic, copy) RecipientTypeChangedInSelectionCellBlock selectionChangeHandler;
 
 - (void)setSelectedType:(RecipientType *)selected allTypes:(NSArray *)allTypes;
-- (void)changeSelectedTypeTo:(RecipientType *)tappedOn;
 
 @end

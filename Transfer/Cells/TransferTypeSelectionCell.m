@@ -148,4 +148,9 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
     self.selectionChangeHandler(tappedOn);
 }
 
+- (void)setEditable:(BOOL)editable {
+    [self setUserInteractionEnabled:editable];
+}
+
+
 @end

@@ -198,8 +198,6 @@
 		EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */; };
 		EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */; };
 		EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069091737CF57007C8DEE /* RecipientOperation.m */; };
-		EAD0690E1737E457007C8DEE /* RecipientSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD0690D1737E457007C8DEE /* RecipientSectionHeaderView.m */; };
-		EAD069111737E462007C8DEE /* RecipientSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD069101737E462007C8DEE /* RecipientSectionHeaderView.xib */; };
 		EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */; };
 		EAD39672171BD2A300F6D011 /* ObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39671171BD2A300F6D011 /* ObjectModel.m */; };
 		EAD39676171BD4EE00F6D011 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39674171BD4EE00F6D011 /* MainViewController.m */; };
@@ -577,9 +575,6 @@
 		EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientFieldCell.xib; sourceTree = "<group>"; };
 		EAD069081737CF57007C8DEE /* RecipientOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientOperation.h; sourceTree = "<group>"; };
 		EAD069091737CF57007C8DEE /* RecipientOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientOperation.m; sourceTree = "<group>"; };
-		EAD0690C1737E457007C8DEE /* RecipientSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientSectionHeaderView.h; sourceTree = "<group>"; };
-		EAD0690D1737E457007C8DEE /* RecipientSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientSectionHeaderView.m; sourceTree = "<group>"; };
-		EAD069101737E462007C8DEE /* RecipientSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientSectionHeaderView.xib; sourceTree = "<group>"; };
 		EAD39670171BD2A300F6D011 /* ObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectModel.h; sourceTree = "<group>"; };
 		EAD39671171BD2A300F6D011 /* ObjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectModel.m; sourceTree = "<group>"; };
 		EAD39673171BD4EE00F6D011 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -727,9 +722,6 @@
 				EA92D981176AF1DF0078D0C4 /* ProfileSelectionView.h */,
 				EA92D982176AF1DF0078D0C4 /* ProfileSelectionView.m */,
 				EA92D984176AF1F20078D0C4 /* ProfileSelectionView.xib */,
-				EAD0690C1737E457007C8DEE /* RecipientSectionHeaderView.h */,
-				EAD0690D1737E457007C8DEE /* RecipientSectionHeaderView.m */,
-				EAD069101737E462007C8DEE /* RecipientSectionHeaderView.xib */,
 				EA01331C1765FC7700D63C82 /* RoundedCellBackgroundView.h */,
 				EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */,
 				EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */,
@@ -1441,7 +1433,6 @@
 				EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */,
 				EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */,
 				EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */,
-				EAD069111737E462007C8DEE /* RecipientSectionHeaderView.xib in Resources */,
 				EAEA31131738DB8600CCF1A2 /* CheckUnselected.png in Resources */,
 				EAEA31141738DB8600CCF1A2 /* CheckUnselected@2x.png in Resources */,
 				EAEA31151738DB8600CCF1A2 /* CheckSelected.png in Resources */,
@@ -1647,7 +1638,6 @@
 				EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */,
 				EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */,
 				EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */,
-				EAD0690E1737E457007C8DEE /* RecipientSectionHeaderView.m in Sources */,
 				EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */,
 				EAD85B0B173920C300C22211 /* PersonalProfileOperation.m in Sources */,
 				18D47900173A3B5300FC317E /* IdentificationViewController.m in Sources */,
