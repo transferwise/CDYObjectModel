@@ -11,10 +11,6 @@
 
 @interface PlainRecipientTypeField ()
 
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, strong) NSArray *possibleValues;
-
 @end
 
 @implementation PlainRecipientTypeField

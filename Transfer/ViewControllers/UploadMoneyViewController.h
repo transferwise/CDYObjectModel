@@ -12,11 +12,13 @@
 @class PlainRecipient;
 @class PlainProfileDetails;
 @class PlainPayment;
+@class ObjectModel;
 
 @interface UploadMoneyViewController : DataEntryViewController
 
 @property (nonatomic, strong) PlainPayment *payment;
 @property (nonatomic, strong) PlainProfileDetails *userDetails;
 @property (nonatomic, strong) NSArray *recipientTypes;
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 @end

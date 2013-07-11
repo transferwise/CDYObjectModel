@@ -13,5 +13,9 @@
 @interface ObjectModel (RecipientTypes)
 
 - (RecipientType *)recipientTypeWithCode:(NSString *)code;
+- (BOOL)haveRecipientTypeWithCode:(NSString *)code;
+- (void)createOrUpdateRecipientTypeWithData:(NSDictionary *)data;
+//TODO jaanus: delete this
+- (NSArray *)listAllRecipientTypes;
 
 @end

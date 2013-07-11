@@ -4,6 +4,8 @@
 #import "_RecipientType.h"
 
 const struct RecipientTypeAttributes RecipientTypeAttributes = {
+	.title = @"title",
+	.type = @"type",
 };
 
 const struct RecipientTypeRelationships RecipientTypeRelationships = {
@@ -47,13 +49,27 @@ const struct RecipientTypeFetchedProperties RecipientTypeFetchedProperties = {
 
 
 
+@dynamic title;
+
+
+
+
+
+
+@dynamic type;
+
+
+
+
+
+
 @dynamic fields;
 
 	
-- (NSMutableSet*)fieldsSet {
+- (NSMutableOrderedSet*)fieldsSet {
 	[self willAccessValueForKey:@"fields"];
   
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"fields"];
+	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"fields"];
   
 	[self didAccessValueForKey:@"fields"];
 	return result;

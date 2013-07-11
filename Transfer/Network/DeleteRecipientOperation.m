@@ -34,25 +34,12 @@ NSString *const kDeleteRecipientPath = @"/recipient/delete";
 
     __block __weak DeleteRecipientOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
-        weakSelf.completionHandler(nil, error);
+        weakSelf.responseHandler(error);
     }];
 
+    //TODO jaanus: if recipient has local payments, then just hide deleted recipient
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        //TODO jaanus: copy paste from UserRecipientsOperation
-        NSArray *recipients = response[@"recipients"];
-        MCLog(@"Received %d recipients from server", [recipients count]);
-        NSMutableArray *result = [NSMutableArray arrayWithCapacity:[recipients count]];
-        for (NSDictionary *recipientData in recipients) {
-            PlainRecipient *recipient = [PlainRecipient recipientWithData:recipientData];
-            [result addObject:recipient];
-        }
-        [result sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            PlainRecipient *one = obj1;
-            PlainRecipient *two = obj2;
-            return [one.name compare:two.name options:NSCaseInsensitiveSearch];
-        }];
-
-        weakSelf.completionHandler([NSArray arrayWithArray:result], nil);
+        [weakSelf persistRecipients:response];
     }];
 
     [self postData:@{@"recipientId" : self.recipientId} toPath:path];

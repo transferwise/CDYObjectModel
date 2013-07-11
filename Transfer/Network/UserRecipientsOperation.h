@@ -7,14 +7,12 @@
 //
 
 #import "TransferwiseOperation.h"
+#import "RecipientsOperation.h"
 
+@class Currency;
 @class PlainCurrency;
 
-typedef void (^ListRecipientsBlock)(NSArray *recipients, NSError *error);
-
-@interface UserRecipientsOperation : TransferwiseOperation
-
-@property (nonatomic, copy) ListRecipientsBlock responseHandler;
+@interface UserRecipientsOperation : RecipientsOperation
 
 + (UserRecipientsOperation *)recipientsOperation;
 + (UserRecipientsOperation *)recipientsOperationWithCurrency:(PlainCurrency *)currency;

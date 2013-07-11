@@ -5,6 +5,8 @@
 
 
 extern const struct RecipientTypeAttributes {
+	__unsafe_unretained NSString *title;
+	__unsafe_unretained NSString *type;
 } RecipientTypeAttributes;
 
 extern const struct RecipientTypeRelationships {
@@ -17,6 +19,8 @@ extern const struct RecipientTypeFetchedProperties {
 
 @class RecipientTypeField;
 @class Recipient;
+
+
 
 
 @interface RecipientTypeID : NSManagedObjectID {}
@@ -32,9 +36,29 @@ extern const struct RecipientTypeFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSSet *fields;
+@property (nonatomic, strong) NSString* title;
 
-- (NSMutableSet*)fieldsSet;
+
+
+//- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* type;
+
+
+
+//- (BOOL)validateType:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSOrderedSet *fields;
+
+- (NSMutableOrderedSet*)fieldsSet;
 
 
 
@@ -51,8 +75,8 @@ extern const struct RecipientTypeFetchedProperties {
 
 @interface _RecipientType (CoreDataGeneratedAccessors)
 
-- (void)addFields:(NSSet*)value_;
-- (void)removeFields:(NSSet*)value_;
+- (void)addFields:(NSOrderedSet*)value_;
+- (void)removeFields:(NSOrderedSet*)value_;
 - (void)addFieldsObject:(RecipientTypeField*)value_;
 - (void)removeFieldsObject:(RecipientTypeField*)value_;
 
@@ -66,9 +90,21 @@ extern const struct RecipientTypeFetchedProperties {
 @interface _RecipientType (CoreDataGeneratedPrimitiveAccessors)
 
 
+- (NSString*)primitiveTitle;
+- (void)setPrimitiveTitle:(NSString*)value;
 
-- (NSMutableSet*)primitiveFields;
-- (void)setPrimitiveFields:(NSMutableSet*)value;
+
+
+
+- (NSString*)primitiveType;
+- (void)setPrimitiveType:(NSString*)value;
+
+
+
+
+
+- (NSMutableOrderedSet*)primitiveFields;
+- (void)setPrimitiveFields:(NSMutableOrderedSet*)value;
 
 
 

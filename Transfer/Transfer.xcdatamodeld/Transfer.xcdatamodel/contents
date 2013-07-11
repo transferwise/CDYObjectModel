@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="AllowedTypeFieldValue" representedClassName="AllowedTypeFieldValue" syncable="YES">
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="valueForField" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientTypeField" inverseName="allowedValues" inverseEntity="RecipientTypeField" syncable="YES"/>
+    </entity>
     <entity name="Currency" representedClassName="Currency" syncable="YES">
         <attribute name="code" attributeType="String" syncable="YES"/>
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -7,6 +12,7 @@
         <relationship name="sourceForPayments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="sourceCurrency" inverseEntity="Payment" syncable="YES"/>
         <relationship name="targetForPayments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="targetCurrency" inverseEntity="Payment" syncable="YES"/>
     </entity>
+    <entity name="PairSourceCurrency" representedClassName="PairSourceCurrency" syncable="YES"/>
     <entity name="Payment" representedClassName="Payment" syncable="YES">
         <attribute name="cancelledDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="estimatedDelivery" optional="YES" attributeType="Date" syncable="YES"/>
@@ -34,11 +40,21 @@
         <relationship name="type" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientType" inverseName="recipients" inverseEntity="RecipientType" syncable="YES"/>
     </entity>
     <entity name="RecipientType" representedClassName="RecipientType" syncable="YES">
-        <relationship name="fields" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RecipientTypeField" inverseName="fieldForType" inverseEntity="RecipientTypeField" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="fields" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="RecipientTypeField" inverseName="fieldForType" inverseEntity="RecipientTypeField" syncable="YES"/>
         <relationship name="recipients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipient" inverseName="type" inverseEntity="Recipient" syncable="YES"/>
     </entity>
     <entity name="RecipientTypeField" representedClassName="RecipientTypeField" syncable="YES">
+        <attribute name="example" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="maxLength" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="minLength" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="presentationPattern" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="required" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="validationRegexp" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="allowedValues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AllowedTypeFieldValue" inverseName="valueForField" inverseEntity="AllowedTypeFieldValue" syncable="YES"/>
         <relationship name="fieldForType" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientType" inverseName="fields" inverseEntity="RecipientType" syncable="YES"/>
         <relationship name="values" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TypeFieldValue" inverseName="valueForField" inverseEntity="TypeFieldValue" syncable="YES"/>
     </entity>
@@ -51,8 +67,10 @@
         <element name="Payment" positionX="160" positionY="192" width="128" height="240"/>
         <element name="Currency" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Recipient" positionX="160" positionY="192" width="128" height="180"/>
-        <element name="RecipientType" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="RecipientTypeField" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="RecipientType" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="RecipientTypeField" positionX="160" positionY="192" width="128" height="210"/>
         <element name="TypeFieldValue" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="PairSourceCurrency" positionX="160" positionY="192" width="128" height="45"/>
+        <element name="AllowedTypeFieldValue" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>

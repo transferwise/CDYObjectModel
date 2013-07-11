@@ -14,6 +14,7 @@
 #import "Constants.h"
 #import "CalculationResult.h"
 #import "PlainCurrency.h"
+#import "ObjectModel.h"
 #import "TransferwiseClient.h"
 #import "TRWProgressHUD.h"
 #import "TRWAlertView.h"

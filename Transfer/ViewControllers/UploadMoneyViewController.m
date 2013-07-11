@@ -20,9 +20,12 @@
 #import "RecipientTypesOperation.h"
 #import "TRWProgressHUD.h"
 #import "TRWAlertView.h"
+#import "ObjectModel.h"
 #import "UINavigationController+StackManipulations.h"
 #import "Credentials.h"
 #import "ClaimAccountViewController.h"
+#import "ObjectModel+RecipientTypes.h"
+#import "RecipientType.h"
 
 @interface UploadMoneyViewController ()
 
@@ -75,7 +78,9 @@
 
         RecipientTypesOperation *operation = [RecipientTypesOperation operation];
         [self setExecutedOperation:operation];
-        [operation setResultHandler:^(NSArray *recipients, NSError *error) {
+        [operation setObjectModel:self.objectModel];
+
+        [operation setResultHandler:^(NSError *error) {
             [hud hide];
 
             if (error) {
@@ -83,6 +88,9 @@
                 [alertView show];;
                 return;
             }
+
+            NSArray *recipientObjects = [self.objectModel listAllRecipientTypes];
+            NSArray *recipients = [RecipientType createPlainTypes:recipientObjects];
 
             [self setRecipientTypes:recipients];
             [self loadDataToCells];

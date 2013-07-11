@@ -12,19 +12,19 @@
 
 @interface PlainRecipient : NSObject
 
-@property (nonatomic, strong, readonly) NSNumber *id;
-@property (nonatomic, copy, readonly) NSString *name;
-@property (nonatomic, copy, readonly) NSString *currency;
-@property (nonatomic, copy, readonly) NSString *IBAN;
-@property (nonatomic, copy, readonly) NSString *BIC;
-@property (nonatomic, copy, readonly) NSString *type;
-@property (nonatomic, copy, readonly) NSString *email;
-@property (nonatomic, copy, readonly) NSString *accountNumber;
-@property (nonatomic, copy, readonly) NSString *sortCode;
-@property (nonatomic, copy, readonly) NSString *usState;
-@property (nonatomic, copy, readonly) NSString *abartn;
-@property (nonatomic, copy, readonly) NSString *swiftCode;
-@property (nonatomic, copy, readonly) NSString *bankCode;
+@property (nonatomic, strong) NSNumber *id;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *currency;
+@property (nonatomic, copy) NSString *IBAN;
+@property (nonatomic, copy) NSString *BIC;
+@property (nonatomic, copy) NSString *type;
+@property (nonatomic, copy) NSString *email;
+@property (nonatomic, copy) NSString *accountNumber;
+@property (nonatomic, copy) NSString *sortCode;
+@property (nonatomic, copy) NSString *usState;
+@property (nonatomic, copy) NSString *abartn;
+@property (nonatomic, copy) NSString *swiftCode;
+@property (nonatomic, copy) NSString *bankCode;
 
 - (NSString *)detailsRowOne;
 - (NSString *)detailsRowTwo;

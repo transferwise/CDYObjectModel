@@ -82,6 +82,12 @@
 		EA225C9D178EB50B009D6B83 /* _TypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C9C178EB50B009D6B83 /* _TypeFieldValue.m */; };
 		EA225CA0178EB511009D6B83 /* TypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C9F178EB511009D6B83 /* TypeFieldValue.m */; };
 		EA225CA3178EB591009D6B83 /* NSDate+ServerTime.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CA2178EB591009D6B83 /* NSDate+ServerTime.m */; };
+		EA225CA6178EC32D009D6B83 /* ObjectModel+CurrencyPairs.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CA5178EC32D009D6B83 /* ObjectModel+CurrencyPairs.m */; };
+		EA225CA9178EC3A4009D6B83 /* _PairSourceCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CA8178EC3A4009D6B83 /* _PairSourceCurrency.m */; };
+		EA225CAC178EC3B2009D6B83 /* PairSourceCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CAB178EC3B2009D6B83 /* PairSourceCurrency.m */; };
+		EA225CAF178ECD68009D6B83 /* RecipientsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CAE178ECD68009D6B83 /* RecipientsOperation.m */; };
+		EA225CB2178ED8C1009D6B83 /* _AllowedTypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CB1178ED8C1009D6B83 /* _AllowedTypeFieldValue.m */; };
+		EA225CB5178ED8C7009D6B83 /* AllowedTypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CB4178ED8C7009D6B83 /* AllowedTypeFieldValue.m */; };
 		EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */; };
 		EA35C73A17324AF2005602F7 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73417324AF2005602F7 /* Icon-Small.png */; };
 		EA35C73B17324AF2005602F7 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73517324AF2005602F7 /* Icon-Small@2x.png */; };
@@ -410,6 +416,18 @@
 		EA225C9F178EB511009D6B83 /* TypeFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeFieldValue.m; sourceTree = "<group>"; };
 		EA225CA1178EB591009D6B83 /* NSDate+ServerTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ServerTime.h"; sourceTree = "<group>"; };
 		EA225CA2178EB591009D6B83 /* NSDate+ServerTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ServerTime.m"; sourceTree = "<group>"; };
+		EA225CA4178EC32D009D6B83 /* ObjectModel+CurrencyPairs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+CurrencyPairs.h"; sourceTree = "<group>"; };
+		EA225CA5178EC32D009D6B83 /* ObjectModel+CurrencyPairs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+CurrencyPairs.m"; sourceTree = "<group>"; };
+		EA225CA7178EC3A4009D6B83 /* _PairSourceCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _PairSourceCurrency.h; sourceTree = "<group>"; };
+		EA225CA8178EC3A4009D6B83 /* _PairSourceCurrency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PairSourceCurrency.m; sourceTree = "<group>"; };
+		EA225CAA178EC3B2009D6B83 /* PairSourceCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PairSourceCurrency.h; sourceTree = "<group>"; };
+		EA225CAB178EC3B2009D6B83 /* PairSourceCurrency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PairSourceCurrency.m; sourceTree = "<group>"; };
+		EA225CAD178ECD68009D6B83 /* RecipientsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientsOperation.h; sourceTree = "<group>"; };
+		EA225CAE178ECD68009D6B83 /* RecipientsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientsOperation.m; sourceTree = "<group>"; };
+		EA225CB0178ED8C1009D6B83 /* _AllowedTypeFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AllowedTypeFieldValue.h; sourceTree = "<group>"; };
+		EA225CB1178ED8C1009D6B83 /* _AllowedTypeFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AllowedTypeFieldValue.m; sourceTree = "<group>"; };
+		EA225CB3178ED8C7009D6B83 /* AllowedTypeFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllowedTypeFieldValue.h; sourceTree = "<group>"; };
+		EA225CB4178ED8C7009D6B83 /* AllowedTypeFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllowedTypeFieldValue.m; sourceTree = "<group>"; };
 		EA2B23951721323E001AE9DE /* CurrencyPairsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyPairsOperation.h; sourceTree = "<group>"; };
 		EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyPairsOperation.m; sourceTree = "<group>"; };
 		EA35C73417324AF2005602F7 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
@@ -1059,6 +1077,8 @@
 				EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */,
 				EAD069081737CF57007C8DEE /* RecipientOperation.h */,
 				EAD069091737CF57007C8DEE /* RecipientOperation.m */,
+				EA225CAD178ECD68009D6B83 /* RecipientsOperation.h */,
+				EA225CAE178ECD68009D6B83 /* RecipientsOperation.m */,
 				EAA54F591733EF1A00B65BF3 /* RecipientTypesOperation.h */,
 				EAA54F5A1733EF1A00B65BF3 /* RecipientTypesOperation.m */,
 				EA1861E11746442900BD01BB /* RegisterOperation.h */,
@@ -1273,10 +1293,14 @@
 			isa = PBXGroup;
 			children = (
 				EAD73696171E830600A037B1 /* Generated */,
+				EA225CB3178ED8C7009D6B83 /* AllowedTypeFieldValue.h */,
+				EA225CB4178ED8C7009D6B83 /* AllowedTypeFieldValue.m */,
 				EA225C7A178EA346009D6B83 /* Currency.h */,
 				EA225C7B178EA346009D6B83 /* Currency.m */,
 				EA225C86178EB241009D6B83 /* ObjectModel+Currencies.h */,
 				EA225C87178EB241009D6B83 /* ObjectModel+Currencies.m */,
+				EA225CA4178EC32D009D6B83 /* ObjectModel+CurrencyPairs.h */,
+				EA225CA5178EC32D009D6B83 /* ObjectModel+CurrencyPairs.m */,
 				EA225C6F178E9F00009D6B83 /* ObjectModel+Payments.h */,
 				EA225C70178E9F00009D6B83 /* ObjectModel+Payments.m */,
 				EA225C89178EB297009D6B83 /* ObjectModel+Recipients.h */,
@@ -1285,6 +1309,8 @@
 				EA225C93178EB36B009D6B83 /* ObjectModel+RecipientTypes.m */,
 				EAD39670171BD2A300F6D011 /* ObjectModel.h */,
 				EAD39671171BD2A300F6D011 /* ObjectModel.m */,
+				EA225CAA178EC3B2009D6B83 /* PairSourceCurrency.h */,
+				EA225CAB178EC3B2009D6B83 /* PairSourceCurrency.m */,
 				EA225C69178E9C93009D6B83 /* Payment.h */,
 				EA225C6A178E9C93009D6B83 /* Payment.m */,
 				EA225C80178EA3C8009D6B83 /* Recipient.h */,
@@ -1312,8 +1338,12 @@
 		EAD73696171E830600A037B1 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				EA225CB0178ED8C1009D6B83 /* _AllowedTypeFieldValue.h */,
+				EA225CB1178ED8C1009D6B83 /* _AllowedTypeFieldValue.m */,
 				EA225C77178EA341009D6B83 /* _Currency.h */,
 				EA225C78178EA341009D6B83 /* _Currency.m */,
+				EA225CA7178EC3A4009D6B83 /* _PairSourceCurrency.h */,
+				EA225CA8178EC3A4009D6B83 /* _PairSourceCurrency.m */,
 				EA225C65178E9C90009D6B83 /* _Payment.h */,
 				EA225C66178E9C90009D6B83 /* _Payment.m */,
 				EA225C7D178EA3C2009D6B83 /* _Recipient.h */,
@@ -1823,6 +1853,12 @@
 				EA225C9D178EB50B009D6B83 /* _TypeFieldValue.m in Sources */,
 				EA225CA0178EB511009D6B83 /* TypeFieldValue.m in Sources */,
 				EA225CA3178EB591009D6B83 /* NSDate+ServerTime.m in Sources */,
+				EA225CA6178EC32D009D6B83 /* ObjectModel+CurrencyPairs.m in Sources */,
+				EA225CA9178EC3A4009D6B83 /* _PairSourceCurrency.m in Sources */,
+				EA225CAC178EC3B2009D6B83 /* PairSourceCurrency.m in Sources */,
+				EA225CAF178ECD68009D6B83 /* RecipientsOperation.m in Sources */,
+				EA225CB2178ED8C1009D6B83 /* _AllowedTypeFieldValue.m in Sources */,
+				EA225CB5178ED8C7009D6B83 /* AllowedTypeFieldValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 #import "TransferwiseOperation+Private.h"
 #import "Constants.h"
 #import "PlainRecipientType.h"
+#import "ObjectModel+RecipientTypes.h"
 
 NSString *const kRecipientTypesPath = @"/recipient/listTypes";
 
@@ -20,20 +21,23 @@ NSString *const kRecipientTypesPath = @"/recipient/listTypes";
 
     __block __weak RecipientTypesOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
-        weakSelf.resultHandler(nil, error);
+        weakSelf.resultHandler(error);
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        NSArray *recipients = response[@"recipients"];
-        MCLog(@"Pulled %d receipient types", [recipients count]);
+        [weakSelf.workModel.managedObjectContext performBlock:^{
+            NSArray *recipients = response[@"recipients"];
+            MCLog(@"Pulled %d receipient types", [recipients count]);
 
-        NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:[recipients count]];
-        for (NSDictionary *data in recipients) {
-            PlainRecipientType *type = [PlainRecipientType typeWithData:data];
-            [result addObject:type];
-        }
+            for (NSDictionary *data in recipients) {
+                MCLog(@"data:%@", data);
+                [weakSelf.workModel createOrUpdateRecipientTypeWithData:data];
+            }
 
-        weakSelf.resultHandler([NSArray arrayWithArray:result], nil);
+            [weakSelf.workModel saveContext:^{
+                weakSelf.resultHandler(nil);
+            }];
+        }];
     }];
 
     [self getDataFromPath:path];

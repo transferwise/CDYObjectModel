@@ -30,12 +30,17 @@
 #import "DropdownCell.h"
 #import "ButtonCell.h"
 #import "AddressBookUI/ABPeoplePickerNavigationController.h"
+#import "ObjectModel.h"
 #import "PhoneBookProfileSelector.h"
 #import "PhoneBookProfile.h"
 #import "Credentials.h"
 #import "PlainRecipientProfileInput.h"
 #import "UITableView+FooterPositioning.h"
 #import "TransferTypeSelectionCell.h"
+#import "ObjectModel+Recipients.h"
+#import "Recipient.h"
+#import "ObjectModel+RecipientTypes.h"
+#import "RecipientType.h"
 
 static NSUInteger const kImportSection = 0;
 static NSUInteger const kRecipientSection = 1;
@@ -175,7 +180,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     UserRecipientsOperation *recipientsOperation = nil;
     if (self.preloadRecipientsWithCurrency && [Credentials userLoggedIn]) {
         recipientsOperation = [UserRecipientsOperation recipientsOperationWithCurrency:self.preloadRecipientsWithCurrency];
-        [recipientsOperation setResponseHandler:^(NSArray *recipients, NSError *error) {
+        [recipientsOperation setResponseHandler:^(NSError *error) {
             if (error) {
                 [hud hide];
                 TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipients.preload.error.title", nil) error:error];
@@ -183,6 +188,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
                 return;
             }
 
+            NSArray *recipientObjects = [self.objectModel recipientsWithCurrency:self.preloadRecipientsWithCurrency.code];
+            NSArray *recipients = [Recipient createPlainRecipients:recipientObjects];
             MCLog(@"Loaded %d recipients for %@", [recipients count], self.preloadRecipientsWithCurrency.code);
             [self setRecipientsForCurrency:recipients];
             dataLoadCompletionBlock();
@@ -190,7 +197,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
 
     RecipientTypesOperation *typesOperation = [RecipientTypesOperation operation];
-    [typesOperation setResultHandler:^(NSArray *recipients, NSError *typesError) {
+    [typesOperation setObjectModel:self.objectModel];
+    [typesOperation setResultHandler:^(NSError *typesError) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (typesError) {
                 [hud hide];
@@ -198,6 +206,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
                 [alertView show];
                 return;
             }
+
+            NSArray *types = [self.objectModel listAllRecipientTypes];
+            NSArray *recipients = [RecipientType createPlainTypes:types];
 
             [self setRecipientTypes:recipients];
 
@@ -212,6 +223,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
     [self setExecutedOperation:currenciesOperation];
+    [currenciesOperation setObjectModel:self.objectModel];
     [currenciesOperation setResultHandler:^(NSArray *currencies, NSError *error) {
         if (error) {
             [hud hide];

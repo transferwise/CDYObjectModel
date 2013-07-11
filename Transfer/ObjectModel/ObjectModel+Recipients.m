@@ -17,6 +17,12 @@
 
 @implementation ObjectModel (Recipients)
 
+- (NSFetchedResultsController *)fetchedControllerForAllUserRecipients {
+    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+    NSPredicate *notSettlementPredicate = [NSPredicate predicateWithFormat:@"settlementRecipient = NO"];
+    return [self fetchedControllerForEntity:[Recipient entityName] predicate:notSettlementPredicate sortDescriptors:@[nameDescriptor]];
+}
+
 - (Recipient *)recipientWithRemoteId:(NSNumber *)recipientId {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"remoteId = %@", recipientId];
     return [self fetchEntityNamed:[Recipient entityName] withPredicate:predicate];
@@ -67,6 +73,14 @@
     Recipient *recipient = [self createOrUpdateRecipientWithData:data];
     [recipient setSettlementRecipientValue:YES];
     return recipient;
+}
+
+- (NSArray *)recipientsWithCurrency:(NSString *)currencyCode {
+    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+    NSPredicate *notSettlementPredicate = [NSPredicate predicateWithFormat:@"settlementRecipient = NO"];
+    NSPredicate *currencyPredicate = [NSPredicate predicateWithFormat:@"currency.code = %@", currencyCode];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notSettlementPredicate, currencyPredicate]];
+    return [self fetchEntitiesNamed:[Recipient entityName] usingPredicate:predicate withSortDescriptors:@[nameDescriptor]];
 }
 
 @end

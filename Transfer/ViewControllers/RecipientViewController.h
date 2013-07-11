@@ -14,6 +14,7 @@
 @class PlainRecipient;
 @class PlainRecipientType;
 @protocol RecipientProfileValidation;
+@class ObjectModel;
 
 @interface RecipientViewController : DataEntryViewController
 
@@ -24,5 +25,6 @@
 @property (nonatomic, strong, readonly) PlainRecipientType *selectedRecipientType;
 @property (nonatomic, strong, readonly) NSArray *recipientTypes;
 @property (nonatomic, strong) id<RecipientProfileValidation> recipientValidation;
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 @end

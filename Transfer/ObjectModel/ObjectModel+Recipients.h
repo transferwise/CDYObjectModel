@@ -12,7 +12,10 @@
 
 @interface ObjectModel (Recipients)
 
+- (NSFetchedResultsController *)fetchedControllerForAllUserRecipients;
 - (Recipient *)createOrUpdateRecipientWithData:(NSDictionary *)data;
 - (Recipient *)createOrUpdateSettlementRecipientWithData:(NSDictionary *)data;
+//TODO jaanus: remove
+- (NSArray *)recipientsWithCurrency:(NSString *)currencyCode;
 
 @end

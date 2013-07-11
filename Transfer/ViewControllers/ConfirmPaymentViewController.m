@@ -22,6 +22,9 @@
 #import "RecipientTypesOperation.h"
 #import "PlainPaymentInput.h"
 #import "PaymentFlow.h"
+#import "RecipientType.h"
+#import "ObjectModel+RecipientTypes.h"
+#import "ObjectModel.h"
 
 static NSUInteger const kSenderSection = 0;
 static NSUInteger const kReceiverSection = 1;
@@ -173,7 +176,7 @@ static NSUInteger const kReceiverSection = 1;
         RecipientTypesOperation *operation = [RecipientTypesOperation operation];
         [self setExecutedOperation:operation];
 
-        [operation setResultHandler:^(NSArray *recipients, NSError *error) {
+        [operation setResultHandler:^(NSError *error) {
             [hud hide];
 
             if (error) {
@@ -181,6 +184,9 @@ static NSUInteger const kReceiverSection = 1;
                 [alertView show];
                 return;
             }
+
+            NSArray *types = [self.objectModel listAllRecipientTypes];
+            NSArray *recipients = [RecipientType createPlainTypes:types];
 
             NSArray *filtered = [recipients filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
                 PlainRecipientType *type = evaluatedObject;

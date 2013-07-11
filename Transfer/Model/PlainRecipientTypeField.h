@@ -10,9 +10,9 @@
 
 @interface PlainRecipientTypeField : NSObject
 
-@property (nonatomic, copy, readonly) NSString *title;
-@property (nonatomic, copy, readonly) NSString *name;
-@property (nonatomic, strong, readonly) NSArray *possibleValues;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, strong) NSArray *possibleValues;
 
 + (PlainRecipientTypeField *)fieldWithData:(NSDictionary *)data;
 

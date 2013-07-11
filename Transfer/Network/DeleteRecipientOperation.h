@@ -11,9 +11,7 @@
 
 @class PlainRecipient;
 
-@interface DeleteRecipientOperation : TransferwiseOperation
-
-@property (nonatomic, copy) ListRecipientsBlock completionHandler;
+@interface DeleteRecipientOperation : RecipientsOperation
 
 + (DeleteRecipientOperation *)operationWithRecipient:(PlainRecipient *)recipient;
 

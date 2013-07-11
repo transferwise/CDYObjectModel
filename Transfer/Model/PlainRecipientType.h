@@ -10,8 +10,8 @@
 
 @interface PlainRecipientType : NSObject
 
-@property (nonatomic, copy, readonly) NSString *type;
-@property (nonatomic, strong, readonly) NSArray *fields;
+@property (nonatomic, copy) NSString *type;
+@property (nonatomic, strong) NSArray *fields;
 
 + (PlainRecipientType *)typeWithData:(NSDictionary *)data;
 

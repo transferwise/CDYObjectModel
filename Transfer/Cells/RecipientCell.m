@@ -9,6 +9,7 @@
 #import "RecipientCell.h"
 #import "PlainRecipient.h"
 #import "UIColor+Theme.h"
+#import "Recipient.h"
 
 @interface RecipientCell ()
 
@@ -35,7 +36,7 @@
     [self.bankLabel setTextColor:[UIColor mainTextColor]];
 }
 
-- (void)configureWithRecipient:(PlainRecipient *)recipient {
+- (void)configureWithRecipient:(Recipient *)recipient {
     [self.nameLabel setText:[recipient name]];
     [self.accountLabel setText:[recipient detailsRowOne]];
     [self.bankLabel setText:[recipient detailsRowTwo]];

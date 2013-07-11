@@ -18,6 +18,7 @@
 @class PaymentFlow;
 @class PlainRecipientProfileInput;
 @class PlainPersonalProfileInput;
+@class ObjectModel;
 
 @interface ConfirmPaymentViewController : DataEntryViewController
 
@@ -30,5 +31,6 @@
 @property (nonatomic, copy) NSString *senderName;
 @property (nonatomic, copy) NSString *senderEmail;
 @property (nonatomic, assign) BOOL senderIsBusiness;
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 @end

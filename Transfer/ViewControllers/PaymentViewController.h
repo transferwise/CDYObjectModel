@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @class PlainRecipient;
+@class ObjectModel;
 
 @interface PaymentViewController : UITableViewController
 
 @property (nonatomic, strong) PlainRecipient *recipient;
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 @end

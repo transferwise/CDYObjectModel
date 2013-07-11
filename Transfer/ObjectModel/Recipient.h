@@ -1,5 +1,12 @@
 #import "_Recipient.h"
 
-@interface Recipient : _Recipient {}
-// Custom logic goes here.
+@class PlainRecipient;
+
+@interface Recipient : _Recipient
+
+- (NSString *)detailsRowOne;
+- (NSString *)detailsRowTwo;
++ (NSArray *)createPlainRecipients:(NSArray *)recipientObjects;
+- (PlainRecipient *)plainRecipient;
+
 @end

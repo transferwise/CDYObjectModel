@@ -12,9 +12,6 @@
 
 @interface PlainRecipientType ()
 
-@property (nonatomic, copy) NSString *type;
-@property (nonatomic, strong) NSArray *fields;
-
 @end
 
 @implementation PlainRecipientType
