@@ -1,0 +1,28 @@
+{
+    "sourceCurrencies": [
+        {
+            "currencyCode": "GBP",
+            "maxInvoiceAmount": 1000000,
+            "totalTargetCurrencies": 9,
+            "targetCurrencies": [
+                {
+                    "currencyCode": "EUR",
+                    "minInvoiceAmount": 1,
+                    "fixedTargetPaymentAllowed": true
+                }
+            ]
+        },
+        {
+            "currencyCode": "EUR",
+            "maxInvoiceAmount": 1200000,
+            "totalTargetCurrencies": 9,
+            "targetCurrencies": [
+                {
+                    "currencyCode": "GBP",
+                    "minInvoiceAmount": 1,
+                    "fixedTargetPaymentAllowed": true
+                }
+            ]
+        }
+    ]
+}

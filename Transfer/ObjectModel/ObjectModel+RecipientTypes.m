@@ -19,6 +19,11 @@
     return [self fetchEntityNamed:[RecipientType entityName] withPredicate:predicate];
 }
 
+- (NSArray *)recipientTypesWithCodes:(NSArray *)codes {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type IN %@", codes];
+    return [self fetchEntitiesNamed:[RecipientType entityName] withPredicate:predicate];
+}
+
 - (BOOL)haveRecipientTypeWithCode:(NSString *)code {
     return [self recipientTypeWithCode:code] != nil;
 }

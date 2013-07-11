@@ -9,6 +9,8 @@ const struct RecipientTypeAttributes RecipientTypeAttributes = {
 };
 
 const struct RecipientTypeRelationships RecipientTypeRelationships = {
+	.currencies = @"currencies",
+	.defaultForCurrencies = @"defaultForCurrencies",
 	.fields = @"fields",
 	.recipients = @"recipients",
 };
@@ -62,6 +64,32 @@ const struct RecipientTypeFetchedProperties RecipientTypeFetchedProperties = {
 
 
 
+
+@dynamic currencies;
+
+	
+- (NSMutableSet*)currenciesSet {
+	[self willAccessValueForKey:@"currencies"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"currencies"];
+  
+	[self didAccessValueForKey:@"currencies"];
+	return result;
+}
+	
+
+@dynamic defaultForCurrencies;
+
+	
+- (NSMutableSet*)defaultForCurrenciesSet {
+	[self willAccessValueForKey:@"defaultForCurrencies"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"defaultForCurrencies"];
+  
+	[self didAccessValueForKey:@"defaultForCurrencies"];
+	return result;
+}
+	
 
 @dynamic fields;
 

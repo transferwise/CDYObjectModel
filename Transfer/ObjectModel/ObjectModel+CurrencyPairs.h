@@ -13,5 +13,6 @@
 @interface ObjectModel (CurrencyPairs)
 
 - (BOOL)canMakePaymentToCurrency:(Currency *)currency;
+- (void)createOrUpdatePairWithData:(NSDictionary *)data index:(NSUInteger)index;
 
 @end

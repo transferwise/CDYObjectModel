@@ -6,12 +6,18 @@
 const struct CurrencyAttributes CurrencyAttributes = {
 	.code = @"code",
 	.index = @"index",
+	.name = @"name",
+	.symbol = @"symbol",
 };
 
 const struct CurrencyRelationships CurrencyRelationships = {
 	.currencyForRecipients = @"currencyForRecipients",
+	.defaultRecipientType = @"defaultRecipientType",
+	.recipientTypes = @"recipientTypes",
 	.sourceForPayments = @"sourceForPayments",
+	.sources = @"sources",
 	.targetForPayments = @"targetForPayments",
+	.targets = @"targets",
 };
 
 const struct CurrencyFetchedProperties CurrencyFetchedProperties = {
@@ -88,6 +94,20 @@ const struct CurrencyFetchedProperties CurrencyFetchedProperties = {
 
 
 
+@dynamic name;
+
+
+
+
+
+
+@dynamic symbol;
+
+
+
+
+
+
 @dynamic currencyForRecipients;
 
 	
@@ -97,6 +117,23 @@ const struct CurrencyFetchedProperties CurrencyFetchedProperties = {
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"currencyForRecipients"];
   
 	[self didAccessValueForKey:@"currencyForRecipients"];
+	return result;
+}
+	
+
+@dynamic defaultRecipientType;
+
+	
+
+@dynamic recipientTypes;
+
+	
+- (NSMutableSet*)recipientTypesSet {
+	[self willAccessValueForKey:@"recipientTypes"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"recipientTypes"];
+  
+	[self didAccessValueForKey:@"recipientTypes"];
 	return result;
 }
 	
@@ -114,6 +151,19 @@ const struct CurrencyFetchedProperties CurrencyFetchedProperties = {
 }
 	
 
+@dynamic sources;
+
+	
+- (NSMutableSet*)sourcesSet {
+	[self willAccessValueForKey:@"sources"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"sources"];
+  
+	[self didAccessValueForKey:@"sources"];
+	return result;
+}
+	
+
 @dynamic targetForPayments;
 
 	
@@ -123,6 +173,19 @@ const struct CurrencyFetchedProperties CurrencyFetchedProperties = {
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"targetForPayments"];
   
 	[self didAccessValueForKey:@"targetForPayments"];
+	return result;
+}
+	
+
+@dynamic targets;
+
+	
+- (NSMutableSet*)targetsSet {
+	[self willAccessValueForKey:@"targets"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"targets"];
+  
+	[self didAccessValueForKey:@"targets"];
 	return result;
 }
 	

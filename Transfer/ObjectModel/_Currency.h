@@ -7,20 +7,32 @@
 extern const struct CurrencyAttributes {
 	__unsafe_unretained NSString *code;
 	__unsafe_unretained NSString *index;
+	__unsafe_unretained NSString *name;
+	__unsafe_unretained NSString *symbol;
 } CurrencyAttributes;
 
 extern const struct CurrencyRelationships {
 	__unsafe_unretained NSString *currencyForRecipients;
+	__unsafe_unretained NSString *defaultRecipientType;
+	__unsafe_unretained NSString *recipientTypes;
 	__unsafe_unretained NSString *sourceForPayments;
+	__unsafe_unretained NSString *sources;
 	__unsafe_unretained NSString *targetForPayments;
+	__unsafe_unretained NSString *targets;
 } CurrencyRelationships;
 
 extern const struct CurrencyFetchedProperties {
 } CurrencyFetchedProperties;
 
 @class Recipient;
+@class RecipientType;
+@class RecipientType;
 @class Payment;
+@class PairSourceCurrency;
 @class Payment;
+@class PairTargetCurrency;
+
+
 
 
 
@@ -62,9 +74,43 @@ extern const struct CurrencyFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* name;
+
+
+
+//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* symbol;
+
+
+
+//- (BOOL)validateSymbol:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSSet *currencyForRecipients;
 
 - (NSMutableSet*)currencyForRecipientsSet;
+
+
+
+
+@property (nonatomic, strong) RecipientType *defaultRecipientType;
+
+//- (BOOL)validateDefaultRecipientType:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, strong) NSSet *recipientTypes;
+
+- (NSMutableSet*)recipientTypesSet;
 
 
 
@@ -76,9 +122,23 @@ extern const struct CurrencyFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSSet *sources;
+
+- (NSMutableSet*)sourcesSet;
+
+
+
+
 @property (nonatomic, strong) NSSet *targetForPayments;
 
 - (NSMutableSet*)targetForPaymentsSet;
+
+
+
+
+@property (nonatomic, strong) NSSet *targets;
+
+- (NSMutableSet*)targetsSet;
 
 
 
@@ -93,15 +153,30 @@ extern const struct CurrencyFetchedProperties {
 - (void)addCurrencyForRecipientsObject:(Recipient*)value_;
 - (void)removeCurrencyForRecipientsObject:(Recipient*)value_;
 
+- (void)addRecipientTypes:(NSSet*)value_;
+- (void)removeRecipientTypes:(NSSet*)value_;
+- (void)addRecipientTypesObject:(RecipientType*)value_;
+- (void)removeRecipientTypesObject:(RecipientType*)value_;
+
 - (void)addSourceForPayments:(NSSet*)value_;
 - (void)removeSourceForPayments:(NSSet*)value_;
 - (void)addSourceForPaymentsObject:(Payment*)value_;
 - (void)removeSourceForPaymentsObject:(Payment*)value_;
 
+- (void)addSources:(NSSet*)value_;
+- (void)removeSources:(NSSet*)value_;
+- (void)addSourcesObject:(PairSourceCurrency*)value_;
+- (void)removeSourcesObject:(PairSourceCurrency*)value_;
+
 - (void)addTargetForPayments:(NSSet*)value_;
 - (void)removeTargetForPayments:(NSSet*)value_;
 - (void)addTargetForPaymentsObject:(Payment*)value_;
 - (void)removeTargetForPaymentsObject:(Payment*)value_;
+
+- (void)addTargets:(NSSet*)value_;
+- (void)removeTargets:(NSSet*)value_;
+- (void)addTargetsObject:(PairTargetCurrency*)value_;
+- (void)removeTargetsObject:(PairTargetCurrency*)value_;
 
 @end
 
@@ -123,9 +198,31 @@ extern const struct CurrencyFetchedProperties {
 
 
 
+- (NSString*)primitiveName;
+- (void)setPrimitiveName:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveSymbol;
+- (void)setPrimitiveSymbol:(NSString*)value;
+
+
+
+
 
 - (NSMutableSet*)primitiveCurrencyForRecipients;
 - (void)setPrimitiveCurrencyForRecipients:(NSMutableSet*)value;
+
+
+
+- (RecipientType*)primitiveDefaultRecipientType;
+- (void)setPrimitiveDefaultRecipientType:(RecipientType*)value;
+
+
+
+- (NSMutableSet*)primitiveRecipientTypes;
+- (void)setPrimitiveRecipientTypes:(NSMutableSet*)value;
 
 
 
@@ -134,8 +231,18 @@ extern const struct CurrencyFetchedProperties {
 
 
 
+- (NSMutableSet*)primitiveSources;
+- (void)setPrimitiveSources:(NSMutableSet*)value;
+
+
+
 - (NSMutableSet*)primitiveTargetForPayments;
 - (void)setPrimitiveTargetForPayments:(NSMutableSet*)value;
+
+
+
+- (NSMutableSet*)primitiveTargets;
+- (void)setPrimitiveTargets:(NSMutableSet*)value;
 
 
 @end

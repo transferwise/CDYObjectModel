@@ -8,6 +8,7 @@
 
 #import "ObjectModel+Currencies.h"
 #import "Currency.h"
+#import "ObjectModel+RecipientTypes.h"
 
 @implementation ObjectModel (Currencies)
 
@@ -23,6 +24,17 @@
     }
 
     return result;
+}
+
+- (void)createOrUpdateCurrencyWithData:(NSDictionary *)data index:(NSUInteger)index {
+    NSString *code = data[@"code"];
+    Currency *currency = [self currencyWithCode:code];
+    [currency setSymbol:data[@"symbol"]];
+    [currency setName:data[@"name"]];
+    [currency setDefaultRecipientType:[self recipientTypeWithCode:data[@"defaultRecipientType"]]];
+    NSArray *allTypes = data[@"recipientTypes"];
+    [currency setRecipientTypes:[NSSet setWithArray:[self recipientTypesWithCodes:allTypes]]];
+    [currency setIndexValue:(int16_t) index];
 }
 
 @end

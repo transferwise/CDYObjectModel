@@ -1,0 +1,62 @@
+{"recipients": [
+    {
+        "type": "IBAN",
+        "title": "IBAN",
+        "fields": [
+            {
+                "name": "IBAN",
+                "title": "IBAN",
+                "required": true,
+                "minLength": 2,
+                "maxLength": null,
+                "validationRegexp": null,
+                "example": null,
+                "presentationPattern": null,
+                "possibleValues": null,
+                "valuesAllowed": null
+            },
+            {
+                "name": "BIC",
+                "title": "BIC",
+                "required": false,
+                "minLength": null,
+                "maxLength": null,
+                "validationRegexp": "(?i)[A-Z]{6}[A-Z\\d]{2}([A-Z\\d]{3})?",
+                "example": null,
+                "presentationPattern": null,
+                "possibleValues": null,
+                "valuesAllowed": null
+            }
+        ]
+    },
+    {
+        "type": "SORT_CODE",
+        "title": "UK Sort",
+        "fields": [
+            {
+                "name": "sortCode",
+                "title": "UK Sort code",
+                "required": true,
+                "minLength": 8,
+                "maxLength": 8,
+                "validationRegexp": null,
+                "example": "40-30-20",
+                "presentationPattern": "**-**-**",
+                "possibleValues": null,
+                "valuesAllowed": null
+            },
+            {
+                "name": "accountNumber",
+                "title": "Account number",
+                "required": true,
+                "minLength": 8,
+                "maxLength": 8,
+                "validationRegexp": "[0-9]{8}",
+                "example": "12345678",
+                "presentationPattern": null,
+                "possibleValues": null,
+                "valuesAllowed": null
+            }
+        ]
+    }
+]}

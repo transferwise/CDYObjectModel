@@ -11,4 +11,6 @@
 
 @interface ObjectModel : JCSObjectModel
 
+- (void)loadBaseData;
+
 @end

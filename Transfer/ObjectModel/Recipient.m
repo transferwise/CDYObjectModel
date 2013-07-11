@@ -50,7 +50,7 @@
 }
 
 - (NSString *)presentationStringFromValue:(TypeFieldValue *)value {
-    if (!value) {
+    if (!value || !value.value) {
         return @"";
     }
 

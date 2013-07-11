@@ -13,5 +13,6 @@
 @interface ObjectModel (Currencies)
 
 - (Currency *)currencyWithCode:(NSString *)code;
+- (void)createOrUpdateCurrencyWithData:(NSDictionary *)data index:(NSUInteger)index;
 
 @end

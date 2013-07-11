@@ -38,6 +38,7 @@
 
     ObjectModel *model = [[ObjectModel alloc] init];
     [self setObjectModel:model];
+    [model loadBaseData];
     
     UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.window = window;

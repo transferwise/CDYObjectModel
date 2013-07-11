@@ -10,6 +10,8 @@ extern const struct RecipientTypeAttributes {
 } RecipientTypeAttributes;
 
 extern const struct RecipientTypeRelationships {
+	__unsafe_unretained NSString *currencies;
+	__unsafe_unretained NSString *defaultForCurrencies;
 	__unsafe_unretained NSString *fields;
 	__unsafe_unretained NSString *recipients;
 } RecipientTypeRelationships;
@@ -17,6 +19,8 @@ extern const struct RecipientTypeRelationships {
 extern const struct RecipientTypeFetchedProperties {
 } RecipientTypeFetchedProperties;
 
+@class Currency;
+@class Currency;
 @class RecipientTypeField;
 @class Recipient;
 
@@ -56,6 +60,20 @@ extern const struct RecipientTypeFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSSet *currencies;
+
+- (NSMutableSet*)currenciesSet;
+
+
+
+
+@property (nonatomic, strong) NSSet *defaultForCurrencies;
+
+- (NSMutableSet*)defaultForCurrenciesSet;
+
+
+
+
 @property (nonatomic, strong) NSOrderedSet *fields;
 
 - (NSMutableOrderedSet*)fieldsSet;
@@ -74,6 +92,16 @@ extern const struct RecipientTypeFetchedProperties {
 @end
 
 @interface _RecipientType (CoreDataGeneratedAccessors)
+
+- (void)addCurrencies:(NSSet*)value_;
+- (void)removeCurrencies:(NSSet*)value_;
+- (void)addCurrenciesObject:(Currency*)value_;
+- (void)removeCurrenciesObject:(Currency*)value_;
+
+- (void)addDefaultForCurrencies:(NSSet*)value_;
+- (void)removeDefaultForCurrencies:(NSSet*)value_;
+- (void)addDefaultForCurrenciesObject:(Currency*)value_;
+- (void)removeDefaultForCurrenciesObject:(Currency*)value_;
 
 - (void)addFields:(NSOrderedSet*)value_;
 - (void)removeFields:(NSOrderedSet*)value_;
@@ -100,6 +128,16 @@ extern const struct RecipientTypeFetchedProperties {
 - (void)setPrimitiveType:(NSString*)value;
 
 
+
+
+
+- (NSMutableSet*)primitiveCurrencies;
+- (void)setPrimitiveCurrencies:(NSMutableSet*)value;
+
+
+
+- (NSMutableSet*)primitiveDefaultForCurrencies;
+- (void)setPrimitiveDefaultForCurrencies:(NSMutableSet*)value;
 
 
 

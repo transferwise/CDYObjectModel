@@ -8,11 +8,29 @@
     <entity name="Currency" representedClassName="Currency" syncable="YES">
         <attribute name="code" attributeType="String" syncable="YES"/>
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="symbol" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="currencyForRecipients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipient" inverseName="currency" inverseEntity="Recipient" syncable="YES"/>
+        <relationship name="defaultRecipientType" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientType" inverseName="defaultForCurrencies" inverseEntity="RecipientType" syncable="YES"/>
+        <relationship name="recipientTypes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecipientType" inverseName="currencies" inverseEntity="RecipientType" syncable="YES"/>
         <relationship name="sourceForPayments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="sourceCurrency" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="sources" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PairSourceCurrency" inverseName="currency" inverseEntity="PairSourceCurrency" syncable="YES"/>
         <relationship name="targetForPayments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="targetCurrency" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="targets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PairTargetCurrency" inverseName="currency" inverseEntity="PairTargetCurrency" syncable="YES"/>
     </entity>
-    <entity name="PairSourceCurrency" representedClassName="PairSourceCurrency" syncable="YES"/>
+    <entity name="PairSourceCurrency" representedClassName="PairSourceCurrency" syncable="YES">
+        <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="maxInvoiceAmount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="currency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="sources" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="targets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PairTargetCurrency" inverseName="source" inverseEntity="PairTargetCurrency" syncable="YES"/>
+    </entity>
+    <entity name="PairTargetCurrency" representedClassName="PairTargetCurrency" syncable="YES">
+        <attribute name="fixedTargetPaymentAllowed" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="minInvoiceAmount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="currency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="targets" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="source" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PairSourceCurrency" inverseName="targets" inverseEntity="PairSourceCurrency" syncable="YES"/>
+    </entity>
     <entity name="Payment" representedClassName="Payment" syncable="YES">
         <attribute name="cancelledDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="estimatedDelivery" optional="YES" attributeType="Date" syncable="YES"/>
@@ -42,6 +60,8 @@
     <entity name="RecipientType" representedClassName="RecipientType" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="currencies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Currency" inverseName="recipientTypes" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="defaultForCurrencies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Currency" inverseName="defaultRecipientType" inverseEntity="Currency" syncable="YES"/>
         <relationship name="fields" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="RecipientTypeField" inverseName="fieldForType" inverseEntity="RecipientTypeField" syncable="YES"/>
         <relationship name="recipients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipient" inverseName="type" inverseEntity="Recipient" syncable="YES"/>
     </entity>
@@ -65,12 +85,13 @@
     </entity>
     <elements>
         <element name="Payment" positionX="160" positionY="192" width="128" height="240"/>
-        <element name="Currency" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Currency" positionX="160" positionY="192" width="128" height="210"/>
         <element name="Recipient" positionX="160" positionY="192" width="128" height="180"/>
-        <element name="RecipientType" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="RecipientType" positionX="160" positionY="192" width="128" height="135"/>
         <element name="RecipientTypeField" positionX="160" positionY="192" width="128" height="210"/>
         <element name="TypeFieldValue" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="PairSourceCurrency" positionX="160" positionY="192" width="128" height="45"/>
+        <element name="PairSourceCurrency" positionX="160" positionY="192" width="128" height="105"/>
         <element name="AllowedTypeFieldValue" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="PairTargetCurrency" positionX="160" positionY="192" width="128" height="120"/>
     </elements>
 </model>

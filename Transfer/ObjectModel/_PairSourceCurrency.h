@@ -5,13 +5,21 @@
 
 
 extern const struct PairSourceCurrencyAttributes {
+	__unsafe_unretained NSString *index;
+	__unsafe_unretained NSString *maxInvoiceAmount;
 } PairSourceCurrencyAttributes;
 
 extern const struct PairSourceCurrencyRelationships {
+	__unsafe_unretained NSString *currency;
+	__unsafe_unretained NSString *targets;
 } PairSourceCurrencyRelationships;
 
 extern const struct PairSourceCurrencyFetchedProperties {
 } PairSourceCurrencyFetchedProperties;
+
+@class Currency;
+@class PairTargetCurrency;
+
 
 
 
@@ -28,14 +36,89 @@ extern const struct PairSourceCurrencyFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* index;
+
+
+
+@property int16_t indexValue;
+- (int16_t)indexValue;
+- (void)setIndexValue:(int16_t)value_;
+
+//- (BOOL)validateIndex:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* maxInvoiceAmount;
+
+
+
+@property int32_t maxInvoiceAmountValue;
+- (int32_t)maxInvoiceAmountValue;
+- (void)setMaxInvoiceAmountValue:(int32_t)value_;
+
+//- (BOOL)validateMaxInvoiceAmount:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) Currency *currency;
+
+//- (BOOL)validateCurrency:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, strong) NSSet *targets;
+
+- (NSMutableSet*)targetsSet;
+
+
+
+
 
 @end
 
 @interface _PairSourceCurrency (CoreDataGeneratedAccessors)
 
+- (void)addTargets:(NSSet*)value_;
+- (void)removeTargets:(NSSet*)value_;
+- (void)addTargetsObject:(PairTargetCurrency*)value_;
+- (void)removeTargetsObject:(PairTargetCurrency*)value_;
+
 @end
 
 @interface _PairSourceCurrency (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSNumber*)primitiveIndex;
+- (void)setPrimitiveIndex:(NSNumber*)value;
+
+- (int16_t)primitiveIndexValue;
+- (void)setPrimitiveIndexValue:(int16_t)value_;
+
+
+
+
+- (NSNumber*)primitiveMaxInvoiceAmount;
+- (void)setPrimitiveMaxInvoiceAmount:(NSNumber*)value;
+
+- (int32_t)primitiveMaxInvoiceAmountValue;
+- (void)setPrimitiveMaxInvoiceAmountValue:(int32_t)value_;
+
+
+
+
+
+- (Currency*)primitiveCurrency;
+- (void)setPrimitiveCurrency:(Currency*)value;
+
+
+
+- (NSMutableSet*)primitiveTargets;
+- (void)setPrimitiveTargets:(NSMutableSet*)value;
 
 
 @end
