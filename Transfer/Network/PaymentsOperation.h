@@ -8,7 +8,7 @@
 
 #import "TransferwiseOperation.h"
 
-typedef void (^PaymentsResponseBlock)(NSInteger totalCount, NSArray *payments, NSError *error);
+typedef void (^PaymentsResponseBlock)(NSInteger totalCount, NSError *error);
 
 @interface PaymentsOperation : TransferwiseOperation
 

@@ -8,9 +8,14 @@
 
 #import "PaymentsOperation.h"
 #import "TransferwiseOperation+Private.h"
-#import "PlainPayment.h"
+#import "JCSObjectModel.h"
+#import "ObjectModel.h"
+#import "ObjectModel+Payments.h"
+#import "Payment.h"
+#import "Constants.h"
 
 NSString *const kPaymentsListPath = @"/payment/list";
+NSUInteger kPaymentsListLimit = 20;
 
 @interface PaymentsOperation ()
 
@@ -33,22 +38,34 @@ NSString *const kPaymentsListPath = @"/payment/list";
 
     __block __weak PaymentsOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
-        weakSelf.completion(0, nil, error);
+        weakSelf.completion(0, error);
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        NSNumber *totalCount = response[@"total"];
-        NSArray *payments = response[@"payments"];
-        NSMutableArray *result = [NSMutableArray arrayWithCapacity:[payments count]];
-        for (NSDictionary *data in payments) {
-            PlainPayment *payment = [PlainPayment paymentWithData:data];
-            [result addObject:payment];
-        }
+        //TODO jaanus: pull also recipient types here
+        //TODO jaanus: put to sections
+        [weakSelf.workModel.managedObjectContext performBlock:^{
+            NSMutableArray *existingPaymentIds = [NSMutableArray arrayWithArray:[weakSelf.workModel listRemoteIdsForExistingPayments]];
 
-        weakSelf.completion([totalCount integerValue], [NSArray arrayWithArray:result], nil);
+            NSNumber *totalCount = response[@"total"];
+            NSArray *payments = response[@"payments"];
+            for (NSDictionary *data in payments) {
+                Payment *payment = [weakSelf.workModel createOrUpdatePaymentWithData:data];
+                [existingPaymentIds removeObject:payment.remoteId];
+            }
+
+            if (weakSelf.offset == 0) {
+                MCLog(@"Have %d remote id's after zero pull", [existingPaymentIds count]);
+                [weakSelf.workModel removePaymentsWithIds:existingPaymentIds];
+            }
+
+            [weakSelf.workModel saveContext:^{
+                weakSelf.completion([totalCount integerValue], nil);
+            }];
+        }];
     }];
 
-    [self getDataFromPath:path params:@{@"offset" : @(self.offset)}];
+    [self getDataFromPath:path params:@{@"offset" : @(self.offset), @"limit" : @(kPaymentsListLimit)}];
 }
 
 + (PaymentsOperation *)operationWithOffset:(NSInteger)offset {

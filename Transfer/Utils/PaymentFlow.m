@@ -314,8 +314,8 @@
 
 - (void)registerUser {
     MCLog(@"registerUser");
-    PSPDFAssert(self.personalProfile || (self.personalProfile && self.businessProfile));
-    PSPDFAssert(self.personalProfile.email);
+    MCAssert(self.personalProfile || (self.personalProfile && self.businessProfile));
+    MCAssert(self.personalProfile.email);
 
     NSString *email = self.personalProfile.email;
 
@@ -481,7 +481,7 @@
 
     [self.paymentInput setProfile:self.businessProfile ? @"business" : @"personal"];
 
-    PSPDFAssert(self.paymentInput.recipientId);
+    MCAssert(self.paymentInput.recipientId);
 
     CreatePaymentOperation *operation = [CreatePaymentOperation commitOperationWithPayment:self.paymentInput];
     [self setExecutedOperation:operation];

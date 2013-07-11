@@ -17,11 +17,13 @@
 #import "TransferwiseClient.h"
 #import "NSString+Validation.h"
 #import "NetworkErrorCodes.h"
+#import "ObjectModel.h"
 
 @interface TransferwiseOperation ()
 
 @property (nonatomic, copy) TRWOperationSuccessBlock operationSuccessHandler;
 @property (nonatomic, copy) TRWOperationErrorBlock operationErrorHandler;
+@property (nonatomic, strong) ObjectModel *workModel;
 
 @end
 
@@ -185,6 +187,13 @@
 
 - (NSString *)addTokenToPath:(NSString *)path {
     return [[TransferwiseClient sharedClient] addTokenToPath:path];
+}
+
+- (ObjectModel *)workModel {
+    if (!_workModel) {
+        _workModel = [self.objectModel spawnBackgroundInstance];
+    }
+    return _workModel;
 }
 
 @end

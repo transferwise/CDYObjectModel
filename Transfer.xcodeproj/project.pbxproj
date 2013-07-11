@@ -62,6 +62,26 @@
 		EA222E41173A8D0900C5D613 /* ProfileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA222E3F173A8D0900C5D613 /* ProfileIcon.png */; };
 		EA222E42173A8D0900C5D613 /* ProfileIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA222E40173A8D0900C5D613 /* ProfileIcon@2x.png */; };
 		EA225C47178E96FE009D6B83 /* JCSObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C46178E96FE009D6B83 /* JCSObjectModel.m */; };
+		EA225C67178E9C90009D6B83 /* _Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C66178E9C90009D6B83 /* _Payment.m */; };
+		EA225C6B178E9C93009D6B83 /* Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C6A178E9C93009D6B83 /* Payment.m */; };
+		EA225C71178E9F00009D6B83 /* ObjectModel+Payments.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C70178E9F00009D6B83 /* ObjectModel+Payments.m */; };
+		EA225C75178EA124009D6B83 /* TabBarActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C73178EA124009D6B83 /* TabBarActivityIndicatorView.m */; };
+		EA225C76178EA124009D6B83 /* TabBarActivityIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA225C74178EA124009D6B83 /* TabBarActivityIndicatorView.xib */; };
+		EA225C79178EA341009D6B83 /* _Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C78178EA341009D6B83 /* _Currency.m */; };
+		EA225C7C178EA346009D6B83 /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C7B178EA346009D6B83 /* Currency.m */; };
+		EA225C7F178EA3C2009D6B83 /* _Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C7E178EA3C2009D6B83 /* _Recipient.m */; };
+		EA225C82178EA3C8009D6B83 /* Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C81178EA3C8009D6B83 /* Recipient.m */; };
+		EA225C85178EB21C009D6B83 /* NSDictionary+Cleanup.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C84178EB21C009D6B83 /* NSDictionary+Cleanup.m */; };
+		EA225C88178EB241009D6B83 /* ObjectModel+Currencies.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C87178EB241009D6B83 /* ObjectModel+Currencies.m */; };
+		EA225C8B178EB297009D6B83 /* ObjectModel+Recipients.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C8A178EB297009D6B83 /* ObjectModel+Recipients.m */; };
+		EA225C8E178EB343009D6B83 /* _RecipientType.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C8D178EB343009D6B83 /* _RecipientType.m */; };
+		EA225C91178EB350009D6B83 /* RecipientType.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C90178EB350009D6B83 /* RecipientType.m */; };
+		EA225C94178EB36B009D6B83 /* ObjectModel+RecipientTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C93178EB36B009D6B83 /* ObjectModel+RecipientTypes.m */; };
+		EA225C97178EB3D3009D6B83 /* _RecipientTypeField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C96178EB3D3009D6B83 /* _RecipientTypeField.m */; };
+		EA225C9A178EB3DA009D6B83 /* RecipientTypeField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C99178EB3DA009D6B83 /* RecipientTypeField.m */; };
+		EA225C9D178EB50B009D6B83 /* _TypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C9C178EB50B009D6B83 /* _TypeFieldValue.m */; };
+		EA225CA0178EB511009D6B83 /* TypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C9F178EB511009D6B83 /* TypeFieldValue.m */; };
+		EA225CA3178EB591009D6B83 /* NSDate+ServerTime.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CA2178EB591009D6B83 /* NSDate+ServerTime.m */; };
 		EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */; };
 		EA35C73A17324AF2005602F7 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73417324AF2005602F7 /* Icon-Small.png */; };
 		EA35C73B17324AF2005602F7 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73517324AF2005602F7 /* Icon-Small@2x.png */; };
@@ -351,6 +371,45 @@
 		EA222E40173A8D0900C5D613 /* ProfileIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProfileIcon@2x.png"; sourceTree = "<group>"; };
 		EA225C45178E96FE009D6B83 /* JCSObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCSObjectModel.h; sourceTree = "<group>"; };
 		EA225C46178E96FE009D6B83 /* JCSObjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCSObjectModel.m; sourceTree = "<group>"; };
+		EA225C65178E9C90009D6B83 /* _Payment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Payment.h; sourceTree = "<group>"; };
+		EA225C66178E9C90009D6B83 /* _Payment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Payment.m; sourceTree = "<group>"; };
+		EA225C69178E9C93009D6B83 /* Payment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Payment.h; sourceTree = "<group>"; };
+		EA225C6A178E9C93009D6B83 /* Payment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Payment.m; sourceTree = "<group>"; };
+		EA225C6F178E9F00009D6B83 /* ObjectModel+Payments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+Payments.h"; sourceTree = "<group>"; };
+		EA225C70178E9F00009D6B83 /* ObjectModel+Payments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+Payments.m"; sourceTree = "<group>"; };
+		EA225C72178EA124009D6B83 /* TabBarActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarActivityIndicatorView.h; sourceTree = "<group>"; };
+		EA225C73178EA124009D6B83 /* TabBarActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarActivityIndicatorView.m; sourceTree = "<group>"; };
+		EA225C74178EA124009D6B83 /* TabBarActivityIndicatorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabBarActivityIndicatorView.xib; sourceTree = "<group>"; };
+		EA225C77178EA341009D6B83 /* _Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Currency.h; sourceTree = "<group>"; };
+		EA225C78178EA341009D6B83 /* _Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Currency.m; sourceTree = "<group>"; };
+		EA225C7A178EA346009D6B83 /* Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Currency.h; sourceTree = "<group>"; };
+		EA225C7B178EA346009D6B83 /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
+		EA225C7D178EA3C2009D6B83 /* _Recipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Recipient.h; sourceTree = "<group>"; };
+		EA225C7E178EA3C2009D6B83 /* _Recipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Recipient.m; sourceTree = "<group>"; };
+		EA225C80178EA3C8009D6B83 /* Recipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recipient.h; sourceTree = "<group>"; };
+		EA225C81178EA3C8009D6B83 /* Recipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recipient.m; sourceTree = "<group>"; };
+		EA225C83178EB21C009D6B83 /* NSDictionary+Cleanup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Cleanup.h"; sourceTree = "<group>"; };
+		EA225C84178EB21C009D6B83 /* NSDictionary+Cleanup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Cleanup.m"; sourceTree = "<group>"; };
+		EA225C86178EB241009D6B83 /* ObjectModel+Currencies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+Currencies.h"; sourceTree = "<group>"; };
+		EA225C87178EB241009D6B83 /* ObjectModel+Currencies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+Currencies.m"; sourceTree = "<group>"; };
+		EA225C89178EB297009D6B83 /* ObjectModel+Recipients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+Recipients.h"; sourceTree = "<group>"; };
+		EA225C8A178EB297009D6B83 /* ObjectModel+Recipients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+Recipients.m"; sourceTree = "<group>"; };
+		EA225C8C178EB343009D6B83 /* _RecipientType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _RecipientType.h; sourceTree = "<group>"; };
+		EA225C8D178EB343009D6B83 /* _RecipientType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _RecipientType.m; sourceTree = "<group>"; };
+		EA225C8F178EB350009D6B83 /* RecipientType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientType.h; sourceTree = "<group>"; };
+		EA225C90178EB350009D6B83 /* RecipientType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientType.m; sourceTree = "<group>"; };
+		EA225C92178EB36B009D6B83 /* ObjectModel+RecipientTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+RecipientTypes.h"; sourceTree = "<group>"; };
+		EA225C93178EB36B009D6B83 /* ObjectModel+RecipientTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+RecipientTypes.m"; sourceTree = "<group>"; };
+		EA225C95178EB3D3009D6B83 /* _RecipientTypeField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _RecipientTypeField.h; sourceTree = "<group>"; };
+		EA225C96178EB3D3009D6B83 /* _RecipientTypeField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _RecipientTypeField.m; sourceTree = "<group>"; };
+		EA225C98178EB3DA009D6B83 /* RecipientTypeField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientTypeField.h; sourceTree = "<group>"; };
+		EA225C99178EB3DA009D6B83 /* RecipientTypeField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientTypeField.m; sourceTree = "<group>"; };
+		EA225C9B178EB50B009D6B83 /* _TypeFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _TypeFieldValue.h; sourceTree = "<group>"; };
+		EA225C9C178EB50B009D6B83 /* _TypeFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _TypeFieldValue.m; sourceTree = "<group>"; };
+		EA225C9E178EB511009D6B83 /* TypeFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeFieldValue.h; sourceTree = "<group>"; };
+		EA225C9F178EB511009D6B83 /* TypeFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeFieldValue.m; sourceTree = "<group>"; };
+		EA225CA1178EB591009D6B83 /* NSDate+ServerTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ServerTime.h"; sourceTree = "<group>"; };
+		EA225CA2178EB591009D6B83 /* NSDate+ServerTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ServerTime.m"; sourceTree = "<group>"; };
 		EA2B23951721323E001AE9DE /* CurrencyPairsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyPairsOperation.h; sourceTree = "<group>"; };
 		EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyPairsOperation.m; sourceTree = "<group>"; };
 		EA35C73417324AF2005602F7 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
@@ -727,6 +786,11 @@
 				EA92D984176AF1F20078D0C4 /* ProfileSelectionView.xib */,
 				EA01331C1765FC7700D63C82 /* RoundedCellBackgroundView.h */,
 				EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */,
+				BB704E7B177300C30042F8A9 /* RoundedCellWhiteBackgroundView.h */,
+				BB704E7C177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m */,
+				EA225C72178EA124009D6B83 /* TabBarActivityIndicatorView.h */,
+				EA225C73178EA124009D6B83 /* TabBarActivityIndicatorView.m */,
+				EA225C74178EA124009D6B83 /* TabBarActivityIndicatorView.xib */,
 				EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */,
 				EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */,
 				EA13E045171BED910019FBF0 /* TableHeaderView.xib */,
@@ -737,8 +801,6 @@
 				BBCC6336172169980094EABB /* WhyView.h */,
 				BBCC6337172169980094EABB /* WhyView.m */,
 				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
-				BB704E7B177300C30042F8A9 /* RoundedCellWhiteBackgroundView.h */,
-				BB704E7C177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -798,6 +860,10 @@
 		EA13E041171BEAF00019FBF0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				EA225CA1178EB591009D6B83 /* NSDate+ServerTime.h */,
+				EA225CA2178EB591009D6B83 /* NSDate+ServerTime.m */,
+				EA225C83178EB21C009D6B83 /* NSDictionary+Cleanup.h */,
+				EA225C84178EB21C009D6B83 /* NSDictionary+Cleanup.m */,
 				EAD7D4C0171D43440099063F /* NSDictionary+SensibleData.h */,
 				EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */,
 				EA88E676172F97C40021492C /* NSError+TRWErrors.h */,
@@ -814,12 +880,12 @@
 				EA13E043171BEB010019FBF0 /* UIColor+Theme.m */,
 				EA1861DE17463F8D00BD01BB /* UINavigationController+StackManipulations.h */,
 				EA1861DF17463F8D00BD01BB /* UINavigationController+StackManipulations.m */,
+				BB9A2E81176B711400C5E058 /* UITableView+FooterPositioning.h */,
+				BB9A2E82176B711400C5E058 /* UITableView+FooterPositioning.m */,
 				EA88E678172F97C40021492C /* UIView+Container.h */,
 				EA88E679172F97C40021492C /* UIView+Container.m */,
 				EA13E047171BEDC40019FBF0 /* UIView+Loading.h */,
 				EA13E048171BEDC40019FBF0 /* UIView+Loading.m */,
-				BB9A2E81176B711400C5E058 /* UITableView+FooterPositioning.h */,
-				BB9A2E82176B711400C5E058 /* UITableView+FooterPositioning.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1207,9 +1273,29 @@
 			isa = PBXGroup;
 			children = (
 				EAD73696171E830600A037B1 /* Generated */,
+				EA225C7A178EA346009D6B83 /* Currency.h */,
+				EA225C7B178EA346009D6B83 /* Currency.m */,
+				EA225C86178EB241009D6B83 /* ObjectModel+Currencies.h */,
+				EA225C87178EB241009D6B83 /* ObjectModel+Currencies.m */,
+				EA225C6F178E9F00009D6B83 /* ObjectModel+Payments.h */,
+				EA225C70178E9F00009D6B83 /* ObjectModel+Payments.m */,
+				EA225C89178EB297009D6B83 /* ObjectModel+Recipients.h */,
+				EA225C8A178EB297009D6B83 /* ObjectModel+Recipients.m */,
+				EA225C92178EB36B009D6B83 /* ObjectModel+RecipientTypes.h */,
+				EA225C93178EB36B009D6B83 /* ObjectModel+RecipientTypes.m */,
 				EAD39670171BD2A300F6D011 /* ObjectModel.h */,
 				EAD39671171BD2A300F6D011 /* ObjectModel.m */,
+				EA225C69178E9C93009D6B83 /* Payment.h */,
+				EA225C6A178E9C93009D6B83 /* Payment.m */,
+				EA225C80178EA3C8009D6B83 /* Recipient.h */,
+				EA225C81178EA3C8009D6B83 /* Recipient.m */,
+				EA225C8F178EB350009D6B83 /* RecipientType.h */,
+				EA225C90178EB350009D6B83 /* RecipientType.m */,
+				EA225C98178EB3DA009D6B83 /* RecipientTypeField.h */,
+				EA225C99178EB3DA009D6B83 /* RecipientTypeField.m */,
 				EAAA1485171BC911005B9430 /* Transfer.xcdatamodeld */,
+				EA225C9E178EB511009D6B83 /* TypeFieldValue.h */,
+				EA225C9F178EB511009D6B83 /* TypeFieldValue.m */,
 			);
 			path = ObjectModel;
 			sourceTree = "<group>";
@@ -1226,6 +1312,18 @@
 		EAD73696171E830600A037B1 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				EA225C77178EA341009D6B83 /* _Currency.h */,
+				EA225C78178EA341009D6B83 /* _Currency.m */,
+				EA225C65178E9C90009D6B83 /* _Payment.h */,
+				EA225C66178E9C90009D6B83 /* _Payment.m */,
+				EA225C7D178EA3C2009D6B83 /* _Recipient.h */,
+				EA225C7E178EA3C2009D6B83 /* _Recipient.m */,
+				EA225C8C178EB343009D6B83 /* _RecipientType.h */,
+				EA225C8D178EB343009D6B83 /* _RecipientType.m */,
+				EA225C95178EB3D3009D6B83 /* _RecipientTypeField.h */,
+				EA225C96178EB3D3009D6B83 /* _RecipientTypeField.m */,
+				EA225C9B178EB50B009D6B83 /* _TypeFieldValue.h */,
+				EA225C9C178EB50B009D6B83 /* _TypeFieldValue.m */,
 			);
 			name = Generated;
 			sourceTree = "<group>";
@@ -1481,6 +1579,7 @@
 				BB704E751772D4370042F8A9 /* tableTabButtonRight@2x.png in Resources */,
 				BB704E761772D4370042F8A9 /* tableTabButton.png in Resources */,
 				BB704E771772D4370042F8A9 /* tableTabButton@2x.png in Resources */,
+				EA225C76178EA124009D6B83 /* TabBarActivityIndicatorView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1705,6 +1804,25 @@
 				BB9A2EBC176F4BC600C5E058 /* TransferTypeSelectionCell.m in Sources */,
 				BB704E7D177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m in Sources */,
 				EA225C47178E96FE009D6B83 /* JCSObjectModel.m in Sources */,
+				EA225C67178E9C90009D6B83 /* _Payment.m in Sources */,
+				EA225C6B178E9C93009D6B83 /* Payment.m in Sources */,
+				EA225C71178E9F00009D6B83 /* ObjectModel+Payments.m in Sources */,
+				EA225C75178EA124009D6B83 /* TabBarActivityIndicatorView.m in Sources */,
+				EA225C79178EA341009D6B83 /* _Currency.m in Sources */,
+				EA225C7C178EA346009D6B83 /* Currency.m in Sources */,
+				EA225C7F178EA3C2009D6B83 /* _Recipient.m in Sources */,
+				EA225C82178EA3C8009D6B83 /* Recipient.m in Sources */,
+				EA225C85178EB21C009D6B83 /* NSDictionary+Cleanup.m in Sources */,
+				EA225C88178EB241009D6B83 /* ObjectModel+Currencies.m in Sources */,
+				EA225C8B178EB297009D6B83 /* ObjectModel+Recipients.m in Sources */,
+				EA225C8E178EB343009D6B83 /* _RecipientType.m in Sources */,
+				EA225C91178EB350009D6B83 /* RecipientType.m in Sources */,
+				EA225C94178EB36B009D6B83 /* ObjectModel+RecipientTypes.m in Sources */,
+				EA225C97178EB3D3009D6B83 /* _RecipientTypeField.m in Sources */,
+				EA225C9A178EB3DA009D6B83 /* RecipientTypeField.m in Sources */,
+				EA225C9D178EB50B009D6B83 /* _TypeFieldValue.m in Sources */,
+				EA225CA0178EB511009D6B83 /* TypeFieldValue.m in Sources */,
+				EA225CA3178EB591009D6B83 /* NSDate+ServerTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

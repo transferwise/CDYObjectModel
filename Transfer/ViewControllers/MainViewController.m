@@ -45,6 +45,7 @@
 
     TransactionsViewController *transactionsController = [[TransactionsViewController alloc] init];
     [self setTransactionsController:transactionsController];
+    [transactionsController setObjectModel:self.objectModel];
 
     PaymentViewController *paymentController = [[PaymentViewController alloc] init];
 

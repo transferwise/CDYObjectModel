@@ -7,7 +7,8 @@
 //
 
 #import "PaymentCell.h"
-#import "PlainPayment.h"
+#import "Payment.h"
+#import "Recipient.h"
 
 @interface PaymentCell ()
 
@@ -36,8 +37,8 @@
 }
 
 
-- (void)configureWithPayment:(PlainPayment *)payment {
-    [self.nameLabel setText:[payment recipientName]];
+- (void)configureWithPayment:(Payment *)payment {
+    [self.nameLabel setText:[payment.recipient name]];
     [self.statusLabel setText:[payment localizedStatus]];
     [self.moneyLabel setText:[payment transferredAmountString]];
     [self.timeLabel setText:[payment latestChangeTimeString]];

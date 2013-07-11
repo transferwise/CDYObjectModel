@@ -18,6 +18,8 @@ typedef NS_ENUM(short, TRWNetworkErrorCode) {
 @interface TransferwiseOperation : NSObject
 
 @property (nonatomic, strong) ObjectModel *objectModel;
+@property (nonatomic, strong, readonly) ObjectModel *workModel;
+
 
 - (void)execute;
 - (NSString *)addTokenToPath:(NSString *)path;

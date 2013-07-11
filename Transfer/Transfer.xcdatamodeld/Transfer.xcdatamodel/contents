@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Currency" representedClassName="Currency" syncable="YES">
+        <attribute name="code" attributeType="String" syncable="YES"/>
+        <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="currencyForRecipients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipient" inverseName="currency" inverseEntity="Recipient" syncable="YES"/>
+        <relationship name="sourceForPayments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="sourceCurrency" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="targetForPayments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="targetCurrency" inverseEntity="Payment" syncable="YES"/>
+    </entity>
     <entity name="Payment" representedClassName="Payment" syncable="YES">
         <attribute name="cancelledDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="estimatedDelivery" optional="YES" attributeType="Date" syncable="YES"/>
@@ -10,8 +17,42 @@
         <attribute name="remoteId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="submittedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="transferredDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="recipient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="payments" inverseEntity="Recipient" syncable="YES"/>
+        <relationship name="settlementRecipient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="settlementForPayments" inverseEntity="Recipient" syncable="YES"/>
+        <relationship name="sourceCurrency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="sourceForPayments" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="targetCurrency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="targetForPayments" inverseEntity="Currency" syncable="YES"/>
+    </entity>
+    <entity name="Recipient" representedClassName="Recipient" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remoteId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="settlementRecipient" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <relationship name="currency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="currencyForRecipients" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="fieldValues" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TypeFieldValue" inverseName="recipient" inverseEntity="TypeFieldValue" syncable="YES"/>
+        <relationship name="payments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="recipient" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="settlementForPayments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="settlementRecipient" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="type" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientType" inverseName="recipients" inverseEntity="RecipientType" syncable="YES"/>
+    </entity>
+    <entity name="RecipientType" representedClassName="RecipientType" syncable="YES">
+        <relationship name="fields" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RecipientTypeField" inverseName="fieldForType" inverseEntity="RecipientTypeField" syncable="YES"/>
+        <relationship name="recipients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipient" inverseName="type" inverseEntity="Recipient" syncable="YES"/>
+    </entity>
+    <entity name="RecipientTypeField" representedClassName="RecipientTypeField" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="fieldForType" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientType" inverseName="fields" inverseEntity="RecipientType" syncable="YES"/>
+        <relationship name="values" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TypeFieldValue" inverseName="valueForField" inverseEntity="TypeFieldValue" syncable="YES"/>
+    </entity>
+    <entity name="TypeFieldValue" representedClassName="TypeFieldValue" syncable="YES">
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="recipient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="fieldValues" inverseEntity="Recipient" syncable="YES"/>
+        <relationship name="valueForField" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientTypeField" inverseName="values" inverseEntity="RecipientTypeField" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Payment" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="Payment" positionX="160" positionY="192" width="128" height="240"/>
+        <element name="Currency" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Recipient" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="RecipientType" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="RecipientTypeField" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="TypeFieldValue" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>
