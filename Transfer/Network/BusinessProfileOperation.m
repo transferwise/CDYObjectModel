@@ -8,23 +8,23 @@
 
 #import "BusinessProfileOperation.h"
 #import "TransferwiseOperation+Private.h"
-#import "ProfileDetails.h"
+#import "PlainProfileDetails.h"
 #import "Credentials.h"
-#import "BusinessProfileInput.h"
+#import "PlainBusinessProfileInput.h"
 
 NSString *const kUpdateBusinessProfilePath = @"/user/updateBusinessProfile";
 NSString *const kValidateBusinessProfilePath = @"/user/validateBusinessProfile";
 
 @interface BusinessProfileOperation ()
 
-@property (strong, nonatomic) BusinessProfileInput *data;
+@property (strong, nonatomic) PlainBusinessProfileInput *data;
 @property (nonatomic, copy) NSString *path;
 
 @end
 
 @implementation BusinessProfileOperation
 
-- (id)initWithPath:(NSString *)path data:(BusinessProfileInput *)data {
+- (id)initWithPath:(NSString *)path data:(PlainBusinessProfileInput *)data {
     self = [super init];
     if (self) {
         _data = data;
@@ -42,7 +42,7 @@ NSString *const kValidateBusinessProfilePath = @"/user/validateBusinessProfile";
     }];
     
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        ProfileDetails *details = [ProfileDetails detailsWithData:response];
+        PlainProfileDetails *details = [PlainProfileDetails detailsWithData:response];
         if (details) {
             [Credentials setDisplayName:[details displayName]];
         }
@@ -52,11 +52,11 @@ NSString *const kValidateBusinessProfilePath = @"/user/validateBusinessProfile";
     [self postData:[self.data data] toPath:path];
 }
 
-+ (BusinessProfileOperation *)commitWithData:(BusinessProfileInput *)data {
++ (BusinessProfileOperation *)commitWithData:(PlainBusinessProfileInput *)data {
     return [[BusinessProfileOperation alloc] initWithPath:kUpdateBusinessProfilePath data:data];
 }
 
-+ (BusinessProfileOperation *)validateWithData:(BusinessProfileInput *)data {
++ (BusinessProfileOperation *)validateWithData:(PlainBusinessProfileInput *)data {
     return [[BusinessProfileOperation alloc] initWithPath:kValidateBusinessProfilePath data:data];
 }
 

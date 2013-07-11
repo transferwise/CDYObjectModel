@@ -10,18 +10,18 @@
 #import "DataEntryViewController.h"
 #import "Constants.h"
 
-@class Currency;
-@class Recipient;
-@class RecipientType;
+@class PlainCurrency;
+@class PlainRecipient;
+@class PlainRecipientType;
 @protocol RecipientProfileValidation;
 
 @interface RecipientViewController : DataEntryViewController
 
 @property (nonatomic, copy) TRWActionBlock afterSaveAction;
 @property (nonatomic, copy) NSString *footerButtonTitle;
-@property (nonatomic) Currency *preloadRecipientsWithCurrency;
-@property (nonatomic, strong, readonly) Recipient *selectedRecipient;
-@property (nonatomic, strong, readonly) RecipientType *selectedRecipientType;
+@property (nonatomic) PlainCurrency *preloadRecipientsWithCurrency;
+@property (nonatomic, strong, readonly) PlainRecipient *selectedRecipient;
+@property (nonatomic, strong, readonly) PlainRecipientType *selectedRecipientType;
 @property (nonatomic, strong, readonly) NSArray *recipientTypes;
 @property (nonatomic, strong) id<RecipientProfileValidation> recipientValidation;
 

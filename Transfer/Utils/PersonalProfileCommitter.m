@@ -7,7 +7,7 @@
 //
 
 #import "PersonalProfileCommitter.h"
-#import "PersonalProfileInput.h"
+#import "PlainPersonalProfileInput.h"
 #import "TransferwiseOperation.h"
 #import "PersonalProfileOperation.h"
 #import "Constants.h"
@@ -20,12 +20,12 @@
 
 @implementation PersonalProfileCommitter
 
-- (void)validatePersonalProfile:(PersonalProfileInput *)profile withHandler:(PersonalProfileValidationBlock)handler {
+- (void)validatePersonalProfile:(PlainPersonalProfileInput *)profile withHandler:(PersonalProfileValidationBlock)handler {
     MCLog(@"Validate profile");
     PersonalProfileOperation *operation = [PersonalProfileOperation commitOperationWithProfile:profile];
     [self setExecutedOperation:operation];
 
-    [operation setSaveResultHandler:^(ProfileDetails *result, NSError *error) {
+    [operation setSaveResultHandler:^(PlainProfileDetails *result, NSError *error) {
         handler(result, error);
     }];
 

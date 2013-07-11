@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class Currency;
+@class PlainCurrency;
 
 extern NSString *const TWCurrencySelectionCellIdentifier;
 
-typedef void (^TRWCurrencySelectionBlock)(Currency *currency);
+typedef void (^TRWCurrencySelectionBlock)(PlainCurrency *currency);
 
 @interface CurrencySelectionCell : TextEntryCell
 

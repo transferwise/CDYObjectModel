@@ -8,7 +8,7 @@
 
 #import "TextEntryCell.h"
 #import "CurrencySelectionCell.h"
-#import "Currency.h"
+#import "PlainCurrency.h"
 
 NSString *const TWCurrencySelectionCellIdentifier = @"TWCurrencySelectionCellIdentifier";
 
@@ -16,7 +16,7 @@ NSString *const TWCurrencySelectionCellIdentifier = @"TWCurrencySelectionCellIde
 
 @property (nonatomic, strong) IBOutlet UITextField *currencyField;
 @property (nonatomic, strong) NSArray *currencies;
-@property (nonatomic, strong) Currency *selectedCurrency;
+@property (nonatomic, strong) PlainCurrency *selectedCurrency;
 @property (nonatomic, strong) UIPickerView *picker;
 
 @end
@@ -51,7 +51,7 @@ NSString *const TWCurrencySelectionCellIdentifier = @"TWCurrencySelectionCellIde
     [self didSelectCurrency:currencies[0]];
 }
 
-- (void)didSelectCurrency:(Currency *)currency {
+- (void)didSelectCurrency:(PlainCurrency *)currency {
     [self setSelectedCurrency:currency];
     [self.currencyField setText:[currency formattedCodeAndName]];
 
@@ -67,12 +67,12 @@ NSString *const TWCurrencySelectionCellIdentifier = @"TWCurrencySelectionCellIde
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    Currency *currency = self.currencies[(NSUInteger) row];
+    PlainCurrency *currency = self.currencies[(NSUInteger) row];
     return [currency formattedCodeAndName];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    Currency *currency = self.currencies[(NSUInteger) row];
+    PlainCurrency *currency = self.currencies[(NSUInteger) row];
     [self didSelectCurrency:currency];
 }
 

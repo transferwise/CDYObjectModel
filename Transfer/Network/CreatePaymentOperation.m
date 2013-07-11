@@ -9,8 +9,8 @@
 
 #import "CreatePaymentOperation.h"
 #import "TransferwiseOperation+Private.h"
-#import "Payment.h"
-#import "PaymentInput.h"
+#import "PlainPayment.h"
+#import "PlainPaymentInput.h"
 
 NSString *const kCreatePaymentPath = @"/payment/create";
 NSString *const kValidatePaymentPath = @"/payment/validate";
@@ -18,13 +18,13 @@ NSString *const kValidatePaymentPath = @"/payment/validate";
 @interface CreatePaymentOperation ()
 
 @property (nonatomic, copy) NSString *path;
-@property (nonatomic, strong) PaymentInput *input;
+@property (nonatomic, strong) PlainPaymentInput *input;
 
 @end
 
 @implementation CreatePaymentOperation
 
-- (id)initWithPath:(NSString *)path input:(PaymentInput *)input {
+- (id)initWithPath:(NSString *)path input:(PlainPaymentInput *)input {
     self = [super init];
     if (self) {
         _path = path;
@@ -43,18 +43,18 @@ NSString *const kValidatePaymentPath = @"/payment/validate";
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        Payment *payment = [Payment paymentWithData:response];
+        PlainPayment *payment = [PlainPayment paymentWithData:response];
         weakSelf.responseHandler(payment, nil);
     }];
 
     [self postData:[self.input data] toPath:path];
 }
 
-+ (CreatePaymentOperation *)commitOperationWithPayment:(PaymentInput *)input {
++ (CreatePaymentOperation *)commitOperationWithPayment:(PlainPaymentInput *)input {
     return [[CreatePaymentOperation alloc] initWithPath:kCreatePaymentPath input:input];
 }
 
-+ (CreatePaymentOperation *)validateOperationWithInput:(PaymentInput *)input {
++ (CreatePaymentOperation *)validateOperationWithInput:(PlainPaymentInput *)input {
     return [[CreatePaymentOperation alloc] initWithPath:kValidatePaymentPath input:input];
 }
 

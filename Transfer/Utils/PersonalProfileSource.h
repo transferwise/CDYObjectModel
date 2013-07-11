@@ -8,7 +8,7 @@
 
 #import "ProfileSource.h"
 
-@class ProfileDetails;
+@class PlainProfileDetails;
 
 @interface PersonalProfileSource : ProfileSource
 

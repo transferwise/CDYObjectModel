@@ -12,7 +12,7 @@
 #import "UIColor+Theme.h"
 #import "UserRecipientsOperation.h"
 #import "TRWAlertView.h"
-#import "Recipient.h"
+#import "PlainRecipient.h"
 #import "TRWProgressHUD.h"
 #import "RecipientViewController.h"
 #import "DeleteRecipientOperation.h"
@@ -73,7 +73,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RecipientCell *cell = [tableView dequeueReusableCellWithIdentifier:kRecipientCellIdentifier];
 
-    Recipient *recipient = [self.recipients objectAtIndex:indexPath.row];
+    PlainRecipient *recipient = [self.recipients objectAtIndex:indexPath.row];
     [cell configureWithRecipient:recipient];
 
     return cell;
@@ -83,7 +83,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    Recipient *recipient = [self.recipients objectAtIndex:indexPath.row];
+    PlainRecipient *recipient = [self.recipients objectAtIndex:indexPath.row];
     PaymentViewController *controller = [[PaymentViewController alloc] init];
     [controller setRecipient:recipient];
     [self.navigationController pushViewController:controller animated:YES];
@@ -126,7 +126,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
         return;
     }
 
-    Recipient *recipient = [self.recipients objectAtIndex:indexPath.row];
+    PlainRecipient *recipient = [self.recipients objectAtIndex:indexPath.row];
     TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"contacts.controller.delete.conformation.title", nil)
                                                        message:[NSString stringWithFormat:NSLocalizedString(@"contacts.controller.delete.confirmation.message", nil), recipient.name]];
     [alertView setLeftButtonTitle:NSLocalizedString(@"button.title.delete", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
@@ -138,7 +138,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [alertView show];
 }
 
-- (void)deleteRecipient:(Recipient *)recipient {
+- (void)deleteRecipient:(PlainRecipient *)recipient {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"Delete recipient:%@", recipient);
         TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];

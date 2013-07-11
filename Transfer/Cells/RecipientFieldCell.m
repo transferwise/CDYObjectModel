@@ -7,13 +7,13 @@
 //
 
 #import "RecipientFieldCell.h"
-#import "RecipientTypeField.h"
+#import "PlainRecipientTypeField.h"
 
 NSString *const TWRecipientFieldCellIdentifier = @"TWRecipientFieldCellIdentifier";
 
 @interface RecipientFieldCell ()
 
-@property (nonatomic, strong) RecipientTypeField *type;
+@property (nonatomic, strong) PlainRecipientTypeField *type;
 
 @end
 
@@ -27,7 +27,7 @@ NSString *const TWRecipientFieldCellIdentifier = @"TWRecipientFieldCellIdentifie
     return self;
 }
 
-- (void)setFieldType:(RecipientTypeField *)field {
+- (void)setFieldType:(PlainRecipientTypeField *)field {
     [self setType:field];
     [self configureWithTitle:field.title value:nil];
 }

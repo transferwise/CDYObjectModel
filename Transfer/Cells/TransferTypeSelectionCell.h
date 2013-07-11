@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "TextEntryCell.h"
 
-@class RecipientType;
+@class PlainRecipientType;
 
-typedef void (^RecipientTypeChangedInSelectionCellBlock)(RecipientType *type);
+typedef void (^RecipientTypeChangedInSelectionCellBlock)(PlainRecipientType *type);
 
 extern NSString *const TWTypeSelectionCellIdentifier;
 
@@ -19,6 +19,6 @@ extern NSString *const TWTypeSelectionCellIdentifier;
 
 @property (nonatomic, copy) RecipientTypeChangedInSelectionCellBlock selectionChangeHandler;
 
-- (void)setSelectedType:(RecipientType *)selected allTypes:(NSArray *)allTypes;
+- (void)setSelectedType:(PlainRecipientType *)selected allTypes:(NSArray *)allTypes;
 
 @end

@@ -10,13 +10,13 @@
 #import "CountrySelectionCell.h"
 #import "DateEntryCell.h"
 #import "TRWAlertView.h"
-#import "ProfileDetails.h"
+#import "PlainProfileDetails.h"
 #import "TransferwiseClient.h"
-#import "PersonalProfile.h"
+#import "PlainPersonalProfile.h"
 #import "PhoneBookProfile.h"
 #import "PhoneBookAddress.h"
 #import "NSString+Validation.h"
-#import "PersonalProfileInput.h"
+#import "PlainPersonalProfileInput.h"
 #import "PersonalProfileValidation.h"
 #import "Credentials.h"
 
@@ -117,7 +117,7 @@ NSUInteger const kUserPersonalSection = 1;
 - (void)loadDetailsToCells {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"loadDetailsToCells");
-        PersonalProfile *profile = self.userDetails.personalProfile;
+        PlainPersonalProfile *profile = self.userDetails.personalProfile;
         [self.firstNameCell setValue:profile.firstName];
         [self.lastNameCell setValue:profile.lastName];
         [self.emailCell setValue:self.userDetails.email];
@@ -171,7 +171,7 @@ NSUInteger const kUserPersonalSection = 1;
 - (id)enteredProfile {
     BOOL changed = [self valuesChanged];
 
-    PersonalProfileInput *profile = [[PersonalProfileInput alloc] init];
+    PlainPersonalProfileInput *profile = [[PlainPersonalProfileInput alloc] init];
     profile.firstName = self.firstNameCell.value;
     profile.lastName = self.lastNameCell.value;
     profile.email = self.emailCell.value;
@@ -187,7 +187,7 @@ NSUInteger const kUserPersonalSection = 1;
 }
 
 - (BOOL)valuesChanged {
-    PersonalProfile *profile = self.userDetails.personalProfile;
+    PlainPersonalProfile *profile = self.userDetails.personalProfile;
 
     return ![[self.firstNameCell value] isEqualToString:profile.firstName]
             || ![[self.lastNameCell value] isEqualToString:profile.lastName]
@@ -201,7 +201,7 @@ NSUInteger const kUserPersonalSection = 1;
 }
 
 - (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion {
-    [validation validatePersonalProfile:profile withHandler:^(ProfileDetails *details, NSError *error) {
+    [validation validatePersonalProfile:profile withHandler:^(PlainProfileDetails *details, NSError *error) {
         if (error) {
             completion(error);
             return;

@@ -8,10 +8,10 @@
 
 #import "PersonalProfileOperation.h"
 #import "TransferwiseOperation+Private.h"
-#import "ProfileDetails.h"
+#import "PlainProfileDetails.h"
 #import "Credentials.h"
-#import "PersonalProfile.h"
-#import "PersonalProfileInput.h"
+#import "PlainPersonalProfile.h"
+#import "PlainPersonalProfileInput.h"
 
 NSString *const kUpdatePersonalProfilePath = @"/user/updatePersonalProfile";
 NSString *const kValidatePersonalProfilePath = @"/user/validatePersonalProfile";
@@ -19,13 +19,13 @@ NSString *const kValidatePersonalProfilePath = @"/user/validatePersonalProfile";
 @interface PersonalProfileOperation ()
 
 @property (nonatomic, copy) NSString *path;
-@property (nonatomic, strong) PersonalProfileInput *profile;
+@property (nonatomic, strong) PlainPersonalProfileInput *profile;
 
 @end
 
 @implementation PersonalProfileOperation
 
-- (id)initWithPath:(NSString *)path profile:(PersonalProfileInput *)data {
+- (id)initWithPath:(NSString *)path profile:(PlainPersonalProfileInput *)data {
     self = [super init];
     if (self) {
         _path = path;
@@ -43,7 +43,7 @@ NSString *const kValidatePersonalProfilePath = @"/user/validatePersonalProfile";
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        ProfileDetails *details = [ProfileDetails detailsWithData:response];
+        PlainProfileDetails *details = [PlainProfileDetails detailsWithData:response];
         if (details.personalProfile) {
             [Credentials setDisplayName:[details displayName]];
         }
@@ -53,11 +53,11 @@ NSString *const kValidatePersonalProfilePath = @"/user/validatePersonalProfile";
     [self postData:[self.profile data] toPath:path];
 }
 
-+ (PersonalProfileOperation *)commitOperationWithProfile:(PersonalProfileInput *)profile {
++ (PersonalProfileOperation *)commitOperationWithProfile:(PlainPersonalProfileInput *)profile {
     return [[PersonalProfileOperation alloc] initWithPath:kUpdatePersonalProfilePath profile:profile];
 }
 
-+ (PersonalProfileOperation *)validateOperationWithProfile:(PersonalProfileInput *)profile {
++ (PersonalProfileOperation *)validateOperationWithProfile:(PlainPersonalProfileInput *)profile {
     return [[PersonalProfileOperation alloc] initWithPath:kValidatePersonalProfilePath profile:profile];
 }
 

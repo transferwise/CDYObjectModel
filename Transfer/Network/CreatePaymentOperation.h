@@ -9,17 +9,17 @@
 #import "TransferwiseOperation.h"
 #import "CurrencyPairsOperation.h"
 
-@class Payment;
-@class PaymentInput;
+@class PlainPayment;
+@class PlainPaymentInput;
 
-typedef void (^CreatePaymentBlock)(Payment *payment, NSError *error);
+typedef void (^CreatePaymentBlock)(PlainPayment *payment, NSError *error);
 
 
 @interface CreatePaymentOperation : TransferwiseOperation
 
 @property (nonatomic, copy) CreatePaymentBlock responseHandler;
 
-+ (CreatePaymentOperation *)commitOperationWithPayment:(PaymentInput *)input;
-+ (CreatePaymentOperation *)validateOperationWithInput:(PaymentInput *)input;
++ (CreatePaymentOperation *)commitOperationWithPayment:(PlainPaymentInput *)input;
++ (CreatePaymentOperation *)validateOperationWithInput:(PlainPaymentInput *)input;
 
 @end

@@ -9,7 +9,7 @@
 #import "RecipientTypesOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Constants.h"
-#import "RecipientType.h"
+#import "PlainRecipientType.h"
 
 NSString *const kRecipientTypesPath = @"/recipient/listTypes";
 
@@ -29,7 +29,7 @@ NSString *const kRecipientTypesPath = @"/recipient/listTypes";
 
         NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:[recipients count]];
         for (NSDictionary *data in recipients) {
-            RecipientType *type = [RecipientType typeWithData:data];
+            PlainRecipientType *type = [PlainRecipientType typeWithData:data];
             [result addObject:type];
         }
 

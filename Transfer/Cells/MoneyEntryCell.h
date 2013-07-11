@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "TextEntryCell.h"
 
-@class Currency;
+@class PlainCurrency;
 
 extern NSString *const TWMoneyEntryCellIdentifier;
 
-typedef void (^CurrencyChangBlock)(Currency *currency);
+typedef void (^CurrencyChangBlock)(PlainCurrency *currency);
 
 @interface MoneyEntryCell : TextEntryCell
 
@@ -22,9 +22,9 @@ typedef void (^CurrencyChangBlock)(Currency *currency);
 @property (nonatomic, strong) CurrencyChangBlock currencyChangedHandler;
 
 - (void)setTitle:(NSString *)title;
-- (void)setAmount:(NSString *)amount currency:(Currency *)currency;
+- (void)setAmount:(NSString *)amount currency:(PlainCurrency *)currency;
 - (NSString *)amount;
-- (Currency *)currency;
+- (PlainCurrency *)currency;
 - (void)setOnlyPresentedCurrency:(NSString *)currencyCode;
 - (void)setRoundedCorner:(UIRectCorner)corner;
 

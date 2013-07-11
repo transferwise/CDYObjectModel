@@ -8,7 +8,7 @@
 
 #import "TransferTypeSelectionCell.h"
 #import "RoundedCellWhiteBackgroundView.h"
-#import "RecipientType.h"
+#import "PlainRecipientType.h"
 #import "Constants.h"
 #import "UIColor+Theme.h"
 
@@ -18,7 +18,7 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
 
 @property (strong, nonatomic) IBOutlet RoundedCellWhiteBackgroundView *selectedView;
 
-@property (nonatomic, strong) RecipientType *selectedType;
+@property (nonatomic, strong) PlainRecipientType *selectedType;
 @property (nonatomic, strong) NSArray *allRecipientTypes;
 @property (strong, nonatomic) NSMutableArray *presentedLabels;
 
@@ -49,7 +49,7 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
 
 - (void)adjustSelectedView
 {
-    for(RecipientType *type in self.allRecipientTypes){
+    for(PlainRecipientType *type in self.allRecipientTypes){
         NSUInteger index = [self.allRecipientTypes indexOfObject:type];
         CGFloat groupedCellWidth = CGRectGetWidth(self.frame)-20;
         if (type == self.selectedType) {
@@ -67,7 +67,7 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
     }
 }
 
-- (void)setSelectedType:(RecipientType *)selected allTypes:(NSArray *)allTypes
+- (void)setSelectedType:(PlainRecipientType *)selected allTypes:(NSArray *)allTypes
 {
     MCLog(@"Selected:%@", selected);
     MCLog(@"All types:%@", allTypes);
@@ -92,7 +92,7 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
     CGFloat xOffset = xStep;
     NSUInteger index = 0;
     
-    for (RecipientType *type in allTypes) {
+    for (PlainRecipientType *type in allTypes) {
         UILabel *label = [self createLabel];
         NSString *titleKey = [NSString stringWithFormat:@"recipient.type.%@.name", type.type];
         [label setText:NSLocalizedString(titleKey, nil)];
@@ -136,11 +136,11 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
     UITapGestureRecognizer *tap = sender;
     UILabel *label = (UILabel*)tap.view;
     NSUInteger index = [self.presentedLabels indexOfObject:label];
-    RecipientType *tappedOn = self.allRecipientTypes[index];
+    PlainRecipientType *tappedOn = self.allRecipientTypes[index];
     [self changeSelectedTypeTo:tappedOn];
 }
 
-- (void)changeSelectedTypeTo:(RecipientType *)tappedOn {
+- (void)changeSelectedTypeTo:(PlainRecipientType *)tappedOn {
     if ([tappedOn.type isEqualToString:self.selectedType.type]) {
         MCLog(@"Tapped on selected one");
         return;

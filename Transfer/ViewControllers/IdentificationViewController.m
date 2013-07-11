@@ -10,7 +10,7 @@
 #import "UIColor+Theme.h"
 #import "TextCell.h"
 #import "BlueButton.h"
-#import "PaymentVerificationRequired.h"
+#import "PlainPaymentVerificationRequired.h"
 #import "NSMutableString+Issues.h"
 #import "NSString+Validation.h"
 #import "TRWAlertView.h"

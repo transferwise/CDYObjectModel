@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "TextEntryCell.h"
 
-@class Recipient;
+@class PlainRecipient;
 
 extern NSString *const TRWRecipientEntrySelectionCellIdentifier;
 
-typedef void (^RecipientSelectionBlock)(Recipient *recipient);
+typedef void (^RecipientSelectionBlock)(PlainRecipient *recipient);
 
 @interface RecipientEntrySelectionCell : TextEntryCell
 

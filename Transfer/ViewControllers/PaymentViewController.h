@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class Recipient;
+@class PlainRecipient;
 
 @interface PaymentViewController : UITableViewController
 
-@property (nonatomic, strong) Recipient *recipient;
+@property (nonatomic, strong) PlainRecipient *recipient;
 
 @end

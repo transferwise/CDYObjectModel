@@ -8,10 +8,10 @@
 
 #import "BusinessProfileSource.h"
 #import "CountrySelectionCell.h"
-#import "ProfileDetails.h"
-#import "BusinessProfile.h"
+#import "PlainProfileDetails.h"
+#import "PlainBusinessProfile.h"
 #import "NSString+Validation.h"
-#import "BusinessProfileInput.h"
+#import "PlainBusinessProfileInput.h"
 #import "BusinessProfileValidation.h"
 #import "PhoneBookProfile.h"
 #import "PhoneBookAddress.h"
@@ -95,7 +95,7 @@ static NSUInteger const kDetailsSection = 1;
 }
 
 - (void)loadDetailsToCells {
-    BusinessProfile *profile = self.userDetails.businessProfile;
+    PlainBusinessProfile *profile = self.userDetails.businessProfile;
     [self.businessNameCell setValue:profile.businessName];
     [self.registrationNumberCell setValue:profile.registrationNumber];
     [self.descriptionCell setValue:profile.descriptionOfBusiness];
@@ -134,7 +134,7 @@ static NSUInteger const kDetailsSection = 1;
 }
 
 - (id)enteredProfile {
-    BusinessProfileInput *data = [[BusinessProfileInput alloc] init];
+    PlainBusinessProfileInput *data = [[PlainBusinessProfileInput alloc] init];
     data.businessName = [self.businessNameCell value];
     data.registrationNumber = [self.registrationNumberCell value];
     data.descriptionOfBusiness = [self.descriptionCell value];
@@ -147,7 +147,7 @@ static NSUInteger const kDetailsSection = 1;
 }
 
 - (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion {
-    [validation validateBusinessProfile:profile withHandler:^(ProfileDetails *details, NSError *error) {
+    [validation validateBusinessProfile:profile withHandler:^(PlainProfileDetails *details, NSError *error) {
         if (error) {
             completion(error);
             return;

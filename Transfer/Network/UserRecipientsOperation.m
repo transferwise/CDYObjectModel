@@ -9,20 +9,20 @@
 #import "UserRecipientsOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Constants.h"
-#import "Recipient.h"
-#import "Currency.h"
+#import "PlainRecipient.h"
+#import "PlainCurrency.h"
 
 NSString *const kRecipientsListPath = @"/recipient/list";
 
 @interface UserRecipientsOperation ()
 
-@property (nonatomic, strong) Currency *currency;
+@property (nonatomic, strong) PlainCurrency *currency;
 
 @end
 
 @implementation UserRecipientsOperation
 
-- (id)initWithCurrency:(Currency *)currency {
+- (id)initWithCurrency:(PlainCurrency *)currency {
     self = [super init];
     if (self) {
         _currency = currency;
@@ -39,12 +39,12 @@ NSString *const kRecipientsListPath = @"/recipient/list";
         MCLog(@"Received %d recipients from server", [recipients count]);
         NSMutableArray *result = [NSMutableArray arrayWithCapacity:[recipients count]];
         for (NSDictionary *recipientData in recipients) {
-            Recipient *recipient = [Recipient recipientWithData:recipientData];
+            PlainRecipient *recipient = [PlainRecipient recipientWithData:recipientData];
             [result addObject:recipient];
         }
         [result sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            Recipient *one = obj1;
-            Recipient *two = obj2;
+            PlainRecipient *one = obj1;
+            PlainRecipient *two = obj2;
             return [one.name compare:two.name options:NSCaseInsensitiveSearch];
         }];
 
@@ -63,7 +63,7 @@ NSString *const kRecipientsListPath = @"/recipient/list";
     return [[UserRecipientsOperation alloc] init];
 }
 
-+ (UserRecipientsOperation *)recipientsOperationWithCurrency:(Currency *)currency {
++ (UserRecipientsOperation *)recipientsOperationWithCurrency:(PlainCurrency *)currency {
     return [[UserRecipientsOperation alloc] initWithCurrency:currency];
 }
 

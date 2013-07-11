@@ -9,7 +9,7 @@
 #import "CountriesOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Constants.h"
-#import "Country.h"
+#import "PlainCountry.h"
 
 NSString *const kCountriesPath = @"/user/countries";
 
@@ -28,13 +28,13 @@ NSString *const kCountriesPath = @"/user/countries";
         MCLog(@"Retrieved %d countries", [countries count]);
         NSMutableArray *result = [NSMutableArray arrayWithCapacity:[countries count]];
         for (NSDictionary *data in countries) {
-            Country *country = [Country countryWithData:data];
+            PlainCountry *country = [PlainCountry countryWithData:data];
             [result addObject:country];
         }
 
         [result sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            Country *one = obj1;
-            Country *two = obj2;
+            PlainCountry *one = obj1;
+            PlainCountry *two = obj2;
             return [one.name compare:two.name options:NSCaseInsensitiveSearch];
         }];
 

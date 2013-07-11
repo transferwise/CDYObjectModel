@@ -7,7 +7,7 @@
 //
 
 #import "RecipientEntrySelectionCell.h"
-#import "Recipient.h"
+#import "PlainRecipient.h"
 
 NSString *const TRWRecipientEntrySelectionCellIdentifier = @"TRWRecipientEntrySelectionCellIdentifier";
 
@@ -69,7 +69,7 @@ NSString *const TRWRecipientEntrySelectionCellIdentifier = @"TRWRecipientEntrySe
         return @"";
     }
 
-    Recipient *recipient = self.autoCompleteRecipients[row - 1];
+    PlainRecipient *recipient = self.autoCompleteRecipients[row - 1];
     return recipient.name;
 }
 
@@ -79,7 +79,7 @@ NSString *const TRWRecipientEntrySelectionCellIdentifier = @"TRWRecipientEntrySe
         return;
     }
 
-    Recipient *recipient = self.autoCompleteRecipients[row - 1];
+    PlainRecipient *recipient = self.autoCompleteRecipients[row - 1];
     self.selectionHandler(recipient);
 }
 

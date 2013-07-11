@@ -10,11 +10,11 @@
 #import "BlueButton.h"
 #import "TextCell.h"
 #import "UIColor+Theme.h"
-#import "BankTransfer.h"
-#import "ProfileDetails.h"
-#import "Payment.h"
-#import "RecipientType.h"
-#import "RecipientTypeField.h"
+#import "PlainBankTransfer.h"
+#import "PlainProfileDetails.h"
+#import "PlainPayment.h"
+#import "PlainRecipientType.h"
+#import "PlainRecipientTypeField.h"
 #import "Constants.h"
 #import "TransferwiseOperation.h"
 #import "RecipientTypesOperation.h"
@@ -32,7 +32,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *headerLabel;
 @property (strong, nonatomic) IBOutlet BlueButton *doneButton;
 @property (strong, nonatomic) IBOutlet UIView *footerBottomMessageView;
-@property (strong, nonatomic) BankTransfer *transferDetails;
+@property (strong, nonatomic) PlainBankTransfer *transferDetails;
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
@@ -108,7 +108,7 @@
     [toCell configureWithTitle:NSLocalizedString(@"upload.money.to.title", nil) text:self.payment.settlementRecipient.name];
     [presentedCells addObject:toCell];
 
-    RecipientType *type = [self findTypeForCode:self.payment.settlementRecipient.type];
+    PlainRecipientType *type = [self findTypeForCode:self.payment.settlementRecipient.type];
     NSArray *accountCells = [self buildAccountCellForType:type recipient:self.payment.settlementRecipient];
     [presentedCells addObjectsFromArray:accountCells];
 
@@ -133,9 +133,9 @@
     [self adjustFooterView];
 }
 
-- (NSArray *)buildAccountCellForType:(RecipientType *)type recipient:(Recipient *)recipient {
+- (NSArray *)buildAccountCellForType:(PlainRecipientType *)type recipient:(PlainRecipient *)recipient {
     NSMutableArray *result = [NSMutableArray array];
-    for (RecipientTypeField *field in type.fields) {
+    for (PlainRecipientTypeField *field in type.fields) {
         TextCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
         [cell configureWithTitle:field.title text:[recipient valueForKeyPath:field.name]];
         [result addObject:cell];
@@ -143,8 +143,8 @@
     return result;
 }
 
-- (RecipientType *)findTypeForCode:(NSString *)code {
-    for (RecipientType *type in self.recipientTypes) {
+- (PlainRecipientType *)findTypeForCode:(NSString *)code {
+    for (PlainRecipientType *type in self.recipientTypes) {
         if ([type.type isEqualToString:code]) {
             return type;
         }

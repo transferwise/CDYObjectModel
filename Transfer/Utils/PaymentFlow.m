@@ -9,46 +9,46 @@
 #import "PaymentFlow.h"
 #import "PersonalProfileViewController.h"
 #import "RecipientViewController.h"
-#import "ProfileDetails.h"
+#import "PlainProfileDetails.h"
 #import "ConfirmPaymentViewController.h"
-#import "RecipientType.h"
+#import "PlainRecipientType.h"
 #import "IdentificationViewController.h"
 #import "UploadMoneyViewController.h"
-#import "Payment.h"
-#import "PaymentInput.h"
+#import "PlainPayment.h"
+#import "PlainPaymentInput.h"
 #import "CreatePaymentOperation.h"
 #import "VerificationRequiredOperation.h"
-#import "PaymentVerificationRequired.h"
+#import "PlainPaymentVerificationRequired.h"
 #import "Credentials.h"
 #import "CalculationResult.h"
 #import "UploadVerificationFileOperation.h"
-#import "PersonalProfileInput.h"
+#import "PlainPersonalProfileInput.h"
 #import "PersonalProfileOperation.h"
 #import "EmailCheckOperation.h"
-#import "RecipientProfileInput.h"
+#import "PlainRecipientProfileInput.h"
 #import "RecipientOperation.h"
-#import "Recipient.h"
+#import "PlainRecipient.h"
 #import "RegisterWithoutPasswordOperation.h"
-#import "BusinessProfileInput.h"
+#import "PlainBusinessProfileInput.h"
 #import "BusinessProfileOperation.h"
 #import "PaymentProfileViewController.h"
-#import "BusinessProfile.h"
+#import "PlainBusinessProfile.h"
 #import "TRWAlertView.h"
 
 @interface PaymentFlow ()
 
 @property (nonatomic, strong) UINavigationController *navigationController;
-@property (nonatomic, strong) ProfileDetails *businessDetails;
-@property (nonatomic, strong) RecipientType *recipientType;
-@property (nonatomic, strong) Payment *createdPayment;
+@property (nonatomic, strong) PlainProfileDetails *businessDetails;
+@property (nonatomic, strong) PlainRecipientType *recipientType;
+@property (nonatomic, strong) PlainPayment *createdPayment;
 @property (nonatomic, strong) NSArray *recipientTypes;
 @property (nonatomic, copy) PaymentErrorBlock paymentErrorHandler;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
-@property (nonatomic, strong) PaymentVerificationRequired *verificationRequired;
-@property (nonatomic, strong) PaymentInput *paymentInput;
-@property (nonatomic, strong) PersonalProfileInput *personalProfile;
-@property (nonatomic, strong) RecipientProfileInput *recipientProfile;
-@property (nonatomic, strong) BusinessProfileInput *businessProfile;
+@property (nonatomic, strong) PlainPaymentVerificationRequired *verificationRequired;
+@property (nonatomic, strong) PlainPaymentInput *paymentInput;
+@property (nonatomic, strong) PlainPersonalProfileInput *personalProfile;
+@property (nonatomic, strong) PlainRecipientProfileInput *recipientProfile;
+@property (nonatomic, strong) PlainBusinessProfileInput *businessProfile;
 
 @end
 
@@ -64,14 +64,14 @@
     return self;
 }
 
-- (void)setRecipient:(Recipient *)recipient {
+- (void)setRecipient:(PlainRecipient *)recipient {
     _recipient = recipient;
     if (_recipient) {
         [self setRecipientProfile:[recipient profileInput]];
     }
 }
 
-- (void)setUserDetails:(ProfileDetails *)userDetails {
+- (void)setUserDetails:(PlainProfileDetails *)userDetails {
     _userDetails = userDetails;
 
     if (userDetails.personalProfile) {
@@ -79,7 +79,7 @@
     }
 }
 
-- (void)setBusinessDetails:(ProfileDetails *)businessDetails {
+- (void)setBusinessDetails:(PlainProfileDetails *)businessDetails {
     _businessDetails = businessDetails;
 
     if (businessDetails.businessProfile) {
@@ -103,12 +103,12 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)validateBusinessProfile:(BusinessProfileInput *)profile withHandler:(BusinessProfileValidationBlock)handler {
+- (void)validateBusinessProfile:(PlainBusinessProfileInput *)profile withHandler:(BusinessProfileValidationBlock)handler {
     MCLog(@"validateBusinessProfile");
     BusinessProfileOperation *operation = [BusinessProfileOperation validateWithData:profile];
     [self setExecutedOperation:operation];
     
-    [operation setSaveResultHandler:^(ProfileDetails *result, NSError *error) {
+    [operation setSaveResultHandler:^(PlainProfileDetails *result, NSError *error) {
         if (error) {
             handler(result, error);
             return;
@@ -140,12 +140,12 @@
     return  self.personalProfile != nil || self.userDetails.personalProfile != nil;
 }
 
-- (void)validatePersonalProfile:(PersonalProfileInput *)profile withHandler:(PersonalProfileValidationBlock)handler {
+- (void)validatePersonalProfile:(PlainPersonalProfileInput *)profile withHandler:(PersonalProfileValidationBlock)handler {
     MCLog(@"validateProfile");
     PersonalProfileOperation *operation = [PersonalProfileOperation validateOperationWithProfile:profile];
     [self setExecutedOperation:operation];
 
-    [operation setSaveResultHandler:^(ProfileDetails *result, NSError *error) {
+    [operation setSaveResultHandler:^(PlainProfileDetails *result, NSError *error) {
         if (error) {
             handler(result, error);
             return;
@@ -230,7 +230,7 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)presentVerificationScreen:(PaymentVerificationRequired *)requiredVerification {
+- (void)presentVerificationScreen:(PlainPaymentVerificationRequired *)requiredVerification {
     IdentificationViewController *controller = [[IdentificationViewController alloc] init];
     controller.requiredVerification = requiredVerification;
     controller.paymentFlow = self;
@@ -246,7 +246,7 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)validatePayment:(PaymentInput *)paymentInput errorHandler:(PaymentErrorBlock)errorHandler {
+- (void)validatePayment:(PlainPaymentInput *)paymentInput errorHandler:(PaymentErrorBlock)errorHandler {
     MCLog(@"Validate payment");
     self.paymentErrorHandler = errorHandler;
 
@@ -255,7 +255,7 @@
     CreatePaymentOperation *operation = [CreatePaymentOperation validateOperationWithInput:paymentInput];
     [self setExecutedOperation:operation];
 
-    [operation setResponseHandler:^(Payment *payment, NSError *error) {
+    [operation setResponseHandler:^(PlainPayment *payment, NSError *error) {
         if (error) {
             self.paymentErrorHandler(error);
             return;
@@ -275,7 +275,7 @@
     VerificationRequiredOperation *operation = [VerificationRequiredOperation operationWithData:@{@"payIn" : self.calculationResult.transferwisePayIn, @"sourceCurrency" : self.calculationResult.sourceCurrency}];
     [self setExecutedOperation:operation];
 
-    [operation setCompletionHandler:^(PaymentVerificationRequired *verificationRequired, NSError *error) {
+    [operation setCompletionHandler:^(PlainPaymentVerificationRequired *verificationRequired, NSError *error) {
         if (error) {
             self.paymentErrorHandler(error);
             return;
@@ -348,7 +348,7 @@
     BusinessProfileOperation *operation = [BusinessProfileOperation commitWithData:self.businessProfile];
     [self setExecutedOperation:operation];
 
-    [operation setSaveResultHandler:^(ProfileDetails *result, NSError *error) {
+    [operation setSaveResultHandler:^(PlainProfileDetails *result, NSError *error) {
         if (error) {
             self.paymentErrorHandler(error);
             return;
@@ -367,7 +367,7 @@
     PersonalProfileOperation *operation = [PersonalProfileOperation commitOperationWithProfile:self.personalProfile];
     [self setExecutedOperation:operation];
 
-    [operation setSaveResultHandler:^(ProfileDetails *result, NSError *error) {
+    [operation setSaveResultHandler:^(PlainProfileDetails *result, NSError *error) {
         if (error) {
             self.paymentErrorHandler(error);
             return;
@@ -392,7 +392,7 @@
     RecipientOperation *operation = [RecipientOperation createOperationWithRecipient:self.recipientProfile];
     [self setExecutedOperation:operation];
 
-    [operation setResponseHandler:^(Recipient *recipient, NSError *error) {
+    [operation setResponseHandler:^(PlainRecipient *recipient, NSError *error) {
         if (error) {
             self.paymentErrorHandler(error);
             return;
@@ -486,7 +486,7 @@
     CreatePaymentOperation *operation = [CreatePaymentOperation commitOperationWithPayment:self.paymentInput];
     [self setExecutedOperation:operation];
 
-    [operation setResponseHandler:^(Payment *payment, NSError *error) {
+    [operation setResponseHandler:^(PlainPayment *payment, NSError *error) {
         if (error) {
             self.paymentErrorHandler(error);
             return;
@@ -499,12 +499,12 @@
     [operation execute];
 }
 
-- (void)validateRecipient:(RecipientProfileInput *)recipientProfile completion:(RecipientProfileValidationBlock)completion {
+- (void)validateRecipient:(PlainRecipientProfileInput *)recipientProfile completion:(RecipientProfileValidationBlock)completion {
     MCLog(@"Validate recipient");
     RecipientOperation *operation = [RecipientOperation validateOperationWithRecipient:recipientProfile];
     [self setExecutedOperation:operation];
 
-    [operation setResponseHandler:^(Recipient *recipient, NSError *error) {
+    [operation setResponseHandler:^(PlainRecipient *recipient, NSError *error) {
         [self setRecipientProfile:recipientProfile];
 
         completion(recipient, error);

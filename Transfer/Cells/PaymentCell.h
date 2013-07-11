@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class Payment;
+@class PlainPayment;
 
 @interface PaymentCell : UITableViewCell
 
-- (void)configureWithPayment:(Payment *)payment;
+- (void)configureWithPayment:(PlainPayment *)payment;
 
 @end

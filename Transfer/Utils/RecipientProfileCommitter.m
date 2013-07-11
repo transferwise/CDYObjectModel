@@ -7,7 +7,6 @@
 //
 
 #import "RecipientProfileCommitter.h"
-#import "RecipientProfileInput.h"
 #import "RecipientOperation.h"
 
 @interface RecipientProfileCommitter ()
@@ -18,10 +17,10 @@
 
 @implementation RecipientProfileCommitter
 
-- (void)validateRecipient:(RecipientProfileInput *)recipientProfile completion:(RecipientProfileValidationBlock)completion {
+- (void)validateRecipient:(PlainRecipientProfileInput *)recipientProfile completion:(RecipientProfileValidationBlock)completion {
     RecipientOperation *operation = [RecipientOperation createOperationWithRecipient:recipientProfile];
     [self setExecutedOperation:operation];
-    [operation setResponseHandler:^(Recipient *serverRecipient, NSError *error) {
+    [operation setResponseHandler:^(PlainRecipient *serverRecipient, NSError *error) {
         completion(serverRecipient, error);
     }];
 

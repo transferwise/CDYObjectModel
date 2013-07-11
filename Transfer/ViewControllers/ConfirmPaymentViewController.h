@@ -10,20 +10,20 @@
 #import "DataEntryViewController.h"
 #import "Constants.h"
 
-@class ProfileDetails;
-@class Recipient;
-@class RecipientType;
+@class PlainProfileDetails;
+@class PlainRecipient;
+@class PlainRecipientType;
 @class CalculationResult;
-@class Payment;
+@class PlainPayment;
 @class PaymentFlow;
-@class RecipientProfileInput;
-@class PersonalProfileInput;
+@class PlainRecipientProfileInput;
+@class PlainPersonalProfileInput;
 
 @interface ConfirmPaymentViewController : DataEntryViewController
 
-@property (nonatomic, strong) PersonalProfileInput *senderDetails;
-@property (nonatomic, strong) RecipientProfileInput *recipientProfile;
-@property (nonatomic, strong) RecipientType *recipientType;
+@property (nonatomic, strong) PlainPersonalProfileInput *senderDetails;
+@property (nonatomic, strong) PlainRecipientProfileInput *recipientProfile;
+@property (nonatomic, strong) PlainRecipientType *recipientType;
 @property (nonatomic, copy) NSString *footerButtonTitle;
 @property (nonatomic, strong) CalculationResult *calculationResult;
 @property (nonatomic, assign) PaymentFlow *paymentFlow;

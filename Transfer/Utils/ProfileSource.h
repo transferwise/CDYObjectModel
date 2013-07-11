@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @class PhoneBookProfile;
-@class ProfileDetails;
+@class PlainProfileDetails;
 
 typedef void (^ProfileActionBlock)(NSError *error);
 
 @interface ProfileSource : NSObject
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) ProfileDetails *userDetails;
+@property (nonatomic, strong) PlainProfileDetails *userDetails;
 
 - (NSArray *)presentedCells;
 - (NSString *)editViewTitle;

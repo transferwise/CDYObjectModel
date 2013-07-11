@@ -9,18 +9,18 @@
 #import "ConfirmPaymentViewController.h"
 #import "UIColor+Theme.h"
 #import "ConfirmPaymentCell.h"
-#import "RecipientType.h"
-#import "RecipientTypeField.h"
+#import "PlainRecipientType.h"
+#import "PlainRecipientTypeField.h"
 #import "OHAttributedLabel/OHAttributedLabel.h"
 #import "CalculationResult.h"
-#import "PersonalProfileInput.h"
+#import "PlainPersonalProfileInput.h"
 #import "TRWProgressHUD.h"
-#import "RecipientProfileInput.h"
+#import "PlainRecipientProfileInput.h"
 #import "TRWAlertView.h"
 #import "TextEntryCell.h"
 #import "NSString+Validation.h"
 #import "RecipientTypesOperation.h"
-#import "PaymentInput.h"
+#import "PlainPaymentInput.h"
 #import "PaymentFlow.h"
 
 static NSUInteger const kSenderSection = 0;
@@ -142,7 +142,7 @@ static NSUInteger const kReceiverSection = 1;
 - (NSArray *)buildFieldCells {
     NSArray *fields = self.recipientType.fields;
     NSMutableArray *cells = [NSMutableArray arrayWithCapacity:[fields count]];
-    for (RecipientTypeField *field in fields) {
+    for (PlainRecipientTypeField *field in fields) {
         ConfirmPaymentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
         [cell.textLabel setText:field.title];
         [cell.detailTextLabel setText:[self.recipientProfile valueForKeyPath:field.name]];
@@ -183,7 +183,7 @@ static NSUInteger const kReceiverSection = 1;
             }
 
             NSArray *filtered = [recipients filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-                RecipientType *type = evaluatedObject;
+                PlainRecipientType *type = evaluatedObject;
 
                 return [type.type isEqualToString:self.recipientProfile.type];
             }]];
@@ -232,7 +232,7 @@ static NSUInteger const kReceiverSection = 1;
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
 
-    PaymentInput *input = [[PaymentInput alloc] init];
+    PlainPaymentInput *input = [[PlainPaymentInput alloc] init];
     if (self.recipientProfile.id) {
         [input setRecipientId:self.recipientProfile.id];
     }

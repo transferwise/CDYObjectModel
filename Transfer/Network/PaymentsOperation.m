@@ -8,7 +8,7 @@
 
 #import "PaymentsOperation.h"
 #import "TransferwiseOperation+Private.h"
-#import "Payment.h"
+#import "PlainPayment.h"
 
 NSString *const kPaymentsListPath = @"/payment/list";
 
@@ -41,7 +41,7 @@ NSString *const kPaymentsListPath = @"/payment/list";
         NSArray *payments = response[@"payments"];
         NSMutableArray *result = [NSMutableArray arrayWithCapacity:[payments count]];
         for (NSDictionary *data in payments) {
-            Payment *payment = [Payment paymentWithData:data];
+            PlainPayment *payment = [PlainPayment paymentWithData:data];
             [result addObject:payment];
         }
 

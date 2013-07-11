@@ -9,7 +9,7 @@
 #import "UserDetailsOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Constants.h"
-#import "ProfileDetails.h"
+#import "PlainProfileDetails.h"
 
 NSString *const kUserDetailsPath = @"/user/details";
 
@@ -23,7 +23,7 @@ NSString *const kUserDetailsPath = @"/user/details";
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        ProfileDetails *details = [ProfileDetails detailsWithData:response];
+        PlainProfileDetails *details = [PlainProfileDetails detailsWithData:response];
         weakSelf.completionHandler(details, nil);
     }];
 

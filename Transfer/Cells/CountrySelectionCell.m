@@ -7,7 +7,7 @@
 //
 
 #import "CountrySelectionCell.h"
-#import "Country.h"
+#import "PlainCountry.h"
 #import "NSString+Validation.h"
 
 NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
@@ -15,7 +15,7 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
 @interface CountrySelectionCell () <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (nonatomic, strong) UIPickerView *countryPicker;
-@property (nonatomic, strong) Country *selectedCountry;
+@property (nonatomic, strong) PlainCountry *selectedCountry;
 
 @end
 
@@ -43,7 +43,7 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
 }
 
 - (void)setValue:(NSString *)value {
-    Country *selected = [self countryByCode:value];
+    PlainCountry *selected = [self countryByCode:value];
     [self setSelectedCountry:selected];
     if (!selected) {
         return;
@@ -59,13 +59,13 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
 }
 
 
-- (Country *)countryByCode:(NSString *)code {
+- (PlainCountry *)countryByCode:(NSString *)code {
     if (![code hasValue]) {
         //TODO jaanus: use country code from locale?
         return nil;
     }
 
-    for (Country *country in self.allCountries) {
+    for (PlainCountry *country in self.allCountries) {
         if ([country.isoCode3 isEqualToString:code]) {
             return country;
         }
@@ -83,20 +83,20 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    Country *country = self.allCountries[(NSUInteger) row];
+    PlainCountry *country = self.allCountries[(NSUInteger) row];
     return country.name;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    Country *selected = self.allCountries[(NSUInteger) row];
+    PlainCountry *selected = self.allCountries[(NSUInteger) row];
     [self setSelectedCountry:selected];
     [self.entryField setText:selected.name];
 }
 
 
 - (void)setTwoLetterCountryCode:(NSString *)code {
-    Country *country = nil;
-    for (Country *checked in self.allCountries) {
+    PlainCountry *country = nil;
+    for (PlainCountry *checked in self.allCountries) {
         if (![[checked.isoCode2 lowercaseString] isEqualToString:code]) {
             continue;
         }

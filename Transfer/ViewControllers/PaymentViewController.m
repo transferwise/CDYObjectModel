@@ -10,10 +10,10 @@
 #import "MoneyEntryCell.h"
 #import "UIColor+Theme.h"
 #import "MoneyCalculator.h"
-#import "Recipient.h"
+#import "PlainRecipient.h"
 #import "Constants.h"
 #import "CalculationResult.h"
-#import "Currency.h"
+#import "PlainCurrency.h"
 #import "TransferwiseClient.h"
 #import "TRWProgressHUD.h"
 #import "TRWAlertView.h"
@@ -72,14 +72,14 @@ static NSUInteger const kRowYouSend = 0;
 
     [self setYouSendCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
     [self.youSendCell setTitle:NSLocalizedString(@"money.entry.you.send.title", nil)];
-    [self.youSendCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:[Currency currencyWithCode:@"GBP"]];
+    [self.youSendCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:[PlainCurrency currencyWithCode:@"GBP"]];
     [self.youSendCell.moneyField setReturnKeyType:UIReturnKeyDone];
     [self.youSendCell setRoundedCorner:UIRectCornerTopRight];
 
     [self setTheyReceiveCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
     [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
     NSString *defaultTargetCode = self.recipient ? self.recipient.currency : @"EUR";
-    [self.theyReceiveCell setAmount:@"" currency:[Currency currencyWithCode:defaultTargetCode]];
+    [self.theyReceiveCell setAmount:@"" currency:[PlainCurrency currencyWithCode:defaultTargetCode]];
     [self.theyReceiveCell.moneyField setReturnKeyType:UIReturnKeyDone];
     [self.theyReceiveCell setOnlyPresentedCurrency:self.recipient.currency];
     [self.theyReceiveCell setRoundedCorner:UIRectCornerBottomRight];
@@ -144,8 +144,8 @@ static NSUInteger const kRowYouSend = 0;
         NSArray *usedCurrencies = currencies;
         if (self.recipient) {
             usedCurrencies = [currencies filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-                Currency *currency = evaluatedObject;
-                for (Currency *checked in currency.targets) {
+                PlainCurrency *currency = evaluatedObject;
+                for (PlainCurrency *checked in currency.targets) {
                     if ([checked.code isEqualToString:self.recipient.currency]) {
                         return YES;
                     }

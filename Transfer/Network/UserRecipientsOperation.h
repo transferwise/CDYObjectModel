@@ -8,7 +8,7 @@
 
 #import "TransferwiseOperation.h"
 
-@class Currency;
+@class PlainCurrency;
 
 typedef void (^ListRecipientsBlock)(NSArray *recipients, NSError *error);
 
@@ -17,6 +17,6 @@ typedef void (^ListRecipientsBlock)(NSArray *recipients, NSError *error);
 @property (nonatomic, copy) ListRecipientsBlock responseHandler;
 
 + (UserRecipientsOperation *)recipientsOperation;
-+ (UserRecipientsOperation *)recipientsOperationWithCurrency:(Currency *)currency;
++ (UserRecipientsOperation *)recipientsOperationWithCurrency:(PlainCurrency *)currency;
 
 @end

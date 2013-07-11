@@ -9,7 +9,7 @@
 #import "CurrenciesOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Constants.h"
-#import "Currency.h"
+#import "PlainCurrency.h"
 
 NSString *const kCurrencyListPath = @"/currency/list";
 
@@ -29,7 +29,7 @@ NSString *const kCurrencyListPath = @"/currency/list";
 
         NSMutableArray *result = [NSMutableArray arrayWithCapacity:[currencies count]];
         for (NSDictionary *data in currencies) {
-            Currency *currency = [Currency currencyWithRecipientData:data];
+            PlainCurrency *currency = [PlainCurrency currencyWithRecipientData:data];
             [result addObject:currency];
         }
 

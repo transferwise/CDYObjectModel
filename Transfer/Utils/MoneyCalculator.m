@@ -11,15 +11,15 @@
 #import "Constants.h"
 #import "CalculationResult.h"
 #import "NSString+Validation.h"
-#import "Currency.h"
+#import "PlainCurrency.h"
 
 @interface MoneyCalculator ()
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, assign) CalculationAmountCurrency amountCurrency;
 @property (nonatomic, copy) NSString *waitingAmount;
-@property (nonatomic, strong) Currency *waitingSourceCurrency;
-@property (nonatomic, strong) Currency *waitingTargetCurrency;
+@property (nonatomic, strong) PlainCurrency *waitingSourceCurrency;
+@property (nonatomic, strong) PlainCurrency *waitingTargetCurrency;
 
 @end
 
@@ -39,7 +39,7 @@
     _sendCell = sendCell;
 
     [_sendCell.moneyField addTarget:self action:@selector(sendAmountChanged:) forControlEvents:UIControlEventEditingChanged];
-    [sendCell setCurrencyChangedHandler:^(Currency *currency) {
+    [sendCell setCurrencyChangedHandler:^(PlainCurrency *currency) {
         [self sourceCurrencyChanged:currency];
     }];
 }
@@ -48,7 +48,7 @@
     _receiveCell = receiveCell;
 
     [_receiveCell.moneyField addTarget:self action:@selector(receiveAmountChanged:) forControlEvents:UIControlEventEditingChanged];
-    [receiveCell setCurrencyChangedHandler:^(Currency *currency) {
+    [receiveCell setCurrencyChangedHandler:^(PlainCurrency *currency) {
         [self setWaitingTargetCurrency:currency];
         [self performCalculation];
     }];
@@ -76,11 +76,11 @@
     _currencies = currencies;
 
     [self.sendCell setPresentedCurrencies:currencies];
-    Currency *selected = currencies[0];
+    PlainCurrency *selected = currencies[0];
     [self sourceCurrencyChanged:selected];
 }
 
-- (void)sourceCurrencyChanged:(Currency *)currency {
+- (void)sourceCurrencyChanged:(PlainCurrency *)currency {
     [self setWaitingSourceCurrency:currency];
     NSArray *targets = currency.targets;
     [self.receiveCell setPresentedCurrencies:targets];

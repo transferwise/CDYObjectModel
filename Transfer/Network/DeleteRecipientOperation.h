@@ -9,13 +9,13 @@
 #import "TransferwiseOperation.h"
 #import "UserRecipientsOperation.h"
 
-@class Recipient;
+@class PlainRecipient;
 
 @interface DeleteRecipientOperation : TransferwiseOperation
 
 @property (nonatomic, copy) ListRecipientsBlock completionHandler;
 
-+ (DeleteRecipientOperation *)operationWithRecipient:(Recipient *)recipient;
++ (DeleteRecipientOperation *)operationWithRecipient:(PlainRecipient *)recipient;
 
 - (id)initWithRecipientId:(NSNumber *)recipientId;
 

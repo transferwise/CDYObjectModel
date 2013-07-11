@@ -15,12 +15,12 @@
 #import "RecipientTypesOperation.h"
 #import "TextEntryCell.h"
 #import "CurrencySelectionCell.h"
-#import "Currency.h"
-#import "RecipientType.h"
-#import "RecipientTypeField.h"
+#import "PlainCurrency.h"
+#import "PlainRecipientType.h"
+#import "PlainRecipientTypeField.h"
 #import "RecipientFieldCell.h"
 #import "NSString+Validation.h"
-#import "Recipient.h"
+#import "PlainRecipient.h"
 #import "TRWAlertView.h"
 #import "NSMutableString+Issues.h"
 #import "UIApplication+Keyboard.h"
@@ -33,7 +33,7 @@
 #import "PhoneBookProfileSelector.h"
 #import "PhoneBookProfile.h"
 #import "Credentials.h"
-#import "RecipientProfileInput.h"
+#import "PlainRecipientProfileInput.h"
 #import "UITableView+FooterPositioning.h"
 #import "TransferTypeSelectionCell.h"
 
@@ -62,12 +62,12 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, strong) IBOutlet UIView *footer;
 @property (nonatomic, strong) IBOutlet UIButton *addButton;
 
-@property (nonatomic, strong) Currency *selectedCurrency;
-@property (nonatomic, strong) RecipientType *selectedRecipientType;
+@property (nonatomic, strong) PlainCurrency *selectedCurrency;
+@property (nonatomic, strong) PlainRecipientType *selectedRecipientType;
 
 @property (nonatomic, strong) NSArray *allCurrencies;
 @property (nonatomic, strong) NSArray *recipientsForCurrency;
-@property (nonatomic, strong) Recipient *selectedRecipient;
+@property (nonatomic, strong) PlainRecipient *selectedRecipient;
 
 @property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
 
@@ -113,7 +113,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setNameCell:nameCell];
     [nameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [nameCell configureWithTitle:NSLocalizedString(@"recipient.controller.cell.label.name", nil) value:@""];
-    [nameCell setSelectionHandler:^(Recipient *recipient) {
+    [nameCell setSelectionHandler:^(PlainRecipient *recipient) {
         [self didSelectRecipient:recipient];
     }];
     [recipientCells addObject:nameCell];
@@ -124,7 +124,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     CurrencySelectionCell *currencyCell = [self.tableView dequeueReusableCellWithIdentifier:TWCurrencySelectionCellIdentifier];
     [self setCurrencyCell:currencyCell];
-    [currencyCell setSelectionHandler:^(Currency *currency) {
+    [currencyCell setSelectionHandler:^(PlainCurrency *currency) {
         [self handleCurrencySelection:currency];
     }];
     [currencyCells addObject:currencyCell];
@@ -134,7 +134,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     __block __weak RecipientViewController *weakSelf = self;
     
     self.transferTypeSelectionCell = [self.tableView dequeueReusableCellWithIdentifier:TWTypeSelectionCellIdentifier];
-    [self.transferTypeSelectionCell setSelectionChangeHandler:^(RecipientType *type) {
+    [self.transferTypeSelectionCell setSelectionChangeHandler:^(PlainRecipientType *type) {
         [weakSelf handleSelectionChangeToType:type];
     }];
 
@@ -245,7 +245,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     self.nameCell.value = profile.fullName;
 }
 
-- (void)didSelectRecipient:(Recipient *)recipient {
+- (void)didSelectRecipient:(PlainRecipient *)recipient {
     [self setSelectedRecipient:recipient];
     [self handleSelectionChangeToType:recipient ? [self findTypeWithCode:recipient.type] : [self findTypeWithCode:self.selectedCurrency.defaultRecipientType]];
 
@@ -277,7 +277,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
                 continue;
             }
 
-            RecipientTypeField *field = fieldCell.type;
+            PlainRecipientTypeField *field = fieldCell.type;
             [fieldCell setValue:[recipient valueForKeyPath:field.name]];
         }
     });
@@ -285,7 +285,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (NSArray *)currenciesToShow {
     if (self.preloadRecipientsWithCurrency) {
-        for (Currency *currency in self.allCurrencies) {
+        for (PlainCurrency *currency in self.allCurrencies) {
             if (![currency.code isEqualToString:self.preloadRecipientsWithCurrency.code]) {
                 continue;
             }
@@ -297,11 +297,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     return self.allCurrencies;
 }
 
-- (void)handleCurrencySelection:(Currency *)currency {
+- (void)handleCurrencySelection:(PlainCurrency *)currency {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"Did select currency:%@. Default type:%@", currency, currency.defaultRecipientType);
 
-        RecipientType *type = [self findTypeWithCode:currency.defaultRecipientType];
+        PlainRecipientType *type = [self findTypeWithCode:currency.defaultRecipientType];
         MCLog(@"Have %d fields", [type.fields count]);
 
         [self setSelectedCurrency:currency];
@@ -314,7 +314,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     });
 }
 
-- (void)handleSelectionChangeToType:(RecipientType *)type {
+- (void)handleSelectionChangeToType:(PlainRecipientType *)type {
     NSArray *cells = [self buildCellsForType:type];
     [self setSelectedRecipientType:type];
     [self setRecipientTypeFieldCells:cells];
@@ -333,7 +333,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 - (NSArray *)findAllTypesWithCodes:(NSArray *)codes {
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:[codes count]];
     for (NSString *code in codes) {
-        RecipientType *type = [self findTypeWithCode:code];
+        PlainRecipientType *type = [self findTypeWithCode:code];
         if (!code) {
             MCLog(@"Did not find type for code %@", code);
             continue;
@@ -345,7 +345,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     return [NSArray arrayWithArray:result];
 }
 
-- (NSArray *)buildCellsForType:(RecipientType *)type {
+- (NSArray *)buildCellsForType:(PlainRecipientType *)type {
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:[type.fields count]];
     NSArray *allTypes = [self findAllTypesWithCodes:self.selectedCurrency.recipientTypes];
     if(allTypes.count > 1){
@@ -353,7 +353,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self.transferTypeSelectionCell setSelectedType:type allTypes:allTypes];
         [result addObject:self.transferTypeSelectionCell];
     }
-    for (RecipientTypeField *field in type.fields) {
+    for (PlainRecipientTypeField *field in type.fields) {
         //TODO jaanus: make this more generic
         if ([field.name isEqualToString:@"usState"]) {
             DropdownCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWDropdownCellIdentifier];
@@ -369,8 +369,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     return [NSArray arrayWithArray:result];
 }
 
-- (RecipientType *)findTypeWithCode:(NSString *)typeString {
-    for (RecipientType *type in self.recipientTypes) {
+- (PlainRecipientType *)findTypeWithCode:(NSString *)typeString {
+    for (PlainRecipientType *type in self.recipientTypes) {
         if (![typeString isEqualToString:type.type]) {
             continue;
         }
@@ -404,7 +404,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.validating.message", nil)];
 
-    RecipientProfileInput *recipientInput = [[RecipientProfileInput alloc] init];
+    PlainRecipientProfileInput *recipientInput = [[PlainRecipientProfileInput alloc] init];
     recipientInput.name = self.nameCell.value;
     recipientInput.currency = self.selectedCurrency.code;
     recipientInput.type = self.selectedRecipientType.type;
@@ -420,7 +420,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [recipientInput setValue:value forKeyPath:field];
     }
 
-    [self.recipientValidation validateRecipient:recipientInput completion:^(Recipient *recipient, NSError *error) {
+    [self.recipientValidation validateRecipient:recipientInput completion:^(PlainRecipient *recipient, NSError *error) {
         [hud hide];
 
         if (error) {

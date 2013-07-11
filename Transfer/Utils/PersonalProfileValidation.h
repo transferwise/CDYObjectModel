@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class ProfileDetails;
-@class PersonalProfileInput;
+@class PlainProfileDetails;
+@class PlainPersonalProfileInput;
 
-typedef void (^PersonalProfileValidationBlock)(ProfileDetails *details, NSError *error);
+typedef void (^PersonalProfileValidationBlock)(PlainProfileDetails *details, NSError *error);
 
 @protocol PersonalProfileValidation <NSObject>
 
-- (void)validatePersonalProfile:(PersonalProfileInput *)profile withHandler:(PersonalProfileValidationBlock)handler;
+- (void)validatePersonalProfile:(PlainPersonalProfileInput *)profile withHandler:(PersonalProfileValidationBlock)handler;
 
 @end

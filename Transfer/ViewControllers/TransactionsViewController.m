@@ -11,7 +11,7 @@
 #import "UIColor+Theme.h"
 #import "PaymentCell.h"
 #import "TRWProgressHUD.h"
-#import "Payment.h"
+#import "PlainPayment.h"
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
@@ -76,7 +76,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PaymentCell *cell = [tableView dequeueReusableCellWithIdentifier:kPaymentCellIdentifier];
 
-    Payment *payment = self.presentedSections[indexPath.section][indexPath.row];
+    PlainPayment *payment = self.presentedSections[indexPath.section][indexPath.row];
 
     [cell configureWithPayment:payment];
 
@@ -129,12 +129,12 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 - (void)setPayments:(NSArray *)allPayments {
     [self setActiveTransfers:[allPayments filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        Payment *payment = evaluatedObject;
+        PlainPayment *payment = evaluatedObject;
         return [payment isActive];
     }]]];
 
     [self setCompletePayments:[allPayments filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        Payment *payment = evaluatedObject;
+        PlainPayment *payment = evaluatedObject;
         return ![payment isActive];
     }]]];
 

@@ -8,7 +8,7 @@
 
 #import "ProfileSource.h"
 #import "PhoneBookProfile.h"
-#import "ProfileDetails.h"
+#import "PlainProfileDetails.h"
 #import "TransferwiseClient.h"
 #import "Credentials.h"
 #import "Constants.h"
@@ -31,7 +31,7 @@
         return;
     }
 
-    [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(ProfileDetails *result, NSError *userError) {
+    [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(PlainProfileDetails *result, NSError *userError) {
         if (userError) {
             handler(userError);
             return;

@@ -9,7 +9,7 @@
 #import "CurrencyPairsOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Constants.h"
-#import "Currency.h"
+#import "PlainCurrency.h"
 
 NSString *const kCurrencyPairsPath = @"/currency/pairs";
 
@@ -29,7 +29,7 @@ NSString *const kCurrencyPairsPath = @"/currency/pairs";
         MCLog(@"Retrieved %d paris", [pairs count]);
         NSMutableArray *result = [NSMutableArray arrayWithCapacity:[pairs count]];
         for (NSDictionary *data in pairs) {
-            Currency *currency = [Currency currencyWithSourceData:data];
+            PlainCurrency *currency = [PlainCurrency currencyWithSourceData:data];
             [result addObject:currency];
         }
 

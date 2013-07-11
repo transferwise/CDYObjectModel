@@ -9,13 +9,13 @@
 #import "TransferwiseOperation.h"
 #import "UserDetailsOperation.h"
 
-@class BusinessProfileInput;
+@class PlainBusinessProfileInput;
 
 @interface BusinessProfileOperation : TransferwiseOperation
 
 @property (nonatomic, copy) TWProfileDetailsHandler saveResultHandler;
 
-+ (BusinessProfileOperation *)commitWithData:(BusinessProfileInput *)data;
-+ (BusinessProfileOperation *)validateWithData:(BusinessProfileInput *)data;
++ (BusinessProfileOperation *)commitWithData:(PlainBusinessProfileInput *)data;
++ (BusinessProfileOperation *)validateWithData:(PlainBusinessProfileInput *)data;
 
 @end

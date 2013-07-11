@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "TransferwiseOperation.h"
 
-@class PaymentVerificationRequired;
+@class PlainPaymentVerificationRequired;
 
-typedef void (^VerificationRequiredBlock)(PaymentVerificationRequired *verificationRequired, NSError *error);
+typedef void (^VerificationRequiredBlock)(PlainPaymentVerificationRequired *verificationRequired, NSError *error);
 
 @interface VerificationRequiredOperation : TransferwiseOperation
 

@@ -10,20 +10,20 @@ NSString *const kCreateRecipientPath = @"/recipient/create";
 NSString *const kValidateRecipientPath = @"/recipient/validate";
 
 #import "RecipientOperation.h"
-#import "Recipient.h"
+#import "PlainRecipient.h"
 #import "TransferwiseOperation+Private.h"
-#import "RecipientProfileInput.h"
+#import "PlainRecipientProfileInput.h"
 
 @interface RecipientOperation ()
 
 @property (nonatomic, copy) NSString *path;
-@property (nonatomic, strong) RecipientProfileInput *recipient;
+@property (nonatomic, strong) PlainRecipientProfileInput *recipient;
 
 @end
 
 @implementation RecipientOperation
 
-- (id)initWithPath:(NSString *)path recipient:(RecipientProfileInput *)recipient {
+- (id)initWithPath:(NSString *)path recipient:(PlainRecipientProfileInput *)recipient {
     self = [super init];
     if (self) {
         _path = path;
@@ -41,18 +41,18 @@ NSString *const kValidateRecipientPath = @"/recipient/validate";
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        Recipient *recipient = [Recipient recipientWithData:response];
+        PlainRecipient *recipient = [PlainRecipient recipientWithData:response];
         weakSelf.responseHandler(recipient, nil);
     }];
 
     [self postData:[self.recipient data] toPath:path];
 }
 
-+ (RecipientOperation *)createOperationWithRecipient:(RecipientProfileInput *)recipient {
++ (RecipientOperation *)createOperationWithRecipient:(PlainRecipientProfileInput *)recipient {
     return [[RecipientOperation alloc] initWithPath:kCreateRecipientPath recipient:recipient];
 }
 
-+ (RecipientOperation *)validateOperationWithRecipient:(RecipientProfileInput *)recipient {
++ (RecipientOperation *)validateOperationWithRecipient:(PlainRecipientProfileInput *)recipient {
     return [[RecipientOperation alloc] initWithPath:kValidateRecipientPath recipient:recipient];
 }
 

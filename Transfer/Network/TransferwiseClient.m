@@ -9,7 +9,7 @@
 #import "TransferwiseClient.h"
 #import "Constants.h"
 #import "Credentials.h"
-#import "ProfileDetails.h"
+#import "PlainProfileDetails.h"
 #import "RemoveTokenOperation.h"
 
 NSString *const kAPIPathBase = @"/api/v1";
@@ -57,7 +57,7 @@ NSString *const kAPIPathBase = @"/api/v1";
     UserDetailsOperation *detailsOperation = [UserDetailsOperation detailsOperation];
     [self setDetailsOperation:detailsOperation];
 
-    [detailsOperation setCompletionHandler:^(ProfileDetails *result, NSError *error) {
+    [detailsOperation setCompletionHandler:^(PlainProfileDetails *result, NSError *error) {
         if (result) {
             [Credentials setDisplayName:[result displayName]];
             [Credentials setUserEmail:[result email]];

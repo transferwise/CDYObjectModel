@@ -9,15 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "TextEntryCell.h"
 
-@class RecipientTypeField;
+@class PlainRecipientTypeField;
 
 extern NSString *const TWRecipientFieldCellIdentifier;
 
 @interface RecipientFieldCell : TextEntryCell
 
-@property (nonatomic, strong, readonly) RecipientTypeField *type;
+@property (nonatomic, strong, readonly) PlainRecipientTypeField *type;
 
 
-- (void)setFieldType:(RecipientTypeField *)field;
+- (void)setFieldType:(PlainRecipientTypeField *)field;
 
 @end

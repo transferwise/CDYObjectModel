@@ -8,7 +8,7 @@
 
 #import "VerificationRequiredOperation.h"
 #import "TransferwiseOperation+Private.h"
-#import "PaymentVerificationRequired.h"
+#import "PlainPaymentVerificationRequired.h"
 
 NSString *const kVerificationRequiredPath = @"/verification/required";
 
@@ -37,7 +37,7 @@ NSString *const kVerificationRequiredPath = @"/verification/required";
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        PaymentVerificationRequired *required = [[PaymentVerificationRequired alloc] init];
+        PlainPaymentVerificationRequired *required = [[PlainPaymentVerificationRequired alloc] init];
         required.idVerificationRequired = [response[@"idVerification"] boolValue];
         required.addressVerificationRequired = [response[@"addressVerification"] boolValue];
         weakSelf.completionHandler(required, nil);
