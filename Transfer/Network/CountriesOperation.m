@@ -9,36 +9,39 @@
 #import "CountriesOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Constants.h"
-#import "PlainCountry.h"
+#import "JCSObjectModel.h"
+#import "ObjectModel+RecipientTypes.h"
+#import "ObjectModel+Countries.h"
 
 NSString *const kCountriesPath = @"/user/countries";
 
 @implementation CountriesOperation
 
 - (void)execute {
+    if ([self.objectModel numberOfCountries] > 0) {
+        self.completionHandler(nil);
+        return;
+    }
+
     NSString *path = [self addTokenToPath:kCountriesPath];
 
     __block __weak CountriesOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
-        weakSelf.completionHandler(nil, error);
+        weakSelf.completionHandler(error);
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        NSArray *countries = response[@"countries"];
-        MCLog(@"Retrieved %d countries", [countries count]);
-        NSMutableArray *result = [NSMutableArray arrayWithCapacity:[countries count]];
-        for (NSDictionary *data in countries) {
-            PlainCountry *country = [PlainCountry countryWithData:data];
-            [result addObject:country];
-        }
+        [weakSelf.workModel.managedObjectContext performBlock:^{
+            NSArray *countries = response[@"countries"];
+            MCLog(@"Retrieved %d countries", [countries count]);
+            for (NSDictionary *data in countries) {
+                [weakSelf.workModel addOrCreateCountryWithData:data];
+            }
 
-        [result sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            PlainCountry *one = obj1;
-            PlainCountry *two = obj2;
-            return [one.name compare:two.name options:NSCaseInsensitiveSearch];
+            [weakSelf.workModel saveContext:^{
+                weakSelf.completionHandler(nil);
+            }];
         }];
-
-        weakSelf.completionHandler([NSArray arrayWithArray:result], nil);
     }];
 
     [self getDataFromPath:path];

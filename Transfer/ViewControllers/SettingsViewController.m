@@ -176,6 +176,7 @@ typedef NS_ENUM(short, SettingsRow) {
         }
         case PersonalProfileRow: {
             PersonalProfileViewController *controller = [[PersonalProfileViewController alloc] init];
+            [controller setObjectModel:self.objectModel];
             [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.save.button.title", nil)];
             [controller setProfileValidation:[[PersonalProfileCommitter alloc] init]];
             [revealController revealToggle:nil];
@@ -184,6 +185,7 @@ typedef NS_ENUM(short, SettingsRow) {
         }
         case BusinessProfileRow: {
             BusinessProfileViewController *controller = [[BusinessProfileViewController alloc] init];
+            [controller setObjectModel:self.objectModel];
             [controller setFooterButtonTitle:NSLocalizedString(@"business.profile.save.button.title", nil)];
             [controller setProfileValidation:[[BusinessProfileCommitter alloc] init]];
             [revealController revealToggle:nil];

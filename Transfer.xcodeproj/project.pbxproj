@@ -93,6 +93,9 @@
 		EA225CBC178EEA8A009D6B83 /* recipient_types.json in Resources */ = {isa = PBXBuildFile; fileRef = EA225CB9178EEA8A009D6B83 /* recipient_types.json */; };
 		EA225CBF178EEC6F009D6B83 /* _PairTargetCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CBE178EEC6F009D6B83 /* _PairTargetCurrency.m */; };
 		EA225CC2178EEC77009D6B83 /* PairTargetCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CC1178EEC77009D6B83 /* PairTargetCurrency.m */; };
+		EA225CCD179015B1009D6B83 /* _Country.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CCC179015B1009D6B83 /* _Country.m */; };
+		EA225CD1179015B8009D6B83 /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CD0179015B8009D6B83 /* Country.m */; };
+		EA225CD4179015CA009D6B83 /* ObjectModel+Countries.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CD3179015CA009D6B83 /* ObjectModel+Countries.m */; };
 		EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */; };
 		EA35C73A17324AF2005602F7 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73417324AF2005602F7 /* Icon-Small.png */; };
 		EA35C73B17324AF2005602F7 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73517324AF2005602F7 /* Icon-Small@2x.png */; };
@@ -139,7 +142,6 @@
 		EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
 		EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
 		EA88E667172F979F0021492C /* PersonalProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E664172F979F0021492C /* PersonalProfileViewController.m */; };
-		EA88E672172F97B10021492C /* PlainCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E66B172F97B10021492C /* PlainCountry.m */; };
 		EA88E673172F97B10021492C /* PlainPersonalProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E66D172F97B10021492C /* PlainPersonalProfile.m */; };
 		EA88E674172F97B10021492C /* PlainProfileDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E66F172F97B10021492C /* PlainProfileDetails.m */; };
 		EA88E675172F97B10021492C /* PlainRecipient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E671172F97B10021492C /* PlainRecipient.m */; };
@@ -440,6 +442,12 @@
 		EA225CBE178EEC6F009D6B83 /* _PairTargetCurrency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PairTargetCurrency.m; sourceTree = "<group>"; };
 		EA225CC0178EEC76009D6B83 /* PairTargetCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PairTargetCurrency.h; sourceTree = "<group>"; };
 		EA225CC1178EEC77009D6B83 /* PairTargetCurrency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PairTargetCurrency.m; sourceTree = "<group>"; };
+		EA225CCB179015B1009D6B83 /* _Country.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Country.h; sourceTree = "<group>"; };
+		EA225CCC179015B1009D6B83 /* _Country.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Country.m; sourceTree = "<group>"; };
+		EA225CCF179015B8009D6B83 /* Country.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Country.h; sourceTree = "<group>"; };
+		EA225CD0179015B8009D6B83 /* Country.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
+		EA225CD2179015CA009D6B83 /* ObjectModel+Countries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+Countries.h"; sourceTree = "<group>"; };
+		EA225CD3179015CA009D6B83 /* ObjectModel+Countries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+Countries.m"; sourceTree = "<group>"; };
 		EA2B23951721323E001AE9DE /* CurrencyPairsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyPairsOperation.h; sourceTree = "<group>"; };
 		EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyPairsOperation.m; sourceTree = "<group>"; };
 		EA35C73417324AF2005602F7 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
@@ -514,8 +522,6 @@
 		EA88E662172F979F0021492C /* DataEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryViewController.m; sourceTree = "<group>"; };
 		EA88E663172F979F0021492C /* PersonalProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileViewController.h; sourceTree = "<group>"; };
 		EA88E664172F979F0021492C /* PersonalProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileViewController.m; sourceTree = "<group>"; };
-		EA88E66A172F97B10021492C /* PlainCountry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainCountry.h; sourceTree = "<group>"; };
-		EA88E66B172F97B10021492C /* PlainCountry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainCountry.m; sourceTree = "<group>"; };
 		EA88E66C172F97B10021492C /* PlainPersonalProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainPersonalProfile.h; sourceTree = "<group>"; };
 		EA88E66D172F97B10021492C /* PlainPersonalProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainPersonalProfile.m; sourceTree = "<group>"; };
 		EA88E66E172F97B10021492C /* PlainProfileDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainProfileDetails.h; sourceTree = "<group>"; };
@@ -986,8 +992,6 @@
 				1864AC99173B7C4D008773FC /* PlainBusinessProfile.m */,
 				EA92D94C1769BB330078D0C4 /* PlainBusinessProfileInput.h */,
 				EA92D94D1769BB330078D0C4 /* PlainBusinessProfileInput.m */,
-				EA88E66A172F97B10021492C /* PlainCountry.h */,
-				EA88E66B172F97B10021492C /* PlainCountry.m */,
 				EA35C76617326AF4005602F7 /* PlainCurrency.h */,
 				EA35C76717326AF4005602F7 /* PlainCurrency.m */,
 				EA35C7731732851C005602F7 /* PlainPayment.h */,
@@ -1318,8 +1322,12 @@
 				EAD73696171E830600A037B1 /* Generated */,
 				EA225CB3178ED8C7009D6B83 /* AllowedTypeFieldValue.h */,
 				EA225CB4178ED8C7009D6B83 /* AllowedTypeFieldValue.m */,
+				EA225CCF179015B8009D6B83 /* Country.h */,
+				EA225CD0179015B8009D6B83 /* Country.m */,
 				EA225C7A178EA346009D6B83 /* Currency.h */,
 				EA225C7B178EA346009D6B83 /* Currency.m */,
+				EA225CD2179015CA009D6B83 /* ObjectModel+Countries.h */,
+				EA225CD3179015CA009D6B83 /* ObjectModel+Countries.m */,
 				EA225C86178EB241009D6B83 /* ObjectModel+Currencies.h */,
 				EA225C87178EB241009D6B83 /* ObjectModel+Currencies.m */,
 				EA225CA4178EC32D009D6B83 /* ObjectModel+CurrencyPairs.h */,
@@ -1365,6 +1373,8 @@
 			children = (
 				EA225CB0178ED8C1009D6B83 /* _AllowedTypeFieldValue.h */,
 				EA225CB1178ED8C1009D6B83 /* _AllowedTypeFieldValue.m */,
+				EA225CCB179015B1009D6B83 /* _Country.h */,
+				EA225CCC179015B1009D6B83 /* _Country.m */,
 				EA225C77178EA341009D6B83 /* _Currency.h */,
 				EA225C78178EA341009D6B83 /* _Currency.m */,
 				EA225CA7178EC3A4009D6B83 /* _PairSourceCurrency.h */,
@@ -1783,7 +1793,6 @@
 				EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */,
 				EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */,
 				EA88E667172F979F0021492C /* PersonalProfileViewController.m in Sources */,
-				EA88E672172F97B10021492C /* PlainCountry.m in Sources */,
 				EA88E673172F97B10021492C /* PlainPersonalProfile.m in Sources */,
 				EA88E674172F97B10021492C /* PlainProfileDetails.m in Sources */,
 				EA88E675172F97B10021492C /* PlainRecipient.m in Sources */,
@@ -1891,6 +1900,9 @@
 				EA225CB5178ED8C7009D6B83 /* AllowedTypeFieldValue.m in Sources */,
 				EA225CBF178EEC6F009D6B83 /* _PairTargetCurrency.m in Sources */,
 				EA225CC2178EEC77009D6B83 /* PairTargetCurrency.m in Sources */,
+				EA225CCD179015B1009D6B83 /* _Country.m in Sources */,
+				EA225CD1179015B8009D6B83 /* Country.m in Sources */,
+				EA225CD4179015CA009D6B83 /* ObjectModel+Countries.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -93,6 +93,7 @@
 
 - (void)presentSenderDetails:(BOOL)allowProfileSwitch {
     PaymentProfileViewController *controller = [[PaymentProfileViewController alloc] init];
+    [controller setObjectModel:self.objectModel];
     [controller setAllowProfileSwitch:allowProfileSwitch];
     if (self.recipient) {
         [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.confirm.payment.button.title", nil)];

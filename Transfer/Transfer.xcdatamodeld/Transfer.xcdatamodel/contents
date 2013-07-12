@@ -5,6 +5,11 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="valueForField" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientTypeField" inverseName="allowedValues" inverseEntity="RecipientTypeField" syncable="YES"/>
     </entity>
+    <entity name="Country" representedClassName="Country" syncable="YES">
+        <attribute name="iso2Code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iso3Code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Currency" representedClassName="Currency" syncable="YES">
         <attribute name="code" attributeType="String" syncable="YES"/>
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -93,5 +98,6 @@
         <element name="RecipientType" positionX="160" positionY="192" width="128" height="135"/>
         <element name="RecipientTypeField" positionX="160" positionY="192" width="128" height="210"/>
         <element name="TypeFieldValue" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="Country" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>

@@ -17,9 +17,10 @@
 #import "PhoneBookProfileSelector.h"
 #import "TRWProgressHUD.h"
 #import "PhoneBookProfile.h"
+#import "ObjectModel.h"
 #import "UIApplication+Keyboard.h"
 #import "PlainPersonalProfileInput.h"
-#import "PersonalProfileValidation.h"
+#import "ObjectModel+Countries.h"
 
 static NSUInteger const kButtonSection = 0;
 
@@ -32,7 +33,7 @@ static NSUInteger const kButtonSection = 0;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
 @property (nonatomic, strong) NSArray *presentationCells;
 @property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
-@property (nonatomic, strong) NSArray *allCountries;
+@property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
 - (IBAction)footerButtonPressed:(id)sender;
 
@@ -86,7 +87,7 @@ static NSUInteger const kButtonSection = 0;
         }
     }
     [self setCountryCell:(CountrySelectionCell *) countryCell];
-    [self.countryCell setAllCountries:self.allCountries];
+    [self.countryCell setAllCountries:[self.objectModel fetchedControllerForAllCountries]];
 
     [self setPresentationCells:presented];
 }
@@ -138,7 +139,7 @@ static NSUInteger const kButtonSection = 0;
 
     if ([Credentials userLoggedIn]) {
         [self pullDetails];
-    } else if ([self.countryCell.allCountries count] == 0) {
+    } else {
         [self pullCountries];
     }
 }
@@ -147,9 +148,25 @@ static NSUInteger const kButtonSection = 0;
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.refreshing.countries.message", nil)];
 
-    [[TransferwiseClient sharedClient] updateCountriesWithCompletionHandler:^(NSArray *countries, NSError *error) {
-        [hud hide];
+    [self pullCountriesWithHud:hud completionHandler:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [hud hide];
+            [self setPresentedSectionCells:self.presentationCells];
+            [self.tableView setTableFooterView:self.footer];
+            [self.tableView reloadData];
+        });
+    }];
+
+}
+
+- (void)pullCountriesWithHud:(TRWProgressHUD *)hud completionHandler:(JCSActionBlock)completion {
+    CountriesOperation *operation = [CountriesOperation operation];
+    [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
+    [operation setCompletionHandler:^(NSError *error) {
         if (error) {
+            [hud hide];
+
             TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.countries.refresh.error.title", nil)
                                                                message:NSLocalizedString(@"personal.profile.countries.refresh.error.message", nil)];
             [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
@@ -157,39 +174,20 @@ static NSUInteger const kButtonSection = 0;
             return;
         }
 
-        [self setAllCountries:countries];
-        [self.countryCell setAllCountries:countries];
-        [self setPresentedSectionCells:self.presentationCells];
-        [self.tableView setTableFooterView:self.footer];
-        [self.tableView reloadData];
+        completion();
     }];
+    [operation execute];
 }
 
 - (void)pullDetails {
-    if ([self.countryCell.allCountries count] > 0) {
-        return;
-    }
-
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.refreshing.message", nil)];
 
-    [[TransferwiseClient sharedClient] updateCountriesWithCompletionHandler:^(NSArray *countries, NSError *error) {
-        if (error) {
-            [hud hide];
-            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.refresh.error.title", nil)
-                                                               message:NSLocalizedString(@"personal.profile.refresh.error.message", nil)];
-            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-            [alertView show];
-            return;
-        }
-
-        [self setAllCountries:countries];
-        [self.countryCell setAllCountries:countries];
-
+    [self pullCountriesWithHud:hud completionHandler:^{
         [self.profileSource pullDetailsWithHandler:^(NSError *profileError) {
-            [hud hide];
-
             dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hide];
+
                 if (profileError) {
                     TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.refresh.error.title", nil)
                                                                        message:NSLocalizedString(@"personal.profile.refresh.error.message", nil)];
@@ -203,6 +201,7 @@ static NSUInteger const kButtonSection = 0;
                 [self.tableView reloadData];
             });
         }];
+
     }];
 }
 

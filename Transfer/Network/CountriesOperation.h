@@ -8,7 +8,7 @@
 
 #import "TransferwiseOperation.h"
 
-typedef void (^CountriesResponseBlock)(NSArray *countries, NSError *error);
+typedef void (^CountriesResponseBlock)(NSError *error);
 
 @interface CountriesOperation : TransferwiseOperation
 

@@ -12,7 +12,7 @@ extern NSString *const TWCountrySelectionCellIdentifier;
 
 @interface CountrySelectionCell : TextEntryCell
 
-@property (nonatomic, strong) NSArray *allCountries;
+@property (nonatomic, strong) NSFetchedResultsController *allCountries;
 
 - (void)setTwoLetterCountryCode:(NSString *)code;
 

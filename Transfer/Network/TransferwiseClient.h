@@ -19,7 +19,6 @@
 
 + (TransferwiseClient *)sharedClient;
 - (void)updateUserDetailsWithCompletionHandler:(TWProfileDetailsHandler)completion;
-- (void)updateCountriesWithCompletionHandler:(CountriesResponseBlock)handler;
 - (void)clearCredentials;
 - (NSString *)addTokenToPath:(NSString *)path;
 

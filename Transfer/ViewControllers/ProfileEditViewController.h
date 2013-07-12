@@ -10,11 +10,14 @@
 
 @class ProfileSource;
 @class PhoneBookProfileSelector;
+@class ObjectModel;
+@class CountriesOperation;
 
 @interface ProfileEditViewController : DataEntryViewController
 
 @property (nonatomic, strong) NSString *footerButtonTitle;
 @property (nonatomic, strong) id profileValidation;
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 - (id)initWithSource:(ProfileSource *)source;
 - (void)setPresentProfileSource:(ProfileSource *)source reloadView:(BOOL)reload;

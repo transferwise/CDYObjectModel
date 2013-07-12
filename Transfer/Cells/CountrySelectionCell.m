@@ -7,15 +7,15 @@
 //
 
 #import "CountrySelectionCell.h"
-#import "PlainCountry.h"
+#import "Country.h"
 #import "NSString+Validation.h"
 
 NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
 
-@interface CountrySelectionCell () <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface CountrySelectionCell () <UIPickerViewDelegate, UIPickerViewDataSource, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) UIPickerView *countryPicker;
-@property (nonatomic, strong) PlainCountry *selectedCountry;
+@property (nonatomic, strong) Country *selectedCountry;
 
 @end
 
@@ -27,6 +27,10 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
         // Initialization code
     }
     return self;
+}
+
+- (void)dealloc {
+    [self.allCountries setDelegate:nil];
 }
 
 - (void)awakeFromNib {
@@ -42,31 +46,38 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
     [self addDoneButton];
 }
 
+- (void)setAllCountries:(NSFetchedResultsController *)allCountries {
+    [_allCountries setDelegate:nil];
+    _allCountries = allCountries;
+    [_allCountries setDelegate:self];
+}
+
+
 - (void)setValue:(NSString *)value {
-    PlainCountry *selected = [self countryByCode:value];
+    Country *selected = [self countryByCode:value];
     [self setSelectedCountry:selected];
     if (!selected) {
         return;
     }
 
     [self.entryField setText:selected.name];
-    NSUInteger countryIndex = [self.allCountries indexOfObject:selected];
+    NSInteger countryIndex = [self.allCountries indexPathForObject:selected].row;
     [self.countryPicker selectRow:countryIndex inComponent:0 animated:NO];
 }
 
 - (NSString *)value {
-    return self.selectedCountry ? self.selectedCountry.isoCode3 : @"";
+    return self.selectedCountry ? self.selectedCountry.iso3Code : @"";
 }
 
 
-- (PlainCountry *)countryByCode:(NSString *)code {
+- (Country *)countryByCode:(NSString *)code {
     if (![code hasValue]) {
         //TODO jaanus: use country code from locale?
         return nil;
     }
 
-    for (PlainCountry *country in self.allCountries) {
-        if ([country.isoCode3 isEqualToString:code]) {
+    for (Country *country in self.allCountries.fetchedObjects) {
+        if ([country.iso3Code isEqualToString:code]) {
             return country;
         }
     }
@@ -79,25 +90,25 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return [self.allCountries count];
+    return [self.allCountries.fetchedObjects count];
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    PlainCountry *country = self.allCountries[(NSUInteger) row];
+    Country *country = [self.allCountries objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
     return country.name;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    PlainCountry *selected = self.allCountries[(NSUInteger) row];
+    Country *selected = [self.allCountries objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
     [self setSelectedCountry:selected];
     [self.entryField setText:selected.name];
 }
 
 
 - (void)setTwoLetterCountryCode:(NSString *)code {
-    PlainCountry *country = nil;
-    for (PlainCountry *checked in self.allCountries) {
-        if (![[checked.isoCode2 lowercaseString] isEqualToString:code]) {
+    Country *country = nil;
+    for (Country *checked in self.allCountries.fetchedObjects) {
+        if (![[checked.iso2Code lowercaseString] isEqualToString:code]) {
             continue;
         }
 
@@ -111,6 +122,10 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
 
     self.selectedCountry = country;
     self.entryField.text = country.name;
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.countryPicker reloadAllComponents];
 }
 
 @end

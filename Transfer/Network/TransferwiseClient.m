@@ -18,7 +18,6 @@ NSString *const kAPIPathBase = @"/api/v1";
 @interface TransferwiseClient ()
 
 @property (nonatomic, strong) UserDetailsOperation *detailsOperation;
-@property (nonatomic, strong) CountriesOperation *countriesOperation;
 @property (nonatomic, strong) CurrencyPairsOperation *currencyOperation;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
@@ -69,12 +68,6 @@ NSString *const kAPIPathBase = @"/api/v1";
     }];
 
     [detailsOperation execute];
-}
-- (void)updateCountriesWithCompletionHandler:(CountriesResponseBlock)handler {
-    CountriesOperation *operation = [CountriesOperation operation];
-    [self setCountriesOperation:operation];
-    [operation setCompletionHandler:handler];
-    [operation execute];
 }
 
 - (void)clearCredentials {
