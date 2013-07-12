@@ -168,18 +168,21 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
 
     void (^dataLoadCompletionBlock)() = ^() {
-        [hud hide];
-        [self.nameCell setAutoCompleteRecipients:self.recipientsForCurrency];
-        [self.currencyCell setAllCurrencies:[self currenciesToShow]];
-        [self setPresentedSectionCells:@[@[self.importCell], self.recipientCells, self.currencyCells, @[]]];
-        [self.tableView setTableFooterView:self.footer];
-        [self.tableView reloadData];
-        [self didSelectRecipient:self.selectedRecipient];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [hud hide];
+            [self.nameCell setAutoCompleteRecipients:self.recipientsForCurrency];
+            [self.currencyCell setAllCurrencies:[self currenciesToShow]];
+            [self setPresentedSectionCells:@[@[self.importCell], self.recipientCells, self.currencyCells, @[]]];
+            [self.tableView setTableFooterView:self.footer];
+            [self.tableView reloadData];
+            [self didSelectRecipient:self.selectedRecipient];
+        });
     };
 
     UserRecipientsOperation *recipientsOperation = nil;
     if (self.preloadRecipientsWithCurrency && [Credentials userLoggedIn]) {
         recipientsOperation = [UserRecipientsOperation recipientsOperationWithCurrency:self.preloadRecipientsWithCurrency];
+        [recipientsOperation setObjectModel:self.objectModel];
         [recipientsOperation setResponseHandler:^(NSError *error) {
             if (error) {
                 [hud hide];
@@ -422,6 +425,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     recipientInput.type = self.selectedRecipientType.type;
 
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
+        if ([cell isKindOfClass:[TransferTypeSelectionCell class]]) {
+            continue;
+        }
+
         if ([cell isKindOfClass:[DropdownCell class]]) {
             recipientInput.usState = cell.value;
             continue;
@@ -454,6 +461,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
 
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
+        if ([cell isKindOfClass:[TransferTypeSelectionCell class]]) {
+            continue;
+        }
+
         NSString *value = [cell value];
         if ([value hasValue]) {
             continue;

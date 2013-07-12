@@ -19,6 +19,7 @@
 @class PlainPaymentInput;
 @class PlainPaymentVerificationRequired;
 @class PlainBusinessProfileInput;
+@class ObjectModel;
 
 typedef void (^PaymentErrorBlock)(NSError *error);
 
@@ -29,6 +30,7 @@ typedef void (^PaymentErrorBlock)(NSError *error);
 @property (nonatomic, strong) CalculationResult *calculationResult;
 @property (nonatomic, strong) PlainRecipient *recipient;
 @property (nonatomic, strong) PlainProfileDetails *userDetails;
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 - (id)initWithPresentingController:(UINavigationController *)controller;
 - (void)presentSenderDetails;

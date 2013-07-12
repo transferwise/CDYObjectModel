@@ -197,6 +197,7 @@
 - (void)presentRecipientDetails {
     RecipientViewController *controller = [[RecipientViewController alloc] init];
     __block __weak  RecipientViewController *weakController = controller;
+    [controller setObjectModel:self.objectModel];
     [controller setTitle:NSLocalizedString(@"recipient.controller.payment.mode.title", nil)];
     [controller setFooterButtonTitle:NSLocalizedString(@"recipient.controller.confirm.payment.button.title", nil)];
     [controller setRecipientValidation:self];
