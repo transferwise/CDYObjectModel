@@ -41,12 +41,14 @@
         [_formatterWithCurrency setGeneratesDecimalNumbers:YES];
         [_formatterWithCurrency setNumberStyle:NSNumberFormatterCurrencyStyle];
         [_formatterWithCurrency setCurrencyDecimalSeparator:@"."];
+        [_formatterWithCurrency setCurrencyGroupingSeparator:@" "];
 
         _formatterWithoutCurrency = [[NSNumberFormatter alloc] init];
         [_formatterWithoutCurrency setGeneratesDecimalNumbers:YES];
         [_formatterWithoutCurrency setNumberStyle:NSNumberFormatterCurrencyStyle];
         [_formatterWithoutCurrency setCurrencyDecimalSeparator:@"."];
         [_formatterWithoutCurrency setCurrencySymbol:@""];
+        [_formatterWithoutCurrency setCurrencyGroupingSeparator:@" "];
     }
 
     return self;

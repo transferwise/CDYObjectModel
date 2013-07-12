@@ -8,7 +8,7 @@
 
 #import "TransferwiseOperation.h"
 
-typedef void (^CurrencyPairsBlock)(NSArray *currencies, NSError *error);
+typedef void (^CurrencyPairsBlock)(NSError *error);
 
 @interface CurrencyPairsOperation : TransferwiseOperation
 

@@ -77,16 +77,6 @@ NSString *const kAPIPathBase = @"/api/v1";
     [operation execute];
 }
 
-- (void)updateCurrencyPairsWithCompletionHandler:(CurrencyPairsBlock)handler {
-    MCLog(@"Update pairs");
-    CurrencyPairsOperation *operation = [CurrencyPairsOperation pairsOperation];
-    [self setCurrencyOperation:operation];
-    [operation setCurrenciesHandler:handler];
-
-    [operation setObjectModel:self.objectModel];
-    [operation execute];
-}
-
 - (void)clearCredentials {
     NSString *token = [Credentials accessToken];
     [Credentials clearCredentials];

@@ -22,11 +22,11 @@
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="maxInvoiceAmount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="currency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="sources" inverseEntity="Currency" syncable="YES"/>
-        <relationship name="targets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PairTargetCurrency" inverseName="source" inverseEntity="PairTargetCurrency" syncable="YES"/>
+        <relationship name="targets" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="PairTargetCurrency" inverseName="source" inverseEntity="PairTargetCurrency" syncable="YES"/>
     </entity>
     <entity name="PairTargetCurrency" representedClassName="PairTargetCurrency" syncable="YES">
         <attribute name="fixedTargetPaymentAllowed" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
-        <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="index" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="minInvoiceAmount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="currency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="targets" inverseEntity="Currency" syncable="YES"/>
         <relationship name="source" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PairSourceCurrency" inverseName="targets" inverseEntity="PairSourceCurrency" syncable="YES"/>
@@ -84,14 +84,14 @@
         <relationship name="valueForField" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientTypeField" inverseName="values" inverseEntity="RecipientTypeField" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Payment" positionX="160" positionY="192" width="128" height="240"/>
+        <element name="AllowedTypeFieldValue" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Currency" positionX="160" positionY="192" width="128" height="210"/>
+        <element name="PairSourceCurrency" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="PairTargetCurrency" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Payment" positionX="160" positionY="192" width="128" height="240"/>
         <element name="Recipient" positionX="160" positionY="192" width="128" height="180"/>
         <element name="RecipientType" positionX="160" positionY="192" width="128" height="135"/>
         <element name="RecipientTypeField" positionX="160" positionY="192" width="128" height="210"/>
         <element name="TypeFieldValue" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="PairSourceCurrency" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="AllowedTypeFieldValue" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="PairTargetCurrency" positionX="160" positionY="192" width="128" height="120"/>
     </elements>
 </model>

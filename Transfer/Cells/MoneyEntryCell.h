@@ -9,23 +9,23 @@
 #import <UIKit/UIKit.h>
 #import "TextEntryCell.h"
 
-@class PlainCurrency;
+@class Currency;
 
 extern NSString *const TWMoneyEntryCellIdentifier;
 
-typedef void (^CurrencyChangBlock)(PlainCurrency *currency);
+typedef void (^CurrencyChangBlock)(Currency *currency);
 
 @interface MoneyEntryCell : TextEntryCell
 
 @property (nonatomic, strong, readonly) UITextField *moneyField;
-@property (nonatomic, strong) NSArray *presentedCurrencies;
 @property (nonatomic, strong) CurrencyChangBlock currencyChangedHandler;
+@property (nonatomic, strong) NSFetchedResultsController *currencies;
 
 - (void)setTitle:(NSString *)title;
-- (void)setAmount:(NSString *)amount currency:(PlainCurrency *)currency;
+- (void)setAmount:(NSString *)amount currency:(Currency *)currency;
 - (NSString *)amount;
-- (PlainCurrency *)currency;
-- (void)setOnlyPresentedCurrency:(NSString *)currencyCode;
+- (Currency *)currency;
+- (void)setForcedCurrency:(Currency *)currency;
 - (void)setRoundedCorner:(UIRectCorner)corner;
 
 @end

@@ -10,15 +10,10 @@
 
 @interface PlainCurrency ()
 
-@property (nonatomic, copy) NSString *code;
-@property (nonatomic, strong) NSArray *targets;
 @property (nonatomic, assign) BOOL fixedTargetPaymentAllowed;
 @property (nonatomic, strong) NSNumber *maxInvoiceAmount;
 @property (nonatomic, strong) NSNumber *minInvoiceAmount;
 @property (nonatomic, copy) NSString *symbol;
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *defaultRecipientType;
-@property (nonatomic, strong) NSArray *recipientTypes;
 
 @end
 

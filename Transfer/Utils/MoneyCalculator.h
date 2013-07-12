@@ -13,13 +13,14 @@
 typedef void (^MoneyCalculationHandler)(CalculationResult *result, NSError *error);
 
 @class MoneyEntryCell;
+@class ObjectModel;
 
 @interface MoneyCalculator : NSObject
 
 @property (nonatomic, strong) MoneyEntryCell *sendCell;
 @property (nonatomic, strong) MoneyEntryCell *receiveCell;
 @property (nonatomic, copy) MoneyCalculationHandler calculationHandler;
-@property (nonatomic, strong) NSArray *currencies;
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 - (void)forceCalculate;
 

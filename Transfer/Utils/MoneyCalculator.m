@@ -8,18 +8,19 @@
 
 #import "MoneyCalculator.h"
 #import "MoneyEntryCell.h"
-#import "Constants.h"
 #import "CalculationResult.h"
 #import "NSString+Validation.h"
-#import "PlainCurrency.h"
+#import "Currency.h"
+#import "ObjectModel.h"
+#import "ObjectModel+CurrencyPairs.h"
 
 @interface MoneyCalculator ()
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, assign) CalculationAmountCurrency amountCurrency;
 @property (nonatomic, copy) NSString *waitingAmount;
-@property (nonatomic, strong) PlainCurrency *waitingSourceCurrency;
-@property (nonatomic, strong) PlainCurrency *waitingTargetCurrency;
+@property (nonatomic, strong) Currency *waitingSourceCurrency;
+@property (nonatomic, strong) Currency *waitingTargetCurrency;
 
 @end
 
@@ -39,7 +40,7 @@
     _sendCell = sendCell;
 
     [_sendCell.moneyField addTarget:self action:@selector(sendAmountChanged:) forControlEvents:UIControlEventEditingChanged];
-    [sendCell setCurrencyChangedHandler:^(PlainCurrency *currency) {
+    [sendCell setCurrencyChangedHandler:^(Currency *currency) {
         [self sourceCurrencyChanged:currency];
     }];
 }
@@ -48,7 +49,7 @@
     _receiveCell = receiveCell;
 
     [_receiveCell.moneyField addTarget:self action:@selector(receiveAmountChanged:) forControlEvents:UIControlEventEditingChanged];
-    [receiveCell setCurrencyChangedHandler:^(PlainCurrency *currency) {
+    [receiveCell setCurrencyChangedHandler:^(Currency *currency) {
         [self setWaitingTargetCurrency:currency];
         [self performCalculation];
     }];
@@ -72,19 +73,11 @@
     });
 }
 
-- (void)setCurrencies:(NSArray *)currencies {
-    _currencies = currencies;
-
-    [self.sendCell setPresentedCurrencies:currencies];
-    PlainCurrency *selected = currencies[0];
-    [self sourceCurrencyChanged:selected];
-}
-
-- (void)sourceCurrencyChanged:(PlainCurrency *)currency {
+- (void)sourceCurrencyChanged:(Currency *)currency {
+    MCLog(@"sourceCurrencyChanged");
     [self setWaitingSourceCurrency:currency];
-    NSArray *targets = currency.targets;
-    [self.receiveCell setPresentedCurrencies:targets];
-    [self setWaitingTargetCurrency:targets[0]];
+    [self.receiveCell setCurrencies:[self.objectModel fetchedControllerForTargetsWithSourceCurrency:currency]];
+    [self setWaitingTargetCurrency:[self.receiveCell currency]];
 
     [self performCalculation];
 }

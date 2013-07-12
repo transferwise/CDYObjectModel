@@ -118,10 +118,10 @@ const struct PairSourceCurrencyFetchedProperties PairSourceCurrencyFetchedProper
 @dynamic targets;
 
 	
-- (NSMutableSet*)targetsSet {
+- (NSMutableOrderedSet*)targetsSet {
 	[self willAccessValueForKey:@"targets"];
   
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"targets"];
+	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"targets"];
   
 	[self didAccessValueForKey:@"targets"];
 	return result;

@@ -48,6 +48,7 @@
     [transactionsController setObjectModel:self.objectModel];
 
     PaymentViewController *paymentController = [[PaymentViewController alloc] init];
+    [paymentController setObjectModel:self.objectModel];
 
     ContactsViewController *contactsController = [[ContactsViewController alloc] init];
     [contactsController setObjectModel:self.objectModel];
@@ -88,6 +89,7 @@
 
     if (![Credentials userLoggedIn] && !self.shown) {
         IntroductionViewController *controller = [[IntroductionViewController alloc] init];
+        [controller setObjectModel:self.objectModel];
         [controller setDummyPresentation:YES];
         [self pushViewController:controller animated:NO];
     }

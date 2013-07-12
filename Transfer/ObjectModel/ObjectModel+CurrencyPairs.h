@@ -14,5 +14,8 @@
 
 - (BOOL)canMakePaymentToCurrency:(Currency *)currency;
 - (void)createOrUpdatePairWithData:(NSDictionary *)data index:(NSUInteger)index;
+- (NSFetchedResultsController *)fetchedControllerForSources;
+- (NSFetchedResultsController *)fetchedControllerForSourcesContainingTargetCurrency:(Currency *)currency;
+- (NSFetchedResultsController *)fetchedControllerForTargetsWithSourceCurrency:(Currency *)currency;
 
 @end

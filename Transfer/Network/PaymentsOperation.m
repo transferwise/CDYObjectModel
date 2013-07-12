@@ -43,7 +43,6 @@ NSUInteger kPaymentsListLimit = 20;
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         //TODO jaanus: pull also recipient types here
-        //TODO jaanus: put to sections
         [weakSelf.workModel.managedObjectContext performBlock:^{
             NSMutableArray *existingPaymentIds = [NSMutableArray arrayWithArray:[weakSelf.workModel listRemoteIdsForExistingPayments]];
 

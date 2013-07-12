@@ -10,6 +10,7 @@
 
 @class PlainRecipient;
 @class ObjectModel;
+@class CurrencyPairsOperation;
 
 @interface PaymentViewController : UITableViewController
 

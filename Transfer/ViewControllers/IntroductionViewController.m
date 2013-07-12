@@ -13,19 +13,20 @@
 #import "UIColor+Theme.h"
 #import "UIView+Loading.h"
 #import "MoneyCalculator.h"
-#import "Constants.h"
 #import "CalculationResult.h"
+#import "CurrencyPairsOperation.h"
 #import "SWRevealViewController.h"
 #import "WhyView.h"
 #import "TSAlertView.h"
-#import "TransferwiseClient.h"
-#import "TRWProgressHUD.h"
 #import "PlainCurrency.h"
 #import "MoneyFormatter.h"
 #import "TRWAlertView.h"
 #import "PaymentFlow.h"
 #import "NoUserPaymentFlow.h"
 #import "Credentials.h"
+#import "ObjectModel+RecipientTypes.h"
+#import "ObjectModel+CurrencyPairs.h"
+#import "Currency.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
@@ -43,6 +44,7 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) CalculationResult *result;
 @property (nonatomic, strong) WhyView *whyView;
 @property (nonatomic, strong) PaymentFlow *paymentFlow;
+@property (nonatomic, strong) CurrencyPairsOperation *executedOperation;
 
 - (IBAction)loginPressed:(id)sender;
 - (IBAction)startPaymentPressed:(id)sender;
@@ -71,15 +73,16 @@ static NSUInteger const kRowYouSend = 0;
 
     [self setYouSendCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
     [self.youSendCell setTitle:NSLocalizedString(@"money.entry.you.send.title", nil)];
-    [self.youSendCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:[PlainCurrency currencyWithCode:@"GBP"]];
+    [self.youSendCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:nil];
     [self.youSendCell.moneyField setReturnKeyType:UIReturnKeyDone];
     [self.youSendCell setRoundedCorner:UIRectCornerTopRight];
 
     [self setTheyReceiveCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
     [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
-    [self.theyReceiveCell setAmount:@"" currency:[PlainCurrency currencyWithCode:@"EUR"]];
+    [self.theyReceiveCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:nil];
     [self.theyReceiveCell.moneyField setReturnKeyType:UIReturnKeyDone];
     [self.theyReceiveCell setRoundedCorner:UIRectCornerBottomRight];
+    [self.theyReceiveCell setEditable:NO];
 
     TableHeaderView *header = [TableHeaderView loadInstance];
     [header setMessage:NSLocalizedString(@"introduction.header.title.text", nil)];
@@ -161,10 +164,16 @@ static NSUInteger const kRowYouSend = 0;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    [self retrieveCurrencyPairs];
-
     UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
     [self.navigationItem setTitleView:logoView];
+
+    MCAssert(self.objectModel);
+
+    [self.calculator setObjectModel:self.objectModel];
+    [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSources]];
+    [self.calculator forceCalculate];
+
+    [self retrieveCurrencyPairs];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -181,11 +190,10 @@ static NSUInteger const kRowYouSend = 0;
         return;
     }
 
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
-    [hud setMessage:NSLocalizedString(@"introduction.refreshing.currencies.message", nil)];
-
-    [[TransferwiseClient sharedClient] updateCurrencyPairsWithCompletionHandler:^(NSArray *currencies, NSError *error) {
-        [hud hide];
+    CurrencyPairsOperation *operation = [CurrencyPairsOperation pairsOperation];
+    [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
+    [operation setCurrenciesHandler:^(NSError *error) {
         if (error) {
             TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"introduction.currencies.retrieve.error.title", nil)
                                                                message:NSLocalizedString(@"introduction.currencies.retrieve.error.message", nil)];
@@ -196,9 +204,11 @@ static NSUInteger const kRowYouSend = 0;
             return;
         }
 
-        [self.calculator setCurrencies:currencies];
         [self.calculator forceCalculate];
     }];
+
+    [operation setObjectModel:self.objectModel];
+    [operation execute];
 }
 
 #pragma mark - Table view data source
@@ -244,8 +254,8 @@ static NSUInteger const kRowYouSend = 0;
     PaymentFlow *paymentFlow = [[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
     [self setPaymentFlow:paymentFlow];
 
-    [paymentFlow setSourceCurrency:[self.youSendCell currency]];
-    [paymentFlow setTargetCurrency:[self.theyReceiveCell currency]];
+    [paymentFlow setSourceCurrency:[[self.youSendCell currency] plainCurrency]];
+    [paymentFlow setTargetCurrency:[[self.theyReceiveCell currency] plainCurrency]];
     [paymentFlow setCalculationResult:self.result];
 
     [paymentFlow presentSenderDetails];

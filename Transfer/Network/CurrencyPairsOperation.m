@@ -9,7 +9,9 @@
 #import "CurrencyPairsOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Constants.h"
-#import "PlainCurrency.h"
+#import "JCSObjectModel.h"
+#import "ObjectModel+RecipientTypes.h"
+#import "ObjectModel+CurrencyPairs.h"
 
 NSString *const kCurrencyPairsPath = @"/currency/pairs";
 
@@ -21,19 +23,24 @@ NSString *const kCurrencyPairsPath = @"/currency/pairs";
     __block __weak CurrencyPairsOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
         MCLog(@"Currency pairs error:%@", error);
-        weakSelf.currenciesHandler(nil, error);
+        weakSelf.currenciesHandler(error);
     }];
 
+    //TODO jaanus: check that all currencies are present. Needed to show correct symbol for the ones where they are missing in system.
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        NSArray *pairs = response[@"sourceCurrencies"];
-        MCLog(@"Retrieved %d paris", [pairs count]);
-        NSMutableArray *result = [NSMutableArray arrayWithCapacity:[pairs count]];
-        for (NSDictionary *data in pairs) {
-            PlainCurrency *currency = [PlainCurrency currencyWithSourceData:data];
-            [result addObject:currency];
-        }
+        [weakSelf.workModel.managedObjectContext performBlock:^{
+            NSArray *pairs = response[@"sourceCurrencies"];
+            MCLog(@"Retrieved %d paris", [pairs count]);
 
-        weakSelf.currenciesHandler([NSArray arrayWithArray:result], nil);
+            NSUInteger index = 0;
+            for (NSDictionary *data in pairs) {
+                [weakSelf.workModel createOrUpdatePairWithData:data index:index++];
+            }
+
+            [weakSelf.workModel saveContext:^{
+                weakSelf.currenciesHandler(nil);
+            }];
+        }];
     }];
 
     [self getDataFromPath:path];
@@ -42,6 +49,5 @@ NSString *const kCurrencyPairsPath = @"/currency/pairs";
 + (CurrencyPairsOperation *)pairsOperation {
     return [[CurrencyPairsOperation alloc] init];
 }
-
 
 @end

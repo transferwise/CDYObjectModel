@@ -71,9 +71,9 @@ extern const struct PairSourceCurrencyFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSSet *targets;
+@property (nonatomic, strong) NSOrderedSet *targets;
 
-- (NSMutableSet*)targetsSet;
+- (NSMutableOrderedSet*)targetsSet;
 
 
 
@@ -83,8 +83,8 @@ extern const struct PairSourceCurrencyFetchedProperties {
 
 @interface _PairSourceCurrency (CoreDataGeneratedAccessors)
 
-- (void)addTargets:(NSSet*)value_;
-- (void)removeTargets:(NSSet*)value_;
+- (void)addTargets:(NSOrderedSet*)value_;
+- (void)removeTargets:(NSOrderedSet*)value_;
 - (void)addTargetsObject:(PairTargetCurrency*)value_;
 - (void)removeTargetsObject:(PairTargetCurrency*)value_;
 
@@ -117,8 +117,8 @@ extern const struct PairSourceCurrencyFetchedProperties {
 
 
 
-- (NSMutableSet*)primitiveTargets;
-- (void)setPrimitiveTargets:(NSMutableSet*)value;
+- (NSMutableOrderedSet*)primitiveTargets;
+- (void)setPrimitiveTargets:(NSMutableOrderedSet*)value;
 
 
 @end

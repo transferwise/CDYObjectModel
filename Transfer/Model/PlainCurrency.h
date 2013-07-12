@@ -10,11 +10,11 @@
 
 @interface PlainCurrency : NSObject
 
-@property (nonatomic, copy, readonly) NSString *code;
-@property (nonatomic, strong, readonly) NSArray *targets;
-@property (nonatomic, copy, readonly) NSString *name;
-@property (nonatomic, copy, readonly) NSString *defaultRecipientType;
-@property (nonatomic, strong, readonly) NSArray *recipientTypes;
+@property (nonatomic, copy) NSString *code;
+@property (nonatomic, strong) NSArray *targets;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *defaultRecipientType;
+@property (nonatomic, strong) NSArray *recipientTypes;
 
 - (NSString *)formattedCodeAndName;
 

@@ -62,4 +62,21 @@
     return [self fetchEntityNamed:[PairTargetCurrency entityName] withPredicate:predicate];
 }
 
+- (NSFetchedResultsController *)fetchedControllerForSources {
+    NSSortDescriptor *indexSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES];
+    return [self fetchedControllerForEntity:[PairSourceCurrency entityName] sortDescriptors:@[indexSortDescriptor]];
+}
+
+- (NSFetchedResultsController *)fetchedControllerForSourcesContainingTargetCurrency:(Currency *)currency {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ANY targets.currency = %@", currency];
+    NSSortDescriptor *indexSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES];
+    return [self fetchedControllerForEntity:[PairSourceCurrency entityName] predicate:predicate sortDescriptors:@[indexSortDescriptor]];
+}
+
+- (NSFetchedResultsController *)fetchedControllerForTargetsWithSourceCurrency:(Currency *)currency {
+    NSPredicate *currencyPredicate = [NSPredicate predicateWithFormat:@"source.currency = %@", currency];
+    NSSortDescriptor *indexSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES];
+    return [self fetchedControllerForEntity:[PairTargetCurrency entityName] predicate:currencyPredicate sortDescriptors:@[indexSortDescriptor]];
+}
+
 @end
