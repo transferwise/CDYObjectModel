@@ -20,6 +20,7 @@ const struct PaymentRelationships PaymentRelationships = {
 	.settlementRecipient = @"settlementRecipient",
 	.sourceCurrency = @"sourceCurrency",
 	.targetCurrency = @"targetCurrency",
+	.user = @"user",
 };
 
 const struct PaymentFetchedProperties PaymentFetchedProperties = {
@@ -158,6 +159,10 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 	
 
 @dynamic targetCurrency;
+
+	
+
+@dynamic user;
 
 	
 

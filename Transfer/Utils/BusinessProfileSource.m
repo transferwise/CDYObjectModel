@@ -15,6 +15,9 @@
 #import "BusinessProfileValidation.h"
 #import "PhoneBookProfile.h"
 #import "PhoneBookAddress.h"
+#import "User.h"
+#import "ObjectModel+Users.h"
+#import "BusinessProfile.h"
 
 static NSUInteger const kButtonSection = 0;
 static NSUInteger const kDetailsSection = 1;
@@ -95,23 +98,24 @@ static NSUInteger const kDetailsSection = 1;
 }
 
 - (void)loadDetailsToCells {
-    PlainBusinessProfile *profile = self.userDetails.businessProfile;
-    [self.businessNameCell setValue:profile.businessName];
+    User *user = [self.objectModel currentUser];
+    BusinessProfile *profile = user.businessProfile;
+    [self.businessNameCell setValue:profile.name];
     [self.registrationNumberCell setValue:profile.registrationNumber];
-    [self.descriptionCell setValue:profile.descriptionOfBusiness];
+    [self.descriptionCell setValue:profile.businessDescription];
     [self.addressCell setValue:profile.addressFirstLine];
     [self.postCodeCell setValue:profile.postCode];
     [self.cityCell setValue:profile.city];
     [self.countryCell setValue:profile.countryCode];
 
-    [self.businessNameCell setEditable:![profile businessVerifiedValue]];
-    [self.registrationNumberCell setEditable:![profile businessVerifiedValue]];
-    [self.descriptionCell setEditable:![profile businessVerifiedValue]];
+    [self.businessNameCell setEditable:![profile isFieldReadonly:@"name"]];
+    [self.registrationNumberCell setEditable:![profile isFieldReadonly:@"registrationNumber"]];
+    [self.descriptionCell setEditable:![profile isFieldReadonly:@"description"]];
 
-    [self.addressCell setEditable:![profile businessVerifiedValue]];
-    [self.postCodeCell setEditable:![profile businessVerifiedValue]];
-    [self.cityCell setEditable:![profile businessVerifiedValue]];
-    [self.countryCell setEditable:![profile businessVerifiedValue]];
+    [self.addressCell setEditable:![profile isFieldReadonly:@"addressFirstLine"]];
+    [self.postCodeCell setEditable:![profile isFieldReadonly:@"postCode"]];
+    [self.cityCell setEditable:![profile isFieldReadonly:@"city"]];
+    [self.countryCell setEditable:![profile isFieldReadonly:@"countryCode"]];
 }
 
 - (NSString *)titleForHeaderInSection:(NSInteger)section {
@@ -148,32 +152,31 @@ static NSUInteger const kDetailsSection = 1;
 
 - (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion {
     [validation validateBusinessProfile:profile withHandler:^(PlainProfileDetails *details, NSError *error) {
-        if (error) {
-            completion(error);
-            return;
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                completion(error);
+                return;
+            }
 
-        if (details) {
-            [self setUserDetails:details];
-            [self loadDetailsToCells];
-        }
+            if (details) {
+                [self loadDetailsToCells];
+            }
 
-        completion(nil);
+            completion(nil);
+        });
     }];
 }
 
 - (void)loadDataFromProfile:(PhoneBookProfile *)profile {
-    if ([self.userDetails.businessProfile businessVerifiedValue]) {
-        return;
-    }
-
-    self.businessNameCell.value = profile.organisation;
+    [self.businessNameCell setValueWhenEditable:profile.organisation];
 
     PhoneBookAddress *address = profile.address;
-    self.addressCell.value = address.street;
-    self.postCodeCell.value = address.zipCode;
-    self.cityCell.value = address.city;
-    [self.countryCell setTwoLetterCountryCode:address.countryCode];
+    [self.addressCell setValueWhenEditable:address.street];
+    [self.postCodeCell setValueWhenEditable:address.zipCode];
+    [self.cityCell setValueWhenEditable:address.city];
+    if (![self.objectModel.currentUser.businessProfile isFieldReadonly:@"countryCode"]) {
+        [self.countryCell setTwoLetterCountryCode:address.countryCode];
+    }
 }
 
 @end

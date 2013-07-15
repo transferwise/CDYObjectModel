@@ -55,15 +55,11 @@ NSString *const kAPIPathBase = @"/api/v1";
     MCLog(@"Update user details");
     UserDetailsOperation *detailsOperation = [UserDetailsOperation detailsOperation];
     [self setDetailsOperation:detailsOperation];
+    [detailsOperation setObjectModel:self.objectModel];
 
-    [detailsOperation setCompletionHandler:^(PlainProfileDetails *result, NSError *error) {
-        if (result) {
-            [Credentials setDisplayName:[result displayName]];
-            [Credentials setUserEmail:[result email]];
-        }
-
+    [detailsOperation setCompletionHandler:^(NSError *error) {
         if (completion) {
-            completion(result, error);
+            completion(error);
         }
     }];
 

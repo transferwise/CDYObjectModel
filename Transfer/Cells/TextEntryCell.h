@@ -21,5 +21,6 @@ extern NSString *const TWTextEntryCellIdentifier;
 - (void)setEditable:(BOOL)editable;
 - (void)addDoneButton;
 - (void)addDoneButtonToField:(UITextField *)field withAction:(TRWActionBlock)action;
+- (void)setValueWhenEditable:(NSString *)value;
 
 @end

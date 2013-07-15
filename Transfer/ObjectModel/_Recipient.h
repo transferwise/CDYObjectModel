@@ -17,6 +17,7 @@ extern const struct RecipientRelationships {
 	__unsafe_unretained NSString *payments;
 	__unsafe_unretained NSString *settlementForPayments;
 	__unsafe_unretained NSString *type;
+	__unsafe_unretained NSString *user;
 } RecipientRelationships;
 
 extern const struct RecipientFetchedProperties {
@@ -27,6 +28,7 @@ extern const struct RecipientFetchedProperties {
 @class Payment;
 @class Payment;
 @class RecipientType;
+@class User;
 
 
 
@@ -129,6 +131,13 @@ extern const struct RecipientFetchedProperties {
 
 
 
+@property (nonatomic, strong) User *user;
+
+//- (BOOL)validateUser:(id*)value_ error:(NSError**)error_;
+
+
+
+
 
 @end
 
@@ -207,6 +216,11 @@ extern const struct RecipientFetchedProperties {
 
 - (RecipientType*)primitiveType;
 - (void)setPrimitiveType:(RecipientType*)value;
+
+
+
+- (User*)primitiveUser;
+- (void)setPrimitiveUser:(User*)value;
 
 
 @end

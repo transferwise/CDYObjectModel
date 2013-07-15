@@ -10,7 +10,10 @@
 #import "BusinessProfileValidation.h"
 
 @class BusinessProfileOperation;
+@class ObjectModel;
 
 @interface BusinessProfileCommitter : NSObject <BusinessProfileValidation>
+
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 @end

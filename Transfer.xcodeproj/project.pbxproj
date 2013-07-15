@@ -96,6 +96,13 @@
 		EA225CCD179015B1009D6B83 /* _Country.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CCC179015B1009D6B83 /* _Country.m */; };
 		EA225CD1179015B8009D6B83 /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CD0179015B8009D6B83 /* Country.m */; };
 		EA225CD4179015CA009D6B83 /* ObjectModel+Countries.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CD3179015CA009D6B83 /* ObjectModel+Countries.m */; };
+		EA2379E91793E01A00166361 /* ObjectModel+Users.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2379E81793E01A00166361 /* ObjectModel+Users.m */; };
+		EA2379ED1793E02B00166361 /* _BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2379EC1793E02B00166361 /* _BusinessProfile.m */; };
+		EA2379F01793E02F00166361 /* _PersonalProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2379EF1793E02F00166361 /* _PersonalProfile.m */; };
+		EA2379F31793E03A00166361 /* _User.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2379F21793E03A00166361 /* _User.m */; };
+		EA2379FA1793E04400166361 /* BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2379F51793E04400166361 /* BusinessProfile.m */; };
+		EA2379FB1793E04400166361 /* PersonalProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2379F71793E04400166361 /* PersonalProfile.m */; };
+		EA2379FC1793E04400166361 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2379F91793E04400166361 /* User.m */; };
 		EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */; };
 		EA35C73A17324AF2005602F7 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73417324AF2005602F7 /* Icon-Small.png */; };
 		EA35C73B17324AF2005602F7 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73517324AF2005602F7 /* Icon-Small@2x.png */; };
@@ -448,6 +455,20 @@
 		EA225CD0179015B8009D6B83 /* Country.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
 		EA225CD2179015CA009D6B83 /* ObjectModel+Countries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+Countries.h"; sourceTree = "<group>"; };
 		EA225CD3179015CA009D6B83 /* ObjectModel+Countries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+Countries.m"; sourceTree = "<group>"; };
+		EA2379E71793E01A00166361 /* ObjectModel+Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+Users.h"; sourceTree = "<group>"; };
+		EA2379E81793E01A00166361 /* ObjectModel+Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+Users.m"; sourceTree = "<group>"; };
+		EA2379EB1793E02B00166361 /* _BusinessProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BusinessProfile.h; sourceTree = "<group>"; };
+		EA2379EC1793E02B00166361 /* _BusinessProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BusinessProfile.m; sourceTree = "<group>"; };
+		EA2379EE1793E02F00166361 /* _PersonalProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _PersonalProfile.h; sourceTree = "<group>"; };
+		EA2379EF1793E02F00166361 /* _PersonalProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PersonalProfile.m; sourceTree = "<group>"; };
+		EA2379F11793E03A00166361 /* _User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _User.h; sourceTree = "<group>"; };
+		EA2379F21793E03A00166361 /* _User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _User.m; sourceTree = "<group>"; };
+		EA2379F41793E04400166361 /* BusinessProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfile.h; sourceTree = "<group>"; };
+		EA2379F51793E04400166361 /* BusinessProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfile.m; sourceTree = "<group>"; };
+		EA2379F61793E04400166361 /* PersonalProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfile.h; sourceTree = "<group>"; };
+		EA2379F71793E04400166361 /* PersonalProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfile.m; sourceTree = "<group>"; };
+		EA2379F81793E04400166361 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		EA2379F91793E04400166361 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		EA2B23951721323E001AE9DE /* CurrencyPairsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyPairsOperation.h; sourceTree = "<group>"; };
 		EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyPairsOperation.m; sourceTree = "<group>"; };
 		EA35C73417324AF2005602F7 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
@@ -1322,6 +1343,8 @@
 				EAD73696171E830600A037B1 /* Generated */,
 				EA225CB3178ED8C7009D6B83 /* AllowedTypeFieldValue.h */,
 				EA225CB4178ED8C7009D6B83 /* AllowedTypeFieldValue.m */,
+				EA2379F41793E04400166361 /* BusinessProfile.h */,
+				EA2379F51793E04400166361 /* BusinessProfile.m */,
 				EA225CCF179015B8009D6B83 /* Country.h */,
 				EA225CD0179015B8009D6B83 /* Country.m */,
 				EA225C7A178EA346009D6B83 /* Currency.h */,
@@ -1338,6 +1361,8 @@
 				EA225C8A178EB297009D6B83 /* ObjectModel+Recipients.m */,
 				EA225C92178EB36B009D6B83 /* ObjectModel+RecipientTypes.h */,
 				EA225C93178EB36B009D6B83 /* ObjectModel+RecipientTypes.m */,
+				EA2379E71793E01A00166361 /* ObjectModel+Users.h */,
+				EA2379E81793E01A00166361 /* ObjectModel+Users.m */,
 				EAD39670171BD2A300F6D011 /* ObjectModel.h */,
 				EAD39671171BD2A300F6D011 /* ObjectModel.m */,
 				EA225CAA178EC3B2009D6B83 /* PairSourceCurrency.h */,
@@ -1346,6 +1371,8 @@
 				EA225CC1178EEC77009D6B83 /* PairTargetCurrency.m */,
 				EA225C69178E9C93009D6B83 /* Payment.h */,
 				EA225C6A178E9C93009D6B83 /* Payment.m */,
+				EA2379F61793E04400166361 /* PersonalProfile.h */,
+				EA2379F71793E04400166361 /* PersonalProfile.m */,
 				EA225C80178EA3C8009D6B83 /* Recipient.h */,
 				EA225C81178EA3C8009D6B83 /* Recipient.m */,
 				EA225C8F178EB350009D6B83 /* RecipientType.h */,
@@ -1355,6 +1382,8 @@
 				EAAA1485171BC911005B9430 /* Transfer.xcdatamodeld */,
 				EA225C9E178EB511009D6B83 /* TypeFieldValue.h */,
 				EA225C9F178EB511009D6B83 /* TypeFieldValue.m */,
+				EA2379F81793E04400166361 /* User.h */,
+				EA2379F91793E04400166361 /* User.m */,
 			);
 			path = ObjectModel;
 			sourceTree = "<group>";
@@ -1373,6 +1402,8 @@
 			children = (
 				EA225CB0178ED8C1009D6B83 /* _AllowedTypeFieldValue.h */,
 				EA225CB1178ED8C1009D6B83 /* _AllowedTypeFieldValue.m */,
+				EA2379EB1793E02B00166361 /* _BusinessProfile.h */,
+				EA2379EC1793E02B00166361 /* _BusinessProfile.m */,
 				EA225CCB179015B1009D6B83 /* _Country.h */,
 				EA225CCC179015B1009D6B83 /* _Country.m */,
 				EA225C77178EA341009D6B83 /* _Currency.h */,
@@ -1383,6 +1414,8 @@
 				EA225CBE178EEC6F009D6B83 /* _PairTargetCurrency.m */,
 				EA225C65178E9C90009D6B83 /* _Payment.h */,
 				EA225C66178E9C90009D6B83 /* _Payment.m */,
+				EA2379EE1793E02F00166361 /* _PersonalProfile.h */,
+				EA2379EF1793E02F00166361 /* _PersonalProfile.m */,
 				EA225C7D178EA3C2009D6B83 /* _Recipient.h */,
 				EA225C7E178EA3C2009D6B83 /* _Recipient.m */,
 				EA225C8C178EB343009D6B83 /* _RecipientType.h */,
@@ -1391,6 +1424,8 @@
 				EA225C96178EB3D3009D6B83 /* _RecipientTypeField.m */,
 				EA225C9B178EB50B009D6B83 /* _TypeFieldValue.h */,
 				EA225C9C178EB50B009D6B83 /* _TypeFieldValue.m */,
+				EA2379F11793E03A00166361 /* _User.h */,
+				EA2379F21793E03A00166361 /* _User.m */,
 			);
 			name = Generated;
 			sourceTree = "<group>";
@@ -1903,6 +1938,13 @@
 				EA225CCD179015B1009D6B83 /* _Country.m in Sources */,
 				EA225CD1179015B8009D6B83 /* Country.m in Sources */,
 				EA225CD4179015CA009D6B83 /* ObjectModel+Countries.m in Sources */,
+				EA2379E91793E01A00166361 /* ObjectModel+Users.m in Sources */,
+				EA2379ED1793E02B00166361 /* _BusinessProfile.m in Sources */,
+				EA2379F01793E02F00166361 /* _PersonalProfile.m in Sources */,
+				EA2379F31793E03A00166361 /* _User.m in Sources */,
+				EA2379FA1793E04400166361 /* BusinessProfile.m in Sources */,
+				EA2379FB1793E04400166361 /* PersonalProfile.m in Sources */,
+				EA2379FC1793E04400166361 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

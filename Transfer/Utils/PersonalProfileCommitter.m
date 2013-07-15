@@ -11,6 +11,7 @@
 #import "TransferwiseOperation.h"
 #import "PersonalProfileOperation.h"
 #import "Constants.h"
+#import "ObjectModel.h"
 
 @interface PersonalProfileCommitter ()
 
@@ -24,9 +25,10 @@
     MCLog(@"Validate profile");
     PersonalProfileOperation *operation = [PersonalProfileOperation commitOperationWithProfile:profile];
     [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
 
-    [operation setSaveResultHandler:^(PlainProfileDetails *result, NSError *error) {
-        handler(result, error);
+    [operation setSaveResultHandler:^(NSError *error) {
+        handler(nil, error);
     }];
 
     [operation execute];

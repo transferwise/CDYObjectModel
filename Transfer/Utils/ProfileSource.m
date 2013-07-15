@@ -8,7 +8,6 @@
 
 #import "ProfileSource.h"
 #import "PhoneBookProfile.h"
-#import "PlainProfileDetails.h"
 #import "TransferwiseClient.h"
 #import "Credentials.h"
 #import "Constants.h"
@@ -26,20 +25,23 @@
 }
 
 - (void)pullDetailsWithHandler:(ProfileActionBlock)handler {
+    MCAssert(self.objectModel);
+
     if (![Credentials userLoggedIn]) {
         handler(nil);
         return;
     }
 
-    [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(PlainProfileDetails *result, NSError *userError) {
-        if (userError) {
-            handler(userError);
-            return;
-        }
+    [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(NSError *userError) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (userError) {
+                handler(userError);
+                return;
+            }
 
-        [self setUserDetails:result];
-        [self loadDetailsToCells];
-        handler(nil);
+            [self loadDetailsToCells];
+            handler(nil);
+        });
     }];
 }
 

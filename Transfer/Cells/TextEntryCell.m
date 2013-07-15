@@ -88,6 +88,14 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     [field setInputAccessoryView:toolbar];
 }
 
+- (void)setValueWhenEditable:(NSString *)value {
+    if (![self.entryField isEnabled]) {
+        return;
+    }
+
+    [self.entryField setText:value];
+}
+
 - (void)donePressed {
     if (self.doneButtonAction) {
         self.doneButtonAction();

@@ -13,8 +13,6 @@
 
 @interface PlainProfileDetails ()
 
-@property (nonatomic, copy) NSString *reference;
-
 @end
 
 @implementation PlainProfileDetails

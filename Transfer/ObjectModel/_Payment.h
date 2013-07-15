@@ -21,6 +21,7 @@ extern const struct PaymentRelationships {
 	__unsafe_unretained NSString *settlementRecipient;
 	__unsafe_unretained NSString *sourceCurrency;
 	__unsafe_unretained NSString *targetCurrency;
+	__unsafe_unretained NSString *user;
 } PaymentRelationships;
 
 extern const struct PaymentFetchedProperties {
@@ -30,6 +31,7 @@ extern const struct PaymentFetchedProperties {
 @class Recipient;
 @class Currency;
 @class Currency;
+@class User;
 
 
 
@@ -176,6 +178,13 @@ extern const struct PaymentFetchedProperties {
 
 
 
+@property (nonatomic, strong) User *user;
+
+//- (BOOL)validateUser:(id*)value_ error:(NSError**)error_;
+
+
+
+
 
 @end
 
@@ -261,6 +270,11 @@ extern const struct PaymentFetchedProperties {
 
 - (Currency*)primitiveTargetCurrency;
 - (void)setPrimitiveTargetCurrency:(Currency*)value;
+
+
+
+- (User*)primitiveUser;
+- (void)setPrimitiveUser:(User*)value;
 
 
 @end

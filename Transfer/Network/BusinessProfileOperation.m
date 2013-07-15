@@ -8,9 +8,11 @@
 
 #import "BusinessProfileOperation.h"
 #import "TransferwiseOperation+Private.h"
-#import "PlainProfileDetails.h"
-#import "Credentials.h"
 #import "PlainBusinessProfileInput.h"
+#import "JCSObjectModel.h"
+#import "ObjectModel+RecipientTypes.h"
+#import "ObjectModel+Users.h"
+#import "Constants.h"
 
 NSString *const kUpdateBusinessProfilePath = @"/user/updateBusinessProfile";
 NSString *const kValidateBusinessProfilePath = @"/user/validateBusinessProfile";
@@ -34,19 +36,23 @@ NSString *const kValidateBusinessProfilePath = @"/user/validateBusinessProfile";
 }
 
 - (void)execute {
+    MCAssert(self.objectModel);
+
     NSString *path = [self addTokenToPath:self.path];
     
     __block __weak BusinessProfileOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
-        weakSelf.saveResultHandler(nil, error);
+        weakSelf.saveResultHandler(error);
     }];
     
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        PlainProfileDetails *details = [PlainProfileDetails detailsWithData:response];
-        if (details) {
-            [Credentials setDisplayName:[details displayName]];
-        }
-        weakSelf.saveResultHandler(details, nil);
+        [weakSelf.workModel.managedObjectContext performBlock:^{
+            [weakSelf.objectModel createOrUpdateUserWithData:response];
+
+            [weakSelf.workModel saveContext:^{
+                weakSelf.saveResultHandler(nil);
+            }];
+        }];
     }];
     
     [self postData:[self.data data] toPath:path];

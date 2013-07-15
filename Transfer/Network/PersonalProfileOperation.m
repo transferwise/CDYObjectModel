@@ -8,10 +8,11 @@
 
 #import "PersonalProfileOperation.h"
 #import "TransferwiseOperation+Private.h"
-#import "PlainProfileDetails.h"
-#import "Credentials.h"
-#import "PlainPersonalProfile.h"
 #import "PlainPersonalProfileInput.h"
+#import "JCSObjectModel.h"
+#import "ObjectModel+RecipientTypes.h"
+#import "Constants.h"
+#import "ObjectModel+Users.h"
 
 NSString *const kUpdatePersonalProfilePath = @"/user/updatePersonalProfile";
 NSString *const kValidatePersonalProfilePath = @"/user/validatePersonalProfile";
@@ -35,19 +36,22 @@ NSString *const kValidatePersonalProfilePath = @"/user/validatePersonalProfile";
 }
 
 - (void)execute {
+    MCAssert(self.objectModel);
     NSString *path = [self addTokenToPath:self.path];
 
     __block __weak PersonalProfileOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
-        weakSelf.saveResultHandler(nil, error);
+        weakSelf.saveResultHandler(error);
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        PlainProfileDetails *details = [PlainProfileDetails detailsWithData:response];
-        if (details.personalProfile) {
-            [Credentials setDisplayName:[details displayName]];
-        }
-        weakSelf.saveResultHandler(details, nil);
+        [weakSelf.workModel.managedObjectContext performBlock:^{
+            [weakSelf.workModel createOrUpdateUserWithData:response];
+
+            [weakSelf.workModel saveContext:^{
+                weakSelf.saveResultHandler(nil);
+            }];
+        }];
     }];
 
     [self postData:[self.profile data] toPath:path];

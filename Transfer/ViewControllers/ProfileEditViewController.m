@@ -93,6 +93,7 @@ static NSUInteger const kButtonSection = 0;
 }
 
 - (void)setPresentProfileSource:(ProfileSource *)source reloadView:(BOOL)reload {
+    [source setObjectModel:self.objectModel];
     [self setProfileSource:source];
     [self.profileSource setTableView:self.tableView];
     [self.navigationItem setTitle:[self.profileSource editViewTitle]];
@@ -117,10 +118,6 @@ static NSUInteger const kButtonSection = 0;
                 return;
             }
 
-            id o = self.profileValidation;
-            if ([o respondsToSelector:@selector(setUserDetails:)]) {
-                [o setUserDetails:self.profileSource.userDetails];
-            }
             [self setPresentedSectionCells:self.presentationCells];
             [self.tableView setTableFooterView:self.footer];
             [self.tableView reloadData];

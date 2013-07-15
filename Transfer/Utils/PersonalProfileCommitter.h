@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "PersonalProfileValidation.h"
 
+@class ObjectModel;
+
 @interface PersonalProfileCommitter : NSObject <PersonalProfileValidation>
+
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 @end

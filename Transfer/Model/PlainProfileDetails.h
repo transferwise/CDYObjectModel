@@ -17,7 +17,7 @@
 @property (nonatomic, copy) NSString *email;
 @property (nonatomic, strong) PlainPersonalProfile *personalProfile;
 @property (nonatomic, strong) PlainBusinessProfile *businessProfile;
-@property (nonatomic, copy, readonly) NSString *reference;
+@property (nonatomic, copy) NSString *reference;
 
 - (NSString *)displayName;
 - (PlainPersonalProfileInput *)profileInput;

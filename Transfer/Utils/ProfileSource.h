@@ -10,13 +10,14 @@
 
 @class PhoneBookProfile;
 @class PlainProfileDetails;
+@class ObjectModel;
 
 typedef void (^ProfileActionBlock)(NSError *error);
 
 @interface ProfileSource : NSObject
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) PlainProfileDetails *userDetails;
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 - (NSArray *)presentedCells;
 - (NSString *)editViewTitle;

@@ -12,6 +12,7 @@
 #import "SettingsViewController.h"
 #import "Constants.h"
 #import "TestFlight.h"
+#import "TransferwiseClient.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -42,6 +43,9 @@
     
     UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.window = window;
+
+    //TODO jaanus: this does not feel right
+    [[TransferwiseClient sharedClient] setObjectModel:model];
     
     MainViewController *frontViewController = [[MainViewController alloc] init];
     [frontViewController setObjectModel:model];

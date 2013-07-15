@@ -16,6 +16,7 @@ const struct RecipientRelationships RecipientRelationships = {
 	.payments = @"payments",
 	.settlementForPayments = @"settlementForPayments",
 	.type = @"type",
+	.user = @"user",
 };
 
 const struct RecipientFetchedProperties RecipientFetchedProperties = {
@@ -174,6 +175,10 @@ const struct RecipientFetchedProperties RecipientFetchedProperties = {
 	
 
 @dynamic type;
+
+	
+
+@dynamic user;
 
 	
 

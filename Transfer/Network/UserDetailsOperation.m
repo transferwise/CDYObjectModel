@@ -9,22 +9,31 @@
 #import "UserDetailsOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Constants.h"
-#import "PlainProfileDetails.h"
+#import "JCSObjectModel.h"
+#import "ObjectModel+RecipientTypes.h"
+#import "ObjectModel+Users.h"
 
 NSString *const kUserDetailsPath = @"/user/details";
 
 @implementation UserDetailsOperation
 
 - (void)execute {
+    MCAssert(self.objectModel);
+
     __block __weak UserDetailsOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
         MCLog(@"Error %@", error);
-        weakSelf.completionHandler(nil,error);
+        weakSelf.completionHandler(error);
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        PlainProfileDetails *details = [PlainProfileDetails detailsWithData:response];
-        weakSelf.completionHandler(details, nil);
+        [weakSelf.workModel.managedObjectContext performBlock:^{
+            [weakSelf.workModel createOrUpdateUserWithData:response];
+
+            [weakSelf.workModel saveContext:^{
+                weakSelf.completionHandler(nil);
+            }];
+        }];
     }];
 
     NSString *fullPath = [self addTokenToPath:kUserDetailsPath];

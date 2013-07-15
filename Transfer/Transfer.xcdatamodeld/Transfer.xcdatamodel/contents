@@ -5,6 +5,17 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="valueForField" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientTypeField" inverseName="allowedValues" inverseEntity="RecipientTypeField" syncable="YES"/>
     </entity>
+    <entity name="BusinessProfile" representedClassName="BusinessProfile" syncable="YES">
+        <attribute name="addressFirstLine" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="businessDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countryCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="readonlyFields" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="registrationNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="businessProfile" inverseEntity="User" syncable="YES"/>
+    </entity>
     <entity name="Country" representedClassName="Country" syncable="YES">
         <attribute name="iso2Code" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="iso3Code" optional="YES" attributeType="String" syncable="YES"/>
@@ -50,6 +61,19 @@
         <relationship name="settlementRecipient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="settlementForPayments" inverseEntity="Recipient" syncable="YES"/>
         <relationship name="sourceCurrency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="sourceForPayments" inverseEntity="Currency" syncable="YES"/>
         <relationship name="targetCurrency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="targetForPayments" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="payments" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="PersonalProfile" representedClassName="PersonalProfile" syncable="YES">
+        <attribute name="addressFirstLine" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countryCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateOfBirth" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="readonlyFields" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="personalProfile" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Recipient" representedClassName="Recipient" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
@@ -61,6 +85,7 @@
         <relationship name="payments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="recipient" inverseEntity="Payment" syncable="YES"/>
         <relationship name="settlementForPayments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="settlementRecipient" inverseEntity="Payment" syncable="YES"/>
         <relationship name="type" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientType" inverseName="recipients" inverseEntity="RecipientType" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="contacts" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="RecipientType" representedClassName="RecipientType" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -88,16 +113,27 @@
         <relationship name="recipient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="fieldValues" inverseEntity="Recipient" syncable="YES"/>
         <relationship name="valueForField" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientTypeField" inverseName="values" inverseEntity="RecipientTypeField" syncable="YES"/>
     </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pReference" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="businessProfile" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="BusinessProfile" inverseName="user" inverseEntity="BusinessProfile" syncable="YES"/>
+        <relationship name="contacts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Recipient" inverseName="user" inverseEntity="Recipient" syncable="YES"/>
+        <relationship name="payments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Payment" inverseName="user" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="personalProfile" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PersonalProfile" inverseName="user" inverseEntity="PersonalProfile" syncable="YES"/>
+    </entity>
     <elements>
         <element name="AllowedTypeFieldValue" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="Country" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Currency" positionX="160" positionY="192" width="128" height="210"/>
         <element name="PairSourceCurrency" positionX="160" positionY="192" width="128" height="105"/>
         <element name="PairTargetCurrency" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Payment" positionX="160" positionY="192" width="128" height="240"/>
-        <element name="Recipient" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="Payment" positionX="160" positionY="192" width="128" height="255"/>
+        <element name="Recipient" positionX="160" positionY="192" width="128" height="195"/>
         <element name="RecipientType" positionX="160" positionY="192" width="128" height="135"/>
         <element name="RecipientTypeField" positionX="160" positionY="192" width="128" height="210"/>
         <element name="TypeFieldValue" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="Country" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="User" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="PersonalProfile" positionX="160" positionY="192" width="128" height="195"/>
+        <element name="BusinessProfile" positionX="160" positionY="192" width="128" height="180"/>
     </elements>
 </model>

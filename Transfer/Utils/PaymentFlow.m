@@ -34,6 +34,9 @@
 #import "PaymentProfileViewController.h"
 #import "PlainBusinessProfile.h"
 #import "TRWAlertView.h"
+#import "ObjectModel.h"
+#import "User.h"
+#import "ObjectModel+Users.h"
 
 @interface PaymentFlow ()
 
@@ -108,30 +111,33 @@
     MCLog(@"validateBusinessProfile");
     BusinessProfileOperation *operation = [BusinessProfileOperation validateWithData:profile];
     [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
     
-    [operation setSaveResultHandler:^(PlainProfileDetails *result, NSError *error) {
-        if (error) {
-            handler(result, error);
-            return;
-        }
+    [operation setSaveResultHandler:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                handler(nil, error);
+                return;
+            }
 
-        [self setBusinessProfile:profile];
+            [self setBusinessProfile:profile];
 
-        handler(nil, nil);
+            handler(nil, nil);
 
-        if ([self personalProfileFilled]) {
-            [self pushNextScreenAfterPersonalProfile];
-        } else {
-            //TODO jaanus: this class should not show anything on screen
-            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.needed.popup.title", nil) message:NSLocalizedString(@"personal.profile.needed.popup.message", nil)];
-            [alertView setLeftButtonTitle:NSLocalizedString(@"button.title.fill", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
+            if ([self personalProfileFilled]) {
+                [self pushNextScreenAfterPersonalProfile];
+            } else {
+                //TODO jaanus: this class should not show anything on screen
+                TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.needed.popup.title", nil) message:NSLocalizedString(@"personal.profile.needed.popup.message", nil)];
+                [alertView setLeftButtonTitle:NSLocalizedString(@"button.title.fill", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
 
-            [alertView setLeftButtonAction:^{
-                [self presentSenderDetails:NO];
-            }];
+                [alertView setLeftButtonAction:^{
+                    [self presentSenderDetails:NO];
+                }];
 
-            [alertView show];
-        }
+                [alertView show];
+            }
+        });
     }];
     
     [operation execute];
@@ -145,22 +151,25 @@
     MCLog(@"validateProfile");
     PersonalProfileOperation *operation = [PersonalProfileOperation validateOperationWithProfile:profile];
     [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
 
-    [operation setSaveResultHandler:^(PlainProfileDetails *result, NSError *error) {
-        if (error) {
-            handler(result, error);
-            return;
-        }
+    [operation setSaveResultHandler:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                handler(nil, error);
+                return;
+            }
 
-        [self setPersonalProfile:profile];
+            [self setPersonalProfile:profile];
 
-        if ([Credentials userLoggedIn]) {
-            handler(nil, nil);
-            [self pushNextScreenAfterPersonalProfile];
-            return;
-        }
+            if ([Credentials userLoggedIn]) {
+                handler(nil, nil);
+                [self pushNextScreenAfterPersonalProfile];
+                return;
+            }
 
-        [self verifyEmail:profile.email withHandler:handler];
+            [self verifyEmail:profile.email withHandler:handler];
+        });
     }];
 
     [operation execute];
@@ -215,6 +224,7 @@
 - (void)presentPaymentConfirmation {
     MCLog(@"presentPaymentConfirmation");
     ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
+    [controller setObjectModel:self.objectModel];
     if (self.businessProfile) {
         [controller setSenderIsBusiness:YES];
         [controller setSenderName:self.businessProfile.businessName];
@@ -242,6 +252,7 @@
 - (void)presentUploadMoneyController {
     MCLog(@"presentUploadMoneyController");
     UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+    [controller setObjectModel:self.objectModel];
     [controller setUserDetails:self.userDetails];
     [controller setPayment:self.createdPayment];
     [controller setRecipientTypes:self.recipientTypes];
@@ -256,6 +267,7 @@
 
     CreatePaymentOperation *operation = [CreatePaymentOperation validateOperationWithInput:paymentInput];
     [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
 
     [operation setResponseHandler:^(PlainPayment *payment, NSError *error) {
         if (error) {
@@ -349,14 +361,16 @@
     MCLog(@"updateBusinessProfile");
     BusinessProfileOperation *operation = [BusinessProfileOperation commitWithData:self.businessProfile];
     [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
 
-    [operation setSaveResultHandler:^(PlainProfileDetails *result, NSError *error) {
+    [operation setSaveResultHandler:^(NSError *error) {
         if (error) {
             self.paymentErrorHandler(error);
             return;
         }
 
-        [self setBusinessDetails:result];
+        User *user = [self.objectModel currentUser];
+        [self setBusinessDetails:[user plainUserDetails]];
 
         [self updatePersonalProfile];
     }];
@@ -368,14 +382,16 @@
     MCLog(@"updatePersonalProfile");
     PersonalProfileOperation *operation = [PersonalProfileOperation commitOperationWithProfile:self.personalProfile];
     [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
 
-    [operation setSaveResultHandler:^(PlainProfileDetails *result, NSError *error) {
+    [operation setSaveResultHandler:^(NSError *error) {
         if (error) {
             self.paymentErrorHandler(error);
             return;
         }
 
-        [self setUserDetails:result];
+        User *user = [self.objectModel currentUser];
+        [self setUserDetails:[user plainUserDetails]];
 
         MCLog(@"Recipient created?%d", [self.recipientProfile.id integerValue] != 0);
 
@@ -393,6 +409,7 @@
     MCLog(@"commitRecipientData");
     RecipientOperation *operation = [RecipientOperation createOperationWithRecipient:self.recipientProfile];
     [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
 
     [operation setResponseHandler:^(PlainRecipient *recipient, NSError *error) {
         if (error) {
@@ -487,6 +504,7 @@
 
     CreatePaymentOperation *operation = [CreatePaymentOperation commitOperationWithPayment:self.paymentInput];
     [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
 
     [operation setResponseHandler:^(PlainPayment *payment, NSError *error) {
         if (error) {
@@ -505,6 +523,7 @@
     MCLog(@"Validate recipient");
     RecipientOperation *operation = [RecipientOperation validateOperationWithRecipient:recipientProfile];
     [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
 
     [operation setResponseHandler:^(PlainRecipient *recipient, NSError *error) {
         [self setRecipientProfile:recipientProfile];

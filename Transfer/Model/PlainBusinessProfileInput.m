@@ -7,7 +7,6 @@
 //
 
 #import "PlainBusinessProfileInput.h"
-#import "PlainProfileDetails.h"
 
 @implementation PlainBusinessProfileInput
 

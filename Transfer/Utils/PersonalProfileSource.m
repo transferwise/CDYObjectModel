@@ -9,16 +9,15 @@
 #import "PersonalProfileSource.h"
 #import "CountrySelectionCell.h"
 #import "DateEntryCell.h"
-#import "TRWAlertView.h"
 #import "PlainProfileDetails.h"
-#import "TransferwiseClient.h"
-#import "PlainPersonalProfile.h"
 #import "PhoneBookProfile.h"
 #import "PhoneBookAddress.h"
 #import "NSString+Validation.h"
 #import "PlainPersonalProfileInput.h"
 #import "PersonalProfileValidation.h"
-#import "Credentials.h"
+#import "User.h"
+#import "ObjectModel+Users.h"
+#import "PersonalProfile.h"
 
 NSUInteger const kUserButtonSection = 0;
 NSUInteger const kUserPersonalSection = 1;
@@ -117,45 +116,49 @@ NSUInteger const kUserPersonalSection = 1;
 - (void)loadDetailsToCells {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"loadDetailsToCells");
-        PlainPersonalProfile *profile = self.userDetails.personalProfile;
+        User *user = [self.objectModel currentUser];
+        PersonalProfile *profile = user.personalProfile;
         [self.firstNameCell setValue:profile.firstName];
         [self.lastNameCell setValue:profile.lastName];
-        [self.emailCell setValue:self.userDetails.email];
+        [self.emailCell setValue:user.email];
         [self.phoneNumberCell setValue:profile.phoneNumber];
-        [self.dateOfBirthCell setValue:profile.dateOfBirthString];
+        [self.dateOfBirthCell setValue:profile.dateOfBirth];
         [self.addressCell setValue:profile.addressFirstLine];
         [self.postCodeCell setValue:profile.postCode];
         [self.cityCell setValue:profile.city];
         [self.countryCell setValue:profile.countryCode];
 
-        [self.firstNameCell setEditable:![profile identityVerifiedValue]];
-        [self.lastNameCell setEditable:![profile identityVerifiedValue]];
-        [self.dateOfBirthCell setEditable:![profile identityVerifiedValue]];
+        [self.firstNameCell setEditable:![profile isFieldReadonly:@"firstName"]];
+        [self.lastNameCell setEditable:![profile isFieldReadonly:@"lastName"]];
+        [self.dateOfBirthCell setEditable:![profile isFieldReadonly:@"dateOfBirth"]];
+        [self.phoneNumberCell setEditable:![profile isFieldReadonly:@"phoneNumber"]];
 
-        [self.addressCell setEditable:![profile addressVerifiedValue]];
-        [self.postCodeCell setEditable:![profile addressVerifiedValue]];
-        [self.cityCell setEditable:![profile addressVerifiedValue]];
-        [self.countryCell setEditable:![profile addressVerifiedValue]];
+        [self.addressCell setEditable:![profile isFieldReadonly:@"addressFirstLine"]];
+        [self.postCodeCell setEditable:![profile isFieldReadonly:@"postCode"]];
+        [self.cityCell setEditable:![profile isFieldReadonly:@"city"]];
+        [self.countryCell setEditable:![profile isFieldReadonly:@"countryCode"]];
     });
 }
 
 - (void)loadDataFromProfile:(PhoneBookProfile *)profile {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"Did load:%@", profile);
-        if (![self.userDetails.personalProfile identityVerifiedValue]) {
-            self.firstNameCell.value = profile.firstName;
-            self.lastNameCell.value = profile.lastName;
-            self.phoneNumberCell.value = profile.phone;
+        PersonalProfile *personal = self.objectModel.currentUser.personalProfile;
+
+        [self.firstNameCell setValueWhenEditable:profile.firstName];
+        [self.lastNameCell setValueWhenEditable:profile.lastName];
+        [self.phoneNumberCell setValueWhenEditable:profile.phone];
+        if (![personal isFieldReadonly:@"dateOfBirth"]) {
             [self.dateOfBirthCell setDateValue:profile.dateOfBirth];
         }
 
         self.emailCell.value = profile.email;
 
-        if (![self.userDetails.personalProfile addressVerifiedValue]) {
-            PhoneBookAddress *address = profile.address;
-            self.addressCell.value = address.street;
-            self.postCodeCell.value = address.zipCode;
-            self.cityCell.value = address.city;
+        PhoneBookAddress *address = profile.address;
+        [self.addressCell setValueWhenEditable:address.street];
+        [self.postCodeCell setValueWhenEditable:address.zipCode];
+        [self.cityCell setValueWhenEditable:address.city];
+        if (![personal isFieldReadonly:@"countryCode"]) {
             [self.countryCell setTwoLetterCountryCode:address.countryCode];
         }
     });
@@ -187,13 +190,14 @@ NSUInteger const kUserPersonalSection = 1;
 }
 
 - (BOOL)valuesChanged {
-    PlainPersonalProfile *profile = self.userDetails.personalProfile;
+    User *user = self.objectModel.currentUser;
+    PersonalProfile *profile = user.personalProfile;
 
     return ![[self.firstNameCell value] isEqualToString:profile.firstName]
             || ![[self.lastNameCell value] isEqualToString:profile.lastName]
-            || ![[self.emailCell value] isEqualToString:self.userDetails.email]
+            || ![[self.emailCell value] isEqualToString:user.email]
             || ![[self.phoneNumberCell value] isEqualToString:profile.phoneNumber]
-            || ![[self.dateOfBirthCell value] isEqualToString:profile.dateOfBirthString]
+            || ![[self.dateOfBirthCell value] isEqualToString:profile.dateOfBirth]
             || ![[self.addressCell value] isEqualToString:profile.addressFirstLine]
             || ![[self.postCodeCell value] isEqualToString:profile.postCode]
             || ![[self.cityCell value] isEqualToString:profile.city]
@@ -202,17 +206,16 @@ NSUInteger const kUserPersonalSection = 1;
 
 - (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion {
     [validation validatePersonalProfile:profile withHandler:^(PlainProfileDetails *details, NSError *error) {
-        if (error) {
-            completion(error);
-            return;
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                completion(error);
+                return;
+            }
 
-        if (details) {
-            [self setUserDetails:details];
-        }
-        [self loadDetailsToCells];
+            [self loadDetailsToCells];
 
-        completion(nil);
+            completion(nil);
+        });
     }];
 }
 

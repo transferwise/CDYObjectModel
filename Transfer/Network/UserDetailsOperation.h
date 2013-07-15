@@ -11,7 +11,7 @@
 
 @class PlainProfileDetails;
 
-typedef void (^TWProfileDetailsHandler)(PlainProfileDetails *result, NSError *error);
+typedef void (^TWProfileDetailsHandler)(NSError *error);
 
 @interface UserDetailsOperation : TransferwiseOperation
 
