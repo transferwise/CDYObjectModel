@@ -330,6 +330,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 - (void)handleSelectionChangeToType:(PlainRecipientType *)type {
+    MCLog(@"handleSelectionChangeToType:%@", type.type);
     NSArray *cells = [self buildCellsForType:type];
     [self setSelectedRecipientType:type];
     [self setRecipientTypeFieldCells:cells];
@@ -346,10 +347,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 - (NSArray *)findAllTypesWithCodes:(NSArray *)codes {
-    NSMutableArray *result = [NSMutableArray arrayWithCapacity:[codes count]];
+    NSMutableArray *result = [NSMutableArray array];
     for (NSString *code in codes) {
         PlainRecipientType *type = [self findTypeWithCode:code];
-        if (!code) {
+        if (!type) {
             MCLog(@"Did not find type for code %@", code);
             continue;
         }
@@ -361,9 +362,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 - (NSArray *)buildCellsForType:(PlainRecipientType *)type {
+    MCLog(@"Build cells");
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:[type.fields count]];
     NSArray *allTypes = [self findAllTypesWithCodes:self.selectedCurrency.recipientTypes];
-    if(allTypes.count > 1){
+    if (allTypes.count > 1) {
         result = [NSMutableArray arrayWithCapacity:type.fields.count + 1];
         [self.transferTypeSelectionCell setSelectedType:type allTypes:allTypes];
         [result addObject:self.transferTypeSelectionCell];
