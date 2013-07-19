@@ -14,5 +14,6 @@
 
 - (Currency *)currencyWithCode:(NSString *)code;
 - (void)createOrUpdateCurrencyWithData:(NSDictionary *)data index:(NSUInteger)index;
+- (NSFetchedResultsController *)fetchedControllerForAllCurrencies;
 
 @end

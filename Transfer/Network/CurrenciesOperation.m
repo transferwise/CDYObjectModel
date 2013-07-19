@@ -9,7 +9,9 @@
 #import "CurrenciesOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Constants.h"
-#import "PlainCurrency.h"
+#import "JCSObjectModel.h"
+#import "ObjectModel+RecipientTypes.h"
+#import "ObjectModel+Currencies.h"
 
 NSString *const kCurrencyListPath = @"/currency/list";
 
@@ -20,20 +22,23 @@ NSString *const kCurrencyListPath = @"/currency/list";
 
     __block __weak CurrenciesOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
-        weakSelf.resultHandler(nil, error);
+        weakSelf.resultHandler(error);
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        NSArray *currencies = response[@"currencies"];
-        MCLog(@"Pulled %d currencies", [currencies count]);
+        [weakSelf.workModel.managedObjectContext performBlock:^{
+            NSArray *currencies = response[@"currencies"];
+            MCLog(@"Pulled %d currencies", [currencies count]);
 
-        NSMutableArray *result = [NSMutableArray arrayWithCapacity:[currencies count]];
-        for (NSDictionary *data in currencies) {
-            PlainCurrency *currency = [PlainCurrency currencyWithRecipientData:data];
-            [result addObject:currency];
-        }
+            NSUInteger index = 0;
+            for (NSDictionary *data in currencies) {
+                [weakSelf.workModel createOrUpdateCurrencyWithData:data index:index++];
+            }
 
-        weakSelf.resultHandler([NSArray arrayWithArray:result], nil);
+            [weakSelf.workModel saveContext:^{
+                weakSelf.resultHandler(nil);
+            }];
+        }];
     }];
 
     [self getDataFromPath:path];

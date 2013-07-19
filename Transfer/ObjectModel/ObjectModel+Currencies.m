@@ -37,4 +37,9 @@
     [currency setIndexValue:(int16_t) index];
 }
 
+- (NSFetchedResultsController *)fetchedControllerForAllCurrencies {
+    NSSortDescriptor *indexSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES];
+    return [self fetchedControllerForEntity:[Currency entityName] sortDescriptors:@[indexSortDescriptor]];
+}
+
 @end

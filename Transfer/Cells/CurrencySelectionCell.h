@@ -8,16 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@class PlainCurrency;
+@class Currency;
 
 extern NSString *const TWCurrencySelectionCellIdentifier;
 
-typedef void (^TRWCurrencySelectionBlock)(PlainCurrency *currency);
+typedef void (^TRWCurrencySelectionBlock)(Currency *currency);
 
 @interface CurrencySelectionCell : TextEntryCell
 
 @property (nonatomic, copy) TRWCurrencySelectionBlock selectionHandler;
 
-- (void)setAllCurrencies:(NSArray *)currencies;
+- (void)setAllCurrencies:(NSFetchedResultsController *)currencies;
+
 
 @end

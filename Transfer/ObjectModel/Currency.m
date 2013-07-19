@@ -10,6 +10,10 @@
 
 @implementation Currency
 
+- (NSString *)formattedCodeAndName {
+    return [NSString stringWithFormat:@"%@ %@", self.code, self.name];
+}
+
 - (PlainCurrency *)plainCurrency {
     return [Currency createPlainCurrency:self];
 }

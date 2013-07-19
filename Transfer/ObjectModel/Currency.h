@@ -4,6 +4,7 @@
 
 @interface Currency : _Currency
 
+- (NSString *)formattedCodeAndName;
 - (PlainCurrency *)plainCurrency;
 
 @end

@@ -41,6 +41,8 @@
 #import "Recipient.h"
 #import "ObjectModel+RecipientTypes.h"
 #import "RecipientType.h"
+#import "ObjectModel+Currencies.h"
+#import "Currency.h"
 
 static NSUInteger const kImportSection = 0;
 static NSUInteger const kRecipientSection = 1;
@@ -70,7 +72,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, strong) PlainCurrency *selectedCurrency;
 @property (nonatomic, strong) PlainRecipientType *selectedRecipientType;
 
-@property (nonatomic, strong) NSArray *allCurrencies;
 @property (nonatomic, strong) NSArray *recipientsForCurrency;
 @property (nonatomic, strong) PlainRecipient *selectedRecipient;
 
@@ -129,8 +130,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     CurrencySelectionCell *currencyCell = [self.tableView dequeueReusableCellWithIdentifier:TWCurrencySelectionCellIdentifier];
     [self setCurrencyCell:currencyCell];
-    [currencyCell setSelectionHandler:^(PlainCurrency *currency) {
-        [self handleCurrencySelection:currency];
+    [currencyCell setSelectionHandler:^(Currency *currency) {
+        [self handleCurrencySelection:[currency plainCurrency]];
     }];
     [currencyCells addObject:currencyCell];
 
@@ -164,14 +165,19 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         return;
     }
 
+    [self setPresentedSectionCells:@[@[self.importCell], self.recipientCells, self.currencyCells, @[]]];
+    [self.tableView setTableFooterView:self.footer];
+    [self.tableView reloadData];
+
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
+
+    [self.currencyCell setAllCurrencies:[self.objectModel fetchedControllerForAllCurrencies]];
 
     void (^dataLoadCompletionBlock)() = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hide];
             [self.nameCell setAutoCompleteRecipients:self.recipientsForCurrency];
-            [self.currencyCell setAllCurrencies:[self currenciesToShow]];
             [self setPresentedSectionCells:@[@[self.importCell], self.recipientCells, self.currencyCells, @[]]];
             [self.tableView setTableFooterView:self.footer];
             [self.tableView reloadData];
@@ -227,15 +233,13 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
     [self setExecutedOperation:currenciesOperation];
     [currenciesOperation setObjectModel:self.objectModel];
-    [currenciesOperation setResultHandler:^(NSArray *currencies, NSError *error) {
+    [currenciesOperation setResultHandler:^(NSError *error) {
         if (error) {
             [hud hide];
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipient.types.load.error.title", nil) error:error];
             [alertView show];
             return;
         }
-
-        [self setAllCurrencies:currencies];
 
         [self setExecutedOperation:typesOperation];
         [typesOperation execute];
@@ -296,20 +300,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             [fieldCell setValue:[recipient valueForKeyPath:field.name]];
         }
     });
-}
-
-- (NSArray *)currenciesToShow {
-    if (self.preloadRecipientsWithCurrency) {
-        for (PlainCurrency *currency in self.allCurrencies) {
-            if (![currency.code isEqualToString:self.preloadRecipientsWithCurrency.code]) {
-                continue;
-            }
-
-            return @[currency];
-        }
-    }
-
-    return self.allCurrencies;
 }
 
 - (void)handleCurrencySelection:(PlainCurrency *)currency {

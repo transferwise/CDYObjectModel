@@ -15,7 +15,6 @@
 #import "NSDictionary+SensibleData.h"
 #import "Credentials.h"
 #import "TransferwiseClient.h"
-#import "NSString+Validation.h"
 #import "NetworkErrorCodes.h"
 #import "ObjectModel.h"
 
@@ -86,7 +85,7 @@
     [operation setQueuePriority:NSOperationQueuePriorityLow];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *op, id responseObject) {
         NSInteger statusCode = op.response.statusCode;
-        MCLog(@"%@ - Success:%d", op.request.URL.path, statusCode);
+        MCLog(@"%@ - Success:%d - %d", op.request.URL.path, statusCode, [responseObject length]);
         if (statusCode != 200 || !responseObject) {
             NSError *error = [NSError errorWithDomain:TRWErrorDomain code:ResponseServerError userInfo:@{}];
             self.operationErrorHandler(error);
