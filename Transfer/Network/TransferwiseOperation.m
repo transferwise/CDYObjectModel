@@ -73,12 +73,7 @@
 }
 
 - (void)executeRequest:(NSMutableURLRequest *)request {
-    if ([Credentials userLoggedIn]) {
-        [request setValue:[Credentials accessToken] forHTTPHeaderField:@"Authorization"];
-    }
-
-    [request setValue:@"ad8d836d18ec18fbd4ccc7bffd71eb54" forHTTPHeaderField:@"Authorization-key"];
-    //TODO jaanus: Also client id (the one from google analytics) should be in header 'Customer-identifier'
+    [TransferwiseOperation provideAuthenticationHeaders:request];
 
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setThreadPriority:0.1];
@@ -123,6 +118,15 @@
         }
     }];
     [operation start];
+}
+
++ (void)provideAuthenticationHeaders:(NSMutableURLRequest *)request {
+    if ([Credentials userLoggedIn]) {
+        [request setValue:[Credentials accessToken] forHTTPHeaderField:@"Authorization"];
+    }
+
+    [request setValue:@"ad8d836d18ec18fbd4ccc7bffd71eb54" forHTTPHeaderField:@"Authorization-key"];
+    //TODO jaanus: Also client id (the one from google analytics) should be in header 'Customer-identifier'
 }
 
 - (void)createErrorAndNotifyFromResponse:(NSDictionary *)response {
