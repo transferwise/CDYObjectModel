@@ -43,6 +43,7 @@
 #import "RecipientType.h"
 #import "ObjectModel+Currencies.h"
 #import "Currency.h"
+#import "ObjectModel+Users.h"
 
 static NSUInteger const kImportSection = 0;
 static NSUInteger const kRecipientSection = 1;
@@ -119,8 +120,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setNameCell:nameCell];
     [nameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [nameCell configureWithTitle:NSLocalizedString(@"recipient.controller.cell.label.name", nil) value:@""];
-    [nameCell setSelectionHandler:^(PlainRecipient *recipient) {
-        [self didSelectRecipient:recipient];
+    [nameCell setSelectionHandler:^(Recipient *recipient) {
+        [self didSelectRecipient:[recipient plainRecipient]];
     }];
     [recipientCells addObject:nameCell];
 
@@ -146,7 +147,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     [self.addButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
 
-    if (self.preloadRecipientsWithCurrency) {
+    if (self.preLoadRecipientsWithCurrency) {
         [self.currencyCell setEditable:NO];
     }
     
@@ -166,18 +167,23 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
 
     [self setPresentedSectionCells:@[@[self.importCell], self.recipientCells, self.currencyCells, @[]]];
-    [self.tableView setTableFooterView:self.footer];
     [self.tableView reloadData];
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
 
+    [self handleCurrencySelection:self.preLoadRecipientsWithCurrency];
+
     [self.currencyCell setAllCurrencies:[self.objectModel fetchedControllerForAllCurrencies]];
+    if (self.preLoadRecipientsWithCurrency) {
+        [self.nameCell setAutoCompleteRecipients:[self.objectModel fetchedControllerForRecipientsWithCurrency:[self.objectModel currencyWithCode:self.preLoadRecipientsWithCurrency.code]]];
+    } else {
+        [self.nameCell setAutoCompleteRecipients:nil];
+    }
 
     void (^dataLoadCompletionBlock)() = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hide];
-            [self.nameCell setAutoCompleteRecipients:self.recipientsForCurrency];
             [self setPresentedSectionCells:@[@[self.importCell], self.recipientCells, self.currencyCells, @[]]];
             [self.tableView setTableFooterView:self.footer];
             [self.tableView reloadData];
@@ -186,8 +192,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     };
 
     UserRecipientsOperation *recipientsOperation = nil;
-    if (self.preloadRecipientsWithCurrency && [Credentials userLoggedIn]) {
-        recipientsOperation = [UserRecipientsOperation recipientsOperationWithCurrency:self.preloadRecipientsWithCurrency];
+    if (self.preLoadRecipientsWithCurrency && [Credentials userLoggedIn]) {
+        recipientsOperation = [UserRecipientsOperation recipientsOperationWithCurrency:self.preLoadRecipientsWithCurrency];
         [recipientsOperation setObjectModel:self.objectModel];
         [recipientsOperation setResponseHandler:^(NSError *error) {
             if (error) {
@@ -197,9 +203,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
                 return;
             }
 
-            NSArray *recipientObjects = [self.objectModel recipientsWithCurrency:self.preloadRecipientsWithCurrency.code];
+            NSArray *recipientObjects = [self.objectModel recipientsWithCurrency:self.preLoadRecipientsWithCurrency.code];
             NSArray *recipients = [Recipient createPlainRecipients:recipientObjects];
-            MCLog(@"Loaded %d recipients for %@", [recipients count], self.preloadRecipientsWithCurrency.code);
+            MCLog(@"Loaded %d recipients for %@", [recipients count], self.preLoadRecipientsWithCurrency.code);
             [self setRecipientsForCurrency:recipients];
             dataLoadCompletionBlock();
         }];
@@ -482,7 +488,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 - (void)setPresentedSectionCells:(NSArray *)presentedSectionCells {
-    if (!self.preloadRecipientsWithCurrency) {
+    if (!self.preLoadRecipientsWithCurrency) {
         [self setPresentedSections:@[@(kImportSection), @(kRecipientSection), @(kCurrencySection), @(kRecipientFieldsSection)]];
         [super setPresentedSectionCells:presentedSectionCells];
         return;

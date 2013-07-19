@@ -9,10 +9,12 @@
 #import "ObjectModel.h"
 
 @class User;
+@class Currency;
 
 @interface ObjectModel (Users)
 
 - (void)createOrUpdateUserWithData:(NSDictionary *)data;
 - (User *)currentUser;
+- (NSFetchedResultsController *)fetchedControllerForRecipientsWithCurrency:(Currency *)currency;
 
 @end

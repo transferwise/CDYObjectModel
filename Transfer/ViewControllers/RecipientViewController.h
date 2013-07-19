@@ -20,7 +20,7 @@
 
 @property (nonatomic, copy) TRWActionBlock afterSaveAction;
 @property (nonatomic, copy) NSString *footerButtonTitle;
-@property (nonatomic) PlainCurrency *preloadRecipientsWithCurrency;
+@property (nonatomic) PlainCurrency *preLoadRecipientsWithCurrency;
 @property (nonatomic, strong, readonly) PlainRecipient *selectedRecipient;
 @property (nonatomic, strong, readonly) PlainRecipientType *selectedRecipientType;
 @property (nonatomic, strong, readonly) NSArray *recipientTypes;

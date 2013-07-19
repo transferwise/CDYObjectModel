@@ -12,6 +12,8 @@
 #import "PersonalProfile.h"
 #import "BusinessProfile.h"
 #import "Credentials.h"
+#import "Currency.h"
+#import "Recipient.h"
 
 @implementation ObjectModel (Users)
 
@@ -84,6 +86,14 @@
 
 - (User *)currentUser {
     return [self userWithEmail:[Credentials userEmail]];
+}
+
+- (NSFetchedResultsController *)fetchedControllerForRecipientsWithCurrency:(Currency *)currency {
+    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+    NSPredicate *notSettlementPredicate = [NSPredicate predicateWithFormat:@"settlementRecipient = NO"];
+    NSPredicate *currencyPredicate = [NSPredicate predicateWithFormat:@"currency = %@", currency];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notSettlementPredicate, currencyPredicate]];
+    return [self fetchedControllerForEntity:[Recipient entityName] predicate:predicate sortDescriptors:@[nameDescriptor]];
 }
 
 @end

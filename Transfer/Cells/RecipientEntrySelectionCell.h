@@ -9,15 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "TextEntryCell.h"
 
-@class PlainRecipient;
+@class Recipient;
 
 extern NSString *const TRWRecipientEntrySelectionCellIdentifier;
 
-typedef void (^RecipientSelectionBlock)(PlainRecipient *recipient);
+typedef void (^RecipientSelectionBlock)(Recipient *recipient);
 
 @interface RecipientEntrySelectionCell : TextEntryCell
 
-@property (nonatomic, strong) NSArray *autoCompleteRecipients;
+@property (nonatomic, strong) NSFetchedResultsController *autoCompleteRecipients;
 @property (nonatomic, copy) RecipientSelectionBlock selectionHandler;
 
 @end
