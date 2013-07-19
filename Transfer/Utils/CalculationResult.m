@@ -8,6 +8,7 @@
 
 #import "CalculationResult.h"
 #import "MoneyFormatter.h"
+#import "NSDate+ServerTime.h"
 
 @interface CalculationResult ()
 
@@ -41,7 +42,7 @@
     [result setBankPayIn:data[@"bankPayIn"]];
     [result setBankPayOut:data[@"bankPayOut"]];
     [result setTransferwiseRefund:data[@"transferwiseRefund"]];
-    [result setEstimatedDelivery:[self deliveryDate:data[@"estimatedDelivery"]]];
+    [result setEstimatedDelivery:[NSDate dateFromServerString:data[@"estimatedDelivery"]]];
     return result;
 }
 
@@ -145,14 +146,5 @@ NSDateFormatter *__paymentDateFormatter;
     return __paymentDateFormatter;
 }
 
-NSDateFormatter *__deliveryDateFormatter;
-+ (NSDate *)deliveryDate:(NSString *)dateString {
-    if (!__deliveryDateFormatter) {
-        __deliveryDateFormatter = [[NSDateFormatter alloc] init];
-        [__deliveryDateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-        [__deliveryDateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-    }
-    return [__deliveryDateFormatter dateFromString:dateString];
-}
 
 @end

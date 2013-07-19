@@ -9,6 +9,7 @@
 #import "PlainPayment.h"
 #import "PlainRecipient.h"
 #import "MoneyFormatter.h"
+#import "NSDate+ServerTime.h"
 
 static NSArray *__activeStatuses;
 
@@ -54,13 +55,13 @@ static NSArray *__activeStatuses;
     [payment setPayIn:data[@"payIn"]];
     [payment setMatchedPercent:data[@"matchedPercent"]];
     [payment setRecipient:[PlainRecipient recipientWithData:data[@"recipient"]]];
-    [payment setSubmittedDate:[PlainPayment dateFromString:data[@"submittedDate"]]];
-    [payment setReceivedDate:[PlainPayment dateFromString:data[@"receivedDate"]]];
-    [payment setTransferredDate:[PlainPayment dateFromString:data[@"transferredDate"]]];
-    [payment setCancelledDate:[PlainPayment dateFromString:data[@"cancelledDate"]]];
+    [payment setSubmittedDate:[NSDate dateFromServerString:data[@"submittedDate"]]];
+    [payment setReceivedDate:[NSDate dateFromServerString:data[@"receivedDate"]]];
+    [payment setTransferredDate:[NSDate dateFromServerString:data[@"transferredDate"]]];
+    [payment setCancelledDate:[NSDate dateFromServerString:data[@"cancelledDate"]]];
     [payment setPaymentReference:data[@"paymentReference"]];
     [payment setRefundRecipient:[PlainRecipient recipientWithData:data[@"refundRecipient"]]];
-    [payment setEstimatedDelivery:[PlainPayment dateFromString:data[@"estimatedDelivery"]]];
+    [payment setEstimatedDelivery:[NSDate dateFromServerString:data[@"estimatedDelivery"]]];
     [payment setSettlementRecipient:[PlainRecipient recipientWithData:data[@"settlementRecipient"]]];
 
     return payment;
@@ -129,20 +130,6 @@ static NSCalendar *__gregorian;
     }
 
     return __gregorian;
-}
-
-static NSDateFormatter *__dateFormatter;
-+ (NSDate *)dateFromString:(NSString *)dateString {
-    if (!dateString || [dateString isKindOfClass:[NSNull class]]) {
-        return nil;
-    }
-
-    if (!__dateFormatter) {
-        __dateFormatter = [[NSDateFormatter alloc] init];
-        [__dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-        [__dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-    }
-    return [__dateFormatter dateFromString:dateString];
 }
 
 @end

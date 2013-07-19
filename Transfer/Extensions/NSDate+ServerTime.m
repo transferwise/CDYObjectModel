@@ -18,7 +18,7 @@ static NSDateFormatter *__dateFormatter;
 
     if (!__dateFormatter) {
         __dateFormatter = [[NSDateFormatter alloc] init];
-        [__dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+        [__dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         [__dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     }
 
