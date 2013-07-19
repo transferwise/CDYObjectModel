@@ -106,17 +106,16 @@
         self.operationSuccessHandler(response);
     } failure:^(AFHTTPRequestOperation *op, NSError *error) {
         MCLog(@"Error:%@", error);
-        NSString *recovery = [error localizedRecoverySuggestion];
+        NSData *responseData = [op responseData];
 
-        if (![recovery hasValue]) {
+        if ([responseData length] == 0) {
             MCLog(@"No recovery information");
             self.operationErrorHandler(error);
             return;
         }
 
-        NSData *data = [recovery dataUsingEncoding:NSUTF8StringEncoding];
         NSError *jsonError = nil;
-        NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+        NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonError];
         if (jsonError) {
             NSLog(@"Error JSON read error:%@", jsonError);
             self.operationErrorHandler(error);
