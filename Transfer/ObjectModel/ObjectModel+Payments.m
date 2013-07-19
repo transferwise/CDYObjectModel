@@ -17,7 +17,7 @@
 @implementation ObjectModel (Payments)
 
 - (NSFetchedResultsController *)fetchedControllerForAllPayments {
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"lastUpdateTime" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"submittedDate" ascending:NO];
     return [self fetchedControllerForEntity:[Payment entityName] predicate:nil sortDescriptors:@[sortDescriptor]];
 }
 

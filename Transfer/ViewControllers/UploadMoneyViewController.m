@@ -81,19 +81,21 @@
         [operation setObjectModel:self.objectModel];
 
         [operation setResultHandler:^(NSError *error) {
-            [hud hide];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hide];
 
-            if (error) {
-                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"upload.money.data.error.title", nil) error:error];
-                [alertView show];;
-                return;
-            }
+                if (error) {
+                    TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"upload.money.data.error.title", nil) error:error];
+                    [alertView show];;
+                    return;
+                }
 
-            NSArray *recipientObjects = [self.objectModel listAllRecipientTypes];
-            NSArray *recipients = [RecipientType createPlainTypes:recipientObjects];
+                NSArray *recipientObjects = [self.objectModel listAllRecipientTypes];
+                NSArray *recipients = [RecipientType createPlainTypes:recipientObjects];
 
-            [self setRecipientTypes:recipients];
-            [self loadDataToCells];
+                [self setRecipientTypes:recipients];
+                [self loadDataToCells];
+            });
         }];
 
         [operation execute];

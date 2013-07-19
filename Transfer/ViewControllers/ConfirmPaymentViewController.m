@@ -175,27 +175,30 @@ static NSUInteger const kReceiverSection = 1;
         [hud setMessage:NSLocalizedString(@"confirm.payment.pulling.data", nil)];
         RecipientTypesOperation *operation = [RecipientTypesOperation operation];
         [self setExecutedOperation:operation];
+        [operation setObjectModel:self.objectModel];
 
         [operation setResultHandler:^(NSError *error) {
-            [hud hide];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hide];
 
-            if (error) {
-                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.data.error.title", nil) error:error];
-                [alertView show];
-                return;
-            }
+                if (error) {
+                    TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.data.error.title", nil) error:error];
+                    [alertView show];
+                    return;
+                }
 
-            NSArray *types = [self.objectModel listAllRecipientTypes];
-            NSArray *recipients = [RecipientType createPlainTypes:types];
+                NSArray *types = [self.objectModel listAllRecipientTypes];
+                NSArray *recipients = [RecipientType createPlainTypes:types];
 
-            NSArray *filtered = [recipients filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-                PlainRecipientType *type = evaluatedObject;
+                NSArray *filtered = [recipients filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+                    PlainRecipientType *type = evaluatedObject;
 
-                return [type.type isEqualToString:self.recipientProfile.type];
-            }]];
+                    return [type.type isEqualToString:self.recipientProfile.type];
+                }]];
 
-            [self setRecipientType:[filtered lastObject]];
-            completion();
+                [self setRecipientType:[filtered lastObject]];
+                completion();
+            });
         }];
 
         [operation execute];
