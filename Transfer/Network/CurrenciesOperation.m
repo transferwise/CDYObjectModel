@@ -12,8 +12,15 @@
 #import "JCSObjectModel.h"
 #import "ObjectModel+RecipientTypes.h"
 #import "ObjectModel+Currencies.h"
+#import "RecipientTypesOperation.h"
 
 NSString *const kCurrencyListPath = @"/currency/list";
+
+@interface CurrenciesOperation ()
+
+@property (nonatomic, strong) RecipientTypesOperation *operation;
+
+@end
 
 @implementation CurrenciesOperation
 
@@ -30,18 +37,60 @@ NSString *const kCurrencyListPath = @"/currency/list";
             NSArray *currencies = response[@"currencies"];
             MCLog(@"Pulled %d currencies", [currencies count]);
 
-            NSUInteger index = 0;
-            for (NSDictionary *data in currencies) {
-                [weakSelf.workModel createOrUpdateCurrencyWithData:data index:index++];
-            }
+            void (^persistingBlock)() = ^() {
+                [weakSelf.workModel.managedObjectContext performBlock:^{
+                    NSUInteger index = 0;
+                    for (NSDictionary *data in currencies) {
+                        [weakSelf.workModel createOrUpdateCurrencyWithData:data index:index++];
+                    }
 
-            [weakSelf.workModel saveContext:^{
-                weakSelf.resultHandler(nil);
-            }];
+                    [weakSelf.workModel saveContext:^{
+                        weakSelf.resultHandler(nil);
+                    }];
+                }];
+            };
+
+            if ([weakSelf haveAllNeededRecipientTypes:currencies]) {
+                MCLog(@"Have all recipient types. Continue");
+                persistingBlock();
+            } else {
+                MCLog(@"Need to pull missing recipient types");
+                [weakSelf pullRecipientTypesWithCompletionHandler:persistingBlock];
+            }
         }];
     }];
 
     [self getDataFromPath:path];
+}
+
+- (void)pullRecipientTypesWithCompletionHandler:(void (^)())completion {
+    RecipientTypesOperation *operation = [RecipientTypesOperation operation];
+    [self setOperation:operation];
+    [operation setObjectModel:self.objectModel];
+    [operation setResultHandler:^(NSError *error) {
+        if (error) {
+            self.resultHandler(error);
+            return;
+        }
+
+        completion();
+    }];
+
+    [operation execute];
+}
+
+- (BOOL)haveAllNeededRecipientTypes:(NSArray *)currencies {
+    for (NSDictionary *currencyData in currencies) {
+        NSArray *types = currencyData[@"recipientTypes"];
+        for (NSString *type in types) {
+            if (![self.objectModel haveRecipientTypeWithCode:type]) {
+                MCLog(@"Mossing type %@", type);
+                return NO;
+            }
+        }
+    }
+
+    return YES;
 }
 
 + (CurrenciesOperation *)operation {

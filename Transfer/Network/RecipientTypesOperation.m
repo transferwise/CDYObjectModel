@@ -9,7 +9,6 @@
 #import "RecipientTypesOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Constants.h"
-#import "PlainRecipientType.h"
 #import "ObjectModel+RecipientTypes.h"
 
 NSString *const kRecipientTypesPath = @"/recipient/listTypes";
@@ -30,7 +29,6 @@ NSString *const kRecipientTypesPath = @"/recipient/listTypes";
             MCLog(@"Pulled %d receipient types", [recipients count]);
 
             for (NSDictionary *data in recipients) {
-                MCLog(@"data:%@", data);
                 [weakSelf.workModel createOrUpdateRecipientTypeWithData:data];
             }
 

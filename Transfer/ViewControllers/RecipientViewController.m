@@ -205,31 +205,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         }];
     }
 
-    RecipientTypesOperation *typesOperation = [RecipientTypesOperation operation];
-    [typesOperation setObjectModel:self.objectModel];
-    [typesOperation setResultHandler:^(NSError *typesError) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (typesError) {
-                [hud hide];
-                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipient.types.load.error.title", nil) error:typesError];
-                [alertView show];
-                return;
-            }
-
-            NSArray *types = [self.objectModel listAllRecipientTypes];
-            NSArray *recipients = [RecipientType createPlainTypes:types];
-
-            [self setRecipientTypes:recipients];
-
-            if (recipientsOperation) {
-                [self setExecutedOperation:recipientsOperation];
-                [recipientsOperation execute];
-            } else {
-                dataLoadCompletionBlock();
-            }
-        });
-    }];
-
     CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
     [self setExecutedOperation:currenciesOperation];
     [currenciesOperation setObjectModel:self.objectModel];
@@ -241,8 +216,17 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             return;
         }
 
-        [self setExecutedOperation:typesOperation];
-        [typesOperation execute];
+        NSArray *types = [self.objectModel listAllRecipientTypes];
+        NSArray *recipients = [RecipientType createPlainTypes:types];
+
+        [self setRecipientTypes:recipients];
+
+        if (recipientsOperation) {
+            [self setExecutedOperation:recipientsOperation];
+            [recipientsOperation execute];
+        } else {
+            dataLoadCompletionBlock();
+        }
     }];
 
     [currenciesOperation execute];
