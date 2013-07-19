@@ -11,7 +11,6 @@
 #import "Lockbox.h"
 
 NSString *const kAccessTokenKey = @"kAccessTokenKey";
-NSString *const kDisplayNameKey = @"kDisplayNameKey";
 NSString *const kUserSecretKey = @"kUserSecretKey";
 NSString *const kUserEmailKey = @"kUserEmailKey";
 
@@ -39,17 +38,8 @@ NSString *const kUserEmailKey = @"kUserEmailKey";
 
 + (void)clearCredentials {
     [Lockbox setString:@"" forKey:kAccessTokenKey];
-    [Lockbox setString:@"" forKey:kDisplayNameKey];
     [Lockbox setString:@"" forKey:kUserSecretKey];
     [Lockbox setString:@"" forKey:kUserEmailKey];
-}
-
-+ (NSString *)displayName {
-    return [Lockbox stringForKey:kDisplayNameKey];
-}
-
-+ (void)setDisplayName:(NSString *)displayName {
-    [Lockbox setString:displayName forKey:kDisplayNameKey];
 }
 
 + (BOOL)temporaryAccount {

@@ -9,8 +9,10 @@
 #import "TransferwiseClient.h"
 #import "Constants.h"
 #import "Credentials.h"
-#import "PlainProfileDetails.h"
 #import "RemoveTokenOperation.h"
+#import "JCSObjectModel.h"
+#import "ObjectModel+Users.h"
+#import "User.h"
 
 NSString *const kAPIPathBase = @"/api/v1";
 //NSString *const kAPIPathBase = @"/fx-test/api/v1";
@@ -28,7 +30,7 @@ NSString *const kAPIPathBase = @"/api/v1";
 - (id)initSingleton {
     self = [super initWithBaseURL:[NSURL URLWithString:@"https://api-sandbox.transferwise.com"]];
     //self = [super initWithBaseURL:[NSURL URLWithString:@"https://purple.transferwise.com"]];
-    //self = [super initWithBaseURL:[NSURL URLWithString:@"http://localhost:12345"]];
+    //self = [super initWithBaseURL:[NSURL URLWithString:@"http://localhost:3000"]];
     if (self) {
 
     }
@@ -68,6 +70,7 @@ NSString *const kAPIPathBase = @"/api/v1";
 
 - (void)clearCredentials {
     NSString *token = [Credentials accessToken];
+    [self.objectModel deleteObject:self.objectModel.currentUser saveAfter:YES];
     [Credentials clearCredentials];
     [self clearCookies];
 

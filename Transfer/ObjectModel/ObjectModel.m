@@ -19,7 +19,7 @@
 @implementation ObjectModel
 
 - (id)init {
-    self = [super initWithDataModelName:@"Transfer" storeType:NSInMemoryStoreType];
+    self = [super initWithDataModelName:@"Transfer" storeType:NSSQLiteStoreType];
     if (self) {
         [self setWipeDatabaseOnSchemaConflict:YES];
     }

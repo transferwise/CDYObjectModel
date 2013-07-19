@@ -86,7 +86,7 @@
     [operation setQueuePriority:NSOperationQueuePriorityLow];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *op, id responseObject) {
         NSInteger statusCode = op.response.statusCode;
-        MCLog(@"Success:%d", statusCode);
+        MCLog(@"%@ - Success:%d", op.request.URL.path, statusCode);
         if (statusCode != 200) {
             NSError *error = [NSError errorWithDomain:TRWErrorDomain code:ResponseServerError userInfo:@{}];
             self.operationErrorHandler(error);

@@ -19,4 +19,8 @@
     return plain;
 }
 
+- (NSString *)displayName {
+    return self.personalProfile ? [self.personalProfile fullName] : self.email;
+}
+
 @end

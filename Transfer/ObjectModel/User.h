@@ -5,5 +5,6 @@
 @interface User : _User
 
 - (PlainProfileDetails *)plainUserDetails;
+- (NSString *)displayName;
 
 @end

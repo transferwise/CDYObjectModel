@@ -19,6 +19,8 @@
 #import "ClaimAccountViewController.h"
 #import "BusinessProfileCommitter.h"
 #import "TransferwiseClient.h"
+#import "ObjectModel+Users.h"
+#import "User.h"
 
 NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
@@ -112,7 +114,7 @@ typedef NS_ENUM(short, SettingsRow) {
             [cell setTitle:NSLocalizedString(@"settings.row.logout", nil)];
             break;
         case UserProfileRow:
-            [cell setTitle:[Credentials displayName]];
+            [cell setTitle:[self.objectModel.currentUser displayName]];
             [cell.imageView setImage:[UIImage imageNamed:@"ProfileIcon.png"]];
             [cell.textLabel setTextColor:[UIColor lightGrayColor]];
             break;

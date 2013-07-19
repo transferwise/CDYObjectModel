@@ -1,5 +1,6 @@
 #import "PersonalProfile.h"
 #import "PlainPersonalProfile.h"
+#import "NSString+Validation.h"
 
 
 @interface PersonalProfile ()
@@ -24,6 +25,23 @@
 
 - (BOOL)isFieldReadonly:(NSString *)fieldName {
     return [self.readonlyFields rangeOfString:fieldName].location != NSNotFound;
+}
+
+- (NSString *)fullName {
+    NSMutableString *result = [NSMutableString string];
+    if ([self.firstName hasValue]) {
+        [result appendString:self.firstName];
+    }
+
+    if ([self.firstName hasValue] && [self.lastName hasValue]) {
+        [result appendString:@" "];
+    }
+
+    if ([self.lastName hasValue]) {
+        [result appendString:self.lastName];
+    }
+
+    return [NSString stringWithString:result];
 }
 
 @end

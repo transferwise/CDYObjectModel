@@ -6,5 +6,6 @@
 
 - (PlainPersonalProfile *)plainProfile;
 - (BOOL)isFieldReadonly:(NSString *)fieldName;
+- (NSString *)fullName;
 
 @end

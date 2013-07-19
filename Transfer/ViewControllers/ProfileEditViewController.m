@@ -92,6 +92,11 @@ static NSUInteger const kButtonSection = 0;
     [self setPresentationCells:presented];
 }
 
+- (void)setObjectModel:(ObjectModel *)objectModel {
+    _objectModel = objectModel;
+    [self.profileSource setObjectModel:objectModel];
+}
+
 - (void)setPresentProfileSource:(ProfileSource *)source reloadView:(BOOL)reload {
     [source setObjectModel:self.objectModel];
     [self setProfileSource:source];
