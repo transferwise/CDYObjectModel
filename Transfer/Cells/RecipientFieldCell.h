@@ -10,14 +10,14 @@
 #import "TextEntryCell.h"
 
 @class PlainRecipientTypeField;
+@class RecipientTypeField;
 
 extern NSString *const TWRecipientFieldCellIdentifier;
 
 @interface RecipientFieldCell : TextEntryCell
 
-@property (nonatomic, strong, readonly) PlainRecipientTypeField *type;
+@property (nonatomic, strong, readonly) RecipientTypeField *type;
 
-
-- (void)setFieldType:(PlainRecipientTypeField *)field;
+- (void)setFieldType:(RecipientTypeField *)field;
 
 @end

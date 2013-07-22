@@ -8,10 +8,13 @@
 
 #import "TextEntryCell.h"
 
+@class RecipientTypeField;
+
 extern NSString *const TWDropdownCellIdentifier;
 
 @interface DropdownCell : TextEntryCell
 
-@property (nonatomic, strong) NSArray *allElements;
+@property (nonatomic, strong) NSFetchedResultsController *allElements;
+@property (nonatomic, strong) RecipientTypeField *type;
 
 @end

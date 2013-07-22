@@ -61,4 +61,14 @@
     return [Recipient createPlainRecipient:self];
 }
 
+- (NSString *)valueField:(RecipientTypeField *)field {
+    for (TypeFieldValue *value in self.fieldValues) {
+        if ([value.valueForField isEqual:field]) {
+            return value.value;
+        }
+    }
+
+    return @"";
+}
+
 @end

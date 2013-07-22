@@ -42,12 +42,12 @@ NSString *const TWDropdownCellIdentifier = @"TWDropdownCellIdentifier";
 }
 
 - (NSString *)value {
-    return self.selectedObject ? [self.selectedObject valueForKeyPath:@"name"] : @"";
+    return self.selectedObject ? [self.selectedObject valueForKeyPath:@"code"] : @"";
 }
 
-- (void)setAllElements:(NSArray *)allElements {
+- (void)setAllElements:(NSFetchedResultsController *)allElements {
     _allElements = allElements;
-    [self selectedElement:allElements[0]];
+    [self selectedElement:allElements.fetchedObjects[0]];
 }
 
 - (void)setValue:(NSString *)value {
@@ -57,13 +57,13 @@ NSString *const TWDropdownCellIdentifier = @"TWDropdownCellIdentifier";
     }
 
     [self selectedElement:element];
-    NSUInteger index = [self.allElements indexOfObject:element];
+    NSInteger index = [self.allElements indexPathForObject:element].row;
     [self.picker selectRow:index inComponent:0 animated:NO];
 }
 
 - (id)findValueWithName:(NSString *)name {
-    for (id element in self.allElements) {
-        NSString *elementName = [element valueForKeyPath:@"name"];
+    for (id element in self.allElements.fetchedObjects) {
+        NSString *elementName = [element valueForKeyPath:@"code"];
         if ([elementName isEqualToString:name]) {
             return element;
         }
@@ -76,22 +76,22 @@ NSString *const TWDropdownCellIdentifier = @"TWDropdownCellIdentifier";
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return [self.allElements count];
+    return [self.allElements.fetchedObjects count];
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    id rowObject = self.allElements[(NSUInteger) row];
-    return [rowObject valueForKeyPath:@"name"];
+    id rowObject = [self.allElements objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
+    return [rowObject valueForKeyPath:@"title"];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    id rowObject = self.allElements[(NSUInteger) row];
+    id rowObject = [self.allElements objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
     [self selectedElement:rowObject];
 }
 
 - (void)selectedElement:(id)rowObject {
     [self setSelectedObject:rowObject];
-    [self.entryField setText:[rowObject valueForKeyPath:@"name"]];
+    [self.entryField setText:[rowObject valueForKeyPath:@"title"]];
 }
 
 @end

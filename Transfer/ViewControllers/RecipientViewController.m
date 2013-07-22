@@ -42,6 +42,7 @@
 #import "RecipientType.h"
 #import "ObjectModel+Currencies.h"
 #import "ObjectModel+Users.h"
+#import "RecipientTypeField.h"
 
 static NSUInteger const kImportSection = 0;
 static NSUInteger const kRecipientSection = 1;
@@ -268,19 +269,12 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
         for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
             [fieldCell setEditable:NO];
-
             if ([fieldCell isKindOfClass:[TransferTypeSelectionCell class]]) {
-                [self.transferTypeSelectionCell setSelectedType:recipient.type allTypes:[self.currency.recipientTypes array]];
                 continue;
             }
 
-            if ([fieldCell isKindOfClass:[DropdownCell class]]) {
-                //[fieldCell setValue:recipient.usState];
-                continue;
-            }
-
-            PlainRecipientTypeField *field = fieldCell.type;
-            [fieldCell setValue:[recipient valueForKeyPath:field.name]];
+            RecipientTypeField *field = fieldCell.type;
+            [fieldCell setValue:[recipient valueField:field]];
         }
     });
 }
@@ -325,12 +319,13 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self.transferTypeSelectionCell setSelectedType:type allTypes:allTypes];
         [result addObject:self.transferTypeSelectionCell];
     }
-    for (PlainRecipientTypeField *field in type.fields) {
-        //TODO jaanus: make this more generic
-        if ([field.name isEqualToString:@"usState"]) {
+
+    for (RecipientTypeField *field in type.fields) {
+        if ([field.allowedValues count] > 0) {
             DropdownCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWDropdownCellIdentifier];
-            [cell setAllElements:field.possibleValues];
+            [cell setAllElements:[self.objectModel fetchedControllerForAllowedValuesOnField:field]];
             [cell configureWithTitle:field.title value:@""];
+            [cell setType:field];
             [result addObject:cell];
         } else {
             RecipientFieldCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWRecipientFieldCellIdentifier];
@@ -338,6 +333,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             [result addObject:cell];
         }
     }
+
     return [NSArray arrayWithArray:result];
 }
 
@@ -379,15 +375,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     PlainRecipientProfileInput *recipientInput = [[PlainRecipientProfileInput alloc] init];
     recipientInput.name = self.nameCell.value;
     recipientInput.currency = self.currency.code;
-    recipientInput.type = self.selectedRecipientType.type;
+    recipientInput.type = self.recipientType.type;
 
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
         if ([cell isKindOfClass:[TransferTypeSelectionCell class]]) {
-            continue;
-        }
-
-        if ([cell isKindOfClass:[DropdownCell class]]) {
-            recipientInput.usState = cell.value;
             continue;
         }
 

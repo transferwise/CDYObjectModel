@@ -9,6 +9,7 @@
 #import "ObjectModel.h"
 
 @class RecipientType;
+@class RecipientTypeField;
 
 @interface ObjectModel (RecipientTypes)
 
@@ -16,6 +17,7 @@
 - (NSArray *)recipientTypesWithCodes:(NSArray *)codes;
 - (BOOL)haveRecipientTypeWithCode:(NSString *)code;
 - (void)createOrUpdateRecipientTypeWithData:(NSDictionary *)data;
+- (NSFetchedResultsController *)fetchedControllerForAllowedValuesOnField:(RecipientTypeField *)field;
 //TODO jaanus: delete this
 - (NSArray *)listAllRecipientTypes;
 
