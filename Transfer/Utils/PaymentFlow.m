@@ -144,7 +144,7 @@
 }
 
 - (BOOL)personalProfileFilled {
-    return  self.personalProfile != nil || self.userDetails.personalProfile != nil;
+    return [self.objectModel.currentUser personalProfile] != nil;
 }
 
 - (void)validatePersonalProfile:(PlainPersonalProfileInput *)profile withHandler:(PersonalProfileValidationBlock)handler {
