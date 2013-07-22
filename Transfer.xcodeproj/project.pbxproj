@@ -15,7 +15,6 @@
 		1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */; };
 		18D47900173A3B5300FC317E /* IdentificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D478FF173A3B5300FC317E /* IdentificationViewController.m */; };
 		18D47903173A3B6E00FC317E /* IdentificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D47902173A3B6E00FC317E /* IdentificationViewController.xib */; };
-		BB29BD43173CCD580016A6E9 /* PlainBankTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29BD42173CCD580016A6E9 /* PlainBankTransfer.m */; };
 		BB29BD47173CD2FF0016A6E9 /* UploadMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29BD46173CD2FF0016A6E9 /* UploadMoneyViewController.m */; };
 		BB29BD49173CD30D0016A6E9 /* UploadMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD48173CD30C0016A6E9 /* UploadMoneyViewController.xib */; };
 		BB29BD4B173CDF480016A6E9 /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD4A173CDF480016A6E9 /* TextCell.xib */; };
@@ -116,7 +115,6 @@
 		EA35C76C1732790D005602F7 /* PaymentsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76B1732790D005602F7 /* PaymentsOperation.m */; };
 		EA35C77017327973005602F7 /* PaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76F17327973005602F7 /* PaymentCell.m */; };
 		EA35C77217327981005602F7 /* PaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA35C77117327981005602F7 /* PaymentCell.xib */; };
-		EA35C7751732851C005602F7 /* PlainPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C7741732851C005602F7 /* PlainPayment.m */; };
 		EA416E2B176860EA00904D97 /* ProfileEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E29176860EA00904D97 /* ProfileEditViewController.m */; };
 		EA416E2C176860EA00904D97 /* ProfileEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */; };
 		EA416E301768673500904D97 /* ProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E2F1768673500904D97 /* ProfileSource.m */; };
@@ -321,8 +319,6 @@
 		18D47902173A3B6E00FC317E /* IdentificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IdentificationViewController.xib; sourceTree = "<group>"; };
 		9C1FBDCF7CCD414999CC7D3D /* libPods-TransferTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TransferTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9D5DEC1F8394C87A604EF4F /* Pods-TransferTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransferTests.xcconfig"; path = "Pods/Pods-TransferTests.xcconfig"; sourceTree = SOURCE_ROOT; };
-		BB29BD41173CCD580016A6E9 /* PlainBankTransfer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainBankTransfer.h; sourceTree = "<group>"; };
-		BB29BD42173CCD580016A6E9 /* PlainBankTransfer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainBankTransfer.m; sourceTree = "<group>"; };
 		BB29BD45173CD2FF0016A6E9 /* UploadMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadMoneyViewController.h; sourceTree = "<group>"; };
 		BB29BD46173CD2FF0016A6E9 /* UploadMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadMoneyViewController.m; sourceTree = "<group>"; };
 		BB29BD48173CD30C0016A6E9 /* UploadMoneyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadMoneyViewController.xib; sourceTree = "<group>"; };
@@ -486,8 +482,6 @@
 		EA35C76E17327973005602F7 /* PaymentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentCell.h; sourceTree = "<group>"; };
 		EA35C76F17327973005602F7 /* PaymentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentCell.m; sourceTree = "<group>"; };
 		EA35C77117327981005602F7 /* PaymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentCell.xib; sourceTree = "<group>"; };
-		EA35C7731732851C005602F7 /* PlainPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainPayment.h; sourceTree = "<group>"; };
-		EA35C7741732851C005602F7 /* PlainPayment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainPayment.m; sourceTree = "<group>"; };
 		EA416E28176860EA00904D97 /* ProfileEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileEditViewController.h; sourceTree = "<group>"; };
 		EA416E29176860EA00904D97 /* ProfileEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileEditViewController.m; sourceTree = "<group>"; };
 		EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileEditViewController.xib; sourceTree = "<group>"; };
@@ -1007,16 +1001,16 @@
 		EA88E669172F97B10021492C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BB29BD41173CCD580016A6E9 /* PlainBankTransfer.h */,
-				BB29BD42173CCD580016A6E9 /* PlainBankTransfer.m */,
+				EAD66785174CD3FE00D29BCB /* PhoneBookAddress.h */,
+				EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */,
+				EAD6677F174CB34600D29BCB /* PhoneBookProfile.h */,
+				EAD66780174CB34600D29BCB /* PhoneBookProfile.m */,
 				1864AC98173B7C4D008773FC /* PlainBusinessProfile.h */,
 				1864AC99173B7C4D008773FC /* PlainBusinessProfile.m */,
 				EA92D94C1769BB330078D0C4 /* PlainBusinessProfileInput.h */,
 				EA92D94D1769BB330078D0C4 /* PlainBusinessProfileInput.m */,
 				EA35C76617326AF4005602F7 /* PlainCurrency.h */,
 				EA35C76717326AF4005602F7 /* PlainCurrency.m */,
-				EA35C7731732851C005602F7 /* PlainPayment.h */,
-				EA35C7741732851C005602F7 /* PlainPayment.m */,
 				EA592927175613FB007C0072 /* PlainPaymentInput.h */,
 				EA592928175613FB007C0072 /* PlainPaymentInput.m */,
 				EA59292D1756231C007C0072 /* PlainPaymentVerificationRequired.h */,
@@ -1025,10 +1019,6 @@
 				EA88E66D172F97B10021492C /* PlainPersonalProfile.m */,
 				EA5929751758A1E1007C0072 /* PlainPersonalProfileInput.h */,
 				EA5929761758A1E1007C0072 /* PlainPersonalProfileInput.m */,
-				EAD66785174CD3FE00D29BCB /* PhoneBookAddress.h */,
-				EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */,
-				EAD6677F174CB34600D29BCB /* PhoneBookProfile.h */,
-				EAD66780174CB34600D29BCB /* PhoneBookProfile.m */,
 				EA88E66E172F97B10021492C /* PlainProfileDetails.h */,
 				EA88E66F172F97B10021492C /* PlainProfileDetails.m */,
 				EA88E670172F97B10021492C /* PlainRecipient.h */,
@@ -1842,7 +1832,6 @@
 				EA88E697172F980A0021492C /* SignUpViewController.m in Sources */,
 				EA35C76C1732790D005602F7 /* PaymentsOperation.m in Sources */,
 				EA35C77017327973005602F7 /* PaymentCell.m in Sources */,
-				EA35C7751732851C005602F7 /* PlainPayment.m in Sources */,
 				EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */,
 				EA35C76817326AF4005602F7 /* PlainCurrency.m in Sources */,
 				EAA54F4B1733DA1400B65BF3 /* RecipientViewController.m in Sources */,
@@ -1866,7 +1855,6 @@
 				EA222E3C173A8A7100C5D613 /* ConfirmPaymentCell.m in Sources */,
 				EA042600173CF5C50048BFBD /* RecipientEntrySelectionCell.m in Sources */,
 				EAAC203B17422AB3001DDE7A /* DropdownCell.m in Sources */,
-				BB29BD43173CCD580016A6E9 /* PlainBankTransfer.m in Sources */,
 				BB29BD47173CD2FF0016A6E9 /* UploadMoneyViewController.m in Sources */,
 				BB29BD4E173CDF6F0016A6E9 /* TextCell.m in Sources */,
 				EAAF8FB017436730008DF9E2 /* CreatePaymentOperation.m in Sources */,

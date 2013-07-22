@@ -14,7 +14,6 @@
 #import "PlainRecipientType.h"
 #import "IdentificationViewController.h"
 #import "UploadMoneyViewController.h"
-#import "PlainPayment.h"
 #import "PlainPaymentInput.h"
 #import "CreatePaymentOperation.h"
 #import "VerificationRequiredOperation.h"
@@ -45,7 +44,6 @@
 @property (nonatomic, strong) UINavigationController *navigationController;
 @property (nonatomic, strong) PlainProfileDetails *businessDetails;
 @property (nonatomic, strong) PlainRecipientType *recipientType;
-@property (nonatomic, strong) PlainPayment *createdPayment;
 @property (nonatomic, strong) NSArray *recipientTypes;
 @property (nonatomic, copy) PaymentErrorBlock paymentErrorHandler;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
@@ -251,14 +249,14 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)presentUploadMoneyController {
-    MCLog(@"presentUploadMoneyController");
-    UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
-    [controller setUserDetails:self.userDetails];
-    [controller setPayment:self.createdPayment];
-    [controller setRecipientTypes:self.recipientTypes];
-    [self.navigationController pushViewController:controller animated:YES];
+- (void)presentUploadMoneyController:(NSManagedObjectID *)paymentID {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MCLog(@"presentUploadMoneyController");
+        UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+        [controller setObjectModel:self.objectModel];
+        [controller setPayment:(id) [self.objectModel.managedObjectContext objectWithID:paymentID]];
+        [self.navigationController pushViewController:controller animated:YES];
+    });
 }
 
 - (void)validatePayment:(PlainPaymentInput *)paymentInput errorHandler:(PaymentErrorBlock)errorHandler {
@@ -271,7 +269,7 @@
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
 
-    [operation setResponseHandler:^(PlainPayment *payment, NSError *error) {
+    [operation setResponseHandler:^(NSManagedObjectID *paymentID, NSError *error) {
         if (error) {
             self.paymentErrorHandler(error);
             return;
@@ -508,14 +506,13 @@
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
 
-    [operation setResponseHandler:^(PlainPayment *payment, NSError *error) {
+    [operation setResponseHandler:^(NSManagedObjectID *paymentID, NSError *error) {
         if (error) {
             self.paymentErrorHandler(error);
             return;
         }
 
-        self.createdPayment = payment;
-        [self presentUploadMoneyController];
+        [self presentUploadMoneyController:paymentID];
     }];
 
     [operation execute];

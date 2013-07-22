@@ -14,7 +14,6 @@
 @class PlainRecipient;
 @class PlainRecipientType;
 @class CalculationResult;
-@class PlainPayment;
 @class PaymentFlow;
 @class PlainRecipientProfileInput;
 @class PlainPersonalProfileInput;

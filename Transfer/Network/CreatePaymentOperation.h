@@ -9,10 +9,9 @@
 #import "TransferwiseOperation.h"
 #import "CurrencyPairsOperation.h"
 
-@class PlainPayment;
 @class PlainPaymentInput;
 
-typedef void (^CreatePaymentBlock)(PlainPayment *payment, NSError *error);
+typedef void (^CreatePaymentBlock)(NSManagedObjectID *paymentID, NSError *error);
 
 
 @interface CreatePaymentOperation : TransferwiseOperation
