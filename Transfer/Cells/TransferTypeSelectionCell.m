@@ -49,7 +49,7 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
     for (RecipientType *type in self.allRecipientTypes) {
         NSUInteger index = [self.allRecipientTypes indexOfObject:type];
         CGFloat groupedCellWidth = CGRectGetWidth(self.frame) - 20;
-        if (type == self.selectedType) {
+        if ([type.type isEqualToString:self.selectedType.type]) {
             if (index == 0) {
                 [self.selectedView setRoundedCorner:UIRectCornerTopLeft];
             } else if (index == (self.allRecipientTypes.count - 1)) {

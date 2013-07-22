@@ -170,11 +170,15 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     if (self.preLoadRecipientsWithCurrency) {
         [self.nameCell setAutoCompleteRecipients:[self.objectModel fetchedControllerForRecipientsWithCurrency:self.preLoadRecipientsWithCurrency]];
+    } else {
+        [self.nameCell setAutoCompleteRecipients:nil];
     }
 
     [self.currencyCell setAllCurrencies:[self.objectModel fetchedControllerForAllCurrencies]];
 
-    [self handleCurrencySelection:self.preLoadRecipientsWithCurrency];
+    if (self.preLoadRecipientsWithCurrency) {
+        [self handleCurrencySelection:self.preLoadRecipientsWithCurrency];
+    }
 
     void (^dataLoadCompletionBlock)() = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -276,7 +280,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (void)handleCurrencySelection:(Currency *)currency {
     dispatch_async(dispatch_get_main_queue(), ^{
-        MCLog(@"Did select currency:%@. Default type:%@", currency, currency.defaultRecipientType.type);
+        MCLog(@"Did select currency:%@. Default type:%@", currency.code, currency.defaultRecipientType.type);
 
         RecipientType *type = currency.defaultRecipientType;
         MCLog(@"Have %d fields", [type.fields count]);
