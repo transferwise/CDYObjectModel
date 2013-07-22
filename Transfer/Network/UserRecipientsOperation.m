@@ -9,22 +9,21 @@
 #import "UserRecipientsOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Currency.h"
-#import "PlainCurrency.h"
 
 NSString *const kRecipientsListPath = @"/recipient/list";
 
 @interface UserRecipientsOperation ()
 
-@property (nonatomic, strong) PlainCurrency *currency;
+@property (nonatomic, copy) NSString *currencyCode;
 
 @end
 
 @implementation UserRecipientsOperation
 
-- (id)initWithCurrency:(PlainCurrency *)currency {
+- (id)initWithCurrency:(Currency *)currency {
     self = [super init];
     if (self) {
-        _currency = currency;
+        _currencyCode = currency.code;
     }
     return self;
 }
@@ -41,7 +40,7 @@ NSString *const kRecipientsListPath = @"/recipient/list";
         weakSelf.responseHandler(error);
     }];
 
-    NSDictionary *params = self.currency ? @{@"currency" : self.currency.code} : @{};
+    NSDictionary *params = self.currencyCode ? @{@"currency" : self.currencyCode} : @{};
     [self getDataFromPath:path params:params];
 }
 
@@ -49,7 +48,7 @@ NSString *const kRecipientsListPath = @"/recipient/list";
     return [[UserRecipientsOperation alloc] init];
 }
 
-+ (UserRecipientsOperation *)recipientsOperationWithCurrency:(PlainCurrency *)currency {
++ (UserRecipientsOperation *)recipientsOperationWithCurrency:(Currency *)currency {
     return [[UserRecipientsOperation alloc] initWithCurrency:currency];
 }
 

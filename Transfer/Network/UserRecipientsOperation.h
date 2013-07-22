@@ -10,11 +10,10 @@
 #import "RecipientsOperation.h"
 
 @class Currency;
-@class PlainCurrency;
 
 @interface UserRecipientsOperation : RecipientsOperation
 
 + (UserRecipientsOperation *)recipientsOperation;
-+ (UserRecipientsOperation *)recipientsOperationWithCurrency:(PlainCurrency *)currency;
++ (UserRecipientsOperation *)recipientsOperationWithCurrency:(Currency *)currency;
 
 @end

@@ -37,12 +37,10 @@
 #import "PlainRecipientProfileInput.h"
 #import "UITableView+FooterPositioning.h"
 #import "TransferTypeSelectionCell.h"
-#import "ObjectModel+Recipients.h"
 #import "Recipient.h"
 #import "ObjectModel+RecipientTypes.h"
 #import "RecipientType.h"
 #import "ObjectModel+Currencies.h"
-#import "Currency.h"
 #import "ObjectModel+Users.h"
 
 static NSUInteger const kImportSection = 0;
@@ -70,11 +68,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, strong) IBOutlet UIView *footer;
 @property (nonatomic, strong) IBOutlet UIButton *addButton;
 
-@property (nonatomic, strong) PlainCurrency *selectedCurrency;
-@property (nonatomic, strong) PlainRecipientType *selectedRecipientType;
+@property (nonatomic, strong) Currency *currency;
+@property (nonatomic, strong) RecipientType *recipientType;
 
-@property (nonatomic, strong) NSArray *recipientsForCurrency;
-@property (nonatomic, strong) PlainRecipient *selectedRecipient;
+@property (nonatomic, strong) Recipient *recipient;
 
 @property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
 
@@ -121,7 +118,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [nameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [nameCell configureWithTitle:NSLocalizedString(@"recipient.controller.cell.label.name", nil) value:@""];
     [nameCell setSelectionHandler:^(Recipient *recipient) {
-        [self didSelectRecipient:[recipient plainRecipient]];
+        [self didSelectRecipient:recipient];
     }];
     [recipientCells addObject:nameCell];
 
@@ -132,7 +129,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     CurrencySelectionCell *currencyCell = [self.tableView dequeueReusableCellWithIdentifier:TWCurrencySelectionCellIdentifier];
     [self setCurrencyCell:currencyCell];
     [currencyCell setSelectionHandler:^(Currency *currency) {
-        [self handleCurrencySelection:[currency plainCurrency]];
+        [self handleCurrencySelection:currency];
     }];
     [currencyCells addObject:currencyCell];
 
@@ -141,7 +138,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     __block __weak RecipientViewController *weakSelf = self;
     
     self.transferTypeSelectionCell = [self.tableView dequeueReusableCellWithIdentifier:TWTypeSelectionCellIdentifier];
-    [self.transferTypeSelectionCell setSelectionChangeHandler:^(PlainRecipientType *type) {
+    [self.transferTypeSelectionCell setSelectionChangeHandler:^(RecipientType *type) {
         [weakSelf handleSelectionChangeToType:type];
     }];
 
@@ -172,7 +169,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
 
-    [self handleCurrencySelection:[self.preLoadRecipientsWithCurrency plainCurrency]];
+    [self handleCurrencySelection:self.preLoadRecipientsWithCurrency];
 
     [self.currencyCell setAllCurrencies:[self.objectModel fetchedControllerForAllCurrencies]];
     if (self.preLoadRecipientsWithCurrency) {
@@ -187,13 +184,13 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             [self setPresentedSectionCells:@[@[self.importCell], self.recipientCells, self.currencyCells, @[]]];
             [self.tableView setTableFooterView:self.footer];
             [self.tableView reloadData];
-            [self didSelectRecipient:self.selectedRecipient];
+            [self didSelectRecipient:self.recipient];
         });
     };
 
     UserRecipientsOperation *recipientsOperation = nil;
     if (self.preLoadRecipientsWithCurrency && [Credentials userLoggedIn]) {
-        recipientsOperation = [UserRecipientsOperation recipientsOperationWithCurrency:[self.preLoadRecipientsWithCurrency plainCurrency]];
+        recipientsOperation = [UserRecipientsOperation recipientsOperationWithCurrency:self.preLoadRecipientsWithCurrency];
         [recipientsOperation setObjectModel:self.objectModel];
         [recipientsOperation setResponseHandler:^(NSError *error) {
             if (error) {
@@ -203,10 +200,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
                 return;
             }
 
-            NSArray *recipientObjects = [self.objectModel recipientsWithCurrency:self.preLoadRecipientsWithCurrency.code];
-            NSArray *recipients = [Recipient createPlainRecipients:recipientObjects];
-            MCLog(@"Loaded %d recipients for %@", [recipients count], self.preLoadRecipientsWithCurrency.code);
-            [self setRecipientsForCurrency:recipients];
             dataLoadCompletionBlock();
         }];
     }
@@ -254,9 +247,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     self.nameCell.value = profile.fullName;
 }
 
-- (void)didSelectRecipient:(PlainRecipient *)recipient {
-    [self setSelectedRecipient:recipient];
-    [self handleSelectionChangeToType:recipient ? [self findTypeWithCode:recipient.type] : [self findTypeWithCode:self.selectedCurrency.defaultRecipientType]];
+- (void)didSelectRecipient:(Recipient *)recipient {
+    [self setRecipient:recipient];
+    [self handleSelectionChangeToType:recipient ? recipient.type : self.currency.defaultRecipientType];
 
     if (!recipient) {
         [self.nameCell setValue:@""];
@@ -277,12 +270,12 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             [fieldCell setEditable:NO];
 
             if ([fieldCell isKindOfClass:[TransferTypeSelectionCell class]]) {
-                [self.transferTypeSelectionCell setSelectedType:[self findTypeWithCode:recipient.type] allTypes:[self findAllTypesWithCodes:self.selectedCurrency.recipientTypes]];
+                [self.transferTypeSelectionCell setSelectedType:recipient.type allTypes:[self.currency.recipientTypes array]];
                 continue;
             }
 
             if ([fieldCell isKindOfClass:[DropdownCell class]]) {
-                [fieldCell setValue:recipient.usState];
+                //[fieldCell setValue:recipient.usState];
                 continue;
             }
 
@@ -292,27 +285,24 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     });
 }
 
-- (void)handleCurrencySelection:(PlainCurrency *)currency {
+- (void)handleCurrencySelection:(Currency *)currency {
     dispatch_async(dispatch_get_main_queue(), ^{
-        MCLog(@"Did select currency:%@. Default type:%@", currency, currency.defaultRecipientType);
+        MCLog(@"Did select currency:%@. Default type:%@", currency, currency.defaultRecipientType.type);
 
-        PlainRecipientType *type = [self findTypeWithCode:currency.defaultRecipientType];
+        RecipientType *type = currency.defaultRecipientType;
         MCLog(@"Have %d fields", [type.fields count]);
 
-        [self setSelectedCurrency:currency];
-        [self setSelectedRecipientType:type];
-
-        //NSArray *allTypes = [self findAllTypesWithCodes:currency.recipientTypes];
-        //[self.fieldsSectionHeader setSelectedType:type allTypes:allTypes];
+        [self setCurrency:currency];
+        [self setRecipientType:type];
 
         [self handleSelectionChangeToType:type];
     });
 }
 
-- (void)handleSelectionChangeToType:(PlainRecipientType *)type {
+- (void)handleSelectionChangeToType:(RecipientType *)type {
     MCLog(@"handleSelectionChangeToType:%@", type.type);
     NSArray *cells = [self buildCellsForType:type];
-    [self setSelectedRecipientType:type];
+    [self setRecipientType:type];
     [self setRecipientTypeFieldCells:cells];
     [self setPresentedSectionCells:@[@[self.importCell], self.recipientCells, self.currencyCells, cells]];
     
@@ -326,25 +316,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self.tableView adjustFooterViewSizeForMinimumHeight:self.minimumFooterHeight];
 }
 
-- (NSArray *)findAllTypesWithCodes:(NSArray *)codes {
-    NSMutableArray *result = [NSMutableArray array];
-    for (NSString *code in codes) {
-        PlainRecipientType *type = [self findTypeWithCode:code];
-        if (!type) {
-            MCLog(@"Did not find type for code %@", code);
-            continue;
-        }
-
-        [result addObject:type];
-    }
-
-    return [NSArray arrayWithArray:result];
-}
-
-- (NSArray *)buildCellsForType:(PlainRecipientType *)type {
+- (NSArray *)buildCellsForType:(RecipientType *)type {
     MCLog(@"Build cells");
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:[type.fields count]];
-    NSArray *allTypes = [self findAllTypesWithCodes:self.selectedCurrency.recipientTypes];
+    NSArray *allTypes = [self.currency.recipientTypes array];
     if (allTypes.count > 1) {
         result = [NSMutableArray arrayWithCapacity:type.fields.count + 1];
         [self.transferTypeSelectionCell setSelectedType:type allTypes:allTypes];
@@ -403,7 +378,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     PlainRecipientProfileInput *recipientInput = [[PlainRecipientProfileInput alloc] init];
     recipientInput.name = self.nameCell.value;
-    recipientInput.currency = self.selectedCurrency.code;
+    recipientInput.currency = self.currency.code;
     recipientInput.type = self.selectedRecipientType.type;
 
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
@@ -498,6 +473,18 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     NSMutableArray *cells = [NSMutableArray arrayWithArray:presentedSectionCells];
     [cells removeObject:self.currencyCells];
     [super setPresentedSectionCells:cells];
+}
+
+- (PlainRecipient *)selectedRecipient {
+    return [self.recipient plainRecipient];
+}
+
+- (PlainRecipientType *)selectedRecipientType {
+    return [RecipientType createPlainType:[self.recipient type]];
+}
+
+- (NSArray *)recipientTypes {
+    return [RecipientType createPlainTypes:[self.currency.recipientTypes array]];
 }
 
 @end

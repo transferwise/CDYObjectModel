@@ -21,10 +21,12 @@
 @property (nonatomic, copy) TRWActionBlock afterSaveAction;
 @property (nonatomic, copy) NSString *footerButtonTitle;
 @property (nonatomic, strong) Currency *preLoadRecipientsWithCurrency;
-@property (nonatomic, strong, readonly) PlainRecipient *selectedRecipient;
-@property (nonatomic, strong, readonly) PlainRecipientType *selectedRecipientType;
-@property (nonatomic, strong, readonly) NSArray *recipientTypes;
 @property (nonatomic, strong) id<RecipientProfileValidation> recipientValidation;
 @property (nonatomic, strong) ObjectModel *objectModel;
+
+
+- (PlainRecipient *)selectedRecipient;
+- (PlainRecipientType *)selectedRecipientType;
+- (NSArray *)recipientTypes;
 
 @end
