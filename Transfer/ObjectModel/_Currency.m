@@ -128,10 +128,10 @@ const struct CurrencyFetchedProperties CurrencyFetchedProperties = {
 @dynamic recipientTypes;
 
 	
-- (NSMutableSet*)recipientTypesSet {
+- (NSMutableOrderedSet*)recipientTypesSet {
 	[self willAccessValueForKey:@"recipientTypes"];
   
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"recipientTypes"];
+	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"recipientTypes"];
   
 	[self didAccessValueForKey:@"recipientTypes"];
 	return result;

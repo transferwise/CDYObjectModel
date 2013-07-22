@@ -37,6 +37,8 @@
 #import "ObjectModel.h"
 #import "User.h"
 #import "ObjectModel+Users.h"
+#import "ObjectModel+Currencies.h"
+#import "PlainCurrency.h"
 
 @interface PaymentFlow ()
 
@@ -217,7 +219,7 @@
         [self setRecipientTypes:weakController.recipientTypes];
         [self presentPaymentConfirmation];
     }];
-    [controller setPreLoadRecipientsWithCurrency:self.targetCurrency];
+    [controller setPreLoadRecipientsWithCurrency:[self.objectModel currencyWithCode:self.targetCurrency.code]];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

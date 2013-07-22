@@ -27,7 +27,7 @@
     return recipientType;
 }
 
-+ (NSArray *)typeCodesArray:(NSSet *)set {
++ (NSArray *)typeCodesArray:(NSOrderedSet *)set {
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:[set count]];
     for (RecipientType *type in set) {
         [result addObject:type.type];

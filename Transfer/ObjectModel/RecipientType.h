@@ -6,6 +6,6 @@
 
 + (NSArray *)createPlainTypes:(NSArray *)array;
 + (PlainRecipientType *)createPlainType:(RecipientType *)type;
-+ (NSArray *)typeCodesArray:(NSSet *)set;
++ (NSArray *)typeCodesArray:(NSOrderedSet *)set;
 
 @end

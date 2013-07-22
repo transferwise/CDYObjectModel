@@ -33,7 +33,7 @@
     [currency setName:data[@"name"]];
     [currency setDefaultRecipientType:[self recipientTypeWithCode:data[@"defaultRecipientType"]]];
     NSArray *allTypes = data[@"recipientTypes"];
-    [currency setRecipientTypes:[NSSet setWithArray:[self recipientTypesWithCodes:allTypes]]];
+    [currency setRecipientTypes:[[NSOrderedSet alloc] initWithArray:[self recipientTypesWithCodes:allTypes]]];
     [currency setIndexValue:(int16_t) index];
 }
 

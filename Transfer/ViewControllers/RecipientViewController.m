@@ -12,7 +12,6 @@
 #import "TRWProgressHUD.h"
 #import "TransferwiseOperation.h"
 #import "CurrenciesOperation.h"
-#import "RecipientTypesOperation.h"
 #import "TextEntryCell.h"
 #import "CurrencySelectionCell.h"
 #import "PlainCurrency.h"
@@ -20,6 +19,7 @@
 #import "PlainRecipientTypeField.h"
 #import "RecipientFieldCell.h"
 #import "NSString+Validation.h"
+#import "Currency.h"
 #import "PlainRecipient.h"
 #import "TRWAlertView.h"
 #import "NSMutableString+Issues.h"
@@ -172,7 +172,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
 
-    [self handleCurrencySelection:self.preLoadRecipientsWithCurrency];
+    [self handleCurrencySelection:[self.preLoadRecipientsWithCurrency plainCurrency]];
 
     [self.currencyCell setAllCurrencies:[self.objectModel fetchedControllerForAllCurrencies]];
     if (self.preLoadRecipientsWithCurrency) {
@@ -193,7 +193,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     UserRecipientsOperation *recipientsOperation = nil;
     if (self.preLoadRecipientsWithCurrency && [Credentials userLoggedIn]) {
-        recipientsOperation = [UserRecipientsOperation recipientsOperationWithCurrency:self.preLoadRecipientsWithCurrency];
+        recipientsOperation = [UserRecipientsOperation recipientsOperationWithCurrency:[self.preLoadRecipientsWithCurrency plainCurrency]];
         [recipientsOperation setObjectModel:self.objectModel];
         [recipientsOperation setResponseHandler:^(NSError *error) {
             if (error) {

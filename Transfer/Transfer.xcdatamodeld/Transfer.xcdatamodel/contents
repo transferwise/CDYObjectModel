@@ -28,7 +28,7 @@
         <attribute name="symbol" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="currencyForRecipients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipient" inverseName="currency" inverseEntity="Recipient" syncable="YES"/>
         <relationship name="defaultRecipientType" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientType" inverseName="defaultForCurrencies" inverseEntity="RecipientType" syncable="YES"/>
-        <relationship name="recipientTypes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecipientType" inverseName="currencies" inverseEntity="RecipientType" syncable="YES"/>
+        <relationship name="recipientTypes" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="RecipientType" inverseName="currencies" inverseEntity="RecipientType" syncable="YES"/>
         <relationship name="sourceForPayments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="sourceCurrency" inverseEntity="Payment" syncable="YES"/>
         <relationship name="sources" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PairSourceCurrency" inverseName="currency" inverseEntity="PairSourceCurrency" syncable="YES"/>
         <relationship name="targetForPayments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="targetCurrency" inverseEntity="Payment" syncable="YES"/>
@@ -123,17 +123,17 @@
     </entity>
     <elements>
         <element name="AllowedTypeFieldValue" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="BusinessProfile" positionX="160" positionY="192" width="128" height="180"/>
         <element name="Country" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Currency" positionX="160" positionY="192" width="128" height="210"/>
         <element name="PairSourceCurrency" positionX="160" positionY="192" width="128" height="105"/>
         <element name="PairTargetCurrency" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Payment" positionX="160" positionY="192" width="128" height="255"/>
+        <element name="PersonalProfile" positionX="160" positionY="192" width="128" height="195"/>
         <element name="Recipient" positionX="160" positionY="192" width="128" height="195"/>
         <element name="RecipientType" positionX="160" positionY="192" width="128" height="135"/>
         <element name="RecipientTypeField" positionX="160" positionY="192" width="128" height="210"/>
         <element name="TypeFieldValue" positionX="160" positionY="192" width="128" height="90"/>
         <element name="User" positionX="160" positionY="192" width="128" height="135"/>
-        <element name="PersonalProfile" positionX="160" positionY="192" width="128" height="195"/>
-        <element name="BusinessProfile" positionX="160" positionY="192" width="128" height="180"/>
     </elements>
 </model>

@@ -108,9 +108,9 @@ extern const struct CurrencyFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSSet *recipientTypes;
+@property (nonatomic, strong) NSOrderedSet *recipientTypes;
 
-- (NSMutableSet*)recipientTypesSet;
+- (NSMutableOrderedSet*)recipientTypesSet;
 
 
 
@@ -153,8 +153,8 @@ extern const struct CurrencyFetchedProperties {
 - (void)addCurrencyForRecipientsObject:(Recipient*)value_;
 - (void)removeCurrencyForRecipientsObject:(Recipient*)value_;
 
-- (void)addRecipientTypes:(NSSet*)value_;
-- (void)removeRecipientTypes:(NSSet*)value_;
+- (void)addRecipientTypes:(NSOrderedSet*)value_;
+- (void)removeRecipientTypes:(NSOrderedSet*)value_;
 - (void)addRecipientTypesObject:(RecipientType*)value_;
 - (void)removeRecipientTypesObject:(RecipientType*)value_;
 
@@ -221,8 +221,8 @@ extern const struct CurrencyFetchedProperties {
 
 
 
-- (NSMutableSet*)primitiveRecipientTypes;
-- (void)setPrimitiveRecipientTypes:(NSMutableSet*)value;
+- (NSMutableOrderedSet*)primitiveRecipientTypes;
+- (void)setPrimitiveRecipientTypes:(NSMutableOrderedSet*)value;
 
 
 
