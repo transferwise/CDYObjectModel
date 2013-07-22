@@ -34,6 +34,7 @@ static NSUInteger const kButtonSection = 0;
 @property (nonatomic, strong) NSArray *presentationCells;
 @property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
+@property (nonatomic, assign) BOOL shown;
 
 - (IBAction)footerButtonPressed:(id)sender;
 
@@ -137,6 +138,10 @@ static NSUInteger const kButtonSection = 0;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    if (self.shown) {
+        return;
+    }
+
     [self.navigationItem setTitle:[self.profileSource editViewTitle]];
 
     if ([Credentials userLoggedIn]) {
@@ -144,6 +149,8 @@ static NSUInteger const kButtonSection = 0;
     } else {
         [self pullCountries];
     }
+
+    [self setShown:YES];
 }
 
 - (void)pullCountries {
