@@ -63,6 +63,10 @@
     }
 }
 
+- (NSString *)payInWithCurrency {
+    return [[MoneyFormatter sharedInstance] formatAmount:self.payIn withCurrency:self.sourceCurrency.code];
+}
+
 static NSCalendar *__gregorian;
 + (NSCalendar *)gregorian {
     if (!__gregorian) {

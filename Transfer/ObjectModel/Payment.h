@@ -5,5 +5,6 @@
 - (NSString *)localizedStatus;
 - (NSString *)transferredAmountString;
 - (NSString *)latestChangeTimeString;
+- (NSString *)payInWithCurrency;
 
 @end

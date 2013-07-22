@@ -9,8 +9,11 @@
 
 #import "CreatePaymentOperation.h"
 #import "TransferwiseOperation+Private.h"
-#import "PlainPayment.h"
 #import "PlainPaymentInput.h"
+#import "JCSObjectModel.h"
+#import "ObjectModel+RecipientTypes.h"
+#import "Payment.h"
+#import "ObjectModel+Payments.h"
 
 NSString *const kCreatePaymentPath = @"/payment/create";
 NSString *const kValidatePaymentPath = @"/payment/validate";
@@ -43,8 +46,17 @@ NSString *const kValidatePaymentPath = @"/payment/validate";
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        PlainPayment *payment = [PlainPayment paymentWithData:response];
-        weakSelf.responseHandler(payment, nil);
+        [weakSelf.workModel.managedObjectContext performBlock:^{
+            Payment *payment;
+            if (![response[@"status"] isEqualToString:@"valid"]) {
+                //must be actual payment create response
+                payment = [weakSelf.workModel createOrUpdatePaymentWithData:response];
+            }
+
+            [weakSelf.workModel saveContext:^{
+                weakSelf.responseHandler(payment.objectID, nil);
+            }];
+        }];
     }];
 
     [self postData:[self.input data] toPath:path];

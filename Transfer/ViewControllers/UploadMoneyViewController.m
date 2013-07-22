@@ -10,22 +10,19 @@
 #import "BlueButton.h"
 #import "TextCell.h"
 #import "UIColor+Theme.h"
-#import "PlainBankTransfer.h"
-#import "PlainProfileDetails.h"
-#import "PlainPayment.h"
-#import "PlainRecipientType.h"
-#import "PlainRecipientTypeField.h"
+#import "Payment.h"
 #import "Constants.h"
 #import "TransferwiseOperation.h"
-#import "RecipientTypesOperation.h"
-#import "TRWProgressHUD.h"
-#import "TRWAlertView.h"
 #import "ObjectModel.h"
 #import "UINavigationController+StackManipulations.h"
 #import "Credentials.h"
 #import "ClaimAccountViewController.h"
 #import "ObjectModel+RecipientTypes.h"
 #import "RecipientType.h"
+#import "Recipient.h"
+#import "RecipientTypeField.h"
+#import "ObjectModel+Users.h"
+#import "User.h"
 
 @interface UploadMoneyViewController ()
 
@@ -35,7 +32,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *headerLabel;
 @property (strong, nonatomic) IBOutlet BlueButton *doneButton;
 @property (strong, nonatomic) IBOutlet UIView *footerBottomMessageView;
-@property (strong, nonatomic) PlainBankTransfer *transferDetails;
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
@@ -43,7 +39,7 @@
 
 @implementation UploadMoneyViewController
 
-- (id)init{
+- (id)init {
     self = [super initWithNibName:@"UploadMoneyViewController" bundle:nil];
     if (self) {
         // Custom initialization
@@ -51,14 +47,13 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	[self.tableView setBackgroundView:nil];
+    [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
 
     [self setTitle:NSLocalizedString(@"upload.money.title", @"")];
-    
+
     [self.headerLabel setText:NSLocalizedString(@"upload.money.header.label", @"")];
     [self.toggleButton setTitle:NSLocalizedString(@"upload.money.toggle.button.debit.card.title", @"") forSegmentAtIndex:0];
     [self.toggleButton setTitle:NSLocalizedString(@"upload.money.toggle.button.bank.transfer.title", @"") forSegmentAtIndex:1];
@@ -72,36 +67,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    if (!self.recipientTypes) {
-        TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
-        [hud setMessage:NSLocalizedString(@"upload.money.pulling.data.message", nil)];
-
-        RecipientTypesOperation *operation = [RecipientTypesOperation operation];
-        [self setExecutedOperation:operation];
-        [operation setObjectModel:self.objectModel];
-
-        [operation setResultHandler:^(NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [hud hide];
-
-                if (error) {
-                    TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"upload.money.data.error.title", nil) error:error];
-                    [alertView show];;
-                    return;
-                }
-
-                NSArray *recipientObjects = [self.objectModel listAllRecipientTypes];
-                NSArray *recipients = [RecipientType createPlainTypes:recipientObjects];
-
-                [self setRecipientTypes:recipients];
-                [self loadDataToCells];
-            });
-        }];
-
-        [operation execute];
-    } else {
-        [self loadDataToCells];
-    }
+    [self loadDataToCells];
 
     [self.navigationController flattenStack];
 }
@@ -118,13 +84,13 @@
     [toCell configureWithTitle:NSLocalizedString(@"upload.money.to.title", nil) text:self.payment.settlementRecipient.name];
     [presentedCells addObject:toCell];
 
-    PlainRecipientType *type = [self findTypeForCode:self.payment.settlementRecipient.type];
+    RecipientType *type = self.payment.settlementRecipient.type;
     NSArray *accountCells = [self buildAccountCellForType:type recipient:self.payment.settlementRecipient];
     [presentedCells addObjectsFromArray:accountCells];
 
     //TODO jaanus: bank name cell
     TextCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
-    [referenceCell configureWithTitle:NSLocalizedString(@"upload.money.reference.title", nil) text:self.userDetails.reference];
+    [referenceCell configureWithTitle:NSLocalizedString(@"upload.money.reference.title", nil) text:self.objectModel.currentUser.pReference];
     [presentedCells addObject:referenceCell];
 
     TextCell *addressCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
@@ -138,29 +104,19 @@
     [self setPresentedSectionCells:@[presentedCells]];
 
     [self.tableView reloadData];
-    self.tableView.tableHeaderView = self.headerView;
-    self.tableView.tableFooterView = self.footerView;
+    [self.tableView setTableHeaderView:self.headerView];
+    [self.tableView setTableFooterView:self.footerView];
     [self adjustFooterView];
 }
 
-- (NSArray *)buildAccountCellForType:(PlainRecipientType *)type recipient:(PlainRecipient *)recipient {
+- (NSArray *)buildAccountCellForType:(RecipientType *)type recipient:(Recipient *)recipient {
     NSMutableArray *result = [NSMutableArray array];
-    for (PlainRecipientTypeField *field in type.fields) {
+    for (RecipientTypeField *field in type.fields) {
         TextCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
-        [cell configureWithTitle:field.title text:[recipient valueForKeyPath:field.name]];
+        [cell configureWithTitle:field.title text:[recipient valueField:field]];
         [result addObject:cell];
     }
     return result;
-}
-
-- (PlainRecipientType *)findTypeForCode:(NSString *)code {
-    for (PlainRecipientType *type in self.recipientTypes) {
-        if ([type.type isEqualToString:code]) {
-            return type;
-        }
-    }
-
-    return nil;
 }
 
 - (void)adjustFooterView {
@@ -179,8 +135,7 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -196,16 +151,6 @@
 
 - (IBAction)toggleButtonValueChanged:(id)sender {
 
-}
-
-- (void)viewDidUnload {
-    [self setHeaderView:nil];
-    [self setFooterView:nil];
-    [self setToggleButton:nil];
-    [self setHeaderLabel:nil];
-    [self setDoneButton:nil];
-    [self setFooterBottomMessageView:nil];
-    [super viewDidUnload];
 }
 
 @end
