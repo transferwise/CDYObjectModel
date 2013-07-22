@@ -11,7 +11,7 @@
 
 @class RecipientType;
 
-typedef void (^RecipientTypeChangedInSelectionCellBlock)(RecipientType *type);
+typedef void (^RecipientTypeChangedInSelectionCellBlock)(RecipientType *type, NSArray *allTypes);
 
 extern NSString *const TWTypeSelectionCellIdentifier;
 
