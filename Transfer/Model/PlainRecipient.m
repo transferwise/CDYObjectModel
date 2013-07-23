@@ -22,54 +22,6 @@
     return description;
 }
 
-- (NSString *)detailsRowOne {
-    if ([self.type isEqualToString:@"IBAN"]) {
-        return [NSString stringWithFormat:NSLocalizedString(@"recipient.details.IBAN.base", nil), self.IBAN];
-    } else if ([self.type isEqualToString:@"SORT_CODE"]) {
-        return [NSString stringWithFormat:NSLocalizedString(@"recipient.details.SORT_CODE.base", nil), self.sortCode];
-    } else if ([self.type isEqualToString:@"ABA"]) {
-        return [NSString stringWithFormat:NSLocalizedString(@"recipient.details.ABA.base", nil), self.abartn, self.usState];
-    } else if ([self.type isEqualToString:@"SWIFT_CODE"]) {
-        return [NSString stringWithFormat:NSLocalizedString(@"recipient.details.SWIFT_CODE.base", nil), self.swiftCode];
-    } else if ([self.type isEqualToString:@"CANADA"]) {
-        return [NSString stringWithFormat:NSLocalizedString(@"recipient.details.bank.code.base", nil), self.bankCode];
-    } else if ([self.type isEqualToString:@"SCANDINAVIAN"]) {
-        return [NSString stringWithFormat:NSLocalizedString(@"recipient.details.bank.code.base", nil), self.bankCode];
-    } else if ([self.type isEqualToString:@"POLAND"]) {
-        return [NSString stringWithFormat:NSLocalizedString(@"recipient.details.account.number.base", nil), self.accountNumber];
-    } else if ([self.type isEqualToString:@"LATVIAN"]) {
-        return [NSString stringWithFormat:NSLocalizedString(@"recipient.details.SWIFT_CODE.base", nil), self.swiftCode];
-    } else if ([self.type isEqualToString:@"LITHUANIAN"]) {
-        return [NSString stringWithFormat:NSLocalizedString(@"recipient.details.account.number.base", nil), self.accountNumber];
-    }
-
-    return @"";
-}
-
-- (NSString *)detailsRowTwo {
-    if ([self.type isEqualToString:@"IBAN"]) {
-        return [NSString stringWithFormat:NSLocalizedString(@"recipient.details.BIC.base", nil), self.BIC];
-    } else if ([self.type isEqualToString:@"SORT_CODE"]) {
-        return [NSString stringWithFormat:NSLocalizedString(@"recipient.details.account.number.base", nil), self.accountNumber];
-    } else if ([self.type isEqualToString:@"ABA"]) {
-        return [NSString stringWithFormat:NSLocalizedString(@"recipient.details.account.number.base", nil), self.accountNumber];
-    } else if ([self.type isEqualToString:@"SWIFT_CODE"]) {
-        return [NSString stringWithFormat:NSLocalizedString(@"recipient.details.account.number.base", nil), self.accountNumber];
-    } else if ([self.type isEqualToString:@"CANADA"]) {
-        return [NSString stringWithFormat:NSLocalizedString(@"recipient.details.account.number.base", nil), self.accountNumber];
-    } else if ([self.type isEqualToString:@"SCANDINAVIAN"]) {
-        return [NSString stringWithFormat:NSLocalizedString(@"recipient.details.account.number.base", nil), self.accountNumber];
-    } else if ([self.type isEqualToString:@"POLAND"]) {
-
-    } else if ([self.type isEqualToString:@"LATVIAN"]) {
-        return [NSString stringWithFormat:NSLocalizedString(@"recipient.details.account.number.base", nil), self.accountNumber];
-    } else if ([self.type isEqualToString:@"LITHUANIAN"]) {
-
-    }
-
-    return @"";
-}
-
 - (PlainRecipientProfileInput *)profileInput {
     PlainRecipientProfileInput *input = [[PlainRecipientProfileInput alloc] init];
     [input setId:self.id];

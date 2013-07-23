@@ -12,8 +12,6 @@
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic, strong) NSArray *possibleValues;
-
-+ (PlainRecipientTypeField *)fieldWithData:(NSDictionary *)data;
+@property (nonatomic, strong) NSMutableArray *possibleValues;
 
 @end

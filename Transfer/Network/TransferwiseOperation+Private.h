@@ -18,8 +18,6 @@ typedef void (^TRWOperationErrorBlock)(NSError *error);
 - (void)postData:(NSDictionary *)data toPath:(NSString *)postPath;
 - (void)getDataFromPath:(NSString *)path;
 - (void)getDataFromPath:(NSString *)path params:(NSDictionary *)params;
-- (void)performDelete:(NSString *)path withParams:(NSDictionary *)params;
-- (void)putData:(NSDictionary *)data toPath:(NSString *)putPath;
 - (void)postBinaryDataFromFile:(NSString *)filePath withName:(NSString *)fileName usingParams:(NSDictionary *)params toPath:(NSString *)postPath;
 
 @end

@@ -49,16 +49,6 @@
     [self executeOperationWithMethod:@"GET" path:path parameters:params];
 }
 
-- (void)performDelete:(NSString *)path withParams:(NSDictionary *)params {
-    [self executeOperationWithMethod:@"DELETE" path:path parameters:params];
-}
-
-- (void)putData:(NSDictionary *)data toPath:(NSString *)putPath {
-    NSString *accessToken = [Credentials accessToken];
-    MCLog(@"Put %@ to: %@", [data sensibleDataHidden], [putPath stringByReplacingOccurrencesOfString:(accessToken ? accessToken : @"" ) withString:@"**********"]);
-    [self executeOperationWithMethod:@"PUT" path:putPath parameters:data];
-}
-
 - (void)postBinaryDataFromFile:(NSString *)filePath withName:(NSString *)fileName usingParams:(NSDictionary *)params toPath:(NSString *)postPath {
     NSMutableURLRequest *request = [[TransferwiseClient sharedClient] multipartFormRequestWithMethod:@"POST" path:postPath parameters:params constructingBodyWithBlock: ^(id <AFMultipartFormData> formData) {
         [formData appendPartWithFileURL:[NSURL fileURLWithPath:filePath] name:fileName error:nil];

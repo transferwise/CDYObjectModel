@@ -28,7 +28,6 @@
 - (NSString *)transferwiseTransferFeeStringWithCurrency;
 - (NSString *)transferwiseCurrencyCostStringWithCurrency;
 - (NSString *)bankRateString;
-- (NSString *)bankTransferFeeStringWithCurrency;
 - (NSString *)bankTotalFeeStringWithCurrency;
 - (NSString *)bankPayOutStringWithCurrency;
 - (NSString *)bankPayInStringWithCurrency;

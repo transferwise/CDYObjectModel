@@ -19,9 +19,6 @@
 @property (nonatomic, strong) PlainBusinessProfile *businessProfile;
 @property (nonatomic, copy) NSString *reference;
 
-- (NSString *)displayName;
 - (PlainPersonalProfileInput *)profileInput;
-
-+ (PlainProfileDetails *)detailsWithData:(NSDictionary *)data;
 
 @end

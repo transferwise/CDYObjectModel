@@ -75,12 +75,4 @@
     return recipient;
 }
 
-- (NSArray *)recipientsWithCurrency:(NSString *)currencyCode {
-    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
-    NSPredicate *notSettlementPredicate = [NSPredicate predicateWithFormat:@"settlementRecipient = NO"];
-    NSPredicate *currencyPredicate = [NSPredicate predicateWithFormat:@"currency.code = %@", currencyCode];
-    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notSettlementPredicate, currencyPredicate]];
-    return [self fetchEntitiesNamed:[Recipient entityName] usingPredicate:predicate withSortDescriptors:@[nameDescriptor]];
-}
-
 @end

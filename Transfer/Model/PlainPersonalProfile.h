@@ -22,11 +22,6 @@
 @property (nonatomic, copy) NSString *countryCode;
 
 - (NSString *)fullName;
-
-+ (PlainPersonalProfile *)profileWithData:(NSDictionary *)data;
-
-- (BOOL)identityVerifiedValue;
-- (BOOL)addressVerifiedValue;
 - (PlainPersonalProfileInput *)input;
 
 @end
