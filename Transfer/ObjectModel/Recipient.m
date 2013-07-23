@@ -20,14 +20,6 @@
     return [self presentationStringFromValue:value];
 }
 
-+ (NSArray *)createPlainRecipients:(NSArray *)recipientObjects {
-    NSMutableArray *result = [NSMutableArray array];
-    for (Recipient *recipient in recipientObjects) {
-        [result addObject:[Recipient createPlainRecipient:recipient]];
-    }
-    return [NSArray arrayWithArray:result];
-}
-
 + (PlainRecipient *)createPlainRecipient:(Recipient *)recipient {
     PlainRecipient *plain = [[PlainRecipient alloc] init];
     [plain setId:recipient.remoteId];

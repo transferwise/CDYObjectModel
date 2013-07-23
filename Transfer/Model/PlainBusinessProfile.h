@@ -20,9 +20,6 @@
 @property (nonatomic, copy) NSString *city;
 @property (nonatomic, copy) NSString *countryCode;
 
-+ (PlainBusinessProfile *)profileWithData:(NSDictionary *)data;
-
-- (BOOL)businessVerifiedValue;
 - (PlainBusinessProfileInput *)input;
 
 @end

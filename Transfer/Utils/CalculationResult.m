@@ -88,10 +88,6 @@
     return [self rateStringFrom:self.bankRate];
 }
 
-- (NSString *)bankTransferFeeStringWithCurrency {
-    return [[MoneyFormatter sharedInstance] formatAmount:self.bankTransferFee withCurrency:self.targetCurrency];
-}
-
 - (NSString *)bankTotalFeeStringWithCurrency {
     return [[MoneyFormatter sharedInstance] formatAmount:self.bankTotalFee withCurrency:self.targetCurrency];
 }

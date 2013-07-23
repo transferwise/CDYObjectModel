@@ -13,6 +13,4 @@
 @property (nonatomic, copy) NSString *type;
 @property (nonatomic, strong) NSArray *fields;
 
-+ (PlainRecipientType *)typeWithData:(NSDictionary *)data;
-
 @end

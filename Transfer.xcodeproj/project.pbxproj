@@ -111,7 +111,6 @@
 		EA35C73F17324AF2005602F7 /* NavBarBackButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73917324AF2005602F7 /* NavBarBackButton@2x.png */; };
 		EA35C74317324AFE005602F7 /* SeparatorLine.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C74117324AFE005602F7 /* SeparatorLine.png */; };
 		EA35C74417324AFE005602F7 /* SeparatorLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */; };
-		EA35C76817326AF4005602F7 /* PlainCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76717326AF4005602F7 /* PlainCurrency.m */; };
 		EA35C76C1732790D005602F7 /* PaymentsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76B1732790D005602F7 /* PaymentsOperation.m */; };
 		EA35C77017327973005602F7 /* PaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76F17327973005602F7 /* PaymentCell.m */; };
 		EA35C77217327981005602F7 /* PaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA35C77117327981005602F7 /* PaymentCell.xib */; };
@@ -475,8 +474,6 @@
 		EA35C73917324AF2005602F7 /* NavBarBackButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarBackButton@2x.png"; sourceTree = "<group>"; };
 		EA35C74117324AFE005602F7 /* SeparatorLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeparatorLine.png; sourceTree = "<group>"; };
 		EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SeparatorLine@2x.png"; sourceTree = "<group>"; };
-		EA35C76617326AF4005602F7 /* PlainCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainCurrency.h; sourceTree = "<group>"; };
-		EA35C76717326AF4005602F7 /* PlainCurrency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainCurrency.m; sourceTree = "<group>"; };
 		EA35C76A1732790D005602F7 /* PaymentsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentsOperation.h; sourceTree = "<group>"; };
 		EA35C76B1732790D005602F7 /* PaymentsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentsOperation.m; sourceTree = "<group>"; };
 		EA35C76E17327973005602F7 /* PaymentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentCell.h; sourceTree = "<group>"; };
@@ -1009,8 +1006,6 @@
 				1864AC99173B7C4D008773FC /* PlainBusinessProfile.m */,
 				EA92D94C1769BB330078D0C4 /* PlainBusinessProfileInput.h */,
 				EA92D94D1769BB330078D0C4 /* PlainBusinessProfileInput.m */,
-				EA35C76617326AF4005602F7 /* PlainCurrency.h */,
-				EA35C76717326AF4005602F7 /* PlainCurrency.m */,
 				EA592927175613FB007C0072 /* PlainPaymentInput.h */,
 				EA592928175613FB007C0072 /* PlainPaymentInput.m */,
 				EA59292D1756231C007C0072 /* PlainPaymentVerificationRequired.h */,
@@ -1833,7 +1828,6 @@
 				EA35C76C1732790D005602F7 /* PaymentsOperation.m in Sources */,
 				EA35C77017327973005602F7 /* PaymentCell.m in Sources */,
 				EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */,
-				EA35C76817326AF4005602F7 /* PlainCurrency.m in Sources */,
 				EAA54F4B1733DA1400B65BF3 /* RecipientViewController.m in Sources */,
 				EAA54F501733DC3500B65BF3 /* CurrenciesOperation.m in Sources */,
 				EAA54F581733E8F700B65BF3 /* TransferwiseClient.m in Sources */,

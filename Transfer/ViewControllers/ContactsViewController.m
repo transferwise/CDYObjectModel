@@ -12,7 +12,6 @@
 #import "UIColor+Theme.h"
 #import "UserRecipientsOperation.h"
 #import "TRWAlertView.h"
-#import "PlainRecipient.h"
 #import "TRWProgressHUD.h"
 #import "RecipientViewController.h"
 #import "DeleteRecipientOperation.h"
@@ -111,7 +110,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
     PaymentViewController *controller = [[PaymentViewController alloc] init];
     [controller setObjectModel:self.objectModel];
-    [controller setRecipient:[recipient plainRecipient]];
+    [controller setRecipient:recipient];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

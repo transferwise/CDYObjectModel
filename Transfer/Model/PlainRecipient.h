@@ -26,8 +26,6 @@
 @property (nonatomic, copy) NSString *swiftCode;
 @property (nonatomic, copy) NSString *bankCode;
 
-- (NSString *)detailsRowOne;
-- (NSString *)detailsRowTwo;
 - (PlainRecipientProfileInput *)profileInput;
 
 + (PlainRecipient *)recipientWithData:(NSDictionary *)data;

@@ -27,6 +27,5 @@
 
 - (PlainRecipient *)selectedRecipient;
 - (PlainRecipientType *)selectedRecipientType;
-- (NSArray *)recipientTypes;
 
 @end

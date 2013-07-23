@@ -61,7 +61,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, strong) NSArray *currencyCells;
 @property (nonatomic, strong) CurrencySelectionCell *currencyCell;
 
-@property (nonatomic, strong) NSArray *recipientTypes;
 @property (nonatomic, strong) NSArray *recipientTypeFieldCells;
 
 @property (nonatomic, strong) IBOutlet UIView *footer;
@@ -77,7 +76,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, strong) TransferTypeSelectionCell *transferTypeSelectionCell;
 
 @property (nonatomic, strong) NSArray *presentedSections;
-@property CGFloat minimumFooterHeight;
+@property (nonatomic, assign) CGFloat minimumFooterHeight;
+@property (nonatomic, assign) BOOL shown;
 
 - (IBAction)addButtonPressed:(id)sender;
 
@@ -158,7 +158,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    if ([self.recipientTypes count] != 0) {
+    if (self.shown) {
         return;
     }
 
@@ -215,11 +215,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             return;
         }
 
-        NSArray *types = [self.objectModel listAllRecipientTypes];
-        NSArray *recipients = [RecipientType createPlainTypes:types];
-
-        [self setRecipientTypes:recipients];
-
         if (recipientsOperation) {
             [self setExecutedOperation:recipientsOperation];
             [recipientsOperation execute];
@@ -229,6 +224,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }];
 
     [currenciesOperation execute];
+
+    [self setShown:YES];
 }
 
 - (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath {
@@ -458,10 +455,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (PlainRecipientType *)selectedRecipientType {
     return [RecipientType createPlainType:[self.recipient type]];
-}
-
-- (NSArray *)recipientTypes {
-    return [RecipientType createPlainTypes:[self.currency.recipientTypes array]];
 }
 
 @end

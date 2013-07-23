@@ -12,7 +12,6 @@
 #import "BusinessProfileValidation.h"
 
 @class PlainProfileDetails;
-@class PlainCurrency;
 @class PlainRecipientType;
 @class CalculationResult;
 @class PlainRecipient;
@@ -25,8 +24,6 @@ typedef void (^PaymentErrorBlock)(NSError *error);
 
 @interface PaymentFlow : NSObject <PersonalProfileValidation, RecipientProfileValidation, BusinessProfileValidation>
 
-@property (nonatomic, strong) PlainCurrency *sourceCurrency;
-@property (nonatomic, strong) PlainCurrency *targetCurrency;
 @property (nonatomic, strong) CalculationResult *calculationResult;
 @property (nonatomic, strong) PlainRecipient *recipient;
 @property (nonatomic, strong) PlainProfileDetails *userDetails;

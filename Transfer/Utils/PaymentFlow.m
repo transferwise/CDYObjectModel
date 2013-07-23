@@ -37,14 +37,12 @@
 #import "User.h"
 #import "ObjectModel+Users.h"
 #import "ObjectModel+Currencies.h"
-#import "PlainCurrency.h"
 
 @interface PaymentFlow ()
 
 @property (nonatomic, strong) UINavigationController *navigationController;
 @property (nonatomic, strong) PlainProfileDetails *businessDetails;
 @property (nonatomic, strong) PlainRecipientType *recipientType;
-@property (nonatomic, strong) NSArray *recipientTypes;
 @property (nonatomic, copy) PaymentErrorBlock paymentErrorHandler;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) PlainPaymentVerificationRequired *verificationRequired;
@@ -214,10 +212,9 @@
     [controller setAfterSaveAction:^{
         [self setRecipient:weakController.selectedRecipient];
         [self setRecipientType:weakController.selectedRecipientType];
-        [self setRecipientTypes:weakController.recipientTypes];
         [self presentPaymentConfirmation];
     }];
-    [controller setPreLoadRecipientsWithCurrency:[self.objectModel currencyWithCode:self.targetCurrency.code]];
+    [controller setPreLoadRecipientsWithCurrency:[self.objectModel currencyWithCode:self.calculationResult.targetCurrency]];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

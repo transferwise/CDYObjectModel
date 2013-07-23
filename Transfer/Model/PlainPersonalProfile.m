@@ -12,9 +12,6 @@
 
 @interface PlainPersonalProfile ()
 
-@property (nonatomic, strong) NSNumber *identityVerified;
-@property (nonatomic, strong) NSNumber *addressVerified;
-
 @end
 
 @implementation PlainPersonalProfile
@@ -34,29 +31,6 @@
     }
 
     return [NSString stringWithString:result];
-}
-
-+ (PlainPersonalProfile *)profileWithData:(NSDictionary *)data {
-    PlainPersonalProfile *profile = [[PlainPersonalProfile alloc] init];
-    [profile setFirstName:data[@"firstName"]];
-    [profile setLastName:data[@"lastName"]];
-    [profile setDateOfBirthString:data[@"dateOfBirth"]];
-    [profile setPhoneNumber:data[@"phoneNumber"]];
-    [profile setAddressFirstLine:data[@"addressFirstLine"]];
-    [profile setPostCode:data[@"postCode"]];
-    [profile setCity:data[@"city"]];
-    [profile setCountryCode:data[@"countryCode"]];
-    [profile setIdentityVerified:data[@"identityVerified"]];
-    [profile setAddressVerified:data[@"addressVerified"]];
-    return profile;
-}
-
-- (BOOL)identityVerifiedValue {
-    return [self.identityVerified boolValue];
-}
-
-- (BOOL)addressVerifiedValue {
-    return [self.addressVerified boolValue];
 }
 
 - (PlainPersonalProfileInput *)input {
