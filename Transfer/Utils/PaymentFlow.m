@@ -217,7 +217,7 @@
         [self setRecipientTypes:weakController.recipientTypes];
         [self presentPaymentConfirmation];
     }];
-    [controller setPreLoadRecipientsWithCurrency:[self.objectModel currencyWithCode:self.targetCurrency.code]];
+    [controller setPreLoadRecipientsWithCurrency:[self.objectModel currencyWithCode:self.calculationResult.sourceCurrency]];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

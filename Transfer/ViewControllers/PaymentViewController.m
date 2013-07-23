@@ -217,8 +217,6 @@ static NSUInteger const kRowYouSend = 0;
     [self setPaymentFlow:paymentFlow];
 
     [paymentFlow setObjectModel:self.objectModel];
-    [paymentFlow setSourceCurrency:[[self.youSendCell currency] plainCurrency]];
-    [paymentFlow setTargetCurrency:[[self.theyReceiveCell currency] plainCurrency]];
     [paymentFlow setCalculationResult:self.calculationResult];
     [paymentFlow setRecipient:[self.recipient plainRecipient]];
 
