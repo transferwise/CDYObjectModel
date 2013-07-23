@@ -12,7 +12,6 @@
 #import "BusinessProfileValidation.h"
 
 @class PlainProfileDetails;
-@class PlainCurrency;
 @class PlainRecipientType;
 @class CalculationResult;
 @class PlainRecipient;

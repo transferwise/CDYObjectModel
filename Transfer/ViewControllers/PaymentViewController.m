@@ -12,7 +12,6 @@
 #import "MoneyCalculator.h"
 #import "PlainRecipient.h"
 #import "CalculationResult.h"
-#import "PlainCurrency.h"
 #import "Recipient.h"
 #import "ObjectModel.h"
 #import "TransferwiseClient.h"

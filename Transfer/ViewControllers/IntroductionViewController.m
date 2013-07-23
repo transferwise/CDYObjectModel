@@ -18,7 +18,6 @@
 #import "SWRevealViewController.h"
 #import "WhyView.h"
 #import "TSAlertView.h"
-#import "PlainCurrency.h"
 #import "MoneyFormatter.h"
 #import "TRWAlertView.h"
 #import "PaymentFlow.h"

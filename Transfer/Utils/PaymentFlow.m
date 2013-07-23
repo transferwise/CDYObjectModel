@@ -37,7 +37,6 @@
 #import "User.h"
 #import "ObjectModel+Users.h"
 #import "ObjectModel+Currencies.h"
-#import "PlainCurrency.h"
 
 @interface PaymentFlow ()
 
