@@ -14,6 +14,7 @@
 #import "ObjectModel+RecipientTypes.h"
 #import "RecipientTypeField.h"
 #import "TypeFieldValue.h"
+#import "ObjectModel+Users.h"
 
 @implementation ObjectModel (Recipients)
 
@@ -24,7 +25,9 @@
 }
 
 - (Recipient *)recipientWithRemoteId:(NSNumber *)recipientId {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"remoteId = %@", recipientId];
+    NSPredicate *remoteIdPredicate = [NSPredicate predicateWithFormat:@"remoteId = %@", recipientId];
+    NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"user = %@", [self currentUser]];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[remoteIdPredicate, userPredicate]];
     return [self fetchEntityNamed:[Recipient entityName] withPredicate:predicate];
 }
 
@@ -35,7 +38,9 @@
     if (!recipient) {
         recipient = [Recipient insertInManagedObjectContext:self.managedObjectContext];
         [recipient setRemoteId:remoteId];
+        [recipient setUser:[self currentUser]];
     }
+
     [recipient setName:data[@"name"]];
     [recipient setCurrency:[self currencyWithCode:data[@"currency"]]];
     [recipient setEmail:data[@"email"]];

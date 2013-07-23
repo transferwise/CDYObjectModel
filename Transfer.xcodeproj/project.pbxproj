@@ -53,6 +53,9 @@
 		EA13E04E171BEF710019FBF0 /* TextEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */; };
 		EA1861E017463F8D00BD01BB /* UINavigationController+StackManipulations.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1861DF17463F8D00BD01BB /* UINavigationController+StackManipulations.m */; };
 		EA1861E31746442900BD01BB /* RegisterOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1861E21746442900BD01BB /* RegisterOperation.m */; };
+		EA1E4E21179E712A00F8D932 /* _PendingPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E4E20179E712A00F8D932 /* _PendingPayment.m */; };
+		EA1E4E25179E713100F8D932 /* PendingPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E4E24179E713100F8D932 /* PendingPayment.m */; };
+		EA1E4E28179E71C300F8D932 /* ObjectModel+PendingPayments.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E4E27179E71C300F8D932 /* ObjectModel+PendingPayments.m */; };
 		EA222E33173A676000C5D613 /* PaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E32173A676000C5D613 /* PaymentFlow.m */; };
 		EA222E38173A861000C5D613 /* ConfirmPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E36173A861000C5D613 /* ConfirmPaymentViewController.m */; };
 		EA222E39173A861000C5D613 /* ConfirmPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E37173A861000C5D613 /* ConfirmPaymentViewController.xib */; };
@@ -374,6 +377,12 @@
 		EA1861DF17463F8D00BD01BB /* UINavigationController+StackManipulations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+StackManipulations.m"; sourceTree = "<group>"; };
 		EA1861E11746442900BD01BB /* RegisterOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterOperation.h; sourceTree = "<group>"; };
 		EA1861E21746442900BD01BB /* RegisterOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterOperation.m; sourceTree = "<group>"; };
+		EA1E4E1F179E712A00F8D932 /* _PendingPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _PendingPayment.h; sourceTree = "<group>"; };
+		EA1E4E20179E712A00F8D932 /* _PendingPayment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PendingPayment.m; sourceTree = "<group>"; };
+		EA1E4E23179E713100F8D932 /* PendingPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingPayment.h; sourceTree = "<group>"; };
+		EA1E4E24179E713100F8D932 /* PendingPayment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingPayment.m; sourceTree = "<group>"; };
+		EA1E4E26179E71C300F8D932 /* ObjectModel+PendingPayments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+PendingPayments.h"; sourceTree = "<group>"; };
+		EA1E4E27179E71C300F8D932 /* ObjectModel+PendingPayments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+PendingPayments.m"; sourceTree = "<group>"; };
 		EA222E31173A676000C5D613 /* PaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentFlow.h; sourceTree = "<group>"; };
 		EA222E32173A676000C5D613 /* PaymentFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentFlow.m; sourceTree = "<group>"; };
 		EA222E35173A861000C5D613 /* ConfirmPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmPaymentViewController.h; sourceTree = "<group>"; };
@@ -1342,6 +1351,8 @@
 				EA225CA5178EC32D009D6B83 /* ObjectModel+CurrencyPairs.m */,
 				EA225C6F178E9F00009D6B83 /* ObjectModel+Payments.h */,
 				EA225C70178E9F00009D6B83 /* ObjectModel+Payments.m */,
+				EA1E4E26179E71C300F8D932 /* ObjectModel+PendingPayments.h */,
+				EA1E4E27179E71C300F8D932 /* ObjectModel+PendingPayments.m */,
 				EA225C89178EB297009D6B83 /* ObjectModel+Recipients.h */,
 				EA225C8A178EB297009D6B83 /* ObjectModel+Recipients.m */,
 				EA225C92178EB36B009D6B83 /* ObjectModel+RecipientTypes.h */,
@@ -1356,6 +1367,8 @@
 				EA225CC1178EEC77009D6B83 /* PairTargetCurrency.m */,
 				EA225C69178E9C93009D6B83 /* Payment.h */,
 				EA225C6A178E9C93009D6B83 /* Payment.m */,
+				EA1E4E23179E713100F8D932 /* PendingPayment.h */,
+				EA1E4E24179E713100F8D932 /* PendingPayment.m */,
 				EA2379F61793E04400166361 /* PersonalProfile.h */,
 				EA2379F71793E04400166361 /* PersonalProfile.m */,
 				EA225C80178EA3C8009D6B83 /* Recipient.h */,
@@ -1399,6 +1412,8 @@
 				EA225CBE178EEC6F009D6B83 /* _PairTargetCurrency.m */,
 				EA225C65178E9C90009D6B83 /* _Payment.h */,
 				EA225C66178E9C90009D6B83 /* _Payment.m */,
+				EA1E4E1F179E712A00F8D932 /* _PendingPayment.h */,
+				EA1E4E20179E712A00F8D932 /* _PendingPayment.m */,
 				EA2379EE1793E02F00166361 /* _PersonalProfile.h */,
 				EA2379EF1793E02F00166361 /* _PersonalProfile.m */,
 				EA225C7D178EA3C2009D6B83 /* _Recipient.h */,
@@ -1927,6 +1942,9 @@
 				EA2379FA1793E04400166361 /* BusinessProfile.m in Sources */,
 				EA2379FB1793E04400166361 /* PersonalProfile.m in Sources */,
 				EA2379FC1793E04400166361 /* User.m in Sources */,
+				EA1E4E21179E712A00F8D932 /* _PendingPayment.m in Sources */,
+				EA1E4E25179E713100F8D932 /* PendingPayment.m in Sources */,
+				EA1E4E28179E71C300F8D932 /* ObjectModel+PendingPayments.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

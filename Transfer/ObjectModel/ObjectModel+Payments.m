@@ -13,6 +13,7 @@
 #import "ObjectModel+Recipients.h"
 #import "NSDate+ServerTime.h"
 #import "Constants.h"
+#import "ObjectModel+Users.h"
 
 @implementation ObjectModel (Payments)
 
@@ -22,7 +23,9 @@
 }
 
 - (Payment *)paymentWithId:(NSNumber *)paymentId {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"remoteId = %@", paymentId];
+    NSPredicate *remoteIdPredicate = [NSPredicate predicateWithFormat:@"remoteId = %@", paymentId];
+    NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"user = %@", [self currentUser]];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[remoteIdPredicate, userPredicate]];
     return [self fetchEntityNamed:[Payment entityName] withPredicate:predicate];
 }
 
@@ -33,6 +36,7 @@
     if (!payment) {
         payment = [Payment insertInManagedObjectContext:self.managedObjectContext];
         [payment setRemoteId:paymentId];
+        [payment setUser:[self currentUser]];
     }
 
     [payment setPaymentStatus:data[@"paymentStatus"]];
