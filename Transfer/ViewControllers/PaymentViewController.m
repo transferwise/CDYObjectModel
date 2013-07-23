@@ -13,6 +13,7 @@
 #import "PlainRecipient.h"
 #import "CalculationResult.h"
 #import "PlainCurrency.h"
+#import "Recipient.h"
 #import "ObjectModel.h"
 #import "TransferwiseClient.h"
 #import "TRWAlertView.h"
@@ -21,7 +22,6 @@
 #import "LoggedInPaymentFlow.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 #import "UITableView+FooterPositioning.h"
-#import "ObjectModel+Currencies.h"
 #import "ObjectModel+CurrencyPairs.h"
 #import "Currency.h"
 
@@ -83,7 +83,7 @@ static NSUInteger const kRowYouSend = 0;
     [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
     [self.theyReceiveCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:nil];
     [self.theyReceiveCell.moneyField setReturnKeyType:UIReturnKeyDone];
-    [self.theyReceiveCell setForcedCurrency:self.recipient ? [self.objectModel currencyWithCode:self.recipient.currency] : nil];
+    [self.theyReceiveCell setForcedCurrency:self.recipient ? self.recipient.currency : nil];
     [self.theyReceiveCell setRoundedCorner:UIRectCornerBottomRight];
     [self.theyReceiveCell setEditable:NO];
 
@@ -135,7 +135,7 @@ static NSUInteger const kRowYouSend = 0;
     [self.calculator setObjectModel:self.objectModel];
 
     if (self.recipient) {
-        [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSourcesContainingTargetCurrency:[self.objectModel currencyWithCode:self.recipient.currency]]];
+        [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSourcesContainingTargetCurrency:self.recipient.currency]];
     } else {
         [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSources]];
     }
@@ -220,7 +220,7 @@ static NSUInteger const kRowYouSend = 0;
     [paymentFlow setSourceCurrency:[[self.youSendCell currency] plainCurrency]];
     [paymentFlow setTargetCurrency:[[self.theyReceiveCell currency] plainCurrency]];
     [paymentFlow setCalculationResult:self.calculationResult];
-    [paymentFlow setRecipient:self.recipient];
+    [paymentFlow setRecipient:[self.recipient plainRecipient]];
 
     [paymentFlow presentSenderDetails];
 }

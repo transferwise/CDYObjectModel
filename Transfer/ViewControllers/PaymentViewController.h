@@ -8,13 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class PlainRecipient;
 @class ObjectModel;
-@class CurrencyPairsOperation;
+@class Recipient;
 
 @interface PaymentViewController : UITableViewController
 
-@property (nonatomic, strong) PlainRecipient *recipient;
+@property (nonatomic, strong) Recipient *recipient;
 @property (nonatomic, strong) ObjectModel *objectModel;
 
 @end
