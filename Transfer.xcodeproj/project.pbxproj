@@ -120,8 +120,6 @@
 		EA416E301768673500904D97 /* ProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E2F1768673500904D97 /* ProfileSource.m */; };
 		EA416E331768674700904D97 /* PersonalProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E321768674700904D97 /* PersonalProfileSource.m */; };
 		EA416E361768675400904D97 /* BusinessProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E351768675400904D97 /* BusinessProfileSource.m */; };
-		EA4AA6061737940900E99150 /* PlainRecipientType.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA6051737940900E99150 /* PlainRecipientType.m */; };
-		EA4AA60A173794A600E99150 /* PlainRecipientTypeField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA609173794A600E99150 /* PlainRecipientTypeField.m */; };
 		EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */; };
 		EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */; };
 		EA592929175613FB007C0072 /* PlainPaymentInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EA592928175613FB007C0072 /* PlainPaymentInput.m */; };
@@ -250,7 +248,6 @@
 		EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66780174CB34600D29BCB /* PhoneBookProfile.m */; };
 		EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */; };
 		EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */; };
-		EAD667AB174E250600D29BCB /* PlainStringValue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD667AA174E250600D29BCB /* PlainStringValue.m */; };
 		EAD667C6174F4C7300D29BCB /* TWlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD667C4174F4C7200D29BCB /* TWlogo.png */; };
 		EAD667C7174F4C7300D29BCB /* TWlogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD667C5174F4C7300D29BCB /* TWlogo@2x.png */; };
 		EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */; };
@@ -487,10 +484,6 @@
 		EA416E321768674700904D97 /* PersonalProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileSource.m; sourceTree = "<group>"; };
 		EA416E341768675400904D97 /* BusinessProfileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileSource.h; sourceTree = "<group>"; };
 		EA416E351768675400904D97 /* BusinessProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileSource.m; sourceTree = "<group>"; };
-		EA4AA6041737940900E99150 /* PlainRecipientType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainRecipientType.h; sourceTree = "<group>"; };
-		EA4AA6051737940900E99150 /* PlainRecipientType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainRecipientType.m; sourceTree = "<group>"; };
-		EA4AA608173794A600E99150 /* PlainRecipientTypeField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainRecipientTypeField.h; sourceTree = "<group>"; };
-		EA4AA609173794A600E99150 /* PlainRecipientTypeField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainRecipientTypeField.m; sourceTree = "<group>"; };
 		EA4AA60B17379C9D00E99150 /* CurrencySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencySelectionCell.h; sourceTree = "<group>"; };
 		EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencySelectionCell.m; sourceTree = "<group>"; };
 		EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencySelectionCell.xib; sourceTree = "<group>"; };
@@ -700,8 +693,6 @@
 		EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneBookProfileSelector.m; sourceTree = "<group>"; };
 		EAD66785174CD3FE00D29BCB /* PhoneBookAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneBookAddress.h; sourceTree = "<group>"; };
 		EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneBookAddress.m; sourceTree = "<group>"; };
-		EAD667A9174E250600D29BCB /* PlainStringValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainStringValue.h; sourceTree = "<group>"; };
-		EAD667AA174E250600D29BCB /* PlainStringValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainStringValue.m; sourceTree = "<group>"; };
 		EAD667C4174F4C7200D29BCB /* TWlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TWlogo.png; sourceTree = "<group>"; };
 		EAD667C5174F4C7300D29BCB /* TWlogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TWlogo@2x.png"; sourceTree = "<group>"; };
 		EAD667C9174F6F7B00D29BCB /* DismissKeyboardTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissKeyboardTableView.h; sourceTree = "<group>"; };
@@ -993,12 +984,6 @@
 				EA592928175613FB007C0072 /* PlainPaymentInput.m */,
 				EA59292D1756231C007C0072 /* PlainPaymentVerificationRequired.h */,
 				EA59292E1756231C007C0072 /* PlainPaymentVerificationRequired.m */,
-				EA4AA6041737940900E99150 /* PlainRecipientType.h */,
-				EA4AA6051737940900E99150 /* PlainRecipientType.m */,
-				EA4AA608173794A600E99150 /* PlainRecipientTypeField.h */,
-				EA4AA609173794A600E99150 /* PlainRecipientTypeField.m */,
-				EAD667A9174E250600D29BCB /* PlainStringValue.h */,
-				EAD667AA174E250600D29BCB /* PlainStringValue.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1807,8 +1792,6 @@
 				EAA54F501733DC3500B65BF3 /* CurrenciesOperation.m in Sources */,
 				EAA54F581733E8F700B65BF3 /* TransferwiseClient.m in Sources */,
 				EAA54F5B1733EF1A00B65BF3 /* RecipientTypesOperation.m in Sources */,
-				EA4AA6061737940900E99150 /* PlainRecipientType.m in Sources */,
-				EA4AA60A173794A600E99150 /* PlainRecipientTypeField.m in Sources */,
 				EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */,
 				EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */,
 				EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */,
@@ -1833,7 +1816,6 @@
 				EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */,
 				EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */,
 				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
-				EAD667AB174E250600D29BCB /* PlainStringValue.m in Sources */,
 				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,
 				EA592929175613FB007C0072 /* PlainPaymentInput.m in Sources */,
 				EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */,
