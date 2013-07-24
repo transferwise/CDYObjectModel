@@ -7,5 +7,6 @@
 - (NSString *)payOutStringWithCurrency;
 - (NSString *)rateString;
 - (NSString *)paymentDateString;
+- (NSDictionary *)data;
 
 @end

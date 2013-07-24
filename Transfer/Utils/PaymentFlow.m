@@ -12,7 +12,6 @@
 #import "ConfirmPaymentViewController.h"
 #import "IdentificationViewController.h"
 #import "UploadMoneyViewController.h"
-#import "PlainPaymentInput.h"
 #import "CreatePaymentOperation.h"
 #import "VerificationRequiredOperation.h"
 #import "PlainPaymentVerificationRequired.h"
@@ -41,7 +40,6 @@
 @property (nonatomic, copy) PaymentErrorBlock paymentErrorHandler;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) PlainPaymentVerificationRequired *verificationRequired;
-@property (nonatomic, strong) PlainPaymentInput *paymentInput;
 
 @end
 
@@ -210,11 +208,9 @@
     });
 }
 
-- (void)validatePayment:(PlainPaymentInput *)paymentInput errorHandler:(PaymentErrorBlock)errorHandler {
+- (void)validatePayment:(NSManagedObjectID *)paymentInput errorHandler:(PaymentErrorBlock)errorHandler {
     MCLog(@"Validate payment");
     self.paymentErrorHandler = errorHandler;
-
-    [paymentInput setProfile:@"personal"];
 
     CreatePaymentOperation *operation = [CreatePaymentOperation validateOperationWithInput:paymentInput];
     [self setExecutedOperation:operation];
@@ -226,8 +222,6 @@
             return;
         }
         
-        [self setPaymentInput:paymentInput];
-
         MCLog(@"Payment valid");
         [self checkVerificationNeeded];
     }];
@@ -371,11 +365,11 @@
 - (void)uploadVerificationData {
     MCLog(@"Upload verification data:%d", self.verificationRequired.isAnyVerificationRequired);
     MCLog(@"Send later:%d", self.verificationRequired.sendLater);
-    if (self.verificationRequired.sendLater) {
-        [self.paymentInput setVerificationProvideLater:@"true"];
-    } else {
-        [self.paymentInput setVerificationProvideLater:@"false"];
-    }
+    //if (self.verificationRequired.sendLater) {
+    //    [self.paymentInput setVerificationProvideLater:@"true"];
+    //} else {
+    //    [self.paymentInput setVerificationProvideLater:@"false"];
+    //}
 
     if (self.verificationRequired.isAnyVerificationRequired && !self.verificationRequired.sendLater) {
         [self uploadNextVerificationData];
@@ -435,15 +429,10 @@
 
 - (void)commitPayment {
     MCLog(@"Commit payment");
-    if (!self.paymentInput.recipientId) {
-        [self.paymentInput setRecipientId:self.objectModel.pendingPayment.recipient.remoteId];
-    }
 
-    [self.paymentInput setProfile:@"personal"];
+    MCAssert(self.objectModel.pendingPayment.recipient.remoteIdValue != 0);
 
-    MCAssert(self.paymentInput.recipientId);
-
-    CreatePaymentOperation *operation = [CreatePaymentOperation commitOperationWithPayment:self.paymentInput];
+    CreatePaymentOperation *operation = [CreatePaymentOperation commitOperationWithPayment:[self.objectModel.pendingPayment objectID]];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
 

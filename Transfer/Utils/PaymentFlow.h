@@ -11,7 +11,6 @@
 #import "RecipientProfileValidation.h"
 #import "BusinessProfileValidation.h"
 
-@class PlainPaymentInput;
 @class PlainPaymentVerificationRequired;
 @class ObjectModel;
 
@@ -23,7 +22,7 @@ typedef void (^PaymentErrorBlock)(NSError *error);
 
 - (id)initWithPresentingController:(UINavigationController *)controller;
 - (void)presentSenderDetails;
-- (void)validatePayment:(PlainPaymentInput *)paymentInput errorHandler:(PaymentErrorBlock)errorHandler;
+- (void)validatePayment:(NSManagedObjectID *)paymentInput errorHandler:(PaymentErrorBlock)errorHandler;
 - (void)commitPaymentWithErrorHandler:(PaymentErrorBlock)errorHandler;
 
 @end

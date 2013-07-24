@@ -54,6 +54,7 @@
 		EA1E4E21179E712A00F8D932 /* _PendingPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E4E20179E712A00F8D932 /* _PendingPayment.m */; };
 		EA1E4E25179E713100F8D932 /* PendingPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E4E24179E713100F8D932 /* PendingPayment.m */; };
 		EA1E4E28179E71C300F8D932 /* ObjectModel+PendingPayments.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E4E27179E71C300F8D932 /* ObjectModel+PendingPayments.m */; };
+		EA1E4E33179FF1E500F8D932 /* NSMutableDictionary+SaneData.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E4E32179FF1E500F8D932 /* NSMutableDictionary+SaneData.m */; };
 		EA222E33173A676000C5D613 /* PaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E32173A676000C5D613 /* PaymentFlow.m */; };
 		EA222E38173A861000C5D613 /* ConfirmPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E36173A861000C5D613 /* ConfirmPaymentViewController.m */; };
 		EA222E39173A861000C5D613 /* ConfirmPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E37173A861000C5D613 /* ConfirmPaymentViewController.xib */; };
@@ -122,7 +123,6 @@
 		EA416E361768675400904D97 /* BusinessProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E351768675400904D97 /* BusinessProfileSource.m */; };
 		EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */; };
 		EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */; };
-		EA592929175613FB007C0072 /* PlainPaymentInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EA592928175613FB007C0072 /* PlainPaymentInput.m */; };
 		EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */; };
 		EA59292F1756231C007C0072 /* PlainPaymentVerificationRequired.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292E1756231C007C0072 /* PlainPaymentVerificationRequired.m */; };
 		EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */; };
@@ -370,6 +370,8 @@
 		EA1E4E24179E713100F8D932 /* PendingPayment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingPayment.m; sourceTree = "<group>"; };
 		EA1E4E26179E71C300F8D932 /* ObjectModel+PendingPayments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+PendingPayments.h"; sourceTree = "<group>"; };
 		EA1E4E27179E71C300F8D932 /* ObjectModel+PendingPayments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+PendingPayments.m"; sourceTree = "<group>"; };
+		EA1E4E31179FF1E500F8D932 /* NSMutableDictionary+SaneData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+SaneData.h"; sourceTree = "<group>"; };
+		EA1E4E32179FF1E500F8D932 /* NSMutableDictionary+SaneData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+SaneData.m"; sourceTree = "<group>"; };
 		EA222E31173A676000C5D613 /* PaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentFlow.h; sourceTree = "<group>"; };
 		EA222E32173A676000C5D613 /* PaymentFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentFlow.m; sourceTree = "<group>"; };
 		EA222E35173A861000C5D613 /* ConfirmPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmPaymentViewController.h; sourceTree = "<group>"; };
@@ -487,8 +489,6 @@
 		EA4AA60B17379C9D00E99150 /* CurrencySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencySelectionCell.h; sourceTree = "<group>"; };
 		EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencySelectionCell.m; sourceTree = "<group>"; };
 		EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencySelectionCell.xib; sourceTree = "<group>"; };
-		EA592927175613FB007C0072 /* PlainPaymentInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainPaymentInput.h; sourceTree = "<group>"; };
-		EA592928175613FB007C0072 /* PlainPaymentInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainPaymentInput.m; sourceTree = "<group>"; };
 		EA59292A175621D0007C0072 /* VerificationRequiredOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationRequiredOperation.h; sourceTree = "<group>"; };
 		EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationRequiredOperation.m; sourceTree = "<group>"; };
 		EA59292D1756231C007C0072 /* PlainPaymentVerificationRequired.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainPaymentVerificationRequired.h; sourceTree = "<group>"; };
@@ -894,6 +894,8 @@
 				EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */,
 				EA88E676172F97C40021492C /* NSError+TRWErrors.h */,
 				EA88E677172F97C40021492C /* NSError+TRWErrors.m */,
+				EA1E4E31179FF1E500F8D932 /* NSMutableDictionary+SaneData.h */,
+				EA1E4E32179FF1E500F8D932 /* NSMutableDictionary+SaneData.m */,
 				EA8FF683171D1A320090A658 /* NSMutableString+Issues.h */,
 				EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */,
 				EA8FF680171D19B50090A658 /* NSString+Validation.h */,
@@ -980,8 +982,6 @@
 				EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */,
 				EAD6677F174CB34600D29BCB /* PhoneBookProfile.h */,
 				EAD66780174CB34600D29BCB /* PhoneBookProfile.m */,
-				EA592927175613FB007C0072 /* PlainPaymentInput.h */,
-				EA592928175613FB007C0072 /* PlainPaymentInput.m */,
 				EA59292D1756231C007C0072 /* PlainPaymentVerificationRequired.h */,
 				EA59292E1756231C007C0072 /* PlainPaymentVerificationRequired.m */,
 			);
@@ -1817,7 +1817,6 @@
 				EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */,
 				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
 				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,
-				EA592929175613FB007C0072 /* PlainPaymentInput.m in Sources */,
 				EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */,
 				EA59292F1756231C007C0072 /* PlainPaymentVerificationRequired.m in Sources */,
 				EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */,
@@ -1883,6 +1882,7 @@
 				EA1E4E21179E712A00F8D932 /* _PendingPayment.m in Sources */,
 				EA1E4E25179E713100F8D932 /* PendingPayment.m in Sources */,
 				EA1E4E28179E71C300F8D932 /* ObjectModel+PendingPayments.m in Sources */,
+				EA1E4E33179FF1E500F8D932 /* NSMutableDictionary+SaneData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,8 @@ extern const struct PendingPaymentAttributes {
 	__unsafe_unretained NSString *payOut;
 	__unsafe_unretained NSString *profileUsed;
 	__unsafe_unretained NSString *rate;
+	__unsafe_unretained NSString *recipientEmail;
+	__unsafe_unretained NSString *reference;
 } PendingPaymentAttributes;
 
 extern const struct PendingPaymentRelationships {
@@ -15,6 +17,8 @@ extern const struct PendingPaymentRelationships {
 
 extern const struct PendingPaymentFetchedProperties {
 } PendingPaymentFetchedProperties;
+
+
 
 
 
@@ -68,6 +72,26 @@ extern const struct PendingPaymentFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* recipientEmail;
+
+
+
+//- (BOOL)validateRecipientEmail:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* reference;
+
+
+
+//- (BOOL)validateReference:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 
 @end
 
@@ -95,6 +119,18 @@ extern const struct PendingPaymentFetchedProperties {
 
 - (double)primitiveRateValue;
 - (void)setPrimitiveRateValue:(double)value_;
+
+
+
+
+- (NSString*)primitiveRecipientEmail;
+- (void)setPrimitiveRecipientEmail:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveReference;
+- (void)setPrimitiveReference:(NSString*)value;
 
 
 

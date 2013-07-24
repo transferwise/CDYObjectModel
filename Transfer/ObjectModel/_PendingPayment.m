@@ -7,6 +7,8 @@ const struct PendingPaymentAttributes PendingPaymentAttributes = {
 	.payOut = @"payOut",
 	.profileUsed = @"profileUsed",
 	.rate = @"rate",
+	.recipientEmail = @"recipientEmail",
+	.reference = @"reference",
 };
 
 const struct PendingPaymentRelationships PendingPaymentRelationships = {
@@ -88,6 +90,20 @@ const struct PendingPaymentFetchedProperties PendingPaymentFetchedProperties = {
 - (void)setPrimitiveRateValue:(double)value_ {
 	[self setPrimitiveRate:[NSNumber numberWithDouble:value_]];
 }
+
+
+
+
+
+@dynamic recipientEmail;
+
+
+
+
+
+
+@dynamic reference;
+
 
 
 

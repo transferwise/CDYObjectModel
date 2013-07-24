@@ -14,8 +14,6 @@
 #import "TRWProgressHUD.h"
 #import "TRWAlertView.h"
 #import "TextEntryCell.h"
-#import "NSString+Validation.h"
-#import "PlainPaymentInput.h"
 #import "PaymentFlow.h"
 #import "RecipientType.h"
 #import "ObjectModel+RecipientTypes.h"
@@ -212,25 +210,15 @@ static NSUInteger const kReceiverSection = 1;
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
 
-    PlainPaymentInput *input = [[PlainPaymentInput alloc] init];
-    //if (self.recipientProfile.id) {
-    //    [input setRecipientId:self.recipientProfile.id];
-    //}
-    //[input setSourceCurrency:self.calculationResult.sourceCurrency];
-    //[input setTargetCurrency:self.calculationResult.targetCurrency];
-    //[input setAmount:self.calculationResult.amount];
+    PendingPayment *input = [self.objectModel pendingPayment];
 
     NSString *reference = [self.referenceCell value];
-    if ([reference hasValue]) {
-        [input setReference:reference];
-    }
+    [input setReference:reference];
 
     NSString *email = [self.receiverEmailCell value];
-    if ([email hasValue]) {
-        [input setEmail:email];
-    }
+    [input setRecipientEmail:email];
 
-    [self.paymentFlow validatePayment:input errorHandler:^(NSError *error) {
+    [self.paymentFlow validatePayment:input.objectID errorHandler:^(NSError *error) {
         [hud hide];
         if (error) {
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
