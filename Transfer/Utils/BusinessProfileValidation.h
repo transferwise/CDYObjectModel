@@ -8,15 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class PlainBusinessProfileInput;
-@class PlainProfileDetails;
 @class ObjectModel;
 
-typedef void (^BusinessProfileValidationBlock)(PlainProfileDetails *details, NSError *error);
+typedef void (^BusinessProfileValidationBlock)(NSError *error);
 
 @protocol BusinessProfileValidation <NSObject>
 
-- (void)validateBusinessProfile:(PlainBusinessProfileInput *)profile withHandler:(BusinessProfileValidationBlock)handler;
+- (void)validateBusinessProfile:(NSManagedObjectID *)profile withHandler:(BusinessProfileValidationBlock)handler;
 - (void)setObjectModel:(ObjectModel *)objectModel;
 
 @end

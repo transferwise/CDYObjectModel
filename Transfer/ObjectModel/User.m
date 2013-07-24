@@ -1,5 +1,4 @@
 #import "User.h"
-#import "PlainProfileDetails.h"
 #import "PersonalProfile.h"
 #import "BusinessProfile.h"
 
@@ -9,14 +8,6 @@
 
 
 @implementation User
-
-- (PlainProfileDetails *)plainUserDetails {
-    PlainProfileDetails *plain = [[PlainProfileDetails alloc] init];
-    [plain setEmail:self.email];
-    [plain setReference:self.pReference];
-    [plain setBusinessProfile:[self.businessProfile plainProfile]];
-    return plain;
-}
 
 - (NSString *)displayName {
     return self.personalProfile ? [self.personalProfile fullName] : self.email;
@@ -28,6 +19,14 @@
     }
 
     return self.personalProfile;
+}
+
+- (BusinessProfile *)businessProfileObject {
+    if (!self.businessProfile) {
+        [self setBusinessProfile:[BusinessProfile insertInManagedObjectContext:self.managedObjectContext]];
+    }
+
+    return self.businessProfile;
 }
 
 @end

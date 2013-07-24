@@ -11,13 +11,11 @@
 #import "RecipientProfileValidation.h"
 #import "BusinessProfileValidation.h"
 
-@class PlainProfileDetails;
 @class PlainRecipientType;
 @class CalculationResult;
 @class PlainRecipient;
 @class PlainPaymentInput;
 @class PlainPaymentVerificationRequired;
-@class PlainBusinessProfileInput;
 @class ObjectModel;
 
 typedef void (^PaymentErrorBlock)(NSError *error);

@@ -9,7 +9,6 @@
 #import "PaymentFlow.h"
 #import "PersonalProfileViewController.h"
 #import "RecipientViewController.h"
-#import "PlainProfileDetails.h"
 #import "ConfirmPaymentViewController.h"
 #import "IdentificationViewController.h"
 #import "UploadMoneyViewController.h"
@@ -26,10 +25,8 @@
 #import "RecipientOperation.h"
 #import "PlainRecipient.h"
 #import "RegisterWithoutPasswordOperation.h"
-#import "PlainBusinessProfileInput.h"
 #import "BusinessProfileOperation.h"
 #import "PaymentProfileViewController.h"
-#import "PlainBusinessProfile.h"
 #import "TRWAlertView.h"
 #import "ObjectModel.h"
 #import "User.h"
@@ -37,17 +34,17 @@
 #import "ObjectModel+Currencies.h"
 #import "_PersonalProfile.h"
 #import "PersonalProfile.h"
+#import "_BusinessProfile.h"
+#import "BusinessProfile.h"
 
 @interface PaymentFlow ()
 
 @property (nonatomic, strong) UINavigationController *navigationController;
-@property (nonatomic, strong) PlainProfileDetails *businessDetails;
 @property (nonatomic, copy) PaymentErrorBlock paymentErrorHandler;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) PlainPaymentVerificationRequired *verificationRequired;
 @property (nonatomic, strong) PlainPaymentInput *paymentInput;
 @property (nonatomic, strong) PlainRecipientProfileInput *recipientProfile;
-@property (nonatomic, strong) PlainBusinessProfileInput *businessProfile;
 
 @end
 
@@ -70,14 +67,6 @@
     }
 }
 
-- (void)setBusinessDetails:(PlainProfileDetails *)businessDetails {
-    _businessDetails = businessDetails;
-
-    if (businessDetails.businessProfile) {
-        [self setBusinessProfile:[businessDetails.businessProfile input]];
-    }
-}
-
 - (void)presentSenderDetails {
     [self presentSenderDetails:YES];
 }
@@ -95,7 +84,7 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)validateBusinessProfile:(PlainBusinessProfileInput *)profile withHandler:(BusinessProfileValidationBlock)handler {
+- (void)validateBusinessProfile:(NSManagedObjectID *)profile withHandler:(BusinessProfileValidationBlock)handler {
     MCLog(@"validateBusinessProfile");
     BusinessProfileOperation *operation = [BusinessProfileOperation validateWithData:profile];
     [self setExecutedOperation:operation];
@@ -104,13 +93,11 @@
     [operation setSaveResultHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error) {
-                handler(nil, error);
+                handler(error);
                 return;
             }
 
-            [self setBusinessProfile:profile];
-
-            handler(nil, nil);
+            handler(nil);
 
             if ([self personalProfileFilled]) {
                 [self pushNextScreenAfterPersonalProfile];
@@ -235,7 +222,7 @@
     MCLog(@"Validate payment");
     self.paymentErrorHandler = errorHandler;
 
-    [paymentInput setProfile:self.businessProfile ? @"business" : @"personal"];
+    [paymentInput setProfile:@"personal"];
 
     CreatePaymentOperation *operation = [CreatePaymentOperation validateOperationWithInput:paymentInput];
     [self setExecutedOperation:operation];
@@ -323,16 +310,12 @@
 
 - (void)updateSenderProfile {
     MCLog(@"updateSenderProfile");
-    if (self.businessProfile) {
-        [self updateBusinessProfile];
-    } else {
-        [self updatePersonalProfile];
-    }
+    [self updateBusinessProfile];
 }
 
 - (void)updateBusinessProfile {
     MCLog(@"updateBusinessProfile");
-    BusinessProfileOperation *operation = [BusinessProfileOperation commitWithData:self.businessProfile];
+    BusinessProfileOperation *operation = [BusinessProfileOperation commitWithData:self.objectModel.currentUser.businessProfile.objectID];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
 
@@ -341,9 +324,6 @@
             self.paymentErrorHandler(error);
             return;
         }
-
-        User *user = [self.objectModel currentUser];
-        [self setBusinessDetails:[user plainUserDetails]];
 
         [self updatePersonalProfile];
     }];
@@ -468,7 +448,7 @@
         [self.paymentInput setRecipientId:self.recipientProfile.id];
     }
 
-    [self.paymentInput setProfile:self.businessProfile ? @"business" : @"personal"];
+    [self.paymentInput setProfile:@"personal"];
 
     MCAssert(self.paymentInput.recipientId);
 

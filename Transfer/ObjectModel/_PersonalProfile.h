@@ -6,7 +6,6 @@
 
 extern const struct PersonalProfileAttributes {
 	__unsafe_unretained NSString *addressFirstLine;
-	__unsafe_unretained NSString *changed;
 	__unsafe_unretained NSString *city;
 	__unsafe_unretained NSString *countryCode;
 	__unsafe_unretained NSString *dateOfBirth;
@@ -36,7 +35,6 @@ extern const struct PersonalProfileFetchedProperties {
 
 
 
-
 @interface PersonalProfileID : NSManagedObjectID {}
 @end
 
@@ -55,20 +53,6 @@ extern const struct PersonalProfileFetchedProperties {
 
 
 //- (BOOL)validateAddressFirstLine:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@property (nonatomic, strong) NSNumber* changed;
-
-
-
-@property BOOL changedValue;
-- (BOOL)changedValue;
-- (void)setChangedValue:(BOOL)value_;
-
-//- (BOOL)validateChanged:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -173,15 +157,6 @@ extern const struct PersonalProfileFetchedProperties {
 
 - (NSString*)primitiveAddressFirstLine;
 - (void)setPrimitiveAddressFirstLine:(NSString*)value;
-
-
-
-
-- (NSNumber*)primitiveChanged;
-- (void)setPrimitiveChanged:(NSNumber*)value;
-
-- (BOOL)primitiveChangedValue;
-- (void)setPrimitiveChangedValue:(BOOL)value_;
 
 
 

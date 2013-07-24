@@ -5,6 +5,7 @@
 #import "Payment.h"
 
 extern const struct PendingPaymentAttributes {
+	__unsafe_unretained NSString *profileUsed;
 } PendingPaymentAttributes;
 
 extern const struct PendingPaymentRelationships {
@@ -12,6 +13,7 @@ extern const struct PendingPaymentRelationships {
 
 extern const struct PendingPaymentFetchedProperties {
 } PendingPaymentFetchedProperties;
+
 
 
 
@@ -28,6 +30,16 @@ extern const struct PendingPaymentFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* profileUsed;
+
+
+
+//- (BOOL)validateProfileUsed:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 
 @end
 
@@ -36,6 +48,12 @@ extern const struct PendingPaymentFetchedProperties {
 @end
 
 @interface _PendingPayment (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSString*)primitiveProfileUsed;
+- (void)setPrimitiveProfileUsed:(NSString*)value;
+
+
 
 
 @end

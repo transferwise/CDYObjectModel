@@ -4,6 +4,7 @@
 #import "_PendingPayment.h"
 
 const struct PendingPaymentAttributes PendingPaymentAttributes = {
+	.profileUsed = @"profileUsed",
 };
 
 const struct PendingPaymentRelationships PendingPaymentRelationships = {
@@ -41,6 +42,13 @@ const struct PendingPaymentFetchedProperties PendingPaymentFetchedProperties = {
 
 	return keyPaths;
 }
+
+
+
+
+@dynamic profileUsed;
+
+
 
 
 

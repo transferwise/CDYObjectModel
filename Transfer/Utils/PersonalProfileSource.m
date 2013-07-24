@@ -9,7 +9,6 @@
 #import "PersonalProfileSource.h"
 #import "CountrySelectionCell.h"
 #import "DateEntryCell.h"
-#import "PlainProfileDetails.h"
 #import "PhoneBookProfile.h"
 #import "PhoneBookAddress.h"
 #import "NSString+Validation.h"
@@ -171,8 +170,6 @@ NSUInteger const kUserPersonalSection = 1;
 }
 
 - (id)enteredProfile {
-    BOOL changed = [self valuesChanged];
-
     User *user = [self.objectModel currentUser];
     PersonalProfile *profile = [user personalProfileObject];
 
@@ -185,26 +182,10 @@ NSUInteger const kUserPersonalSection = 1;
     [profile setCity:self.cityCell.value];
     [profile setCountryCode:self.countryCell.value];
     [profile setDateOfBirth:[self.dateOfBirthCell value]];
-    [profile setChangedValue:changed];
 
     [self.objectModel saveContext];
 
     return profile.objectID;
-}
-
-- (BOOL)valuesChanged {
-    User *user = self.objectModel.currentUser;
-    PersonalProfile *profile = user.personalProfile;
-
-    return ![[self.firstNameCell value] isEqualToString:profile.firstName]
-            || ![[self.lastNameCell value] isEqualToString:profile.lastName]
-            || ![[self.emailCell value] isEqualToString:user.email]
-            || ![[self.phoneNumberCell value] isEqualToString:profile.phoneNumber]
-            || ![[self.dateOfBirthCell value] isEqualToString:profile.dateOfBirth]
-            || ![[self.addressCell value] isEqualToString:profile.addressFirstLine]
-            || ![[self.postCodeCell value] isEqualToString:profile.postCode]
-            || ![[self.cityCell value] isEqualToString:profile.city]
-            || ![[self.countryCell value] isEqualToString:profile.countryCode];
 }
 
 - (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion {
