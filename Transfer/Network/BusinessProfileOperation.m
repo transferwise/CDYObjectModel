@@ -47,6 +47,11 @@ NSString *const kValidateBusinessProfilePath = @"/user/validateBusinessProfile";
     
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         [weakSelf.workModel.managedObjectContext performBlock:^{
+            if ([response[@"status"] isEqualToString:@"valid"]) {
+                weakSelf.saveResultHandler(nil);
+                return;
+            }
+
             [weakSelf.objectModel createOrUpdateUserWithData:response];
 
             [weakSelf.workModel saveContext:^{

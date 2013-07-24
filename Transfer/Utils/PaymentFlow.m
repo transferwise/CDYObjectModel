@@ -89,6 +89,10 @@
 
             handler(nil);
 
+            PendingPayment *payment = [self.objectModel pendingPayment];
+            [payment setProfileUsed:@"business"];
+            [self.objectModel saveContext];
+
             if ([self personalProfileFilled]) {
                 [self pushNextScreenAfterPersonalProfile];
             } else {
