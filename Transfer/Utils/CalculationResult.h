@@ -17,8 +17,9 @@
 @property (nonatomic, strong, readonly) NSNumber *transferwiseRate;
 @property (nonatomic, copy) NSString *amount;
 @property (nonatomic, strong, readonly) NSNumber *transferwisePayIn;
+@property (nonatomic, strong, readonly) NSNumber *transferwisePayOut;
+@property (nonatomic, strong, readonly) NSDate *estimatedDelivery;
 
-+ (CalculationResult *)resultWithData:(NSDictionary *)data;
 
 - (NSString *)transferwisePayInString;
 - (NSString *)transferwisePayOutString;
@@ -34,5 +35,9 @@
 - (NSString *)receiveWinAmountWithCurrency;
 - (NSString *)paymentDateString;
 - (NSString *)payWinAmountWithCurrency;
+
++ (CalculationResult *)resultWithData:(NSDictionary *)data;
++ (NSString *)rateStringFrom:(NSNumber *)number;
++ (NSDateFormatter *)paymentDateFormatter;
 
 @end

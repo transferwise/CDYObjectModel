@@ -4,7 +4,9 @@
 #import "_PendingPayment.h"
 
 const struct PendingPaymentAttributes PendingPaymentAttributes = {
+	.payOut = @"payOut",
 	.profileUsed = @"profileUsed",
+	.rate = @"rate",
 };
 
 const struct PendingPaymentRelationships PendingPaymentRelationships = {
@@ -39,6 +41,11 @@ const struct PendingPaymentFetchedProperties PendingPaymentFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"rateValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"rate"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -46,8 +53,41 @@ const struct PendingPaymentFetchedProperties PendingPaymentFetchedProperties = {
 
 
 
+@dynamic payOut;
+
+
+
+
+
+
 @dynamic profileUsed;
 
+
+
+
+
+
+@dynamic rate;
+
+
+
+- (double)rateValue {
+	NSNumber *result = [self rate];
+	return [result doubleValue];
+}
+
+- (void)setRateValue:(double)value_ {
+	[self setRate:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveRateValue {
+	NSNumber *result = [self primitiveRate];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveRateValue:(double)value_ {
+	[self setPrimitiveRate:[NSNumber numberWithDouble:value_]];
+}
 
 
 

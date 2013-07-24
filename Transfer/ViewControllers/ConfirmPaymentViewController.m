@@ -24,6 +24,9 @@
 #import "PendingPayment.h"
 #import "TypeFieldValue.h"
 #import "RecipientTypeField.h"
+#import "User.h"
+#import "BusinessProfile.h"
+#import "PersonalProfile.h"
 
 static NSUInteger const kSenderSection = 0;
 static NSUInteger const kReceiverSection = 1;
@@ -81,9 +84,6 @@ static NSUInteger const kReceiverSection = 1;
     NSMutableArray *senderCells = [NSMutableArray array];
     ConfirmPaymentCell *senderNameCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
     [self setSenderNameCell:senderNameCell];
-    if (!self.senderIsBusiness) {
-        [senderNameCell.imageView setImage:[UIImage imageNamed:@"ProfileIcon.png"]];
-    }
     [senderCells addObject:senderNameCell];
 
     ConfirmPaymentCell *senderEmailCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
@@ -171,24 +171,32 @@ static NSUInteger const kReceiverSection = 1;
 - (void)fillDataCells {
     PendingPayment *payment = [self.objectModel pendingPayment];
 
-    [self.yourDepositValueLabel setText:[self.calculationResult transferwisePayInStringWithCurrency]];
-    [self.exchangedToValueLabel setText:[self.calculationResult transferwisePayOutStringWithCurrency]];
+    [self.yourDepositValueLabel setText:[payment payInStringWithCurrency]];
+    [self.exchangedToValueLabel setText:[payment payOutStringWithCurrency]];
 
-    NSString *rateString = self.calculationResult.transferwiseRateString;
+    NSString *rateString = [payment rateString];
     NSString *messageString = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.estimated.exchange.rate.message", nil), rateString];
     NSAttributedString *exchangeRateString = [self attributedStringWithBase:messageString markedString:rateString];
     [self.estimatedExchangeRateLabel setAttributedText:exchangeRateString];
 
-    NSString *dateString = self.calculationResult.paymentDateString;
+    NSString *dateString = [payment paymentDateString];
     NSString *dateMessageString = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.delivery.date.message", nil), dateString];
     NSAttributedString *paymentDateString = [self attributedStringWithBase:dateMessageString markedString:dateString];
     [self.deliveryDateLabelLabel setAttributedText:paymentDateString];
 
-    [self.senderNameCell.textLabel setText:self.senderName];
     [self.senderNameCell.detailTextLabel setText:NSLocalizedString(@"confirm.payment.sender.marker.label", nil)];
 
+    if ([payment businessProfileUsed]) {
+        [self.senderNameCell.textLabel setText:payment.user.businessProfile.name];
+    } else {
+        [self.senderNameCell.imageView setImage:[UIImage imageNamed:@"ProfileIcon.png"]];
+        [self.senderNameCell.textLabel setText:[payment.user.personalProfile fullName]];
+    }
+
+
     [self.senderEmailCell.textLabel setText:NSLocalizedString(@"confirm.payment.email.label", nil)];
-    [self.senderEmailCell.detailTextLabel setText:self.senderEmail];
+    [self.senderEmailCell.detailTextLabel setText:payment.user.email];
+
 
     [self.receiverNameCell.textLabel setText:[payment.recipient name]];
     [self.receiverNameCell.detailTextLabel setText:NSLocalizedString(@"confirm.payment.recipient.marker.label", nil)];
@@ -208,9 +216,9 @@ static NSUInteger const kReceiverSection = 1;
     //if (self.recipientProfile.id) {
     //    [input setRecipientId:self.recipientProfile.id];
     //}
-    [input setSourceCurrency:self.calculationResult.sourceCurrency];
-    [input setTargetCurrency:self.calculationResult.targetCurrency];
-    [input setAmount:self.calculationResult.amount];
+    //[input setSourceCurrency:self.calculationResult.sourceCurrency];
+    //[input setTargetCurrency:self.calculationResult.targetCurrency];
+    //[input setAmount:self.calculationResult.amount];
 
     NSString *reference = [self.referenceCell value];
     if ([reference hasValue]) {

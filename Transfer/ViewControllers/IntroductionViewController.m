@@ -252,11 +252,15 @@ static NSUInteger const kRowYouSend = 0;
         return;
     }
 
+    //TODO jaanus: copy/paste
     [self.objectModel performBlock:^{
         PendingPayment *payment = [self.objectModel createPendingPayment];
         [payment setSourceCurrency:[self.youSendCell currency]];
         [payment setTargetCurrency:[self.theyReceiveCell currency]];
         [payment setPayIn:(NSDecimalNumber *) [self.result transferwisePayIn]];
+        [payment setPayOut:(NSDecimalNumber *) [self.result transferwisePayOut]];
+        [payment setRate:[self.result transferwiseRate]];
+        [payment setEstimatedDelivery:[self.result estimatedDelivery]];
 
         PaymentFlow *paymentFlow = [[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
         [self setPaymentFlow:paymentFlow];

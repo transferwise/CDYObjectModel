@@ -5,7 +5,9 @@
 #import "Payment.h"
 
 extern const struct PendingPaymentAttributes {
+	__unsafe_unretained NSString *payOut;
 	__unsafe_unretained NSString *profileUsed;
+	__unsafe_unretained NSString *rate;
 } PendingPaymentAttributes;
 
 extern const struct PendingPaymentRelationships {
@@ -13,6 +15,8 @@ extern const struct PendingPaymentRelationships {
 
 extern const struct PendingPaymentFetchedProperties {
 } PendingPaymentFetchedProperties;
+
+
 
 
 
@@ -30,11 +34,35 @@ extern const struct PendingPaymentFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSDecimalNumber* payOut;
+
+
+
+//- (BOOL)validatePayOut:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* profileUsed;
 
 
 
 //- (BOOL)validateProfileUsed:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* rate;
+
+
+
+@property double rateValue;
+- (double)rateValue;
+- (void)setRateValue:(double)value_;
+
+//- (BOOL)validateRate:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -50,8 +78,23 @@ extern const struct PendingPaymentFetchedProperties {
 @interface _PendingPayment (CoreDataGeneratedPrimitiveAccessors)
 
 
+- (NSDecimalNumber*)primitivePayOut;
+- (void)setPrimitivePayOut:(NSDecimalNumber*)value;
+
+
+
+
 - (NSString*)primitiveProfileUsed;
 - (void)setPrimitiveProfileUsed:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveRate;
+- (void)setPrimitiveRate:(NSNumber*)value;
+
+- (double)primitiveRateValue;
+- (void)setPrimitiveRateValue:(double)value_;
 
 
 
