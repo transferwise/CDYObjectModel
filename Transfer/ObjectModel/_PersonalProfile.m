@@ -5,6 +5,7 @@
 
 const struct PersonalProfileAttributes PersonalProfileAttributes = {
 	.addressFirstLine = @"addressFirstLine",
+	.changed = @"changed",
 	.city = @"city",
 	.countryCode = @"countryCode",
 	.dateOfBirth = @"dateOfBirth",
@@ -48,6 +49,11 @@ const struct PersonalProfileFetchedProperties PersonalProfileFetchedProperties =
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"changedValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"changed"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -57,6 +63,32 @@ const struct PersonalProfileFetchedProperties PersonalProfileFetchedProperties =
 
 @dynamic addressFirstLine;
 
+
+
+
+
+
+@dynamic changed;
+
+
+
+- (BOOL)changedValue {
+	NSNumber *result = [self changed];
+	return [result boolValue];
+}
+
+- (void)setChangedValue:(BOOL)value_ {
+	[self setChanged:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveChangedValue {
+	NSNumber *result = [self primitiveChanged];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveChangedValue:(BOOL)value_ {
+	[self setPrimitiveChanged:[NSNumber numberWithBool:value_]];
+}
 
 
 

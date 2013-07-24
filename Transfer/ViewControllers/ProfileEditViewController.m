@@ -19,7 +19,6 @@
 #import "PhoneBookProfile.h"
 #import "ObjectModel.h"
 #import "UIApplication+Keyboard.h"
-#import "PlainPersonalProfileInput.h"
 #import "ObjectModel+Countries.h"
 
 static NSUInteger const kButtonSection = 0;
@@ -240,7 +239,7 @@ static NSUInteger const kButtonSection = 0;
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.verify.message", nil)];
     
-    PlainPersonalProfileInput *profile = [self.profileSource enteredProfile];
+    NSManagedObjectID *profile = [self.profileSource enteredProfile];
 
     [self.profileSource validateProfile:profile withValidation:self.profileValidation completion:^(NSError *error) {
         [hud hide];

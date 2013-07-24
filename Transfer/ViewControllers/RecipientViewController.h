@@ -26,6 +26,5 @@
 
 
 - (PlainRecipient *)selectedRecipient;
-- (PlainRecipientType *)selectedRecipientType;
 
 @end

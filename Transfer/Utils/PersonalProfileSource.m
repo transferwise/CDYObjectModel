@@ -13,7 +13,6 @@
 #import "PhoneBookProfile.h"
 #import "PhoneBookAddress.h"
 #import "NSString+Validation.h"
-#import "PlainPersonalProfileInput.h"
 #import "PersonalProfileValidation.h"
 #import "User.h"
 #import "ObjectModel+Users.h"
@@ -174,19 +173,23 @@ NSUInteger const kUserPersonalSection = 1;
 - (id)enteredProfile {
     BOOL changed = [self valuesChanged];
 
-    PlainPersonalProfileInput *profile = [[PlainPersonalProfileInput alloc] init];
-    profile.firstName = self.firstNameCell.value;
-    profile.lastName = self.lastNameCell.value;
-    profile.email = self.emailCell.value;
-    profile.phoneNumber = self.phoneNumberCell.value;
-    profile.addressFirstLine = self.addressCell.value;
-    profile.postCode = self.postCodeCell.value;
-    profile.city = self.cityCell.value;
-    profile.countryCode = self.countryCell.value;
-    profile.dateOfBirthString = [self.dateOfBirthCell value];
-    profile.changed = changed;
+    User *user = [self.objectModel currentUser];
+    PersonalProfile *profile = [user personalProfileObject];
 
-    return profile;
+    [profile setFirstName:self.firstNameCell.value];
+    [profile setLastName:self.lastNameCell.value];
+    [user setEmail:self.emailCell.value];
+    [profile setPhoneNumber:self.phoneNumberCell.value];
+    [profile setAddressFirstLine:self.addressCell.value];
+    [profile setPostCode:self.postCodeCell.value];
+    [profile setCity:self.cityCell.value];
+    [profile setCountryCode:self.countryCell.value];
+    [profile setDateOfBirth:[self.dateOfBirthCell value]];
+    [profile setChangedValue:changed];
+
+    [self.objectModel saveContext];
+
+    return profile.objectID;
 }
 
 - (BOOL)valuesChanged {

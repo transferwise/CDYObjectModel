@@ -29,10 +29,6 @@
 
 - (void)createOrUpdateUserWithData:(NSDictionary *)rawData {
     NSDictionary *data = [rawData dictionaryByRemovingNullObjects];
-    if ([data[@"status"] isEqualToString:@"valid"]) {
-        return;
-    }
-
     NSString *email = data[@"email"];
     [Credentials setUserEmail:email];
     User *user = [self userWithEmail:email];

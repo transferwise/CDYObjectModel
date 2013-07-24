@@ -11,7 +11,6 @@
 #import "RecipientViewController.h"
 #import "PlainProfileDetails.h"
 #import "ConfirmPaymentViewController.h"
-#import "PlainRecipientType.h"
 #import "IdentificationViewController.h"
 #import "UploadMoneyViewController.h"
 #import "PlainPaymentInput.h"
@@ -21,7 +20,6 @@
 #import "Credentials.h"
 #import "CalculationResult.h"
 #import "UploadVerificationFileOperation.h"
-#import "PlainPersonalProfileInput.h"
 #import "PersonalProfileOperation.h"
 #import "EmailCheckOperation.h"
 #import "PlainRecipientProfileInput.h"
@@ -37,17 +35,17 @@
 #import "User.h"
 #import "ObjectModel+Users.h"
 #import "ObjectModel+Currencies.h"
+#import "_PersonalProfile.h"
+#import "PersonalProfile.h"
 
 @interface PaymentFlow ()
 
 @property (nonatomic, strong) UINavigationController *navigationController;
 @property (nonatomic, strong) PlainProfileDetails *businessDetails;
-@property (nonatomic, strong) PlainRecipientType *recipientType;
 @property (nonatomic, copy) PaymentErrorBlock paymentErrorHandler;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) PlainPaymentVerificationRequired *verificationRequired;
 @property (nonatomic, strong) PlainPaymentInput *paymentInput;
-@property (nonatomic, strong) PlainPersonalProfileInput *personalProfile;
 @property (nonatomic, strong) PlainRecipientProfileInput *recipientProfile;
 @property (nonatomic, strong) PlainBusinessProfileInput *businessProfile;
 
@@ -69,14 +67,6 @@
     _recipient = recipient;
     if (_recipient) {
         [self setRecipientProfile:[recipient profileInput]];
-    }
-}
-
-- (void)setUserDetails:(PlainProfileDetails *)userDetails {
-    _userDetails = userDetails;
-
-    if (userDetails.personalProfile) {
-        [self setPersonalProfile:[userDetails profileInput]];
     }
 }
 
@@ -145,7 +135,7 @@
     return [self.objectModel.currentUser personalProfile] != nil;
 }
 
-- (void)validatePersonalProfile:(PlainPersonalProfileInput *)profile withHandler:(PersonalProfileValidationBlock)handler {
+- (void)validatePersonalProfile:(NSManagedObjectID *)profile withHandler:(PersonalProfileValidationBlock)handler {
     MCLog(@"validateProfile");
     PersonalProfileOperation *operation = [PersonalProfileOperation validateOperationWithProfile:profile];
     [self setExecutedOperation:operation];
@@ -158,15 +148,13 @@
                 return;
             }
 
-            [self setPersonalProfile:profile];
-
             if ([Credentials userLoggedIn]) {
                 handler(nil, nil);
                 [self pushNextScreenAfterPersonalProfile];
                 return;
             }
 
-            [self verifyEmail:profile.email withHandler:handler];
+            [self verifyEmail:self.objectModel.currentUser.email withHandler:handler];
         });
     }];
 
@@ -211,7 +199,6 @@
     [controller setRecipientValidation:self];
     [controller setAfterSaveAction:^{
         [self setRecipient:weakController.selectedRecipient];
-        [self setRecipientType:weakController.selectedRecipientType];
         [self presentPaymentConfirmation];
     }];
     [controller setPreLoadRecipientsWithCurrency:[self.objectModel currencyWithCode:self.calculationResult.targetCurrency]];
@@ -222,18 +209,6 @@
     MCLog(@"presentPaymentConfirmation");
     ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
     [controller setObjectModel:self.objectModel];
-    if (self.businessProfile) {
-        [controller setSenderIsBusiness:YES];
-        [controller setSenderName:self.businessProfile.businessName];
-        [controller setSenderEmail:self.userDetails.email];
-    } else {
-        [controller setSenderName:self.personalProfile.fullName];
-        [controller setSenderEmail:self.personalProfile.email];
-    }
-    [controller setSenderDetails:self.personalProfile];
-    [controller setRecipientProfile:self.recipientProfile];
-    [controller setRecipientType:self.recipientType];
-    [controller setCalculationResult:self.calculationResult];
     [controller setFooterButtonTitle:NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
     [controller setPaymentFlow:self];
     [self.navigationController pushViewController:controller animated:YES];
@@ -325,10 +300,11 @@
 
 - (void)registerUser {
     MCLog(@"registerUser");
-    MCAssert(self.personalProfile || (self.personalProfile && self.businessProfile));
-    MCAssert(self.personalProfile.email);
+    User *user = [self.objectModel currentUser];
+    MCAssert(user.personalProfile || (user.personalProfile && user.businessProfile));
+    MCAssert(user.email);
 
-    NSString *email = self.personalProfile.email;
+    NSString *email = user.email;
 
     RegisterWithoutPasswordOperation *operation = [RegisterWithoutPasswordOperation operationWithEmail:email];
     [self setExecutedOperation:operation];
@@ -377,7 +353,7 @@
 
 - (void)updatePersonalProfile {
     MCLog(@"updatePersonalProfile");
-    PersonalProfileOperation *operation = [PersonalProfileOperation commitOperationWithProfile:self.personalProfile];
+    PersonalProfileOperation *operation = [PersonalProfileOperation commitOperationWithProfile:self.objectModel.currentUser.personalProfile.objectID];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
 
@@ -386,9 +362,6 @@
             self.paymentErrorHandler(error);
             return;
         }
-
-        User *user = [self.objectModel currentUser];
-        [self setUserDetails:[user plainUserDetails]];
 
         MCLog(@"Recipient created?%d", [self.recipientProfile.id integerValue] != 0);
 

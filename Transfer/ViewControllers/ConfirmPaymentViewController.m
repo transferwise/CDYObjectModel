@@ -13,7 +13,6 @@
 #import "PlainRecipientTypeField.h"
 #import "OHAttributedLabel/OHAttributedLabel.h"
 #import "CalculationResult.h"
-#import "PlainPersonalProfileInput.h"
 #import "TRWProgressHUD.h"
 #import "PlainRecipientProfileInput.h"
 #import "TRWAlertView.h"

@@ -1,5 +1,4 @@
 #import "PersonalProfile.h"
-#import "PlainPersonalProfile.h"
 #import "NSString+Validation.h"
 
 
@@ -9,19 +8,6 @@
 
 
 @implementation PersonalProfile
-
-- (PlainPersonalProfile *)plainProfile {
-    PlainPersonalProfile *plain = [[PlainPersonalProfile alloc] init];
-    [plain setFirstName:self.firstName];
-    [plain setLastName:self.lastName];
-    [plain setDateOfBirthString:self.dateOfBirth];
-    [plain setPhoneNumber:self.phoneNumber];
-    [plain setAddressFirstLine:self.addressFirstLine];
-    [plain setPostCode:self.postCode];
-    [plain setCity:self.city];
-    [plain setCountryCode:self.countryCode];
-    return plain;
-}
 
 - (BOOL)isFieldReadonly:(NSString *)fieldName {
     return [self.readonlyFields rangeOfString:fieldName].location != NSNotFound;
@@ -42,6 +28,19 @@
     }
 
     return [NSString stringWithString:result];
+}
+
+- (NSDictionary *)data {
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"firstName"] = self.firstName;
+    data[@"lastName"] = self.lastName;
+    data[@"dateOfBirth"] = self.dateOfBirth;
+    data[@"phoneNumber"] = self.phoneNumber;
+    data[@"addressFirstLine"] = self.addressFirstLine;
+    data[@"postCode"] = self.postCode;
+    data[@"city"] = self.city;
+    data[@"countryCode"] = self.countryCode;
+    return [NSDictionary dictionaryWithDictionary:data];
 }
 
 @end

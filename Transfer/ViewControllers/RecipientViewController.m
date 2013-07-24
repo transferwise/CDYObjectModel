@@ -453,8 +453,4 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     return [self.recipient plainRecipient];
 }
 
-- (PlainRecipientType *)selectedRecipientType {
-    return [RecipientType createPlainType:[self.recipient type]];
-}
-
 @end

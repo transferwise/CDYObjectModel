@@ -7,24 +7,11 @@
 //
 
 #import "PlainProfileDetails.h"
-#import "PlainPersonalProfile.h"
-#import "PlainPersonalProfileInput.h"
 
 @interface PlainProfileDetails ()
 
 @end
 
 @implementation PlainProfileDetails
-
-- (PlainPersonalProfileInput *)profileInput {
-    PlainPersonalProfileInput *input = [self.personalProfile input];
-
-    if (!input) {
-        input = [[PlainPersonalProfileInput alloc] init];
-    }
-
-    [input setEmail:self.email];
-    return input;
-}
 
 @end

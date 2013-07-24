@@ -55,6 +55,8 @@ typedef void (^JCSActionBlock)();
 - (void)deleteObject:(NSManagedObject *)object saveAfter:(BOOL)saveAfter;
 - (void)deleteObjects:(NSArray *)objects saveAfter:(BOOL)saveAfter;
 
+- (void)performBlock:(JCSActionBlock)actionBlock;
+
 + (NSURL *)fileUrlInDocumentsFolder:(NSString *)fileName;
 
 @end

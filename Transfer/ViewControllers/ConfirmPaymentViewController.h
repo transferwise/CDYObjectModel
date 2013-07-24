@@ -16,12 +16,10 @@
 @class CalculationResult;
 @class PaymentFlow;
 @class PlainRecipientProfileInput;
-@class PlainPersonalProfileInput;
 @class ObjectModel;
 
 @interface ConfirmPaymentViewController : DataEntryViewController
 
-@property (nonatomic, strong) PlainPersonalProfileInput *senderDetails;
 @property (nonatomic, strong) PlainRecipientProfileInput *recipientProfile;
 @property (nonatomic, strong) PlainRecipientType *recipientType;
 @property (nonatomic, copy) NSString *footerButtonTitle;

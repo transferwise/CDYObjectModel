@@ -6,5 +6,6 @@
 
 - (PlainProfileDetails *)plainUserDetails;
 - (NSString *)displayName;
+- (PersonalProfile *)personalProfileObject;
 
 @end

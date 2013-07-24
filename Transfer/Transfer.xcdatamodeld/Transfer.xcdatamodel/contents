@@ -66,6 +66,7 @@
     <entity name="PendingPayment" representedClassName="PendingPayment" parentEntity="Payment" syncable="YES"/>
     <entity name="PersonalProfile" representedClassName="PersonalProfile" syncable="YES">
         <attribute name="addressFirstLine" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="changed" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="countryCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dateOfBirth" optional="YES" attributeType="String" syncable="YES"/>
@@ -130,12 +131,12 @@
         <element name="PairSourceCurrency" positionX="160" positionY="192" width="128" height="105"/>
         <element name="PairTargetCurrency" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Payment" positionX="160" positionY="192" width="128" height="255"/>
-        <element name="PersonalProfile" positionX="160" positionY="192" width="128" height="195"/>
+        <element name="PendingPayment" positionX="160" positionY="192" width="128" height="45"/>
+        <element name="PersonalProfile" positionX="160" positionY="192" width="128" height="210"/>
         <element name="Recipient" positionX="160" positionY="192" width="128" height="195"/>
         <element name="RecipientType" positionX="160" positionY="192" width="128" height="135"/>
         <element name="RecipientTypeField" positionX="160" positionY="192" width="128" height="210"/>
         <element name="TypeFieldValue" positionX="160" positionY="192" width="128" height="90"/>
         <element name="User" positionX="160" positionY="192" width="128" height="135"/>
-        <element name="PendingPayment" positionX="160" positionY="192" width="128" height="45"/>
     </elements>
 </model>
