@@ -10,7 +10,6 @@
 #import "MoneyEntryCell.h"
 #import "UIColor+Theme.h"
 #import "MoneyCalculator.h"
-#import "PlainRecipient.h"
 #import "CalculationResult.h"
 #import "Recipient.h"
 #import "ObjectModel.h"
@@ -23,6 +22,8 @@
 #import "UITableView+FooterPositioning.h"
 #import "ObjectModel+CurrencyPairs.h"
 #import "Currency.h"
+#import "PendingPayment.h"
+#import "ObjectModel+PendingPayments.h"
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -212,14 +213,22 @@ static NSUInteger const kRowYouSend = 0;
         return;
     }
 
-    PaymentFlow *paymentFlow = [[LoggedInPaymentFlow alloc] initWithPresentingController:self.navigationController];
-    [self setPaymentFlow:paymentFlow];
+    [self.objectModel performBlock:^{
+        PendingPayment *payment = [self.objectModel createPendingPayment];
+        [payment setSourceCurrency:[self.youSendCell currency]];
+        [payment setTargetCurrency:[self.theyReceiveCell currency]];
+        [payment setRecipient:self.recipient];
+        [payment setPayIn:(NSDecimalNumber *) [self.calculationResult transferwisePayIn]];
 
-    [paymentFlow setObjectModel:self.objectModel];
-    [paymentFlow setCalculationResult:self.calculationResult];
-    [paymentFlow setRecipient:[self.recipient plainRecipient]];
+        PaymentFlow *paymentFlow = [[LoggedInPaymentFlow alloc] initWithPresentingController:self.navigationController];
+        [self setPaymentFlow:paymentFlow];
 
-    [paymentFlow presentSenderDetails];
+        [paymentFlow setObjectModel:self.objectModel];
+
+        [self.objectModel performBlock:^{
+            [paymentFlow presentSenderDetails];
+        }];
+    }];
 }
 
 @end

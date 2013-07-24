@@ -12,7 +12,7 @@
 
 @implementation ObjectModel (PendingPayments)
 
-- (void)createPendingPayment {
+- (PendingPayment *)createPendingPayment {
     PendingPayment *existing = [self pendingPayment];
     if (existing) {
         [self deleteObject:existing saveAfter:NO];
@@ -20,6 +20,8 @@
 
     PendingPayment *payment = [PendingPayment insertInManagedObjectContext:self.managedObjectContext];
     [payment setUser:[self currentUser]];
+
+    return payment;
 }
 
 - (PendingPayment *)pendingPayment {

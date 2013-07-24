@@ -7,9 +7,8 @@
 //
 
 #import "DeleteRecipientOperation.h"
-#import "PlainRecipient.h"
 #import "TransferwiseOperation+Private.h"
-#import "Constants.h"
+#import "Recipient.h"
 
 NSString *const kDeleteRecipientPath = @"/recipient/delete";
 
@@ -45,8 +44,8 @@ NSString *const kDeleteRecipientPath = @"/recipient/delete";
     [self postData:@{@"recipientId" : self.recipientId} toPath:path];
 }
 
-+ (DeleteRecipientOperation *)operationWithRecipient:(PlainRecipient *)recipient {
-    return [[DeleteRecipientOperation alloc] initWithRecipientId:recipient.id];
++ (DeleteRecipientOperation *)operationWithRecipient:(Recipient *)recipient {
+    return [[DeleteRecipientOperation alloc] initWithRecipientId:recipient.remoteId];
 }
 
 

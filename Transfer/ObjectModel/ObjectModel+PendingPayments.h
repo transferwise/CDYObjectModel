@@ -12,7 +12,7 @@
 
 @interface ObjectModel (PendingPayments)
 
-- (void)createPendingPayment;
+- (PendingPayment *)createPendingPayment;
 - (PendingPayment *)pendingPayment;
 
 @end

@@ -13,7 +13,7 @@
 
 @property (nonatomic, copy) NSString *sourceCurrency;
 @property (nonatomic, copy) NSString *targetCurrency;
-@property (nonatomic) CalculationAmountCurrency amountCurrency;
+@property (nonatomic, assign) CalculationAmountCurrency amountCurrency;
 @property (nonatomic, strong, readonly) NSNumber *transferwiseRate;
 @property (nonatomic, copy) NSString *amount;
 @property (nonatomic, strong, readonly) NSNumber *transferwisePayIn;

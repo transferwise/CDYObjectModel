@@ -10,8 +10,6 @@
 #import "DataEntryViewController.h"
 #import "Constants.h"
 
-@class PlainRecipient;
-@class PlainRecipientType;
 @class ObjectModel;
 @class Currency;
 @protocol RecipientProfileValidation;
@@ -23,8 +21,5 @@
 @property (nonatomic, strong) Currency *preLoadRecipientsWithCurrency;
 @property (nonatomic, strong) id<RecipientProfileValidation> recipientValidation;
 @property (nonatomic, strong) ObjectModel *objectModel;
-
-
-- (PlainRecipient *)selectedRecipient;
 
 @end

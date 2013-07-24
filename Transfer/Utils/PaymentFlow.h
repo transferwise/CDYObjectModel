@@ -11,9 +11,6 @@
 #import "RecipientProfileValidation.h"
 #import "BusinessProfileValidation.h"
 
-@class PlainRecipientType;
-@class CalculationResult;
-@class PlainRecipient;
 @class PlainPaymentInput;
 @class PlainPaymentVerificationRequired;
 @class ObjectModel;
@@ -22,8 +19,6 @@ typedef void (^PaymentErrorBlock)(NSError *error);
 
 @interface PaymentFlow : NSObject <PersonalProfileValidation, RecipientProfileValidation, BusinessProfileValidation>
 
-@property (nonatomic, strong) CalculationResult *calculationResult;
-@property (nonatomic, strong) PlainRecipient *recipient;
 @property (nonatomic, strong) ObjectModel *objectModel;
 
 - (id)initWithPresentingController:(UINavigationController *)controller;

@@ -146,7 +146,6 @@
 		EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
 		EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
 		EA88E667172F979F0021492C /* PersonalProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E664172F979F0021492C /* PersonalProfileViewController.m */; };
-		EA88E675172F97B10021492C /* PlainRecipient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E671172F97B10021492C /* PlainRecipient.m */; };
 		EA88E67A172F97C40021492C /* NSError+TRWErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E677172F97C40021492C /* NSError+TRWErrors.m */; };
 		EA88E67B172F97C40021492C /* UIView+Container.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E679172F97C40021492C /* UIView+Container.m */; };
 		EA88E684172F97D50021492C /* CountriesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E67D172F97D50021492C /* CountriesOperation.m */; };
@@ -228,7 +227,6 @@
 		EAB93B511761D1EF00A7337C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB93B4E1761D1EF00A7337C /* Default@2x.png */; };
 		EAC1051A17607C4600B3B018 /* ClaimAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */; };
 		EAC1051B17607C4600B3B018 /* ClaimAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */; };
-		EACF763C175C7138008F2A03 /* PlainRecipientProfileInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF763B175C7138008F2A03 /* PlainRecipientProfileInput.m */; };
 		EACF7640175C71B4008F2A03 /* RecipientProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */; };
 		EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */; };
 		EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */; };
@@ -533,8 +531,6 @@
 		EA88E662172F979F0021492C /* DataEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryViewController.m; sourceTree = "<group>"; };
 		EA88E663172F979F0021492C /* PersonalProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileViewController.h; sourceTree = "<group>"; };
 		EA88E664172F979F0021492C /* PersonalProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileViewController.m; sourceTree = "<group>"; };
-		EA88E670172F97B10021492C /* PlainRecipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainRecipient.h; sourceTree = "<group>"; };
-		EA88E671172F97B10021492C /* PlainRecipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainRecipient.m; sourceTree = "<group>"; };
 		EA88E676172F97C40021492C /* NSError+TRWErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+TRWErrors.h"; sourceTree = "<group>"; };
 		EA88E677172F97C40021492C /* NSError+TRWErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+TRWErrors.m"; sourceTree = "<group>"; };
 		EA88E678172F97C40021492C /* UIView+Container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Container.h"; sourceTree = "<group>"; };
@@ -669,8 +665,6 @@
 		EAC1051717607C4600B3B018 /* ClaimAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimAccountViewController.h; sourceTree = "<group>"; };
 		EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimAccountViewController.m; sourceTree = "<group>"; };
 		EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClaimAccountViewController.xib; sourceTree = "<group>"; };
-		EACF763A175C7138008F2A03 /* PlainRecipientProfileInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainRecipientProfileInput.h; sourceTree = "<group>"; };
-		EACF763B175C7138008F2A03 /* PlainRecipientProfileInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainRecipientProfileInput.m; sourceTree = "<group>"; };
 		EACF763E175C71B4008F2A03 /* RecipientProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientProfileCommitter.h; sourceTree = "<group>"; };
 		EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientProfileCommitter.m; sourceTree = "<group>"; };
 		EAD069021737B8AE007C8DEE /* RecipientFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientFieldCell.h; sourceTree = "<group>"; };
@@ -999,10 +993,6 @@
 				EA592928175613FB007C0072 /* PlainPaymentInput.m */,
 				EA59292D1756231C007C0072 /* PlainPaymentVerificationRequired.h */,
 				EA59292E1756231C007C0072 /* PlainPaymentVerificationRequired.m */,
-				EA88E670172F97B10021492C /* PlainRecipient.h */,
-				EA88E671172F97B10021492C /* PlainRecipient.m */,
-				EACF763A175C7138008F2A03 /* PlainRecipientProfileInput.h */,
-				EACF763B175C7138008F2A03 /* PlainRecipientProfileInput.m */,
 				EA4AA6041737940900E99150 /* PlainRecipientType.h */,
 				EA4AA6051737940900E99150 /* PlainRecipientType.m */,
 				EA4AA608173794A600E99150 /* PlainRecipientTypeField.h */,
@@ -1801,7 +1791,6 @@
 				EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */,
 				EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */,
 				EA88E667172F979F0021492C /* PersonalProfileViewController.m in Sources */,
-				EA88E675172F97B10021492C /* PlainRecipient.m in Sources */,
 				EA88E67A172F97C40021492C /* NSError+TRWErrors.m in Sources */,
 				EA88E67B172F97C40021492C /* UIView+Container.m in Sources */,
 				EA88E684172F97D50021492C /* CountriesOperation.m in Sources */,
@@ -1853,7 +1842,6 @@
 				EA59298E1758CD6C007C0072 /* OpenIDViewController.m in Sources */,
 				EA59297117589F5C007C0072 /* PersonalProfileCommitter.m in Sources */,
 				EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */,
-				EACF763C175C7138008F2A03 /* PlainRecipientProfileInput.m in Sources */,
 				EACF7640175C71B4008F2A03 /* RecipientProfileCommitter.m in Sources */,
 				EAA053D2175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m in Sources */,
 				EAA053D6175DD5EE00ACD3F6 /* NoUserPaymentFlow.m in Sources */,

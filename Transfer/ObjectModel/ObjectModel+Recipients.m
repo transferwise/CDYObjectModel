@@ -21,7 +21,9 @@
 - (NSFetchedResultsController *)fetchedControllerForAllUserRecipients {
     NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
     NSPredicate *notSettlementPredicate = [NSPredicate predicateWithFormat:@"settlementRecipient = NO"];
-    return [self fetchedControllerForEntity:[Recipient entityName] predicate:notSettlementPredicate sortDescriptors:@[nameDescriptor]];
+    NSPredicate *notTemporaryPredicate = [NSPredicate predicateWithFormat:@"temporary = NO"];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notSettlementPredicate, notTemporaryPredicate]];
+    return [self fetchedControllerForEntity:[Recipient entityName] predicate:predicate sortDescriptors:@[nameDescriptor]];
 }
 
 - (Recipient *)recipientWithRemoteId:(NSNumber *)recipientId {
@@ -77,6 +79,12 @@
 - (Recipient *)createOrUpdateSettlementRecipientWithData:(NSDictionary *)data {
     Recipient *recipient = [self createOrUpdateRecipientWithData:data];
     [recipient setSettlementRecipientValue:YES];
+    return recipient;
+}
+
+- (Recipient *)createRecipient {
+    Recipient *recipient = [Recipient insertInManagedObjectContext:self.managedObjectContext];
+    [recipient setTemporaryValue:YES];
     return recipient;
 }
 

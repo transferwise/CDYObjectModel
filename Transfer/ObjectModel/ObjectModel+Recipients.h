@@ -15,5 +15,6 @@
 - (NSFetchedResultsController *)fetchedControllerForAllUserRecipients;
 - (Recipient *)createOrUpdateRecipientWithData:(NSDictionary *)data;
 - (Recipient *)createOrUpdateSettlementRecipientWithData:(NSDictionary *)data;
+- (Recipient *)createRecipient;
 
 @end

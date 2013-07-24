@@ -9,11 +9,11 @@
 #import "TransferwiseOperation.h"
 #import "UserRecipientsOperation.h"
 
-@class PlainRecipient;
+@class Recipient;
 
 @interface DeleteRecipientOperation : RecipientsOperation
 
-+ (DeleteRecipientOperation *)operationWithRecipient:(PlainRecipient *)recipient;
++ (DeleteRecipientOperation *)operationWithRecipient:(Recipient *)recipient;
 
 - (id)initWithRecipientId:(NSNumber *)recipientId;
 

@@ -1,10 +1,7 @@
 #import "Recipient.h"
 #import "TypeFieldValue.h"
 #import "RecipientTypeField.h"
-#import "PlainRecipient.h"
-#import "_Currency.h"
 #import "Currency.h"
-#import "_RecipientType.h"
 #import "RecipientType.h"
 
 
@@ -18,18 +15,6 @@
 - (NSString *)detailsRowOne {
     TypeFieldValue *value = [self.fieldValues firstObject];
     return [self presentationStringFromValue:value];
-}
-
-+ (PlainRecipient *)createPlainRecipient:(Recipient *)recipient {
-    PlainRecipient *plain = [[PlainRecipient alloc] init];
-    [plain setId:recipient.remoteId];
-    [plain setName:recipient.name];
-    [plain setCurrency:recipient.currency.code];
-    [plain setType:recipient.type.type];
-    for (TypeFieldValue *value in recipient.fieldValues) {
-        [plain setValue:value.value forKeyPath:value.valueForField.name];
-    }
-    return plain;
 }
 
 - (NSString *)detailsRowTwo {
@@ -49,18 +34,45 @@
     return [NSString stringWithFormat:@"%@: %@", value.valueForField.title, value.value];
 }
 
-- (PlainRecipient *)plainRecipient {
-    return [Recipient createPlainRecipient:self];
-}
-
 - (NSString *)valueField:(RecipientTypeField *)field {
-    for (TypeFieldValue *value in self.fieldValues) {
-        if ([value.valueForField isEqual:field]) {
-            return value.value;
-        }
+    TypeFieldValue *value = [self valueForField:field];
+    if (value) {
+        return value.value;
     }
 
     return @"";
+}
+
+- (void)setValue:(NSString *)value forField:(RecipientTypeField *)field {
+    TypeFieldValue *fieldValue = [self valueForField:field];
+    if (!fieldValue) {
+        fieldValue = [TypeFieldValue insertInManagedObjectContext:self.managedObjectContext];
+        [fieldValue setRecipient:self];
+        [fieldValue setValueForField:field];
+    }
+
+    [fieldValue setValue:value];
+}
+
+- (TypeFieldValue *)valueForField:(RecipientTypeField *)field {
+    for (TypeFieldValue *value in self.fieldValues) {
+        if ([value.valueForField isEqual:field]) {
+            return value;
+        }
+    }
+
+    return nil;
+}
+
+- (NSDictionary *)data {
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"name"] = self.name;
+    data[@"currency"] = self.currency.code;
+    data[@"type"] = self.type.type;
+    for (TypeFieldValue *value in self.fieldValues) {
+        data[value.valueForField.name] = value.value;
+    }
+    return [NSDictionary dictionaryWithDictionary:data];
 }
 
 @end

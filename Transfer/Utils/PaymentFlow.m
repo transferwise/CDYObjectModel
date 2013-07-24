@@ -17,13 +17,10 @@
 #import "VerificationRequiredOperation.h"
 #import "PlainPaymentVerificationRequired.h"
 #import "Credentials.h"
-#import "CalculationResult.h"
 #import "UploadVerificationFileOperation.h"
 #import "PersonalProfileOperation.h"
 #import "EmailCheckOperation.h"
-#import "PlainRecipientProfileInput.h"
 #import "RecipientOperation.h"
-#import "PlainRecipient.h"
 #import "RegisterWithoutPasswordOperation.h"
 #import "BusinessProfileOperation.h"
 #import "PaymentProfileViewController.h"
@@ -31,11 +28,12 @@
 #import "ObjectModel.h"
 #import "User.h"
 #import "ObjectModel+Users.h"
-#import "ObjectModel+Currencies.h"
-#import "_PersonalProfile.h"
 #import "PersonalProfile.h"
-#import "_BusinessProfile.h"
 #import "BusinessProfile.h"
+#import "ObjectModel+PendingPayments.h"
+#import "PendingPayment.h"
+#import "Currency.h"
+#import "Recipient.h"
 
 @interface PaymentFlow ()
 
@@ -44,7 +42,6 @@
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) PlainPaymentVerificationRequired *verificationRequired;
 @property (nonatomic, strong) PlainPaymentInput *paymentInput;
-@property (nonatomic, strong) PlainRecipientProfileInput *recipientProfile;
 
 @end
 
@@ -60,13 +57,6 @@
     return self;
 }
 
-- (void)setRecipient:(PlainRecipient *)recipient {
-    _recipient = recipient;
-    if (_recipient) {
-        [self setRecipientProfile:[recipient profileInput]];
-    }
-}
-
 - (void)presentSenderDetails {
     [self presentSenderDetails:YES];
 }
@@ -75,7 +65,7 @@
     PaymentProfileViewController *controller = [[PaymentProfileViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setAllowProfileSwitch:allowProfileSwitch];
-    if (self.recipient) {
+    if (self.objectModel.pendingPayment.recipient) {
         [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.confirm.payment.button.title", nil)];
     } else {
         [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.continue.to.recipient.button.title", nil)];
@@ -170,7 +160,7 @@
 }
 
 - (void)pushNextScreenAfterPersonalProfile {
-    if (self.recipient) {
+    if (self.objectModel.pendingPayment.recipient) {
         [self presentPaymentConfirmation];
     } else {
         [self presentRecipientDetails];
@@ -179,16 +169,14 @@
 
 - (void)presentRecipientDetails {
     RecipientViewController *controller = [[RecipientViewController alloc] init];
-    __block __weak  RecipientViewController *weakController = controller;
     [controller setObjectModel:self.objectModel];
     [controller setTitle:NSLocalizedString(@"recipient.controller.payment.mode.title", nil)];
     [controller setFooterButtonTitle:NSLocalizedString(@"recipient.controller.confirm.payment.button.title", nil)];
     [controller setRecipientValidation:self];
     [controller setAfterSaveAction:^{
-        [self setRecipient:weakController.selectedRecipient];
         [self presentPaymentConfirmation];
     }];
-    [controller setPreLoadRecipientsWithCurrency:[self.objectModel currencyWithCode:self.calculationResult.targetCurrency]];
+    [controller setPreLoadRecipientsWithCurrency:self.objectModel.pendingPayment.targetCurrency];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -245,7 +233,8 @@
 
 - (void)checkVerificationNeeded {
     MCLog(@"checkVerificationNeeded");
-    VerificationRequiredOperation *operation = [VerificationRequiredOperation operationWithData:@{@"payIn" : self.calculationResult.transferwisePayIn, @"sourceCurrency" : self.calculationResult.sourceCurrency}];
+    PendingPayment *payment = self.objectModel.pendingPayment;
+    VerificationRequiredOperation *operation = [VerificationRequiredOperation operationWithData:@{@"payIn" : payment.payIn, @"sourceCurrency" : payment.sourceCurrency.code}];
     [self setExecutedOperation:operation];
 
     [operation setCompletionHandler:^(PlainPaymentVerificationRequired *verificationRequired, NSError *error) {
@@ -343,9 +332,11 @@
             return;
         }
 
-        MCLog(@"Recipient created?%d", [self.recipientProfile.id integerValue] != 0);
+        Recipient *recipient = self.objectModel.pendingPayment.recipient;
 
-        if ([self.recipientProfile.id integerValue] == 0) {
+        MCLog(@"Recipient created?%d", [recipient remoteIdValue] != 0);
+
+        if ([recipient remoteIdValue] == 0) {
             [self commitRecipientData];
         } else {
             [self uploadVerificationData];
@@ -357,20 +348,16 @@
 
 - (void)commitRecipientData {
     MCLog(@"commitRecipientData");
-    RecipientOperation *operation = [RecipientOperation createOperationWithRecipient:self.recipientProfile];
+    RecipientOperation *operation = [RecipientOperation createOperationWithRecipient:self.objectModel.pendingPayment.recipient.objectID];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
 
-    [operation setResponseHandler:^(PlainRecipient *recipient, NSError *error) {
+    [operation setResponseHandler:^(NSError *error) {
         if (error) {
             self.paymentErrorHandler(error);
             return;
         }
 
-        MCLog(@"Recipient:%@", recipient);
-        MCLog(@"Recipient id:%@", recipient.id);
-        [self setRecipient:recipient];
-        [self.paymentInput setRecipientId:recipient.id];
         [self commitPayment];
     }];
 
@@ -445,7 +432,7 @@
 - (void)commitPayment {
     MCLog(@"Commit payment");
     if (!self.paymentInput.recipientId) {
-        [self.paymentInput setRecipientId:self.recipientProfile.id];
+        [self.paymentInput setRecipientId:self.objectModel.pendingPayment.recipient.remoteId];
     }
 
     [self.paymentInput setProfile:@"personal"];
@@ -468,17 +455,13 @@
     [operation execute];
 }
 
-- (void)validateRecipient:(PlainRecipientProfileInput *)recipientProfile completion:(RecipientProfileValidationBlock)completion {
+- (void)validateRecipient:(NSManagedObjectID *)recipientProfile completion:(RecipientProfileValidationBlock)completion {
     MCLog(@"Validate recipient");
     RecipientOperation *operation = [RecipientOperation validateOperationWithRecipient:recipientProfile];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
 
-    [operation setResponseHandler:^(PlainRecipient *recipient, NSError *error) {
-        [self setRecipientProfile:recipientProfile];
-
-        completion(recipient, error);
-    }];
+    [operation setResponseHandler:completion];
 
     [operation execute];
 }

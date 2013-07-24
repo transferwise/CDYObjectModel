@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class PlainRecipient;
-@class PlainRecipientProfileInput;
+@class ObjectModel;
 
-typedef void (^RecipientProfileValidationBlock)(PlainRecipient *recipient, NSError *error);
+typedef void (^RecipientProfileValidationBlock)(NSError *error);
 
 @protocol RecipientProfileValidation <NSObject>
 
-- (void)validateRecipient:(PlainRecipientProfileInput *)recipientProfile completion:(RecipientProfileValidationBlock)completion;
+- (void)validateRecipient:(NSManagedObjectID *)recipientProfile completion:(RecipientProfileValidationBlock)completion;
+- (void)setObjectModel:(ObjectModel *)objectModel;
 
 @end

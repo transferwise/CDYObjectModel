@@ -10,18 +10,13 @@
 #import "DataEntryViewController.h"
 #import "Constants.h"
 
-@class PlainProfileDetails;
-@class PlainRecipient;
 @class PlainRecipientType;
 @class CalculationResult;
 @class PaymentFlow;
-@class PlainRecipientProfileInput;
 @class ObjectModel;
 
 @interface ConfirmPaymentViewController : DataEntryViewController
 
-@property (nonatomic, strong) PlainRecipientProfileInput *recipientProfile;
-@property (nonatomic, strong) PlainRecipientType *recipientType;
 @property (nonatomic, copy) NSString *footerButtonTitle;
 @property (nonatomic, strong) CalculationResult *calculationResult;
 @property (nonatomic, assign) PaymentFlow *paymentFlow;
