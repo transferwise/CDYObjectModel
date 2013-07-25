@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		0286BD7B9CD44CD1BAB42E42 /* libPods-TransferTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1FBDCF7CCD414999CC7D3D /* libPods-TransferTests.a */; };
 		1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC92173B7C28008773FC /* BusinessProfileViewController.m */; };
-		1864AC9A173B7C4D008773FC /* PlainBusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC99173B7C4D008773FC /* PlainBusinessProfile.m */; };
-		1864AC9B173B7C5E008773FC /* PlainBusinessProfile.h in Resources */ = {isa = PBXBuildFile; fileRef = 1864AC98173B7C4D008773FC /* PlainBusinessProfile.h */; };
 		1864AC9E173B7C80008773FC /* BusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */; };
 		1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */; };
 		18D47900173A3B5300FC317E /* IdentificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D478FF173A3B5300FC317E /* IdentificationViewController.m */; };
@@ -53,6 +51,10 @@
 		EA13E04E171BEF710019FBF0 /* TextEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */; };
 		EA1861E017463F8D00BD01BB /* UINavigationController+StackManipulations.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1861DF17463F8D00BD01BB /* UINavigationController+StackManipulations.m */; };
 		EA1861E31746442900BD01BB /* RegisterOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1861E21746442900BD01BB /* RegisterOperation.m */; };
+		EA1E4E21179E712A00F8D932 /* _PendingPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E4E20179E712A00F8D932 /* _PendingPayment.m */; };
+		EA1E4E25179E713100F8D932 /* PendingPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E4E24179E713100F8D932 /* PendingPayment.m */; };
+		EA1E4E28179E71C300F8D932 /* ObjectModel+PendingPayments.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E4E27179E71C300F8D932 /* ObjectModel+PendingPayments.m */; };
+		EA1E4E33179FF1E500F8D932 /* NSMutableDictionary+SaneData.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E4E32179FF1E500F8D932 /* NSMutableDictionary+SaneData.m */; };
 		EA222E33173A676000C5D613 /* PaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E32173A676000C5D613 /* PaymentFlow.m */; };
 		EA222E38173A861000C5D613 /* ConfirmPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E36173A861000C5D613 /* ConfirmPaymentViewController.m */; };
 		EA222E39173A861000C5D613 /* ConfirmPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E37173A861000C5D613 /* ConfirmPaymentViewController.xib */; };
@@ -119,16 +121,11 @@
 		EA416E301768673500904D97 /* ProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E2F1768673500904D97 /* ProfileSource.m */; };
 		EA416E331768674700904D97 /* PersonalProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E321768674700904D97 /* PersonalProfileSource.m */; };
 		EA416E361768675400904D97 /* BusinessProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E351768675400904D97 /* BusinessProfileSource.m */; };
-		EA4AA6061737940900E99150 /* PlainRecipientType.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA6051737940900E99150 /* PlainRecipientType.m */; };
-		EA4AA60A173794A600E99150 /* PlainRecipientTypeField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA609173794A600E99150 /* PlainRecipientTypeField.m */; };
 		EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */; };
 		EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */; };
-		EA592929175613FB007C0072 /* PlainPaymentInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EA592928175613FB007C0072 /* PlainPaymentInput.m */; };
 		EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */; };
-		EA59292F1756231C007C0072 /* PlainPaymentVerificationRequired.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292E1756231C007C0072 /* PlainPaymentVerificationRequired.m */; };
 		EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */; };
 		EA59297117589F5C007C0072 /* PersonalProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297017589F5C007C0072 /* PersonalProfileCommitter.m */; };
-		EA5929771758A1E1007C0072 /* PlainPersonalProfileInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5929761758A1E1007C0072 /* PlainPersonalProfileInput.m */; };
 		EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */; };
 		EA5929861758CAAC007C0072 /* SignInWithGoogleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5929821758CAAC007C0072 /* SignInWithGoogleButton.png */; };
 		EA5929871758CAAC007C0072 /* SignInWithGoogleButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5929831758CAAC007C0072 /* SignInWithGoogleButton@2x.png */; };
@@ -146,9 +143,6 @@
 		EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
 		EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
 		EA88E667172F979F0021492C /* PersonalProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E664172F979F0021492C /* PersonalProfileViewController.m */; };
-		EA88E673172F97B10021492C /* PlainPersonalProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E66D172F97B10021492C /* PlainPersonalProfile.m */; };
-		EA88E674172F97B10021492C /* PlainProfileDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E66F172F97B10021492C /* PlainProfileDetails.m */; };
-		EA88E675172F97B10021492C /* PlainRecipient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E671172F97B10021492C /* PlainRecipient.m */; };
 		EA88E67A172F97C40021492C /* NSError+TRWErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E677172F97C40021492C /* NSError+TRWErrors.m */; };
 		EA88E67B172F97C40021492C /* UIView+Container.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E679172F97C40021492C /* UIView+Container.m */; };
 		EA88E684172F97D50021492C /* CountriesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E67D172F97D50021492C /* CountriesOperation.m */; };
@@ -180,7 +174,6 @@
 		EA8FF6B4171D23B20090A658 /* TRWProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6B3171D23B20090A658 /* TRWProgressHUD.m */; };
 		EA8FF6B8171D25C20090A658 /* TransferwiseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */; };
 		EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6BA171D26A00090A658 /* LoginOperation.m */; };
-		EA92D94E1769BB330078D0C4 /* PlainBusinessProfileInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D94D1769BB330078D0C4 /* PlainBusinessProfileInput.m */; };
 		EA92D9541769BD9D0078D0C4 /* BusinessProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D9531769BD9D0078D0C4 /* BusinessProfileCommitter.m */; };
 		EA92D97F176AF1200078D0C4 /* PaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D97E176AF1200078D0C4 /* PaymentProfileViewController.m */; };
 		EA92D983176AF1DF0078D0C4 /* ProfileSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D982176AF1DF0078D0C4 /* ProfileSelectionView.m */; };
@@ -231,7 +224,6 @@
 		EAB93B511761D1EF00A7337C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB93B4E1761D1EF00A7337C /* Default@2x.png */; };
 		EAC1051A17607C4600B3B018 /* ClaimAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */; };
 		EAC1051B17607C4600B3B018 /* ClaimAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */; };
-		EACF763C175C7138008F2A03 /* PlainRecipientProfileInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF763B175C7138008F2A03 /* PlainRecipientProfileInput.m */; };
 		EACF7640175C71B4008F2A03 /* RecipientProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */; };
 		EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */; };
 		EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */; };
@@ -255,7 +247,6 @@
 		EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66780174CB34600D29BCB /* PhoneBookProfile.m */; };
 		EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */; };
 		EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */; };
-		EAD667AB174E250600D29BCB /* PlainStringValue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD667AA174E250600D29BCB /* PlainStringValue.m */; };
 		EAD667C6174F4C7300D29BCB /* TWlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD667C4174F4C7200D29BCB /* TWlogo.png */; };
 		EAD667C7174F4C7300D29BCB /* TWlogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD667C5174F4C7300D29BCB /* TWlogo@2x.png */; };
 		EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */; };
@@ -307,8 +298,6 @@
 /* Begin PBXFileReference section */
 		1864AC91173B7C28008773FC /* BusinessProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileViewController.h; sourceTree = "<group>"; };
 		1864AC92173B7C28008773FC /* BusinessProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileViewController.m; sourceTree = "<group>"; };
-		1864AC98173B7C4D008773FC /* PlainBusinessProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainBusinessProfile.h; sourceTree = "<group>"; };
-		1864AC99173B7C4D008773FC /* PlainBusinessProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainBusinessProfile.m; sourceTree = "<group>"; };
 		1864AC9C173B7C80008773FC /* BusinessProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileOperation.h; sourceTree = "<group>"; };
 		1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileOperation.m; sourceTree = "<group>"; };
 		1864AC9F173B7C95008773FC /* DeleteRecipientOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteRecipientOperation.h; sourceTree = "<group>"; };
@@ -374,6 +363,14 @@
 		EA1861DF17463F8D00BD01BB /* UINavigationController+StackManipulations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+StackManipulations.m"; sourceTree = "<group>"; };
 		EA1861E11746442900BD01BB /* RegisterOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterOperation.h; sourceTree = "<group>"; };
 		EA1861E21746442900BD01BB /* RegisterOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterOperation.m; sourceTree = "<group>"; };
+		EA1E4E1F179E712A00F8D932 /* _PendingPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _PendingPayment.h; sourceTree = "<group>"; };
+		EA1E4E20179E712A00F8D932 /* _PendingPayment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PendingPayment.m; sourceTree = "<group>"; };
+		EA1E4E23179E713100F8D932 /* PendingPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingPayment.h; sourceTree = "<group>"; };
+		EA1E4E24179E713100F8D932 /* PendingPayment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingPayment.m; sourceTree = "<group>"; };
+		EA1E4E26179E71C300F8D932 /* ObjectModel+PendingPayments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+PendingPayments.h"; sourceTree = "<group>"; };
+		EA1E4E27179E71C300F8D932 /* ObjectModel+PendingPayments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+PendingPayments.m"; sourceTree = "<group>"; };
+		EA1E4E31179FF1E500F8D932 /* NSMutableDictionary+SaneData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+SaneData.h"; sourceTree = "<group>"; };
+		EA1E4E32179FF1E500F8D932 /* NSMutableDictionary+SaneData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+SaneData.m"; sourceTree = "<group>"; };
 		EA222E31173A676000C5D613 /* PaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentFlow.h; sourceTree = "<group>"; };
 		EA222E32173A676000C5D613 /* PaymentFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentFlow.m; sourceTree = "<group>"; };
 		EA222E35173A861000C5D613 /* ConfirmPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmPaymentViewController.h; sourceTree = "<group>"; };
@@ -488,27 +485,17 @@
 		EA416E321768674700904D97 /* PersonalProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileSource.m; sourceTree = "<group>"; };
 		EA416E341768675400904D97 /* BusinessProfileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileSource.h; sourceTree = "<group>"; };
 		EA416E351768675400904D97 /* BusinessProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileSource.m; sourceTree = "<group>"; };
-		EA4AA6041737940900E99150 /* PlainRecipientType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainRecipientType.h; sourceTree = "<group>"; };
-		EA4AA6051737940900E99150 /* PlainRecipientType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainRecipientType.m; sourceTree = "<group>"; };
-		EA4AA608173794A600E99150 /* PlainRecipientTypeField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainRecipientTypeField.h; sourceTree = "<group>"; };
-		EA4AA609173794A600E99150 /* PlainRecipientTypeField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainRecipientTypeField.m; sourceTree = "<group>"; };
 		EA4AA60B17379C9D00E99150 /* CurrencySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencySelectionCell.h; sourceTree = "<group>"; };
 		EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencySelectionCell.m; sourceTree = "<group>"; };
 		EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencySelectionCell.xib; sourceTree = "<group>"; };
-		EA592927175613FB007C0072 /* PlainPaymentInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainPaymentInput.h; sourceTree = "<group>"; };
-		EA592928175613FB007C0072 /* PlainPaymentInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainPaymentInput.m; sourceTree = "<group>"; };
 		EA59292A175621D0007C0072 /* VerificationRequiredOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationRequiredOperation.h; sourceTree = "<group>"; };
 		EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationRequiredOperation.m; sourceTree = "<group>"; };
-		EA59292D1756231C007C0072 /* PlainPaymentVerificationRequired.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainPaymentVerificationRequired.h; sourceTree = "<group>"; };
-		EA59292E1756231C007C0072 /* PlainPaymentVerificationRequired.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainPaymentVerificationRequired.m; sourceTree = "<group>"; };
 		EA59293C17577CCA007C0072 /* UploadVerificationFileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadVerificationFileOperation.h; sourceTree = "<group>"; };
 		EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadVerificationFileOperation.m; sourceTree = "<group>"; };
 		EA59296C17589F22007C0072 /* PersonalProfileValidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalProfileValidation.h; sourceTree = "<group>"; };
 		EA59296E17589F3A007C0072 /* RecipientProfileValidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecipientProfileValidation.h; sourceTree = "<group>"; };
 		EA59296F17589F5C007C0072 /* PersonalProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileCommitter.h; sourceTree = "<group>"; };
 		EA59297017589F5C007C0072 /* PersonalProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileCommitter.m; sourceTree = "<group>"; };
-		EA5929751758A1E1007C0072 /* PlainPersonalProfileInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainPersonalProfileInput.h; sourceTree = "<group>"; };
-		EA5929761758A1E1007C0072 /* PlainPersonalProfileInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainPersonalProfileInput.m; sourceTree = "<group>"; };
 		EA59297D1758AE1C007C0072 /* EmailCheckOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailCheckOperation.h; sourceTree = "<group>"; };
 		EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailCheckOperation.m; sourceTree = "<group>"; };
 		EA5929821758CAAC007C0072 /* SignInWithGoogleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SignInWithGoogleButton.png; sourceTree = "<group>"; };
@@ -534,12 +521,6 @@
 		EA88E662172F979F0021492C /* DataEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryViewController.m; sourceTree = "<group>"; };
 		EA88E663172F979F0021492C /* PersonalProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileViewController.h; sourceTree = "<group>"; };
 		EA88E664172F979F0021492C /* PersonalProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileViewController.m; sourceTree = "<group>"; };
-		EA88E66C172F97B10021492C /* PlainPersonalProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainPersonalProfile.h; sourceTree = "<group>"; };
-		EA88E66D172F97B10021492C /* PlainPersonalProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainPersonalProfile.m; sourceTree = "<group>"; };
-		EA88E66E172F97B10021492C /* PlainProfileDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainProfileDetails.h; sourceTree = "<group>"; };
-		EA88E66F172F97B10021492C /* PlainProfileDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainProfileDetails.m; sourceTree = "<group>"; };
-		EA88E670172F97B10021492C /* PlainRecipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainRecipient.h; sourceTree = "<group>"; };
-		EA88E671172F97B10021492C /* PlainRecipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainRecipient.m; sourceTree = "<group>"; };
 		EA88E676172F97C40021492C /* NSError+TRWErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+TRWErrors.h"; sourceTree = "<group>"; };
 		EA88E677172F97C40021492C /* NSError+TRWErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+TRWErrors.m"; sourceTree = "<group>"; };
 		EA88E678172F97C40021492C /* UIView+Container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Container.h"; sourceTree = "<group>"; };
@@ -600,8 +581,6 @@
 		EA8FF6B9171D26A00090A658 /* LoginOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginOperation.h; sourceTree = "<group>"; };
 		EA8FF6BA171D26A00090A658 /* LoginOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginOperation.m; sourceTree = "<group>"; };
 		EA8FF6BC171D30B60090A658 /* TransferwiseOperation+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TransferwiseOperation+Private.h"; sourceTree = "<group>"; };
-		EA92D94C1769BB330078D0C4 /* PlainBusinessProfileInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainBusinessProfileInput.h; sourceTree = "<group>"; };
-		EA92D94D1769BB330078D0C4 /* PlainBusinessProfileInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainBusinessProfileInput.m; sourceTree = "<group>"; };
 		EA92D9511769BD870078D0C4 /* BusinessProfileValidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessProfileValidation.h; sourceTree = "<group>"; };
 		EA92D9521769BD9D0078D0C4 /* BusinessProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileCommitter.h; sourceTree = "<group>"; };
 		EA92D9531769BD9D0078D0C4 /* BusinessProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileCommitter.m; sourceTree = "<group>"; };
@@ -676,8 +655,6 @@
 		EAC1051717607C4600B3B018 /* ClaimAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimAccountViewController.h; sourceTree = "<group>"; };
 		EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimAccountViewController.m; sourceTree = "<group>"; };
 		EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClaimAccountViewController.xib; sourceTree = "<group>"; };
-		EACF763A175C7138008F2A03 /* PlainRecipientProfileInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainRecipientProfileInput.h; sourceTree = "<group>"; };
-		EACF763B175C7138008F2A03 /* PlainRecipientProfileInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainRecipientProfileInput.m; sourceTree = "<group>"; };
 		EACF763E175C71B4008F2A03 /* RecipientProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientProfileCommitter.h; sourceTree = "<group>"; };
 		EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientProfileCommitter.m; sourceTree = "<group>"; };
 		EAD069021737B8AE007C8DEE /* RecipientFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientFieldCell.h; sourceTree = "<group>"; };
@@ -713,8 +690,6 @@
 		EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneBookProfileSelector.m; sourceTree = "<group>"; };
 		EAD66785174CD3FE00D29BCB /* PhoneBookAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneBookAddress.h; sourceTree = "<group>"; };
 		EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneBookAddress.m; sourceTree = "<group>"; };
-		EAD667A9174E250600D29BCB /* PlainStringValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainStringValue.h; sourceTree = "<group>"; };
-		EAD667AA174E250600D29BCB /* PlainStringValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainStringValue.m; sourceTree = "<group>"; };
 		EAD667C4174F4C7200D29BCB /* TWlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TWlogo.png; sourceTree = "<group>"; };
 		EAD667C5174F4C7300D29BCB /* TWlogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TWlogo@2x.png"; sourceTree = "<group>"; };
 		EAD667C9174F6F7B00D29BCB /* DismissKeyboardTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissKeyboardTableView.h; sourceTree = "<group>"; };
@@ -916,6 +891,8 @@
 				EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */,
 				EA88E676172F97C40021492C /* NSError+TRWErrors.h */,
 				EA88E677172F97C40021492C /* NSError+TRWErrors.m */,
+				EA1E4E31179FF1E500F8D932 /* NSMutableDictionary+SaneData.h */,
+				EA1E4E32179FF1E500F8D932 /* NSMutableDictionary+SaneData.m */,
 				EA8FF683171D1A320090A658 /* NSMutableString+Issues.h */,
 				EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */,
 				EA8FF680171D19B50090A658 /* NSString+Validation.h */,
@@ -1002,30 +979,6 @@
 				EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */,
 				EAD6677F174CB34600D29BCB /* PhoneBookProfile.h */,
 				EAD66780174CB34600D29BCB /* PhoneBookProfile.m */,
-				1864AC98173B7C4D008773FC /* PlainBusinessProfile.h */,
-				1864AC99173B7C4D008773FC /* PlainBusinessProfile.m */,
-				EA92D94C1769BB330078D0C4 /* PlainBusinessProfileInput.h */,
-				EA92D94D1769BB330078D0C4 /* PlainBusinessProfileInput.m */,
-				EA592927175613FB007C0072 /* PlainPaymentInput.h */,
-				EA592928175613FB007C0072 /* PlainPaymentInput.m */,
-				EA59292D1756231C007C0072 /* PlainPaymentVerificationRequired.h */,
-				EA59292E1756231C007C0072 /* PlainPaymentVerificationRequired.m */,
-				EA88E66C172F97B10021492C /* PlainPersonalProfile.h */,
-				EA88E66D172F97B10021492C /* PlainPersonalProfile.m */,
-				EA5929751758A1E1007C0072 /* PlainPersonalProfileInput.h */,
-				EA5929761758A1E1007C0072 /* PlainPersonalProfileInput.m */,
-				EA88E66E172F97B10021492C /* PlainProfileDetails.h */,
-				EA88E66F172F97B10021492C /* PlainProfileDetails.m */,
-				EA88E670172F97B10021492C /* PlainRecipient.h */,
-				EA88E671172F97B10021492C /* PlainRecipient.m */,
-				EACF763A175C7138008F2A03 /* PlainRecipientProfileInput.h */,
-				EACF763B175C7138008F2A03 /* PlainRecipientProfileInput.m */,
-				EA4AA6041737940900E99150 /* PlainRecipientType.h */,
-				EA4AA6051737940900E99150 /* PlainRecipientType.m */,
-				EA4AA608173794A600E99150 /* PlainRecipientTypeField.h */,
-				EA4AA609173794A600E99150 /* PlainRecipientTypeField.m */,
-				EAD667A9174E250600D29BCB /* PlainStringValue.h */,
-				EAD667AA174E250600D29BCB /* PlainStringValue.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1342,6 +1295,8 @@
 				EA225CA5178EC32D009D6B83 /* ObjectModel+CurrencyPairs.m */,
 				EA225C6F178E9F00009D6B83 /* ObjectModel+Payments.h */,
 				EA225C70178E9F00009D6B83 /* ObjectModel+Payments.m */,
+				EA1E4E26179E71C300F8D932 /* ObjectModel+PendingPayments.h */,
+				EA1E4E27179E71C300F8D932 /* ObjectModel+PendingPayments.m */,
 				EA225C89178EB297009D6B83 /* ObjectModel+Recipients.h */,
 				EA225C8A178EB297009D6B83 /* ObjectModel+Recipients.m */,
 				EA225C92178EB36B009D6B83 /* ObjectModel+RecipientTypes.h */,
@@ -1356,6 +1311,8 @@
 				EA225CC1178EEC77009D6B83 /* PairTargetCurrency.m */,
 				EA225C69178E9C93009D6B83 /* Payment.h */,
 				EA225C6A178E9C93009D6B83 /* Payment.m */,
+				EA1E4E23179E713100F8D932 /* PendingPayment.h */,
+				EA1E4E24179E713100F8D932 /* PendingPayment.m */,
 				EA2379F61793E04400166361 /* PersonalProfile.h */,
 				EA2379F71793E04400166361 /* PersonalProfile.m */,
 				EA225C80178EA3C8009D6B83 /* Recipient.h */,
@@ -1399,6 +1356,8 @@
 				EA225CBE178EEC6F009D6B83 /* _PairTargetCurrency.m */,
 				EA225C65178E9C90009D6B83 /* _Payment.h */,
 				EA225C66178E9C90009D6B83 /* _Payment.m */,
+				EA1E4E1F179E712A00F8D932 /* _PendingPayment.h */,
+				EA1E4E20179E712A00F8D932 /* _PendingPayment.m */,
 				EA2379EE1793E02F00166361 /* _PersonalProfile.h */,
 				EA2379EF1793E02F00166361 /* _PersonalProfile.m */,
 				EA225C7D178EA3C2009D6B83 /* _Recipient.h */,
@@ -1600,7 +1559,6 @@
 				EAB72153171FC34600DE29F5 /* NavBarButton@2x.png in Resources */,
 				EAB72156171FC3E900DE29F5 /* SettingsButtonIcon.png in Resources */,
 				EAB72157171FC3E900DE29F5 /* SettingsButtonIcon@2x.png in Resources */,
-				1864AC9B173B7C5E008773FC /* PlainBusinessProfile.h in Resources */,
 				EAB7215C171FC61B00DE29F5 /* SettingsViewController.xib in Resources */,
 				EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */,
 				BBC691241721416300F0FB1A /* TSAlertViewMessageListViewShadow.png in Resources */,
@@ -1813,9 +1771,6 @@
 				EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */,
 				EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */,
 				EA88E667172F979F0021492C /* PersonalProfileViewController.m in Sources */,
-				EA88E673172F97B10021492C /* PlainPersonalProfile.m in Sources */,
-				EA88E674172F97B10021492C /* PlainProfileDetails.m in Sources */,
-				EA88E675172F97B10021492C /* PlainRecipient.m in Sources */,
 				EA88E67A172F97C40021492C /* NSError+TRWErrors.m in Sources */,
 				EA88E67B172F97C40021492C /* UIView+Container.m in Sources */,
 				EA88E684172F97D50021492C /* CountriesOperation.m in Sources */,
@@ -1832,8 +1787,6 @@
 				EAA54F501733DC3500B65BF3 /* CurrenciesOperation.m in Sources */,
 				EAA54F581733E8F700B65BF3 /* TransferwiseClient.m in Sources */,
 				EAA54F5B1733EF1A00B65BF3 /* RecipientTypesOperation.m in Sources */,
-				EA4AA6061737940900E99150 /* PlainRecipientType.m in Sources */,
-				EA4AA60A173794A600E99150 /* PlainRecipientTypeField.m in Sources */,
 				EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */,
 				EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */,
 				EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */,
@@ -1841,7 +1794,6 @@
 				EAD85B0B173920C300C22211 /* PersonalProfileOperation.m in Sources */,
 				18D47900173A3B5300FC317E /* IdentificationViewController.m in Sources */,
 				1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */,
-				1864AC9A173B7C4D008773FC /* PlainBusinessProfile.m in Sources */,
 				1864AC9E173B7C80008773FC /* BusinessProfileOperation.m in Sources */,
 				1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */,
 				EA222E33173A676000C5D613 /* PaymentFlow.m in Sources */,
@@ -1859,17 +1811,12 @@
 				EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */,
 				EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */,
 				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
-				EAD667AB174E250600D29BCB /* PlainStringValue.m in Sources */,
 				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,
-				EA592929175613FB007C0072 /* PlainPaymentInput.m in Sources */,
 				EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */,
-				EA59292F1756231C007C0072 /* PlainPaymentVerificationRequired.m in Sources */,
 				EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */,
 				EA59298E1758CD6C007C0072 /* OpenIDViewController.m in Sources */,
 				EA59297117589F5C007C0072 /* PersonalProfileCommitter.m in Sources */,
-				EA5929771758A1E1007C0072 /* PlainPersonalProfileInput.m in Sources */,
 				EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */,
-				EACF763C175C7138008F2A03 /* PlainRecipientProfileInput.m in Sources */,
 				EACF7640175C71B4008F2A03 /* RecipientProfileCommitter.m in Sources */,
 				EAA053D2175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m in Sources */,
 				EAA053D6175DD5EE00ACD3F6 /* NoUserPaymentFlow.m in Sources */,
@@ -1881,7 +1828,6 @@
 				EA416E301768673500904D97 /* ProfileSource.m in Sources */,
 				EA416E331768674700904D97 /* PersonalProfileSource.m in Sources */,
 				EA416E361768675400904D97 /* BusinessProfileSource.m in Sources */,
-				EA92D94E1769BB330078D0C4 /* PlainBusinessProfileInput.m in Sources */,
 				EA92D9541769BD9D0078D0C4 /* BusinessProfileCommitter.m in Sources */,
 				EA92D97F176AF1200078D0C4 /* PaymentProfileViewController.m in Sources */,
 				EA92D983176AF1DF0078D0C4 /* ProfileSelectionView.m in Sources */,
@@ -1927,6 +1873,10 @@
 				EA2379FA1793E04400166361 /* BusinessProfile.m in Sources */,
 				EA2379FB1793E04400166361 /* PersonalProfile.m in Sources */,
 				EA2379FC1793E04400166361 /* User.m in Sources */,
+				EA1E4E21179E712A00F8D932 /* _PendingPayment.m in Sources */,
+				EA1E4E25179E713100F8D932 /* PendingPayment.m in Sources */,
+				EA1E4E28179E71C300F8D932 /* ObjectModel+PendingPayments.m in Sources */,
+				EA1E4E33179FF1E500F8D932 /* NSMutableDictionary+SaneData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2067,8 +2017,8 @@
 		EAAA148B171BC911005B9430 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jaanus Siim (7V62BBBL4N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaanus Siim (7V62BBBL4N)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
 				INFOPLIST_FILE = "Transfer/Transfer-Info.plist";
@@ -2079,8 +2029,8 @@
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "99A7B50D-6AB1-44B8-BB69-3BE5DD01304B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "99A7B50D-6AB1-44B8-BB69-3BE5DD01304B";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

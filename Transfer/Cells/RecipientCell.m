@@ -7,7 +7,6 @@
 //
 
 #import "RecipientCell.h"
-#import "PlainRecipient.h"
 #import "UIColor+Theme.h"
 #import "Recipient.h"
 

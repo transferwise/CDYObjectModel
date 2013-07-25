@@ -12,7 +12,7 @@
 
 - (void)willSave {
     NSDate *latest = [self latestChangeDate];
-    if ([self.lastUpdateTime isEqualToDate:latest]) {
+    if (!latest || [self.lastUpdateTime isEqualToDate:latest]) {
         return;
     }
 

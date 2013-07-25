@@ -71,7 +71,7 @@
 }
 
 - (NSString *)transferwiseRateString {
-    return [self rateStringFrom:self.transferwiseRate];
+    return [CalculationResult rateStringFrom:self.transferwiseRate];
 }
 
 - (NSString *)transferwiseTransferFeeStringWithCurrency {
@@ -85,7 +85,7 @@
 
 
 - (NSString *)bankRateString {
-    return [self rateStringFrom:self.bankRate];
+    return [CalculationResult rateStringFrom:self.bankRate];
 }
 
 - (NSString *)bankTotalFeeStringWithCurrency {
@@ -106,7 +106,7 @@
 }
 
 NSNumberFormatter *__formatter;
-- (NSString *)rateStringFrom:(NSNumber *)number {
++ (NSString *)rateStringFrom:(NSNumber *)number {
     if (!__formatter) {
         __formatter = [[NSNumberFormatter alloc] init];
         [__formatter setNumberStyle:NSNumberFormatterDecimalStyle];

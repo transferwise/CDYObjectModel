@@ -8,6 +8,7 @@ const struct RecipientAttributes RecipientAttributes = {
 	.name = @"name",
 	.remoteId = @"remoteId",
 	.settlementRecipient = @"settlementRecipient",
+	.temporary = @"temporary",
 };
 
 const struct RecipientRelationships RecipientRelationships = {
@@ -55,6 +56,11 @@ const struct RecipientFetchedProperties RecipientFetchedProperties = {
 	}
 	if ([key isEqualToString:@"settlementRecipientValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"settlementRecipient"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"temporaryValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"temporary"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -125,6 +131,32 @@ const struct RecipientFetchedProperties RecipientFetchedProperties = {
 
 - (void)setPrimitiveSettlementRecipientValue:(BOOL)value_ {
 	[self setPrimitiveSettlementRecipient:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
+@dynamic temporary;
+
+
+
+- (BOOL)temporaryValue {
+	NSNumber *result = [self temporary];
+	return [result boolValue];
+}
+
+- (void)setTemporaryValue:(BOOL)value_ {
+	[self setTemporary:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveTemporaryValue {
+	NSNumber *result = [self primitiveTemporary];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveTemporaryValue:(BOOL)value_ {
+	[self setPrimitiveTemporary:[NSNumber numberWithBool:value_]];
 }
 
 

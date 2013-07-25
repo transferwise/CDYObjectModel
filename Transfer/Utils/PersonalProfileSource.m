@@ -9,11 +9,9 @@
 #import "PersonalProfileSource.h"
 #import "CountrySelectionCell.h"
 #import "DateEntryCell.h"
-#import "PlainProfileDetails.h"
 #import "PhoneBookProfile.h"
 #import "PhoneBookAddress.h"
 #import "NSString+Validation.h"
-#import "PlainPersonalProfileInput.h"
 #import "PersonalProfileValidation.h"
 #import "User.h"
 #import "ObjectModel+Users.h"
@@ -172,36 +170,22 @@ NSUInteger const kUserPersonalSection = 1;
 }
 
 - (id)enteredProfile {
-    BOOL changed = [self valuesChanged];
+    User *user = [self.objectModel currentUser];
+    PersonalProfile *profile = [user personalProfileObject];
 
-    PlainPersonalProfileInput *profile = [[PlainPersonalProfileInput alloc] init];
-    profile.firstName = self.firstNameCell.value;
-    profile.lastName = self.lastNameCell.value;
-    profile.email = self.emailCell.value;
-    profile.phoneNumber = self.phoneNumberCell.value;
-    profile.addressFirstLine = self.addressCell.value;
-    profile.postCode = self.postCodeCell.value;
-    profile.city = self.cityCell.value;
-    profile.countryCode = self.countryCell.value;
-    profile.dateOfBirthString = [self.dateOfBirthCell value];
-    profile.changed = changed;
+    [profile setFirstName:self.firstNameCell.value];
+    [profile setLastName:self.lastNameCell.value];
+    [user setEmail:self.emailCell.value];
+    [profile setPhoneNumber:self.phoneNumberCell.value];
+    [profile setAddressFirstLine:self.addressCell.value];
+    [profile setPostCode:self.postCodeCell.value];
+    [profile setCity:self.cityCell.value];
+    [profile setCountryCode:self.countryCell.value];
+    [profile setDateOfBirth:[self.dateOfBirthCell value]];
 
-    return profile;
-}
+    [self.objectModel saveContext];
 
-- (BOOL)valuesChanged {
-    User *user = self.objectModel.currentUser;
-    PersonalProfile *profile = user.personalProfile;
-
-    return ![[self.firstNameCell value] isEqualToString:profile.firstName]
-            || ![[self.lastNameCell value] isEqualToString:profile.lastName]
-            || ![[self.emailCell value] isEqualToString:user.email]
-            || ![[self.phoneNumberCell value] isEqualToString:profile.phoneNumber]
-            || ![[self.dateOfBirthCell value] isEqualToString:profile.dateOfBirth]
-            || ![[self.addressCell value] isEqualToString:profile.addressFirstLine]
-            || ![[self.postCodeCell value] isEqualToString:profile.postCode]
-            || ![[self.cityCell value] isEqualToString:profile.city]
-            || ![[self.countryCell value] isEqualToString:profile.countryCode];
+    return profile.objectID;
 }
 
 - (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion {

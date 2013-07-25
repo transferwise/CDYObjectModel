@@ -9,47 +9,35 @@
 #import "PaymentFlow.h"
 #import "PersonalProfileViewController.h"
 #import "RecipientViewController.h"
-#import "PlainProfileDetails.h"
 #import "ConfirmPaymentViewController.h"
-#import "PlainRecipientType.h"
 #import "IdentificationViewController.h"
 #import "UploadMoneyViewController.h"
-#import "PlainPaymentInput.h"
 #import "CreatePaymentOperation.h"
 #import "VerificationRequiredOperation.h"
-#import "PlainPaymentVerificationRequired.h"
 #import "Credentials.h"
-#import "CalculationResult.h"
 #import "UploadVerificationFileOperation.h"
-#import "PlainPersonalProfileInput.h"
 #import "PersonalProfileOperation.h"
 #import "EmailCheckOperation.h"
-#import "PlainRecipientProfileInput.h"
 #import "RecipientOperation.h"
-#import "PlainRecipient.h"
 #import "RegisterWithoutPasswordOperation.h"
-#import "PlainBusinessProfileInput.h"
 #import "BusinessProfileOperation.h"
 #import "PaymentProfileViewController.h"
-#import "PlainBusinessProfile.h"
 #import "TRWAlertView.h"
 #import "ObjectModel.h"
 #import "User.h"
 #import "ObjectModel+Users.h"
-#import "ObjectModel+Currencies.h"
+#import "PersonalProfile.h"
+#import "BusinessProfile.h"
+#import "ObjectModel+PendingPayments.h"
+#import "PendingPayment.h"
+#import "Currency.h"
+#import "Recipient.h"
 
 @interface PaymentFlow ()
 
 @property (nonatomic, strong) UINavigationController *navigationController;
-@property (nonatomic, strong) PlainProfileDetails *businessDetails;
-@property (nonatomic, strong) PlainRecipientType *recipientType;
 @property (nonatomic, copy) PaymentErrorBlock paymentErrorHandler;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
-@property (nonatomic, strong) PlainPaymentVerificationRequired *verificationRequired;
-@property (nonatomic, strong) PlainPaymentInput *paymentInput;
-@property (nonatomic, strong) PlainPersonalProfileInput *personalProfile;
-@property (nonatomic, strong) PlainRecipientProfileInput *recipientProfile;
-@property (nonatomic, strong) PlainBusinessProfileInput *businessProfile;
 
 @end
 
@@ -65,29 +53,6 @@
     return self;
 }
 
-- (void)setRecipient:(PlainRecipient *)recipient {
-    _recipient = recipient;
-    if (_recipient) {
-        [self setRecipientProfile:[recipient profileInput]];
-    }
-}
-
-- (void)setUserDetails:(PlainProfileDetails *)userDetails {
-    _userDetails = userDetails;
-
-    if (userDetails.personalProfile) {
-        [self setPersonalProfile:[userDetails profileInput]];
-    }
-}
-
-- (void)setBusinessDetails:(PlainProfileDetails *)businessDetails {
-    _businessDetails = businessDetails;
-
-    if (businessDetails.businessProfile) {
-        [self setBusinessProfile:[businessDetails.businessProfile input]];
-    }
-}
-
 - (void)presentSenderDetails {
     [self presentSenderDetails:YES];
 }
@@ -96,7 +61,7 @@
     PaymentProfileViewController *controller = [[PaymentProfileViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setAllowProfileSwitch:allowProfileSwitch];
-    if (self.recipient) {
+    if (self.objectModel.pendingPayment.recipient) {
         [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.confirm.payment.button.title", nil)];
     } else {
         [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.continue.to.recipient.button.title", nil)];
@@ -105,7 +70,7 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)validateBusinessProfile:(PlainBusinessProfileInput *)profile withHandler:(BusinessProfileValidationBlock)handler {
+- (void)validateBusinessProfile:(NSManagedObjectID *)profile withHandler:(BusinessProfileValidationBlock)handler {
     MCLog(@"validateBusinessProfile");
     BusinessProfileOperation *operation = [BusinessProfileOperation validateWithData:profile];
     [self setExecutedOperation:operation];
@@ -114,13 +79,15 @@
     [operation setSaveResultHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error) {
-                handler(nil, error);
+                handler(error);
                 return;
             }
 
-            [self setBusinessProfile:profile];
+            handler(nil);
 
-            handler(nil, nil);
+            PendingPayment *payment = [self.objectModel pendingPayment];
+            [payment setProfileUsed:@"business"];
+            [self.objectModel saveContext];
 
             if ([self personalProfileFilled]) {
                 [self pushNextScreenAfterPersonalProfile];
@@ -145,7 +112,7 @@
     return [self.objectModel.currentUser personalProfile] != nil;
 }
 
-- (void)validatePersonalProfile:(PlainPersonalProfileInput *)profile withHandler:(PersonalProfileValidationBlock)handler {
+- (void)validatePersonalProfile:(NSManagedObjectID *)profile withHandler:(PersonalProfileValidationBlock)handler {
     MCLog(@"validateProfile");
     PersonalProfileOperation *operation = [PersonalProfileOperation validateOperationWithProfile:profile];
     [self setExecutedOperation:operation];
@@ -158,15 +125,13 @@
                 return;
             }
 
-            [self setPersonalProfile:profile];
-
             if ([Credentials userLoggedIn]) {
                 handler(nil, nil);
                 [self pushNextScreenAfterPersonalProfile];
                 return;
             }
 
-            [self verifyEmail:profile.email withHandler:handler];
+            [self verifyEmail:self.objectModel.currentUser.email withHandler:handler];
         });
     }];
 
@@ -195,7 +160,7 @@
 }
 
 - (void)pushNextScreenAfterPersonalProfile {
-    if (self.recipient) {
+    if (self.objectModel.pendingPayment.recipient) {
         [self presentPaymentConfirmation];
     } else {
         [self presentRecipientDetails];
@@ -204,45 +169,32 @@
 
 - (void)presentRecipientDetails {
     RecipientViewController *controller = [[RecipientViewController alloc] init];
-    __block __weak  RecipientViewController *weakController = controller;
     [controller setObjectModel:self.objectModel];
     [controller setTitle:NSLocalizedString(@"recipient.controller.payment.mode.title", nil)];
     [controller setFooterButtonTitle:NSLocalizedString(@"recipient.controller.confirm.payment.button.title", nil)];
     [controller setRecipientValidation:self];
     [controller setAfterSaveAction:^{
-        [self setRecipient:weakController.selectedRecipient];
-        [self setRecipientType:weakController.selectedRecipientType];
         [self presentPaymentConfirmation];
     }];
-    [controller setPreLoadRecipientsWithCurrency:[self.objectModel currencyWithCode:self.calculationResult.targetCurrency]];
+    [controller setPreLoadRecipientsWithCurrency:self.objectModel.pendingPayment.targetCurrency];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)presentPaymentConfirmation {
-    MCLog(@"presentPaymentConfirmation");
-    ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
-    if (self.businessProfile) {
-        [controller setSenderIsBusiness:YES];
-        [controller setSenderName:self.businessProfile.businessName];
-        [controller setSenderEmail:self.userDetails.email];
-    } else {
-        [controller setSenderName:self.personalProfile.fullName];
-        [controller setSenderEmail:self.personalProfile.email];
-    }
-    [controller setSenderDetails:self.personalProfile];
-    [controller setRecipientProfile:self.recipientProfile];
-    [controller setRecipientType:self.recipientType];
-    [controller setCalculationResult:self.calculationResult];
-    [controller setFooterButtonTitle:NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
-    [controller setPaymentFlow:self];
-    [self.navigationController pushViewController:controller animated:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MCLog(@"presentPaymentConfirmation");
+        ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
+        [controller setObjectModel:self.objectModel];
+        [controller setFooterButtonTitle:NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
+        [controller setPaymentFlow:self];
+        [self.navigationController pushViewController:controller animated:YES];
+    });
 }
 
-- (void)presentVerificationScreen:(PlainPaymentVerificationRequired *)requiredVerification {
+- (void)presentVerificationScreen {
     IdentificationViewController *controller = [[IdentificationViewController alloc] init];
-    controller.requiredVerification = requiredVerification;
-    controller.paymentFlow = self;
+    [controller setObjectModel:self.objectModel];
+    [controller setPaymentFlow:self];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -256,11 +208,9 @@
     });
 }
 
-- (void)validatePayment:(PlainPaymentInput *)paymentInput errorHandler:(PaymentErrorBlock)errorHandler {
+- (void)validatePayment:(NSManagedObjectID *)paymentInput errorHandler:(PaymentErrorBlock)errorHandler {
     MCLog(@"Validate payment");
     self.paymentErrorHandler = errorHandler;
-
-    [paymentInput setProfile:self.businessProfile ? @"business" : @"personal"];
 
     CreatePaymentOperation *operation = [CreatePaymentOperation validateOperationWithInput:paymentInput];
     [self setExecutedOperation:operation];
@@ -272,8 +222,6 @@
             return;
         }
         
-        [self setPaymentInput:paymentInput];
-
         MCLog(@"Payment valid");
         [self checkVerificationNeeded];
     }];
@@ -283,30 +231,32 @@
 
 - (void)checkVerificationNeeded {
     MCLog(@"checkVerificationNeeded");
-    VerificationRequiredOperation *operation = [VerificationRequiredOperation operationWithData:@{@"payIn" : self.calculationResult.transferwisePayIn, @"sourceCurrency" : self.calculationResult.sourceCurrency}];
+    VerificationRequiredOperation *operation = [VerificationRequiredOperation operation];
     [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
 
-    [operation setCompletionHandler:^(PlainPaymentVerificationRequired *verificationRequired, NSError *error) {
-        if (error) {
-            self.paymentErrorHandler(error);
-            return;
-        }
+    [operation setCompletionHandler:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                self.paymentErrorHandler(error);
+                return;
+            }
 
-        [self setVerificationRequired:verificationRequired];
-
-        MCLog(@"Any verification required? %d", verificationRequired.isAnyVerificationRequired);
-        MCLog(@"Logged in? %d", [Credentials userLoggedIn]);
-        if (verificationRequired.isAnyVerificationRequired) {
-            MCLog(@"Present verification screen");
-            self.paymentErrorHandler(nil);
-            [self presentVerificationScreen:verificationRequired];
-        } else if ([Credentials userLoggedIn]) {
-            MCLog(@"Update sender profile");
-            [self updateSenderProfile];
-        } else {
-            MCLog(@"Register user");
-            [self registerUser];
-        }
+            PendingPayment *pendingPayment = [self.objectModel pendingPayment];
+            MCLog(@"Any verification required? %d", pendingPayment.isAnyVerificationRequired);
+            MCLog(@"Logged in? %d", [Credentials userLoggedIn]);
+            if ([pendingPayment isAnyVerificationRequired]) {
+                MCLog(@"Present verification screen");
+                self.paymentErrorHandler(nil);
+                [self presentVerificationScreen];
+            } else if ([Credentials userLoggedIn]) {
+                MCLog(@"Update sender profile");
+                [self updateSenderProfile];
+            } else {
+                MCLog(@"Register user");
+                [self registerUser];
+            }
+        });
     }];
 
     [operation execute];
@@ -325,13 +275,15 @@
 
 - (void)registerUser {
     MCLog(@"registerUser");
-    MCAssert(self.personalProfile || (self.personalProfile && self.businessProfile));
-    MCAssert(self.personalProfile.email);
+    User *user = [self.objectModel currentUser];
+    MCAssert(user.personalProfile || (user.personalProfile && user.businessProfile));
+    MCAssert(user.email);
 
-    NSString *email = self.personalProfile.email;
+    NSString *email = user.email;
 
     RegisterWithoutPasswordOperation *operation = [RegisterWithoutPasswordOperation operationWithEmail:email];
     [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
     [operation setCompletionHandler:^(NSError *error) {
         MCLog(@"Register result:%@", error);
         if (error) {
@@ -346,17 +298,19 @@
 }
 
 - (void)updateSenderProfile {
-    MCLog(@"updateSenderProfile");
-    if (self.businessProfile) {
-        [self updateBusinessProfile];
-    } else {
-        [self updatePersonalProfile];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MCLog(@"updateSenderProfile");
+        if (self.objectModel.currentUser.businessProfile) {
+            [self updateBusinessProfile];
+        } else {
+            [self updatePersonalProfile];
+        }
+    });
 }
 
 - (void)updateBusinessProfile {
     MCLog(@"updateBusinessProfile");
-    BusinessProfileOperation *operation = [BusinessProfileOperation commitWithData:self.businessProfile];
+    BusinessProfileOperation *operation = [BusinessProfileOperation commitWithData:self.objectModel.currentUser.businessProfile.objectID];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
 
@@ -365,9 +319,6 @@
             self.paymentErrorHandler(error);
             return;
         }
-
-        User *user = [self.objectModel currentUser];
-        [self setBusinessDetails:[user plainUserDetails]];
 
         [self updatePersonalProfile];
     }];
@@ -377,7 +328,7 @@
 
 - (void)updatePersonalProfile {
     MCLog(@"updatePersonalProfile");
-    PersonalProfileOperation *operation = [PersonalProfileOperation commitOperationWithProfile:self.personalProfile];
+    PersonalProfileOperation *operation = [PersonalProfileOperation commitOperationWithProfile:self.objectModel.currentUser.personalProfile.objectID];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
 
@@ -387,12 +338,11 @@
             return;
         }
 
-        User *user = [self.objectModel currentUser];
-        [self setUserDetails:[user plainUserDetails]];
+        Recipient *recipient = self.objectModel.pendingPayment.recipient;
 
-        MCLog(@"Recipient created?%d", [self.recipientProfile.id integerValue] != 0);
+        MCLog(@"Recipient created?%d", [recipient remoteIdValue] != 0);
 
-        if ([self.recipientProfile.id integerValue] == 0) {
+        if ([recipient remoteIdValue] == 0) {
             [self commitRecipientData];
         } else {
             [self uploadVerificationData];
@@ -404,20 +354,16 @@
 
 - (void)commitRecipientData {
     MCLog(@"commitRecipientData");
-    RecipientOperation *operation = [RecipientOperation createOperationWithRecipient:self.recipientProfile];
+    RecipientOperation *operation = [RecipientOperation createOperationWithRecipient:self.objectModel.pendingPayment.recipient.objectID];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
 
-    [operation setResponseHandler:^(PlainRecipient *recipient, NSError *error) {
+    [operation setResponseHandler:^(NSError *error) {
         if (error) {
             self.paymentErrorHandler(error);
             return;
         }
 
-        MCLog(@"Recipient:%@", recipient);
-        MCLog(@"Recipient id:%@", recipient.id);
-        [self setRecipient:recipient];
-        [self.paymentInput setRecipientId:recipient.id];
         [self commitPayment];
     }];
 
@@ -425,46 +371,50 @@
 }
 
 - (void)uploadVerificationData {
-    MCLog(@"Upload verification data:%d", self.verificationRequired.isAnyVerificationRequired);
-    MCLog(@"Send later:%d", self.verificationRequired.sendLater);
-    if (self.verificationRequired.sendLater) {
-        [self.paymentInput setVerificationProvideLater:@"true"];
-    } else {
-        [self.paymentInput setVerificationProvideLater:@"false"];
-    }
-
-    if (self.verificationRequired.isAnyVerificationRequired && !self.verificationRequired.sendLater) {
-        [self uploadNextVerificationData];
-    } else {
-        [self commitPayment];
-    }
+    [self.objectModel performBlock:^{
+        PendingPayment *payment = [self.objectModel pendingPayment];
+        if ([payment isAnyVerificationRequired] && !payment.sendVerificationLaterValue) {
+            [self uploadNextVerificationData];
+        } else {
+            [self commitPayment];
+        }
+    }];
 }
 
 - (void)uploadNextVerificationData {
     MCLog(@"uploadNextVerificationData");
-    if (self.verificationRequired.idVerificationRequired) {
-        [self uploadIdVerification];
-    } else if (self.verificationRequired.addressVerificationRequired) {
-        [self uploadAddressVerification];
-    } else {
-        [self commitPayment];
-    }
+    [self.objectModel performBlock:^{
+        PendingPayment *payment = [self.objectModel pendingPayment];
+        if (payment.idVerificationRequiredValue) {
+            [self uploadIdVerification];
+        } else if (payment.addressVerificationRequiredValue) {
+            [self uploadAddressVerification];
+        } else {
+            [self commitPayment];
+        }
+    }];
 }
 
 - (void)uploadAddressVerification {
     MCLog(@"uploadAddressVerification");
-    UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:@"address" filePath:self.verificationRequired.addressPhotoPath];
+    UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:@"address" filePath:[PendingPayment addressPhotoPath]];
     [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
 
     [operation setCompletionHandler:^(NSError *error) {
-        if (error) {
-            self.paymentErrorHandler(error);
-            return;
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                self.paymentErrorHandler(error);
+                return;
+            }
 
-        MCLog(@"uploadAddressVerification done");
-        self.verificationRequired.addressVerificationRequired = NO;
-        [self uploadNextVerificationData];
+            MCLog(@"uploadAddressVerification done");
+            PendingPayment *payment = [self.objectModel pendingPayment];
+            [payment setAddressVerificationRequiredValue:NO];
+            [self.objectModel saveContext:^{
+                [self uploadNextVerificationData];
+            }];
+        });
     }];
 
     [operation execute];
@@ -472,18 +422,24 @@
 
 - (void)uploadIdVerification {
     MCLog(@"uploadIdVerification");
-    UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:@"id" filePath:self.verificationRequired.idPhotoPath];
+    UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:@"id" filePath:[PendingPayment idPhotoPath]];
     [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
 
     [operation setCompletionHandler:^(NSError *error) {
-        if (error) {
-            self.paymentErrorHandler(error);
-            return;
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                self.paymentErrorHandler(error);
+                return;
+            }
 
-        MCLog(@"uploadIdVerification done");
-        self.verificationRequired.idVerificationRequired = NO;
-        [self uploadNextVerificationData];
+            MCLog(@"uploadIdVerification done");
+            PendingPayment *payment = [self.objectModel pendingPayment];
+            [payment setIdVerificationRequiredValue:NO];
+            [self.objectModel saveContext:^{
+                [self uploadNextVerificationData];
+            }];
+        });
     }];
 
     [operation execute];
@@ -491,15 +447,10 @@
 
 - (void)commitPayment {
     MCLog(@"Commit payment");
-    if (!self.paymentInput.recipientId) {
-        [self.paymentInput setRecipientId:self.recipientProfile.id];
-    }
 
-    [self.paymentInput setProfile:self.businessProfile ? @"business" : @"personal"];
+    MCAssert(self.objectModel.pendingPayment.recipient.remoteIdValue != 0);
 
-    MCAssert(self.paymentInput.recipientId);
-
-    CreatePaymentOperation *operation = [CreatePaymentOperation commitOperationWithPayment:self.paymentInput];
+    CreatePaymentOperation *operation = [CreatePaymentOperation commitOperationWithPayment:[self.objectModel.pendingPayment objectID]];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
 
@@ -515,17 +466,13 @@
     [operation execute];
 }
 
-- (void)validateRecipient:(PlainRecipientProfileInput *)recipientProfile completion:(RecipientProfileValidationBlock)completion {
+- (void)validateRecipient:(NSManagedObjectID *)recipientProfile completion:(RecipientProfileValidationBlock)completion {
     MCLog(@"Validate recipient");
     RecipientOperation *operation = [RecipientOperation validateOperationWithRecipient:recipientProfile];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
 
-    [operation setResponseHandler:^(PlainRecipient *recipient, NSError *error) {
-        [self setRecipientProfile:recipientProfile];
-
-        completion(recipient, error);
-    }];
+    [operation setResponseHandler:completion];
 
     [operation execute];
 }

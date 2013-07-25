@@ -9,6 +9,7 @@ const struct PaymentAttributes PaymentAttributes = {
 	.lastUpdateTime = @"lastUpdateTime",
 	.payIn = @"payIn",
 	.paymentStatus = @"paymentStatus",
+	.presentable = @"presentable",
 	.receivedDate = @"receivedDate",
 	.remoteId = @"remoteId",
 	.submittedDate = @"submittedDate",
@@ -52,6 +53,11 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"presentableValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"presentable"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"remoteIdValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"remoteId"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -94,6 +100,32 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 
 @dynamic paymentStatus;
 
+
+
+
+
+
+@dynamic presentable;
+
+
+
+- (BOOL)presentableValue {
+	NSNumber *result = [self presentable];
+	return [result boolValue];
+}
+
+- (void)setPresentableValue:(BOOL)value_ {
+	[self setPresentable:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitivePresentableValue {
+	NSNumber *result = [self primitivePresentable];
+	return [result boolValue];
+}
+
+- (void)setPrimitivePresentableValue:(BOOL)value_ {
+	[self setPrimitivePresentable:[NSNumber numberWithBool:value_]];
+}
 
 
 

@@ -9,6 +9,7 @@ extern const struct RecipientAttributes {
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *remoteId;
 	__unsafe_unretained NSString *settlementRecipient;
+	__unsafe_unretained NSString *temporary;
 } RecipientAttributes;
 
 extern const struct RecipientRelationships {
@@ -29,6 +30,7 @@ extern const struct RecipientFetchedProperties {
 @class Payment;
 @class RecipientType;
 @class User;
+
 
 
 
@@ -91,6 +93,20 @@ extern const struct RecipientFetchedProperties {
 - (void)setSettlementRecipientValue:(BOOL)value_;
 
 //- (BOOL)validateSettlementRecipient:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* temporary;
+
+
+
+@property BOOL temporaryValue;
+- (BOOL)temporaryValue;
+- (void)setTemporaryValue:(BOOL)value_;
+
+//- (BOOL)validateTemporary:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -189,6 +205,15 @@ extern const struct RecipientFetchedProperties {
 
 - (BOOL)primitiveSettlementRecipientValue;
 - (void)setPrimitiveSettlementRecipientValue:(BOOL)value_;
+
+
+
+
+- (NSNumber*)primitiveTemporary;
+- (void)setPrimitiveTemporary:(NSNumber*)value;
+
+- (BOOL)primitiveTemporaryValue;
+- (void)setPrimitiveTemporaryValue:(BOOL)value_;
 
 
 

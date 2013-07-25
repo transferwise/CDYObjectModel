@@ -10,12 +10,12 @@
 #import "DataEntryViewController.h"
 #import "Constants.h"
 
-@class PlainPaymentVerificationRequired;
 @class PaymentFlow;
+@class ObjectModel;
 
 @interface IdentificationViewController : DataEntryViewController
 
-@property (nonatomic, strong) PlainPaymentVerificationRequired *requiredVerification;
 @property (nonatomic, weak) PaymentFlow *paymentFlow;
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 @end

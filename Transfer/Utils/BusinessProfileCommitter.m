@@ -7,7 +7,6 @@
 //
 
 #import "BusinessProfileCommitter.h"
-#import "PlainBusinessProfileInput.h"
 #import "BusinessProfileOperation.h"
 #import "ObjectModel.h"
 
@@ -19,14 +18,12 @@
 
 @implementation BusinessProfileCommitter
 
-- (void)validateBusinessProfile:(PlainBusinessProfileInput *)profile withHandler:(BusinessProfileValidationBlock)handler{
+- (void)validateBusinessProfile:(NSManagedObjectID *)profile withHandler:(BusinessProfileValidationBlock)handler {
     BusinessProfileOperation *operation = [BusinessProfileOperation commitWithData:profile];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
 
-    [operation setSaveResultHandler:^(NSError *error) {
-        handler(nil, error);
-    }];
+    [operation setSaveResultHandler:handler];
 
     [operation execute];
 }

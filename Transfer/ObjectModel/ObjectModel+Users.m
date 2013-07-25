@@ -14,6 +14,7 @@
 #import "Credentials.h"
 #import "Currency.h"
 #import "Recipient.h"
+#import "Constants.h"
 
 @implementation ObjectModel (Users)
 
@@ -29,10 +30,6 @@
 
 - (void)createOrUpdateUserWithData:(NSDictionary *)rawData {
     NSDictionary *data = [rawData dictionaryByRemovingNullObjects];
-    if ([data[@"status"] isEqualToString:@"valid"]) {
-        return;
-    }
-
     NSString *email = data[@"email"];
     [Credentials setUserEmail:email];
     User *user = [self userWithEmail:email];
@@ -89,7 +86,22 @@
 }
 
 - (User *)currentUser {
-    return [self userWithEmail:[Credentials userEmail]];
+    if ([Credentials userLoggedIn]) {
+        return [self userWithEmail:[Credentials userEmail]];
+    }
+
+    return [self anonymousUser];
+}
+
+- (User *)anonymousUser {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"anonymous = YES"];
+    User *user = [self fetchEntityNamed:[User entityName] withPredicate:predicate];
+    if (!user) {
+        user = [User insertInManagedObjectContext:self.managedObjectContext];
+        [user setAnonymousValue:YES];
+    }
+
+    return user;
 }
 
 - (NSFetchedResultsController *)fetchedControllerForRecipientsWithCurrency:(Currency *)currency {
@@ -98,6 +110,20 @@
     NSPredicate *currencyPredicate = [NSPredicate predicateWithFormat:@"currency = %@", currency];
     NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notSettlementPredicate, currencyPredicate]];
     return [self fetchedControllerForEntity:[Recipient entityName] predicate:predicate sortDescriptors:@[nameDescriptor]];
+}
+
+- (void)removeAnonymousUser {
+    User *anonymous = [self anonymousUser];
+    if (anonymous) {
+        [self deleteObject:anonymous saveAfter:NO];
+    }
+}
+
+- (void)markAnonUserWithEmail:(NSString *)email {
+    User *user = [self anonymousUser];
+    MCAssert(user);
+    [user setEmail:email];
+    [user setAnonymousValue:NO];
 }
 
 @end

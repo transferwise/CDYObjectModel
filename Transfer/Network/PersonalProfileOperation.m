@@ -8,11 +8,11 @@
 
 #import "PersonalProfileOperation.h"
 #import "TransferwiseOperation+Private.h"
-#import "PlainPersonalProfileInput.h"
 #import "JCSObjectModel.h"
 #import "ObjectModel+RecipientTypes.h"
 #import "Constants.h"
 #import "ObjectModel+Users.h"
+#import "PersonalProfile.h"
 
 NSString *const kUpdatePersonalProfilePath = @"/user/updatePersonalProfile";
 NSString *const kValidatePersonalProfilePath = @"/user/validatePersonalProfile";
@@ -20,13 +20,13 @@ NSString *const kValidatePersonalProfilePath = @"/user/validatePersonalProfile";
 @interface PersonalProfileOperation ()
 
 @property (nonatomic, copy) NSString *path;
-@property (nonatomic, strong) PlainPersonalProfileInput *profile;
+@property (nonatomic, strong) NSManagedObjectID *profile;
 
 @end
 
 @implementation PersonalProfileOperation
 
-- (id)initWithPath:(NSString *)path profile:(PlainPersonalProfileInput *)data {
+- (id)initWithPath:(NSString *)path profile:(NSManagedObjectID *)data {
     self = [super init];
     if (self) {
         _path = path;
@@ -45,7 +45,12 @@ NSString *const kValidatePersonalProfilePath = @"/user/validatePersonalProfile";
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        [weakSelf.workModel.managedObjectContext performBlock:^{
+        [weakSelf.workModel performBlock:^{
+            if ([response[@"status"] isEqualToString:@"valid"]) {
+                weakSelf.saveResultHandler(nil);
+                return;
+            }
+
             [weakSelf.workModel createOrUpdateUserWithData:response];
 
             [weakSelf.workModel saveContext:^{
@@ -54,14 +59,19 @@ NSString *const kValidatePersonalProfilePath = @"/user/validatePersonalProfile";
         }];
     }];
 
-    [self postData:[self.profile data] toPath:path];
+    [self.workModel performBlock:^{
+        PersonalProfile *personalProfile = (PersonalProfile *) [weakSelf.workModel.managedObjectContext objectWithID:self.profile];
+        MCAssert(personalProfile);
+
+        [self postData:[personalProfile data] toPath:path];
+    }];
 }
 
-+ (PersonalProfileOperation *)commitOperationWithProfile:(PlainPersonalProfileInput *)profile {
++ (PersonalProfileOperation *)commitOperationWithProfile:(NSManagedObjectID *)profile {
     return [[PersonalProfileOperation alloc] initWithPath:kUpdatePersonalProfilePath profile:profile];
 }
 
-+ (PersonalProfileOperation *)validateOperationWithProfile:(PlainPersonalProfileInput *)profile {
++ (PersonalProfileOperation *)validateOperationWithProfile:(NSManagedObjectID *)profile {
     return [[PersonalProfileOperation alloc] initWithPath:kValidatePersonalProfilePath profile:profile];
 }
 

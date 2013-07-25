@@ -147,7 +147,9 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [controller setObjectModel:self.objectModel];
     [controller setTitle:NSLocalizedString(@"recipient.controller.add.mode.title", nil)];
     [controller setFooterButtonTitle:NSLocalizedString(@"recipient.controller.add.button.title", nil)];
-    [controller setRecipientValidation:[[RecipientProfileCommitter alloc] init]];
+    RecipientProfileCommitter *committer = [[RecipientProfileCommitter alloc] init];
+    [committer setObjectModel:self.objectModel];
+    [controller setRecipientValidation:committer];
     [controller setAfterSaveAction:^{
         [self.navigationController popViewControllerAnimated:YES];
     }];
@@ -177,7 +179,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
         TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
         [hud setMessage:NSLocalizedString(@"contacts.controller.deleting.message", nil)];
 
-        DeleteRecipientOperation *operation = [DeleteRecipientOperation operationWithRecipient:[recipient plainRecipient]];
+        DeleteRecipientOperation *operation = [DeleteRecipientOperation operationWithRecipient:recipient];
         [self setExecutedOperation:operation];
         [operation setResponseHandler:^(NSError *error) {
             [hud hide];

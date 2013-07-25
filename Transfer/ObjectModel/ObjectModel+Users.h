@@ -16,5 +16,7 @@
 - (void)createOrUpdateUserWithData:(NSDictionary *)data;
 - (User *)currentUser;
 - (NSFetchedResultsController *)fetchedControllerForRecipientsWithCurrency:(Currency *)currency;
+- (void)removeAnonymousUser;
+- (void)markAnonUserWithEmail:(NSString *)email;
 
 @end

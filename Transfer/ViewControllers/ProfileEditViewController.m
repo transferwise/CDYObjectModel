@@ -19,7 +19,6 @@
 #import "PhoneBookProfile.h"
 #import "ObjectModel.h"
 #import "UIApplication+Keyboard.h"
-#import "PlainPersonalProfileInput.h"
 #import "ObjectModel+Countries.h"
 
 static NSUInteger const kButtonSection = 0;
@@ -144,28 +143,9 @@ static NSUInteger const kButtonSection = 0;
 
     [self.navigationItem setTitle:[self.profileSource editViewTitle]];
 
-    if ([Credentials userLoggedIn]) {
-        [self pullDetails];
-    } else {
-        [self pullCountries];
-    }
+    [self pullDetails];
 
     [self setShown:YES];
-}
-
-- (void)pullCountries {
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-    [hud setMessage:NSLocalizedString(@"personal.profile.refreshing.countries.message", nil)];
-
-    [self pullCountriesWithHud:hud completionHandler:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [hud hide];
-            [self setPresentedSectionCells:self.presentationCells];
-            [self.tableView setTableFooterView:self.footer];
-            [self.tableView reloadData];
-        });
-    }];
-
 }
 
 - (void)pullCountriesWithHud:(TRWProgressHUD *)hud completionHandler:(JCSActionBlock)completion {
@@ -240,7 +220,7 @@ static NSUInteger const kButtonSection = 0;
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.verify.message", nil)];
     
-    PlainPersonalProfileInput *profile = [self.profileSource enteredProfile];
+    NSManagedObjectID *profile = [self.profileSource enteredProfile];
 
     [self.profileSource validateProfile:profile withValidation:self.profileValidation completion:^(NSError *error) {
         [hud hide];

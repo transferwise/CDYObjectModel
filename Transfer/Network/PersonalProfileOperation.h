@@ -9,14 +9,11 @@
 #import "TransferwiseOperation.h"
 #import "UserDetailsOperation.h"
 
-@class PlainPersonalProfile;
-@class PlainPersonalProfileInput;
-
 @interface PersonalProfileOperation : TransferwiseOperation
 
 @property (nonatomic, copy) TWProfileDetailsHandler saveResultHandler;
 
-+ (PersonalProfileOperation *)commitOperationWithProfile:(PlainPersonalProfileInput *)profile;
-+ (PersonalProfileOperation *)validateOperationWithProfile:(PlainPersonalProfileInput *)profile;
++ (PersonalProfileOperation *)commitOperationWithProfile:(NSManagedObjectID *)profileID;
++ (PersonalProfileOperation *)validateOperationWithProfile:(NSManagedObjectID *)profileID;
 
 @end

@@ -14,15 +14,13 @@
 #import "CurrenciesOperation.h"
 #import "TextEntryCell.h"
 #import "CurrencySelectionCell.h"
-#import "PlainRecipientType.h"
 #import "RecipientFieldCell.h"
 #import "NSString+Validation.h"
 #import "Currency.h"
-#import "PlainRecipient.h"
 #import "TRWAlertView.h"
+#import "RecipientProfileValidation.h"
 #import "NSMutableString+Issues.h"
 #import "UIApplication+Keyboard.h"
-#import "RecipientProfileValidation.h"
 #import "UserRecipientsOperation.h"
 #import "RecipientEntrySelectionCell.h"
 #import "DropdownCell.h"
@@ -32,7 +30,6 @@
 #import "PhoneBookProfileSelector.h"
 #import "PhoneBookProfile.h"
 #import "Credentials.h"
-#import "PlainRecipientProfileInput.h"
 #import "UITableView+FooterPositioning.h"
 #import "TransferTypeSelectionCell.h"
 #import "Recipient.h"
@@ -41,6 +38,10 @@
 #import "ObjectModel+Currencies.h"
 #import "ObjectModel+Users.h"
 #import "RecipientTypeField.h"
+#import "ObjectModel+Recipients.h"
+#import "ObjectModel+PendingPayments.h"
+#import "_Payment.h"
+#import "PendingPayment.h"
 
 static NSUInteger const kImportSection = 0;
 static NSUInteger const kRecipientSection = 1;
@@ -347,18 +348,21 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         return;
     }
 
-    if (self.selectedRecipient) {
-        self.afterSaveAction();
+    PendingPayment *payment = self.objectModel.pendingPayment;
+
+    if (self.recipient) {
+        [payment setRecipient:self.recipient];
+        [self.objectModel saveContext:self.afterSaveAction];
         return;
     }
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.validating.message", nil)];
 
-    PlainRecipientProfileInput *recipientInput = [[PlainRecipientProfileInput alloc] init];
+    Recipient *recipientInput = [self.objectModel createRecipient];
     recipientInput.name = self.nameCell.value;
-    recipientInput.currency = self.currency.code;
-    recipientInput.type = self.recipientType.type;
+    recipientInput.currency = self.currency;
+    recipientInput.type = self.recipientType;
 
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
         if ([cell isKindOfClass:[TransferTypeSelectionCell class]]) {
@@ -366,11 +370,14 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         }
 
         NSString *value = [cell value];
-        NSString *field = [cell.type name];
-        [recipientInput setValue:value forKeyPath:field];
+        RecipientTypeField *field = cell.type;
+        [recipientInput setValue:value forField:field];
     }
 
-    [self.recipientValidation validateRecipient:recipientInput completion:^(PlainRecipient *recipient, NSError *error) {
+    [payment setRecipient:recipientInput];
+    [self.objectModel saveContext];
+
+    [self.recipientValidation validateRecipient:recipientInput.objectID completion:^(NSError *error) {
         [hud hide];
 
         if (error) {
@@ -447,14 +454,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     NSMutableArray *cells = [NSMutableArray arrayWithArray:presentedSectionCells];
     [cells removeObject:self.currencyCells];
     [super setPresentedSectionCells:cells];
-}
-
-- (PlainRecipient *)selectedRecipient {
-    return [self.recipient plainRecipient];
-}
-
-- (PlainRecipientType *)selectedRecipientType {
-    return [RecipientType createPlainType:[self.recipient type]];
 }
 
 @end

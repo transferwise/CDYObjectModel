@@ -10,12 +10,14 @@
 #import "UIColor+Theme.h"
 #import "TextCell.h"
 #import "BlueButton.h"
-#import "PlainPaymentVerificationRequired.h"
 #import "NSMutableString+Issues.h"
 #import "NSString+Validation.h"
 #import "TRWAlertView.h"
 #import "TRWProgressHUD.h"
 #import "PaymentFlow.h"
+#import "ObjectModel.h"
+#import "PendingPayment.h"
+#import "ObjectModel+PendingPayments.h"
 
 @interface IdentificationViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -63,29 +65,7 @@
     [self.continueButton setTitle:NSLocalizedString(@"identification.upload.and.continue.button", @"") forState:UIControlStateNormal];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TextCell" bundle:nil] forCellReuseIdentifier:TWTextCellIdentifier];
-
-    NSMutableArray *photoCells = [NSMutableArray array];
-
-    if (self.requiredVerification.idVerificationRequired) {
-        TextCell *idDocumentCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
-        [self setIdDocumentCell:idDocumentCell];
-        [photoCells addObject:idDocumentCell];
-        [idDocumentCell configureWithTitle:NSLocalizedString(@"identification.id.document", @"") text:NSLocalizedString(@"identification.take.photo", @"")];
-        self.idVerificationRowIndex = [photoCells count] - 1;
-    }
-
-
-    if (self.requiredVerification.addressVerificationRequired) {
-        TextCell *proofOfAddressCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
-        [self setProofOfAddressCell:proofOfAddressCell];
-        [photoCells addObject:proofOfAddressCell];
-        [proofOfAddressCell configureWithTitle:NSLocalizedString(@"identification.proof.of.address", @"") text:NSLocalizedString(@"identification.take.photo", @"")];
-        self.addressVerificationRowIndex = [photoCells count] - 1;
-    }
-
-    [self setPresentedSectionCells:@[photoCells]];
-
-    [self.requiredVerification removePossibleImages];
+    [PendingPayment removePossibleImages];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -97,6 +77,34 @@
     [super viewWillAppear:animated];
 
     [self.navigationItem setTitle:NSLocalizedString(@"identification.controller.title", nil)];
+
+    [self buildCells];
+}
+
+- (void)buildCells {
+    NSMutableArray *photoCells = [NSMutableArray array];
+
+    PendingPayment *payment = [self.objectModel pendingPayment];
+
+    if ([payment idVerificationRequired]) {
+        TextCell *idDocumentCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
+        [self setIdDocumentCell:idDocumentCell];
+        [photoCells addObject:idDocumentCell];
+        [idDocumentCell configureWithTitle:NSLocalizedString(@"identification.id.document", @"") text:NSLocalizedString(@"identification.take.photo", @"")];
+        self.idVerificationRowIndex = [photoCells count] - 1;
+    }
+
+
+    if ([payment addressVerificationRequired]) {
+        TextCell *proofOfAddressCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
+        [self setProofOfAddressCell:proofOfAddressCell];
+        [photoCells addObject:proofOfAddressCell];
+        [proofOfAddressCell configureWithTitle:NSLocalizedString(@"identification.proof.of.address", @"") text:NSLocalizedString(@"identification.take.photo", @"")];
+        self.addressVerificationRowIndex = [photoCells count] - 1;
+    }
+
+    [self setPresentedSectionCells:@[photoCells]];
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableView delegate
@@ -136,27 +144,27 @@
 
 // For responding to the user accepting a newly-captured picture or movie
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    UIImage *originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIImage *originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
 
-    if (self.selectedRow == self.idVerificationRowIndex) {
-        [self.requiredVerification setIdPhoto:originalImage];
-        self.idDocumentCell.detailTextLabel.text = @"";
-        self.idDocumentCell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else if (self.selectedRow == self.addressVerificationRowIndex) {
-        [self.requiredVerification setAddressPhoto:originalImage];
-        self.proofOfAddressCell.accessoryType = UITableViewCellAccessoryCheckmark;
-        self.proofOfAddressCell.detailTextLabel.text = @"";
-    }
+        if (self.selectedRow == self.idVerificationRowIndex) {
+            [PendingPayment setIdPhoto:originalImage];
+            self.idDocumentCell.detailTextLabel.text = @"";
+            self.idDocumentCell.accessoryType = UITableViewCellAccessoryCheckmark;
+        } else if (self.selectedRow == self.addressVerificationRowIndex) {
+            [PendingPayment setAddressPhoto:originalImage];
+            self.proofOfAddressCell.accessoryType = UITableViewCellAccessoryCheckmark;
+            self.proofOfAddressCell.detailTextLabel.text = @"";
+        }
 
-    [picker dismissModalViewControllerAnimated:YES];
+        [picker dismissModalViewControllerAnimated:YES];
+    });
 }
 
 
 #pragma mark - Continue
 
 - (IBAction)continueClicked:(id)sender {
-    [self.requiredVerification setSendLater:self.skipSwitch.isOn];
-
     NSString *issues = [self validateInput];
     if ([issues hasValue]) {
         TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"identification.input.error.title", nil) message:issues];
@@ -165,43 +173,41 @@
         return;
     }
 
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
-    [hud setMessage:NSLocalizedString(@"identification.creating.payment.message", nil)];
+    PendingPayment *payment = [self.objectModel pendingPayment];
+    [payment setSendVerificationLaterValue:self.skipSwitch.isOn];
 
-    [self.paymentFlow commitPaymentWithErrorHandler:^(NSError *error) {
-        [hud hide];
-        if (error) {
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) error:error];
-            [alertView show];
-        }
+    [self.objectModel saveContext:^{
+        TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+        [hud setMessage:NSLocalizedString(@"identification.creating.payment.message", nil)];
+
+        [self.paymentFlow commitPaymentWithErrorHandler:^(NSError *error) {
+            [hud hide];
+            if (error) {
+                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) error:error];
+                [alertView show];
+            }
+        }];
     }];
 }
 
 - (NSString *)validateInput {
-    if (self.requiredVerification.sendLater) {
+    if (self.skipSwitch.isOn) {
         return @"";
     }
 
+    PendingPayment *payment = [self.objectModel pendingPayment];
+
     NSMutableString *issues = [NSMutableString string];
 
-    if (self.requiredVerification.idVerificationRequired && !self.requiredVerification.isIdVerificationImagePresent) {
+    if ([payment idVerificationRequired] && ![PendingPayment isIdVerificationImagePresent]) {
         [issues appendIssue:NSLocalizedString(@"identification.id.image.missing.message", nil)];
     }
 
-    if (self.requiredVerification.addressVerificationRequired && !self.requiredVerification.isAddressVerificationImagePresent) {
+    if ([payment addressVerificationRequired] && ![PendingPayment isAddressVerificationImagePresent]) {
         [issues appendIssue:NSLocalizedString(@"identification.address.image.missing.message", nil)];
     }
 
     return [NSString stringWithString:issues];
 }
 
-- (void)viewDidUnload {
-    [self setReasonTitle:nil];
-    [self setExcuseLabel:nil];
-    [self setExplanationLabel:nil];
-    [self setSkipLabel:nil];
-    [self setContinueButton:nil];
-    [self setSkipSwitch:nil];
-    [super viewDidUnload];
-}
 @end

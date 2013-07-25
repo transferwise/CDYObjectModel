@@ -14,17 +14,22 @@
 #import "ObjectModel+RecipientTypes.h"
 #import "RecipientTypeField.h"
 #import "TypeFieldValue.h"
+#import "ObjectModel+Users.h"
 
 @implementation ObjectModel (Recipients)
 
 - (NSFetchedResultsController *)fetchedControllerForAllUserRecipients {
     NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
     NSPredicate *notSettlementPredicate = [NSPredicate predicateWithFormat:@"settlementRecipient = NO"];
-    return [self fetchedControllerForEntity:[Recipient entityName] predicate:notSettlementPredicate sortDescriptors:@[nameDescriptor]];
+    NSPredicate *notTemporaryPredicate = [NSPredicate predicateWithFormat:@"temporary = NO"];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notSettlementPredicate, notTemporaryPredicate]];
+    return [self fetchedControllerForEntity:[Recipient entityName] predicate:predicate sortDescriptors:@[nameDescriptor]];
 }
 
 - (Recipient *)recipientWithRemoteId:(NSNumber *)recipientId {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"remoteId = %@", recipientId];
+    NSPredicate *remoteIdPredicate = [NSPredicate predicateWithFormat:@"remoteId = %@", recipientId];
+    NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"user = %@", [self currentUser]];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[remoteIdPredicate, userPredicate]];
     return [self fetchEntityNamed:[Recipient entityName] withPredicate:predicate];
 }
 
@@ -35,7 +40,9 @@
     if (!recipient) {
         recipient = [Recipient insertInManagedObjectContext:self.managedObjectContext];
         [recipient setRemoteId:remoteId];
+        [recipient setUser:[self currentUser]];
     }
+
     [recipient setName:data[@"name"]];
     [recipient setCurrency:[self currencyWithCode:data[@"currency"]]];
     [recipient setEmail:data[@"email"]];
@@ -72,6 +79,13 @@
 - (Recipient *)createOrUpdateSettlementRecipientWithData:(NSDictionary *)data {
     Recipient *recipient = [self createOrUpdateRecipientWithData:data];
     [recipient setSettlementRecipientValue:YES];
+    return recipient;
+}
+
+- (Recipient *)createRecipient {
+    Recipient *recipient = [Recipient insertInManagedObjectContext:self.managedObjectContext];
+    [recipient setTemporaryValue:YES];
+    [recipient setUser:[self currentUser]];
     return recipient;
 }
 

@@ -13,16 +13,20 @@
 #import "ObjectModel+Recipients.h"
 #import "NSDate+ServerTime.h"
 #import "Constants.h"
+#import "ObjectModel+Users.h"
 
 @implementation ObjectModel (Payments)
 
 - (NSFetchedResultsController *)fetchedControllerForAllPayments {
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"submittedDate" ascending:NO];
-    return [self fetchedControllerForEntity:[Payment entityName] predicate:nil sortDescriptors:@[sortDescriptor]];
+    NSPredicate *presentablePredicate = [NSPredicate predicateWithFormat:@"presentable = YES"];
+    return [self fetchedControllerForEntity:[Payment entityName] predicate:presentablePredicate sortDescriptors:@[sortDescriptor]];
 }
 
 - (Payment *)paymentWithId:(NSNumber *)paymentId {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"remoteId = %@", paymentId];
+    NSPredicate *remoteIdPredicate = [NSPredicate predicateWithFormat:@"remoteId = %@", paymentId];
+    NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"user = %@", [self currentUser]];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[remoteIdPredicate, userPredicate]];
     return [self fetchEntityNamed:[Payment entityName] withPredicate:predicate];
 }
 
@@ -33,6 +37,7 @@
     if (!payment) {
         payment = [Payment insertInManagedObjectContext:self.managedObjectContext];
         [payment setRemoteId:paymentId];
+        [payment setUser:[self currentUser]];
     }
 
     [payment setPaymentStatus:data[@"paymentStatus"]];
@@ -47,6 +52,7 @@
     [payment setCancelledDate:[NSDate dateFromServerString:data[@"cancelledDate"]]];
     [payment setEstimatedDelivery:[NSDate dateFromServerString:data[@"estimatedDelivery"]]];
     [payment setSettlementRecipient:[self createOrUpdateSettlementRecipientWithData:data[@"settlementRecipient"]]];
+    [payment setPresentableValue:YES];
 
     return payment;
 }

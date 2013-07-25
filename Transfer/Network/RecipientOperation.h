@@ -8,16 +8,13 @@
 
 #import "TransferwiseOperation.h"
 
-@class PlainRecipient;
-@class PlainRecipientProfileInput;
-
-typedef void (^RecipientResponseBlock)(PlainRecipient *recipient, NSError *error);
+typedef void (^RecipientResponseBlock)(NSError *error);
 
 @interface RecipientOperation : TransferwiseOperation
 
 @property (nonatomic, copy) RecipientResponseBlock responseHandler;
 
-+ (RecipientOperation *)createOperationWithRecipient:(PlainRecipientProfileInput *)recipient;
-+ (RecipientOperation *)validateOperationWithRecipient:(PlainRecipientProfileInput *)recipient;
++ (RecipientOperation *)createOperationWithRecipient:(NSManagedObjectID *)recipient;
++ (RecipientOperation *)validateOperationWithRecipient:(NSManagedObjectID *)recipient;
 
 @end

@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "BusinessProfileValidation.h"
 
-@class BusinessProfileOperation;
 @class ObjectModel;
 
 @interface BusinessProfileCommitter : NSObject <BusinessProfileValidation>

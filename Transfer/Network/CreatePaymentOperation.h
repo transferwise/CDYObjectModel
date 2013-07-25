@@ -9,8 +9,6 @@
 #import "TransferwiseOperation.h"
 #import "CurrencyPairsOperation.h"
 
-@class PlainPaymentInput;
-
 typedef void (^CreatePaymentBlock)(NSManagedObjectID *paymentID, NSError *error);
 
 
@@ -18,7 +16,7 @@ typedef void (^CreatePaymentBlock)(NSManagedObjectID *paymentID, NSError *error)
 
 @property (nonatomic, copy) CreatePaymentBlock responseHandler;
 
-+ (CreatePaymentOperation *)commitOperationWithPayment:(PlainPaymentInput *)input;
-+ (CreatePaymentOperation *)validateOperationWithInput:(PlainPaymentInput *)input;
++ (CreatePaymentOperation *)commitOperationWithPayment:(NSManagedObjectID *)input;
++ (CreatePaymentOperation *)validateOperationWithInput:(NSManagedObjectID *)input;
 
 @end

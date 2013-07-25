@@ -8,8 +8,6 @@
 
 #import "ProfileSource.h"
 
-@class PlainProfileDetails;
-
 @interface PersonalProfileSource : ProfileSource
 
 @end

@@ -9,14 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "TransferwiseOperation.h"
 
-@class PlainPaymentVerificationRequired;
-
-typedef void (^VerificationRequiredBlock)(PlainPaymentVerificationRequired *verificationRequired, NSError *error);
+typedef void (^VerificationRequiredBlock)(NSError *error);
 
 @interface VerificationRequiredOperation : TransferwiseOperation
 
 @property (nonatomic, copy) VerificationRequiredBlock completionHandler;
 
-+ (VerificationRequiredOperation *)operationWithData:(NSDictionary *)data;
++ (VerificationRequiredOperation *)operation;
 
 @end

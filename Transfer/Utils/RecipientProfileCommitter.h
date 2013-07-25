@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "RecipientProfileValidation.h"
 
+@class ObjectModel;
+
 @interface RecipientProfileCommitter : NSObject <RecipientProfileValidation>
+
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 @end

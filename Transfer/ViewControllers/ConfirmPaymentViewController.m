@@ -9,22 +9,22 @@
 #import "ConfirmPaymentViewController.h"
 #import "UIColor+Theme.h"
 #import "ConfirmPaymentCell.h"
-#import "PlainRecipientType.h"
-#import "PlainRecipientTypeField.h"
 #import "OHAttributedLabel/OHAttributedLabel.h"
 #import "CalculationResult.h"
-#import "PlainPersonalProfileInput.h"
 #import "TRWProgressHUD.h"
-#import "PlainRecipientProfileInput.h"
 #import "TRWAlertView.h"
 #import "TextEntryCell.h"
-#import "NSString+Validation.h"
-#import "RecipientTypesOperation.h"
-#import "PlainPaymentInput.h"
 #import "PaymentFlow.h"
 #import "RecipientType.h"
 #import "ObjectModel+RecipientTypes.h"
-#import "ObjectModel.h"
+#import "Recipient.h"
+#import "ObjectModel+PendingPayments.h"
+#import "PendingPayment.h"
+#import "TypeFieldValue.h"
+#import "RecipientTypeField.h"
+#import "User.h"
+#import "BusinessProfile.h"
+#import "PersonalProfile.h"
 
 static NSUInteger const kSenderSection = 0;
 static NSUInteger const kReceiverSection = 1;
@@ -82,9 +82,6 @@ static NSUInteger const kReceiverSection = 1;
     NSMutableArray *senderCells = [NSMutableArray array];
     ConfirmPaymentCell *senderNameCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
     [self setSenderNameCell:senderNameCell];
-    if (!self.senderIsBusiness) {
-        [senderNameCell.imageView setImage:[UIImage imageNamed:@"ProfileIcon.png"]];
-    }
     [senderCells addObject:senderNameCell];
 
     ConfirmPaymentCell *senderEmailCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
@@ -143,12 +140,12 @@ static NSUInteger const kReceiverSection = 1;
 }
 
 - (NSArray *)buildFieldCells {
-    NSArray *fields = self.recipientType.fields;
-    NSMutableArray *cells = [NSMutableArray arrayWithCapacity:[fields count]];
-    for (PlainRecipientTypeField *field in fields) {
+    Recipient *recipient = [self.objectModel.pendingPayment recipient];
+    NSMutableArray *cells = [NSMutableArray array];
+    for (TypeFieldValue *value in recipient.fieldValues) {
         ConfirmPaymentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
-        [cell.textLabel setText:field.title];
-        [cell.detailTextLabel setText:[self.recipientProfile valueForKeyPath:field.name]];
+        [cell.textLabel setText:value.valueForField.title];
+        [cell.detailTextLabel setText:value.value];
         [cells addObject:cell];
     }
     return [NSArray arrayWithArray:cells];
@@ -164,74 +161,46 @@ static NSUInteger const kReceiverSection = 1;
 
     [self.navigationItem setTitle:NSLocalizedString(@"confirm.payment.controller.title", nil)];
 
-    TRWActionBlock completion = ^{
-        [self createContent];
-        [self fillDataCells];
-        [self.tableView reloadData];
-    };
-
-    if (!self.recipientType) {
-        TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
-        [hud setMessage:NSLocalizedString(@"confirm.payment.pulling.data", nil)];
-        RecipientTypesOperation *operation = [RecipientTypesOperation operation];
-        [self setExecutedOperation:operation];
-        [operation setObjectModel:self.objectModel];
-
-        [operation setResultHandler:^(NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [hud hide];
-
-                if (error) {
-                    TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.data.error.title", nil) error:error];
-                    [alertView show];
-                    return;
-                }
-
-                NSArray *types = [self.objectModel listAllRecipientTypes];
-                NSArray *recipients = [RecipientType createPlainTypes:types];
-
-                NSArray *filtered = [recipients filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-                    PlainRecipientType *type = evaluatedObject;
-
-                    return [type.type isEqualToString:self.recipientProfile.type];
-                }]];
-
-                [self setRecipientType:[filtered lastObject]];
-                completion();
-            });
-        }];
-
-        [operation execute];
-    } else {
-        completion();
-    }
+    [self createContent];
+    [self fillDataCells];
+    [self.tableView reloadData];
 }
 
 - (void)fillDataCells {
-    [self.yourDepositValueLabel setText:[self.calculationResult transferwisePayInStringWithCurrency]];
-    [self.exchangedToValueLabel setText:[self.calculationResult transferwisePayOutStringWithCurrency]];
+    PendingPayment *payment = [self.objectModel pendingPayment];
 
-    NSString *rateString = self.calculationResult.transferwiseRateString;
+    [self.yourDepositValueLabel setText:[payment payInStringWithCurrency]];
+    [self.exchangedToValueLabel setText:[payment payOutStringWithCurrency]];
+
+    NSString *rateString = [payment rateString];
     NSString *messageString = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.estimated.exchange.rate.message", nil), rateString];
     NSAttributedString *exchangeRateString = [self attributedStringWithBase:messageString markedString:rateString];
     [self.estimatedExchangeRateLabel setAttributedText:exchangeRateString];
 
-    NSString *dateString = self.calculationResult.paymentDateString;
+    NSString *dateString = [payment paymentDateString];
     NSString *dateMessageString = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.delivery.date.message", nil), dateString];
     NSAttributedString *paymentDateString = [self attributedStringWithBase:dateMessageString markedString:dateString];
     [self.deliveryDateLabelLabel setAttributedText:paymentDateString];
 
-    [self.senderNameCell.textLabel setText:self.senderName];
     [self.senderNameCell.detailTextLabel setText:NSLocalizedString(@"confirm.payment.sender.marker.label", nil)];
 
-    [self.senderEmailCell.textLabel setText:NSLocalizedString(@"confirm.payment.email.label", nil)];
-    [self.senderEmailCell.detailTextLabel setText:self.senderEmail];
+    if ([payment businessProfileUsed]) {
+        [self.senderNameCell.textLabel setText:payment.user.businessProfile.name];
+    } else {
+        [self.senderNameCell.imageView setImage:[UIImage imageNamed:@"ProfileIcon.png"]];
+        [self.senderNameCell.textLabel setText:[payment.user.personalProfile fullName]];
+    }
 
-    [self.receiverNameCell.textLabel setText:[self.recipientProfile name]];
+
+    [self.senderEmailCell.textLabel setText:NSLocalizedString(@"confirm.payment.email.label", nil)];
+    [self.senderEmailCell.detailTextLabel setText:payment.user.email];
+
+
+    [self.receiverNameCell.textLabel setText:[payment.recipient name]];
     [self.receiverNameCell.detailTextLabel setText:NSLocalizedString(@"confirm.payment.recipient.marker.label", nil)];
 
     [self.receiverEmailCell setEditable:YES];
-    [self.receiverEmailCell configureWithTitle:NSLocalizedString(@"confirm.payment.email.label", nil) value:[self.recipientProfile email]];
+    [self.receiverEmailCell configureWithTitle:NSLocalizedString(@"confirm.payment.email.label", nil) value:[payment.recipient email]];
 
     [self.referenceCell setEditable:YES];
     [self.referenceCell configureWithTitle:NSLocalizedString(@"confirm.payment.reference.label", nil) value:@""];
@@ -241,25 +210,15 @@ static NSUInteger const kReceiverSection = 1;
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
 
-    PlainPaymentInput *input = [[PlainPaymentInput alloc] init];
-    if (self.recipientProfile.id) {
-        [input setRecipientId:self.recipientProfile.id];
-    }
-    [input setSourceCurrency:self.calculationResult.sourceCurrency];
-    [input setTargetCurrency:self.calculationResult.targetCurrency];
-    [input setAmount:self.calculationResult.amount];
+    PendingPayment *input = [self.objectModel pendingPayment];
 
     NSString *reference = [self.referenceCell value];
-    if ([reference hasValue]) {
-        [input setReference:reference];
-    }
+    [input setReference:reference];
 
     NSString *email = [self.receiverEmailCell value];
-    if ([email hasValue]) {
-        [input setEmail:email];
-    }
+    [input setRecipientEmail:email];
 
-    [self.paymentFlow validatePayment:input errorHandler:^(NSError *error) {
+    [self.paymentFlow validatePayment:input.objectID errorHandler:^(NSError *error) {
         [hud hide];
         if (error) {
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];

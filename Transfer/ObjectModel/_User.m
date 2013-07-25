@@ -4,6 +4,7 @@
 #import "_User.h"
 
 const struct UserAttributes UserAttributes = {
+	.anonymous = @"anonymous",
 	.email = @"email",
 	.pReference = @"pReference",
 };
@@ -44,9 +45,40 @@ const struct UserFetchedProperties UserFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"anonymousValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"anonymous"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
+
+
+
+
+@dynamic anonymous;
+
+
+
+- (BOOL)anonymousValue {
+	NSNumber *result = [self anonymous];
+	return [result boolValue];
+}
+
+- (void)setAnonymousValue:(BOOL)value_ {
+	[self setAnonymous:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveAnonymousValue {
+	NSNumber *result = [self primitiveAnonymous];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveAnonymousValue:(BOOL)value_ {
+	[self setPrimitiveAnonymous:[NSNumber numberWithBool:value_]];
+}
+
 
 
 

@@ -8,10 +8,7 @@
 
 #import "BusinessProfileSource.h"
 #import "CountrySelectionCell.h"
-#import "PlainProfileDetails.h"
-#import "PlainBusinessProfile.h"
 #import "NSString+Validation.h"
-#import "PlainBusinessProfileInput.h"
 #import "BusinessProfileValidation.h"
 #import "PhoneBookProfile.h"
 #import "PhoneBookAddress.h"
@@ -138,29 +135,29 @@ static NSUInteger const kDetailsSection = 1;
 }
 
 - (id)enteredProfile {
-    PlainBusinessProfileInput *data = [[PlainBusinessProfileInput alloc] init];
-    data.businessName = [self.businessNameCell value];
-    data.registrationNumber = [self.registrationNumberCell value];
-    data.descriptionOfBusiness = [self.descriptionCell value];
-    data.addressFirstLine = [self.addressCell value];
-    data.postCode = [self.postCodeCell value];
-    data.city = [self.cityCell value];
-    data.countryCode = [self.countryCell value];
+    BusinessProfile *profile = [self.objectModel.currentUser businessProfileObject];
+    [profile setName:[self.businessNameCell value]];
+    [profile setRegistrationNumber:[self.registrationNumberCell value]];
+    [profile setBusinessDescription:[self.descriptionCell value]];
+    [profile setAddressFirstLine:[self.addressCell value]];
+    [profile setPostCode:[self.postCodeCell value]];
+    [profile setCity:[self.cityCell value]];
+    [profile setCountryCode:[self.countryCell value]];
 
-    return data;
+    [self.objectModel saveContext];
+
+    return profile.objectID;
 }
 
 - (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion {
-    [validation validateBusinessProfile:profile withHandler:^(PlainProfileDetails *details, NSError *error) {
+    [validation validateBusinessProfile:profile withHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error) {
                 completion(error);
                 return;
             }
 
-            if (details) {
-                [self loadDetailsToCells];
-            }
+            [self loadDetailsToCells];
 
             completion(nil);
         });

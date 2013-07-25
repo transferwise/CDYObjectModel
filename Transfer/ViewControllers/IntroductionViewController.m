@@ -26,6 +26,8 @@
 #import "ObjectModel+RecipientTypes.h"
 #import "ObjectModel+CurrencyPairs.h"
 #import "Currency.h"
+#import "PendingPayment.h"
+#import "ObjectModel+PendingPayments.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
@@ -250,13 +252,25 @@ static NSUInteger const kRowYouSend = 0;
         return;
     }
 
-    PaymentFlow *paymentFlow = [[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
-    [self setPaymentFlow:paymentFlow];
+    //TODO jaanus: copy/paste
+    [self.objectModel performBlock:^{
+        PendingPayment *payment = [self.objectModel createPendingPayment];
+        [payment setSourceCurrency:[self.youSendCell currency]];
+        [payment setTargetCurrency:[self.theyReceiveCell currency]];
+        [payment setPayIn:(NSDecimalNumber *) [self.result transferwisePayIn]];
+        [payment setPayOut:(NSDecimalNumber *) [self.result transferwisePayOut]];
+        [payment setRate:[self.result transferwiseRate]];
+        [payment setEstimatedDelivery:[self.result estimatedDelivery]];
 
-    [paymentFlow setObjectModel:self.objectModel];
-    [paymentFlow setCalculationResult:self.result];
+        PaymentFlow *paymentFlow = [[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
+        [self setPaymentFlow:paymentFlow];
 
-    [paymentFlow presentSenderDetails];
+        [paymentFlow setObjectModel:self.objectModel];
+
+        [self.objectModel performBlock:^{
+            [paymentFlow presentSenderDetails];
+        }];
+    }];
 }
 
 /////////////////////////////////////////////////////////////////////////////

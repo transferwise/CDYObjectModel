@@ -10,20 +10,22 @@ NSString *const kCreateRecipientPath = @"/recipient/create";
 NSString *const kValidateRecipientPath = @"/recipient/validate";
 
 #import "RecipientOperation.h"
-#import "PlainRecipient.h"
 #import "TransferwiseOperation+Private.h"
-#import "PlainRecipientProfileInput.h"
+#import "JCSObjectModel.h"
+#import "ObjectModel+RecipientTypes.h"
+#import "Recipient.h"
+#import "Constants.h"
 
 @interface RecipientOperation ()
 
 @property (nonatomic, copy) NSString *path;
-@property (nonatomic, strong) PlainRecipientProfileInput *recipient;
+@property (nonatomic, strong) NSManagedObjectID *recipient;
 
 @end
 
 @implementation RecipientOperation
 
-- (id)initWithPath:(NSString *)path recipient:(PlainRecipientProfileInput *)recipient {
+- (id)initWithPath:(NSString *)path recipient:(NSManagedObjectID *)recipient {
     self = [super init];
     if (self) {
         _path = path;
@@ -33,26 +35,39 @@ NSString *const kValidateRecipientPath = @"/recipient/validate";
 }
 
 - (void)execute {
+    MCLog(@"execute");
     NSString *path = [self addTokenToPath:self.path];
 
     __block __weak RecipientOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
-        weakSelf.responseHandler(nil, error);
+        weakSelf.responseHandler(error);
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        PlainRecipient *recipient = [PlainRecipient recipientWithData:response];
-        weakSelf.responseHandler(recipient, nil);
+        [weakSelf.workModel performBlock:^{
+            NSNumber *remoteId = response[@"id"];
+            if (remoteId) {
+                Recipient *recipient = (Recipient *) [weakSelf.workModel.managedObjectContext objectWithID:weakSelf.recipient];
+                [recipient setRemoteId:remoteId];
+            }
+
+            [weakSelf.workModel saveContext:^{
+                weakSelf.responseHandler(nil);
+            }];
+        }];
     }];
 
-    [self postData:[self.recipient data] toPath:path];
+    [self.workModel performBlock:^{
+        Recipient *recipient = (Recipient *) [weakSelf.workModel.managedObjectContext objectWithID:self.recipient];
+        [self postData:[recipient data] toPath:path];
+    }];
 }
 
-+ (RecipientOperation *)createOperationWithRecipient:(PlainRecipientProfileInput *)recipient {
++ (RecipientOperation *)createOperationWithRecipient:(NSManagedObjectID *)recipient {
     return [[RecipientOperation alloc] initWithPath:kCreateRecipientPath recipient:recipient];
 }
 
-+ (RecipientOperation *)validateOperationWithRecipient:(PlainRecipientProfileInput *)recipient {
++ (RecipientOperation *)validateOperationWithRecipient:(NSManagedObjectID *)recipient {
     return [[RecipientOperation alloc] initWithPath:kValidateRecipientPath recipient:recipient];
 }
 

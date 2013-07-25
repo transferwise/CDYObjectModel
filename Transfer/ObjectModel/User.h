@@ -1,10 +1,9 @@
 #import "_User.h"
 
-@class PlainProfileDetails;
-
 @interface User : _User
 
-- (PlainProfileDetails *)plainUserDetails;
 - (NSString *)displayName;
+- (PersonalProfile *)personalProfileObject;
+- (BusinessProfile *)businessProfileObject;
 
 @end
