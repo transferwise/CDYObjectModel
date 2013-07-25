@@ -11,7 +11,6 @@
 #import "RecipientProfileValidation.h"
 #import "BusinessProfileValidation.h"
 
-@class PlainPaymentVerificationRequired;
 @class ObjectModel;
 
 typedef void (^PaymentErrorBlock)(NSError *error);

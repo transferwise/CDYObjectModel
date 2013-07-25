@@ -14,7 +14,6 @@
 #import "UploadMoneyViewController.h"
 #import "CreatePaymentOperation.h"
 #import "VerificationRequiredOperation.h"
-#import "PlainPaymentVerificationRequired.h"
 #import "Credentials.h"
 #import "UploadVerificationFileOperation.h"
 #import "PersonalProfileOperation.h"
@@ -39,7 +38,6 @@
 @property (nonatomic, strong) UINavigationController *navigationController;
 @property (nonatomic, copy) PaymentErrorBlock paymentErrorHandler;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
-@property (nonatomic, strong) PlainPaymentVerificationRequired *verificationRequired;
 
 @end
 
@@ -191,10 +189,10 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)presentVerificationScreen:(PlainPaymentVerificationRequired *)requiredVerification {
+- (void)presentVerificationScreen {
     IdentificationViewController *controller = [[IdentificationViewController alloc] init];
-    controller.requiredVerification = requiredVerification;
-    controller.paymentFlow = self;
+    [controller setObjectModel:self.objectModel];
+    [controller setPaymentFlow:self];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -231,31 +229,32 @@
 
 - (void)checkVerificationNeeded {
     MCLog(@"checkVerificationNeeded");
-    PendingPayment *payment = self.objectModel.pendingPayment;
-    VerificationRequiredOperation *operation = [VerificationRequiredOperation operationWithData:@{@"payIn" : payment.payIn, @"sourceCurrency" : payment.sourceCurrency.code}];
+    VerificationRequiredOperation *operation = [VerificationRequiredOperation operation];
     [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
 
-    [operation setCompletionHandler:^(PlainPaymentVerificationRequired *verificationRequired, NSError *error) {
-        if (error) {
-            self.paymentErrorHandler(error);
-            return;
-        }
+    [operation setCompletionHandler:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                self.paymentErrorHandler(error);
+                return;
+            }
 
-        [self setVerificationRequired:verificationRequired];
-
-        MCLog(@"Any verification required? %d", verificationRequired.isAnyVerificationRequired);
-        MCLog(@"Logged in? %d", [Credentials userLoggedIn]);
-        if (verificationRequired.isAnyVerificationRequired) {
-            MCLog(@"Present verification screen");
-            self.paymentErrorHandler(nil);
-            [self presentVerificationScreen:verificationRequired];
-        } else if ([Credentials userLoggedIn]) {
-            MCLog(@"Update sender profile");
-            [self updateSenderProfile];
-        } else {
-            MCLog(@"Register user");
-            [self registerUser];
-        }
+            PendingPayment *pendingPayment = [self.objectModel pendingPayment];
+            MCLog(@"Any verification required? %d", pendingPayment.isAnyVerificationRequired);
+            MCLog(@"Logged in? %d", [Credentials userLoggedIn]);
+            if ([pendingPayment isAnyVerificationRequired]) {
+                MCLog(@"Present verification screen");
+                self.paymentErrorHandler(nil);
+                [self presentVerificationScreen];
+            } else if ([Credentials userLoggedIn]) {
+                MCLog(@"Update sender profile");
+                [self updateSenderProfile];
+            } else {
+                MCLog(@"Register user");
+                [self registerUser];
+            }
+        });
     }];
 
     [operation execute];
@@ -363,46 +362,49 @@
 }
 
 - (void)uploadVerificationData {
-    MCLog(@"Upload verification data:%d", self.verificationRequired.isAnyVerificationRequired);
-    MCLog(@"Send later:%d", self.verificationRequired.sendLater);
-    //if (self.verificationRequired.sendLater) {
-    //    [self.paymentInput setVerificationProvideLater:@"true"];
-    //} else {
-    //    [self.paymentInput setVerificationProvideLater:@"false"];
-    //}
-
-    if (self.verificationRequired.isAnyVerificationRequired && !self.verificationRequired.sendLater) {
-        [self uploadNextVerificationData];
-    } else {
-        [self commitPayment];
-    }
+    [self.objectModel performBlock:^{
+        PendingPayment *payment = [self.objectModel pendingPayment];
+        if ([payment isAnyVerificationRequired] && !payment.sendVerificationLaterValue) {
+            [self uploadNextVerificationData];
+        } else {
+            [self commitPayment];
+        }
+    }];
 }
 
 - (void)uploadNextVerificationData {
     MCLog(@"uploadNextVerificationData");
-    if (self.verificationRequired.idVerificationRequired) {
-        [self uploadIdVerification];
-    } else if (self.verificationRequired.addressVerificationRequired) {
-        [self uploadAddressVerification];
-    } else {
-        [self commitPayment];
-    }
+    [self.objectModel performBlock:^{
+        PendingPayment *payment = [self.objectModel pendingPayment];
+        if (payment.idVerificationRequired) {
+            [self uploadIdVerification];
+        } else if (payment.addressVerificationRequired) {
+            [self uploadAddressVerification];
+        } else {
+            [self commitPayment];
+        }
+    }];
 }
 
 - (void)uploadAddressVerification {
     MCLog(@"uploadAddressVerification");
-    UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:@"address" filePath:self.verificationRequired.addressPhotoPath];
+    UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:@"address" filePath:[PendingPayment addressPhotoPath]];
     [self setExecutedOperation:operation];
 
     [operation setCompletionHandler:^(NSError *error) {
-        if (error) {
-            self.paymentErrorHandler(error);
-            return;
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                self.paymentErrorHandler(error);
+                return;
+            }
 
-        MCLog(@"uploadAddressVerification done");
-        self.verificationRequired.addressVerificationRequired = NO;
-        [self uploadNextVerificationData];
+            MCLog(@"uploadAddressVerification done");
+            PendingPayment *payment = [self.objectModel pendingPayment];
+            [payment setAddressVerificationRequiredValue:NO];
+            [self.objectModel saveContext:^{
+                [self uploadNextVerificationData];
+            }];
+        });
     }];
 
     [operation execute];
@@ -410,18 +412,23 @@
 
 - (void)uploadIdVerification {
     MCLog(@"uploadIdVerification");
-    UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:@"id" filePath:self.verificationRequired.idPhotoPath];
+    UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:@"id" filePath:[PendingPayment idPhotoPath]];
     [self setExecutedOperation:operation];
 
     [operation setCompletionHandler:^(NSError *error) {
-        if (error) {
-            self.paymentErrorHandler(error);
-            return;
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                self.paymentErrorHandler(error);
+                return;
+            }
 
-        MCLog(@"uploadIdVerification done");
-        self.verificationRequired.idVerificationRequired = NO;
-        [self uploadNextVerificationData];
+            MCLog(@"uploadIdVerification done");
+            PendingPayment *payment = [self.objectModel pendingPayment];
+            [payment setIdVerificationRequiredValue:NO];
+            [self.objectModel saveContext:^{
+                [self uploadNextVerificationData];
+            }];
+        });
     }];
 
     [operation execute];

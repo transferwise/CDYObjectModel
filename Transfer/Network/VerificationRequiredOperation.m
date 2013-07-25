@@ -8,46 +8,52 @@
 
 #import "VerificationRequiredOperation.h"
 #import "TransferwiseOperation+Private.h"
-#import "PlainPaymentVerificationRequired.h"
+#import "JCSObjectModel.h"
+#import "ObjectModel+RecipientTypes.h"
+#import "PendingPayment.h"
+#import "ObjectModel+PendingPayments.h"
+#import "Currency.h"
 
 NSString *const kVerificationRequiredPath = @"/verification/required";
 
 @interface VerificationRequiredOperation ()
 
-@property (nonatomic, strong) NSDictionary *data;
-
 @end
 
 @implementation VerificationRequiredOperation
-
-- (id)initWithData:(NSDictionary *)dictionary {
-    self = [super init];
-    if (self) {
-        _data = dictionary;
-    }
-    return self;
-}
 
 - (void)execute {
     NSString *path = [self addTokenToPath:kVerificationRequiredPath];
 
     __block __weak VerificationRequiredOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
-        weakSelf.completionHandler(nil, error);
+        weakSelf.completionHandler(error);
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        PlainPaymentVerificationRequired *required = [[PlainPaymentVerificationRequired alloc] init];
-        required.idVerificationRequired = [response[@"idVerification"] boolValue];
-        required.addressVerificationRequired = [response[@"addressVerification"] boolValue];
-        weakSelf.completionHandler(required, nil);
+        [weakSelf.workModel performBlock:^{
+            PendingPayment *payment = [weakSelf.workModel pendingPayment];
+            [payment setIdVerificationRequiredValue:[response[@"idVerification"] boolValue]];
+            [payment setAddressVerificationRequiredValue:[response[@"addressVerification"] boolValue]];
+
+            [weakSelf.workModel saveContext:^{
+                weakSelf.completionHandler(nil);
+            }];
+        }];
     }];
 
-    [self getDataFromPath:path params:self.data];
+    [self.workModel performBlock:^{
+        PendingPayment *payment = [weakSelf.workModel pendingPayment];
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[@"profile"] = [payment profileUsed];
+        params[@"payIn"] = [payment payIn];
+        params[@"sourceCurrency"] = [payment.sourceCurrency code];
+        [self getDataFromPath:path params:params];
+    }];
 }
 
-+ (VerificationRequiredOperation *)operationWithData:(NSDictionary *)data {
-    return [[VerificationRequiredOperation alloc] initWithData:data];
++ (VerificationRequiredOperation *)operation {
+    return [[VerificationRequiredOperation alloc] init];
 }
 
 @end
