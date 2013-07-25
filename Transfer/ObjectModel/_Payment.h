@@ -7,6 +7,7 @@
 extern const struct PaymentAttributes {
 	__unsafe_unretained NSString *cancelledDate;
 	__unsafe_unretained NSString *estimatedDelivery;
+	__unsafe_unretained NSString *hidden;
 	__unsafe_unretained NSString *lastUpdateTime;
 	__unsafe_unretained NSString *payIn;
 	__unsafe_unretained NSString *paymentStatus;
@@ -32,6 +33,7 @@ extern const struct PaymentFetchedProperties {
 @class Currency;
 @class Currency;
 @class User;
+
 
 
 
@@ -71,6 +73,20 @@ extern const struct PaymentFetchedProperties {
 
 
 //- (BOOL)validateEstimatedDelivery:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* hidden;
+
+
+
+@property BOOL hiddenValue;
+- (BOOL)hiddenValue;
+- (void)setHiddenValue:(BOOL)value_;
+
+//- (BOOL)validateHidden:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -203,6 +219,15 @@ extern const struct PaymentFetchedProperties {
 
 - (NSDate*)primitiveEstimatedDelivery;
 - (void)setPrimitiveEstimatedDelivery:(NSDate*)value;
+
+
+
+
+- (NSNumber*)primitiveHidden;
+- (void)setPrimitiveHidden:(NSNumber*)value;
+
+- (BOOL)primitiveHiddenValue;
+- (void)setPrimitiveHiddenValue:(BOOL)value_;
 
 
 

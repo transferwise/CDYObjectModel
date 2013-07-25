@@ -19,7 +19,8 @@
 
 - (NSFetchedResultsController *)fetchedControllerForAllPayments {
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"submittedDate" ascending:NO];
-    return [self fetchedControllerForEntity:[Payment entityName] predicate:nil sortDescriptors:@[sortDescriptor]];
+    NSPredicate *notHiddenPaymentPredicate = [NSPredicate predicateWithFormat:@"hidden = NO"];
+    return [self fetchedControllerForEntity:[Payment entityName] predicate:notHiddenPaymentPredicate sortDescriptors:@[sortDescriptor]];
 }
 
 - (Payment *)paymentWithId:(NSNumber *)paymentId {

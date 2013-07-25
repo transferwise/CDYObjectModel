@@ -50,6 +50,7 @@
     <entity name="Payment" representedClassName="Payment" syncable="YES">
         <attribute name="cancelledDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="estimatedDelivery" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="hidden" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="lastUpdateTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="payIn" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="paymentStatus" optional="YES" attributeType="String" syncable="YES"/>
@@ -139,7 +140,7 @@
         <element name="Currency" positionX="160" positionY="192" width="128" height="210"/>
         <element name="PairSourceCurrency" positionX="160" positionY="192" width="128" height="105"/>
         <element name="PairTargetCurrency" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Payment" positionX="160" positionY="192" width="128" height="255"/>
+        <element name="Payment" positionX="160" positionY="192" width="128" height="270"/>
         <element name="PendingPayment" positionX="160" positionY="192" width="128" height="165"/>
         <element name="PersonalProfile" positionX="160" positionY="192" width="128" height="195"/>
         <element name="Recipient" positionX="160" positionY="192" width="128" height="210"/>
