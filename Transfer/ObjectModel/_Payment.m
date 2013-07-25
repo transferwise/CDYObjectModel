@@ -6,10 +6,10 @@
 const struct PaymentAttributes PaymentAttributes = {
 	.cancelledDate = @"cancelledDate",
 	.estimatedDelivery = @"estimatedDelivery",
-	.hidden = @"hidden",
 	.lastUpdateTime = @"lastUpdateTime",
 	.payIn = @"payIn",
 	.paymentStatus = @"paymentStatus",
+	.presentable = @"presentable",
 	.receivedDate = @"receivedDate",
 	.remoteId = @"remoteId",
 	.submittedDate = @"submittedDate",
@@ -53,8 +53,8 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
-	if ([key isEqualToString:@"hiddenValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"hidden"];
+	if ([key isEqualToString:@"presentableValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"presentable"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -84,32 +84,6 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 
 
 
-@dynamic hidden;
-
-
-
-- (BOOL)hiddenValue {
-	NSNumber *result = [self hidden];
-	return [result boolValue];
-}
-
-- (void)setHiddenValue:(BOOL)value_ {
-	[self setHidden:[NSNumber numberWithBool:value_]];
-}
-
-- (BOOL)primitiveHiddenValue {
-	NSNumber *result = [self primitiveHidden];
-	return [result boolValue];
-}
-
-- (void)setPrimitiveHiddenValue:(BOOL)value_ {
-	[self setPrimitiveHidden:[NSNumber numberWithBool:value_]];
-}
-
-
-
-
-
 @dynamic lastUpdateTime;
 
 
@@ -126,6 +100,32 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 
 @dynamic paymentStatus;
 
+
+
+
+
+
+@dynamic presentable;
+
+
+
+- (BOOL)presentableValue {
+	NSNumber *result = [self presentable];
+	return [result boolValue];
+}
+
+- (void)setPresentableValue:(BOOL)value_ {
+	[self setPresentable:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitivePresentableValue {
+	NSNumber *result = [self primitivePresentable];
+	return [result boolValue];
+}
+
+- (void)setPrimitivePresentableValue:(BOOL)value_ {
+	[self setPrimitivePresentable:[NSNumber numberWithBool:value_]];
+}
 
 
 

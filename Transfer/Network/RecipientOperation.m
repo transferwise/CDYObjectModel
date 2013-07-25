@@ -44,7 +44,17 @@ NSString *const kValidateRecipientPath = @"/recipient/validate";
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        weakSelf.responseHandler(nil);
+        [weakSelf.workModel performBlock:^{
+            NSNumber *remoteId = response[@"id"];
+            if (remoteId) {
+                Recipient *recipient = (Recipient *) [weakSelf.workModel.managedObjectContext objectWithID:weakSelf.recipient];
+                [recipient setRemoteId:remoteId];
+            }
+
+            [weakSelf.workModel saveContext:^{
+                weakSelf.responseHandler(nil);
+            }];
+        }];
     }];
 
     [self.workModel performBlock:^{

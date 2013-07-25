@@ -20,7 +20,6 @@
 
     PendingPayment *payment = [PendingPayment insertInManagedObjectContext:self.managedObjectContext];
     [payment setUser:[self currentUser]];
-    [payment setHiddenValue:YES];
 
     return payment;
 }

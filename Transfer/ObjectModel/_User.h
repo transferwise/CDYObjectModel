@@ -5,6 +5,7 @@
 
 
 extern const struct UserAttributes {
+	__unsafe_unretained NSString *anonymous;
 	__unsafe_unretained NSString *email;
 	__unsafe_unretained NSString *pReference;
 } UserAttributes;
@@ -27,6 +28,7 @@ extern const struct UserFetchedProperties {
 
 
 
+
 @interface UserID : NSManagedObjectID {}
 @end
 
@@ -35,6 +37,20 @@ extern const struct UserFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (UserID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* anonymous;
+
+
+
+@property BOOL anonymousValue;
+- (BOOL)anonymousValue;
+- (void)setAnonymousValue:(BOOL)value_;
+
+//- (BOOL)validateAnonymous:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -106,6 +122,15 @@ extern const struct UserFetchedProperties {
 @end
 
 @interface _User (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSNumber*)primitiveAnonymous;
+- (void)setPrimitiveAnonymous:(NSNumber*)value;
+
+- (BOOL)primitiveAnonymousValue;
+- (void)setPrimitiveAnonymousValue:(BOOL)value_;
+
+
 
 
 - (NSString*)primitiveEmail;

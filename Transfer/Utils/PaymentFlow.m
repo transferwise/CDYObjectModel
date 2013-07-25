@@ -181,12 +181,14 @@
 }
 
 - (void)presentPaymentConfirmation {
-    MCLog(@"presentPaymentConfirmation");
-    ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
-    [controller setFooterButtonTitle:NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
-    [controller setPaymentFlow:self];
-    [self.navigationController pushViewController:controller animated:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MCLog(@"presentPaymentConfirmation");
+        ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
+        [controller setObjectModel:self.objectModel];
+        [controller setFooterButtonTitle:NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
+        [controller setPaymentFlow:self];
+        [self.navigationController pushViewController:controller animated:YES];
+    });
 }
 
 - (void)presentVerificationScreen {
@@ -281,6 +283,7 @@
 
     RegisterWithoutPasswordOperation *operation = [RegisterWithoutPasswordOperation operationWithEmail:email];
     [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
     [operation setCompletionHandler:^(NSError *error) {
         MCLog(@"Register result:%@", error);
         if (error) {
@@ -295,8 +298,14 @@
 }
 
 - (void)updateSenderProfile {
-    MCLog(@"updateSenderProfile");
-    [self updateBusinessProfile];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MCLog(@"updateSenderProfile");
+        if (self.objectModel.currentUser.businessProfile) {
+            [self updateBusinessProfile];
+        } else {
+            [self updatePersonalProfile];
+        }
+    });
 }
 
 - (void)updateBusinessProfile {

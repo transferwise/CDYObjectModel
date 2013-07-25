@@ -7,10 +7,10 @@
 extern const struct PaymentAttributes {
 	__unsafe_unretained NSString *cancelledDate;
 	__unsafe_unretained NSString *estimatedDelivery;
-	__unsafe_unretained NSString *hidden;
 	__unsafe_unretained NSString *lastUpdateTime;
 	__unsafe_unretained NSString *payIn;
 	__unsafe_unretained NSString *paymentStatus;
+	__unsafe_unretained NSString *presentable;
 	__unsafe_unretained NSString *receivedDate;
 	__unsafe_unretained NSString *remoteId;
 	__unsafe_unretained NSString *submittedDate;
@@ -78,20 +78,6 @@ extern const struct PaymentFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* hidden;
-
-
-
-@property BOOL hiddenValue;
-- (BOOL)hiddenValue;
-- (void)setHiddenValue:(BOOL)value_;
-
-//- (BOOL)validateHidden:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
 @property (nonatomic, strong) NSDate* lastUpdateTime;
 
 
@@ -117,6 +103,20 @@ extern const struct PaymentFetchedProperties {
 
 
 //- (BOOL)validatePaymentStatus:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* presentable;
+
+
+
+@property BOOL presentableValue;
+- (BOOL)presentableValue;
+- (void)setPresentableValue:(BOOL)value_;
+
+//- (BOOL)validatePresentable:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -223,15 +223,6 @@ extern const struct PaymentFetchedProperties {
 
 
 
-- (NSNumber*)primitiveHidden;
-- (void)setPrimitiveHidden:(NSNumber*)value;
-
-- (BOOL)primitiveHiddenValue;
-- (void)setPrimitiveHiddenValue:(BOOL)value_;
-
-
-
-
 - (NSDate*)primitiveLastUpdateTime;
 - (void)setPrimitiveLastUpdateTime:(NSDate*)value;
 
@@ -246,6 +237,15 @@ extern const struct PaymentFetchedProperties {
 
 - (NSString*)primitivePaymentStatus;
 - (void)setPrimitivePaymentStatus:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitivePresentable;
+- (void)setPrimitivePresentable:(NSNumber*)value;
+
+- (BOOL)primitivePresentableValue;
+- (void)setPrimitivePresentableValue:(BOOL)value_;
 
 
 

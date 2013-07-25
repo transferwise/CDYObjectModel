@@ -28,6 +28,7 @@
     MCAssert(self.objectModel);
 
     if (![Credentials userLoggedIn]) {
+        [self loadDetailsToCells];
         handler(nil);
         return;
     }

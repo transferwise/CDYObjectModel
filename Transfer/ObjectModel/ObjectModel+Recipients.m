@@ -85,6 +85,7 @@
 - (Recipient *)createRecipient {
     Recipient *recipient = [Recipient insertInManagedObjectContext:self.managedObjectContext];
     [recipient setTemporaryValue:YES];
+    [recipient setUser:[self currentUser]];
     return recipient;
 }
 

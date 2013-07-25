@@ -19,8 +19,8 @@
 
 - (NSFetchedResultsController *)fetchedControllerForAllPayments {
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"submittedDate" ascending:NO];
-    NSPredicate *notHiddenPaymentPredicate = [NSPredicate predicateWithFormat:@"hidden = NO"];
-    return [self fetchedControllerForEntity:[Payment entityName] predicate:notHiddenPaymentPredicate sortDescriptors:@[sortDescriptor]];
+    NSPredicate *presentablePredicate = [NSPredicate predicateWithFormat:@"presentable = YES"];
+    return [self fetchedControllerForEntity:[Payment entityName] predicate:presentablePredicate sortDescriptors:@[sortDescriptor]];
 }
 
 - (Payment *)paymentWithId:(NSNumber *)paymentId {
@@ -52,6 +52,7 @@
     [payment setCancelledDate:[NSDate dateFromServerString:data[@"cancelledDate"]]];
     [payment setEstimatedDelivery:[NSDate dateFromServerString:data[@"estimatedDelivery"]]];
     [payment setSettlementRecipient:[self createOrUpdateSettlementRecipientWithData:data[@"settlementRecipient"]]];
+    [payment setPresentableValue:YES];
 
     return payment;
 }

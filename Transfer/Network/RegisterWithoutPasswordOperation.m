@@ -9,6 +9,9 @@
 #import "RegisterWithoutPasswordOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Credentials.h"
+#import "JCSObjectModel.h"
+#import "ObjectModel+RecipientTypes.h"
+#import "ObjectModel+Users.h"
 
 NSString *const kRegisterPasslessPath = @"/account/registerWithNoPassword";
 
@@ -37,14 +40,20 @@ NSString *const kRegisterPasslessPath = @"/account/registerWithNoPassword";
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        NSString *token = response[@"token"];
-        if ([token isKindOfClass:[NSDictionary class]]) {
-            token = response[@"token"][@"value"];
-        }
-        [Credentials setUserToken:token];
-        [Credentials setUserSecret:response[@"secret"]];
-        [Credentials setUserEmail:weakSelf.email];
-        weakSelf.completionHandler(nil);
+        [weakSelf.workModel performBlock:^{
+            NSString *token = response[@"token"];
+            if ([token isKindOfClass:[NSDictionary class]]) {
+                token = response[@"token"][@"value"];
+            }
+            [Credentials setUserToken:token];
+            [Credentials setUserSecret:response[@"secret"]];
+            [Credentials setUserEmail:weakSelf.email];
+
+            [weakSelf.workModel markAnonUserWithEmail:weakSelf.email];
+            [weakSelf.workModel saveContext:^{
+                weakSelf.completionHandler(nil);
+            }];
+        }];
     }];
 
     [self postData:@{@"email":self.email} toPath:path];

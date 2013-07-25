@@ -13,6 +13,7 @@
 #import "Constants.h"
 #import "TestFlight.h"
 #import "TransferwiseClient.h"
+#import "ObjectModel+Users.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -39,8 +40,9 @@
 
     ObjectModel *model = [[ObjectModel alloc] init];
     [self setObjectModel:model];
+    [model removeAnonymousUser];
     [model loadBaseData];
-    
+
     UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.window = window;
 
