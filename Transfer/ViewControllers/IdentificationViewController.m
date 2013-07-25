@@ -144,19 +144,21 @@
 
 // For responding to the user accepting a newly-captured picture or movie
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    UIImage *originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIImage *originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
 
-    if (self.selectedRow == self.idVerificationRowIndex) {
-        [PendingPayment setIdPhoto:originalImage];
-        self.idDocumentCell.detailTextLabel.text = @"";
-        self.idDocumentCell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else if (self.selectedRow == self.addressVerificationRowIndex) {
-        [PendingPayment setAddressPhoto:originalImage];
-        self.proofOfAddressCell.accessoryType = UITableViewCellAccessoryCheckmark;
-        self.proofOfAddressCell.detailTextLabel.text = @"";
-    }
+        if (self.selectedRow == self.idVerificationRowIndex) {
+            [PendingPayment setIdPhoto:originalImage];
+            self.idDocumentCell.detailTextLabel.text = @"";
+            self.idDocumentCell.accessoryType = UITableViewCellAccessoryCheckmark;
+        } else if (self.selectedRow == self.addressVerificationRowIndex) {
+            [PendingPayment setAddressPhoto:originalImage];
+            self.proofOfAddressCell.accessoryType = UITableViewCellAccessoryCheckmark;
+            self.proofOfAddressCell.detailTextLabel.text = @"";
+        }
 
-    [picker dismissModalViewControllerAnimated:YES];
+        [picker dismissModalViewControllerAnimated:YES];
+    });
 }
 
 

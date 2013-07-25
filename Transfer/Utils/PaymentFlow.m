@@ -376,9 +376,9 @@
     MCLog(@"uploadNextVerificationData");
     [self.objectModel performBlock:^{
         PendingPayment *payment = [self.objectModel pendingPayment];
-        if (payment.idVerificationRequired) {
+        if (payment.idVerificationRequiredValue) {
             [self uploadIdVerification];
-        } else if (payment.addressVerificationRequired) {
+        } else if (payment.addressVerificationRequiredValue) {
             [self uploadAddressVerification];
         } else {
             [self commitPayment];
@@ -390,6 +390,7 @@
     MCLog(@"uploadAddressVerification");
     UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:@"address" filePath:[PendingPayment addressPhotoPath]];
     [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
 
     [operation setCompletionHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -414,6 +415,7 @@
     MCLog(@"uploadIdVerification");
     UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:@"id" filePath:[PendingPayment idPhotoPath]];
     [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
 
     [operation setCompletionHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{

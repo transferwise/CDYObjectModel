@@ -182,6 +182,8 @@
 }
 
 - (ObjectModel *)workModel {
+    MCAssert(self.objectModel);
+
     if (!_workModel) {
         _workModel = [self.objectModel spawnBackgroundInstance];
     }
