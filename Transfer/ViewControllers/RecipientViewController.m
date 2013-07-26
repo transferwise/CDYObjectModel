@@ -499,7 +499,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if (section != kSenderSection) {
+    NSInteger sectionIndex = [self.presentedSections[section] integerValue];
+    if (sectionIndex != kSenderSection) {
         return nil;
     }
 
@@ -511,7 +512,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if (section != kSenderSection) {
+    NSInteger sectionIndex = [self.presentedSections[section] integerValue];
+    if (sectionIndex != kSenderSection) {
         return 0;
     }
 
@@ -541,6 +543,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self.senderNameCell.imageView setImage:shownImage];
     [self.senderNameCell.textLabel setText:name];
     [self.senderNameCell.detailTextLabel setText:@""];
+    [self.tableView reloadData];
 }
 
 @end
