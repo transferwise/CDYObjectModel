@@ -406,15 +406,17 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self.objectModel saveContext];
 
     [self.recipientValidation validateRecipient:recipientInput.objectID completion:^(NSError *error) {
-        [hud hide];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [hud hide];
 
-        if (error) {
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) error:error];
-            [alertView show];
-            return;
-        }
+            if (error) {
+                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) error:error];
+                [alertView show];
+                return;
+            }
 
-        self.afterSaveAction();
+            self.afterSaveAction();
+        });
     }];
 }
 
