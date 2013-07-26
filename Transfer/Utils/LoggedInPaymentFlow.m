@@ -9,6 +9,8 @@
 #import "LoggedInPaymentFlow.h"
 #import "User.h"
 #import "ObjectModel+Users.h"
+#import "ObjectModel+PendingPayments.h"
+#import "PendingPayment.h"
 
 @implementation LoggedInPaymentFlow
 
@@ -16,6 +18,8 @@
     User *user = [self.objectModel currentUser];
     if (![user personalProfileFilled]) {
         [self presentPersonalProfileEntry:YES];
+    } else if (self.objectModel.pendingPayment.recipient) {
+        [self presentPaymentConfirmation];
     } else {
         [self presentRecipientDetails:YES];
     }

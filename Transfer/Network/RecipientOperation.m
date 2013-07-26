@@ -49,6 +49,7 @@ NSString *const kValidateRecipientPath = @"/recipient/validate";
             if (remoteId) {
                 Recipient *recipient = (Recipient *) [weakSelf.workModel.managedObjectContext objectWithID:weakSelf.recipient];
                 [recipient setRemoteId:remoteId];
+                [recipient setTemporaryValue:NO];
             }
 
             [weakSelf.workModel saveContext:^{

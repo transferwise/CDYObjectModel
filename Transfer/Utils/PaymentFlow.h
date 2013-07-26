@@ -25,5 +25,6 @@ typedef void (^PaymentErrorBlock)(NSError *error);
 - (void)commitPaymentWithErrorHandler:(PaymentErrorBlock)errorHandler;
 - (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch;
 - (void)presentRecipientDetails:(BOOL)showMiniProfile;
+- (void)presentPaymentConfirmation;
 
 @end

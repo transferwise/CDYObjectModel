@@ -46,6 +46,7 @@
     [recipient setName:data[@"name"]];
     [recipient setCurrency:[self currencyWithCode:data[@"currency"]]];
     [recipient setEmail:data[@"email"]];
+    [recipient setTemporaryValue:NO];
 
     NSString *typeCode = data[@"type"];
     RecipientType *type = [self recipientTypeWithCode:typeCode];
