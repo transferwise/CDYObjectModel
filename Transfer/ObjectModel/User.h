@@ -5,5 +5,7 @@
 - (NSString *)displayName;
 - (PersonalProfile *)personalProfileObject;
 - (BusinessProfile *)businessProfileObject;
+- (BOOL)personalProfileFilled;
+- (BOOL)businessProfileFilled;
 
 @end

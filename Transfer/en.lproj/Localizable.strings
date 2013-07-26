@@ -185,6 +185,7 @@ identity and address";
 "recipient.controller.save.error.title" = "Add error";
 "recipient.controller.section.title.currency" = "Currency";
 "recipient.controller.section.title.recipient" = "Recipient";
+"recipient.controller.section.title.sender" = "Sender";
 "recipient.controller.section.title.type.fields" = "Transfer details";
 "recipient.controller.validating.message" = "Validating...";
 "recipient.controller.validation.error.empty.name" = "Name not entered";

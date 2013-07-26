@@ -29,4 +29,12 @@
     return self.businessProfile;
 }
 
+- (BOOL)personalProfileFilled {
+    return self.personalProfile != nil;
+}
+
+- (BOOL)businessProfileFilled {
+    return self.businessProfile != nil;
+}
+
 @end

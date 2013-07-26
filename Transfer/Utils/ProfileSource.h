@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @class PhoneBookProfile;
-@class PlainProfileDetails;
 @class ObjectModel;
 
 typedef void (^ProfileActionBlock)(NSError *error);

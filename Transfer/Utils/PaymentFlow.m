@@ -54,10 +54,10 @@
 }
 
 - (void)presentSenderDetails {
-    [self presentSenderDetails:YES];
+    MCAssert(NO);
 }
 
-- (void)presentSenderDetails:(BOOL)allowProfileSwitch {
+- (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch {
     PaymentProfileViewController *controller = [[PaymentProfileViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setAllowProfileSwitch:allowProfileSwitch];
@@ -97,7 +97,7 @@
                 [alertView setLeftButtonTitle:NSLocalizedString(@"button.title.fill", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
 
                 [alertView setLeftButtonAction:^{
-                    [self presentSenderDetails:NO];
+                    [self presentPersonalProfileEntry:NO];
                 }];
 
                 [alertView show];
@@ -109,7 +109,7 @@
 }
 
 - (BOOL)personalProfileFilled {
-    return [self.objectModel.currentUser personalProfile] != nil;
+    return [self.objectModel.currentUser personalProfileFilled];
 }
 
 - (void)validatePersonalProfile:(NSManagedObjectID *)profile withHandler:(PersonalProfileValidationBlock)handler {
@@ -168,8 +168,13 @@
 }
 
 - (void)presentRecipientDetails {
+    [self presentRecipientDetails:YES];
+}
+
+- (void)presentRecipientDetails:(BOOL)showMiniProfile {
     RecipientViewController *controller = [[RecipientViewController alloc] init];
     [controller setObjectModel:self.objectModel];
+    [controller setShowMiniProfile:showMiniProfile];
     [controller setTitle:NSLocalizedString(@"recipient.controller.payment.mode.title", nil)];
     [controller setFooterButtonTitle:NSLocalizedString(@"recipient.controller.confirm.payment.button.title", nil)];
     [controller setRecipientValidation:self];

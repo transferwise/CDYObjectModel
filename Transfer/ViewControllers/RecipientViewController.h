@@ -21,5 +21,6 @@
 @property (nonatomic, strong) Currency *preLoadRecipientsWithCurrency;
 @property (nonatomic, strong) id<RecipientProfileValidation> recipientValidation;
 @property (nonatomic, strong) ObjectModel *objectModel;
+@property (nonatomic, assign) BOOL showMiniProfile;
 
 @end

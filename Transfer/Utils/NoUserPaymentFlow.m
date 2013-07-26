@@ -10,4 +10,8 @@
 
 @implementation NoUserPaymentFlow
 
+- (void)presentSenderDetails {
+    [self presentPersonalProfileEntry:YES];
+}
+
 @end

@@ -42,11 +42,21 @@
 #import "ObjectModel+PendingPayments.h"
 #import "_Payment.h"
 #import "PendingPayment.h"
+#import "ConfirmPaymentCell.h"
+#import "ProfileSelectionView.h"
+#import "UIView+Loading.h"
+#import "ProfileSource.h"
+#import "User.h"
+#import "PersonalProfileSource.h"
+#import "PersonalProfile.h"
+#import "_BusinessProfile.h"
+#import "BusinessProfile.h"
 
-static NSUInteger const kImportSection = 0;
-static NSUInteger const kRecipientSection = 1;
-static NSUInteger const kCurrencySection = 2;
-static NSUInteger const kRecipientFieldsSection = 3;
+static NSUInteger const kSenderSection = 0;
+static NSUInteger const kImportSection = 1;
+static NSUInteger const kRecipientSection = 2;
+static NSUInteger const kCurrencySection = 3;
+static NSUInteger const kRecipientFieldsSection = 4;
 
 NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
@@ -80,6 +90,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, assign) CGFloat minimumFooterHeight;
 @property (nonatomic, assign) BOOL shown;
 
+@property (nonatomic, strong) ConfirmPaymentCell *senderNameCell;
+@property (nonatomic, strong) NSArray *senderCells;
+
+@property (nonatomic, strong) ProfileSelectionView *profileSelectionView;
+
 - (IBAction)addButtonPressed:(id)sender;
 
 @end
@@ -107,6 +122,19 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self.tableView registerNib:[UINib nibWithNibName:@"DropdownCell" bundle:nil] forCellReuseIdentifier:TWDropdownCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"ButtonCell" bundle:nil] forCellReuseIdentifier:kButtonCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"TransferTypeSelectionCell" bundle:nil] forCellReuseIdentifier:TWTypeSelectionCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ConfirmPaymentCell" bundle:nil] forCellReuseIdentifier:TWConfirmPaymentCellIdentifier];
+
+    [self setProfileSelectionView:[ProfileSelectionView loadInstance]];
+    [self presentProfileForSource:self.profileSelectionView.presentedSource];
+
+    __block __weak RecipientViewController *weakSelf = self;
+    [self.profileSelectionView setSelectionHandler:^(ProfileSource *selected) {
+        [weakSelf presentProfileForSource:selected];
+    }];
+
+
+    [self setSenderNameCell:[self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier]];
+    [self setSenderCells:@[self.senderNameCell]];
 
     self.importCell = [self.tableView dequeueReusableCellWithIdentifier:kButtonCellIdentifier];
     [self.importCell.textLabel setText:NSLocalizedString(@"recipient.import.from.phonebook.label", nil)];
@@ -135,8 +163,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     [self setCurrencyCells:currencyCells];
 
-    __block __weak RecipientViewController *weakSelf = self;
-    
     self.transferTypeSelectionCell = [self.tableView dequeueReusableCellWithIdentifier:TWTypeSelectionCellIdentifier];
     [self.transferTypeSelectionCell setSelectionChangeHandler:^(RecipientType *type, NSArray *allTypes) {
         [weakSelf handleSelectionChangeToType:type allTypes:allTypes];
@@ -163,7 +189,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         return;
     }
 
-    [self setPresentedSectionCells:@[@[self.importCell], self.recipientCells, self.currencyCells, @[]]];
+    [self presentProfileForSource:self.profileSelectionView.presentedSource];
+
+    [self setPresentedSectionCells:@[self.senderCells, @[self.importCell], self.recipientCells, self.currencyCells, @[]]];
     [self.tableView reloadData];
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
@@ -296,7 +324,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     NSArray *cells = [self buildCellsForType:type allTypes:allTypes];
     [self setRecipientType:type];
     [self setRecipientTypeFieldCells:cells];
-    [self setPresentedSectionCells:@[@[self.importCell], self.recipientCells, self.currencyCells, cells]];
+    [self setPresentedSectionCells:@[self.senderCells, @[self.importCell], self.recipientCells, self.currencyCells, cells]];
     
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:[self.presentedSections count] - 1] withRowAnimation:UITableViewRowAnimationNone];
     [self performSelector:@selector(updateFooterSize) withObject:nil afterDelay:0.5];
@@ -417,10 +445,12 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSNumber *sectionCode = self.presentedSections[(NSUInteger) section];
     switch ([sectionCode integerValue]) {
+        case kSenderSection:
+            return NSLocalizedString(@"recipient.controller.section.title.sender", nil);
         case kImportSection:
-            return nil;
-        case kRecipientSection:
             return NSLocalizedString(@"recipient.controller.section.title.recipient", nil);
+        case kRecipientSection:
+            return nil;
         case kCurrencySection:
             return NSLocalizedString(@"recipient.controller.section.title.currency", nil);
         case kRecipientFieldsSection:
@@ -444,16 +474,73 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 - (void)setPresentedSectionCells:(NSArray *)presentedSectionCells {
-    if (!self.preLoadRecipientsWithCurrency) {
-        [self setPresentedSections:@[@(kImportSection), @(kRecipientSection), @(kCurrencySection), @(kRecipientFieldsSection)]];
-        [super setPresentedSectionCells:presentedSectionCells];
-        return;
+    NSMutableArray *cells = [NSMutableArray arrayWithArray:presentedSectionCells];
+    NSMutableArray *sectionIndexes = [NSMutableArray array];
+
+    if (self.showMiniProfile) {
+        [sectionIndexes addObject:@(kSenderSection)];
+    } else {
+        [cells removeObject:self.senderCells];
     }
 
-    [self setPresentedSections:@[@(kImportSection), @(kRecipientSection), @(kRecipientFieldsSection)]];
-    NSMutableArray *cells = [NSMutableArray arrayWithArray:presentedSectionCells];
-    [cells removeObject:self.currencyCells];
+    [sectionIndexes addObject:@(kImportSection)];
+    [sectionIndexes addObject:@(kRecipientSection)];
+
+    if (self.preLoadRecipientsWithCurrency) {
+        [cells removeObject:self.currencyCells];
+    } else {
+        [sectionIndexes addObject:@(kCurrencySection)];
+    }
+
+    [sectionIndexes addObject:@(kRecipientFieldsSection)];
+
     [super setPresentedSectionCells:cells];
+    [self setPresentedSections:sectionIndexes];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    if (section != kSenderSection) {
+        return nil;
+    }
+
+    if (![self.objectModel.currentUser businessProfileFilled]) {
+        return nil;
+    }
+
+    return self.profileSelectionView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (section != kSenderSection) {
+        return 0;
+    }
+
+    if (![self.objectModel.currentUser businessProfileFilled]) {
+        return 0;
+    }
+
+    return CGRectGetHeight(self.profileSelectionView.frame);
+}
+
+- (void)presentProfileForSource:(ProfileSource *)source {
+    User *user = [self.objectModel currentUser];
+    NSString *name;
+    UIImage *shownImage;
+    PendingPayment *payment = [self.objectModel pendingPayment];
+    if ([source isKindOfClass:[PersonalProfileSource class]]) {
+        name = [user.personalProfile fullName];
+        shownImage = [UIImage imageNamed:@"ProfileIcon.png"];
+        [payment setProfileUsed:@"personal"];
+    } else {
+        name = [user.businessProfile name];
+        shownImage = nil;
+        [payment setProfileUsed:@"business"];
+    }
+
+    [self.objectModel saveContext];
+    [self.senderNameCell.imageView setImage:shownImage];
+    [self.senderNameCell.textLabel setText:name];
+    [self.senderNameCell.detailTextLabel setText:@""];
 }
 
 @end
