@@ -32,6 +32,7 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
     UIDatePicker *picker = [[UIDatePicker alloc] initWithFrame:CGRectZero];
     [self setDatePicker:picker];
     [self.entryField setInputView:picker];
+    [picker setMaximumDate:[NSDate date]];
     [picker setDatePickerMode:UIDatePickerModeDate];
     [picker addTarget:self action:@selector(pickerDateChanged) forControlEvents:UIControlEventValueChanged];
 
