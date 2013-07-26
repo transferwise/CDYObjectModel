@@ -1,4 +1,5 @@
 #import "BusinessProfile.h"
+#import "NSString+Validation.h"
 
 @interface BusinessProfile ()
 
@@ -7,7 +8,7 @@
 @implementation BusinessProfile
 
 - (BOOL)isFieldReadonly:(NSString *)fieldName {
-    return [self.readonlyFields rangeOfString:fieldName].location != NSNotFound;
+    return [self.readonlyFields hasValue] && [self.readonlyFields rangeOfString:fieldName].location != NSNotFound;
 }
 
 - (NSDictionary *)data {
