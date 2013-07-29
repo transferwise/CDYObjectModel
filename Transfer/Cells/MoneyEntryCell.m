@@ -10,6 +10,9 @@
 #import "UIColor+Theme.h"
 #import "RoundedCellBackgroundView.h"
 #import "Currency.h"
+#import "PairSourceCurrency.h"
+#import "MoneyFormatter.h"
+#import "NSString+Validation.h"
 
 NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
@@ -22,6 +25,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 @property (nonatomic, strong) Currency *selectedCurrency;
 @property (nonatomic, strong) Currency *forced;
 @property (nonatomic, strong) IBOutlet RoundedCellBackgroundView *roundedBackground;
+@property (nonatomic, strong) PairSourceCurrency *source;
 
 @end
 
@@ -78,7 +82,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if (![string isEqualToString:@","] && ![string isEqualToString:@"."]) {
-        return YES;
+        return [self entryBelowMaxAmount:[textField.text stringByReplacingCharactersInRange:range withString:string]];
     }
 
     if ([textField.text rangeOfString:@"."].location == NSNotFound) {
@@ -86,6 +90,19 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     }
 
     return NO;
+}
+
+- (BOOL)entryBelowMaxAmount:(NSString *)amountString {
+    if (![amountString hasValue]) {
+        return YES;
+    }
+
+    amountString = [amountString stringByReplacingOccurrencesOfString:@" " withString:@""];
+
+    NSNumber *amount = [[MoneyFormatter sharedInstance] numberFromString:amountString];
+
+    NSComparisonResult result = [self.source.maxInvoiceAmount compare:amount];
+    return result == NSOrderedDescending || result == NSOrderedSame;
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -102,7 +119,9 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    Currency *selected = [[self.currencies objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]] currency];
+    id source = [self.currencies objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
+    [self setSource:source];
+    Currency *selected = [source currency];
     [self setSelectedCurrency:selected];
     [self.currencyField setText:selected.code];
     self.currencyChangedHandler(selected);
@@ -126,7 +145,9 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     _currencies = currencies;
     [_currencies setDelegate:self];
 
-    Currency *selected = [currencies.fetchedObjects[0] currency];
+    id source = currencies.fetchedObjects[0];
+    [self setSource:source];
+    Currency *selected = [source currency];
 
     if (self.forced) {
         selected = self.forced;

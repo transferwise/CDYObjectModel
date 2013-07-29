@@ -60,7 +60,11 @@
 }
 
 - (NSString *)formatAmount:(NSNumber *)amount {
-    return [self.formatterWithoutCurrency stringFromNumber:amount];
+    return [[self.formatterWithoutCurrency stringFromNumber:amount] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+}
+
+- (NSNumber *)numberFromString:(NSString *)amountString {
+    return [self.formatterWithoutCurrency numberFromString:amountString];
 }
 
 @end
