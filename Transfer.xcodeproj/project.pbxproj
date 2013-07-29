@@ -133,6 +133,7 @@
 		EA5929891758CAAC007C0072 /* SignInWithYahooButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5929851758CAAC007C0072 /* SignInWithYahooButton@2x.png */; };
 		EA59298E1758CD6C007C0072 /* OpenIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59298C1758CD6C007C0072 /* OpenIDViewController.m */; };
 		EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */; };
+		EA61557517A69A5A008B6C79 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61557417A69A5A008B6C79 /* Crashlytics.framework */; };
 		EA76D90E175CF80100AE3F86 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */; };
 		EA76D90F175CF80100AE3F86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146B171BC911005B9430 /* UIKit.framework */; };
 		EA76D910175CF80100AE3F86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146D171BC911005B9430 /* Foundation.framework */; };
@@ -505,6 +506,7 @@
 		EA59298B1758CD6C007C0072 /* OpenIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenIDViewController.h; sourceTree = "<group>"; };
 		EA59298C1758CD6C007C0072 /* OpenIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenIDViewController.m; sourceTree = "<group>"; };
 		EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenIDViewController.xib; sourceTree = "<group>"; };
+		EA61557417A69A5A008B6C79 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		EA76D90C175CF80100AE3F86 /* TransferTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransferTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		EA76D913175CF80100AE3F86 /* TransferTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TransferTests-Info.plist"; sourceTree = "<group>"; };
@@ -764,6 +766,7 @@
 				EAAA1470171BC911005B9430 /* CoreGraphics.framework in Frameworks */,
 				EAAA1472171BC911005B9430 /* CoreData.framework in Frameworks */,
 				EAE2347B179D517900D64CF8 /* libTestFlight.a in Frameworks */,
+				EA61557517A69A5A008B6C79 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1125,6 +1128,7 @@
 		EAAA146A171BC911005B9430 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA61557417A69A5A008B6C79 /* Crashlytics.framework */,
 				BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */,
 				EAD6675C174A565500D29BCB /* AddressBook.framework */,
 				EAD6675D174A565500D29BCB /* AddressBookUI.framework */,
@@ -1471,6 +1475,7 @@
 				EAAA1465171BC911005B9430 /* Frameworks */,
 				EAAA1466171BC911005B9430 /* Resources */,
 				EA2B238E17212099001AE9DE /* Version update */,
+				EA61557217A69A21008B6C79 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1675,6 +1680,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "echo -n ${TARGET_BUILD_DIR}/${INFOPLIST_PATH} \\\n| xargs -0 /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion `git rev-list HEAD | wc -l`\"";
+		};
+		EA61557217A69A21008B6C79 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run bf6a713619d873c16d74390dc0463c0387c49052";
 		};
 		EA76D90A175CF80100AE3F86 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2019,6 +2037,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jaanus Siim (7V62BBBL4N)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaanus Siim (7V62BBBL4N)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
 				INFOPLIST_FILE = "Transfer/Transfer-Info.plist";
@@ -2041,6 +2063,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: TransferWise LTD (W53MTDV45J)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: TransferWise LTD (W53MTDV45J)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
 				INFOPLIST_FILE = "Transfer/Transfer-Info.plist";

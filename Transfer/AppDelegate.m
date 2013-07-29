@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
+#import <Crashlytics/Crashlytics.h>
 #import "AppDelegate.h"
 #import "ObjectModel.h"
 #import "MainViewController.h"
@@ -30,6 +31,8 @@
 #if USE_TESTFLIGHT
     [TestFlight takeOff:@"4b176dca-177c-48bf-9480-a15001cc9211"];
 #endif
+
+    [Crashlytics startWithAPIKey:@"bf6a713619d873c16d74390dc0463c0387c49052"];
 
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavigationBar.png"] forBarMetrics:UIBarMetricsDefault];
     UIImage *navBarButton = [UIImage imageNamed:@"NavBarButton.png"];
