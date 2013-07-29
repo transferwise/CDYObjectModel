@@ -17,6 +17,23 @@ NSString *const kCurrencyPairsPath = @"/currency/pairs";
 
 @implementation CurrencyPairsOperation
 
+- (id)init {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must use [%@ %@] instead",
+                                                                     NSStringFromClass([self class]),
+                                                                     NSStringFromSelector(@selector(pairsOperation))]
+                                 userInfo:nil];
+    return nil;
+}
+
+- (id)initPrivate {
+    self = [super init];
+    if (self) {
+
+    }
+    return self;
+}
+
 - (void)execute {
     NSString *path = [self addTokenToPath:kCurrencyPairsPath];
 
@@ -47,7 +64,7 @@ NSString *const kCurrencyPairsPath = @"/currency/pairs";
 }
 
 + (CurrencyPairsOperation *)pairsOperation {
-    return [[CurrencyPairsOperation alloc] init];
+    return [[CurrencyPairsOperation alloc] initPrivate];
 }
 
 @end

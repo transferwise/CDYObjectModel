@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @class ObjectModel;
-@class CurrencyPairsOperation;
 
 @interface IntroductionViewController : UITableViewController
 
