@@ -37,7 +37,7 @@
 - (NSString *)valueField:(RecipientTypeField *)field {
     TypeFieldValue *value = [self valueForField:field];
     if (value) {
-        return value.value;
+        return [value value];
     }
 
     return @"";

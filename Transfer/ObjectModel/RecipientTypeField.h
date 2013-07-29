@@ -2,4 +2,6 @@
 
 @interface RecipientTypeField : _RecipientTypeField
 
+- (BOOL)hasPredefinedValues;
+
 @end

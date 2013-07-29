@@ -145,7 +145,7 @@ static NSUInteger const kReceiverSection = 1;
     for (TypeFieldValue *value in recipient.fieldValues) {
         ConfirmPaymentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
         [cell.textLabel setText:value.valueForField.title];
-        [cell.detailTextLabel setText:value.value];
+        [cell.detailTextLabel setText:[value presentedValue]];
         [cells addObject:cell];
     }
     return [NSArray arrayWithArray:cells];
