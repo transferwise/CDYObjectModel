@@ -104,14 +104,6 @@
     return user;
 }
 
-- (NSFetchedResultsController *)fetchedControllerForRecipientsWithCurrency:(Currency *)currency {
-    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
-    NSPredicate *notSettlementPredicate = [NSPredicate predicateWithFormat:@"settlementRecipient = NO"];
-    NSPredicate *currencyPredicate = [NSPredicate predicateWithFormat:@"currency = %@", currency];
-    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notSettlementPredicate, currencyPredicate]];
-    return [self fetchedControllerForEntity:[Recipient entityName] predicate:predicate sortDescriptors:@[nameDescriptor]];
-}
-
 - (void)removeAnonymousUser {
     User *anonymous = [self anonymousUser];
     if (anonymous) {

@@ -40,7 +40,6 @@
 #import "RecipientTypeField.h"
 #import "ObjectModel+Recipients.h"
 #import "ObjectModel+PendingPayments.h"
-#import "_Payment.h"
 #import "PendingPayment.h"
 #import "ConfirmPaymentCell.h"
 #import "ProfileSelectionView.h"
@@ -49,7 +48,6 @@
 #import "User.h"
 #import "PersonalProfileSource.h"
 #import "PersonalProfile.h"
-#import "_BusinessProfile.h"
 #import "BusinessProfile.h"
 
 static NSUInteger const kSenderSection = 0;

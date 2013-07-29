@@ -9,6 +9,7 @@
 #import "ObjectModel.h"
 
 @class Recipient;
+@class Currency;
 
 @interface ObjectModel (Recipients)
 
@@ -16,5 +17,6 @@
 - (Recipient *)createOrUpdateRecipientWithData:(NSDictionary *)data;
 - (Recipient *)createOrUpdateSettlementRecipientWithData:(NSDictionary *)data;
 - (Recipient *)createRecipient;
+- (NSFetchedResultsController *)fetchedControllerForRecipientsWithCurrency:(Currency *)currency;
 
 @end

@@ -15,6 +15,7 @@
 #import "RecipientTypeField.h"
 #import "TypeFieldValue.h"
 #import "ObjectModel+Users.h"
+#import "Currency.h"
 
 @implementation ObjectModel (Recipients)
 
@@ -88,6 +89,15 @@
     [recipient setTemporaryValue:YES];
     [recipient setUser:[self currentUser]];
     return recipient;
+}
+
+- (NSFetchedResultsController *)fetchedControllerForRecipientsWithCurrency:(Currency *)currency {
+    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+    NSPredicate *notSettlementPredicate = [NSPredicate predicateWithFormat:@"settlementRecipient = NO"];
+    NSPredicate *notTemporaryPredicate = [NSPredicate predicateWithFormat:@"temporary = NO"];
+    NSPredicate *currencyPredicate = [NSPredicate predicateWithFormat:@"currency = %@", currency];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notSettlementPredicate, notTemporaryPredicate, currencyPredicate]];
+    return [self fetchedControllerForEntity:[Recipient entityName] predicate:predicate sortDescriptors:@[nameDescriptor]];
 }
 
 @end
