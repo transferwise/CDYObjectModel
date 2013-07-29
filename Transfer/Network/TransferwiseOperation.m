@@ -17,6 +17,7 @@
 #import "TransferwiseClient.h"
 #import "NetworkErrorCodes.h"
 #import "ObjectModel.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 @interface TransferwiseOperation ()
 
@@ -64,6 +65,8 @@
 
 - (void)executeRequest:(NSMutableURLRequest *)request {
     [TransferwiseOperation provideAuthenticationHeaders:request];
+
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
 
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setThreadPriority:0.1];
