@@ -9,6 +9,7 @@
 #import "ObjectModel.h"
 
 @class Currency;
+@class PairTargetCurrency;
 
 @interface ObjectModel (CurrencyPairs)
 
@@ -17,5 +18,6 @@
 - (NSFetchedResultsController *)fetchedControllerForSources;
 - (NSFetchedResultsController *)fetchedControllerForSourcesContainingTargetCurrency:(Currency *)currency;
 - (NSFetchedResultsController *)fetchedControllerForTargetsWithSourceCurrency:(Currency *)currency;
+- (PairTargetCurrency *)pairWithSource:(Currency *)source target:(Currency *)target;
 
 @end

@@ -101,6 +101,10 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
     NSNumber *amount = [[MoneyFormatter sharedInstance] numberFromString:amountString];
 
+    if (!amount) {
+        return YES;
+    }
+
     NSComparisonResult result = [self.source.maxInvoiceAmount compare:amount];
     return result == NSOrderedDescending || result == NSOrderedSame;
 }

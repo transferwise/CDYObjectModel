@@ -28,6 +28,8 @@
 #import "Currency.h"
 #import "PendingPayment.h"
 #import "ObjectModel+PendingPayments.h"
+#import "PairTargetCurrency.h"
+#import "PairSourceCurrency.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
@@ -253,6 +255,18 @@ static NSUInteger const kRowYouSend = 0;
     }
 
     //TODO jaanus: copy/paste
+    Currency *sourceCurrency = [self.youSendCell currency];
+    Currency *targetCurrency = [self.theyReceiveCell currency];
+    NSNumber *payIn = [self.result transferwisePayIn];
+
+    PairTargetCurrency *target = [self.objectModel pairWithSource:sourceCurrency target:targetCurrency];
+    if (![target acceptablePayIn:payIn]) {
+        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"transfer.pay.in.too.low.title", nil) message:[NSString stringWithFormat:NSLocalizedString(@"transfer.pay.in.too.low.message.base", nil), target.minInvoiceAmount, target.source.currency.code]];
+        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+        [alertView show];
+        return;
+    }
+
     [self.objectModel performBlock:^{
         PendingPayment *payment = [self.objectModel createPendingPayment];
         [payment setSourceCurrency:[self.youSendCell currency]];

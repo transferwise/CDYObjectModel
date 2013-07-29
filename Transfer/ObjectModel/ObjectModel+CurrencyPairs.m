@@ -79,4 +79,11 @@
     return [self fetchedControllerForEntity:[PairTargetCurrency entityName] predicate:currencyPredicate sortDescriptors:@[indexSortDescriptor]];
 }
 
+- (PairTargetCurrency *)pairWithSource:(Currency *)source target:(Currency *)target {
+    NSPredicate *sourcePredicate = [NSPredicate predicateWithFormat:@"source.currency = %@", source];
+    NSPredicate *targetPredicate = [NSPredicate predicateWithFormat:@"currency = %@", target];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[sourcePredicate, targetPredicate]];
+    return [self fetchEntityNamed:[PairTargetCurrency entityName] withPredicate:predicate];
+}
+
 @end

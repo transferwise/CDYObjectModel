@@ -1,5 +1,7 @@
 #import "_PairTargetCurrency.h"
 
 @interface PairTargetCurrency : _PairTargetCurrency {}
-// Custom logic goes here.
+
+- (BOOL)acceptablePayIn:(NSNumber *)amount;
+
 @end

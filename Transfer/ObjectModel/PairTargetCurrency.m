@@ -3,13 +3,14 @@
 
 @interface PairTargetCurrency ()
 
-// Private interface goes here.
-
 @end
 
 
 @implementation PairTargetCurrency
 
-// Custom logic goes here.
+- (BOOL)acceptablePayIn:(NSNumber *)amount {
+    NSComparisonResult result = [self.minInvoiceAmount compare:amount];
+    return result == NSOrderedAscending || result == NSOrderedSame;
+}
 
 @end
