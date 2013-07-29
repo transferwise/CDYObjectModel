@@ -256,7 +256,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 - (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section != kImportSection) {
+    if ([self.presentedSections[indexPath.section] integerValue] != kImportSection) {
         return;
     }
 
