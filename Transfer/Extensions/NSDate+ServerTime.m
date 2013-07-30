@@ -19,7 +19,7 @@ static NSDateFormatter *__dateFormatter;
     if (!__dateFormatter) {
         __dateFormatter = [[NSDateFormatter alloc] init];
         [__dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        [__dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+        [__dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/London"]];
     }
 
     return [__dateFormatter dateFromString:dateString];
