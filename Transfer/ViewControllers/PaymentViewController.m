@@ -145,10 +145,20 @@ static NSUInteger const kRowYouSend = 0;
     [self.calculator forceCalculate];
 
 
+    [self refreshCurrencyPairs];
+
+}
+
+- (void)refreshCurrencyPairs {
+    if (self.executedOperation) {
+        return;
+    }
+
     CurrencyPairsOperation *operation = [CurrencyPairsOperation pairsOperation];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
     [operation setCurrenciesHandler:^(NSError *error) {
+        [self setExecutedOperation:nil];
         if (error) {
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"payment.controller.calculation.error.title", nil) error:error];
             [alertView show];

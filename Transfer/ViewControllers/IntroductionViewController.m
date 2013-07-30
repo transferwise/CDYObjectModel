@@ -193,10 +193,16 @@ static NSUInteger const kRowYouSend = 0;
         return;
     }
 
+    if (self.executedOperation) {
+        return;
+    }
+
     CurrencyPairsOperation *operation = [CurrencyPairsOperation pairsOperation];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
     [operation setCurrenciesHandler:^(NSError *error) {
+        [self setExecutedOperation:nil];
+
         if (error) {
             TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"introduction.currencies.retrieve.error.title", nil)
                                                                message:NSLocalizedString(@"introduction.currencies.retrieve.error.message", nil)];
