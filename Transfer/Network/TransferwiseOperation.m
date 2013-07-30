@@ -126,6 +126,8 @@
     id errors = response[@"errors"];
     if ([errors isKindOfClass:[NSDictionary class]]) {
         errors = @[errors];
+    } else if (!errors) {
+        errors = @[response];
     }
 
     NSArray *handledErrors = errors;

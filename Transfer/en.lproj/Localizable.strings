@@ -267,6 +267,7 @@ A revolution in your pocket.";
 "whypopup.title" = "Get %@ more vs a bank";
 
 "errors.CRD_NOT_VALID.message" = "Incorrect credentials.";
+"errors.TRWErrorDomain.1.message" = "Could not read server response.";
 
 "recipient.type.IBAN.name" = "IBAN";
 "recipient.type.SORT_CODE.name" = "UK SORT";

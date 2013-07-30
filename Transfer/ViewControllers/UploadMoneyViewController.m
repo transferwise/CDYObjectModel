@@ -23,12 +23,12 @@
 #import "RecipientTypeField.h"
 #import "ObjectModel+Users.h"
 #import "User.h"
+#import "UITableView+FooterPositioning.h"
 
 @interface UploadMoneyViewController ()
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIView *footerView;
-@property (strong, nonatomic) IBOutlet UISegmentedControl *toggleButton;
 @property (strong, nonatomic) IBOutlet UILabel *headerLabel;
 @property (strong, nonatomic) IBOutlet BlueButton *doneButton;
 @property (strong, nonatomic) IBOutlet UIView *footerBottomMessageView;
@@ -55,10 +55,6 @@
     [self setTitle:NSLocalizedString(@"upload.money.title", @"")];
 
     [self.headerLabel setText:NSLocalizedString(@"upload.money.header.label", @"")];
-    [self.toggleButton setTitle:NSLocalizedString(@"upload.money.toggle.button.debit.card.title", @"") forSegmentAtIndex:0];
-    [self.toggleButton setTitle:NSLocalizedString(@"upload.money.toggle.button.bank.transfer.title", @"") forSegmentAtIndex:1];
-    [self.toggleButton setSelectedSegmentIndex:1];
-    [self.toggleButton setUserInteractionEnabled:NO];
     [self.doneButton setTitle:NSLocalizedString(@"upload.money.done.button.title", @"") forState:UIControlStateNormal];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TextCell" bundle:nil] forCellReuseIdentifier:TWTextCellIdentifier];
@@ -106,7 +102,7 @@
     [self.tableView reloadData];
     [self.tableView setTableHeaderView:self.headerView];
     [self.tableView setTableFooterView:self.footerView];
-    [self adjustFooterView];
+    [self.tableView adjustFooterViewSize];
 }
 
 - (NSArray *)buildAccountCellForType:(RecipientType *)type recipient:(Recipient *)recipient {
@@ -119,27 +115,6 @@
     return result;
 }
 
-- (void)adjustFooterView {
-    CGFloat sizeDiff = self.tableView.frame.size.height - self.tableView.contentSize.height;
-    if (sizeDiff > 0) {
-        CGRect footerFrame = self.footerView.frame;
-        footerFrame.size.height += sizeDiff;
-        self.footerView.frame = footerFrame;
-
-        //Where from is the 20?
-        CGRect footerBottomMessageFrame = self.footerBottomMessageView.frame;
-        footerBottomMessageFrame.origin.y = footerFrame.size.height - footerBottomMessageFrame.size.height + 20;
-        self.footerBottomMessageView.frame = footerBottomMessageFrame;
-
-        [self.tableView setScrollEnabled:NO];
-    }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (IBAction)doneBtnClicked:(id)sender {
     if ([Credentials temporaryAccount]) {
         ClaimAccountViewController *controller = [[ClaimAccountViewController alloc] init];
@@ -147,10 +122,6 @@
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
     }
-}
-
-- (IBAction)toggleButtonValueChanged:(id)sender {
-
 }
 
 @end
