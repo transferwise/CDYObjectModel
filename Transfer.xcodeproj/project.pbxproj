@@ -118,6 +118,9 @@
 		EA35C77217327981005602F7 /* PaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA35C77117327981005602F7 /* PaymentCell.xib */; };
 		EA415D3C17A7A0B600E9B56A /* LandingBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D3A17A7A0B600E9B56A /* LandingBackground.png */; };
 		EA415D3D17A7A0B600E9B56A /* LandingBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D3B17A7A0B600E9B56A /* LandingBackground@2x.png */; };
+		EA415D4117A7B19C00E9B56A /* SpinnerLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D3F17A7B19C00E9B56A /* SpinnerLogo.png */; };
+		EA415D4217A7B19C00E9B56A /* SpinnerLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D4017A7B19C00E9B56A /* SpinnerLogo@2x.png */; };
+		EA415D4517A7B2A900E9B56A /* SpinningImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA415D4417A7B2A900E9B56A /* SpinningImageView.m */; };
 		EA416E2B176860EA00904D97 /* ProfileEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E29176860EA00904D97 /* ProfileEditViewController.m */; };
 		EA416E2C176860EA00904D97 /* ProfileEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */; };
 		EA416E301768673500904D97 /* ProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E2F1768673500904D97 /* ProfileSource.m */; };
@@ -481,6 +484,10 @@
 		EA35C77117327981005602F7 /* PaymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentCell.xib; sourceTree = "<group>"; };
 		EA415D3A17A7A0B600E9B56A /* LandingBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingBackground.png; sourceTree = "<group>"; };
 		EA415D3B17A7A0B600E9B56A /* LandingBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LandingBackground@2x.png"; sourceTree = "<group>"; };
+		EA415D3F17A7B19C00E9B56A /* SpinnerLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpinnerLogo.png; sourceTree = "<group>"; };
+		EA415D4017A7B19C00E9B56A /* SpinnerLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SpinnerLogo@2x.png"; sourceTree = "<group>"; };
+		EA415D4317A7B2A900E9B56A /* SpinningImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinningImageView.h; sourceTree = "<group>"; };
+		EA415D4417A7B2A900E9B56A /* SpinningImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpinningImageView.m; sourceTree = "<group>"; };
 		EA416E28176860EA00904D97 /* ProfileEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileEditViewController.h; sourceTree = "<group>"; };
 		EA416E29176860EA00904D97 /* ProfileEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileEditViewController.m; sourceTree = "<group>"; };
 		EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileEditViewController.xib; sourceTree = "<group>"; };
@@ -818,6 +825,8 @@
 				EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */,
 				BB704E7B177300C30042F8A9 /* RoundedCellWhiteBackgroundView.h */,
 				BB704E7C177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m */,
+				EA415D4317A7B2A900E9B56A /* SpinningImageView.h */,
+				EA415D4417A7B2A900E9B56A /* SpinningImageView.m */,
 				EA225C72178EA124009D6B83 /* TabBarActivityIndicatorView.h */,
 				EA225C73178EA124009D6B83 /* TabBarActivityIndicatorView.m */,
 				EA225C74178EA124009D6B83 /* TabBarActivityIndicatorView.xib */,
@@ -1425,6 +1434,8 @@
 				EA5929841758CAAC007C0072 /* SignInWithYahooButton.png */,
 				EA5929851758CAAC007C0072 /* SignInWithYahooButton@2x.png */,
 				EAA053FC175E21D400ACD3F6 /* spinner.html */,
+				EA415D3F17A7B19C00E9B56A /* SpinnerLogo.png */,
+				EA415D4017A7B19C00E9B56A /* SpinnerLogo@2x.png */,
 				BB704E721772D4370042F8A9 /* tableTabButton.png */,
 				BB704E731772D4370042F8A9 /* tableTabButton@2x.png */,
 				BB704E701772D4370042F8A9 /* tableTabButtonRight.png */,
@@ -1641,6 +1652,8 @@
 				EA225CBC178EEA8A009D6B83 /* recipient_types.json in Resources */,
 				EA415D3C17A7A0B600E9B56A /* LandingBackground.png in Resources */,
 				EA415D3D17A7A0B600E9B56A /* LandingBackground@2x.png in Resources */,
+				EA415D4117A7B19C00E9B56A /* SpinnerLogo.png in Resources */,
+				EA415D4217A7B19C00E9B56A /* SpinnerLogo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1903,6 +1916,7 @@
 				EA1E4E25179E713100F8D932 /* PendingPayment.m in Sources */,
 				EA1E4E28179E71C300F8D932 /* ObjectModel+PendingPayments.m in Sources */,
 				EA1E4E33179FF1E500F8D932 /* NSMutableDictionary+SaneData.m in Sources */,
+				EA415D4517A7B2A900E9B56A /* SpinningImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
