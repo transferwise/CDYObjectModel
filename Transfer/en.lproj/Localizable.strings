@@ -79,15 +79,15 @@ identity and address";
 "identification.upload.and.continue.button" = "Upload and continue";
 
 
-"introduction.controller.title" = "Transferwise";
 "introduction.currencies.retrieve.error.message" = "Could not retrieve currencies from server";
 "introduction.currencies.retrieve.error.title" = "Currencies error";
 "introduction.header.title.text" = "Send money abroad";
-"introduction.login.section.title" = "Already a user";
-"introduction.refreshing.currencies.message" = "Refreshing currencies...";
+"introduction.login.section.title" = "Already a user?";
 "introduction.savings.receive.message.base" = "You'll get %@ more vs your bank";
 "introduction.savings.pay.message.base" = "You'll pay %@ less vs your bank";
 "introduction.savings.message.why" = "Why?";
+"introduction.header.sub.title.text" = "No hidden fees. No headache.
+A revolution in your pocket.";
 
 "login.controller.footer.message" = "You will be remembered on this device until you manually log out of the app";
 "login.controller.header.message" = "Log-in to your account";

@@ -116,6 +116,8 @@
 		EA35C76C1732790D005602F7 /* PaymentsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76B1732790D005602F7 /* PaymentsOperation.m */; };
 		EA35C77017327973005602F7 /* PaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76F17327973005602F7 /* PaymentCell.m */; };
 		EA35C77217327981005602F7 /* PaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA35C77117327981005602F7 /* PaymentCell.xib */; };
+		EA415D3C17A7A0B600E9B56A /* LandingBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D3A17A7A0B600E9B56A /* LandingBackground.png */; };
+		EA415D3D17A7A0B600E9B56A /* LandingBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D3B17A7A0B600E9B56A /* LandingBackground@2x.png */; };
 		EA416E2B176860EA00904D97 /* ProfileEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E29176860EA00904D97 /* ProfileEditViewController.m */; };
 		EA416E2C176860EA00904D97 /* ProfileEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */; };
 		EA416E301768673500904D97 /* ProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E2F1768673500904D97 /* ProfileSource.m */; };
@@ -477,6 +479,8 @@
 		EA35C76E17327973005602F7 /* PaymentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentCell.h; sourceTree = "<group>"; };
 		EA35C76F17327973005602F7 /* PaymentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentCell.m; sourceTree = "<group>"; };
 		EA35C77117327981005602F7 /* PaymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentCell.xib; sourceTree = "<group>"; };
+		EA415D3A17A7A0B600E9B56A /* LandingBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingBackground.png; sourceTree = "<group>"; };
+		EA415D3B17A7A0B600E9B56A /* LandingBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LandingBackground@2x.png"; sourceTree = "<group>"; };
 		EA416E28176860EA00904D97 /* ProfileEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileEditViewController.h; sourceTree = "<group>"; };
 		EA416E29176860EA00904D97 /* ProfileEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileEditViewController.m; sourceTree = "<group>"; };
 		EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileEditViewController.xib; sourceTree = "<group>"; };
@@ -1381,10 +1385,6 @@
 		EAD7D4C3171D475E0099063F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				BB704E701772D4370042F8A9 /* tableTabButtonRight.png */,
-				BB704E711772D4370042F8A9 /* tableTabButtonRight@2x.png */,
-				BB704E721772D4370042F8A9 /* tableTabButton.png */,
-				BB704E731772D4370042F8A9 /* tableTabButton@2x.png */,
 				EAD7D4C8171D4B080099063F /* BlueButton.png */,
 				EAD7D4C9171D4B080099063F /* BlueButton@2x.png */,
 				EAEA31111738DB8600CCF1A2 /* CheckSelected.png */,
@@ -1404,6 +1404,8 @@
 				EA35C73517324AF2005602F7 /* Icon-Small@2x.png */,
 				EA35C73617324AF2005602F7 /* Icon.png */,
 				EA35C73717324AF2005602F7 /* Icon@2x.png */,
+				EA415D3A17A7A0B600E9B56A /* LandingBackground.png */,
+				EA415D3B17A7A0B600E9B56A /* LandingBackground@2x.png */,
 				EA35C73817324AF2005602F7 /* NavBarBackButton.png */,
 				EA35C73917324AF2005602F7 /* NavBarBackButton@2x.png */,
 				EAB72150171FC34600DE29F5 /* NavBarButton.png */,
@@ -1423,6 +1425,10 @@
 				EA5929841758CAAC007C0072 /* SignInWithYahooButton.png */,
 				EA5929851758CAAC007C0072 /* SignInWithYahooButton@2x.png */,
 				EAA053FC175E21D400ACD3F6 /* spinner.html */,
+				BB704E721772D4370042F8A9 /* tableTabButton.png */,
+				BB704E731772D4370042F8A9 /* tableTabButton@2x.png */,
+				BB704E701772D4370042F8A9 /* tableTabButtonRight.png */,
+				BB704E711772D4370042F8A9 /* tableTabButtonRight@2x.png */,
 				EAA54F3C1733CA7800B65BF3 /* TransactionsTabIcon.png */,
 				EAA54F3D1733CA7800B65BF3 /* TransactionsTabIcon@2x.png */,
 				EAD667C4174F4C7200D29BCB /* TWlogo.png */,
@@ -1633,6 +1639,8 @@
 				EA225CBA178EEA8A009D6B83 /* currencies.json in Resources */,
 				EA225CBB178EEA8A009D6B83 /* currency_pairs.json in Resources */,
 				EA225CBC178EEA8A009D6B83 /* recipient_types.json in Resources */,
+				EA415D3C17A7A0B600E9B56A /* LandingBackground.png in Resources */,
+				EA415D3D17A7A0B600E9B56A /* LandingBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

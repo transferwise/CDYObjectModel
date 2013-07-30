@@ -130,6 +130,8 @@ static NSUInteger const kRowYouSend = 0;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    [self.navigationController setNavigationBarHidden:NO];
+
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
 
     [self.navigationItem setTitle:NSLocalizedString(@"payment.controller.title", nil)];

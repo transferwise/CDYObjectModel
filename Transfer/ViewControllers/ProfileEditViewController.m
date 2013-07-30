@@ -137,6 +137,8 @@ static NSUInteger const kButtonSection = 0;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+
     if (self.shown) {
         return;
     }

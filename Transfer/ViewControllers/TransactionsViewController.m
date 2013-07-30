@@ -56,6 +56,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    [self.navigationController setNavigationBarHidden:NO];
+
     [self.tableView setContentOffset:CGPointZero];
 
     if (!self.payments) {

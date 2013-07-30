@@ -7,15 +7,11 @@
 //
 
 #import "IntroductionViewController.h"
-#import "TableHeaderView.h"
 #import "MoneyEntryCell.h"
 #import "LoginViewController.h"
-#import "UIColor+Theme.h"
-#import "UIView+Loading.h"
 #import "MoneyCalculator.h"
 #import "CalculationResult.h"
 #import "CurrencyPairsOperation.h"
-#import "SWRevealViewController.h"
 #import "WhyView.h"
 #import "TSAlertView.h"
 #import "MoneyFormatter.h"
@@ -30,6 +26,7 @@
 #import "ObjectModel+PendingPayments.h"
 #import "PairTargetCurrency.h"
 #import "PairSourceCurrency.h"
+#import "UITableView+FooterPositioning.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
@@ -48,6 +45,9 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) WhyView *whyView;
 @property (nonatomic, strong) PaymentFlow *paymentFlow;
 @property (nonatomic, strong) CurrencyPairsOperation *executedOperation;
+@property (nonatomic, strong) IBOutlet UIView *headerView;
+@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *subTitleLabel;
 
 - (IBAction)loginPressed:(id)sender;
 - (IBAction)startPaymentPressed:(id)sender;
@@ -68,7 +68,7 @@ static NSUInteger const kRowYouSend = 0;
     [super viewDidLoad];
 
     [self.tableView setBackgroundView:nil];
-    [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
+    [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"LandingBackground.png"]]];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"MoneyEntryCell" bundle:nil] forCellReuseIdentifier:TWMoneyEntryCellIdentifier];
 
@@ -87,15 +87,14 @@ static NSUInteger const kRowYouSend = 0;
     [self.theyReceiveCell setRoundedCorner:UIRectCornerBottomRight];
     [self.theyReceiveCell setEditable:NO];
 
-    TableHeaderView *header = [TableHeaderView loadInstance];
-    [header setMessage:NSLocalizedString(@"introduction.header.title.text", nil)];
-    [self.tableView setTableHeaderView:header];
+    [self.titleLabel setText:NSLocalizedString(@"introduction.header.title.text", nil)];
+    [self.subTitleLabel setText:NSLocalizedString(@"introduction.header.sub.title.text", nil)];
+
+    [self.tableView setTableHeaderView:self.headerView];
     [self.tableView setTableFooterView:self.controlsView];
 
     [self.savingsLabel setText:@""];
-    [self.savingsLabel setTextColor:[UIColor mainTextColor]];
     [self.loginTitle setText:NSLocalizedString(@"introduction.login.section.title", nil)];
-    [self.loginTitle setTextColor:[UIColor mainTextColor]];
 
     [self.startedButton setTitle:NSLocalizedString(@"button.title.get.started", nil) forState:UIControlStateNormal];
     [self.loginButton setTitle:NSLocalizedString(@"button.title.log.in", nil) forState:UIControlStateNormal];
@@ -106,15 +105,6 @@ static NSUInteger const kRowYouSend = 0;
     [calculator setSendCell:self.youSendCell];
     [calculator setReceiveCell:self.theyReceiveCell];
 
-    SWRevealViewController *revealController = [self revealViewController];
-    [self.navigationController.navigationBar addGestureRecognizer:revealController.panGestureRecognizer];
-
-    UIBarButtonItem *revealButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SettingsButtonIcon.png"]
-                                                                         style:UIBarButtonItemStyleBordered
-                                                                        target:revealController
-                                                                        action:@selector(revealToggle:)];
-    self.navigationItem.leftBarButtonItem = revealButtonItem;
-
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"button.title.back", nil)
                                                                    style:UIBarButtonItemStyleBordered
                                                                   target:nil
@@ -122,8 +112,7 @@ static NSUInteger const kRowYouSend = 0;
     [backButton setTintColor:[UIColor blackColor]];
     self.navigationItem.backBarButtonItem = backButton;
     
-    [[OHAttributedLabel appearance] setLinkUnderlineStyle:kOHBoldStyleTraitSetBold];
-    [[OHAttributedLabel appearance] setLinkColor:[UIColor colorWithRed:50.0/255.0 green:58.0/255.0 blue:69.0/255.0 alpha:1]];
+    [[OHAttributedLabel appearance] setLinkColor:[UIColor whiteColor]];
 
     [calculator setCalculationHandler:^(CalculationResult *result, NSError *error) {
         if (error) {
@@ -167,6 +156,8 @@ static NSUInteger const kRowYouSend = 0;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+
     UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
     [self.navigationItem setTitleView:logoView];
 
@@ -177,6 +168,8 @@ static NSUInteger const kRowYouSend = 0;
     [self.calculator forceCalculate];
 
     [self retrieveCurrencyPairs];
+
+    [self.tableView adjustFooterViewSize:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
