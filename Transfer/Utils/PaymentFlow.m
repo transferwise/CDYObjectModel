@@ -453,9 +453,13 @@
 - (void)commitPayment {
     MCLog(@"Commit payment");
 
-    MCAssert(self.objectModel.pendingPayment.recipient.remoteIdValue != 0);
+    PendingPayment *payment = self.objectModel.pendingPayment;
+    if ([payment.recipient remoteIdValue] == 0) {
+        [self commitRecipientData];
+        return;
+    }
 
-    CreatePaymentOperation *operation = [CreatePaymentOperation commitOperationWithPayment:[self.objectModel.pendingPayment objectID]];
+    CreatePaymentOperation *operation = [CreatePaymentOperation commitOperationWithPayment:[payment objectID]];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
 

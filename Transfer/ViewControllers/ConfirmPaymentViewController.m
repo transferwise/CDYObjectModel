@@ -25,6 +25,7 @@
 #import "User.h"
 #import "BusinessProfile.h"
 #import "PersonalProfile.h"
+#import "NSString+Validation.h"
 
 static NSUInteger const kSenderSection = 0;
 static NSUInteger const kReceiverSection = 1;
@@ -216,7 +217,9 @@ static NSUInteger const kReceiverSection = 1;
     [input setReference:reference];
 
     NSString *email = [self.receiverEmailCell value];
-    [input setRecipientEmail:email];
+    if ([email hasValue]) {
+        [input setRecipientEmail:email];
+    }
 
     [self.paymentFlow validatePayment:input.objectID errorHandler:^(NSError *error) {
         [hud hide];
