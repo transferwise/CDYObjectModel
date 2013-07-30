@@ -431,12 +431,17 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             continue;
         }
 
+        RecipientTypeField *field = cell.type;
+        if (![field requiredValue]) {
+            continue;
+        }
+
         NSString *value = [cell value];
         if ([value hasValue]) {
             continue;
         }
 
-        [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.field.empty", nil), cell.type.title]];
+        [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.field.empty", nil), field.title]];
     }
 
     return [NSString stringWithString:issues];
