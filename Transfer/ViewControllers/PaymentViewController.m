@@ -138,6 +138,12 @@ static NSUInteger const kRowYouSend = 0;
 
     [self.calculator setObjectModel:self.objectModel];
 
+    if (self.youSendCell.currencies) {
+        [self.calculator forceCalculate];
+        [self refreshCurrencyPairs];
+        return;
+    }
+
     if (self.recipient) {
         [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSourcesContainingTargetCurrency:self.recipient.currency]];
     } else {
@@ -145,10 +151,7 @@ static NSUInteger const kRowYouSend = 0;
     }
 
     [self.calculator forceCalculate];
-
-
     [self refreshCurrencyPairs];
-
 }
 
 - (void)refreshCurrencyPairs {
