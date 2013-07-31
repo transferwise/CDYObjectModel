@@ -7,6 +7,7 @@
 //
 
 #import "NSString+Presentation.h"
+#import "MoneyFormatter.h"
 
 @implementation NSString (Presentation)
 
@@ -93,5 +94,23 @@
 
     return self;
 }
+
+- (NSString *)moneyFormatting {
+    NSString *cents = @"";
+    NSRange dotLocation = [self rangeOfString:@"."];
+    if (dotLocation.location != NSNotFound) {
+        cents = [self substringFromIndex:dotLocation.location];
+    }
+
+    NSString *money = [self stringByReplacingOccurrencesOfString:cents withString:@""];
+    money = [money stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSNumber *moneyNumber = [[MoneyFormatter sharedInstance] numberFromString:money];
+    NSString *formatted = [[MoneyFormatter sharedInstance] formatAmount:moneyNumber];
+
+    formatted = [formatted stringByReplacingOccurrencesOfString:@".00" withString:cents];
+
+    return formatted;
+}
+
 
 @end

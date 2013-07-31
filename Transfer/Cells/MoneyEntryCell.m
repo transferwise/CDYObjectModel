@@ -13,6 +13,7 @@
 #import "PairSourceCurrency.h"
 #import "MoneyFormatter.h"
 #import "NSString+Validation.h"
+#import "NSString+Presentation.h"
 
 NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
@@ -81,8 +82,15 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    if (![string isEqualToString:@","] && ![string isEqualToString:@"."]) {
-        return [self entryBelowMaxAmount:[textField.text stringByReplacingCharactersInRange:range withString:string]];
+    NSString *modified = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    if (![string isEqualToString:@","] && ![string isEqualToString:@"."] && [self entryBelowMaxAmount:modified]) {
+        [textField setText:[modified moneyFormatting]];
+        [textField sendActionsForControlEvents:UIControlEventEditingChanged];
+        return NO;
+    }
+
+    if (![self entryBelowMaxAmount:modified]) {
+        return NO;
     }
 
     if ([textField.text rangeOfString:@"."].location == NSNotFound) {

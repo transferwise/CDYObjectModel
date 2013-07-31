@@ -8,6 +8,7 @@
 
 #import "MoneyFormatter.h"
 #import "Constants.h"
+#import "CalculationResult.h"
 
 @interface MoneyFormatter ()
 
@@ -39,12 +40,14 @@
     if (self) {
        _formatterWithCurrency = [[NSNumberFormatter alloc] init];
         [_formatterWithCurrency setGeneratesDecimalNumbers:YES];
+        [_formatterWithCurrency setLocale:[CalculationResult defaultLocale]];
         [_formatterWithCurrency setNumberStyle:NSNumberFormatterCurrencyStyle];
         [_formatterWithCurrency setCurrencyDecimalSeparator:@"."];
         [_formatterWithCurrency setCurrencyGroupingSeparator:@" "];
 
         _formatterWithoutCurrency = [[NSNumberFormatter alloc] init];
         [_formatterWithoutCurrency setGeneratesDecimalNumbers:YES];
+        [_formatterWithoutCurrency setLocale:[CalculationResult defaultLocale]];
         [_formatterWithoutCurrency setNumberStyle:NSNumberFormatterCurrencyStyle];
         [_formatterWithoutCurrency setCurrencyDecimalSeparator:@"."];
         [_formatterWithoutCurrency setCurrencySymbol:@""];

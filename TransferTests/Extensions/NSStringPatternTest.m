@@ -81,4 +81,21 @@ SPEC_BEGIN(NSStringPatternSpec)
                 [[result should] equal:@""];
             });
         });
+
+        describe(@"Money formatting", ^{
+            it(@"Should do pretty format one", ^{
+                NSString *result = [@"1 00.00" moneyFormatting];
+                [[result should] equal:@"100.00"];
+            });
+
+            it(@"Should do pretty format two", ^{
+                NSString *result = [@"1 0" moneyFormatting];
+                [[result should] equal:@"10"];
+            });
+
+            it(@"Should do pretty format three", ^{
+                NSString *result = [@"1 000000.0" moneyFormatting];
+                [[result should] equal:@"1 000 000.0"];
+            });
+        });
 SPEC_END

@@ -38,6 +38,7 @@
 
 + (CalculationResult *)resultWithData:(NSDictionary *)data;
 + (NSString *)rateStringFrom:(NSNumber *)number;
++ (NSLocale *)defaultLocale;
 + (NSDateFormatter *)paymentDateFormatter;
 
 @end

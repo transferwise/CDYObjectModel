@@ -14,5 +14,6 @@
 - (NSString *)applyPattern:(NSString *)pattern;
 - (NSString *)stringByRemovingPatterChar:(NSString *)pattern;
 - (NSString *)stringByAddingPatternChar:(NSString *)pattern;
+- (NSString *)moneyFormatting;
 
 @end
