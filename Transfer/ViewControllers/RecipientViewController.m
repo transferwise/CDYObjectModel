@@ -343,17 +343,22 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
 
     for (RecipientTypeField *field in type.fields) {
+        TextEntryCell *createdCell;
         if ([field.allowedValues count] > 0) {
             DropdownCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWDropdownCellIdentifier];
             [cell setAllElements:[self.objectModel fetchedControllerForAllowedValuesOnField:field]];
             [cell configureWithTitle:field.title value:@""];
             [cell setType:field];
             [result addObject:cell];
+            createdCell = cell;
         } else {
             RecipientFieldCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWRecipientFieldCellIdentifier];
             [cell setFieldType:field];
             [result addObject:cell];
+            createdCell = cell;
         }
+
+        [createdCell setEditable:YES];
     }
 
     return [NSArray arrayWithArray:result];

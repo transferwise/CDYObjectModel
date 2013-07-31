@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "TextEntryCell.h"
 
-@class PlainRecipientTypeField;
 @class RecipientTypeField;
 
 extern NSString *const TWRecipientFieldCellIdentifier;
