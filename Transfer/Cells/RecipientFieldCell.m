@@ -8,6 +8,8 @@
 
 #import "RecipientFieldCell.h"
 #import "RecipientTypeField.h"
+#import "NSString+Validation.h"
+#import "NSString+Presentation.h"
 
 NSString *const TWRecipientFieldCellIdentifier = @"TWRecipientFieldCellIdentifier";
 
@@ -30,6 +32,30 @@ NSString *const TWRecipientFieldCellIdentifier = @"TWRecipientFieldCellIdentifie
 - (void)setFieldType:(RecipientTypeField *)field {
     [self setType:field];
     [self configureWithTitle:field.title value:nil];
+}
+
+- (BOOL)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSString *pattern = self.type.presentationPattern;
+    if (![pattern hasValue]) {
+        return YES;
+    }
+
+    NSString *modified = [self.entryField.text stringByReplacingCharactersInRange:range withString:string];
+
+    if ([modified length] > [pattern length]) {
+        return NO;
+    }
+
+    if ([string length] == 0) {
+        modified = [modified stringByRemovingPatterChar:pattern];
+    } else {
+        modified = [modified applyPattern:pattern];
+        modified = [modified stringByAddingPatternChar:pattern];
+    }
+
+    [self.entryField setText:modified];
+
+    return NO;
 }
 
 @end

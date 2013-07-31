@@ -27,7 +27,7 @@
     [operation setObjectModel:self.objectModel];
 
     [operation setSaveResultHandler:^(NSError *error) {
-        handler(nil, error);
+        handler(error);
     }];
 
     [operation execute];

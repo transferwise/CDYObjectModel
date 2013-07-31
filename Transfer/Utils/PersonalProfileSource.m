@@ -189,7 +189,7 @@ NSUInteger const kUserPersonalSection = 1;
 }
 
 - (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion {
-    [validation validatePersonalProfile:profile withHandler:^(PlainProfileDetails *details, NSError *error) {
+    [validation validatePersonalProfile:profile withHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error) {
                 completion(error);

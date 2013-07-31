@@ -120,12 +120,12 @@
     [operation setSaveResultHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error) {
-                handler(nil, error);
+                handler(error);
                 return;
             }
 
             if ([Credentials userLoggedIn]) {
-                handler(nil, nil);
+                handler(nil);
                 [self pushNextScreenAfterPersonalProfile];
                 return;
             }
@@ -145,12 +145,12 @@
     [operation setResultHandler:^(BOOL available, NSError *error) {
 
         if (error) {
-            handler(nil, error);
+            handler(error);
         } else if (!available) {
             NSError *emailError = [[NSError alloc] initWithDomain:@"" code:0 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"personal.profile.email.taken.message", nil)}];
-            handler(nil, emailError);
+            handler(emailError);
         } else {
-            handler(nil, nil);
+            handler(nil);
             [self pushNextScreenAfterPersonalProfile];
         }
     }];

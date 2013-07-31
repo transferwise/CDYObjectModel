@@ -109,6 +109,11 @@
     return YES;
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    TextEntryCell *cell = [textField findContainerOfType:[TextEntryCell class]];
+    return [cell shouldChangeCharactersInRange:range replacementString:string];
+}
+
 - (BOOL)moveFocusOnNextEntryAfterCell:(UITableViewCell *)cell {
     NSIndexPath *indexPath = [self indexPathForCell:cell];
 

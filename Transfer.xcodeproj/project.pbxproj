@@ -202,6 +202,10 @@
 		EAA54F501733DC3500B65BF3 /* CurrenciesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F4F1733DC3500B65BF3 /* CurrenciesOperation.m */; };
 		EAA54F581733E8F700B65BF3 /* TransferwiseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F571733E8F700B65BF3 /* TransferwiseClient.m */; };
 		EAA54F5B1733EF1A00B65BF3 /* RecipientTypesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F5A1733EF1A00B65BF3 /* RecipientTypesOperation.m */; };
+		EAA6AD0717A91A95006A347D /* NSString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6AD0617A91A95006A347D /* NSString+Presentation.m */; };
+		EAA6AD0A17A91BF9006A347D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA1471171BC911005B9430 /* CoreData.framework */; };
+		EAA6AD0D17A91D1F006A347D /* NSStringPatternTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6AD0C17A91D1F006A347D /* NSStringPatternTest.m */; };
+		EAA6AD0E17A91E72006A347D /* NSString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6AD0617A91A95006A347D /* NSString+Presentation.m */; };
 		EAAA146C171BC911005B9430 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146B171BC911005B9430 /* UIKit.framework */; };
 		EAAA146E171BC911005B9430 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146D171BC911005B9430 /* Foundation.framework */; };
 		EAAA1470171BC911005B9430 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146F171BC911005B9430 /* CoreGraphics.framework */; };
@@ -628,6 +632,9 @@
 		EAA54F571733E8F700B65BF3 /* TransferwiseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferwiseClient.m; sourceTree = "<group>"; };
 		EAA54F591733EF1A00B65BF3 /* RecipientTypesOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientTypesOperation.h; sourceTree = "<group>"; };
 		EAA54F5A1733EF1A00B65BF3 /* RecipientTypesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientTypesOperation.m; sourceTree = "<group>"; };
+		EAA6AD0517A91A95006A347D /* NSString+Presentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Presentation.h"; sourceTree = "<group>"; };
+		EAA6AD0617A91A95006A347D /* NSString+Presentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Presentation.m"; sourceTree = "<group>"; };
+		EAA6AD0C17A91D1F006A347D /* NSStringPatternTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringPatternTest.m; sourceTree = "<group>"; };
 		EAAA1468171BC911005B9430 /* Transfer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transfer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAAA146B171BC911005B9430 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EAAA146D171BC911005B9430 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -753,6 +760,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAA6AD0A17A91BF9006A347D /* CoreData.framework in Frameworks */,
 				EA76D90E175CF80100AE3F86 /* SenTestingKit.framework in Frameworks */,
 				EA76D90F175CF80100AE3F86 /* UIKit.framework in Frameworks */,
 				EA76D910175CF80100AE3F86 /* Foundation.framework in Frameworks */,
@@ -911,6 +919,8 @@
 				EA1E4E32179FF1E500F8D932 /* NSMutableDictionary+SaneData.m */,
 				EA8FF683171D1A320090A658 /* NSMutableString+Issues.h */,
 				EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */,
+				EAA6AD0517A91A95006A347D /* NSString+Presentation.h */,
+				EAA6AD0617A91A95006A347D /* NSString+Presentation.m */,
 				EA8FF680171D19B50090A658 /* NSString+Validation.h */,
 				EA8FF681171D19B50090A658 /* NSString+Validation.m */,
 				EA8FF686171D1B6D0090A658 /* UIApplication+Keyboard.h */,
@@ -953,6 +963,7 @@
 		EA76D911175CF80100AE3F86 /* TransferTests */ = {
 			isa = PBXGroup;
 			children = (
+				EAA6AD0917A91BA8006A347D /* Extensions */,
 				EA76D912175CF80100AE3F86 /* Supporting Files */,
 				EAA053D7175DD61400ACD3F6 /* Utils */,
 				EA76D924175CFAEA00AE3F86 /* SampleSpec.m */,
@@ -1115,6 +1126,14 @@
 				EAA053D9175DD63100ACD3F6 /* PaymentFlowSpec.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		EAA6AD0917A91BA8006A347D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EAA6AD0C17A91D1F006A347D /* NSStringPatternTest.m */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		EAAA145F171BC911005B9430 = {
@@ -1753,6 +1772,8 @@
 				EAA053DA175DD63100ACD3F6 /* PaymentFlowSpec.m in Sources */,
 				EAA053E0175DD64D00ACD3F6 /* NoUserPaymentFlowSpec.m in Sources */,
 				EAA053E4175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m in Sources */,
+				EAA6AD0D17A91D1F006A347D /* NSStringPatternTest.m in Sources */,
+				EAA6AD0E17A91E72006A347D /* NSString+Presentation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1917,6 +1938,7 @@
 				EA1E4E28179E71C300F8D932 /* ObjectModel+PendingPayments.m in Sources */,
 				EA1E4E33179FF1E500F8D932 /* NSMutableDictionary+SaneData.m in Sources */,
 				EA415D4517A7B2A900E9B56A /* SpinningImageView.m in Sources */,
+				EAA6AD0717A91A95006A347D /* NSString+Presentation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

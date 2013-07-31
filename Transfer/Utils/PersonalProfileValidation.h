@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@class PlainProfileDetails;
 @class ObjectModel;
+@class NSManagedObjectID;
 
-typedef void (^PersonalProfileValidationBlock)(PlainProfileDetails *details, NSError *error);
+typedef void (^PersonalProfileValidationBlock)(NSError *error);
 
 @protocol PersonalProfileValidation <NSObject>
 

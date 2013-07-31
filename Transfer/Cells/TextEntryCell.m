@@ -102,4 +102,8 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     }
 }
 
+- (BOOL)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    return YES;
+}
+
 @end
