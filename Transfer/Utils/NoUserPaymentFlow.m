@@ -7,11 +7,19 @@
 //
 
 #import "NoUserPaymentFlow.h"
+#import "Constants.h"
 
 @implementation NoUserPaymentFlow
 
 - (void)presentSenderDetails {
     [self presentPersonalProfileEntry:YES];
+}
+
+- (void)commitPaymentWithErrorHandler:(PaymentErrorBlock)errorHandler {
+    MCLog(@"Commit payment");
+    [self setPaymentErrorHandler:errorHandler];
+
+    [self registerUser];
 }
 
 @end

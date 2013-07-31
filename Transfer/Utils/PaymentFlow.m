@@ -36,7 +36,6 @@
 @interface PaymentFlow ()
 
 @property (nonatomic, strong) UINavigationController *navigationController;
-@property (nonatomic, copy) PaymentErrorBlock paymentErrorHandler;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
 @end
@@ -268,14 +267,7 @@
 }
 
 - (void)commitPaymentWithErrorHandler:(PaymentErrorBlock)errorHandler {
-    MCLog(@"Commit payment");
-    self.paymentErrorHandler = errorHandler;
-
-    if ([Credentials userLoggedIn]) {
-        [self uploadVerificationData];
-    } else {
-       [self registerUser];
-    }
+    MCAssert(NO);
 }
 
 - (void)registerUser {

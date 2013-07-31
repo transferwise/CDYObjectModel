@@ -34,8 +34,16 @@
     [Credentials setUserEmail:email];
     User *user = [self userWithEmail:email];
     [user setPReference:data[@"pReference"]];
-    [user setPersonalProfile:[self personalProfileWithData:data[@"personalProfile"] forUser:user]];
-    [user setBusinessProfile:[self businessProfileWithData:data[@"businessProfile"] forUser:user]];
+
+    NSDictionary *personalProfileData = data[@"personalProfile"];
+    if (personalProfileData) {
+        [user setPersonalProfile:[self personalProfileWithData:personalProfileData forUser:user]];
+    }
+
+    NSDictionary *businessProfileData = data[@"businessProfile"];
+    if (businessProfileData) {
+        [user setBusinessProfile:[self businessProfileWithData:businessProfileData forUser:user]];
+    }
 }
 
 - (PersonalProfile *)personalProfileWithData:(NSDictionary *)data forUser:(User *)user {

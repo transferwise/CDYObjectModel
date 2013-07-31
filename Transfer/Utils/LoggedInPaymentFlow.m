@@ -11,6 +11,7 @@
 #import "ObjectModel+Users.h"
 #import "ObjectModel+PendingPayments.h"
 #import "PendingPayment.h"
+#import "Constants.h"
 
 @implementation LoggedInPaymentFlow
 
@@ -23,6 +24,13 @@
     } else {
         [self presentRecipientDetails:YES];
     }
+}
+
+- (void)commitPaymentWithErrorHandler:(PaymentErrorBlock)errorHandler {
+    MCLog(@"Commit payment");
+    [self setPaymentErrorHandler:errorHandler];
+
+    [self uploadVerificationData];
 }
 
 @end

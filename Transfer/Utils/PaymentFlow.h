@@ -18,6 +18,7 @@ typedef void (^PaymentErrorBlock)(NSError *error);
 @interface PaymentFlow : NSObject <PersonalProfileValidation, RecipientProfileValidation, BusinessProfileValidation>
 
 @property (nonatomic, strong) ObjectModel *objectModel;
+@property (nonatomic, copy) PaymentErrorBlock paymentErrorHandler;
 
 - (id)initWithPresentingController:(UINavigationController *)controller;
 - (void)presentSenderDetails;
@@ -26,5 +27,7 @@ typedef void (^PaymentErrorBlock)(NSError *error);
 - (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch;
 - (void)presentRecipientDetails:(BOOL)showMiniProfile;
 - (void)presentPaymentConfirmation;
+- (void)uploadVerificationData;
+- (void)registerUser;
 
 @end
