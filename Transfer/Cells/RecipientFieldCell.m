@@ -36,13 +36,19 @@ NSString *const TWRecipientFieldCellIdentifier = @"TWRecipientFieldCellIdentifie
 
 - (BOOL)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *pattern = self.type.presentationPattern;
-    if (![pattern hasValue]) {
+    NSInteger maxValueLength = [self.type maxLengthValue];
+
+    if (![pattern hasValue] && maxValueLength == 0) {
         return YES;
     }
 
     NSString *modified = [self.entryField.text stringByReplacingCharactersInRange:range withString:string];
 
-    if ([modified length] > [pattern length]) {
+    if ([pattern hasValue] && [modified length] > [pattern length]) {
+        return NO;
+    }
+
+    if (maxValueLength > 0 && [modified length] > maxValueLength) {
         return NO;
     }
 
