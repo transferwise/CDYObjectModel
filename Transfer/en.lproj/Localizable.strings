@@ -271,3 +271,9 @@ A revolution in your pocket.";
 
 "recipient.type.IBAN.name" = "IBAN";
 "recipient.type.SORT_CODE.name" = "UK SORT";
+
+"recipient.type.field.value.not.entered" = "Value for %@ not entered.";
+"recipient.type.field.value.too.short" = "Value for %@ too short. Min length is %d.";
+"recipient.type.field.value.too.long" = "Value for %@ too long. Max length is %d.";
+"recipient.type.field.value.invalid" = "Value for %@ invalid.";
+"recipient.type.field.email.invalid" = "Entered email is invalid.";
