@@ -15,6 +15,7 @@
 #import "WhyView.h"
 #import "TSAlertView.h"
 #import "MoneyFormatter.h"
+#import "TabBarActivityIndicatorView.h"
 #import "TRWAlertView.h"
 #import "PaymentFlow.h"
 #import "NoUserPaymentFlow.h"
@@ -27,6 +28,7 @@
 #import "PairTargetCurrency.h"
 #import "PairSourceCurrency.h"
 #import "UITableView+FooterPositioning.h"
+#import "UIView+Loading.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
@@ -48,6 +50,7 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) IBOutlet UIView *headerView;
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *subTitleLabel;
+@property (nonatomic, strong) TabBarActivityIndicatorView *activityIndicator;
 
 - (IBAction)loginPressed:(id)sender;
 - (IBAction)startPaymentPressed:(id)sender;
@@ -115,7 +118,7 @@ static NSUInteger const kRowYouSend = 0;
     [[OHAttributedLabel appearance] setLinkColor:[UIColor whiteColor]];
 
     [calculator setActivityHandler:^(BOOL calculating) {
-
+        [self showCalculationIndicator:calculating];
     }];
 
     [calculator setCalculationHandler:^(CalculationResult *result, NSError *error) {
@@ -308,5 +311,22 @@ static NSUInteger const kRowYouSend = 0;
     }
 }
 
+- (void)showCalculationIndicator:(BOOL)calculating {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (!calculating) {
+            [self.activityIndicator removeFromSuperview];
+            [self setActivityIndicator:nil];
+            return;
+        }
+
+        TabBarActivityIndicatorView *indicatorView = [TabBarActivityIndicatorView loadInstance];
+        [self setActivityIndicator:indicatorView];
+        [self.view addSubview:indicatorView];
+        [indicatorView setMessage:NSLocalizedString(@"calculation.pending.message", nil)];
+        CGRect indicatorFrame =  indicatorView.frame;
+        indicatorFrame.origin.y = CGRectGetHeight(self.view.frame) - CGRectGetHeight(indicatorFrame);
+        [indicatorView setFrame:indicatorFrame];
+    });
+}
 
 @end
