@@ -45,6 +45,7 @@
 
 - (void)getDataFromPath:(NSString *)path params:(NSDictionary *)params {
     NSString *accessToken = [Credentials accessToken];
+    MCLog(@"Server: %@", TRWServerAddress);
     MCLog(@"Get data from:%@", [path stringByReplacingOccurrencesOfString:(accessToken ? accessToken : @"" ) withString:@"**********"]);
     MCLog(@"Params:%@", [params sensibleDataHidden]);
     [self executeOperationWithMethod:@"GET" path:path parameters:params];
@@ -118,7 +119,7 @@
         [request setValue:[Credentials accessToken] forHTTPHeaderField:@"Authorization"];
     }
 
-    [request setValue:@"ad8d836d18ec18fbd4ccc7bffd71eb54" forHTTPHeaderField:@"Authorization-key"];
+    [request setValue:TRWApplicationKey forHTTPHeaderField:@"Authorization-key"];
     //TODO jaanus: Also client id (the one from google analytics) should be in header 'Customer-identifier'
 }
 
@@ -175,6 +176,8 @@
         if ([TRWNetworkErrorExpiredToken isEqualToString:code]) {
             return YES;
         } else if ([TRWNetworkErrorInvalidToken isEqualToString:code]) {
+            return YES;
+        } else if ([TRWNetworkErrorNoToken isEqualToString:code]) {
             return YES;
         }
     }

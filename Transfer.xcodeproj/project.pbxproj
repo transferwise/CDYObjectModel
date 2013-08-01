@@ -39,6 +39,273 @@
 		EA01331E1765FC7700D63C82 /* RoundedCellBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */; };
 		EA042600173CF5C50048BFBD /* RecipientEntrySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */; };
 		EA042603173CF5E20048BFBD /* RecipientEntrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */; };
+		EA12402B17AA88EC00C9B02B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA1479171BC911005B9430 /* main.m */; };
+		EA12402C17AA88EC00C9B02B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA147D171BC911005B9430 /* AppDelegate.m */; };
+		EA12402D17AA88EC00C9B02B /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EAAA1485171BC911005B9430 /* Transfer.xcdatamodeld */; };
+		EA12402E17AA88EC00C9B02B /* ObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39671171BD2A300F6D011 /* ObjectModel.m */; };
+		EA12402F17AA88EC00C9B02B /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39674171BD4EE00F6D011 /* MainViewController.m */; };
+		EA12403017AA88EC00C9B02B /* TransactionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39679171BD51400F6D011 /* TransactionsViewController.m */; };
+		EA12403117AA88EC00C9B02B /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3967E171BD57000F6D011 /* ContactsViewController.m */; };
+		EA12403217AA88EC00C9B02B /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39683171BD5B000F6D011 /* PaymentViewController.m */; };
+		EA12403317AA88EC00C9B02B /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39688171BD82300F6D011 /* IntroductionViewController.m */; };
+		EA12403417AA88EC00C9B02B /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */; };
+		EA12403517AA88EC00C9B02B /* MoneyEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */; };
+		EA12403617AA88EC00C9B02B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E03D171BE9B00019FBF0 /* LoginViewController.m */; };
+		EA12403717AA88EC00C9B02B /* UIColor+Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E043171BEB010019FBF0 /* UIColor+Theme.m */; };
+		EA12403817AA88EC00C9B02B /* UIView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E048171BEDC40019FBF0 /* UIView+Loading.m */; };
+		EA12403917AA88EC00C9B02B /* TextEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */; };
+		EA12403A17AA88EC00C9B02B /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF681171D19B50090A658 /* NSString+Validation.m */; };
+		EA12403B17AA88EC00C9B02B /* NSMutableString+Issues.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */; };
+		EA12403C17AA88EC00C9B02B /* UIApplication+Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF687171D1B6D0090A658 /* UIApplication+Keyboard.m */; };
+		EA12403D17AA88EC00C9B02B /* TRWAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF68A171D1FA50090A658 /* TRWAlertView.m */; };
+		EA12403E17AA88EC00C9B02B /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF68F171D221D0090A658 /* AFHTTPClient.m */; };
+		EA12403F17AA88EC00C9B02B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF691171D221D0090A658 /* AFHTTPRequestOperation.m */; };
+		EA12404017AA88EC00C9B02B /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF693171D221D0090A658 /* AFImageRequestOperation.m */; };
+		EA12404117AA88EC00C9B02B /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF695171D221D0090A658 /* AFJSONRequestOperation.m */; };
+		EA12404217AA88EC00C9B02B /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF697171D221D0090A658 /* AFNetworkActivityIndicatorManager.m */; };
+		EA12404317AA88EC00C9B02B /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF69A171D221D0090A658 /* AFPropertyListRequestOperation.m */; };
+		EA12404417AA88EC00C9B02B /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF69C171D221D0090A658 /* AFURLConnectionOperation.m */; };
+		EA12404517AA88EC00C9B02B /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF69E171D221D0090A658 /* AFXMLRequestOperation.m */; };
+		EA12404617AA88EC00C9B02B /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6A0171D221D0090A658 /* UIImageView+AFNetworking.m */; };
+		EA12404717AA88EC00C9B02B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6B0171D237C0090A658 /* MBProgressHUD.m */; };
+		EA12404817AA88EC00C9B02B /* TRWProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6B3171D23B20090A658 /* TRWProgressHUD.m */; };
+		EA12404917AA88EC00C9B02B /* TransferwiseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */; };
+		EA12404A17AA88EC00C9B02B /* LoginOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6BA171D26A00090A658 /* LoginOperation.m */; };
+		EA12404B17AA88EC00C9B02B /* NSDictionary+SensibleData.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */; };
+		EA12404C17AA88EC00C9B02B /* UIButton+Skinning.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */; };
+		EA12404D17AA88EC00C9B02B /* BlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4D0171D4BB20099063F /* BlueButton.m */; };
+		EA12404E17AA88EC00C9B02B /* GrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD73689171E6CB100A037B1 /* GrayButton.m */; };
+		EA12404F17AA88EC00C9B02B /* Lockbox.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD73691171E7A1D00A037B1 /* Lockbox.m */; };
+		EA12405017AA88EC00C9B02B /* RecipientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD736A1171E85C300A037B1 /* RecipientCell.m */; };
+		EA12405117AA88EC00C9B02B /* UserRecipientsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD736A6171E87ED00A037B1 /* UserRecipientsOperation.m */; };
+		EA12405217AA88EC00C9B02B /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB72159171FC61B00DE29F5 /* SettingsViewController.m */; };
+		EA12405317AA88EC00C9B02B /* SettingsTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB7215E171FCAAC00DE29F5 /* SettingsTitleCell.m */; };
+		EA12405417AA88EC00C9B02B /* MoneyCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */; };
+		EA12405517AA88EC00C9B02B /* TransferCalculationsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */; };
+		EA12405617AA88EC00C9B02B /* CalculationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6256172011C500A96770 /* CalculationResult.m */; };
+		EA12405717AA88EC00C9B02B /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC691221721416300F0FB1A /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EA12405817AA88EC00C9B02B /* WhyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC6337172169980094EABB /* WhyView.m */; };
+		EA12405917AA88EC00C9B02B /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
+		EA12405A17AA88EC00C9B02B /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
+		EA12405B17AA88EC00C9B02B /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
+		EA12405C17AA88EC00C9B02B /* PersonalProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E664172F979F0021492C /* PersonalProfileViewController.m */; };
+		EA12405D17AA88EC00C9B02B /* NSError+TRWErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E677172F97C40021492C /* NSError+TRWErrors.m */; };
+		EA12405E17AA88EC00C9B02B /* UIView+Container.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E679172F97C40021492C /* UIView+Container.m */; };
+		EA12405F17AA88EC00C9B02B /* CountriesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E67D172F97D50021492C /* CountriesOperation.m */; };
+		EA12406017AA88EC00C9B02B /* NetworkErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E67F172F97D50021492C /* NetworkErrorCodes.m */; };
+		EA12406117AA88EC00C9B02B /* UserDetailsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E683172F97D50021492C /* UserDetailsOperation.m */; };
+		EA12406217AA88EC00C9B02B /* CountrySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E689172F97E20021492C /* CountrySelectionCell.m */; };
+		EA12406317AA88EC00C9B02B /* DateEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E68C172F97E20021492C /* DateEntryCell.m */; };
+		EA12406417AA88EC00C9B02B /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E692172F97F50021492C /* Constants.m */; };
+		EA12406517AA88EC00C9B02B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E695172F980A0021492C /* SignUpViewController.m */; };
+		EA12406617AA88EC00C9B02B /* PaymentsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76B1732790D005602F7 /* PaymentsOperation.m */; };
+		EA12406717AA88EC00C9B02B /* PaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76F17327973005602F7 /* PaymentCell.m */; };
+		EA12406817AA88EC00C9B02B /* CurrencyPairsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */; };
+		EA12406917AA88EC00C9B02B /* RecipientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F491733DA1400B65BF3 /* RecipientViewController.m */; };
+		EA12406A17AA88EC00C9B02B /* CurrenciesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F4F1733DC3500B65BF3 /* CurrenciesOperation.m */; };
+		EA12406B17AA88EC00C9B02B /* TransferwiseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F571733E8F700B65BF3 /* TransferwiseClient.m */; };
+		EA12406C17AA88EC00C9B02B /* RecipientTypesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F5A1733EF1A00B65BF3 /* RecipientTypesOperation.m */; };
+		EA12406D17AA88EC00C9B02B /* CurrencySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */; };
+		EA12406E17AA88EC00C9B02B /* RecipientFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */; };
+		EA12406F17AA88EC00C9B02B /* RecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069091737CF57007C8DEE /* RecipientOperation.m */; };
+		EA12407017AA88EC00C9B02B /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */; };
+		EA12407117AA88EC00C9B02B /* PersonalProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */; };
+		EA12407217AA88EC00C9B02B /* IdentificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D478FF173A3B5300FC317E /* IdentificationViewController.m */; };
+		EA12407317AA88EC00C9B02B /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC92173B7C28008773FC /* BusinessProfileViewController.m */; };
+		EA12407417AA88EC00C9B02B /* BusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */; };
+		EA12407517AA88EC00C9B02B /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */; };
+		EA12407617AA88EC00C9B02B /* PaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E32173A676000C5D613 /* PaymentFlow.m */; };
+		EA12407717AA88EC00C9B02B /* ConfirmPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E36173A861000C5D613 /* ConfirmPaymentViewController.m */; };
+		EA12407817AA88EC00C9B02B /* ConfirmPaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E3B173A8A7100C5D613 /* ConfirmPaymentCell.m */; };
+		EA12407917AA88EC00C9B02B /* RecipientEntrySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */; };
+		EA12407A17AA88EC00C9B02B /* DropdownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAC203A17422AB3001DDE7A /* DropdownCell.m */; };
+		EA12407B17AA88EC00C9B02B /* UploadMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29BD46173CD2FF0016A6E9 /* UploadMoneyViewController.m */; };
+		EA12407C17AA88EC00C9B02B /* TextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29BD4C173CDF6F0016A6E9 /* TextCell.m */; };
+		EA12407D17AA88EC00C9B02B /* CreatePaymentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAF8FAF17436730008DF9E2 /* CreatePaymentOperation.m */; };
+		EA12407E17AA88EC00C9B02B /* MoneyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAF8FB71743B3E4008DF9E2 /* MoneyFormatter.m */; };
+		EA12407F17AA88EC00C9B02B /* UINavigationController+StackManipulations.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1861DF17463F8D00BD01BB /* UINavigationController+StackManipulations.m */; };
+		EA12408017AA88EC00C9B02B /* RegisterOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1861E21746442900BD01BB /* RegisterOperation.m */; };
+		EA12408117AA88EC00C9B02B /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66758174A51B900D29BCB /* ButtonCell.m */; };
+		EA12408217AA88EC00C9B02B /* PhoneBookProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66780174CB34600D29BCB /* PhoneBookProfile.m */; };
+		EA12408317AA88EC00C9B02B /* PhoneBookProfileSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */; };
+		EA12408417AA88EC00C9B02B /* PhoneBookAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */; };
+		EA12408517AA88EC00C9B02B /* DismissKeyboardTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */; };
+		EA12408617AA88EC00C9B02B /* VerificationRequiredOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */; };
+		EA12408717AA88EC00C9B02B /* UploadVerificationFileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */; };
+		EA12408817AA88EC00C9B02B /* OpenIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59298C1758CD6C007C0072 /* OpenIDViewController.m */; };
+		EA12408917AA88EC00C9B02B /* PersonalProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297017589F5C007C0072 /* PersonalProfileCommitter.m */; };
+		EA12408A17AA88EC00C9B02B /* EmailCheckOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */; };
+		EA12408B17AA88EC00C9B02B /* RecipientProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */; };
+		EA12408C17AA88EC00C9B02B /* LoggedInPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */; };
+		EA12408D17AA88EC00C9B02B /* NoUserPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D5175DD5EE00ACD3F6 /* NoUserPaymentFlow.m */; };
+		EA12408E17AA88EC00C9B02B /* RegisterWithoutPasswordOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053EB175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m */; };
+		EA12408F17AA88EC00C9B02B /* ClaimAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */; };
+		EA12409017AA88EC00C9B02B /* ClaimAccountOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB93B471761C74700A7337C /* ClaimAccountOperation.m */; };
+		EA12409117AA88EC00C9B02B /* RoundedCellBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */; };
+		EA12409217AA88EC00C9B02B /* ProfileEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E29176860EA00904D97 /* ProfileEditViewController.m */; };
+		EA12409317AA88EC00C9B02B /* ProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E2F1768673500904D97 /* ProfileSource.m */; };
+		EA12409417AA88EC00C9B02B /* PersonalProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E321768674700904D97 /* PersonalProfileSource.m */; };
+		EA12409517AA88EC00C9B02B /* BusinessProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E351768675400904D97 /* BusinessProfileSource.m */; };
+		EA12409617AA88EC00C9B02B /* BusinessProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D9531769BD9D0078D0C4 /* BusinessProfileCommitter.m */; };
+		EA12409717AA88EC00C9B02B /* PaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D97E176AF1200078D0C4 /* PaymentProfileViewController.m */; };
+		EA12409817AA88EC00C9B02B /* ProfileSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D982176AF1DF0078D0C4 /* ProfileSelectionView.m */; };
+		EA12409917AA88EC00C9B02B /* RemoveTokenOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7F8815176F2B44003B0F46 /* RemoveTokenOperation.m */; };
+		EA12409A17AA88EC00C9B02B /* UITableView+FooterPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9A2E82176B711400C5E058 /* UITableView+FooterPositioning.m */; };
+		EA12409B17AA88EC00C9B02B /* TransferTypeSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9A2EBB176F4BC600C5E058 /* TransferTypeSelectionCell.m */; };
+		EA12409C17AA88EC00C9B02B /* RoundedCellWhiteBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB704E7C177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m */; };
+		EA12409D17AA88EC00C9B02B /* JCSObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C46178E96FE009D6B83 /* JCSObjectModel.m */; };
+		EA12409E17AA88EC00C9B02B /* _Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C66178E9C90009D6B83 /* _Payment.m */; };
+		EA12409F17AA88EC00C9B02B /* Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C6A178E9C93009D6B83 /* Payment.m */; };
+		EA1240A017AA88EC00C9B02B /* ObjectModel+Payments.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C70178E9F00009D6B83 /* ObjectModel+Payments.m */; };
+		EA1240A117AA88EC00C9B02B /* TabBarActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C73178EA124009D6B83 /* TabBarActivityIndicatorView.m */; };
+		EA1240A217AA88EC00C9B02B /* _Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C78178EA341009D6B83 /* _Currency.m */; };
+		EA1240A317AA88EC00C9B02B /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C7B178EA346009D6B83 /* Currency.m */; };
+		EA1240A417AA88EC00C9B02B /* _Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C7E178EA3C2009D6B83 /* _Recipient.m */; };
+		EA1240A517AA88EC00C9B02B /* Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C81178EA3C8009D6B83 /* Recipient.m */; };
+		EA1240A617AA88EC00C9B02B /* NSDictionary+Cleanup.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C84178EB21C009D6B83 /* NSDictionary+Cleanup.m */; };
+		EA1240A717AA88EC00C9B02B /* ObjectModel+Currencies.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C87178EB241009D6B83 /* ObjectModel+Currencies.m */; };
+		EA1240A817AA88EC00C9B02B /* ObjectModel+Recipients.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C8A178EB297009D6B83 /* ObjectModel+Recipients.m */; };
+		EA1240A917AA88EC00C9B02B /* _RecipientType.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C8D178EB343009D6B83 /* _RecipientType.m */; };
+		EA1240AA17AA88EC00C9B02B /* RecipientType.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C90178EB350009D6B83 /* RecipientType.m */; };
+		EA1240AB17AA88EC00C9B02B /* ObjectModel+RecipientTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C93178EB36B009D6B83 /* ObjectModel+RecipientTypes.m */; };
+		EA1240AC17AA88EC00C9B02B /* _RecipientTypeField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C96178EB3D3009D6B83 /* _RecipientTypeField.m */; };
+		EA1240AD17AA88EC00C9B02B /* RecipientTypeField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C99178EB3DA009D6B83 /* RecipientTypeField.m */; };
+		EA1240AE17AA88EC00C9B02B /* _TypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C9C178EB50B009D6B83 /* _TypeFieldValue.m */; };
+		EA1240AF17AA88EC00C9B02B /* TypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C9F178EB511009D6B83 /* TypeFieldValue.m */; };
+		EA1240B017AA88EC00C9B02B /* NSDate+ServerTime.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CA2178EB591009D6B83 /* NSDate+ServerTime.m */; };
+		EA1240B117AA88EC00C9B02B /* ObjectModel+CurrencyPairs.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CA5178EC32D009D6B83 /* ObjectModel+CurrencyPairs.m */; };
+		EA1240B217AA88EC00C9B02B /* _PairSourceCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CA8178EC3A4009D6B83 /* _PairSourceCurrency.m */; };
+		EA1240B317AA88EC00C9B02B /* PairSourceCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CAB178EC3B2009D6B83 /* PairSourceCurrency.m */; };
+		EA1240B417AA88EC00C9B02B /* RecipientsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CAE178ECD68009D6B83 /* RecipientsOperation.m */; };
+		EA1240B517AA88EC00C9B02B /* _AllowedTypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CB1178ED8C1009D6B83 /* _AllowedTypeFieldValue.m */; };
+		EA1240B617AA88EC00C9B02B /* AllowedTypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CB4178ED8C7009D6B83 /* AllowedTypeFieldValue.m */; };
+		EA1240B717AA88EC00C9B02B /* _PairTargetCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CBE178EEC6F009D6B83 /* _PairTargetCurrency.m */; };
+		EA1240B817AA88EC00C9B02B /* PairTargetCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CC1178EEC77009D6B83 /* PairTargetCurrency.m */; };
+		EA1240B917AA88EC00C9B02B /* _Country.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CCC179015B1009D6B83 /* _Country.m */; };
+		EA1240BA17AA88EC00C9B02B /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CD0179015B8009D6B83 /* Country.m */; };
+		EA1240BB17AA88EC00C9B02B /* ObjectModel+Countries.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CD3179015CA009D6B83 /* ObjectModel+Countries.m */; };
+		EA1240BC17AA88EC00C9B02B /* ObjectModel+Users.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2379E81793E01A00166361 /* ObjectModel+Users.m */; };
+		EA1240BD17AA88EC00C9B02B /* _BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2379EC1793E02B00166361 /* _BusinessProfile.m */; };
+		EA1240BE17AA88EC00C9B02B /* _PersonalProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2379EF1793E02F00166361 /* _PersonalProfile.m */; };
+		EA1240BF17AA88EC00C9B02B /* _User.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2379F21793E03A00166361 /* _User.m */; };
+		EA1240C017AA88EC00C9B02B /* BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2379F51793E04400166361 /* BusinessProfile.m */; };
+		EA1240C117AA88EC00C9B02B /* PersonalProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2379F71793E04400166361 /* PersonalProfile.m */; };
+		EA1240C217AA88EC00C9B02B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2379F91793E04400166361 /* User.m */; };
+		EA1240C317AA88EC00C9B02B /* _PendingPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E4E20179E712A00F8D932 /* _PendingPayment.m */; };
+		EA1240C417AA88EC00C9B02B /* PendingPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E4E24179E713100F8D932 /* PendingPayment.m */; };
+		EA1240C517AA88EC00C9B02B /* ObjectModel+PendingPayments.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E4E27179E71C300F8D932 /* ObjectModel+PendingPayments.m */; };
+		EA1240C617AA88EC00C9B02B /* NSMutableDictionary+SaneData.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E4E32179FF1E500F8D932 /* NSMutableDictionary+SaneData.m */; };
+		EA1240C717AA88EC00C9B02B /* SpinningImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA415D4417A7B2A900E9B56A /* SpinningImageView.m */; };
+		EA1240C817AA88EC00C9B02B /* NSString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6AD0617A91A95006A347D /* NSString+Presentation.m */; };
+		EA1240CA17AA88EC00C9B02B /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD6675C174A565500D29BCB /* AddressBook.framework */; };
+		EA1240CB17AA88EC00C9B02B /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD6675D174A565500D29BCB /* AddressBookUI.framework */; };
+		EA1240CC17AA88EC00C9B02B /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B140172A600000B6F096 /* libOHAttributedLabel.a */; };
+		EA1240CD17AA88EC00C9B02B /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B143172A747300B6F096 /* CoreText.framework */; };
+		EA1240CE17AA88EC00C9B02B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EAEA626017202D6100A96770 /* libz.dylib */; };
+		EA1240CF17AA88EC00C9B02B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD73693171E7A3200A037B1 /* Security.framework */; };
+		EA1240D017AA88EC00C9B02B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8FF6AC171D22340090A658 /* MobileCoreServices.framework */; };
+		EA1240D117AA88EC00C9B02B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8FF6AA171D222E0090A658 /* SystemConfiguration.framework */; };
+		EA1240D217AA88EC00C9B02B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146B171BC911005B9430 /* UIKit.framework */; };
+		EA1240D317AA88EC00C9B02B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146D171BC911005B9430 /* Foundation.framework */; };
+		EA1240D417AA88EC00C9B02B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146F171BC911005B9430 /* CoreGraphics.framework */; };
+		EA1240D517AA88EC00C9B02B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA1471171BC911005B9430 /* CoreData.framework */; };
+		EA1240D617AA88EC00C9B02B /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAE23477179D517900D64CF8 /* libTestFlight.a */; };
+		EA1240D717AA88EC00C9B02B /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61557417A69A5A008B6C79 /* Crashlytics.framework */; };
+		EA1240D917AA88EC00C9B02B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAAA1476171BC911005B9430 /* InfoPlist.strings */; };
+		EA1240DA17AA88EC00C9B02B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAAA148E171BD07E005B9430 /* Localizable.strings */; };
+		EA1240DB17AA88EC00C9B02B /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39675171BD4EE00F6D011 /* MainViewController.xib */; };
+		EA1240DC17AA88EC00C9B02B /* TransactionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD3967A171BD51400F6D011 /* TransactionsViewController.xib */; };
+		EA1240DD17AA88EC00C9B02B /* ContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD3967F171BD57000F6D011 /* ContactsViewController.xib */; };
+		EA1240DE17AA88EC00C9B02B /* PaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39684171BD5B000F6D011 /* PaymentViewController.xib */; };
+		EA1240DF17AA88EC00C9B02B /* IntroductionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39689171BD82300F6D011 /* IntroductionViewController.xib */; };
+		EA1240E017AA88EC00C9B02B /* MoneyEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */; };
+		EA1240E117AA88EC00C9B02B /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E03E171BE9B00019FBF0 /* LoginViewController.xib */; };
+		EA1240E217AA88EC00C9B02B /* TableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E045171BED910019FBF0 /* TableHeaderView.xib */; };
+		EA1240E317AA88EC00C9B02B /* TextEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */; };
+		EA1240E417AA88EC00C9B02B /* NavigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C4171D47BE0099063F /* NavigationBar.png */; };
+		EA1240E517AA88EC00C9B02B /* NavigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C5171D47BE0099063F /* NavigationBar@2x.png */; };
+		EA1240E617AA88EC00C9B02B /* BlueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C8171D4B080099063F /* BlueButton.png */; };
+		EA1240E717AA88EC00C9B02B /* BlueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C9171D4B080099063F /* BlueButton@2x.png */; };
+		EA1240E817AA88EC00C9B02B /* GrayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368B171E6D5A00A037B1 /* GrayButton.png */; };
+		EA1240E917AA88EC00C9B02B /* GrayButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */; };
+		EA1240EA17AA88EC00C9B02B /* RecipientCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD736A3171E85D100A037B1 /* RecipientCell.xib */; };
+		EA1240EB17AA88EC00C9B02B /* NavBarButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72150171FC34600DE29F5 /* NavBarButton.png */; };
+		EA1240EC17AA88EC00C9B02B /* NavBarButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */; };
+		EA1240ED17AA88EC00C9B02B /* SettingsButtonIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */; };
+		EA1240EE17AA88EC00C9B02B /* SettingsButtonIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72155171FC3E900DE29F5 /* SettingsButtonIcon@2x.png */; };
+		EA1240EF17AA88EC00C9B02B /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB7215A171FC61B00DE29F5 /* SettingsViewController.xib */; };
+		EA1240F017AA88EC00C9B02B /* SettingsTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */; };
+		EA1240F117AA88EC00C9B02B /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911C1721416300F0FB1A /* TSAlertViewMessageListViewShadow.png */; };
+		EA1240F217AA88EC00C9B02B /* TSAlertViewCancelButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911D1721416300F0FB1A /* TSAlertViewCancelButtonBackground.png */; };
+		EA1240F317AA88EC00C9B02B /* TSAlertViewButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911E1721416300F0FB1A /* TSAlertViewButtonBackground.png */; };
+		EA1240F417AA88EC00C9B02B /* TSAlertViewButtonBackground_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911F1721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png */; };
+		EA1240F517AA88EC00C9B02B /* TSAlertViewBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC691201721416300F0FB1A /* TSAlertViewBackground2.png */; };
+		EA1240F617AA88EC00C9B02B /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC691211721416300F0FB1A /* TSAlertViewBackground.png */; };
+		EA1240F717AA88EC00C9B02B /* WhyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC6912B172147FC00F0FB1A /* WhyView.xib */; };
+		EA1240F817AA88EC00C9B02B /* CountrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E68A172F97E20021492C /* CountrySelectionCell.xib */; };
+		EA1240F917AA88EC00C9B02B /* DateEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E68D172F97E20021492C /* DateEntryCell.xib */; };
+		EA1240FA17AA88EC00C9B02B /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E696172F980A0021492C /* SignUpViewController.xib */; };
+		EA1240FB17AA88EC00C9B02B /* PaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA35C77117327981005602F7 /* PaymentCell.xib */; };
+		EA1240FC17AA88EC00C9B02B /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73417324AF2005602F7 /* Icon-Small.png */; };
+		EA1240FD17AA88EC00C9B02B /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73517324AF2005602F7 /* Icon-Small@2x.png */; };
+		EA1240FE17AA88EC00C9B02B /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73617324AF2005602F7 /* Icon.png */; };
+		EA1240FF17AA88EC00C9B02B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73717324AF2005602F7 /* Icon@2x.png */; };
+		EA12410017AA88EC00C9B02B /* NavBarBackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73817324AF2005602F7 /* NavBarBackButton.png */; };
+		EA12410117AA88EC00C9B02B /* NavBarBackButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73917324AF2005602F7 /* NavBarBackButton@2x.png */; };
+		EA12410217AA88EC00C9B02B /* SeparatorLine.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C74117324AFE005602F7 /* SeparatorLine.png */; };
+		EA12410317AA88EC00C9B02B /* SeparatorLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */; };
+		EA12410417AA88EC00C9B02B /* ContactsTabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F361733CA7800B65BF3 /* ContactsTabIcon.png */; };
+		EA12410517AA88EC00C9B02B /* ContactsTabIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F371733CA7800B65BF3 /* ContactsTabIcon@2x.png */; };
+		EA12410617AA88EC00C9B02B /* NewPaymentTabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F3A1733CA7800B65BF3 /* NewPaymentTabIcon.png */; };
+		EA12410717AA88EC00C9B02B /* NewPaymentTabIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F3B1733CA7800B65BF3 /* NewPaymentTabIcon@2x.png */; };
+		EA12410817AA88EC00C9B02B /* TransactionsTabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F3C1733CA7800B65BF3 /* TransactionsTabIcon.png */; };
+		EA12410917AA88EC00C9B02B /* TransactionsTabIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F3D1733CA7800B65BF3 /* TransactionsTabIcon@2x.png */; };
+		EA12410A17AA88EC00C9B02B /* RecipientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F4A1733DA1400B65BF3 /* RecipientViewController.xib */; };
+		EA12410B17AA88EC00C9B02B /* CurrencySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */; };
+		EA12410C17AA88EC00C9B02B /* RecipientFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */; };
+		EA12410D17AA88EC00C9B02B /* CheckUnselected.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA310F1738DB8600CCF1A2 /* CheckUnselected.png */; };
+		EA12410E17AA88EC00C9B02B /* CheckUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31101738DB8600CCF1A2 /* CheckUnselected@2x.png */; };
+		EA12410F17AA88EC00C9B02B /* CheckSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31111738DB8600CCF1A2 /* CheckSelected.png */; };
+		EA12411017AA88EC00C9B02B /* CheckSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31121738DB8600CCF1A2 /* CheckSelected@2x.png */; };
+		EA12411117AA88EC00C9B02B /* Down.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA311A1738F01600CCF1A2 /* Down.png */; };
+		EA12411217AA88EC00C9B02B /* Down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA311B1738F01600CCF1A2 /* Down@2x.png */; };
+		EA12411317AA88EC00C9B02B /* IdentificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D47902173A3B6E00FC317E /* IdentificationViewController.xib */; };
+		EA12411417AA88EC00C9B02B /* ConfirmPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E37173A861000C5D613 /* ConfirmPaymentViewController.xib */; };
+		EA12411517AA88EC00C9B02B /* ConfirmPaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E3D173A8A7C00C5D613 /* ConfirmPaymentCell.xib */; };
+		EA12411617AA88EC00C9B02B /* ProfileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA222E3F173A8D0900C5D613 /* ProfileIcon.png */; };
+		EA12411717AA88EC00C9B02B /* ProfileIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA222E40173A8D0900C5D613 /* ProfileIcon@2x.png */; };
+		EA12411817AA88EC00C9B02B /* RecipientEntrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */; };
+		EA12411917AA88EC00C9B02B /* DropdownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAAC203C17422ADB001DDE7A /* DropdownCell.xib */; };
+		EA12411A17AA88EC00C9B02B /* UploadMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD48173CD30C0016A6E9 /* UploadMoneyViewController.xib */; };
+		EA12411B17AA88EC00C9B02B /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD4A173CDF480016A6E9 /* TextCell.xib */; };
+		EA12411C17AA88EC00C9B02B /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD6675A174A51C700D29BCB /* ButtonCell.xib */; };
+		EA12411D17AA88EC00C9B02B /* TWlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD667C4174F4C7200D29BCB /* TWlogo.png */; };
+		EA12411E17AA88EC00C9B02B /* TWlogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD667C5174F4C7300D29BCB /* TWlogo@2x.png */; };
+		EA12411F17AA88EC00C9B02B /* SignInWithGoogleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5929821758CAAC007C0072 /* SignInWithGoogleButton.png */; };
+		EA12412017AA88EC00C9B02B /* SignInWithGoogleButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5929831758CAAC007C0072 /* SignInWithGoogleButton@2x.png */; };
+		EA12412117AA88EC00C9B02B /* SignInWithYahooButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5929841758CAAC007C0072 /* SignInWithYahooButton.png */; };
+		EA12412217AA88EC00C9B02B /* SignInWithYahooButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5929851758CAAC007C0072 /* SignInWithYahooButton@2x.png */; };
+		EA12412317AA88EC00C9B02B /* OpenIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */; };
+		EA12412417AA88EC00C9B02B /* spinner.html in Resources */ = {isa = PBXBuildFile; fileRef = EAA053FC175E21D400ACD3F6 /* spinner.html */; };
+		EA12412517AA88EC00C9B02B /* ClaimAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */; };
+		EA12412617AA88EC00C9B02B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB93B4C1761D1EF00A7337C /* Default-568h@2x.png */; };
+		EA12412717AA88EC00C9B02B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB93B4D1761D1EF00A7337C /* Default.png */; };
+		EA12412817AA88EC00C9B02B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB93B4E1761D1EF00A7337C /* Default@2x.png */; };
+		EA12412917AA88EC00C9B02B /* ProfileEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */; };
+		EA12412A17AA88EC00C9B02B /* ProfileSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA92D984176AF1F20078D0C4 /* ProfileSelectionView.xib */; };
+		EA12412B17AA88EC00C9B02B /* TransferTypeSelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB9A2EB8176F495600C5E058 /* TransferTypeSelectionCell.xib */; };
+		EA12412C17AA88EC00C9B02B /* tableTabButtonRight.png in Resources */ = {isa = PBXBuildFile; fileRef = BB704E701772D4370042F8A9 /* tableTabButtonRight.png */; };
+		EA12412D17AA88EC00C9B02B /* tableTabButtonRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB704E711772D4370042F8A9 /* tableTabButtonRight@2x.png */; };
+		EA12412E17AA88EC00C9B02B /* tableTabButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BB704E721772D4370042F8A9 /* tableTabButton.png */; };
+		EA12412F17AA88EC00C9B02B /* tableTabButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB704E731772D4370042F8A9 /* tableTabButton@2x.png */; };
+		EA12413017AA88EC00C9B02B /* TabBarActivityIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA225C74178EA124009D6B83 /* TabBarActivityIndicatorView.xib */; };
+		EA12413117AA88EC00C9B02B /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = EA225CB7178EEA8A009D6B83 /* currencies.json */; };
+		EA12413217AA88EC00C9B02B /* currency_pairs.json in Resources */ = {isa = PBXBuildFile; fileRef = EA225CB8178EEA8A009D6B83 /* currency_pairs.json */; };
+		EA12413317AA88EC00C9B02B /* recipient_types.json in Resources */ = {isa = PBXBuildFile; fileRef = EA225CB9178EEA8A009D6B83 /* recipient_types.json */; };
+		EA12413417AA88EC00C9B02B /* LandingBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D3A17A7A0B600E9B56A /* LandingBackground.png */; };
+		EA12413517AA88EC00C9B02B /* LandingBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D3B17A7A0B600E9B56A /* LandingBackground@2x.png */; };
+		EA12413617AA88EC00C9B02B /* SpinnerLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D3F17A7B19C00E9B56A /* SpinnerLogo.png */; };
+		EA12413717AA88EC00C9B02B /* SpinnerLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D4017A7B19C00E9B56A /* SpinnerLogo@2x.png */; };
 		EA13E032171BDF1A0019FBF0 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */; };
 		EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */; };
 		EA13E038171BE12E0019FBF0 /* MoneyEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */; };
@@ -353,6 +620,8 @@
 		EA0425FE173CF5C50048BFBD /* RecipientEntrySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientEntrySelectionCell.h; sourceTree = "<group>"; };
 		EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientEntrySelectionCell.m; sourceTree = "<group>"; };
 		EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientEntrySelectionCell.xib; sourceTree = "<group>"; };
+		EA12413D17AA88EC00C9B02B /* Transfer copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Transfer copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA12413E17AA88EC00C9B02B /* TransferDev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = TransferDev.plist; path = "/Users/jaanus/projects/mc-transfer-ios/TransferDev.plist"; sourceTree = "<absolute>"; };
 		EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
 		EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
 		EA13E034171BE1210019FBF0 /* MoneyEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyEntryCell.h; sourceTree = "<group>"; };
@@ -756,6 +1025,27 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EA1240C917AA88EC00C9B02B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA1240CA17AA88EC00C9B02B /* AddressBook.framework in Frameworks */,
+				EA1240CB17AA88EC00C9B02B /* AddressBookUI.framework in Frameworks */,
+				EA1240CC17AA88EC00C9B02B /* libOHAttributedLabel.a in Frameworks */,
+				EA1240CD17AA88EC00C9B02B /* CoreText.framework in Frameworks */,
+				EA1240CE17AA88EC00C9B02B /* libz.dylib in Frameworks */,
+				EA1240CF17AA88EC00C9B02B /* Security.framework in Frameworks */,
+				EA1240D017AA88EC00C9B02B /* MobileCoreServices.framework in Frameworks */,
+				EA1240D117AA88EC00C9B02B /* SystemConfiguration.framework in Frameworks */,
+				EA1240D217AA88EC00C9B02B /* UIKit.framework in Frameworks */,
+				EA1240D317AA88EC00C9B02B /* Foundation.framework in Frameworks */,
+				EA1240D417AA88EC00C9B02B /* CoreGraphics.framework in Frameworks */,
+				EA1240D517AA88EC00C9B02B /* CoreData.framework in Frameworks */,
+				EA1240D617AA88EC00C9B02B /* libTestFlight.a in Frameworks */,
+				EA1240D717AA88EC00C9B02B /* Crashlytics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA76D908175CF80100AE3F86 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1145,6 +1435,7 @@
 				EAAA1469171BC911005B9430 /* Products */,
 				EA8FF68C171D22080090A658 /* Thirdparty */,
 				B9D5DEC1F8394C87A604EF4F /* Pods-TransferTests.xcconfig */,
+				EA12413E17AA88EC00C9B02B /* TransferDev.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1153,6 +1444,7 @@
 			children = (
 				EAAA1468171BC911005B9430 /* Transfer.app */,
 				EA76D90C175CF80100AE3F86 /* TransferTests.octest */,
+				EA12413D17AA88EC00C9B02B /* Transfer copy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1481,6 +1773,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		EA12402817AA88EC00C9B02B /* TransferDev */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA12413A17AA88EC00C9B02B /* Build configuration list for PBXNativeTarget "TransferDev" */;
+			buildPhases = (
+				EA12402917AA88EC00C9B02B /* mogenerator */,
+				EA12402A17AA88EC00C9B02B /* Sources */,
+				EA1240C917AA88EC00C9B02B /* Frameworks */,
+				EA1240D817AA88EC00C9B02B /* Resources */,
+				EA12413817AA88EC00C9B02B /* Version update */,
+				EA12413917AA88EC00C9B02B /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TransferDev;
+			productName = Transfer;
+			productReference = EA12413D17AA88EC00C9B02B /* Transfer copy.app */;
+			productType = "com.apple.product-type.application";
+		};
 		EA76D90B175CF80100AE3F86 /* TransferTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA76D91E175CF80100AE3F86 /* Build configuration list for PBXNativeTarget "TransferTests" */;
@@ -1550,6 +1862,7 @@
 			projectRoot = "";
 			targets = (
 				EAAA1467171BC911005B9430 /* Transfer */,
+				EA12402817AA88EC00C9B02B /* TransferDev */,
 				EA76D90B175CF80100AE3F86 /* TransferTests */,
 			);
 		};
@@ -1566,6 +1879,108 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		EA1240D817AA88EC00C9B02B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA1240D917AA88EC00C9B02B /* InfoPlist.strings in Resources */,
+				EA1240DA17AA88EC00C9B02B /* Localizable.strings in Resources */,
+				EA1240DB17AA88EC00C9B02B /* MainViewController.xib in Resources */,
+				EA1240DC17AA88EC00C9B02B /* TransactionsViewController.xib in Resources */,
+				EA1240DD17AA88EC00C9B02B /* ContactsViewController.xib in Resources */,
+				EA1240DE17AA88EC00C9B02B /* PaymentViewController.xib in Resources */,
+				EA1240DF17AA88EC00C9B02B /* IntroductionViewController.xib in Resources */,
+				EA1240E017AA88EC00C9B02B /* MoneyEntryCell.xib in Resources */,
+				EA1240E117AA88EC00C9B02B /* LoginViewController.xib in Resources */,
+				EA1240E217AA88EC00C9B02B /* TableHeaderView.xib in Resources */,
+				EA1240E317AA88EC00C9B02B /* TextEntryCell.xib in Resources */,
+				EA1240E417AA88EC00C9B02B /* NavigationBar.png in Resources */,
+				EA1240E517AA88EC00C9B02B /* NavigationBar@2x.png in Resources */,
+				EA1240E617AA88EC00C9B02B /* BlueButton.png in Resources */,
+				EA1240E717AA88EC00C9B02B /* BlueButton@2x.png in Resources */,
+				EA1240E817AA88EC00C9B02B /* GrayButton.png in Resources */,
+				EA1240E917AA88EC00C9B02B /* GrayButton@2x.png in Resources */,
+				EA1240EA17AA88EC00C9B02B /* RecipientCell.xib in Resources */,
+				EA1240EB17AA88EC00C9B02B /* NavBarButton.png in Resources */,
+				EA1240EC17AA88EC00C9B02B /* NavBarButton@2x.png in Resources */,
+				EA1240ED17AA88EC00C9B02B /* SettingsButtonIcon.png in Resources */,
+				EA1240EE17AA88EC00C9B02B /* SettingsButtonIcon@2x.png in Resources */,
+				EA1240EF17AA88EC00C9B02B /* SettingsViewController.xib in Resources */,
+				EA1240F017AA88EC00C9B02B /* SettingsTitleCell.xib in Resources */,
+				EA1240F117AA88EC00C9B02B /* TSAlertViewMessageListViewShadow.png in Resources */,
+				EA1240F217AA88EC00C9B02B /* TSAlertViewCancelButtonBackground.png in Resources */,
+				EA1240F317AA88EC00C9B02B /* TSAlertViewButtonBackground.png in Resources */,
+				EA1240F417AA88EC00C9B02B /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
+				EA1240F517AA88EC00C9B02B /* TSAlertViewBackground2.png in Resources */,
+				EA1240F617AA88EC00C9B02B /* TSAlertViewBackground.png in Resources */,
+				EA1240F717AA88EC00C9B02B /* WhyView.xib in Resources */,
+				EA1240F817AA88EC00C9B02B /* CountrySelectionCell.xib in Resources */,
+				EA1240F917AA88EC00C9B02B /* DateEntryCell.xib in Resources */,
+				EA1240FA17AA88EC00C9B02B /* SignUpViewController.xib in Resources */,
+				EA1240FB17AA88EC00C9B02B /* PaymentCell.xib in Resources */,
+				EA1240FC17AA88EC00C9B02B /* Icon-Small.png in Resources */,
+				EA1240FD17AA88EC00C9B02B /* Icon-Small@2x.png in Resources */,
+				EA1240FE17AA88EC00C9B02B /* Icon.png in Resources */,
+				EA1240FF17AA88EC00C9B02B /* Icon@2x.png in Resources */,
+				EA12410017AA88EC00C9B02B /* NavBarBackButton.png in Resources */,
+				EA12410117AA88EC00C9B02B /* NavBarBackButton@2x.png in Resources */,
+				EA12410217AA88EC00C9B02B /* SeparatorLine.png in Resources */,
+				EA12410317AA88EC00C9B02B /* SeparatorLine@2x.png in Resources */,
+				EA12410417AA88EC00C9B02B /* ContactsTabIcon.png in Resources */,
+				EA12410517AA88EC00C9B02B /* ContactsTabIcon@2x.png in Resources */,
+				EA12410617AA88EC00C9B02B /* NewPaymentTabIcon.png in Resources */,
+				EA12410717AA88EC00C9B02B /* NewPaymentTabIcon@2x.png in Resources */,
+				EA12410817AA88EC00C9B02B /* TransactionsTabIcon.png in Resources */,
+				EA12410917AA88EC00C9B02B /* TransactionsTabIcon@2x.png in Resources */,
+				EA12410A17AA88EC00C9B02B /* RecipientViewController.xib in Resources */,
+				EA12410B17AA88EC00C9B02B /* CurrencySelectionCell.xib in Resources */,
+				EA12410C17AA88EC00C9B02B /* RecipientFieldCell.xib in Resources */,
+				EA12410D17AA88EC00C9B02B /* CheckUnselected.png in Resources */,
+				EA12410E17AA88EC00C9B02B /* CheckUnselected@2x.png in Resources */,
+				EA12410F17AA88EC00C9B02B /* CheckSelected.png in Resources */,
+				EA12411017AA88EC00C9B02B /* CheckSelected@2x.png in Resources */,
+				EA12411117AA88EC00C9B02B /* Down.png in Resources */,
+				EA12411217AA88EC00C9B02B /* Down@2x.png in Resources */,
+				EA12411317AA88EC00C9B02B /* IdentificationViewController.xib in Resources */,
+				EA12411417AA88EC00C9B02B /* ConfirmPaymentViewController.xib in Resources */,
+				EA12411517AA88EC00C9B02B /* ConfirmPaymentCell.xib in Resources */,
+				EA12411617AA88EC00C9B02B /* ProfileIcon.png in Resources */,
+				EA12411717AA88EC00C9B02B /* ProfileIcon@2x.png in Resources */,
+				EA12411817AA88EC00C9B02B /* RecipientEntrySelectionCell.xib in Resources */,
+				EA12411917AA88EC00C9B02B /* DropdownCell.xib in Resources */,
+				EA12411A17AA88EC00C9B02B /* UploadMoneyViewController.xib in Resources */,
+				EA12411B17AA88EC00C9B02B /* TextCell.xib in Resources */,
+				EA12411C17AA88EC00C9B02B /* ButtonCell.xib in Resources */,
+				EA12411D17AA88EC00C9B02B /* TWlogo.png in Resources */,
+				EA12411E17AA88EC00C9B02B /* TWlogo@2x.png in Resources */,
+				EA12411F17AA88EC00C9B02B /* SignInWithGoogleButton.png in Resources */,
+				EA12412017AA88EC00C9B02B /* SignInWithGoogleButton@2x.png in Resources */,
+				EA12412117AA88EC00C9B02B /* SignInWithYahooButton.png in Resources */,
+				EA12412217AA88EC00C9B02B /* SignInWithYahooButton@2x.png in Resources */,
+				EA12412317AA88EC00C9B02B /* OpenIDViewController.xib in Resources */,
+				EA12412417AA88EC00C9B02B /* spinner.html in Resources */,
+				EA12412517AA88EC00C9B02B /* ClaimAccountViewController.xib in Resources */,
+				EA12412617AA88EC00C9B02B /* Default-568h@2x.png in Resources */,
+				EA12412717AA88EC00C9B02B /* Default.png in Resources */,
+				EA12412817AA88EC00C9B02B /* Default@2x.png in Resources */,
+				EA12412917AA88EC00C9B02B /* ProfileEditViewController.xib in Resources */,
+				EA12412A17AA88EC00C9B02B /* ProfileSelectionView.xib in Resources */,
+				EA12412B17AA88EC00C9B02B /* TransferTypeSelectionCell.xib in Resources */,
+				EA12412C17AA88EC00C9B02B /* tableTabButtonRight.png in Resources */,
+				EA12412D17AA88EC00C9B02B /* tableTabButtonRight@2x.png in Resources */,
+				EA12412E17AA88EC00C9B02B /* tableTabButton.png in Resources */,
+				EA12412F17AA88EC00C9B02B /* tableTabButton@2x.png in Resources */,
+				EA12413017AA88EC00C9B02B /* TabBarActivityIndicatorView.xib in Resources */,
+				EA12413117AA88EC00C9B02B /* currencies.json in Resources */,
+				EA12413217AA88EC00C9B02B /* currency_pairs.json in Resources */,
+				EA12413317AA88EC00C9B02B /* recipient_types.json in Resources */,
+				EA12413417AA88EC00C9B02B /* LandingBackground.png in Resources */,
+				EA12413517AA88EC00C9B02B /* LandingBackground@2x.png in Resources */,
+				EA12413617AA88EC00C9B02B /* SpinnerLogo.png in Resources */,
+				EA12413717AA88EC00C9B02B /* SpinnerLogo@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA76D909175CF80100AE3F86 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1707,6 +2122,47 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 		};
+		EA12402917AA88EC00C9B02B /* mogenerator */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = mogenerator;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PATH_TO_MODELD=\"Transfer/Transfer.xcdatamodeld\"\nOUTPUT_PATH=\"Transfer/ObjectModel\"\n\ntype mogenerator >/dev/null 2>&1 || {\n    echo >&2 \"warning: mogenerator not found. You will need it when changing core data model\";\n    exit 0;\n}\n\n#CURRENT_VERSION=$(/usr/libexec/PlistBuddy -c \"Print :_XCCurrentVersionName\" \"${PATH_TO_MODELD}/.xccurrentversion\")\n\nMODEL_PATH=\"${PATH_TO_MODELD}\"\necho \"Used model path ${MODEL_PATH}\"\n\nmogenerator -m $MODEL_PATH -O $OUTPUT_PATH --template-var arc=true";
+		};
+		EA12413817AA88EC00C9B02B /* Version update */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Version update";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo -n ${TARGET_BUILD_DIR}/${INFOPLIST_PATH} \\\n| xargs -0 /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion `git rev-list HEAD | wc -l`\"";
+		};
+		EA12413917AA88EC00C9B02B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run bf6a713619d873c16d74390dc0463c0387c49052";
+		};
 		EA2B238E17212099001AE9DE /* Version update */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1764,6 +2220,171 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EA12402A17AA88EC00C9B02B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA12402B17AA88EC00C9B02B /* main.m in Sources */,
+				EA12402C17AA88EC00C9B02B /* AppDelegate.m in Sources */,
+				EA12402D17AA88EC00C9B02B /* Transfer.xcdatamodeld in Sources */,
+				EA12402E17AA88EC00C9B02B /* ObjectModel.m in Sources */,
+				EA12402F17AA88EC00C9B02B /* MainViewController.m in Sources */,
+				EA12403017AA88EC00C9B02B /* TransactionsViewController.m in Sources */,
+				EA12403117AA88EC00C9B02B /* ContactsViewController.m in Sources */,
+				EA12403217AA88EC00C9B02B /* PaymentViewController.m in Sources */,
+				EA12403317AA88EC00C9B02B /* IntroductionViewController.m in Sources */,
+				EA12403417AA88EC00C9B02B /* TableHeaderView.m in Sources */,
+				EA12403517AA88EC00C9B02B /* MoneyEntryCell.m in Sources */,
+				EA12403617AA88EC00C9B02B /* LoginViewController.m in Sources */,
+				EA12403717AA88EC00C9B02B /* UIColor+Theme.m in Sources */,
+				EA12403817AA88EC00C9B02B /* UIView+Loading.m in Sources */,
+				EA12403917AA88EC00C9B02B /* TextEntryCell.m in Sources */,
+				EA12403A17AA88EC00C9B02B /* NSString+Validation.m in Sources */,
+				EA12403B17AA88EC00C9B02B /* NSMutableString+Issues.m in Sources */,
+				EA12403C17AA88EC00C9B02B /* UIApplication+Keyboard.m in Sources */,
+				EA12403D17AA88EC00C9B02B /* TRWAlertView.m in Sources */,
+				EA12403E17AA88EC00C9B02B /* AFHTTPClient.m in Sources */,
+				EA12403F17AA88EC00C9B02B /* AFHTTPRequestOperation.m in Sources */,
+				EA12404017AA88EC00C9B02B /* AFImageRequestOperation.m in Sources */,
+				EA12404117AA88EC00C9B02B /* AFJSONRequestOperation.m in Sources */,
+				EA12404217AA88EC00C9B02B /* AFNetworkActivityIndicatorManager.m in Sources */,
+				EA12404317AA88EC00C9B02B /* AFPropertyListRequestOperation.m in Sources */,
+				EA12404417AA88EC00C9B02B /* AFURLConnectionOperation.m in Sources */,
+				EA12404517AA88EC00C9B02B /* AFXMLRequestOperation.m in Sources */,
+				EA12404617AA88EC00C9B02B /* UIImageView+AFNetworking.m in Sources */,
+				EA12404717AA88EC00C9B02B /* MBProgressHUD.m in Sources */,
+				EA12404817AA88EC00C9B02B /* TRWProgressHUD.m in Sources */,
+				EA12404917AA88EC00C9B02B /* TransferwiseOperation.m in Sources */,
+				EA12404A17AA88EC00C9B02B /* LoginOperation.m in Sources */,
+				EA12404B17AA88EC00C9B02B /* NSDictionary+SensibleData.m in Sources */,
+				EA12404C17AA88EC00C9B02B /* UIButton+Skinning.m in Sources */,
+				EA12404D17AA88EC00C9B02B /* BlueButton.m in Sources */,
+				EA12404E17AA88EC00C9B02B /* GrayButton.m in Sources */,
+				EA12404F17AA88EC00C9B02B /* Lockbox.m in Sources */,
+				EA12405017AA88EC00C9B02B /* RecipientCell.m in Sources */,
+				EA12405117AA88EC00C9B02B /* UserRecipientsOperation.m in Sources */,
+				EA12405217AA88EC00C9B02B /* SettingsViewController.m in Sources */,
+				EA12405317AA88EC00C9B02B /* SettingsTitleCell.m in Sources */,
+				EA12405417AA88EC00C9B02B /* MoneyCalculator.m in Sources */,
+				EA12405517AA88EC00C9B02B /* TransferCalculationsOperation.m in Sources */,
+				EA12405617AA88EC00C9B02B /* CalculationResult.m in Sources */,
+				EA12405717AA88EC00C9B02B /* TSAlertView.m in Sources */,
+				EA12405817AA88EC00C9B02B /* WhyView.m in Sources */,
+				EA12405917AA88EC00C9B02B /* Credentials.m in Sources */,
+				EA12405A17AA88EC00C9B02B /* SWRevealViewController.m in Sources */,
+				EA12405B17AA88EC00C9B02B /* DataEntryViewController.m in Sources */,
+				EA12405C17AA88EC00C9B02B /* PersonalProfileViewController.m in Sources */,
+				EA12405D17AA88EC00C9B02B /* NSError+TRWErrors.m in Sources */,
+				EA12405E17AA88EC00C9B02B /* UIView+Container.m in Sources */,
+				EA12405F17AA88EC00C9B02B /* CountriesOperation.m in Sources */,
+				EA12406017AA88EC00C9B02B /* NetworkErrorCodes.m in Sources */,
+				EA12406117AA88EC00C9B02B /* UserDetailsOperation.m in Sources */,
+				EA12406217AA88EC00C9B02B /* CountrySelectionCell.m in Sources */,
+				EA12406317AA88EC00C9B02B /* DateEntryCell.m in Sources */,
+				EA12406417AA88EC00C9B02B /* Constants.m in Sources */,
+				EA12406517AA88EC00C9B02B /* SignUpViewController.m in Sources */,
+				EA12406617AA88EC00C9B02B /* PaymentsOperation.m in Sources */,
+				EA12406717AA88EC00C9B02B /* PaymentCell.m in Sources */,
+				EA12406817AA88EC00C9B02B /* CurrencyPairsOperation.m in Sources */,
+				EA12406917AA88EC00C9B02B /* RecipientViewController.m in Sources */,
+				EA12406A17AA88EC00C9B02B /* CurrenciesOperation.m in Sources */,
+				EA12406B17AA88EC00C9B02B /* TransferwiseClient.m in Sources */,
+				EA12406C17AA88EC00C9B02B /* RecipientTypesOperation.m in Sources */,
+				EA12406D17AA88EC00C9B02B /* CurrencySelectionCell.m in Sources */,
+				EA12406E17AA88EC00C9B02B /* RecipientFieldCell.m in Sources */,
+				EA12406F17AA88EC00C9B02B /* RecipientOperation.m in Sources */,
+				EA12407017AA88EC00C9B02B /* NonEditTextField.m in Sources */,
+				EA12407117AA88EC00C9B02B /* PersonalProfileOperation.m in Sources */,
+				EA12407217AA88EC00C9B02B /* IdentificationViewController.m in Sources */,
+				EA12407317AA88EC00C9B02B /* BusinessProfileViewController.m in Sources */,
+				EA12407417AA88EC00C9B02B /* BusinessProfileOperation.m in Sources */,
+				EA12407517AA88EC00C9B02B /* DeleteRecipientOperation.m in Sources */,
+				EA12407617AA88EC00C9B02B /* PaymentFlow.m in Sources */,
+				EA12407717AA88EC00C9B02B /* ConfirmPaymentViewController.m in Sources */,
+				EA12407817AA88EC00C9B02B /* ConfirmPaymentCell.m in Sources */,
+				EA12407917AA88EC00C9B02B /* RecipientEntrySelectionCell.m in Sources */,
+				EA12407A17AA88EC00C9B02B /* DropdownCell.m in Sources */,
+				EA12407B17AA88EC00C9B02B /* UploadMoneyViewController.m in Sources */,
+				EA12407C17AA88EC00C9B02B /* TextCell.m in Sources */,
+				EA12407D17AA88EC00C9B02B /* CreatePaymentOperation.m in Sources */,
+				EA12407E17AA88EC00C9B02B /* MoneyFormatter.m in Sources */,
+				EA12407F17AA88EC00C9B02B /* UINavigationController+StackManipulations.m in Sources */,
+				EA12408017AA88EC00C9B02B /* RegisterOperation.m in Sources */,
+				EA12408117AA88EC00C9B02B /* ButtonCell.m in Sources */,
+				EA12408217AA88EC00C9B02B /* PhoneBookProfile.m in Sources */,
+				EA12408317AA88EC00C9B02B /* PhoneBookProfileSelector.m in Sources */,
+				EA12408417AA88EC00C9B02B /* PhoneBookAddress.m in Sources */,
+				EA12408517AA88EC00C9B02B /* DismissKeyboardTableView.m in Sources */,
+				EA12408617AA88EC00C9B02B /* VerificationRequiredOperation.m in Sources */,
+				EA12408717AA88EC00C9B02B /* UploadVerificationFileOperation.m in Sources */,
+				EA12408817AA88EC00C9B02B /* OpenIDViewController.m in Sources */,
+				EA12408917AA88EC00C9B02B /* PersonalProfileCommitter.m in Sources */,
+				EA12408A17AA88EC00C9B02B /* EmailCheckOperation.m in Sources */,
+				EA12408B17AA88EC00C9B02B /* RecipientProfileCommitter.m in Sources */,
+				EA12408C17AA88EC00C9B02B /* LoggedInPaymentFlow.m in Sources */,
+				EA12408D17AA88EC00C9B02B /* NoUserPaymentFlow.m in Sources */,
+				EA12408E17AA88EC00C9B02B /* RegisterWithoutPasswordOperation.m in Sources */,
+				EA12408F17AA88EC00C9B02B /* ClaimAccountViewController.m in Sources */,
+				EA12409017AA88EC00C9B02B /* ClaimAccountOperation.m in Sources */,
+				EA12409117AA88EC00C9B02B /* RoundedCellBackgroundView.m in Sources */,
+				EA12409217AA88EC00C9B02B /* ProfileEditViewController.m in Sources */,
+				EA12409317AA88EC00C9B02B /* ProfileSource.m in Sources */,
+				EA12409417AA88EC00C9B02B /* PersonalProfileSource.m in Sources */,
+				EA12409517AA88EC00C9B02B /* BusinessProfileSource.m in Sources */,
+				EA12409617AA88EC00C9B02B /* BusinessProfileCommitter.m in Sources */,
+				EA12409717AA88EC00C9B02B /* PaymentProfileViewController.m in Sources */,
+				EA12409817AA88EC00C9B02B /* ProfileSelectionView.m in Sources */,
+				EA12409917AA88EC00C9B02B /* RemoveTokenOperation.m in Sources */,
+				EA12409A17AA88EC00C9B02B /* UITableView+FooterPositioning.m in Sources */,
+				EA12409B17AA88EC00C9B02B /* TransferTypeSelectionCell.m in Sources */,
+				EA12409C17AA88EC00C9B02B /* RoundedCellWhiteBackgroundView.m in Sources */,
+				EA12409D17AA88EC00C9B02B /* JCSObjectModel.m in Sources */,
+				EA12409E17AA88EC00C9B02B /* _Payment.m in Sources */,
+				EA12409F17AA88EC00C9B02B /* Payment.m in Sources */,
+				EA1240A017AA88EC00C9B02B /* ObjectModel+Payments.m in Sources */,
+				EA1240A117AA88EC00C9B02B /* TabBarActivityIndicatorView.m in Sources */,
+				EA1240A217AA88EC00C9B02B /* _Currency.m in Sources */,
+				EA1240A317AA88EC00C9B02B /* Currency.m in Sources */,
+				EA1240A417AA88EC00C9B02B /* _Recipient.m in Sources */,
+				EA1240A517AA88EC00C9B02B /* Recipient.m in Sources */,
+				EA1240A617AA88EC00C9B02B /* NSDictionary+Cleanup.m in Sources */,
+				EA1240A717AA88EC00C9B02B /* ObjectModel+Currencies.m in Sources */,
+				EA1240A817AA88EC00C9B02B /* ObjectModel+Recipients.m in Sources */,
+				EA1240A917AA88EC00C9B02B /* _RecipientType.m in Sources */,
+				EA1240AA17AA88EC00C9B02B /* RecipientType.m in Sources */,
+				EA1240AB17AA88EC00C9B02B /* ObjectModel+RecipientTypes.m in Sources */,
+				EA1240AC17AA88EC00C9B02B /* _RecipientTypeField.m in Sources */,
+				EA1240AD17AA88EC00C9B02B /* RecipientTypeField.m in Sources */,
+				EA1240AE17AA88EC00C9B02B /* _TypeFieldValue.m in Sources */,
+				EA1240AF17AA88EC00C9B02B /* TypeFieldValue.m in Sources */,
+				EA1240B017AA88EC00C9B02B /* NSDate+ServerTime.m in Sources */,
+				EA1240B117AA88EC00C9B02B /* ObjectModel+CurrencyPairs.m in Sources */,
+				EA1240B217AA88EC00C9B02B /* _PairSourceCurrency.m in Sources */,
+				EA1240B317AA88EC00C9B02B /* PairSourceCurrency.m in Sources */,
+				EA1240B417AA88EC00C9B02B /* RecipientsOperation.m in Sources */,
+				EA1240B517AA88EC00C9B02B /* _AllowedTypeFieldValue.m in Sources */,
+				EA1240B617AA88EC00C9B02B /* AllowedTypeFieldValue.m in Sources */,
+				EA1240B717AA88EC00C9B02B /* _PairTargetCurrency.m in Sources */,
+				EA1240B817AA88EC00C9B02B /* PairTargetCurrency.m in Sources */,
+				EA1240B917AA88EC00C9B02B /* _Country.m in Sources */,
+				EA1240BA17AA88EC00C9B02B /* Country.m in Sources */,
+				EA1240BB17AA88EC00C9B02B /* ObjectModel+Countries.m in Sources */,
+				EA1240BC17AA88EC00C9B02B /* ObjectModel+Users.m in Sources */,
+				EA1240BD17AA88EC00C9B02B /* _BusinessProfile.m in Sources */,
+				EA1240BE17AA88EC00C9B02B /* _PersonalProfile.m in Sources */,
+				EA1240BF17AA88EC00C9B02B /* _User.m in Sources */,
+				EA1240C017AA88EC00C9B02B /* BusinessProfile.m in Sources */,
+				EA1240C117AA88EC00C9B02B /* PersonalProfile.m in Sources */,
+				EA1240C217AA88EC00C9B02B /* User.m in Sources */,
+				EA1240C317AA88EC00C9B02B /* _PendingPayment.m in Sources */,
+				EA1240C417AA88EC00C9B02B /* PendingPayment.m in Sources */,
+				EA1240C517AA88EC00C9B02B /* ObjectModel+PendingPayments.m in Sources */,
+				EA1240C617AA88EC00C9B02B /* NSMutableDictionary+SaneData.m in Sources */,
+				EA1240C717AA88EC00C9B02B /* SpinningImageView.m in Sources */,
+				EA1240C817AA88EC00C9B02B /* NSString+Presentation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA76D907175CF80100AE3F86 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1980,6 +2601,64 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		EA12413B17AA88EC00C9B02B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jaanus Siim (7V62BBBL4N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaanus Siim (7V62BBBL4N)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"DEV_VERSION=1",
+				);
+				INFOPLIST_FILE = TransferDev.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Thirdparty/TestFlightSDK1.2.6\"",
+				);
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				PRODUCT_NAME = "Transfer copy";
+				PROVISIONING_PROFILE = "99A7B50D-6AB1-44B8-BB69-3BE5DD01304B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "99A7B50D-6AB1-44B8-BB69-3BE5DD01304B";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		EA12413C17AA88EC00C9B02B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: TransferWise LTD (W53MTDV45J)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: TransferWise LTD (W53MTDV45J)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "DEV_VERSION=1";
+				INFOPLIST_FILE = TransferDev.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Thirdparty/TestFlightSDK1.2.6\"",
+				);
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				PRODUCT_NAME = "Transfer copy";
+				PROVISIONING_PROFILE = "3CE15A09-E624-4A5D-A578-523B38D9D132";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3CE15A09-E624-4A5D-A578-523B38D9D132";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		EA76D91B175CF80100AE3F86 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B9D5DEC1F8394C87A604EF4F /* Pods-TransferTests.xcconfig */;
@@ -2131,6 +2810,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EA12413A17AA88EC00C9B02B /* Build configuration list for PBXNativeTarget "TransferDev" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA12413B17AA88EC00C9B02B /* Debug */,
+				EA12413C17AA88EC00C9B02B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EA76D91E175CF80100AE3F86 /* Build configuration list for PBXNativeTarget "TransferTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

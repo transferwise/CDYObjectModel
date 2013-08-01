@@ -12,3 +12,4 @@ NSString *const TRWErrors = @"TRWErrors";
 
 NSString *const TRWNetworkErrorExpiredToken = @"EXPIRED_TOKEN";
 NSString *const TRWNetworkErrorInvalidToken = @"INVALID_TOKEN";
+NSString *const TRWNetworkErrorNoToken = @"NO_TOKEN";

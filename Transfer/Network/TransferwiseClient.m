@@ -15,7 +15,6 @@
 #import "User.h"
 
 NSString *const kAPIPathBase = @"/api/v1";
-//NSString *const kAPIPathBase = @"/fx-test/api/v1";
 
 @interface TransferwiseClient ()
 
@@ -28,9 +27,7 @@ NSString *const kAPIPathBase = @"/api/v1";
 @implementation TransferwiseClient
 
 - (id)initSingleton {
-    self = [super initWithBaseURL:[NSURL URLWithString:@"https://api-sandbox.transferwise.com"]];
-    //self = [super initWithBaseURL:[NSURL URLWithString:@"https://purple.transferwise.com"]];
-    //self = [super initWithBaseURL:[NSURL URLWithString:@"http://localhost:3000"]];
+    self = [super initWithBaseURL:[NSURL URLWithString:TRWServerAddress]];
     if (self) {
 
     }
