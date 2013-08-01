@@ -26,6 +26,7 @@
 #import "ObjectModel+PendingPayments.h"
 #import "PairTargetCurrency.h"
 #import "PairSourceCurrency.h"
+#import "TabBarActivityIndicatorView.h"
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -50,6 +51,7 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) CalculationResult *calculationResult;
 @property (nonatomic, strong) PaymentFlow *paymentFlow;
 @property (nonatomic, strong) CurrencyPairsOperation *executedOperation;
+@property (nonatomic, strong) TabBarActivityIndicatorView *activityIndicator;
 
 - (IBAction)continuePressed:(id)sender;
 
@@ -91,6 +93,10 @@ static NSUInteger const kRowYouSend = 0;
 
     MoneyCalculator *calculator = [[MoneyCalculator alloc] init];
     [self setCalculator:calculator];
+
+    [calculator setActivityHandler:^(BOOL calculating) {
+        [self presentActivityIndicator:calculating];
+    }];
 
     [calculator setSendCell:self.youSendCell];
     [calculator setReceiveCell:self.theyReceiveCell];
@@ -262,6 +268,20 @@ static NSUInteger const kRowYouSend = 0;
             [paymentFlow presentSenderDetails];
         }];
     }];
+}
+
+- (void)presentActivityIndicator:(BOOL)calculating {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (!calculating) {
+            [self.activityIndicator removeFromSuperview];
+            [self setActivityIndicator:nil];
+            return;
+        }
+
+        TabBarActivityIndicatorView *indicatorView = [TabBarActivityIndicatorView showHUDOnController:self];
+        [self setActivityIndicator:indicatorView];
+        [indicatorView setMessage:NSLocalizedString(@"calculation.pending.message", nil)];
+    });
 }
 
 @end

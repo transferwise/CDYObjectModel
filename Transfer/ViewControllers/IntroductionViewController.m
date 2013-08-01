@@ -114,6 +114,10 @@ static NSUInteger const kRowYouSend = 0;
     
     [[OHAttributedLabel appearance] setLinkColor:[UIColor whiteColor]];
 
+    [calculator setActivityHandler:^(BOOL calculating) {
+
+    }];
+
     [calculator setCalculationHandler:^(CalculationResult *result, NSError *error) {
         if (error) {
             MCLog(@"Calculation error:%@", error);

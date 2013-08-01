@@ -100,8 +100,11 @@
         NSString *targetCurrency = self.waitingTargetCurrency.code;
 
         if (![amount hasValue]) {
+            self.activityHandler(NO);
             return;
         }
+
+        self.activityHandler(YES);
 
         TransferCalculationsOperation *operation = [TransferCalculationsOperation operationWithAmount:amount source:sourceCurrency target:targetCurrency];
         [self setExecutedOperation:operation];
@@ -109,22 +112,25 @@
         [operation setAmountCurrency:self.amountCurrency];
 
         [operation setRemoteCalculationHandler:^(CalculationResult *result, NSError *error) {
-            [self setExecutedOperation:nil];
-            if (result) {
-                if (result.amountCurrency == SourceCurrency) {
-                    [self.receiveCell.moneyField setText:result.transferwisePayOutString];
-                } else {
-                    [self.sendCell.moneyField setText:result.transferwisePayInString];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setExecutedOperation:nil];
+                if (result) {
+                    if (result.amountCurrency == SourceCurrency) {
+                        [self.receiveCell.moneyField setText:result.transferwisePayOutString];
+                    } else {
+                        [self.sendCell.moneyField setText:result.transferwisePayInString];
+                    }
                 }
-            }
 
-            self.calculationHandler(result, error);
+                self.calculationHandler(result, error);
+                self.activityHandler(NO);
 
-            if (![amount isEqualToString:self.waitingAmount]
-                    || ![sourceCurrency isEqualToString:self.waitingSourceCurrency.code]
-                    || ![targetCurrency isEqualToString:self.waitingTargetCurrency.code]) {
-                [self performCalculation];
-            }
+                if (![amount isEqualToString:self.waitingAmount]
+                        || ![sourceCurrency isEqualToString:self.waitingSourceCurrency.code]
+                        || ![targetCurrency isEqualToString:self.waitingTargetCurrency.code]) {
+                    [self performCalculation];
+                }
+            });
         }];
 
         [operation execute];

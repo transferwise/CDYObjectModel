@@ -11,6 +11,7 @@
 @class CalculationResult;
 
 typedef void (^MoneyCalculationHandler)(CalculationResult *result, NSError *error);
+typedef void (^CalculationActivityHandler)(BOOL calculating);
 
 @class MoneyEntryCell;
 @class ObjectModel;
@@ -21,6 +22,7 @@ typedef void (^MoneyCalculationHandler)(CalculationResult *result, NSError *erro
 @property (nonatomic, strong) MoneyEntryCell *receiveCell;
 @property (nonatomic, copy) MoneyCalculationHandler calculationHandler;
 @property (nonatomic, strong) ObjectModel *objectModel;
+@property (nonatomic, copy) CalculationActivityHandler activityHandler;
 
 - (void)forceCalculate;
 

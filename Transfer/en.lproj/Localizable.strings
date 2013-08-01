@@ -277,3 +277,5 @@ A revolution in your pocket.";
 "recipient.type.field.value.too.long" = "Value for %@ too long. Max length is %d.";
 "recipient.type.field.value.invalid" = "Value for %@ invalid.";
 "recipient.type.field.email.invalid" = "Entered email is invalid.";
+
+"calculation.pending.message" = "Calculating";
