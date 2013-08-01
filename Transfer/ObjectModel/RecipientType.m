@@ -1,5 +1,4 @@
 #import "RecipientType.h"
-#import "RecipientTypeField.h"
 
 
 @interface RecipientType ()
@@ -7,5 +6,9 @@
 @end
 
 @implementation RecipientType
+
+- (BOOL)isEmailType {
+    return [self.type isEqualToString:@"EMAIL"];
+}
 
 @end

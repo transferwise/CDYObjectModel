@@ -2,4 +2,6 @@
 
 @interface RecipientType : _RecipientType
 
+- (BOOL)isEmailType;
+
 @end

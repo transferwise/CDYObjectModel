@@ -104,11 +104,14 @@ static NSUInteger const kReceiverSection = 1;
     [referenceCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
     [receiverCells addObject:referenceCell];
 
-    TextEntryCell *receiverEmailCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
-    [self setReceiverEmailCell:receiverEmailCell];
-    [receiverEmailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
-    [receiverEmailCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
-    [receiverCells addObject:receiverEmailCell];
+    PendingPayment *payment = [self.objectModel pendingPayment];
+    if (![payment.recipient.type isEmailType]) {
+        TextEntryCell *receiverEmailCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+        [self setReceiverEmailCell:receiverEmailCell];
+        [receiverEmailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
+        [receiverEmailCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
+        [receiverCells addObject:receiverEmailCell];
+    }
 
     [self setPresentedSectionCells:@[senderCells, receiverCells]];
 
