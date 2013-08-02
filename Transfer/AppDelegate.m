@@ -46,9 +46,6 @@
     [model removeAnonymousUser];
     [model loadBaseData];
 
-    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-	self.window = window;
-
     //TODO jaanus: this does not feel right
     [[TransferwiseClient sharedClient] setObjectModel:model];
     
