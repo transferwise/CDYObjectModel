@@ -268,6 +268,8 @@ A revolution in your pocket.";
 
 "errors.CRD_NOT_VALID.message" = "Incorrect credentials.";
 "errors.TRWErrorDomain.1.message" = "Could not read server response.";
+"errors.TRWErrorDomain.2.message" = "Could not read server response.";
+"errors.TRWErrorDomain.3.message" = "Functionality removed. Please update your app.";
 
 "recipient.type.IBAN.name" = "IBAN";
 "recipient.type.SORT_CODE.name" = "UK SORT";

@@ -11,8 +11,10 @@
 @class ObjectModel;
 
 typedef NS_ENUM(short, TRWNetworkErrorCode) {
-    ResponseFormatError,
-    ResponseServerError
+    ResponseCumulativeError = 0,
+    ResponseFormatError = 1,
+    ResponseServerError = 2,
+    ResponseCallGoneError = 3
 };
 
 @interface TransferwiseOperation : NSObject

@@ -94,6 +94,12 @@
         self.operationSuccessHandler(response);
     } failure:^(AFHTTPRequestOperation *op, NSError *error) {
         MCLog(@"Error:%@", error);
+        if (op.response.statusCode == 410) {
+            NSError *createdError = [NSError errorWithDomain:TRWErrorDomain code:ResponseCallGoneError userInfo:@{}];
+            self.operationErrorHandler(createdError);
+            return;
+        }
+
         NSData *responseData = [op responseData];
 
         if ([responseData length] == 0) {
@@ -166,7 +172,7 @@
 - (NSError *)createCumulativeError:(NSArray *)errors {
     //TODO jaanus: maybe can improve this
     NSDictionary *userInfo = @{TRWErrors: errors};
-    NSError *error = [[NSError alloc] initWithDomain:TRWErrorDomain code:0 userInfo:userInfo];
+    NSError *error = [[NSError alloc] initWithDomain:TRWErrorDomain code:ResponseCumulativeError userInfo:userInfo];
     return error;
 }
 

@@ -9,23 +9,24 @@
 #import "NSError+TRWErrors.h"
 #import "NetworkErrorCodes.h"
 #import "NSMutableString+Issues.h"
+#import "TransferwiseOperation.h"
 
 @implementation NSError (TRWErrors)
 
 - (BOOL)isTransferwiseError {
-    if (![TRWErrorDomain isEqualToString:self.domain]) {
-        return NO;
+    if ([TRWErrorDomain isEqualToString:self.domain]) {
+        return YES;
     }
 
-    if (!self.userInfo) {
-        return NO;
-    }
-
-    NSArray *errors = self.userInfo[TRWErrors];
-    return [errors count] > 0;
+    return NO;
 }
 
 - (NSString *)localizedTransferwiseMessage {
+    if (self.code != ResponseCumulativeError) {
+        NSString *messageKey = [NSString stringWithFormat:@"errors.TRWErrorDomain.%d.message", self.code];
+        return NSLocalizedString(messageKey, nil);
+    }
+
     NSArray *errors = self.userInfo[TRWErrors];
     NSMutableString *errorsString = [NSMutableString string];
 
