@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "ObjectModel+RecipientTypes.h"
 #import "RecipientTypesOperation.h"
+#import "Recipient.h"
 
 @interface RecipientsOperation ()
 
@@ -29,8 +30,17 @@
         MCLog(@"Received %d recipients from server", [recipients count]);
 
         void (^persistingBlock)() = ^() {
+            NSMutableArray *existingRecipients = [NSMutableArray arrayWithArray:[self.workModel allUserRecipients]];
             for (NSDictionary *recipientData in recipients) {
-                [self.workModel createOrUpdateRecipientWithData:recipientData];
+                Recipient *recipient = [self.workModel createOrUpdateRecipientWithData:recipientData];
+                [existingRecipients removeObject:recipient];
+            }
+
+            if ([existingRecipients count] > 0) {
+                MCLog(@"%d recipients removed on server", [existingRecipients count]);
+                for (Recipient *recipient in existingRecipients) {
+                    [recipient setHiddenValue:YES];
+                }
             }
 
             [self.workModel saveContext:^{

@@ -105,4 +105,9 @@
     return [self fetchedControllerForEntity:[Recipient entityName] predicate:predicate sortDescriptors:@[nameDescriptor]];
 }
 
+- (NSArray *)allUserRecipients {
+    NSPredicate *notHiddenPredicate = [NSPredicate predicateWithFormat:@"hidden = NO"];
+    return [self fetchEntitiesNamed:[Recipient entityName] withPredicate:notHiddenPredicate];
+}
+
 @end

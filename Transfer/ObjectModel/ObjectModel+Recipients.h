@@ -19,5 +19,6 @@
 - (Recipient *)createOrUpdateSettlementRecipientWithData:(NSDictionary *)data;
 - (Recipient *)createRecipient;
 - (NSFetchedResultsController *)fetchedControllerForRecipientsWithCurrency:(Currency *)currency;
+- (NSArray *)allUserRecipients;
 
 @end

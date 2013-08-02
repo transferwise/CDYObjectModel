@@ -177,7 +177,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
 - (void)deleteRecipient:(Recipient *)recipient {
     dispatch_async(dispatch_get_main_queue(), ^{
-        MCLog(@"Delete recipient:%@", recipient);
+        MCLog(@"Delete recipient:%@", recipient.name);
         TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
         [hud setMessage:NSLocalizedString(@"contacts.controller.deleting.message", nil)];
 
