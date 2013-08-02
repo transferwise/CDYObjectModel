@@ -44,7 +44,6 @@
     [payment setSourceCurrency:[self currencyWithCode:data[@"sourceCurrency"]]];
     [payment setTargetCurrency:[self currencyWithCode:data[@"targetCurrency"]]];
     [payment setPayIn:data[@"payIn"]];
-    //TODO jaanus: hide this recipient if just created
     [payment setRecipient:[self createOrUpdateRecipientWithData:data[@"recipient"]]];
     [payment setSubmittedDate:[NSDate dateFromServerString:data[@"submittedDate"]]];
     [payment setReceivedDate:[NSDate dateFromServerString:data[@"receivedDate"]]];

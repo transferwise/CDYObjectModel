@@ -36,7 +36,6 @@ NSString *const kDeleteRecipientPath = @"/recipient/delete";
         weakSelf.responseHandler(error);
     }];
 
-    //TODO jaanus: if recipient has local payments, then just hide deleted recipient
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         [weakSelf persistRecipients:response];
     }];

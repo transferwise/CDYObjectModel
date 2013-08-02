@@ -28,7 +28,6 @@
         NSArray *recipients = response[@"recipients"];
         MCLog(@"Received %d recipients from server", [recipients count]);
 
-        //TODO jaanus: test removing recipient on server and doing refresh
         void (^persistingBlock)() = ^() {
             for (NSDictionary *recipientData in recipients) {
                 [self.workModel createOrUpdateRecipientWithData:recipientData];
@@ -70,7 +69,7 @@
             return;
         }
 
-        completion();
+        [self.workModel performBlock:completion];
     }];
 
     [operation execute];

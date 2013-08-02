@@ -183,9 +183,12 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
         DeleteRecipientOperation *operation = [DeleteRecipientOperation operationWithRecipient:recipient];
         [self setExecutedOperation:operation];
+        [operation setObjectModel:self.objectModel];
         [operation setResponseHandler:^(NSError *error) {
-            [hud hide];
-            [self handleListRefreshWithPossibleError:error];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hide];
+                [self handleListRefreshWithPossibleError:error];
+            });
         }];
 
         [operation execute];

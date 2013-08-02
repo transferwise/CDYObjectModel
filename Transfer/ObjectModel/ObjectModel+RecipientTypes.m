@@ -95,10 +95,6 @@
     return [self fetchEntityNamed:[AllowedTypeFieldValue entityName] withPredicate:predicate];
 }
 
-- (NSArray *)listAllRecipientTypes {
-    return [self fetchEntitiesNamed:[RecipientType entityName] withPredicate:nil];
-}
-
 - (NSFetchedResultsController *)fetchedControllerForAllowedValuesOnField:(RecipientTypeField *)field {
     NSPredicate *fieldPredicate = [NSPredicate predicateWithFormat:@"valueForField = %@", field];
     NSSortDescriptor *titleSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];

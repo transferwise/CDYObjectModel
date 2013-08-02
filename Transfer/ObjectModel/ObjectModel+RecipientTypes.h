@@ -18,7 +18,5 @@
 - (BOOL)haveRecipientTypeWithCode:(NSString *)code;
 - (void)createOrUpdateRecipientTypeWithData:(NSDictionary *)data;
 - (NSFetchedResultsController *)fetchedControllerForAllowedValuesOnField:(RecipientTypeField *)field;
-//TODO jaanus: delete this
-- (NSArray *)listAllRecipientTypes;
 
 @end
