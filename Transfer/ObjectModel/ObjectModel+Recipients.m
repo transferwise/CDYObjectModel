@@ -21,9 +21,8 @@
 
 - (NSFetchedResultsController *)fetchedControllerForAllUserRecipients {
     NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
-    NSPredicate *notSettlementPredicate = [NSPredicate predicateWithFormat:@"settlementRecipient = NO"];
-    NSPredicate *notTemporaryPredicate = [NSPredicate predicateWithFormat:@"temporary = NO"];
-    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notSettlementPredicate, notTemporaryPredicate]];
+    NSPredicate *notHiddenPredicate = [NSPredicate predicateWithFormat:@"hidden = NO"];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notHiddenPredicate]];
     return [self fetchedControllerForEntity:[Recipient entityName] predicate:predicate sortDescriptors:@[nameDescriptor]];
 }
 
@@ -35,6 +34,10 @@
 }
 
 - (Recipient *)createOrUpdateRecipientWithData:(NSDictionary *)rawData {
+    return [self createOrUpdateRecipientWithData:rawData hideCreted:NO];
+}
+
+- (Recipient *)createOrUpdateRecipientWithData:(NSDictionary *)rawData hideCreted:(BOOL)hideCreated {
     NSDictionary *data = [rawData dictionaryByRemovingNullObjects];
     NSNumber *remoteId = data[@"id"];
     Recipient *recipient = [self recipientWithRemoteId:remoteId];
@@ -42,12 +45,15 @@
         recipient = [Recipient insertInManagedObjectContext:self.managedObjectContext];
         [recipient setRemoteId:remoteId];
         [recipient setUser:[self currentUser]];
+        [recipient setHiddenValue:hideCreated];
     }
 
     [recipient setName:data[@"name"]];
     [recipient setCurrency:[self currencyWithCode:data[@"currency"]]];
     [recipient setEmail:data[@"email"]];
-    [recipient setTemporaryValue:NO];
+    if (!hideCreated) {
+        [recipient setHiddenValue:NO];
+    }
 
     NSString *typeCode = data[@"type"];
     RecipientType *type = [self recipientTypeWithCode:typeCode];
@@ -80,23 +86,22 @@
 
 - (Recipient *)createOrUpdateSettlementRecipientWithData:(NSDictionary *)data {
     Recipient *recipient = [self createOrUpdateRecipientWithData:data];
-    [recipient setSettlementRecipientValue:YES];
+    [recipient setHiddenValue:YES];
     return recipient;
 }
 
 - (Recipient *)createRecipient {
     Recipient *recipient = [Recipient insertInManagedObjectContext:self.managedObjectContext];
-    [recipient setTemporaryValue:YES];
+    [recipient setHiddenValue:YES];
     [recipient setUser:[self currentUser]];
     return recipient;
 }
 
 - (NSFetchedResultsController *)fetchedControllerForRecipientsWithCurrency:(Currency *)currency {
     NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
-    NSPredicate *notSettlementPredicate = [NSPredicate predicateWithFormat:@"settlementRecipient = NO"];
-    NSPredicate *notTemporaryPredicate = [NSPredicate predicateWithFormat:@"temporary = NO"];
+    NSPredicate *notHiddenPredicate = [NSPredicate predicateWithFormat:@"hidden = NO"];
     NSPredicate *currencyPredicate = [NSPredicate predicateWithFormat:@"currency = %@", currency];
-    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notSettlementPredicate, notTemporaryPredicate, currencyPredicate]];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notHiddenPredicate, currencyPredicate]];
     return [self fetchedControllerForEntity:[Recipient entityName] predicate:predicate sortDescriptors:@[nameDescriptor]];
 }
 

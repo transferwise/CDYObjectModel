@@ -6,10 +6,9 @@
 
 extern const struct RecipientAttributes {
 	__unsafe_unretained NSString *email;
+	__unsafe_unretained NSString *hidden;
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *remoteId;
-	__unsafe_unretained NSString *settlementRecipient;
-	__unsafe_unretained NSString *temporary;
 } RecipientAttributes;
 
 extern const struct RecipientRelationships {
@@ -30,7 +29,6 @@ extern const struct RecipientFetchedProperties {
 @class Payment;
 @class RecipientType;
 @class User;
-
 
 
 
@@ -60,6 +58,20 @@ extern const struct RecipientFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* hidden;
+
+
+
+@property BOOL hiddenValue;
+- (BOOL)hiddenValue;
+- (void)setHiddenValue:(BOOL)value_;
+
+//- (BOOL)validateHidden:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* name;
 
 
@@ -79,34 +91,6 @@ extern const struct RecipientFetchedProperties {
 - (void)setRemoteIdValue:(int32_t)value_;
 
 //- (BOOL)validateRemoteId:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@property (nonatomic, strong) NSNumber* settlementRecipient;
-
-
-
-@property BOOL settlementRecipientValue;
-- (BOOL)settlementRecipientValue;
-- (void)setSettlementRecipientValue:(BOOL)value_;
-
-//- (BOOL)validateSettlementRecipient:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@property (nonatomic, strong) NSNumber* temporary;
-
-
-
-@property BOOL temporaryValue;
-- (BOOL)temporaryValue;
-- (void)setTemporaryValue:(BOOL)value_;
-
-//- (BOOL)validateTemporary:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -185,6 +169,15 @@ extern const struct RecipientFetchedProperties {
 
 
 
+- (NSNumber*)primitiveHidden;
+- (void)setPrimitiveHidden:(NSNumber*)value;
+
+- (BOOL)primitiveHiddenValue;
+- (void)setPrimitiveHiddenValue:(BOOL)value_;
+
+
+
+
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
 
@@ -196,24 +189,6 @@ extern const struct RecipientFetchedProperties {
 
 - (int32_t)primitiveRemoteIdValue;
 - (void)setPrimitiveRemoteIdValue:(int32_t)value_;
-
-
-
-
-- (NSNumber*)primitiveSettlementRecipient;
-- (void)setPrimitiveSettlementRecipient:(NSNumber*)value;
-
-- (BOOL)primitiveSettlementRecipientValue;
-- (void)setPrimitiveSettlementRecipientValue:(BOOL)value_;
-
-
-
-
-- (NSNumber*)primitiveTemporary;
-- (void)setPrimitiveTemporary:(NSNumber*)value;
-
-- (BOOL)primitiveTemporaryValue;
-- (void)setPrimitiveTemporaryValue:(BOOL)value_;
 
 
 

@@ -44,7 +44,7 @@
     [payment setSourceCurrency:[self currencyWithCode:data[@"sourceCurrency"]]];
     [payment setTargetCurrency:[self currencyWithCode:data[@"targetCurrency"]]];
     [payment setPayIn:data[@"payIn"]];
-    [payment setRecipient:[self createOrUpdateRecipientWithData:data[@"recipient"]]];
+    [payment setRecipient:[self createOrUpdateRecipientWithData:data[@"recipient"] hideCreted:YES]];
     [payment setSubmittedDate:[NSDate dateFromServerString:data[@"submittedDate"]]];
     [payment setReceivedDate:[NSDate dateFromServerString:data[@"receivedDate"]]];
     [payment setTransferredDate:[NSDate dateFromServerString:data[@"transferredDate"]]];

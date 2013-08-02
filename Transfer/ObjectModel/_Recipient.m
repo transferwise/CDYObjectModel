@@ -5,10 +5,9 @@
 
 const struct RecipientAttributes RecipientAttributes = {
 	.email = @"email",
+	.hidden = @"hidden",
 	.name = @"name",
 	.remoteId = @"remoteId",
-	.settlementRecipient = @"settlementRecipient",
-	.temporary = @"temporary",
 };
 
 const struct RecipientRelationships RecipientRelationships = {
@@ -49,18 +48,13 @@ const struct RecipientFetchedProperties RecipientFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"hiddenValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"hidden"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"remoteIdValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"remoteId"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
-	if ([key isEqualToString:@"settlementRecipientValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"settlementRecipient"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
-	if ([key isEqualToString:@"temporaryValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"temporary"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -73,6 +67,32 @@ const struct RecipientFetchedProperties RecipientFetchedProperties = {
 
 @dynamic email;
 
+
+
+
+
+
+@dynamic hidden;
+
+
+
+- (BOOL)hiddenValue {
+	NSNumber *result = [self hidden];
+	return [result boolValue];
+}
+
+- (void)setHiddenValue:(BOOL)value_ {
+	[self setHidden:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveHiddenValue {
+	NSNumber *result = [self primitiveHidden];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveHiddenValue:(BOOL)value_ {
+	[self setPrimitiveHidden:[NSNumber numberWithBool:value_]];
+}
 
 
 
@@ -105,58 +125,6 @@ const struct RecipientFetchedProperties RecipientFetchedProperties = {
 
 - (void)setPrimitiveRemoteIdValue:(int32_t)value_ {
 	[self setPrimitiveRemoteId:[NSNumber numberWithInt:value_]];
-}
-
-
-
-
-
-@dynamic settlementRecipient;
-
-
-
-- (BOOL)settlementRecipientValue {
-	NSNumber *result = [self settlementRecipient];
-	return [result boolValue];
-}
-
-- (void)setSettlementRecipientValue:(BOOL)value_ {
-	[self setSettlementRecipient:[NSNumber numberWithBool:value_]];
-}
-
-- (BOOL)primitiveSettlementRecipientValue {
-	NSNumber *result = [self primitiveSettlementRecipient];
-	return [result boolValue];
-}
-
-- (void)setPrimitiveSettlementRecipientValue:(BOOL)value_ {
-	[self setPrimitiveSettlementRecipient:[NSNumber numberWithBool:value_]];
-}
-
-
-
-
-
-@dynamic temporary;
-
-
-
-- (BOOL)temporaryValue {
-	NSNumber *result = [self temporary];
-	return [result boolValue];
-}
-
-- (void)setTemporaryValue:(BOOL)value_ {
-	[self setTemporary:[NSNumber numberWithBool:value_]];
-}
-
-- (BOOL)primitiveTemporaryValue {
-	NSNumber *result = [self primitiveTemporary];
-	return [result boolValue];
-}
-
-- (void)setPrimitiveTemporaryValue:(BOOL)value_ {
-	[self setPrimitiveTemporary:[NSNumber numberWithBool:value_]];
 }
 
 
