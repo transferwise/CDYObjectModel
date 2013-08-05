@@ -20,7 +20,7 @@
 @implementation PaymentProfileViewController
 
 - (id)init {
-    self = [super initWithSource:nil];
+    self = [super initWithSource:nil quickValidation:nil];
     if (self) {
         // Custom initialization
     }

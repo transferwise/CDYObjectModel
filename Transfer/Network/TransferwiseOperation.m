@@ -114,27 +114,18 @@
             NSLog(@"Error JSON read error:%@", jsonError);
             self.operationErrorHandler(error);
         } else {
-            [self createErrorAndNotifyFromResponse:response];
+            [self handleErrorResponseData:response];
         }
     }];
     [operation start];
 }
 
-+ (void)provideAuthenticationHeaders:(NSMutableURLRequest *)request {
-    if ([Credentials userLoggedIn]) {
-        [request setValue:[Credentials accessToken] forHTTPHeaderField:@"Authorization"];
-    }
-
-    [request setValue:TRWApplicationKey forHTTPHeaderField:@"Authorization-key"];
-    //TODO jaanus: Also client id (the one from google analytics) should be in header 'Customer-identifier'
-}
-
-- (void)createErrorAndNotifyFromResponse:(NSDictionary *)response {
-    id errors = response[@"errors"];
+- (void)handleErrorResponseData:(NSDictionary *)errorData {
+    id errors = errorData[@"errors"];
     if ([errors isKindOfClass:[NSDictionary class]]) {
         errors = @[errors];
     } else if (!errors) {
-        errors = @[response];
+        errors = @[errorData];
     }
 
     NSArray *handledErrors = errors;
@@ -163,6 +154,15 @@
         MCLog(@"Other errors");
         self.operationErrorHandler(cumulativeError);
     }
+}
+
++ (void)provideAuthenticationHeaders:(NSMutableURLRequest *)request {
+    if ([Credentials userLoggedIn]) {
+        [request setValue:[Credentials accessToken] forHTTPHeaderField:@"Authorization"];
+    }
+
+    [request setValue:TRWApplicationKey forHTTPHeaderField:@"Authorization-key"];
+    //TODO jaanus: Also client id (the one from google analytics) should be in header 'Customer-identifier'
 }
 
 - (BOOL)isCurrencyPairsOperation {

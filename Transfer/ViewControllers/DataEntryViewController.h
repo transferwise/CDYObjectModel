@@ -13,5 +13,6 @@
 @property (nonatomic, strong) NSArray *presentedSectionCells;
 
 - (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath;
+- (void)textFieldEntryFinished;
 
 @end

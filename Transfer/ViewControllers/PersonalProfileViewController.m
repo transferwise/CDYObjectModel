@@ -8,6 +8,7 @@
 
 #import "PersonalProfileViewController.h"
 #import "PersonalProfileSource.h"
+#import "QuickProfileValidationOperation.h"
 
 @interface PersonalProfileViewController ()
 
@@ -16,7 +17,7 @@
 @implementation PersonalProfileViewController
 
 - (id)init {
-    self = [super initWithSource:[[PersonalProfileSource alloc] init]];
+    self = [super initWithSource:[[PersonalProfileSource alloc] init] quickValidation:[QuickProfileValidationOperation personalProfileValidation]];
     if (self) {
         // Custom initialization
     }

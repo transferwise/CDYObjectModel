@@ -10,6 +10,7 @@
 
 @class PhoneBookProfile;
 @class ObjectModel;
+@class QuickProfileValidationOperation;
 
 typedef void (^ProfileActionBlock)(NSError *error);
 
@@ -17,6 +18,7 @@ typedef void (^ProfileActionBlock)(NSError *error);
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) ObjectModel *objectModel;
+@property (nonatomic, strong) NSArray *cells;
 
 - (NSArray *)presentedCells;
 - (NSString *)editViewTitle;
@@ -27,5 +29,7 @@ typedef void (^ProfileActionBlock)(NSError *error);
 - (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion;
 - (NSString *)titleForHeaderInSection:(NSInteger)section;
 - (void)loadDetailsToCells;
+- (void)fillQuickValidation:(QuickProfileValidationOperation *)operation;
+- (void)markCellsWithIssues:(NSArray *)issues;
 
 @end

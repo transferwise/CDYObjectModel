@@ -11,6 +11,8 @@
 #import "TransferwiseClient.h"
 #import "Credentials.h"
 #import "Constants.h"
+#import "QuickProfileValidationOperation.h"
+#import "TextEntryCell.h"
 
 @implementation ProfileSource
 
@@ -70,6 +72,44 @@
 
 - (void)loadDetailsToCells {
     ABSTRACT_METHOD;
+}
+
+- (void)fillQuickValidation:(QuickProfileValidationOperation *)operation {
+    ABSTRACT_METHOD;
+}
+
+- (void)markCellsWithIssues:(NSArray *)issues {
+    [self removeAllErrorMarkers];
+
+    for (NSDictionary *issue in issues) {
+        NSString *cellTag = issue[@"field"];
+        TextEntryCell *cell = [self cellWithTag:cellTag];
+        if (!cell) {
+            continue;
+        }
+
+        [cell markIssue:issue[@"message"]];
+    }
+}
+
+- (void)removeAllErrorMarkers {
+    for (NSArray *sectionCells in self.cells) {
+        for (TextEntryCell *cell in sectionCells) {
+            [cell markIssue:@""];
+        }
+    }
+}
+
+- (TextEntryCell *)cellWithTag:(NSString *)tag {
+    for (NSArray *sectionCells in self.cells) {
+        for (TextEntryCell *cell in sectionCells) {
+            if ([cell.cellTag isEqualToString:tag]) {
+                return cell;
+            }
+        }
+    }
+
+    return nil;
 }
 
 @end

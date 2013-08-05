@@ -106,6 +106,8 @@
         [entryCell.entryField resignFirstResponder];
     }
 
+    [self textFieldEntryFinished];
+
     return YES;
 }
 
@@ -180,6 +182,10 @@
 
 - (BOOL)isEntryCell:(UITableViewCell *)cell {
     return [cell isKindOfClass:[TextEntryCell class]];
+}
+
+- (void)textFieldEntryFinished {
+
 }
 
 @end

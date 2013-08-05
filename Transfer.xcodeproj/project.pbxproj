@@ -458,6 +458,8 @@
 		EAA053E4175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053E3175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m */; };
 		EAA053EC175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053EB175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m */; };
 		EAA053FD175E21D400ACD3F6 /* spinner.html in Resources */ = {isa = PBXBuildFile; fileRef = EAA053FC175E21D400ACD3F6 /* spinner.html */; };
+		EAA07BF117AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA07BF017AF750A004B97AC /* QuickProfileValidationOperation.m */; };
+		EAA07BF217AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA07BF017AF750A004B97AC /* QuickProfileValidationOperation.m */; };
 		EAA54F3E1733CA7800B65BF3 /* ContactsTabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F361733CA7800B65BF3 /* ContactsTabIcon.png */; };
 		EAA54F3F1733CA7800B65BF3 /* ContactsTabIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F371733CA7800B65BF3 /* ContactsTabIcon@2x.png */; };
 		EAA54F421733CA7800B65BF3 /* NewPaymentTabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F3A1733CA7800B65BF3 /* NewPaymentTabIcon.png */; };
@@ -887,6 +889,8 @@
 		EAA053EA175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterWithoutPasswordOperation.h; sourceTree = "<group>"; };
 		EAA053EB175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterWithoutPasswordOperation.m; sourceTree = "<group>"; };
 		EAA053FC175E21D400ACD3F6 /* spinner.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = spinner.html; sourceTree = "<group>"; };
+		EAA07BEF17AF750A004B97AC /* QuickProfileValidationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickProfileValidationOperation.h; sourceTree = "<group>"; };
+		EAA07BF017AF750A004B97AC /* QuickProfileValidationOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickProfileValidationOperation.m; sourceTree = "<group>"; };
 		EAA54F361733CA7800B65BF3 /* ContactsTabIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContactsTabIcon.png; sourceTree = "<group>"; };
 		EAA54F371733CA7800B65BF3 /* ContactsTabIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ContactsTabIcon@2x.png"; sourceTree = "<group>"; };
 		EAA54F3A1733CA7800B65BF3 /* NewPaymentTabIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewPaymentTabIcon.png; sourceTree = "<group>"; };
@@ -1377,6 +1381,8 @@
 				EA35C76B1732790D005602F7 /* PaymentsOperation.m */,
 				EAD85B09173920C300C22211 /* PersonalProfileOperation.h */,
 				EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */,
+				EAA07BEF17AF750A004B97AC /* QuickProfileValidationOperation.h */,
+				EAA07BF017AF750A004B97AC /* QuickProfileValidationOperation.m */,
 				EAD069081737CF57007C8DEE /* RecipientOperation.h */,
 				EAD069091737CF57007C8DEE /* RecipientOperation.m */,
 				EA225CAD178ECD68009D6B83 /* RecipientsOperation.h */,
@@ -2382,6 +2388,7 @@
 				EA1240C617AA88EC00C9B02B /* NSMutableDictionary+SaneData.m in Sources */,
 				EA1240C717AA88EC00C9B02B /* SpinningImageView.m in Sources */,
 				EA1240C817AA88EC00C9B02B /* NSString+Presentation.m in Sources */,
+				EAA07BF217AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2560,6 +2567,7 @@
 				EA1E4E33179FF1E500F8D932 /* NSMutableDictionary+SaneData.m in Sources */,
 				EA415D4517A7B2A900E9B56A /* SpinningImageView.m in Sources */,
 				EAA6AD0717A91A95006A347D /* NSString+Presentation.m in Sources */,
+				EAA07BF117AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

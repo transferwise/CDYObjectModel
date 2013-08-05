@@ -9,6 +9,7 @@
 #import "ProfileEditViewController.h"
 #import "BusinessProfileViewController.h"
 #import "BusinessProfileSource.h"
+#import "QuickProfileValidationOperation.h"
 
 @interface BusinessProfileViewController ()
 
@@ -17,7 +18,7 @@
 @implementation BusinessProfileViewController
 
 - (id)init {
-    self = [super initWithSource:[[BusinessProfileSource alloc] init]];
+    self = [super initWithSource:[[BusinessProfileSource alloc] init] quickValidation:[QuickProfileValidationOperation businessProfileValidation]];
     if (self) {
         // Custom initialization
     }

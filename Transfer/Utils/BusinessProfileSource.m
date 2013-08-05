@@ -15,6 +15,7 @@
 #import "User.h"
 #import "ObjectModel+Users.h"
 #import "BusinessProfile.h"
+#import "QuickProfileValidationOperation.h"
 
 static NSUInteger const kButtonSection = 0;
 static NSUInteger const kDetailsSection = 1;
@@ -28,7 +29,6 @@ static NSUInteger const kDetailsSection = 1;
 @property (nonatomic, strong) TextEntryCell *postCodeCell;
 @property (nonatomic, strong) TextEntryCell *cityCell;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
-@property (nonatomic, strong) NSArray *cells;
 
 @end
 
@@ -53,17 +53,20 @@ static NSUInteger const kDetailsSection = 1;
     [businessCells addObject:businessNameCell];
     [businessNameCell configureWithTitle:NSLocalizedString(@"business.profile.name.label", nil) value:@""];
     [businessNameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
+    [businessNameCell setCellTag:@"businessName"];
 
     TextEntryCell *registrationNumberCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setRegistrationNumberCell:registrationNumberCell];
     [businessCells addObject:registrationNumberCell];
     [registrationNumberCell configureWithTitle:NSLocalizedString(@"business.profile.registration.number.label", nil) value:@""];
+    [registrationNumberCell setCellTag:@"registrationNumber"];
 
     TextEntryCell *descriptionCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setDescriptionCell:descriptionCell];
     [businessCells addObject:descriptionCell];
     [descriptionCell configureWithTitle:NSLocalizedString(@"business.profile.description.label", nil) value:@""];
     [descriptionCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
+    [descriptionCell setCellTag:@"descriptionOfBusiness"];
 
     NSMutableArray *addressCells = [NSMutableArray array];
 
@@ -72,22 +75,26 @@ static NSUInteger const kDetailsSection = 1;
     [addressCells addObject:addressCell];
     [addressCell configureWithTitle:NSLocalizedString(@"business.profile.address.label", nil) value:@""];
     [addressCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
+    [addressCell setCellTag:@"addressFirstLine"];
 
     TextEntryCell *postCodeCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setPostCodeCell:postCodeCell];
     [addressCells addObject:postCodeCell];
     [postCodeCell configureWithTitle:NSLocalizedString(@"business.profile.post.code.label", nil) value:@""];
+    [postCodeCell setCellTag:@"postCode"];
 
     TextEntryCell *cityCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setCityCell:cityCell];
     [addressCells addObject:cityCell];
     [cityCell configureWithTitle:NSLocalizedString(@"business.profile.city.label", nil) value:@""];
     [cityCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
+    [cityCell setCellTag:@"city"];
 
     CountrySelectionCell *countryCell = [self.tableView dequeueReusableCellWithIdentifier:TWCountrySelectionCellIdentifier];
     [self setCountryCell:countryCell];
     [addressCells addObject:countryCell];
     [countryCell configureWithTitle:NSLocalizedString(@"business.profile.country.label", nil) value:@""];
+    [countryCell setCellTag:@"countryCode"];
 
     [self setCells:@[businessCells, addressCells]];
 
@@ -174,6 +181,16 @@ static NSUInteger const kDetailsSection = 1;
     if (![self.objectModel.currentUser.businessProfile isFieldReadonly:@"countryCode"]) {
         [self.countryCell setTwoLetterCountryCode:address.countryCode];
     }
+}
+
+- (void)fillQuickValidation:(QuickProfileValidationOperation *)operation {
+    [operation setName:[self.businessNameCell value]];
+    [operation setRegistrationNumber:[self.registrationNumberCell value]];
+    [operation setBusinessDescription:[self.descriptionCell value]];
+    [operation setAddressFirstLine:[self.addressCell value]];
+    [operation setPostCode:[self.postCodeCell value]];
+    [operation setCity:[self.cityCell value]];
+    [operation setCountryCode:[self.countryCell value]];
 }
 
 @end

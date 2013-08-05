@@ -12,6 +12,7 @@
 @class PhoneBookProfileSelector;
 @class ObjectModel;
 @class CountriesOperation;
+@class QuickProfileValidationOperation;
 
 @interface ProfileEditViewController : DataEntryViewController
 
@@ -19,7 +20,7 @@
 @property (nonatomic, strong) id profileValidation;
 @property (nonatomic, strong) ObjectModel *objectModel;
 
-- (id)initWithSource:(ProfileSource *)source;
+- (id)initWithSource:(ProfileSource *)source quickValidation:(QuickProfileValidationOperation *)quickValidation;
 - (void)setPresentProfileSource:(ProfileSource *)source reloadView:(BOOL)reload;
 
 @end

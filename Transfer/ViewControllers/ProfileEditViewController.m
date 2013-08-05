@@ -11,7 +11,6 @@
 #import "ButtonCell.h"
 #import "UIColor+Theme.h"
 #import "CountrySelectionCell.h"
-#import "Credentials.h"
 #import "TRWAlertView.h"
 #import "TransferwiseClient.h"
 #import "PhoneBookProfileSelector.h"
@@ -20,6 +19,8 @@
 #import "ObjectModel.h"
 #import "UIApplication+Keyboard.h"
 #import "ObjectModel+Countries.h"
+#import "QuickProfileValidationOperation.h"
+#import "PersonalProfileSource.h"
 
 static NSUInteger const kButtonSection = 0;
 
@@ -34,6 +35,8 @@ static NSUInteger const kButtonSection = 0;
 @property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, assign) BOOL shown;
+@property (nonatomic, strong) QuickProfileValidationOperation *quickProfileValidation;
+@property (nonatomic, assign) BOOL inputCheckRunning;
 
 - (IBAction)footerButtonPressed:(id)sender;
 
@@ -41,10 +44,11 @@ static NSUInteger const kButtonSection = 0;
 
 @implementation ProfileEditViewController
 
-- (id)initWithSource:(ProfileSource *)source {
+- (id)initWithSource:(ProfileSource *)source quickValidation:(QuickProfileValidationOperation *)quickValidation {
     self = [super initWithNibName:@"ProfileEditViewController" bundle:nil];
     if (self) {
         _profileSource = source;
+        _quickProfileValidation = quickValidation;
     }
     return self;
 }
@@ -100,6 +104,13 @@ static NSUInteger const kButtonSection = 0;
 - (void)setPresentProfileSource:(ProfileSource *)source reloadView:(BOOL)reload {
     [source setObjectModel:self.objectModel];
     [self setProfileSource:source];
+    //TODO jaanus: fix this
+    if ([source isKindOfClass:[PersonalProfileSource class]]) {
+        [self setQuickProfileValidation:[QuickProfileValidationOperation personalProfileValidation]];
+    } else {
+        [self setQuickProfileValidation:[QuickProfileValidationOperation businessProfileValidation]];
+    }
+
     [self.profileSource setTableView:self.tableView];
     [self.navigationItem setTitle:[self.profileSource editViewTitle]];
     [self createPresentationCells];
@@ -242,5 +253,27 @@ static NSUInteger const kButtonSection = 0;
     return 44;
 }
 
+- (void)textFieldEntryFinished {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MCLog(@"textFieldEntryFinished");
+        if (self.inputCheckRunning) {
+            MCLog(@"Validation in progress");
+            return;
+        }
+
+        [self setInputCheckRunning:YES];
+        [self.profileSource fillQuickValidation:self.quickProfileValidation];
+
+        __block __weak ProfileEditViewController *weakSelf = self;
+        [self.quickProfileValidation setValidationHandler:^(NSArray *issues) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.profileSource markCellsWithIssues:issues];
+                [weakSelf setInputCheckRunning:NO];
+            });
+        }];
+
+        [self.quickProfileValidation execute];
+    });
+}
 
 @end

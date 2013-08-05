@@ -14,6 +14,7 @@ extern NSString *const TWTextEntryCellIdentifier;
 @interface TextEntryCell : UITableViewCell
 
 @property (nonatomic, strong, readonly) UITextField *entryField;
+@property (nonatomic, copy) NSString *cellTag;
 
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value;
 - (NSString *)value;
@@ -23,5 +24,6 @@ extern NSString *const TWTextEntryCellIdentifier;
 - (void)addDoneButtonToField:(UITextField *)field withAction:(TRWActionBlock)action;
 - (void)setValueWhenEditable:(NSString *)value;
 - (BOOL)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
+- (void)markIssue:(NSString *)issueMessage;
 
 @end

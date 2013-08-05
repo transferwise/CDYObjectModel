@@ -8,6 +8,7 @@
 
 #import "TextEntryCell.h"
 #import "UIColor+Theme.h"
+#import "NSString+Validation.h"
 
 NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
@@ -104,6 +105,15 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 - (BOOL)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     return YES;
+}
+
+- (void)markIssue:(NSString *)issueMessage {
+    if (![issueMessage hasValue]) {
+        [self.titleLabel setTextColor:[UIColor blackColor]];
+        return;
+    }
+
+    [self.titleLabel setTextColor:[UIColor redColor]];
 }
 
 @end

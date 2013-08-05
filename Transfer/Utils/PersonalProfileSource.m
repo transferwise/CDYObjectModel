@@ -16,6 +16,7 @@
 #import "User.h"
 #import "ObjectModel+Users.h"
 #import "PersonalProfile.h"
+#import "QuickProfileValidationOperation.h"
 
 NSUInteger const kUserButtonSection = 0;
 NSUInteger const kUserPersonalSection = 1;
@@ -31,7 +32,6 @@ NSUInteger const kUserPersonalSection = 1;
 @property (nonatomic, strong) TextEntryCell *postCodeCell;
 @property (nonatomic, strong) TextEntryCell *cityCell;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
-@property (nonatomic, strong) NSArray *cells;
 
 @end
 
@@ -57,12 +57,14 @@ NSUInteger const kUserPersonalSection = 1;
     [personalCells addObject:firstNameCell];
     [firstNameCell configureWithTitle:NSLocalizedString(@"personal.profile.first.name.label", nil) value:@""];
     [firstNameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
+    [firstNameCell setCellTag:@"firstName"];
 
     TextEntryCell *lastNameCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setLastNameCell:lastNameCell];
     [personalCells addObject:lastNameCell];
     [lastNameCell configureWithTitle:NSLocalizedString(@"personal.profile.last.name.label", nil) value:@""];
     [lastNameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
+    [lastNameCell setCellTag:@"lastName"];
 
     TextEntryCell *emailCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setEmailCell:emailCell];
@@ -76,11 +78,13 @@ NSUInteger const kUserPersonalSection = 1;
     [phoneCell.entryField setKeyboardType:UIKeyboardTypePhonePad];
     [phoneCell addDoneButton];
     [phoneCell configureWithTitle:NSLocalizedString(@"personal.profile.phone.label", nil) value:@""];
+    [phoneCell setCellTag:@"phoneNumber"];
 
     DateEntryCell *dateOfBirthCell = [self.tableView dequeueReusableCellWithIdentifier:TWDateEntryCellIdentifier];
     [self setDateOfBirthCell:dateOfBirthCell];
     [personalCells addObject:dateOfBirthCell];
     [dateOfBirthCell configureWithTitle:NSLocalizedString(@"personal.profile.date.of.birth.label", nil) value:@""];
+    [dateOfBirthCell setCellTag:@"dateOfBirth"];
 
     NSMutableArray *addressCells = [NSMutableArray array];
 
@@ -89,22 +93,26 @@ NSUInteger const kUserPersonalSection = 1;
     [addressCells addObject:addressCell];
     [addressCell configureWithTitle:NSLocalizedString(@"personal.profile.address.label", nil) value:@""];
     [addressCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
+    [addressCell setCellTag:@"addressFirstLine"];
 
     TextEntryCell *postCodeCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setPostCodeCell:postCodeCell];
     [addressCells addObject:postCodeCell];
     [postCodeCell configureWithTitle:NSLocalizedString(@"personal.profile.post.code.label", nil) value:@""];
+    [postCodeCell setCellTag:@"postCode"];
 
     TextEntryCell *cityCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setCityCell:cityCell];
     [addressCells addObject:cityCell];
     [cityCell configureWithTitle:NSLocalizedString(@"personal.profile.city.label", nil) value:@""];
     [cityCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
+    [cityCell setCellTag:@"city"];
 
     CountrySelectionCell *countryCell = [self.tableView dequeueReusableCellWithIdentifier:TWCountrySelectionCellIdentifier];
     [self setCountryCell:countryCell];
     [addressCells addObject:countryCell];
     [countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
+    [countryCell setCellTag:@"countryCode"];
 
     [self setCells:@[personalCells, addressCells]];
 
@@ -213,6 +221,17 @@ NSUInteger const kUserPersonalSection = 1;
     } else {
         return NSLocalizedString(@"personal.profile.address.section.title", nil);
     }
+}
+
+- (void)fillQuickValidation:(QuickProfileValidationOperation *)operation {
+    [operation setFirstName:[self.firstNameCell value]];
+    [operation setLastName:[self.lastNameCell value]];
+    [operation setPhoneNumber:[self.phoneNumberCell value]];
+    [operation setAddressFirstLine:[self.addressCell value]];
+    [operation setPostCode:[self.postCodeCell value]];
+    [operation setCity:[self.cityCell value]];
+    [operation setCountryCode:[self.countryCell value]];
+    [operation setDateOfBirth:[self.dateOfBirthCell value]];
 }
 
 @end
