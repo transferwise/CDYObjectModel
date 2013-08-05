@@ -27,8 +27,9 @@
 #import "PersonalProfile.h"
 #import "NSString+Validation.h"
 
-static NSUInteger const kSenderSection = 0;
-static NSUInteger const kReceiverSection = 1;
+static NSUInteger const kTransferSection = 0;
+static NSUInteger const kSenderSection = 1;
+static NSUInteger const kReceiverSection = 2;
 
 @interface ConfirmPaymentViewController ()
 
@@ -36,6 +37,8 @@ static NSUInteger const kReceiverSection = 1;
 @property (nonatomic, strong) IBOutlet UIButton *footerButton;
 @property (nonatomic, strong) IBOutlet UIView *headerView;
 
+@property (nonatomic, strong) ConfirmPaymentCell *yourDepositCell;
+@property (nonatomic, strong) ConfirmPaymentCell *exchangedToCell;
 @property (nonatomic, strong) ConfirmPaymentCell *senderNameCell;
 @property (nonatomic, strong) ConfirmPaymentCell *senderEmailCell;
 @property (nonatomic, strong) ConfirmPaymentCell *receiverNameCell;
@@ -43,10 +46,6 @@ static NSUInteger const kReceiverSection = 1;
 @property (nonatomic, strong) TextEntryCell *referenceCell;
 @property (nonatomic, strong) TextEntryCell *receiverEmailCell;
 
-@property (nonatomic, strong) IBOutlet UILabel *yourDepositTitleLabel;
-@property (nonatomic, strong) IBOutlet UILabel *yourDepositValueLabel;
-@property (nonatomic, strong) IBOutlet UILabel *exchangedToTitleLabel;
-@property (nonatomic, strong) IBOutlet UILabel *exchangedToValueLabel;
 @property (nonatomic, strong) IBOutlet OHAttributedLabel *estimatedExchangeRateLabel;
 @property (nonatomic, strong) IBOutlet OHAttributedLabel *deliveryDateLabelLabel;
 
@@ -71,24 +70,29 @@ static NSUInteger const kReceiverSection = 1;
 
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
+    [self.tableView setDelegate:self];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"ConfirmPaymentCell" bundle:nil] forCellReuseIdentifier:TWConfirmPaymentCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
 }
 
 - (void)createContent {
-    [self.tableView setTableHeaderView:self.headerView];
     [self.tableView setTableFooterView:self.footerView];
+    
+    NSMutableArray *transferCells = [NSMutableArray array];
+    ConfirmPaymentCell *yourDepositCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
+    [self setYourDepositCell:yourDepositCell];
+    [transferCells addObject:yourDepositCell];
+    
+    ConfirmPaymentCell *exchangedToCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
+    [self setExchangedToCell:exchangedToCell];
+    [transferCells addObject:exchangedToCell];
 
     NSMutableArray *senderCells = [NSMutableArray array];
     ConfirmPaymentCell *senderNameCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
     [self setSenderNameCell:senderNameCell];
     [senderCells addObject:senderNameCell];
-
-    ConfirmPaymentCell *senderEmailCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
-    [self setSenderEmailCell:senderEmailCell];
-    [senderCells addObject:senderEmailCell];
-
+    
     NSMutableArray *receiverCells = [NSMutableArray array];
     ConfirmPaymentCell *receiverNameCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
     [self setReceiverNameCell:receiverNameCell];
@@ -113,34 +117,9 @@ static NSUInteger const kReceiverSection = 1;
         [receiverCells addObject:receiverEmailCell];
     }
 
-    [self setPresentedSectionCells:@[senderCells, receiverCells]];
+    [self setPresentedSectionCells:@[transferCells, senderCells, receiverCells]];
 
     [self.footerButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
-
-    [self.yourDepositTitleLabel setText:NSLocalizedString(@"confirm.payment.deposit.title.label", nil)];
-
-    CGRect depositTitleFrame = self.yourDepositTitleLabel.frame;
-    CGSize depositTitleSize = [self.yourDepositTitleLabel sizeThatFits:CGSizeMake(NSUIntegerMax, CGRectGetHeight(depositTitleFrame))];
-    depositTitleFrame.size.width = depositTitleSize.width;
-    [self.yourDepositTitleLabel setFrame:depositTitleFrame];
-
-    CGRect depositValueFrame = self.yourDepositValueLabel.frame;
-    depositValueFrame.size.width = depositTitleSize.width;
-    [self.yourDepositValueLabel setFrame:depositValueFrame];
-
-    [self.exchangedToTitleLabel setText:NSLocalizedString(@"confirm.payment.exchanged.to.title.label", nil)];
-
-    CGRect exchangedTitleFrame = self.exchangedToTitleLabel.frame;
-    CGSize exchangedSize = [self.exchangedToTitleLabel sizeThatFits:CGSizeMake(NSUIntegerMax, CGRectGetHeight(exchangedTitleFrame))];
-    CGFloat widthChange = exchangedSize.width - CGRectGetWidth(exchangedTitleFrame);
-    exchangedTitleFrame.origin.x -= widthChange;
-    exchangedTitleFrame.size.width += widthChange;
-    [self.exchangedToTitleLabel setFrame:exchangedTitleFrame];
-
-    CGRect exchangedValueFrame = self.exchangedToValueLabel.frame;
-    exchangedValueFrame.origin.x = exchangedTitleFrame.origin.x;
-    exchangedValueFrame.size.width = exchangedTitleFrame.size.width;
-    [self.exchangedToValueLabel setFrame:exchangedValueFrame];
 }
 
 - (NSArray *)buildFieldCells {
@@ -172,9 +151,12 @@ static NSUInteger const kReceiverSection = 1;
 
 - (void)fillDataCells {
     PendingPayment *payment = [self.objectModel pendingPayment];
-
-    [self.yourDepositValueLabel setText:[payment payInStringWithCurrency]];
-    [self.exchangedToValueLabel setText:[payment payOutStringWithCurrency]];
+    
+    [self.yourDepositCell.textLabel setText:NSLocalizedString(@"confirm.payment.deposit.title.label", nil)];
+    [self.yourDepositCell.detailTextLabel setText:[payment payInStringWithCurrency]];
+    
+    [self.exchangedToCell.textLabel setText:NSLocalizedString(@"confirm.payment.exchanged.to.title.label", nil)];
+    [self.exchangedToCell.detailTextLabel setText:[payment payOutStringWithCurrency]];
 
     NSString *rateString = [payment rateString];
     NSString *messageString = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.estimated.exchange.rate.message", nil), rateString];
@@ -194,11 +176,6 @@ static NSUInteger const kReceiverSection = 1;
         [self.senderNameCell.imageView setImage:[UIImage imageNamed:@"ProfileIcon.png"]];
         [self.senderNameCell.textLabel setText:[payment.user.personalProfile fullName]];
     }
-
-
-    [self.senderEmailCell.textLabel setText:NSLocalizedString(@"confirm.payment.email.label", nil)];
-    [self.senderEmailCell.detailTextLabel setText:payment.user.email];
-
 
     [self.receiverNameCell.textLabel setText:[payment.recipient name]];
     [self.receiverNameCell.detailTextLabel setText:NSLocalizedString(@"confirm.payment.recipient.marker.label", nil)];
@@ -239,7 +216,7 @@ static NSUInteger const kReceiverSection = 1;
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:baseString];
 
     OHParagraphStyle *paragraphStyle = [OHParagraphStyle defaultParagraphStyle];
-    paragraphStyle.textAlignment = kCTTextAlignmentLeft;
+    paragraphStyle.textAlignment = kCTTextAlignmentCenter;
     paragraphStyle.lineBreakMode = kCTLineBreakByWordWrapping;
     [attributedString setParagraphStyle:paragraphStyle];
     [attributedString setFont:[UIFont systemFontOfSize:12]];
@@ -248,16 +225,20 @@ static NSUInteger const kReceiverSection = 1;
     return [[NSAttributedString alloc] initWithAttributedString:attributedString];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == kSenderSection) {
-        return NSLocalizedString(@"confirm.payment.sender.section.title", nil);
-    }
 
-    if (section == kReceiverSection) {
-        return NSLocalizedString(@"confirm.payment.receiver.section.title", nil);
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if(section == kSenderSection) {
+        return _headerView;
     }
-
-    return nil;
+    return [super tableView:tableView viewForHeaderInSection:section];
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if(section == kSenderSection) {
+        return _headerView.frame.size.height;
+    }
+    return [super tableView:tableView heightForHeaderInSection:section];
+}
+
 
 @end
