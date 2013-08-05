@@ -14,6 +14,7 @@
 #import "ObjectModel+Payments.h"
 #import "TabBarActivityIndicatorView.h"
 #import "Payment.h"
+#import "UploadMoneyViewController.h"
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
@@ -95,6 +96,15 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    Payment *payment = [self.payments objectAtIndexPath:indexPath];
+    if (![payment moneyReceived]) {
+        UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+        [controller setPayment:payment];
+        [controller setObjectModel:self.objectModel];
+        [controller setPopBackOnDone:YES];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 - (void)refreshPaymentsList {

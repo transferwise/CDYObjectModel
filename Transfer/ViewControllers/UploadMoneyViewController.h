@@ -16,5 +16,6 @@
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, strong) Payment *payment;
+@property (nonatomic, assign) BOOL popBackOnDone;
 
 @end

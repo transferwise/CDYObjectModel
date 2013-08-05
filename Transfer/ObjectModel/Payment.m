@@ -67,6 +67,10 @@
     return [[MoneyFormatter sharedInstance] formatAmount:self.payIn withCurrency:self.sourceCurrency.code];
 }
 
+- (BOOL)moneyReceived {
+    return ![self.paymentStatus isEqualToString:@"submitted"];
+}
+
 static NSCalendar *__gregorian;
 + (NSCalendar *)gregorian {
     if (!__gregorian) {
