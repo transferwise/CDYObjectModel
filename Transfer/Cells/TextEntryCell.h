@@ -25,5 +25,6 @@ extern NSString *const TWTextEntryCellIdentifier;
 - (void)setValueWhenEditable:(NSString *)value;
 - (BOOL)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
 - (void)markIssue:(NSString *)issueMessage;
+- (void)markTouched;
 
 @end

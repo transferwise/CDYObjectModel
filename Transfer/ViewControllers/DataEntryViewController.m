@@ -123,6 +123,10 @@
         return NO;
     }
 
+    if ([cell isKindOfClass:[TextEntryCell class]]) {
+        [(TextEntryCell *)cell markTouched];
+    }
+
     NSIndexPath *moveToIndexPath = indexPath;
     while ((moveToIndexPath = [self nextEditableIndexPathAfter:moveToIndexPath]) != nil) {
         UITableViewCell *viewCell = [self cellForIndexPath:moveToIndexPath];

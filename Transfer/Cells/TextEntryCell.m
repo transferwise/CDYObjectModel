@@ -17,6 +17,7 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UITextField *entryField;
 @property (nonatomic, copy) TRWActionBlock doneButtonAction;
+@property (nonatomic, assign) BOOL valueModified;
 
 @end
 
@@ -104,6 +105,7 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 }
 
 - (BOOL)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    [self setValueModified:YES];
     return YES;
 }
 
@@ -113,7 +115,15 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
         return;
     }
 
+    if (!self.valueModified) {
+        return;
+    }
+
     [self.titleLabel setTextColor:[UIColor redColor]];
+}
+
+- (void)markTouched {
+    [self setValueModified:YES];
 }
 
 @end
