@@ -103,6 +103,8 @@ A revolution in your pocket.";
 
 "money.entry.they.receive.title" = "They get";
 "money.entry.you.send.title" = "You send";
+"money.entry.receive.fixed.amount.title" = "Receive fixed amount";
+"money.entry.priority.payment.title" = "Priority Payment";
 
 "openid.login.error.title" = "Login failed";
 "openid.login.generic.error.message" = "Login failed. Please try again later.";

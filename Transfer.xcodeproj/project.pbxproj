@@ -22,6 +22,8 @@
 		BB704E761772D4370042F8A9 /* tableTabButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BB704E721772D4370042F8A9 /* tableTabButton.png */; };
 		BB704E771772D4370042F8A9 /* tableTabButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB704E731772D4370042F8A9 /* tableTabButton@2x.png */; };
 		BB704E7D177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB704E7C177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m */; };
+		BB7EAE8A17AFE037006A7182 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7EAE8917AFE037006A7182 /* SwitchCell.xib */; };
+		BB7EAE8E17AFE0DF006A7182 /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7EAE8D17AFE0DE006A7182 /* SwitchCell.m */; };
 		BB92B144172A747300B6F096 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B143172A747300B6F096 /* CoreText.framework */; };
 		BB92B147172A754100B6F096 /* libOHAttributedLabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B140172A600000B6F096 /* libOHAttributedLabel.a */; };
 		BB9A2E83176B711400C5E058 /* UITableView+FooterPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9A2E82176B711400C5E058 /* UITableView+FooterPositioning.m */; };
@@ -598,6 +600,9 @@
 		BB704E731772D4370042F8A9 /* tableTabButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableTabButton@2x.png"; sourceTree = "<group>"; };
 		BB704E7B177300C30042F8A9 /* RoundedCellWhiteBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedCellWhiteBackgroundView.h; sourceTree = "<group>"; };
 		BB704E7C177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedCellWhiteBackgroundView.m; sourceTree = "<group>"; };
+		BB7EAE8917AFE037006A7182 /* SwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
+		BB7EAE8C17AFE0DE006A7182 /* SwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchCell.h; sourceTree = "<group>"; };
+		BB7EAE8D17AFE0DE006A7182 /* SwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchCell.m; sourceTree = "<group>"; };
 		BB92B13B172A5FFF00B6F096 /* OHAttributedLabel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OHAttributedLabel.xcodeproj; path = OHAttributedLabel/OHAttributedLabel.xcodeproj; sourceTree = "<group>"; };
 		BB92B143172A747300B6F096 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1194,6 +1199,9 @@
 				BB9A2EB8176F495600C5E058 /* TransferTypeSelectionCell.xib */,
 				BB9A2EBA176F4BC500C5E058 /* TransferTypeSelectionCell.h */,
 				BB9A2EBB176F4BC600C5E058 /* TransferTypeSelectionCell.m */,
+				BB7EAE8917AFE037006A7182 /* SwitchCell.xib */,
+				BB7EAE8C17AFE0DE006A7182 /* SwitchCell.h */,
+				BB7EAE8D17AFE0DE006A7182 /* SwitchCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2094,6 +2102,7 @@
 				EA415D3D17A7A0B600E9B56A /* LandingBackground@2x.png in Resources */,
 				EA415D4117A7B19C00E9B56A /* SpinnerLogo.png in Resources */,
 				EA415D4217A7B19C00E9B56A /* SpinnerLogo@2x.png in Resources */,
+				BB7EAE8A17AFE037006A7182 /* SwitchCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2568,6 +2577,7 @@
 				EA415D4517A7B2A900E9B56A /* SpinningImageView.m in Sources */,
 				EAA6AD0717A91A95006A347D /* NSString+Presentation.m in Sources */,
 				EAA07BF117AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */,
+				BB7EAE8E17AFE0DF006A7182 /* SwitchCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
