@@ -2643,8 +2643,8 @@
 		EA12413C17AA88EC00C9B02B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: TransferWise LTD (W53MTDV45J)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: TransferWise LTD (W53MTDV45J)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jaanus Siim (JE9U597J94)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaanus Siim (JE9U597J94)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2660,8 +2660,8 @@
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "Transfer copy";
-				PROVISIONING_PROFILE = "3CE15A09-E624-4A5D-A578-523B38D9D132";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3CE15A09-E624-4A5D-A578-523B38D9D132";
+				PROVISIONING_PROFILE = "514551C4-0760-4DA9-8476-51E9A89D8790";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "514551C4-0760-4DA9-8476-51E9A89D8790";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
