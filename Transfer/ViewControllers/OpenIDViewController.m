@@ -25,7 +25,7 @@
     self = [super initWithNibName:@"OpenIDViewController" bundle:nil];
     if (self) {
         //TODO jaanus: fix this workaround. loginWithOpenID is also entry URL and causes some problems
-        [self setRegisterUser:YES];
+        //[self setRegisterUser:YES];
     }
     return self;
 }
@@ -122,8 +122,11 @@
 }
 
 - (BOOL)isLoginPath:(NSString *)absoluteString {
-    return [absoluteString rangeOfString:@"/account/loginWithOpenID"].location != NSNotFound
-            || [absoluteString rangeOfString:@"/openId/mobileLoggedIn"].location != NSNotFound;
+    return /*[absoluteString rangeOfString:@"/account/loginWithOpenID"].location != NSNotFound
+            || */[absoluteString rangeOfString:@"/openId/mobileLoggedIn"].location != NSNotFound
+            || [absoluteString rangeOfString:@"/openId/mobileNotLoggedIn"].location != NSNotFound
+            || [absoluteString rangeOfString:@"/openId/loggedIn"].location != NSNotFound
+            || [absoluteString rangeOfString:@"/openId/notLoggedIn"].location != NSNotFound;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {

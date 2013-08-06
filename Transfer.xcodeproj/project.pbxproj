@@ -629,7 +629,7 @@
 		EA0425FE173CF5C50048BFBD /* RecipientEntrySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientEntrySelectionCell.h; sourceTree = "<group>"; };
 		EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientEntrySelectionCell.m; sourceTree = "<group>"; };
 		EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientEntrySelectionCell.xib; sourceTree = "<group>"; };
-		EA12413D17AA88EC00C9B02B /* Transfer copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Transfer copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA12413D17AA88EC00C9B02B /* TransferDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransferDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA12413E17AA88EC00C9B02B /* TransferDev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = TransferDev.plist; path = "/Users/jaanus/projects/mc-transfer-ios/TransferDev.plist"; sourceTree = "<absolute>"; };
 		EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
 		EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
@@ -1460,7 +1460,7 @@
 			children = (
 				EAAA1468171BC911005B9430 /* Transfer.app */,
 				EA76D90C175CF80100AE3F86 /* TransferTests.octest */,
-				EA12413D17AA88EC00C9B02B /* Transfer copy.app */,
+				EA12413D17AA88EC00C9B02B /* TransferDev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1806,7 +1806,7 @@
 			);
 			name = TransferDev;
 			productName = Transfer;
-			productReference = EA12413D17AA88EC00C9B02B /* Transfer copy.app */;
+			productReference = EA12413D17AA88EC00C9B02B /* TransferDev.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EA76D90B175CF80100AE3F86 /* TransferTests */ = {
@@ -2646,7 +2646,7 @@
 					"\"$(SRCROOT)/Thirdparty/TestFlightSDK1.2.6\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
-				PRODUCT_NAME = "Transfer copy";
+				PRODUCT_NAME = TransferDev;
 				PROVISIONING_PROFILE = "99A7B50D-6AB1-44B8-BB69-3BE5DD01304B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "99A7B50D-6AB1-44B8-BB69-3BE5DD01304B";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2673,7 +2673,7 @@
 					"\"$(SRCROOT)/Thirdparty/TestFlightSDK1.2.6\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
-				PRODUCT_NAME = "Transfer copy";
+				PRODUCT_NAME = TransferDev;
 				PROVISIONING_PROFILE = "514551C4-0760-4DA9-8476-51E9A89D8790";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "514551C4-0760-4DA9-8476-51E9A89D8790";
 				TARGETED_DEVICE_FAMILY = 1;
