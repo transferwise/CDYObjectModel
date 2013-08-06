@@ -11,6 +11,9 @@
 #import "NSDictionary+Cleanup.h"
 #import "RecipientTypeField.h"
 #import "AllowedTypeFieldValue.h"
+#import "Credentials.h"
+#import "User.h"
+#import "Constants.h"
 
 @implementation ObjectModel (RecipientTypes)
 
@@ -99,6 +102,13 @@
     NSPredicate *fieldPredicate = [NSPredicate predicateWithFormat:@"valueForField = %@", field];
     NSSortDescriptor *titleSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
     return [self fetchedControllerForEntity:[AllowedTypeFieldValue entityName] predicate:fieldPredicate sortDescriptors:@[titleSortDescriptor]];
+}
+
+- (void)removeOtherUsers {
+    NSPredicate *notLoggedInUser = [NSPredicate predicateWithFormat:@"email != %@", [Credentials userEmail]];
+    NSArray *users = [self fetchEntitiesNamed:[User entityName] withPredicate:notLoggedInUser];
+    MCLog(@"Will remove %d redundant users", [users count]);
+    [self deleteObjects:users saveAfter:NO];
 }
 
 @end

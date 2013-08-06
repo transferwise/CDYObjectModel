@@ -166,25 +166,27 @@ static NSUInteger const kTableRowEmail = 0;
     [loginOperation setObjectModel:self.objectModel];
 
     [loginOperation setResponseHandler:^(NSError *error) {
-        [hud hide];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [hud hide];
 
-        if (!error) {
-            [self dismissViewControllerAnimated:YES completion:nil];
-            return;
-        }
+            if (!error) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+                return;
+            }
 
-        TRWAlertView *alertView;
-        if ([error isTransferwiseError]) {
-            NSString *message = [error localizedTransferwiseMessage];
-            alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil) message:message];
-        } else {
-            alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
-                                                 message:NSLocalizedString(@"login.error.generic.message", nil)];
-        }
+            TRWAlertView *alertView;
+            if ([error isTransferwiseError]) {
+                NSString *message = [error localizedTransferwiseMessage];
+                alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil) message:message];
+            } else {
+                alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
+                                                     message:NSLocalizedString(@"login.error.generic.message", nil)];
+            }
 
-        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
 
-        [alertView show];
+            [alertView show];
+        });
     }];
 
     [loginOperation execute];
@@ -219,6 +221,7 @@ static NSUInteger const kTableRowEmail = 0;
 
 - (void)presentOpenIDLogInWithProvider:(NSString *)provider name:(NSString *)providerName {
     OpenIDViewController *controller = [[OpenIDViewController alloc] init];
+    [controller setObjectModel:self.objectModel];
     [controller setProvider:provider];
     [controller setEmail:self.emailCell.value];
     [controller setProviderName:providerName];

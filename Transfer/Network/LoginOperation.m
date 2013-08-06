@@ -10,6 +10,8 @@
 #import "TransferwiseOperation+Private.h"
 #import "Credentials.h"
 #import "TransferwiseClient.h"
+#import "JCSObjectModel.h"
+#import "ObjectModel+RecipientTypes.h"
 
 NSString *const kLoginPath = @"/token/create";
 
@@ -46,13 +48,20 @@ NSString *const kLoginPath = @"/token/create";
 
     __block __weak LoginOperation *weakSelf = self;
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        NSString *token = response[@"token"];
-        [Credentials setUserToken:token];
-        [Credentials setUserEmail:weakSelf.email];
-        [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:nil];
+        [weakSelf.workModel performBlock:^{
+            NSString *token = response[@"token"];
+            [Credentials setUserToken:token];
+            [Credentials setUserEmail:weakSelf.email];
+            [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:nil];
 
-        weakSelf.responseHandler(nil);
+            [weakSelf.workModel removeOtherUsers];
+
+            [weakSelf.workModel saveContext:^{
+                weakSelf.responseHandler(nil);
+            }];
+        }];
     }];
+
     [self setOperationErrorHandler:^(NSError *error) {
         MCLog(@"Error:%@", error);
         weakSelf.responseHandler(error);

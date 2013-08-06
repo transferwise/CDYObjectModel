@@ -18,5 +18,6 @@
 - (BOOL)haveRecipientTypeWithCode:(NSString *)code;
 - (void)createOrUpdateRecipientTypeWithData:(NSDictionary *)data;
 - (NSFetchedResultsController *)fetchedControllerForAllowedValuesOnField:(RecipientTypeField *)field;
+- (void)removeOtherUsers;
 
 @end
