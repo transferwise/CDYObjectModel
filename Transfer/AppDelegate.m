@@ -29,7 +29,11 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
 #if USE_TESTFLIGHT
-    [TestFlight takeOff:@"4b176dca-177c-48bf-9480-a15001cc9211"];
+    #if DEV_VERSION
+        [TestFlight takeOff:@"78f288b9-67c6-4bd3-b6ba-bf9b54645412"];
+    #else
+        [TestFlight takeOff:@"4b176dca-177c-48bf-9480-a15001cc9211"];
+    #endif
 #endif
 
     [Crashlytics startWithAPIKey:@"bf6a713619d873c16d74390dc0463c0387c49052"];
