@@ -47,11 +47,11 @@ NSString *const kValidatePersonalProfilePath = @"/user/validatePersonalProfile";
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         [weakSelf.workModel performBlock:^{
             if ([response[@"status"] isEqualToString:@"valid"]) {
-                weakSelf.saveResultHandler(nil);
-                return;
+                MCLog(@"Valid. Continue");
+            } else {
+                MCLog(@"Update user data");
+                [weakSelf.workModel createOrUpdateUserWithData:response];
             }
-
-            [weakSelf.workModel createOrUpdateUserWithData:response];
 
             [weakSelf.workModel saveContext:^{
                 weakSelf.saveResultHandler(nil);

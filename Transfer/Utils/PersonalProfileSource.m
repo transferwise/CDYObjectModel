@@ -138,6 +138,7 @@ NSUInteger const kUserPersonalSection = 1;
         [self.lastNameCell setEditable:![profile isFieldReadonly:@"lastName"]];
         [self.dateOfBirthCell setEditable:![profile isFieldReadonly:@"dateOfBirth"]];
         [self.phoneNumberCell setEditable:![profile isFieldReadonly:@"phoneNumber"]];
+        [self.emailCell setEditable:NO];
 
         [self.addressCell setEditable:![profile isFieldReadonly:@"addressFirstLine"]];
         [self.postCodeCell setEditable:![profile isFieldReadonly:@"postCode"]];
