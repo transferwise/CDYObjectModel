@@ -9,6 +9,8 @@
 #import "ObjectModel+Currencies.h"
 #import "Currency.h"
 #import "ObjectModel+RecipientTypes.h"
+#import "RecipientType.h"
+#import "Constants.h"
 
 @implementation ObjectModel (Currencies)
 
@@ -33,7 +35,19 @@
     [currency setName:data[@"name"]];
     [currency setDefaultRecipientType:[self recipientTypeWithCode:data[@"defaultRecipientType"]]];
     NSArray *allTypes = data[@"recipientTypes"];
-    [currency setRecipientTypes:[[NSOrderedSet alloc] initWithArray:[self recipientTypesWithCodes:allTypes]]];
+    NSArray *typeObjects = [self recipientTypesWithCodes:allTypes];
+
+    NSArray *orderedTypes = [typeObjects sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        RecipientType *one = obj1;
+        RecipientType *two = obj2;
+
+        NSNumber *oneIndex = @([allTypes indexOfObject:one.type]);
+        NSNumber *twoIndex = @([allTypes indexOfObject:two.type]);
+
+        return [oneIndex compare:twoIndex];
+    }];
+
+    [currency setRecipientTypes:[[NSOrderedSet alloc] initWithArray:orderedTypes]];
     [currency setIndexValue:(int16_t) index];
 }
 
