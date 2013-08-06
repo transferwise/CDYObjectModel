@@ -17,6 +17,7 @@
 #import "ObjectModel+Users.h"
 #import "PersonalProfile.h"
 #import "QuickProfileValidationOperation.h"
+#import "Credentials.h"
 
 NSUInteger const kUserButtonSection = 0;
 NSUInteger const kUserPersonalSection = 1;
@@ -138,7 +139,7 @@ NSUInteger const kUserPersonalSection = 1;
         [self.lastNameCell setEditable:![profile isFieldReadonly:@"lastName"]];
         [self.dateOfBirthCell setEditable:![profile isFieldReadonly:@"dateOfBirth"]];
         [self.phoneNumberCell setEditable:![profile isFieldReadonly:@"phoneNumber"]];
-        [self.emailCell setEditable:NO];
+        [self.emailCell setEditable:![Credentials userLoggedIn]];
 
         [self.addressCell setEditable:![profile isFieldReadonly:@"addressFirstLine"]];
         [self.postCodeCell setEditable:![profile isFieldReadonly:@"postCode"]];
