@@ -101,10 +101,10 @@ A revolution in your pocket.";
 "login.validation.email.not.valid" = "Entered e-mail not valid";
 "login.validation.password.missing" = "Password not entered";
 
+"money.entry.priority.payment.title" = "Priority Payment";
+"money.entry.receive.fixed.amount.title" = "Receive fixed amount";
 "money.entry.they.receive.title" = "They get";
 "money.entry.you.send.title" = "You send";
-"money.entry.receive.fixed.amount.title" = "Receive fixed amount";
-"money.entry.priority.payment.title" = "Priority Payment";
 
 "openid.login.error.title" = "Login failed";
 "openid.login.generic.error.message" = "Login failed. Please try again later.";
@@ -128,6 +128,7 @@ A revolution in your pocket.";
 "payment.controller.estimated.exchange.rate.label" = "Estimated exchange rate";
 "payment.controller.payment.date.message" = "Payment will be received no later than\n%@";
 "payment.controller.title" = "New payment";
+"payment.controller.title.with.contact.name" = "Payment to %@";
 "payment.controller.transfer.fee.label" = "Transfer fee";
 "payment.controller.you.get.label" = "You get (estimated)";
 "payment.status.cancelled.description" = "Cancelled";
