@@ -490,6 +490,8 @@
 		EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAAC203C17422ADB001DDE7A /* DropdownCell.xib */; };
 		EAAF8FB017436730008DF9E2 /* CreatePaymentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAF8FAF17436730008DF9E2 /* CreatePaymentOperation.m */; };
 		EAAF8FB81743B3E4008DF9E2 /* MoneyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAF8FB71743B3E4008DF9E2 /* MoneyFormatter.m */; };
+		EAB2741B17B0E9120078F039 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7EAE8917AFE037006A7182 /* SwitchCell.xib */; };
+		EAB2741C17B0E9150078F039 /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7EAE8D17AFE0DE006A7182 /* SwitchCell.m */; };
 		EAB72152171FC34600DE29F5 /* NavBarButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72150171FC34600DE29F5 /* NavBarButton.png */; };
 		EAB72153171FC34600DE29F5 /* NavBarButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */; };
 		EAB72156171FC3E900DE29F5 /* SettingsButtonIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */; };
@@ -1190,18 +1192,18 @@
 				EAB7215D171FCAAC00DE29F5 /* SettingsTitleCell.h */,
 				EAB7215E171FCAAC00DE29F5 /* SettingsTitleCell.m */,
 				EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */,
+				BB7EAE8C17AFE0DE006A7182 /* SwitchCell.h */,
+				BB7EAE8D17AFE0DE006A7182 /* SwitchCell.m */,
+				BB7EAE8917AFE037006A7182 /* SwitchCell.xib */,
 				BB29BD4D173CDF6F0016A6E9 /* TextCell.h */,
 				BB29BD4C173CDF6F0016A6E9 /* TextCell.m */,
 				BB29BD4A173CDF480016A6E9 /* TextCell.xib */,
 				EA13E04A171BEF5D0019FBF0 /* TextEntryCell.h */,
 				EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */,
 				EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */,
-				BB9A2EB8176F495600C5E058 /* TransferTypeSelectionCell.xib */,
 				BB9A2EBA176F4BC500C5E058 /* TransferTypeSelectionCell.h */,
 				BB9A2EBB176F4BC600C5E058 /* TransferTypeSelectionCell.m */,
-				BB7EAE8917AFE037006A7182 /* SwitchCell.xib */,
-				BB7EAE8C17AFE0DE006A7182 /* SwitchCell.h */,
-				BB7EAE8D17AFE0DE006A7182 /* SwitchCell.m */,
+				BB9A2EB8176F495600C5E058 /* TransferTypeSelectionCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1992,6 +1994,7 @@
 				EA12413517AA88EC00C9B02B /* LandingBackground@2x.png in Resources */,
 				EA12413617AA88EC00C9B02B /* SpinnerLogo.png in Resources */,
 				EA12413717AA88EC00C9B02B /* SpinnerLogo@2x.png in Resources */,
+				EAB2741B17B0E9120078F039 /* SwitchCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2398,6 +2401,7 @@
 				EA1240C717AA88EC00C9B02B /* SpinningImageView.m in Sources */,
 				EA1240C817AA88EC00C9B02B /* NSString+Presentation.m in Sources */,
 				EAA07BF217AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */,
+				EAB2741C17B0E9150078F039 /* SwitchCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
