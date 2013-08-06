@@ -490,6 +490,8 @@
 		EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAAC203C17422ADB001DDE7A /* DropdownCell.xib */; };
 		EAAF8FB017436730008DF9E2 /* CreatePaymentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAF8FAF17436730008DF9E2 /* CreatePaymentOperation.m */; };
 		EAAF8FB81743B3E4008DF9E2 /* MoneyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAF8FB71743B3E4008DF9E2 /* MoneyFormatter.m */; };
+		EAB2741B17B0E9120078F039 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7EAE8917AFE037006A7182 /* SwitchCell.xib */; };
+		EAB2741C17B0E9150078F039 /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7EAE8D17AFE0DE006A7182 /* SwitchCell.m */; };
 		EAB72152171FC34600DE29F5 /* NavBarButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72150171FC34600DE29F5 /* NavBarButton.png */; };
 		EAB72153171FC34600DE29F5 /* NavBarButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */; };
 		EAB72156171FC3E900DE29F5 /* SettingsButtonIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */; };
@@ -627,7 +629,7 @@
 		EA0425FE173CF5C50048BFBD /* RecipientEntrySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientEntrySelectionCell.h; sourceTree = "<group>"; };
 		EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientEntrySelectionCell.m; sourceTree = "<group>"; };
 		EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientEntrySelectionCell.xib; sourceTree = "<group>"; };
-		EA12413D17AA88EC00C9B02B /* Transfer copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Transfer copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA12413D17AA88EC00C9B02B /* TransferDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransferDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA12413E17AA88EC00C9B02B /* TransferDev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = TransferDev.plist; path = "/Users/jaanus/projects/mc-transfer-ios/TransferDev.plist"; sourceTree = "<absolute>"; };
 		EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
 		EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
@@ -1190,18 +1192,18 @@
 				EAB7215D171FCAAC00DE29F5 /* SettingsTitleCell.h */,
 				EAB7215E171FCAAC00DE29F5 /* SettingsTitleCell.m */,
 				EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */,
+				BB7EAE8C17AFE0DE006A7182 /* SwitchCell.h */,
+				BB7EAE8D17AFE0DE006A7182 /* SwitchCell.m */,
+				BB7EAE8917AFE037006A7182 /* SwitchCell.xib */,
 				BB29BD4D173CDF6F0016A6E9 /* TextCell.h */,
 				BB29BD4C173CDF6F0016A6E9 /* TextCell.m */,
 				BB29BD4A173CDF480016A6E9 /* TextCell.xib */,
 				EA13E04A171BEF5D0019FBF0 /* TextEntryCell.h */,
 				EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */,
 				EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */,
-				BB9A2EB8176F495600C5E058 /* TransferTypeSelectionCell.xib */,
 				BB9A2EBA176F4BC500C5E058 /* TransferTypeSelectionCell.h */,
 				BB9A2EBB176F4BC600C5E058 /* TransferTypeSelectionCell.m */,
-				BB7EAE8917AFE037006A7182 /* SwitchCell.xib */,
-				BB7EAE8C17AFE0DE006A7182 /* SwitchCell.h */,
-				BB7EAE8D17AFE0DE006A7182 /* SwitchCell.m */,
+				BB9A2EB8176F495600C5E058 /* TransferTypeSelectionCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1458,7 +1460,7 @@
 			children = (
 				EAAA1468171BC911005B9430 /* Transfer.app */,
 				EA76D90C175CF80100AE3F86 /* TransferTests.octest */,
-				EA12413D17AA88EC00C9B02B /* Transfer copy.app */,
+				EA12413D17AA88EC00C9B02B /* TransferDev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1804,7 +1806,7 @@
 			);
 			name = TransferDev;
 			productName = Transfer;
-			productReference = EA12413D17AA88EC00C9B02B /* Transfer copy.app */;
+			productReference = EA12413D17AA88EC00C9B02B /* TransferDev.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EA76D90B175CF80100AE3F86 /* TransferTests */ = {
@@ -1992,6 +1994,7 @@
 				EA12413517AA88EC00C9B02B /* LandingBackground@2x.png in Resources */,
 				EA12413617AA88EC00C9B02B /* SpinnerLogo.png in Resources */,
 				EA12413717AA88EC00C9B02B /* SpinnerLogo@2x.png in Resources */,
+				EAB2741B17B0E9120078F039 /* SwitchCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2398,6 +2401,7 @@
 				EA1240C717AA88EC00C9B02B /* SpinningImageView.m in Sources */,
 				EA1240C817AA88EC00C9B02B /* NSString+Presentation.m in Sources */,
 				EAA07BF217AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */,
+				EAB2741C17B0E9150078F039 /* SwitchCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2642,7 +2646,7 @@
 					"\"$(SRCROOT)/Thirdparty/TestFlightSDK1.2.6\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
-				PRODUCT_NAME = "Transfer copy";
+				PRODUCT_NAME = TransferDev;
 				PROVISIONING_PROFILE = "99A7B50D-6AB1-44B8-BB69-3BE5DD01304B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "99A7B50D-6AB1-44B8-BB69-3BE5DD01304B";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2669,7 +2673,7 @@
 					"\"$(SRCROOT)/Thirdparty/TestFlightSDK1.2.6\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
-				PRODUCT_NAME = "Transfer copy";
+				PRODUCT_NAME = TransferDev;
 				PROVISIONING_PROFILE = "514551C4-0760-4DA9-8476-51E9A89D8790";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "514551C4-0760-4DA9-8476-51E9A89D8790";
 				TARGETED_DEVICE_FAMILY = 1;
