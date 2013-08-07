@@ -11,6 +11,7 @@
 - (NSString *)payOutStringWithCurrency;
 - (NSString *)rateString;
 - (NSString *)paymentDateString;
+- (NSString *)cancelDateString;
 - (BOOL)businessProfileUsed;
 - (BOOL)isCancelled;
 

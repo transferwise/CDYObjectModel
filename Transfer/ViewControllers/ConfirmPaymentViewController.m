@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
+#import <OHAttributedLabel/OHAttributedLabel.h>
 #import "ConfirmPaymentViewController.h"
 #import "UIColor+Theme.h"
 #import "ConfirmPaymentCell.h"
-#import "OHAttributedLabel/OHAttributedLabel.h"
 #import "CalculationResult.h"
 #import "TRWProgressHUD.h"
 #import "TRWAlertView.h"
@@ -47,7 +47,6 @@ static NSUInteger const kReceiverSection = 2;
 @property (nonatomic, strong) TextEntryCell *receiverEmailCell;
 
 @property (nonatomic, strong) IBOutlet OHAttributedLabel *estimatedExchangeRateLabel;
-@property (nonatomic, strong) IBOutlet OHAttributedLabel *deliveryDateLabelLabel;
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
@@ -157,15 +156,7 @@ static NSUInteger const kReceiverSection = 2;
     [self.exchangedToCell.textLabel setText:NSLocalizedString(@"confirm.payment.exchanged.to.title.label", nil)];
     [self.exchangedToCell.detailTextLabel setText:[payment payOutStringWithCurrency]];
 
-    NSString *rateString = [payment rateString];
-    NSString *messageString = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.estimated.exchange.rate.message", nil), rateString];
-    NSAttributedString *exchangeRateString = [self attributedStringWithBase:messageString markedString:rateString];
-    [self.estimatedExchangeRateLabel setAttributedText:exchangeRateString];
-
-    NSString *dateString = [payment paymentDateString];
-    NSString *dateMessageString = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.delivery.date.message", nil), dateString];
-    NSAttributedString *paymentDateString = [self attributedStringWithBase:dateMessageString markedString:dateString];
-    [self.deliveryDateLabelLabel setAttributedText:paymentDateString];
+    [self fillDeliveryDetails:self.estimatedExchangeRateLabel];
 
     [self.senderNameCell.detailTextLabel setText:NSLocalizedString(@"confirm.payment.sender.marker.label", nil)];
 
@@ -184,6 +175,23 @@ static NSUInteger const kReceiverSection = 2;
 
     [self.referenceCell setEditable:YES];
     [self.referenceCell configureWithTitle:NSLocalizedString(@"confirm.payment.reference.label", nil) value:@""];
+}
+
+- (void)fillDeliveryDetails:(OHAttributedLabel *)label {
+    NSString *rateString = [self.payment rateString];
+    NSString *messageString = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.estimated.exchange.rate.message", nil), rateString];
+    NSAttributedString *exchangeRateString = [self attributedStringWithBase:messageString markedString:rateString];
+
+    NSString *dateString = [self.payment paymentDateString];
+    NSString *dateMessageString = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.delivery.date.message", nil), dateString];
+    NSAttributedString *paymentDateString = [self attributedStringWithBase:dateMessageString markedString:dateString];
+
+    NSMutableAttributedString *result = [[NSMutableAttributedString alloc] init];
+    [result appendAttributedString:exchangeRateString];
+    [result appendAttributedString:[NSAttributedString attributedStringWithString:@"\n"]];
+    [result appendAttributedString:paymentDateString];
+
+    [label setAttributedText:result];
 }
 
 - (IBAction)footerButtonPressed:(id)sender {

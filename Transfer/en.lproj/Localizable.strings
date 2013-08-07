@@ -284,3 +284,5 @@ A revolution in your pocket.";
 "recipient.type.field.email.invalid" = "Entered email is invalid.";
 
 "calculation.pending.message" = "Calculating";
+
+"payment.detail.cancel.date.message" = "Cancelled on %@";

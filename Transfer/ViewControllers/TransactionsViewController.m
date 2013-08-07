@@ -106,7 +106,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         [controller setObjectModel:self.objectModel];
         [controller setHideBottomButton:YES];
         [self.navigationController pushViewController:controller animated:YES];
-    } else if (NO && [payment isCancelled]) {
+    } else if ([payment isCancelled])) {
         PaymentDetailsViewController *controller = [[PaymentDetailsViewController alloc] init];
         [controller setObjectModel:self.objectModel];
         [controller setPayment:payment];

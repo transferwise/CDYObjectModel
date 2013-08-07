@@ -88,6 +88,10 @@
     return [[CalculationResult paymentDateFormatter] stringFromDate:self.estimatedDelivery];
 }
 
+- (NSString *)cancelDateString {
+    return [[CalculationResult paymentDateFormatter] stringFromDate:self.cancelledDate];
+}
+
 - (BOOL)businessProfileUsed {
     return [self.profileUsed isEqualToString:@"business"];
 }
