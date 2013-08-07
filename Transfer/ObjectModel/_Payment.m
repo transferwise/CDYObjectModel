@@ -5,11 +5,14 @@
 
 const struct PaymentAttributes PaymentAttributes = {
 	.cancelledDate = @"cancelledDate",
+	.conversionRate = @"conversionRate",
 	.estimatedDelivery = @"estimatedDelivery",
 	.lastUpdateTime = @"lastUpdateTime",
 	.payIn = @"payIn",
+	.payOut = @"payOut",
 	.paymentStatus = @"paymentStatus",
 	.presentable = @"presentable",
+	.profileUsed = @"profileUsed",
 	.receivedDate = @"receivedDate",
 	.remoteId = @"remoteId",
 	.submittedDate = @"submittedDate",
@@ -53,6 +56,11 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"conversionRateValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"conversionRate"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"presentableValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"presentable"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -77,6 +85,32 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 
 
 
+@dynamic conversionRate;
+
+
+
+- (double)conversionRateValue {
+	NSNumber *result = [self conversionRate];
+	return [result doubleValue];
+}
+
+- (void)setConversionRateValue:(double)value_ {
+	[self setConversionRate:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveConversionRateValue {
+	NSNumber *result = [self primitiveConversionRate];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveConversionRateValue:(double)value_ {
+	[self setPrimitiveConversionRate:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
 @dynamic estimatedDelivery;
 
 
@@ -92,6 +126,13 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 
 
 @dynamic payIn;
+
+
+
+
+
+
+@dynamic payOut;
 
 
 
@@ -126,6 +167,13 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 - (void)setPrimitivePresentableValue:(BOOL)value_ {
 	[self setPrimitivePresentable:[NSNumber numberWithBool:value_]];
 }
+
+
+
+
+
+@dynamic profileUsed;
+
 
 
 

@@ -6,11 +6,14 @@
 
 extern const struct PaymentAttributes {
 	__unsafe_unretained NSString *cancelledDate;
+	__unsafe_unretained NSString *conversionRate;
 	__unsafe_unretained NSString *estimatedDelivery;
 	__unsafe_unretained NSString *lastUpdateTime;
 	__unsafe_unretained NSString *payIn;
+	__unsafe_unretained NSString *payOut;
 	__unsafe_unretained NSString *paymentStatus;
 	__unsafe_unretained NSString *presentable;
+	__unsafe_unretained NSString *profileUsed;
 	__unsafe_unretained NSString *receivedDate;
 	__unsafe_unretained NSString *remoteId;
 	__unsafe_unretained NSString *submittedDate;
@@ -33,6 +36,9 @@ extern const struct PaymentFetchedProperties {
 @class Currency;
 @class Currency;
 @class User;
+
+
+
 
 
 
@@ -68,6 +74,20 @@ extern const struct PaymentFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* conversionRate;
+
+
+
+@property double conversionRateValue;
+- (double)conversionRateValue;
+- (void)setConversionRateValue:(double)value_;
+
+//- (BOOL)validateConversionRate:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSDate* estimatedDelivery;
 
 
@@ -98,6 +118,16 @@ extern const struct PaymentFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSDecimalNumber* payOut;
+
+
+
+//- (BOOL)validatePayOut:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* paymentStatus;
 
 
@@ -117,6 +147,16 @@ extern const struct PaymentFetchedProperties {
 - (void)setPresentableValue:(BOOL)value_;
 
 //- (BOOL)validatePresentable:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* profileUsed;
+
+
+
+//- (BOOL)validateProfileUsed:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -217,6 +257,15 @@ extern const struct PaymentFetchedProperties {
 
 
 
+- (NSNumber*)primitiveConversionRate;
+- (void)setPrimitiveConversionRate:(NSNumber*)value;
+
+- (double)primitiveConversionRateValue;
+- (void)setPrimitiveConversionRateValue:(double)value_;
+
+
+
+
 - (NSDate*)primitiveEstimatedDelivery;
 - (void)setPrimitiveEstimatedDelivery:(NSDate*)value;
 
@@ -235,6 +284,12 @@ extern const struct PaymentFetchedProperties {
 
 
 
+- (NSDecimalNumber*)primitivePayOut;
+- (void)setPrimitivePayOut:(NSDecimalNumber*)value;
+
+
+
+
 - (NSString*)primitivePaymentStatus;
 - (void)setPrimitivePaymentStatus:(NSString*)value;
 
@@ -246,6 +301,12 @@ extern const struct PaymentFetchedProperties {
 
 - (BOOL)primitivePresentableValue;
 - (void)setPrimitivePresentableValue:(BOOL)value_;
+
+
+
+
+- (NSString*)primitiveProfileUsed;
+- (void)setPrimitiveProfileUsed:(NSString*)value;
 
 
 

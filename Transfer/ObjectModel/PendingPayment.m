@@ -30,7 +30,7 @@ NSString *kAddressVerificationImageName = @"~/Documents/addressVerification.jpg"
 }
 
 - (NSString *)rateString {
-    return [CalculationResult rateStringFrom:self.rate];
+    return [CalculationResult rateStringFrom:self.conversionRate];
 }
 
 - (NSString *)paymentDateString {

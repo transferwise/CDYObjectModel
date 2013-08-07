@@ -6,9 +6,6 @@
 const struct PendingPaymentAttributes PendingPaymentAttributes = {
 	.addressVerificationRequired = @"addressVerificationRequired",
 	.idVerificationRequired = @"idVerificationRequired",
-	.payOut = @"payOut",
-	.profileUsed = @"profileUsed",
-	.rate = @"rate",
 	.recipientEmail = @"recipientEmail",
 	.reference = @"reference",
 	.sendVerificationLater = @"sendVerificationLater",
@@ -53,11 +50,6 @@ const struct PendingPaymentFetchedProperties PendingPaymentFetchedProperties = {
 	}
 	if ([key isEqualToString:@"idVerificationRequiredValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"idVerificationRequired"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
-	if ([key isEqualToString:@"rateValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"rate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -119,46 +111,6 @@ const struct PendingPaymentFetchedProperties PendingPaymentFetchedProperties = {
 
 - (void)setPrimitiveIdVerificationRequiredValue:(BOOL)value_ {
 	[self setPrimitiveIdVerificationRequired:[NSNumber numberWithBool:value_]];
-}
-
-
-
-
-
-@dynamic payOut;
-
-
-
-
-
-
-@dynamic profileUsed;
-
-
-
-
-
-
-@dynamic rate;
-
-
-
-- (double)rateValue {
-	NSNumber *result = [self rate];
-	return [result doubleValue];
-}
-
-- (void)setRateValue:(double)value_ {
-	[self setRate:[NSNumber numberWithDouble:value_]];
-}
-
-- (double)primitiveRateValue {
-	NSNumber *result = [self primitiveRate];
-	return [result doubleValue];
-}
-
-- (void)setPrimitiveRateValue:(double)value_ {
-	[self setPrimitiveRate:[NSNumber numberWithDouble:value_]];
 }
 
 

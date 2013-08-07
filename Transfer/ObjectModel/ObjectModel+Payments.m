@@ -51,6 +51,9 @@
     [payment setCancelledDate:[NSDate dateFromServerString:data[@"cancelledDate"]]];
     [payment setEstimatedDelivery:[NSDate dateFromServerString:data[@"estimatedDelivery"]]];
     [payment setSettlementRecipient:[self createOrUpdateSettlementRecipientWithData:data[@"settlementRecipient"]]];
+    [payment setConversionRate:data[@"conversionRate"]];
+    [payment setPayOut:data[@"payOut"]];
+    [payment setProfileUsed:data[@"profile"]];
     [payment setPresentableValue:YES];
 
     return payment;

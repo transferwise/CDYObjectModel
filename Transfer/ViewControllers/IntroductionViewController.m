@@ -279,7 +279,7 @@ static NSUInteger const kRowYouSend = 0;
         [payment setTargetCurrency:[self.theyReceiveCell currency]];
         [payment setPayIn:(NSDecimalNumber *) [self.result transferwisePayIn]];
         [payment setPayOut:(NSDecimalNumber *) [self.result transferwisePayOut]];
-        [payment setRate:[self.result transferwiseRate]];
+        [payment setConversionRate:[self.result transferwiseRate]];
         [payment setEstimatedDelivery:[self.result estimatedDelivery]];
 
         PaymentFlow *paymentFlow = [[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
