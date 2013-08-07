@@ -290,3 +290,4 @@ A revolution in your pocket.";
 "payment.detail.exchange.rate.message" = "Exchange rate %@";
 "payment.detail.sent.header.message" = "Payment sent out to recipiet.
 Payment #%@";
+"payment.detail.converting.header.message" = "Waiting for currency to be converted. Payment #%@";

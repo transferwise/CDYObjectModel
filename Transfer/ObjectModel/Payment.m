@@ -102,7 +102,7 @@
 }
 
 - (BOOL)moneyReceived {
-    return [self.paymentStatus isEqualToString:@"matched"];
+    return [self.paymentStatus isEqualToString:@"matched"] || [self.paymentStatus isEqualToString:@"received"];
 }
 
 - (BOOL)moneyTransferred {

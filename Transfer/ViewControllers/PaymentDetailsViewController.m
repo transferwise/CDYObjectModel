@@ -63,6 +63,12 @@
         [headerView setMessage:[NSString stringWithFormat:NSLocalizedString(@"payment.detail.sent.header.message", nil), self.payment.remoteId]];
         [self.tableView setTableHeaderView:headerView];
         return;
+    } else {
+        [super fillDeliveryDetails:label];
+
+        TableHeaderView *headerView = [TableHeaderView loadInstance];
+        [headerView setMessage:[NSString stringWithFormat:NSLocalizedString(@"payment.detail.converting.header.message", nil), self.payment.remoteId]];
+        [self.tableView setTableHeaderView:headerView];
     }
 }
 
