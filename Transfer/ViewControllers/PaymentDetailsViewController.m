@@ -10,6 +10,8 @@
 #import "PaymentDetailsViewController.h"
 #import "Payment.h"
 #import "TextEntryCell.h"
+#import "TableHeaderView.h"
+#import "UIView+Loading.h"
 
 @interface PaymentDetailsViewController ()
 
@@ -33,6 +35,8 @@
     [self.navigationItem setTitle:self.payment.localizedStatus];
 
     [self disableAllCells];
+
+    [self.tableView setTableFooterView:nil];
 }
 
 - (void)disableAllCells {
@@ -51,9 +55,32 @@
 - (void)fillDeliveryDetails:(OHAttributedLabel *)label {
     if ([self.payment isCancelled]) {
         [self setCancelledDate:label];
-    } else {
-        [super fillDeliveryDetails:label];
+        return;
+    } else if ([self.payment moneyTransferred]) {
+        [self setTransferredDate:label];
+
+        TableHeaderView *headerView = [TableHeaderView loadInstance];
+        [headerView setMessage:[NSString stringWithFormat:NSLocalizedString(@"payment.detail.sent.header.message", nil), self.payment.remoteId]];
+        [self.tableView setTableHeaderView:headerView];
+        return;
     }
+}
+
+- (void)setTransferredDate:(OHAttributedLabel *)label {
+    NSString *rateString = [self.payment rateString];
+    NSString *messageString = [NSString stringWithFormat:NSLocalizedString(@"payment.detail.exchange.rate.message", nil), rateString];
+    NSAttributedString *exchangeRateString = [self attributedStringWithBase:messageString markedString:rateString];
+
+    NSString *dateString = [self.payment transferredDateString];
+    NSString *dateMessageString = [NSString stringWithFormat:NSLocalizedString(@"payment.detail.transferred.date.message", nil), dateString];
+    NSAttributedString *paymentDateString = [self attributedStringWithBase:dateMessageString markedString:dateString];
+
+    NSMutableAttributedString *result = [[NSMutableAttributedString alloc] init];
+    [result appendAttributedString:exchangeRateString];
+    [result appendAttributedString:[NSAttributedString attributedStringWithString:@"\n"]];
+    [result appendAttributedString:paymentDateString];
+
+    [label setAttributedText:result];
 }
 
 - (void)setCancelledDate:(OHAttributedLabel *)label {

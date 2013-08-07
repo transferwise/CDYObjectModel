@@ -14,5 +14,8 @@
 - (NSString *)cancelDateString;
 - (BOOL)businessProfileUsed;
 - (BOOL)isCancelled;
+- (BOOL)moneyReceived;
+- (BOOL)moneyTransferred;
+- (NSString *)transferredDateString;
 
 @end

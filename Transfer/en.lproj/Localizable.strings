@@ -286,3 +286,7 @@ A revolution in your pocket.";
 "calculation.pending.message" = "Calculating";
 
 "payment.detail.cancel.date.message" = "Cancelled on %@";
+"payment.detail.transferred.date.message" = "Transferred on %@";
+"payment.detail.exchange.rate.message" = "Exchange rate %@";
+"payment.detail.sent.header.message" = "Payment sent out to recipiet.
+Payment #%@";

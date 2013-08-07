@@ -34,6 +34,18 @@
 
 - (void)setMessage:(NSString *)message {
     [self.titleLabel setText:message];
+
+    CGRect titleFrame = self.titleLabel.frame;
+    CGSize perfectSize = [self.titleLabel sizeThatFits:CGSizeMake(CGRectGetWidth(titleFrame), NSUIntegerMax)];
+    CGFloat heightChange = perfectSize.height - CGRectGetHeight(titleFrame);
+
+    titleFrame.origin.y -= heightChange;
+    titleFrame.size.height += heightChange;
+    [self.titleLabel setFrame:titleFrame];
+
+    CGRect myFrame = self.frame;
+    myFrame.size.height += heightChange;
+    [self setFrame:myFrame];
 }
 
 

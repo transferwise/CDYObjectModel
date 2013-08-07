@@ -101,6 +101,19 @@
     return [self.paymentStatus isEqualToString:@"cancelled"];
 }
 
+- (BOOL)moneyReceived {
+    return [self.paymentStatus isEqualToString:@"matched"];
+}
+
+- (BOOL)moneyTransferred {
+    return [self.paymentStatus isEqualToString:@"transferred"];
+}
+
+- (NSString *)transferredDateString {
+    return [[CalculationResult paymentDateFormatter] stringFromDate:self.submittedDate];
+}
+
+
 static NSCalendar *__gregorian;
 + (NSCalendar *)gregorian {
     if (!__gregorian) {
