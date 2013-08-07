@@ -15,6 +15,8 @@
 #import "TabBarActivityIndicatorView.h"
 #import "Payment.h"
 #import "UploadMoneyViewController.h"
+#import "ConfirmPaymentViewController.h"
+#import "PaymentDetailsViewController.h"
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
@@ -98,11 +100,16 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     Payment *payment = [self.payments objectAtIndexPath:indexPath];
-    if (![payment moneyReceived]) {
+    if ([payment isSubmitted]) {
         UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
         [controller setPayment:payment];
         [controller setObjectModel:self.objectModel];
-        [controller setPopBackOnDone:YES];
+        [controller setHideBottomButton:YES];
+        [self.navigationController pushViewController:controller animated:YES];
+    } else if (NO && [payment isCancelled]) {
+        PaymentDetailsViewController *controller = [[PaymentDetailsViewController alloc] init];
+        [controller setObjectModel:self.objectModel];
+        [controller setPayment:payment];
         [self.navigationController pushViewController:controller animated:YES];
     }
 }

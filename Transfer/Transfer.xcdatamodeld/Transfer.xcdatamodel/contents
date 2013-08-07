@@ -56,7 +56,7 @@
         <attribute name="paymentStatus" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="payOut" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="presentable" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="profileUsed" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profileUsed" attributeType="String" defaultValueString="personal" syncable="YES"/>
         <attribute name="receivedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="remoteId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="submittedDate" optional="YES" attributeType="Date" syncable="YES"/>

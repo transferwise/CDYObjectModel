@@ -101,8 +101,10 @@
 
     [self.tableView reloadData];
     [self.tableView setTableHeaderView:self.headerView];
-    [self.tableView setTableFooterView:self.footerView];
-    [self.tableView adjustFooterViewSize];
+    if (!self.hideBottomButton) {
+        [self.tableView setTableFooterView:self.footerView];
+        [self.tableView adjustFooterViewSize];
+    }
 }
 
 - (NSArray *)buildAccountCellForType:(RecipientType *)type recipient:(Recipient *)recipient {
@@ -116,11 +118,6 @@
 }
 
 - (IBAction)doneBtnClicked:(id)sender {
-    if (self.popBackOnDone) {
-        [self.navigationController popToRootViewControllerAnimated:YES];
-        return;
-    }
-
     if ([Credentials temporaryAccount]) {
         ClaimAccountViewController *controller = [[ClaimAccountViewController alloc] init];
         [self.navigationController pushViewController:controller animated:YES];

@@ -77,8 +77,6 @@ static NSUInteger const kReceiverSection = 2;
 }
 
 - (void)createContent {
-    [self.tableView setTableFooterView:self.footerView];
-    
     NSMutableArray *transferCells = [NSMutableArray array];
     ConfirmPaymentCell *yourDepositCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
     [self setYourDepositCell:yourDepositCell];
@@ -108,7 +106,7 @@ static NSUInteger const kReceiverSection = 2;
     [referenceCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
     [receiverCells addObject:referenceCell];
 
-    PendingPayment *payment = [self.objectModel pendingPayment];
+    Payment *payment = self.payment;
     if (![payment.recipient.type isEmailType]) {
         TextEntryCell *receiverEmailCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
         [self setReceiverEmailCell:receiverEmailCell];
@@ -119,11 +117,12 @@ static NSUInteger const kReceiverSection = 2;
 
     [self setPresentedSectionCells:@[transferCells, senderCells, receiverCells]];
 
+    [self.tableView setTableFooterView:self.footerView];
     [self.footerButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
 }
 
 - (NSArray *)buildFieldCells {
-    Recipient *recipient = [self.objectModel.pendingPayment recipient];
+    Recipient *recipient = self.payment.recipient;
     NSMutableArray *cells = [NSMutableArray array];
     for (TypeFieldValue *value in recipient.fieldValues) {
         ConfirmPaymentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
@@ -150,7 +149,7 @@ static NSUInteger const kReceiverSection = 2;
 }
 
 - (void)fillDataCells {
-    PendingPayment *payment = [self.objectModel pendingPayment];
+    Payment *payment = self.payment;
     
     [self.yourDepositCell.textLabel setText:NSLocalizedString(@"confirm.payment.deposit.title.label", nil)];
     [self.yourDepositCell.detailTextLabel setText:[payment payInStringWithCurrency]];

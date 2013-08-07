@@ -189,6 +189,7 @@
         MCLog(@"presentPaymentConfirmation");
         ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
         [controller setObjectModel:self.objectModel];
+        [controller setPayment:[self.objectModel pendingPayment]];
         [controller setFooterButtonTitle:NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
         [controller setPaymentFlow:self];
         [self.navigationController pushViewController:controller animated:YES];

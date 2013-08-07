@@ -12,11 +12,13 @@
 
 @class PaymentFlow;
 @class ObjectModel;
+@class Payment;
 
 @interface ConfirmPaymentViewController : DataEntryViewController
 
 @property (nonatomic, copy) NSString *footerButtonTitle;
 @property (nonatomic, assign) PaymentFlow *paymentFlow;
 @property (nonatomic, strong) ObjectModel *objectModel;
+@property (nonatomic, strong) Payment *payment;
 
 @end

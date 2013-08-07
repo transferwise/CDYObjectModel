@@ -1,4 +1,5 @@
-#import "Payment.h"
+#import "CalculationResult.h"
+#import "PendingPayment.h"
 #import "MoneyFormatter.h"
 #import "Currency.h"
 
@@ -67,8 +68,33 @@
     return [[MoneyFormatter sharedInstance] formatAmount:self.payIn withCurrency:self.sourceCurrency.code];
 }
 
-- (BOOL)moneyReceived {
-    return ![self.paymentStatus isEqualToString:@"submitted"];
+- (BOOL)isSubmitted {
+    return [self.paymentStatus isEqualToString:@"submitted"];
+}
+
+- (NSString *)payInStringWithCurrency {
+    return [[MoneyFormatter sharedInstance] formatAmount:[self payIn] withCurrency:self.sourceCurrency.code];
+}
+
+- (NSString *)payOutStringWithCurrency {
+    return [[MoneyFormatter sharedInstance] formatAmount:self.payOut withCurrency:self.targetCurrency.code];
+}
+
+- (NSString *)rateString {
+    return [CalculationResult rateStringFrom:self.conversionRate];
+}
+
+- (NSString *)paymentDateString {
+    return [[CalculationResult paymentDateFormatter] stringFromDate:self.estimatedDelivery];
+}
+
+- (BOOL)businessProfileUsed {
+    return [self.profileUsed isEqualToString:@"business"];
+}
+
+
+- (BOOL)isCancelled {
+    return [self.paymentStatus isEqualToString:@"cancelled"];
 }
 
 static NSCalendar *__gregorian;

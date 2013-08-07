@@ -549,6 +549,8 @@
 		EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */; };
 		EAD7D4D1171D4BB20099063F /* BlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4D0171D4BB20099063F /* BlueButton.m */; };
 		EAD85B0B173920C300C22211 /* PersonalProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */; };
+		EAE1E3A317B2519000A45623 /* PaymentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */; };
+		EAE1E3A717B2523200A45623 /* PaymentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */; };
 		EAE2347B179D517900D64CF8 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAE23477179D517900D64CF8 /* libTestFlight.a */; };
 		EAEA31131738DB8600CCF1A2 /* CheckUnselected.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA310F1738DB8600CCF1A2 /* CheckUnselected.png */; };
 		EAEA31141738DB8600CCF1A2 /* CheckUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31101738DB8600CCF1A2 /* CheckUnselected@2x.png */; };
@@ -1018,6 +1020,8 @@
 		EAD7D4D0171D4BB20099063F /* BlueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueButton.m; sourceTree = "<group>"; };
 		EAD85B09173920C300C22211 /* PersonalProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileOperation.h; sourceTree = "<group>"; };
 		EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileOperation.m; sourceTree = "<group>"; };
+		EAE1E3A117B2519000A45623 /* PaymentDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentDetailsViewController.h; sourceTree = "<group>"; };
+		EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentDetailsViewController.m; sourceTree = "<group>"; };
 		EAE23477179D517900D64CF8 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		EAE23478179D517900D64CF8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		EAE23479179D517900D64CF8 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
@@ -1554,6 +1558,8 @@
 				EA59298B1758CD6C007C0072 /* OpenIDViewController.h */,
 				EA59298C1758CD6C007C0072 /* OpenIDViewController.m */,
 				EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */,
+				EAE1E3A117B2519000A45623 /* PaymentDetailsViewController.h */,
+				EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */,
 				EA92D97D176AF1200078D0C4 /* PaymentProfileViewController.h */,
 				EA92D97E176AF1200078D0C4 /* PaymentProfileViewController.m */,
 				EAD39682171BD5B000F6D011 /* PaymentViewController.h */,
@@ -2402,6 +2408,7 @@
 				EA1240C817AA88EC00C9B02B /* NSString+Presentation.m in Sources */,
 				EAA07BF217AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */,
 				EAB2741C17B0E9150078F039 /* SwitchCell.m in Sources */,
+				EAE1E3A717B2523200A45623 /* PaymentDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2582,6 +2589,7 @@
 				EAA6AD0717A91A95006A347D /* NSString+Presentation.m in Sources */,
 				EAA07BF117AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */,
 				BB7EAE8E17AFE0DF006A7182 /* SwitchCell.m in Sources */,
+				EAE1E3A317B2519000A45623 /* PaymentDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

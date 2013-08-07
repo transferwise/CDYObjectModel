@@ -2,11 +2,6 @@
 
 @interface PendingPayment : _PendingPayment
 
-- (BOOL)businessProfileUsed;
-- (NSString *)payInStringWithCurrency;
-- (NSString *)payOutStringWithCurrency;
-- (NSString *)rateString;
-- (NSString *)paymentDateString;
 - (NSDictionary *)data;
 - (BOOL)isAnyVerificationRequired;
 

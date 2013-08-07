@@ -6,6 +6,12 @@
 - (NSString *)transferredAmountString;
 - (NSString *)latestChangeTimeString;
 - (NSString *)payInWithCurrency;
-- (BOOL)moneyReceived;
+- (BOOL)isSubmitted;
+- (NSString *)payInStringWithCurrency;
+- (NSString *)payOutStringWithCurrency;
+- (NSString *)rateString;
+- (NSString *)paymentDateString;
+- (BOOL)businessProfileUsed;
+- (BOOL)isCancelled;
 
 @end
