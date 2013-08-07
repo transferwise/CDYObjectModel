@@ -98,7 +98,7 @@
 
 
 - (BOOL)isCancelled {
-    return [self.paymentStatus isEqualToString:@"cancelled"];
+    return [self.paymentStatus isEqualToString:@"cancelled"] || [self.paymentStatus isEqualToString:@"refunded"];
 }
 
 - (BOOL)moneyReceived {
