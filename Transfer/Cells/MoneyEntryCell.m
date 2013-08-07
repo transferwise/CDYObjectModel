@@ -101,7 +101,8 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 }
 
 - (BOOL)entryBelowMaxAmount:(NSString *)amountString {
-    if (![amountString hasValue]) {
+    //TODO: quick hack, needs something more solid and fuctional
+    if (![amountString hasValue] || ![self.source isKindOfClass:[PairSourceCurrency class]]) {
         return YES;
     }
 

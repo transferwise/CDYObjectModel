@@ -28,6 +28,7 @@
 #import "PairSourceCurrency.h"
 #import "TabBarActivityIndicatorView.h"
 #import "UIView+Loading.h"
+#import "SwitchCell.h"
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -35,6 +36,8 @@ static NSUInteger const kRowYouSend = 0;
 
 @property (nonatomic, strong) MoneyEntryCell *youSendCell;
 @property (nonatomic, strong) MoneyEntryCell *theyReceiveCell;
+//@property (nonatomic, strong) SwitchCell *fixedAmountCell;
+//@property (nonatomic, strong) SwitchCell *priorityCell;
 @property (nonatomic, strong) MoneyCalculator *calculator;
 @property (nonatomic, strong) IBOutlet UIView *footerView;
 @property (nonatomic, strong) IBOutlet OHAttributedLabel *paymentReceiveDateLabel;
@@ -77,12 +80,22 @@ static NSUInteger const kRowYouSend = 0;
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"MoneyEntryCell" bundle:nil] forCellReuseIdentifier:TWMoneyEntryCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"SwitchCell" bundle:nil] forCellReuseIdentifier:TWSwitchCellIdentifier];
+    
+    //[self setFixedAmountCell:[self.tableView dequeueReusableCellWithIdentifier:TWSwitchCellIdentifier]];
+    //[self.fixedAmountCell.textLabel setText:NSLocalizedString(@"money.entry.receive.fixed.amount.title", @"")];
+    //[self.fixedAmountCell.toggleSwitch addTarget:self action:@selector(receiveFixedAmountValueChanged:) forControlEvents:UIControlEventValueChanged];
+    
+    //[self setPriorityCell:[self.tableView dequeueReusableCellWithIdentifier:TWSwitchCellIdentifier]];
+    //[self.priorityCell.textLabel setText:NSLocalizedString(@"money.entry.priority.payment.title", @"")];
 
     [self setYouSendCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
+    
     [self.youSendCell setTitle:NSLocalizedString(@"money.entry.you.send.title", nil)];
     [self.youSendCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:nil];
     [self.youSendCell.moneyField setReturnKeyType:UIReturnKeyDone];
     [self.youSendCell setRoundedCorner:UIRectCornerTopRight];
+    [self.youSendCell setEditable:YES];
 
     [self setTheyReceiveCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
     [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
@@ -141,8 +154,16 @@ static NSUInteger const kRowYouSend = 0;
 
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
 
-    [self.navigationItem setTitle:NSLocalizedString(@"payment.controller.title", nil)];
-
+    if(_recipient != nil){
+        NSRange range = [_recipient.name rangeOfString:@" "];
+        NSString* formattedName = _recipient.name;
+        if(range.location != NSNotFound){
+            formattedName = [[_recipient.name substringToIndex:range.location+2] stringByAppendingString:@"."];
+        }
+        [self.navigationItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"payment.controller.title.with.contact.name", nil), formattedName]];
+    }else{
+        [self.navigationItem setTitle:NSLocalizedString(@"payment.controller.title", nil)];
+    }
     [self.calculator setObjectModel:self.objectModel];
 
     if (self.youSendCell.currencies) {
@@ -191,6 +212,7 @@ static NSUInteger const kRowYouSend = 0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    //return 2;//if we have "recieve fixed amount" and "priority payment" cells
     return 1;
 }
 
@@ -199,11 +221,35 @@ static NSUInteger const kRowYouSend = 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (indexPath.row == kRowYouSend) {
         return self.youSendCell;
     }
-
     return self.theyReceiveCell;
+    
+    /* if we use layout with Recieve fixed amount and priority payment
+    if(indexPath.section == 0){
+        if (indexPath.row == kRowYouSend) {
+                return self.youSendCell;
+            }
+        return self.theyReceiveCell;
+    }
+    
+    
+    if(indexPath.row == 0){
+        return self.fixedAmountCell;
+    }
+    return self.priorityCell;*/
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.01;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 10;
 }
 
 - (void)showPaymentReceivedOnDate:(NSString *)paymentDateString {
@@ -295,5 +341,16 @@ static NSUInteger const kRowYouSend = 0;
         }
     });
 }
+
+/* For Recieve fixed amount cell switch
+- (void)receiveFixedAmountValueChanged:(UISwitch*)sender {
+    if(sender.isOn){
+        [self.theyReceiveCell setEditable:YES];
+        [self.youSendCell setEditable:NO];
+    }else{
+        [self.youSendCell setEditable:YES];
+        [self.theyReceiveCell setEditable:NO];
+    }
+}*/
 
 @end

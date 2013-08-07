@@ -12,6 +12,8 @@
 #import "Credentials.h"
 #import "TRWAlertView.h"
 #import "NSString+Validation.h"
+#import "ObjectModel.h"
+#import "ObjectModel+RecipientTypes.h"
 
 @interface OpenIDViewController () <UIWebViewDelegate>
 
@@ -25,7 +27,7 @@
     self = [super initWithNibName:@"OpenIDViewController" bundle:nil];
     if (self) {
         //TODO jaanus: fix this workaround. loginWithOpenID is also entry URL and causes some problems
-        [self setRegisterUser:YES];
+        //[self setRegisterUser:YES];
     }
     return self;
 }
@@ -92,8 +94,13 @@
     }
 
     if ([Credentials userLoggedIn]) {
-        [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:nil];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self.objectModel removeOtherUsers];
+        [self.objectModel saveContext:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:nil];
+                [self dismissViewControllerAnimated:YES completion:nil];
+            });
+        }];
     } else {
         TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"openid.login.error.title", nil) message:NSLocalizedString(@"openid.login.generic.error.message", nil)];
         [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
@@ -122,8 +129,11 @@
 }
 
 - (BOOL)isLoginPath:(NSString *)absoluteString {
-    return [absoluteString rangeOfString:@"/account/loginWithOpenID"].location != NSNotFound
-            || [absoluteString rangeOfString:@"/openId/mobileLoggedIn"].location != NSNotFound;
+    return /*[absoluteString rangeOfString:@"/account/loginWithOpenID"].location != NSNotFound
+            || */[absoluteString rangeOfString:@"/openId/mobileLoggedIn"].location != NSNotFound
+            || [absoluteString rangeOfString:@"/openId/mobileNotLoggedIn"].location != NSNotFound
+            || [absoluteString rangeOfString:@"/openId/loggedIn"].location != NSNotFound
+            || [absoluteString rangeOfString:@"/openId/notLoggedIn"].location != NSNotFound;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {

@@ -65,17 +65,23 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
 }
 
 - (void)setSelectedType:(RecipientType *)selected allTypes:(NSArray *)allTypes {
-    if ([allTypes isEqualToArray:self.allRecipientTypes]) {
+    if ([allTypes isEqualToArray:self.allRecipientTypes] && self.presentedLabels.count == allTypes.count) {
         [self setSelectedType:selected];
         [self adjustSelectedView];
         return;
     }
-
+    
     [self setSelectedType:selected];
     [self setAllRecipientTypes:allTypes];
 
     for (UILabel *presented in self.presentedLabels) {
         [presented removeFromSuperview];
+    }
+    
+    for (UIView *view in self.subviews) {
+        //Removing the separation lines
+        if(CGRectGetWidth(view.frame) == 1)
+            [view removeFromSuperview];
     }
 
     self.presentedLabels = [NSMutableArray array];
@@ -95,9 +101,10 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
         [self addSubview:label];
         [self.presentedLabels addObject:label];
 
+        //Adding separation lines
         if (index > 0) {
             CGFloat lineStep = groupedCellWidth / (self.allRecipientTypes.count);
-            CGRect lineFrame = CGRectMake(lineStep * index + 10, 0, 1, CGRectGetHeight(self.frame) + 1);
+            CGRect lineFrame = CGRectMake(lineStep * index + 10, 0, 1, CGRectGetHeight(self.frame));
             UIView *line = [[UIView alloc] initWithFrame:lineFrame];
             [line setBackgroundColor:[UIColor grayColor]];
             [self addSubview:line];
