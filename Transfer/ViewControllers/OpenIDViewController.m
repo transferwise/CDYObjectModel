@@ -67,6 +67,12 @@
     [self.webView loadRequest:request];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+
+    [TransferwiseClient clearCookies];
+}
+
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     MCLog(@"shouldStartLoading:%@", [request.URL host]);

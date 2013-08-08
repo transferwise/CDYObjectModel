@@ -22,4 +22,6 @@
 - (void)clearCredentials;
 - (NSString *)addTokenToPath:(NSString *)path;
 
++ (void)clearCookies;
+
 @end

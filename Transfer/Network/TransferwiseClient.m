@@ -69,14 +69,14 @@ NSString *const kAPIPathBase = @"/api/v1";
     NSString *token = [Credentials accessToken];
     [self.objectModel deleteObject:self.objectModel.currentUser saveAfter:YES];
     [Credentials clearCredentials];
-    [self clearCookies];
+    [TransferwiseClient clearCookies];
 
     RemoveTokenOperation *operation = [[RemoveTokenOperation alloc] initWithToken:token];
     [self setExecutedOperation:operation];
     [operation execute];
 }
 
-- (void)clearCookies {
++ (void)clearCookies {
     NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
     for (NSHTTPCookie *cookie in cookies) {
         NSString *domain = cookie.domain;

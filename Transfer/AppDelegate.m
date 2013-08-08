@@ -15,6 +15,7 @@
 #import "TestFlight.h"
 #import "TransferwiseClient.h"
 #import "ObjectModel+Users.h"
+#import "Credentials.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
