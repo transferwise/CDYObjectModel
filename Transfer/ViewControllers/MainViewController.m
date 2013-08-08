@@ -113,7 +113,7 @@
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     [navigationController setNavigationBarHidden:YES];
 
-    [self presentModalViewController:navigationController animated:animated];
+    [self presentViewController:navigationController animated:animated completion:nil];
 }
 
 - (void)loggedOut {

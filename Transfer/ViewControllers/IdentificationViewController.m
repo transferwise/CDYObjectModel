@@ -131,7 +131,7 @@
     cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
     cameraUI.delegate = self;
 
-    [self presentModalViewController:cameraUI animated:YES];
+    [self presentViewController:cameraUI animated:YES completion:nil];
 }
 
 #pragma mark - UIImagePickerController delegate
@@ -139,7 +139,7 @@
 // For responding to the user tapping Cancel.
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
 
-    [picker dismissModalViewControllerAnimated:YES];
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 // For responding to the user accepting a newly-captured picture or movie
@@ -159,7 +159,7 @@
 
         [self.tableView reloadData];
 
-        [picker dismissModalViewControllerAnimated:YES];
+        [picker dismissViewControllerAnimated:YES completion:nil];
     });
 }
 
