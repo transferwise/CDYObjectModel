@@ -212,8 +212,6 @@ static NSUInteger const kRowYouSend = 0;
             [alertView show];
             return;
         }
-
-        [self.calculator forceCalculate];
     }];
 
     [operation setObjectModel:self.objectModel];
