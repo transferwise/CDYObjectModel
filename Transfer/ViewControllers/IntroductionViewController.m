@@ -172,7 +172,9 @@ static NSUInteger const kRowYouSend = 0;
 
     [self.calculator setObjectModel:self.objectModel];
     [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSources]];
-    [self.calculator forceCalculate];
+    if (!self.dummyPresentation) {
+        [self.calculator forceCalculate];
+    }
 
     [self retrieveCurrencyPairs];
 
