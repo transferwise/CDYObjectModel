@@ -157,6 +157,8 @@
             self.proofOfAddressCell.detailTextLabel.text = @"";
         }
 
+        [self.tableView reloadData];
+
         [picker dismissModalViewControllerAnimated:YES];
     });
 }
