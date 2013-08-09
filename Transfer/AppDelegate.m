@@ -37,9 +37,6 @@
     #endif
 #endif
 
-#if DEV_VERSION
-    [[GAI sharedInstance] setOptOut:YES];
-#endif
 #if DEBUG
     [[GAI sharedInstance] setDebug:YES];
 #endif
@@ -96,7 +93,8 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    [[[GAI sharedInstance] defaultTracker] send:@"event" params:@{@"type": @"AppStarted"}];
+    [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"app_flow" withAction:@"AppStarted" withLabel:TRWEnvironmentTag withValue:nil];
+    [[[GAI sharedInstance] trackerWithTrackingId:@"UA-16492313-3"] sendEventWithCategory:@"app_flow" withAction:@"AppStarted" withLabel:TRWEnvironmentTag withValue:nil];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

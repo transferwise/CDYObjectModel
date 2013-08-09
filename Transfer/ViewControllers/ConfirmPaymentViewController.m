@@ -196,7 +196,9 @@ static NSUInteger const kReceiverSection = 2;
 }
 
 - (IBAction)footerButtonPressed:(id)sender {
-    [[[GAI sharedInstance] defaultTracker] send:@"event" params:@{@"type": @"ConfirmPaymentClicked"}];
+    [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"payment" withAction:@"ConfirmPaymentClicked" withLabel:TRWEnvironmentTag withValue:nil];
+    [[[GAI sharedInstance] trackerWithTrackingId:@"UA-16492313-3"] sendEventWithCategory:@"payment" withAction:@"ConfirmPaymentClicked" withLabel:TRWEnvironmentTag withValue:nil];
+
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
