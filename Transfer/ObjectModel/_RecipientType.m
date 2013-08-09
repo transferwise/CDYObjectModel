@@ -4,6 +4,7 @@
 #import "_RecipientType.h"
 
 const struct RecipientTypeAttributes RecipientTypeAttributes = {
+	.hideFromCreation = @"hideFromCreation",
 	.title = @"title",
 	.type = @"type",
 };
@@ -44,9 +45,40 @@ const struct RecipientTypeFetchedProperties RecipientTypeFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"hideFromCreationValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"hideFromCreation"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
+
+
+
+
+@dynamic hideFromCreation;
+
+
+
+- (BOOL)hideFromCreationValue {
+	NSNumber *result = [self hideFromCreation];
+	return [result boolValue];
+}
+
+- (void)setHideFromCreationValue:(BOOL)value_ {
+	[self setHideFromCreation:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveHideFromCreationValue {
+	NSNumber *result = [self primitiveHideFromCreation];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveHideFromCreationValue:(BOOL)value_ {
+	[self setPrimitiveHideFromCreation:[NSNumber numberWithBool:value_]];
+}
+
 
 
 

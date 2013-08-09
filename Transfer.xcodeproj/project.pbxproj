@@ -35,7 +35,7 @@
 		BBC691271721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911F1721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png */; };
 		BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC691201721416300F0FB1A /* TSAlertViewBackground2.png */; };
 		BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC691211721416300F0FB1A /* TSAlertViewBackground.png */; };
-		BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC691221721416300F0FB1A /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC691221721416300F0FB1A /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -Wno-deprecated-declarations"; }; };
 		BBC6912C172147FC00F0FB1A /* WhyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC6912B172147FC00F0FB1A /* WhyView.xib */; };
 		BBCC6338172169980094EABB /* WhyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC6337172169980094EABB /* WhyView.m */; };
 		EA01331E1765FC7700D63C82 /* RoundedCellBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */; };
@@ -85,7 +85,7 @@
 		EA12405417AA88EC00C9B02B /* MoneyCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */; };
 		EA12405517AA88EC00C9B02B /* TransferCalculationsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */; };
 		EA12405617AA88EC00C9B02B /* CalculationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6256172011C500A96770 /* CalculationResult.m */; };
-		EA12405717AA88EC00C9B02B /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC691221721416300F0FB1A /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EA12405717AA88EC00C9B02B /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC691221721416300F0FB1A /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -Wno-deprecated-declarations"; }; };
 		EA12405817AA88EC00C9B02B /* WhyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC6337172169980094EABB /* WhyView.m */; };
 		EA12405917AA88EC00C9B02B /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
 		EA12405A17AA88EC00C9B02B /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };

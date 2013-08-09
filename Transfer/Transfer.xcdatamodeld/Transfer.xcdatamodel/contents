@@ -99,6 +99,7 @@
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="contacts" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="RecipientType" representedClassName="RecipientType" syncable="YES">
+        <attribute name="hideFromCreation" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="currencies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Currency" inverseName="recipientTypes" inverseEntity="Currency" syncable="YES"/>
@@ -144,7 +145,7 @@
         <element name="PendingPayment" positionX="160" positionY="192" width="128" height="120"/>
         <element name="PersonalProfile" positionX="160" positionY="192" width="128" height="195"/>
         <element name="Recipient" positionX="160" positionY="192" width="128" height="195"/>
-        <element name="RecipientType" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="RecipientType" positionX="160" positionY="192" width="128" height="150"/>
         <element name="RecipientTypeField" positionX="160" positionY="192" width="128" height="210"/>
         <element name="TypeFieldValue" positionX="160" positionY="192" width="128" height="90"/>
         <element name="User" positionX="160" positionY="192" width="128" height="150"/>

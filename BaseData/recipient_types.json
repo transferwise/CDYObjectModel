@@ -2,6 +2,7 @@
     {
         "type": "IBAN",
         "title": "IBAN",
+        "specialCreateTreatment": false,
         "fields": [
             {
                 "name": "IBAN",
@@ -32,6 +33,7 @@
     {
         "type": "SORT_CODE",
         "title": "UK Sort",
+        "specialCreateTreatment": false,
         "fields": [
             {
                 "name": "sortCode",

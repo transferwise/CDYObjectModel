@@ -23,6 +23,8 @@
 #import "Currency.h"
 #import "ObjectModel+CurrencyPairs.h"
 #import "TabBarActivityIndicatorView.h"
+#import "_RecipientType.h"
+#import "RecipientType.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
@@ -101,6 +103,10 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     Recipient *recipient = [self.allRecipients objectAtIndexPath:indexPath];
+
+    if ([recipient.type hideFromCreationValue]) {
+        return;
+    }
 
     if (![self.objectModel canMakePaymentToCurrency:recipient.currency]) {
         TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"payment.controller.currency.payment.error.title", nil)

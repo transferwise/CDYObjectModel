@@ -17,6 +17,8 @@
 #import "UploadMoneyViewController.h"
 #import "ConfirmPaymentViewController.h"
 #import "PaymentDetailsViewController.h"
+#import "Recipient.h"
+#import "RecipientType.h"
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
@@ -100,6 +102,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     Payment *payment = [self.payments objectAtIndexPath:indexPath];
+    if ([payment.recipient.type hideFromCreationValue]) {
+        return;
+    }
+
     if ([payment isSubmitted]) {
         UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
         [controller setPayment:payment];

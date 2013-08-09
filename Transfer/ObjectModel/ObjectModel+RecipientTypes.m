@@ -23,7 +23,7 @@
 }
 
 - (NSArray *)recipientTypesWithCodes:(NSArray *)codes {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type IN %@", codes];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"hideFromCreation = NO AND type IN %@", codes];
     return [self fetchEntitiesNamed:[RecipientType entityName] withPredicate:predicate];
 }
 
@@ -41,6 +41,7 @@
 
     NSDictionary *cleanedData = [data dictionaryByRemovingNullObjects];
     [type setTitle:cleanedData[@"title"]];
+    [type setHideFromCreation:cleanedData[@"specialCreateTreatment"]];
 
     NSArray *fieldsData = cleanedData[@"fields"];
     for (NSDictionary *fData in fieldsData) {

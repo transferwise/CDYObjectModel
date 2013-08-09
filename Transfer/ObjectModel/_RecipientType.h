@@ -5,6 +5,7 @@
 
 
 extern const struct RecipientTypeAttributes {
+	__unsafe_unretained NSString *hideFromCreation;
 	__unsafe_unretained NSString *title;
 	__unsafe_unretained NSString *type;
 } RecipientTypeAttributes;
@@ -27,6 +28,7 @@ extern const struct RecipientTypeFetchedProperties {
 
 
 
+
 @interface RecipientTypeID : NSManagedObjectID {}
 @end
 
@@ -35,6 +37,20 @@ extern const struct RecipientTypeFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (RecipientTypeID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* hideFromCreation;
+
+
+
+@property BOOL hideFromCreationValue;
+- (BOOL)hideFromCreationValue;
+- (void)setHideFromCreationValue:(BOOL)value_;
+
+//- (BOOL)validateHideFromCreation:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -116,6 +132,15 @@ extern const struct RecipientTypeFetchedProperties {
 @end
 
 @interface _RecipientType (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSNumber*)primitiveHideFromCreation;
+- (void)setPrimitiveHideFromCreation:(NSNumber*)value;
+
+- (BOOL)primitiveHideFromCreationValue;
+- (void)setPrimitiveHideFromCreationValue:(BOOL)value_;
+
+
 
 
 - (NSString*)primitiveTitle;
