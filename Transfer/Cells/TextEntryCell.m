@@ -9,6 +9,7 @@
 #import "TextEntryCell.h"
 #import "UIColor+Theme.h"
 #import "NSString+Validation.h"
+#import "TRWAlertView.h"
 
 NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
@@ -19,6 +20,9 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 @property (nonatomic, copy) TRWActionBlock doneButtonAction;
 @property (nonatomic, assign) BOOL valueModified;
 @property (nonatomic, strong) IBOutlet UIButton *errorButton;
+@property (nonatomic, copy) NSString *validationIssue;
+
+- (IBAction)errorButtonTapped;
 
 @end
 
@@ -111,7 +115,18 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 }
 
 - (void)markIssue:(NSString *)issueMessage {
+    [self setValidationIssue:issueMessage];
     [self.errorButton setHidden:!self.valueModified || ![issueMessage hasValue]];
+}
+
+- (IBAction)errorButtonTapped {
+    if (![self.validationIssue hasValue]) {
+        return;
+    }
+
+    TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:[self.titleLabel text] message:self.validationIssue];
+    [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+    [alertView show];
 }
 
 - (void)markTouched {

@@ -59,6 +59,7 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 
 
 - (void)pickerDateChanged {
+    [self markTouched];
     [self presentDate:self.datePicker.date];
 }
 

@@ -82,7 +82,7 @@
 								<string key="NSFrame">{{79, 7}, {201, 30}}</string>
 								<reference key="NSSuperview" ref="1016427110"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="120697626"/>
+								<reference key="NSNextKeyView" ref="960110437"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -111,7 +111,7 @@
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
-							<object class="IBUIButton" id="120697626">
+							<object class="IBUIButton" id="960110437">
 								<reference key="NSNextResponder" ref="1016427110"/>
 								<int key="NSvFlags">-2147483351</int>
 								<string key="NSFrame">{{256, 0}, {44, 44}}</string>
@@ -196,9 +196,18 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">errorButton</string>
 						<reference key="source" ref="970907886"/>
-						<reference key="destination" ref="120697626"/>
+						<reference key="destination" ref="960110437"/>
 					</object>
 					<int key="connectionID">8</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">errorButtonTapped</string>
+						<reference key="source" ref="960110437"/>
+						<reference key="destination" ref="970907886"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">9</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -226,7 +235,7 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="517153584"/>
 							<reference ref="139120115"/>
-							<reference ref="120697626"/>
+							<reference ref="960110437"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -242,7 +251,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">7</int>
-						<reference key="object" ref="120697626"/>
+						<reference key="object" ref="960110437"/>
 						<reference key="parent" ref="970907886"/>
 					</object>
 				</array>
@@ -261,13 +270,24 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">8</int>
+			<int key="maxID">9</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">TextEntryCell</string>
 					<string key="superclassName">UITableViewCell</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">errorButtonTapped</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">errorButtonTapped</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">errorButtonTapped</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="entryField">UITextField</string>
 						<string key="errorButton">UIButton</string>
