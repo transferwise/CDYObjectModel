@@ -196,7 +196,7 @@ static NSUInteger const kReceiverSection = 2;
 }
 
 - (IBAction)footerButtonPressed:(id)sender {
-    [[[GAI sharedInstance] defaultTracker] send:@"ConfirmPaymentClicked" params:@{}];
+    [[[GAI sharedInstance] defaultTracker] send:@"event" params:@{@"type": @"ConfirmPaymentClicked"}];
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];

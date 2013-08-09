@@ -96,7 +96,7 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    [[[GAI sharedInstance] defaultTracker] send:@"AppStarted" params:@{}];
+    [[[GAI sharedInstance] defaultTracker] send:@"event" params:@{@"type": @"AppStarted"}];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
