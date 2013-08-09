@@ -18,6 +18,7 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 @property (nonatomic, strong) IBOutlet UITextField *entryField;
 @property (nonatomic, copy) TRWActionBlock doneButtonAction;
 @property (nonatomic, assign) BOOL valueModified;
+@property (nonatomic, strong) IBOutlet UIButton *errorButton;
 
 @end
 
@@ -110,16 +111,7 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 }
 
 - (void)markIssue:(NSString *)issueMessage {
-    if (![issueMessage hasValue]) {
-        [self.titleLabel setTextColor:[UIColor blackColor]];
-        return;
-    }
-
-    if (!self.valueModified) {
-        return;
-    }
-
-    [self.titleLabel setTextColor:[UIColor redColor]];
+    [self.errorButton setHidden:!self.valueModified || ![issueMessage hasValue]];
 }
 
 - (void)markTouched {

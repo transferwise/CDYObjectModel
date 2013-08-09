@@ -407,6 +407,10 @@
 		EA5929891758CAAC007C0072 /* SignInWithYahooButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5929851758CAAC007C0072 /* SignInWithYahooButton@2x.png */; };
 		EA59298E1758CD6C007C0072 /* OpenIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59298C1758CD6C007C0072 /* OpenIDViewController.m */; };
 		EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */; };
+		EA5F00C417B4BF86008AD1FB /* InputErrorIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5F00C217B4BF86008AD1FB /* InputErrorIndicator.png */; };
+		EA5F00C517B4BF86008AD1FB /* InputErrorIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5F00C217B4BF86008AD1FB /* InputErrorIndicator.png */; };
+		EA5F00C617B4BF86008AD1FB /* InputErrorIndicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5F00C317B4BF86008AD1FB /* InputErrorIndicator@2x.png */; };
+		EA5F00C717B4BF86008AD1FB /* InputErrorIndicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5F00C317B4BF86008AD1FB /* InputErrorIndicator@2x.png */; };
 		EA61557517A69A5A008B6C79 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61557417A69A5A008B6C79 /* Crashlytics.framework */; };
 		EA76D90E175CF80100AE3F86 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */; };
 		EA76D90F175CF80100AE3F86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146B171BC911005B9430 /* UIKit.framework */; };
@@ -801,6 +805,8 @@
 		EA59298B1758CD6C007C0072 /* OpenIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenIDViewController.h; sourceTree = "<group>"; };
 		EA59298C1758CD6C007C0072 /* OpenIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenIDViewController.m; sourceTree = "<group>"; };
 		EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenIDViewController.xib; sourceTree = "<group>"; };
+		EA5F00C217B4BF86008AD1FB /* InputErrorIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InputErrorIndicator.png; sourceTree = "<group>"; };
+		EA5F00C317B4BF86008AD1FB /* InputErrorIndicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InputErrorIndicator@2x.png"; sourceTree = "<group>"; };
 		EA61557417A69A5A008B6C79 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		EA76D90C175CF80100AE3F86 /* TransferTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransferTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -1746,6 +1752,8 @@
 				EA35C73517324AF2005602F7 /* Icon-Small@2x.png */,
 				EA35C73617324AF2005602F7 /* Icon.png */,
 				EA35C73717324AF2005602F7 /* Icon@2x.png */,
+				EA5F00C217B4BF86008AD1FB /* InputErrorIndicator.png */,
+				EA5F00C317B4BF86008AD1FB /* InputErrorIndicator@2x.png */,
 				EA415D3A17A7A0B600E9B56A /* LandingBackground.png */,
 				EA415D3B17A7A0B600E9B56A /* LandingBackground@2x.png */,
 				EA35C73817324AF2005602F7 /* NavBarBackButton.png */,
@@ -2001,6 +2009,8 @@
 				EA12413617AA88EC00C9B02B /* SpinnerLogo.png in Resources */,
 				EA12413717AA88EC00C9B02B /* SpinnerLogo@2x.png in Resources */,
 				EAB2741B17B0E9120078F039 /* SwitchCell.xib in Resources */,
+				EA5F00C517B4BF86008AD1FB /* InputErrorIndicator.png in Resources */,
+				EA5F00C717B4BF86008AD1FB /* InputErrorIndicator@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2112,6 +2122,8 @@
 				EA415D4117A7B19C00E9B56A /* SpinnerLogo.png in Resources */,
 				EA415D4217A7B19C00E9B56A /* SpinnerLogo@2x.png in Resources */,
 				BB7EAE8A17AFE037006A7182 /* SwitchCell.xib in Resources */,
+				EA5F00C417B4BF86008AD1FB /* InputErrorIndicator.png in Resources */,
+				EA5F00C617B4BF86008AD1FB /* InputErrorIndicator@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
