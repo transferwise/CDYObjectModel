@@ -18,6 +18,7 @@
 #import "NetworkErrorCodes.h"
 #import "ObjectModel.h"
 #import "AFNetworkActivityIndicatorManager.h"
+#import "GAI.h"
 
 @interface TransferwiseOperation ()
 
@@ -162,7 +163,7 @@
     }
 
     [request setValue:TRWApplicationKey forHTTPHeaderField:@"Authorization-key"];
-    //TODO jaanus: Also client id (the one from google analytics) should be in header 'Customer-identifier'
+    [request setValue:[[GAI sharedInstance] defaultTracker].clientId forHTTPHeaderField:@"Customer-identifier"];
 }
 
 - (BOOL)isCurrencyPairsOperation {

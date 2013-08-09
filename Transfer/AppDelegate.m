@@ -15,7 +15,7 @@
 #import "TestFlight.h"
 #import "TransferwiseClient.h"
 #import "ObjectModel+Users.h"
-#import "Credentials.h"
+#import "GAI.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -36,6 +36,15 @@
         [TestFlight takeOff:@"4b176dca-177c-48bf-9480-a15001cc9211"];
     #endif
 #endif
+
+#if DEV_VERSION
+    [[GAI sharedInstance] setOptOut:YES];
+#endif
+#if DEBUG
+    [[GAI sharedInstance] setDebug:YES];
+#endif
+
+    [[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
 
     [Crashlytics startWithAPIKey:@"bf6a713619d873c16d74390dc0463c0387c49052"];
 
@@ -83,11 +92,11 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[[GAI sharedInstance] defaultTracker] sendView:@"AppStarted"];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

@@ -19,6 +19,8 @@ NSString *const TRWApplicationKey = @"pfwk97car71rtatr1656zqyatd343dsq";
 NSString *const TRWServerAddress = @"https://transferwise.com";
 #endif
 
+NSString *const TRWGoogleAnalyticsTrackingId = @"UA-16492313-2";
+
 void delayedExecution(CGFloat seconds, TRWActionBlock action) {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC), dispatch_get_main_queue(), action);
 }

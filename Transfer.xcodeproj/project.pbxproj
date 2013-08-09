@@ -411,6 +411,8 @@
 		EA5F00C517B4BF86008AD1FB /* InputErrorIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5F00C217B4BF86008AD1FB /* InputErrorIndicator.png */; };
 		EA5F00C617B4BF86008AD1FB /* InputErrorIndicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5F00C317B4BF86008AD1FB /* InputErrorIndicator@2x.png */; };
 		EA5F00C717B4BF86008AD1FB /* InputErrorIndicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5F00C317B4BF86008AD1FB /* InputErrorIndicator@2x.png */; };
+		EA5F00D017B4DF13008AD1FB /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5F00CF17B4DF13008AD1FB /* libGoogleAnalytics.a */; };
+		EA5F00D117B4DF13008AD1FB /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5F00CF17B4DF13008AD1FB /* libGoogleAnalytics.a */; };
 		EA61557517A69A5A008B6C79 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61557417A69A5A008B6C79 /* Crashlytics.framework */; };
 		EA76D90E175CF80100AE3F86 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */; };
 		EA76D90F175CF80100AE3F86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146B171BC911005B9430 /* UIKit.framework */; };
@@ -807,6 +809,12 @@
 		EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenIDViewController.xib; sourceTree = "<group>"; };
 		EA5F00C217B4BF86008AD1FB /* InputErrorIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InputErrorIndicator.png; sourceTree = "<group>"; };
 		EA5F00C317B4BF86008AD1FB /* InputErrorIndicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InputErrorIndicator@2x.png"; sourceTree = "<group>"; };
+		EA5F00CA17B4DF13008AD1FB /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		EA5F00CB17B4DF13008AD1FB /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		EA5F00CC17B4DF13008AD1FB /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		EA5F00CD17B4DF13008AD1FB /* GAITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransaction.h; sourceTree = "<group>"; };
+		EA5F00CE17B4DF13008AD1FB /* GAITransactionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransactionItem.h; sourceTree = "<group>"; };
+		EA5F00CF17B4DF13008AD1FB /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
 		EA61557417A69A5A008B6C79 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		EA76D90C175CF80100AE3F86 /* TransferTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransferTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -1064,6 +1072,7 @@
 				EA1240D517AA88EC00C9B02B /* CoreData.framework in Frameworks */,
 				EA1240D617AA88EC00C9B02B /* libTestFlight.a in Frameworks */,
 				EA1240D717AA88EC00C9B02B /* Crashlytics.framework in Frameworks */,
+				EA5F00D117B4DF13008AD1FB /* libGoogleAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1097,6 +1106,7 @@
 				EAAA1472171BC911005B9430 /* CoreData.framework in Frameworks */,
 				EAE2347B179D517900D64CF8 /* libTestFlight.a in Frameworks */,
 				EA61557517A69A5A008B6C79 /* Crashlytics.framework in Frameworks */,
+				EA5F00D017B4DF13008AD1FB /* libGoogleAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1274,6 +1284,19 @@
 			path = BaseData;
 			sourceTree = SOURCE_ROOT;
 		};
+		EA5F00C917B4DEFC008AD1FB /* GoogleAnalyticsiOS */ = {
+			isa = PBXGroup;
+			children = (
+				EA5F00CA17B4DF13008AD1FB /* GAI.h */,
+				EA5F00CB17B4DF13008AD1FB /* GAITrackedViewController.h */,
+				EA5F00CC17B4DF13008AD1FB /* GAITracker.h */,
+				EA5F00CD17B4DF13008AD1FB /* GAITransaction.h */,
+				EA5F00CE17B4DF13008AD1FB /* GAITransactionItem.h */,
+				EA5F00CF17B4DF13008AD1FB /* libGoogleAnalytics.a */,
+			);
+			path = GoogleAnalyticsiOS;
+			sourceTree = "<group>";
+		};
 		EA76D911175CF80100AE3F86 /* TransferTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1328,6 +1351,7 @@
 			isa = PBXGroup;
 			children = (
 				EA8FF68D171D221D0090A658 /* AFNetworking */,
+				EA5F00C917B4DEFC008AD1FB /* GoogleAnalyticsiOS */,
 				EA225C44178E96FE009D6B83 /* JCSObjectModel */,
 				EAD7368F171E7A1D00A037B1 /* LockBox */,
 				EA8FF6AE171D237C0090A658 /* MBProgressHUD */,
@@ -2664,6 +2688,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Thirdparty/TestFlightSDK1.2.6\"",
+					"\"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = TransferDev;
@@ -2691,6 +2716,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Thirdparty/TestFlightSDK1.2.6\"",
+					"\"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = TransferDev;
@@ -2813,6 +2839,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Thirdparty/TestFlightSDK1.2.6\"",
+					"\"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2839,6 +2866,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Thirdparty/TestFlightSDK1.2.6\"",
+					"\"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

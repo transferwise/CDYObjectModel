@@ -42,5 +42,6 @@ extern NSString *const TRWLoggedOutNotification;
 extern NSString *const TRWMoveToPaymentsListNotification;
 extern NSString *const TRWApplicationKey;
 extern NSString *const TRWServerAddress;
+extern NSString *const TRWGoogleAnalyticsTrackingId;
 
 void delayedExecution(CGFloat seconds, TRWActionBlock action);

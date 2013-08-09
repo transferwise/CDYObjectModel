@@ -26,6 +26,7 @@
 #import "BusinessProfile.h"
 #import "PersonalProfile.h"
 #import "NSString+Validation.h"
+#import "GAI.h"
 
 static NSUInteger const kTransferSection = 0;
 static NSUInteger const kSenderSection = 1;
@@ -195,6 +196,8 @@ static NSUInteger const kReceiverSection = 2;
 }
 
 - (IBAction)footerButtonPressed:(id)sender {
+    [[[GAI sharedInstance] defaultTracker] send:@"ConfirmPaymentClicked" params:@{}];
+
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
 
