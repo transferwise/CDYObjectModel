@@ -123,7 +123,8 @@ static NSUInteger const kRowYouSend = 0;
 
     [calculator setCalculationHandler:^(CalculationResult *result, NSError *error) {
         if (error) {
-            MCLog(@"Calculation error:%@", error);
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"introduction.calculation.error.title", nil) error:error];
+            [alertView show];
             return;
         }
 
