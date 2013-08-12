@@ -2221,7 +2221,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run bf6a713619d873c16d74390dc0463c0387c49052";
+			shellScript = "./Crashlytics.framework/run 84bc4b5736898e3cfdb50d3d2c162c4f74480862";
 		};
 		EA2B238E17212099001AE9DE /* Version update */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2248,7 +2248,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run bf6a713619d873c16d74390dc0463c0387c49052";
+			shellScript = "./Crashlytics.framework/run 84bc4b5736898e3cfdb50d3d2c162c4f74480862";
 		};
 		EA76D90A175CF80100AE3F86 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2675,6 +2675,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Thirdparty\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
@@ -2707,6 +2708,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Thirdparty\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
@@ -2831,6 +2833,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Thirdparty\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
@@ -2858,6 +2861,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Thirdparty\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";

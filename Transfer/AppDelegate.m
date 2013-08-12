@@ -43,7 +43,7 @@
 
     [[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
 
-    [Crashlytics startWithAPIKey:@"bf6a713619d873c16d74390dc0463c0387c49052"];
+    [Crashlytics startWithAPIKey:@"84bc4b5736898e3cfdb50d3d2c162c4f74480862"];
 
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavigationBar.png"] forBarMetrics:UIBarMetricsDefault];
     UIImage *navBarButton = [UIImage imageNamed:@"NavBarButton.png"];
