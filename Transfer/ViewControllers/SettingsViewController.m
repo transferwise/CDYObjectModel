@@ -21,6 +21,7 @@
 #import "TransferwiseClient.h"
 #import "ObjectModel+Users.h"
 #import "User.h"
+#import "SupportCoordinator.h"
 
 NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
@@ -32,7 +33,8 @@ typedef NS_ENUM(short, SettingsRow) {
     SignUpRow,
     FillerRow,
     LogInRow,
-    ClaimAccountRow
+    ClaimAccountRow,
+    ContactSupport
 };
 
 @interface SettingsViewController ()
@@ -71,6 +73,7 @@ typedef NS_ENUM(short, SettingsRow) {
     NSMutableArray *presented = [NSMutableArray array];
     if ([Credentials userLoggedIn]) {
         [presented addObject:@(UserProfileRow)];
+        [presented addObject:@(ContactSupport)];
         [presented addObject:@(PersonalProfileRow)];
         [presented addObject:@(BusinessProfileRow)];
         if ([Credentials temporaryAccount]) {
@@ -79,6 +82,7 @@ typedef NS_ENUM(short, SettingsRow) {
         [presented addObject:@(FillerRow)];
         [presented addObject:@(LogoutRow)];
     } else {
+        [presented addObject:@(ContactSupport)];
         [presented addObject:@(LogInRow)];
         [presented addObject:@(SignUpRow)];
     }
@@ -135,6 +139,9 @@ typedef NS_ENUM(short, SettingsRow) {
             break;
         case ClaimAccountRow:
             [cell setTitle:NSLocalizedString(@"settings.row.claim.account", nil)];
+            break;
+        case ContactSupport:
+            [cell setTitle:NSLocalizedString(@"settings.row.contact.support", nil)];
             break;
         default:
             [cell setTitle:@"Unknown case..."];
@@ -206,10 +213,14 @@ typedef NS_ENUM(short, SettingsRow) {
             [pushOnNavigationController pushViewController:controller animated:YES];
         }
             break;
-        case ClaimAccountRow:{
+        case ClaimAccountRow: {
             ClaimAccountViewController *controller = [[ClaimAccountViewController alloc] init];
             [revealController revealToggle:nil];
             [pushOnNavigationController pushViewController:controller animated:YES];
+            break;
+        }
+        case ContactSupport: {
+            [[SupportCoordinator sharedInstance] presentOnView:self.view];
             break;
         }
         default:

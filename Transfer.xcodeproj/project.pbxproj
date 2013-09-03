@@ -39,6 +39,8 @@
 		BBC6912C172147FC00F0FB1A /* WhyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC6912B172147FC00F0FB1A /* WhyView.xib */; };
 		BBCC6338172169980094EABB /* WhyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC6337172169980094EABB /* WhyView.m */; };
 		EA01331E1765FC7700D63C82 /* RoundedCellBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */; };
+		EA0253B617D5C89500F54C18 /* SupportCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0253B517D5C89500F54C18 /* SupportCoordinator.m */; };
+		EA0253B717D5C89500F54C18 /* SupportCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0253B517D5C89500F54C18 /* SupportCoordinator.m */; };
 		EA042600173CF5C50048BFBD /* RecipientEntrySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */; };
 		EA042603173CF5E20048BFBD /* RecipientEntrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */; };
 		EA12402B17AA88EC00C9B02B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA1479171BC911005B9430 /* main.m */; };
@@ -634,6 +636,8 @@
 		BBCC6337172169980094EABB /* WhyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhyView.m; sourceTree = "<group>"; };
 		EA01331C1765FC7700D63C82 /* RoundedCellBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedCellBackgroundView.h; sourceTree = "<group>"; };
 		EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedCellBackgroundView.m; sourceTree = "<group>"; };
+		EA0253B417D5C89500F54C18 /* SupportCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportCoordinator.h; sourceTree = "<group>"; };
+		EA0253B517D5C89500F54C18 /* SupportCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportCoordinator.m; sourceTree = "<group>"; };
 		EA0425FE173CF5C50048BFBD /* RecipientEntrySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientEntrySelectionCell.h; sourceTree = "<group>"; };
 		EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientEntrySelectionCell.m; sourceTree = "<group>"; };
 		EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientEntrySelectionCell.xib; sourceTree = "<group>"; };
@@ -1136,6 +1140,15 @@
 			name = TSAlertView;
 			sourceTree = "<group>";
 		};
+		EA0253B217D5C87700F54C18 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				EA0253B417D5C89500F54C18 /* SupportCoordinator.h */,
+				EA0253B517D5C89500F54C18 /* SupportCoordinator.m */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		EA13E02F171BDF050019FBF0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1532,6 +1545,7 @@
 				EA8FF6B5171D25530090A658 /* Network */,
 				EAD3966F171BD1DE00F6D011 /* ObjectModel */,
 				EAD7D4C3171D475E0099063F /* Resources */,
+				EA0253B217D5C87700F54C18 /* Support */,
 				EAAA1474171BC911005B9430 /* Supporting Files */,
 				EAB72162171FDC6700DE29F5 /* Utils */,
 				EAAA148D171BD057005B9430 /* ViewControllers */,
@@ -2445,6 +2459,7 @@
 				EAA07BF217AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */,
 				EAB2741C17B0E9150078F039 /* SwitchCell.m in Sources */,
 				EAE1E3A717B2523200A45623 /* PaymentDetailsViewController.m in Sources */,
+				EA0253B717D5C89500F54C18 /* SupportCoordinator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2626,6 +2641,7 @@
 				EAA07BF117AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */,
 				BB7EAE8E17AFE0DF006A7182 /* SwitchCell.m in Sources */,
 				EAE1E3A317B2519000A45623 /* PaymentDetailsViewController.m in Sources */,
+				EA0253B617D5C89500F54C18 /* SupportCoordinator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2670,8 +2686,8 @@
 		EA12413B17AA88EC00C9B02B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jaanus Siim (7V62BBBL4N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaanus Siim (7V62BBBL4N)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2693,8 +2709,8 @@
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = TransferDev;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "99A7B50D-6AB1-44B8-BB69-3BE5DD01304B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "99A7B50D-6AB1-44B8-BB69-3BE5DD01304B";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

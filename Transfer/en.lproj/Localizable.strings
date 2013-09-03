@@ -211,6 +211,7 @@ A revolution in your pocket.";
 
 "settings.row.business.profile" = "Your business profile";
 "settings.row.claim.account" = "Register account";
+"settings.row.contact.support" = "Contact support";
 "settings.row.log.in" = "Log in";
 "settings.row.logout" = "Sign out";
 "settings.row.logout" = "Sign out";
@@ -292,3 +293,7 @@ A revolution in your pocket.";
 "payment.detail.sent.header.message" = "Payment sent out to recipiet.
 Payment #%@";
 "payment.detail.converting.header.message" = "Waiting for currency to be converted. Payment #%@";
+
+"support.sheet.title" = "If you have questions, please don’t hesitate to contact our support team.";
+"support.sheet.write.message" = "Write a message";
+"support.sheet.call" = "Give us a call";
