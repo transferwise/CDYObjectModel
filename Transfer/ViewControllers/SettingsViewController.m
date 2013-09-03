@@ -220,7 +220,7 @@ typedef NS_ENUM(short, SettingsRow) {
             break;
         }
         case ContactSupport: {
-            [[SupportCoordinator sharedInstance] presentOnView:self.view];
+            [[SupportCoordinator sharedInstance] presentOnController:self];
             break;
         }
         default:

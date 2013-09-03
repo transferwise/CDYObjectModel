@@ -297,3 +297,20 @@ Payment #%@";
 "support.sheet.title" = "If you have questions, please don’t hesitate to contact our support team.";
 "support.sheet.write.message" = "Write a message";
 "support.sheet.call" = "Give us a call";
+
+"support.cant.send.email.message" = "Please check email settings. Sending emails is not enabled on your device.";
+"support.cant.send.email.title" = "Can't send email";
+"support.send.email.error.title" = "Email not sent";
+"support.send.email.error.message" = "Email could not be sent. Please try again later.";
+"support.email.to.name" = "TransferWise Support";
+"support.generic.email.subject" = "I've got a question";
+
+"support.email.message.body.base" = "<body>
+<br />
+<br />
+<br />
+| Info for the support team: |<br />
+| User: <a href='%@'>%@</a> |<br />
+| Device: %@, %@ |<br />
+| Application: v%@ |<br />
+</body>";

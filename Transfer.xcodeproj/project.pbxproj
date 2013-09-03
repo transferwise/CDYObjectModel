@@ -41,6 +41,10 @@
 		EA01331E1765FC7700D63C82 /* RoundedCellBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */; };
 		EA0253B617D5C89500F54C18 /* SupportCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0253B517D5C89500F54C18 /* SupportCoordinator.m */; };
 		EA0253B717D5C89500F54C18 /* SupportCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0253B517D5C89500F54C18 /* SupportCoordinator.m */; };
+		EA0253B917D5D28400F54C18 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0253B817D5D28400F54C18 /* MessageUI.framework */; };
+		EA0253BA17D5D28900F54C18 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0253B817D5D28400F54C18 /* MessageUI.framework */; };
+		EA0253BE17D5E49100F54C18 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0253BD17D5E49100F54C18 /* UIDevice-Hardware.m */; };
+		EA0253BF17D5E49100F54C18 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0253BD17D5E49100F54C18 /* UIDevice-Hardware.m */; };
 		EA042600173CF5C50048BFBD /* RecipientEntrySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */; };
 		EA042603173CF5E20048BFBD /* RecipientEntrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */; };
 		EA12402B17AA88EC00C9B02B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA1479171BC911005B9430 /* main.m */; };
@@ -638,6 +642,9 @@
 		EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedCellBackgroundView.m; sourceTree = "<group>"; };
 		EA0253B417D5C89500F54C18 /* SupportCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportCoordinator.h; sourceTree = "<group>"; };
 		EA0253B517D5C89500F54C18 /* SupportCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportCoordinator.m; sourceTree = "<group>"; };
+		EA0253B817D5D28400F54C18 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		EA0253BC17D5E49100F54C18 /* UIDevice-Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice-Hardware.h"; sourceTree = "<group>"; };
+		EA0253BD17D5E49100F54C18 /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice-Hardware.m"; sourceTree = "<group>"; };
 		EA0425FE173CF5C50048BFBD /* RecipientEntrySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientEntrySelectionCell.h; sourceTree = "<group>"; };
 		EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientEntrySelectionCell.m; sourceTree = "<group>"; };
 		EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientEntrySelectionCell.xib; sourceTree = "<group>"; };
@@ -1062,6 +1069,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA0253B917D5D28400F54C18 /* MessageUI.framework in Frameworks */,
 				EA1240CA17AA88EC00C9B02B /* AddressBook.framework in Frameworks */,
 				EA1240CB17AA88EC00C9B02B /* AddressBookUI.framework in Frameworks */,
 				EA1240CC17AA88EC00C9B02B /* libOHAttributedLabel.a in Frameworks */,
@@ -1111,6 +1119,7 @@
 				EAE2347B179D517900D64CF8 /* libTestFlight.a in Frameworks */,
 				EA61557517A69A5A008B6C79 /* Crashlytics.framework in Frameworks */,
 				EA5F00D017B4DF13008AD1FB /* libGoogleAnalytics.a in Frameworks */,
+				EA0253BA17D5D28900F54C18 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1147,6 +1156,15 @@
 				EA0253B517D5C89500F54C18 /* SupportCoordinator.m */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		EA0253BB17D5E44400F54C18 /* uidevice-extension */ = {
+			isa = PBXGroup;
+			children = (
+				EA0253BC17D5E49100F54C18 /* UIDevice-Hardware.h */,
+				EA0253BD17D5E49100F54C18 /* UIDevice-Hardware.m */,
+			);
+			path = "uidevice-extension";
 			sourceTree = "<group>";
 		};
 		EA13E02F171BDF050019FBF0 /* Views */ = {
@@ -1372,6 +1390,7 @@
 				EA88E65C172F96660021492C /* SWRevealViewController */,
 				EAE23476179D517900D64CF8 /* TestFlightSDK1.2.6 */,
 				BBC6911B1721414300F0FB1A /* TSAlertView */,
+				EA0253BB17D5E44400F54C18 /* uidevice-extension */,
 			);
 			path = Thirdparty;
 			sourceTree = "<group>";
@@ -1515,21 +1534,22 @@
 		EAAA146A171BC911005B9430 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EA61557417A69A5A008B6C79 /* Crashlytics.framework */,
-				BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */,
 				EAD6675C174A565500D29BCB /* AddressBook.framework */,
 				EAD6675D174A565500D29BCB /* AddressBookUI.framework */,
 				EAAA1471171BC911005B9430 /* CoreData.framework */,
 				EAAA146F171BC911005B9430 /* CoreGraphics.framework */,
 				BB92B143172A747300B6F096 /* CoreText.framework */,
+				EA61557417A69A5A008B6C79 /* Crashlytics.framework */,
 				EAAA146D171BC911005B9430 /* Foundation.framework */,
+				9C1FBDCF7CCD414999CC7D3D /* libPods-TransferTests.a */,
 				EAEA626017202D6100A96770 /* libz.dylib */,
+				EA0253B817D5D28400F54C18 /* MessageUI.framework */,
 				EA8FF6AC171D22340090A658 /* MobileCoreServices.framework */,
+				BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */,
 				EAD73693171E7A3200A037B1 /* Security.framework */,
+				EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */,
 				EA8FF6AA171D222E0090A658 /* SystemConfiguration.framework */,
 				EAAA146B171BC911005B9430 /* UIKit.framework */,
-				EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */,
-				9C1FBDCF7CCD414999CC7D3D /* libPods-TransferTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2460,6 +2480,7 @@
 				EAB2741C17B0E9150078F039 /* SwitchCell.m in Sources */,
 				EAE1E3A717B2523200A45623 /* PaymentDetailsViewController.m in Sources */,
 				EA0253B717D5C89500F54C18 /* SupportCoordinator.m in Sources */,
+				EA0253BF17D5E49100F54C18 /* UIDevice-Hardware.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2642,6 +2663,7 @@
 				BB7EAE8E17AFE0DF006A7182 /* SwitchCell.m in Sources */,
 				EAE1E3A317B2519000A45623 /* PaymentDetailsViewController.m in Sources */,
 				EA0253B617D5C89500F54C18 /* SupportCoordinator.m in Sources */,
+				EA0253BE17D5E49100F54C18 /* UIDevice-Hardware.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

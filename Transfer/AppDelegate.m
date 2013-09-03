@@ -16,6 +16,7 @@
 #import "TransferwiseClient.h"
 #import "ObjectModel+Users.h"
 #import "GAI.h"
+#import "SupportCoordinator.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -59,6 +60,7 @@
 
     //TODO jaanus: this does not feel right
     [[TransferwiseClient sharedClient] setObjectModel:model];
+    [[SupportCoordinator sharedInstance] setObjectModel:model];
     
     MainViewController *frontViewController = [[MainViewController alloc] init];
     [frontViewController setObjectModel:model];

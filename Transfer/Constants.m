@@ -21,6 +21,9 @@ NSString *const TRWServerAddress = @"https://transferwise.com";
 NSString *const TRWEnvironmentTag = @"production";
 #endif
 
+NSString *const TRWSupportCallNumber = @"+442081234020";
+NSString *const TRWSupportEmail = @"support@transferwise.com";
+
 NSString *const TRWGoogleAnalyticsTrackingId = @"UA-16492313-2";
 
 void delayedExecution(CGFloat seconds, TRWActionBlock action) {

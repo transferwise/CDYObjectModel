@@ -46,4 +46,7 @@ extern NSString *const TRWGoogleAnalyticsTrackingId;
 
 extern NSString *const TRWEnvironmentTag;
 
+extern NSString *const TRWSupportCallNumber;
+extern NSString *const TRWSupportEmail;
+
 void delayedExecution(CGFloat seconds, TRWActionBlock action);

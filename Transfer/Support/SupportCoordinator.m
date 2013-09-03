@@ -8,11 +8,19 @@
 
 #import "SupportCoordinator.h"
 #import "Constants.h"
+#import "TRWAlertView.h"
+#import "ObjectModel.h"
+#import "ObjectModel+Users.h"
+#import "User.h"
+#import <MessageUI/MFMailComposeViewController.h>
+#import "UIDevice-Hardware.h"
 
-@interface SupportCoordinator () <UIActionSheetDelegate>
+@interface SupportCoordinator () <UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, assign) NSInteger writeButtonIndex;
 @property (nonatomic, assign) NSInteger callButtonIndex;
+@property (nonatomic, weak) UIViewController *presentedOnController;
+@property (nonatomic, copy) NSString *emailSubject;
 
 @end
 
@@ -42,7 +50,14 @@
     return nil;
 }
 
-- (void)presentOnView:(UIView *)view {
+- (void)presentOnController:(UIViewController *)controller {
+    [self presentOnController:controller emailSubject:nil];
+}
+
+- (void)presentOnController:(UIViewController *)controller emailSubject:(NSString *)emailSubject {
+    [self setPresentedOnController:controller];
+    [self setEmailSubject:emailSubject];
+
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"support.sheet.title", nil)
                                                              delegate:self
                                                     cancelButtonTitle:nil
@@ -54,7 +69,7 @@
     NSInteger cancelButtonIndex = [actionSheet addButtonWithTitle:NSLocalizedString(@"button.title.cancel", nil)];
     [actionSheet setCancelButtonIndex:cancelButtonIndex];
 
-    [actionSheet showInView:view];
+    [actionSheet showInView:controller.view];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -66,8 +81,48 @@
     
     if (buttonIndex == self.callButtonIndex) {
         MCLog(@"Call pressed");
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://+442081234020"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", TRWSupportCallNumber]]];
     }
+
+    if (buttonIndex != self.writeButtonIndex) {
+        return;
+    }
+
+    MCLog(@"Send mail pressed");
+
+    if (![MFMailComposeViewController canSendMail]) {
+        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"support.cant.send.email.title", nil)
+                                                           message:NSLocalizedString(@"support.cant.send.email.message", nil)];
+        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+        [alertView show];
+        return;
+    }
+
+    MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+    [controller setMailComposeDelegate:self];
+    [controller setToRecipients:@[[NSString stringWithFormat:@"%@ <%@>", NSLocalizedString(@"support.email.to.name", nil), TRWSupportEmail]]];
+    [controller setSubject:self.emailSubject ? self.emailSubject : NSLocalizedString(@"support.generic.email.subject", nil)];
+    NSString *messageBody = [NSString stringWithFormat:NSLocalizedString(@"support.email.message.body.base", nil),
+                                                       [NSString stringWithFormat:@"https://transferwise.com/admin/search?q=%@", [self.objectModel.currentUser email]], // link to profile
+                                                       [[self.objectModel currentUser] displayName],
+                                                       [[UIDevice currentDevice] platformString],
+                                                       [[UIDevice currentDevice] systemVersion],
+                                                       [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
+    ];
+    [controller setMessageBody:messageBody isHTML:YES];
+    [self.presentedOnController presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    if (error) {
+        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"support.send.email.error.title", nil)
+                                                           message:NSLocalizedString(@"support.send.email.error.message", nil)];
+        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+        [alertView show];
+        return;
+    }
+
+    [self.presentedOnController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

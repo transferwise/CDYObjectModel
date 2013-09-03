@@ -8,10 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class ObjectModel;
+
 @interface SupportCoordinator : NSObject
+
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 + (SupportCoordinator *)sharedInstance;
 
-- (void)presentOnView:(UIView *)view;
+- (void)presentOnController:(UIViewController *)controller;
+- (void)presentOnController:(UIViewController *)controller emailSubject:(NSString *)emailSubject;
 
 @end
