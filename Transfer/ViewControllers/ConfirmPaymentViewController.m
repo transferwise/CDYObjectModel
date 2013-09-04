@@ -46,6 +46,7 @@ static NSUInteger const kReceiverSection = 2;
 @property (nonatomic, strong) NSArray *receiverFieldCells;
 @property (nonatomic, strong) TextEntryCell *referenceCell;
 @property (nonatomic, strong) TextEntryCell *receiverEmailCell;
+@property (nonatomic, strong) ConfirmPaymentCell *contactSupportCell;
 
 @property (nonatomic, strong) IBOutlet OHAttributedLabel *estimatedExchangeRateLabel;
 
@@ -115,7 +116,21 @@ static NSUInteger const kReceiverSection = 2;
         [receiverCells addObject:receiverEmailCell];
     }
 
-    [self setPresentedSectionCells:@[transferCells, senderCells, receiverCells]];
+    NSMutableArray *presented = [NSMutableArray array];
+    [presented addObject:transferCells];
+
+    if (self.showContactSupportCell) {
+        ConfirmPaymentCell *supportCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
+        [self setContactSupportCell:supportCell];
+        [supportCell.textLabel setText:NSLocalizedString(@"support.contact.cell.label", nil)];
+        [supportCell.detailTextLabel setText:@""];
+        [presented addObject:@[supportCell]];
+    }
+
+    [presented addObject:senderCells];
+    [presented addObject:receiverCells];
+
+    [self setPresentedSectionCells:presented];
 
     [self.tableView setTableFooterView:self.footerView];
     [self.footerButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];

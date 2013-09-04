@@ -314,3 +314,6 @@ Payment #%@";
 | Device: %@, %@ |<br />
 | Application: v%@ |<br />
 </body>";
+
+"support.contact.cell.label" = "Contact support";
+"support.email.payment.subject.base" = "About payment #%@";

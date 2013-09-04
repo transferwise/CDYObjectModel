@@ -783,6 +783,7 @@
 		EA35C76E17327973005602F7 /* PaymentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentCell.h; sourceTree = "<group>"; };
 		EA35C76F17327973005602F7 /* PaymentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentCell.m; sourceTree = "<group>"; };
 		EA35C77117327981005602F7 /* PaymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentCell.xib; sourceTree = "<group>"; };
+		EA3B3F9D17D70A840038E282 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 		EA415D3A17A7A0B600E9B56A /* LandingBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingBackground.png; sourceTree = "<group>"; };
 		EA415D3B17A7A0B600E9B56A /* LandingBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LandingBackground@2x.png"; sourceTree = "<group>"; };
 		EA415D3F17A7B19C00E9B56A /* SpinnerLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpinnerLogo.png; sourceTree = "<group>"; };
@@ -1516,6 +1517,7 @@
 				EAAA146A171BC911005B9430 /* Frameworks */,
 				EAAA1469171BC911005B9430 /* Products */,
 				EA8FF68C171D22080090A658 /* Thirdparty */,
+				EA3B3F9D17D70A840038E282 /* Podfile */,
 				B9D5DEC1F8394C87A604EF4F /* Pods-TransferTests.xcconfig */,
 				EA12413E17AA88EC00C9B02B /* TransferDev.plist */,
 			);

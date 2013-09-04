@@ -24,6 +24,8 @@
 #import "ObjectModel+Users.h"
 #import "User.h"
 #import "UITableView+FooterPositioning.h"
+#import "ConfirmPaymentCell.h"
+#import "SupportCoordinator.h"
 
 @interface UploadMoneyViewController ()
 
@@ -58,6 +60,7 @@
     [self.doneButton setTitle:NSLocalizedString(@"upload.money.done.button.title", @"") forState:UIControlStateNormal];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TextCell" bundle:nil] forCellReuseIdentifier:TWTextCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ConfirmPaymentCell" bundle:nil] forCellReuseIdentifier:TWConfirmPaymentCellIdentifier];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -97,7 +100,14 @@
     addressFrame.size.height = 80;
     [addressCell setFrame:addressFrame];
 
-    [self setPresentedSectionCells:@[presentedCells]];
+    if (self.showContactSupportCell) {
+        ConfirmPaymentCell *supportCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
+        [supportCell.textLabel setText:NSLocalizedString(@"support.contact.cell.label", nil)];
+        [supportCell.detailTextLabel setText:@""];
+        [self setPresentedSectionCells:@[presentedCells, @[supportCell]]];
+    } else {
+        [self setPresentedSectionCells:@[presentedCells]];
+    }
 
     [self.tableView reloadData];
     [self.tableView setTableHeaderView:self.headerView];
@@ -124,6 +134,17 @@
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
     }
+}
+
+- (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath {
+    [super tappedCellAtIndexPath:indexPath];
+
+    if (indexPath.section != 1) {
+        return;
+    }
+
+    NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
+    [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 }
 
 @end

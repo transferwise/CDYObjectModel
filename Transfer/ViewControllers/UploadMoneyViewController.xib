@@ -68,8 +68,6 @@
 				<int key="IBUIStyle">1</int>
 				<int key="IBUISeparatorStyle">2</int>
 				<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
-				<bool key="IBUIAllowsSelection">NO</bool>
-				<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
 				<float key="IBUIRowHeight">44</float>
 				<float key="IBUISectionHeaderHeight">1</float>
 				<float key="IBUISectionFooterHeight">1</float>
@@ -167,7 +165,7 @@
 				<string key="NSFrameSize">{320, 43}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
+				<reference key="NSNextKeyView" ref="1018055959"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="1068110883"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -333,6 +331,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">UploadMoneyViewController</string>
 					<string key="superclassName">DataEntryViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">doneBtnClicked:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">doneBtnClicked:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">doneBtnClicked:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="doneButton">BlueButton</string>
 						<string key="footerBottomMessageView">UIView</string>

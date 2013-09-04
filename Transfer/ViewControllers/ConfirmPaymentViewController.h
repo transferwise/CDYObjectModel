@@ -14,6 +14,7 @@
 @class ObjectModel;
 @class Payment;
 @class OHAttributedLabel;
+@class ConfirmPaymentCell;
 
 @interface ConfirmPaymentViewController : DataEntryViewController
 
@@ -21,6 +22,8 @@
 @property (nonatomic, assign) PaymentFlow *paymentFlow;
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, strong) Payment *payment;
+@property (nonatomic, assign) BOOL showContactSupportCell;
+@property (nonatomic, strong, readonly) ConfirmPaymentCell *contactSupportCell;
 
 - (void)fillDeliveryDetails:(OHAttributedLabel *)label;
 - (NSAttributedString *)attributedStringWithBase:(NSString *)baseString markedString:(NSString *)marked;

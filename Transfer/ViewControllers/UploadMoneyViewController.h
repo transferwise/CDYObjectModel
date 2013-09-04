@@ -17,5 +17,6 @@
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, strong) Payment *payment;
 @property (nonatomic, assign) BOOL hideBottomButton;
+@property (nonatomic, assign) BOOL showContactSupportCell;
 
 @end

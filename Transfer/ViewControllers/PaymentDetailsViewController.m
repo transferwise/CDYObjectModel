@@ -12,6 +12,7 @@
 #import "TextEntryCell.h"
 #import "TableHeaderView.h"
 #import "UIView+Loading.h"
+#import "SupportCoordinator.h"
 
 @interface PaymentDetailsViewController ()
 
@@ -94,6 +95,18 @@
     NSString *dateMessageString = [NSString stringWithFormat:NSLocalizedString(@"payment.detail.cancel.date.message", nil), dateString];
     NSAttributedString *paymentDateString = [self attributedStringWithBase:dateMessageString markedString:dateString];
     [label setAttributedText:paymentDateString];
+}
+
+- (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath {
+    [super tappedCellAtIndexPath:indexPath];
+
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    if (![cell isEqual:self.contactSupportCell]) {
+        return;
+    }
+
+    NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
+    [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 }
 
 @end
