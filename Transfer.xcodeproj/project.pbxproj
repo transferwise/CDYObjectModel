@@ -217,7 +217,6 @@
 		EA1240D317AA88EC00C9B02B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146D171BC911005B9430 /* Foundation.framework */; };
 		EA1240D417AA88EC00C9B02B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146F171BC911005B9430 /* CoreGraphics.framework */; };
 		EA1240D517AA88EC00C9B02B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA1471171BC911005B9430 /* CoreData.framework */; };
-		EA1240D617AA88EC00C9B02B /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAE23477179D517900D64CF8 /* libTestFlight.a */; };
 		EA1240D717AA88EC00C9B02B /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61557417A69A5A008B6C79 /* Crashlytics.framework */; };
 		EA1240D917AA88EC00C9B02B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAAA1476171BC911005B9430 /* InfoPlist.strings */; };
 		EA1240DA17AA88EC00C9B02B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAAA148E171BD07E005B9430 /* Localizable.strings */; };
@@ -391,6 +390,8 @@
 		EA35C76C1732790D005602F7 /* PaymentsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76B1732790D005602F7 /* PaymentsOperation.m */; };
 		EA35C77017327973005602F7 /* PaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76F17327973005602F7 /* PaymentCell.m */; };
 		EA35C77217327981005602F7 /* PaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA35C77117327981005602F7 /* PaymentCell.xib */; };
+		EA3B3FA917D7230C0038E282 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA3B3FA317D7230C0038E282 /* libTestFlight.a */; };
+		EA3B3FAC17D723170038E282 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA3B3FA317D7230C0038E282 /* libTestFlight.a */; };
 		EA415D3C17A7A0B600E9B56A /* LandingBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D3A17A7A0B600E9B56A /* LandingBackground.png */; };
 		EA415D3D17A7A0B600E9B56A /* LandingBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D3B17A7A0B600E9B56A /* LandingBackground@2x.png */; };
 		EA415D4117A7B19C00E9B56A /* SpinnerLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D3F17A7B19C00E9B56A /* SpinnerLogo.png */; };
@@ -563,7 +564,6 @@
 		EAD85B0B173920C300C22211 /* PersonalProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */; };
 		EAE1E3A317B2519000A45623 /* PaymentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */; };
 		EAE1E3A717B2523200A45623 /* PaymentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */; };
-		EAE2347B179D517900D64CF8 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAE23477179D517900D64CF8 /* libTestFlight.a */; };
 		EAEA31131738DB8600CCF1A2 /* CheckUnselected.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA310F1738DB8600CCF1A2 /* CheckUnselected.png */; };
 		EAEA31141738DB8600CCF1A2 /* CheckUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31101738DB8600CCF1A2 /* CheckUnselected@2x.png */; };
 		EAEA31151738DB8600CCF1A2 /* CheckSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31111738DB8600CCF1A2 /* CheckSelected.png */; };
@@ -784,6 +784,12 @@
 		EA35C76F17327973005602F7 /* PaymentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentCell.m; sourceTree = "<group>"; };
 		EA35C77117327981005602F7 /* PaymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentCell.xib; sourceTree = "<group>"; };
 		EA3B3F9D17D70A840038E282 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
+		EA3B3FA317D7230C0038E282 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		EA3B3FA417D7230C0038E282 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		EA3B3FA517D7230C0038E282 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		EA3B3FA617D7230C0038E282 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
+		EA3B3FA717D7230C0038E282 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
+		EA3B3FA817D7230C0038E282 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		EA415D3A17A7A0B600E9B56A /* LandingBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingBackground.png; sourceTree = "<group>"; };
 		EA415D3B17A7A0B600E9B56A /* LandingBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LandingBackground@2x.png"; sourceTree = "<group>"; };
 		EA415D3F17A7B19C00E9B56A /* SpinnerLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpinnerLogo.png; sourceTree = "<group>"; };
@@ -1048,10 +1054,6 @@
 		EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileOperation.m; sourceTree = "<group>"; };
 		EAE1E3A117B2519000A45623 /* PaymentDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentDetailsViewController.h; sourceTree = "<group>"; };
 		EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentDetailsViewController.m; sourceTree = "<group>"; };
-		EAE23477179D517900D64CF8 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		EAE23478179D517900D64CF8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		EAE23479179D517900D64CF8 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
-		EAE2347A179D517900D64CF8 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		EAEA310F1738DB8600CCF1A2 /* CheckUnselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckUnselected.png; sourceTree = "<group>"; };
 		EAEA31101738DB8600CCF1A2 /* CheckUnselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckUnselected@2x.png"; sourceTree = "<group>"; };
 		EAEA31111738DB8600CCF1A2 /* CheckSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckSelected.png; sourceTree = "<group>"; };
@@ -1083,9 +1085,9 @@
 				EA1240D317AA88EC00C9B02B /* Foundation.framework in Frameworks */,
 				EA1240D417AA88EC00C9B02B /* CoreGraphics.framework in Frameworks */,
 				EA1240D517AA88EC00C9B02B /* CoreData.framework in Frameworks */,
-				EA1240D617AA88EC00C9B02B /* libTestFlight.a in Frameworks */,
 				EA1240D717AA88EC00C9B02B /* Crashlytics.framework in Frameworks */,
 				EA5F00D117B4DF13008AD1FB /* libGoogleAnalytics.a in Frameworks */,
+				EA3B3FAC17D723170038E282 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1117,10 +1119,10 @@
 				EAAA146E171BC911005B9430 /* Foundation.framework in Frameworks */,
 				EAAA1470171BC911005B9430 /* CoreGraphics.framework in Frameworks */,
 				EAAA1472171BC911005B9430 /* CoreData.framework in Frameworks */,
-				EAE2347B179D517900D64CF8 /* libTestFlight.a in Frameworks */,
 				EA61557517A69A5A008B6C79 /* Crashlytics.framework in Frameworks */,
 				EA5F00D017B4DF13008AD1FB /* libGoogleAnalytics.a in Frameworks */,
 				EA0253BA17D5D28900F54C18 /* MessageUI.framework in Frameworks */,
+				EA3B3FA917D7230C0038E282 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1316,6 +1318,19 @@
 			path = BaseData;
 			sourceTree = SOURCE_ROOT;
 		};
+		EA3B3FA217D7230C0038E282 /* TestFlightSDK2.0.0 */ = {
+			isa = PBXGroup;
+			children = (
+				EA3B3FA317D7230C0038E282 /* libTestFlight.a */,
+				EA3B3FA417D7230C0038E282 /* README.md */,
+				EA3B3FA517D7230C0038E282 /* release_notes.md */,
+				EA3B3FA617D7230C0038E282 /* TestFlight+AsyncLogging.h */,
+				EA3B3FA717D7230C0038E282 /* TestFlight+ManualSessions.h */,
+				EA3B3FA817D7230C0038E282 /* TestFlight.h */,
+			);
+			path = TestFlightSDK2.0.0;
+			sourceTree = "<group>";
+		};
 		EA5F00C917B4DEFC008AD1FB /* GoogleAnalyticsiOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -1389,7 +1404,7 @@
 				EA8FF6AE171D237C0090A658 /* MBProgressHUD */,
 				BB92B13B172A5FFF00B6F096 /* OHAttributedLabel.xcodeproj */,
 				EA88E65C172F96660021492C /* SWRevealViewController */,
-				EAE23476179D517900D64CF8 /* TestFlightSDK1.2.6 */,
+				EA3B3FA217D7230C0038E282 /* TestFlightSDK2.0.0 */,
 				BBC6911B1721414300F0FB1A /* TSAlertView */,
 				EA0253BB17D5E44400F54C18 /* uidevice-extension */,
 			);
@@ -1847,17 +1862,6 @@
 				EAD667C5174F4C7300D29BCB /* TWlogo@2x.png */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		EAE23476179D517900D64CF8 /* TestFlightSDK1.2.6 */ = {
-			isa = PBXGroup;
-			children = (
-				EAE23477179D517900D64CF8 /* libTestFlight.a */,
-				EAE23478179D517900D64CF8 /* README.md */,
-				EAE23479179D517900D64CF8 /* release_notes.md */,
-				EAE2347A179D517900D64CF8 /* TestFlight.h */,
-			);
-			path = TestFlightSDK1.2.6;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2730,6 +2734,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Thirdparty/TestFlightSDK1.2.6\"",
 					"\"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS\"",
+					"\"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = TransferDev;
@@ -2759,6 +2764,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Thirdparty/TestFlightSDK1.2.6\"",
 					"\"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS\"",
+					"\"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = TransferDev;
@@ -2883,6 +2889,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Thirdparty/TestFlightSDK1.2.6\"",
 					"\"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS\"",
+					"\"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2911,6 +2918,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Thirdparty/TestFlightSDK1.2.6\"",
 					"\"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS\"",
+					"\"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
