@@ -51,4 +51,4 @@ extern NSString *const TRWSupportEmail;
 
 void delayedExecution(CGFloat seconds, TRWActionBlock action);
 
-static NSUInteger const TransferwiseAppID = 489969512;
+static NSUInteger const TransferwiseAppID = 612261027;
