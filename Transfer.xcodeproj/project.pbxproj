@@ -2748,7 +2748,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Thirdparty/TestFlightSDK1.2.6\"",
 					"\"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS\"",
 					"\"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0\"",
 				);
@@ -2778,7 +2777,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Thirdparty/TestFlightSDK1.2.6\"",
 					"\"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS\"",
 					"\"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0\"",
 				);
