@@ -22,6 +22,7 @@
 #import "ObjectModel+Users.h"
 #import "User.h"
 #import "SupportCoordinator.h"
+#import "FeedbackCoordinator.h"
 
 NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
@@ -34,7 +35,8 @@ typedef NS_ENUM(short, SettingsRow) {
     FillerRow,
     LogInRow,
     ClaimAccountRow,
-    ContactSupport
+    ContactSupport,
+    SendFeedback
 };
 
 @interface SettingsViewController ()
@@ -74,6 +76,7 @@ typedef NS_ENUM(short, SettingsRow) {
     if ([Credentials userLoggedIn]) {
         [presented addObject:@(UserProfileRow)];
         [presented addObject:@(ContactSupport)];
+        [presented addObject:@(SendFeedback)];
         [presented addObject:@(PersonalProfileRow)];
         [presented addObject:@(BusinessProfileRow)];
         if ([Credentials temporaryAccount]) {
@@ -142,6 +145,9 @@ typedef NS_ENUM(short, SettingsRow) {
             break;
         case ContactSupport:
             [cell setTitle:NSLocalizedString(@"settings.row.contact.support", nil)];
+            break;
+        case SendFeedback:
+            [cell setTitle:NSLocalizedString(@"settings.row.send.feedback", nil)];
             break;
         default:
             [cell setTitle:@"Unknown case..."];
@@ -221,6 +227,10 @@ typedef NS_ENUM(short, SettingsRow) {
         }
         case ContactSupport: {
             [[SupportCoordinator sharedInstance] presentOnController:self];
+            break;
+        }
+        case SendFeedback: {
+            [[FeedbackCoordinator sharedInstance] presentFeedbackAlert];
             break;
         }
         default:

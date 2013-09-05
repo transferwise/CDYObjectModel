@@ -317,3 +317,10 @@ Payment #%@";
 
 "support.contact.cell.label" = "Contact support";
 "support.email.payment.subject.base" = "About payment #%@";
+"settings.row.send.feedback" = "Send feedback";
+
+"feedback.alert.message" = "If you like TransferWise as much as we do, please leave your rating to help spread the revolution.";
+"feedback.alert.title" = "Enjoy using TransferWise?";
+"feedback.alert.button.rate" = "Yes, rate it now!";
+"feedback.alert.button.send.feedback" = "No, send feedback";
+"feedback.alert.button.send.dismiss" = "Dismiss";

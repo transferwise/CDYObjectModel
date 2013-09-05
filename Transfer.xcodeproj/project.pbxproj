@@ -443,6 +443,8 @@
 		EA88E693172F97F50021492C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E692172F97F50021492C /* Constants.m */; };
 		EA88E697172F980A0021492C /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E695172F980A0021492C /* SignUpViewController.m */; };
 		EA88E698172F980A0021492C /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E696172F980A0021492C /* SignUpViewController.xib */; };
+		EA8FC93E17D864F100E13969 /* FeedbackCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FC93D17D864F100E13969 /* FeedbackCoordinator.m */; };
+		EA8FC93F17D864F100E13969 /* FeedbackCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FC93D17D864F100E13969 /* FeedbackCoordinator.m */; };
 		EA8FF682171D19B50090A658 /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF681171D19B50090A658 /* NSString+Validation.m */; };
 		EA8FF685171D1A320090A658 /* NSMutableString+Issues.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */; };
 		EA8FF688171D1B6D0090A658 /* UIApplication+Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF687171D1B6D0090A658 /* UIApplication+Keyboard.m */; };
@@ -871,6 +873,8 @@
 		EA88E694172F980A0021492C /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		EA88E695172F980A0021492C /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		EA88E696172F980A0021492C /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
+		EA8FC93C17D864F100E13969 /* FeedbackCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackCoordinator.h; sourceTree = "<group>"; };
+		EA8FC93D17D864F100E13969 /* FeedbackCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackCoordinator.m; sourceTree = "<group>"; };
 		EA8FF67F171D167C0090A658 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; wrapsLines = 0; };
 		EA8FF680171D19B50090A658 /* NSString+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validation.h"; sourceTree = "<group>"; };
 		EA8FF681171D19B50090A658 /* NSString+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validation.m"; sourceTree = "<group>"; };
@@ -1394,6 +1398,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		EA8FC93A17D864DB00E13969 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				EA8FC93C17D864F100E13969 /* FeedbackCoordinator.h */,
+				EA8FC93D17D864F100E13969 /* FeedbackCoordinator.m */,
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
 		EA8FF68C171D22080090A658 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
@@ -1578,6 +1591,7 @@
 				EA13E033171BE0E50019FBF0 /* Cells */,
 				EA88E658172F963B0021492C /* Credentials */,
 				EA13E041171BEAF00019FBF0 /* Extensions */,
+				EA8FC93A17D864DB00E13969 /* Feedback */,
 				EA88E669172F97B10021492C /* Model */,
 				EA8FF6B5171D25530090A658 /* Network */,
 				EAD3966F171BD1DE00F6D011 /* ObjectModel */,
@@ -2487,6 +2501,7 @@
 				EAE1E3A717B2523200A45623 /* PaymentDetailsViewController.m in Sources */,
 				EA0253B717D5C89500F54C18 /* SupportCoordinator.m in Sources */,
 				EA0253BF17D5E49100F54C18 /* UIDevice-Hardware.m in Sources */,
+				EA8FC93F17D864F100E13969 /* FeedbackCoordinator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2670,6 +2685,7 @@
 				EAE1E3A317B2519000A45623 /* PaymentDetailsViewController.m in Sources */,
 				EA0253B617D5C89500F54C18 /* SupportCoordinator.m in Sources */,
 				EA0253BE17D5E49100F54C18 /* UIDevice-Hardware.m in Sources */,
+				EA8FC93E17D864F100E13969 /* FeedbackCoordinator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
