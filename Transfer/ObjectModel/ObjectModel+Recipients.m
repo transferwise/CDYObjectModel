@@ -101,7 +101,8 @@
     NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
     NSPredicate *notHiddenPredicate = [NSPredicate predicateWithFormat:@"hidden = NO"];
     NSPredicate *currencyPredicate = [NSPredicate predicateWithFormat:@"currency = %@", currency];
-    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notHiddenPredicate, currencyPredicate]];
+    NSPredicate *notSpecialCaseRecipient = [NSPredicate predicateWithFormat:@"type.hideFromCreation = NO"];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notHiddenPredicate, currencyPredicate, notSpecialCaseRecipient]];
     return [self fetchedControllerForEntity:[Recipient entityName] predicate:predicate sortDescriptors:@[nameDescriptor]];
 }
 
