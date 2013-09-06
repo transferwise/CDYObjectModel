@@ -23,6 +23,7 @@ NSString *const TRWEnvironmentTag = @"production";
 
 NSString *const TRWSupportCallNumber = @"+442081234020";
 NSString *const TRWSupportEmail = @"support@transferwise.com";
+NSString *const TRWFeedbackEmail = @"feedback@transferwise.com";
 
 NSString *const TRWGoogleAnalyticsTrackingId = @"UA-16492313-2";
 

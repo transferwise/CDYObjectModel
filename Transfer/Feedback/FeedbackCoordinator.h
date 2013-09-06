@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class ObjectModel;
+
 @interface FeedbackCoordinator : NSObject
+
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 + (FeedbackCoordinator *)sharedInstance;
 

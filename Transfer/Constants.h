@@ -48,6 +48,7 @@ extern NSString *const TRWEnvironmentTag;
 
 extern NSString *const TRWSupportCallNumber;
 extern NSString *const TRWSupportEmail;
+extern NSString *const TRWFeedbackEmail;
 
 void delayedExecution(CGFloat seconds, TRWActionBlock action);
 

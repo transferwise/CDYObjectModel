@@ -324,3 +324,14 @@ Payment #%@";
 "feedback.alert.button.rate" = "Yes, rate it now!";
 "feedback.alert.button.send.feedback" = "No, send feedback";
 "feedback.alert.button.send.dismiss" = "Dismiss";
+
+"feedback.email.subject" = "Feedback on your app";
+"feedback.email.message.body.base" = "<body>
+<br />
+<br />
+<br />
+| <strong>Info for the TransferWise team:</strong> |<br />
+| User: <a href='%@'>%@</a> |<br />
+| Device: %@, %@ |<br />
+| Application: v%@ |<br />
+</body>";
