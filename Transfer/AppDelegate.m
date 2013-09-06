@@ -17,6 +17,7 @@
 #import "ObjectModel+Users.h"
 #import "GAI.h"
 #import "SupportCoordinator.h"
+#import "FeedbackCoordinator.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -61,7 +62,8 @@
     //TODO jaanus: this does not feel right
     [[TransferwiseClient sharedClient] setObjectModel:model];
     [[SupportCoordinator sharedInstance] setObjectModel:model];
-    
+    [[FeedbackCoordinator sharedInstance] setObjectModel:model];
+
     MainViewController *frontViewController = [[MainViewController alloc] init];
     [frontViewController setObjectModel:model];
 
@@ -97,6 +99,10 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"app_flow" withAction:@"AppStarted" withLabel:TRWEnvironmentTag withValue:nil];
     [[[GAI sharedInstance] trackerWithTrackingId:@"UA-16492313-3"] sendEventWithCategory:@"app_flow" withAction:@"AppStarted" withLabel:TRWEnvironmentTag withValue:nil];
+
+    delayedExecution(60 * 2, ^{
+        [[FeedbackCoordinator sharedInstance] presentFeedbackAlert];
+    });
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
