@@ -54,6 +54,9 @@
     UIImage *backButton = [[UIImage imageNamed:@"NavBarBackButton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 5)];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 
+    [[UITabBar appearance] setSelectedImageTintColor:HEXCOLOR(0xE17D23FF)];
+    [[UITabBar appearance] setTintColor:HEXCOLOR(0x003B5AFF)];
+
     ObjectModel *model = [[ObjectModel alloc] init];
     [self setObjectModel:model];
     [model removeAnonymousUser];
