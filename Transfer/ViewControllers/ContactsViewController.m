@@ -40,7 +40,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 - (id)init {
     self = [super initWithNibName:@"ContactsViewController" bundle:nil];
     if (self) {
-        UITabBarItem *barItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"contacts.controller.title", nil) image:[UIImage imageNamed:@"ContactsTabIcon.png"] tag:0];
+        UITabBarItem *barItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"contacts.controller.title", nil) image:[UIImage imageNamed:@"ContactsIcon.png"] tag:0];
         [self setTabBarItem:barItem];
     }
     return self;
