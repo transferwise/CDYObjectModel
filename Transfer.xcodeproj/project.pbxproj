@@ -785,7 +785,6 @@
 		EA35C76E17327973005602F7 /* PaymentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentCell.h; sourceTree = "<group>"; };
 		EA35C76F17327973005602F7 /* PaymentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentCell.m; sourceTree = "<group>"; };
 		EA35C77117327981005602F7 /* PaymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentCell.xib; sourceTree = "<group>"; };
-		EA3B3F9D17D70A840038E282 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 		EA3B3FA317D7230C0038E282 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		EA3B3FA417D7230C0038E282 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		EA3B3FA517D7230C0038E282 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
@@ -1545,7 +1544,6 @@
 				EAAA146A171BC911005B9430 /* Frameworks */,
 				EAAA1469171BC911005B9430 /* Products */,
 				EA8FF68C171D22080090A658 /* Thirdparty */,
-				EA3B3F9D17D70A840038E282 /* Podfile */,
 				B9D5DEC1F8394C87A604EF4F /* Pods-TransferTests.xcconfig */,
 				EA12413E17AA88EC00C9B02B /* TransferDev.plist */,
 			);
