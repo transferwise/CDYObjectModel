@@ -9,12 +9,11 @@
 #import "TabBarActivityIndicatorView.h"
 #import "UIView+Loading.h"
 #import "Constants.h"
-#import "SpinningImageView.h"
 
 @interface TabBarActivityIndicatorView ()
 
 @property (nonatomic, strong) IBOutlet UILabel *messageLabel;
-@property (nonatomic, strong) IBOutlet SpinningImageView *spinner;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *spinner;
 
 @end
 
@@ -26,12 +25,6 @@
         // Initialization code
     }
     return self;
-}
-
-- (void)removeFromSuperview {
-    [super removeFromSuperview];
-
-    [self.spinner stop];
 }
 
 - (void)setMessage:(NSString *)message {
