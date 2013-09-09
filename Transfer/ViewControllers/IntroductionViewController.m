@@ -320,13 +320,9 @@ static NSUInteger const kRowYouSend = 0;
             return;
         }
 
-        TabBarActivityIndicatorView *indicatorView = [TabBarActivityIndicatorView loadInstance];
+        TabBarActivityIndicatorView *indicatorView = [TabBarActivityIndicatorView showHUDOnController:self];
         [self setActivityIndicator:indicatorView];
-        [self.view addSubview:indicatorView];
         [indicatorView setMessage:NSLocalizedString(@"calculation.pending.message", nil)];
-        CGRect indicatorFrame =  indicatorView.frame;
-        indicatorFrame.origin.y = CGRectGetHeight(self.view.frame) - CGRectGetHeight(indicatorFrame);
-        [indicatorView setFrame:indicatorFrame];
     });
 }
 

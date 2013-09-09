@@ -22,11 +22,12 @@
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
-@interface TransactionsViewController () <UIScrollViewDelegate, NSFetchedResultsControllerDelegate>
+@interface TransactionsViewController () <UIScrollViewDelegate, NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) PaymentsOperation *executedOperation;
 @property (nonatomic, strong) IBOutlet UIView *loadingFooterView;
 @property (nonatomic, strong) NSFetchedResultsController *payments;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 
 @end
 

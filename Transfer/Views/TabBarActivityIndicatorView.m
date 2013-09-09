@@ -45,14 +45,11 @@
 
 + (TabBarActivityIndicatorView *)showHUDOnController:(UIViewController *)controller {
     TabBarActivityIndicatorView *indicatorView = [TabBarActivityIndicatorView loadInstance];
-    UITabBarController *tabBarController = controller.tabBarController;
-    MCAssert(tabBarController);
-    CGFloat tabHeight = CGRectGetHeight(tabBarController.tabBar.frame);
 
     CGRect indicatorFrame = indicatorView.frame;
-    indicatorFrame.origin.y = CGRectGetHeight(tabBarController.view.frame) - tabHeight - CGRectGetHeight(indicatorFrame);
+    indicatorFrame.origin.y = CGRectGetHeight(controller.view.frame) - CGRectGetHeight(indicatorFrame);
     [indicatorView setFrame:indicatorFrame];
-    [tabBarController.view addSubview:indicatorView];
+    [controller.view addSubview:indicatorView];
     return indicatorView;
 }
 

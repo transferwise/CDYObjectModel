@@ -11,7 +11,7 @@
 @class ObjectModel;
 @class Recipient;
 
-@interface PaymentViewController : UITableViewController
+@interface PaymentViewController : UIViewController
 
 @property (nonatomic, strong) Recipient *recipient;
 @property (nonatomic, strong) ObjectModel *objectModel;

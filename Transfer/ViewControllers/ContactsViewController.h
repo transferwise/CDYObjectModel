@@ -10,7 +10,7 @@
 
 @class ObjectModel;
 
-@interface ContactsViewController : UITableViewController
+@interface ContactsViewController : UIViewController
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 

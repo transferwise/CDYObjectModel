@@ -28,10 +28,11 @@
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
-@interface ContactsViewController () <NSFetchedResultsControllerDelegate>
+@interface ContactsViewController () <NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) NSFetchedResultsController *allRecipients;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 
 @end
 

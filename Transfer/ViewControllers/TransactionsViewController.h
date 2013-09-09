@@ -10,7 +10,7 @@
 
 @class ObjectModel;
 
-@interface TransactionsViewController : UITableViewController
+@interface TransactionsViewController : UIViewController
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 

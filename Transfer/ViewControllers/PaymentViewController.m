@@ -32,7 +32,7 @@
 
 static NSUInteger const kRowYouSend = 0;
 
-@interface PaymentViewController ()
+@interface PaymentViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) MoneyEntryCell *youSendCell;
 @property (nonatomic, strong) MoneyEntryCell *theyReceiveCell;
@@ -56,6 +56,7 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) PaymentFlow *paymentFlow;
 @property (nonatomic, strong) CurrencyPairsOperation *executedOperation;
 @property (nonatomic, strong) TabBarActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 
 - (IBAction)continuePressed:(id)sender;
 
