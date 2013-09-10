@@ -24,8 +24,8 @@
 
     [self setBackgroundColor:[UIColor clearColor]];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self skinWithImage:[UIImage imageNamed:@"BlueButton.png"] insets:UIEdgeInsetsMake(0, 15, 0, 15)];
-    [self.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+    [self skinWithImage:[UIImage imageNamed:@"GreenButton.png"] insets:UIEdgeInsetsMake(0, 15, 0, 15)];
+    [self.titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
 }
 
 @end

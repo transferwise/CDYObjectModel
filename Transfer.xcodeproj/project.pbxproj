@@ -380,6 +380,10 @@
 		EA31A22F17DDB29B00F937F7 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7EAE8917AFE037006A7182 /* SwitchCell.xib */; };
 		EA31A23017DDB29B00F937F7 /* InputErrorIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5F00C217B4BF86008AD1FB /* InputErrorIndicator.png */; };
 		EA31A23117DDB29B00F937F7 /* InputErrorIndicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5F00C317B4BF86008AD1FB /* InputErrorIndicator@2x.png */; };
+		EA34528917DF03A0005BB4F1 /* GreenButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34528717DF039F005BB4F1 /* GreenButton.png */; };
+		EA34528A17DF03A0005BB4F1 /* GreenButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34528717DF039F005BB4F1 /* GreenButton.png */; };
+		EA34528B17DF03A0005BB4F1 /* GreenButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34528817DF039F005BB4F1 /* GreenButton@2x.png */; };
+		EA34528C17DF03A0005BB4F1 /* GreenButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34528817DF039F005BB4F1 /* GreenButton@2x.png */; };
 		EA35C73A17324AF2005602F7 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73417324AF2005602F7 /* Icon-Small.png */; };
 		EA35C73B17324AF2005602F7 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73517324AF2005602F7 /* Icon-Small@2x.png */; };
 		EA35C73C17324AF2005602F7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73617324AF2005602F7 /* Icon.png */; };
@@ -752,6 +756,8 @@
 		EA31A11B17DDB1CA00F937F7 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
 		EA31A11C17DDB1CA00F937F7 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		EA31A23817DDB29B00F937F7 /* TransferDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransferDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA34528717DF039F005BB4F1 /* GreenButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GreenButton.png; sourceTree = "<group>"; };
+		EA34528817DF039F005BB4F1 /* GreenButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GreenButton@2x.png"; sourceTree = "<group>"; };
 		EA35C73417324AF2005602F7 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
 		EA35C73517324AF2005602F7 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		EA35C73617324AF2005602F7 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -1730,6 +1736,8 @@
 				EAEA311B1738F01600CCF1A2 /* Down@2x.png */,
 				EAD7368B171E6D5A00A037B1 /* GrayButton.png */,
 				EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */,
+				EA34528717DF039F005BB4F1 /* GreenButton.png */,
+				EA34528817DF039F005BB4F1 /* GreenButton@2x.png */,
 				EA35C73417324AF2005602F7 /* Icon-Small.png */,
 				EA35C73517324AF2005602F7 /* Icon-Small@2x.png */,
 				EA35C73617324AF2005602F7 /* Icon.png */,
@@ -1970,6 +1978,8 @@
 				EA31A23117DDB29B00F937F7 /* InputErrorIndicator@2x.png in Resources */,
 				EA0D450117DDDAD200FAD64F /* ContactsIcon.png in Resources */,
 				EA0D450317DDDAD200FAD64F /* ContactsIcon@2x.png in Resources */,
+				EA34528A17DF03A0005BB4F1 /* GreenButton.png in Resources */,
+				EA34528C17DF03A0005BB4F1 /* GreenButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2083,6 +2093,8 @@
 				EA5F00C617B4BF86008AD1FB /* InputErrorIndicator@2x.png in Resources */,
 				EA0D450017DDDAD200FAD64F /* ContactsIcon.png in Resources */,
 				EA0D450217DDDAD200FAD64F /* ContactsIcon@2x.png in Resources */,
+				EA34528917DF03A0005BB4F1 /* GreenButton.png in Resources */,
+				EA34528B17DF03A0005BB4F1 /* GreenButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
