@@ -62,7 +62,7 @@
     SWRevealViewController *revealController = [self revealViewController];
     [self.navigationBar addGestureRecognizer:revealController.panGestureRecognizer];
 
-    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SettingsButtonIcon.png"] style:UIBarButtonItemStylePlain target:revealController action:@selector(revealToggle:)];
+    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuButton.png"] style:UIBarButtonItemStylePlain target:revealController action:@selector(revealToggle:)];
     [tabController.navigationItem setLeftBarButtonItem:settingsButton];
 
     UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];

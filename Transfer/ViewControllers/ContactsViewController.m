@@ -75,7 +75,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
     [self refreshRecipients];
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addContactPressed)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"AddButton.png"] style:UIBarButtonItemStylePlain target:self action:@selector(addContactPressed)];
     [self.tabBarController.navigationItem setRightBarButtonItem:addButton];
 }
 
