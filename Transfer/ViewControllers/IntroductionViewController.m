@@ -91,7 +91,6 @@ static NSUInteger const kRowYouSend = 0;
     [self.theyReceiveCell setEditable:NO];
 
     [self.titleLabel setText:NSLocalizedString(@"introduction.header.title.text", nil)];
-    [self.subTitleLabel setText:NSLocalizedString(@"introduction.header.sub.title.text", nil)];
 
     [self.tableView setTableHeaderView:self.headerView];
     [self.tableView setTableFooterView:self.controlsView];
@@ -163,8 +162,6 @@ static NSUInteger const kRowYouSend = 0;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
 
     UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
     [self.navigationItem setTitleView:logoView];

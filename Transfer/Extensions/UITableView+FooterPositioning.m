@@ -16,14 +16,16 @@
 
 - (void)adjustFooterViewSize:(BOOL)animated {
     CGFloat sizeDiff = self.frame.size.height - self.contentSize.height - 5;
-    if (sizeDiff > 0) {
-        [UIView animateWithDuration:(animated ? 0.3 : 0) animations:^{
-            CGRect footerFrame = self.tableFooterView.frame;
-            footerFrame.size.height += sizeDiff;
-            self.tableFooterView.frame = footerFrame;
-            [self setTableFooterView:self.tableFooterView];
-        }];
+    if (sizeDiff <= 0) {
+        return;
     }
+
+    [UIView animateWithDuration:(animated ? 0.3 : 0) animations:^{
+        CGRect footerFrame = self.tableFooterView.frame;
+        footerFrame.size.height += sizeDiff;
+        self.tableFooterView.frame = footerFrame;
+        [self setTableFooterView:self.tableFooterView];
+    }];
 }
 
 - (void)adjustFooterViewSizeForMinimumHeight:(CGFloat)height {

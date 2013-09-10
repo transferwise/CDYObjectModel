@@ -111,8 +111,6 @@
     [controller setObjectModel:self.objectModel];
 
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-    [navigationController setNavigationBarHidden:YES];
-
     [self presentViewController:navigationController animated:animated completion:nil];
 }
 

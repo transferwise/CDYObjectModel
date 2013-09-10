@@ -87,8 +87,6 @@ static NSUInteger const kTableRowEmail = 0;
     [super viewWillAppear:animated];
 
     [self.navigationItem setTitle:NSLocalizedString(@"login.controller.title", nil)];
-
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 
