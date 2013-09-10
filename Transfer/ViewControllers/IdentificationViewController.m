@@ -86,7 +86,7 @@
 
     PendingPayment *payment = [self.objectModel pendingPayment];
 
-    if ([payment idVerificationRequired]) {
+    if ([payment idVerificationRequiredValue]) {
         TextCell *idDocumentCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
         [self setIdDocumentCell:idDocumentCell];
         [photoCells addObject:idDocumentCell];
@@ -95,7 +95,7 @@
     }
 
 
-    if ([payment addressVerificationRequired]) {
+    if ([payment addressVerificationRequiredValue]) {
         TextCell *proofOfAddressCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
         [self setProofOfAddressCell:proofOfAddressCell];
         [photoCells addObject:proofOfAddressCell];
