@@ -10,6 +10,7 @@
 
 @interface RoundedCellBackgroundView : UIView
 
-@property (nonatomic) UIRectCorner roundedCorner;
+@property (nonatomic, assign) UIRectCorner roundedCorner;
+@property (nonatomic, assign) BOOL fillGradient;
 
 @end

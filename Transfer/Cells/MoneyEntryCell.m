@@ -151,6 +151,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 - (void)setRoundedCorner:(UIRectCorner)corner {
     [self.roundedBackground setRoundedCorner:corner];
     [self.roundedBackground setNeedsDisplay];
+    [self.roundedBackground setFillGradient:YES];
 }
 
 - (void)setCurrencies:(NSFetchedResultsController *)currencies {

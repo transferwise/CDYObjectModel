@@ -392,6 +392,12 @@
 		EA34529617DF05CE005BB4F1 /* MenuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34528F17DF05CC005BB4F1 /* MenuButton.png */; };
 		EA34529717DF05CE005BB4F1 /* MenuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34529017DF05CD005BB4F1 /* MenuButton@2x.png */; };
 		EA34529817DF05CE005BB4F1 /* MenuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34529017DF05CD005BB4F1 /* MenuButton@2x.png */; };
+		EA34529B17DF0A35005BB4F1 /* BackButtonArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34529917DF0A35005BB4F1 /* BackButtonArrow.png */; };
+		EA34529C17DF0A35005BB4F1 /* BackButtonArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34529917DF0A35005BB4F1 /* BackButtonArrow.png */; };
+		EA34529D17DF0A35005BB4F1 /* BackButtonArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34529A17DF0A35005BB4F1 /* BackButtonArrow@2x.png */; };
+		EA34529E17DF0A35005BB4F1 /* BackButtonArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34529A17DF0A35005BB4F1 /* BackButtonArrow@2x.png */; };
+		EA34529F17DF1019005BB4F1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */; };
+		EA3452A017DF102D005BB4F1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */; };
 		EA35C73A17324AF2005602F7 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73417324AF2005602F7 /* Icon-Small.png */; };
 		EA35C73B17324AF2005602F7 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73517324AF2005602F7 /* Icon-Small@2x.png */; };
 		EA35C73C17324AF2005602F7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73617324AF2005602F7 /* Icon.png */; };
@@ -770,6 +776,8 @@
 		EA34528E17DF05CC005BB4F1 /* AddButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddButton@2x.png"; sourceTree = "<group>"; };
 		EA34528F17DF05CC005BB4F1 /* MenuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuButton.png; sourceTree = "<group>"; };
 		EA34529017DF05CD005BB4F1 /* MenuButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuButton@2x.png"; sourceTree = "<group>"; };
+		EA34529917DF0A35005BB4F1 /* BackButtonArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackButtonArrow.png; sourceTree = "<group>"; };
+		EA34529A17DF0A35005BB4F1 /* BackButtonArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BackButtonArrow@2x.png"; sourceTree = "<group>"; };
 		EA35C73417324AF2005602F7 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
 		EA35C73517324AF2005602F7 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		EA35C73617324AF2005602F7 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -1042,6 +1050,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA34529F17DF1019005BB4F1 /* QuartzCore.framework in Frameworks */,
 				EA31A1BF17DDB29B00F937F7 /* AddressBook.framework in Frameworks */,
 				EA31A1C017DDB29B00F937F7 /* AddressBookUI.framework in Frameworks */,
 				EA31A1C117DDB29B00F937F7 /* CoreText.framework in Frameworks */,
@@ -1093,6 +1102,7 @@
 				EA0253BA17D5D28900F54C18 /* MessageUI.framework in Frameworks */,
 				BC92EA001E7D4BE89CF454A0 /* libPods.a in Frameworks */,
 				EA31A11D17DDB1CA00F937F7 /* libTestFlight.a in Frameworks */,
+				EA3452A017DF102D005BB4F1 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1491,6 +1501,7 @@
 				EA61557417A69A5A008B6C79 /* Crashlytics.framework */,
 				EAAA146D171BC911005B9430 /* Foundation.framework */,
 				9C1FBDCF7CCD414999CC7D3D /* libPods-TransferTests.a */,
+				2F2D1DE7BECC4078BB45E6AD /* libPods.a */,
 				EAEA626017202D6100A96770 /* libz.dylib */,
 				EA0253B817D5D28400F54C18 /* MessageUI.framework */,
 				EA8FF6AC171D22340090A658 /* MobileCoreServices.framework */,
@@ -1499,7 +1510,6 @@
 				EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */,
 				EA8FF6AA171D222E0090A658 /* SystemConfiguration.framework */,
 				EAAA146B171BC911005B9430 /* UIKit.framework */,
-				2F2D1DE7BECC4078BB45E6AD /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1735,6 +1745,8 @@
 			children = (
 				EA34528D17DF05CC005BB4F1 /* AddButton.png */,
 				EA34528E17DF05CC005BB4F1 /* AddButton@2x.png */,
+				EA34529917DF0A35005BB4F1 /* BackButtonArrow.png */,
+				EA34529A17DF0A35005BB4F1 /* BackButtonArrow@2x.png */,
 				EAD7D4C8171D4B080099063F /* BlueButton.png */,
 				EAD7D4C9171D4B080099063F /* BlueButton@2x.png */,
 				EAEA31111738DB8600CCF1A2 /* CheckSelected.png */,
@@ -2000,6 +2012,8 @@
 				EA34529417DF05CE005BB4F1 /* AddButton@2x.png in Resources */,
 				EA34529617DF05CE005BB4F1 /* MenuButton.png in Resources */,
 				EA34529817DF05CE005BB4F1 /* MenuButton@2x.png in Resources */,
+				EA34529C17DF0A35005BB4F1 /* BackButtonArrow.png in Resources */,
+				EA34529E17DF0A35005BB4F1 /* BackButtonArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2119,6 +2133,8 @@
 				EA34529317DF05CE005BB4F1 /* AddButton@2x.png in Resources */,
 				EA34529517DF05CE005BB4F1 /* MenuButton.png in Resources */,
 				EA34529717DF05CE005BB4F1 /* MenuButton@2x.png in Resources */,
+				EA34529B17DF0A35005BB4F1 /* BackButtonArrow.png in Resources */,
+				EA34529D17DF0A35005BB4F1 /* BackButtonArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
