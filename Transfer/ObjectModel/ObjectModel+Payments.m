@@ -50,6 +50,7 @@
     [payment setTransferredDate:[NSDate dateFromServerString:data[@"transferredDate"]]];
     [payment setCancelledDate:[NSDate dateFromServerString:data[@"cancelledDate"]]];
     [payment setEstimatedDelivery:[NSDate dateFromServerString:data[@"estimatedDelivery"]]];
+    [payment setEstimatedDeliveryStringFromServer:data[@"formattedEstimatedDelivery"]];
     [payment setSettlementRecipient:[self createOrUpdateSettlementRecipientWithData:data[@"settlementRecipient"]]];
     [payment setConversionRate:data[@"conversionRate"]];
     [payment setPayOut:data[@"payOut"]];

@@ -85,6 +85,10 @@
 }
 
 - (NSString *)paymentDateString {
+    if (self.estimatedDeliveryStringFromServer) {
+        return self.estimatedDeliveryStringFromServer;
+    }
+
     return [[CalculationResult paymentDateFormatter] stringFromDate:self.estimatedDelivery];
 }
 

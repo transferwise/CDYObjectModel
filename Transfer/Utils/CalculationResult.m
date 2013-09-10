@@ -24,6 +24,7 @@
 @property (nonatomic, strong) NSNumber *bankPayOut;
 @property (nonatomic, strong) NSDate *estimatedDelivery;
 @property (nonatomic, strong) NSNumber *transferwiseRefund;
+@property (nonatomic, copy) NSString *formattedEstimatedDelivery;
 
 @end
 
@@ -43,6 +44,7 @@
     [result setBankPayOut:data[@"bankPayOut"]];
     [result setTransferwiseRefund:data[@"transferwiseRefund"]];
     [result setEstimatedDelivery:[NSDate dateFromServerString:data[@"estimatedDelivery"]]];
+    [result setFormattedEstimatedDelivery:data[@"formattedEstimatedDelivery"]];
     return result;
 }
 

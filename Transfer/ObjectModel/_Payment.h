@@ -8,6 +8,7 @@ extern const struct PaymentAttributes {
 	__unsafe_unretained NSString *cancelledDate;
 	__unsafe_unretained NSString *conversionRate;
 	__unsafe_unretained NSString *estimatedDelivery;
+	__unsafe_unretained NSString *estimatedDeliveryStringFromServer;
 	__unsafe_unretained NSString *lastUpdateTime;
 	__unsafe_unretained NSString *payIn;
 	__unsafe_unretained NSString *payOut;
@@ -36,6 +37,7 @@ extern const struct PaymentFetchedProperties {
 @class Currency;
 @class Currency;
 @class User;
+
 
 
 
@@ -93,6 +95,16 @@ extern const struct PaymentFetchedProperties {
 
 
 //- (BOOL)validateEstimatedDelivery:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* estimatedDeliveryStringFromServer;
+
+
+
+//- (BOOL)validateEstimatedDeliveryStringFromServer:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -268,6 +280,12 @@ extern const struct PaymentFetchedProperties {
 
 - (NSDate*)primitiveEstimatedDelivery;
 - (void)setPrimitiveEstimatedDelivery:(NSDate*)value;
+
+
+
+
+- (NSString*)primitiveEstimatedDeliveryStringFromServer;
+- (void)setPrimitiveEstimatedDeliveryStringFromServer:(NSString*)value;
 
 
 

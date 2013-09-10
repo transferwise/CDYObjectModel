@@ -7,6 +7,7 @@ const struct PaymentAttributes PaymentAttributes = {
 	.cancelledDate = @"cancelledDate",
 	.conversionRate = @"conversionRate",
 	.estimatedDelivery = @"estimatedDelivery",
+	.estimatedDeliveryStringFromServer = @"estimatedDeliveryStringFromServer",
 	.lastUpdateTime = @"lastUpdateTime",
 	.payIn = @"payIn",
 	.payOut = @"payOut",
@@ -112,6 +113,13 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 
 
 @dynamic estimatedDelivery;
+
+
+
+
+
+
+@dynamic estimatedDeliveryStringFromServer;
 
 
 
