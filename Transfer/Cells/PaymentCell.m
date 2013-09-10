@@ -9,6 +9,8 @@
 #import "PaymentCell.h"
 #import "Payment.h"
 #import "Recipient.h"
+#import "UIColor+Theme.h"
+#import "Constants.h"
 
 @interface PaymentCell ()
 
@@ -32,6 +34,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 
+    [self.nameLabel setTextColor:HEXCOLOR(0x003B5AFF)];
+    [self.moneyLabel setTextColor:HEXCOLOR(0x003B5AFF)];
+
     [self.statusLabel setTextColor:[UIColor grayColor]];
     [self.timeLabel setTextColor:[UIColor grayColor]];
 }
@@ -53,6 +58,12 @@
     CGRect nameFrame = self.nameLabel.frame;
     nameFrame.size.width -= widthChange;
     [self.nameLabel setFrame:nameFrame];
+
+    if ([payment isCancelled] || [payment moneyTransferred]) {
+        [self.backgroundView setBackgroundColor:[UIColor controllerBackgroundColor]];
+    } else {
+        [self.backgroundView setBackgroundColor:[UIColor whiteColor]];
+    }
 }
 
 @end

@@ -177,7 +177,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         return;
     }
 
-    BOOL footerVisible = CGRectIntersectsRect(self.view.bounds, self.loadingFooterView.frame);
+    BOOL footerVisible = CGRectIntersectsRect(self.tableView.bounds, self.loadingFooterView.frame);
     if (!footerVisible) {
         return;
     }
