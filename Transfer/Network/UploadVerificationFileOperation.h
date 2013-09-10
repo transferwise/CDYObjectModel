@@ -15,6 +15,6 @@ typedef void (^FileUploadBlock)(NSError *error);
 
 @property (nonatomic, copy) FileUploadBlock completionHandler;
 
-+ (id)verifyOperationFor:(NSString *)verification filePath:(NSString *)filePath;
++ (id)verifyOperationFor:(NSString *)verification profile:(NSString *)profile filePath:(NSString *)filePath;
 
 @end

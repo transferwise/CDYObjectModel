@@ -14,15 +14,17 @@ NSString *const kUploadPath = @"/verification/uploadFile";
 @interface UploadVerificationFileOperation ()
 
 @property (nonatomic, copy) NSString *verification;
+@property (nonatomic, copy) NSString *profile;
 @property (nonatomic, copy) NSString *filePath;
 
 @end
 
 @implementation UploadVerificationFileOperation
 
-- (id)initWithVerification:(NSString *)verification filePath:(NSString *)filePath {
+- (id)initWithVerification:(NSString *)verification profile:(NSString *)profile filePath:(NSString *)filePath {
     if (self) {
         _verification = verification;
+        _profile = profile;
         _filePath = filePath;
     }
     return self;
@@ -40,11 +42,11 @@ NSString *const kUploadPath = @"/verification/uploadFile";
         weakSelf.completionHandler(nil);
     }];
 
-    [self postBinaryDataFromFile:self.filePath withName:@"file" usingParams:@{@"verification" : self.verification} toPath:path];
+    [self postBinaryDataFromFile:self.filePath withName:@"file" usingParams:@{@"verification" : self.verification, @"profile": self.profile} toPath:path];
 }
 
-+ (UploadVerificationFileOperation *)verifyOperationFor:(NSString *)verification filePath:(NSString *)filePath {
-    return [[UploadVerificationFileOperation alloc] initWithVerification:verification filePath:filePath];
++ (id)verifyOperationFor:(NSString *)verification profile:(NSString *)profile filePath:(NSString *)filePath {
+    return [[UploadVerificationFileOperation alloc] initWithVerification:verification profile:profile filePath:filePath];
 }
 
 @end

@@ -201,11 +201,11 @@
 
     NSMutableString *issues = [NSMutableString string];
 
-    if ([payment idVerificationRequired] && ![PendingPayment isIdVerificationImagePresent]) {
+    if ([payment idVerificationRequiredValue] && ![PendingPayment isIdVerificationImagePresent]) {
         [issues appendIssue:NSLocalizedString(@"identification.id.image.missing.message", nil)];
     }
 
-    if ([payment addressVerificationRequired] && ![PendingPayment isAddressVerificationImagePresent]) {
+    if ([payment addressVerificationRequiredValue] && ![PendingPayment isAddressVerificationImagePresent]) {
         [issues appendIssue:NSLocalizedString(@"identification.address.image.missing.message", nil)];
     }
 

@@ -395,7 +395,8 @@
 
 - (void)uploadAddressVerification {
     MCLog(@"uploadAddressVerification");
-    UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:@"address" filePath:[PendingPayment addressPhotoPath]];
+    NSString *profile = [self.objectModel pendingPayment].profileUsed;
+    UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:@"address" profile:profile filePath:[PendingPayment addressPhotoPath]];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
 
@@ -420,7 +421,8 @@
 
 - (void)uploadIdVerification {
     MCLog(@"uploadIdVerification");
-    UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:@"id" filePath:[PendingPayment idPhotoPath]];
+    NSString *profile = [self.objectModel pendingPayment].profileUsed;
+    UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:@"id" profile:profile filePath:[PendingPayment idPhotoPath]];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
 
