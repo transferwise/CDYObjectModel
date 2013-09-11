@@ -77,6 +77,8 @@ identity and address";
 "identification.take.photo" = "Take Photo";
 "identification.title" = "Identification";
 "identification.upload.and.continue.button" = "Upload and continue";
+"identification.payment.puprose" = "Payment purpose:";
+"identification.payment.purpose.missing.message" = "Payment purpose not entered";
 
 
 "introduction.currencies.retrieve.error.message" = "Could not retrieve currencies from server";

@@ -13,6 +13,7 @@
 #import "PendingPayment.h"
 #import "ObjectModel+PendingPayments.h"
 #import "Currency.h"
+#import "NSDictionary+Cleanup.h"
 
 NSString *const kVerificationRequiredPath = @"/verification/required";
 
@@ -30,11 +31,14 @@ NSString *const kVerificationRequiredPath = @"/verification/required";
         weakSelf.completionHandler(error);
     }];
 
-    [self setOperationSuccessHandler:^(NSDictionary *response) {
+    [self setOperationSuccessHandler:^(NSDictionary *rawResponse) {
         [weakSelf.workModel performBlock:^{
+            NSDictionary *response = [rawResponse dictionaryByRemovingNullObjects];
             PendingPayment *payment = [weakSelf.workModel pendingPayment];
             [payment setIdVerificationRequiredValue:[response[@"idVerification"] boolValue]];
             [payment setAddressVerificationRequiredValue:[response[@"addressVerification"] boolValue]];
+            [payment setPaymentPurposeRequiredValue:[response[@"paymentsPurposeVerification"] boolValue]];
+            [payment setProposedPaymentsPurpose:response[@"proposedPaymentsPurpose"]];
 
             [weakSelf.workModel saveContext:^{
                 weakSelf.completionHandler(nil);

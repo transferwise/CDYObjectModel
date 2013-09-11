@@ -7,6 +7,9 @@
 extern const struct PendingPaymentAttributes {
 	__unsafe_unretained NSString *addressVerificationRequired;
 	__unsafe_unretained NSString *idVerificationRequired;
+	__unsafe_unretained NSString *paymentPurpose;
+	__unsafe_unretained NSString *paymentPurposeRequired;
+	__unsafe_unretained NSString *proposedPaymentsPurpose;
 	__unsafe_unretained NSString *recipientEmail;
 	__unsafe_unretained NSString *reference;
 	__unsafe_unretained NSString *sendVerificationLater;
@@ -17,6 +20,9 @@ extern const struct PendingPaymentRelationships {
 
 extern const struct PendingPaymentFetchedProperties {
 } PendingPaymentFetchedProperties;
+
+
+
 
 
 
@@ -61,6 +67,40 @@ extern const struct PendingPaymentFetchedProperties {
 - (void)setIdVerificationRequiredValue:(BOOL)value_;
 
 //- (BOOL)validateIdVerificationRequired:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* paymentPurpose;
+
+
+
+//- (BOOL)validatePaymentPurpose:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* paymentPurposeRequired;
+
+
+
+@property BOOL paymentPurposeRequiredValue;
+- (BOOL)paymentPurposeRequiredValue;
+- (void)setPaymentPurposeRequiredValue:(BOOL)value_;
+
+//- (BOOL)validatePaymentPurposeRequired:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* proposedPaymentsPurpose;
+
+
+
+//- (BOOL)validateProposedPaymentsPurpose:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -124,6 +164,27 @@ extern const struct PendingPaymentFetchedProperties {
 
 - (BOOL)primitiveIdVerificationRequiredValue;
 - (void)setPrimitiveIdVerificationRequiredValue:(BOOL)value_;
+
+
+
+
+- (NSString*)primitivePaymentPurpose;
+- (void)setPrimitivePaymentPurpose:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitivePaymentPurposeRequired;
+- (void)setPrimitivePaymentPurposeRequired:(NSNumber*)value;
+
+- (BOOL)primitivePaymentPurposeRequiredValue;
+- (void)setPrimitivePaymentPurposeRequiredValue:(BOOL)value_;
+
+
+
+
+- (NSString*)primitiveProposedPaymentsPurpose;
+- (void)setPrimitiveProposedPaymentsPurpose:(NSString*)value;
 
 
 

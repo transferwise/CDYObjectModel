@@ -18,6 +18,7 @@
 #import "ObjectModel.h"
 #import "PendingPayment.h"
 #import "ObjectModel+PendingPayments.h"
+#import "TextEntryCell.h"
 
 @interface IdentificationViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -34,6 +35,7 @@
 @property (nonatomic, assign) NSInteger selectedRow;
 @property (nonatomic, assign) NSInteger idVerificationRowIndex;
 @property (nonatomic, assign) NSInteger addressVerificationRowIndex;
+@property (nonatomic, strong) TextEntryCell *paymentPurposeCell;
 
 @end
 
@@ -65,6 +67,7 @@
     [self.continueButton setTitle:NSLocalizedString(@"identification.upload.and.continue.button", @"") forState:UIControlStateNormal];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TextCell" bundle:nil] forCellReuseIdentifier:TWTextCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
     [PendingPayment removePossibleImages];
 }
 
@@ -101,6 +104,13 @@
         [photoCells addObject:proofOfAddressCell];
         [proofOfAddressCell configureWithTitle:NSLocalizedString(@"identification.proof.of.address", @"") text:NSLocalizedString(@"identification.take.photo", @"")];
         self.addressVerificationRowIndex = [photoCells count] - 1;
+    }
+
+    if ([payment paymentPurposeRequiredValue]) {
+        TextEntryCell *entryCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+        [self setPaymentPurposeCell:entryCell];
+        [photoCells addObject:entryCell];
+        [entryCell configureWithTitle:NSLocalizedString(@"identification.payment.puprose", nil) value:[payment proposedPaymentsPurpose]];
     }
 
     [self setPresentedSectionCells:@[photoCells]];
@@ -177,6 +187,7 @@
 
     PendingPayment *payment = [self.objectModel pendingPayment];
     [payment setSendVerificationLaterValue:self.skipSwitch.isOn];
+    [payment setPaymentPurpose:[self.paymentPurposeCell.entryField text]];
 
     [self.objectModel saveContext:^{
         TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
@@ -207,6 +218,10 @@
 
     if ([payment addressVerificationRequiredValue] && ![PendingPayment isAddressVerificationImagePresent]) {
         [issues appendIssue:NSLocalizedString(@"identification.address.image.missing.message", nil)];
+    }
+
+    if ([payment paymentPurposeRequiredValue] && ![self.paymentPurposeCell.entryField.text hasValue]) {
+        [issues appendIssue:NSLocalizedString(@"identification.payment.purpose.missing.message", nil)];
     }
 
     return [NSString stringWithString:issues];
