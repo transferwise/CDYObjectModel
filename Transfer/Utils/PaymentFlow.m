@@ -32,6 +32,7 @@
 #import "PendingPayment.h"
 #import "Currency.h"
 #import "Recipient.h"
+#import "PaymentPurposeOperation.h"
 
 @interface PaymentFlow ()
 
@@ -387,10 +388,38 @@
             [self uploadIdVerification];
         } else if (payment.addressVerificationRequiredValue) {
             [self uploadAddressVerification];
+        } else if (payment.paymentPurposeRequiredValue) {
+            [self uploadPaymentPurpose];
         } else {
             [self commitPayment];
         }
     }];
+}
+
+- (void)uploadPaymentPurpose {
+    MCLog(@"uploadPaymentPurpose");
+    PendingPayment *pendingPayment = [self.objectModel pendingPayment];
+    PaymentPurposeOperation *operation = [PaymentPurposeOperation operationWithPurpose:pendingPayment.paymentPurpose forProfile:pendingPayment.profileUsed];
+    [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
+
+    [operation setResultHandler:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                self.paymentErrorHandler(error);
+                return;
+            }
+
+            MCLog(@"uploadPaymentPurpose done");
+            PendingPayment *payment = [self.objectModel pendingPayment];
+            [payment setPaymentPurposeRequiredValue:NO];
+            [self.objectModel saveContext:^{
+                [self uploadNextVerificationData];
+            }];
+        });
+    }];
+
+    [operation execute];
 }
 
 - (void)uploadAddressVerification {
