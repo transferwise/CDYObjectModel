@@ -49,6 +49,7 @@
 #import "PersonalProfileSource.h"
 #import "PersonalProfile.h"
 #import "BusinessProfile.h"
+#import "TransferBackButtonItem.h"
 
 static NSUInteger const kSenderSection = 0;
 static NSUInteger const kImportSection = 1;
@@ -171,7 +172,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     if (self.preLoadRecipientsWithCurrency) {
         [self.currencyCell setEditable:NO];
     }
-    
+
     self.minimumFooterHeight = self.footer.frame.size.height;
 }
 
@@ -186,6 +187,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     if (self.shown) {
         return;
     }
+
+    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }]];
 
     [self presentProfileForSource:self.profileSelectionView.presentedSource];
 
@@ -323,7 +328,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setRecipientType:type];
     [self setRecipientTypeFieldCells:cells];
     [self setPresentedSectionCells:@[self.senderCells, @[self.importCell], self.recipientCells, self.currencyCells, cells]];
-    
+
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:[self.presentedSections count] - 1] withRowAnimation:UITableViewRowAnimationNone];
     [self performSelector:@selector(updateFooterSize) withObject:nil afterDelay:0.5];
 

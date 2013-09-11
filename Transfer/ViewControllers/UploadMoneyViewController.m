@@ -26,6 +26,7 @@
 #import "UITableView+FooterPositioning.h"
 #import "ConfirmPaymentCell.h"
 #import "SupportCoordinator.h"
+#import "TransferBackButtonItem.h"
 
 @interface UploadMoneyViewController ()
 
@@ -69,6 +70,10 @@
     [self loadDataToCells];
 
     [self.navigationController flattenStack];
+
+    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }]];
 }
 
 - (void)loadDataToCells {

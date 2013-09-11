@@ -14,6 +14,7 @@
 #import "NSString+Validation.h"
 #import "ObjectModel.h"
 #import "ObjectModel+RecipientTypes.h"
+#import "TransferBackButtonItem.h"
 
 @interface OpenIDViewController () <UIWebViewDelegate>
 
@@ -50,6 +51,10 @@
     [self.webView loadHTMLString:loadingPageContent baseURL:[[NSBundle mainBundle] bundleURL]];
 
     self.navigationItem.title = self.providerName;
+
+    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }]];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

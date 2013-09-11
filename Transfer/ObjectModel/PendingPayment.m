@@ -33,7 +33,7 @@ NSString *kAddressVerificationImageName = @"~/Documents/addressVerification.jpg"
 }
 
 - (BOOL)isAnyVerificationRequired {
-    return self.idVerificationRequiredValue || self.addressVerificationRequiredValue || self.paymentPurposeRequiredValue || YES;
+    return self.idVerificationRequiredValue || self.addressVerificationRequiredValue || self.paymentPurposeRequiredValue;
 }
 
 + (NSString *)idPhotoPath {

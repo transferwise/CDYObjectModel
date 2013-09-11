@@ -17,6 +17,7 @@
 #import "ClaimAccountOperation.h"
 #import "TRWProgressHUD.h"
 #import "UIApplication+Keyboard.h"
+#import "TransferBackButtonItem.h"
 
 @interface ClaimAccountViewController ()
 
@@ -89,6 +90,10 @@
     [self.emailCell.entryField setText:[Credentials userEmail]];
 
     [self.navigationController flattenStack];
+
+    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }]];
 }
 
 - (IBAction)footerButtonPressed:(id)sender {

@@ -19,6 +19,7 @@
 #import "LoginOperation.h"
 #import "NSError+TRWErrors.h"
 #import "OpenIDViewController.h"
+#import "TransferBackButtonItem.h"
 
 static NSUInteger const kTableRowEmail = 0;
 
@@ -87,6 +88,10 @@ static NSUInteger const kTableRowEmail = 0;
     [super viewWillAppear:animated];
 
     [self.navigationItem setTitle:NSLocalizedString(@"login.controller.title", nil)];
+
+    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }]];
 }
 
 

@@ -108,6 +108,8 @@
 		EA225CD4179015CA009D6B83 /* ObjectModel+Countries.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CD3179015CA009D6B83 /* ObjectModel+Countries.m */; };
 		EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2296C117E04D1B001CF541 /* PaymentPurposeOperation.m */; };
 		EA2296C317E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2296C117E04D1B001CF541 /* PaymentPurposeOperation.m */; };
+		EA2296C617E08027001CF541 /* TransferBackButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2296C517E08027001CF541 /* TransferBackButtonItem.m */; };
+		EA2296C717E08027001CF541 /* TransferBackButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2296C517E08027001CF541 /* TransferBackButtonItem.m */; };
 		EA2379E91793E01A00166361 /* ObjectModel+Users.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2379E81793E01A00166361 /* ObjectModel+Users.m */; };
 		EA2379ED1793E02B00166361 /* _BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2379EC1793E02B00166361 /* _BusinessProfile.m */; };
 		EA2379F01793E02F00166361 /* _PersonalProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2379EF1793E02F00166361 /* _PersonalProfile.m */; };
@@ -751,6 +753,8 @@
 		EA225CD3179015CA009D6B83 /* ObjectModel+Countries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+Countries.m"; sourceTree = "<group>"; };
 		EA2296C017E04D1B001CF541 /* PaymentPurposeOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentPurposeOperation.h; sourceTree = "<group>"; };
 		EA2296C117E04D1B001CF541 /* PaymentPurposeOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentPurposeOperation.m; sourceTree = "<group>"; };
+		EA2296C417E08027001CF541 /* TransferBackButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferBackButtonItem.h; sourceTree = "<group>"; };
+		EA2296C517E08027001CF541 /* TransferBackButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferBackButtonItem.m; sourceTree = "<group>"; };
 		EA2379E71793E01A00166361 /* ObjectModel+Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+Users.h"; sourceTree = "<group>"; };
 		EA2379E81793E01A00166361 /* ObjectModel+Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+Users.m"; sourceTree = "<group>"; };
 		EA2379EB1793E02B00166361 /* _BusinessProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BusinessProfile.h; sourceTree = "<group>"; };
@@ -1172,6 +1176,8 @@
 				EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */,
 				EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */,
 				EA13E045171BED910019FBF0 /* TableHeaderView.xib */,
+				EA2296C417E08027001CF541 /* TransferBackButtonItem.h */,
+				EA2296C517E08027001CF541 /* TransferBackButtonItem.m */,
 				EA8FF689171D1FA50090A658 /* TRWAlertView.h */,
 				EA8FF68A171D1FA50090A658 /* TRWAlertView.m */,
 				EA8FF6B2171D23B20090A658 /* TRWProgressHUD.h */,
@@ -2491,6 +2497,7 @@
 				EA31A1BC17DDB29B00F937F7 /* UIDevice-Hardware.m in Sources */,
 				EA31A1BD17DDB29B00F937F7 /* FeedbackCoordinator.m in Sources */,
 				EA2296C317E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
+				EA2296C717E08027001CF541 /* TransferBackButtonItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2665,6 +2672,7 @@
 				EA0253BE17D5E49100F54C18 /* UIDevice-Hardware.m in Sources */,
 				EA8FC93E17D864F100E13969 /* FeedbackCoordinator.m in Sources */,
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
+				EA2296C617E08027001CF541 /* TransferBackButtonItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

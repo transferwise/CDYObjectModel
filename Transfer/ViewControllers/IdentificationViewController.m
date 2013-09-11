@@ -19,6 +19,7 @@
 #import "PendingPayment.h"
 #import "ObjectModel+PendingPayments.h"
 #import "TextEntryCell.h"
+#import "TransferBackButtonItem.h"
 
 @interface IdentificationViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -82,6 +83,10 @@
     [self.navigationItem setTitle:NSLocalizedString(@"identification.controller.title", nil)];
 
     [self buildCells];
+
+    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }]];
 }
 
 - (void)buildCells {

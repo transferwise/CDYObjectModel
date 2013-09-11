@@ -27,6 +27,7 @@
 #import "PersonalProfile.h"
 #import "NSString+Validation.h"
 #import "GAI.h"
+#import "TransferBackButtonItem.h"
 
 static NSUInteger const kTransferSection = 0;
 static NSUInteger const kSenderSection = 1;
@@ -161,6 +162,10 @@ static NSUInteger const kReceiverSection = 2;
     [self createContent];
     [self fillDataCells];
     [self.tableView reloadData];
+
+    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }]];
 }
 
 - (void)fillDataCells {

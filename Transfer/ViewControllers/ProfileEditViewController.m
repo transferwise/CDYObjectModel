@@ -21,6 +21,7 @@
 #import "ObjectModel+Countries.h"
 #import "QuickProfileValidationOperation.h"
 #import "PersonalProfileSource.h"
+#import "TransferBackButtonItem.h"
 
 static NSUInteger const kButtonSection = 0;
 
@@ -151,6 +152,10 @@ static NSUInteger const kButtonSection = 0;
     if (self.shown) {
         return;
     }
+
+    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }]];
 
     [self.navigationItem setTitle:[self.profileSource editViewTitle]];
 

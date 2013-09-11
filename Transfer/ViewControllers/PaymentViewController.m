@@ -29,6 +29,7 @@
 #import "TabBarActivityIndicatorView.h"
 #import "UIView+Loading.h"
 #import "SwitchCell.h"
+#import "TransferBackButtonItem.h"
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -145,6 +146,12 @@ static NSUInteger const kRowYouSend = 0;
     [self.navigationController setNavigationBarHidden:NO];
 
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
+
+    if (!self.tabBarController) {
+        [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        }]];
+    }
 
     if (_recipient != nil) {
         NSRange range = [_recipient.name rangeOfString:@" "];
