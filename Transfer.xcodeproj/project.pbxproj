@@ -2370,6 +2370,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2C541BABB70E4B6195F5BC1A /* Pods.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jaanus Siim (7V62BBBL4N)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaanus Siim (7V62BBBL4N)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2404,6 +2406,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2C541BABB70E4B6195F5BC1A /* Pods.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jaanus Siim (JE9U597J94)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaanus Siim (JE9U597J94)";
 				FRAMEWORK_SEARCH_PATHS = (
