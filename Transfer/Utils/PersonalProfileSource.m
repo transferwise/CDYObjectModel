@@ -160,7 +160,7 @@ NSUInteger const kUserPersonalSection = 1;
             [self.dateOfBirthCell setDateValue:profile.dateOfBirth];
         }
 
-        self.emailCell.value = profile.email;
+        [self.emailCell setValueWhenEditable:profile.email];
 
         PhoneBookAddress *address = profile.address;
         [self.addressCell setValueWhenEditable:address.street];

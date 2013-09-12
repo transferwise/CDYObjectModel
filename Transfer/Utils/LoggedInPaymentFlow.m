@@ -33,4 +33,15 @@
     [self uploadVerificationData];
 }
 
+- (void)presentFirstPaymentScreen {
+    PendingPayment *payment = [self.objectModel pendingPayment];
+    if (payment.recipient && [payment.user personalProfileFilled]) {
+        [self presentPaymentConfirmation];
+    } else if ([payment.user personalProfileFilled]) {
+        [self presentRecipientDetails:YES];
+    } else {
+        [self presentRecipientDetails:NO];
+    }
+}
+
 @end

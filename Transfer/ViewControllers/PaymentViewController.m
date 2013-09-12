@@ -127,8 +127,6 @@ static NSUInteger const kRowYouSend = 0;
 
     }];
 
-    [self.continueToDetailsButton setTitle:NSLocalizedString(@"payment.controller.continue.to.details.button.title", nil) forState:UIControlStateNormal];
-
     [self.depositTitleLabel setText:NSLocalizedString(@"payment.controller.deposit.label", nil)];
     [self.transferFeeTitleLabel setText:NSLocalizedString(@"payment.controller.transfer.fee.label", nil)];
     [self.transferFeeTitleLabel setTextColor:[UIColor mainTextColor]];
@@ -153,15 +151,17 @@ static NSUInteger const kRowYouSend = 0;
         }]];
     }
 
-    if (_recipient != nil) {
-        NSRange range = [_recipient.name rangeOfString:@" "];
-        NSString *formattedName = _recipient.name;
+    if (self.recipient) {
+        NSRange range = [self.recipient.name rangeOfString:@" "];
+        NSString *formattedName = self.recipient.name;
         if (range.location != NSNotFound) {
-            formattedName = [[_recipient.name substringToIndex:range.location + 2] stringByAppendingString:@"."];
+            formattedName = [[self.recipient.name substringToIndex:range.location + 2] stringByAppendingString:@"."];
         }
         [self.navigationItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"payment.controller.title.with.contact.name", nil), formattedName]];
+        [self.continueToDetailsButton setTitle:NSLocalizedString(@"button.title.continue", nil) forState:UIControlStateNormal];
     } else {
         [self.navigationItem setTitle:NSLocalizedString(@"payment.controller.title", nil)];
+        [self.continueToDetailsButton setTitle:NSLocalizedString(@"payment.controller.continue.to.details.button.title", nil) forState:UIControlStateNormal];
     }
     [self.calculator setObjectModel:self.objectModel];
 
@@ -292,7 +292,7 @@ static NSUInteger const kRowYouSend = 0;
         [paymentFlow setObjectModel:self.objectModel];
 
         [self.objectModel performBlock:^{
-            [paymentFlow presentSenderDetails];
+            [paymentFlow presentFirstPaymentScreen];
         }];
     }];
 }

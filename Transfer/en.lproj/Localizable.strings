@@ -124,7 +124,7 @@ A revolution in your pocket.";
 "payment.change.time.one.year.ago" = "1 year ago";
 "payment.change.time.years.ago" = "%d years ago";
 "payment.controller.calculation.error.title" = "Calculation failed";
-"payment.controller.continue.to.details.button.title" = "Continue to your details";
+"payment.controller.continue.to.details.button.title" = "Continue to recipient details";
 "payment.controller.currency.cost.label" = "Currency cost";
 "payment.controller.currency.payment.error.message" = "Can't make payments to recipients using %@";
 "payment.controller.currency.payment.error.title" = "Can't make payment";
