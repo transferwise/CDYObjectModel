@@ -17,10 +17,6 @@
 		BB29BD49173CD30D0016A6E9 /* UploadMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD48173CD30C0016A6E9 /* UploadMoneyViewController.xib */; };
 		BB29BD4B173CDF480016A6E9 /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD4A173CDF480016A6E9 /* TextCell.xib */; };
 		BB29BD4E173CDF6F0016A6E9 /* TextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29BD4C173CDF6F0016A6E9 /* TextCell.m */; };
-		BB704E741772D4370042F8A9 /* tableTabButtonRight.png in Resources */ = {isa = PBXBuildFile; fileRef = BB704E701772D4370042F8A9 /* tableTabButtonRight.png */; };
-		BB704E751772D4370042F8A9 /* tableTabButtonRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB704E711772D4370042F8A9 /* tableTabButtonRight@2x.png */; };
-		BB704E761772D4370042F8A9 /* tableTabButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BB704E721772D4370042F8A9 /* tableTabButton.png */; };
-		BB704E771772D4370042F8A9 /* tableTabButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB704E731772D4370042F8A9 /* tableTabButton@2x.png */; };
 		BB704E7D177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB704E7C177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m */; };
 		BB7EAE8A17AFE037006A7182 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7EAE8917AFE037006A7182 /* SwitchCell.xib */; };
 		BB7EAE8E17AFE0DF006A7182 /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7EAE8D17AFE0DE006A7182 /* SwitchCell.m */; };
@@ -44,10 +40,6 @@
 		EA0253BE17D5E49100F54C18 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0253BD17D5E49100F54C18 /* UIDevice-Hardware.m */; };
 		EA042600173CF5C50048BFBD /* RecipientEntrySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */; };
 		EA042603173CF5E20048BFBD /* RecipientEntrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */; };
-		EA0D450017DDDAD200FAD64F /* ContactsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0D44FE17DDDAD200FAD64F /* ContactsIcon.png */; };
-		EA0D450117DDDAD200FAD64F /* ContactsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0D44FE17DDDAD200FAD64F /* ContactsIcon.png */; };
-		EA0D450217DDDAD200FAD64F /* ContactsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0D44FF17DDDAD200FAD64F /* ContactsIcon@2x.png */; };
-		EA0D450317DDDAD200FAD64F /* ContactsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0D44FF17DDDAD200FAD64F /* ContactsIcon@2x.png */; };
 		EA13E032171BDF1A0019FBF0 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */; };
 		EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */; };
 		EA13E038171BE12E0019FBF0 /* MoneyEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */; };
@@ -69,8 +61,6 @@
 		EA222E39173A861000C5D613 /* ConfirmPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E37173A861000C5D613 /* ConfirmPaymentViewController.xib */; };
 		EA222E3C173A8A7100C5D613 /* ConfirmPaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E3B173A8A7100C5D613 /* ConfirmPaymentCell.m */; };
 		EA222E3E173A8A7C00C5D613 /* ConfirmPaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E3D173A8A7C00C5D613 /* ConfirmPaymentCell.xib */; };
-		EA222E41173A8D0900C5D613 /* ProfileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA222E3F173A8D0900C5D613 /* ProfileIcon.png */; };
-		EA222E42173A8D0900C5D613 /* ProfileIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA222E40173A8D0900C5D613 /* ProfileIcon@2x.png */; };
 		EA225C47178E96FE009D6B83 /* JCSObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C46178E96FE009D6B83 /* JCSObjectModel.m */; };
 		EA225C67178E9C90009D6B83 /* _Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C66178E9C90009D6B83 /* _Payment.m */; };
 		EA225C6B178E9C93009D6B83 /* Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C6A178E9C93009D6B83 /* Payment.m */; };
@@ -299,17 +289,7 @@
 		EA31A1D817DDB29B00F937F7 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E03E171BE9B00019FBF0 /* LoginViewController.xib */; };
 		EA31A1D917DDB29B00F937F7 /* TableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E045171BED910019FBF0 /* TableHeaderView.xib */; };
 		EA31A1DA17DDB29B00F937F7 /* TextEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */; };
-		EA31A1DB17DDB29B00F937F7 /* NavigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C4171D47BE0099063F /* NavigationBar.png */; };
-		EA31A1DC17DDB29B00F937F7 /* NavigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C5171D47BE0099063F /* NavigationBar@2x.png */; };
-		EA31A1DD17DDB29B00F937F7 /* BlueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C8171D4B080099063F /* BlueButton.png */; };
-		EA31A1DE17DDB29B00F937F7 /* BlueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C9171D4B080099063F /* BlueButton@2x.png */; };
-		EA31A1DF17DDB29B00F937F7 /* GrayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368B171E6D5A00A037B1 /* GrayButton.png */; };
-		EA31A1E017DDB29B00F937F7 /* GrayButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */; };
 		EA31A1E117DDB29B00F937F7 /* RecipientCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD736A3171E85D100A037B1 /* RecipientCell.xib */; };
-		EA31A1E217DDB29B00F937F7 /* NavBarButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72150171FC34600DE29F5 /* NavBarButton.png */; };
-		EA31A1E317DDB29B00F937F7 /* NavBarButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */; };
-		EA31A1E417DDB29B00F937F7 /* SettingsButtonIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */; };
-		EA31A1E517DDB29B00F937F7 /* SettingsButtonIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72155171FC3E900DE29F5 /* SettingsButtonIcon@2x.png */; };
 		EA31A1E617DDB29B00F937F7 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB7215A171FC61B00DE29F5 /* SettingsViewController.xib */; };
 		EA31A1E717DDB29B00F937F7 /* SettingsTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */; };
 		EA31A1E817DDB29B00F937F7 /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911C1721416300F0FB1A /* TSAlertViewMessageListViewShadow.png */; };
@@ -323,100 +303,33 @@
 		EA31A1F017DDB29B00F937F7 /* DateEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E68D172F97E20021492C /* DateEntryCell.xib */; };
 		EA31A1F117DDB29B00F937F7 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E696172F980A0021492C /* SignUpViewController.xib */; };
 		EA31A1F217DDB29B00F937F7 /* PaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA35C77117327981005602F7 /* PaymentCell.xib */; };
-		EA31A1F317DDB29B00F937F7 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73417324AF2005602F7 /* Icon-Small.png */; };
-		EA31A1F417DDB29B00F937F7 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73517324AF2005602F7 /* Icon-Small@2x.png */; };
-		EA31A1F517DDB29B00F937F7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73617324AF2005602F7 /* Icon.png */; };
-		EA31A1F617DDB29B00F937F7 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73717324AF2005602F7 /* Icon@2x.png */; };
-		EA31A1F717DDB29B00F937F7 /* NavBarBackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73817324AF2005602F7 /* NavBarBackButton.png */; };
-		EA31A1F817DDB29B00F937F7 /* NavBarBackButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73917324AF2005602F7 /* NavBarBackButton@2x.png */; };
-		EA31A1F917DDB29B00F937F7 /* SeparatorLine.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C74117324AFE005602F7 /* SeparatorLine.png */; };
-		EA31A1FA17DDB29B00F937F7 /* SeparatorLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */; };
-		EA31A1FD17DDB29B00F937F7 /* NewPaymentTabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F3A1733CA7800B65BF3 /* NewPaymentTabIcon.png */; };
-		EA31A1FE17DDB29B00F937F7 /* NewPaymentTabIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F3B1733CA7800B65BF3 /* NewPaymentTabIcon@2x.png */; };
-		EA31A1FF17DDB29B00F937F7 /* TransactionsTabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F3C1733CA7800B65BF3 /* TransactionsTabIcon.png */; };
-		EA31A20017DDB29B00F937F7 /* TransactionsTabIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F3D1733CA7800B65BF3 /* TransactionsTabIcon@2x.png */; };
 		EA31A20117DDB29B00F937F7 /* RecipientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F4A1733DA1400B65BF3 /* RecipientViewController.xib */; };
 		EA31A20217DDB29B00F937F7 /* CurrencySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */; };
 		EA31A20317DDB29B00F937F7 /* RecipientFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */; };
-		EA31A20417DDB29B00F937F7 /* CheckUnselected.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA310F1738DB8600CCF1A2 /* CheckUnselected.png */; };
-		EA31A20517DDB29B00F937F7 /* CheckUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31101738DB8600CCF1A2 /* CheckUnselected@2x.png */; };
-		EA31A20617DDB29B00F937F7 /* CheckSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31111738DB8600CCF1A2 /* CheckSelected.png */; };
-		EA31A20717DDB29B00F937F7 /* CheckSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31121738DB8600CCF1A2 /* CheckSelected@2x.png */; };
-		EA31A20817DDB29B00F937F7 /* Down.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA311A1738F01600CCF1A2 /* Down.png */; };
-		EA31A20917DDB29B00F937F7 /* Down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA311B1738F01600CCF1A2 /* Down@2x.png */; };
 		EA31A20A17DDB29B00F937F7 /* IdentificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D47902173A3B6E00FC317E /* IdentificationViewController.xib */; };
 		EA31A20B17DDB29B00F937F7 /* ConfirmPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E37173A861000C5D613 /* ConfirmPaymentViewController.xib */; };
 		EA31A20C17DDB29B00F937F7 /* ConfirmPaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E3D173A8A7C00C5D613 /* ConfirmPaymentCell.xib */; };
-		EA31A20D17DDB29B00F937F7 /* ProfileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA222E3F173A8D0900C5D613 /* ProfileIcon.png */; };
-		EA31A20E17DDB29B00F937F7 /* ProfileIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA222E40173A8D0900C5D613 /* ProfileIcon@2x.png */; };
 		EA31A20F17DDB29B00F937F7 /* RecipientEntrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */; };
 		EA31A21017DDB29B00F937F7 /* DropdownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAAC203C17422ADB001DDE7A /* DropdownCell.xib */; };
 		EA31A21117DDB29B00F937F7 /* UploadMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD48173CD30C0016A6E9 /* UploadMoneyViewController.xib */; };
 		EA31A21217DDB29B00F937F7 /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD4A173CDF480016A6E9 /* TextCell.xib */; };
 		EA31A21317DDB29B00F937F7 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD6675A174A51C700D29BCB /* ButtonCell.xib */; };
-		EA31A21417DDB29B00F937F7 /* TWlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD667C4174F4C7200D29BCB /* TWlogo.png */; };
-		EA31A21517DDB29B00F937F7 /* TWlogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD667C5174F4C7300D29BCB /* TWlogo@2x.png */; };
-		EA31A21617DDB29B00F937F7 /* SignInWithGoogleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5929821758CAAC007C0072 /* SignInWithGoogleButton.png */; };
-		EA31A21717DDB29B00F937F7 /* SignInWithGoogleButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5929831758CAAC007C0072 /* SignInWithGoogleButton@2x.png */; };
-		EA31A21817DDB29B00F937F7 /* SignInWithYahooButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5929841758CAAC007C0072 /* SignInWithYahooButton.png */; };
-		EA31A21917DDB29B00F937F7 /* SignInWithYahooButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5929851758CAAC007C0072 /* SignInWithYahooButton@2x.png */; };
 		EA31A21A17DDB29B00F937F7 /* OpenIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */; };
 		EA31A21B17DDB29B00F937F7 /* spinner.html in Resources */ = {isa = PBXBuildFile; fileRef = EAA053FC175E21D400ACD3F6 /* spinner.html */; };
 		EA31A21C17DDB29B00F937F7 /* ClaimAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */; };
-		EA31A21D17DDB29B00F937F7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB93B4C1761D1EF00A7337C /* Default-568h@2x.png */; };
-		EA31A21E17DDB29B00F937F7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB93B4D1761D1EF00A7337C /* Default.png */; };
-		EA31A21F17DDB29B00F937F7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB93B4E1761D1EF00A7337C /* Default@2x.png */; };
 		EA31A22017DDB29B00F937F7 /* ProfileEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */; };
 		EA31A22117DDB29B00F937F7 /* ProfileSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA92D984176AF1F20078D0C4 /* ProfileSelectionView.xib */; };
 		EA31A22217DDB29B00F937F7 /* TransferTypeSelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB9A2EB8176F495600C5E058 /* TransferTypeSelectionCell.xib */; };
-		EA31A22317DDB29B00F937F7 /* tableTabButtonRight.png in Resources */ = {isa = PBXBuildFile; fileRef = BB704E701772D4370042F8A9 /* tableTabButtonRight.png */; };
-		EA31A22417DDB29B00F937F7 /* tableTabButtonRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB704E711772D4370042F8A9 /* tableTabButtonRight@2x.png */; };
-		EA31A22517DDB29B00F937F7 /* tableTabButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BB704E721772D4370042F8A9 /* tableTabButton.png */; };
-		EA31A22617DDB29B00F937F7 /* tableTabButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB704E731772D4370042F8A9 /* tableTabButton@2x.png */; };
 		EA31A22717DDB29B00F937F7 /* TabBarActivityIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA225C74178EA124009D6B83 /* TabBarActivityIndicatorView.xib */; };
 		EA31A22817DDB29B00F937F7 /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = EA225CB7178EEA8A009D6B83 /* currencies.json */; };
 		EA31A22917DDB29B00F937F7 /* currency_pairs.json in Resources */ = {isa = PBXBuildFile; fileRef = EA225CB8178EEA8A009D6B83 /* currency_pairs.json */; };
 		EA31A22A17DDB29B00F937F7 /* recipient_types.json in Resources */ = {isa = PBXBuildFile; fileRef = EA225CB9178EEA8A009D6B83 /* recipient_types.json */; };
-		EA31A22B17DDB29B00F937F7 /* LandingBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D3A17A7A0B600E9B56A /* LandingBackground.png */; };
-		EA31A22C17DDB29B00F937F7 /* LandingBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D3B17A7A0B600E9B56A /* LandingBackground@2x.png */; };
-		EA31A22D17DDB29B00F937F7 /* SpinnerLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D3F17A7B19C00E9B56A /* SpinnerLogo.png */; };
-		EA31A22E17DDB29B00F937F7 /* SpinnerLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D4017A7B19C00E9B56A /* SpinnerLogo@2x.png */; };
 		EA31A22F17DDB29B00F937F7 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7EAE8917AFE037006A7182 /* SwitchCell.xib */; };
-		EA31A23017DDB29B00F937F7 /* InputErrorIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5F00C217B4BF86008AD1FB /* InputErrorIndicator.png */; };
-		EA31A23117DDB29B00F937F7 /* InputErrorIndicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5F00C317B4BF86008AD1FB /* InputErrorIndicator@2x.png */; };
-		EA34528917DF03A0005BB4F1 /* GreenButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34528717DF039F005BB4F1 /* GreenButton.png */; };
-		EA34528A17DF03A0005BB4F1 /* GreenButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34528717DF039F005BB4F1 /* GreenButton.png */; };
-		EA34528B17DF03A0005BB4F1 /* GreenButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34528817DF039F005BB4F1 /* GreenButton@2x.png */; };
-		EA34528C17DF03A0005BB4F1 /* GreenButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34528817DF039F005BB4F1 /* GreenButton@2x.png */; };
-		EA34529117DF05CE005BB4F1 /* AddButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34528D17DF05CC005BB4F1 /* AddButton.png */; };
-		EA34529217DF05CE005BB4F1 /* AddButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34528D17DF05CC005BB4F1 /* AddButton.png */; };
-		EA34529317DF05CE005BB4F1 /* AddButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34528E17DF05CC005BB4F1 /* AddButton@2x.png */; };
-		EA34529417DF05CE005BB4F1 /* AddButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34528E17DF05CC005BB4F1 /* AddButton@2x.png */; };
-		EA34529517DF05CE005BB4F1 /* MenuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34528F17DF05CC005BB4F1 /* MenuButton.png */; };
-		EA34529617DF05CE005BB4F1 /* MenuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34528F17DF05CC005BB4F1 /* MenuButton.png */; };
-		EA34529717DF05CE005BB4F1 /* MenuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34529017DF05CD005BB4F1 /* MenuButton@2x.png */; };
-		EA34529817DF05CE005BB4F1 /* MenuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34529017DF05CD005BB4F1 /* MenuButton@2x.png */; };
-		EA34529B17DF0A35005BB4F1 /* BackButtonArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34529917DF0A35005BB4F1 /* BackButtonArrow.png */; };
-		EA34529C17DF0A35005BB4F1 /* BackButtonArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34529917DF0A35005BB4F1 /* BackButtonArrow.png */; };
-		EA34529D17DF0A35005BB4F1 /* BackButtonArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34529A17DF0A35005BB4F1 /* BackButtonArrow@2x.png */; };
-		EA34529E17DF0A35005BB4F1 /* BackButtonArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA34529A17DF0A35005BB4F1 /* BackButtonArrow@2x.png */; };
 		EA34529F17DF1019005BB4F1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */; };
 		EA3452A017DF102D005BB4F1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */; };
-		EA35C73A17324AF2005602F7 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73417324AF2005602F7 /* Icon-Small.png */; };
-		EA35C73B17324AF2005602F7 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73517324AF2005602F7 /* Icon-Small@2x.png */; };
-		EA35C73C17324AF2005602F7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73617324AF2005602F7 /* Icon.png */; };
-		EA35C73D17324AF2005602F7 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73717324AF2005602F7 /* Icon@2x.png */; };
-		EA35C73E17324AF2005602F7 /* NavBarBackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73817324AF2005602F7 /* NavBarBackButton.png */; };
-		EA35C73F17324AF2005602F7 /* NavBarBackButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C73917324AF2005602F7 /* NavBarBackButton@2x.png */; };
-		EA35C74317324AFE005602F7 /* SeparatorLine.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C74117324AFE005602F7 /* SeparatorLine.png */; };
-		EA35C74417324AFE005602F7 /* SeparatorLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */; };
 		EA35C76C1732790D005602F7 /* PaymentsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76B1732790D005602F7 /* PaymentsOperation.m */; };
 		EA35C77017327973005602F7 /* PaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76F17327973005602F7 /* PaymentCell.m */; };
 		EA35C77217327981005602F7 /* PaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA35C77117327981005602F7 /* PaymentCell.xib */; };
-		EA415D3C17A7A0B600E9B56A /* LandingBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D3A17A7A0B600E9B56A /* LandingBackground.png */; };
-		EA415D3D17A7A0B600E9B56A /* LandingBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D3B17A7A0B600E9B56A /* LandingBackground@2x.png */; };
-		EA415D4117A7B19C00E9B56A /* SpinnerLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D3F17A7B19C00E9B56A /* SpinnerLogo.png */; };
-		EA415D4217A7B19C00E9B56A /* SpinnerLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA415D4017A7B19C00E9B56A /* SpinnerLogo@2x.png */; };
 		EA415D4517A7B2A900E9B56A /* SpinningImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA415D4417A7B2A900E9B56A /* SpinningImageView.m */; };
 		EA416E2B176860EA00904D97 /* ProfileEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E29176860EA00904D97 /* ProfileEditViewController.m */; };
 		EA416E2C176860EA00904D97 /* ProfileEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */; };
@@ -425,20 +338,12 @@
 		EA416E361768675400904D97 /* BusinessProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E351768675400904D97 /* BusinessProfileSource.m */; };
 		EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */; };
 		EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */; };
-		EA567E1F17E199AD007ACBCF /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = EA567E1E17E199AD007ACBCF /* Icon-120.png */; };
-		EA567E2017E199AD007ACBCF /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = EA567E1E17E199AD007ACBCF /* Icon-120.png */; };
 		EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */; };
 		EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */; };
 		EA59297117589F5C007C0072 /* PersonalProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297017589F5C007C0072 /* PersonalProfileCommitter.m */; };
 		EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */; };
-		EA5929861758CAAC007C0072 /* SignInWithGoogleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5929821758CAAC007C0072 /* SignInWithGoogleButton.png */; };
-		EA5929871758CAAC007C0072 /* SignInWithGoogleButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5929831758CAAC007C0072 /* SignInWithGoogleButton@2x.png */; };
-		EA5929881758CAAC007C0072 /* SignInWithYahooButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5929841758CAAC007C0072 /* SignInWithYahooButton.png */; };
-		EA5929891758CAAC007C0072 /* SignInWithYahooButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5929851758CAAC007C0072 /* SignInWithYahooButton@2x.png */; };
 		EA59298E1758CD6C007C0072 /* OpenIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59298C1758CD6C007C0072 /* OpenIDViewController.m */; };
 		EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */; };
-		EA5F00C417B4BF86008AD1FB /* InputErrorIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5F00C217B4BF86008AD1FB /* InputErrorIndicator.png */; };
-		EA5F00C617B4BF86008AD1FB /* InputErrorIndicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5F00C317B4BF86008AD1FB /* InputErrorIndicator@2x.png */; };
 		EA5F00D017B4DF13008AD1FB /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5F00CF17B4DF13008AD1FB /* libGoogleAnalytics.a */; };
 		EA61557517A69A5A008B6C79 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61557417A69A5A008B6C79 /* Crashlytics.framework */; };
 		EA76D90E175CF80100AE3F86 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */; };
@@ -485,10 +390,6 @@
 		EAA053EC175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053EB175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m */; };
 		EAA053FD175E21D400ACD3F6 /* spinner.html in Resources */ = {isa = PBXBuildFile; fileRef = EAA053FC175E21D400ACD3F6 /* spinner.html */; };
 		EAA07BF117AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA07BF017AF750A004B97AC /* QuickProfileValidationOperation.m */; };
-		EAA54F421733CA7800B65BF3 /* NewPaymentTabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F3A1733CA7800B65BF3 /* NewPaymentTabIcon.png */; };
-		EAA54F431733CA7800B65BF3 /* NewPaymentTabIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F3B1733CA7800B65BF3 /* NewPaymentTabIcon@2x.png */; };
-		EAA54F441733CA7800B65BF3 /* TransactionsTabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F3C1733CA7800B65BF3 /* TransactionsTabIcon.png */; };
-		EAA54F451733CA7800B65BF3 /* TransactionsTabIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F3D1733CA7800B65BF3 /* TransactionsTabIcon@2x.png */; };
 		EAA54F4B1733DA1400B65BF3 /* RecipientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F491733DA1400B65BF3 /* RecipientViewController.m */; };
 		EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F4A1733DA1400B65BF3 /* RecipientViewController.xib */; };
 		EAA54F501733DC3500B65BF3 /* CurrenciesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F4F1733DC3500B65BF3 /* CurrenciesOperation.m */; };
@@ -511,19 +412,12 @@
 		EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAAC203C17422ADB001DDE7A /* DropdownCell.xib */; };
 		EAAF8FB017436730008DF9E2 /* CreatePaymentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAF8FAF17436730008DF9E2 /* CreatePaymentOperation.m */; };
 		EAAF8FB81743B3E4008DF9E2 /* MoneyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAF8FB71743B3E4008DF9E2 /* MoneyFormatter.m */; };
-		EAB72152171FC34600DE29F5 /* NavBarButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72150171FC34600DE29F5 /* NavBarButton.png */; };
-		EAB72153171FC34600DE29F5 /* NavBarButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */; };
-		EAB72156171FC3E900DE29F5 /* SettingsButtonIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */; };
-		EAB72157171FC3E900DE29F5 /* SettingsButtonIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB72155171FC3E900DE29F5 /* SettingsButtonIcon@2x.png */; };
 		EAB7215B171FC61B00DE29F5 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB72159171FC61B00DE29F5 /* SettingsViewController.m */; };
 		EAB7215C171FC61B00DE29F5 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB7215A171FC61B00DE29F5 /* SettingsViewController.xib */; };
 		EAB7215F171FCAAC00DE29F5 /* SettingsTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB7215E171FCAAC00DE29F5 /* SettingsTitleCell.m */; };
 		EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */; };
 		EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */; };
 		EAB93B481761C74700A7337C /* ClaimAccountOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB93B471761C74700A7337C /* ClaimAccountOperation.m */; };
-		EAB93B4F1761D1EF00A7337C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB93B4C1761D1EF00A7337C /* Default-568h@2x.png */; };
-		EAB93B501761D1EF00A7337C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB93B4D1761D1EF00A7337C /* Default.png */; };
-		EAB93B511761D1EF00A7337C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB93B4E1761D1EF00A7337C /* Default@2x.png */; };
 		EAC1051A17607C4600B3B018 /* ClaimAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */; };
 		EAC1051B17607C4600B3B018 /* ClaimAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */; };
 		EACF7640175C71B4008F2A03 /* RecipientProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */; };
@@ -531,8 +425,8 @@
 		EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */; };
 		EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069091737CF57007C8DEE /* RecipientOperation.m */; };
 		EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */; };
-		EAD3646317E1E054001EFE40 /* NavigationBar7.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD3646217E1E054001EFE40 /* NavigationBar7.png */; };
-		EAD3646417E1E054001EFE40 /* NavigationBar7.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD3646217E1E054001EFE40 /* NavigationBar7.png */; };
+		EAD3646617E1E19A001EFE40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD3646517E1E19A001EFE40 /* Assets.xcassets */; };
+		EAD3646717E1E19A001EFE40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD3646517E1E19A001EFE40 /* Assets.xcassets */; };
 		EAD39672171BD2A300F6D011 /* ObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39671171BD2A300F6D011 /* ObjectModel.m */; };
 		EAD39676171BD4EE00F6D011 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39674171BD4EE00F6D011 /* MainViewController.m */; };
 		EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39675171BD4EE00F6D011 /* MainViewController.xib */; };
@@ -551,31 +445,17 @@
 		EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66780174CB34600D29BCB /* PhoneBookProfile.m */; };
 		EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */; };
 		EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */; };
-		EAD667C6174F4C7300D29BCB /* TWlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD667C4174F4C7200D29BCB /* TWlogo.png */; };
-		EAD667C7174F4C7300D29BCB /* TWlogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD667C5174F4C7300D29BCB /* TWlogo@2x.png */; };
 		EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */; };
 		EAD7368A171E6CB100A037B1 /* GrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD73689171E6CB100A037B1 /* GrayButton.m */; };
-		EAD7368D171E6D5A00A037B1 /* GrayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368B171E6D5A00A037B1 /* GrayButton.png */; };
-		EAD7368E171E6D5A00A037B1 /* GrayButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */; };
 		EAD73694171E7A3200A037B1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD73693171E7A3200A037B1 /* Security.framework */; };
 		EAD736A2171E85C300A037B1 /* RecipientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD736A1171E85C300A037B1 /* RecipientCell.m */; };
 		EAD736A4171E85D100A037B1 /* RecipientCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD736A3171E85D100A037B1 /* RecipientCell.xib */; };
 		EAD736A7171E87ED00A037B1 /* UserRecipientsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD736A6171E87ED00A037B1 /* UserRecipientsOperation.m */; };
 		EAD7D4C2171D43440099063F /* NSDictionary+SensibleData.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */; };
-		EAD7D4C6171D47BE0099063F /* NavigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C4171D47BE0099063F /* NavigationBar.png */; };
-		EAD7D4C7171D47BE0099063F /* NavigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C5171D47BE0099063F /* NavigationBar@2x.png */; };
-		EAD7D4CA171D4B080099063F /* BlueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C8171D4B080099063F /* BlueButton.png */; };
-		EAD7D4CB171D4B080099063F /* BlueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD7D4C9171D4B080099063F /* BlueButton@2x.png */; };
 		EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */; };
 		EAD7D4D1171D4BB20099063F /* BlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4D0171D4BB20099063F /* BlueButton.m */; };
 		EAD85B0B173920C300C22211 /* PersonalProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */; };
 		EAE1E3A317B2519000A45623 /* PaymentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */; };
-		EAEA31131738DB8600CCF1A2 /* CheckUnselected.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA310F1738DB8600CCF1A2 /* CheckUnselected.png */; };
-		EAEA31141738DB8600CCF1A2 /* CheckUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31101738DB8600CCF1A2 /* CheckUnselected@2x.png */; };
-		EAEA31151738DB8600CCF1A2 /* CheckSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31111738DB8600CCF1A2 /* CheckSelected.png */; };
-		EAEA31161738DB8600CCF1A2 /* CheckSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA31121738DB8600CCF1A2 /* CheckSelected@2x.png */; };
-		EAEA311C1738F01600CCF1A2 /* Down.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA311A1738F01600CCF1A2 /* Down.png */; };
-		EAEA311D1738F01600CCF1A2 /* Down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEA311B1738F01600CCF1A2 /* Down@2x.png */; };
 		EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */; };
 		EAEA6257172011C500A96770 /* CalculationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6256172011C500A96770 /* CalculationResult.m */; };
 		EAEA626117202D6100A96770 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EAEA626017202D6100A96770 /* libz.dylib */; };
@@ -611,10 +491,6 @@
 		BB29BD4A173CDF480016A6E9 /* TextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextCell.xib; sourceTree = "<group>"; };
 		BB29BD4C173CDF6F0016A6E9 /* TextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextCell.m; sourceTree = "<group>"; };
 		BB29BD4D173CDF6F0016A6E9 /* TextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextCell.h; sourceTree = "<group>"; };
-		BB704E701772D4370042F8A9 /* tableTabButtonRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableTabButtonRight.png; sourceTree = "<group>"; };
-		BB704E711772D4370042F8A9 /* tableTabButtonRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableTabButtonRight@2x.png"; sourceTree = "<group>"; };
-		BB704E721772D4370042F8A9 /* tableTabButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableTabButton.png; sourceTree = "<group>"; };
-		BB704E731772D4370042F8A9 /* tableTabButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableTabButton@2x.png"; sourceTree = "<group>"; };
 		BB704E7B177300C30042F8A9 /* RoundedCellWhiteBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedCellWhiteBackgroundView.h; sourceTree = "<group>"; };
 		BB704E7C177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedCellWhiteBackgroundView.m; sourceTree = "<group>"; };
 		BB7EAE8917AFE037006A7182 /* SwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
@@ -648,8 +524,6 @@
 		EA0425FE173CF5C50048BFBD /* RecipientEntrySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientEntrySelectionCell.h; sourceTree = "<group>"; };
 		EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientEntrySelectionCell.m; sourceTree = "<group>"; };
 		EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientEntrySelectionCell.xib; sourceTree = "<group>"; };
-		EA0D44FE17DDDAD200FAD64F /* ContactsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContactsIcon.png; sourceTree = "<group>"; };
-		EA0D44FF17DDDAD200FAD64F /* ContactsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ContactsIcon@2x.png"; sourceTree = "<group>"; };
 		EA12413E17AA88EC00C9B02B /* TransferDev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = TransferDev.plist; path = "/Users/jaanus/projects/mc-transfer-ios/TransferDev.plist"; sourceTree = "<absolute>"; };
 		EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
 		EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
@@ -687,8 +561,6 @@
 		EA222E3A173A8A7100C5D613 /* ConfirmPaymentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmPaymentCell.h; sourceTree = "<group>"; };
 		EA222E3B173A8A7100C5D613 /* ConfirmPaymentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmPaymentCell.m; sourceTree = "<group>"; };
 		EA222E3D173A8A7C00C5D613 /* ConfirmPaymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfirmPaymentCell.xib; sourceTree = "<group>"; };
-		EA222E3F173A8D0900C5D613 /* ProfileIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProfileIcon.png; sourceTree = "<group>"; };
-		EA222E40173A8D0900C5D613 /* ProfileIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProfileIcon@2x.png"; sourceTree = "<group>"; };
 		EA225C45178E96FE009D6B83 /* JCSObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCSObjectModel.h; sourceTree = "<group>"; };
 		EA225C46178E96FE009D6B83 /* JCSObjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCSObjectModel.m; sourceTree = "<group>"; };
 		EA225C65178E9C90009D6B83 /* _Payment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Payment.h; sourceTree = "<group>"; };
@@ -782,31 +654,11 @@
 		EA31A11B17DDB1CA00F937F7 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
 		EA31A11C17DDB1CA00F937F7 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		EA31A23817DDB29B00F937F7 /* TransferDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransferDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA34528717DF039F005BB4F1 /* GreenButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GreenButton.png; sourceTree = "<group>"; };
-		EA34528817DF039F005BB4F1 /* GreenButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GreenButton@2x.png"; sourceTree = "<group>"; };
-		EA34528D17DF05CC005BB4F1 /* AddButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddButton.png; sourceTree = "<group>"; };
-		EA34528E17DF05CC005BB4F1 /* AddButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddButton@2x.png"; sourceTree = "<group>"; };
-		EA34528F17DF05CC005BB4F1 /* MenuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuButton.png; sourceTree = "<group>"; };
-		EA34529017DF05CD005BB4F1 /* MenuButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuButton@2x.png"; sourceTree = "<group>"; };
-		EA34529917DF0A35005BB4F1 /* BackButtonArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackButtonArrow.png; sourceTree = "<group>"; };
-		EA34529A17DF0A35005BB4F1 /* BackButtonArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BackButtonArrow@2x.png"; sourceTree = "<group>"; };
-		EA35C73417324AF2005602F7 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
-		EA35C73517324AF2005602F7 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
-		EA35C73617324AF2005602F7 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		EA35C73717324AF2005602F7 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		EA35C73817324AF2005602F7 /* NavBarBackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBarBackButton.png; sourceTree = "<group>"; };
-		EA35C73917324AF2005602F7 /* NavBarBackButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarBackButton@2x.png"; sourceTree = "<group>"; };
-		EA35C74117324AFE005602F7 /* SeparatorLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeparatorLine.png; sourceTree = "<group>"; };
-		EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SeparatorLine@2x.png"; sourceTree = "<group>"; };
 		EA35C76A1732790D005602F7 /* PaymentsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentsOperation.h; sourceTree = "<group>"; };
 		EA35C76B1732790D005602F7 /* PaymentsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentsOperation.m; sourceTree = "<group>"; };
 		EA35C76E17327973005602F7 /* PaymentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentCell.h; sourceTree = "<group>"; };
 		EA35C76F17327973005602F7 /* PaymentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentCell.m; sourceTree = "<group>"; };
 		EA35C77117327981005602F7 /* PaymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentCell.xib; sourceTree = "<group>"; };
-		EA415D3A17A7A0B600E9B56A /* LandingBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingBackground.png; sourceTree = "<group>"; };
-		EA415D3B17A7A0B600E9B56A /* LandingBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LandingBackground@2x.png"; sourceTree = "<group>"; };
-		EA415D3F17A7B19C00E9B56A /* SpinnerLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpinnerLogo.png; sourceTree = "<group>"; };
-		EA415D4017A7B19C00E9B56A /* SpinnerLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SpinnerLogo@2x.png"; sourceTree = "<group>"; };
 		EA415D4317A7B2A900E9B56A /* SpinningImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinningImageView.h; sourceTree = "<group>"; };
 		EA415D4417A7B2A900E9B56A /* SpinningImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpinningImageView.m; sourceTree = "<group>"; };
 		EA416E28176860EA00904D97 /* ProfileEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileEditViewController.h; sourceTree = "<group>"; };
@@ -821,7 +673,6 @@
 		EA4AA60B17379C9D00E99150 /* CurrencySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencySelectionCell.h; sourceTree = "<group>"; };
 		EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencySelectionCell.m; sourceTree = "<group>"; };
 		EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencySelectionCell.xib; sourceTree = "<group>"; };
-		EA567E1E17E199AD007ACBCF /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
 		EA59292A175621D0007C0072 /* VerificationRequiredOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationRequiredOperation.h; sourceTree = "<group>"; };
 		EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationRequiredOperation.m; sourceTree = "<group>"; };
 		EA59293C17577CCA007C0072 /* UploadVerificationFileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadVerificationFileOperation.h; sourceTree = "<group>"; };
@@ -832,15 +683,9 @@
 		EA59297017589F5C007C0072 /* PersonalProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileCommitter.m; sourceTree = "<group>"; };
 		EA59297D1758AE1C007C0072 /* EmailCheckOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailCheckOperation.h; sourceTree = "<group>"; };
 		EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailCheckOperation.m; sourceTree = "<group>"; };
-		EA5929821758CAAC007C0072 /* SignInWithGoogleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SignInWithGoogleButton.png; sourceTree = "<group>"; };
-		EA5929831758CAAC007C0072 /* SignInWithGoogleButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SignInWithGoogleButton@2x.png"; sourceTree = "<group>"; };
-		EA5929841758CAAC007C0072 /* SignInWithYahooButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SignInWithYahooButton.png; sourceTree = "<group>"; };
-		EA5929851758CAAC007C0072 /* SignInWithYahooButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SignInWithYahooButton@2x.png"; sourceTree = "<group>"; };
 		EA59298B1758CD6C007C0072 /* OpenIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenIDViewController.h; sourceTree = "<group>"; };
 		EA59298C1758CD6C007C0072 /* OpenIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenIDViewController.m; sourceTree = "<group>"; };
 		EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenIDViewController.xib; sourceTree = "<group>"; };
-		EA5F00C217B4BF86008AD1FB /* InputErrorIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InputErrorIndicator.png; sourceTree = "<group>"; };
-		EA5F00C317B4BF86008AD1FB /* InputErrorIndicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InputErrorIndicator@2x.png"; sourceTree = "<group>"; };
 		EA5F00CA17B4DF13008AD1FB /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
 		EA5F00CB17B4DF13008AD1FB /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
 		EA5F00CC17B4DF13008AD1FB /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
@@ -927,10 +772,6 @@
 		EAA053FC175E21D400ACD3F6 /* spinner.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = spinner.html; sourceTree = "<group>"; };
 		EAA07BEF17AF750A004B97AC /* QuickProfileValidationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickProfileValidationOperation.h; sourceTree = "<group>"; };
 		EAA07BF017AF750A004B97AC /* QuickProfileValidationOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickProfileValidationOperation.m; sourceTree = "<group>"; };
-		EAA54F3A1733CA7800B65BF3 /* NewPaymentTabIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewPaymentTabIcon.png; sourceTree = "<group>"; };
-		EAA54F3B1733CA7800B65BF3 /* NewPaymentTabIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NewPaymentTabIcon@2x.png"; sourceTree = "<group>"; };
-		EAA54F3C1733CA7800B65BF3 /* TransactionsTabIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TransactionsTabIcon.png; sourceTree = "<group>"; };
-		EAA54F3D1733CA7800B65BF3 /* TransactionsTabIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TransactionsTabIcon@2x.png"; sourceTree = "<group>"; };
 		EAA54F481733DA1400B65BF3 /* RecipientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientViewController.h; sourceTree = "<group>"; };
 		EAA54F491733DA1400B65BF3 /* RecipientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientViewController.m; sourceTree = "<group>"; };
 		EAA54F4A1733DA1400B65BF3 /* RecipientViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientViewController.xib; sourceTree = "<group>"; };
@@ -962,10 +803,6 @@
 		EAAF8FAF17436730008DF9E2 /* CreatePaymentOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatePaymentOperation.m; sourceTree = "<group>"; };
 		EAAF8FB61743B3E4008DF9E2 /* MoneyFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyFormatter.h; sourceTree = "<group>"; };
 		EAAF8FB71743B3E4008DF9E2 /* MoneyFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyFormatter.m; sourceTree = "<group>"; };
-		EAB72150171FC34600DE29F5 /* NavBarButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBarButton.png; sourceTree = "<group>"; };
-		EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarButton@2x.png"; sourceTree = "<group>"; };
-		EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsButtonIcon.png; sourceTree = "<group>"; };
-		EAB72155171FC3E900DE29F5 /* SettingsButtonIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SettingsButtonIcon@2x.png"; sourceTree = "<group>"; };
 		EAB72158171FC61B00DE29F5 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		EAB72159171FC61B00DE29F5 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		EAB7215A171FC61B00DE29F5 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -976,9 +813,6 @@
 		EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyCalculator.m; sourceTree = "<group>"; };
 		EAB93B461761C74700A7337C /* ClaimAccountOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimAccountOperation.h; sourceTree = "<group>"; };
 		EAB93B471761C74700A7337C /* ClaimAccountOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimAccountOperation.m; sourceTree = "<group>"; };
-		EAB93B4C1761D1EF00A7337C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		EAB93B4D1761D1EF00A7337C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		EAB93B4E1761D1EF00A7337C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		EAC1051717607C4600B3B018 /* ClaimAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimAccountViewController.h; sourceTree = "<group>"; };
 		EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimAccountViewController.m; sourceTree = "<group>"; };
 		EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClaimAccountViewController.xib; sourceTree = "<group>"; };
@@ -989,7 +823,7 @@
 		EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientFieldCell.xib; sourceTree = "<group>"; };
 		EAD069081737CF57007C8DEE /* RecipientOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientOperation.h; sourceTree = "<group>"; };
 		EAD069091737CF57007C8DEE /* RecipientOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientOperation.m; sourceTree = "<group>"; };
-		EAD3646217E1E054001EFE40 /* NavigationBar7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavigationBar7.png; sourceTree = "<group>"; };
+		EAD3646517E1E19A001EFE40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EAD39670171BD2A300F6D011 /* ObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectModel.h; sourceTree = "<group>"; };
 		EAD39671171BD2A300F6D011 /* ObjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectModel.m; sourceTree = "<group>"; };
 		EAD39673171BD4EE00F6D011 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -1018,14 +852,10 @@
 		EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneBookProfileSelector.m; sourceTree = "<group>"; };
 		EAD66785174CD3FE00D29BCB /* PhoneBookAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneBookAddress.h; sourceTree = "<group>"; };
 		EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneBookAddress.m; sourceTree = "<group>"; };
-		EAD667C4174F4C7200D29BCB /* TWlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TWlogo.png; sourceTree = "<group>"; };
-		EAD667C5174F4C7300D29BCB /* TWlogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TWlogo@2x.png"; sourceTree = "<group>"; };
 		EAD667C9174F6F7B00D29BCB /* DismissKeyboardTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissKeyboardTableView.h; sourceTree = "<group>"; };
 		EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissKeyboardTableView.m; sourceTree = "<group>"; };
 		EAD73688171E6CB100A037B1 /* GrayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrayButton.h; sourceTree = "<group>"; };
 		EAD73689171E6CB100A037B1 /* GrayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrayButton.m; sourceTree = "<group>"; };
-		EAD7368B171E6D5A00A037B1 /* GrayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GrayButton.png; sourceTree = "<group>"; };
-		EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GrayButton@2x.png"; sourceTree = "<group>"; };
 		EAD73693171E7A3200A037B1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EAD736A0171E85C300A037B1 /* RecipientCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientCell.h; sourceTree = "<group>"; };
 		EAD736A1171E85C300A037B1 /* RecipientCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientCell.m; sourceTree = "<group>"; };
@@ -1034,10 +864,6 @@
 		EAD736A6171E87ED00A037B1 /* UserRecipientsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRecipientsOperation.m; sourceTree = "<group>"; };
 		EAD7D4C0171D43440099063F /* NSDictionary+SensibleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SensibleData.h"; sourceTree = "<group>"; };
 		EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SensibleData.m"; sourceTree = "<group>"; };
-		EAD7D4C4171D47BE0099063F /* NavigationBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavigationBar.png; sourceTree = "<group>"; };
-		EAD7D4C5171D47BE0099063F /* NavigationBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavigationBar@2x.png"; sourceTree = "<group>"; };
-		EAD7D4C8171D4B080099063F /* BlueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlueButton.png; sourceTree = "<group>"; };
-		EAD7D4C9171D4B080099063F /* BlueButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlueButton@2x.png"; sourceTree = "<group>"; };
 		EAD7D4CC171D4B4C0099063F /* UIButton+Skinning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Skinning.h"; sourceTree = "<group>"; };
 		EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Skinning.m"; sourceTree = "<group>"; };
 		EAD7D4CF171D4BB20099063F /* BlueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueButton.h; sourceTree = "<group>"; };
@@ -1046,12 +872,6 @@
 		EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileOperation.m; sourceTree = "<group>"; };
 		EAE1E3A117B2519000A45623 /* PaymentDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentDetailsViewController.h; sourceTree = "<group>"; };
 		EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentDetailsViewController.m; sourceTree = "<group>"; };
-		EAEA310F1738DB8600CCF1A2 /* CheckUnselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckUnselected.png; sourceTree = "<group>"; };
-		EAEA31101738DB8600CCF1A2 /* CheckUnselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckUnselected@2x.png"; sourceTree = "<group>"; };
-		EAEA31111738DB8600CCF1A2 /* CheckSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckSelected.png; sourceTree = "<group>"; };
-		EAEA31121738DB8600CCF1A2 /* CheckSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckSelected@2x.png"; sourceTree = "<group>"; };
-		EAEA311A1738F01600CCF1A2 /* Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Down.png; sourceTree = "<group>"; };
-		EAEA311B1738F01600CCF1A2 /* Down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Down@2x.png"; sourceTree = "<group>"; };
 		EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferCalculationsOperation.h; sourceTree = "<group>"; };
 		EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferCalculationsOperation.m; sourceTree = "<group>"; };
 		EAEA6255172011C500A96770 /* CalculationResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculationResult.h; sourceTree = "<group>"; };
@@ -1535,6 +1355,7 @@
 		EAAA1473171BC911005B9430 /* Transfer */ = {
 			isa = PBXGroup;
 			children = (
+				EAD3646517E1E19A001EFE40 /* Assets.xcassets */,
 				EA225CB6178EEA89009D6B83 /* BaseData */,
 				EA13E033171BE0E50019FBF0 /* Cells */,
 				EA88E658172F963B0021492C /* Credentials */,
@@ -1761,68 +1582,7 @@
 		EAD7D4C3171D475E0099063F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EA34528D17DF05CC005BB4F1 /* AddButton.png */,
-				EA34528E17DF05CC005BB4F1 /* AddButton@2x.png */,
-				EA34529917DF0A35005BB4F1 /* BackButtonArrow.png */,
-				EA34529A17DF0A35005BB4F1 /* BackButtonArrow@2x.png */,
-				EAD7D4C8171D4B080099063F /* BlueButton.png */,
-				EAD7D4C9171D4B080099063F /* BlueButton@2x.png */,
-				EAEA31111738DB8600CCF1A2 /* CheckSelected.png */,
-				EAEA31121738DB8600CCF1A2 /* CheckSelected@2x.png */,
-				EAEA310F1738DB8600CCF1A2 /* CheckUnselected.png */,
-				EAEA31101738DB8600CCF1A2 /* CheckUnselected@2x.png */,
-				EA0D44FE17DDDAD200FAD64F /* ContactsIcon.png */,
-				EA0D44FF17DDDAD200FAD64F /* ContactsIcon@2x.png */,
-				EAB93B4C1761D1EF00A7337C /* Default-568h@2x.png */,
-				EAB93B4D1761D1EF00A7337C /* Default.png */,
-				EAB93B4E1761D1EF00A7337C /* Default@2x.png */,
-				EAEA311A1738F01600CCF1A2 /* Down.png */,
-				EAEA311B1738F01600CCF1A2 /* Down@2x.png */,
-				EAD7368B171E6D5A00A037B1 /* GrayButton.png */,
-				EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */,
-				EA34528717DF039F005BB4F1 /* GreenButton.png */,
-				EA34528817DF039F005BB4F1 /* GreenButton@2x.png */,
-				EA567E1E17E199AD007ACBCF /* Icon-120.png */,
-				EA35C73417324AF2005602F7 /* Icon-Small.png */,
-				EA35C73517324AF2005602F7 /* Icon-Small@2x.png */,
-				EA35C73617324AF2005602F7 /* Icon.png */,
-				EA35C73717324AF2005602F7 /* Icon@2x.png */,
-				EA5F00C217B4BF86008AD1FB /* InputErrorIndicator.png */,
-				EA5F00C317B4BF86008AD1FB /* InputErrorIndicator@2x.png */,
-				EA415D3A17A7A0B600E9B56A /* LandingBackground.png */,
-				EA415D3B17A7A0B600E9B56A /* LandingBackground@2x.png */,
-				EA34528F17DF05CC005BB4F1 /* MenuButton.png */,
-				EA34529017DF05CD005BB4F1 /* MenuButton@2x.png */,
-				EA35C73817324AF2005602F7 /* NavBarBackButton.png */,
-				EA35C73917324AF2005602F7 /* NavBarBackButton@2x.png */,
-				EAB72150171FC34600DE29F5 /* NavBarButton.png */,
-				EAB72151171FC34600DE29F5 /* NavBarButton@2x.png */,
-				EAD7D4C4171D47BE0099063F /* NavigationBar.png */,
-				EAD3646217E1E054001EFE40 /* NavigationBar7.png */,
-				EAD7D4C5171D47BE0099063F /* NavigationBar@2x.png */,
-				EAA54F3A1733CA7800B65BF3 /* NewPaymentTabIcon.png */,
-				EAA54F3B1733CA7800B65BF3 /* NewPaymentTabIcon@2x.png */,
-				EA222E3F173A8D0900C5D613 /* ProfileIcon.png */,
-				EA222E40173A8D0900C5D613 /* ProfileIcon@2x.png */,
-				EA35C74117324AFE005602F7 /* SeparatorLine.png */,
-				EA35C74217324AFE005602F7 /* SeparatorLine@2x.png */,
-				EAB72154171FC3E900DE29F5 /* SettingsButtonIcon.png */,
-				EAB72155171FC3E900DE29F5 /* SettingsButtonIcon@2x.png */,
-				EA5929821758CAAC007C0072 /* SignInWithGoogleButton.png */,
-				EA5929831758CAAC007C0072 /* SignInWithGoogleButton@2x.png */,
-				EA5929841758CAAC007C0072 /* SignInWithYahooButton.png */,
-				EA5929851758CAAC007C0072 /* SignInWithYahooButton@2x.png */,
 				EAA053FC175E21D400ACD3F6 /* spinner.html */,
-				EA415D3F17A7B19C00E9B56A /* SpinnerLogo.png */,
-				EA415D4017A7B19C00E9B56A /* SpinnerLogo@2x.png */,
-				BB704E721772D4370042F8A9 /* tableTabButton.png */,
-				BB704E731772D4370042F8A9 /* tableTabButton@2x.png */,
-				BB704E701772D4370042F8A9 /* tableTabButtonRight.png */,
-				BB704E711772D4370042F8A9 /* tableTabButtonRight@2x.png */,
-				EAA54F3C1733CA7800B65BF3 /* TransactionsTabIcon.png */,
-				EAA54F3D1733CA7800B65BF3 /* TransactionsTabIcon@2x.png */,
-				EAD667C4174F4C7200D29BCB /* TWlogo.png */,
-				EAD667C5174F4C7300D29BCB /* TWlogo@2x.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1939,18 +1699,9 @@
 				EA31A1D817DDB29B00F937F7 /* LoginViewController.xib in Resources */,
 				EA31A1D917DDB29B00F937F7 /* TableHeaderView.xib in Resources */,
 				EA31A1DA17DDB29B00F937F7 /* TextEntryCell.xib in Resources */,
-				EA31A1DB17DDB29B00F937F7 /* NavigationBar.png in Resources */,
-				EA31A1DC17DDB29B00F937F7 /* NavigationBar@2x.png in Resources */,
-				EA31A1DD17DDB29B00F937F7 /* BlueButton.png in Resources */,
-				EA31A1DE17DDB29B00F937F7 /* BlueButton@2x.png in Resources */,
-				EA31A1DF17DDB29B00F937F7 /* GrayButton.png in Resources */,
-				EA31A1E017DDB29B00F937F7 /* GrayButton@2x.png in Resources */,
 				EA31A1E117DDB29B00F937F7 /* RecipientCell.xib in Resources */,
-				EA31A1E217DDB29B00F937F7 /* NavBarButton.png in Resources */,
-				EA31A1E317DDB29B00F937F7 /* NavBarButton@2x.png in Resources */,
-				EA31A1E417DDB29B00F937F7 /* SettingsButtonIcon.png in Resources */,
-				EA31A1E517DDB29B00F937F7 /* SettingsButtonIcon@2x.png in Resources */,
 				EA31A1E617DDB29B00F937F7 /* SettingsViewController.xib in Resources */,
+				EAD3646717E1E19A001EFE40 /* Assets.xcassets in Resources */,
 				EA31A1E717DDB29B00F937F7 /* SettingsTitleCell.xib in Resources */,
 				EA31A1E817DDB29B00F937F7 /* TSAlertViewMessageListViewShadow.png in Resources */,
 				EA31A1E917DDB29B00F937F7 /* TSAlertViewCancelButtonBackground.png in Resources */,
@@ -1963,79 +1714,28 @@
 				EA31A1F017DDB29B00F937F7 /* DateEntryCell.xib in Resources */,
 				EA31A1F117DDB29B00F937F7 /* SignUpViewController.xib in Resources */,
 				EA31A1F217DDB29B00F937F7 /* PaymentCell.xib in Resources */,
-				EA31A1F317DDB29B00F937F7 /* Icon-Small.png in Resources */,
-				EA31A1F417DDB29B00F937F7 /* Icon-Small@2x.png in Resources */,
-				EA31A1F517DDB29B00F937F7 /* Icon.png in Resources */,
-				EA31A1F617DDB29B00F937F7 /* Icon@2x.png in Resources */,
-				EA31A1F717DDB29B00F937F7 /* NavBarBackButton.png in Resources */,
-				EA31A1F817DDB29B00F937F7 /* NavBarBackButton@2x.png in Resources */,
-				EA31A1F917DDB29B00F937F7 /* SeparatorLine.png in Resources */,
-				EA31A1FA17DDB29B00F937F7 /* SeparatorLine@2x.png in Resources */,
-				EA31A1FD17DDB29B00F937F7 /* NewPaymentTabIcon.png in Resources */,
-				EA31A1FE17DDB29B00F937F7 /* NewPaymentTabIcon@2x.png in Resources */,
-				EA31A1FF17DDB29B00F937F7 /* TransactionsTabIcon.png in Resources */,
-				EA31A20017DDB29B00F937F7 /* TransactionsTabIcon@2x.png in Resources */,
 				EA31A20117DDB29B00F937F7 /* RecipientViewController.xib in Resources */,
 				EA31A20217DDB29B00F937F7 /* CurrencySelectionCell.xib in Resources */,
 				EA31A20317DDB29B00F937F7 /* RecipientFieldCell.xib in Resources */,
-				EA31A20417DDB29B00F937F7 /* CheckUnselected.png in Resources */,
-				EA31A20517DDB29B00F937F7 /* CheckUnselected@2x.png in Resources */,
-				EA31A20617DDB29B00F937F7 /* CheckSelected.png in Resources */,
-				EA31A20717DDB29B00F937F7 /* CheckSelected@2x.png in Resources */,
-				EA31A20817DDB29B00F937F7 /* Down.png in Resources */,
-				EA31A20917DDB29B00F937F7 /* Down@2x.png in Resources */,
 				EA31A20A17DDB29B00F937F7 /* IdentificationViewController.xib in Resources */,
 				EA31A20B17DDB29B00F937F7 /* ConfirmPaymentViewController.xib in Resources */,
 				EA31A20C17DDB29B00F937F7 /* ConfirmPaymentCell.xib in Resources */,
-				EA31A20D17DDB29B00F937F7 /* ProfileIcon.png in Resources */,
-				EA31A20E17DDB29B00F937F7 /* ProfileIcon@2x.png in Resources */,
 				EA31A20F17DDB29B00F937F7 /* RecipientEntrySelectionCell.xib in Resources */,
 				EA31A21017DDB29B00F937F7 /* DropdownCell.xib in Resources */,
 				EA31A21117DDB29B00F937F7 /* UploadMoneyViewController.xib in Resources */,
 				EA31A21217DDB29B00F937F7 /* TextCell.xib in Resources */,
 				EA31A21317DDB29B00F937F7 /* ButtonCell.xib in Resources */,
-				EA31A21417DDB29B00F937F7 /* TWlogo.png in Resources */,
-				EA31A21517DDB29B00F937F7 /* TWlogo@2x.png in Resources */,
-				EA31A21617DDB29B00F937F7 /* SignInWithGoogleButton.png in Resources */,
-				EA31A21717DDB29B00F937F7 /* SignInWithGoogleButton@2x.png in Resources */,
-				EA31A21817DDB29B00F937F7 /* SignInWithYahooButton.png in Resources */,
-				EA31A21917DDB29B00F937F7 /* SignInWithYahooButton@2x.png in Resources */,
 				EA31A21A17DDB29B00F937F7 /* OpenIDViewController.xib in Resources */,
 				EA31A21B17DDB29B00F937F7 /* spinner.html in Resources */,
 				EA31A21C17DDB29B00F937F7 /* ClaimAccountViewController.xib in Resources */,
-				EA31A21D17DDB29B00F937F7 /* Default-568h@2x.png in Resources */,
-				EA31A21E17DDB29B00F937F7 /* Default.png in Resources */,
-				EAD3646417E1E054001EFE40 /* NavigationBar7.png in Resources */,
-				EA31A21F17DDB29B00F937F7 /* Default@2x.png in Resources */,
 				EA31A22017DDB29B00F937F7 /* ProfileEditViewController.xib in Resources */,
 				EA31A22117DDB29B00F937F7 /* ProfileSelectionView.xib in Resources */,
 				EA31A22217DDB29B00F937F7 /* TransferTypeSelectionCell.xib in Resources */,
-				EA31A22317DDB29B00F937F7 /* tableTabButtonRight.png in Resources */,
-				EA31A22417DDB29B00F937F7 /* tableTabButtonRight@2x.png in Resources */,
-				EA31A22517DDB29B00F937F7 /* tableTabButton.png in Resources */,
-				EA31A22617DDB29B00F937F7 /* tableTabButton@2x.png in Resources */,
 				EA31A22717DDB29B00F937F7 /* TabBarActivityIndicatorView.xib in Resources */,
 				EA31A22817DDB29B00F937F7 /* currencies.json in Resources */,
 				EA31A22917DDB29B00F937F7 /* currency_pairs.json in Resources */,
 				EA31A22A17DDB29B00F937F7 /* recipient_types.json in Resources */,
-				EA31A22B17DDB29B00F937F7 /* LandingBackground.png in Resources */,
-				EA31A22C17DDB29B00F937F7 /* LandingBackground@2x.png in Resources */,
-				EA31A22D17DDB29B00F937F7 /* SpinnerLogo.png in Resources */,
-				EA31A22E17DDB29B00F937F7 /* SpinnerLogo@2x.png in Resources */,
 				EA31A22F17DDB29B00F937F7 /* SwitchCell.xib in Resources */,
-				EA31A23017DDB29B00F937F7 /* InputErrorIndicator.png in Resources */,
-				EA31A23117DDB29B00F937F7 /* InputErrorIndicator@2x.png in Resources */,
-				EA0D450117DDDAD200FAD64F /* ContactsIcon.png in Resources */,
-				EA0D450317DDDAD200FAD64F /* ContactsIcon@2x.png in Resources */,
-				EA34528A17DF03A0005BB4F1 /* GreenButton.png in Resources */,
-				EA34528C17DF03A0005BB4F1 /* GreenButton@2x.png in Resources */,
-				EA34529217DF05CE005BB4F1 /* AddButton.png in Resources */,
-				EA34529417DF05CE005BB4F1 /* AddButton@2x.png in Resources */,
-				EA34529617DF05CE005BB4F1 /* MenuButton.png in Resources */,
-				EA34529817DF05CE005BB4F1 /* MenuButton@2x.png in Resources */,
-				EA34529C17DF0A35005BB4F1 /* BackButtonArrow.png in Resources */,
-				EA34529E17DF0A35005BB4F1 /* BackButtonArrow@2x.png in Resources */,
-				EA567E2017E199AD007ACBCF /* Icon-120.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2062,18 +1762,9 @@
 				EA13E040171BE9B00019FBF0 /* LoginViewController.xib in Resources */,
 				EA13E046171BED910019FBF0 /* TableHeaderView.xib in Resources */,
 				EA13E04E171BEF710019FBF0 /* TextEntryCell.xib in Resources */,
-				EAD7D4C6171D47BE0099063F /* NavigationBar.png in Resources */,
-				EAD7D4C7171D47BE0099063F /* NavigationBar@2x.png in Resources */,
-				EAD7D4CA171D4B080099063F /* BlueButton.png in Resources */,
-				EAD7D4CB171D4B080099063F /* BlueButton@2x.png in Resources */,
-				EAD7368D171E6D5A00A037B1 /* GrayButton.png in Resources */,
-				EAD7368E171E6D5A00A037B1 /* GrayButton@2x.png in Resources */,
 				EAD736A4171E85D100A037B1 /* RecipientCell.xib in Resources */,
-				EAB72152171FC34600DE29F5 /* NavBarButton.png in Resources */,
-				EAB72153171FC34600DE29F5 /* NavBarButton@2x.png in Resources */,
-				EAB72156171FC3E900DE29F5 /* SettingsButtonIcon.png in Resources */,
-				EAB72157171FC3E900DE29F5 /* SettingsButtonIcon@2x.png in Resources */,
 				EAB7215C171FC61B00DE29F5 /* SettingsViewController.xib in Resources */,
+				EAD3646617E1E19A001EFE40 /* Assets.xcassets in Resources */,
 				EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */,
 				BBC691241721416300F0FB1A /* TSAlertViewMessageListViewShadow.png in Resources */,
 				BBC691251721416300F0FB1A /* TSAlertViewCancelButtonBackground.png in Resources */,
@@ -2086,79 +1777,28 @@
 				EA88E691172F97E20021492C /* DateEntryCell.xib in Resources */,
 				EA88E698172F980A0021492C /* SignUpViewController.xib in Resources */,
 				EA35C77217327981005602F7 /* PaymentCell.xib in Resources */,
-				EA35C73A17324AF2005602F7 /* Icon-Small.png in Resources */,
-				EA35C73B17324AF2005602F7 /* Icon-Small@2x.png in Resources */,
-				EA35C73C17324AF2005602F7 /* Icon.png in Resources */,
-				EA35C73D17324AF2005602F7 /* Icon@2x.png in Resources */,
-				EA35C73E17324AF2005602F7 /* NavBarBackButton.png in Resources */,
-				EA35C73F17324AF2005602F7 /* NavBarBackButton@2x.png in Resources */,
-				EA35C74317324AFE005602F7 /* SeparatorLine.png in Resources */,
-				EA35C74417324AFE005602F7 /* SeparatorLine@2x.png in Resources */,
-				EAA54F421733CA7800B65BF3 /* NewPaymentTabIcon.png in Resources */,
-				EAA54F431733CA7800B65BF3 /* NewPaymentTabIcon@2x.png in Resources */,
-				EAA54F441733CA7800B65BF3 /* TransactionsTabIcon.png in Resources */,
-				EAA54F451733CA7800B65BF3 /* TransactionsTabIcon@2x.png in Resources */,
 				EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */,
 				EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */,
 				EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */,
-				EAEA31131738DB8600CCF1A2 /* CheckUnselected.png in Resources */,
-				EAEA31141738DB8600CCF1A2 /* CheckUnselected@2x.png in Resources */,
-				EAEA31151738DB8600CCF1A2 /* CheckSelected.png in Resources */,
-				EAEA31161738DB8600CCF1A2 /* CheckSelected@2x.png in Resources */,
-				EAEA311C1738F01600CCF1A2 /* Down.png in Resources */,
-				EAEA311D1738F01600CCF1A2 /* Down@2x.png in Resources */,
 				18D47903173A3B6E00FC317E /* IdentificationViewController.xib in Resources */,
 				EA222E39173A861000C5D613 /* ConfirmPaymentViewController.xib in Resources */,
 				EA222E3E173A8A7C00C5D613 /* ConfirmPaymentCell.xib in Resources */,
-				EA222E41173A8D0900C5D613 /* ProfileIcon.png in Resources */,
-				EA222E42173A8D0900C5D613 /* ProfileIcon@2x.png in Resources */,
 				EA042603173CF5E20048BFBD /* RecipientEntrySelectionCell.xib in Resources */,
 				EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */,
 				BB29BD49173CD30D0016A6E9 /* UploadMoneyViewController.xib in Resources */,
 				BB29BD4B173CDF480016A6E9 /* TextCell.xib in Resources */,
 				EAD6675B174A51C700D29BCB /* ButtonCell.xib in Resources */,
-				EAD667C6174F4C7300D29BCB /* TWlogo.png in Resources */,
-				EAD667C7174F4C7300D29BCB /* TWlogo@2x.png in Resources */,
-				EA5929861758CAAC007C0072 /* SignInWithGoogleButton.png in Resources */,
-				EA5929871758CAAC007C0072 /* SignInWithGoogleButton@2x.png in Resources */,
-				EA5929881758CAAC007C0072 /* SignInWithYahooButton.png in Resources */,
-				EA5929891758CAAC007C0072 /* SignInWithYahooButton@2x.png in Resources */,
 				EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */,
 				EAA053FD175E21D400ACD3F6 /* spinner.html in Resources */,
 				EAC1051B17607C4600B3B018 /* ClaimAccountViewController.xib in Resources */,
-				EAB93B4F1761D1EF00A7337C /* Default-568h@2x.png in Resources */,
-				EAB93B501761D1EF00A7337C /* Default.png in Resources */,
-				EAD3646317E1E054001EFE40 /* NavigationBar7.png in Resources */,
-				EAB93B511761D1EF00A7337C /* Default@2x.png in Resources */,
 				EA416E2C176860EA00904D97 /* ProfileEditViewController.xib in Resources */,
 				EA92D985176AF1F20078D0C4 /* ProfileSelectionView.xib in Resources */,
 				BB9A2EB9176F495700C5E058 /* TransferTypeSelectionCell.xib in Resources */,
-				BB704E741772D4370042F8A9 /* tableTabButtonRight.png in Resources */,
-				BB704E751772D4370042F8A9 /* tableTabButtonRight@2x.png in Resources */,
-				BB704E761772D4370042F8A9 /* tableTabButton.png in Resources */,
-				BB704E771772D4370042F8A9 /* tableTabButton@2x.png in Resources */,
 				EA225C76178EA124009D6B83 /* TabBarActivityIndicatorView.xib in Resources */,
 				EA225CBA178EEA8A009D6B83 /* currencies.json in Resources */,
 				EA225CBB178EEA8A009D6B83 /* currency_pairs.json in Resources */,
 				EA225CBC178EEA8A009D6B83 /* recipient_types.json in Resources */,
-				EA415D3C17A7A0B600E9B56A /* LandingBackground.png in Resources */,
-				EA415D3D17A7A0B600E9B56A /* LandingBackground@2x.png in Resources */,
-				EA415D4117A7B19C00E9B56A /* SpinnerLogo.png in Resources */,
-				EA415D4217A7B19C00E9B56A /* SpinnerLogo@2x.png in Resources */,
 				BB7EAE8A17AFE037006A7182 /* SwitchCell.xib in Resources */,
-				EA5F00C417B4BF86008AD1FB /* InputErrorIndicator.png in Resources */,
-				EA5F00C617B4BF86008AD1FB /* InputErrorIndicator@2x.png in Resources */,
-				EA0D450017DDDAD200FAD64F /* ContactsIcon.png in Resources */,
-				EA0D450217DDDAD200FAD64F /* ContactsIcon@2x.png in Resources */,
-				EA34528917DF03A0005BB4F1 /* GreenButton.png in Resources */,
-				EA34528B17DF03A0005BB4F1 /* GreenButton@2x.png in Resources */,
-				EA34529117DF05CE005BB4F1 /* AddButton.png in Resources */,
-				EA34529317DF05CE005BB4F1 /* AddButton@2x.png in Resources */,
-				EA34529517DF05CE005BB4F1 /* MenuButton.png in Resources */,
-				EA34529717DF05CE005BB4F1 /* MenuButton@2x.png in Resources */,
-				EA34529B17DF0A35005BB4F1 /* BackButtonArrow.png in Resources */,
-				EA34529D17DF0A35005BB4F1 /* BackButtonArrow@2x.png in Resources */,
-				EA567E1F17E199AD007ACBCF /* Icon-120.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2898,6 +2538,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2C541BABB70E4B6195F5BC1A /* Pods.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2931,6 +2573,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2C541BABB70E4B6195F5BC1A /* Pods.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jaanus Siim (JE9U597J94)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaanus Siim (JE9U597J94)";
 				FRAMEWORK_SEARCH_PATHS = (
