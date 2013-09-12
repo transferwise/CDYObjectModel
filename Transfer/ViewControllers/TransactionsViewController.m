@@ -52,6 +52,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
     UIView *footer = [[UIView alloc] initWithFrame:CGRectZero];
     [self.tableView setTableFooterView:footer];
+
+    if (IOS_7) {
+        [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

@@ -81,13 +81,17 @@ static NSUInteger const kRowYouSend = 0;
     [self.youSendCell setTitle:NSLocalizedString(@"money.entry.you.send.title", nil)];
     [self.youSendCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:nil];
     [self.youSendCell.moneyField setReturnKeyType:UIReturnKeyDone];
-    [self.youSendCell setRoundedCorner:UIRectCornerTopRight];
+    if (!IOS_7) {
+        [self.youSendCell setRoundedCorner:UIRectCornerTopRight];
+    }
 
     [self setTheyReceiveCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
     [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
     [self.theyReceiveCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:nil];
     [self.theyReceiveCell.moneyField setReturnKeyType:UIReturnKeyDone];
-    [self.theyReceiveCell setRoundedCorner:UIRectCornerBottomRight];
+    if (!IOS_7) {
+        [self.theyReceiveCell setRoundedCorner:UIRectCornerBottomRight];
+    }
     [self.theyReceiveCell setEditable:NO];
 
     [self.titleLabel setText:NSLocalizedString(@"introduction.header.title.text", nil)];

@@ -87,7 +87,9 @@ static NSUInteger const kRowYouSend = 0;
     [self.youSendCell setTitle:NSLocalizedString(@"money.entry.you.send.title", nil)];
     [self.youSendCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:nil];
     [self.youSendCell.moneyField setReturnKeyType:UIReturnKeyDone];
-    [self.youSendCell setRoundedCorner:UIRectCornerTopRight];
+    if (!IOS_7) {
+        [self.youSendCell setRoundedCorner:UIRectCornerTopRight];
+    }
     [self.youSendCell setEditable:YES];
 
     [self setTheyReceiveCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
@@ -95,7 +97,9 @@ static NSUInteger const kRowYouSend = 0;
     [self.theyReceiveCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:nil];
     [self.theyReceiveCell.moneyField setReturnKeyType:UIReturnKeyDone];
     [self.theyReceiveCell setForcedCurrency:self.recipient ? self.recipient.currency : nil];
-    [self.theyReceiveCell setRoundedCorner:UIRectCornerBottomRight];
+    if (!IOS_7) {
+        [self.theyReceiveCell setRoundedCorner:UIRectCornerBottomRight];
+    }
     [self.theyReceiveCell setEditable:NO];
 
     MoneyCalculator *calculator = [[MoneyCalculator alloc] init];
@@ -136,6 +140,10 @@ static NSUInteger const kRowYouSend = 0;
     [self.currencyCostValueLabel setTextColor:[UIColor mainTextColor]];
     [self.exchangeRateTitleLabel setText:NSLocalizedString(@"payment.controller.estimated.exchange.rate.label", nil)];
     [self.youGetTitleLabel setText:NSLocalizedString(@"payment.controller.you.get.label", nil)];
+
+    if (IOS_7) {
+        [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {

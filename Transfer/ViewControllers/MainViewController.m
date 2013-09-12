@@ -69,6 +69,8 @@
     [tabController.navigationItem setTitleView:logoView];
 
     [self setDelegate:self];
+
+    [self.view setBackgroundColor:[UIColor whiteColor]];
 }
 
 - (void)didReceiveMemoryWarning {

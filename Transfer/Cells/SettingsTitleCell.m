@@ -7,6 +7,7 @@
 //
 
 #import "SettingsTitleCell.h"
+#import "UIColor+Theme.h"
 
 @interface SettingsTitleCell ()
 
@@ -20,6 +21,12 @@
         // Initialization code
     }
     return self;
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+
+    [self setBackgroundColor:[UIColor settingsBackgroundColor]];
 }
 
 - (void)setTitle:(NSString *)title {

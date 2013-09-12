@@ -36,7 +36,7 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
 }
 
 - (void)awakeFromNib {
-    //[self setPresentedLabels:[NSMutableArray array]];
+    [self setBackgroundColor:[UIColor controllerBackgroundColor]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -48,11 +48,11 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
 - (void)adjustSelectedView {
     for (RecipientType *type in self.allRecipientTypes) {
         NSUInteger index = [self.allRecipientTypes indexOfObject:type];
-        CGFloat groupedCellWidth = CGRectGetWidth(self.frame) - 20;
+        CGFloat groupedCellWidth = CGRectGetWidth(self.frame) - (IOS_7 ? 0 : 20);
         if ([type.type isEqualToString:self.selectedType.type]) {
-            if (index == 0) {
+            if (index == 0 && !IOS_7) {
                 [self.selectedView setRoundedCorner:UIRectCornerTopLeft];
-            } else if (index == (self.allRecipientTypes.count - 1)) {
+            } else if (index == (self.allRecipientTypes.count - 1) && !IOS_7) {
                 [self.selectedView setRoundedCorner:UIRectCornerTopRight];
             }
             CGRect frame = self.selectedView.frame;
@@ -102,7 +102,7 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
         [self.presentedLabels addObject:label];
 
         //Adding separation lines
-        if (index > 0) {
+        if (index > 0 && !IOS_7) {
             CGFloat lineStep = groupedCellWidth / (self.allRecipientTypes.count);
             CGRect lineFrame = CGRectMake(lineStep * index + 10, 0, 1, CGRectGetHeight(self.frame));
             UIView *line = [[UIView alloc] initWithFrame:lineFrame];

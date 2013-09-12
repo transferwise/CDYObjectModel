@@ -53,6 +53,10 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [self.tableView registerNib:[UINib nibWithNibName:@"RecipientCell" bundle:nil] forCellReuseIdentifier:kRecipientCellIdentifier];
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
+
+    if (IOS_7) {
+        [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

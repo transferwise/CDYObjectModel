@@ -62,6 +62,11 @@ typedef NS_ENUM(short, SettingsRow) {
 
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor settingsBackgroundColor]];
+
+    if (IOS_7) {
+        [self setEdgesForExtendedLayout:UIRectEdgeNone];
+        [self.tableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -245,10 +250,11 @@ typedef NS_ENUM(short, SettingsRow) {
         return rowHeight;
     }
 
+    UIEdgeInsets insets = [self.tableView contentInset];
+    
     CGFloat filledRows = ([self.presentedRows count] - 1) * rowHeight;
-    CGFloat fillHeight = CGRectGetHeight(self.tableView.frame) - filledRows;
+    CGFloat fillHeight = CGRectGetHeight(self.tableView.frame) - filledRows - insets.top;
     return fillHeight;
 }
-
 
 @end

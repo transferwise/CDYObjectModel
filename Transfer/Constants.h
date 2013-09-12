@@ -59,3 +59,5 @@ static NSUInteger const TransferwiseAppID = 612261027;
                                     blue:((c>>8)&0xFF)/255.0 \
                                     alpha:((c)&0xFF)/255.0]
 
+#define IOS_7 ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending)
+
