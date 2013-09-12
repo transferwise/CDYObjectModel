@@ -425,6 +425,8 @@
 		EA416E361768675400904D97 /* BusinessProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E351768675400904D97 /* BusinessProfileSource.m */; };
 		EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */; };
 		EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */; };
+		EA567E1F17E199AD007ACBCF /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = EA567E1E17E199AD007ACBCF /* Icon-120.png */; };
+		EA567E2017E199AD007ACBCF /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = EA567E1E17E199AD007ACBCF /* Icon-120.png */; };
 		EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */; };
 		EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */; };
 		EA59297117589F5C007C0072 /* PersonalProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297017589F5C007C0072 /* PersonalProfileCommitter.m */; };
@@ -817,6 +819,7 @@
 		EA4AA60B17379C9D00E99150 /* CurrencySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencySelectionCell.h; sourceTree = "<group>"; };
 		EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencySelectionCell.m; sourceTree = "<group>"; };
 		EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencySelectionCell.xib; sourceTree = "<group>"; };
+		EA567E1E17E199AD007ACBCF /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
 		EA59292A175621D0007C0072 /* VerificationRequiredOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationRequiredOperation.h; sourceTree = "<group>"; };
 		EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationRequiredOperation.m; sourceTree = "<group>"; };
 		EA59293C17577CCA007C0072 /* UploadVerificationFileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadVerificationFileOperation.h; sourceTree = "<group>"; };
@@ -1776,6 +1779,7 @@
 				EAD7368C171E6D5A00A037B1 /* GrayButton@2x.png */,
 				EA34528717DF039F005BB4F1 /* GreenButton.png */,
 				EA34528817DF039F005BB4F1 /* GreenButton@2x.png */,
+				EA567E1E17E199AD007ACBCF /* Icon-120.png */,
 				EA35C73417324AF2005602F7 /* Icon-Small.png */,
 				EA35C73517324AF2005602F7 /* Icon-Small@2x.png */,
 				EA35C73617324AF2005602F7 /* Icon.png */,
@@ -2026,6 +2030,7 @@
 				EA34529817DF05CE005BB4F1 /* MenuButton@2x.png in Resources */,
 				EA34529C17DF0A35005BB4F1 /* BackButtonArrow.png in Resources */,
 				EA34529E17DF0A35005BB4F1 /* BackButtonArrow@2x.png in Resources */,
+				EA567E2017E199AD007ACBCF /* Icon-120.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2147,6 +2152,7 @@
 				EA34529717DF05CE005BB4F1 /* MenuButton@2x.png in Resources */,
 				EA34529B17DF0A35005BB4F1 /* BackButtonArrow.png in Resources */,
 				EA34529D17DF0A35005BB4F1 /* BackButtonArrow@2x.png in Resources */,
+				EA567E1F17E199AD007ACBCF /* Icon-120.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2718,8 +2724,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2C541BABB70E4B6195F5BC1A /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jaanus Siim (JF476YPTEU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaanus Siim (JF476YPTEU)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jaanus Siim (7V62BBBL4N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaanus Siim (7V62BBBL4N)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2741,8 +2747,8 @@
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = TransferDev;
-				PROVISIONING_PROFILE = "6B0100E2-2E13-4603-B39C-04FC8186D942";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6B0100E2-2E13-4603-B39C-04FC8186D942";
+				PROVISIONING_PROFILE = "99A7B50D-6AB1-44B8-BB69-3BE5DD01304B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "99A7B50D-6AB1-44B8-BB69-3BE5DD01304B";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
