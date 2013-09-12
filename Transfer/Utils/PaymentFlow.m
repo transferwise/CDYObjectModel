@@ -160,6 +160,7 @@
 }
 
 - (void)pushNextScreenAfterPersonalProfile {
+    //TODO jaanus: after #106 pending payment should always have recipient, as it's presented before sender details
     if (self.objectModel.pendingPayment.recipient) {
         [self presentPaymentConfirmation];
     } else {
@@ -176,13 +177,24 @@
     [controller setObjectModel:self.objectModel];
     [controller setShowMiniProfile:showMiniProfile];
     [controller setTitle:NSLocalizedString(@"recipient.controller.payment.mode.title", nil)];
-    [controller setFooterButtonTitle:NSLocalizedString(@"recipient.controller.confirm.payment.button.title", nil)];
+    [controller setFooterButtonTitle:NSLocalizedString(@"button.title.continue", nil)];
     [controller setRecipientValidation:self];
     [controller setAfterSaveAction:^{
-        [self presentPaymentConfirmation];
+        [self presentNextScreenAfterRecipientDetails];
     }];
     [controller setPreLoadRecipientsWithCurrency:self.objectModel.pendingPayment.targetCurrency];
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)presentNextScreenAfterRecipientDetails {
+    [self.objectModel performBlock:^{
+        PendingPayment *payment = [self.objectModel pendingPayment];
+        if ([payment.user personalProfileFilled]) {
+            [self presentPaymentConfirmation];
+        } else {
+            [self presentPersonalProfileEntry:YES];
+        }
+    }];
 }
 
 - (void)presentPaymentConfirmation {
@@ -295,6 +307,11 @@
 
     [operation execute];
 }
+
+- (void)presentFirstPaymentScreen {
+    MCAssert(NO);
+}
+
 
 - (void)updateSenderProfile {
     dispatch_async(dispatch_get_main_queue(), ^{

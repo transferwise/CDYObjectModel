@@ -20,6 +20,7 @@
 
 "button.title.back" = "Back";
 "button.title.cancel" = "Cancel";
+"button.title.continue" = "Continue";
 "button.title.delete" = "Delete";
 "button.title.done" = "Done";
 "button.title.fill" = "Fill it";

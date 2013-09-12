@@ -29,5 +29,6 @@ typedef void (^PaymentErrorBlock)(NSError *error);
 - (void)presentPaymentConfirmation;
 - (void)uploadVerificationData;
 - (void)registerUser;
+- (void)presentFirstPaymentScreen;
 
 @end

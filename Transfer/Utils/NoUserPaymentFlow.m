@@ -22,4 +22,9 @@
     [self registerUser];
 }
 
+- (void)presentFirstPaymentScreen {
+    [self presentRecipientDetails:NO];
+}
+
+
 @end
