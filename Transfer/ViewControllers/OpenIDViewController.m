@@ -57,20 +57,6 @@
     }]];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    data[@"provider"] = self.provider;
-    if ([self.email hasValue]) {
-        data[@"email"] = self.email;
-    }
-    MCLog(@"Params:%@", data);
-    NSString *path = [[TransferwiseClient sharedClient] addTokenToPath:(self.registerUser ? @"/account/registerWithOpenID" : @"/account/loginWithOpenID")];
-    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"POST" path:path parameters:data];
-    [TransferwiseOperation provideAuthenticationHeaders:request];
-    [self.webView loadRequest:request];
-}
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -149,6 +135,13 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     MCLog(@"webViewDidFinishLoad");
+
+    MCLog(@"webViewDidFinishLoad:%@", webView.request.URL);
+    if (![webView.request.URL isFileURL]) {
+        return;
+    }
+
+    [self loadServicePage];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
@@ -157,6 +150,19 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     MCLog(@"didFailLoadWithError:%@", error);
+}
+
+- (void)loadServicePage {
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"provider"] = self.provider;
+    if ([self.email hasValue]) {
+        data[@"email"] = self.email;
+    }
+    MCLog(@"Params:%@", data);
+    NSString *path = [[TransferwiseClient sharedClient] addTokenToPath:(self.registerUser ? @"/account/registerWithOpenID" : @"/account/loginWithOpenID")];
+    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"POST" path:path parameters:data];
+    [TransferwiseOperation provideAuthenticationHeaders:request];
+    [self.webView loadRequest:request];
 }
 
 @end
