@@ -7,6 +7,7 @@
 //
 
 #import "UIColor+Theme.h"
+#import "Constants.h"
 
 @implementation UIColor (Theme)
 
@@ -24,6 +25,10 @@
 
 + (UIColor *)disabledEntryTextColor {
     return [UIColor darkGrayColor];
+}
+
++ (UIColor *)transferWiseBlue {
+    return HEXCOLOR(0x003B5AFF);
 }
 
 @end

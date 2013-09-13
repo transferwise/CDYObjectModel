@@ -117,6 +117,16 @@
     return [[CalculationResult paymentDateFormatter] stringFromDate:self.submittedDate];
 }
 
+- (BOOL)multiplePaymentMethods {
+    NSUInteger count = 0;
+    if (self.paymentOptionsValue & PaymentRegular) {
+        count++;
+    }
+    if (self.paymentOptionsValue & PaymentCard) {
+        count++;
+    }
+    return count > 1;
+}
 
 static NSCalendar *__gregorian;
 + (NSCalendar *)gregorian {

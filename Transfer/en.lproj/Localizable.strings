@@ -296,6 +296,8 @@ A revolution in your pocket.";
 "payment.detail.sent.header.message" = "Payment sent out to recipiet.
 Payment #%@";
 "payment.detail.converting.header.message" = "Waiting for currency to be converted. Payment #%@";
+"payment.method.card" = "Debit card";
+"payment.method.regular" = "Bank transfer";
 
 "support.sheet.title" = "If you have questions, please don’t hesitate to contact our support team.";
 "support.sheet.write.message" = "Write a message";

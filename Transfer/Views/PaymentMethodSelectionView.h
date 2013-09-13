@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^PaymentMethodChangeBlock)(NSInteger selectedIndex);
+
 @interface PaymentMethodSelectionView : UIView
+
+@property (nonatomic, copy) PaymentMethodChangeBlock segmentChangeHandler;
+
+- (void)setTitles:(NSArray *)titles;
 
 @end

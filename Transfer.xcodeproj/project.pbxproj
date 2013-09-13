@@ -433,6 +433,12 @@
 		EAD3648617E2F394001EFE40 /* UploadMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3648317E2F394001EFE40 /* UploadMoneyViewController.m */; };
 		EAD3648717E2F394001EFE40 /* UploadMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD3648417E2F394001EFE40 /* UploadMoneyViewController.xib */; };
 		EAD3648817E2F394001EFE40 /* UploadMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD3648417E2F394001EFE40 /* UploadMoneyViewController.xib */; };
+		EAD3648C17E2F6EF001EFE40 /* CardPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3648A17E2F6EF001EFE40 /* CardPaymentViewController.m */; };
+		EAD3648D17E2F6EF001EFE40 /* CardPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3648A17E2F6EF001EFE40 /* CardPaymentViewController.m */; };
+		EAD3648E17E2F6EF001EFE40 /* CardPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD3648B17E2F6EF001EFE40 /* CardPaymentViewController.xib */; };
+		EAD3648F17E2F6EF001EFE40 /* CardPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD3648B17E2F6EF001EFE40 /* CardPaymentViewController.xib */; };
+		EAD3649117E2F971001EFE40 /* PaymentMethodSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD3649017E2F971001EFE40 /* PaymentMethodSelectionView.xib */; };
+		EAD3649217E2F971001EFE40 /* PaymentMethodSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD3649017E2F971001EFE40 /* PaymentMethodSelectionView.xib */; };
 		EAD39672171BD2A300F6D011 /* ObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39671171BD2A300F6D011 /* ObjectModel.m */; };
 		EAD39676171BD4EE00F6D011 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39674171BD4EE00F6D011 /* MainViewController.m */; };
 		EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39675171BD4EE00F6D011 /* MainViewController.xib */; };
@@ -835,6 +841,10 @@
 		EAD3648217E2F394001EFE40 /* UploadMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadMoneyViewController.h; sourceTree = "<group>"; };
 		EAD3648317E2F394001EFE40 /* UploadMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadMoneyViewController.m; sourceTree = "<group>"; };
 		EAD3648417E2F394001EFE40 /* UploadMoneyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadMoneyViewController.xib; sourceTree = "<group>"; };
+		EAD3648917E2F6EF001EFE40 /* CardPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardPaymentViewController.h; sourceTree = "<group>"; };
+		EAD3648A17E2F6EF001EFE40 /* CardPaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardPaymentViewController.m; sourceTree = "<group>"; };
+		EAD3648B17E2F6EF001EFE40 /* CardPaymentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardPaymentViewController.xib; sourceTree = "<group>"; };
+		EAD3649017E2F971001EFE40 /* PaymentMethodSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentMethodSelectionView.xib; sourceTree = "<group>"; };
 		EAD39670171BD2A300F6D011 /* ObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectModel.h; sourceTree = "<group>"; };
 		EAD39671171BD2A300F6D011 /* ObjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectModel.m; sourceTree = "<group>"; };
 		EAD39673171BD4EE00F6D011 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -1000,6 +1010,7 @@
 				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
 				EAD3647717E2EBF2001EFE40 /* PaymentMethodSelectionView.h */,
 				EAD3647817E2EBF2001EFE40 /* PaymentMethodSelectionView.m */,
+				EAD3649017E2F971001EFE40 /* PaymentMethodSelectionView.xib */,
 				EA92D981176AF1DF0078D0C4 /* ProfileSelectionView.h */,
 				EA92D982176AF1DF0078D0C4 /* ProfileSelectionView.m */,
 				EA92D984176AF1F20078D0C4 /* ProfileSelectionView.xib */,
@@ -1412,6 +1423,9 @@
 				BB29BD48173CD30C0016A6E9 /* BankTransferViewController.xib */,
 				1864AC91173B7C28008773FC /* BusinessProfileViewController.h */,
 				1864AC92173B7C28008773FC /* BusinessProfileViewController.m */,
+				EAD3648917E2F6EF001EFE40 /* CardPaymentViewController.h */,
+				EAD3648A17E2F6EF001EFE40 /* CardPaymentViewController.m */,
+				EAD3648B17E2F6EF001EFE40 /* CardPaymentViewController.xib */,
 				EAC1051717607C4600B3B018 /* ClaimAccountViewController.h */,
 				EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */,
 				EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */,
@@ -1734,11 +1748,13 @@
 				EA31A20217DDB29B00F937F7 /* CurrencySelectionCell.xib in Resources */,
 				EA31A20317DDB29B00F937F7 /* RecipientFieldCell.xib in Resources */,
 				EA31A20A17DDB29B00F937F7 /* IdentificationViewController.xib in Resources */,
+				EAD3649217E2F971001EFE40 /* PaymentMethodSelectionView.xib in Resources */,
 				EA31A20B17DDB29B00F937F7 /* ConfirmPaymentViewController.xib in Resources */,
 				EAD3648817E2F394001EFE40 /* UploadMoneyViewController.xib in Resources */,
 				EA31A20C17DDB29B00F937F7 /* ConfirmPaymentCell.xib in Resources */,
 				EA31A20F17DDB29B00F937F7 /* RecipientEntrySelectionCell.xib in Resources */,
 				EA31A21017DDB29B00F937F7 /* DropdownCell.xib in Resources */,
+				EAD3648F17E2F6EF001EFE40 /* CardPaymentViewController.xib in Resources */,
 				EA31A21117DDB29B00F937F7 /* BankTransferViewController.xib in Resources */,
 				EA31A21217DDB29B00F937F7 /* TextCell.xib in Resources */,
 				EA31A21317DDB29B00F937F7 /* ButtonCell.xib in Resources */,
@@ -1798,11 +1814,13 @@
 				EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */,
 				EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */,
 				18D47903173A3B6E00FC317E /* IdentificationViewController.xib in Resources */,
+				EAD3649117E2F971001EFE40 /* PaymentMethodSelectionView.xib in Resources */,
 				EA222E39173A861000C5D613 /* ConfirmPaymentViewController.xib in Resources */,
 				EAD3648717E2F394001EFE40 /* UploadMoneyViewController.xib in Resources */,
 				EA222E3E173A8A7C00C5D613 /* ConfirmPaymentCell.xib in Resources */,
 				EA042603173CF5E20048BFBD /* RecipientEntrySelectionCell.xib in Resources */,
 				EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */,
+				EAD3648E17E2F6EF001EFE40 /* CardPaymentViewController.xib in Resources */,
 				BB29BD49173CD30D0016A6E9 /* BankTransferViewController.xib in Resources */,
 				BB29BD4B173CDF480016A6E9 /* TextCell.xib in Resources */,
 				EAD6675B174A51C700D29BCB /* ButtonCell.xib in Resources */,
@@ -2074,6 +2092,7 @@
 				EA31A15F17DDB29B00F937F7 /* NonEditTextField.m in Sources */,
 				EA31A16017DDB29B00F937F7 /* PersonalProfileOperation.m in Sources */,
 				EA31A16117DDB29B00F937F7 /* IdentificationViewController.m in Sources */,
+				EAD3648D17E2F6EF001EFE40 /* CardPaymentViewController.m in Sources */,
 				EA31A16217DDB29B00F937F7 /* BusinessProfileViewController.m in Sources */,
 				EA31A16317DDB29B00F937F7 /* BusinessProfileOperation.m in Sources */,
 				EA31A16417DDB29B00F937F7 /* DeleteRecipientOperation.m in Sources */,
@@ -2251,6 +2270,7 @@
 				EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */,
 				EAD85B0B173920C300C22211 /* PersonalProfileOperation.m in Sources */,
 				18D47900173A3B5300FC317E /* IdentificationViewController.m in Sources */,
+				EAD3648C17E2F6EF001EFE40 /* CardPaymentViewController.m in Sources */,
 				1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */,
 				1864AC9E173B7C80008773FC /* BusinessProfileOperation.m in Sources */,
 				1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */,

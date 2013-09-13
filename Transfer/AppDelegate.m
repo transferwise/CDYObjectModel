@@ -18,6 +18,7 @@
 #import "GAI.h"
 #import "SupportCoordinator.h"
 #import "FeedbackCoordinator.h"
+#import "UIColor+Theme.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -68,7 +69,7 @@
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 
     [[UITabBar appearance] setSelectedImageTintColor:HEXCOLOR(0xE17D23FF)];
-    [[UITabBar appearance] setTintColor:HEXCOLOR(0x003B5AFF)];
+    [[UITabBar appearance] setTintColor:[UIColor transferWiseBlue]];
 
     ObjectModel *model = [[ObjectModel alloc] init];
     [self setObjectModel:model];

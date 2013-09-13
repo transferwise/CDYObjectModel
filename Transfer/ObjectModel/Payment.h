@@ -24,5 +24,6 @@ typedef NS_OPTIONS(short, PaymentMethod) {
 - (BOOL)moneyReceived;
 - (BOOL)moneyTransferred;
 - (NSString *)transferredDateString;
+- (BOOL)multiplePaymentMethods;
 
 @end

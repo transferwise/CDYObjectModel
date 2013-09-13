@@ -14,5 +14,6 @@
 + (UIColor *)mainTextColor;
 + (UIColor *)settingsBackgroundColor;
 + (UIColor *)disabledEntryTextColor;
++ (UIColor *)transferWiseBlue;
 
 @end
