@@ -127,4 +127,17 @@ static NSCalendar *__gregorian;
     return __gregorian;
 }
 
++ (PaymentMethod)methodsWithData:(NSArray *)methods {
+    PaymentMethod result = PaymentNone;
+    for (NSString *method in methods) {
+        if ([@"REGULAR" isEqualToString:method]) {
+            result = result | PaymentRegular;
+        } else if ([@"CARD" isEqualToString:method]) {
+            result = result | PaymentCard;
+        }
+    }
+
+    return result;
+}
+
 @end

@@ -1,12 +1,12 @@
 //
-//  UploadMoneyViewController.m
+//  BankTransferViewController.m
 //  Transfer
 //
 //  Created by Henri Mägi on 10.05.13.
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import "UploadMoneyViewController.h"
+#import "BankTransferViewController.h"
 #import "BlueButton.h"
 #import "TextCell.h"
 #import "UIColor+Theme.h"
@@ -28,7 +28,7 @@
 #import "SupportCoordinator.h"
 #import "TransferBackButtonItem.h"
 
-@interface UploadMoneyViewController ()
+@interface BankTransferViewController ()
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIView *footerView;
@@ -40,10 +40,10 @@
 
 @end
 
-@implementation UploadMoneyViewController
+@implementation BankTransferViewController
 
 - (id)init {
-    self = [super initWithNibName:@"UploadMoneyViewController" bundle:nil];
+    self = [super initWithNibName:@"BankTransferViewController" bundle:nil];
     if (self) {
         // Custom initialization
     }

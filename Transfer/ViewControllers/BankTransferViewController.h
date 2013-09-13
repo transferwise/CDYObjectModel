@@ -1,5 +1,5 @@
 //
-//  UploadMoneyViewController.h
+//  BankTransferViewController.h
 //  Transfer
 //
 //  Created by Henri Mägi on 10.05.13.
@@ -12,7 +12,7 @@
 @class ObjectModel;
 @class Payment;
 
-@interface UploadMoneyViewController : DataEntryViewController
+@interface BankTransferViewController : DataEntryViewController
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, strong) Payment *payment;

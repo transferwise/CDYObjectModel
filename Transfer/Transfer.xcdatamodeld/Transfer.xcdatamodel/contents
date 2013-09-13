@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12E55" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AllowedTypeFieldValue" representedClassName="AllowedTypeFieldValue" syncable="YES">
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -54,6 +54,7 @@
         <attribute name="estimatedDeliveryStringFromServer" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastUpdateTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="payIn" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="paymentOptions" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="paymentStatus" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="payOut" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="presentable" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
@@ -139,19 +140,19 @@
         <relationship name="personalProfile" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PersonalProfile" inverseName="user" inverseEntity="PersonalProfile" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AllowedTypeFieldValue" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="BusinessProfile" positionX="160" positionY="192" width="128" height="180"/>
-        <element name="Country" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="Currency" positionX="160" positionY="192" width="128" height="210"/>
-        <element name="PairSourceCurrency" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="PairTargetCurrency" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Payment" positionX="160" positionY="192" width="128" height="330"/>
-        <element name="PendingPayment" positionX="160" positionY="192" width="128" height="165"/>
-        <element name="PersonalProfile" positionX="160" positionY="192" width="128" height="195"/>
-        <element name="Recipient" positionX="160" positionY="192" width="128" height="195"/>
-        <element name="RecipientType" positionX="160" positionY="192" width="128" height="150"/>
-        <element name="RecipientTypeField" positionX="160" positionY="192" width="128" height="210"/>
-        <element name="TypeFieldValue" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="User" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="AllowedTypeFieldValue" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="BusinessProfile" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Country" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Currency" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PairSourceCurrency" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PairTargetCurrency" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Payment" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PendingPayment" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PersonalProfile" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Recipient" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="RecipientType" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="RecipientTypeField" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="TypeFieldValue" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="User" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

@@ -293,7 +293,7 @@
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
-				<string key="-1.CustomClassName">UploadMoneyViewController</string>
+				<string key="-1.CustomClassName">BankTransferViewController</string>
 				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -329,7 +329,7 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">UploadMoneyViewController</string>
+					<string key="className">BankTransferViewController</string>
 					<string key="superclassName">DataEntryViewController</string>
 					<object class="NSMutableDictionary" key="actions">
 						<string key="NS.key.0">doneBtnClicked:</string>
@@ -373,7 +373,7 @@
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/UploadMoneyViewController.h</string>
+						<string key="minorKey">./Classes/BankTransferViewController.h</string>
 					</object>
 				</object>
 			</array>

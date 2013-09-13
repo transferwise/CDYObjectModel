@@ -12,6 +12,7 @@ extern const struct PaymentAttributes {
 	__unsafe_unretained NSString *lastUpdateTime;
 	__unsafe_unretained NSString *payIn;
 	__unsafe_unretained NSString *payOut;
+	__unsafe_unretained NSString *paymentOptions;
 	__unsafe_unretained NSString *paymentStatus;
 	__unsafe_unretained NSString *presentable;
 	__unsafe_unretained NSString *profileUsed;
@@ -37,6 +38,7 @@ extern const struct PaymentFetchedProperties {
 @class Currency;
 @class Currency;
 @class User;
+
 
 
 
@@ -135,6 +137,20 @@ extern const struct PaymentFetchedProperties {
 
 
 //- (BOOL)validatePayOut:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* paymentOptions;
+
+
+
+@property int16_t paymentOptionsValue;
+- (int16_t)paymentOptionsValue;
+- (void)setPaymentOptionsValue:(int16_t)value_;
+
+//- (BOOL)validatePaymentOptions:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -304,6 +320,15 @@ extern const struct PaymentFetchedProperties {
 
 - (NSDecimalNumber*)primitivePayOut;
 - (void)setPrimitivePayOut:(NSDecimalNumber*)value;
+
+
+
+
+- (NSNumber*)primitivePaymentOptions;
+- (void)setPrimitivePaymentOptions:(NSNumber*)value;
+
+- (int16_t)primitivePaymentOptionsValue;
+- (void)setPrimitivePaymentOptionsValue:(int16_t)value_;
 
 
 

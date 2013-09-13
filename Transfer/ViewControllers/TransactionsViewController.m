@@ -14,7 +14,7 @@
 #import "ObjectModel+Payments.h"
 #import "TabBarActivityIndicatorView.h"
 #import "Payment.h"
-#import "UploadMoneyViewController.h"
+#import "BankTransferViewController.h"
 #import "ConfirmPaymentViewController.h"
 #import "PaymentDetailsViewController.h"
 #import "Recipient.h"
@@ -112,7 +112,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     }
 
     if ([payment isSubmitted]) {
-        UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+        BankTransferViewController *controller = [[BankTransferViewController alloc] init];
         [controller setPayment:payment];
         [controller setObjectModel:self.objectModel];
         [controller setHideBottomButton:YES];

@@ -55,6 +55,8 @@
     [payment setConversionRate:data[@"conversionRate"]];
     [payment setPayOut:data[@"payOut"]];
     [payment setProfileUsed:data[@"profile"]];
+    PaymentMethod availableMethods = [Payment methodsWithData:data[@"payInMethodsAvlable"]];
+    [payment setPaymentOptionsValue:availableMethods];
     [payment setPresentableValue:YES];
 
     return payment;

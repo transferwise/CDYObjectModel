@@ -11,7 +11,7 @@
 #import "RecipientViewController.h"
 #import "ConfirmPaymentViewController.h"
 #import "IdentificationViewController.h"
-#import "UploadMoneyViewController.h"
+#import "BankTransferViewController.h"
 #import "CreatePaymentOperation.h"
 #import "VerificationRequiredOperation.h"
 #import "Credentials.h"
@@ -219,7 +219,7 @@
 - (void)presentUploadMoneyController:(NSManagedObjectID *)paymentID {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"presentUploadMoneyController");
-        UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+        BankTransferViewController *controller = [[BankTransferViewController alloc] init];
         [controller setObjectModel:self.objectModel];
         [controller setPayment:(id) [self.objectModel.managedObjectContext objectWithID:paymentID]];
         [self.navigationController pushViewController:controller animated:YES];
