@@ -55,8 +55,6 @@
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
 
-    [self setTitle:NSLocalizedString(@"upload.money.title", @"")];
-
     [self.headerLabel setText:NSLocalizedString(@"upload.money.header.label", @"")];
     [self.doneButton setTitle:NSLocalizedString(@"upload.money.done.button.title", @"") forState:UIControlStateNormal];
 
@@ -68,12 +66,6 @@
     [super viewWillAppear:animated];
 
     [self loadDataToCells];
-
-    [self.navigationController flattenStack];
-
-    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
-        [self.navigationController popViewControllerAnimated:YES];
-    }]];
 }
 
 - (void)loadDataToCells {

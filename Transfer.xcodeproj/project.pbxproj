@@ -429,6 +429,10 @@
 		EAD3646717E1E19A001EFE40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD3646517E1E19A001EFE40 /* Assets.xcassets */; };
 		EAD3647917E2EBF2001EFE40 /* PaymentMethodSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3647817E2EBF2001EFE40 /* PaymentMethodSelectionView.m */; };
 		EAD3647A17E2EBF2001EFE40 /* PaymentMethodSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3647817E2EBF2001EFE40 /* PaymentMethodSelectionView.m */; };
+		EAD3648517E2F394001EFE40 /* UploadMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3648317E2F394001EFE40 /* UploadMoneyViewController.m */; };
+		EAD3648617E2F394001EFE40 /* UploadMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3648317E2F394001EFE40 /* UploadMoneyViewController.m */; };
+		EAD3648717E2F394001EFE40 /* UploadMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD3648417E2F394001EFE40 /* UploadMoneyViewController.xib */; };
+		EAD3648817E2F394001EFE40 /* UploadMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD3648417E2F394001EFE40 /* UploadMoneyViewController.xib */; };
 		EAD39672171BD2A300F6D011 /* ObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39671171BD2A300F6D011 /* ObjectModel.m */; };
 		EAD39676171BD4EE00F6D011 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39674171BD4EE00F6D011 /* MainViewController.m */; };
 		EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39675171BD4EE00F6D011 /* MainViewController.xib */; };
@@ -828,6 +832,9 @@
 		EAD3646517E1E19A001EFE40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EAD3647717E2EBF2001EFE40 /* PaymentMethodSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentMethodSelectionView.h; sourceTree = "<group>"; };
 		EAD3647817E2EBF2001EFE40 /* PaymentMethodSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodSelectionView.m; sourceTree = "<group>"; };
+		EAD3648217E2F394001EFE40 /* UploadMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadMoneyViewController.h; sourceTree = "<group>"; };
+		EAD3648317E2F394001EFE40 /* UploadMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadMoneyViewController.m; sourceTree = "<group>"; };
+		EAD3648417E2F394001EFE40 /* UploadMoneyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadMoneyViewController.xib; sourceTree = "<group>"; };
 		EAD39670171BD2A300F6D011 /* ObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectModel.h; sourceTree = "<group>"; };
 		EAD39671171BD2A300F6D011 /* ObjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectModel.m; sourceTree = "<group>"; };
 		EAD39673171BD4EE00F6D011 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -1400,6 +1407,9 @@
 		EAAA148D171BD057005B9430 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				BB29BD45173CD2FF0016A6E9 /* BankTransferViewController.h */,
+				BB29BD46173CD2FF0016A6E9 /* BankTransferViewController.m */,
+				BB29BD48173CD30C0016A6E9 /* BankTransferViewController.xib */,
 				1864AC91173B7C28008773FC /* BusinessProfileViewController.h */,
 				1864AC92173B7C28008773FC /* BusinessProfileViewController.m */,
 				EAC1051717607C4600B3B018 /* ClaimAccountViewController.h */,
@@ -1452,9 +1462,9 @@
 				EAD39678171BD51400F6D011 /* TransactionsViewController.h */,
 				EAD39679171BD51400F6D011 /* TransactionsViewController.m */,
 				EAD3967A171BD51400F6D011 /* TransactionsViewController.xib */,
-				BB29BD45173CD2FF0016A6E9 /* BankTransferViewController.h */,
-				BB29BD46173CD2FF0016A6E9 /* BankTransferViewController.m */,
-				BB29BD48173CD30C0016A6E9 /* BankTransferViewController.xib */,
+				EAD3648217E2F394001EFE40 /* UploadMoneyViewController.h */,
+				EAD3648317E2F394001EFE40 /* UploadMoneyViewController.m */,
+				EAD3648417E2F394001EFE40 /* UploadMoneyViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1725,6 +1735,7 @@
 				EA31A20317DDB29B00F937F7 /* RecipientFieldCell.xib in Resources */,
 				EA31A20A17DDB29B00F937F7 /* IdentificationViewController.xib in Resources */,
 				EA31A20B17DDB29B00F937F7 /* ConfirmPaymentViewController.xib in Resources */,
+				EAD3648817E2F394001EFE40 /* UploadMoneyViewController.xib in Resources */,
 				EA31A20C17DDB29B00F937F7 /* ConfirmPaymentCell.xib in Resources */,
 				EA31A20F17DDB29B00F937F7 /* RecipientEntrySelectionCell.xib in Resources */,
 				EA31A21017DDB29B00F937F7 /* DropdownCell.xib in Resources */,
@@ -1788,6 +1799,7 @@
 				EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */,
 				18D47903173A3B6E00FC317E /* IdentificationViewController.xib in Resources */,
 				EA222E39173A861000C5D613 /* ConfirmPaymentViewController.xib in Resources */,
+				EAD3648717E2F394001EFE40 /* UploadMoneyViewController.xib in Resources */,
 				EA222E3E173A8A7C00C5D613 /* ConfirmPaymentCell.xib in Resources */,
 				EA042603173CF5E20048BFBD /* RecipientEntrySelectionCell.xib in Resources */,
 				EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */,
@@ -2135,6 +2147,7 @@
 				EA31A1A717DDB29B00F937F7 /* PairTargetCurrency.m in Sources */,
 				EA31A1A817DDB29B00F937F7 /* _Country.m in Sources */,
 				EA31A1A917DDB29B00F937F7 /* Country.m in Sources */,
+				EAD3648617E2F394001EFE40 /* UploadMoneyViewController.m in Sources */,
 				EA31A1AA17DDB29B00F937F7 /* ObjectModel+Countries.m in Sources */,
 				EA31A1AB17DDB29B00F937F7 /* ObjectModel+Users.m in Sources */,
 				EA31A1AC17DDB29B00F937F7 /* _BusinessProfile.m in Sources */,
@@ -2311,6 +2324,7 @@
 				EA225CC2178EEC77009D6B83 /* PairTargetCurrency.m in Sources */,
 				EA225CCD179015B1009D6B83 /* _Country.m in Sources */,
 				EA225CD1179015B8009D6B83 /* Country.m in Sources */,
+				EAD3648517E2F394001EFE40 /* UploadMoneyViewController.m in Sources */,
 				EA225CD4179015CA009D6B83 /* ObjectModel+Countries.m in Sources */,
 				EA2379E91793E01A00166361 /* ObjectModel+Users.m in Sources */,
 				EA2379ED1793E02B00166361 /* _BusinessProfile.m in Sources */,

@@ -33,6 +33,7 @@
 #import "Currency.h"
 #import "Recipient.h"
 #import "PaymentPurposeOperation.h"
+#import "UploadMoneyViewController.h"
 
 @interface PaymentFlow ()
 
@@ -219,7 +220,7 @@
 - (void)presentUploadMoneyController:(NSManagedObjectID *)paymentID {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"presentUploadMoneyController");
-        BankTransferViewController *controller = [[BankTransferViewController alloc] init];
+        UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
         [controller setObjectModel:self.objectModel];
         [controller setPayment:(id) [self.objectModel.managedObjectContext objectWithID:paymentID]];
         [self.navigationController pushViewController:controller animated:YES];

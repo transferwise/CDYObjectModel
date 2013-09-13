@@ -19,6 +19,7 @@
 #import "PaymentDetailsViewController.h"
 #import "Recipient.h"
 #import "RecipientType.h"
+#import "UploadMoneyViewController.h"
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
@@ -112,7 +113,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     }
 
     if ([payment isSubmitted]) {
-        BankTransferViewController *controller = [[BankTransferViewController alloc] init];
+        UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
         [controller setPayment:payment];
         [controller setObjectModel:self.objectModel];
         [controller setHideBottomButton:YES];
