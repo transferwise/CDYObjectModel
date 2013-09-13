@@ -15,6 +15,7 @@
 #import "CardPaymentViewController.h"
 #import "PaymentMethodSelectionView.h"
 #import "UIView+Loading.h"
+#import "TRWAlertView.h"
 
 @interface UploadMoneyViewController ()
 
@@ -43,7 +44,21 @@
     [self attachChildController:cardController];
     [cardController setPayment:self.payment];
     [cardController setResultHandler:^(BOOL success) {
+        if (success) {
+            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.card.payment.success.title", nil)
+                                                               message:NSLocalizedString(@"upload.money.card.payment.success.message", nil)];
+            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.continue", nil) action:^{
+                [self pushPaymentDetailsScreen];
+            }];
 
+            [alertView show];
+        } else {
+            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.card.no.payment.title", nil)
+                                                               message:NSLocalizedString(@"upload.money.card.no.payment.message", nil)];
+            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+
+            [alertView show];
+        }
     }];
 
     BankTransferViewController *bankController = [[BankTransferViewController alloc] init];
@@ -103,6 +118,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)pushPaymentDetailsScreen {
+
 }
 
 @end

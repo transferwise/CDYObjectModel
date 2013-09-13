@@ -262,6 +262,11 @@ A revolution in your pocket.";
 "upload.money.toggle.button.debit.card.title" = "Debit card";
 "upload.money.uksort.title" = "UK Sort code";
 
+"upload.money.card.no.payment.message" = "Payment not made";
+"upload.money.card.no.payment.title" = "Payment was not made. Please try again later.";
+"upload.money.card.payment.success.message" = "Great, your payment was accepted! You can see the status of your transfer on the next screen.";
+"upload.money.card.payment.success.title" = "Card accepted!";
+
 "why.popup.bank.column.label" = "Average bank";
 "why.popup.tw.rate.title" = "The exchange rate";
 "why.popup.bank.rate.title" = "Bank's exchange rate";
