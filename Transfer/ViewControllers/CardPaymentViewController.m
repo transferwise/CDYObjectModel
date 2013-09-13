@@ -52,7 +52,6 @@
     }
 
     NSString *absoluteString = [request.URL absoluteString];
-    NSLog(@"absoluteString:%@", absoluteString);
     if ([absoluteString rangeOfString:@"/card/paidIn"].location != NSNotFound) {
         self.resultHandler(YES);
         return NO;
@@ -65,11 +64,10 @@
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    MCLog(@"webViewDidStartLoad:%@", webView.request.URL);
+
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    MCLog(@"webViewDidFinishLoad:%@", webView.request.URL);
     if (![webView.request.URL isFileURL]) {
         return;
     }
@@ -86,6 +84,7 @@
 }
 
 - (void)loadPaymentPage {
+    MCLog(@"loadPaymentPage");
     NSString *path = [[TransferwiseClient sharedClient] addTokenToPath:@"/card/pay"];
     NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"GET" path:path parameters:@{@"paymentId" : self.payment.remoteId}];
     [TransferwiseOperation provideAuthenticationHeaders:request];
