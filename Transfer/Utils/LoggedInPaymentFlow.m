@@ -40,7 +40,7 @@
     } else if ([payment.user personalProfileFilled]) {
         [self presentRecipientDetails:YES];
     } else {
-        [self presentRecipientDetails:NO];
+        [self presentPersonalProfileEntry:YES];
     }
 }
 

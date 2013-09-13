@@ -41,6 +41,10 @@
     CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
     [self setCardViewController:cardController];
     [self attachChildController:cardController];
+    [cardController setPayment:self.payment];
+    [cardController setResultHandler:^(BOOL success) {
+
+    }];
 
     BankTransferViewController *bankController = [[BankTransferViewController alloc] init];
     [self setBankViewController:bankController];
@@ -74,6 +78,7 @@
     if (index == 0) {
         [self.view bringSubviewToFront:self.bankViewController.view];
     } else {
+        [self.cardViewController loadCardView];
         [self.view bringSubviewToFront:self.cardViewController.view];
     }
 }

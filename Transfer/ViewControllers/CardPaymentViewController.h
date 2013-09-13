@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class Payment;
+
+typedef void (^CardPaymentResultBlock)(BOOL success);
+
 @interface CardPaymentViewController : UIViewController
+
+@property (nonatomic, strong) CardPaymentResultBlock resultHandler;
+@property (nonatomic, strong) Payment *payment;
+
+- (void)loadCardView;
 
 @end
