@@ -196,6 +196,7 @@ static NSUInteger const kReceiverSection = 2;
 
     [self.referenceCell setEditable:YES];
     [self.referenceCell configureWithTitle:NSLocalizedString(@"confirm.payment.reference.label", nil) value:@""];
+	[self.referenceCell.entryField setAutocorrectionType:UITextAutocorrectionTypeDefault];
 }
 
 - (void)fillDeliveryDetails:(OHAttributedLabel *)label {

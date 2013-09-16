@@ -67,6 +67,7 @@ static NSUInteger const kDetailsSection = 1;
     [descriptionCell configureWithTitle:NSLocalizedString(@"business.profile.description.label", nil) value:@""];
     [descriptionCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [descriptionCell setCellTag:@"descriptionOfBusiness"];
+	[descriptionCell.entryField setAutocorrectionType:UITextAutocorrectionTypeDefault];
 
     NSMutableArray *addressCells = [NSMutableArray array];
 
