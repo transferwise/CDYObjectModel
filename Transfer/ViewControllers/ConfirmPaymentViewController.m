@@ -26,8 +26,8 @@
 #import "BusinessProfile.h"
 #import "PersonalProfile.h"
 #import "NSString+Validation.h"
-#import "GAI.h"
 #import "TransferBackButtonItem.h"
+#import "GoogleAnalytics.h"
 
 static NSUInteger const kTransferSection = 0;
 static NSUInteger const kSenderSection = 1;
@@ -217,8 +217,7 @@ static NSUInteger const kReceiverSection = 2;
 }
 
 - (IBAction)footerButtonPressed:(id)sender {
-    [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"payment" withAction:@"ConfirmPaymentClicked" withLabel:TRWEnvironmentTag withValue:nil];
-    [[[GAI sharedInstance] trackerWithTrackingId:@"UA-16492313-3"] sendEventWithCategory:@"payment" withAction:@"ConfirmPaymentClicked" withLabel:TRWEnvironmentTag withValue:nil];
+	[[GoogleAnalytics sharedInstance] sendPaymentEvent:@"ConfirmPaymentClicked"];
 
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];

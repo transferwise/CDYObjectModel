@@ -43,6 +43,7 @@ extern NSString *const TRWMoveToPaymentsListNotification;
 extern NSString *const TRWApplicationKey;
 extern NSString *const TRWServerAddress;
 extern NSString *const TRWGoogleAnalyticsTrackingId;
+extern NSString *const TRWGoogleAnalyticsOtherTrackingId;
 
 extern NSString *const TRWEnvironmentTag;
 

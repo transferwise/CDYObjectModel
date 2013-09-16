@@ -20,7 +20,7 @@
 #import "FeedbackCoordinator.h"
 #import "UIColor+Theme.h"
 #import "FBAppEvents.h"
-#import "FBSettings.h"
+#import "GoogleAnalytics.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -118,8 +118,7 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"app_flow" withAction:@"AppStarted" withLabel:TRWEnvironmentTag withValue:nil];
-    [[[GAI sharedInstance] trackerWithTrackingId:@"UA-16492313-3"] sendEventWithCategory:@"app_flow" withAction:@"AppStarted" withLabel:TRWEnvironmentTag withValue:nil];
+	[[GoogleAnalytics sharedInstance] sendAppEvent:@"AppStarted"];
 
     delayedExecution(60 * 2, ^{
         [[FeedbackCoordinator sharedInstance] presentFeedbackAlert];

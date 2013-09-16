@@ -425,6 +425,8 @@
 		EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */; };
 		EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069091737CF57007C8DEE /* RecipientOperation.m */; };
 		EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */; };
+		EAD33E9F17E7242F00CE0608 /* GoogleAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD33E9E17E7242F00CE0608 /* GoogleAnalytics.m */; };
+		EAD33EA017E7242F00CE0608 /* GoogleAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD33E9E17E7242F00CE0608 /* GoogleAnalytics.m */; };
 		EAD3646617E1E19A001EFE40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD3646517E1E19A001EFE40 /* Assets.xcassets */; };
 		EAD3646717E1E19A001EFE40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD3646517E1E19A001EFE40 /* Assets.xcassets */; };
 		EAD3647917E2EBF2001EFE40 /* PaymentMethodSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3647817E2EBF2001EFE40 /* PaymentMethodSelectionView.m */; };
@@ -835,6 +837,8 @@
 		EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientFieldCell.xib; sourceTree = "<group>"; };
 		EAD069081737CF57007C8DEE /* RecipientOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientOperation.h; sourceTree = "<group>"; };
 		EAD069091737CF57007C8DEE /* RecipientOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientOperation.m; sourceTree = "<group>"; };
+		EAD33E9D17E7242F00CE0608 /* GoogleAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAnalytics.h; sourceTree = "<group>"; };
+		EAD33E9E17E7242F00CE0608 /* GoogleAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalytics.m; sourceTree = "<group>"; };
 		EAD3646517E1E19A001EFE40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EAD3647717E2EBF2001EFE40 /* PaymentMethodSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentMethodSelectionView.h; sourceTree = "<group>"; };
 		EAD3647817E2EBF2001EFE40 /* PaymentMethodSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodSelectionView.m; sourceTree = "<group>"; };
@@ -1385,6 +1389,7 @@
 				EA88E658172F963B0021492C /* Credentials */,
 				EA13E041171BEAF00019FBF0 /* Extensions */,
 				EA8FC93A17D864DB00E13969 /* Feedback */,
+				EAD33E9C17E7242000CE0608 /* GoogleAnalytics */,
 				EA88E669172F97B10021492C /* Model */,
 				EA8FF6B5171D25530090A658 /* Network */,
 				EAD3966F171BD1DE00F6D011 /* ObjectModel */,
@@ -1517,6 +1522,15 @@
 				EA59296E17589F3A007C0072 /* RecipientProfileValidation.h */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		EAD33E9C17E7242000CE0608 /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				EAD33E9D17E7242F00CE0608 /* GoogleAnalytics.h */,
+				EAD33E9E17E7242F00CE0608 /* GoogleAnalytics.m */,
+			);
+			path = GoogleAnalytics;
 			sourceTree = "<group>";
 		};
 		EAD3966F171BD1DE00F6D011 /* ObjectModel */ = {
@@ -2084,6 +2098,7 @@
 				EA31A15717DDB29B00F937F7 /* CurrencyPairsOperation.m in Sources */,
 				EA31A15817DDB29B00F937F7 /* RecipientViewController.m in Sources */,
 				EA31A15917DDB29B00F937F7 /* CurrenciesOperation.m in Sources */,
+				EAD33EA017E7242F00CE0608 /* GoogleAnalytics.m in Sources */,
 				EA31A15A17DDB29B00F937F7 /* TransferwiseClient.m in Sources */,
 				EA31A15B17DDB29B00F937F7 /* RecipientTypesOperation.m in Sources */,
 				EA31A15C17DDB29B00F937F7 /* CurrencySelectionCell.m in Sources */,
@@ -2262,6 +2277,7 @@
 				EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */,
 				EAA54F4B1733DA1400B65BF3 /* RecipientViewController.m in Sources */,
 				EAA54F501733DC3500B65BF3 /* CurrenciesOperation.m in Sources */,
+				EAD33E9F17E7242F00CE0608 /* GoogleAnalytics.m in Sources */,
 				EAA54F581733E8F700B65BF3 /* TransferwiseClient.m in Sources */,
 				EAA54F5B1733EF1A00B65BF3 /* RecipientTypesOperation.m in Sources */,
 				EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */,
