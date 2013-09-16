@@ -38,7 +38,7 @@
 }
 
 - (NSString *)latestChangeTimeString {
-    NSDate *latestChangeDate = self.lastUpdateTime;
+    NSDate *latestChangeDate = self.submittedDate;
     NSDateComponents *components = [[Payment gregorian] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:latestChangeDate toDate:[NSDate date] options:0];
 
     if (components.year > 1) {
