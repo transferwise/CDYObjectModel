@@ -235,7 +235,7 @@ typedef NS_ENUM(short, SettingsRow) {
             break;
         }
         case SendFeedback: {
-            [[FeedbackCoordinator sharedInstance] presentFeedbackAlert];
+            [[FeedbackCoordinator sharedInstance] presentFeedbackEmail];
             break;
         }
         default:

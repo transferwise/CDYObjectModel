@@ -17,5 +17,6 @@
 + (FeedbackCoordinator *)sharedInstance;
 
 - (void)presentFeedbackAlert;
+- (void)presentFeedbackEmail;
 
 @end

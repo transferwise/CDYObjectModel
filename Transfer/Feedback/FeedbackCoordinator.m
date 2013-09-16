@@ -72,28 +72,33 @@
 
     MCLog(@"Send mail pressed");
 
-    if (![MFMailComposeViewController canSendMail]) {
-        TRWAlertView *alert = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"support.cant.send.email.title", nil)
-                                                       message:NSLocalizedString(@"support.cant.send.email.message", nil)];
-        [alert setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-        [alert show];
-        return;
-    }
+	[self presentFeedbackEmail];
+}
 
-    MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
-    [controller setMailComposeDelegate:self];
-    [controller setToRecipients:@[TRWFeedbackEmail]];
-    [controller setSubject:NSLocalizedString(@"feedback.email.subject", nil)];
-    NSString *messageBody = [NSString stringWithFormat:NSLocalizedString(@"feedback.email.message.body.base", nil),
-                                                       [NSString stringWithFormat:@"https://transferwise.com/admin/search?q=%@", [self.objectModel.currentUser email]], // link to profile
-                                                       [[self.objectModel currentUser] displayName],
-                                                       [[UIDevice currentDevice] platformString],
-                                                       [[UIDevice currentDevice] systemVersion],
-                                                       [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
-    ];
+- (void)presentFeedbackEmail {
+	if (![MFMailComposeViewController canSendMail]) {
+		TRWAlertView *alert = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"support.cant.send.email.title", nil)
+													   message:NSLocalizedString(@"support.cant.send.email.message", nil)];
+		[alert setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+		[alert show];
+		return;
+	}
 
-    [controller setMessageBody:messageBody isHTML:YES];
-    [[FeedbackCoordinator rootViewController] presentViewController:controller animated:YES completion:nil];
+	MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
+	[controller setMailComposeDelegate:self];
+	[controller setToRecipients:@[TRWFeedbackEmail]];
+	[controller setSubject:NSLocalizedString(@"feedback.email.subject", nil)];
+	NSString *messageBody = [NSString stringWithFormat:NSLocalizedString(@"feedback.email.message.body.base", nil),
+													   [NSString stringWithFormat:@"https://transferwise.com/admin/search?q=%@", [self.objectModel.currentUser email]], // link to profile
+													   [[self.objectModel currentUser] displayName],
+													   [[UIDevice currentDevice] platformString],
+													   [[UIDevice currentDevice] systemVersion],
+													   [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
+	];
+
+	[controller setMessageBody:messageBody isHTML:YES];
+
+	[[FeedbackCoordinator rootViewController] presentViewController:controller animated:YES completion:nil];
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
