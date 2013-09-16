@@ -10,7 +10,7 @@
 #import "NSString+Validation.h"
 #import "Lockbox.h"
 
-NSString *const kAccessTokenKey = @"kAccessTokenKey";
+NSString *const kTWAccessTokenKey = @"kAccessTokenKey";
 NSString *const kUserSecretKey = @"kUserSecretKey";
 NSString *const kUserEmailKey = @"kUserEmailKey";
 
@@ -21,7 +21,7 @@ NSString *const kUserEmailKey = @"kUserEmailKey";
 }
 
 + (void)setUserToken:(NSString *)token {
-    [Lockbox setString:token forKey:kAccessTokenKey];
+	[Lockbox setString:token forKey:kTWAccessTokenKey];
 }
 
 + (void)setUserSecret:(NSString *)secret {
@@ -33,11 +33,11 @@ NSString *const kUserEmailKey = @"kUserEmailKey";
 }
 
 + (NSString *)accessToken {
-    return [Lockbox stringForKey:kAccessTokenKey];
+    return [Lockbox stringForKey:kTWAccessTokenKey];
 }
 
 + (void)clearCredentials {
-    [Lockbox setString:@"" forKey:kAccessTokenKey];
+	[Lockbox setString:@"" forKey:kTWAccessTokenKey];
     [Lockbox setString:@"" forKey:kUserSecretKey];
     [Lockbox setString:@"" forKey:kUserEmailKey];
 }

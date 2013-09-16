@@ -3,7 +3,8 @@ platform :ios, '6.0'
 pod 'AFNetworking', '~> 1.3.2'
 pod 'Lockbox'
 pod 'MBProgressHUD'
-pod 'OHAttributedLabel'
+pod 'OHAttributedLabel', :inhibit_warnings => true
+pod 'Facebook-iOS-SDK', :inhibit_warnings => true
 
 target :TransferTests, :exclusive => true do
    pod 'Kiwi'

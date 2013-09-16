@@ -19,6 +19,8 @@
 #import "SupportCoordinator.h"
 #import "FeedbackCoordinator.h"
 #import "UIColor+Theme.h"
+#import "FBAppEvents.h"
+#import "FBSettings.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -51,6 +53,8 @@
 #endif
 
     [[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
+
+	[FBAppEvents activateApp];
 
     [Crashlytics startWithAPIKey:@"84bc4b5736898e3cfdb50d3d2c162c4f74480862"];
 
