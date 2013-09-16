@@ -56,6 +56,9 @@
     [payment setPayOut:data[@"payOut"]];
     [payment setProfileUsed:data[@"profile"]];
     PaymentMethod availableMethods = [Payment methodsWithData:data[@"payInMethodsAvlable"]];
+	if (availableMethods == PaymentNone) {
+		availableMethods = [Payment methodsWithData:data[@"payInMethodsAvailable"]];
+	}
     [payment setPaymentOptionsValue:availableMethods];
     [payment setPresentableValue:YES];
 
