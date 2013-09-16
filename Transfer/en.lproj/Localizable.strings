@@ -141,6 +141,7 @@ A revolution in your pocket.";
 "payment.status.refunded.description" = "Refunded";
 "payment.status.submitted.description" = "Submitted";
 "payment.status.transferred.description" = "Transferred";
+"payment.status.receivedWaitingRecipient.description" = "Waiting for recipient";
 "payment.status.unknown.description" = "Unknown";
 
 "personal.profile.address.label" = "Address";
