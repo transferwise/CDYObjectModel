@@ -107,11 +107,15 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    [self.navigationController flattenStack];
-
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
         [self.navigationController popViewControllerAnimated:YES];
     }]];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+
+	[self.navigationController flattenStack];
 }
 
 
