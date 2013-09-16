@@ -12,6 +12,7 @@
 #import "TransferwiseClient.h"
 #import "JCSObjectModel.h"
 #import "ObjectModel+RecipientTypes.h"
+#import "FBAppEvents.h"
 
 NSString *const kLoginPath = @"/token/create";
 
@@ -55,6 +56,8 @@ NSString *const kLoginPath = @"/token/create";
             [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:nil];
 
             [weakSelf.workModel removeOtherUsers];
+
+			[FBAppEvents logEvent:@"loggedIn"];
 
             [weakSelf.workModel saveContext:^{
                 weakSelf.responseHandler(nil);
