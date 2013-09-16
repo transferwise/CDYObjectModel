@@ -65,6 +65,7 @@
     if (IOS_7) {
         [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavigationBar7.png"] forBarMetrics:UIBarMetricsDefault];
+		[[UITabBar appearance] setTintColor:[UIColor transferWiseBlue]];
     } else {
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavigationBar.png"] forBarMetrics:UIBarMetricsDefault];
     }
@@ -73,9 +74,6 @@
 
     UIImage *backButton = [[UIImage imageNamed:@"NavBarBackButton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 5)];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-
-    [[UITabBar appearance] setSelectedImageTintColor:HEXCOLOR(0xE17D23FF)];
-    [[UITabBar appearance] setTintColor:[UIColor transferWiseBlue]];
 
     ObjectModel *model = [[ObjectModel alloc] init];
     [self setObjectModel:model];
