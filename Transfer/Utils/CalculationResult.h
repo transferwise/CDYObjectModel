@@ -20,6 +20,7 @@
 @property (nonatomic, strong, readonly) NSNumber *transferwisePayOut;
 @property (nonatomic, strong, readonly) NSDate *estimatedDelivery;
 @property (nonatomic, copy, readonly) NSString *formattedEstimatedDelivery;
+@property (nonatomic, strong, readonly) NSNumber *transferwiseTransferFee;
 
 - (NSString *)transferwisePayInString;
 - (NSString *)transferwisePayOutString;

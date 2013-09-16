@@ -12,6 +12,7 @@ const struct PendingPaymentAttributes PendingPaymentAttributes = {
 	.recipientEmail = @"recipientEmail",
 	.reference = @"reference",
 	.sendVerificationLater = @"sendVerificationLater",
+	.transferwiseTransferFee = @"transferwiseTransferFee",
 };
 
 const struct PendingPaymentRelationships PendingPaymentRelationships = {
@@ -63,6 +64,11 @@ const struct PendingPaymentFetchedProperties PendingPaymentFetchedProperties = {
 	}
 	if ([key isEqualToString:@"sendVerificationLaterValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"sendVerificationLater"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"transferwiseTransferFeeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"transferwiseTransferFee"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -199,6 +205,32 @@ const struct PendingPaymentFetchedProperties PendingPaymentFetchedProperties = {
 
 - (void)setPrimitiveSendVerificationLaterValue:(BOOL)value_ {
 	[self setPrimitiveSendVerificationLater:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
+@dynamic transferwiseTransferFee;
+
+
+
+- (double)transferwiseTransferFeeValue {
+	NSNumber *result = [self transferwiseTransferFee];
+	return [result doubleValue];
+}
+
+- (void)setTransferwiseTransferFeeValue:(double)value_ {
+	[self setTransferwiseTransferFee:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveTransferwiseTransferFeeValue {
+	NSNumber *result = [self primitiveTransferwiseTransferFee];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveTransferwiseTransferFeeValue:(double)value_ {
+	[self setPrimitiveTransferwiseTransferFee:[NSNumber numberWithDouble:value_]];
 }
 
 

@@ -78,6 +78,7 @@
         <attribute name="recipientEmail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="reference" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sendVerificationLater" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="transferwiseTransferFee" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="PersonalProfile" representedClassName="PersonalProfile" syncable="YES">
         <attribute name="addressFirstLine" optional="YES" attributeType="String" syncable="YES"/>

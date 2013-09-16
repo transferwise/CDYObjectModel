@@ -57,7 +57,9 @@ NSString *const kLoginPath = @"/token/create";
 
             [weakSelf.workModel removeOtherUsers];
 
+#if USE_FACEBOOK_EVENTS
 			[FBAppEvents logEvent:@"loggedIn"];
+#endif
 
             [weakSelf.workModel saveContext:^{
                 weakSelf.responseHandler(nil);

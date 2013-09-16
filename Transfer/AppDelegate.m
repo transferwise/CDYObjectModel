@@ -54,7 +54,9 @@
 
     [[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
 
+#if USE_FACEBOOK_EVENTS
 	[FBAppEvents activateApp];
+#endif
 
     [Crashlytics startWithAPIKey:@"84bc4b5736898e3cfdb50d3d2c162c4f74480862"];
 

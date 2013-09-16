@@ -34,6 +34,7 @@
 #import "Recipient.h"
 #import "PaymentPurposeOperation.h"
 #import "UploadMoneyViewController.h"
+#import "FBAppEvents.h"
 
 @interface PaymentFlow ()
 
@@ -496,6 +497,10 @@
     MCLog(@"Commit payment");
 
     PendingPayment *payment = self.objectModel.pendingPayment;
+
+	NSNumber *transferFee = [payment transferwiseTransferFee];
+	NSString *currencyCode = [payment.sourceCurrency code];
+
     if ([payment.recipient remoteIdValue] == 0) {
         [self commitRecipientData];
         return;
@@ -510,6 +515,11 @@
             self.paymentErrorHandler(error);
             return;
         }
+
+#if USE_FACEBOOK_EVENTS
+		MCLog(@"Log FB purchase %@ - %@", transferFee, currencyCode);
+		[FBAppEvents logPurchase:[transferFee floatValue] currency:currencyCode];
+#endif
 
         [self presentUploadMoneyController:paymentID];
     }];
