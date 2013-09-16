@@ -22,7 +22,8 @@
 - (NSFetchedResultsController *)fetchedControllerForAllUserRecipients {
     NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
     NSPredicate *notHiddenPredicate = [NSPredicate predicateWithFormat:@"hidden = NO"];
-    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notHiddenPredicate]];
+	NSPredicate *notHiddenTypePredicate = [NSPredicate predicateWithFormat:@"type.hideFromCreation = NO"];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notHiddenPredicate, notHiddenTypePredicate]];
     return [self fetchedControllerForEntity:[Recipient entityName] predicate:predicate sortDescriptors:@[nameDescriptor]];
 }
 
