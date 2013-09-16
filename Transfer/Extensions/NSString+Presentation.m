@@ -96,6 +96,8 @@
 }
 
 - (NSString *)moneyFormatting {
+	return [self stringByReplacingOccurrencesOfString:@" " withString:@""];
+
     NSString *cents = @"";
     NSRange dotLocation = [self rangeOfString:@"."];
     if (dotLocation.location != NSNotFound) {
