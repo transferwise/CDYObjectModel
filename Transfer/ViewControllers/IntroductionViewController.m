@@ -28,7 +28,7 @@
 #import "PairTargetCurrency.h"
 #import "PairSourceCurrency.h"
 #import "UITableView+FooterPositioning.h"
-#import "UIView+Loading.h"
+#import "GoogleAnalytics.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
@@ -189,6 +189,10 @@ static NSUInteger const kRowYouSend = 0;
     if ([Credentials temporaryAccount]) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+
+	if (!self.dummyPresentation) {
+		[[GoogleAnalytics sharedInstance] sendAppEvent:@"StartScreen"];
+	}
 }
 
 - (void)retrieveCurrencyPairs {

@@ -7,6 +7,7 @@
 //
 
 #import "TransferBackButtonItem.h"
+#import "Constants.h"
 
 @interface TransferBackButtonItem ()
 
@@ -18,7 +19,11 @@
 
 + (TransferBackButtonItem *)backButtonWithTapHandler:(JCSActionBlock)tapHandler {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"BackButtonArrow.png"] forState:UIControlStateNormal];
+	if (IOS_7) {
+		[button setImage:[UIImage imageNamed:@"BackButtonArrow7"] forState:UIControlStateNormal];
+	} else {
+		[button setImage:[UIImage imageNamed:@"BackButtonArrow.png"] forState:UIControlStateNormal];
+	}
     [button sizeToFit];
     TransferBackButtonItem *result = [[TransferBackButtonItem alloc] initWithCustomView:button];
     [button addTarget:result action:@selector(tapped) forControlEvents:UIControlEventTouchUpInside];
