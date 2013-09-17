@@ -103,6 +103,9 @@ static NSUInteger const kButtonSection = 0;
 }
 
 - (void)setPresentProfileSource:(ProfileSource *)source reloadView:(BOOL)reload {
+	//Force profile save
+	[self.profileSource enteredProfile];
+
     [source setObjectModel:self.objectModel];
     [self setProfileSource:source];
     //TODO jaanus: fix this
