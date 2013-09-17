@@ -9,6 +9,7 @@
 #import "ClaimAccountOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Credentials.h"
+#import "GoogleAnalytics.h"
 
 NSString *const kSetPasswordPath = @"/account/setPassword";
 
@@ -38,6 +39,9 @@ NSString *const kSetPasswordPath = @"/account/setPassword";
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         [Credentials setUserSecret:@""];
+
+		[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserRegistered"];
+
         weakSelf.resultHandler(nil);
     }];
 

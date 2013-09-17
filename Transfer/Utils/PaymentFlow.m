@@ -228,6 +228,8 @@
 - (void)presentUploadMoneyController:(NSManagedObjectID *)paymentID {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"presentUploadMoneyController");
+		[[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentCreated"];
+
         UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
         [controller setObjectModel:self.objectModel];
         [controller setPayment:(id) [self.objectModel.managedObjectContext objectWithID:paymentID]];
