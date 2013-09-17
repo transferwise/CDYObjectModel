@@ -262,6 +262,9 @@ A revolution in your pocket.";
 "upload.money.toggle.button.bank.transfer.title" = "Bank transfer";
 "upload.money.toggle.button.debit.card.title" = "Debit card";
 "upload.money.uksort.title" = "UK Sort code";
+"upload.money.refreshing.payment.message" = "Refreshing details...";
+"upload.money.transaction.refresh.error.message" = "Could not update payment details. Please try again later.";
+"upload.money.transaction.refresh.error.title" = "Update error";
 
 "upload.money.card.no.payment.message" = "Payment not made";
 "upload.money.card.no.payment.title" = "Payment was not made. Please try again later.";

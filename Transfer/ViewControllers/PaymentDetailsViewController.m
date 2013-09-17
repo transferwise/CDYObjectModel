@@ -13,6 +13,7 @@
 #import "TableHeaderView.h"
 #import "UIView+Loading.h"
 #import "SupportCoordinator.h"
+#import "UINavigationController+StackManipulations.h"
 
 @interface PaymentDetailsViewController ()
 
@@ -38,6 +39,14 @@
     [self disableAllCells];
 
     [self.tableView setTableFooterView:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+
+	if (self.flattenStack) {
+		[self.navigationController flattenStack];
+	}
 }
 
 - (void)disableAllCells {

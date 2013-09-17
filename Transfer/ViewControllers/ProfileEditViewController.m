@@ -115,6 +115,7 @@ static NSUInteger const kButtonSection = 0;
     [self.profileSource setTableView:self.tableView];
     [self.navigationItem setTitle:[self.profileSource editViewTitle]];
     [self createPresentationCells];
+	[self.tableView reloadData];
 
     if (!reload) {
         return;

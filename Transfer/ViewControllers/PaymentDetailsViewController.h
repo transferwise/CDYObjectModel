@@ -10,4 +10,6 @@
 
 @interface PaymentDetailsViewController : ConfirmPaymentViewController
 
+@property (nonatomic, assign) BOOL flattenStack;
+
 @end

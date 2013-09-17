@@ -427,6 +427,8 @@
 		EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */; };
 		EAD33E9F17E7242F00CE0608 /* GoogleAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD33E9E17E7242F00CE0608 /* GoogleAnalytics.m */; };
 		EAD33EA017E7242F00CE0608 /* GoogleAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD33E9E17E7242F00CE0608 /* GoogleAnalytics.m */; };
+		EAD33EAB17E84C2700CE0608 /* PullPaymentDetailsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD33EAA17E84C2700CE0608 /* PullPaymentDetailsOperation.m */; };
+		EAD33EAC17E84C2700CE0608 /* PullPaymentDetailsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD33EAA17E84C2700CE0608 /* PullPaymentDetailsOperation.m */; };
 		EAD3646617E1E19A001EFE40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD3646517E1E19A001EFE40 /* Assets.xcassets */; };
 		EAD3646717E1E19A001EFE40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD3646517E1E19A001EFE40 /* Assets.xcassets */; };
 		EAD3647917E2EBF2001EFE40 /* PaymentMethodSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3647817E2EBF2001EFE40 /* PaymentMethodSelectionView.m */; };
@@ -839,6 +841,8 @@
 		EAD069091737CF57007C8DEE /* RecipientOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientOperation.m; sourceTree = "<group>"; };
 		EAD33E9D17E7242F00CE0608 /* GoogleAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAnalytics.h; sourceTree = "<group>"; };
 		EAD33E9E17E7242F00CE0608 /* GoogleAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalytics.m; sourceTree = "<group>"; };
+		EAD33EA917E84C2700CE0608 /* PullPaymentDetailsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullPaymentDetailsOperation.h; sourceTree = "<group>"; };
+		EAD33EAA17E84C2700CE0608 /* PullPaymentDetailsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullPaymentDetailsOperation.m; sourceTree = "<group>"; };
 		EAD3646517E1E19A001EFE40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EAD3647717E2EBF2001EFE40 /* PaymentMethodSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentMethodSelectionView.h; sourceTree = "<group>"; };
 		EAD3647817E2EBF2001EFE40 /* PaymentMethodSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodSelectionView.m; sourceTree = "<group>"; };
@@ -1281,6 +1285,8 @@
 				EA35C76B1732790D005602F7 /* PaymentsOperation.m */,
 				EAD85B09173920C300C22211 /* PersonalProfileOperation.h */,
 				EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */,
+				EAD33EA917E84C2700CE0608 /* PullPaymentDetailsOperation.h */,
+				EAD33EAA17E84C2700CE0608 /* PullPaymentDetailsOperation.m */,
 				EAA07BEF17AF750A004B97AC /* QuickProfileValidationOperation.h */,
 				EAA07BF017AF750A004B97AC /* QuickProfileValidationOperation.m */,
 				EAD069081737CF57007C8DEE /* RecipientOperation.h */,
@@ -2183,6 +2189,7 @@
 				EA31A1A917DDB29B00F937F7 /* Country.m in Sources */,
 				EAD3648617E2F394001EFE40 /* UploadMoneyViewController.m in Sources */,
 				EA31A1AA17DDB29B00F937F7 /* ObjectModel+Countries.m in Sources */,
+				EAD33EAC17E84C2700CE0608 /* PullPaymentDetailsOperation.m in Sources */,
 				EA31A1AB17DDB29B00F937F7 /* ObjectModel+Users.m in Sources */,
 				EA31A1AC17DDB29B00F937F7 /* _BusinessProfile.m in Sources */,
 				EA31A1AD17DDB29B00F937F7 /* _PersonalProfile.m in Sources */,
@@ -2362,6 +2369,7 @@
 				EA225CD1179015B8009D6B83 /* Country.m in Sources */,
 				EAD3648517E2F394001EFE40 /* UploadMoneyViewController.m in Sources */,
 				EA225CD4179015CA009D6B83 /* ObjectModel+Countries.m in Sources */,
+				EAD33EAB17E84C2700CE0608 /* PullPaymentDetailsOperation.m in Sources */,
 				EA2379E91793E01A00166361 /* ObjectModel+Users.m in Sources */,
 				EA2379ED1793E02B00166361 /* _BusinessProfile.m in Sources */,
 				EA2379F01793E02F00166361 /* _PersonalProfile.m in Sources */,

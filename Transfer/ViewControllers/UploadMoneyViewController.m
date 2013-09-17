@@ -16,11 +16,16 @@
 #import "PaymentMethodSelectionView.h"
 #import "UIView+Loading.h"
 #import "TRWAlertView.h"
+#import "PaymentDetailsViewController.h"
+#import "TransferwiseOperation.h"
+#import "TRWProgressHUD.h"
+#import "PullPaymentDetailsOperation.h"
 
 @interface UploadMoneyViewController ()
 
 @property (nonatomic, strong) BankTransferViewController *bankViewController;
 @property (nonatomic, strong) CardPaymentViewController *cardViewController;
+@property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
 @end
 
@@ -125,7 +130,40 @@
 }
 
 - (void)pushPaymentDetailsScreen {
+	dispatch_async(dispatch_get_main_queue(), ^{
+		if (self.executedOperation) {
+			return;
+		}
 
+		TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+		[hud setMessage:NSLocalizedString(@"upload.money.refreshing.payment.message", nil)];
+		PullPaymentDetailsOperation *operation = [PullPaymentDetailsOperation operationWithPaymentId:[self.payment remoteId]];
+		[self setExecutedOperation:operation];
+		[operation setObjectModel:self.objectModel];
+		[operation setResultHandler:^(NSError *error) {
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[hud hide];
+				[self setExecutedOperation:nil];
+
+				if (error) {
+					TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.transaction.refresh.error.title", nil) message:NSLocalizedString(@"upload.money.transaction.refresh.error.message", nil)];
+					[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+					[alertView show];
+					return;
+				}
+
+				PaymentDetailsViewController *controller = [[PaymentDetailsViewController alloc] init];
+				[controller setObjectModel:self.objectModel];
+				[controller setPayment:(Payment *) [self.objectModel.managedObjectContext objectWithID:self.payment.objectID]];
+				[controller setShowContactSupportCell:YES];
+				[controller setFlattenStack:YES];
+				[self.navigationController pushViewController:controller animated:YES];
+
+			});
+		}];
+
+		[operation execute];
+	});
 }
 
 @end
