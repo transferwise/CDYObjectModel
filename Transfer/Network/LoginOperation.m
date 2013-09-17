@@ -62,9 +62,10 @@ NSString *const kLoginPath = @"/token/create";
 			[FBAppEvents logEvent:@"loggedIn"];
 #endif
 			[[GoogleAnalytics sharedInstance] sendAppEvent:@"LoggedIn"];
+			[[GoogleAnalytics sharedInstance] markLoggedIn];
 
 
-            [weakSelf.workModel saveContext:^{
+			[weakSelf.workModel saveContext:^{
                 weakSelf.responseHandler(nil);
             }];
         }];

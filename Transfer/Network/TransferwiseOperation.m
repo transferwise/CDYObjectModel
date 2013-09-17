@@ -19,6 +19,7 @@
 #import "ObjectModel.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "GAI.h"
+#import "GoogleAnalytics.h"
 
 @interface TransferwiseOperation ()
 
@@ -150,7 +151,8 @@
             }
 
             [Credentials clearCredentials];
-            [[NSNotificationCenter defaultCenter] postNotificationName:TRWLoggedOutNotification object:nil];
+			[[GoogleAnalytics sharedInstance] markLoggedIn];
+			[[NSNotificationCenter defaultCenter] postNotificationName:TRWLoggedOutNotification object:nil];
         });
     } else {
         MCLog(@"Other errors");

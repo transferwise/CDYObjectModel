@@ -119,6 +119,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	[[GoogleAnalytics sharedInstance] sendAppEvent:@"AppStarted"];
+	[[GoogleAnalytics sharedInstance] markLoggedIn];
 
     delayedExecution(60 * 2, ^{
         [[FeedbackCoordinator sharedInstance] presentFeedbackAlert];

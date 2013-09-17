@@ -9,6 +9,7 @@
 #import "GoogleAnalytics.h"
 #import "Constants.h"
 #import "GAI.h"
+#import "Credentials.h"
 
 @implementation GoogleAnalytics
 
@@ -42,6 +43,12 @@
 
 - (void)sendPaymentEvent:(NSString *)event {
 	[self sendEvent:event category:@"payment"];
+}
+
+- (void)markLoggedIn {
+	NSString *marker = [Credentials userLoggedIn] ? @"YES" : @"NO";
+	[[[GAI sharedInstance] defaultTracker] set:@"LoggedIn" value:marker];
+	[[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsOtherTrackingId] set:@"LoggedIn" value:marker];
 }
 
 - (void)sendEvent:(NSString *)event category:(NSString *)category {

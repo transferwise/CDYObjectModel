@@ -14,5 +14,6 @@
 
 - (void)sendAppEvent:(NSString *)event;
 - (void)sendPaymentEvent:(NSString *)event;
+- (void)markLoggedIn;
 
 @end
