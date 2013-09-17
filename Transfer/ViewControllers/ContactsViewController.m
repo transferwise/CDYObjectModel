@@ -25,6 +25,7 @@
 #import "TabBarActivityIndicatorView.h"
 #import "_RecipientType.h"
 #import "RecipientType.h"
+#import "GoogleAnalytics.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
@@ -82,6 +83,13 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"AddButton.png"] style:UIBarButtonItemStylePlain target:self action:@selector(addContactPressed)];
     [self.tabBarController.navigationItem setRightBarButtonItem:addButton];
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+
+	[[GoogleAnalytics sharedInstance] sendAppEvent:@"RecipientsList"];
+}
+
 
 #pragma mark - Table view data source
 
@@ -156,6 +164,8 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 }
 
 - (void)addContactPressed {
+	[[GoogleAnalytics sharedInstance] sendAppEvent:@"AddRecipientPressed"];
+
     RecipientViewController *controller = [[RecipientViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setTitle:NSLocalizedString(@"recipient.controller.add.mode.title", nil)];

@@ -16,6 +16,7 @@
 #import "ObjectModel+Users.h"
 #import "BusinessProfile.h"
 #import "QuickProfileValidationOperation.h"
+#import "GoogleAnalytics.h"
 
 static NSUInteger const kButtonSection = 0;
 static NSUInteger const kDetailsSection = 1;
@@ -143,7 +144,9 @@ static NSUInteger const kDetailsSection = 1;
 }
 
 - (id)enteredProfile {
-    BusinessProfile *profile = [self.objectModel.currentUser businessProfileObject];
+	[[GoogleAnalytics sharedInstance] sendAppEvent:@"BusinessProfileEntered"];
+
+	BusinessProfile *profile = [self.objectModel.currentUser businessProfileObject];
     [profile setName:[self.businessNameCell value]];
     [profile setRegistrationNumber:[self.registrationNumberCell value]];
     [profile setBusinessDescription:[self.descriptionCell value]];

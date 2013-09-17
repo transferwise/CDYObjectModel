@@ -267,7 +267,9 @@ static NSUInteger const kRowYouSend = 0;
     }
 
     //TODO jaanus: copy/paste
-    Currency *sourceCurrency = [self.youSendCell currency];
+	[[GoogleAnalytics sharedInstance] sendAppEvent:@"NewPayment"];
+
+	Currency *sourceCurrency = [self.youSendCell currency];
     Currency *targetCurrency = [self.theyReceiveCell currency];
     NSNumber *payIn = [self.result transferwisePayIn];
 

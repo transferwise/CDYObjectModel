@@ -13,6 +13,7 @@
 #import "UIDevice-Hardware.h"
 #import "ObjectModel+Users.h"
 #import "User.h"
+#import "GoogleAnalytics.h"
 
 @interface FeedbackCoordinator () <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 
@@ -49,6 +50,8 @@
 }
 
 - (void)presentFeedbackAlert {
+	[[GoogleAnalytics sharedInstance] sendAppEvent:@"ReviewNotification"];
+
     TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"feedback.alert.title", nil)
                                                        message:NSLocalizedString(@"feedback.alert.message", nil)];
     [alertView setDelegate:self];
@@ -76,6 +79,8 @@
 }
 
 - (void)presentFeedbackEmail {
+	[[GoogleAnalytics sharedInstance] sendAppEvent:@"SendFeedbackClicked"];
+
 	if (![MFMailComposeViewController canSendMail]) {
 		TRWAlertView *alert = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"support.cant.send.email.title", nil)
 													   message:NSLocalizedString(@"support.cant.send.email.message", nil)];

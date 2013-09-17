@@ -10,6 +10,7 @@
 #import "BusinessProfileViewController.h"
 #import "BusinessProfileSource.h"
 #import "QuickProfileValidationOperation.h"
+#import "GoogleAnalytics.h"
 
 @interface BusinessProfileViewController ()
 
@@ -29,10 +30,6 @@
     [super viewDidLoad];
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -41,5 +38,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+
+	[[GoogleAnalytics sharedInstance] sendAppEvent:@"BusinessProfile"];
+}
+
 
 @end

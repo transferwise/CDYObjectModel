@@ -14,6 +14,7 @@
 #import "User.h"
 #import <MessageUI/MFMailComposeViewController.h>
 #import "UIDevice-Hardware.h"
+#import "GoogleAnalytics.h"
 
 @interface SupportCoordinator () <UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
@@ -55,6 +56,7 @@
 }
 
 - (void)presentOnController:(UIViewController *)controller emailSubject:(NSString *)emailSubject {
+	[[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport"];
     [self setPresentedOnController:controller];
     [self setEmailSubject:emailSubject];
 

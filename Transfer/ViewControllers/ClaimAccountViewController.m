@@ -18,6 +18,7 @@
 #import "TRWProgressHUD.h"
 #import "UIApplication+Keyboard.h"
 #import "TransferBackButtonItem.h"
+#import "GoogleAnalytics.h"
 
 @interface ClaimAccountViewController ()
 
@@ -98,6 +99,8 @@
     [super viewDidAppear:animated];
 
     [self.navigationController flattenStack];
+
+	[[GoogleAnalytics sharedInstance] sendAppEvent:@"RegisterScreen"];
 }
 
 

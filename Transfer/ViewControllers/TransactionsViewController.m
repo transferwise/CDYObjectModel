@@ -20,6 +20,7 @@
 #import "Recipient.h"
 #import "RecipientType.h"
 #import "UploadMoneyViewController.h"
+#import "GoogleAnalytics.h"
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
@@ -82,6 +83,13 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+
+	[[GoogleAnalytics sharedInstance] sendAppEvent:@"TransfersList"];
+}
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -111,6 +119,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     if ([payment.recipient.type hideFromCreationValue]) {
         return;
     }
+
+	[[GoogleAnalytics sharedInstance] sendAppEvent:@"ViewPayment"];
 
     if ([payment isSubmitted]) {
         UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];

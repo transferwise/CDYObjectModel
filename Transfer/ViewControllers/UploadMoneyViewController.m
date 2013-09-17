@@ -20,6 +20,7 @@
 #import "TransferwiseOperation.h"
 #import "TRWProgressHUD.h"
 #import "PullPaymentDetailsOperation.h"
+#import "GoogleAnalytics.h"
 
 @interface UploadMoneyViewController ()
 
@@ -98,6 +99,7 @@
     if (index == 0) {
         [self.view bringSubviewToFront:self.bankViewController.view];
     } else {
+		[[GoogleAnalytics sharedInstance] sendAppEvent:@"DebitCardPayment"];
         [self.cardViewController loadCardView];
         [self.view bringSubviewToFront:self.cardViewController.view];
     }

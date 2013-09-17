@@ -14,6 +14,7 @@
 #import "SettingsViewController.h"
 #import "Credentials.h"
 #import "Constants.h"
+#import "GoogleAnalytics.h"
 
 @interface MainViewController () <UINavigationControllerDelegate>
 
@@ -62,7 +63,7 @@
     SWRevealViewController *revealController = [self revealViewController];
     [self.navigationBar addGestureRecognizer:revealController.panGestureRecognizer];
 
-    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuButton.png"] style:UIBarButtonItemStylePlain target:revealController action:@selector(revealToggle:)];
+    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuButton.png"] style:UIBarButtonItemStylePlain target:self action:@selector(menuPressed)];
     [tabController.navigationItem setLeftBarButtonItem:settingsButton];
 
     UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
@@ -71,6 +72,11 @@
     [self setDelegate:self];
 
     [self.view setBackgroundColor:[UIColor whiteColor]];
+}
+
+- (void)menuPressed {
+	[[GoogleAnalytics sharedInstance] sendAppEvent:@"MenuPressed"];
+	[self.revealViewController revealToggle:nil];
 }
 
 - (void)didReceiveMemoryWarning {

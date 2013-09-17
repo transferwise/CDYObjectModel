@@ -50,6 +50,7 @@
 #import "PersonalProfile.h"
 #import "BusinessProfile.h"
 #import "TransferBackButtonItem.h"
+#import "GoogleAnalytics.h"
 
 static NSUInteger const kSenderSection = 0;
 static NSUInteger const kImportSection = 1;
@@ -375,6 +376,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (IBAction)addButtonPressed:(id)sender {
     [UIApplication dismissKeyboard];
+
+	[[GoogleAnalytics sharedInstance] sendAppEvent:@"RecipientEntered"];
 
     NSString *issues = [self validateInput];
     if ([issues hasValue]) {

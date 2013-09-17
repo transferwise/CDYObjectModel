@@ -18,6 +18,7 @@
 #import "PersonalProfile.h"
 #import "QuickProfileValidationOperation.h"
 #import "Credentials.h"
+#import "GoogleAnalytics.h"
 
 NSUInteger const kUserButtonSection = 0;
 NSUInteger const kUserPersonalSection = 1;
@@ -180,6 +181,8 @@ NSUInteger const kUserPersonalSection = 1;
 }
 
 - (id)enteredProfile {
+	[[GoogleAnalytics sharedInstance] sendAppEvent:@"PersonalProfileEntered"];
+
     User *user = [self.objectModel currentUser];
     PersonalProfile *profile = [user personalProfileObject];
 

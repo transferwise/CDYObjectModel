@@ -35,6 +35,7 @@
 #import "PaymentPurposeOperation.h"
 #import "UploadMoneyViewController.h"
 #import "FBAppEvents.h"
+#import "GoogleAnalytics.h"
 
 @interface PaymentFlow ()
 
@@ -212,6 +213,12 @@
 }
 
 - (void)presentVerificationScreen {
+	PendingPayment *payment = [self.objectModel pendingPayment];
+	if (payment.businessProfileUsed) {
+		[[GoogleAnalytics sharedInstance] sendAppEvent:@"BusinessVerification"];
+	} else {
+		[[GoogleAnalytics sharedInstance] sendAppEvent:@"PersonalIdentification"];
+	}
     IdentificationViewController *controller = [[IdentificationViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setPaymentFlow:self];

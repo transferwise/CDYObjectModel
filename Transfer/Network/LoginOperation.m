@@ -13,6 +13,7 @@
 #import "JCSObjectModel.h"
 #import "ObjectModel+RecipientTypes.h"
 #import "FBAppEvents.h"
+#import "GoogleAnalytics.h"
 
 NSString *const kLoginPath = @"/token/create";
 
@@ -60,6 +61,8 @@ NSString *const kLoginPath = @"/token/create";
 #if USE_FACEBOOK_EVENTS
 			[FBAppEvents logEvent:@"loggedIn"];
 #endif
+			[[GoogleAnalytics sharedInstance] sendAppEvent:@"LoggedIn"];
+
 
             [weakSelf.workModel saveContext:^{
                 weakSelf.responseHandler(nil);

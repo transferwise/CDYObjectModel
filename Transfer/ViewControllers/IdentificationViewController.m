@@ -20,6 +20,7 @@
 #import "ObjectModel+PendingPayments.h"
 #import "TextEntryCell.h"
 #import "TransferBackButtonItem.h"
+#import "GoogleAnalytics.h"
 
 @interface IdentificationViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 

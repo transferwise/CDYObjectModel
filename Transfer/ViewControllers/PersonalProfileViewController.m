@@ -9,6 +9,7 @@
 #import "PersonalProfileViewController.h"
 #import "PersonalProfileSource.h"
 #import "QuickProfileValidationOperation.h"
+#import "GoogleAnalytics.h"
 
 @interface PersonalProfileViewController ()
 
@@ -36,5 +37,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+
+	[[GoogleAnalytics sharedInstance] sendAppEvent:@"PersonalProfile"];
+}
+
 
 @end

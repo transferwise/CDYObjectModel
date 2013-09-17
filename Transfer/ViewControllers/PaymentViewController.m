@@ -30,6 +30,7 @@
 #import "UIView+Loading.h"
 #import "SwitchCell.h"
 #import "TransferBackButtonItem.h"
+#import "GoogleAnalytics.h"
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -269,6 +270,8 @@ static NSUInteger const kRowYouSend = 0;
     if (!self.calculationResult) {
         return;
     }
+
+	[[GoogleAnalytics sharedInstance] sendAppEvent:@"NewPayment"];
 
     //TODO jaanus: copy/paste
     Currency *sourceCurrency = [self.youSendCell currency];
