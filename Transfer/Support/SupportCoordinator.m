@@ -112,7 +112,11 @@
                                                        [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
     ];
     [controller setMessageBody:messageBody isHTML:YES];
-    [self.presentedOnController presentViewController:controller animated:YES completion:nil];
+    [self.presentedOnController presentViewController:controller animated:YES completion:^{
+		if (IOS_7) {
+			[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+		}
+	}];
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {

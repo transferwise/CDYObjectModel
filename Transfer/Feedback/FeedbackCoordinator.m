@@ -103,7 +103,11 @@
 
 	[controller setMessageBody:messageBody isHTML:YES];
 
-	[[FeedbackCoordinator rootViewController] presentViewController:controller animated:YES completion:nil];
+	[[FeedbackCoordinator rootViewController] presentViewController:controller animated:YES completion:^{
+		if (IOS_7) {
+			[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+		}
+	}];
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
