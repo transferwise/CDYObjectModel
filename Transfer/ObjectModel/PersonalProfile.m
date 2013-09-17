@@ -43,4 +43,9 @@
     return [NSDictionary dictionaryWithDictionary:data];
 }
 
+- (BOOL)isFilled {
+	return [self.firstName hasValue] && [self.lastName hasValue] && [self.dateOfBirth hasValue] && [self.phoneNumber hasValue]
+			&& [self.addressFirstLine hasValue] && [self.postCode hasValue] && [self.city hasValue] && [self.countryCode hasValue];
+}
+
 @end

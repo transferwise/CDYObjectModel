@@ -30,11 +30,11 @@
 }
 
 - (BOOL)personalProfileFilled {
-    return self.personalProfile != nil;
+    return [self.personalProfile isFilled];
 }
 
 - (BOOL)businessProfileFilled {
-    return self.businessProfile != nil;
+    return [self.businessProfile isFilled];
 }
 
 @end

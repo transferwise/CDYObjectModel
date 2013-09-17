@@ -7,6 +7,7 @@
 //
 
 #import "DateEntryCell.h"
+#import "NSString+Validation.h"
 
 NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 
@@ -54,6 +55,10 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 }
 
 - (NSString *)value {
+	if (![self.entryField.text hasValue]) {
+		return @"";
+	}
+
     return [[DateEntryCell rawDateFormatter] stringFromDate:self.datePicker.date];
 }
 

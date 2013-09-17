@@ -5,5 +5,6 @@
 - (BOOL)isFieldReadonly:(NSString *)fieldName;
 - (NSString *)fullName;
 - (NSDictionary *)data;
+- (BOOL)isFilled;
 
 @end
