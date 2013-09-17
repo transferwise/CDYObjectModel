@@ -8,6 +8,7 @@
 
 #import "RoundedCellBackgroundView.h"
 #import "UIColor+Theme.h"
+#import "Constants.h"
 
 @implementation RoundedCellBackgroundView
 
@@ -29,14 +30,14 @@
 - (void)drawRect:(CGRect)rect {
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:self.roundedCorner cornerRadii:CGSizeMake(8, 8)];
 
-    if (!self.fillGradient) {
+    if (!self.fillGradient || IOS_7) {
         [[UIColor controllerBackgroundColor] setFill];
         [path fill];
     } else {
         [path addClip];
 
         CGFloat colors [] = {
-                230/255.0, 230/255.0, 230/255.0, 1.0,
+                242/255.0, 242/255.0, 242/255.0, 1.0,
                 228/250.0, 228/250.0, 228/250.0, 1.0
         };
 
