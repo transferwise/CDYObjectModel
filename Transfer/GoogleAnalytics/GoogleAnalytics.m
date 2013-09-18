@@ -47,8 +47,8 @@
 
 - (void)markLoggedIn {
 	NSString *marker = [Credentials userLoggedIn] ? @"YES" : @"NO";
-	[[[GAI sharedInstance] defaultTracker] set:@"LoggedIn" value:marker];
-	[[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsOtherTrackingId] set:@"LoggedIn" value:marker];
+	[[[GAI sharedInstance] defaultTracker] set:@"IsLoggedIn" value:marker];
+	[[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsOtherTrackingId] set:@"IsLoggedIn" value:marker];
 }
 
 - (void)sendEvent:(NSString *)event category:(NSString *)category {
