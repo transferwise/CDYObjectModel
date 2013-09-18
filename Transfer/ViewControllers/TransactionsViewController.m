@@ -23,6 +23,7 @@
 #import "GoogleAnalytics.h"
 #import "IdentificationNotificationView.h"
 #import "UIView+Loading.h"
+#import "CheckPersonalProfileVerificationOperation.h"
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
@@ -34,6 +35,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IdentificationNotificationView *identificationView;
 @property (nonatomic, assign) BOOL showIdentificationView;
+@property (nonatomic, strong) CheckPersonalProfileVerificationOperation *checkOperation;
 
 @end
 
@@ -88,6 +90,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
     [self refreshPaymentsList];
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
+
+	[self checkPersonalVerificationNeeded];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -252,6 +256,26 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView endUpdates];
+}
+
+- (void)checkPersonalVerificationNeeded {
+	MCLog(@"checkPersonalVerificationNeeded", nil);
+	if (self.checkOperation) {
+		MCLog(@"Check in progress");
+		return;
+	}
+
+	CheckPersonalProfileVerificationOperation *operation = [CheckPersonalProfileVerificationOperation operation];
+	[self setCheckOperation:operation];
+	[operation setResultHandler:^(BOOL somethingNeeded) {
+		[self setCheckOperation:nil];
+
+		if (somethingNeeded != self.showIdentificationView) {
+			[self setShowIdentificationView:somethingNeeded];
+			[self.tableView reloadData];
+		}
+	}];
+	[operation execute];
 }
 
 @end

@@ -476,6 +476,8 @@
 		EAE7B6AD17E9AC3F00E03D73 /* IdentificationNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */; };
 		EAE7B6AF17E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */; };
 		EAE7B6B017E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */; };
+		EAE7B6B317E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B6B217E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m */; };
+		EAE7B6B417E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B6B217E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m */; };
 		EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */; };
 		EAEA6257172011C500A96770 /* CalculationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6256172011C500A96770 /* CalculationResult.m */; };
 		EAEA626117202D6100A96770 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EAEA626017202D6100A96770 /* libz.dylib */; };
@@ -908,6 +910,8 @@
 		EAE7B6AA17E9AC3F00E03D73 /* IdentificationNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentificationNotificationView.h; sourceTree = "<group>"; };
 		EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentificationNotificationView.m; sourceTree = "<group>"; };
 		EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IdentificationNotificationView.xib; sourceTree = "<group>"; };
+		EAE7B6B117E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckPersonalProfileVerificationOperation.h; sourceTree = "<group>"; };
+		EAE7B6B217E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckPersonalProfileVerificationOperation.m; sourceTree = "<group>"; };
 		EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferCalculationsOperation.h; sourceTree = "<group>"; };
 		EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferCalculationsOperation.m; sourceTree = "<group>"; };
 		EAEA6255172011C500A96770 /* CalculationResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculationResult.h; sourceTree = "<group>"; };
@@ -1271,6 +1275,8 @@
 			children = (
 				1864AC9C173B7C80008773FC /* BusinessProfileOperation.h */,
 				1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */,
+				EAE7B6B117E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.h */,
+				EAE7B6B217E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m */,
 				EAB93B461761C74700A7337C /* ClaimAccountOperation.h */,
 				EAB93B471761C74700A7337C /* ClaimAccountOperation.m */,
 				EA88E67C172F97D50021492C /* CountriesOperation.h */,
@@ -2188,6 +2194,7 @@
 				EA31A19B17DDB29B00F937F7 /* _RecipientTypeField.m in Sources */,
 				EA31A19C17DDB29B00F937F7 /* RecipientTypeField.m in Sources */,
 				EA31A19D17DDB29B00F937F7 /* _TypeFieldValue.m in Sources */,
+				EAE7B6B417E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */,
 				EA31A19E17DDB29B00F937F7 /* TypeFieldValue.m in Sources */,
 				EA31A19F17DDB29B00F937F7 /* NSDate+ServerTime.m in Sources */,
 				EA31A1A017DDB29B00F937F7 /* ObjectModel+CurrencyPairs.m in Sources */,
@@ -2369,6 +2376,7 @@
 				EA225C97178EB3D3009D6B83 /* _RecipientTypeField.m in Sources */,
 				EA225C9A178EB3DA009D6B83 /* RecipientTypeField.m in Sources */,
 				EA225C9D178EB50B009D6B83 /* _TypeFieldValue.m in Sources */,
+				EAE7B6B317E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */,
 				EA225CA0178EB511009D6B83 /* TypeFieldValue.m in Sources */,
 				EA225CA3178EB591009D6B83 /* NSDate+ServerTime.m in Sources */,
 				EA225CA6178EC32D009D6B83 /* ObjectModel+CurrencyPairs.m in Sources */,
