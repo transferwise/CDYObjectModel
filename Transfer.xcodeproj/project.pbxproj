@@ -472,6 +472,10 @@
 		EAD7D4D1171D4BB20099063F /* BlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4D0171D4BB20099063F /* BlueButton.m */; };
 		EAD85B0B173920C300C22211 /* PersonalProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */; };
 		EAE1E3A317B2519000A45623 /* PaymentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */; };
+		EAE7B6AC17E9AC3F00E03D73 /* IdentificationNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */; };
+		EAE7B6AD17E9AC3F00E03D73 /* IdentificationNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */; };
+		EAE7B6AF17E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */; };
+		EAE7B6B017E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */; };
 		EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */; };
 		EAEA6257172011C500A96770 /* CalculationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6256172011C500A96770 /* CalculationResult.m */; };
 		EAEA626117202D6100A96770 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EAEA626017202D6100A96770 /* libz.dylib */; };
@@ -901,6 +905,9 @@
 		EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileOperation.m; sourceTree = "<group>"; };
 		EAE1E3A117B2519000A45623 /* PaymentDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentDetailsViewController.h; sourceTree = "<group>"; };
 		EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentDetailsViewController.m; sourceTree = "<group>"; };
+		EAE7B6AA17E9AC3F00E03D73 /* IdentificationNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentificationNotificationView.h; sourceTree = "<group>"; };
+		EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentificationNotificationView.m; sourceTree = "<group>"; };
+		EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IdentificationNotificationView.xib; sourceTree = "<group>"; };
 		EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferCalculationsOperation.h; sourceTree = "<group>"; };
 		EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferCalculationsOperation.m; sourceTree = "<group>"; };
 		EAEA6255172011C500A96770 /* CalculationResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculationResult.h; sourceTree = "<group>"; };
@@ -1043,6 +1050,9 @@
 				BBCC6336172169980094EABB /* WhyView.h */,
 				BBCC6337172169980094EABB /* WhyView.m */,
 				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
+				EAE7B6AA17E9AC3F00E03D73 /* IdentificationNotificationView.h */,
+				EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */,
+				EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1757,6 +1767,7 @@
 				EA31A1E917DDB29B00F937F7 /* TSAlertViewCancelButtonBackground.png in Resources */,
 				EA31A1EA17DDB29B00F937F7 /* TSAlertViewButtonBackground.png in Resources */,
 				EA31A1EB17DDB29B00F937F7 /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
+				EAE7B6B017E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */,
 				EA31A1EC17DDB29B00F937F7 /* TSAlertViewBackground2.png in Resources */,
 				EA31A1ED17DDB29B00F937F7 /* TSAlertViewBackground.png in Resources */,
 				EA31A1EE17DDB29B00F937F7 /* WhyView.xib in Resources */,
@@ -1823,6 +1834,7 @@
 				BBC691251721416300F0FB1A /* TSAlertViewCancelButtonBackground.png in Resources */,
 				BBC691261721416300F0FB1A /* TSAlertViewButtonBackground.png in Resources */,
 				BBC691271721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
+				EAE7B6AF17E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */,
 				BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */,
 				BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */,
 				BBC6912C172147FC00F0FB1A /* WhyView.xib in Resources */,
@@ -2131,6 +2143,7 @@
 				EA31A16F17DDB29B00F937F7 /* RegisterOperation.m in Sources */,
 				EA31A17017DDB29B00F937F7 /* ButtonCell.m in Sources */,
 				EA31A17117DDB29B00F937F7 /* PhoneBookProfile.m in Sources */,
+				EAE7B6AD17E9AC3F00E03D73 /* IdentificationNotificationView.m in Sources */,
 				EA31A17217DDB29B00F937F7 /* PhoneBookProfileSelector.m in Sources */,
 				EA31A17317DDB29B00F937F7 /* PhoneBookAddress.m in Sources */,
 				EA31A17417DDB29B00F937F7 /* DismissKeyboardTableView.m in Sources */,
@@ -2311,6 +2324,7 @@
 				EA1861E31746442900BD01BB /* RegisterOperation.m in Sources */,
 				EAD66759174A51B900D29BCB /* ButtonCell.m in Sources */,
 				EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */,
+				EAE7B6AC17E9AC3F00E03D73 /* IdentificationNotificationView.m in Sources */,
 				EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */,
 				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
 				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,

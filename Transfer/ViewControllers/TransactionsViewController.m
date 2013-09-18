@@ -21,6 +21,8 @@
 #import "RecipientType.h"
 #import "UploadMoneyViewController.h"
 #import "GoogleAnalytics.h"
+#import "IdentificationNotificationView.h"
+#import "UIView+Loading.h"
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
@@ -30,6 +32,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (nonatomic, strong) IBOutlet UIView *loadingFooterView;
 @property (nonatomic, strong) NSFetchedResultsController *payments;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IdentificationNotificationView *identificationView;
+@property (nonatomic, assign) BOOL showIdentificationView;
 
 @end
 
@@ -58,6 +62,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     if (IOS_7) {
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
+
+	IdentificationNotificationView *notificationView = [IdentificationNotificationView loadInstance];
+	[self setIdentificationView:notificationView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -136,6 +143,22 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         [controller setShowContactSupportCell:YES];
         [self.navigationController pushViewController:controller animated:YES];
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	if (section == 0 && self.showIdentificationView) {
+		return CGRectGetHeight(self.identificationView.frame);
+	}
+
+	return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	if (section == 0 && self.showIdentificationView) {
+		return self.identificationView;
+	}
+
+	return nil;
 }
 
 - (void)refreshPaymentsList {

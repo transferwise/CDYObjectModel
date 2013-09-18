@@ -240,6 +240,8 @@ A revolution in your pocket.";
 
 "transactions.controller.refreshing.message" = "Refreshing payments";
 "transactions.controller.title" = "Transactions";
+"transactions.identification.notification.message" = "We are waiting to verify your documents";
+"transactions.identification.upload.message" = "Haven't uploaded them?";
 
 "transfer.pay.in.too.low.message.base" = "The entered amount is too small to convert, please change it under 'You send'. Current minimum is %@ %@";
 "transfer.pay.in.too.low.title" = "Amount too small";
