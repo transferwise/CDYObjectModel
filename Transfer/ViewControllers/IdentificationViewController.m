@@ -66,18 +66,18 @@
     [self.excuseLabel setText:NSLocalizedString(@"identification.excuse", @"")];
     [self.explanationLabel setText:NSLocalizedString(@"identification.explanation", @"")];
     [self.skipLabel setText:NSLocalizedString(@"identification.skip.send", @"")];
-	if (self.proposedFooterButtonTitle) {
-		[self.continueButton setTitle:self.proposedFooterButtonTitle forState:UIControlStateNormal];
-	} else {
-		[self.continueButton setTitle:NSLocalizedString(@"identification.upload.and.continue.button", @"") forState:UIControlStateNormal];
-	}
+    if (self.proposedFooterButtonTitle) {
+        [self.continueButton setTitle:self.proposedFooterButtonTitle forState:UIControlStateNormal];
+    } else {
+        [self.continueButton setTitle:NSLocalizedString(@"identification.upload.and.continue.button", @"") forState:UIControlStateNormal];
+    }
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TextCell" bundle:nil] forCellReuseIdentifier:TWTextCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
     [PendingPayment removePossibleImages];
 
-	[self.skipSwitch setHidden:self.hideSkipOption];
-	[self.skipLabel setHidden:self.hideSkipOption];
+    [self.skipSwitch setHidden:self.hideSkipOption];
+    [self.skipLabel setHidden:self.hideSkipOption];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,7 +92,7 @@
 
     [self buildCells];
 
-	[self.tableView adjustFooterViewSize];
+    [self.tableView adjustFooterViewSize];
 
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
         [self.navigationController popViewControllerAnimated:YES];
@@ -123,7 +123,7 @@
         TextEntryCell *entryCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
         [self setPaymentPurposeCell:entryCell];
         [photoCells addObject:entryCell];
-        [entryCell configureWithTitle:NSLocalizedString(@"identification.payment.puprose", nil) value:[[self.objectModel pendingPayment] proposedPaymentsPurpose]];
+        [entryCell configureWithTitle:NSLocalizedString(@"identification.payment.puprose", nil) value:self.proposedPaymentPurpose];
     }
 
     [self setPresentedSectionCells:@[photoCells]];
@@ -131,15 +131,15 @@
 }
 
 - (BOOL)paymentPurposeRequired {
-	return (self.identificationRequired & IdentificationPaymentPurposeRequired) == IdentificationPaymentPurposeRequired;
+    return (self.identificationRequired & IdentificationPaymentPurposeRequired) == IdentificationPaymentPurposeRequired;
 }
 
 - (BOOL)addressVerificationRequired {
-	return (self.identificationRequired & IdentificationAddressRequired) == IdentificationAddressRequired;
+    return (self.identificationRequired & IdentificationAddressRequired) == IdentificationAddressRequired;
 }
 
 - (BOOL)idVerificationRequired {
-	return (self.identificationRequired & IdentificationIdRequired) == IdentificationIdRequired;
+    return (self.identificationRequired & IdentificationIdRequired) == IdentificationIdRequired;
 }
 
 #pragma mark - UITableView delegate
@@ -210,22 +210,16 @@
         return;
     }
 
-    PendingPayment *payment = [self.objectModel pendingPayment];
-    [payment setSendVerificationLaterValue:self.skipSwitch.isOn];
-    [payment setPaymentPurpose:[self.paymentPurposeCell.entryField text]];
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    [hud setMessage:self.completionMessage];
 
-    [self.objectModel saveContext:^{
-        TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
-        [hud setMessage:NSLocalizedString(@"identification.creating.payment.message", nil)];
-
-        [self.paymentFlow commitPaymentWithErrorHandler:^(NSError *error) {
-            [hud hide];
-            if (error) {
-                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) error:error];
-                [alertView show];
-            }
-        }];
-    }];
+    self.completionHandler(self.skipSwitch.isOn, [self.paymentPurposeCell.entryField text], ^(NSError *error) {
+        [hud hide];
+        if (error) {
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) error:error];
+            [alertView show];
+        }
+    });
 }
 
 - (NSString *)validateInput {

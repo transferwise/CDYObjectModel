@@ -219,10 +219,23 @@
 	} else {
 		[[GoogleAnalytics sharedInstance] sendAppEvent:@"PersonalIdentification"];
 	}
+
     IdentificationViewController *controller = [[IdentificationViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setPaymentFlow:self];
 	[controller setIdentificationRequired:(IdentificationRequired) [payment verificiationNeededValue]];
+	[controller setProposedPaymentPurpose:[payment proposedPaymentsPurpose]];
+    [controller setCompletionMessage:NSLocalizedString(@"identification.creating.payment.message", nil)];
+	[controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, PaymentErrorBlock errorBlock) {
+        [self.objectModel performBlock:^{
+            [payment setSendVerificationLaterValue:skipIdentification];
+            [payment setPaymentPurpose:paymentPurpose];
+
+            [self.objectModel saveContext:^{
+                [self commitPaymentWithErrorHandler:errorBlock];
+            }];
+        }];
+	}];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
