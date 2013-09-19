@@ -243,7 +243,12 @@ static NSUInteger const kReceiverSection = 2;
 }
 
 - (NSAttributedString *)attributedStringWithBase:(NSString *)baseString markedString:(NSString *)marked {
-    NSRange rateRange = [baseString rangeOfString:marked];
+	NSRange rateRange;
+	if ([marked hasValue]) {
+		rateRange = [baseString rangeOfString:marked];
+	} else {
+		rateRange = NSMakeRange(0, 0);
+	}
 
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:baseString];
 

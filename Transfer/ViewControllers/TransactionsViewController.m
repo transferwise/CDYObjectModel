@@ -24,6 +24,7 @@
 #import "IdentificationNotificationView.h"
 #import "UIView+Loading.h"
 #import "CheckPersonalProfileVerificationOperation.h"
+#import "IdentificationViewController.h"
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
@@ -36,6 +37,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (nonatomic, strong) IdentificationNotificationView *identificationView;
 @property (nonatomic, assign) BOOL showIdentificationView;
 @property (nonatomic, strong) CheckPersonalProfileVerificationOperation *checkOperation;
+@property (nonatomic, assign) IdentificationRequired identificationRequired;
 
 @end
 
@@ -272,6 +274,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[self setCheckOperation:operation];
 	[operation setResultHandler:^(IdentificationRequired identificationRequired) {
 		[self setCheckOperation:nil];
+		
+		[self setIdentificationRequired:identificationRequired];
 
 		BOOL somethingNeeded = identificationRequired != IdentificationNoneRequired;
 
@@ -285,6 +289,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 - (void)pushIdentificationScreen {
 	MCLog(@"pushIdentificationScreen");
+	IdentificationViewController *controller = [[IdentificationViewController alloc] init];
+	[controller setHideSkipOption:YES];
+	[controller setIdentificationRequired:self.identificationRequired];
+	[self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

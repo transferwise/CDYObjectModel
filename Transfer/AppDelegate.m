@@ -21,6 +21,7 @@
 #import "UIColor+Theme.h"
 #import "FBAppEvents.h"
 #import "GoogleAnalytics.h"
+#import "FBSettings.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -55,6 +56,7 @@
     [[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
 
 #if USE_FACEBOOK_EVENTS
+	[FBSettings setDefaultAppID:@"274548709260402"];
 	[FBAppEvents activateApp];
 #endif
 

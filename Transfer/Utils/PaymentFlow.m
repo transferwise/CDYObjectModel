@@ -222,6 +222,7 @@
     IdentificationViewController *controller = [[IdentificationViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setPaymentFlow:self];
+	[controller setIdentificationRequired:(IdentificationRequired) [payment verificiationNeededValue]];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
