@@ -270,8 +270,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 	CheckPersonalProfileVerificationOperation *operation = [CheckPersonalProfileVerificationOperation operation];
 	[self setCheckOperation:operation];
-	[operation setResultHandler:^(BOOL somethingNeeded) {
+	[operation setResultHandler:^(IdentificationRequired identificationRequired) {
 		[self setCheckOperation:nil];
+
+		BOOL somethingNeeded = identificationRequired != IdentificationNoneRequired;
 
 		if (somethingNeeded != self.showIdentificationView) {
 			[self setShowIdentificationView:somethingNeeded];

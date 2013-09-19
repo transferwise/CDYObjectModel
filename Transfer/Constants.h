@@ -64,4 +64,11 @@ static NSUInteger const TransferwiseAppID = 612261027;
 
 #define USE_FACEBOOK_EVENTS 1
 
+typedef NS_OPTIONS(short, IdentificationRequired) {
+	IdentificationNoneRequired = 0,
+	IdentificationIdRequired = 1 << 0,
+	IdentificationAddressRequired = 1 << 1,
+	IdentificationPaymentPurposeRequired = 1 << 2
+};
+
 

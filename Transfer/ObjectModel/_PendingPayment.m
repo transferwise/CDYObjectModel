@@ -4,15 +4,13 @@
 #import "_PendingPayment.h"
 
 const struct PendingPaymentAttributes PendingPaymentAttributes = {
-	.addressVerificationRequired = @"addressVerificationRequired",
-	.idVerificationRequired = @"idVerificationRequired",
 	.paymentPurpose = @"paymentPurpose",
-	.paymentPurposeRequired = @"paymentPurposeRequired",
 	.proposedPaymentsPurpose = @"proposedPaymentsPurpose",
 	.recipientEmail = @"recipientEmail",
 	.reference = @"reference",
 	.sendVerificationLater = @"sendVerificationLater",
 	.transferwiseTransferFee = @"transferwiseTransferFee",
+	.verificiationNeeded = @"verificiationNeeded",
 };
 
 const struct PendingPaymentRelationships PendingPaymentRelationships = {
@@ -47,21 +45,6 @@ const struct PendingPaymentFetchedProperties PendingPaymentFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
-	if ([key isEqualToString:@"addressVerificationRequiredValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"addressVerificationRequired"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
-	if ([key isEqualToString:@"idVerificationRequiredValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"idVerificationRequired"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
-	if ([key isEqualToString:@"paymentPurposeRequiredValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"paymentPurposeRequired"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
 	if ([key isEqualToString:@"sendVerificationLaterValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"sendVerificationLater"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -72,6 +55,11 @@ const struct PendingPaymentFetchedProperties PendingPaymentFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"verificiationNeededValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"verificiationNeeded"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -79,86 +67,8 @@ const struct PendingPaymentFetchedProperties PendingPaymentFetchedProperties = {
 
 
 
-@dynamic addressVerificationRequired;
-
-
-
-- (BOOL)addressVerificationRequiredValue {
-	NSNumber *result = [self addressVerificationRequired];
-	return [result boolValue];
-}
-
-- (void)setAddressVerificationRequiredValue:(BOOL)value_ {
-	[self setAddressVerificationRequired:[NSNumber numberWithBool:value_]];
-}
-
-- (BOOL)primitiveAddressVerificationRequiredValue {
-	NSNumber *result = [self primitiveAddressVerificationRequired];
-	return [result boolValue];
-}
-
-- (void)setPrimitiveAddressVerificationRequiredValue:(BOOL)value_ {
-	[self setPrimitiveAddressVerificationRequired:[NSNumber numberWithBool:value_]];
-}
-
-
-
-
-
-@dynamic idVerificationRequired;
-
-
-
-- (BOOL)idVerificationRequiredValue {
-	NSNumber *result = [self idVerificationRequired];
-	return [result boolValue];
-}
-
-- (void)setIdVerificationRequiredValue:(BOOL)value_ {
-	[self setIdVerificationRequired:[NSNumber numberWithBool:value_]];
-}
-
-- (BOOL)primitiveIdVerificationRequiredValue {
-	NSNumber *result = [self primitiveIdVerificationRequired];
-	return [result boolValue];
-}
-
-- (void)setPrimitiveIdVerificationRequiredValue:(BOOL)value_ {
-	[self setPrimitiveIdVerificationRequired:[NSNumber numberWithBool:value_]];
-}
-
-
-
-
-
 @dynamic paymentPurpose;
 
-
-
-
-
-
-@dynamic paymentPurposeRequired;
-
-
-
-- (BOOL)paymentPurposeRequiredValue {
-	NSNumber *result = [self paymentPurposeRequired];
-	return [result boolValue];
-}
-
-- (void)setPaymentPurposeRequiredValue:(BOOL)value_ {
-	[self setPaymentPurposeRequired:[NSNumber numberWithBool:value_]];
-}
-
-- (BOOL)primitivePaymentPurposeRequiredValue {
-	NSNumber *result = [self primitivePaymentPurposeRequired];
-	return [result boolValue];
-}
-
-- (void)setPrimitivePaymentPurposeRequiredValue:(BOOL)value_ {
-	[self setPrimitivePaymentPurposeRequired:[NSNumber numberWithBool:value_]];
-}
 
 
 
@@ -231,6 +141,32 @@ const struct PendingPaymentFetchedProperties PendingPaymentFetchedProperties = {
 
 - (void)setPrimitiveTransferwiseTransferFeeValue:(double)value_ {
 	[self setPrimitiveTransferwiseTransferFee:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
+@dynamic verificiationNeeded;
+
+
+
+- (int16_t)verificiationNeededValue {
+	NSNumber *result = [self verificiationNeeded];
+	return [result shortValue];
+}
+
+- (void)setVerificiationNeededValue:(int16_t)value_ {
+	[self setVerificiationNeeded:[NSNumber numberWithShort:value_]];
+}
+
+- (int16_t)primitiveVerificiationNeededValue {
+	NSNumber *result = [self primitiveVerificiationNeeded];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveVerificiationNeededValue:(int16_t)value_ {
+	[self setPrimitiveVerificiationNeeded:[NSNumber numberWithShort:value_]];
 }
 
 

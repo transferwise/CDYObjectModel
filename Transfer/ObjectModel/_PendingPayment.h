@@ -5,15 +5,13 @@
 #import "Payment.h"
 
 extern const struct PendingPaymentAttributes {
-	__unsafe_unretained NSString *addressVerificationRequired;
-	__unsafe_unretained NSString *idVerificationRequired;
 	__unsafe_unretained NSString *paymentPurpose;
-	__unsafe_unretained NSString *paymentPurposeRequired;
 	__unsafe_unretained NSString *proposedPaymentsPurpose;
 	__unsafe_unretained NSString *recipientEmail;
 	__unsafe_unretained NSString *reference;
 	__unsafe_unretained NSString *sendVerificationLater;
 	__unsafe_unretained NSString *transferwiseTransferFee;
+	__unsafe_unretained NSString *verificiationNeeded;
 } PendingPaymentAttributes;
 
 extern const struct PendingPaymentRelationships {
@@ -21,8 +19,6 @@ extern const struct PendingPaymentRelationships {
 
 extern const struct PendingPaymentFetchedProperties {
 } PendingPaymentFetchedProperties;
-
-
 
 
 
@@ -46,53 +42,11 @@ extern const struct PendingPaymentFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* addressVerificationRequired;
-
-
-
-@property BOOL addressVerificationRequiredValue;
-- (BOOL)addressVerificationRequiredValue;
-- (void)setAddressVerificationRequiredValue:(BOOL)value_;
-
-//- (BOOL)validateAddressVerificationRequired:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@property (nonatomic, strong) NSNumber* idVerificationRequired;
-
-
-
-@property BOOL idVerificationRequiredValue;
-- (BOOL)idVerificationRequiredValue;
-- (void)setIdVerificationRequiredValue:(BOOL)value_;
-
-//- (BOOL)validateIdVerificationRequired:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
 @property (nonatomic, strong) NSString* paymentPurpose;
 
 
 
 //- (BOOL)validatePaymentPurpose:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@property (nonatomic, strong) NSNumber* paymentPurposeRequired;
-
-
-
-@property BOOL paymentPurposeRequiredValue;
-- (BOOL)paymentPurposeRequiredValue;
-- (void)setPaymentPurposeRequiredValue:(BOOL)value_;
-
-//- (BOOL)validatePaymentPurposeRequired:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -156,6 +110,20 @@ extern const struct PendingPaymentFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* verificiationNeeded;
+
+
+
+@property int16_t verificiationNeededValue;
+- (int16_t)verificiationNeededValue;
+- (void)setVerificiationNeededValue:(int16_t)value_;
+
+//- (BOOL)validateVerificiationNeeded:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 
 @end
 
@@ -166,35 +134,8 @@ extern const struct PendingPaymentFetchedProperties {
 @interface _PendingPayment (CoreDataGeneratedPrimitiveAccessors)
 
 
-- (NSNumber*)primitiveAddressVerificationRequired;
-- (void)setPrimitiveAddressVerificationRequired:(NSNumber*)value;
-
-- (BOOL)primitiveAddressVerificationRequiredValue;
-- (void)setPrimitiveAddressVerificationRequiredValue:(BOOL)value_;
-
-
-
-
-- (NSNumber*)primitiveIdVerificationRequired;
-- (void)setPrimitiveIdVerificationRequired:(NSNumber*)value;
-
-- (BOOL)primitiveIdVerificationRequiredValue;
-- (void)setPrimitiveIdVerificationRequiredValue:(BOOL)value_;
-
-
-
-
 - (NSString*)primitivePaymentPurpose;
 - (void)setPrimitivePaymentPurpose:(NSString*)value;
-
-
-
-
-- (NSNumber*)primitivePaymentPurposeRequired;
-- (void)setPrimitivePaymentPurposeRequired:(NSNumber*)value;
-
-- (BOOL)primitivePaymentPurposeRequiredValue;
-- (void)setPrimitivePaymentPurposeRequiredValue:(BOOL)value_;
 
 
 
@@ -231,6 +172,15 @@ extern const struct PendingPaymentFetchedProperties {
 
 - (double)primitiveTransferwiseTransferFeeValue;
 - (void)setPrimitiveTransferwiseTransferFeeValue:(double)value_;
+
+
+
+
+- (NSNumber*)primitiveVerificiationNeeded;
+- (void)setPrimitiveVerificiationNeeded:(NSNumber*)value;
+
+- (int16_t)primitiveVerificiationNeededValue;
+- (void)setPrimitiveVerificiationNeededValue:(int16_t)value_;
 
 
 

@@ -412,11 +412,11 @@
     MCLog(@"uploadNextVerificationData");
     [self.objectModel performBlock:^{
         PendingPayment *payment = [self.objectModel pendingPayment];
-        if (payment.idVerificationRequiredValue) {
+        if ([payment idVerificationRequired]) {
             [self uploadIdVerification];
-        } else if (payment.addressVerificationRequiredValue) {
+        } else if ([payment addressVerificationRequired]) {
             [self uploadAddressVerification];
-        } else if (payment.paymentPurposeRequiredValue) {
+        } else if ([payment paymentPurposeRequired]) {
             [self uploadPaymentPurpose];
         } else {
             [self commitPayment];
@@ -440,7 +440,7 @@
 
             MCLog(@"uploadPaymentPurpose done");
             PendingPayment *payment = [self.objectModel pendingPayment];
-            [payment setPaymentPurposeRequiredValue:NO];
+            [payment removePaymentPurposeRequiredMarker];
             [self.objectModel saveContext:^{
                 [self uploadNextVerificationData];
             }];
@@ -466,7 +466,7 @@
 
             MCLog(@"uploadAddressVerification done");
             PendingPayment *payment = [self.objectModel pendingPayment];
-            [payment setAddressVerificationRequiredValue:NO];
+            [payment removerAddressVerificationRequiredMarker];
             [self.objectModel saveContext:^{
                 [self uploadNextVerificationData];
             }];
@@ -492,7 +492,7 @@
 
             MCLog(@"uploadIdVerification done");
             PendingPayment *payment = [self.objectModel pendingPayment];
-            [payment setIdVerificationRequiredValue:NO];
+            [payment removeIdVerificationRequiredMarker];
             [self.objectModel saveContext:^{
                 [self uploadNextVerificationData];
             }];

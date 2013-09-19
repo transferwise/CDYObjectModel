@@ -14,6 +14,7 @@
 #import "ObjectModel+PendingPayments.h"
 #import "Currency.h"
 #import "NSDictionary+Cleanup.h"
+#import "Constants.h"
 
 NSString *const kVerificationRequiredPath = @"/verification/required";
 
@@ -35,9 +36,17 @@ NSString *const kVerificationRequiredPath = @"/verification/required";
         [weakSelf.workModel performBlock:^{
             NSDictionary *response = [rawResponse dictionaryByRemovingNullObjects];
             PendingPayment *payment = [weakSelf.workModel pendingPayment];
-            [payment setIdVerificationRequiredValue:[response[@"idVerification"] boolValue]];
-            [payment setAddressVerificationRequiredValue:[response[@"addressVerification"] boolValue]];
-            [payment setPaymentPurposeRequiredValue:[response[@"paymentsPurposeVerification"] boolValue]];
+			IdentificationRequired identificationRequired = IdentificationNoneRequired;
+			if ([response[@"idVerification"] boolValue]) {
+				identificationRequired = identificationRequired | IdentificationIdRequired;
+			}
+			if ([response[@"addressVerification"] boolValue]) {
+				identificationRequired = identificationRequired | IdentificationAddressRequired;
+			}
+			if ([response[@"paymentsPurposeVerification"] boolValue]) {
+				identificationRequired = identificationRequired | IdentificationPaymentPurposeRequired;
+			}
+            [payment setVerificiationNeededValue:identificationRequired];
             [payment setProposedPaymentsPurpose:response[@"proposedPaymentsPurpose"]];
 
             [weakSelf.workModel saveContext:^{

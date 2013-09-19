@@ -70,15 +70,13 @@
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="payments" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="PendingPayment" representedClassName="PendingPayment" parentEntity="Payment" syncable="YES">
-        <attribute name="addressVerificationRequired" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="idVerificationRequired" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="paymentPurpose" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="paymentPurposeRequired" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="proposedPaymentsPurpose" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="recipientEmail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="reference" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sendVerificationLater" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="transferwiseTransferFee" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="verificiationNeeded" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="PersonalProfile" representedClassName="PersonalProfile" syncable="YES">
         <attribute name="addressFirstLine" optional="YES" attributeType="String" syncable="YES"/>

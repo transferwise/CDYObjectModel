@@ -95,7 +95,7 @@
 
     PendingPayment *payment = [self.objectModel pendingPayment];
 
-    if ([payment idVerificationRequiredValue]) {
+    if ([payment idVerificationRequired]) {
         TextCell *idDocumentCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
         [self setIdDocumentCell:idDocumentCell];
         [photoCells addObject:idDocumentCell];
@@ -104,7 +104,7 @@
     }
 
 
-    if ([payment addressVerificationRequiredValue]) {
+    if ([payment addressVerificationRequired]) {
         TextCell *proofOfAddressCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
         [self setProofOfAddressCell:proofOfAddressCell];
         [photoCells addObject:proofOfAddressCell];
@@ -112,7 +112,7 @@
         self.addressVerificationRowIndex = [photoCells count] - 1;
     }
 
-    if ([payment paymentPurposeRequiredValue]) {
+    if ([payment paymentPurposeRequired]) {
         TextEntryCell *entryCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
         [self setPaymentPurposeCell:entryCell];
         [photoCells addObject:entryCell];
@@ -218,15 +218,15 @@
 
     NSMutableString *issues = [NSMutableString string];
 
-    if ([payment idVerificationRequiredValue] && ![PendingPayment isIdVerificationImagePresent]) {
+    if ([payment idVerificationRequired] && ![PendingPayment isIdVerificationImagePresent]) {
         [issues appendIssue:NSLocalizedString(@"identification.id.image.missing.message", nil)];
     }
 
-    if ([payment addressVerificationRequiredValue] && ![PendingPayment isAddressVerificationImagePresent]) {
+    if ([payment addressVerificationRequired] && ![PendingPayment isAddressVerificationImagePresent]) {
         [issues appendIssue:NSLocalizedString(@"identification.address.image.missing.message", nil)];
     }
 
-    if ([payment paymentPurposeRequiredValue] && ![self.paymentPurposeCell.entryField.text hasValue]) {
+    if ([payment paymentPurposeRequired] && ![self.paymentPurposeCell.entryField.text hasValue]) {
         [issues appendIssue:NSLocalizedString(@"identification.payment.purpose.missing.message", nil)];
     }
 

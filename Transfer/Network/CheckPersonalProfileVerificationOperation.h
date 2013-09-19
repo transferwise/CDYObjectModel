@@ -7,12 +7,13 @@
 //
 
 #import "TransferwiseOperation.h"
+#import "Constants.h"
 
-typedef void (^VerificationCheckResutBlock)(BOOL somethingNeeded);
+typedef void (^VerificationCheckResultBlock)(IdentificationRequired identificationRequired);
 
 @interface CheckPersonalProfileVerificationOperation : TransferwiseOperation
 
-@property (nonatomic, copy) VerificationCheckResutBlock resultHandler;
+@property (nonatomic, copy) VerificationCheckResultBlock resultHandler;
 
 + (CheckPersonalProfileVerificationOperation *)operation;
 

@@ -8,6 +8,7 @@
 
 #import "CheckPersonalProfileVerificationOperation.h"
 #import "TransferwiseOperation+Private.h"
+#import "Constants.h"
 
 NSString *const kCheckVerificationPath = @"/verification/required";
 
@@ -18,13 +19,18 @@ NSString *const kCheckVerificationPath = @"/verification/required";
 
 	__weak CheckPersonalProfileVerificationOperation *weakSelf = self;
 	[self setOperationErrorHandler:^(NSError *error) {
-		weakSelf.resultHandler(NO);
+		weakSelf.resultHandler(IdentificationNoneRequired);
 	}];
 
 	[self setOperationSuccessHandler:^(NSDictionary *response) {
-		BOOL idVerification = [response[@"idVerification"] boolValue];
-		BOOL addressVerification = [response[@"addressVerification"] boolValue];
-		weakSelf.resultHandler(idVerification || addressVerification);
+		IdentificationRequired identificationRequired = IdentificationNoneRequired;
+		if ([response[@"idVerification"] boolValue]) {
+			identificationRequired = identificationRequired | IdentificationIdRequired;
+		}
+		if ([response[@"addressVerification"] boolValue]) {
+			identificationRequired = identificationRequired | IdentificationAddressRequired;
+		}
+		weakSelf.resultHandler(identificationRequired);
 	}];
 
 	[self getDataFromPath:path params:@{@"profile" : @"personal"}];

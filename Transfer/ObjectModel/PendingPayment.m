@@ -33,15 +33,53 @@ NSString *kAddressVerificationImageName = @"~/Documents/addressVerification.jpg"
 }
 
 - (BOOL)isAnyVerificationRequired {
-    return self.idVerificationRequiredValue || self.addressVerificationRequiredValue || self.paymentPurposeRequiredValue;
+    return self.verificiationNeededValue != IdentificationNoneRequired;
 }
 
 + (NSString *)idPhotoPath {
     return [kIdVerificationImageName stringByExpandingTildeInPath];
 }
 
+- (BOOL)idVerificationRequired {
+	return (self.verificiationNeededValue & IdentificationIdRequired) == IdentificationIdRequired;
+}
+
+- (BOOL)addressVerificationRequired {
+	return (self.verificiationNeededValue & IdentificationAddressRequired) == IdentificationAddressRequired;
+}
+
+- (BOOL)paymentPurposeRequired {
+	return (self.verificiationNeededValue & IdentificationPaymentPurposeRequired) == IdentificationPaymentPurposeRequired;
+}
+
 + (NSString *)addressPhotoPath {
     return [kAddressVerificationImageName stringByExpandingTildeInPath];
+}
+
+- (void)removePaymentPurposeRequiredMarker {
+	[self setVerificationMarkerWithId:self.idVerificationRequired address:self.addressVerificationRequired paymentPurpose:NO];
+}
+
+- (void)removerAddressVerificationRequiredMarker {
+	[self setVerificationMarkerWithId:self.idVerificationRequired address:NO paymentPurpose:self.paymentPurposeRequired];
+}
+
+- (void)removeIdVerificationRequiredMarker {
+	[self setVerificationMarkerWithId:NO address:self.addressVerificationRequired paymentPurpose:self.paymentPurposeRequired];
+}
+
+- (void)setVerificationMarkerWithId:(BOOL)idVerification address:(BOOL)addressVerification paymentPurpose:(BOOL)purposeVerification {
+	IdentificationRequired identification = IdentificationNoneRequired;
+	if (idVerification) {
+		identification = identification | IdentificationIdRequired;
+	}
+	if (addressVerification) {
+		identification = identification | IdentificationAddressRequired;
+	}
+	if (purposeVerification) {
+		identification = identification | IdentificationPaymentPurposeRequired;
+	}
+	[self setVerificiationNeededValue:identification];
 }
 
 + (void)removePossibleImages {
