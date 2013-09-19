@@ -377,7 +377,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 - (IBAction)addButtonPressed:(id)sender {
     [UIApplication dismissKeyboard];
 
-	[[GoogleAnalytics sharedInstance] sendAppEvent:@"RecipientEntered"];
+	[[GoogleAnalytics sharedInstance] sendScreen:@"Enter recipient details"];
 
     NSString *issues = [self validateInput];
     if ([issues hasValue]) {

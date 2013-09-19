@@ -191,7 +191,7 @@ static NSUInteger const kRowYouSend = 0;
     }
 
 	if (!self.dummyPresentation) {
-		[[GoogleAnalytics sharedInstance] sendAppEvent:@"StartScreen"];
+		[[GoogleAnalytics sharedInstance] sendScreen:@"Start screen"];
 	}
 }
 
@@ -267,7 +267,7 @@ static NSUInteger const kRowYouSend = 0;
     }
 
     //TODO jaanus: copy/paste
-	[[GoogleAnalytics sharedInstance] sendAppEvent:@"NewPayment"];
+	[[GoogleAnalytics sharedInstance] sendScreen:@"New payment"];
 
 	Currency *sourceCurrency = [self.youSendCell currency];
     Currency *targetCurrency = [self.theyReceiveCell currency];

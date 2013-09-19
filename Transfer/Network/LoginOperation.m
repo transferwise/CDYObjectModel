@@ -61,7 +61,6 @@ NSString *const kLoginPath = @"/token/create";
 #if USE_FACEBOOK_EVENTS
 			[FBAppEvents logEvent:@"loggedIn"];
 #endif
-			[[GoogleAnalytics sharedInstance] sendAppEvent:@"LoggedIn"];
 			[[GoogleAnalytics sharedInstance] markLoggedIn];
 
 

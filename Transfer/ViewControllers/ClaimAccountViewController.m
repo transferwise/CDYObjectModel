@@ -100,7 +100,7 @@
 
     [self.navigationController flattenStack];
 
-	[[GoogleAnalytics sharedInstance] sendAppEvent:@"RegisterScreen"];
+	[[GoogleAnalytics sharedInstance] sendScreen:@"Register screen"];
 }
 
 

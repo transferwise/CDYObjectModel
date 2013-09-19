@@ -20,6 +20,7 @@
 #import "NSError+TRWErrors.h"
 #import "OpenIDViewController.h"
 #import "TransferBackButtonItem.h"
+#import "GoogleAnalytics.h"
 
 static NSUInteger const kTableRowEmail = 0;
 
@@ -77,6 +78,8 @@ static NSUInteger const kTableRowEmail = 0;
     [self.loginButton setTitle:NSLocalizedString(@"button.title.log.in", nil) forState:UIControlStateNormal];
 
     [self.footerMessageLabel setText:NSLocalizedString(@"login.controller.footer.message", nil)];
+
+    [[GoogleAnalytics sharedInstance] sendScreen:@"Login"];
 }
 
 - (void)didReceiveMemoryWarning {

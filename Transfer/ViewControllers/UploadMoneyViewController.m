@@ -99,7 +99,7 @@
     if (index == 0) {
         [self.view bringSubviewToFront:self.bankViewController.view];
     } else {
-		[[GoogleAnalytics sharedInstance] sendAppEvent:@"DebitCardPayment"];
+		[[GoogleAnalytics sharedInstance] sendScreen:@"Debit card payment"];
         [self.cardViewController loadCardView];
         [self.view bringSubviewToFront:self.cardViewController.view];
     }

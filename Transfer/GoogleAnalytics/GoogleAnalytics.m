@@ -37,6 +37,11 @@
 	return nil;
 }
 
+- (void)sendScreen:(NSString *)screenName {
+    [[[GAI sharedInstance] defaultTracker] sendView:screenName];
+    [[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsOtherTrackingId] sendView:screenName];
+}
+
 - (void)sendAppEvent:(NSString *)event {
 	[self sendEvent:event category:@"app_flow"];
 }

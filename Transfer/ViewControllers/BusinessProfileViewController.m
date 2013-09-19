@@ -42,7 +42,7 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 
-	[[GoogleAnalytics sharedInstance] sendAppEvent:@"BusinessProfile"];
+	[[GoogleAnalytics sharedInstance] sendScreen:@"Business profile"];
 }
 
 

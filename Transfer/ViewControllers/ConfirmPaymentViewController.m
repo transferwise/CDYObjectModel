@@ -126,6 +126,8 @@ static NSUInteger const kReceiverSection = 2;
         [supportCell.textLabel setText:NSLocalizedString(@"support.contact.cell.label", nil)];
         [supportCell.detailTextLabel setText:@""];
         [presented addObject:@[supportCell]];
+    } else {
+        [[GoogleAnalytics sharedInstance] sendScreen:@"Confirm payment"];
     }
 
     [presented addObject:senderCells];
@@ -217,9 +219,6 @@ static NSUInteger const kReceiverSection = 2;
 }
 
 - (IBAction)footerButtonPressed:(id)sender {
-	[[GoogleAnalytics sharedInstance] sendPaymentEvent:@"ConfirmPaymentClicked"];
-
-
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
 

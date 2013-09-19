@@ -215,9 +215,9 @@
 - (void)presentVerificationScreen {
 	PendingPayment *payment = [self.objectModel pendingPayment];
 	if (payment.businessProfileUsed) {
-		[[GoogleAnalytics sharedInstance] sendAppEvent:@"BusinessVerification"];
+		[[GoogleAnalytics sharedInstance] sendScreen:@"Business verification"];
 	} else {
-		[[GoogleAnalytics sharedInstance] sendAppEvent:@"PersonalIdentification"];
+		[[GoogleAnalytics sharedInstance] sendScreen:@"Personal identification"];
 	}
 
     IdentificationViewController *controller = [[IdentificationViewController alloc] init];

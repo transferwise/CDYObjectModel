@@ -75,7 +75,7 @@
 }
 
 - (void)menuPressed {
-	[[GoogleAnalytics sharedInstance] sendAppEvent:@"MenuPressed"];
+	[[GoogleAnalytics sharedInstance] sendScreen:@"Menu"];
 	[self.revealViewController revealToggle:nil];
 }
 

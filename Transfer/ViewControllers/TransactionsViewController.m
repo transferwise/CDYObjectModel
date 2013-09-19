@@ -105,7 +105,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 
-	[[GoogleAnalytics sharedInstance] sendAppEvent:@"TransfersList"];
+	[[GoogleAnalytics sharedInstance] sendScreen:@"View transfers"];
 }
 
 
@@ -139,7 +139,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         return;
     }
 
-	[[GoogleAnalytics sharedInstance] sendAppEvent:@"ViewPayment"];
+	[[GoogleAnalytics sharedInstance] sendScreen:@"View payment"];
 
     if ([payment isSubmitted]) {
         UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];

@@ -87,7 +87,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 
-	[[GoogleAnalytics sharedInstance] sendAppEvent:@"RecipientsList"];
+	[[GoogleAnalytics sharedInstance] sendScreen:@"Recipients"];
 }
 
 
@@ -164,7 +164,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 }
 
 - (void)addContactPressed {
-	[[GoogleAnalytics sharedInstance] sendAppEvent:@"AddRecipientPressed"];
+	[[GoogleAnalytics sharedInstance] sendScreen:@"Add recipient"];
 
     RecipientViewController *controller = [[RecipientViewController alloc] init];
     [controller setObjectModel:self.objectModel];

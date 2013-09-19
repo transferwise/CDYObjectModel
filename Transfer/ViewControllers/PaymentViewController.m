@@ -271,7 +271,7 @@ static NSUInteger const kRowYouSend = 0;
         return;
     }
 
-	[[GoogleAnalytics sharedInstance] sendAppEvent:@"NewPayment"];
+	[[GoogleAnalytics sharedInstance] sendScreen:@"New payment"];
 
     //TODO jaanus: copy/paste
     Currency *sourceCurrency = [self.youSendCell currency];

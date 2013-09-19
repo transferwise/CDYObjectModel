@@ -12,6 +12,7 @@
 
 + (GoogleAnalytics *)sharedInstance;
 
+- (void)sendScreen:(NSString *)screenName;
 - (void)sendAppEvent:(NSString *)event;
 - (void)sendPaymentEvent:(NSString *)event;
 - (void)markLoggedIn;

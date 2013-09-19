@@ -41,7 +41,7 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 
-	[[GoogleAnalytics sharedInstance] sendAppEvent:@"PersonalProfile"];
+	[[GoogleAnalytics sharedInstance] sendScreen:@"Personal profile"];
 }
 
 

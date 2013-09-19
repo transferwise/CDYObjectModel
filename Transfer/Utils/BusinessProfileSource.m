@@ -144,7 +144,7 @@ static NSUInteger const kDetailsSection = 1;
 }
 
 - (id)enteredProfile {
-	[[GoogleAnalytics sharedInstance] sendAppEvent:@"BusinessProfileEntered"];
+	[[GoogleAnalytics sharedInstance] sendScreen:@"Enter sender details"];
 
 	BusinessProfile *profile = [self.objectModel.currentUser businessProfileObject];
     [profile setName:[self.businessNameCell value]];
