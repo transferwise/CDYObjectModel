@@ -292,6 +292,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	IdentificationViewController *controller = [[IdentificationViewController alloc] init];
 	[controller setHideSkipOption:YES];
 	[controller setIdentificationRequired:self.identificationRequired];
+	[controller setProposedFooterButtonTitle:NSLocalizedString(@"transactions.identification.done.button.title", nil)];
 	[self.navigationController pushViewController:controller animated:YES];
 }
 

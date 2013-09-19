@@ -19,5 +19,6 @@
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, assign) BOOL hideSkipOption;
 @property (nonatomic, assign) IdentificationRequired identificationRequired;
+@property (nonatomic, copy) NSString *proposedFooterButtonTitle;
 
 @end

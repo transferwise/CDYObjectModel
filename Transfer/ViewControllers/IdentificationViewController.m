@@ -66,7 +66,11 @@
     [self.excuseLabel setText:NSLocalizedString(@"identification.excuse", @"")];
     [self.explanationLabel setText:NSLocalizedString(@"identification.explanation", @"")];
     [self.skipLabel setText:NSLocalizedString(@"identification.skip.send", @"")];
-    [self.continueButton setTitle:NSLocalizedString(@"identification.upload.and.continue.button", @"") forState:UIControlStateNormal];
+	if (self.proposedFooterButtonTitle) {
+		[self.continueButton setTitle:self.proposedFooterButtonTitle forState:UIControlStateNormal];
+	} else {
+		[self.continueButton setTitle:NSLocalizedString(@"identification.upload.and.continue.button", @"") forState:UIControlStateNormal];
+	}
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TextCell" bundle:nil] forCellReuseIdentifier:TWTextCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
