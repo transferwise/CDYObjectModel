@@ -67,6 +67,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 	IdentificationNotificationView *notificationView = [IdentificationNotificationView loadInstance];
 	[self setIdentificationView:notificationView];
+	[notificationView setTapHandler:^{
+		[self pushIdentificationScreen];
+	}];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -276,6 +279,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 		}
 	}];
 	[operation execute];
+}
+
+- (void)pushIdentificationScreen {
+	MCLog(@"pushIdentificationScreen");
 }
 
 @end

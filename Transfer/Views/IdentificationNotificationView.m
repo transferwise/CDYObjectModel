@@ -9,7 +9,6 @@
 #import "IdentificationNotificationView.h"
 #import "OHAttributedLabel.h"
 #import "UIColor+Theme.h"
-#import "Constants.h"
 
 @interface IdentificationNotificationView ()
 
@@ -56,7 +55,7 @@
 }
 
 - (void)tapped {
-	MCLog(@"Tapped");
+	self.tapHandler();
 }
 
 @end
