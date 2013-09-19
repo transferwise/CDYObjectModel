@@ -206,7 +206,7 @@ static NSUInteger const kReceiverSection = 2;
 
     NSString *dateString = [self.payment paymentDateString];
     NSString *dateMessageString = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.delivery.date.message", nil), dateString];
-    NSAttributedString *paymentDateString = [self attributedStringWithBase:dateMessageString markedString:dateString];
+    NSAttributedString *paymentDateString = ([dateString hasValue] ? [self attributedStringWithBase:dateMessageString markedString:dateString] : [NSAttributedString attributedStringWithString:@""]);
 
     NSMutableAttributedString *result = [[NSMutableAttributedString alloc] init];
     [result appendAttributedString:exchangeRateString];

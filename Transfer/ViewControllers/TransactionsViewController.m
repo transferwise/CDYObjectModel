@@ -13,6 +13,7 @@
 #import "ObjectModel.h"
 #import "ObjectModel+Payments.h"
 #import "TabBarActivityIndicatorView.h"
+#import "UploadVerificationFileOperation.h"
 #import "Payment.h"
 #import "BankTransferViewController.h"
 #import "ConfirmPaymentViewController.h"
@@ -25,6 +26,7 @@
 #import "UIView+Loading.h"
 #import "CheckPersonalProfileVerificationOperation.h"
 #import "IdentificationViewController.h"
+#import "PendingPayment.h"
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
@@ -38,6 +40,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (nonatomic, assign) BOOL showIdentificationView;
 @property (nonatomic, strong) CheckPersonalProfileVerificationOperation *checkOperation;
 @property (nonatomic, assign) IdentificationRequired identificationRequired;
+@property (nonatomic, strong) UploadVerificationFileOperation *executedUploadOperation;
 
 @end
 
@@ -274,7 +277,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[self setCheckOperation:operation];
 	[operation setResultHandler:^(IdentificationRequired identificationRequired) {
 		[self setCheckOperation:nil];
-		
+
 		[self setIdentificationRequired:identificationRequired];
 
 		BOOL somethingNeeded = identificationRequired != IdentificationNoneRequired;
@@ -293,7 +296,53 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[controller setHideSkipOption:YES];
 	[controller setIdentificationRequired:self.identificationRequired];
 	[controller setProposedFooterButtonTitle:NSLocalizedString(@"transactions.identification.done.button.title", nil)];
+    [controller setCompletionMessage:NSLocalizedString(@"transactions.identification.uploading.message", nil)];
+    [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, PaymentErrorBlock errorBlock) {
+        [self uploadIdImageWithErrorHandler:errorBlock completionHandler:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+    }];
 	[self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)uploadIdImageWithErrorHandler:(PaymentErrorBlock)errorBlock completionHandler:(JCSActionBlock)completion {
+    MCLog(@"uploadIdImageWithErrorHandler");
+    if ((self.identificationRequired & IdentificationIdRequired) != IdentificationIdRequired) {
+        [self uploadAddressImageWithErrorHandler:errorBlock completionHandler:completion];
+        return;
+    }
+
+    [self uploadImageFromPath:[PendingPayment idPhotoPath] withId:@"id" completion:^(NSError *error) {
+        if (error) {
+            errorBlock(error);
+        } else {
+            [self uploadAddressImageWithErrorHandler:errorBlock completionHandler:completion];
+        }
+    }];
+}
+
+- (void)uploadAddressImageWithErrorHandler:(PaymentErrorBlock)errorBlock completionHandler:(JCSActionBlock)completion {
+    MCLog(@"uploadAddressImageWithErrorHandler");
+    if ((self.identificationRequired & IdentificationAddressRequired) != IdentificationAddressRequired) {
+        completion();
+    } else {
+        [self uploadImageFromPath:[PendingPayment addressPhotoPath] withId:@"address" completion:^(NSError *error) {
+            if (error) {
+                errorBlock(error);
+            } else {
+                completion();
+            }
+        }];
+    }
+}
+
+- (void)uploadImageFromPath:(NSString *)path withId:(NSString *)verified completion:(FileUploadBlock)completion {
+    UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:verified profile:@"personal" filePath:path];
+    [self setExecutedUploadOperation:operation];
+
+    [operation setCompletionHandler:completion];
+
+    [operation execute];
 }
 
 @end
