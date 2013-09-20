@@ -16,11 +16,11 @@
 #import "BlueButton.h"
 #import "ConfirmPaymentCell.h"
 #import "GrayButton.h"
-#import "Constants.h"
 #import "TRWAlertView.h"
 #import "ObjectModel+Users.h"
 #import "User.h"
 #import "BusinessProfile.h"
+#import "TRWProgressHUD.h"
 
 @interface BusinessProfileIdentificationViewController () <MFMailComposeViewControllerDelegate>
 
@@ -28,6 +28,9 @@
 @property (nonatomic, strong) IBOutlet TextContainerView *footerView;
 @property (nonatomic, strong) IBOutlet BlueButton *sentButton;
 @property (nonatomic, strong) IBOutlet GrayButton *skipButton;
+
+- (IBAction)sentPressed;
+- (IBAction)skipPressed;
 
 @end
 
@@ -136,6 +139,27 @@
     }
 
     [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)sentPressed {
+    [self executeCompletion:NO];
+}
+
+- (IBAction)skipPressed {
+    [self executeCompletion:YES];
+}
+
+- (void)executeCompletion:(BOOL)skipped {
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    [hud setMessage:NSLocalizedString(@"business.profile.identification.making.payment.message", nil)];
+
+    self.completionHandler(skipped, @"", ^(NSError *error) {
+        [hud hide];
+        if (error) {
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) error:error];
+            [alertView show];
+        }
+    });
 }
 
 @end

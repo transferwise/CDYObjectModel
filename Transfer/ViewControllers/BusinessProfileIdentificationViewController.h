@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PersonalProfileIdentificationViewController.h"
 
 @class ObjectModel;
 
 @interface BusinessProfileIdentificationViewController : UITableViewController
 
 @property (nonatomic, strong) ObjectModel *objectModel;
+@property (nonatomic, copy) IdentificationCompleteBlock completionHandler;
 
 @end

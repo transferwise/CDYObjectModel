@@ -368,3 +368,5 @@ Please attach your documents to this email and send it our way.<br />
 | Account email: %@ |<br />
 | Business: %@ |<br />
 </body>";
+
+"business.profile.identification.making.payment.message" = "Creating payment...";
