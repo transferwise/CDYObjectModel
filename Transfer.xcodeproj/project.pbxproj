@@ -40,6 +40,12 @@
 		EA0253BE17D5E49100F54C18 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0253BD17D5E49100F54C18 /* UIDevice-Hardware.m */; };
 		EA042600173CF5C50048BFBD /* RecipientEntrySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */; };
 		EA042603173CF5E20048BFBD /* RecipientEntrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */; };
+		EA0450C917EC3544008921DA /* BusinessProfileIdentificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0450C717EC3544008921DA /* BusinessProfileIdentificationViewController.m */; };
+		EA0450CA17EC3544008921DA /* BusinessProfileIdentificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0450C717EC3544008921DA /* BusinessProfileIdentificationViewController.m */; };
+		EA0450CB17EC3544008921DA /* BusinessProfileIdentificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0450C817EC3544008921DA /* BusinessProfileIdentificationViewController.xib */; };
+		EA0450CC17EC3544008921DA /* BusinessProfileIdentificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0450C817EC3544008921DA /* BusinessProfileIdentificationViewController.xib */; };
+		EA0450CF17EC3635008921DA /* TextContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0450CE17EC3635008921DA /* TextContainerView.m */; };
+		EA0450D017EC3635008921DA /* TextContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0450CE17EC3635008921DA /* TextContainerView.m */; };
 		EA13E032171BDF1A0019FBF0 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */; };
 		EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */; };
 		EA13E038171BE12E0019FBF0 /* MoneyEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */; };
@@ -546,6 +552,11 @@
 		EA0425FE173CF5C50048BFBD /* RecipientEntrySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientEntrySelectionCell.h; sourceTree = "<group>"; };
 		EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientEntrySelectionCell.m; sourceTree = "<group>"; };
 		EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientEntrySelectionCell.xib; sourceTree = "<group>"; };
+		EA0450C617EC3544008921DA /* BusinessProfileIdentificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileIdentificationViewController.h; sourceTree = "<group>"; };
+		EA0450C717EC3544008921DA /* BusinessProfileIdentificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileIdentificationViewController.m; sourceTree = "<group>"; };
+		EA0450C817EC3544008921DA /* BusinessProfileIdentificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessProfileIdentificationViewController.xib; sourceTree = "<group>"; };
+		EA0450CD17EC3635008921DA /* TextContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextContainerView.h; sourceTree = "<group>"; };
+		EA0450CE17EC3635008921DA /* TextContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextContainerView.m; sourceTree = "<group>"; };
 		EA12413E17AA88EC00C9B02B /* TransferDev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = TransferDev.plist; path = "/Users/jaanus/projects/mc-transfer-ios/TransferDev.plist"; sourceTree = "<absolute>"; };
 		EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
 		EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
@@ -1025,6 +1036,9 @@
 				EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */,
 				EAD73688171E6CB100A037B1 /* GrayButton.h */,
 				EAD73689171E6CB100A037B1 /* GrayButton.m */,
+				EAE7B6AA17E9AC3F00E03D73 /* IdentificationNotificationView.h */,
+				EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */,
+				EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */,
 				EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */,
 				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
 				EAD3647717E2EBF2001EFE40 /* PaymentMethodSelectionView.h */,
@@ -1045,6 +1059,8 @@
 				EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */,
 				EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */,
 				EA13E045171BED910019FBF0 /* TableHeaderView.xib */,
+				EA0450CD17EC3635008921DA /* TextContainerView.h */,
+				EA0450CE17EC3635008921DA /* TextContainerView.m */,
 				EA2296C417E08027001CF541 /* TransferBackButtonItem.h */,
 				EA2296C517E08027001CF541 /* TransferBackButtonItem.m */,
 				EA8FF689171D1FA50090A658 /* TRWAlertView.h */,
@@ -1054,9 +1070,6 @@
 				BBCC6336172169980094EABB /* WhyView.h */,
 				BBCC6337172169980094EABB /* WhyView.m */,
 				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
-				EAE7B6AA17E9AC3F00E03D73 /* IdentificationNotificationView.h */,
-				EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */,
-				EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1448,6 +1461,9 @@
 				BB29BD45173CD2FF0016A6E9 /* BankTransferViewController.h */,
 				BB29BD46173CD2FF0016A6E9 /* BankTransferViewController.m */,
 				BB29BD48173CD30C0016A6E9 /* BankTransferViewController.xib */,
+				EA0450C617EC3544008921DA /* BusinessProfileIdentificationViewController.h */,
+				EA0450C717EC3544008921DA /* BusinessProfileIdentificationViewController.m */,
+				EA0450C817EC3544008921DA /* BusinessProfileIdentificationViewController.xib */,
 				1864AC91173B7C28008773FC /* BusinessProfileViewController.h */,
 				1864AC92173B7C28008773FC /* BusinessProfileViewController.m */,
 				EAD3648917E2F6EF001EFE40 /* CardPaymentViewController.h */,
@@ -1464,9 +1480,6 @@
 				EAD3967F171BD57000F6D011 /* ContactsViewController.xib */,
 				EA88E661172F979F0021492C /* DataEntryViewController.h */,
 				EA88E662172F979F0021492C /* DataEntryViewController.m */,
-				18D478FE173A3B5300FC317E /* PersonalProfileIdentificationViewController.h */,
-				18D478FF173A3B5300FC317E /* PersonalProfileIdentificationViewController.m */,
-				18D47902173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib */,
 				EAD39687171BD82300F6D011 /* IntroductionViewController.h */,
 				EAD39688171BD82300F6D011 /* IntroductionViewController.m */,
 				EAD39689171BD82300F6D011 /* IntroductionViewController.xib */,
@@ -1486,6 +1499,9 @@
 				EAD39682171BD5B000F6D011 /* PaymentViewController.h */,
 				EAD39683171BD5B000F6D011 /* PaymentViewController.m */,
 				EAD39684171BD5B000F6D011 /* PaymentViewController.xib */,
+				18D478FE173A3B5300FC317E /* PersonalProfileIdentificationViewController.h */,
+				18D478FF173A3B5300FC317E /* PersonalProfileIdentificationViewController.m */,
+				18D47902173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib */,
 				EA88E663172F979F0021492C /* PersonalProfileViewController.h */,
 				EA88E664172F979F0021492C /* PersonalProfileViewController.m */,
 				EA416E28176860EA00904D97 /* ProfileEditViewController.h */,
@@ -1801,6 +1817,7 @@
 				EA31A22017DDB29B00F937F7 /* ProfileEditViewController.xib in Resources */,
 				EA31A22117DDB29B00F937F7 /* ProfileSelectionView.xib in Resources */,
 				EA31A22217DDB29B00F937F7 /* TransferTypeSelectionCell.xib in Resources */,
+				EA0450CC17EC3544008921DA /* BusinessProfileIdentificationViewController.xib in Resources */,
 				EA31A22717DDB29B00F937F7 /* TabBarActivityIndicatorView.xib in Resources */,
 				EA31A22817DDB29B00F937F7 /* currencies.json in Resources */,
 				EA31A22917DDB29B00F937F7 /* currency_pairs.json in Resources */,
@@ -1868,6 +1885,7 @@
 				EA416E2C176860EA00904D97 /* ProfileEditViewController.xib in Resources */,
 				EA92D985176AF1F20078D0C4 /* ProfileSelectionView.xib in Resources */,
 				BB9A2EB9176F495700C5E058 /* TransferTypeSelectionCell.xib in Resources */,
+				EA0450CB17EC3544008921DA /* BusinessProfileIdentificationViewController.xib in Resources */,
 				EA225C76178EA124009D6B83 /* TabBarActivityIndicatorView.xib in Resources */,
 				EA225CBA178EEA8A009D6B83 /* currencies.json in Resources */,
 				EA225CBB178EEA8A009D6B83 /* currency_pairs.json in Resources */,
@@ -2122,6 +2140,7 @@
 				EA31A15717DDB29B00F937F7 /* CurrencyPairsOperation.m in Sources */,
 				EA31A15817DDB29B00F937F7 /* RecipientViewController.m in Sources */,
 				EA31A15917DDB29B00F937F7 /* CurrenciesOperation.m in Sources */,
+				EA0450D017EC3635008921DA /* TextContainerView.m in Sources */,
 				EAD33EA017E7242F00CE0608 /* GoogleAnalytics.m in Sources */,
 				EA31A15A17DDB29B00F937F7 /* TransferwiseClient.m in Sources */,
 				EA31A15B17DDB29B00F937F7 /* RecipientTypesOperation.m in Sources */,
@@ -2135,6 +2154,7 @@
 				EA31A16217DDB29B00F937F7 /* BusinessProfileViewController.m in Sources */,
 				EA31A16317DDB29B00F937F7 /* BusinessProfileOperation.m in Sources */,
 				EA31A16417DDB29B00F937F7 /* DeleteRecipientOperation.m in Sources */,
+				EA0450CA17EC3544008921DA /* BusinessProfileIdentificationViewController.m in Sources */,
 				EA31A16517DDB29B00F937F7 /* PaymentFlow.m in Sources */,
 				EA31A16617DDB29B00F937F7 /* ConfirmPaymentViewController.m in Sources */,
 				EA31A16717DDB29B00F937F7 /* ConfirmPaymentCell.m in Sources */,
@@ -2304,6 +2324,7 @@
 				EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */,
 				EAA54F4B1733DA1400B65BF3 /* RecipientViewController.m in Sources */,
 				EAA54F501733DC3500B65BF3 /* CurrenciesOperation.m in Sources */,
+				EA0450CF17EC3635008921DA /* TextContainerView.m in Sources */,
 				EAD33E9F17E7242F00CE0608 /* GoogleAnalytics.m in Sources */,
 				EAA54F581733E8F700B65BF3 /* TransferwiseClient.m in Sources */,
 				EAA54F5B1733EF1A00B65BF3 /* RecipientTypesOperation.m in Sources */,
@@ -2317,6 +2338,7 @@
 				1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */,
 				1864AC9E173B7C80008773FC /* BusinessProfileOperation.m in Sources */,
 				1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */,
+				EA0450C917EC3544008921DA /* BusinessProfileIdentificationViewController.m in Sources */,
 				EA222E33173A676000C5D613 /* PaymentFlow.m in Sources */,
 				EA222E38173A861000C5D613 /* ConfirmPaymentViewController.m in Sources */,
 				EA222E3C173A8A7100C5D613 /* ConfirmPaymentCell.m in Sources */,

@@ -353,3 +353,8 @@ Payment #%@";
 | Device: %@, %@ |<br />
 | Application: v%@ |<br />
 </body>";
+
+"business.profile.identification.controller.title" = "Your business details";
+"business.profile.identification.sent.button.title" = "I have sent the documents";
+"business.profile.identification.sent.documents.cell.title" = "Email documents now";
+"business.profile.identification.skip.button.title" = "I will send them later";
