@@ -1,5 +1,5 @@
 //
-//  IdentificationViewController.h
+//  PersonalProfileIdentificationViewController.h
 //  Transfer
 //
 //  Created by Henri Mägi on 08.05.13.
@@ -16,7 +16,7 @@
 
 typedef void (^IdentificationCompleteBlock)(BOOL skipIdentification, NSString *paymentPurpose, PaymentErrorBlock errorBlock);
 
-@interface IdentificationViewController : DataEntryViewController
+@interface PersonalProfileIdentificationViewController : DataEntryViewController
 
 @property (nonatomic, copy) IdentificationCompleteBlock completionHandler;
 @property (nonatomic, weak) PaymentFlow *paymentFlow;

@@ -1,12 +1,12 @@
 //
-//  IdentificationViewController.m
+//  PersonalProfileIdentificationViewController.m
 //  Transfer
 //
 //  Created by Henri Mägi on 08.05.13.
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import "IdentificationViewController.h"
+#import "PersonalProfileIdentificationViewController.h"
 #import "UIColor+Theme.h"
 #import "TextCell.h"
 #import "BlueButton.h"
@@ -22,7 +22,7 @@
 #import "TransferBackButtonItem.h"
 #import "UITableView+FooterPositioning.h"
 
-@interface IdentificationViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface PersonalProfileIdentificationViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIView *footerView;
@@ -41,10 +41,10 @@
 
 @end
 
-@implementation IdentificationViewController
+@implementation PersonalProfileIdentificationViewController
 
 - (id)init {
-    self = [super initWithNibName:@"IdentificationViewController" bundle:nil];
+    self = [super initWithNibName:@"PersonalProfileIdentificationViewController" bundle:nil];
     if (self) {
         // Custom initialization
     }

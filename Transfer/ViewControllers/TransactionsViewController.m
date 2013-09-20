@@ -25,7 +25,7 @@
 #import "IdentificationNotificationView.h"
 #import "UIView+Loading.h"
 #import "CheckPersonalProfileVerificationOperation.h"
-#import "IdentificationViewController.h"
+#import "PersonalProfileIdentificationViewController.h"
 #import "PendingPayment.h"
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
@@ -292,7 +292,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 - (void)pushIdentificationScreen {
 	MCLog(@"pushIdentificationScreen");
-	IdentificationViewController *controller = [[IdentificationViewController alloc] init];
+	PersonalProfileIdentificationViewController *controller = [[PersonalProfileIdentificationViewController alloc] init];
 	[controller setHideSkipOption:YES];
 	[controller setIdentificationRequired:self.identificationRequired];
 	[controller setProposedFooterButtonTitle:NSLocalizedString(@"transactions.identification.done.button.title", nil)];

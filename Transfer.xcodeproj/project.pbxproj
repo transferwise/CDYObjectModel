@@ -11,8 +11,8 @@
 		1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC92173B7C28008773FC /* BusinessProfileViewController.m */; };
 		1864AC9E173B7C80008773FC /* BusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */; };
 		1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */; };
-		18D47900173A3B5300FC317E /* IdentificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D478FF173A3B5300FC317E /* IdentificationViewController.m */; };
-		18D47903173A3B6E00FC317E /* IdentificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D47902173A3B6E00FC317E /* IdentificationViewController.xib */; };
+		18D47900173A3B5300FC317E /* PersonalProfileIdentificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D478FF173A3B5300FC317E /* PersonalProfileIdentificationViewController.m */; };
+		18D47903173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D47902173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib */; };
 		BB29BD47173CD2FF0016A6E9 /* BankTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29BD46173CD2FF0016A6E9 /* BankTransferViewController.m */; };
 		BB29BD49173CD30D0016A6E9 /* BankTransferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD48173CD30C0016A6E9 /* BankTransferViewController.xib */; };
 		BB29BD4B173CDF480016A6E9 /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD4A173CDF480016A6E9 /* TextCell.xib */; };
@@ -169,7 +169,7 @@
 		EA31A15E17DDB29B00F937F7 /* RecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069091737CF57007C8DEE /* RecipientOperation.m */; };
 		EA31A15F17DDB29B00F937F7 /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */; };
 		EA31A16017DDB29B00F937F7 /* PersonalProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */; };
-		EA31A16117DDB29B00F937F7 /* IdentificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D478FF173A3B5300FC317E /* IdentificationViewController.m */; };
+		EA31A16117DDB29B00F937F7 /* PersonalProfileIdentificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D478FF173A3B5300FC317E /* PersonalProfileIdentificationViewController.m */; };
 		EA31A16217DDB29B00F937F7 /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC92173B7C28008773FC /* BusinessProfileViewController.m */; };
 		EA31A16317DDB29B00F937F7 /* BusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */; };
 		EA31A16417DDB29B00F937F7 /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */; };
@@ -306,7 +306,7 @@
 		EA31A20117DDB29B00F937F7 /* RecipientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F4A1733DA1400B65BF3 /* RecipientViewController.xib */; };
 		EA31A20217DDB29B00F937F7 /* CurrencySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */; };
 		EA31A20317DDB29B00F937F7 /* RecipientFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */; };
-		EA31A20A17DDB29B00F937F7 /* IdentificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D47902173A3B6E00FC317E /* IdentificationViewController.xib */; };
+		EA31A20A17DDB29B00F937F7 /* PersonalProfileIdentificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D47902173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib */; };
 		EA31A20B17DDB29B00F937F7 /* ConfirmPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E37173A861000C5D613 /* ConfirmPaymentViewController.xib */; };
 		EA31A20C17DDB29B00F937F7 /* ConfirmPaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E3D173A8A7C00C5D613 /* ConfirmPaymentCell.xib */; };
 		EA31A20F17DDB29B00F937F7 /* RecipientEntrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */; };
@@ -500,9 +500,9 @@
 		1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileOperation.m; sourceTree = "<group>"; };
 		1864AC9F173B7C95008773FC /* DeleteRecipientOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteRecipientOperation.h; sourceTree = "<group>"; };
 		1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteRecipientOperation.m; sourceTree = "<group>"; };
-		18D478FE173A3B5300FC317E /* IdentificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentificationViewController.h; sourceTree = "<group>"; };
-		18D478FF173A3B5300FC317E /* IdentificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentificationViewController.m; sourceTree = "<group>"; };
-		18D47902173A3B6E00FC317E /* IdentificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IdentificationViewController.xib; sourceTree = "<group>"; };
+		18D478FE173A3B5300FC317E /* PersonalProfileIdentificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileIdentificationViewController.h; sourceTree = "<group>"; };
+		18D478FF173A3B5300FC317E /* PersonalProfileIdentificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileIdentificationViewController.m; sourceTree = "<group>"; };
+		18D47902173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalProfileIdentificationViewController.xib; sourceTree = "<group>"; };
 		2C541BABB70E4B6195F5BC1A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		2F2D1DE7BECC4078BB45E6AD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C1FBDCF7CCD414999CC7D3D /* libPods-TransferTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TransferTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1464,9 +1464,9 @@
 				EAD3967F171BD57000F6D011 /* ContactsViewController.xib */,
 				EA88E661172F979F0021492C /* DataEntryViewController.h */,
 				EA88E662172F979F0021492C /* DataEntryViewController.m */,
-				18D478FE173A3B5300FC317E /* IdentificationViewController.h */,
-				18D478FF173A3B5300FC317E /* IdentificationViewController.m */,
-				18D47902173A3B6E00FC317E /* IdentificationViewController.xib */,
+				18D478FE173A3B5300FC317E /* PersonalProfileIdentificationViewController.h */,
+				18D478FF173A3B5300FC317E /* PersonalProfileIdentificationViewController.m */,
+				18D47902173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib */,
 				EAD39687171BD82300F6D011 /* IntroductionViewController.h */,
 				EAD39688171BD82300F6D011 /* IntroductionViewController.m */,
 				EAD39689171BD82300F6D011 /* IntroductionViewController.xib */,
@@ -1784,7 +1784,7 @@
 				EA31A20117DDB29B00F937F7 /* RecipientViewController.xib in Resources */,
 				EA31A20217DDB29B00F937F7 /* CurrencySelectionCell.xib in Resources */,
 				EA31A20317DDB29B00F937F7 /* RecipientFieldCell.xib in Resources */,
-				EA31A20A17DDB29B00F937F7 /* IdentificationViewController.xib in Resources */,
+				EA31A20A17DDB29B00F937F7 /* PersonalProfileIdentificationViewController.xib in Resources */,
 				EAD3649217E2F971001EFE40 /* PaymentMethodSelectionView.xib in Resources */,
 				EA31A20B17DDB29B00F937F7 /* ConfirmPaymentViewController.xib in Resources */,
 				EAD3648817E2F394001EFE40 /* UploadMoneyViewController.xib in Resources */,
@@ -1851,7 +1851,7 @@
 				EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */,
 				EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */,
 				EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */,
-				18D47903173A3B6E00FC317E /* IdentificationViewController.xib in Resources */,
+				18D47903173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib in Resources */,
 				EAD3649117E2F971001EFE40 /* PaymentMethodSelectionView.xib in Resources */,
 				EA222E39173A861000C5D613 /* ConfirmPaymentViewController.xib in Resources */,
 				EAD3648717E2F394001EFE40 /* UploadMoneyViewController.xib in Resources */,
@@ -2130,7 +2130,7 @@
 				EA31A15E17DDB29B00F937F7 /* RecipientOperation.m in Sources */,
 				EA31A15F17DDB29B00F937F7 /* NonEditTextField.m in Sources */,
 				EA31A16017DDB29B00F937F7 /* PersonalProfileOperation.m in Sources */,
-				EA31A16117DDB29B00F937F7 /* IdentificationViewController.m in Sources */,
+				EA31A16117DDB29B00F937F7 /* PersonalProfileIdentificationViewController.m in Sources */,
 				EAD3648D17E2F6EF001EFE40 /* CardPaymentViewController.m in Sources */,
 				EA31A16217DDB29B00F937F7 /* BusinessProfileViewController.m in Sources */,
 				EA31A16317DDB29B00F937F7 /* BusinessProfileOperation.m in Sources */,
@@ -2312,7 +2312,7 @@
 				EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */,
 				EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */,
 				EAD85B0B173920C300C22211 /* PersonalProfileOperation.m in Sources */,
-				18D47900173A3B5300FC317E /* IdentificationViewController.m in Sources */,
+				18D47900173A3B5300FC317E /* PersonalProfileIdentificationViewController.m in Sources */,
 				EAD3648C17E2F6EF001EFE40 /* CardPaymentViewController.m in Sources */,
 				1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */,
 				1864AC9E173B7C80008773FC /* BusinessProfileOperation.m in Sources */,

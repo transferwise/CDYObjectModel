@@ -10,7 +10,7 @@
 #import "PersonalProfileViewController.h"
 #import "RecipientViewController.h"
 #import "ConfirmPaymentViewController.h"
-#import "IdentificationViewController.h"
+#import "PersonalProfileIdentificationViewController.h"
 #import "BankTransferViewController.h"
 #import "CreatePaymentOperation.h"
 #import "VerificationRequiredOperation.h"
@@ -220,7 +220,7 @@
 		[[GoogleAnalytics sharedInstance] sendScreen:@"Personal identification"];
 	}
 
-    IdentificationViewController *controller = [[IdentificationViewController alloc] init];
+    PersonalProfileIdentificationViewController *controller = [[PersonalProfileIdentificationViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setPaymentFlow:self];
 	[controller setIdentificationRequired:(IdentificationRequired) [payment verificiationNeededValue]];
