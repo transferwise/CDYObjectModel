@@ -142,7 +142,8 @@
 }
 
 - (IBAction)sentPressed {
-    [self executeCompletion:NO];
+    //TODO jaanus: check this
+    [self executeCompletion:YES];
 }
 
 - (IBAction)skipPressed {

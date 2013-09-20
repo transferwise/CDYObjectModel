@@ -36,6 +36,7 @@
 #import "UploadMoneyViewController.h"
 #import "FBAppEvents.h"
 #import "GoogleAnalytics.h"
+#import "BusinessProfileIdentificationViewController.h"
 
 @interface PaymentFlow ()
 
@@ -214,11 +215,7 @@
 
 - (void)presentVerificationScreen {
 	PendingPayment *payment = [self.objectModel pendingPayment];
-	if (payment.businessProfileUsed) {
-		[[GoogleAnalytics sharedInstance] sendScreen:@"Business verification"];
-	} else {
-		[[GoogleAnalytics sharedInstance] sendScreen:@"Personal identification"];
-	}
+    [[GoogleAnalytics sharedInstance] sendScreen:@"Personal identification"];
 
     PersonalProfileIdentificationViewController *controller = [[PersonalProfileIdentificationViewController alloc] init];
     [controller setObjectModel:self.objectModel];
@@ -288,7 +285,9 @@
             PendingPayment *pendingPayment = [self.objectModel pendingPayment];
             MCLog(@"Any verification required? %d", pendingPayment.isAnyVerificationRequired);
             MCLog(@"Logged in? %d", [Credentials userLoggedIn]);
-            if ([pendingPayment isAnyVerificationRequired]) {
+            if ([pendingPayment isAnyVerificationRequired] && [[pendingPayment profileUsed] isEqualToString:@"business"]) {
+                [self presentBusinessVerificationScreen];
+            } else if ([pendingPayment isAnyVerificationRequired]) {
                 MCLog(@"Present verification screen");
                 self.paymentErrorHandler(nil);
                 [self presentVerificationScreen];
@@ -303,6 +302,24 @@
     }];
 
     [operation execute];
+}
+
+- (void)presentBusinessVerificationScreen {
+    PendingPayment *payment = [self.objectModel pendingPayment];
+    [[GoogleAnalytics sharedInstance] sendScreen:@"Business verification"];
+
+    BusinessProfileIdentificationViewController *controller = [[BusinessProfileIdentificationViewController alloc] init];
+    [controller setObjectModel:self.objectModel];
+    [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, PaymentErrorBlock errorBlock) {
+        [self.objectModel performBlock:^{
+            [payment setSendVerificationLaterValue:skipIdentification];
+
+            [self.objectModel saveContext:^{
+                [self commitPaymentWithErrorHandler:errorBlock];
+            }];
+        }];
+    }];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)commitPaymentWithErrorHandler:(PaymentErrorBlock)errorHandler {
