@@ -6,16 +6,23 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
+#import <MessageUI/MessageUI.h>
 #import "BusinessProfileIdentificationViewController.h"
 #import "TextContainerView.h"
 #import "UIColor+Theme.h"
+#import "ObjectModel.h"
 #import "UITableView+FooterPositioning.h"
 #import "TransferBackButtonItem.h"
 #import "BlueButton.h"
 #import "ConfirmPaymentCell.h"
 #import "GrayButton.h"
+#import "Constants.h"
+#import "TRWAlertView.h"
+#import "ObjectModel+Users.h"
+#import "User.h"
+#import "BusinessProfile.h"
 
-@interface BusinessProfileIdentificationViewController ()
+@interface BusinessProfileIdentificationViewController () <MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong) IBOutlet TextContainerView *headerView;
 @property (nonatomic, strong) IBOutlet TextContainerView *footerView;
@@ -86,6 +93,49 @@
     [cell.detailTextLabel setText:@""];
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    if (![MFMailComposeViewController canSendMail]) {
+        TRWAlertView *alert = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"support.cant.send.email.title", nil)
+                                                       message:NSLocalizedString(@"support.cant.send.email.message", nil)];
+        [alert setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+        [alert show];
+        return;
+    }
+
+    MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
+    [controller setMailComposeDelegate:self];
+    [controller setToRecipients:@[TRWIdentificationEmail]];
+    [controller setSubject:NSLocalizedString(@"identification.email.subject", nil)];
+    NSString *messageBody = [NSString stringWithFormat:NSLocalizedString(@"identification.email.message.body.base", nil),
+                                                       [[self.objectModel currentUser] email],
+                                                       [[[self.objectModel currentUser] businessProfile] name],
+                                                       [[UIDevice currentDevice] systemVersion],
+                                                       [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
+    ];
+
+    [controller setMessageBody:messageBody isHTML:YES];
+
+    [self presentViewController:controller animated:YES completion:^{
+        if (IOS_7) {
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        }
+    }];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    if (error) {
+        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"support.send.email.error.title", nil)
+                                                           message:NSLocalizedString(@"support.send.email.error.message", nil)];
+        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+        [alertView show];
+        return;
+    }
+
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

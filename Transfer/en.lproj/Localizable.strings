@@ -358,3 +358,13 @@ Payment #%@";
 "business.profile.identification.sent.button.title" = "I have sent the documents";
 "business.profile.identification.sent.documents.cell.title" = "Email documents now";
 "business.profile.identification.skip.button.title" = "I will send them later";
+
+"identification.email.subject" = "Our business details";
+"identification.email.message.body.base" = "<body>
+Please attach your documents to this email and send it our way.<br />
+<br />
+<br />
+| <strong>Info for the TransferWise team:</strong> |<br />
+| Account email: %@ |<br />
+| Business: %@ |<br />
+</body>";

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class ObjectModel;
+
 @interface BusinessProfileIdentificationViewController : UITableViewController
+
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 @end
