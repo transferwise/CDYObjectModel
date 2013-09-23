@@ -8,7 +8,6 @@
 
 #import "CheckPersonalProfileVerificationOperation.h"
 #import "TransferwiseOperation+Private.h"
-#import "Constants.h"
 
 NSString *const kCheckVerificationPath = @"/verification/required";
 
@@ -29,6 +28,9 @@ NSString *const kCheckVerificationPath = @"/verification/required";
 		}
 		if ([response[@"addressVerification"] boolValue]) {
 			identificationRequired = identificationRequired | IdentificationAddressRequired;
+		}
+		if ([response[@"paymentsPurposeVerification"] boolValue]) {
+			identificationRequired = identificationRequired | IdentificationPaymentPurposeRequired;
 		}
 		weakSelf.resultHandler(identificationRequired);
 	}];

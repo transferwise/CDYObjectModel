@@ -27,6 +27,7 @@
 #import "CheckPersonalProfileVerificationOperation.h"
 #import "PersonalProfileIdentificationViewController.h"
 #import "PendingPayment.h"
+#import "PaymentPurposeOperation.h"
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
@@ -40,7 +41,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (nonatomic, assign) BOOL showIdentificationView;
 @property (nonatomic, strong) CheckPersonalProfileVerificationOperation *checkOperation;
 @property (nonatomic, assign) IdentificationRequired identificationRequired;
-@property (nonatomic, strong) UploadVerificationFileOperation *executedUploadOperation;
+@property (nonatomic, strong) TransferwiseOperation *executedUploadOperation;
 
 @end
 
@@ -298,11 +299,36 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[controller setProposedFooterButtonTitle:NSLocalizedString(@"transactions.identification.done.button.title", nil)];
     [controller setCompletionMessage:NSLocalizedString(@"transactions.identification.uploading.message", nil)];
     [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, PaymentErrorBlock errorBlock) {
-        [self uploadIdImageWithErrorHandler:errorBlock completionHandler:^{
+        [self uploadPaymentPurpose:paymentPurpose errorHandler:errorBlock completionHandler:^{
             [self.navigationController popViewControllerAnimated:YES];
         }];
     }];
 	[self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)uploadPaymentPurpose:(NSString *)purpose errorHandler:(PaymentErrorBlock)errorBlock completionHandler:(JCSActionBlock)completion {
+    if ((self.identificationRequired & IdentificationPaymentPurposeRequired) != IdentificationPaymentPurposeRequired) {
+        [self uploadIdImageWithErrorHandler:errorBlock completionHandler:completion];
+        return;
+    }
+
+    PaymentPurposeOperation *operation = [PaymentPurposeOperation operationWithPurpose:purpose forProfile:@"personal"];
+    [self setExecutedUploadOperation:operation];
+    [operation setObjectModel:self.objectModel];
+
+    [operation setResultHandler:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                errorBlock(error);
+                return;
+            }
+
+            MCLog(@"uploadPaymentPurpose done");
+            [self uploadIdImageWithErrorHandler:errorBlock completionHandler:completion];
+        });
+    }];
+
+    [operation execute];
 }
 
 - (void)uploadIdImageWithErrorHandler:(PaymentErrorBlock)errorBlock completionHandler:(JCSActionBlock)completion {

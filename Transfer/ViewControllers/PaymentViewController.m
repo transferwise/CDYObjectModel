@@ -264,6 +264,17 @@ static NSUInteger const kRowYouSend = 0;
     [self.currencyCostValueLabel setText:[result transferwiseCurrencyCostStringWithCurrency]];
     [self.exchangeRateValueLabel setText:[result transferwiseRateString]];
     [self.youGetValueLabel setText:[result transferwisePayOutStringWithCurrency]];
+
+    CGRect receiveValueFrame = self.youGetValueLabel.frame;
+    CGFloat perfectWidth = [self.youGetValueLabel sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGRectGetHeight(receiveValueFrame))].width;
+    CGFloat widthChange = perfectWidth - CGRectGetWidth(receiveValueFrame);
+    receiveValueFrame.size.width += widthChange;
+    receiveValueFrame.origin.x -= widthChange;
+    [self.youGetValueLabel setFrame:receiveValueFrame];
+
+    CGRect receiveTitleFrame = self.youGetTitleLabel.frame;
+    receiveTitleFrame.size.width -= widthChange;
+    [self.youGetTitleLabel setFrame:receiveTitleFrame];
 }
 
 - (IBAction)continuePressed:(id)sender {
@@ -329,7 +340,6 @@ static NSUInteger const kRowYouSend = 0;
             CGRect indicatorFrame = indicatorView.frame;
             indicatorFrame.origin.y = CGRectGetHeight(self.view.frame) - CGRectGetHeight(indicatorFrame);
             [indicatorView setFrame:indicatorFrame];
-
         }
     });
 }

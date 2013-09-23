@@ -100,6 +100,10 @@
 }
 
 - (void)buildCells {
+    if ([self.presentedSectionCells count] > 0) {
+        return;
+    }
+
     NSMutableArray *photoCells = [NSMutableArray array];
 
     if ([self idVerificationRequired]) {
@@ -122,6 +126,7 @@
     if ([self paymentPurposeRequired]) {
         TextEntryCell *entryCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
         [self setPaymentPurposeCell:entryCell];
+        [entryCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
         [photoCells addObject:entryCell];
         [entryCell configureWithTitle:NSLocalizedString(@"identification.payment.puprose", nil) value:self.proposedPaymentPurpose];
     }
@@ -147,7 +152,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    if (indexPath.section == 0) {
+    if (indexPath.section == 0 && (indexPath.row == self.idVerificationRowIndex || indexPath.row == self.addressVerificationRowIndex)) {
         [self presentCameraController];
         self.selectedRow = indexPath.row;
     }
