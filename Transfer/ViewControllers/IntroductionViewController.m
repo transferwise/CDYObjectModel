@@ -84,6 +84,7 @@ static NSUInteger const kRowYouSend = 0;
     if (!IOS_7) {
         [self.youSendCell setRoundedCorner:UIRectCornerTopRight];
     }
+    [self.youSendCell setEditable:YES];
 
     [self setTheyReceiveCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
     [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
