@@ -63,7 +63,7 @@ static NSUInteger const TransferwiseAppID = 612261027;
 
 #define IOS_7 ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending)
 
-#define USE_FACEBOOK_EVENTS 1
+#define USE_FACEBOOK_EVENTS 0
 
 typedef NS_OPTIONS(short, IdentificationRequired) {
 	IdentificationNoneRequired = 0,
