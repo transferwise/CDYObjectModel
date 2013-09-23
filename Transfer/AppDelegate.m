@@ -50,7 +50,9 @@
 #endif
 
 #if DEBUG
-    [[GAI sharedInstance] setDebug:YES];
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+#else
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelNone];
 #endif
 
     [[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];

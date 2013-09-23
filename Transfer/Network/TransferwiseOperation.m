@@ -20,6 +20,7 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "GAI.h"
 #import "GoogleAnalytics.h"
+#import "GAIFields.h"
 
 @interface TransferwiseOperation ()
 
@@ -166,7 +167,7 @@
     }
 
     [request setValue:TRWApplicationKey forHTTPHeaderField:@"Authorization-key"];
-    [request setValue:[[GAI sharedInstance] defaultTracker].clientId forHTTPHeaderField:@"Customer-identifier"];
+    [request setValue:[[[GAI sharedInstance] defaultTracker] get:kGAIClientId] forHTTPHeaderField:@"Customer-identifier"];
 }
 
 - (BOOL)isCurrencyPairsOperation {
