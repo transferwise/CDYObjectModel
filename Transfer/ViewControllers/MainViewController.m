@@ -96,6 +96,7 @@
 
     if (![Credentials userLoggedIn] && !self.shown) {
         IntroViewController *controller = [[IntroViewController alloc] init];
+        [self setNavigationBarHidden:YES];
         [self pushViewController:controller animated:NO];
     }
 }
