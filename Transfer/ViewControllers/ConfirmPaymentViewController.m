@@ -179,6 +179,7 @@ static NSUInteger const kReceiverSection = 2;
     [self.exchangedToCell.textLabel setText:NSLocalizedString(@"confirm.payment.exchanged.to.title.label", nil)];
     [self.exchangedToCell.detailTextLabel setText:[payment payOutStringWithCurrency]];
 
+    [self.estimatedExchangeRateLabel setAutomaticallyAddLinksForType:0];
     [self fillDeliveryDetails:self.estimatedExchangeRateLabel];
 
     [self.senderNameCell.detailTextLabel setText:NSLocalizedString(@"confirm.payment.sender.marker.label", nil)];
