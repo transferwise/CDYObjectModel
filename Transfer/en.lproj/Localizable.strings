@@ -381,3 +381,10 @@ Please attach your documents to this email and send it our way.<br />
 and send it to any bank account.";
 "intro.message.three" = "The new way to send money, from the
 people who built Skype and PayPal.";
+
+"business.profile.identification.header.instructions.text" = "As we follow the anti-money laundering policies of our regulators (HMRC and FCA), we unfortunately need photos (or scanned copies) of a few key documents:
+
+1. A valid business incorporation document
+2. A list of the shareholders with over 25% ownership (with % of ownership stated)
+3. Photo ID and proof of address for all of the above stakeholders";
+"business.profile.identification.footer.instructions.text" = "Our apologies for the inconvenience. Rest assured that we will never share your documents with 3rd parties.";

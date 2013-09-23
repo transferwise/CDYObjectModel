@@ -50,7 +50,9 @@
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
 
+    [self.headerView setText:NSLocalizedString(@"business.profile.identification.header.instructions.text", nil)];
     [self.headerView adjustHeight];
+    [self.footerView setText:NSLocalizedString(@"business.profile.identification.footer.instructions.text", nil)];
     [self.footerView adjustHeight];
 
     [self.tableView setTableHeaderView:self.headerView];

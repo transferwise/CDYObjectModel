@@ -7,11 +7,10 @@
 //
 
 #import "TextContainerView.h"
-#import "UIColor+Theme.h"
 
 @interface TextContainerView ()
 
-@property (nonatomic, strong) IBOutlet UITextView *textView;
+@property (nonatomic, strong) IBOutlet UILabel *textLabel;
 
 @end
 
@@ -28,20 +27,24 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 
-    [self.textView setTextColor:[UIColor mainTextColor]];
+    [self.textLabel setTextColor:[UIColor darkGrayColor]];
 }
 
 
 - (void)adjustHeight {
-    CGRect textFrame = self.textView.frame;
-    CGFloat perfectHeight = [self.textView sizeThatFits:CGSizeMake(CGRectGetWidth(textFrame), CGFLOAT_MAX)].height;
+    CGRect textFrame = self.textLabel.frame;
+    CGFloat perfectHeight = [self.textLabel sizeThatFits:CGSizeMake(CGRectGetWidth(textFrame), CGFLOAT_MAX)].height;
     CGFloat heightChange = perfectHeight - CGRectGetHeight(textFrame);
     textFrame.size.height += heightChange;
-    [self.textView setFrame:textFrame];
+    [self.textLabel setFrame:textFrame];
 
     CGRect myFrame = self.frame;
     myFrame.size.height += heightChange;
     [self setFrame:myFrame];
+}
+
+- (void)setText:(NSString *)text {
+    [self.textLabel setText:text];
 }
 
 @end

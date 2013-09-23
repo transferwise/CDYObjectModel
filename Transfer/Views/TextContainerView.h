@@ -11,5 +11,6 @@
 @interface TextContainerView : UIView
 
 - (void)adjustHeight;
+- (void)setText:(NSString *)text;
 
 @end
