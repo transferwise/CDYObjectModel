@@ -358,7 +358,7 @@
 - (void)updateSenderProfile {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"updateSenderProfile");
-        if (self.objectModel.currentUser.businessProfile) {
+        if ([self.objectModel.currentUser.businessProfile isFilled]) {
             [self updateBusinessProfile];
         } else {
             [self updatePersonalProfile];
