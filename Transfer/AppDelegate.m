@@ -122,10 +122,6 @@
     [FBSettings setDefaultAppID:@"274548709260402"];
     [FBAppEvents activateApp];
 #endif
-
-    delayedExecution(60 * 2, ^{
-        [[FeedbackCoordinator sharedInstance] presentFeedbackAlert];
-    });
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
