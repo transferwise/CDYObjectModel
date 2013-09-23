@@ -181,4 +181,20 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     [self.picker reloadAllComponents];
 }
 
+- (void)setMoneyValue:(NSString *)moneyString {
+    [self.moneyField setText:moneyString];
+
+    CGRect moneyFrame = self.moneyField.frame;
+    CGFloat perfectWidth = [self.moneyField sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGRectGetHeight(moneyFrame))].width;
+    CGFloat moneyWidthChange = perfectWidth - CGRectGetWidth(moneyFrame);
+
+    moneyFrame.size.width += moneyWidthChange;
+    moneyFrame.origin.x -= moneyWidthChange;
+    [self.moneyField setFrame:moneyFrame];
+
+    CGRect titleFrame = self.titleLabel.frame;
+    titleFrame.size.width -= moneyWidthChange;
+    [self.titleLabel setFrame:titleFrame];
+}
+
 @end

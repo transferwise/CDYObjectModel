@@ -55,11 +55,6 @@
 
     [[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
 
-#if USE_FACEBOOK_EVENTS
-	[FBSettings setDefaultAppID:@"274548709260402"];
-	[FBAppEvents activateApp];
-#endif
-
     [Crashlytics startWithAPIKey:@"84bc4b5736898e3cfdb50d3d2c162c4f74480862"];
 
     [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeTextColor : [UIColor whiteColor]}];
@@ -122,6 +117,11 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	[[GoogleAnalytics sharedInstance] sendAppEvent:@"AppStarted"];
 	[[GoogleAnalytics sharedInstance] markLoggedIn];
+
+#if USE_FACEBOOK_EVENTS
+    [FBSettings setDefaultAppID:@"274548709260402"];
+    [FBAppEvents activateApp];
+#endif
 
     delayedExecution(60 * 2, ^{
         [[FeedbackCoordinator sharedInstance] presentFeedbackAlert];
