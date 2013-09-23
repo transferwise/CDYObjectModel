@@ -82,23 +82,25 @@
         [selectionView setSegmentChangeHandler:^(NSInteger selectedIndex) {
             [self selectionChangedToIndex:selectedIndex];
         }];
-        [selectionView setTitles:@[NSLocalizedString(@"payment.method.regular", nil), NSLocalizedString(@"payment.method.card", nil)]];
+        [selectionView setTitles:@[NSLocalizedString(@"payment.method.card", nil), NSLocalizedString(@"payment.method.regular", nil)]];
         [self.view addSubview:selectionView];
 
         CGFloat selectionHeight = CGRectGetHeight(selectionView.frame);
 
-        NSArray *movedControllers = @[self.cardViewController, self.bankViewController];
+        NSArray *movedControllers = @[self.bankViewController, self.cardViewController];
         for (UIViewController *controller in movedControllers) {
             CGRect frame = controller.view.frame;
             frame.origin.y += selectionHeight;
             frame.size.height -= selectionHeight;
             [controller.view setFrame:frame];
         }
+
+        [self selectionChangedToIndex:0];
     }
 }
 
 - (void)selectionChangedToIndex:(NSInteger)index {
-    if (index == 0) {
+    if (index == 1) {
         [self.view bringSubviewToFront:self.bankViewController.view];
     } else {
 		[[GoogleAnalytics sharedInstance] sendScreen:@"Debit card payment"];
