@@ -327,7 +327,6 @@
 		EA31A21217DDB29B00F937F7 /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD4A173CDF480016A6E9 /* TextCell.xib */; };
 		EA31A21317DDB29B00F937F7 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD6675A174A51C700D29BCB /* ButtonCell.xib */; };
 		EA31A21A17DDB29B00F937F7 /* OpenIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */; };
-		EA31A21B17DDB29B00F937F7 /* spinner.html in Resources */ = {isa = PBXBuildFile; fileRef = EAA053FC175E21D400ACD3F6 /* spinner.html */; };
 		EA31A21C17DDB29B00F937F7 /* ClaimAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */; };
 		EA31A22017DDB29B00F937F7 /* ProfileEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */; };
 		EA31A22117DDB29B00F937F7 /* ProfileSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA92D984176AF1F20078D0C4 /* ProfileSelectionView.xib */; };
@@ -368,6 +367,8 @@
 		EA84055717F06BF200F44916 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA31A11717DDB1CA00F937F7 /* libTestFlight.a */; };
 		EA84055917F06DCD00F44916 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA84055817F06DCD00F44916 /* AdSupport.framework */; };
 		EA84055C17F06E0100F44916 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA84055817F06DCD00F44916 /* AdSupport.framework */; };
+		EA84056917F0A40B00F44916 /* spinner.html in Resources */ = {isa = PBXBuildFile; fileRef = EA84056817F0A40B00F44916 /* spinner.html */; };
+		EA84056A17F0A40B00F44916 /* spinner.html in Resources */ = {isa = PBXBuildFile; fileRef = EA84056817F0A40B00F44916 /* spinner.html */; };
 		EA88E65B172F96490021492C /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
 		EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
 		EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
@@ -404,7 +405,6 @@
 		EAA053E0175DD64D00ACD3F6 /* NoUserPaymentFlowSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053DF175DD64D00ACD3F6 /* NoUserPaymentFlowSpec.m */; };
 		EAA053E4175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053E3175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m */; };
 		EAA053EC175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053EB175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m */; };
-		EAA053FD175E21D400ACD3F6 /* spinner.html in Resources */ = {isa = PBXBuildFile; fileRef = EAA053FC175E21D400ACD3F6 /* spinner.html */; };
 		EAA07BF117AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA07BF017AF750A004B97AC /* QuickProfileValidationOperation.m */; };
 		EAA54F4B1733DA1400B65BF3 /* RecipientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F491733DA1400B65BF3 /* RecipientViewController.m */; };
 		EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F4A1733DA1400B65BF3 /* RecipientViewController.xib */; };
@@ -763,6 +763,7 @@
 		EA8404B217F0681D00F44916 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		EA8404B317F0681D00F44916 /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
 		EA84055817F06DCD00F44916 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		EA84056817F0A40B00F44916 /* spinner.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = spinner.html; sourceTree = "<group>"; };
 		EA88E659172F96490021492C /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credentials.h; path = Credentials/Credentials.h; sourceTree = "<group>"; };
 		EA88E65A172F96490021492C /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Credentials.m; path = Credentials/Credentials.m; sourceTree = "<group>"; };
 		EA88E65D172F96660021492C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -831,7 +832,6 @@
 		EAA053E3175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggedInPaymentFlowSpec.m; sourceTree = "<group>"; };
 		EAA053EA175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterWithoutPasswordOperation.h; sourceTree = "<group>"; };
 		EAA053EB175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterWithoutPasswordOperation.m; sourceTree = "<group>"; };
-		EAA053FC175E21D400ACD3F6 /* spinner.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = spinner.html; sourceTree = "<group>"; };
 		EAA07BEF17AF750A004B97AC /* QuickProfileValidationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickProfileValidationOperation.h; sourceTree = "<group>"; };
 		EAA07BF017AF750A004B97AC /* QuickProfileValidationOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickProfileValidationOperation.m; sourceTree = "<group>"; };
 		EAA54F481733DA1400B65BF3 /* RecipientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientViewController.h; sourceTree = "<group>"; };
@@ -1310,6 +1310,14 @@
 			path = Library;
 			sourceTree = "<group>";
 		};
+		EA84056717F0A3FD00F44916 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EA84056817F0A40B00F44916 /* spinner.html */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		EA88E658172F963B0021492C /* Credentials */ = {
 			isa = PBXGroup;
 			children = (
@@ -1507,7 +1515,7 @@
 				EA88E669172F97B10021492C /* Model */,
 				EA8FF6B5171D25530090A658 /* Network */,
 				EAD3966F171BD1DE00F6D011 /* ObjectModel */,
-				EAD7D4C3171D475E0099063F /* Resources */,
+				EA84056717F0A3FD00F44916 /* Resources */,
 				EA0253B217D5C87700F54C18 /* Support */,
 				EAAA1474171BC911005B9430 /* Supporting Files */,
 				EAB72162171FDC6700DE29F5 /* Utils */,
@@ -1743,14 +1751,6 @@
 			name = Generated;
 			sourceTree = "<group>";
 		};
-		EAD7D4C3171D475E0099063F /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				EAA053FC175E21D400ACD3F6 /* spinner.html */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1827,6 +1827,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Mooncascade OÜ";
+				TargetAttributes = {
+					EAAA1467171BC911005B9430 = {
+						DevelopmentTeam = W53MTDV45J;
+					};
+				};
 			};
 			buildConfigurationList = EAAA1463171BC911005B9430 /* Build configuration list for PBXProject "Transfer" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1855,6 +1860,7 @@
 				EA31A1D017DDB29B00F937F7 /* InfoPlist.strings in Resources */,
 				EA31A1D117DDB29B00F937F7 /* Localizable.strings in Resources */,
 				EA31A1D217DDB29B00F937F7 /* MainViewController.xib in Resources */,
+				EA84056A17F0A40B00F44916 /* spinner.html in Resources */,
 				EA31A1D317DDB29B00F937F7 /* TransactionsViewController.xib in Resources */,
 				EA31A1D417DDB29B00F937F7 /* ContactsViewController.xib in Resources */,
 				EA31A1D517DDB29B00F937F7 /* PaymentViewController.xib in Resources */,
@@ -1896,7 +1902,6 @@
 				EA31A21217DDB29B00F937F7 /* TextCell.xib in Resources */,
 				EA31A21317DDB29B00F937F7 /* ButtonCell.xib in Resources */,
 				EA31A21A17DDB29B00F937F7 /* OpenIDViewController.xib in Resources */,
-				EA31A21B17DDB29B00F937F7 /* spinner.html in Resources */,
 				EA31A21C17DDB29B00F937F7 /* ClaimAccountViewController.xib in Resources */,
 				EA31A22017DDB29B00F937F7 /* ProfileEditViewController.xib in Resources */,
 				EA31A22117DDB29B00F937F7 /* ProfileSelectionView.xib in Resources */,
@@ -1925,6 +1930,7 @@
 				EAAA1478171BC911005B9430 /* InfoPlist.strings in Resources */,
 				EAAA1490171BD07E005B9430 /* Localizable.strings in Resources */,
 				EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */,
+				EA84056917F0A40B00F44916 /* spinner.html in Resources */,
 				EAD3967C171BD51400F6D011 /* TransactionsViewController.xib in Resources */,
 				EAD39681171BD57000F6D011 /* ContactsViewController.xib in Resources */,
 				EAD39686171BD5B000F6D011 /* PaymentViewController.xib in Resources */,
@@ -1966,7 +1972,6 @@
 				BB29BD4B173CDF480016A6E9 /* TextCell.xib in Resources */,
 				EAD6675B174A51C700D29BCB /* ButtonCell.xib in Resources */,
 				EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */,
-				EAA053FD175E21D400ACD3F6 /* spinner.html in Resources */,
 				EAC1051B17607C4600B3B018 /* ClaimAccountViewController.xib in Resources */,
 				EA416E2C176860EA00904D97 /* ProfileEditViewController.xib in Resources */,
 				EA92D985176AF1F20078D0C4 /* ProfileSelectionView.xib in Resources */,
@@ -2761,7 +2766,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/jaanus/projects/mc-transfer-ios/Thirdparty/GoogleAnalyticsiOS3.0",
+					"\"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS3.0\"",
+					"\"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2795,12 +2801,13 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/jaanus/projects/mc-transfer-ios/Thirdparty/GoogleAnalyticsiOS3.0",
+					"\"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS3.0\"",
+					"\"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6CC726D7-ED41-4864-9D4A-90D18C7281EE";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6CC726D7-ED41-4864-9D4A-90D18C7281EE";
+				PROVISIONING_PROFILE = "EE8CA1C6-85EA-4905-9173-36EDD4C165C6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EE8CA1C6-85EA-4905-9173-36EDD4C165C6";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

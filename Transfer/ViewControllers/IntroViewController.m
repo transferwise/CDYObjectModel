@@ -105,11 +105,11 @@
     paragraphStyle.textAlignment = kCTTextAlignmentCenter;
     paragraphStyle.lineBreakMode = kCTLineBreakByWordWrapping;
     [result setParagraphStyle:paragraphStyle];
-    [result setFont:[UIFont systemFontOfSize:17]];
+    [result setFont:[UIFont systemFontOfSize:18]];
     [result setTextColor:[UIColor whiteColor]];
     for (NSString *toBold in boldTexts) {
         NSRange range = [message rangeOfString:toBold];
-        [result setFont:[UIFont boldSystemFontOfSize:17] range:range];
+        [result setFont:[UIFont boldSystemFontOfSize:18] range:range];
     }
 
     return [[NSAttributedString alloc] initWithAttributedString:result];
