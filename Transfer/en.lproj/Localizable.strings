@@ -5,18 +5,18 @@
 "business.profile.country.label" = "Country";
 "business.profile.description.label" = "Business description";
 "business.profile.details.section.title" = "Business details";
-"business.profile.email.label" = "E-mail";
+"business.profile.email.label" = "Email";
 "business.profile.name.label" = "Business name";
 "business.profile.post.code.label" = "Post code";
 "business.profile.refresh.error.message" = "Could not load business profile. Please try again later.";
-"business.profile.refresh.error.title" = "Refresh error";
+"business.profile.refresh.error.title" = "Your details couldn't be refreshed";
 "business.profile.refreshing.message" = "Refreshing...";
 "business.profile.registration.number.label" = "Registration number";
 "business.profile.save.button.title" = "Save profile";
-"business.profile.save.error.title" = "Save profile error";
-"business.profile.saving.message" = "Loading profile...";
-"business.profile.validation.error.message" = "Please check that all fields are filled.";
-"business.profile.validation.error.title" = "Check input";
+"business.profile.save.error.title" = "Your details couldn't be saved. Please try again.";
+"business.profile.saving.message" = "Loading your profile...";
+"business.profile.validation.error.message" = "Please check that all the fields are filled in.";
+"business.profile.validation.error.title" = "Check your details";
 
 "button.title.back" = "Back";
 "button.title.cancel" = "Cancel";
@@ -30,34 +30,34 @@
 "button.title.ok" = "OK";
 "button.title.retry" = "Retry";
 
-"confirm.payment.controller.title" = "Confirm";
+"confirm.payment.controller.title" = "Review details";
 "confirm.payment.creating.message" = "Creating payment";
-"confirm.payment.data.error.title" = "Data error";
-"confirm.payment.delivery.date.message" = "Delivery by %@";
+"confirm.payment.data.error.title" = "Error loading data";
+"confirm.payment.delivery.date.message" = "Money arrives %@";
 "confirm.payment.deposit.title.label" = "Your deposit";
-"confirm.payment.email.label" = "E-mail";
-"confirm.payment.estimated.exchange.rate.message" = "Estimated exchange rate %@";
+"confirm.payment.email.label" = "Email";
+"confirm.payment.estimated.exchange.rate.message" = "Estimated rate %@";
 "confirm.payment.exchanged.to.title.label" = "Will be exchanged to";
-"confirm.payment.footer.button.title" = "Confirm payment";
-"confirm.payment.payment.error.title" = "Can't make payment";
-"confirm.payment.pulling.data" = "Pulling data...";
+"confirm.payment.footer.button.title" = "Continue";
+"confirm.payment.payment.error.title" = "Couldn't create payment. Please try again.";
+"confirm.payment.pulling.data" = "Refreshing data...";
 "confirm.payment.receiver.section.title" = "Receiver";
 "confirm.payment.recipient.marker.label" = "Receiver";
-"confirm.payment.reference.label" = "Reference";
+"confirm.payment.reference.label" = "Message or reference";
 "confirm.payment.sender.marker.label" = "Sender (you)";
 "confirm.payment.sender.section.title" = "Sender";
 
-"contacts.controller.delete.confirmation.message" = "Are you sure you wish to remove %@ from contacts?";
+"contacts.controller.delete.confirmation.message" = "Are you sure you wish to remove %@ from your recipients?";
 "contacts.controller.delete.conformation.title" = "Delete contact";
 "contacts.controller.deleting.message" = "Removing...";
-"contacts.controller.refreshing.message" = "Refreshing contacts";
-"contacts.controller.title" = "Contacts";
-"contacts.refresh.error.message" = "Could not refresh contacts list";
+"contacts.controller.refreshing.message" = "Refreshing recipients";
+"contacts.controller.title" = "Recipients";
+"contacts.refresh.error.message" = "Could not refresh your recipients";
 "contacts.refresh.error.title" = "Refresh error";
 
-"claim.account.controller.title" = "Register";
+"claim.account.controller.title" = "Choose a password";
 "claim.account.error.title" = "Error";
-"claim.account.footer.message.text" = "To be able to access your contacts and list of transactions on both web and mobile, register for a user now.";
+"claim.account.footer.message.text" = "Please set a password to be able to login and check the status of your transfers.";
 "claim.account.password.not.entered" = "Password not entered";
 "claim.account.setting.password.message" = "Working...";
 
@@ -93,21 +93,21 @@ identity and address";
 "introduction.header.sub.title.text" = "No hidden fees. No headache.
 A revolution in your pocket.";
 
-"login.controller.footer.message" = "You will be remembered on this device until you manually log out of the app";
-"login.controller.header.message" = "Log-in to your account";
+"login.controller.footer.message" = "You will remain logged in until you manually log out of the app.";
+"login.controller.header.message" = "Enter your login details";
 "login.controller.logging.in.message" = "Logging in...";
-"login.controller.title" = "Log in";
-"login.email.field.title" = "E-mail";
-"login.error.generic.message" = "Login failed. Please try again";
+"login.controller.title" = "Login";
+"login.email.field.title" = "Email";
+"login.error.generic.message" = "Login failed. Please try again.";
 "login.error.title" = "Can't log in";
 "login.password.field.title" = "Password";
-"login.validation.email.missing" = "E-mail not entered";
-"login.validation.email.not.valid" = "Entered e-mail not valid";
+"login.validation.email.missing" = "You haven't entered an email";
+"login.validation.email.not.valid" = "The entered email is not correct";
 "login.validation.password.missing" = "Password not entered";
 
 "money.entry.priority.payment.title" = "Priority Payment";
 "money.entry.receive.fixed.amount.title" = "Receive fixed amount";
-"money.entry.they.receive.title" = "They get";
+"money.entry.they.receive.title" = "Receiver gets";
 "money.entry.you.send.title" = "You send";
 
 "openid.login.error.title" = "Login failed";
@@ -124,23 +124,23 @@ A revolution in your pocket.";
 "payment.change.time.one.year.ago" = "1 year ago";
 "payment.change.time.years.ago" = "%d years ago";
 "payment.controller.calculation.error.title" = "Calculation failed";
-"payment.controller.continue.to.details.button.title" = "Continue to recipient details";
-"payment.controller.currency.cost.label" = "Currency cost";
+"payment.controller.continue.to.details.button.title" = "Continue";
+"payment.controller.currency.cost.label" = "To be converted";
 "payment.controller.currency.payment.error.message" = "Can't make payments to recipients using %@";
 "payment.controller.currency.payment.error.title" = "Can't make payment";
-"payment.controller.deposit.label" = "Deposit";
+"payment.controller.deposit.label" = "Your deposit";
 "payment.controller.estimated.exchange.rate.label" = "Estimated exchange rate";
-"payment.controller.payment.date.message" = "Payment will be received no later than\n%@";
+"payment.controller.payment.date.message" = "Money arrives %@";
 "payment.controller.title" = "New payment";
 "payment.controller.title.with.contact.name" = "Payment to %@";
-"payment.controller.transfer.fee.label" = "Transfer fee";
-"payment.controller.you.get.label" = "You get (estimated)";
+"payment.controller.transfer.fee.label" = "Total fee";
+"payment.controller.you.get.label" = "Receiver gets (estimated)";
 "payment.status.cancelled.description" = "Cancelled";
-"payment.status.matched.description" = "Matched";
-"payment.status.received.description" = "Received";
+"payment.status.matched.description" = "Waiting to send";
+"payment.status.received.description" = "Converting";
 "payment.status.refunded.description" = "Refunded";
-"payment.status.submitted.description" = "Submitted";
-"payment.status.transferred.description" = "Transferred";
+"payment.status.submitted.description" = "Waiting for deposit";
+"payment.status.transferred.description" = "Completed";
 "payment.status.receivedWaitingRecipient.description" = "Waiting for recipient";
 "payment.status.unknown.description" = "Unknown";
 
@@ -148,13 +148,13 @@ A revolution in your pocket.";
 "personal.profile.address.section.title" = "Address";
 "personal.profile.city.label" = "City";
 "personal.profile.confirm.payment.button.title" = "Confirm payment";
-"personal.profile.continue.to.recipient.button.title" = "Continue to recipient details";
+"personal.profile.continue.to.recipient.button.title" = "Continue";
 "personal.profile.controller.title" = "Your details";
 "personal.profile.countries.refresh.error.message" = "Could not retrieve data. Please try again later.";
 "personal.profile.countries.refresh.error.title" = "Refresh error";
 "personal.profile.country.label" = "Country";
 "personal.profile.date.of.birth.label" = "Date of birth";
-"personal.profile.email.label" = "E-mail";
+"personal.profile.email.label" = "Email";
 "personal.profile.email.taken.message" = "Email taken, please use another one or log in.";
 "personal.profile.first.name.label" = "First name";
 "personal.profile.last.name.label" = "Last name";
@@ -177,30 +177,30 @@ A revolution in your pocket.";
 "personal.profile.needed.popup.title" = "Missing data";
 
 "profile.selection.text.base" = "Or %@";
-"profile.selection.text.business.profile" = "add business profile";
-"profile.selection.text.personal.profile" = "add personal profile";
+"profile.selection.text.business.profile" = "send from a business";
+"profile.selection.text.personal.profile" = "send as yourself";
 
 "recipient.controller.add.button.title" = "Add";
 "recipient.controller.add.mode.title" = "Add recipient";
-"recipient.controller.cell.label.name" = "Name";
+"recipient.controller.cell.label.name" = "Recipient name";
 "recipient.controller.confirm.payment.button.title" = "Confirm payment";
 "recipient.controller.creating.message" = "Creating...";
 "recipient.controller.payment.mode.title" = "Recipient details";
 "recipient.controller.recipient.types.load.error.title" = "Data error";
 "recipient.controller.recipients.preload.error.title" = "Can't load contacts";
-"recipient.controller.refreshing.message" = "Pulling data...";
+"recipient.controller.refreshing.message" = "Loading...";
 "recipient.controller.sattes.load.error.title" = "Data error";
 "recipient.controller.save.error.title" = "Add error";
 "recipient.controller.section.title.currency" = "Currency";
-"recipient.controller.section.title.recipient" = "Recipient";
+"recipient.controller.section.title.recipient" = "Who are you sending money to?";
 "recipient.controller.section.title.sender" = "Sender";
-"recipient.controller.section.title.type.fields" = "Transfer details";
+"recipient.controller.section.title.type.fields" = "Bank account details";
 "recipient.controller.validating.message" = "Validating...";
 "recipient.controller.validation.error.empty.name" = "Name not entered";
 "recipient.controller.validation.error.field.empty" = "%@ not entered";
 "recipient.controller.validation.error.title" = "Validation error";
 
-"recipient.details.ABA.base" = "ABA RTN: %@, State:%@";
+"recipient.details.ABA.base" = "ACH / ABA: %@, State:%@";
 "recipient.details.BIC.base" = "BIC: %@";
 "recipient.details.IBAN.base" = "IBAN: %@";
 "recipient.details.SORT_CODE.base" = "UK Sort code: %@";
@@ -234,16 +234,15 @@ A revolution in your pocket.";
 "signup.error.title" = "Can't continue";
 "singup.button.title.log.in" = "Sing up";
 "singup.controller.header.message" = "Create a Transferwise account";
-"singup.email.field.title" = "E-mail";
+"singup.email.field.title" = "Email";
 "singup.password.again.field.title" = "Password again";
 "singup.password.field.title" = "Password";
 
 "transactions.controller.refreshing.message" = "Refreshing payments";
-"transactions.controller.title" = "Transactions";
+"transactions.controller.title" = "Payments";
 "transactions.identification.notification.message" = "We will soon review your documents";
 "transactions.identification.upload.message" = "Haven't uploaded them?";
 "transactions.identification.done.button.title" = "Upload";
-"transactions.identification.uploading.message" = "Uploading...";
 
 "transfer.pay.in.too.low.message.base" = "The entered amount is too small to convert, please change it under 'You send'. Current minimum is %@ %@";
 "transfer.pay.in.too.low.title" = "Amount too small";
@@ -256,7 +255,7 @@ A revolution in your pocket.";
 "upload.money.data.error.title" = "Data error";
 "upload.money.done.button.title" = "I have made the payment";
 "upload.money.our.address.label" = "56 Shoreditch High Street, London E1 6JJ, United Kingdom";
-"upload.money.header.label" = "We are waiting your deposit";
+"upload.money.header.label" = "Please transfer your deposit to us";
 "upload.money.iban.title" = "IBAN";
 "upload.money.notification.label" = "Your payment will be activated when we receive your deposit.";
 "upload.money.pulling.data.message" = "Pulling data...";
@@ -272,8 +271,8 @@ A revolution in your pocket.";
 
 "upload.money.card.no.payment.message" = "Payment not made";
 "upload.money.card.no.payment.title" = "Payment was not made. Please try again later.";
-"upload.money.card.payment.success.message" = "Great, your payment was accepted! You can see the status of your transfer on the next screen.";
-"upload.money.card.payment.success.title" = "Card accepted!";
+"upload.money.card.payment.success.message" = "Great, your card payment was accepted!";
+"upload.money.card.payment.success.title" = "Success";
 
 "why.popup.bank.column.label" = "Average bank";
 "why.popup.tw.rate.title" = "The exchange rate";
@@ -306,13 +305,13 @@ A revolution in your pocket.";
 "payment.detail.cancel.date.message" = "Cancelled on %@";
 "payment.detail.transferred.date.message" = "Transferred on %@";
 "payment.detail.exchange.rate.message" = "Exchange rate %@";
-"payment.detail.sent.header.message" = "Payment sent out to recipiet.
+"payment.detail.sent.header.message" = "Payment sent out to recipient.
 Payment #%@";
-"payment.detail.converting.header.message" = "Waiting for currency to be converted. Payment #%@";
+"payment.detail.converting.header.message" = "Waiting to convert your money for payment #%@.";
 "payment.method.card" = "Debit card";
 "payment.method.regular" = "Bank transfer";
 
-"support.sheet.title" = "If you have questions, please don’t hesitate to contact our support team.";
+"support.sheet.title" = "If you have questions, please don't hesitate to contact our support team.";
 "support.sheet.write.message" = "Write a message";
 "support.sheet.call" = "Give us a call";
 
@@ -348,7 +347,7 @@ Payment #%@";
 <br />
 <br />
 <br />
-| <strong>Info for the TransferWise team:</strong> |<br />
+| Info for the TransferWise team: |<br />
 | User: <a href='%@'>%@</a> |<br />
 | Device: %@, %@ |<br />
 | Application: v%@ |<br />
@@ -364,7 +363,7 @@ Payment #%@";
 Please attach your documents to this email and send it our way.<br />
 <br />
 <br />
-| <strong>Info for the TransferWise team:</strong> |<br />
+| Info for the TransferWise team: |<br />
 | Account email: %@ |<br />
 | Business: %@ |<br />
 </body>";
