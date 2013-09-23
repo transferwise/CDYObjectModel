@@ -10,6 +10,6 @@
 
 @interface IntroView : UIView
 
-- (void)setImage:(UIImage *)image;
+- (void)setImage:(UIImage *)image tagline:(NSString *)tagline message:(NSAttributedString *)message;
 
 @end

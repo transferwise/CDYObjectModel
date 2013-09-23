@@ -11,6 +11,7 @@
 #import "UIView+Loading.h"
 #import "SMPageControl.h"
 #import "Constants.h"
+#import "NSAttributedString+Attributes.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
 
@@ -38,11 +39,11 @@
 
     NSMutableArray *screens = [NSMutableArray array];
     [screens addObject:[IntroView loadInstance]];
-    [(IntroView *) screens[0] setImage:[UIImage imageNamed:@"IntroPageOneImage"]];
+    [(IntroView *) screens[0] setImage:[UIImage imageNamed:@"IntroPageOneImage"] tagline:NSLocalizedString(@"intro.tagline.one", nil) message:[self attributedMessage:NSLocalizedString(@"intro.message.one", nil) bold:@[]]];
     [screens addObject:[IntroView loadInstance]];
-    [(IntroView *) screens[1] setImage:[UIImage imageNamed:@"IntroPageTwoImage"]];
+    [(IntroView *) screens[1] setImage:[UIImage imageNamed:@"IntroPageTwoImage"] tagline:NSLocalizedString(@"intro.tagline.two", nil) message:[self attributedMessage:NSLocalizedString(@"intro.message.two", nil) bold:@[]]];
     [screens addObject:[IntroView loadInstance]];
-    [(IntroView *) screens[2] setImage:[UIImage imageNamed:@"IntroPageThreeImage"]];
+    [(IntroView *) screens[2] setImage:[UIImage imageNamed:@"IntroPageThreeImage"] tagline:NSLocalizedString(@"intro.tagline.three", nil) message:[self attributedMessage:NSLocalizedString(@"intro.message.three", nil) bold:@[@"Skype", @"PayPal"]]];
 
     [self setIntroScreens:screens];
 
@@ -92,6 +93,22 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.pageControl updatePageNumberForScrollView:self.scrollView];
+}
+
+- (NSAttributedString *)attributedMessage:(NSString *)message bold:(NSArray *)boldTexts {
+    NSMutableAttributedString *result = [NSMutableAttributedString attributedStringWithString:message];
+    OHParagraphStyle *paragraphStyle = [OHParagraphStyle defaultParagraphStyle];
+    paragraphStyle.textAlignment = kCTTextAlignmentCenter;
+    paragraphStyle.lineBreakMode = kCTLineBreakByWordWrapping;
+    [result setParagraphStyle:paragraphStyle];
+    [result setFont:[UIFont systemFontOfSize:17]];
+    [result setTextColor:[UIColor whiteColor]];
+    for (NSString *toBold in boldTexts) {
+        NSRange range = [message rangeOfString:toBold];
+        [result setFont:[UIFont boldSystemFontOfSize:17] range:range];
+    }
+
+    return [[NSAttributedString alloc] initWithAttributedString:result];
 }
 
 @end
