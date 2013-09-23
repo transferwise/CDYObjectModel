@@ -21,6 +21,8 @@
 #import "TRWProgressHUD.h"
 #import "PullPaymentDetailsOperation.h"
 #import "GoogleAnalytics.h"
+#import "ClaimAccountViewController.h"
+#import "Credentials.h"
 
 @interface UploadMoneyViewController ()
 
@@ -54,7 +56,7 @@
             TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.card.payment.success.title", nil)
                                                                message:NSLocalizedString(@"upload.money.card.payment.success.message", nil)];
             [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.continue", nil) action:^{
-                [self pushPaymentDetailsScreen];
+                [self pushNextScreen];
             }];
 
             [alertView show];
@@ -131,41 +133,53 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)pushPaymentDetailsScreen {
+- (void)pushNextScreen {
 	dispatch_async(dispatch_get_main_queue(), ^{
-		if (self.executedOperation) {
-			return;
-		}
-
-		TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
-		[hud setMessage:NSLocalizedString(@"upload.money.refreshing.payment.message", nil)];
-		PullPaymentDetailsOperation *operation = [PullPaymentDetailsOperation operationWithPaymentId:[self.payment remoteId]];
-		[self setExecutedOperation:operation];
-		[operation setObjectModel:self.objectModel];
-		[operation setResultHandler:^(NSError *error) {
-			dispatch_async(dispatch_get_main_queue(), ^{
-				[hud hide];
-				[self setExecutedOperation:nil];
-
-				if (error) {
-					TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.transaction.refresh.error.title", nil) message:NSLocalizedString(@"upload.money.transaction.refresh.error.message", nil)];
-					[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-					[alertView show];
-					return;
-				}
-
-				PaymentDetailsViewController *controller = [[PaymentDetailsViewController alloc] init];
-				[controller setObjectModel:self.objectModel];
-				[controller setPayment:(Payment *) [self.objectModel.managedObjectContext objectWithID:self.payment.objectID]];
-				[controller setShowContactSupportCell:YES];
-				[controller setFlattenStack:YES];
-				[self.navigationController pushViewController:controller animated:YES];
-
-			});
-		}];
-
-		[operation execute];
+        //TODO jaanus: copy/paste from BankTransferScreen
+        if ([Credentials temporaryAccount]) {
+            ClaimAccountViewController *controller = [[ClaimAccountViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+        } else {
+            [self pushUpdatedTransactionScreen];
+        }
 	});
+}
+
+- (void)pushUpdatedTransactionScreen {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.executedOperation) {
+            return;
+        }
+
+        TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+        [hud setMessage:NSLocalizedString(@"upload.money.refreshing.payment.message", nil)];
+        PullPaymentDetailsOperation *operation = [PullPaymentDetailsOperation operationWithPaymentId:[self.payment remoteId]];
+        [self setExecutedOperation:operation];
+        [operation setObjectModel:self.objectModel];
+        [operation setResultHandler:^(NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hide];
+                [self setExecutedOperation:nil];
+
+                if (error) {
+                    TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.transaction.refresh.error.title", nil) message:NSLocalizedString(@"upload.money.transaction.refresh.error.message", nil)];
+                    [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                    [alertView show];
+                    return;
+                }
+
+                PaymentDetailsViewController *controller = [[PaymentDetailsViewController alloc] init];
+                [controller setObjectModel:self.objectModel];
+                [controller setPayment:(Payment *) [self.objectModel.managedObjectContext objectWithID:self.payment.objectID]];
+                [controller setShowContactSupportCell:YES];
+                [controller setFlattenStack:YES];
+                [self.navigationController pushViewController:controller animated:YES];
+
+            });
+        }];
+
+        [operation execute];
+    });
 }
 
 @end
