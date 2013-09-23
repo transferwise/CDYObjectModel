@@ -5,6 +5,7 @@ pod 'Lockbox'
 pod 'MBProgressHUD'
 pod 'OHAttributedLabel', :inhibit_warnings => true
 pod 'Facebook-iOS-SDK', :inhibit_warnings => true
+pod 'SMPageControl'
 
 target :TransferTests, :exclusive => true do
    pod 'Kiwi'

@@ -36,3 +36,9 @@
 #define COCOAPODS_VERSION_MINOR_OHAttributedLabel 4
 #define COCOAPODS_VERSION_PATCH_OHAttributedLabel 1
 
+// SMPageControl
+#define COCOAPODS_POD_AVAILABLE_SMPageControl
+#define COCOAPODS_VERSION_MAJOR_SMPageControl 1
+#define COCOAPODS_VERSION_MINOR_SMPageControl 1
+#define COCOAPODS_VERSION_PATCH_SMPageControl 0
+

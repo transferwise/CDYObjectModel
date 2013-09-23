@@ -1,8 +1,8 @@
 //
-//  IntroductionViewController.h
+//  IntroViewController.h
 //  Transfer
 //
-//  Created by Jaanus Siim on 4/15/13.
+//  Created by Jaanus Siim on 9/20/13.
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 @class ObjectModel;
 
-@interface IntroductionViewController : UITableViewController
+@interface IntroViewController : UIViewController
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 

@@ -11,10 +11,9 @@
 #import "PaymentViewController.h"
 #import "ContactsViewController.h"
 #import "IntroductionViewController.h"
-#import "SettingsViewController.h"
 #import "Credentials.h"
-#import "Constants.h"
 #import "GoogleAnalytics.h"
+#import "IntroViewController.h"
 
 @interface MainViewController () <UINavigationControllerDelegate>
 
@@ -96,9 +95,7 @@
     [self setLaunchTableViewGamAdjustmentDone:YES];
 
     if (![Credentials userLoggedIn] && !self.shown) {
-        IntroductionViewController *controller = [[IntroductionViewController alloc] init];
-        [controller setObjectModel:self.objectModel];
-        [controller setDummyPresentation:YES];
+        IntroViewController *controller = [[IntroViewController alloc] init];
         [self pushViewController:controller animated:NO];
     }
 }
@@ -114,12 +111,21 @@
     [self setShown:YES];
 }
 
-- (void)presentIntroductionController:(BOOL)animated {
-    IntroductionViewController *controller = [[IntroductionViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
+- (void)presentIntroductionController:(BOOL)shownBefore {
+    UIViewController *presented;
+    if (shownBefore) {
+        IntroductionViewController *controller = [[IntroductionViewController alloc] init];
+        [controller setObjectModel:self.objectModel];
+        presented = controller;        
+    } else {
+        IntroViewController *controller = [[IntroViewController alloc] init];
+        [controller setObjectModel:self.objectModel];
+        presented = controller;
+    }
 
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-    [self presentViewController:navigationController animated:animated completion:nil];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:presented];
+    [navigationController setNavigationBarHidden:!shownBefore];
+    [self presentViewController:navigationController animated:shownBefore completion:nil];
 }
 
 - (void)loggedOut {

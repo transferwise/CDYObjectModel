@@ -46,6 +46,14 @@
 		EA0450CC17EC3544008921DA /* BusinessProfileIdentificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0450C817EC3544008921DA /* BusinessProfileIdentificationViewController.xib */; };
 		EA0450CF17EC3635008921DA /* TextContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0450CE17EC3635008921DA /* TextContainerView.m */; };
 		EA0450D017EC3635008921DA /* TextContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0450CE17EC3635008921DA /* TextContainerView.m */; };
+		EA0450D417EC5BC1008921DA /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0450D217EC5BC1008921DA /* IntroViewController.m */; };
+		EA0450D517EC5BC1008921DA /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0450D217EC5BC1008921DA /* IntroViewController.m */; };
+		EA0450D617EC5BC1008921DA /* IntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0450D317EC5BC1008921DA /* IntroViewController.xib */; };
+		EA0450D717EC5BC1008921DA /* IntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0450D317EC5BC1008921DA /* IntroViewController.xib */; };
+		EA0450DA17EC64BC008921DA /* IntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0450D917EC64BC008921DA /* IntroView.m */; };
+		EA0450DB17EC64BC008921DA /* IntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0450D917EC64BC008921DA /* IntroView.m */; };
+		EA0450DD17EC64E4008921DA /* IntroView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0450DC17EC64E4008921DA /* IntroView.xib */; };
+		EA0450DE17EC64E4008921DA /* IntroView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0450DC17EC64E4008921DA /* IntroView.xib */; };
 		EA13E032171BDF1A0019FBF0 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */; };
 		EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */; };
 		EA13E038171BE12E0019FBF0 /* MoneyEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */; };
@@ -557,6 +565,12 @@
 		EA0450C817EC3544008921DA /* BusinessProfileIdentificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessProfileIdentificationViewController.xib; sourceTree = "<group>"; };
 		EA0450CD17EC3635008921DA /* TextContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextContainerView.h; sourceTree = "<group>"; };
 		EA0450CE17EC3635008921DA /* TextContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextContainerView.m; sourceTree = "<group>"; };
+		EA0450D117EC5BC1008921DA /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
+		EA0450D217EC5BC1008921DA /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
+		EA0450D317EC5BC1008921DA /* IntroViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroViewController.xib; sourceTree = "<group>"; };
+		EA0450D817EC64BC008921DA /* IntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroView.h; sourceTree = "<group>"; };
+		EA0450D917EC64BC008921DA /* IntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroView.m; sourceTree = "<group>"; };
+		EA0450DC17EC64E4008921DA /* IntroView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroView.xib; sourceTree = "<group>"; };
 		EA12413E17AA88EC00C9B02B /* TransferDev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = TransferDev.plist; path = "/Users/jaanus/projects/mc-transfer-ios/TransferDev.plist"; sourceTree = "<absolute>"; };
 		EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
 		EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
@@ -1039,6 +1053,9 @@
 				EAE7B6AA17E9AC3F00E03D73 /* IdentificationNotificationView.h */,
 				EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */,
 				EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */,
+				EA0450D817EC64BC008921DA /* IntroView.h */,
+				EA0450D917EC64BC008921DA /* IntroView.m */,
+				EA0450DC17EC64E4008921DA /* IntroView.xib */,
 				EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */,
 				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
 				EAD3647717E2EBF2001EFE40 /* PaymentMethodSelectionView.h */,
@@ -1483,6 +1500,9 @@
 				EAD39687171BD82300F6D011 /* IntroductionViewController.h */,
 				EAD39688171BD82300F6D011 /* IntroductionViewController.m */,
 				EAD39689171BD82300F6D011 /* IntroductionViewController.xib */,
+				EA0450D117EC5BC1008921DA /* IntroViewController.h */,
+				EA0450D217EC5BC1008921DA /* IntroViewController.m */,
+				EA0450D317EC5BC1008921DA /* IntroViewController.xib */,
 				EA13E03C171BE9B00019FBF0 /* LoginViewController.h */,
 				EA13E03D171BE9B00019FBF0 /* LoginViewController.m */,
 				EA13E03E171BE9B00019FBF0 /* LoginViewController.xib */,
@@ -1779,6 +1799,7 @@
 				EA31A1D617DDB29B00F937F7 /* IntroductionViewController.xib in Resources */,
 				EA31A1D717DDB29B00F937F7 /* MoneyEntryCell.xib in Resources */,
 				EA31A1D817DDB29B00F937F7 /* LoginViewController.xib in Resources */,
+				EA0450DE17EC64E4008921DA /* IntroView.xib in Resources */,
 				EA31A1D917DDB29B00F937F7 /* TableHeaderView.xib in Resources */,
 				EA31A1DA17DDB29B00F937F7 /* TextEntryCell.xib in Resources */,
 				EA31A1E117DDB29B00F937F7 /* RecipientCell.xib in Resources */,
@@ -1787,6 +1808,7 @@
 				EA31A1E717DDB29B00F937F7 /* SettingsTitleCell.xib in Resources */,
 				EA31A1E817DDB29B00F937F7 /* TSAlertViewMessageListViewShadow.png in Resources */,
 				EA31A1E917DDB29B00F937F7 /* TSAlertViewCancelButtonBackground.png in Resources */,
+				EA0450D717EC5BC1008921DA /* IntroViewController.xib in Resources */,
 				EA31A1EA17DDB29B00F937F7 /* TSAlertViewButtonBackground.png in Resources */,
 				EA31A1EB17DDB29B00F937F7 /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
 				EAE7B6B017E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */,
@@ -1847,6 +1869,7 @@
 				EAD3968B171BD82300F6D011 /* IntroductionViewController.xib in Resources */,
 				EA13E038171BE12E0019FBF0 /* MoneyEntryCell.xib in Resources */,
 				EA13E040171BE9B00019FBF0 /* LoginViewController.xib in Resources */,
+				EA0450DD17EC64E4008921DA /* IntroView.xib in Resources */,
 				EA13E046171BED910019FBF0 /* TableHeaderView.xib in Resources */,
 				EA13E04E171BEF710019FBF0 /* TextEntryCell.xib in Resources */,
 				EAD736A4171E85D100A037B1 /* RecipientCell.xib in Resources */,
@@ -1855,6 +1878,7 @@
 				EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */,
 				BBC691241721416300F0FB1A /* TSAlertViewMessageListViewShadow.png in Resources */,
 				BBC691251721416300F0FB1A /* TSAlertViewCancelButtonBackground.png in Resources */,
+				EA0450D617EC5BC1008921DA /* IntroViewController.xib in Resources */,
 				BBC691261721416300F0FB1A /* TSAlertViewButtonBackground.png in Resources */,
 				BBC691271721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
 				EAE7B6AF17E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */,
@@ -2091,6 +2115,7 @@
 				EA31A12617DDB29B00F937F7 /* AppDelegate.m in Sources */,
 				EA31A12717DDB29B00F937F7 /* Transfer.xcdatamodeld in Sources */,
 				EA31A12817DDB29B00F937F7 /* ObjectModel.m in Sources */,
+				EA0450D517EC5BC1008921DA /* IntroViewController.m in Sources */,
 				EA31A12917DDB29B00F937F7 /* MainViewController.m in Sources */,
 				EA31A12A17DDB29B00F937F7 /* TransactionsViewController.m in Sources */,
 				EA31A12B17DDB29B00F937F7 /* ContactsViewController.m in Sources */,
@@ -2221,6 +2246,7 @@
 				EA31A1A117DDB29B00F937F7 /* _PairSourceCurrency.m in Sources */,
 				EA31A1A217DDB29B00F937F7 /* PairSourceCurrency.m in Sources */,
 				EA31A1A317DDB29B00F937F7 /* RecipientsOperation.m in Sources */,
+				EA0450DB17EC64BC008921DA /* IntroView.m in Sources */,
 				EA31A1A417DDB29B00F937F7 /* _AllowedTypeFieldValue.m in Sources */,
 				EA31A1A517DDB29B00F937F7 /* AllowedTypeFieldValue.m in Sources */,
 				EA31A1A617DDB29B00F937F7 /* _PairTargetCurrency.m in Sources */,
@@ -2275,6 +2301,7 @@
 				EAAA147E171BC911005B9430 /* AppDelegate.m in Sources */,
 				EAAA1487171BC911005B9430 /* Transfer.xcdatamodeld in Sources */,
 				EAD39672171BD2A300F6D011 /* ObjectModel.m in Sources */,
+				EA0450D417EC5BC1008921DA /* IntroViewController.m in Sources */,
 				EAD39676171BD4EE00F6D011 /* MainViewController.m in Sources */,
 				EAD3967B171BD51400F6D011 /* TransactionsViewController.m in Sources */,
 				EAD39680171BD57000F6D011 /* ContactsViewController.m in Sources */,
@@ -2405,6 +2432,7 @@
 				EA225CA9178EC3A4009D6B83 /* _PairSourceCurrency.m in Sources */,
 				EA225CAC178EC3B2009D6B83 /* PairSourceCurrency.m in Sources */,
 				EA225CAF178ECD68009D6B83 /* RecipientsOperation.m in Sources */,
+				EA0450DA17EC64BC008921DA /* IntroView.m in Sources */,
 				EA225CB2178ED8C1009D6B83 /* _AllowedTypeFieldValue.m in Sources */,
 				EA225CB5178ED8C7009D6B83 /* AllowedTypeFieldValue.m in Sources */,
 				EA225CBF178EEC6F009D6B83 /* _PairTargetCurrency.m in Sources */,
