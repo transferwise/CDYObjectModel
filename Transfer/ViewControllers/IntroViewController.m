@@ -10,8 +10,10 @@
 #import "IntroView.h"
 #import "UIView+Loading.h"
 #import "SMPageControl.h"
+#import "ObjectModel.h"
 #import "Constants.h"
 #import "NSAttributedString+Attributes.h"
+#import "IntroductionViewController.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
 
@@ -19,6 +21,8 @@
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) NSArray *introScreens;
 @property (nonatomic, strong) SMPageControl *pageControl;
+
+- (IBAction)startPressed;
 
 @end
 
@@ -109,6 +113,12 @@
     }
 
     return [[NSAttributedString alloc] initWithAttributedString:result];
+}
+
+- (IBAction)startPressed {
+    IntroductionViewController *controller = [[IntroductionViewController alloc] init];
+    [controller setObjectModel:self.objectModel];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

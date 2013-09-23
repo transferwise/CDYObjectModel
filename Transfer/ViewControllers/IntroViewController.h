@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class ObjectModel;
+
 @interface IntroViewController : UIViewController
+
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 @end

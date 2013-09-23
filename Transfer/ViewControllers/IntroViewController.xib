@@ -28,6 +28,9 @@
                     <state key="normal" title="Get starteD">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="startPressed" destination="-1" eventType="touchUpInside" id="PjJ-Za-jAV"/>
+                    </connections>
                 </button>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="vVN-5a-Y2I">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>

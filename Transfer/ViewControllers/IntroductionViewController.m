@@ -167,6 +167,9 @@ static NSUInteger const kRowYouSend = 0;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationItem setHidesBackButton:YES];
+
     UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
     [self.navigationItem setTitleView:logoView];
 
@@ -174,13 +177,9 @@ static NSUInteger const kRowYouSend = 0;
 
     [self.calculator setObjectModel:self.objectModel];
     [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSources]];
-    if (!self.dummyPresentation) {
-        [self.calculator forceCalculate];
-    }
+    [self.calculator forceCalculate];
 
     [self retrieveCurrencyPairs];
-
-    [self.tableView adjustFooterViewSize:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -190,17 +189,12 @@ static NSUInteger const kRowYouSend = 0;
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 
-	if (!self.dummyPresentation) {
-		[[GoogleAnalytics sharedInstance] sendScreen:@"Start screen"];
-	}
+    [[GoogleAnalytics sharedInstance] sendScreen:@"Start screen"];
+
+    [self.tableView adjustFooterViewSize];
 }
 
 - (void)retrieveCurrencyPairs {
-    if (self.dummyPresentation) {
-        //It is dummy instance used on app launch
-        return;
-    }
-
     if (self.executedOperation) {
         return;
     }

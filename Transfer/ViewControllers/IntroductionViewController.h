@@ -13,6 +13,5 @@
 @interface IntroductionViewController : UITableViewController
 
 @property (nonatomic, strong) ObjectModel *objectModel;
-@property (nonatomic, assign) BOOL dummyPresentation;
 
 @end
