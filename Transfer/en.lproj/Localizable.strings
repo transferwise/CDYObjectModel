@@ -168,8 +168,8 @@ A revolution in your pocket.";
 "personal.profile.save.button.title" = "Save profile";
 "personal.profile.save.error.title" = "Save profile error";
 "personal.profile.saving.message" = "Saving profile...";
-"personal.profile.validation.error.message" = "Please check that all fields are filled.";
-"personal.profile.validation.error.title" = "Check input";
+"personal.profile.validation.error.message" = "Please check that all the fields are filled in.";
+"personal.profile.validation.error.title" = "Check your details";
 "personal.profile.verify.error.title" = "Verify error";
 "personal.profile.verify.message" = "Checking profile";
 
@@ -243,6 +243,7 @@ A revolution in your pocket.";
 "transactions.identification.notification.message" = "We will soon review your documents";
 "transactions.identification.upload.message" = "Haven't uploaded them?";
 "transactions.identification.done.button.title" = "Upload";
+"transactions.identification.uploading.message" = "Uploading...";
 
 "transfer.pay.in.too.low.message.base" = "The entered amount is too small to convert, please change it under 'You send'. Current minimum is %@ %@";
 "transfer.pay.in.too.low.title" = "Amount too small";
