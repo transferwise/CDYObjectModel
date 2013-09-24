@@ -17,6 +17,7 @@
 #import "BusinessProfile.h"
 #import "QuickProfileValidationOperation.h"
 #import "GoogleAnalytics.h"
+#import "UIView+Loading.h"
 
 static NSUInteger const kButtonSection = 0;
 static NSUInteger const kDetailsSection = 1;
@@ -49,20 +50,20 @@ static NSUInteger const kDetailsSection = 1;
 
     NSMutableArray *businessCells = [NSMutableArray array];
 
-    TextEntryCell *businessNameCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+    TextEntryCell *businessNameCell = [TextEntryCell loadInstance];
     [self setBusinessNameCell:businessNameCell];
     [businessCells addObject:businessNameCell];
     [businessNameCell configureWithTitle:NSLocalizedString(@"business.profile.name.label", nil) value:@""];
     [businessNameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [businessNameCell setCellTag:@"businessName"];
 
-    TextEntryCell *registrationNumberCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+    TextEntryCell *registrationNumberCell = [TextEntryCell loadInstance];
     [self setRegistrationNumberCell:registrationNumberCell];
     [businessCells addObject:registrationNumberCell];
     [registrationNumberCell configureWithTitle:NSLocalizedString(@"business.profile.registration.number.label", nil) value:@""];
     [registrationNumberCell setCellTag:@"registrationNumber"];
 
-    TextEntryCell *descriptionCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+    TextEntryCell *descriptionCell = [TextEntryCell loadInstance];
     [self setDescriptionCell:descriptionCell];
     [businessCells addObject:descriptionCell];
     [descriptionCell configureWithTitle:NSLocalizedString(@"business.profile.description.label", nil) value:@""];
@@ -72,27 +73,27 @@ static NSUInteger const kDetailsSection = 1;
 
     NSMutableArray *addressCells = [NSMutableArray array];
 
-    TextEntryCell *addressCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+    TextEntryCell *addressCell = [TextEntryCell loadInstance];
     [self setAddressCell:addressCell];
     [addressCells addObject:addressCell];
     [addressCell configureWithTitle:NSLocalizedString(@"business.profile.address.label", nil) value:@""];
     [addressCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [addressCell setCellTag:@"addressFirstLine"];
 
-    TextEntryCell *postCodeCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+    TextEntryCell *postCodeCell = [TextEntryCell loadInstance];
     [self setPostCodeCell:postCodeCell];
     [addressCells addObject:postCodeCell];
     [postCodeCell configureWithTitle:NSLocalizedString(@"business.profile.post.code.label", nil) value:@""];
     [postCodeCell setCellTag:@"postCode"];
 
-    TextEntryCell *cityCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+    TextEntryCell *cityCell = [TextEntryCell loadInstance];
     [self setCityCell:cityCell];
     [addressCells addObject:cityCell];
     [cityCell configureWithTitle:NSLocalizedString(@"business.profile.city.label", nil) value:@""];
     [cityCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [cityCell setCellTag:@"city"];
 
-    CountrySelectionCell *countryCell = [self.tableView dequeueReusableCellWithIdentifier:TWCountrySelectionCellIdentifier];
+    CountrySelectionCell *countryCell = [CountrySelectionCell loadInstance];
     [self setCountryCell:countryCell];
     [addressCells addObject:countryCell];
     [countryCell configureWithTitle:NSLocalizedString(@"business.profile.country.label", nil) value:@""];
