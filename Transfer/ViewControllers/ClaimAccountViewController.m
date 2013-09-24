@@ -91,7 +91,7 @@
     [self.emailCell.entryField setText:[Credentials userEmail]];
 
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
-        [self.navigationController popViewControllerAnimated:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
     }]];
 }
 
