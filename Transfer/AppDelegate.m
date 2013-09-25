@@ -79,7 +79,6 @@
     [model removeAnonymousUser];
     [model loadBaseData];
 
-    //TODO jaanus: this does not feel right
     [[TransferwiseClient sharedClient] setObjectModel:model];
     [[SupportCoordinator sharedInstance] setObjectModel:model];
     [[FeedbackCoordinator sharedInstance] setObjectModel:model];

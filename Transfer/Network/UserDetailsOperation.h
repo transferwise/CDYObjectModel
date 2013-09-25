@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "TransferwiseOperation.h"
 
-@class PlainProfileDetails;
-
 typedef void (^TWProfileDetailsHandler)(NSError *error);
 
 @interface UserDetailsOperation : TransferwiseOperation

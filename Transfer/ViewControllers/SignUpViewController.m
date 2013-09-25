@@ -95,12 +95,6 @@ static NSUInteger const kTableRowEmail = 0;
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidUnload {
-    [self setFooterView:nil];
-    [self setSingUpButton:nil];
-    [super viewDidUnload];
-}
-
 - (IBAction)signUpPressed:(id)sender {
     [UIApplication dismissKeyboard];
 
