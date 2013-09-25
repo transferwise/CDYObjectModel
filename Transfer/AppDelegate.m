@@ -83,6 +83,8 @@
     [[SupportCoordinator sharedInstance] setObjectModel:model];
     [[FeedbackCoordinator sharedInstance] setObjectModel:model];
 
+    [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:nil];
+
     MainViewController *frontViewController = [[MainViewController alloc] init];
     [frontViewController setObjectModel:model];
 

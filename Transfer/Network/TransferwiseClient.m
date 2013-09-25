@@ -19,7 +19,6 @@ NSString *const kAPIPathBase = @"/api/v1";
 @interface TransferwiseClient ()
 
 @property (nonatomic, strong) UserDetailsOperation *detailsOperation;
-@property (nonatomic, strong) CurrencyPairsOperation *currencyOperation;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
 @end
@@ -52,6 +51,11 @@ NSString *const kAPIPathBase = @"/api/v1";
 
 - (void)updateUserDetailsWithCompletionHandler:(TWProfileDetailsHandler)completion {
     MCLog(@"Update user details");
+    if (![Credentials userLoggedIn]) {
+        MCLog(@"User not logged in.");
+        return;
+    }
+
     UserDetailsOperation *detailsOperation = [UserDetailsOperation detailsOperation];
     [self setDetailsOperation:detailsOperation];
     [detailsOperation setObjectModel:self.objectModel];
