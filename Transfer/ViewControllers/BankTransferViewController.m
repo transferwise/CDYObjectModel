@@ -26,7 +26,6 @@
 #import "UITableView+FooterPositioning.h"
 #import "ConfirmPaymentCell.h"
 #import "SupportCoordinator.h"
-#import "TransferBackButtonItem.h"
 
 @interface BankTransferViewController ()
 
@@ -35,8 +34,12 @@
 @property (strong, nonatomic) IBOutlet UILabel *headerLabel;
 @property (strong, nonatomic) IBOutlet BlueButton *doneButton;
 @property (strong, nonatomic) IBOutlet UIView *footerBottomMessageView;
+@property (nonatomic, strong) IBOutlet UIView *contactSupportFooter;
+@property (nonatomic, strong) IBOutlet UIButton *contactSupportFooterButton;
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
+
+- (IBAction)contactSupportPressed;
 
 @end
 
@@ -98,20 +101,25 @@
     [addressCell setFrame:addressFrame];
 
     if (self.showContactSupportCell) {
-        ConfirmPaymentCell *supportCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
-        [supportCell.textLabel setText:NSLocalizedString(@"support.contact.cell.label", nil)];
-        [supportCell.detailTextLabel setText:@""];
-        [self setPresentedSectionCells:@[presentedCells, @[supportCell]]];
-    } else {
-        [self setPresentedSectionCells:@[presentedCells]];
+        [self.contactSupportFooterButton setTitle:NSLocalizedString(@"support.contact.cell.label", nil) forState:UIControlStateNormal];
+        [self.tableView setTableFooterView:self.contactSupportFooter];
     }
+
+    [self setPresentedSectionCells:@[presentedCells]];
 
     [self.tableView reloadData];
     [self.tableView setTableHeaderView:self.headerView];
+
     if (!self.hideBottomButton) {
         [self.tableView setTableFooterView:self.footerView];
         [self.tableView adjustFooterViewSize];
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    [self.tableView adjustFooterViewSize];
 }
 
 - (NSArray *)buildAccountCellForType:(RecipientType *)type recipient:(Recipient *)recipient {
@@ -133,13 +141,8 @@
     }
 }
 
-- (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath {
-    [super tappedCellAtIndexPath:indexPath];
 
-    if (indexPath.section != 1) {
-        return;
-    }
-
+- (IBAction)contactSupportPressed {
     NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
     [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 }
