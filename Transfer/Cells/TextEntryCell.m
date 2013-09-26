@@ -116,7 +116,7 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 - (void)markIssue:(NSString *)issueMessage {
     [self setValidationIssue:issueMessage];
-    [self.errorButton setHidden:!self.valueModified || ![issueMessage hasValue]];
+    [self.errorButton setHidden:!self.valueModified || ![issueMessage hasValue] || [self.entryField isFirstResponder]];
 }
 
 - (IBAction)errorButtonTapped {
