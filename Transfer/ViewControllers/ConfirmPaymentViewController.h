@@ -23,9 +23,9 @@
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, strong) Payment *payment;
 @property (nonatomic, assign) BOOL showContactSupportCell;
-@property (nonatomic, strong, readonly) ConfirmPaymentCell *contactSupportCell;
 
 - (void)fillDeliveryDetails:(OHAttributedLabel *)label;
 - (NSAttributedString *)attributedStringWithBase:(NSString *)baseString markedString:(NSString *)marked;
+- (IBAction)contactSupportPressed;
 
 @end

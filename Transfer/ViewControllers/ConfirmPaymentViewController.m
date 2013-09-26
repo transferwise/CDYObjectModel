@@ -47,7 +47,7 @@ static NSUInteger const kReceiverSection = 2;
 @property (nonatomic, strong) NSArray *receiverFieldCells;
 @property (nonatomic, strong) TextEntryCell *referenceCell;
 @property (nonatomic, strong) TextEntryCell *receiverEmailCell;
-@property (nonatomic, strong) ConfirmPaymentCell *contactSupportCell;
+@property (nonatomic, strong) IBOutlet UIButton *contactSupportButton;
 
 @property (nonatomic, strong) IBOutlet OHAttributedLabel *estimatedExchangeRateLabel;
 
@@ -121,12 +121,13 @@ static NSUInteger const kReceiverSection = 2;
     [presented addObject:transferCells];
 
     if (self.showContactSupportCell) {
-        ConfirmPaymentCell *supportCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
-        [self setContactSupportCell:supportCell];
-        [supportCell.textLabel setText:NSLocalizedString(@"support.contact.cell.label", nil)];
-        [supportCell.detailTextLabel setText:@""];
-        [presented addObject:@[supportCell]];
+        [self.contactSupportButton setTitle:NSLocalizedString(@"support.contact.cell.label", nil) forState:UIControlStateNormal];
     } else {
+        [self.contactSupportButton removeFromSuperview];
+        CGRect headerFrame = self.headerView.frame;
+        headerFrame.size.height = CGRectGetMinY(self.contactSupportButton.frame);
+        [self.headerView setFrame:headerFrame];
+
         [[GoogleAnalytics sharedInstance] sendScreen:@"Confirm payment"];
     }
 
@@ -240,6 +241,10 @@ static NSUInteger const kReceiverSection = 2;
             [alertView show];
         }
     }];
+}
+
+- (IBAction)contactSupportPressed {
+
 }
 
 - (NSAttributedString *)attributedStringWithBase:(NSString *)baseString markedString:(NSString *)marked {

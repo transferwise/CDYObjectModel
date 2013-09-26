@@ -106,14 +106,7 @@
     [label setAttributedText:paymentDateString];
 }
 
-- (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath {
-    [super tappedCellAtIndexPath:indexPath];
-
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    if (![cell isEqual:self.contactSupportCell]) {
-        return;
-    }
-
+- (IBAction)contactSupportPressed {
     NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
     [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 }
