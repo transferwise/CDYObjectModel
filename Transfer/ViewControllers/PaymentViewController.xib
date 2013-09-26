@@ -148,7 +148,5 @@
     </objects>
     <resources>
         <image name="SeparatorLine" width="320" height="2"/>
-        <image name="SeparatorLine" width="320" height="2"/>
-        <image name="SeparatorLine" width="320" height="2"/>
     </resources>
 </document>
