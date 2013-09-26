@@ -111,6 +111,10 @@
     return YES;
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [self textFieldEntryFinished];
+}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     TextEntryCell *cell = [textField findContainerOfType:[TextEntryCell class]];
     return [cell shouldChangeCharactersInRange:range replacementString:string];
