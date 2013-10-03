@@ -22,6 +22,7 @@
 #import "FBAppEvents.h"
 #import "GoogleAnalytics.h"
 #import "FBSettings.h"
+#import "AppsFlyer.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -124,6 +125,11 @@
 #if USE_FACEBOOK_EVENTS
     [FBSettings setDefaultAppID:@"274548709260402"];
     [FBAppEvents activateApp];
+#endif
+
+#if USE_APPSFLYER_EVENTS
+    // Track Installs, updates & sessions (must)
+    [AppsFlyer notifyAppID:AppsFlyerIdentifier];
 #endif
 }
 

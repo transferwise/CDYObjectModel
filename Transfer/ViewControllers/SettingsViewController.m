@@ -226,6 +226,7 @@ typedef NS_ENUM(short, SettingsRow) {
             break;
         case ClaimAccountRow: {
             ClaimAccountViewController *controller = [[ClaimAccountViewController alloc] init];
+            [controller setObjectModel:self.objectModel];
             [revealController revealToggle:nil];
             [pushOnNavigationController pushViewController:controller animated:YES];
             break;

@@ -406,6 +406,8 @@
 		EAA053E4175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053E3175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m */; };
 		EAA053EC175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053EB175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m */; };
 		EAA07BF117AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA07BF017AF750A004B97AC /* QuickProfileValidationOperation.m */; };
+		EAA4B36F17FD476A003B774F /* libAppsFlyerLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAA4B36E17FD476A003B774F /* libAppsFlyerLib.a */; };
+		EAA4B37017FD476A003B774F /* libAppsFlyerLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAA4B36E17FD476A003B774F /* libAppsFlyerLib.a */; };
 		EAA54F4B1733DA1400B65BF3 /* RecipientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F491733DA1400B65BF3 /* RecipientViewController.m */; };
 		EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F4A1733DA1400B65BF3 /* RecipientViewController.xib */; };
 		EAA54F501733DC3500B65BF3 /* CurrenciesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F4F1733DC3500B65BF3 /* CurrenciesOperation.m */; };
@@ -834,6 +836,8 @@
 		EAA053EB175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterWithoutPasswordOperation.m; sourceTree = "<group>"; };
 		EAA07BEF17AF750A004B97AC /* QuickProfileValidationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickProfileValidationOperation.h; sourceTree = "<group>"; };
 		EAA07BF017AF750A004B97AC /* QuickProfileValidationOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickProfileValidationOperation.m; sourceTree = "<group>"; };
+		EAA4B36D17FD476A003B774F /* AppsFlyer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppsFlyer.h; sourceTree = "<group>"; };
+		EAA4B36E17FD476A003B774F /* libAppsFlyerLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppsFlyerLib.a; sourceTree = "<group>"; };
 		EAA54F481733DA1400B65BF3 /* RecipientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientViewController.h; sourceTree = "<group>"; };
 		EAA54F491733DA1400B65BF3 /* RecipientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientViewController.m; sourceTree = "<group>"; };
 		EAA54F4A1733DA1400B65BF3 /* RecipientViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientViewController.xib; sourceTree = "<group>"; };
@@ -967,6 +971,7 @@
 				EA84055917F06DCD00F44916 /* AdSupport.framework in Frameworks */,
 				EA34529F17DF1019005BB4F1 /* QuartzCore.framework in Frameworks */,
 				EA31A1BF17DDB29B00F937F7 /* AddressBook.framework in Frameworks */,
+				EAA4B37017FD476A003B774F /* libAppsFlyerLib.a in Frameworks */,
 				EA31A1C017DDB29B00F937F7 /* AddressBookUI.framework in Frameworks */,
 				EA31A1C117DDB29B00F937F7 /* CoreText.framework in Frameworks */,
 				EA31A1C217DDB29B00F937F7 /* libz.dylib in Frameworks */,
@@ -1004,6 +1009,7 @@
 				EAD6675E174A565500D29BCB /* AddressBook.framework in Frameworks */,
 				EAD6675F174A565500D29BCB /* AddressBookUI.framework in Frameworks */,
 				BB92B144172A747300B6F096 /* CoreText.framework in Frameworks */,
+				EAA4B36F17FD476A003B774F /* libAppsFlyerLib.a in Frameworks */,
 				EAEA626117202D6100A96770 /* libz.dylib in Frameworks */,
 				EAD73694171E7A3200A037B1 /* Security.framework in Frameworks */,
 				EA8FF6AD171D22340090A658 /* MobileCoreServices.framework in Frameworks */,
@@ -1359,6 +1365,7 @@
 		EA8FF68C171D22080090A658 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
+				EAA4B36C17FD476A003B774F /* AF-iOS-SDK-v2.5.1.9.8 */,
 				EA84043B17F0681C00F44916 /* GoogleAnalyticsiOS3.0 */,
 				EA31A11617DDB1CA00F937F7 /* TestFlightSDK2.0.0 */,
 				EA225C44178E96FE009D6B83 /* JCSObjectModel */,
@@ -1443,6 +1450,15 @@
 				EAA053D9175DD63100ACD3F6 /* PaymentFlowSpec.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		EAA4B36C17FD476A003B774F /* AF-iOS-SDK-v2.5.1.9.8 */ = {
+			isa = PBXGroup;
+			children = (
+				EAA4B36D17FD476A003B774F /* AppsFlyer.h */,
+				EAA4B36E17FD476A003B774F /* libAppsFlyerLib.a */,
+			);
+			path = "AF-iOS-SDK-v2.5.1.9.8";
 			sourceTree = "<group>";
 		};
 		EAA6AD0917A91BA8006A347D /* Extensions */ = {
@@ -2598,8 +2614,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS3.0\"",
-					"\"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0\"",
+					"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS3.0",
+					"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0",
+					"/Users/jaanus/projects/mc-transfer-ios/Thirdparty/AF-iOS-SDK-v2.5.1.9.8",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = TransferDev;
@@ -2634,8 +2651,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS3.0\"",
-					"\"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0\"",
+					"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS3.0",
+					"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0",
+					"/Users/jaanus/projects/mc-transfer-ios/Thirdparty/AF-iOS-SDK-v2.5.1.9.8",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = TransferDev;
@@ -2769,8 +2787,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS3.0\"",
-					"\"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0\"",
+					"\\\"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS3.0\\\"",
+					"\\\"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0\\\"",
+					"/Users/jaanus/projects/mc-transfer-ios/Thirdparty/AF-iOS-SDK-v2.5.1.9.8",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2804,8 +2823,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS3.0\"",
-					"\"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0\"",
+					"\\\"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS3.0\\\"",
+					"\\\"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0\\\"",
+					"/Users/jaanus/projects/mc-transfer-ios/Thirdparty/AF-iOS-SDK-v2.5.1.9.8",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

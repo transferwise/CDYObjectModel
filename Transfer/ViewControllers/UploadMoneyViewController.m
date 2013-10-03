@@ -140,6 +140,7 @@
         //TODO jaanus: copy/paste from BankTransferScreen
         if ([Credentials temporaryAccount]) {
             ClaimAccountViewController *controller = [[ClaimAccountViewController alloc] init];
+            [controller setObjectModel:self.objectModel];
             [self.navigationController pushViewController:controller animated:YES];
         } else {
             [self pushUpdatedTransactionScreen];

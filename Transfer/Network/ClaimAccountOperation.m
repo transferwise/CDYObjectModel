@@ -10,6 +10,10 @@
 #import "TransferwiseOperation+Private.h"
 #import "Credentials.h"
 #import "GoogleAnalytics.h"
+#import "Constants.h"
+#import "AppsFlyer.h"
+#import "ObjectModel+Users.h"
+#import "User.h"
 
 NSString *const kSetPasswordPath = @"/account/setPassword";
 
@@ -41,6 +45,13 @@ NSString *const kSetPasswordPath = @"/account/setPassword";
         [Credentials setUserSecret:@""];
 
 		[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserRegistered"];
+
+#if USE_APPSFLYER_EVENTS
+        [weakSelf.workModel performBlock:^{
+            [AppsFlyer setAppUID:[weakSelf.workModel.currentUser pReference]];
+            [AppsFlyer notifyAppID:AppsFlyerIdentifier event:@"signUp" eventValue:@""];
+        }];
+#endif
 
         weakSelf.resultHandler(nil);
     }];

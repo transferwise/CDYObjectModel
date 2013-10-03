@@ -120,6 +120,7 @@
 
     ClaimAccountOperation *operation = [ClaimAccountOperation operationWithPassword:password];
     [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
 
     [operation setResultHandler:^(NSError *error) {
         [hud hide];

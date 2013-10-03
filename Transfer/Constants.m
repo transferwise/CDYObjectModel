@@ -32,3 +32,6 @@ NSString *const TRWGoogleAnalyticsOtherTrackingId = @"UA-16492313-3";
 void delayedExecution(CGFloat seconds, TRWActionBlock action) {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC), dispatch_get_main_queue(), action);
 }
+
+NSString *AppsFlyerDevKey = @"6g8vUfZXve88zupKDb94pk";
+NSString *AppsFlyerIdentifier = @"612261027;6g8vUfZXve88zupKDb94pk";

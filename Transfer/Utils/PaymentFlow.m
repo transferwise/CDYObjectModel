@@ -37,6 +37,8 @@
 #import "FBAppEvents.h"
 #import "GoogleAnalytics.h"
 #import "BusinessProfileIdentificationViewController.h"
+#import "AppsFlyer.h"
+#import "CalculationResult.h"
 
 @interface PaymentFlow ()
 
@@ -559,6 +561,23 @@
 #if USE_FACEBOOK_EVENTS
 		MCLog(@"Log FB purchase %@ - %@", transferFee, currencyCode);
 		[FBAppEvents logPurchase:[transferFee floatValue] currency:currencyCode];
+#endif
+
+#if USE_APPSFLYER_EVENTS
+        MCLog(@"Log AppFlyer purchase %@ - %@", transferFee, currencyCode);
+        [AppsFlyer setCurrencyCode:currencyCode];
+        static NSNumberFormatter *__formatter;
+        if (!__formatter) {
+            __formatter = [[NSNumberFormatter alloc] init];
+            [__formatter setGeneratesDecimalNumbers:YES];
+            [__formatter setLocale:[CalculationResult defaultLocale]];
+            [__formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+            [__formatter setCurrencyDecimalSeparator:@"."];
+            [__formatter setCurrencyGroupingSeparator:@""];
+        }
+
+        [AppsFlyer setAppUID:[self.objectModel.currentUser pReference]];
+        [AppsFlyer notifyAppID:AppsFlyerIdentifier event:@"purchase" eventValue:[__formatter stringFromNumber:transferFee]];
 #endif
 
         [self presentUploadMoneyController:paymentID];

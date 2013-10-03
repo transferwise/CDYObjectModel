@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "DataEntryViewController.h"
 
+@class ObjectModel;
+
 @interface ClaimAccountViewController : DataEntryViewController
+
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 @end

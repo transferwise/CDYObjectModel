@@ -135,6 +135,7 @@
 - (IBAction)doneBtnClicked:(id)sender {
     if ([Credentials temporaryAccount]) {
         ClaimAccountViewController *controller = [[ClaimAccountViewController alloc] init];
+        [controller setObjectModel:self.objectModel];
         [self.navigationController pushViewController:controller animated:YES];
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
