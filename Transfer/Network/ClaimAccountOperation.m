@@ -49,7 +49,7 @@ NSString *const kSetPasswordPath = @"/account/setPassword";
 #if USE_APPSFLYER_EVENTS
         [weakSelf.workModel performBlock:^{
             [AppsFlyer setAppUID:[weakSelf.workModel.currentUser pReference]];
-            [AppsFlyer notifyAppID:AppsFlyerIdentifier event:@"signUp" eventValue:@""];
+            [AppsFlyer notifyAppID:AppsFlyerIdentifier event:@"registration" eventValue:@""];
         }];
 #endif
 

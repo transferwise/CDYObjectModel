@@ -564,8 +564,7 @@
 #endif
 
 #if USE_APPSFLYER_EVENTS
-        MCLog(@"Log AppFlyer purchase %@ - %@", transferFee, currencyCode);
-        [AppsFlyer setCurrencyCode:currencyCode];
+        MCLog(@"Log AppsFlyer purchase %@ - %@", transferFee, currencyCode);
         static NSNumberFormatter *__formatter;
         if (!__formatter) {
             __formatter = [[NSNumberFormatter alloc] init];
@@ -576,6 +575,7 @@
             [__formatter setCurrencyGroupingSeparator:@""];
         }
 
+        [AppsFlyer setCurrencyCode:currencyCode];
         [AppsFlyer setAppUID:[self.objectModel.currentUser pReference]];
         [AppsFlyer notifyAppID:AppsFlyerIdentifier event:@"purchase" eventValue:[__formatter stringFromNumber:transferFee]];
 #endif
