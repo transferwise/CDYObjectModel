@@ -40,7 +40,7 @@
 }
 
 - (void)sendScreen:(NSString *)screenName {
-    NSMutableDictionary *dictionary = [[[GAIDictionaryBuilder createAppView] set:screenName forKey:kGAIAppView] build];
+    NSMutableDictionary *dictionary = [[[GAIDictionaryBuilder createAppView] set:screenName forKey:kGAIScreenName] build];
 
     [[[GAI sharedInstance] defaultTracker] send:dictionary];
     [[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsOtherTrackingId] send:dictionary];
