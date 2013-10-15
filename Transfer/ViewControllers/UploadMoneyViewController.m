@@ -23,6 +23,7 @@
 #import "GoogleAnalytics.h"
 #import "ClaimAccountViewController.h"
 #import "Credentials.h"
+#import "FeedbackCoordinator.h"
 
 @interface UploadMoneyViewController ()
 
@@ -60,6 +61,10 @@
             }];
 
             [alertView show];
+
+            [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
+                return ![alertView isVisible];
+            }];
         } else {
             TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.card.no.payment.title", nil)
                                                                message:NSLocalizedString(@"upload.money.card.no.payment.message", nil)];

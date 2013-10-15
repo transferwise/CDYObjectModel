@@ -14,12 +14,14 @@
 #import "ObjectModel+Users.h"
 #import "User.h"
 #import "GoogleAnalytics.h"
+#import "ObjectModel+Settings.h"
 
 @interface FeedbackCoordinator () <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, assign) NSInteger rateButtonIndex;
 @property (nonatomic, assign) NSInteger feedbackButtonIndex;
 @property (nonatomic, assign) NSInteger dismissButtonIndex;
+@property (nonatomic, copy) FeedbackCheckBlock showFeedbackCheck;
 
 @end
 
@@ -108,6 +110,40 @@
 			[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 		}
 	}];
+}
+
+- (void)startFeedbackTimerWithCheck:(FeedbackCheckBlock)checkBlock {
+    if (self.showFeedbackCheck) {
+        MCLog(@"Existing feedback check in place. Abort.");
+        return;
+    }
+
+    if (![self.objectModel shouldShowRatingPopup]) {
+        MCLog(@"Should not show rating popup. Abort.");
+        return;
+    }
+
+    [self setShowFeedbackCheck:checkBlock];
+    [self performFeedbackCheckAfterDelay:20];
+}
+
+- (void)performFeedbackCheckAfterDelay:(NSTimeInterval)delay {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        if (!self.showFeedbackCheck) {
+            MCLog(@"No check block. Abort");
+            return;
+        }
+
+        BOOL canShow = self.showFeedbackCheck();
+        if (!canShow) {
+            MCLog(@"Can't show yet. Try again in a bit");
+            [self performFeedbackCheckAfterDelay:5];
+            return;
+        }
+
+        [self setShowFeedbackCheck:nil];
+        [self presentFeedbackAlert];
+    });
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {

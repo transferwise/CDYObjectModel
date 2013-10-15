@@ -10,6 +10,8 @@
 
 @class ObjectModel;
 
+typedef BOOL (^FeedbackCheckBlock)();
+
 @interface FeedbackCoordinator : NSObject
 
 @property (nonatomic, strong) ObjectModel *objectModel;
@@ -18,5 +20,6 @@
 
 - (void)presentFeedbackAlert;
 - (void)presentFeedbackEmail;
+- (void)startFeedbackTimerWithCheck:(FeedbackCheckBlock)checkBlock;
 
 @end

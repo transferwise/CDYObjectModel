@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12E55" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F45" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AllowedTypeFieldValue" representedClassName="AllowedTypeFieldValue" syncable="YES">
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -124,6 +124,10 @@
         <relationship name="fieldForType" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientType" inverseName="fields" inverseEntity="RecipientType" syncable="YES"/>
         <relationship name="values" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TypeFieldValue" inverseName="valueForField" inverseEntity="TypeFieldValue" syncable="YES"/>
     </entity>
+    <entity name="Setting" representedClassName="Setting" syncable="YES">
+        <attribute name="key" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="TypeFieldValue" representedClassName="TypeFieldValue" syncable="YES">
         <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="recipient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="fieldValues" inverseEntity="Recipient" syncable="YES"/>
@@ -153,5 +157,6 @@
         <element name="RecipientTypeField" positionX="0" positionY="0" width="0" height="0"/>
         <element name="TypeFieldValue" positionX="0" positionY="0" width="0" height="0"/>
         <element name="User" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Setting" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

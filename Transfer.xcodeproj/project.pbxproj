@@ -338,6 +338,12 @@
 		EA31A22F17DDB29B00F937F7 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7EAE8917AFE037006A7182 /* SwitchCell.xib */; };
 		EA34529F17DF1019005BB4F1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */; };
 		EA3452A017DF102D005BB4F1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */; };
+		EA347737180D2C6C00104417 /* _Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = EA347736180D2C6C00104417 /* _Setting.m */; };
+		EA347738180D2C6C00104417 /* _Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = EA347736180D2C6C00104417 /* _Setting.m */; };
+		EA34773B180D2C7500104417 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = EA34773A180D2C7500104417 /* Setting.m */; };
+		EA34773C180D2C7500104417 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = EA34773A180D2C7500104417 /* Setting.m */; };
+		EA34773F180D2CE700104417 /* ObjectModel+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = EA34773E180D2CE700104417 /* ObjectModel+Settings.m */; };
+		EA347740180D2CE700104417 /* ObjectModel+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = EA34773E180D2CE700104417 /* ObjectModel+Settings.m */; };
 		EA35C76C1732790D005602F7 /* PaymentsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76B1732790D005602F7 /* PaymentsOperation.m */; };
 		EA35C77017327973005602F7 /* PaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76F17327973005602F7 /* PaymentCell.m */; };
 		EA35C77217327981005602F7 /* PaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA35C77117327981005602F7 /* PaymentCell.xib */; };
@@ -705,6 +711,12 @@
 		EA31A11B17DDB1CA00F937F7 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
 		EA31A11C17DDB1CA00F937F7 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		EA31A23817DDB29B00F937F7 /* TransferDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransferDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA347735180D2C6C00104417 /* _Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Setting.h; sourceTree = "<group>"; };
+		EA347736180D2C6C00104417 /* _Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Setting.m; sourceTree = "<group>"; };
+		EA347739180D2C7500104417 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
+		EA34773A180D2C7500104417 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setting.m; sourceTree = "<group>"; };
+		EA34773D180D2CE700104417 /* ObjectModel+Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+Settings.h"; sourceTree = "<group>"; };
+		EA34773E180D2CE700104417 /* ObjectModel+Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+Settings.m"; sourceTree = "<group>"; };
 		EA35C76A1732790D005602F7 /* PaymentsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentsOperation.h; sourceTree = "<group>"; };
 		EA35C76B1732790D005602F7 /* PaymentsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentsOperation.m; sourceTree = "<group>"; };
 		EA35C76E17327973005602F7 /* PaymentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentCell.h; sourceTree = "<group>"; };
@@ -1703,6 +1715,8 @@
 				EA225C8A178EB297009D6B83 /* ObjectModel+Recipients.m */,
 				EA225C92178EB36B009D6B83 /* ObjectModel+RecipientTypes.h */,
 				EA225C93178EB36B009D6B83 /* ObjectModel+RecipientTypes.m */,
+				EA34773D180D2CE700104417 /* ObjectModel+Settings.h */,
+				EA34773E180D2CE700104417 /* ObjectModel+Settings.m */,
 				EA2379E71793E01A00166361 /* ObjectModel+Users.h */,
 				EA2379E81793E01A00166361 /* ObjectModel+Users.m */,
 				EAD39670171BD2A300F6D011 /* ObjectModel.h */,
@@ -1726,6 +1740,8 @@
 				EAAA1485171BC911005B9430 /* Transfer.xcdatamodeld */,
 				EA225C9E178EB511009D6B83 /* TypeFieldValue.h */,
 				EA225C9F178EB511009D6B83 /* TypeFieldValue.m */,
+				EA347739180D2C7500104417 /* Setting.h */,
+				EA34773A180D2C7500104417 /* Setting.m */,
 				EA2379F81793E04400166361 /* User.h */,
 				EA2379F91793E04400166361 /* User.m */,
 			);
@@ -1759,6 +1775,8 @@
 				EA225C8D178EB343009D6B83 /* _RecipientType.m */,
 				EA225C95178EB3D3009D6B83 /* _RecipientTypeField.h */,
 				EA225C96178EB3D3009D6B83 /* _RecipientTypeField.m */,
+				EA347735180D2C6C00104417 /* _Setting.h */,
+				EA347736180D2C6C00104417 /* _Setting.m */,
 				EA225C9B178EB50B009D6B83 /* _TypeFieldValue.h */,
 				EA225C9C178EB50B009D6B83 /* _TypeFieldValue.m */,
 				EA2379F11793E03A00166361 /* _User.h */,
@@ -2248,6 +2266,7 @@
 				EA31A15417DDB29B00F937F7 /* SignUpViewController.m in Sources */,
 				EA31A15517DDB29B00F937F7 /* PaymentsOperation.m in Sources */,
 				EA31A15617DDB29B00F937F7 /* PaymentCell.m in Sources */,
+				EA347740180D2CE700104417 /* ObjectModel+Settings.m in Sources */,
 				EA31A15717DDB29B00F937F7 /* CurrencyPairsOperation.m in Sources */,
 				EA31A15817DDB29B00F937F7 /* RecipientViewController.m in Sources */,
 				EA31A15917DDB29B00F937F7 /* CurrenciesOperation.m in Sources */,
@@ -2295,6 +2314,7 @@
 				EA31A17D17DDB29B00F937F7 /* RegisterWithoutPasswordOperation.m in Sources */,
 				EA31A17E17DDB29B00F937F7 /* ClaimAccountViewController.m in Sources */,
 				EA31A17F17DDB29B00F937F7 /* ClaimAccountOperation.m in Sources */,
+				EA34773C180D2C7500104417 /* Setting.m in Sources */,
 				EA31A18017DDB29B00F937F7 /* RoundedCellBackgroundView.m in Sources */,
 				EA31A18117DDB29B00F937F7 /* ProfileEditViewController.m in Sources */,
 				EA31A18217DDB29B00F937F7 /* ProfileSource.m in Sources */,
@@ -2358,6 +2378,7 @@
 				EA31A1B817DDB29B00F937F7 /* QuickProfileValidationOperation.m in Sources */,
 				EA31A1B917DDB29B00F937F7 /* SwitchCell.m in Sources */,
 				EA31A1BA17DDB29B00F937F7 /* PaymentDetailsViewController.m in Sources */,
+				EA347738180D2C6C00104417 /* _Setting.m in Sources */,
 				EA31A1BB17DDB29B00F937F7 /* SupportCoordinator.m in Sources */,
 				EA31A1BC17DDB29B00F937F7 /* UIDevice-Hardware.m in Sources */,
 				EA31A1BD17DDB29B00F937F7 /* FeedbackCoordinator.m in Sources */,
@@ -2434,6 +2455,7 @@
 				EA88E697172F980A0021492C /* SignUpViewController.m in Sources */,
 				EA35C76C1732790D005602F7 /* PaymentsOperation.m in Sources */,
 				EA35C77017327973005602F7 /* PaymentCell.m in Sources */,
+				EA34773F180D2CE700104417 /* ObjectModel+Settings.m in Sources */,
 				EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */,
 				EAA54F4B1733DA1400B65BF3 /* RecipientViewController.m in Sources */,
 				EAA54F501733DC3500B65BF3 /* CurrenciesOperation.m in Sources */,
@@ -2481,6 +2503,7 @@
 				EAA053EC175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m in Sources */,
 				EAC1051A17607C4600B3B018 /* ClaimAccountViewController.m in Sources */,
 				EAB93B481761C74700A7337C /* ClaimAccountOperation.m in Sources */,
+				EA34773B180D2C7500104417 /* Setting.m in Sources */,
 				EA01331E1765FC7700D63C82 /* RoundedCellBackgroundView.m in Sources */,
 				EA416E2B176860EA00904D97 /* ProfileEditViewController.m in Sources */,
 				EA416E301768673500904D97 /* ProfileSource.m in Sources */,
@@ -2544,6 +2567,7 @@
 				EAA07BF117AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */,
 				BB7EAE8E17AFE0DF006A7182 /* SwitchCell.m in Sources */,
 				EAE1E3A317B2519000A45623 /* PaymentDetailsViewController.m in Sources */,
+				EA347737180D2C6C00104417 /* _Setting.m in Sources */,
 				EA0253B617D5C89500F54C18 /* SupportCoordinator.m in Sources */,
 				EA0253BE17D5E49100F54C18 /* UIDevice-Hardware.m in Sources */,
 				EA8FC93E17D864F100E13969 /* FeedbackCoordinator.m in Sources */,
