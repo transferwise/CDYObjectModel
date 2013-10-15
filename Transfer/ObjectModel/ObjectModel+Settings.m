@@ -8,12 +8,28 @@
 
 #import "ObjectModel+Settings.h"
 #import "Setting.h"
+#import "ObjectModel+Payments.h"
+#import "Constants.h"
 
 typedef NS_ENUM(short, SettingKey) {
     SettingRatingShown
 };
 
 @implementation ObjectModel (Settings)
+
+- (BOOL)shouldShowRatingPopup {
+    BOOL hasBeenShown = ![self booleanValueForKey:SettingRatingShown defaultValue:NO];
+    if (hasBeenShown) {
+        return NO;
+    }
+
+    return [self hasCompletedPayments];
+}
+
+- (void)markReviewPopupShown {
+    MCLog(@"markReviewPopupShown");
+    [self setBooleanValue:YES forKey:SettingRatingShown];
+}
 
 - (Setting *)loadSettingForKey:(SettingKey)key {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"key = %d", key];
@@ -29,8 +45,15 @@ typedef NS_ENUM(short, SettingKey) {
     return [setting booleanValue];
 }
 
-- (BOOL)shouldShowRatingPopup {
-    return ![self booleanValueForKey:SettingRatingShown defaultValue:NO];
+- (void)setBooleanValue:(BOOL)value forKey:(SettingKey)key {
+    Setting *setting = [self loadSettingForKey:key];
+    if (!setting) {
+        setting = [Setting insertInManagedObjectContext:self.managedObjectContext];
+        [setting setKeyValue:key];
+    }
+
+    [setting setBooleanValue:value];
+    [self saveContext];
 }
 
 @end

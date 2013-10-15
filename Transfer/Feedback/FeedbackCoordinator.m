@@ -142,6 +142,7 @@
         }
 
         [self setShowFeedbackCheck:nil];
+        [self.objectModel markReviewPopupShown];
         [self presentFeedbackAlert];
     });
 }

@@ -11,5 +11,6 @@
 @interface ObjectModel (Settings)
 
 - (BOOL)shouldShowRatingPopup;
+- (void)markReviewPopupShown;
 
 @end

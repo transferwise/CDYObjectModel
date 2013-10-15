@@ -16,5 +16,6 @@
 - (Payment *)createOrUpdatePaymentWithData:(NSDictionary *)rawData;
 - (NSArray *)listRemoteIdsForExistingPayments;
 - (void)removePaymentsWithIds:(NSArray *)array;
+- (BOOL)hasCompletedPayments;
 
 @end

@@ -11,4 +11,8 @@
     return [self.value boolValue];
 }
 
+- (void)setBooleanValue:(BOOL)value {
+    [self setValue:[NSString stringWithFormat:@"%d", value]];
+}
+
 @end

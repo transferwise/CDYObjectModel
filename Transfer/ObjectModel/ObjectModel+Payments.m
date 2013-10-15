@@ -75,6 +75,11 @@
     [self deleteObjects:payments saveAfter:NO];
 }
 
+- (BOOL)hasCompletedPayments {
+    NSPredicate *completedPredicate = [NSPredicate predicateWithFormat:@"paymentStatus = %@", @"transferred"];
+    return [self countInstancesOfEntity:[Payment entityName] withPredicate:completedPredicate] > 0;
+}
+
 - (NSArray *)paymentsWithRemoteIds:(NSArray *)array {
     NSPredicate *remoteIdPredicate = [NSPredicate predicateWithFormat:@"remoteId IN %@", array];
     return [self fetchEntitiesNamed:[Payment entityName] withPredicate:remoteIdPredicate];

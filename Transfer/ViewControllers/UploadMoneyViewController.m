@@ -58,13 +58,12 @@
                                                                message:NSLocalizedString(@"upload.money.card.payment.success.message", nil)];
             [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.continue", nil) action:^{
                 [self pushNextScreen];
+                [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
+                    return YES;
+                }];
             }];
 
             [alertView show];
-
-            [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
-                return ![alertView isVisible];
-            }];
         } else {
             TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.card.no.payment.title", nil)
                                                                message:NSLocalizedString(@"upload.money.card.no.payment.message", nil)];
