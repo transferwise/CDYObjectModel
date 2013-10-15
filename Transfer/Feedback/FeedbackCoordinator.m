@@ -52,7 +52,7 @@
 }
 
 - (void)presentFeedbackAlert {
-	[[GoogleAnalytics sharedInstance] sendAppEvent:@"ReviewNotification"];
+	[[GoogleAnalytics sharedInstance] sendAppEvent:@"Seen review notification"];
 
     TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"feedback.alert.title", nil)
                                                        message:NSLocalizedString(@"feedback.alert.message", nil)];
@@ -65,6 +65,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (self.rateButtonIndex == buttonIndex) {
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Clicked review notification"];
         NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=APP_ID";
 
         NSString *reviewURL = [templateReviewURL stringByReplacingOccurrencesOfString:@"APP_ID" withString:[NSString stringWithFormat:@"%d", TransferwiseAppID]];
