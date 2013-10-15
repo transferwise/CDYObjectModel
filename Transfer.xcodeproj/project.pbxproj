@@ -344,6 +344,8 @@
 		EA34773C180D2C7500104417 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = EA34773A180D2C7500104417 /* Setting.m */; };
 		EA34773F180D2CE700104417 /* ObjectModel+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = EA34773E180D2CE700104417 /* ObjectModel+Settings.m */; };
 		EA347740180D2CE700104417 /* ObjectModel+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = EA34773E180D2CE700104417 /* ObjectModel+Settings.m */; };
+		EA347748180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA347747180D694F00104417 /* ConfigurationOptionsOperation.m */; };
+		EA347749180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA347747180D694F00104417 /* ConfigurationOptionsOperation.m */; };
 		EA35C76C1732790D005602F7 /* PaymentsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76B1732790D005602F7 /* PaymentsOperation.m */; };
 		EA35C77017327973005602F7 /* PaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76F17327973005602F7 /* PaymentCell.m */; };
 		EA35C77217327981005602F7 /* PaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA35C77117327981005602F7 /* PaymentCell.xib */; };
@@ -717,6 +719,8 @@
 		EA34773A180D2C7500104417 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setting.m; sourceTree = "<group>"; };
 		EA34773D180D2CE700104417 /* ObjectModel+Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+Settings.h"; sourceTree = "<group>"; };
 		EA34773E180D2CE700104417 /* ObjectModel+Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+Settings.m"; sourceTree = "<group>"; };
+		EA347746180D694F00104417 /* ConfigurationOptionsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationOptionsOperation.h; sourceTree = "<group>"; };
+		EA347747180D694F00104417 /* ConfigurationOptionsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationOptionsOperation.m; sourceTree = "<group>"; };
 		EA35C76A1732790D005602F7 /* PaymentsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentsOperation.h; sourceTree = "<group>"; };
 		EA35C76B1732790D005602F7 /* PaymentsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentsOperation.m; sourceTree = "<group>"; };
 		EA35C76E17327973005602F7 /* PaymentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentCell.h; sourceTree = "<group>"; };
@@ -1397,6 +1401,8 @@
 				EAE7B6B217E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m */,
 				EAB93B461761C74700A7337C /* ClaimAccountOperation.h */,
 				EAB93B471761C74700A7337C /* ClaimAccountOperation.m */,
+				EA347746180D694F00104417 /* ConfigurationOptionsOperation.h */,
+				EA347747180D694F00104417 /* ConfigurationOptionsOperation.m */,
 				EA88E67C172F97D50021492C /* CountriesOperation.h */,
 				EA88E67D172F97D50021492C /* CountriesOperation.m */,
 				EAAF8FAE17436730008DF9E2 /* CreatePaymentOperation.h */,
@@ -2276,6 +2282,7 @@
 				EA31A15B17DDB29B00F937F7 /* RecipientTypesOperation.m in Sources */,
 				EA31A15C17DDB29B00F937F7 /* CurrencySelectionCell.m in Sources */,
 				EA31A15D17DDB29B00F937F7 /* RecipientFieldCell.m in Sources */,
+				EA347749180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */,
 				EA31A15E17DDB29B00F937F7 /* RecipientOperation.m in Sources */,
 				EA31A15F17DDB29B00F937F7 /* NonEditTextField.m in Sources */,
 				EA31A16017DDB29B00F937F7 /* PersonalProfileOperation.m in Sources */,
@@ -2465,6 +2472,7 @@
 				EAA54F5B1733EF1A00B65BF3 /* RecipientTypesOperation.m in Sources */,
 				EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */,
 				EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */,
+				EA347748180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */,
 				EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */,
 				EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */,
 				EAD85B0B173920C300C22211 /* PersonalProfileOperation.m in Sources */,

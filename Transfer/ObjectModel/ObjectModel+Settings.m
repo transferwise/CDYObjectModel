@@ -12,7 +12,8 @@
 #import "Constants.h"
 
 typedef NS_ENUM(short, SettingKey) {
-    SettingRatingShown
+    SettingRatingShown,
+    SettingOptionReviewsEnabled
 };
 
 @implementation ObjectModel (Settings)
@@ -23,12 +24,22 @@ typedef NS_ENUM(short, SettingKey) {
         return NO;
     }
 
+    if (![self booleanValueForKey:SettingOptionReviewsEnabled defaultValue:YES]) {
+        MCLog(@"Reviews not enabled");
+        return NO;
+    }
+
     return [self hasCompletedPayments];
 }
 
 - (void)markReviewPopupShown {
     MCLog(@"markReviewPopupShown");
     [self setBooleanValue:YES forKey:SettingRatingShown];
+}
+
+- (void)markReviewsEnabled:(BOOL)enabled {
+    MCLog(@"markReviewsEnabled:%d", enabled);
+    [self setBooleanValue:enabled forKey:SettingOptionReviewsEnabled];
 }
 
 - (Setting *)loadSettingForKey:(SettingKey)key {

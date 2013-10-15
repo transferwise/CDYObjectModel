@@ -7,7 +7,10 @@
 //
 
 #import "TransferwiseOperation.h"
+#import "JCSObjectModel.h"
 
 @interface ConfigurationOptionsOperation : TransferwiseOperation
+
+@property (nonatomic, copy) JCSActionBlock completion;
 
 @end

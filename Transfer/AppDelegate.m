@@ -131,6 +131,8 @@
     // Track Installs, updates & sessions (must)
     [AppsFlyer notifyAppID:AppsFlyerIdentifier];
 #endif
+
+    [[TransferwiseClient sharedClient] updateConfigurationOptions];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

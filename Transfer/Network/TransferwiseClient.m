@@ -13,6 +13,7 @@
 #import "JCSObjectModel.h"
 #import "ObjectModel+Users.h"
 #import "User.h"
+#import "ConfigurationOptionsOperation.h"
 
 NSString *const kAPIPathBase = @"/api/v1";
 
@@ -20,6 +21,7 @@ NSString *const kAPIPathBase = @"/api/v1";
 
 @property (nonatomic, strong) UserDetailsOperation *detailsOperation;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
+@property (nonatomic, strong) ConfigurationOptionsOperation *configurationsOperation;
 
 @end
 
@@ -96,6 +98,24 @@ NSString *const kAPIPathBase = @"/api/v1";
 
 - (NSString *)addTokenToPath:(NSString *)path {
     return [NSString stringWithFormat:@"%@%@", kAPIPathBase, path];
+}
+
+- (void)updateConfigurationOptions {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.configurationsOperation) {
+            return;
+        }
+
+        ConfigurationOptionsOperation *operation = [[ConfigurationOptionsOperation alloc] init];
+        [self setConfigurationsOperation:operation];
+        [operation setObjectModel:self.objectModel];
+        [operation setCompletion:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setConfigurationsOperation:nil];
+            });
+        }];
+        [operation execute];
+    });
 }
 
 @end

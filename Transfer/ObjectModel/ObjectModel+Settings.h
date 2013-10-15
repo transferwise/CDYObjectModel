@@ -12,5 +12,6 @@
 
 - (BOOL)shouldShowRatingPopup;
 - (void)markReviewPopupShown;
+- (void)markReviewsEnabled:(BOOL)enabled;
 
 @end
