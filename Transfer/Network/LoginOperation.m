@@ -14,6 +14,10 @@
 #import "ObjectModel+RecipientTypes.h"
 #import "FBAppEvents.h"
 #import "GoogleAnalytics.h"
+#import "AppsFlyer.h"
+#import "ObjectModel+Users.h"
+#import "_User.h"
+#import "User.h"
 
 NSString *const kLoginPath = @"/token/create";
 
@@ -54,7 +58,12 @@ NSString *const kLoginPath = @"/token/create";
             NSString *token = response[@"token"];
             [Credentials setUserToken:token];
             [Credentials setUserEmail:weakSelf.email];
-            [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:nil];
+            [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(NSError *error) {
+#if USE_APPSFLYER_EVENTS
+                [AppsFlyer setAppUID:weakSelf.objectModel.currentUser.pReference];
+                [AppsFlyer notifyAppID:AppsFlyerIdentifier event:@"sign-in" eventValue:@""];
+#endif
+            }];
 
             [weakSelf.workModel removeOtherUsers];
 

@@ -15,6 +15,9 @@
 #import "ObjectModel.h"
 #import "ObjectModel+RecipientTypes.h"
 #import "TransferBackButtonItem.h"
+#import "AppsFlyer.h"
+#import "ObjectModel+Users.h"
+#import "User.h"
 
 @interface OpenIDViewController () <UIWebViewDelegate>
 
@@ -94,7 +97,12 @@
         [self.objectModel removeOtherUsers];
         [self.objectModel saveContext:^{
             dispatch_async(dispatch_get_main_queue(), ^{
-                [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:nil];
+                [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(NSError *error) {
+#if USE_APPSFLYER_EVENTS
+                    [AppsFlyer setAppUID:self.objectModel.currentUser.pReference];
+                    [AppsFlyer notifyAppID:AppsFlyerIdentifier event:@"sign-in" eventValue:@""];
+#endif
+                }];
                 [self dismissViewControllerAnimated:YES completion:nil];
             });
         }];

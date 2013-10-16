@@ -162,6 +162,7 @@ static NSUInteger const kTableRowEmail = 0;
 
 - (void)presentOpenIDSignUpWithProvider:(NSString *)provider name:(NSString *)providerName {
     OpenIDViewController *controller = [[OpenIDViewController alloc] init];
+    [controller setObjectModel:self.objectModel];
     [controller setProvider:provider];
     [controller setEmail:self.emailCell.value];
     [controller setProviderName:providerName];
