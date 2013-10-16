@@ -570,7 +570,7 @@
             __formatter = [[NSNumberFormatter alloc] init];
             [__formatter setGeneratesDecimalNumbers:YES];
             [__formatter setLocale:[CalculationResult defaultLocale]];
-            [__formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+            [__formatter setNumberStyle:NSNumberFormatterDecimalStyle];
             [__formatter setCurrencyDecimalSeparator:@"."];
             [__formatter setCurrencyGroupingSeparator:@""];
         }
