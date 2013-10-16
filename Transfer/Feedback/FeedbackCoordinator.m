@@ -125,7 +125,7 @@
     }
 
     [self setShowFeedbackCheck:checkBlock];
-    [self performFeedbackCheckAfterDelay:20];
+    [self performFeedbackCheckAfterDelay:10];
 }
 
 - (void)performFeedbackCheckAfterDelay:(NSTimeInterval)delay {
