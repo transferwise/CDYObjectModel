@@ -9,7 +9,6 @@
 #import "ConfigurationOptionsOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "NSDictionary+Cleanup.h"
-#import "JCSObjectModel.h"
 #import "ObjectModel+PendingPayments.h"
 #import "ObjectModel+Settings.h"
 

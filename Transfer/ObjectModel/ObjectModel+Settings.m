@@ -19,8 +19,9 @@ typedef NS_ENUM(short, SettingKey) {
 @implementation ObjectModel (Settings)
 
 - (BOOL)shouldShowRatingPopup {
-    BOOL hasBeenShown = ![self booleanValueForKey:SettingRatingShown defaultValue:NO];
+    BOOL hasBeenShown = [self booleanValueForKey:SettingRatingShown defaultValue:NO];
     if (hasBeenShown) {
+        MCLog(@"Has been shown");
         return NO;
     }
 
