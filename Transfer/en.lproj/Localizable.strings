@@ -61,6 +61,9 @@
 "claim.account.password.not.entered" = "Password not entered";
 "claim.account.setting.password.message" = "Working...";
 
+"generic.error.message" = "We're currently updating TransferWise. Sorry for the hassle, but please try again in a few minutes.";
+"generic.error.title" = "Things are getting better";
+
 "identification.address.image.missing.message" = "Address verification image missing";
 "identification.controller.title" = "Identification";
 "identification.creating.payment.message" = "Creating payment...";

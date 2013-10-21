@@ -29,8 +29,13 @@
 }
 
 + (TRWAlertView *)errorAlertWithTitle:(NSString *)errorTitle error:(NSError *)error {
-    NSString *errorMessage = [error isTransferwiseError] ? [error localizedTransferwiseMessage] : [error localizedDescription];
-    TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:errorTitle message:errorMessage];
+    TRWAlertView *alertView;
+    if ([error isTransferwiseError]) {
+        alertView = [TRWAlertView alertViewWithTitle:errorTitle message:[error localizedTransferwiseMessage]];
+    } else {
+        alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"generic.error.title", nil) message:NSLocalizedString(@"generic.error.message", nil)];
+    }
+
     [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
     return alertView;
 }

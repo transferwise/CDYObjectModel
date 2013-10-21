@@ -14,11 +14,8 @@
 @implementation NSError (TRWErrors)
 
 - (BOOL)isTransferwiseError {
-    if ([TRWErrorDomain isEqualToString:self.domain]) {
-        return YES;
-    }
+    return [TRWErrorDomain isEqualToString:self.domain];
 
-    return NO;
 }
 
 - (NSString *)localizedTransferwiseMessage {
