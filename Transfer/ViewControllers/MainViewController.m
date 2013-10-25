@@ -14,6 +14,7 @@
 #import "Credentials.h"
 #import "GoogleAnalytics.h"
 #import "IntroViewController.h"
+#import "SignUpViewController.h"
 
 @interface MainViewController () <UINavigationControllerDelegate>
 
@@ -115,7 +116,8 @@
 - (void)presentIntroductionController:(BOOL)shownBefore {
     UIViewController *presented;
     if (shownBefore) {
-        IntroductionViewController *controller = [[IntroductionViewController alloc] init];
+        SignUpViewController *controller = [[SignUpViewController alloc] init];
+        //IntroductionViewController *controller = [[IntroductionViewController alloc] init];
         [controller setObjectModel:self.objectModel];
         presented = controller;        
     } else {

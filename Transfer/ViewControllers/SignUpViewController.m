@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
+#import <OHAttributedLabel/NSAttributedString+Attributes.h>
 #import "SignUpViewController.h"
 #import "UIColor+Theme.h"
 #import "TableHeaderView.h"
@@ -18,6 +19,7 @@
 #import "TRWProgressHUD.h"
 #import "RegisterOperation.h"
 #import "OpenIDViewController.h"
+#import "LoginViewController.h"
 
 static NSUInteger const kTableRowEmail = 0;
 
@@ -27,12 +29,14 @@ static NSUInteger const kTableRowEmail = 0;
 @property (strong, nonatomic) IBOutlet UIButton *singUpButton;
 @property (nonatomic, strong) TextEntryCell *emailCell;
 @property (nonatomic, strong) TextEntryCell *passwordCell;
-@property (nonatomic, strong) TextEntryCell *passwordAgainCell;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
+@property (nonatomic, strong) IBOutlet UIView *headerView;
+@property (nonatomic, strong) IBOutlet UILabel *googleSignupMessageLabel;
+@property (nonatomic, strong) IBOutlet UILabel *passwordMessageLabel;
+@property (nonatomic, strong) IBOutlet UILabel *existingUserActionLabel;
 
 - (IBAction)signUpPressed:(id)sender;
 - (IBAction)googleSignUpPressed:(id)sender;
-- (IBAction)yahooSignUpPressed:(id)sender;
 
 @end
 
@@ -49,12 +53,7 @@ static NSUInteger const kTableRowEmail = 0;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.tableView setBackgroundView:nil];
-    [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
-
-    TableHeaderView *header = [TableHeaderView loadInstance];
-    [header setMessage:NSLocalizedString(@"singup.controller.header.message", nil)];
-    [self.tableView setTableHeaderView:header];
+    [self.tableView setBackgroundView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LandingBackground"]]];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
 
@@ -74,26 +73,49 @@ static NSUInteger const kTableRowEmail = 0;
     [password.entryField setSecureTextEntry:YES];
     [cells addObject:password];
 
-    TextEntryCell *passwordAgain = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
-    [self setPasswordAgainCell:passwordAgain];
-    [passwordAgain configureWithTitle:NSLocalizedString(@"singup.password.again.field.title", nil) value:@""];
-    [passwordAgain.entryField setReturnKeyType:UIReturnKeyDone];
-    [passwordAgain.entryField setSecureTextEntry:YES];
-    [cells addObject:passwordAgain];
-
     [self.singUpButton setTitle:NSLocalizedString(@"singup.button.title.log.in", nil) forState:UIControlStateNormal];
 
-    [self.navigationItem setTitle:NSLocalizedString(@"sign.up.controller.title", nil)];
+    [self.googleSignupMessageLabel setText:NSLocalizedString(@"sign.up.controller.google.signup.message", nil)];
+    [self.passwordMessageLabel setText:NSLocalizedString(@"sign.up.controller.set.password.message", nil)];
+    [self.existingUserActionLabel setAttributedText:[self existingUserMessage]];
+
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loginPressed)];
+    [tapGestureRecognizer setNumberOfTapsRequired:1];
+    [tapGestureRecognizer setNumberOfTouchesRequired:1];
+    [self.existingUserActionLabel addGestureRecognizer:tapGestureRecognizer];
 
     [self setPresentedSectionCells:@[cells]];
 
+    [self.tableView setTableHeaderView:self.headerView];
     [self.tableView setTableFooterView:self.footerView];
+}
+
+- (NSAttributedString *)existingUserMessage {
+    NSString *existingUserMessage = NSLocalizedString(@"sign.up.controller.existing.user.message", nil);
+    NSString *existingUserAction = NSLocalizedString(@"sign.up.controller.existing.user.action", nil);
+    NSString *baseMessage = [NSString stringWithFormat:@"%@ %@", existingUserMessage, existingUserAction];
+    NSMutableAttributedString *result = [[NSMutableAttributedString alloc] initWithString:baseMessage];
+
+    [result setAttributes:@{UITextAttributeFont : [UIFont systemFontOfSize:14], UITextAttributeTextColor : [UIColor whiteColor]} range:NSMakeRange(0, [baseMessage length])];
+
+    NSRange actionRange = [baseMessage rangeOfString:existingUserAction];
+    [result setAttributes:@{UITextAttributeFont : [UIFont systemFontOfSize:14], UITextAttributeTextColor: HEXCOLOR(0x157EFBFF)} range:actionRange];
+
+    return [NSAttributedString attributedStringWithAttributedString:result];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationItem setHidesBackButton:YES];
+}
+
 
 - (IBAction)signUpPressed:(id)sender {
     [UIApplication dismissKeyboard];
@@ -129,7 +151,6 @@ static NSUInteger const kTableRowEmail = 0;
 - (NSString *)validateInput {
     NSString *email = self.emailCell.value;
     NSString *passwordOne = self.passwordCell.value;
-    NSString *passwordTwo = self.passwordAgainCell.value;
 
     NSMutableString *issues = [NSMutableString string];
 
@@ -137,16 +158,12 @@ static NSUInteger const kTableRowEmail = 0;
         [issues appendIssue:NSLocalizedString(@"sign.up.controller.validation.email.missing", nil)];
     }
 
-    if (![email isValidEmail]) {
+    if ([email hasValue] && ![email isValidEmail]) {
         [issues appendIssue:NSLocalizedString(@"sign.up.controller.validation.email.invalid", nil)];
     }
 
-    if (![passwordOne hasValue] || ![passwordTwo hasValue]) {
+    if (![passwordOne hasValue]) {
         [issues appendIssue:NSLocalizedString(@"sign.up.controller.validation.password.missing", nil)];
-    }
-
-    if ([passwordOne hasValue] && [passwordTwo hasValue] && ![passwordOne isEqualToString:passwordTwo]) {
-        [issues appendIssue:NSLocalizedString(@"sign.up.controller.validation.passwords.dont.match", nil)];
     }
 
     return [NSString stringWithString:issues];
@@ -156,10 +173,6 @@ static NSUInteger const kTableRowEmail = 0;
     [self presentOpenIDSignUpWithProvider:@"google" name:@"Google"];
 }
 
-- (IBAction)yahooSignUpPressed:(id)sender {
-    [self presentOpenIDSignUpWithProvider:@"yahoo" name:@"Yahoo"];
-}
-
 - (void)presentOpenIDSignUpWithProvider:(NSString *)provider name:(NSString *)providerName {
     OpenIDViewController *controller = [[OpenIDViewController alloc] init];
     [controller setObjectModel:self.objectModel];
@@ -167,6 +180,12 @@ static NSUInteger const kTableRowEmail = 0;
     [controller setEmail:self.emailCell.value];
     [controller setProviderName:providerName];
     [controller setRegisterUser:YES];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)loginPressed {
+    LoginViewController *controller = [[LoginViewController alloc] init];
+    [controller setObjectModel:self.objectModel];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

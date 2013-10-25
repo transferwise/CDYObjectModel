@@ -14,6 +14,7 @@
 #import "Constants.h"
 #import "NSAttributedString+Attributes.h"
 #import "IntroductionViewController.h"
+#import "SignUpViewController.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
 
@@ -116,7 +117,8 @@
 }
 
 - (IBAction)startPressed {
-    IntroductionViewController *controller = [[IntroductionViewController alloc] init];
+    SignUpViewController *controller = [[SignUpViewController alloc] init];
+    //IntroductionViewController *controller = [[IntroductionViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [self.navigationController pushViewController:controller animated:YES];
 }

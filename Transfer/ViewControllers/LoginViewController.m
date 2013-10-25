@@ -90,6 +90,8 @@ static NSUInteger const kTableRowEmail = 0;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+
     [self.navigationItem setTitle:NSLocalizedString(@"login.controller.title", nil)];
 
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
