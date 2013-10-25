@@ -15,6 +15,8 @@
 #import "GoogleAnalytics.h"
 #import "IntroViewController.h"
 #import "SignUpViewController.h"
+#import "ObjectModel+Recipients.h"
+#import "ObjectModel+Settings.h"
 
 @interface MainViewController () <UINavigationControllerDelegate>
 
@@ -116,10 +118,15 @@
 - (void)presentIntroductionController:(BOOL)shownBefore {
     UIViewController *presented;
     if (shownBefore) {
-        SignUpViewController *controller = [[SignUpViewController alloc] init];
-        //IntroductionViewController *controller = [[IntroductionViewController alloc] init];
-        [controller setObjectModel:self.objectModel];
-        presented = controller;        
+        if ([self.objectModel shouldShowDirectUserSignup]) {
+            SignUpViewController *controller = [[SignUpViewController alloc] init];
+            [controller setObjectModel:self.objectModel];
+            presented = controller;
+        } else {
+            IntroductionViewController *controller = [[IntroductionViewController alloc] init];
+            [controller setObjectModel:self.objectModel];
+            presented = controller;
+        }
     } else {
         IntroViewController *controller = [[IntroViewController alloc] init];
         [controller setObjectModel:self.objectModel];

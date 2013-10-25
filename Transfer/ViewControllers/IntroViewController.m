@@ -15,6 +15,7 @@
 #import "NSAttributedString+Attributes.h"
 #import "IntroductionViewController.h"
 #import "SignUpViewController.h"
+#import "ObjectModel+Settings.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
 
@@ -117,10 +118,18 @@
 }
 
 - (IBAction)startPressed {
-    SignUpViewController *controller = [[SignUpViewController alloc] init];
-    //IntroductionViewController *controller = [[IntroductionViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
-    [self.navigationController pushViewController:controller animated:YES];
+    UIViewController *presented;
+    if ([self.objectModel shouldShowDirectUserSignup]) {
+        SignUpViewController *controller = [[SignUpViewController alloc] init];
+        [controller setObjectModel:self.objectModel];
+        presented = controller;
+    } else {
+        IntroductionViewController *controller = [[IntroductionViewController alloc] init];
+        [controller setObjectModel:self.objectModel];
+        presented = controller;
+    }
+
+    [self.navigationController pushViewController:presented animated:YES];
 }
 
 @end

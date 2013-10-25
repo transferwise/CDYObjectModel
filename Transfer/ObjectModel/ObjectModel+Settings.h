@@ -13,5 +13,7 @@
 - (BOOL)shouldShowRatingPopup;
 - (void)markReviewPopupShown;
 - (void)markReviewsEnabled:(BOOL)enabled;
+- (BOOL)shouldShowDirectUserSignup;
+- (void)markDirectSignupEnabled:(BOOL)enabled;
 
 @end
