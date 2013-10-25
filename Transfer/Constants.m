@@ -10,6 +10,7 @@
 
 NSString *const TRWLoggedOutNotification = @"TRWLoggedOutNotification";
 NSString *const TRWMoveToPaymentsListNotification = @"TRWMoveToPaymentsListNotification";
+NSString *const TRWMoveToPaymentViewNotification = @"TRWMoveToPaymentViewNotification";
 
 #if DEV_VERSION
 NSString *const TRWApplicationKey = @"ad8d836d18ec18fbd4ccc7bffd71eb54";

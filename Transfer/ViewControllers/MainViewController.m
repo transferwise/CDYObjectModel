@@ -25,6 +25,7 @@
 @property (nonatomic, strong) UIViewController *transactionsController;
 @property (nonatomic, assign) BOOL launchTableViewGamAdjustmentDone;
 @property (nonatomic, assign) BOOL shown;
+@property (nonatomic, strong) UIViewController *paymentController;
 
 @end
 
@@ -35,6 +36,7 @@
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loggedOut) name:TRWLoggedOutNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentsList) name:TRWMoveToPaymentsListNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentView) name:TRWMoveToPaymentViewNotification object:nil];
     }
     return self;
 }
@@ -51,6 +53,7 @@
     [transactionsController setObjectModel:self.objectModel];
 
     PaymentViewController *paymentController = [[PaymentViewController alloc] init];
+    [self setPaymentController:paymentController];
     [paymentController setObjectModel:self.objectModel];
 
     ContactsViewController *contactsController = [[ContactsViewController alloc] init];
@@ -173,6 +176,12 @@
 
 - (void)moveToPaymentsList {
     self.tabsController.selectedViewController = self.transactionsController;
+    [self popToRootViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)moveToPaymentView {
+    self.tabsController.selectedViewController = self.paymentController;
     [self popToRootViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

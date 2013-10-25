@@ -142,7 +142,7 @@ static NSUInteger const kTableRowEmail = 0;
             return;
         }
 
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentViewNotification object:nil];
     }];
 
     [operation execute];
