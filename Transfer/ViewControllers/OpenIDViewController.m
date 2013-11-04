@@ -105,7 +105,12 @@
                     [AppsFlyer notifyAppID:AppsFlyerIdentifier event:@"sign-in" eventValue:@""];
 #endif
                 }];
-                [self dismissViewControllerAnimated:YES completion:nil];
+
+                if (self.registerUser) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentViewNotification object:nil];
+                } else {
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }
             });
         }];
     } else {
