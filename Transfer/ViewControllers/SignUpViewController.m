@@ -20,6 +20,7 @@
 #import "RegisterOperation.h"
 #import "OpenIDViewController.h"
 #import "LoginViewController.h"
+#import "GoogleAnalytics.h"
 
 static NSUInteger const kTableRowEmail = 0;
 
@@ -114,6 +115,8 @@ static NSUInteger const kTableRowEmail = 0;
 
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self.navigationItem setHidesBackButton:YES];
+
+    [[GoogleAnalytics sharedInstance] sendScreen:@"Signup start screen"];
 }
 
 

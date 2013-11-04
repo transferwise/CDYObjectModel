@@ -16,6 +16,7 @@
 #import "IntroductionViewController.h"
 #import "SignUpViewController.h"
 #import "ObjectModel+Settings.h"
+#import "GoogleAnalytics.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
 
@@ -23,6 +24,7 @@
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) NSArray *introScreens;
 @property (nonatomic, strong) SMPageControl *pageControl;
+@property (nonatomic, assign) NSInteger reportedPage;
 
 - (IBAction)startPressed;
 
@@ -40,6 +42,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [self setReportedPage:NSNotFound];
 
     [self.startButton setTitle:NSLocalizedString(@"intro.start.buttont.title", nil) forState:UIControlStateNormal];
 
@@ -92,6 +96,13 @@
     [self.pageControl updatePageNumberForScrollView:self.scrollView];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    [self reportedPage];
+}
+
+
 - (void)pageChanged {
     MCLog(@"Page changed");
     [self.pageControl setScrollViewContentOffsetForCurrentPage:self.scrollView animated:YES];
@@ -99,6 +110,40 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.pageControl updatePageNumberForScrollView:self.scrollView];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self googleReportPage];
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    [self googleReportPage];
+}
+
+- (void)googleReportPage {
+    NSInteger currentPage = [self.pageControl currentPage];
+    if (self.reportedPage == currentPage) {
+        return;
+    }
+
+    [self setReportedPage:currentPage];
+    MCLog(@"Report page:%d", currentPage);
+    NSString *page;
+    switch (currentPage) {
+        case 0:
+            page = @"One";
+            break;
+        case 1:
+            page = @"Two";
+            break;
+        case 2:
+            page = @"Three";
+            break;
+        default:
+            page = @"Unknown";
+    }
+
+    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Intro screen %@", page]];
 }
 
 - (NSAttributedString *)attributedMessage:(NSString *)message bold:(NSArray *)boldTexts {
