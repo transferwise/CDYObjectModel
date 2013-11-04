@@ -37,7 +37,7 @@ NSString *const kOptionsPath = @"/option/status";
         data[@"askForIPhoneReview"] = @YES;
     }
 
-    if (!data[@"useDirectUserSignup"]) {
+    if (!data[@"useDirectIPhoneUserSignup"]) {
         data[@"useDirectIPhoneUserSignup"] = @YES;
     }
 
