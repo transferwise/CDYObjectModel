@@ -28,6 +28,7 @@ typedef void (^JCSActionBlock)();
 - (id)initWithDataModelName:(NSString *)modelName storeType:(NSString *)storeType;
 - (id)initWithDataModelName:(NSString *)modelName storeURL:(NSURL *)storeURL storeType:(NSString *)storeType;
 
+- (id)sharedBackgroundInstance;
 - (id)spawnBackgroundInstance;
 
 - (void)saveContext;
@@ -36,15 +37,19 @@ typedef void (^JCSActionBlock)();
 - (NSFetchedResultsController *)fetchedControllerForEntity:(NSString *)entityName;
 - (NSFetchedResultsController *)fetchedControllerForEntity:(NSString *)entityName sortDescriptors:(NSArray *)sortDescriptors;
 - (NSFetchedResultsController *)fetchedControllerForEntity:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors;
+- (NSFetchedResultsController *)fetchedControllerForEntity:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors sectionNameKeyPath:(NSString *)sectionNameKeyPath;
 
 - (id)fetchEntityNamed:(NSString *)entityName withPredicate:(NSPredicate *)predicate;
 - (id)fetchEntityNamed:(NSString *)entityName atOffset:(NSUInteger)offset;
+- (id)fetchFirstEntityNamed:(NSString *)entityName withPredicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors;
 
 - (NSArray *)fetchEntitiesNamed:(NSString *)entityName withPredicate:(NSPredicate *)predicate;
 - (NSArray *)fetchEntitiesNamed:(NSString *)entityName withSortDescriptors:(NSArray *)descriptors;
 - (NSArray *)fetchEntitiesNamed:(NSString *)entityName usingPredicate:(NSPredicate *)predicate withSortDescriptors:(NSArray *)descriptors;
 
 - (NSArray *)fetchAttributeNamed:(NSString *)attributeName forEntity:(NSString *)entityName;
+
+- (NSDictionary *)fetchPropertiesWithDescriptions:(NSArray *)descriptions onEntity:(NSString *)entityName usingPredicate:(NSPredicate *)predicate;
 
 - (NSUInteger)countInstancesOfEntity:(NSString *)entityName;
 - (NSUInteger)countInstancesOfEntity:(NSString *)entityName withPredicate:(NSPredicate *)predicate;
@@ -56,6 +61,8 @@ typedef void (^JCSActionBlock)();
 - (void)deleteObjects:(NSArray *)objects saveAfter:(BOOL)saveAfter;
 
 - (void)performBlock:(JCSActionBlock)actionBlock;
+
+- (NSExpressionDescription *)descriptionWithPath:(NSString *)keyPath function:(NSString *)function resultName:(NSString *)name type:(NSAttributeType)type;
 
 + (NSURL *)fileUrlInDocumentsFolder:(NSString *)fileName;
 

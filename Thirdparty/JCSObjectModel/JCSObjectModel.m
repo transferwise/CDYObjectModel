@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, strong) NSManagedObjectContext *writingContext;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, strong) JCSObjectModel *backgroundInstance;
 
 @end
 
@@ -54,6 +55,15 @@
         _writingContext = context;
     }
     return self;
+}
+
+- (id)sharedBackgroundInstance {
+    if (self.backgroundInstance) {
+        return self.backgroundInstance;
+    }
+
+    [self setBackgroundInstance:[self spawnBackgroundInstance]];
+    return self.backgroundInstance;
 }
 
 - (id)spawnBackgroundInstance {
@@ -86,11 +96,15 @@
 }
 
 - (NSFetchedResultsController *)fetchedControllerForEntity:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors {
+    return [self fetchedControllerForEntity:entityName predicate:predicate sortDescriptors:sortDescriptors sectionNameKeyPath:nil];
+}
+
+- (NSFetchedResultsController *)fetchedControllerForEntity:(NSString *)entityName predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors sectionNameKeyPath:(NSString *)sectionNameKeyPath {
     NSFetchRequest *fetchRequest = [self fetchRequestForEntity:entityName predicate:predicate sortDescriptors:sortDescriptors];
     NSFetchedResultsController *controller = [[NSFetchedResultsController alloc]
             initWithFetchRequest:fetchRequest
             managedObjectContext:self.managedObjectContext
-              sectionNameKeyPath:nil cacheName:nil];
+              sectionNameKeyPath:sectionNameKeyPath cacheName:nil];
 
     NSError *fetchError = nil;
     [controller performFetch:&fetchError];
@@ -122,6 +136,21 @@
 
 - (id)fetchEntityNamed:(NSString *)entityName atOffset:(NSUInteger)offset {
     return [self fetchEntityNamed:entityName withPredicate:nil atOffset:offset];
+}
+
+- (id)fetchFirstEntityNamed:(NSString *)entityName withPredicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors {
+    NSFetchRequest *fetchRequest = [self fetchRequestForEntity:entityName predicate:predicate sortDescriptors:sortDescriptors];
+    [fetchRequest setFetchOffset:0];
+    [fetchRequest setFetchLimit:1];
+
+    NSError *error = nil;
+    NSArray *objects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+
+    if (error != nil) {
+        JCSFLog(@"Fetch error %@", error);
+    }
+
+    return [objects lastObject];
 }
 
 - (NSArray *)fetchEntitiesNamed:(NSString *)entityName withPredicate:(NSPredicate *)predicate {
@@ -165,6 +194,25 @@
     return [NSArray arrayWithArray:result];
 }
 
+- (NSDictionary *)fetchPropertiesWithDescriptions:(NSArray *)descriptions onEntity:(NSString *)entityName usingPredicate:(NSPredicate *)predicate {
+    NSFetchRequest *request = [self fetchRequestForEntity:entityName predicate:predicate];
+    [request setResultType:NSDictionaryResultType];
+    [request setPropertiesToFetch:descriptions];
+
+    NSError *error = nil;
+    NSArray *objects = [self.managedObjectContext executeFetchRequest:request error:&error];
+
+    if (error != nil) {
+        JCSFLog(@"Fetch error %@", error);
+    }
+
+    if ([objects count] > 1) {
+        JCSFLog(@"Fetched %d objects: %@", [objects count], objects);
+    }
+
+    return [objects lastObject];
+}
+
 - (NSUInteger)countInstancesOfEntity:(NSString *)entityName {
     return [self countInstancesOfEntity:entityName withPredicate:nil];
 }
@@ -196,6 +244,16 @@
 
 - (void)performBlock:(JCSActionBlock)actionBlock {
     [self.managedObjectContext performBlock:actionBlock];
+}
+
+- (NSExpressionDescription *)descriptionWithPath:(NSString *)keyPath function:(NSString *)function resultName:(NSString *)name type:(NSAttributeType)type {
+    NSExpression *pathExpression = [NSExpression expressionForKeyPath:keyPath];
+    NSExpression *functionExpression = [NSExpression expressionForFunction:function arguments:[NSArray arrayWithObject:pathExpression]];
+    NSExpressionDescription *description = [[NSExpressionDescription alloc] init];
+    [description setName:name];
+    [description setExpression:functionExpression];
+    [description setExpressionResultType:type];
+    return description;
 }
 
 - (void)saveContext {

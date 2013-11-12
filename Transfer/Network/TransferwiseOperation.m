@@ -204,7 +204,7 @@
     MCAssert(self.objectModel);
 
     if (!_workModel) {
-        _workModel = [self.objectModel spawnBackgroundInstance];
+        _workModel = [self.objectModel sharedBackgroundInstance];
     }
     return _workModel;
 }
