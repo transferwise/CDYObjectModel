@@ -1871,6 +1871,9 @@
 					EA31A12117DDB29B00F937F7 = {
 						DevelopmentTeam = W53MTDV45J;
 					};
+					EAAA1467171BC911005B9430 = {
+						DevelopmentTeam = W53MTDV45J;
+					};
 				};
 			};
 			buildConfigurationList = EAAA1463171BC911005B9430 /* Build configuration list for PBXProject "Transfer" */;
