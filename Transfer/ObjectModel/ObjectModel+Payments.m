@@ -18,7 +18,7 @@
 @implementation ObjectModel (Payments)
 
 - (NSFetchedResultsController *)fetchedControllerForAllPayments {
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"submittedDate" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"remoteId" ascending:NO];
     NSPredicate *presentablePredicate = [NSPredicate predicateWithFormat:@"presentable = YES"];
     return [self fetchedControllerForEntity:[Payment entityName] predicate:presentablePredicate sortDescriptors:@[sortDescriptor]];
 }
