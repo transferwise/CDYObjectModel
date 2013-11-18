@@ -15,5 +15,6 @@
 @property (nonatomic, strong) NSString *title;
 
 - (void)setupWithResult:(CalculationResult*)result;
+- (void)setColor:(UIColor *)color;
 
 @end

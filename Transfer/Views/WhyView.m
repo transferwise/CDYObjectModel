@@ -76,4 +76,15 @@
     }
 }
 
+- (void)setColor:(UIColor *)color {
+    for (UIView *view in self.subviews) {
+        if (![view isKindOfClass:[UILabel class]]) {
+            continue;
+        }
+
+        UILabel *label = (UILabel *) view;
+        [label setTextColor:color];
+    }
+}
+
 @end

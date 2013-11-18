@@ -29,6 +29,7 @@
 #import "PairSourceCurrency.h"
 #import "UITableView+FooterPositioning.h"
 #import "GoogleAnalytics.h"
+#import "CXAlertView.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
@@ -307,8 +308,16 @@ static NSUInteger const kRowYouSend = 0;
     if ([[linkInfo.URL scheme] isEqualToString:@"why"]) {
         [self.whyView setupWithResult:self.result];
         [self.whyView setTitle:[self winMessage:self.result]];
-        TSAlertView *alert = [[TSAlertView alloc] initWithTitle:self.whyView.title view:self.whyView delegate:nil cancelButtonTitle:NSLocalizedString(@"whypopup.button", nil) otherButtonTitles:nil];
-        [alert show];
+        if (IOS_7) {
+            CXAlertView *alertView = [[CXAlertView alloc] initWithTitle:self.whyView.title contentView:self.whyView cancelButtonTitle:NSLocalizedString(@"whypopup.button", nil)];
+            [self.whyView setColor:[UIColor blackColor]];
+            [alertView setShowBlurBackground:YES];
+            [alertView setContainerWidth:CGRectGetWidth(self.whyView.frame)];
+            [alertView show];
+        } else {
+            TSAlertView *alert = [[TSAlertView alloc] initWithTitle:self.whyView.title view:self.whyView delegate:nil cancelButtonTitle:NSLocalizedString(@"whypopup.button", nil) otherButtonTitles:nil];
+            [alert show];
+        }
         return NO;
     }
     else {
