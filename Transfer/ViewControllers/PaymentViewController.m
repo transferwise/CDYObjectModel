@@ -31,6 +31,7 @@
 #import "SwitchCell.h"
 #import "TransferBackButtonItem.h"
 #import "GoogleAnalytics.h"
+#import "NSString+Validation.h"
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -241,6 +242,11 @@ static NSUInteger const kRowYouSend = 0;
 }
 
 - (void)showPaymentReceivedOnDate:(NSString *)paymentDateString {
+    if (![paymentDateString hasValue]) {
+        [self.paymentReceiveDateLabel setAttributedText:[NSAttributedString attributedStringWithString:@""]];
+        return;
+    }
+
     NSString *dateString = paymentDateString;
     NSString *messageString = [NSString stringWithFormat:NSLocalizedString(@"payment.controller.payment.date.message", nil), dateString];
     NSRange dateRange = [messageString rangeOfString:dateString];
