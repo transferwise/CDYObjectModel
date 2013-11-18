@@ -46,11 +46,12 @@
     }
 }
 
-- (PersonalProfile *)personalProfileWithData:(NSDictionary *)data forUser:(User *)user {
-    if (!data) {
+- (PersonalProfile *)personalProfileWithData:(NSDictionary *)rawData forUser:(User *)user {
+    if (!rawData) {
         return nil;
     }
 
+    NSDictionary *data = [rawData dictionaryByRemovingNullObjects];
     NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"user = %@", user];
     PersonalProfile *profile = [self fetchEntityNamed:[PersonalProfile entityName] withPredicate:userPredicate];
     if (!profile) {
@@ -70,11 +71,12 @@
     return profile;
 }
 
-- (BusinessProfile *)businessProfileWithData:(NSDictionary *)data forUser:(User *)user {
-    if (!data) {
+- (BusinessProfile *)businessProfileWithData:(NSDictionary *)rawData forUser:(User *)user {
+    if (!rawData) {
         return nil;
     }
 
+    NSDictionary *data = [rawData dictionaryByRemovingNullObjects];
     NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"user = %@", user];
     BusinessProfile *profile = [self fetchEntityNamed:[BusinessProfile entityName] withPredicate:userPredicate];
     if (!profile) {
