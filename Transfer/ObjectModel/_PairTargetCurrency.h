@@ -6,6 +6,7 @@
 
 extern const struct PairTargetCurrencyAttributes {
 	__unsafe_unretained NSString *fixedTargetPaymentAllowed;
+	__unsafe_unretained NSString *hidden;
 	__unsafe_unretained NSString *index;
 	__unsafe_unretained NSString *minInvoiceAmount;
 } PairTargetCurrencyAttributes;
@@ -20,6 +21,7 @@ extern const struct PairTargetCurrencyFetchedProperties {
 
 @class Currency;
 @class PairSourceCurrency;
+
 
 
 
@@ -47,6 +49,20 @@ extern const struct PairTargetCurrencyFetchedProperties {
 - (void)setFixedTargetPaymentAllowedValue:(BOOL)value_;
 
 //- (BOOL)validateFixedTargetPaymentAllowed:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* hidden;
+
+
+
+@property BOOL hiddenValue;
+- (BOOL)hiddenValue;
+- (void)setHiddenValue:(BOOL)value_;
+
+//- (BOOL)validateHidden:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -109,6 +125,15 @@ extern const struct PairTargetCurrencyFetchedProperties {
 
 - (BOOL)primitiveFixedTargetPaymentAllowedValue;
 - (void)setPrimitiveFixedTargetPaymentAllowedValue:(BOOL)value_;
+
+
+
+
+- (NSNumber*)primitiveHidden;
+- (void)setPrimitiveHidden:(NSNumber*)value;
+
+- (BOOL)primitiveHiddenValue;
+- (void)setPrimitiveHiddenValue:(BOOL)value_;
 
 
 

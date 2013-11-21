@@ -5,6 +5,7 @@
 
 const struct PairTargetCurrencyAttributes PairTargetCurrencyAttributes = {
 	.fixedTargetPaymentAllowed = @"fixedTargetPaymentAllowed",
+	.hidden = @"hidden",
 	.index = @"index",
 	.minInvoiceAmount = @"minInvoiceAmount",
 };
@@ -48,6 +49,11 @@ const struct PairTargetCurrencyFetchedProperties PairTargetCurrencyFetchedProper
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"hiddenValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"hidden"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"indexValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"index"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -85,6 +91,32 @@ const struct PairTargetCurrencyFetchedProperties PairTargetCurrencyFetchedProper
 
 - (void)setPrimitiveFixedTargetPaymentAllowedValue:(BOOL)value_ {
 	[self setPrimitiveFixedTargetPaymentAllowed:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
+@dynamic hidden;
+
+
+
+- (BOOL)hiddenValue {
+	NSNumber *result = [self hidden];
+	return [result boolValue];
+}
+
+- (void)setHiddenValue:(BOOL)value_ {
+	[self setHidden:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveHiddenValue {
+	NSNumber *result = [self primitiveHidden];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveHiddenValue:(BOOL)value_ {
+	[self setPrimitiveHidden:[NSNumber numberWithBool:value_]];
 }
 
 

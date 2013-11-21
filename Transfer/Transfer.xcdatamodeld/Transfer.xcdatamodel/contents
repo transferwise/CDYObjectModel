@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F45" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13A603" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AllowedTypeFieldValue" representedClassName="AllowedTypeFieldValue" syncable="YES">
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -35,6 +35,7 @@
         <relationship name="targets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PairTargetCurrency" inverseName="currency" inverseEntity="PairTargetCurrency" syncable="YES"/>
     </entity>
     <entity name="PairSourceCurrency" representedClassName="PairSourceCurrency" syncable="YES">
+        <attribute name="hidden" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="maxInvoiceAmount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="currency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="sources" inverseEntity="Currency" syncable="YES"/>
@@ -42,6 +43,7 @@
     </entity>
     <entity name="PairTargetCurrency" representedClassName="PairTargetCurrency" syncable="YES">
         <attribute name="fixedTargetPaymentAllowed" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="hidden" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="index" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="minInvoiceAmount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="currency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="targets" inverseEntity="Currency" syncable="YES"/>
@@ -155,8 +157,8 @@
         <element name="Recipient" positionX="0" positionY="0" width="0" height="0"/>
         <element name="RecipientType" positionX="0" positionY="0" width="0" height="0"/>
         <element name="RecipientTypeField" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Setting" positionX="0" positionY="0" width="0" height="0"/>
         <element name="TypeFieldValue" positionX="0" positionY="0" width="0" height="0"/>
         <element name="User" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Setting" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

@@ -19,5 +19,6 @@
 - (NSFetchedResultsController *)fetchedControllerForSourcesContainingTargetCurrency:(Currency *)currency;
 - (NSFetchedResultsController *)fetchedControllerForTargetsWithSourceCurrency:(Currency *)currency;
 - (PairTargetCurrency *)pairWithSource:(Currency *)source target:(Currency *)target;
+- (void)hideExistingPairSources;
 
 @end

@@ -5,6 +5,7 @@
 
 
 extern const struct PairSourceCurrencyAttributes {
+	__unsafe_unretained NSString *hidden;
 	__unsafe_unretained NSString *index;
 	__unsafe_unretained NSString *maxInvoiceAmount;
 } PairSourceCurrencyAttributes;
@@ -23,6 +24,7 @@ extern const struct PairSourceCurrencyFetchedProperties {
 
 
 
+
 @interface PairSourceCurrencyID : NSManagedObjectID {}
 @end
 
@@ -31,6 +33,20 @@ extern const struct PairSourceCurrencyFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (PairSourceCurrencyID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* hidden;
+
+
+
+@property BOOL hiddenValue;
+- (BOOL)hiddenValue;
+- (void)setHiddenValue:(BOOL)value_;
+
+//- (BOOL)validateHidden:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -91,6 +107,15 @@ extern const struct PairSourceCurrencyFetchedProperties {
 @end
 
 @interface _PairSourceCurrency (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSNumber*)primitiveHidden;
+- (void)setPrimitiveHidden:(NSNumber*)value;
+
+- (BOOL)primitiveHiddenValue;
+- (void)setPrimitiveHiddenValue:(BOOL)value_;
+
+
 
 
 - (NSNumber*)primitiveIndex;

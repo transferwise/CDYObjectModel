@@ -34,9 +34,12 @@
         [source setCurrency:currency];
     }
 
+    [source setHiddenValue:NO];
     [source setIndex:@(index)];
     [source setMaxInvoiceAmount:data[@"maxInvoiceAmount"]];
     NSArray *targets = data[@"targetCurrencies"];
+
+    [self hideExistingTargetsForSource:source];
 
     NSUInteger targetIndex = 0;
     for (NSDictionary *targetData in targets) {
@@ -49,6 +52,7 @@
             [target setSource:source];
         }
 
+        [target setHiddenValue:NO];
         [target setMinInvoiceAmount:targetData[@"minInvoiceAmount"]];
         [target setFixedTargetPaymentAllowed:targetData[@"fixedTargetPaymentAllowed"]];
         [target setIndex:@(targetIndex++)];
@@ -63,20 +67,25 @@
 }
 
 - (NSFetchedResultsController *)fetchedControllerForSources {
+    NSPredicate *notHidden = [NSPredicate predicateWithFormat:@"hidden = NO"];
     NSSortDescriptor *indexSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES];
-    return [self fetchedControllerForEntity:[PairSourceCurrency entityName] sortDescriptors:@[indexSortDescriptor]];
+    return [self fetchedControllerForEntity:[PairSourceCurrency entityName] predicate:notHidden sortDescriptors:@[indexSortDescriptor]];
 }
 
 - (NSFetchedResultsController *)fetchedControllerForSourcesContainingTargetCurrency:(Currency *)currency {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ANY targets.currency = %@", currency];
+    NSPredicate *currencyPredicate = [NSPredicate predicateWithFormat:@"ANY targets.currency = %@", currency];
+    NSPredicate *notHidden = [NSPredicate predicateWithFormat:@"hidden = NO"];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notHidden, currencyPredicate]];
     NSSortDescriptor *indexSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES];
     return [self fetchedControllerForEntity:[PairSourceCurrency entityName] predicate:predicate sortDescriptors:@[indexSortDescriptor]];
 }
 
 - (NSFetchedResultsController *)fetchedControllerForTargetsWithSourceCurrency:(Currency *)currency {
     NSPredicate *currencyPredicate = [NSPredicate predicateWithFormat:@"source.currency = %@", currency];
+    NSPredicate *notHidden = [NSPredicate predicateWithFormat:@"hidden = NO"];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notHidden, currencyPredicate]];
     NSSortDescriptor *indexSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES];
-    return [self fetchedControllerForEntity:[PairTargetCurrency entityName] predicate:currencyPredicate sortDescriptors:@[indexSortDescriptor]];
+    return [self fetchedControllerForEntity:[PairTargetCurrency entityName] predicate:predicate sortDescriptors:@[indexSortDescriptor]];
 }
 
 - (PairTargetCurrency *)pairWithSource:(Currency *)source target:(Currency *)target {
@@ -84,6 +93,21 @@
     NSPredicate *targetPredicate = [NSPredicate predicateWithFormat:@"currency = %@", target];
     NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[sourcePredicate, targetPredicate]];
     return [self fetchEntityNamed:[PairTargetCurrency entityName] withPredicate:predicate];
+}
+
+- (void)hideExistingPairSources {
+    NSArray *pairs = [self fetchEntitiesNamed:[PairSourceCurrency entityName] withPredicate:nil];
+    for (PairSourceCurrency *sourceCurrency in pairs) {
+        [sourceCurrency setHiddenValue:YES];
+    }
+}
+
+- (void)hideExistingTargetsForSource:(PairSourceCurrency *)source {
+    NSPredicate *sourcePredicate = [NSPredicate predicateWithFormat:@"source = %@", source];
+    NSArray *targets = [self fetchEntitiesNamed:[PairTargetCurrency entityName] withPredicate:sourcePredicate];
+    for (PairTargetCurrency *targetCurrency in targets) {
+        [targetCurrency setHiddenValue:YES];
+    }
 }
 
 @end

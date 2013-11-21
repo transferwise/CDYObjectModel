@@ -49,6 +49,8 @@ NSString *const kCurrencyPairsPath = @"/currency/pairs";
             NSArray *pairs = response[@"sourceCurrencies"];
             MCLog(@"Retrieved %d paris", [pairs count]);
 
+            [weakSelf.workModel hideExistingPairSources];
+
             NSUInteger index = 0;
             for (NSDictionary *data in pairs) {
                 [weakSelf.workModel createOrUpdatePairWithData:data index:index++];

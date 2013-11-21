@@ -4,6 +4,7 @@
 #import "_PairSourceCurrency.h"
 
 const struct PairSourceCurrencyAttributes PairSourceCurrencyAttributes = {
+	.hidden = @"hidden",
 	.index = @"index",
 	.maxInvoiceAmount = @"maxInvoiceAmount",
 };
@@ -42,6 +43,11 @@ const struct PairSourceCurrencyFetchedProperties PairSourceCurrencyFetchedProper
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"hiddenValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"hidden"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"indexValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"index"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -55,6 +61,32 @@ const struct PairSourceCurrencyFetchedProperties PairSourceCurrencyFetchedProper
 
 	return keyPaths;
 }
+
+
+
+
+@dynamic hidden;
+
+
+
+- (BOOL)hiddenValue {
+	NSNumber *result = [self hidden];
+	return [result boolValue];
+}
+
+- (void)setHiddenValue:(BOOL)value_ {
+	[self setHidden:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveHiddenValue {
+	NSNumber *result = [self primitiveHidden];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveHiddenValue:(BOOL)value_ {
+	[self setPrimitiveHidden:[NSNumber numberWithBool:value_]];
+}
+
 
 
 
