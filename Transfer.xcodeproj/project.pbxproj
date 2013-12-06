@@ -2648,7 +2648,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS3.0",
 					"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0",
-					"/Users/jaanus/projects/mc-transfer-ios/Thirdparty/AF-iOS-SDK-v2.5.1.9.8",
+					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2.5.1.9.8",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = TransferDev;
@@ -2685,7 +2685,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS3.0",
 					"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0",
-					"/Users/jaanus/projects/mc-transfer-ios/Thirdparty/AF-iOS-SDK-v2.5.1.9.8",
+					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2.5.1.9.8",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = TransferDev;
