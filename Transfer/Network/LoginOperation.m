@@ -51,6 +51,7 @@ NSString *const kLoginPath = @"/token/create";
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"login"] = self.email;
     params[@"password"] = self.password;
+    params[@"lifeTime"] = @"week";
 
     __block __weak LoginOperation *weakSelf = self;
     [self setOperationSuccessHandler:^(NSDictionary *response) {
