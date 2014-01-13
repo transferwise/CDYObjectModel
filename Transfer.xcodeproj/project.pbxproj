@@ -122,7 +122,6 @@
 		EA2379FB1793E04400166361 /* PersonalProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2379F71793E04400166361 /* PersonalProfile.m */; };
 		EA2379FC1793E04400166361 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2379F91793E04400166361 /* User.m */; };
 		EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */; };
-		EA31A11D17DDB1CA00F937F7 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA31A11717DDB1CA00F937F7 /* libTestFlight.a */; };
 		EA31A12517DDB29B00F937F7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA1479171BC911005B9430 /* main.m */; };
 		EA31A12617DDB29B00F937F7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA147D171BC911005B9430 /* AppDelegate.m */; };
 		EA31A12717DDB29B00F937F7 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EAAA1485171BC911005B9430 /* Transfer.xcdatamodeld */; };
@@ -355,6 +354,8 @@
 		EA416E301768673500904D97 /* ProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E2F1768673500904D97 /* ProfileSource.m */; };
 		EA416E331768674700904D97 /* PersonalProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E321768674700904D97 /* PersonalProfileSource.m */; };
 		EA416E361768675400904D97 /* BusinessProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E351768675400904D97 /* BusinessProfileSource.m */; };
+		EA483D631883E3A400D69346 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA483D5D1883E3A400D69346 /* libTestFlight.a */; };
+		EA483D641883E3A400D69346 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA483D5D1883E3A400D69346 /* libTestFlight.a */; };
 		EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */; };
 		EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */; };
 		EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */; };
@@ -372,7 +373,6 @@
 		EA7F8816176F2B44003B0F46 /* RemoveTokenOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7F8815176F2B44003B0F46 /* RemoveTokenOperation.m */; };
 		EA84054C17F0681D00F44916 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8404B217F0681D00F44916 /* libGoogleAnalyticsServices.a */; };
 		EA84054D17F0681E00F44916 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8404B217F0681D00F44916 /* libGoogleAnalyticsServices.a */; };
-		EA84055717F06BF200F44916 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA31A11717DDB1CA00F937F7 /* libTestFlight.a */; };
 		EA84055917F06DCD00F44916 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA84055817F06DCD00F44916 /* AdSupport.framework */; };
 		EA84055C17F06E0100F44916 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA84055817F06DCD00F44916 /* AdSupport.framework */; };
 		EA84056917F0A40B00F44916 /* spinner.html in Resources */ = {isa = PBXBuildFile; fileRef = EA84056817F0A40B00F44916 /* spinner.html */; };
@@ -706,12 +706,6 @@
 		EA2379F91793E04400166361 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		EA2B23951721323E001AE9DE /* CurrencyPairsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyPairsOperation.h; sourceTree = "<group>"; };
 		EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyPairsOperation.m; sourceTree = "<group>"; };
-		EA31A11717DDB1CA00F937F7 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		EA31A11817DDB1CA00F937F7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		EA31A11917DDB1CA00F937F7 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
-		EA31A11A17DDB1CA00F937F7 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
-		EA31A11B17DDB1CA00F937F7 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
-		EA31A11C17DDB1CA00F937F7 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		EA31A23817DDB29B00F937F7 /* TransferDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransferDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA347735180D2C6C00104417 /* _Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Setting.h; sourceTree = "<group>"; };
 		EA347736180D2C6C00104417 /* _Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Setting.m; sourceTree = "<group>"; };
@@ -737,6 +731,12 @@
 		EA416E321768674700904D97 /* PersonalProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileSource.m; sourceTree = "<group>"; };
 		EA416E341768675400904D97 /* BusinessProfileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileSource.h; sourceTree = "<group>"; };
 		EA416E351768675400904D97 /* BusinessProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileSource.m; sourceTree = "<group>"; };
+		EA483D5D1883E3A400D69346 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		EA483D5E1883E3A400D69346 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		EA483D5F1883E3A400D69346 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		EA483D601883E3A400D69346 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
+		EA483D611883E3A400D69346 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
+		EA483D621883E3A400D69346 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		EA4AA60B17379C9D00E99150 /* CurrencySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencySelectionCell.h; sourceTree = "<group>"; };
 		EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencySelectionCell.m; sourceTree = "<group>"; };
 		EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencySelectionCell.xib; sourceTree = "<group>"; };
@@ -984,6 +984,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA483D641883E3A400D69346 /* libTestFlight.a in Frameworks */,
 				EA84055917F06DCD00F44916 /* AdSupport.framework in Frameworks */,
 				EA34529F17DF1019005BB4F1 /* QuartzCore.framework in Frameworks */,
 				EA31A1BF17DDB29B00F937F7 /* AddressBook.framework in Frameworks */,
@@ -997,7 +998,6 @@
 				EA31A1C617DDB29B00F937F7 /* UIKit.framework in Frameworks */,
 				EA31A1C717DDB29B00F937F7 /* Foundation.framework in Frameworks */,
 				EA31A1C817DDB29B00F937F7 /* CoreGraphics.framework in Frameworks */,
-				EA84055717F06BF200F44916 /* libTestFlight.a in Frameworks */,
 				EA84054D17F0681E00F44916 /* libGoogleAnalyticsServices.a in Frameworks */,
 				EA31A1C917DDB29B00F937F7 /* CoreData.framework in Frameworks */,
 				EA31A1CA17DDB29B00F937F7 /* Crashlytics.framework in Frameworks */,
@@ -1022,6 +1022,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA483D631883E3A400D69346 /* libTestFlight.a in Frameworks */,
 				EAD6675E174A565500D29BCB /* AddressBook.framework in Frameworks */,
 				EAD6675F174A565500D29BCB /* AddressBookUI.framework in Frameworks */,
 				BB92B144172A747300B6F096 /* CoreText.framework in Frameworks */,
@@ -1039,7 +1040,6 @@
 				EA61557517A69A5A008B6C79 /* Crashlytics.framework in Frameworks */,
 				EA0253BA17D5D28900F54C18 /* MessageUI.framework in Frameworks */,
 				BC92EA001E7D4BE89CF454A0 /* libPods.a in Frameworks */,
-				EA31A11D17DDB1CA00F937F7 /* libTestFlight.a in Frameworks */,
 				EA3452A017DF102D005BB4F1 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1241,17 +1241,17 @@
 			path = BaseData;
 			sourceTree = SOURCE_ROOT;
 		};
-		EA31A11617DDB1CA00F937F7 /* TestFlightSDK2.0.0 */ = {
+		EA483D5C1883E3A400D69346 /* TestFlightSDK2.1.3 */ = {
 			isa = PBXGroup;
 			children = (
-				EA31A11717DDB1CA00F937F7 /* libTestFlight.a */,
-				EA31A11817DDB1CA00F937F7 /* README.md */,
-				EA31A11917DDB1CA00F937F7 /* release_notes.md */,
-				EA31A11A17DDB1CA00F937F7 /* TestFlight+AsyncLogging.h */,
-				EA31A11B17DDB1CA00F937F7 /* TestFlight+ManualSessions.h */,
-				EA31A11C17DDB1CA00F937F7 /* TestFlight.h */,
+				EA483D5D1883E3A400D69346 /* libTestFlight.a */,
+				EA483D5E1883E3A400D69346 /* README.md */,
+				EA483D5F1883E3A400D69346 /* release_notes.md */,
+				EA483D601883E3A400D69346 /* TestFlight+AsyncLogging.h */,
+				EA483D611883E3A400D69346 /* TestFlight+ManualSessions.h */,
+				EA483D621883E3A400D69346 /* TestFlight.h */,
 			);
-			path = TestFlightSDK2.0.0;
+			path = TestFlightSDK2.1.3;
 			sourceTree = "<group>";
 		};
 		EA76D911175CF80100AE3F86 /* TransferTests */ = {
@@ -1383,9 +1383,9 @@
 			children = (
 				EAA4B36C17FD476A003B774F /* AF-iOS-SDK-v2.5.1.9.8 */,
 				EA84043B17F0681C00F44916 /* GoogleAnalyticsiOS3.0 */,
-				EA31A11617DDB1CA00F937F7 /* TestFlightSDK2.0.0 */,
 				EA225C44178E96FE009D6B83 /* JCSObjectModel */,
 				EA88E65C172F96660021492C /* SWRevealViewController */,
+				EA483D5C1883E3A400D69346 /* TestFlightSDK2.1.3 */,
 				BBC6911B1721414300F0FB1A /* TSAlertView */,
 				EA0253BB17D5E44400F54C18 /* uidevice-extension */,
 			);
@@ -2647,7 +2647,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS3.0",
-					"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0",
+					"$(SRCROOT)/Thirdparty/TestFlightSDK2.1.3",
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2.5.1.9.8",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
@@ -2684,7 +2684,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS3.0",
-					"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0",
+					"$(SRCROOT)/Thirdparty/TestFlightSDK2.1.3",
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2.5.1.9.8",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
@@ -2820,7 +2820,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS3.0",
-					"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0",
+					"$(SRCROOT)/Thirdparty/TestFlightSDK2.1.3",
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2.5.1.9.8",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
@@ -2856,7 +2856,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsiOS3.0",
-					"$(SRCROOT)/Thirdparty/TestFlightSDK2.0.0",
+					"$(SRCROOT)/Thirdparty/TestFlightSDK2.1.3",
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2.5.1.9.8",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
