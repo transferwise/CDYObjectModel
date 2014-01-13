@@ -77,4 +77,6 @@ typedef NS_OPTIONS(short, IdentificationRequired) {
 extern NSString *AppsFlyerDevKey;
 extern NSString *AppsFlyerIdentifier;
 
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
 

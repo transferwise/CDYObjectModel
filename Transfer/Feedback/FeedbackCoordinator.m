@@ -65,11 +65,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (self.rateButtonIndex == buttonIndex) {
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Clicked review notification"];
-        NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=APP_ID";
-
-        NSString *reviewURL = [templateReviewURL stringByReplacingOccurrencesOfString:@"APP_ID" withString:[NSString stringWithFormat:@"%d", TransferwiseAppID]];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:reviewURL]];
+        [self sendToAppStorePage];
     }
 
     if (self.feedbackButtonIndex != buttonIndex) {
@@ -79,6 +75,20 @@
     MCLog(@"Send mail pressed");
 
 	[self presentFeedbackEmail];
+}
+
+- (void)sendToAppStorePage {
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"Clicked review notification"];
+
+    NSString *templateReviewURL = nil;
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        templateReviewURL = @"itms-apps://itunes.apple.com/app/idAPP_ID";
+    } else {
+        templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=APP_ID";
+    }
+
+    NSString *reviewURL = [templateReviewURL stringByReplacingOccurrencesOfString:@"APP_ID" withString:[NSString stringWithFormat:@"%d", TransferwiseAppID]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:reviewURL]];
 }
 
 - (void)presentFeedbackEmail {
