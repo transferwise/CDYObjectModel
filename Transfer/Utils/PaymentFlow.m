@@ -254,21 +254,29 @@
     MCLog(@"Validate payment");
     self.paymentErrorHandler = errorHandler;
 
-    CreatePaymentOperation *operation = [CreatePaymentOperation validateOperationWithInput:paymentInput];
-    [self setExecutedOperation:operation];
-    [operation setObjectModel:self.objectModel];
+    JCSActionBlock executeValidationBlock = ^{
+        CreatePaymentOperation *operation = [CreatePaymentOperation validateOperationWithInput:paymentInput];
+        [self setExecutedOperation:operation];
+        [operation setObjectModel:self.objectModel];
 
-    [operation setResponseHandler:^(NSManagedObjectID *paymentID, NSError *error) {
-        if (error) {
-            self.paymentErrorHandler(error);
-            return;
-        }
-        
-        MCLog(@"Payment valid");
-        [self checkVerificationNeeded];
-    }];
+        [operation setResponseHandler:^(NSManagedObjectID *paymentID, NSError *error) {
+            if (error) {
+                self.paymentErrorHandler(error);
+                return;
+            }
 
-    [operation execute];
+            MCLog(@"Payment valid");
+            [self checkVerificationNeeded];
+        }];
+
+        [operation execute];
+    };
+
+    if ([Credentials userLoggedIn]) {
+        [self updateSenderProfile:executeValidationBlock];
+    } else {
+        executeValidationBlock();
+    }
 }
 
 - (void)checkVerificationNeeded {
@@ -295,7 +303,17 @@
                 [self presentVerificationScreen];
             } else if ([Credentials userLoggedIn]) {
                 MCLog(@"Update sender profile");
-                [self updateSenderProfile];
+                [self updateSenderProfile:^{
+                    //TODO jaanus: copy/paste...
+                    Recipient *recipient = self.objectModel.pendingPayment.recipient;
+
+                    MCLog(@"Recipient created?%d", [recipient remoteIdValue] != 0);
+                    if ([recipient remoteIdValue] == 0) {
+                        [self commitRecipientData];
+                    } else {
+                        [self uploadVerificationData];
+                    }
+                }];
             } else {
                 MCLog(@"Register user");
                 [self registerUser];
@@ -346,7 +364,16 @@
             return;
         }
 
-        [self updateSenderProfile];
+        [self updateSenderProfile:^{
+            Recipient *recipient = self.objectModel.pendingPayment.recipient;
+
+            MCLog(@"Recipient created?%d", [recipient remoteIdValue] != 0);
+            if ([recipient remoteIdValue] == 0) {
+                [self commitRecipientData];
+            } else {
+                [self uploadVerificationData];
+            }
+        }];
     }];
 
     [operation execute];
@@ -357,18 +384,18 @@
 }
 
 
-- (void)updateSenderProfile {
+- (void)updateSenderProfile:(JCSActionBlock)completion {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"updateSenderProfile");
         if ([self.objectModel.currentUser.businessProfile isFilled]) {
-            [self updateBusinessProfile];
+            [self updateBusinessProfile:completion];
         } else {
-            [self updatePersonalProfile];
+            [self updatePersonalProfile:completion];
         }
     });
 }
 
-- (void)updateBusinessProfile {
+- (void)updateBusinessProfile:(JCSActionBlock)completion {
     MCLog(@"updateBusinessProfile");
     BusinessProfileOperation *operation = [BusinessProfileOperation commitWithData:self.objectModel.currentUser.businessProfile.objectID];
     [self setExecutedOperation:operation];
@@ -380,13 +407,13 @@
             return;
         }
 
-        [self updatePersonalProfile];
+        [self updatePersonalProfile:completion];
     }];
 
     [operation execute];
 }
 
-- (void)updatePersonalProfile {
+- (void)updatePersonalProfile:(JCSActionBlock)completion {
     MCLog(@"updatePersonalProfile");
     PersonalProfileOperation *operation = [PersonalProfileOperation commitOperationWithProfile:self.objectModel.currentUser.personalProfile.objectID];
     [self setExecutedOperation:operation];
@@ -398,15 +425,7 @@
             return;
         }
 
-        Recipient *recipient = self.objectModel.pendingPayment.recipient;
-
-        MCLog(@"Recipient created?%d", [recipient remoteIdValue] != 0);
-
-        if ([recipient remoteIdValue] == 0) {
-            [self commitRecipientData];
-        } else {
-            [self uploadVerificationData];
-        }
+        completion();
     }];
 
     [operation execute];
