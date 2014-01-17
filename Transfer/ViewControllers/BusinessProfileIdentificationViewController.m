@@ -75,9 +75,7 @@
     [self.navigationItem setTitle:NSLocalizedString(@"business.profile.identification.controller.title", nil)];
 
     [self.tableView adjustFooterViewSize];
-    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
-        [self.navigationController popViewControllerAnimated:YES];
-    }]];
+    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 }
 
 

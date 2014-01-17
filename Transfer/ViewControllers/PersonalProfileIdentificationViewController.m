@@ -94,9 +94,7 @@
 
     [self.tableView adjustFooterViewSize];
 
-    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
-        [self.navigationController popViewControllerAnimated:YES];
-    }]];
+    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 }
 
 - (void)buildCells {

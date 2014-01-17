@@ -156,9 +156,7 @@ static NSUInteger const kRowYouSend = 0;
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
 
     if (!self.tabBarController) {
-        [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
-            [self.navigationController popViewControllerAnimated:YES];
-        }]];
+        [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
     }
 
     if (self.recipient) {

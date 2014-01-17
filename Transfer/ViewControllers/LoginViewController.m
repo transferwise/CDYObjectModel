@@ -94,9 +94,7 @@ static NSUInteger const kTableRowEmail = 0;
 
     [self.navigationItem setTitle:NSLocalizedString(@"login.controller.title", nil)];
 
-    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
-        [self.navigationController popViewControllerAnimated:YES];
-    }]];
+    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 }
 
 

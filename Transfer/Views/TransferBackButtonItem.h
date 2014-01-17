@@ -12,5 +12,6 @@
 @interface TransferBackButtonItem : UIBarButtonItem
 
 + (TransferBackButtonItem *)backButtonWithTapHandler:(JCSActionBlock)tapHandler;
++ (TransferBackButtonItem *)backButtonForPoppedNavigationController:(UINavigationController *)navigationController;
 
 @end

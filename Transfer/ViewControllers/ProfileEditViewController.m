@@ -157,9 +157,7 @@ static NSUInteger const kButtonSection = 0;
         return;
     }
 
-    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
-        [self.navigationController popViewControllerAnimated:YES];
-    }]];
+    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 
     [self.navigationItem setTitle:[self.profileSource editViewTitle]];
 

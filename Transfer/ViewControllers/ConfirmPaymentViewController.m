@@ -166,9 +166,7 @@ static NSUInteger const kReceiverSection = 2;
     [self fillDataCells];
     [self.tableView reloadData];
 
-    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
-        [self.navigationController popViewControllerAnimated:YES];
-    }]];
+    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 }
 
 - (void)fillDataCells {
