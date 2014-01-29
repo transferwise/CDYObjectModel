@@ -138,10 +138,6 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     [self setSelectedCurrency:selected];
     [self.currencyField setText:selected.code];
     self.currencyChangedHandler(selected);
-
-    delayedExecution(0.3, ^{
-        [self.currencyField resignFirstResponder];
-    });
 }
 
 - (void)setForcedCurrency:(Currency *)currency {
