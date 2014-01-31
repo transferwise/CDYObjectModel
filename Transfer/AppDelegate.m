@@ -43,6 +43,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
 #if USE_TESTFLIGHT
+    [TestFlight setOptions:@{TFOptionReportCrashes : @NO}];
     #if DEV_VERSION
         [TestFlight takeOff:@"78f288b9-67c6-4bd3-b6ba-bf9b54645412"];
     #else
@@ -50,11 +51,7 @@
     #endif
 #endif
 
-#if DEBUG
-    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
-#else
     [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelNone];
-#endif
 
     [[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
 

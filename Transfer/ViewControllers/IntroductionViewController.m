@@ -15,7 +15,6 @@
 #import "WhyView.h"
 #import "TSAlertView.h"
 #import "MoneyFormatter.h"
-#import "TabBarActivityIndicatorView.h"
 #import "TRWAlertView.h"
 #import "PaymentFlow.h"
 #import "NoUserPaymentFlow.h"
@@ -30,6 +29,7 @@
 #import "UITableView+FooterPositioning.h"
 #import "GoogleAnalytics.h"
 #import "CXAlertView.h"
+#import "StartPaymentButton.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
@@ -39,7 +39,7 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) IBOutlet UIView *controlsView;
 @property (nonatomic, strong) IBOutlet OHAttributedLabel *savingsLabel;
 @property (nonatomic, strong) IBOutlet UILabel *loginTitle;
-@property (nonatomic, strong) IBOutlet UIButton *startedButton;
+@property (nonatomic, strong) IBOutlet StartPaymentButton *startedButton;
 @property (nonatomic, strong) IBOutlet UIButton *loginButton;
 @property (nonatomic, strong) MoneyEntryCell *youSendCell;
 @property (nonatomic, strong) MoneyEntryCell *theyReceiveCell;
@@ -51,7 +51,6 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) IBOutlet UIView *headerView;
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *subTitleLabel;
-@property (nonatomic, strong) TabBarActivityIndicatorView *activityIndicator;
 
 - (IBAction)loginPressed:(id)sender;
 - (IBAction)startPaymentPressed:(id)sender;
@@ -327,15 +326,7 @@ static NSUInteger const kRowYouSend = 0;
 
 - (void)showCalculationIndicator:(BOOL)calculating {
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (!calculating) {
-            [self.activityIndicator removeFromSuperview];
-            [self setActivityIndicator:nil];
-            return;
-        }
-
-        TabBarActivityIndicatorView *indicatorView = [TabBarActivityIndicatorView showHUDOnController:self];
-        [self setActivityIndicator:indicatorView];
-        [indicatorView setMessage:NSLocalizedString(@"calculation.pending.message", nil)];
+        [self.startedButton showCalculating:calculating];
     });
 }
 

@@ -26,12 +26,11 @@
 #import "ObjectModel+PendingPayments.h"
 #import "PairTargetCurrency.h"
 #import "PairSourceCurrency.h"
-#import "TabBarActivityIndicatorView.h"
-#import "UIView+Loading.h"
 #import "SwitchCell.h"
 #import "TransferBackButtonItem.h"
 #import "GoogleAnalytics.h"
 #import "NSString+Validation.h"
+#import "StartPaymentButton.h"
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -42,7 +41,7 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) MoneyCalculator *calculator;
 @property (nonatomic, strong) IBOutlet UIView *footerView;
 @property (nonatomic, strong) IBOutlet OHAttributedLabel *paymentReceiveDateLabel;
-@property (nonatomic, strong) IBOutlet UIButton *continueToDetailsButton;
+@property (nonatomic, strong) IBOutlet StartPaymentButton *continueToDetailsButton;
 @property (nonatomic, strong) IBOutlet UILabel *depositTitleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *transferFeeTitleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *currencyCostTitleLabel;
@@ -56,7 +55,6 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) CalculationResult *calculationResult;
 @property (nonatomic, strong) PaymentFlow *paymentFlow;
 @property (nonatomic, strong) CurrencyPairsOperation *executedOperation;
-@property (nonatomic, strong) TabBarActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 
 - (IBAction)continuePressed:(id)sender;
@@ -326,25 +324,7 @@ static NSUInteger const kRowYouSend = 0;
 
 - (void)presentActivityIndicator:(BOOL)calculating {
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (!calculating) {
-            [self.activityIndicator removeFromSuperview];
-            [self setActivityIndicator:nil];
-            return;
-        }
-
-        if (self.tabBarController) {
-            TabBarActivityIndicatorView *indicatorView = [TabBarActivityIndicatorView showHUDOnController:self];
-            [self setActivityIndicator:indicatorView];
-            [indicatorView setMessage:NSLocalizedString(@"calculation.pending.message", nil)];
-        } else {
-            TabBarActivityIndicatorView *indicatorView = [TabBarActivityIndicatorView loadInstance];
-            [self setActivityIndicator:indicatorView];
-            [self.view addSubview:indicatorView];
-            [indicatorView setMessage:NSLocalizedString(@"calculation.pending.message", nil)];
-            CGRect indicatorFrame = indicatorView.frame;
-            indicatorFrame.origin.y = CGRectGetHeight(self.view.frame) - CGRectGetHeight(indicatorFrame);
-            [indicatorView setFrame:indicatorFrame];
-        }
+        [self.continueToDetailsButton showCalculating:calculating];
     });
 }
 

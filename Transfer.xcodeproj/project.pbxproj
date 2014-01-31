@@ -365,6 +365,8 @@
 		EA59298E1758CD6C007C0072 /* OpenIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59298C1758CD6C007C0072 /* OpenIDViewController.m */; };
 		EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */; };
 		EA61557517A69A5A008B6C79 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61557417A69A5A008B6C79 /* Crashlytics.framework */; };
+		EA677B45189B855200505139 /* StartPaymentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA677B44189B855200505139 /* StartPaymentButton.m */; };
+		EA677B46189B855200505139 /* StartPaymentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA677B44189B855200505139 /* StartPaymentButton.m */; };
 		EA76D90E175CF80100AE3F86 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */; };
 		EA76D90F175CF80100AE3F86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146B171BC911005B9430 /* UIKit.framework */; };
 		EA76D910175CF80100AE3F86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146D171BC911005B9430 /* Foundation.framework */; };
@@ -754,6 +756,8 @@
 		EA59298C1758CD6C007C0072 /* OpenIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenIDViewController.m; sourceTree = "<group>"; };
 		EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenIDViewController.xib; sourceTree = "<group>"; };
 		EA61557417A69A5A008B6C79 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		EA677B43189B855200505139 /* StartPaymentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartPaymentButton.h; sourceTree = "<group>"; };
+		EA677B44189B855200505139 /* StartPaymentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartPaymentButton.m; sourceTree = "<group>"; };
 		EA76D90C175CF80100AE3F86 /* TransferTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransferTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		EA76D913175CF80100AE3F86 /* TransferTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TransferTests-Info.plist"; sourceTree = "<group>"; };
@@ -1101,6 +1105,8 @@
 				BB704E7C177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m */,
 				EA415D4317A7B2A900E9B56A /* SpinningImageView.h */,
 				EA415D4417A7B2A900E9B56A /* SpinningImageView.m */,
+				EA677B43189B855200505139 /* StartPaymentButton.h */,
+				EA677B44189B855200505139 /* StartPaymentButton.m */,
 				EA225C72178EA124009D6B83 /* TabBarActivityIndicatorView.h */,
 				EA225C73178EA124009D6B83 /* TabBarActivityIndicatorView.m */,
 				EA225C74178EA124009D6B83 /* TabBarActivityIndicatorView.xib */,
@@ -1839,9 +1845,6 @@
 					EA31A12117DDB29B00F937F7 = {
 						DevelopmentTeam = W53MTDV45J;
 					};
-					EAAA1467171BC911005B9430 = {
-						DevelopmentTeam = W53MTDV45J;
-					};
 				};
 			};
 			buildConfigurationList = EAAA1463171BC911005B9430 /* Build configuration list for PBXProject "Transfer" */;
@@ -2354,6 +2357,7 @@
 				EA31A1B917DDB29B00F937F7 /* SwitchCell.m in Sources */,
 				EA31A1BA17DDB29B00F937F7 /* PaymentDetailsViewController.m in Sources */,
 				EA347738180D2C6C00104417 /* _Setting.m in Sources */,
+				EA677B46189B855200505139 /* StartPaymentButton.m in Sources */,
 				EA31A1BB17DDB29B00F937F7 /* SupportCoordinator.m in Sources */,
 				EA31A1BC17DDB29B00F937F7 /* UIDevice-Hardware.m in Sources */,
 				EA31A1BD17DDB29B00F937F7 /* FeedbackCoordinator.m in Sources */,
@@ -2544,6 +2548,7 @@
 				BB7EAE8E17AFE0DF006A7182 /* SwitchCell.m in Sources */,
 				EAE1E3A317B2519000A45623 /* PaymentDetailsViewController.m in Sources */,
 				EA347737180D2C6C00104417 /* _Setting.m in Sources */,
+				EA677B45189B855200505139 /* StartPaymentButton.m in Sources */,
 				EA0253B617D5C89500F54C18 /* SupportCoordinator.m in Sources */,
 				EA0253BE17D5E49100F54C18 /* UIDevice-Hardware.m in Sources */,
 				EA8FC93E17D864F100E13969 /* FeedbackCoordinator.m in Sources */,
@@ -2770,7 +2775,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: TransferWise LTD (W53MTDV45J)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2806,7 +2811,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: TransferWise LTD (W53MTDV45J)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaanus Siim (JE9U597J94)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
