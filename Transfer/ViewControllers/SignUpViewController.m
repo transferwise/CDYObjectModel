@@ -62,19 +62,19 @@ static NSUInteger const kTableRowEmail = 0;
 
     TextEntryCell *email = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setEmailCell:email];
-    [email configureWithTitle:NSLocalizedString(@"singup.email.field.title", nil) value:@""];
+    [email configureWithTitle:NSLocalizedString(@"sign.up.email.field.title", nil) value:@""];
     [email.entryField setReturnKeyType:UIReturnKeyNext];
     [email.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
     [cells addObject:email];
 
     TextEntryCell *password = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     [self setPasswordCell:password];
-    [password configureWithTitle:NSLocalizedString(@"singup.password.field.title", nil) value:@""];
+    [password configureWithTitle:NSLocalizedString(@"sign.up.password.field.title", nil) value:@""];
     [password.entryField setReturnKeyType:UIReturnKeyDone];
     [password.entryField setSecureTextEntry:YES];
     [cells addObject:password];
 
-    [self.singUpButton setTitle:NSLocalizedString(@"singup.button.title.log.in", nil) forState:UIControlStateNormal];
+    [self.singUpButton setTitle:NSLocalizedString(@"sign.up.button.title.log.in", nil) forState:UIControlStateNormal];
 
     [self.googleSignupMessageLabel setText:NSLocalizedString(@"sign.up.controller.google.signup.message", nil)];
     [self.passwordMessageLabel setText:NSLocalizedString(@"sign.up.controller.set.password.message", nil)];
@@ -126,7 +126,7 @@ static NSUInteger const kTableRowEmail = 0;
     NSString *issues = [self validateInput];
 
     if ([issues hasValue]) {
-        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"signup.error.title", nil) message:issues];
+        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"sign.up.error.title", nil) message:issues];
         [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
         [alertView show];
         return;
