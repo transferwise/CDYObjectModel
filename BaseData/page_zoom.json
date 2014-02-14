@@ -1,0 +1,13 @@
+{
+    "zooms": [
+        {
+            "page": "https://login.yahoo.com/config/login",
+            "zoom": {
+                "x": 300,
+                "y": 0,
+                "w": 265,
+                "h": 265
+            }
+        }
+    ]
+}

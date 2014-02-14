@@ -14,7 +14,6 @@
 #import "Constants.h"
 #import "TransferwiseOperation.h"
 #import "ObjectModel.h"
-#import "UINavigationController+StackManipulations.h"
 #import "Credentials.h"
 #import "ClaimAccountViewController.h"
 #import "ObjectModel+RecipientTypes.h"
@@ -26,6 +25,7 @@
 #import "UITableView+FooterPositioning.h"
 #import "ConfirmPaymentCell.h"
 #import "SupportCoordinator.h"
+#import "GoogleAnalytics.h"
 
 @interface BankTransferViewController ()
 
@@ -133,6 +133,7 @@
 }
 
 - (IBAction)doneBtnClicked:(id)sender {
+    [[GoogleAnalytics sharedInstance] sendEvent:@"PaymentCreated" category:@"payment" label:@"BankTransfer"];
     if ([Credentials temporaryAccount]) {
         ClaimAccountViewController *controller = [[ClaimAccountViewController alloc] init];
         [controller setObjectModel:self.objectModel];

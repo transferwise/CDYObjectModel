@@ -335,6 +335,10 @@
 		EA31A22917DDB29B00F937F7 /* currency_pairs.json in Resources */ = {isa = PBXBuildFile; fileRef = EA225CB8178EEA8A009D6B83 /* currency_pairs.json */; };
 		EA31A22A17DDB29B00F937F7 /* recipient_types.json in Resources */ = {isa = PBXBuildFile; fileRef = EA225CB9178EEA8A009D6B83 /* recipient_types.json */; };
 		EA31A22F17DDB29B00F937F7 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7EAE8917AFE037006A7182 /* SwitchCell.xib */; };
+		EA333F3818A4BEDC00D8A44E /* page_zoom.json in Resources */ = {isa = PBXBuildFile; fileRef = EA333F3718A4BEDC00D8A44E /* page_zoom.json */; };
+		EA333F3918A4BEDC00D8A44E /* page_zoom.json in Resources */ = {isa = PBXBuildFile; fileRef = EA333F3718A4BEDC00D8A44E /* page_zoom.json */; };
+		EA333F3C18A4C00000D8A44E /* PageZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = EA333F3B18A4C00000D8A44E /* PageZoom.m */; };
+		EA333F3D18A4C00000D8A44E /* PageZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = EA333F3B18A4C00000D8A44E /* PageZoom.m */; };
 		EA34529F17DF1019005BB4F1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */; };
 		EA3452A017DF102D005BB4F1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */; };
 		EA347737180D2C6C00104417 /* _Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = EA347736180D2C6C00104417 /* _Setting.m */; };
@@ -709,6 +713,9 @@
 		EA2B23951721323E001AE9DE /* CurrencyPairsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyPairsOperation.h; sourceTree = "<group>"; };
 		EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyPairsOperation.m; sourceTree = "<group>"; };
 		EA31A23817DDB29B00F937F7 /* TransferDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransferDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA333F3718A4BEDC00D8A44E /* page_zoom.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = page_zoom.json; sourceTree = "<group>"; };
+		EA333F3A18A4C00000D8A44E /* PageZoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageZoom.h; sourceTree = "<group>"; };
+		EA333F3B18A4C00000D8A44E /* PageZoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageZoom.m; sourceTree = "<group>"; };
 		EA347735180D2C6C00104417 /* _Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Setting.h; sourceTree = "<group>"; };
 		EA347736180D2C6C00104417 /* _Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Setting.m; sourceTree = "<group>"; };
 		EA347739180D2C7500104417 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
@@ -1234,6 +1241,7 @@
 			children = (
 				EA225CB7178EEA8A009D6B83 /* currencies.json */,
 				EA225CB8178EEA8A009D6B83 /* currency_pairs.json */,
+				EA333F3718A4BEDC00D8A44E /* page_zoom.json */,
 				EA225CB9178EEA8A009D6B83 /* recipient_types.json */,
 			);
 			path = BaseData;
@@ -1642,6 +1650,8 @@
 				EAAF8FB71743B3E4008DF9E2 /* MoneyFormatter.m */,
 				EAA053D4175DD5EE00ACD3F6 /* NoUserPaymentFlow.h */,
 				EAA053D5175DD5EE00ACD3F6 /* NoUserPaymentFlow.m */,
+				EA333F3A18A4C00000D8A44E /* PageZoom.h */,
+				EA333F3B18A4C00000D8A44E /* PageZoom.m */,
 				EA222E31173A676000C5D613 /* PaymentFlow.h */,
 				EA222E32173A676000C5D613 /* PaymentFlow.m */,
 				EA59296F17589F5C007C0072 /* PersonalProfileCommitter.h */,
@@ -1897,6 +1907,7 @@
 				EA31A1EA17DDB29B00F937F7 /* TSAlertViewButtonBackground.png in Resources */,
 				EA31A1EB17DDB29B00F937F7 /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
 				EAE7B6B017E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */,
+				EA333F3918A4BEDC00D8A44E /* page_zoom.json in Resources */,
 				EA31A1EC17DDB29B00F937F7 /* TSAlertViewBackground2.png in Resources */,
 				EA31A1ED17DDB29B00F937F7 /* TSAlertViewBackground.png in Resources */,
 				EA31A1EE17DDB29B00F937F7 /* WhyView.xib in Resources */,
@@ -1967,6 +1978,7 @@
 				BBC691261721416300F0FB1A /* TSAlertViewButtonBackground.png in Resources */,
 				BBC691271721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
 				EAE7B6AF17E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */,
+				EA333F3818A4BEDC00D8A44E /* page_zoom.json in Resources */,
 				BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */,
 				BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */,
 				BBC6912C172147FC00F0FB1A /* WhyView.xib in Resources */,
@@ -2230,6 +2242,7 @@
 				EA31A14417DDB29B00F937F7 /* TransferCalculationsOperation.m in Sources */,
 				EA31A14517DDB29B00F937F7 /* CalculationResult.m in Sources */,
 				EA31A14617DDB29B00F937F7 /* TSAlertView.m in Sources */,
+				EA333F3D18A4C00000D8A44E /* PageZoom.m in Sources */,
 				EA31A14717DDB29B00F937F7 /* WhyView.m in Sources */,
 				EA31A14817DDB29B00F937F7 /* Credentials.m in Sources */,
 				EA31A14917DDB29B00F937F7 /* SWRevealViewController.m in Sources */,
@@ -2421,6 +2434,7 @@
 				EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */,
 				EAEA6257172011C500A96770 /* CalculationResult.m in Sources */,
 				BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */,
+				EA333F3C18A4C00000D8A44E /* PageZoom.m in Sources */,
 				BBCC6338172169980094EABB /* WhyView.m in Sources */,
 				EA88E65B172F96490021492C /* Credentials.m in Sources */,
 				EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */,

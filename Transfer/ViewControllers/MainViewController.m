@@ -18,7 +18,7 @@
 #import "ObjectModel+Recipients.h"
 #import "ObjectModel+Settings.h"
 
-@interface MainViewController () <UINavigationControllerDelegate>
+@interface MainViewController () <UINavigationControllerDelegate, UITabBarControllerDelegate>
 
 @property (nonatomic, strong) UITabBarController *tabsController;
 @property (nonatomic, strong) UIView *revealTapView;
@@ -61,6 +61,7 @@
 
     UITabBarController *tabController = [[UITabBarController alloc] init];
     [tabController setViewControllers:@[transactionsController, paymentController, contactsController]];
+    [tabController setDelegate:self];
     [self setTabsController:tabController];
 
     [self setViewControllers:@[tabController]];
@@ -80,7 +81,7 @@
 }
 
 - (void)menuPressed {
-	[[GoogleAnalytics sharedInstance] sendScreen:@"Menu"];
+	[[GoogleAnalytics sharedInstance] sendAppEvent:@"Menu clicked"];
 	[self.revealViewController revealToggle:nil];
 }
 
@@ -184,6 +185,12 @@
     self.tabsController.selectedViewController = self.paymentController;
     [self popToRootViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    if (viewController == self.paymentController) {
+        [[GoogleAnalytics sharedInstance] sendScreen:@"New payment"];
+    }
 }
 
 @end

@@ -51,6 +51,7 @@
 #import "BusinessProfile.h"
 #import "TransferBackButtonItem.h"
 #import "GoogleAnalytics.h"
+#import "NSError+TRWErrors.h"
 
 static NSUInteger const kSenderSection = 0;
 static NSUInteger const kImportSection = 1;
@@ -292,6 +293,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
 
     dispatch_async(dispatch_get_main_queue(), ^{
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"ExistingRecipientSelected"];
         [self.nameCell setValue:recipient.name];
         [self.nameCell setEditable:NO];
 
@@ -309,6 +311,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (void)handleCurrencySelection:(Currency *)currency {
     dispatch_async(dispatch_get_main_queue(), ^{
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"CurrencyRecipientSelected" withLabel:currency.code];
+
         MCLog(@"Did select currency:%@. Default type:%@", currency.code, currency.defaultRecipientType.type);
 
         RecipientType *type = currency.defaultRecipientType;
@@ -376,10 +380,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 - (IBAction)addButtonPressed:(id)sender {
     [UIApplication dismissKeyboard];
 
-	[[GoogleAnalytics sharedInstance] sendScreen:@"Enter recipient details"];
-
     NSString *issues = [self validateInput];
     if ([issues hasValue]) {
+        [[GoogleAnalytics sharedInstance] sendAlertEvent:@"SavingRecipientAlert" withLabel:issues];
+
         TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"recipient.save.error.title", nil) message:issues];
         [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
         [alertView show];
@@ -420,6 +424,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             [hud hide];
 
             if (error) {
+                [[GoogleAnalytics sharedInstance] sendAlertEvent:@"SavingRecipientAlert" withLabel:[error localizedTransferwiseMessage]];
+
                 TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) error:error];
                 [alertView show];
                 return;

@@ -129,6 +129,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
         return;
     }
 
+    [[GoogleAnalytics sharedInstance] sendScreen:@"New payment to"];
     PaymentViewController *controller = [[PaymentViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setRecipient:recipient];
@@ -174,6 +175,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [committer setObjectModel:self.objectModel];
     [controller setRecipientValidation:committer];
     [controller setAfterSaveAction:^{
+        [[GoogleAnalytics sharedInstance] sendEvent:@"RecipientAdded" category:@"Recipient" label:@"AddRecipientScreen"];
         [self.navigationController popViewControllerAnimated:YES];
     }];
     [self.navigationController pushViewController:controller animated:YES];

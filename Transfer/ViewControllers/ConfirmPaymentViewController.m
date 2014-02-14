@@ -28,6 +28,7 @@
 #import "NSString+Validation.h"
 #import "TransferBackButtonItem.h"
 #import "GoogleAnalytics.h"
+#import "NSError+TRWErrors.h"
 
 static NSUInteger const kTransferSection = 0;
 static NSUInteger const kSenderSection = 1;
@@ -235,6 +236,7 @@ static NSUInteger const kReceiverSection = 2;
     [self.paymentFlow validatePayment:input.objectID errorHandler:^(NSError *error) {
         [hud hide];
         if (error) {
+            [[GoogleAnalytics sharedInstance] sendAlertEvent:@"CreatingPaymentAlert" withLabel:[error localizedTransferwiseMessage]];
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
             [alertView show];
         }

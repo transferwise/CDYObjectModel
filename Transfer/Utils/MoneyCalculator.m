@@ -13,6 +13,7 @@
 #import "Currency.h"
 #import "ObjectModel.h"
 #import "ObjectModel+CurrencyPairs.h"
+#import "GoogleAnalytics.h"
 
 @interface MoneyCalculator ()
 
@@ -41,6 +42,7 @@
 
     [_sendCell.moneyField addTarget:self action:@selector(sendAmountChanged:) forControlEvents:UIControlEventEditingChanged];
     [sendCell setCurrencyChangedHandler:^(Currency *currency) {
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency1Selected" withLabel:currency.code];
         [self sourceCurrencyChanged:currency];
     }];
 }
@@ -50,6 +52,7 @@
 
     [_receiveCell.moneyField addTarget:self action:@selector(receiveAmountChanged:) forControlEvents:UIControlEventEditingChanged];
     [receiveCell setCurrencyChangedHandler:^(Currency *currency) {
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency2Selected" withLabel:currency.code];
         [self setWaitingTargetCurrency:currency];
         [self performCalculation];
     }];

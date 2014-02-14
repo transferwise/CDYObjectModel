@@ -22,6 +22,7 @@
 #import "QuickProfileValidationOperation.h"
 #import "PersonalProfileSource.h"
 #import "TransferBackButtonItem.h"
+#import "GoogleAnalytics.h"
 
 static NSUInteger const kButtonSection = 0;
 
@@ -164,6 +165,10 @@ static NSUInteger const kButtonSection = 0;
     [self pullDetails];
 
     [self setShown:YES];
+
+    if ([self.profileSource isKindOfClass:[PersonalProfileSource class]]) {
+        [[GoogleAnalytics sharedInstance] sendScreen:@"Enter sender details"];
+    }
 }
 
 - (void)pullCountriesWithHud:(TRWProgressHUD *)hud completionHandler:(JCSActionBlock)completion {

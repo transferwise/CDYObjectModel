@@ -78,8 +78,6 @@ static NSUInteger const kTableRowEmail = 0;
     [self.loginButton setTitle:NSLocalizedString(@"button.title.log.in", nil) forState:UIControlStateNormal];
 
     [self.footerMessageLabel setText:NSLocalizedString(@"login.controller.footer.message", nil)];
-
-    [[GoogleAnalytics sharedInstance] sendScreen:@"Login"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -95,6 +93,8 @@ static NSUInteger const kTableRowEmail = 0;
     [self.navigationItem setTitle:NSLocalizedString(@"login.controller.title", nil)];
 
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
+
+    [[GoogleAnalytics sharedInstance] sendScreen:@"Login"];
 }
 
 
@@ -176,6 +176,7 @@ static NSUInteger const kTableRowEmail = 0;
             [hud hide];
 
             if (!error) {
+                [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"tw"];
                 [self dismissViewControllerAnimated:YES completion:nil];
                 return;
             }
@@ -183,10 +184,12 @@ static NSUInteger const kTableRowEmail = 0;
             TRWAlertView *alertView;
             if ([error isTransferwiseError]) {
                 NSString *message = [error localizedTransferwiseMessage];
+                [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials" withLabel:message];
                 alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil) message:message];
             } else {
                 alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
                                                      message:NSLocalizedString(@"login.error.generic.message", nil)];
+                [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials" withLabel:error.localizedDescription];
             }
 
             [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];

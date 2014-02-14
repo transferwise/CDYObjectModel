@@ -14,6 +14,7 @@
 #import "UIView+Loading.h"
 #import "SupportCoordinator.h"
 #import "UINavigationController+StackManipulations.h"
+#import "GoogleAnalytics.h"
 
 @interface PaymentDetailsViewController ()
 
@@ -107,6 +108,7 @@
 }
 
 - (IBAction)contactSupportPressed {
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"view transfer"];
     NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
     [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 }

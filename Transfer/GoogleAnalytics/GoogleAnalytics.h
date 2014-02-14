@@ -14,7 +14,10 @@
 
 - (void)sendScreen:(NSString *)screenName;
 - (void)sendAppEvent:(NSString *)event;
+- (void)sendAppEvent:(NSString *)event withLabel:(NSString *)label;
+- (void)sendAlertEvent:(NSString *)event withLabel:(NSString *)label;
 - (void)sendPaymentEvent:(NSString *)event;
 - (void)markLoggedIn;
+- (void)sendEvent:(NSString *)event category:(NSString *)category label:(NSString *)label;
 
 @end

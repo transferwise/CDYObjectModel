@@ -46,8 +46,6 @@ extern NSString *const TRWServerAddress;
 extern NSString *const TRWGoogleAnalyticsTrackingId;
 extern NSString *const TRWGoogleAnalyticsOtherTrackingId;
 
-extern NSString *const TRWEnvironmentTag;
-
 extern NSString *const TRWSupportCallNumber;
 extern NSString *const TRWSupportEmail;
 extern NSString *const TRWFeedbackEmail;

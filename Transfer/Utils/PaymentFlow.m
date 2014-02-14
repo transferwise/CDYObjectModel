@@ -150,10 +150,10 @@
     [self setExecutedOperation:operation];
 
     [operation setResultHandler:^(BOOL available, NSError *error) {
-
         if (error) {
             handler(error);
         } else if (!available) {
+            [[GoogleAnalytics sharedInstance] sendAlertEvent:@"EmailTakenDuringPaymentAlert" withLabel:@""];
             NSError *emailError = [[NSError alloc] initWithDomain:@"" code:0 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"personal.profile.email.taken.message", nil)}];
             handler(emailError);
         } else {
@@ -179,6 +179,8 @@
 }
 
 - (void)presentRecipientDetails:(BOOL)showMiniProfile {
+    [[GoogleAnalytics sharedInstance] sendScreen:@"Enter recipient details"];
+
     RecipientViewController *controller = [[RecipientViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setShowMiniProfile:showMiniProfile];
@@ -433,6 +435,7 @@
 
 - (void)commitRecipientData {
     MCLog(@"commitRecipientData");
+    [[GoogleAnalytics sharedInstance] sendEvent:@"RecipientAdded" category:@"Recipient" label:@"DuringPayment"];
     RecipientOperation *operation = [RecipientOperation createOperationWithRecipient:self.objectModel.pendingPayment.recipient.objectID];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
@@ -452,6 +455,11 @@
 - (void)uploadVerificationData {
     [self.objectModel performBlock:^{
         PendingPayment *payment = [self.objectModel pendingPayment];
+        if (payment.isAnyVerificationRequired && payment.sendVerificationLaterValue) {
+            [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"skipped"];
+        } else if (payment.isAnyVerificationRequired) {
+            [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"sent"];
+        }
         if ([payment isAnyVerificationRequired] && !payment.sendVerificationLaterValue) {
             [self uploadNextVerificationData];
         } else {

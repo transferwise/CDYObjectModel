@@ -8,6 +8,7 @@
 
 #import "UploadVerificationFileOperation.h"
 #import "TransferwiseOperation+Private.h"
+#import "GoogleAnalytics.h"
 
 NSString *const kUploadPath = @"/verification/uploadFile";
 
@@ -39,6 +40,7 @@ NSString *const kUploadPath = @"/verification/uploadFile";
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"FileUploaded"];
         weakSelf.completionHandler(nil);
     }];
 

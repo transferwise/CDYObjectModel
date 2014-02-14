@@ -116,7 +116,7 @@ static NSUInteger const kTableRowEmail = 0;
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self.navigationItem setHidesBackButton:YES];
 
-    [[GoogleAnalytics sharedInstance] sendScreen:@"Signup start screen"];
+    [[GoogleAnalytics sharedInstance] sendScreen:@"Start screen register"];
 }
 
 
@@ -145,6 +145,7 @@ static NSUInteger const kTableRowEmail = 0;
             return;
         }
 
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserRegistered" withLabel:@"tw"];
         [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentViewNotification object:nil];
     }];
 

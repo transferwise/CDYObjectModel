@@ -47,11 +47,19 @@
 }
 
 - (void)sendAppEvent:(NSString *)event {
-    [self sendEvent:event category:@"app_flow"];
+    [self sendAppEvent:event withLabel:@""];
+}
+
+- (void)sendAppEvent:(NSString *)event withLabel:(NSString *)label {
+    [self sendEvent:event category:@"app_flow" label:label];
+}
+
+- (void)sendAlertEvent:(NSString *)event withLabel:(NSString *)label {
+    [self sendEvent:event category:@"alert" label:label];
 }
 
 - (void)sendPaymentEvent:(NSString *)event {
-    [self sendEvent:event category:@"payment"];
+    [self sendEvent:event category:@"payment" label:@""];
 }
 
 - (void)markLoggedIn {
@@ -60,12 +68,12 @@
     [[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsOtherTrackingId] set:@"IsLoggedIn" value:marker];
 }
 
-- (void)sendEvent:(NSString *)event category:(NSString *)category {
+- (void)sendEvent:(NSString *)event category:(NSString *)category label:(NSString *)label {
     NSMutableDictionary *eventDict = [[GAIDictionaryBuilder createEventWithCategory:category
                                                                              action:event
-                                                                              label:TRWEnvironmentTag
+                                                                              label:label
                                                                               value:nil] build];
-
+    NSLog(@">>>>>>>>>>>>>>> %@", eventDict);
     [[[GAI sharedInstance] defaultTracker] send:eventDict];
     [[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsOtherTrackingId] send:eventDict];
 }

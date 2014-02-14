@@ -11,6 +11,7 @@
 #import "PersonalProfileOperation.h"
 #import "Constants.h"
 #import "ObjectModel.h"
+#import "GoogleAnalytics.h"
 
 @interface PersonalProfileCommitter ()
 
@@ -22,6 +23,7 @@
 
 - (void)validatePersonalProfile:(NSManagedObjectID *)profileID withHandler:(PersonalProfileValidationBlock)handler {
     MCLog(@"Commit profile");
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"PersonalProfileSaved"];
     PersonalProfileOperation *operation = [PersonalProfileOperation commitOperationWithProfile:profileID];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];

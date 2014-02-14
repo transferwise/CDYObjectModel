@@ -18,6 +18,7 @@
 #import "AppsFlyer.h"
 #import "ObjectModel+Users.h"
 #import "User.h"
+#import "GoogleAnalytics.h"
 
 @interface OpenIDViewController () <UIWebViewDelegate>
 
@@ -58,6 +59,10 @@
     self.navigationItem.title = self.providerName;
 
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
+
+    if (!self.registerUser) {
+        [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Login %@", self.provider]];
+    }
 }
 
 

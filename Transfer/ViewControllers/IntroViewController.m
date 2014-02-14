@@ -99,7 +99,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    [self reportedPage];
+    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Intro screen"]];
 }
 
 
@@ -128,22 +128,8 @@
 
     [self setReportedPage:currentPage];
     MCLog(@"Report page:%d", currentPage);
-    NSString *page;
-    switch (currentPage) {
-        case 0:
-            page = @"One";
-            break;
-        case 1:
-            page = @"Two";
-            break;
-        case 2:
-            page = @"Three";
-            break;
-        default:
-            page = @"Unknown";
-    }
 
-    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Intro screen %@", page]];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"IntroScreensSlided" withLabel:[NSString stringWithFormat:@"%d", currentPage + 1]];
 }
 
 - (NSAttributedString *)attributedMessage:(NSString *)message bold:(NSArray *)boldTexts {

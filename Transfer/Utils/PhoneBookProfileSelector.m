@@ -11,6 +11,7 @@
 #import "PhoneBookProfileSelector.h"
 #import "PhoneBookProfile.h"
 #import "Constants.h"
+#import "GoogleAnalytics.h"
 
 @interface PhoneBookProfileSelector () <ABPeoplePickerNavigationControllerDelegate>
 
@@ -21,11 +22,28 @@
 @implementation PhoneBookProfileSelector
 
 - (void)presentOnController:(UIViewController *)controller completionHandler:(PhoneBookProfileBlock)completion {
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"AbImportClicked"];
+
+    ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(nil, nil);
+    if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined) {
+        ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error) {
+            if (granted) {
+                [[GoogleAnalytics sharedInstance] sendEvent:@"ABpermission" category:@"permission" label:@"granted"];
+            } else {
+                [[GoogleAnalytics sharedInstance] sendEvent:@"ABpermission" category:@"permission" label:@"declined"];
+            }
+        });
+    }
+
     self.completionHandler = completion;
     ABPeoplePickerNavigationController *pickerController = [[ABPeoplePickerNavigationController alloc] init];
     [pickerController setDisplayedProperties:@[@(kABPersonFirstNameProperty), @(kABPersonLastNameProperty), @(kABPersonEmailProperty), @(kABPersonBirthdayProperty), @(kABPersonAddressProperty)]];
     pickerController.peoplePickerDelegate = self;
     [controller presentViewController:pickerController animated:YES completion:nil];
+
+    if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized) {
+        [[GoogleAnalytics sharedInstance] sendScreen:@"Device Address Book"];
+    }
 }
 
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker {

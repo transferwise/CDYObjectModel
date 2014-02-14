@@ -261,9 +261,6 @@ static NSUInteger const kRowYouSend = 0;
         return;
     }
 
-    //TODO jaanus: copy/paste
-	[[GoogleAnalytics sharedInstance] sendScreen:@"New payment"];
-
 	Currency *sourceCurrency = [self.youSendCell currency];
     Currency *targetCurrency = [self.theyReceiveCell currency];
     NSNumber *payIn = [self.result transferwisePayIn];
@@ -305,6 +302,7 @@ static NSUInteger const kRowYouSend = 0;
 
 - (BOOL)attributedLabel:(OHAttributedLabel *)attributedLabel shouldFollowLink:(NSTextCheckingResult *)linkInfo {
     if ([[linkInfo.URL scheme] isEqualToString:@"why"]) {
+        [[GoogleAnalytics sharedInstance] sendScreen:@"Benefits Details"];
         [self.whyView setupWithResult:self.result];
         [self.whyView setTitle:[self winMessage:self.result]];
         if (IOS_7) {

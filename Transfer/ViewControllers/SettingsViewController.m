@@ -23,6 +23,7 @@
 #import "User.h"
 #import "SupportCoordinator.h"
 #import "FeedbackCoordinator.h"
+#import "GoogleAnalytics.h"
 
 NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
@@ -183,6 +184,7 @@ typedef NS_ENUM(short, SettingsRow) {
     SettingsRow code = (SettingsRow) [self.presentedRows[(NSUInteger) indexPath.row] shortValue];
     switch (code) {
         case LogoutRow:
+            [[GoogleAnalytics sharedInstance] sendAppEvent:@"Signout"];
             [[TransferwiseClient sharedClient] clearCredentials];
             [revealController revealToggle:nil];
             [revealController.frontViewController viewDidAppear:YES];
@@ -232,6 +234,7 @@ typedef NS_ENUM(short, SettingsRow) {
             break;
         }
         case ContactSupport: {
+            [[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"menu"];
             [[SupportCoordinator sharedInstance] presentOnController:self];
             break;
         }

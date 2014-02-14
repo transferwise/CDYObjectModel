@@ -308,6 +308,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 - (void)uploadPaymentPurpose:(NSString *)purpose errorHandler:(PaymentErrorBlock)errorBlock completionHandler:(JCSActionBlock)completion {
     if ((self.identificationRequired & IdentificationPaymentPurposeRequired) != IdentificationPaymentPurposeRequired) {
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"sent"];
         [self uploadIdImageWithErrorHandler:errorBlock completionHandler:completion];
         return;
     }
@@ -323,6 +324,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
                 return;
             }
 
+            [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"sent"];
             MCLog(@"uploadPaymentPurpose done");
             [self uploadIdImageWithErrorHandler:errorBlock completionHandler:completion];
         });

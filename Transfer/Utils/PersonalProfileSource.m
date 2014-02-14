@@ -182,8 +182,6 @@ NSUInteger const kUserPersonalSection = 1;
 }
 
 - (id)enteredProfile {
-	[[GoogleAnalytics sharedInstance] sendScreen:@"Enter sender details"];
-
     User *user = [self.objectModel currentUser];
     PersonalProfile *profile = [user personalProfileObject];
 
