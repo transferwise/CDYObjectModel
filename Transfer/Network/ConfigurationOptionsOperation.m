@@ -38,7 +38,7 @@ NSString *const kOptionsPath = @"/option/status";
     }
 
     if (!data[@"useDirectIPhoneUserSignup"]) {
-        data[@"useDirectIPhoneUserSignup"] = @YES;
+        data[@"useDirectIPhoneUserSignup"] = @NO;
     }
 
     [self.workModel performBlock:^{
