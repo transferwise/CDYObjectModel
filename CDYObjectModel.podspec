@@ -10,6 +10,6 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'Core' do |ss|
     ss.platform = :ios, '6.0'
-    ss.source_files = 'CDYObjectModel/Core/*.{h,m}'
+    ss.source_files = 'Core/*.{h,m}'
   end
 end
