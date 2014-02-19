@@ -16,6 +16,8 @@
 		EAB49B2E18B4E74E00D8FDBE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB49B2D18B4E74E00D8FDBE /* AppDelegate.m */; };
 		EAB49B3118B4E74E00D8FDBE /* SampleApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EAB49B2F18B4E74E00D8FDBE /* SampleApp.xcdatamodeld */; };
 		EAB49B3318B4E74E00D8FDBE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAB49B3218B4E74E00D8FDBE /* Images.xcassets */; };
+		EAB49B5118B4E91800D8FDBE /* CDYObjectModel.podspec in Resources */ = {isa = PBXBuildFile; fileRef = EAB49B5018B4E91800D8FDBE /* CDYObjectModel.podspec */; };
+		EAB49B5518B4EA0400D8FDBE /* CDYObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB49B5418B4EA0400D8FDBE /* CDYObjectModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,9 @@
 		EAB49B3018B4E74E00D8FDBE /* SampleApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SampleApp.xcdatamodel; sourceTree = "<group>"; };
 		EAB49B3218B4E74E00D8FDBE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EAB49B3918B4E74E00D8FDBE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		EAB49B5018B4E91800D8FDBE /* CDYObjectModel.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CDYObjectModel.podspec; sourceTree = "<group>"; };
+		EAB49B5318B4EA0400D8FDBE /* CDYObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDYObjectModel.h; sourceTree = "<group>"; };
+		EAB49B5418B4EA0400D8FDBE /* CDYObjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDYObjectModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,9 +58,11 @@
 		EAB49B0F18B4E74E00D8FDBE = {
 			isa = PBXGroup;
 			children = (
-				EAB49B2318B4E74E00D8FDBE /* SampleApp */,
+				EAB49B5018B4E91800D8FDBE /* CDYObjectModel.podspec */,
+				EAB49B5218B4E9D400D8FDBE /* Core */,
 				EAB49B1A18B4E74E00D8FDBE /* Frameworks */,
 				EAB49B1918B4E74E00D8FDBE /* Products */,
+				EAB49B2318B4E74E00D8FDBE /* SampleApp */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +107,15 @@
 				EAB49B2B18B4E74E00D8FDBE /* SampleApp-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EAB49B5218B4E9D400D8FDBE /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				EAB49B5318B4EA0400D8FDBE /* CDYObjectModel.h */,
+				EAB49B5418B4EA0400D8FDBE /* CDYObjectModel.m */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +171,7 @@
 			files = (
 				EAB49B2818B4E74E00D8FDBE /* InfoPlist.strings in Resources */,
 				EAB49B3318B4E74E00D8FDBE /* Images.xcassets in Resources */,
+				EAB49B5118B4E91800D8FDBE /* CDYObjectModel.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +185,7 @@
 				EAB49B3118B4E74E00D8FDBE /* SampleApp.xcdatamodeld in Sources */,
 				EAB49B2E18B4E74E00D8FDBE /* AppDelegate.m in Sources */,
 				EAB49B2A18B4E74E00D8FDBE /* main.m in Sources */,
+				EAB49B5518B4EA0400D8FDBE /* CDYObjectModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +318,7 @@
 				EAB49B4C18B4E74F00D8FDBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
