@@ -237,8 +237,20 @@
     return [[attributeValue lowercaseString] isEqualToString:[[existing valueForKeyPath:attributeName] lowercaseString]];
 }
 
-- (void)performBlock:(CDYObjectModelBlock)actionBlock {
+- (void)performBlock:(CDYModelActionBlock)actionBlock {
     [self.managedObjectContext performBlock:actionBlock];
+}
+
+- (void)saveInBlock:(CDYModelInjectionBlock)handler {
+    [self saveInBlock:handler completion:nil];
+}
+
+- (void)saveInBlock:(CDYModelInjectionBlock)handler completion:(CDYModelActionBlock)completion {
+    CDYObjectModel *spawned = [self spawnBackgroundInstance];
+    [spawned performBlock:^{
+        handler(spawned);
+        [spawned saveContext:completion];
+    }];
 }
 
 - (NSExpressionDescription *)descriptionWithPath:(NSString *)keyPath function:(NSString *)function resultName:(NSString *)name type:(NSAttributeType)type {
@@ -255,7 +267,7 @@
     [self saveContext:nil];
 }
 
-- (void)saveContext:(CDYObjectModelBlock)completion {
+- (void)saveContext:(CDYModelActionBlock)completion {
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
 
     if (!managedObjectContext) {
@@ -272,7 +284,7 @@
     [self saveContext:managedObjectContext completion:completion];
 }
 
-- (void)saveContext:(NSManagedObjectContext *)context completion:(CDYObjectModelBlock)completion {
+- (void)saveContext:(NSManagedObjectContext *)context completion:(CDYModelActionBlock)completion {
     [context performBlock:^{
         NSError *error = nil;
         if ([context hasChanges] && ![context save:&error]) {
@@ -286,7 +298,7 @@
         }
 
         if (completion) {
-            completion();
+            dispatch_async(dispatch_get_main_queue(), completion);
         }
     }];
 }

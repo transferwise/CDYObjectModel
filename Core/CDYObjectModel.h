@@ -17,9 +17,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class CDYObjectModel;
+
 #define CDYObjectModelLog(s, ...) NSLog( @"<%p %@:(%d)> %@", self, [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
 
-typedef void (^CDYObjectModelBlock)();
+typedef void (^CDYModelActionBlock)();
+typedef void (^CDYModelInjectionBlock)(CDYObjectModel *objectModel);
 
 @interface CDYObjectModel : NSObject
 
@@ -32,7 +35,7 @@ typedef void (^CDYObjectModelBlock)();
 - (id)spawnBackgroundInstance;
 
 - (void)saveContext;
-- (void)saveContext:(CDYObjectModelBlock)completion;
+- (void)saveContext:(CDYModelActionBlock)completion;
 
 - (BOOL)databaseFileExists;
 
@@ -63,7 +66,10 @@ typedef void (^CDYObjectModelBlock)();
 - (void)deleteObject:(NSManagedObject *)object saveAfter:(BOOL)saveAfter;
 - (void)deleteObjects:(NSArray *)objects saveAfter:(BOOL)saveAfter;
 
-- (void)performBlock:(CDYObjectModelBlock)actionBlock;
+- (void)performBlock:(CDYModelActionBlock)actionBlock;
+
+- (void)saveInBlock:(CDYModelInjectionBlock)handler;
+- (void)saveInBlock:(CDYModelInjectionBlock)handler completion:(CDYModelActionBlock)completion;
 
 - (NSExpressionDescription *)descriptionWithPath:(NSString *)keyPath function:(NSString *)function resultName:(NSString *)name type:(NSAttributeType)type;
 
