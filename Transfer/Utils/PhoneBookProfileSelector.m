@@ -43,6 +43,8 @@
 
     if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized) {
         [[GoogleAnalytics sharedInstance] sendScreen:@"Device Address Book"];
+    } else {
+        [[GoogleAnalytics sharedInstance] sendScreen:@"Device Address Book No Access"];
     }
 }
 

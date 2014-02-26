@@ -166,7 +166,7 @@ static NSUInteger const kButtonSection = 0;
 
     [self setShown:YES];
 
-    if ([self.profileSource isKindOfClass:[PersonalProfileSource class]]) {
+    if ([self.profileSource isKindOfClass:[PersonalProfileSource class]] && self.analyticsReport) {
         [[GoogleAnalytics sharedInstance] sendScreen:@"Enter sender details"];
     }
 }

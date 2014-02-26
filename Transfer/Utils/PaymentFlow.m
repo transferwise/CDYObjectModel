@@ -34,7 +34,6 @@
 #import "Recipient.h"
 #import "PaymentPurposeOperation.h"
 #import "UploadMoneyViewController.h"
-#import "FBAppEvents.h"
 #import "GoogleAnalytics.h"
 #import "BusinessProfileIdentificationViewController.h"
 #import "AppsFlyer.h"
@@ -67,6 +66,7 @@
     PaymentProfileViewController *controller = [[PaymentProfileViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setAllowProfileSwitch:allowProfileSwitch];
+    [controller setAnalyticsReport:YES];
     if (self.objectModel.pendingPayment.recipient) {
         [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.confirm.payment.button.title", nil)];
     } else {
@@ -182,6 +182,11 @@
     [[GoogleAnalytics sharedInstance] sendScreen:@"Enter recipient details"];
 
     RecipientViewController *controller = [[RecipientViewController alloc] init];
+    if ([Credentials userLoggedIn]) {
+        [controller setReportingType:RecipientReportingLoggedIn];
+    } else {
+        [controller setReportingType:RecipientReportingNotLoggedIn];
+    }
     [controller setObjectModel:self.objectModel];
     [controller setShowMiniProfile:showMiniProfile];
     [controller setTitle:NSLocalizedString(@"recipient.controller.payment.mode.title", nil)];
@@ -209,6 +214,11 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"presentPaymentConfirmation");
         ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
+        if ([Credentials userLoggedIn]) {
+            [controller setReportingType:ConfirmPaymentReportingLoggedIn];
+        } else {
+            [controller setReportingType:ConfirmPaymentReportingNotLoggedIn];
+        }
         [controller setObjectModel:self.objectModel];
         [controller setPayment:[self.objectModel pendingPayment]];
         [controller setFooterButtonTitle:NSLocalizedString(@"confirm.payment.footer.button.title", nil)];

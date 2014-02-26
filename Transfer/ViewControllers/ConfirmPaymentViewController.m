@@ -129,7 +129,11 @@ static NSUInteger const kReceiverSection = 2;
         headerFrame.size.height = CGRectGetMinY(self.contactSupportButton.frame);
         [self.headerView setFrame:headerFrame];
 
-        [[GoogleAnalytics sharedInstance] sendScreen:@"Confirm payment"];
+        if (self.reportingType == ConfirmPaymentReportingLoggedIn) {
+            [[GoogleAnalytics sharedInstance] sendScreen:@"Confirm payment 2"];
+        } else {
+            [[GoogleAnalytics sharedInstance] sendScreen:@"Confirm payment"];
+        }
     }
 
     [presented addObject:senderCells];

@@ -73,7 +73,6 @@
                                                                              action:event
                                                                               label:label
                                                                               value:nil] build];
-    NSLog(@">>>>>>>>>>>>>>> %@", eventDict);
     [[[GAI sharedInstance] defaultTracker] send:eventDict];
     [[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsOtherTrackingId] send:eventDict];
 }

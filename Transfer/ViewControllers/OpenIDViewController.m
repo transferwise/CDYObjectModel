@@ -109,6 +109,9 @@
 #endif
                 }];
 
+                NSString *event = [absoluteString rangeOfString:@"/openId/registered"].location != NSNotFound ? @"UserRegistered" : @"UserLogged";
+                [[GoogleAnalytics sharedInstance] sendAppEvent:event withLabel:self.provider];
+
                 if (self.registerUser) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentViewNotification object:nil];
                 } else {
@@ -148,6 +151,7 @@
             || */[absoluteString rangeOfString:@"/openId/mobileLoggedIn"].location != NSNotFound
             || [absoluteString rangeOfString:@"/openId/mobileNotLoggedIn"].location != NSNotFound
             || [absoluteString rangeOfString:@"/openId/loggedIn"].location != NSNotFound
+            || [absoluteString rangeOfString:@"/openId/registered"].location != NSNotFound
             || [absoluteString rangeOfString:@"/openId/notLoggedIn"].location != NSNotFound;
 }
 

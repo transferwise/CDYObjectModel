@@ -133,7 +133,7 @@
 }
 
 - (IBAction)doneBtnClicked:(id)sender {
-    [[GoogleAnalytics sharedInstance] sendEvent:@"PaymentCreated" category:@"payment" label:@"BankTransfer"];
+    [[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"BankTransfer"];
     if ([Credentials temporaryAccount]) {
         ClaimAccountViewController *controller = [[ClaimAccountViewController alloc] init];
         [controller setObjectModel:self.objectModel];

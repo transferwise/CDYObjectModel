@@ -10,7 +10,6 @@
 #import "Currency.h"
 #import "ObjectModel+RecipientTypes.h"
 #import "RecipientType.h"
-#import "Constants.h"
 
 @implementation ObjectModel (Currencies)
 

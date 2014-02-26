@@ -14,6 +14,12 @@
 @class Currency;
 @protocol RecipientProfileValidation;
 
+typedef NS_ENUM(short, RecipientReportingType) {
+    RecipientReportingNone = 0,
+    RecipientReportingNotLoggedIn,
+    RecipientReportingLoggedIn
+};
+
 @interface RecipientViewController : DataEntryViewController
 
 @property (nonatomic, copy) TRWActionBlock afterSaveAction;
@@ -22,5 +28,6 @@
 @property (nonatomic, strong) id<RecipientProfileValidation> recipientValidation;
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, assign) BOOL showMiniProfile;
+@property (nonatomic, assign) RecipientReportingType reportingType;
 
 @end

@@ -204,6 +204,7 @@ typedef NS_ENUM(short, SettingsRow) {
             [validation setObjectModel:self.objectModel];
             [controller setProfileValidation:validation];
             [revealController revealToggle:nil];
+            [[GoogleAnalytics sharedInstance] sendScreen:@"Personal profile"];
             [pushOnNavigationController pushViewController:controller animated:YES];
             break;
         }

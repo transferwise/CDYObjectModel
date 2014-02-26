@@ -55,7 +55,7 @@
     [cardController setResultHandler:^(BOOL success) {
         if (success) {
             [[GoogleAnalytics sharedInstance] sendScreen:@"Success"];
-            [[GoogleAnalytics sharedInstance] sendAppEvent:@"PaymentCreated" withLabel:@"debitcard"];
+            [[GoogleAnalytics sharedInstance] sendAppEvent:@"PaymentMade" withLabel:@"debitcard"];
             TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.card.payment.success.title", nil)
                                                                message:NSLocalizedString(@"upload.money.card.payment.success.message", nil)];
             [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.continue", nil) action:^{
@@ -108,6 +108,7 @@
 
 - (void)selectionChangedToIndex:(NSInteger)index {
     if (index == 1) {
+        [[GoogleAnalytics sharedInstance] sendScreen:@"Bank transfer payment"];
         [self.view bringSubviewToFront:self.bankViewController.view];
     } else {
 		[[GoogleAnalytics sharedInstance] sendScreen:@"Debit card payment"];
