@@ -59,7 +59,11 @@
 }
 
 - (void)sendPaymentEvent:(NSString *)event {
-    [self sendEvent:event category:@"payment" label:@""];
+    [self sendPaymentEvent:event withLabel:@""];
+}
+
+- (void)sendPaymentEvent:(NSString *)event withLabel:(NSString *)label {
+    [self sendEvent:event category:@"payment" label:label];
 }
 
 - (void)markLoggedIn {

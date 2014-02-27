@@ -44,7 +44,7 @@ NSString *const kSetPasswordPath = @"/account/setPassword";
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         [Credentials setUserSecret:@""];
 
-		[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserRegistered"];
+		[[GoogleAnalytics sharedInstance] sendAppEvent:@"UserRegistered" withLabel:@"tw"];
 
 #if USE_APPSFLYER_EVENTS
         [weakSelf.workModel performBlock:^{

@@ -38,6 +38,7 @@
 #import "BusinessProfileIdentificationViewController.h"
 #import "AppsFlyer.h"
 #import "CalculationResult.h"
+#import "LoggedInPaymentFlow.h"
 
 @interface PaymentFlow ()
 
@@ -253,7 +254,11 @@
 - (void)presentUploadMoneyController:(NSManagedObjectID *)paymentID {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"presentUploadMoneyController");
-		[[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentCreated"];
+        if ([self isKindOfClass:[LoggedInPaymentFlow class]]) {
+            [[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentCreated" withLabel:@"logged"];
+        } else {
+            [[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentCreated" withLabel:@"not logged"];
+        }
 
         UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
         [controller setObjectModel:self.objectModel];
