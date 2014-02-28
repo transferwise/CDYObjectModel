@@ -450,7 +450,7 @@
 
 - (void)commitRecipientData {
     MCLog(@"commitRecipientData");
-    [[GoogleAnalytics sharedInstance] sendEvent:@"RecipientAdded" category:@"Recipient" label:@"DuringPayment"];
+    [[GoogleAnalytics sharedInstance] sendEvent:@"RecipientAdded" category:@"recipient" label:@"DuringPayment"];
     RecipientOperation *operation = [RecipientOperation createOperationWithRecipient:self.objectModel.pendingPayment.recipient.objectID];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];

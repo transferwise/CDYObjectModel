@@ -175,7 +175,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [committer setObjectModel:self.objectModel];
     [controller setRecipientValidation:committer];
     [controller setAfterSaveAction:^{
-        [[GoogleAnalytics sharedInstance] sendEvent:@"RecipientAdded" category:@"Recipient" label:@"AddRecipientScreen"];
+        [[GoogleAnalytics sharedInstance] sendEvent:@"RecipientAdded" category:@"recipient" label:@"AddRecipientScreen"];
         [self.navigationController popViewControllerAnimated:YES];
     }];
     [self.navigationController pushViewController:controller animated:YES];
