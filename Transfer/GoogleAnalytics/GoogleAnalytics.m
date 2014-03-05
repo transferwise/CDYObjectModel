@@ -66,8 +66,12 @@
 }
 
 - (void)markLoggedIn {
-    NSString *marker = [Credentials userLoggedIn] ? @"YES" : @"NO";
-    [[[GAI sharedInstance] defaultTracker] set:@"IsLoggedIn" value:marker];
+    NSString *email = nil;
+    if ([Credentials userLoggedIn]) {
+        email = [Credentials userEmail];
+    }
+
+    [[[GAI sharedInstance] defaultTracker] set:[GAIFields customDimensionForIndex:1] value:email];
 }
 
 - (void)sendEvent:(NSString *)event category:(NSString *)category label:(NSString *)label {
