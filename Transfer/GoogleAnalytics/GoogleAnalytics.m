@@ -43,7 +43,6 @@
     NSMutableDictionary *dictionary = [[[GAIDictionaryBuilder createAppView] set:screenName forKey:kGAIScreenName] build];
 
     [[[GAI sharedInstance] defaultTracker] send:dictionary];
-    [[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsOtherTrackingId] send:dictionary];
 }
 
 - (void)sendAppEvent:(NSString *)event {
@@ -69,7 +68,6 @@
 - (void)markLoggedIn {
     NSString *marker = [Credentials userLoggedIn] ? @"YES" : @"NO";
     [[[GAI sharedInstance] defaultTracker] set:@"IsLoggedIn" value:marker];
-    [[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsOtherTrackingId] set:@"IsLoggedIn" value:marker];
 }
 
 - (void)sendEvent:(NSString *)event category:(NSString *)category label:(NSString *)label {
@@ -78,7 +76,6 @@
                                                                               label:label
                                                                               value:nil] build];
     [[[GAI sharedInstance] defaultTracker] send:eventDict];
-    [[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsOtherTrackingId] send:eventDict];
 }
 
 @end
