@@ -77,6 +77,8 @@
     [model removeAnonymousUser];
     [model loadBaseData];
 
+    [[GoogleAnalytics sharedInstance] setObjectModel:model];
+
     [[TransferwiseClient sharedClient] setObjectModel:model];
     [[SupportCoordinator sharedInstance] setObjectModel:model];
     [[FeedbackCoordinator sharedInstance] setObjectModel:model];

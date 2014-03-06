@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class ObjectModel;
+
 @interface GoogleAnalytics : NSObject
+
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 + (GoogleAnalytics *)sharedInstance;
 
@@ -20,5 +24,6 @@
 - (void)sendPaymentEvent:(NSString *)event withLabel:(NSString *)label;
 - (void)markLoggedIn;
 - (void)sendEvent:(NSString *)event category:(NSString *)category label:(NSString *)label;
+- (void)markHasCompletedPayments;
 
 @end

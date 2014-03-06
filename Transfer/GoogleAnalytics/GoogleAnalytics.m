@@ -11,7 +11,9 @@
 #import "GAI.h"
 #import "Credentials.h"
 #import "GAIDictionaryBuilder.h"
+#import "ObjectModel.h"
 #import "GAIFields.h"
+#import "ObjectModel+Payments.h"
 
 @implementation GoogleAnalytics
 
@@ -72,6 +74,7 @@
     }
 
     [[[GAI sharedInstance] defaultTracker] set:[GAIFields customDimensionForIndex:1] value:email];
+    [self markHasCompletedPayments];
 }
 
 - (void)sendEvent:(NSString *)event category:(NSString *)category label:(NSString *)label {
@@ -80,6 +83,12 @@
                                                                               label:label
                                                                               value:nil] build];
     [[[GAI sharedInstance] defaultTracker] send:eventDict];
+}
+
+- (void)markHasCompletedPayments {
+    [self.objectModel performBlock:^{
+        [[[GAI sharedInstance] defaultTracker] set:[GAIFields customDimensionForIndex:1] value:[self.objectModel hasCompletedPayments] ? @"Y" : @"N"];
+    }];
 }
 
 @end

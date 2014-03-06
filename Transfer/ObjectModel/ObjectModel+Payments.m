@@ -14,6 +14,7 @@
 #import "NSDate+ServerTime.h"
 #import "Constants.h"
 #import "ObjectModel+Users.h"
+#import "Credentials.h"
 
 @implementation ObjectModel (Payments)
 
@@ -76,6 +77,10 @@
 }
 
 - (BOOL)hasCompletedPayments {
+    if (![Credentials userLoggedIn]) {
+        return NO;
+    }
+
     NSPredicate *completedPredicate = [NSPredicate predicateWithFormat:@"paymentStatus = %@", @"transferred"];
     return [self countInstancesOfEntity:[Payment entityName] withPredicate:completedPredicate] > 0;
 }

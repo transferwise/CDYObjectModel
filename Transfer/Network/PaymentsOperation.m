@@ -13,6 +13,7 @@
 #import "ObjectModel+Payments.h"
 #import "Payment.h"
 #import "Constants.h"
+#import "GoogleAnalytics.h"
 
 NSString *const kPaymentsListPath = @"/payment/list";
 NSUInteger kPaymentsListLimit = 20;
@@ -59,6 +60,7 @@ NSUInteger kPaymentsListLimit = 20;
             }
 
             [weakSelf.workModel saveContext:^{
+                [[GoogleAnalytics sharedInstance] markHasCompletedPayments];
                 weakSelf.completion([totalCount integerValue], nil);
             }];
         }];
