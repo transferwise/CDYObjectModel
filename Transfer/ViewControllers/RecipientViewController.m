@@ -417,7 +417,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
         NSString *value = [cell value];
         RecipientTypeField *field = cell.type;
-        [recipientInput setValue:value forField:field];
+        [recipientInput setValue:[field stripPossiblePatternFromValue:value] forField:field];
     }
 
     [payment setRecipient:recipientInput];

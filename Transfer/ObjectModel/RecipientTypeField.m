@@ -1,5 +1,6 @@
 #import "RecipientTypeField.h"
 #import "NSString+Validation.h"
+#import "NSString+Presentation.h"
 
 
 @interface RecipientTypeField ()
@@ -12,10 +13,12 @@
     return [self.allowedValues count] > 0;
 }
 
-- (NSString *)hasIssueWithValue:(NSString *)value {
-    if (![value hasValue] && !self.requiredValue) {
+- (NSString *)hasIssueWithValue:(NSString *)rawValue {
+    if (![rawValue hasValue] && !self.requiredValue) {
         return nil;
     }
+
+    NSString *value = [self stripPossiblePatternFromValue:rawValue];
 
     if (![value hasValue] && self.requiredValue) {
         return [NSString stringWithFormat:NSLocalizedString(@"recipient.type.field.value.not.entered", nil), self.title];
@@ -43,6 +46,14 @@
     }
 
     return [NSString stringWithFormat:NSLocalizedString(@"recipient.type.field.value.invalid", nil), self.title];
+}
+
+- (NSString *)stripPossiblePatternFromValue:(NSString *)value {
+    if (!self.presentationPattern) {
+        return value;
+    }
+
+    return [value stripPattern:self.presentationPattern];
 }
 
 @end
