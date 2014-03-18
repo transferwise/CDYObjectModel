@@ -19,10 +19,9 @@
 #import "SupportCoordinator.h"
 #import "FeedbackCoordinator.h"
 #import "UIColor+Theme.h"
-#import "FBAppEvents.h"
 #import "GoogleAnalytics.h"
-#import "FBSettings.h"
 #import "AppsFlyer.h"
+#import "NanTracking.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -55,7 +54,11 @@
 
     [[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
 
+    [NanTracking setFbAppId:@"274548709260402"];
+
     [Crashlytics startWithAPIKey:@"84bc4b5736898e3cfdb50d3d2c162c4f74480862"];
+
+    [NanTracking trackNanigansEvent:@"" type:@"install" name:@"main"];
 
     [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeTextColor : [UIColor whiteColor]}];
 

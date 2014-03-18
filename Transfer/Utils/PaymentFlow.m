@@ -39,6 +39,7 @@
 #import "AppsFlyer.h"
 #import "CalculationResult.h"
 #import "LoggedInPaymentFlow.h"
+#import "NanTracking.h"
 
 @interface PaymentFlow ()
 
@@ -605,8 +606,6 @@
 		[FBAppEvents logPurchase:[transferFee floatValue] currency:currencyCode];
 #endif
 
-#if USE_APPSFLYER_EVENTS
-        MCLog(@"Log AppsFlyer purchase %@ - %@", transferFee, currencyCode);
         static NSNumberFormatter *__formatter;
         if (!__formatter) {
             __formatter = [[NSNumberFormatter alloc] init];
@@ -617,10 +616,14 @@
             [__formatter setCurrencyGroupingSeparator:@""];
         }
 
+#if USE_APPSFLYER_EVENTS
+        MCLog(@"Log AppsFlyer purchase %@ - %@", transferFee, currencyCode);
         [AppsFlyer setCurrencyCode:currencyCode];
         [AppsFlyer setAppUID:[self.objectModel.currentUser pReference]];
         [AppsFlyer notifyAppID:AppsFlyerIdentifier event:@"purchase" eventValue:[__formatter stringFromNumber:transferFee]];
 #endif
+
+        [NanTracking trackNanigansEvent:self.objectModel.currentUser.pReference type:@"purchase" name:@"main" value:[__formatter stringFromNumber:transferFee]];
 
         [self presentUploadMoneyController:paymentID];
     }];

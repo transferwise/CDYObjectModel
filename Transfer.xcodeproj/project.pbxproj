@@ -452,6 +452,8 @@
 		EAB93B481761C74700A7337C /* ClaimAccountOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB93B471761C74700A7337C /* ClaimAccountOperation.m */; };
 		EAC1051A17607C4600B3B018 /* ClaimAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */; };
 		EAC1051B17607C4600B3B018 /* ClaimAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */; };
+		EACD942E18D82C2C00369905 /* NanTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = EACD942D18D82C2C00369905 /* NanTracking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EACD942F18D82C2C00369905 /* NanTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = EACD942D18D82C2C00369905 /* NanTracking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EACF7640175C71B4008F2A03 /* RecipientProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */; };
 		EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */; };
 		EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */; };
@@ -901,6 +903,8 @@
 		EAC1051717607C4600B3B018 /* ClaimAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimAccountViewController.h; sourceTree = "<group>"; };
 		EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimAccountViewController.m; sourceTree = "<group>"; };
 		EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClaimAccountViewController.xib; sourceTree = "<group>"; };
+		EACD942C18D82C2C00369905 /* NanTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NanTracking.h; sourceTree = "<group>"; };
+		EACD942D18D82C2C00369905 /* NanTracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NanTracking.m; sourceTree = "<group>"; };
 		EACF763E175C71B4008F2A03 /* RecipientProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientProfileCommitter.h; sourceTree = "<group>"; };
 		EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientProfileCommitter.m; sourceTree = "<group>"; };
 		EAD069021737B8AE007C8DEE /* RecipientFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientFieldCell.h; sourceTree = "<group>"; };
@@ -1363,6 +1367,7 @@
 		EA8FF68C171D22080090A658 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
+				EACD942B18D82C2C00369905 /* NanTracking */,
 				EA8FA85C1891065F00153EBC /* GoogleAnalyticsServicesiOS_3.03 */,
 				EAA4B36C17FD476A003B774F /* AF-iOS-SDK-v2.5.1.9.8 */,
 				EA225C44178E96FE009D6B83 /* JCSObjectModel */,
@@ -1668,6 +1673,15 @@
 				EA59296E17589F3A007C0072 /* RecipientProfileValidation.h */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		EACD942B18D82C2C00369905 /* NanTracking */ = {
+			isa = PBXGroup;
+			children = (
+				EACD942C18D82C2C00369905 /* NanTracking.h */,
+				EACD942D18D82C2C00369905 /* NanTracking.m */,
+			);
+			path = NanTracking;
 			sourceTree = "<group>";
 		};
 		EAD33E9C17E7242000CE0608 /* GoogleAnalytics */ = {
@@ -2244,6 +2258,7 @@
 				EA31A14617DDB29B00F937F7 /* TSAlertView.m in Sources */,
 				EA333F3D18A4C00000D8A44E /* PageZoom.m in Sources */,
 				EA31A14717DDB29B00F937F7 /* WhyView.m in Sources */,
+				EACD942F18D82C2C00369905 /* NanTracking.m in Sources */,
 				EA31A14817DDB29B00F937F7 /* Credentials.m in Sources */,
 				EA31A14917DDB29B00F937F7 /* SWRevealViewController.m in Sources */,
 				EA31A14A17DDB29B00F937F7 /* DataEntryViewController.m in Sources */,
@@ -2436,6 +2451,7 @@
 				BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */,
 				EA333F3C18A4C00000D8A44E /* PageZoom.m in Sources */,
 				BBCC6338172169980094EABB /* WhyView.m in Sources */,
+				EACD942E18D82C2C00369905 /* NanTracking.m in Sources */,
 				EA88E65B172F96490021492C /* Credentials.m in Sources */,
 				EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */,
 				EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */,
