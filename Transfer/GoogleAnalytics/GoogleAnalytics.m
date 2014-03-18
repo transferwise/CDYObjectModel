@@ -87,7 +87,7 @@
 
 - (void)markHasCompletedPayments {
     [self.objectModel performBlock:^{
-        [[[GAI sharedInstance] defaultTracker] set:[GAIFields customDimensionForIndex:1] value:[self.objectModel hasCompletedPayments] ? @"Y" : @"N"];
+        [[[GAI sharedInstance] defaultTracker] set:[GAIFields customDimensionForIndex:2] value:[self.objectModel hasCompletedPayments] ? @"Y" : @"N"];
     }];
 }
 
