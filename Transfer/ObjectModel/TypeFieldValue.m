@@ -2,6 +2,7 @@
 #import "RecipientTypeField.h"
 #import "AllowedTypeFieldValue.h"
 #import "Constants.h"
+#import "NSString+Presentation.h"
 
 @interface TypeFieldValue ()
 
@@ -13,6 +14,10 @@
 - (NSString *)presentedValue {
     if ([self.valueForField hasPredefinedValues]) {
         return [self displayValueForCode:self.value];
+    }
+
+    if (self.valueForField.presentationPattern) {
+        return [self.value applyPattern:self.valueForField.presentationPattern];
     }
 
     return self.value;

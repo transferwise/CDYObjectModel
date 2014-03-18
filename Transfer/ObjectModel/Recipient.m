@@ -31,7 +31,7 @@
         return @"";
     }
 
-    return [NSString stringWithFormat:@"%@: %@", value.valueForField.title, value.value];
+    return [NSString stringWithFormat:@"%@: %@", value.valueForField.title, value.presentedValue];
 }
 
 - (NSString *)valueField:(RecipientTypeField *)field {
