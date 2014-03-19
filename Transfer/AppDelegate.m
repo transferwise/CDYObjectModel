@@ -51,6 +51,9 @@
 #endif
 
     [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelNone];
+#if DEBUG
+    [[GAI sharedInstance] setDispatchInterval:1];
+#endif
 
     [[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
 
