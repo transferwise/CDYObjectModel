@@ -89,7 +89,7 @@
     }
 
     NSString *token = [self valueForCookie:@"userApiToken"];
-    NSString *email = [self valueForCookie:@"userEmail"];
+    NSString *email = [[self valueForCookie:@"userEmail"] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\""]];
 
     MCLog(@"Token:%@ email:%@", token, email);
 
@@ -97,6 +97,8 @@
     if ([email hasValue]) {
         [Credentials setUserEmail:email];
     }
+
+    [[GoogleAnalytics sharedInstance] markLoggedIn];
 
     if ([Credentials userLoggedIn]) {
         [self.objectModel removeOtherUsers];

@@ -14,6 +14,7 @@
 #import "ObjectModel+Users.h"
 #import "User.h"
 #import "ConfigurationOptionsOperation.h"
+#import "GoogleAnalytics.h"
 
 NSString *const kAPIPathBase = @"/api/v1";
 
@@ -75,6 +76,7 @@ NSString *const kAPIPathBase = @"/api/v1";
     NSString *token = [Credentials accessToken];
     [self.objectModel deleteObject:self.objectModel.currentUser saveAfter:YES];
     [Credentials clearCredentials];
+    [[GoogleAnalytics sharedInstance] markLoggedIn];
     [TransferwiseClient clearCookies];
 
     RemoveTokenOperation *operation = [[RemoveTokenOperation alloc] initWithToken:token];
