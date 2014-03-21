@@ -22,6 +22,8 @@
 #import "GoogleAnalytics.h"
 #import "AppsFlyer.h"
 #import "NanTracking.h"
+#import "FBSettings.h"
+#import "FBAppEvents.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 

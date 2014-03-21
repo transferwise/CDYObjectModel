@@ -40,6 +40,7 @@
 #import "CalculationResult.h"
 #import "LoggedInPaymentFlow.h"
 #import "NanTracking.h"
+#import "FBAppEvents.h"
 
 @interface PaymentFlow ()
 
