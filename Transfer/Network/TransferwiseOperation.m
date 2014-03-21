@@ -164,10 +164,10 @@
 
 + (void)provideAuthenticationHeaders:(NSMutableURLRequest *)request {
     if ([Credentials userLoggedIn]) {
-        [request setValue:[Credentials accessToken] forHTTPHeaderField:@"Authorization"];
+        [request setValue:[Credentials accessToken] forHTTPHeaderField:@"X-Authorization-token"];
     }
 
-    [request setValue:TRWApplicationKey forHTTPHeaderField:@"Authorization-key"];
+    [request setValue:TRWApplicationKey forHTTPHeaderField:@"X-Authorization-key"];
     [request setValue:[[[GAI sharedInstance] defaultTracker] get:kGAIClientId] forHTTPHeaderField:@"Customer-identifier"];
 }
 
