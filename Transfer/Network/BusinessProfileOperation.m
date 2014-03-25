@@ -60,8 +60,8 @@ NSString *const kValidateBusinessProfilePath = @"/user/validateBusinessProfile";
         }];
     }];
 
-    [self.workModel performBlock:^{
-        BusinessProfile *profile = (BusinessProfile *) [self.workModel.managedObjectContext objectWithID:self.data];
+    [self.objectModel performBlock:^{
+        BusinessProfile *profile = (BusinessProfile *) [self.objectModel.managedObjectContext objectWithID:self.data];
         [self postData:[profile data] toPath:path];
     }];
 }
