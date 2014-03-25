@@ -59,8 +59,8 @@ NSString *const kValidatePersonalProfilePath = @"/user/validatePersonalProfile";
         }];
     }];
 
-    [self.workModel performBlock:^{
-        PersonalProfile *personalProfile = (PersonalProfile *) [weakSelf.workModel.managedObjectContext objectWithID:self.profile];
+    [self.objectModel performBlock:^{
+        PersonalProfile *personalProfile = (PersonalProfile *) [weakSelf.objectModel.managedObjectContext objectWithID:self.profile];
         MCAssert(personalProfile);
 
         [self postData:[personalProfile data] toPath:path];
