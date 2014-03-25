@@ -11,6 +11,7 @@
 @class ObjectModel;
 
 typedef NS_ENUM(short, TRWNetworkErrorCode) {
+    ResponseLocalError = -1,
     ResponseCumulativeError = 0,
     ResponseFormatError = 1,
     ResponseServerError = 2,

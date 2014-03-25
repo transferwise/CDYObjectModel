@@ -41,6 +41,7 @@
 #import "LoggedInPaymentFlow.h"
 #import "NanTracking.h"
 #import "FBAppEvents.h"
+#import "NetworkErrorCodes.h"
 
 @interface PaymentFlow ()
 
@@ -157,7 +158,7 @@
             handler(error);
         } else if (!available) {
             [[GoogleAnalytics sharedInstance] sendAlertEvent:@"EmailTakenDuringPaymentAlert" withLabel:@""];
-            NSError *emailError = [[NSError alloc] initWithDomain:@"" code:0 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"personal.profile.email.taken.message", nil)}];
+            NSError *emailError = [[NSError alloc] initWithDomain:TRWErrorDomain code:ResponseLocalError userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"personal.profile.email.taken.message", nil)}];
             handler(emailError);
         } else {
             handler(nil);

@@ -91,6 +91,7 @@
 
         NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:&jsonError];
         if (jsonError) {
+            MCLog(@"Error:%@", jsonError);
             NSError *error = [NSError errorWithDomain:TRWErrorDomain code:ResponseFormatError userInfo:@{NSUnderlyingErrorKey : jsonError}];
             self.operationErrorHandler(error);
             return;
