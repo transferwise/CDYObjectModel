@@ -29,6 +29,7 @@
 #import "TransferBackButtonItem.h"
 #import "GoogleAnalytics.h"
 #import "NSError+TRWErrors.h"
+#import "AnalyticsCoordinator.h"
 
 static NSUInteger const kTransferSection = 0;
 static NSUInteger const kSenderSection = 1;
@@ -134,6 +135,8 @@ static NSUInteger const kReceiverSection = 2;
         } else {
             [[GoogleAnalytics sharedInstance] sendScreen:@"Confirm payment"];
         }
+
+        [[AnalyticsCoordinator sharedInstance] confirmPaymentScreenShown];
     }
 
     [presented addObject:senderCells];

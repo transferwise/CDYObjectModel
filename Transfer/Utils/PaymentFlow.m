@@ -42,6 +42,7 @@
 #import "NanTracking.h"
 #import "FBAppEvents.h"
 #import "NetworkErrorCodes.h"
+#import "AnalyticsCoordinator.h"
 
 @interface PaymentFlow ()
 
@@ -67,6 +68,8 @@
 }
 
 - (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch {
+    [[AnalyticsCoordinator sharedInstance] paymentPersonalProfileScreenShown];
+
     PaymentProfileViewController *controller = [[PaymentProfileViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setAllowProfileSwitch:allowProfileSwitch];
@@ -183,7 +186,7 @@
 }
 
 - (void)presentRecipientDetails:(BOOL)showMiniProfile {
-    [[GoogleAnalytics sharedInstance] sendScreen:@"Enter recipient details"];
+    [[AnalyticsCoordinator sharedInstance] paymentRecipientProfileScreenShown];
 
     RecipientViewController *controller = [[RecipientViewController alloc] init];
     if ([Credentials userLoggedIn]) {
@@ -626,6 +629,8 @@
 #endif
 
         [NanTracking trackNanigansEvent:self.objectModel.currentUser.pReference type:@"purchase" name:@"main" value:[__formatter stringFromNumber:transferFee]];
+
+        [[AnalyticsCoordinator sharedInstance] didCreateTransferWithProceeds:[[NSDecimalNumber alloc] initWithFloat:transferFee.floatValue] currency:currencyCode];
 
         [self presentUploadMoneyController:paymentID];
     }];

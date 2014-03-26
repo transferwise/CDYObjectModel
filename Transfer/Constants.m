@@ -27,6 +27,8 @@ NSString *const TRWIdentificationEmail = @"id@transferwise.com";
 
 NSString *const TRWGoogleAnalyticsTrackingId = @"UA-16492313-2";
 
+NSString *const TRWMixpanelToken = @"96ffee966b209ba8b874598f4d936ff6";
+
 void delayedExecution(CGFloat seconds, TRWActionBlock action) {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC), dispatch_get_main_queue(), action);
 }

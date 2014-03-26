@@ -19,6 +19,7 @@
 #import "ObjectModel+Users.h"
 #import "User.h"
 #import "GoogleAnalytics.h"
+#import "AnalyticsCoordinator.h"
 
 @interface OpenIDViewController () <UIWebViewDelegate>
 
@@ -98,7 +99,7 @@
         [Credentials setUserEmail:email];
     }
 
-    [[GoogleAnalytics sharedInstance] markLoggedIn];
+    [[AnalyticsCoordinator sharedInstance] markLoggedIn];
 
     if ([Credentials userLoggedIn]) {
         [self.objectModel removeOtherUsers];

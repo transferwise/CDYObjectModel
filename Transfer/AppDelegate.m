@@ -24,6 +24,9 @@
 #import "NanTracking.h"
 #import "FBSettings.h"
 #import "FBAppEvents.h"
+#import "Mixpanel.h"
+#import "AnalyticsCoordinator.h"
+#import "TransferMixpanel.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -63,6 +66,12 @@
 
     [NanTracking setFbAppId:@"274548709260402"];
 
+    [Mixpanel sharedInstanceWithToken:TRWMixpanelToken];
+
+    TransferMixpanel *mixpanel = [[TransferMixpanel alloc] init];
+    [[AnalyticsCoordinator sharedInstance] addAnalyticsService:mixpanel];
+    [[AnalyticsCoordinator sharedInstance] addAnalyticsService:[GoogleAnalytics sharedInstance]];
+
     [Crashlytics startWithAPIKey:@"84bc4b5736898e3cfdb50d3d2c162c4f74480862"];
 
     [NanTracking trackNanigansEvent:@"" type:@"install" name:@"main"];
@@ -88,6 +97,7 @@
     [model loadBaseData];
 
     [[GoogleAnalytics sharedInstance] setObjectModel:model];
+    [mixpanel setObjectModel:model];
 
     [[TransferwiseClient sharedClient] setObjectModel:model];
     [[SupportCoordinator sharedInstance] setObjectModel:model];
@@ -129,7 +139,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	[[GoogleAnalytics sharedInstance] sendAppEvent:@"AppStarted"];
-	[[GoogleAnalytics sharedInstance] markLoggedIn];
+	[[AnalyticsCoordinator sharedInstance] markLoggedIn];
 
 #if USE_FACEBOOK_EVENTS
     [FBSettings setDefaultAppID:@"274548709260402"];

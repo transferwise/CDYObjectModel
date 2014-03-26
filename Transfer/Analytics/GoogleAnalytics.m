@@ -77,6 +77,22 @@
     [self markHasCompletedPayments];
 }
 
+- (void)confirmPaymentScreenShown {
+    //NO OP
+}
+
+- (void)didCreateTransferWithProceeds:(NSDecimalNumber *)proceeds currency:(NSString *)currencyCode {
+    //NO OP
+}
+
+- (void)paymentPersonalProfileScreenShown {
+    //NO OP
+}
+
+- (void)paymentRecipientProfileScreenShown {
+    [self sendScreen:@"Enter recipient details"];
+}
+
 - (void)sendEvent:(NSString *)event category:(NSString *)category label:(NSString *)label {
     NSMutableDictionary *eventDict = [[GAIDictionaryBuilder createEventWithCategory:category
                                                                              action:event
@@ -89,6 +105,10 @@
     [self.objectModel performBlock:^{
         [[[GAI sharedInstance] defaultTracker] set:[GAIFields customDimensionForIndex:2] value:[self.objectModel hasCompletedPayments] ? @"Y" : @"N"];
     }];
+}
+
+- (void)startScreenShown {
+    [self sendScreen:@"Start screen"];
 }
 
 @end

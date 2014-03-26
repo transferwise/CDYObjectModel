@@ -30,6 +30,7 @@
 #import "GoogleAnalytics.h"
 #import "CXAlertView.h"
 #import "StartPaymentButton.h"
+#import "AnalyticsCoordinator.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 
 static NSUInteger const kRowYouSend = 0;
@@ -190,7 +191,7 @@ static NSUInteger const kRowYouSend = 0;
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 
-    [[GoogleAnalytics sharedInstance] sendScreen:@"Start screen"];
+    [[AnalyticsCoordinator sharedInstance] startScreenShown];
 
     [self.tableView adjustFooterViewSize];
 }
