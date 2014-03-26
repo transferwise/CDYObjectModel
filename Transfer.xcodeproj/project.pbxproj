@@ -1689,11 +1689,11 @@
 			children = (
 				EABD864818E2B6B2004A5A57 /* AnalyticsCoordinator.h */,
 				EABD864918E2B6B2004A5A57 /* AnalyticsCoordinator.m */,
+				BA665E006BBEF0C455DE7F84 /* GoogleAnalytics.h */,
+				BA66546EEC8C630867200E77 /* GoogleAnalytics.m */,
 				EABD864718E2B694004A5A57 /* TransferAnalytics.h */,
 				EABD864318E2B65D004A5A57 /* TransferMixpanel.h */,
 				EABD864418E2B65D004A5A57 /* TransferMixpanel.m */,
-				BA66546EEC8C630867200E77 /* GoogleAnalytics.m */,
-				BA665E006BBEF0C455DE7F84 /* GoogleAnalytics.h */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";

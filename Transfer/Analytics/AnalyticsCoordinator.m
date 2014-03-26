@@ -60,7 +60,11 @@
 }
 
 - (void)didCreateTransferWithProceeds:(NSDecimalNumber *)proceeds currency:(NSString *)currencyCode {
-    [self sendMessageToServices:_cmd withArguments:@[proceeds, currencyCode]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        for (id<TransferAnalytics> service in self.services) {
+            [service didCreateTransferWithProceeds:proceeds currency:currencyCode];
+        }
+    });
 }
 
 - (void)paymentPersonalProfileScreenShown {
@@ -72,20 +76,9 @@
 }
 
 - (void)sendMessageToServices:(SEL)message {
-    [self sendMessageToServices:message withArguments:@[]];
-}
-
-- (void)sendMessageToServices:(SEL)message withArguments:(NSArray *)arguments {
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSInvocation *invocation = [[NSInvocation alloc] init];
-        [invocation setSelector:message];
-        for (NSUInteger index = 0; index < arguments.count; index++) {
-            id argument = arguments[index];
-            [invocation setArgument:&argument atIndex:index];
-        }
-
         for (id<TransferAnalytics> service in self.services) {
-            [invocation invokeWithTarget:service];
+            [service performSelector:message];
         }
     });
 }
