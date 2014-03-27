@@ -43,6 +43,8 @@
 #import "FBAppEvents.h"
 #import "NetworkErrorCodes.h"
 #import "AnalyticsCoordinator.h"
+#import "_RecipientType.h"
+#import "RecipientType.h"
 
 @interface PaymentFlow ()
 
@@ -630,7 +632,18 @@
 
         [NanTracking trackNanigansEvent:self.objectModel.currentUser.pReference type:@"purchase" name:@"main" value:[__formatter stringFromNumber:transferFee]];
 
-        [[AnalyticsCoordinator sharedInstance] didCreateTransferWithProceeds:[[NSDecimalNumber alloc] initWithFloat:transferFee.floatValue] currency:currencyCode];
+        [self.objectModel performBlock:^{
+            Payment *createdPayment = (Payment *) [self.objectModel.managedObjectContext objectWithID:paymentID];
+            NSMutableDictionary *details = [NSMutableDictionary dictionary];
+            details[@"recipientType"] = createdPayment.recipient.type.type;
+            details[@"sourceCurrency"] = createdPayment.sourceCurrency.code;
+            details[@"sourceValue"] = createdPayment.payIn;
+            details[@"targetCurrency"] = createdPayment.targetCurrency.code;
+            details[@"targetValue"] = createdPayment.payOut;
+            details[@"userType"] = createdPayment.profileUsed;
+
+            [[AnalyticsCoordinator sharedInstance] didCreatePayment:details];
+        }];
 
         [self presentUploadMoneyController:paymentID];
     }];

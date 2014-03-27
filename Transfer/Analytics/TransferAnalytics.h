@@ -15,7 +15,7 @@
 - (void)startScreenShown;
 - (void)markLoggedIn;
 - (void)confirmPaymentScreenShown;
-- (void)didCreateTransferWithProceeds:(NSDecimalNumber *)proceeds currency:(NSString *)currencyCode;
+- (void)didCreatePayment:(NSDictionary *)paymentDetails;
 - (void)paymentPersonalProfileScreenShown;
 - (void)paymentRecipientProfileScreenShown;
 

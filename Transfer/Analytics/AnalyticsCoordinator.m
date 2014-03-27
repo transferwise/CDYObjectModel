@@ -59,10 +59,10 @@
     [self sendMessageToServices:_cmd];
 }
 
-- (void)didCreateTransferWithProceeds:(NSDecimalNumber *)proceeds currency:(NSString *)currencyCode {
+- (void)didCreatePayment:(NSDictionary *)paymentDetails {
     dispatch_async(dispatch_get_main_queue(), ^{
         for (id<TransferAnalytics> service in self.services) {
-            [service didCreateTransferWithProceeds:proceeds currency:currencyCode];
+            [service didCreatePayment:paymentDetails];
         }
     });
 }

@@ -9,9 +9,6 @@
 #import <Mixpanel/Mixpanel.h>
 #import "TransferMixpanel.h"
 #import "Credentials.h"
-#import "ObjectModel.h"
-#import "ObjectModel+Users.h"
-#import "User.h"
 
 @implementation TransferMixpanel
 
@@ -33,9 +30,9 @@
     [self sendPageView:@"Confirmation"];
 }
 
-- (void)didCreateTransferWithProceeds:(NSDecimalNumber *)proceeds currency:(NSString *)currencyCode {
-    [[Mixpanel sharedInstance] identify:self.objectModel.currentUser.pReference];
-    [[[Mixpanel sharedInstance] people] trackCharge:proceeds withProperties:@{@"Currency" : currencyCode}];
+- (void)didCreatePayment:(NSDictionary *)paymentDetails {
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Transfer created" properties:paymentDetails];
 }
 
 - (void)paymentPersonalProfileScreenShown {

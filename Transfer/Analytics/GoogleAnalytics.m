@@ -81,7 +81,7 @@
     //NO OP
 }
 
-- (void)didCreateTransferWithProceeds:(NSDecimalNumber *)proceeds currency:(NSString *)currencyCode {
+- (void)didCreatePayment:(NSDictionary *)paymentDetails {
     //NO OP
 }
 
