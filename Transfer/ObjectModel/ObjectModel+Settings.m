@@ -45,7 +45,7 @@ typedef NS_ENUM(short, SettingKey) {
 }
 
 - (BOOL)shouldShowDirectUserSignup {
-    return [self booleanValueForKey:SettingOptionDirectSignupEnabled defaultValue:YES];
+    return [self booleanValueForKey:SettingOptionDirectSignupEnabled defaultValue:NO];
 }
 
 - (void)markDirectSignupEnabled:(BOOL)enabled {
