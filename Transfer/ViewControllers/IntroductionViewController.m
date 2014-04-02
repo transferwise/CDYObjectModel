@@ -179,7 +179,9 @@ static NSUInteger const kRowYouSend = 0;
 
     [self.calculator setObjectModel:self.objectModel];
     [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSources]];
-    [self.calculator forceCalculate];
+    if (!self.dummyPresentation) {
+        [self.calculator forceCalculate];
+    }
 
     [self retrieveCurrencyPairs];
 }
@@ -191,12 +193,19 @@ static NSUInteger const kRowYouSend = 0;
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 
-    [[AnalyticsCoordinator sharedInstance] startScreenShown];
+    if (!self.dummyPresentation) {
+        [[AnalyticsCoordinator sharedInstance] startScreenShown];
+    }
 
     [self.tableView adjustFooterViewSize];
 }
 
 - (void)retrieveCurrencyPairs {
+    if (self.dummyPresentation) {
+        //It is dummy instance used on app launch
+        return;
+    }
+
     if (self.executedOperation) {
         return;
     }

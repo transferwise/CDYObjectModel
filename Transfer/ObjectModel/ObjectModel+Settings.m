@@ -15,6 +15,7 @@ typedef NS_ENUM(short, SettingKey) {
     SettingRatingShown,
     SettingOptionReviewsEnabled,
     SettingOptionDirectSignupEnabled,
+    SettingIntroHasBeenShown
 };
 
 @implementation ObjectModel (Settings)
@@ -50,6 +51,14 @@ typedef NS_ENUM(short, SettingKey) {
 
 - (void)markDirectSignupEnabled:(BOOL)enabled {
     [self setBooleanValue:enabled forKey:SettingOptionDirectSignupEnabled];
+}
+
+- (BOOL)hasIntroBeenShown {
+    return [self booleanValueForKey:SettingIntroHasBeenShown defaultValue:NO];
+}
+
+- (void)markIntroShown {
+    [self setBooleanValue:YES forKey:SettingIntroHasBeenShown];
 }
 
 - (Setting *)loadSettingForKey:(SettingKey)key {

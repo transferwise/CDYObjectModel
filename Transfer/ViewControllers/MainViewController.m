@@ -101,8 +101,14 @@
     [self.tabsController setSelectedIndex:0];
     [self setLaunchTableViewGamAdjustmentDone:YES];
 
-    if (![Credentials userLoggedIn] && !self.shown) {
+    if (![Credentials userLoggedIn] && !self.shown && ![self.objectModel hasIntroBeenShown]) {
         IntroViewController *controller = [[IntroViewController alloc] init];
+        [self setNavigationBarHidden:YES];
+        [self pushViewController:controller animated:NO];
+    } else if (![Credentials userLoggedIn] && !self.shown) {
+        IntroductionViewController *controller = [[IntroductionViewController alloc] init];
+        [controller setObjectModel:self.objectModel];
+        [controller setDummyPresentation:YES];
         [self setNavigationBarHidden:YES];
         [self pushViewController:controller animated:NO];
     }
@@ -121,7 +127,7 @@
 
 - (void)presentIntroductionController:(BOOL)shownBefore {
     UIViewController *presented;
-    if (shownBefore) {
+    if (shownBefore || [self.objectModel hasIntroBeenShown]) {
         if ([self.objectModel shouldShowDirectUserSignup]) {
             SignUpViewController *controller = [[SignUpViewController alloc] init];
             [controller setObjectModel:self.objectModel];

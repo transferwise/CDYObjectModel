@@ -100,6 +100,8 @@
     [super viewDidAppear:animated];
 
     [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Intro screen"]];
+
+    [self.objectModel markIntroShown];
 }
 
 
