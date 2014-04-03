@@ -22,6 +22,7 @@
 - (void)clearCredentials;
 - (NSString *)addTokenToPath:(NSString *)path;
 - (void)updateConfigurationOptions;
+- (void)setBasicUsername:(NSString *)username password:(NSString *)password;
 
 + (void)clearCookies;
 

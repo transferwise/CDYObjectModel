@@ -100,6 +100,10 @@
     [mixpanel setObjectModel:model];
 
     [[TransferwiseClient sharedClient] setObjectModel:model];
+#if DEV_VERSION
+    [[TransferwiseClient sharedClient] setBasicUsername:TransferSandboxUsername password:TransferSandboxPassword];
+#endif
+
     [[SupportCoordinator sharedInstance] setObjectModel:model];
     [[FeedbackCoordinator sharedInstance] setObjectModel:model];
 

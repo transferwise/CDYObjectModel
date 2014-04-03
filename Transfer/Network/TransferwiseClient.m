@@ -120,4 +120,9 @@ NSString *const kAPIPathBase = @"/api/v1";
     });
 }
 
+- (void)setBasicUsername:(NSString *)username password:(NSString *)password {
+    [self clearAuthorizationHeader];
+    [self setAuthorizationHeaderWithUsername:username password:password];
+}
+
 @end

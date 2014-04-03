@@ -46,6 +46,9 @@ extern NSString *const TRWServerAddress;
 extern NSString *const TRWGoogleAnalyticsTrackingId;
 extern NSString *const TRWMixpanelToken;
 
+extern NSString *const TransferSandboxUsername;
+extern NSString *const TransferSandboxPassword;
+
 extern NSString *const TRWSupportCallNumber;
 extern NSString *const TRWSupportEmail;
 extern NSString *const TRWFeedbackEmail;
