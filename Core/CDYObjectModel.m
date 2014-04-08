@@ -417,6 +417,10 @@
 
             _persistentStoreCoordinator = nil;
 
+            if (self.databaseWipeCallback) {
+                self.databaseWipeCallback();
+            }
+
             return [self persistentStoreCoordinator];
         } else {
             abort();
