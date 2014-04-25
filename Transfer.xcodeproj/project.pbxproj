@@ -1825,9 +1825,9 @@
 			productReference = EA76D90C175CF80100AE3F86 /* TransferTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
-		EAAA1467171BC911005B9430 /* Transfer */ = {
+		EAAA1467171BC911005B9430 /* TransferWise */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EAAA148A171BC911005B9430 /* Build configuration list for PBXNativeTarget "Transfer" */;
+			buildConfigurationList = EAAA148A171BC911005B9430 /* Build configuration list for PBXNativeTarget "TransferWise" */;
 			buildPhases = (
 				2E57B8DE397E43DE878090FF /* Check Pods Manifest.lock */,
 				EAD73695171E820100A037B1 /* mogenerator */,
@@ -1842,7 +1842,7 @@
 			);
 			dependencies = (
 			);
-			name = Transfer;
+			name = TransferWise;
 			productName = Transfer;
 			productReference = EAAA1468171BC911005B9430 /* Transfer.app */;
 			productType = "com.apple.product-type.application";
@@ -1873,7 +1873,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EAAA1467171BC911005B9430 /* Transfer */,
+				EAAA1467171BC911005B9430 /* TransferWise */,
 				EA31A12117DDB29B00F937F7 /* TransferDev */,
 				EA76D90B175CF80100AE3F86 /* TransferTests */,
 			);
@@ -2586,7 +2586,7 @@
 /* Begin PBXTargetDependency section */
 		EA76D922175CFA6E00AE3F86 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EAAA1467171BC911005B9430 /* Transfer */;
+			target = EAAA1467171BC911005B9430 /* TransferWise */;
 			targetProxy = EA76D921175CFA6E00AE3F86 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -2887,7 +2887,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EAAA148A171BC911005B9430 /* Build configuration list for PBXNativeTarget "Transfer" */ = {
+		EAAA148A171BC911005B9430 /* Build configuration list for PBXNativeTarget "TransferWise" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EAAA148B171BC911005B9430 /* Debug */,
