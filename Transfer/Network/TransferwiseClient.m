@@ -74,12 +74,8 @@ NSString *const kAPIPathBase = @"/api/v1";
 
 - (void)clearCredentials {
     NSString *token = [Credentials accessToken];
-    [self.objectModel deleteObject:self.objectModel.currentUser saveAfter:YES];
-    [Credentials clearCredentials];
-    [[GoogleAnalytics sharedInstance] markLoggedIn];
-    [TransferwiseClient clearCookies];
-
     RemoveTokenOperation *operation = [[RemoveTokenOperation alloc] initWithToken:token];
+    [operation setObjectModel:self.objectModel];
     [self setExecutedOperation:operation];
     [operation execute];
 }

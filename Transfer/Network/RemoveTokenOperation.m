@@ -9,6 +9,11 @@
 #import "RemoveTokenOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Constants.h"
+#import "TransferwiseClient.h"
+#import "GoogleAnalytics.h"
+#import "Credentials.h"
+#import "ObjectModel+Users.h"
+#import "User.h"
 
 NSString *const kReleaseTokenPath = @"/token/release";
 
@@ -40,6 +45,11 @@ NSString *const kReleaseTokenPath = @"/token/release";
     }];
 
     [self postData:@{@"token" : self.token} toPath:path];
+
+    [self.objectModel deleteObject:self.objectModel.currentUser];
+    [Credentials clearCredentials];
+    [[GoogleAnalytics sharedInstance] markLoggedIn];
+    [TransferwiseClient clearCookies];
 }
 
 @end
