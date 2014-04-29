@@ -11,14 +11,14 @@
 
 @interface TransferBackButtonItem ()
 
-@property (nonatomic, copy) JCSActionBlock tapHandler;
+@property (nonatomic, copy) TRWActionBlock tapHandler;
 @property (nonatomic, assign) UINavigationController *navigationController;
 
 @end
 
 @implementation TransferBackButtonItem
 
-+ (TransferBackButtonItem *)backButtonWithTapHandler:(JCSActionBlock)tapHandler {
++ (TransferBackButtonItem *)backButtonWithTapHandler:(TRWActionBlock)tapHandler {
     return [TransferBackButtonItem backButtonForPoppedNavigationController:nil tapHandler:tapHandler];
 }
 
@@ -26,7 +26,7 @@
     return [TransferBackButtonItem backButtonForPoppedNavigationController:navigationController tapHandler:nil];
 }
 
-+ (TransferBackButtonItem *)backButtonForPoppedNavigationController:(UINavigationController *)navigationController tapHandler:(JCSActionBlock)tapHandler {
++ (TransferBackButtonItem *)backButtonForPoppedNavigationController:(UINavigationController *)navigationController tapHandler:(TRWActionBlock)tapHandler {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     if (IOS_7) {
         [button setImage:[UIImage imageNamed:@"BackButtonArrow7"] forState:UIControlStateNormal];

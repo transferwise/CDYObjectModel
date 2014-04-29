@@ -8,7 +8,6 @@
 
 #import "PaymentsOperation.h"
 #import "TransferwiseOperation+Private.h"
-#import "JCSObjectModel.h"
 #import "ObjectModel.h"
 #import "ObjectModel+Payments.h"
 #import "Payment.h"

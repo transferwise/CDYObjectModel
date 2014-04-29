@@ -306,7 +306,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)uploadPaymentPurpose:(NSString *)purpose errorHandler:(PaymentErrorBlock)errorBlock completionHandler:(JCSActionBlock)completion {
+- (void)uploadPaymentPurpose:(NSString *)purpose errorHandler:(PaymentErrorBlock)errorBlock completionHandler:(TRWActionBlock)completion {
     if ((self.identificationRequired & IdentificationPaymentPurposeRequired) != IdentificationPaymentPurposeRequired) {
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"sent"];
         [self uploadIdImageWithErrorHandler:errorBlock completionHandler:completion];
@@ -333,7 +333,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [operation execute];
 }
 
-- (void)uploadIdImageWithErrorHandler:(PaymentErrorBlock)errorBlock completionHandler:(JCSActionBlock)completion {
+- (void)uploadIdImageWithErrorHandler:(PaymentErrorBlock)errorBlock completionHandler:(TRWActionBlock)completion {
     MCLog(@"uploadIdImageWithErrorHandler");
     if ((self.identificationRequired & IdentificationIdRequired) != IdentificationIdRequired) {
         [self uploadAddressImageWithErrorHandler:errorBlock completionHandler:completion];
@@ -349,7 +349,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     }];
 }
 
-- (void)uploadAddressImageWithErrorHandler:(PaymentErrorBlock)errorBlock completionHandler:(JCSActionBlock)completion {
+- (void)uploadAddressImageWithErrorHandler:(PaymentErrorBlock)errorBlock completionHandler:(TRWActionBlock)completion {
     MCLog(@"uploadAddressImageWithErrorHandler");
     if ((self.identificationRequired & IdentificationAddressRequired) != IdentificationAddressRequired) {
         completion();

@@ -171,7 +171,7 @@ static NSUInteger const kButtonSection = 0;
     }
 }
 
-- (void)pullCountriesWithHud:(TRWProgressHUD *)hud completionHandler:(JCSActionBlock)completion {
+- (void)pullCountriesWithHud:(TRWProgressHUD *)hud completionHandler:(TRWActionBlock)completion {
     CountriesOperation *operation = [CountriesOperation operation];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];

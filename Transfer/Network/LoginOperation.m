@@ -10,13 +10,11 @@
 #import "TransferwiseOperation+Private.h"
 #import "Credentials.h"
 #import "TransferwiseClient.h"
-#import "JCSObjectModel.h"
 #import "ObjectModel+RecipientTypes.h"
 #import "FBAppEvents.h"
 #import "GoogleAnalytics.h"
 #import "AppsFlyer.h"
 #import "ObjectModel+Users.h"
-#import "_User.h"
 #import "User.h"
 
 NSString *const kLoginPath = @"/token/create";

@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JCSObjectModel.h"
+#import "Constants.h"
 
 @interface TransferBackButtonItem : UIBarButtonItem
 
-+ (TransferBackButtonItem *)backButtonWithTapHandler:(JCSActionBlock)tapHandler;
++ (TransferBackButtonItem *)backButtonWithTapHandler:(TRWActionBlock)tapHandler;
 + (TransferBackButtonItem *)backButtonForPoppedNavigationController:(UINavigationController *)navigationController;
 
 @end

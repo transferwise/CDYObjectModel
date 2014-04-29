@@ -1,5 +1,8 @@
 PODS:
   - AFNetworking (1.3.2)
+  - CDYObjectModel (0.1.0):
+    - CDYObjectModel/Core
+  - CDYObjectModel/Core (0.1.0)
   - CXAlertView (1.0.1)
   - Facebook-iOS-SDK (3.7.1)
   - Kiwi (2.1)
@@ -13,6 +16,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 1.3.2)
+  - CDYObjectModel (from `https://github.com/coodly/CDYObjectModel.git`)
   - CXAlertView (~> 1.0.1)
   - Facebook-iOS-SDK
   - Kiwi
@@ -24,17 +28,22 @@ DEPENDENCIES:
   - SMPageControl
   - TestFlightSDK
 
+EXTERNAL SOURCES:
+  CDYObjectModel:
+    :git: https://github.com/coodly/CDYObjectModel.git
+
 SPEC CHECKSUMS:
   AFNetworking: 7f9bcd7c287a75476cd5c61e82fd3380e93e4c54
+  CDYObjectModel: eaff3ecf28903ebc1c404b2fa1480b88c385d701
   CXAlertView: 59e8305700c59a27730c636765cb76311d311b88
-  Facebook-iOS-SDK: bf38d403928f6adb652e2e5ae46253e0c6ba9a19
+  Facebook-iOS-SDK: ded70122240311504d96e045e3b7316bb6b008b9
   Kiwi: 054ef97d0e50c279b21113a0880a906fa153a7fd
-  Lockbox: 1bcfd564f034b83456fcad5bdd49470a80a38d2b
+  Lockbox: e9d697391dab1952a1e214103231a10d2a552eb0
   MBProgressHUD: 1fd8591a2216d5dec6de24e09187bb03bcbe9946
   Mixpanel: 16e6f1d5f8aeb9282ee864e169557de0bd9549df
-  OCMock: 79212e5e328378af5cfd6edb5feacfd6c49cd8a3
-  OHAttributedLabel: 770332ef810ca15c9bd4a79f300ce620bc443e9d
+  OCMock: 4320c8b003c01f9718e69453690228298b9614b5
+  OHAttributedLabel: d5f82252c15c67ccb033522e84a395f9f8fa3ef9
   SMPageControl: c723bd0716b6bfc6ea927de2538b64c1929f7da6
-  TestFlightSDK: 71e3e78d3a46144dbad975a4bf80a14dae6a818a
+  TestFlightSDK: fe0567a897456b6f65b180541892ef0154986e01
 
-COCOAPODS: 0.31.1
+COCOAPODS: 0.32.1

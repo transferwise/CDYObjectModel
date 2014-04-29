@@ -77,7 +77,6 @@
 		EA222E39173A861000C5D613 /* ConfirmPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E37173A861000C5D613 /* ConfirmPaymentViewController.xib */; };
 		EA222E3C173A8A7100C5D613 /* ConfirmPaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E3B173A8A7100C5D613 /* ConfirmPaymentCell.m */; };
 		EA222E3E173A8A7C00C5D613 /* ConfirmPaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E3D173A8A7C00C5D613 /* ConfirmPaymentCell.xib */; };
-		EA225C47178E96FE009D6B83 /* JCSObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C46178E96FE009D6B83 /* JCSObjectModel.m */; };
 		EA225C67178E9C90009D6B83 /* _Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C66178E9C90009D6B83 /* _Payment.m */; };
 		EA225C6B178E9C93009D6B83 /* Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C6A178E9C93009D6B83 /* Payment.m */; };
 		EA225C71178E9F00009D6B83 /* ObjectModel+Payments.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C70178E9F00009D6B83 /* ObjectModel+Payments.m */; };
@@ -227,7 +226,6 @@
 		EA31A18917DDB29B00F937F7 /* UITableView+FooterPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9A2E82176B711400C5E058 /* UITableView+FooterPositioning.m */; };
 		EA31A18A17DDB29B00F937F7 /* TransferTypeSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9A2EBB176F4BC600C5E058 /* TransferTypeSelectionCell.m */; };
 		EA31A18B17DDB29B00F937F7 /* RoundedCellWhiteBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB704E7C177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m */; };
-		EA31A18C17DDB29B00F937F7 /* JCSObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C46178E96FE009D6B83 /* JCSObjectModel.m */; };
 		EA31A18D17DDB29B00F937F7 /* _Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C66178E9C90009D6B83 /* _Payment.m */; };
 		EA31A18E17DDB29B00F937F7 /* Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C6A178E9C93009D6B83 /* Payment.m */; };
 		EA31A18F17DDB29B00F937F7 /* ObjectModel+Payments.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C70178E9F00009D6B83 /* ObjectModel+Payments.m */; };
@@ -632,8 +630,6 @@
 		EA222E3A173A8A7100C5D613 /* ConfirmPaymentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmPaymentCell.h; sourceTree = "<group>"; };
 		EA222E3B173A8A7100C5D613 /* ConfirmPaymentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmPaymentCell.m; sourceTree = "<group>"; };
 		EA222E3D173A8A7C00C5D613 /* ConfirmPaymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfirmPaymentCell.xib; sourceTree = "<group>"; };
-		EA225C45178E96FE009D6B83 /* JCSObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCSObjectModel.h; sourceTree = "<group>"; };
-		EA225C46178E96FE009D6B83 /* JCSObjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCSObjectModel.m; sourceTree = "<group>"; };
 		EA225C65178E9C90009D6B83 /* _Payment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Payment.h; sourceTree = "<group>"; };
 		EA225C66178E9C90009D6B83 /* _Payment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Payment.m; sourceTree = "<group>"; };
 		EA225C69178E9C93009D6B83 /* Payment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Payment.h; sourceTree = "<group>"; };
@@ -1230,15 +1226,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		EA225C44178E96FE009D6B83 /* JCSObjectModel */ = {
-			isa = PBXGroup;
-			children = (
-				EA225C45178E96FE009D6B83 /* JCSObjectModel.h */,
-				EA225C46178E96FE009D6B83 /* JCSObjectModel.m */,
-			);
-			path = JCSObjectModel;
-			sourceTree = "<group>";
-		};
 		EA225CB6178EEA89009D6B83 /* BaseData */ = {
 			isa = PBXGroup;
 			children = (
@@ -1356,7 +1343,6 @@
 				EACD942B18D82C2C00369905 /* NanTracking */,
 				EA8FA85C1891065F00153EBC /* GoogleAnalyticsServicesiOS_3.03 */,
 				EAA4B36C17FD476A003B774F /* AF-iOS-SDK-v2.5.1.9.8 */,
-				EA225C44178E96FE009D6B83 /* JCSObjectModel */,
 				EA88E65C172F96660021492C /* SWRevealViewController */,
 				BBC6911B1721414300F0FB1A /* TSAlertView */,
 				EA0253BB17D5E44400F54C18 /* uidevice-extension */,
@@ -2322,7 +2308,6 @@
 				EA31A18917DDB29B00F937F7 /* UITableView+FooterPositioning.m in Sources */,
 				EA31A18A17DDB29B00F937F7 /* TransferTypeSelectionCell.m in Sources */,
 				EA31A18B17DDB29B00F937F7 /* RoundedCellWhiteBackgroundView.m in Sources */,
-				EA31A18C17DDB29B00F937F7 /* JCSObjectModel.m in Sources */,
 				EA31A18D17DDB29B00F937F7 /* _Payment.m in Sources */,
 				EA31A18E17DDB29B00F937F7 /* Payment.m in Sources */,
 				EA31A18F17DDB29B00F937F7 /* ObjectModel+Payments.m in Sources */,
@@ -2517,7 +2502,6 @@
 				BB9A2E83176B711400C5E058 /* UITableView+FooterPositioning.m in Sources */,
 				BB9A2EBC176F4BC600C5E058 /* TransferTypeSelectionCell.m in Sources */,
 				BB704E7D177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m in Sources */,
-				EA225C47178E96FE009D6B83 /* JCSObjectModel.m in Sources */,
 				EA225C67178E9C90009D6B83 /* _Payment.m in Sources */,
 				EA225C6B178E9C93009D6B83 /* Payment.m in Sources */,
 				EA225C71178E9F00009D6B83 /* ObjectModel+Payments.m in Sources */,

@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JCSObjectModel.h"
+#import "CDYObjectModel.h"
 
-@interface ObjectModel : JCSObjectModel
+@interface ObjectModel : CDYObjectModel
 
 - (void)loadBaseData;
 

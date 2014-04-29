@@ -9,7 +9,6 @@
 #import "CurrenciesOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Constants.h"
-#import "JCSObjectModel.h"
 #import "ObjectModel+RecipientTypes.h"
 #import "ObjectModel+Currencies.h"
 #import "RecipientTypesOperation.h"

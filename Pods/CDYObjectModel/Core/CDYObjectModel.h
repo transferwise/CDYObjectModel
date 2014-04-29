@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 JaanusSiim
+ * Copyright 2014 Coodly LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,24 +15,30 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-typedef void (^JCSActionBlock)();
+@class CDYObjectModel;
 
-#define JCSFLog(s, ...) NSLog( @"<%p %@:(%d)> %@", self, [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
+#define CDYObjectModelLog(s, ...) NSLog( @"<%p %@:(%d)> %@", self, [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
 
-@interface JCSObjectModel : NSObject
+typedef void (^CDYModelActionBlock)();
+typedef void (^CDYModelInjectionBlock)(CDYObjectModel *objectModel);
+
+@interface CDYObjectModel : NSObject
 
 @property (nonatomic, assign) BOOL wipeDatabaseOnSchemaConflict;
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, copy) CDYModelActionBlock databaseWipeCallback;
 
 - (id)initWithDataModelName:(NSString *)modelName storeType:(NSString *)storeType;
 - (id)initWithDataModelName:(NSString *)modelName storeURL:(NSURL *)storeURL storeType:(NSString *)storeType;
 
-- (id)sharedBackgroundInstance;
 - (id)spawnBackgroundInstance;
 
 - (void)saveContext;
-- (void)saveContext:(JCSActionBlock)completion;
+- (void)saveContext:(CDYModelActionBlock)completion;
+
+- (BOOL)databaseFileExists;
 
 - (NSFetchedResultsController *)fetchedControllerForEntity:(NSString *)entityName;
 - (NSFetchedResultsController *)fetchedControllerForEntity:(NSString *)entityName sortDescriptors:(NSArray *)sortDescriptors;
@@ -48,6 +54,7 @@ typedef void (^JCSActionBlock)();
 - (NSArray *)fetchEntitiesNamed:(NSString *)entityName usingPredicate:(NSPredicate *)predicate withSortDescriptors:(NSArray *)descriptors;
 
 - (NSArray *)fetchAttributeNamed:(NSString *)attributeName forEntity:(NSString *)entityName;
+- (NSArray *)fetchAttributeNamed:(NSString *)attributeName forEntity:(NSString *)entityName withPredicate:(NSPredicate *)predicate;
 
 - (NSDictionary *)fetchPropertiesWithDescriptions:(NSArray *)descriptions onEntity:(NSString *)entityName usingPredicate:(NSPredicate *)predicate;
 
@@ -60,7 +67,10 @@ typedef void (^JCSActionBlock)();
 - (void)deleteObject:(NSManagedObject *)object saveAfter:(BOOL)saveAfter;
 - (void)deleteObjects:(NSArray *)objects saveAfter:(BOOL)saveAfter;
 
-- (void)performBlock:(JCSActionBlock)actionBlock;
+- (void)performBlock:(CDYModelActionBlock)actionBlock;
+
+- (void)saveInBlock:(CDYModelInjectionBlock)handler;
+- (void)saveInBlock:(CDYModelInjectionBlock)handler completion:(CDYModelActionBlock)completion;
 
 - (NSExpressionDescription *)descriptionWithPath:(NSString *)keyPath function:(NSString *)function resultName:(NSString *)name type:(NSAttributeType)type;
 

@@ -9,7 +9,6 @@
 #import "PullPaymentDetailsOperation.h"
 #import "Constants.h"
 #import "TransferwiseOperation+Private.h"
-#import "JCSObjectModel.h"
 #import "ObjectModel+PendingPayments.h"
 #import "ObjectModel+Payments.h"
 

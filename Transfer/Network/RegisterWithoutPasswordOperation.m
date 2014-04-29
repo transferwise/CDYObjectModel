@@ -9,7 +9,6 @@
 #import "RegisterWithoutPasswordOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Credentials.h"
-#import "JCSObjectModel.h"
 #import "ObjectModel+RecipientTypes.h"
 #import "ObjectModel+Users.h"
 

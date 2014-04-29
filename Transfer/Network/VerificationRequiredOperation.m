@@ -8,7 +8,6 @@
 
 #import "VerificationRequiredOperation.h"
 #import "TransferwiseOperation+Private.h"
-#import "JCSObjectModel.h"
 #import "ObjectModel+RecipientTypes.h"
 #import "PendingPayment.h"
 #import "ObjectModel+PendingPayments.h"

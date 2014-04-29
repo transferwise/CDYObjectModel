@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JCSObjectModel.h"
+#import "Constants.h"
 
 @interface IdentificationNotificationView : UIView
 
-@property (nonatomic, copy) JCSActionBlock tapHandler;
+@property (nonatomic, copy) TRWActionBlock tapHandler;
 
 @end

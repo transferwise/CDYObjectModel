@@ -10,11 +10,8 @@
 #import "Constants.h"
 #import "Credentials.h"
 #import "RemoveTokenOperation.h"
-#import "JCSObjectModel.h"
 #import "ObjectModel+Users.h"
-#import "User.h"
 #import "ConfigurationOptionsOperation.h"
-#import "GoogleAnalytics.h"
 
 NSString *const kAPIPathBase = @"/api/v1";
 

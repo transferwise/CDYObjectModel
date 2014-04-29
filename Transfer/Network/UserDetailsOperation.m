@@ -9,7 +9,6 @@
 #import "UserDetailsOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Constants.h"
-#import "JCSObjectModel.h"
 #import "ObjectModel+RecipientTypes.h"
 #import "ObjectModel+Users.h"
 

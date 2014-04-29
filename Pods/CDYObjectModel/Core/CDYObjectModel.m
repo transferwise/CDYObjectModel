@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 JaanusSiim
+ * Copyright 2014 Coodly LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-#import "JCSObjectModel.h"
+#import "CDYObjectModel.h"
 
-@interface JCSObjectModel ()
+@interface CDYObjectModel ()
 
 @property (nonatomic, strong) NSURL *storeURL;
 @property (nonatomic, copy) NSString *storeType;
@@ -25,14 +25,14 @@
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, strong) NSManagedObjectContext *writingContext;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (nonatomic, strong) JCSObjectModel *backgroundInstance;
+@property (nonatomic, strong) CDYObjectModel *backgroundInstance;
 
 @end
 
-@implementation JCSObjectModel
+@implementation CDYObjectModel
 
 - (id)initWithDataModelName:(NSString *)modelName storeType:(NSString *)storeType {
-    NSURL *databaseURL = [JCSObjectModel fileUrlInDocumentsFolder:[NSString stringWithFormat:@"%@.sqlite", modelName]];
+    NSURL *databaseURL = [CDYObjectModel fileUrlInDocumentsFolder:[NSString stringWithFormat:@"%@.sqlite", modelName]];
     return [self initWithDataModelName:modelName storeURL:databaseURL storeType:storeType];
 }
 
@@ -57,18 +57,9 @@
     return self;
 }
 
-- (id)sharedBackgroundInstance {
-    if (self.backgroundInstance) {
-        return self.backgroundInstance;
-    }
-
-    [self setBackgroundInstance:[self spawnBackgroundInstance]];
-    return self.backgroundInstance;
-}
-
 - (id)spawnBackgroundInstance {
     Class modelClass = [self class];
-    JCSObjectModel *model = [[modelClass alloc] initPrivateModelWithCoordinator:self.persistentStoreCoordinator writerContext:self.managedObjectContext];
+    CDYObjectModel *model = [[modelClass alloc] initPrivateModelWithCoordinator:self.persistentStoreCoordinator writerContext:self.managedObjectContext];
     return model;
 }
 
@@ -109,7 +100,7 @@
     NSError *fetchError = nil;
     [controller performFetch:&fetchError];
     if (fetchError) {
-        JCSFLog(@"Fetch error - %@", fetchError);
+        CDYObjectModelLog(@"Fetch error - %@", fetchError);
     }
 
     return controller;
@@ -128,7 +119,7 @@
     NSArray *objects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
 
     if (error != nil) {
-        JCSFLog(@"Fetch error %@", error);
+        CDYObjectModelLog(@"Fetch error %@", error);
     }
 
     return [objects lastObject];
@@ -147,7 +138,7 @@
     NSArray *objects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
 
     if (error != nil) {
-        JCSFLog(@"Fetch error %@", error);
+        CDYObjectModelLog(@"Fetch error %@", error);
     }
 
     return [objects lastObject];
@@ -168,14 +159,18 @@
     NSArray *objects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
 
     if (error != nil) {
-        JCSFLog(@"Fetch error %@", error);
+        CDYObjectModelLog(@"Fetch error %@", error);
     }
 
     return objects;
 }
 
 - (NSArray *)fetchAttributeNamed:(NSString *)attributeName forEntity:(NSString *)entityName {
-    NSFetchRequest *fetchRequest = [self fetchRequestForEntity:entityName predicate:nil];
+    return [self fetchAttributeNamed:attributeName forEntity:entityName withPredicate:nil];
+}
+
+- (NSArray *)fetchAttributeNamed:(NSString *)attributeName forEntity:(NSString *)entityName withPredicate:(NSPredicate *)predicate {
+    NSFetchRequest *fetchRequest = [self fetchRequestForEntity:entityName predicate:predicate];
     [fetchRequest setResultType:NSDictionaryResultType];
     [fetchRequest setPropertiesToFetch:@[attributeName]];
 
@@ -183,7 +178,7 @@
     NSArray *objects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
 
     if (error != nil) {
-        JCSFLog(@"Fetch error %@", error);
+        CDYObjectModelLog(@"Fetch error %@", error);
     }
 
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:[objects count]];
@@ -203,11 +198,11 @@
     NSArray *objects = [self.managedObjectContext executeFetchRequest:request error:&error];
 
     if (error != nil) {
-        JCSFLog(@"Fetch error %@", error);
+        CDYObjectModelLog(@"Fetch error %@", error);
     }
 
     if ([objects count] > 1) {
-        JCSFLog(@"Fetched %d objects: %@", [objects count], objects);
+        CDYObjectModelLog(@"Fetched %d objects: %@", [objects count], objects);
     }
 
     return [objects lastObject];
@@ -224,7 +219,7 @@
     NSUInteger count = [self.managedObjectContext countForFetchRequest:request error:&error];
 
     if (error != nil) {
-        JCSFLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        CDYObjectModelLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
 
@@ -242,8 +237,20 @@
     return [[attributeValue lowercaseString] isEqualToString:[[existing valueForKeyPath:attributeName] lowercaseString]];
 }
 
-- (void)performBlock:(JCSActionBlock)actionBlock {
+- (void)performBlock:(CDYModelActionBlock)actionBlock {
     [self.managedObjectContext performBlock:actionBlock];
+}
+
+- (void)saveInBlock:(CDYModelInjectionBlock)handler {
+    [self saveInBlock:handler completion:nil];
+}
+
+- (void)saveInBlock:(CDYModelInjectionBlock)handler completion:(CDYModelActionBlock)completion {
+    CDYObjectModel *spawned = [self spawnBackgroundInstance];
+    [spawned performBlock:^{
+        handler(spawned);
+        [spawned saveContext:completion];
+    }];
 }
 
 - (NSExpressionDescription *)descriptionWithPath:(NSString *)keyPath function:(NSString *)function resultName:(NSString *)name type:(NSAttributeType)type {
@@ -260,7 +267,7 @@
     [self saveContext:nil];
 }
 
-- (void)saveContext:(JCSActionBlock)completion {
+- (void)saveContext:(CDYModelActionBlock)completion {
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
 
     if (!managedObjectContext) {
@@ -268,16 +275,16 @@
     }
 
     if (managedObjectContext.concurrencyType == NSMainQueueConcurrencyType) {
-        JCSFLog(@"=============================");
-        JCSFLog(@"Calling save on main context!");
-        JCSFLog(@"%@",[NSThread callStackSymbols]);
-        JCSFLog(@"=============================");
+        CDYObjectModelLog(@"=============================");
+        CDYObjectModelLog(@"Calling save on main context!");
+        CDYObjectModelLog(@"%@", [NSThread callStackSymbols]);
+        CDYObjectModelLog(@"=============================");
     }
 
     [self saveContext:managedObjectContext completion:completion];
 }
 
-- (void)saveContext:(NSManagedObjectContext *)context completion:(JCSActionBlock)completion {
+- (void)saveContext:(NSManagedObjectContext *)context completion:(CDYModelActionBlock)completion {
     [context performBlock:^{
         NSError *error = nil;
         if ([context hasChanges] && ![context save:&error]) {
@@ -291,9 +298,13 @@
         }
 
         if (completion) {
-            completion();
+            dispatch_async(dispatch_get_main_queue(), completion);
         }
     }];
+}
+
+- (BOOL)databaseFileExists {
+    return [[NSFileManager defaultManager] fileExistsAtPath:[self.storeURL path]];
 }
 
 - (void)deleteObject:(NSManagedObject *)object {
@@ -405,6 +416,10 @@
             }
 
             _persistentStoreCoordinator = nil;
+
+            if (self.databaseWipeCallback) {
+                self.databaseWipeCallback();
+            }
 
             return [self persistentStoreCoordinator];
         } else {

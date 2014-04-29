@@ -279,7 +279,7 @@
     MCLog(@"Validate payment");
     self.paymentErrorHandler = errorHandler;
 
-    JCSActionBlock executeValidationBlock = ^{
+    TRWActionBlock executeValidationBlock = ^{
         CreatePaymentOperation *operation = [CreatePaymentOperation validateOperationWithInput:paymentInput];
         [self setExecutedOperation:operation];
         [operation setObjectModel:self.objectModel];
@@ -409,7 +409,7 @@
 }
 
 
-- (void)updateSenderProfile:(JCSActionBlock)completion {
+- (void)updateSenderProfile:(TRWActionBlock)completion {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"updateSenderProfile");
         if ([self.objectModel.currentUser.businessProfile isFilled]) {
@@ -420,7 +420,7 @@
     });
 }
 
-- (void)updateBusinessProfile:(JCSActionBlock)completion {
+- (void)updateBusinessProfile:(TRWActionBlock)completion {
     MCLog(@"updateBusinessProfile");
     BusinessProfileOperation *operation = [BusinessProfileOperation commitWithData:self.objectModel.currentUser.businessProfile.objectID];
     [self setExecutedOperation:operation];
@@ -438,7 +438,7 @@
     [operation execute];
 }
 
-- (void)updatePersonalProfile:(JCSActionBlock)completion {
+- (void)updatePersonalProfile:(TRWActionBlock)completion {
     MCLog(@"updatePersonalProfile");
     PersonalProfileOperation *operation = [PersonalProfileOperation commitOperationWithProfile:self.objectModel.currentUser.personalProfile.objectID];
     [self setExecutedOperation:operation];

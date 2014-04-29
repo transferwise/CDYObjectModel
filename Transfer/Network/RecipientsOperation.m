@@ -7,7 +7,6 @@
 //
 
 #import "RecipientsOperation.h"
-#import "JCSObjectModel.h"
 #import "ObjectModel+Recipients.h"
 #import "Constants.h"
 #import "ObjectModel+RecipientTypes.h"

@@ -11,7 +11,6 @@ NSString *const kValidateRecipientPath = @"/recipient/validate";
 
 #import "RecipientOperation.h"
 #import "TransferwiseOperation+Private.h"
-#import "JCSObjectModel.h"
 #import "ObjectModel+RecipientTypes.h"
 #import "Recipient.h"
 #import "Constants.h"

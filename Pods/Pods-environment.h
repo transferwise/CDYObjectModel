@@ -12,6 +12,18 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking 3
 #define COCOAPODS_VERSION_PATCH_AFNetworking 2
 
+// CDYObjectModel
+#define COCOAPODS_POD_AVAILABLE_CDYObjectModel
+#define COCOAPODS_VERSION_MAJOR_CDYObjectModel 0
+#define COCOAPODS_VERSION_MINOR_CDYObjectModel 1
+#define COCOAPODS_VERSION_PATCH_CDYObjectModel 0
+
+// CDYObjectModel/Core
+#define COCOAPODS_POD_AVAILABLE_CDYObjectModel_Core
+#define COCOAPODS_VERSION_MAJOR_CDYObjectModel_Core 0
+#define COCOAPODS_VERSION_MINOR_CDYObjectModel_Core 1
+#define COCOAPODS_VERSION_PATCH_CDYObjectModel_Core 0
+
 // CXAlertView
 #define COCOAPODS_POD_AVAILABLE_CXAlertView
 #define COCOAPODS_VERSION_MAJOR_CXAlertView 1
