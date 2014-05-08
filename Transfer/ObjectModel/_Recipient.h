@@ -8,7 +8,6 @@ extern const struct RecipientAttributes {
 	__unsafe_unretained NSString *email;
 	__unsafe_unretained NSString *hidden;
 	__unsafe_unretained NSString *name;
-	__unsafe_unretained NSString *refundRecipient;
 	__unsafe_unretained NSString *remoteId;
 } RecipientAttributes;
 
@@ -32,7 +31,6 @@ extern const struct RecipientFetchedProperties {
 @class Payment;
 @class RecipientType;
 @class User;
-
 
 
 
@@ -81,20 +79,6 @@ extern const struct RecipientFetchedProperties {
 
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@property (nonatomic, strong) NSNumber* refundRecipient;
-
-
-
-@property BOOL refundRecipientValue;
-- (BOOL)refundRecipientValue;
-- (void)setRefundRecipientValue:(BOOL)value_;
-
-//- (BOOL)validateRefundRecipient:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -205,15 +189,6 @@ extern const struct RecipientFetchedProperties {
 
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
-
-
-
-
-- (NSNumber*)primitiveRefundRecipient;
-- (void)setPrimitiveRefundRecipient:(NSNumber*)value;
-
-- (BOOL)primitiveRefundRecipientValue;
-- (void)setPrimitiveRefundRecipientValue:(BOOL)value_;
 
 
 

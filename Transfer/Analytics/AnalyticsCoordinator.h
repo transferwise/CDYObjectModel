@@ -8,13 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "TransferAnalytics.h"
+#import "CDYAnalyticsCoordinator.h"
 
 @protocol TransferAnalytics;
 
-@interface AnalyticsCoordinator : NSObject <TransferAnalytics>
-
-+ (AnalyticsCoordinator *)sharedInstance;
-
-- (void)addAnalyticsService:(id<TransferAnalytics>)service;
+@interface AnalyticsCoordinator : CDYAnalyticsCoordinator <TransferAnalytics>
 
 @end

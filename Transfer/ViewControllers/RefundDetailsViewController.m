@@ -30,6 +30,7 @@
 #import "UIApplication+Keyboard.h"
 #import "NSMutableString+Issues.h"
 #import "RecipientOperation.h"
+#import "AnalyticsCoordinator.h"
 
 CGFloat const TransferHeaderPaddingTop = 40;
 CGFloat const TransferHeaderPaddingBottom = 0;
@@ -136,6 +137,8 @@ CGFloat const TransferHeaderPaddingBottom = 0;
         return;
     }
 
+    [[AnalyticsCoordinator sharedInstance] refundDetailsScreenShown];
+
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
 
@@ -157,6 +160,8 @@ CGFloat const TransferHeaderPaddingBottom = 0;
             [alertView show];
             return;
         }
+
+        [[AnalyticsCoordinator sharedInstance] refundRecipientAdded];
 
         dataLoadCompletionBlock();
     }];
@@ -235,7 +240,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"refund.controller.validating.message", nil)];
 
-    Recipient *recipient = [self.objectModel createRefundRecipient];
+    Recipient *recipient = [self.objectModel createRecipient];
     recipient.name = self.holderNameCell.value;
     recipient.currency = self.currency;
     recipient.type = self.recipientType;

@@ -20,6 +20,5 @@
 - (Recipient *)createRecipient;
 - (NSFetchedResultsController *)fetchedControllerForRecipientsWithCurrency:(Currency *)currency;
 - (NSArray *)allUserRecipients;
-- (Recipient *)createRefundRecipient;
 
 @end

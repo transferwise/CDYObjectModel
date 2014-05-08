@@ -98,7 +98,6 @@
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="hidden" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="refundRecipient" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="remoteId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="currency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="currencyForRecipients" inverseEntity="Currency" syncable="YES"/>
         <relationship name="fieldValues" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TypeFieldValue" inverseName="recipient" inverseEntity="TypeFieldValue" syncable="YES"/>
@@ -158,7 +157,7 @@
         <element name="Payment" positionX="0" positionY="0" width="128" height="373"/>
         <element name="PendingPayment" positionX="0" positionY="0" width="128" height="148"/>
         <element name="PersonalProfile" positionX="0" positionY="0" width="128" height="195"/>
-        <element name="Recipient" positionX="0" positionY="0" width="128" height="223"/>
+        <element name="Recipient" positionX="0" positionY="0" width="128" height="208"/>
         <element name="RecipientType" positionX="0" positionY="0" width="128" height="150"/>
         <element name="RecipientTypeField" positionX="0" positionY="0" width="128" height="210"/>
         <element name="Setting" positionX="0" positionY="0" width="128" height="75"/>

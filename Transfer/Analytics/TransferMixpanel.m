@@ -43,6 +43,14 @@
     [self sendPageView:@"Recipient details"];
 }
 
+- (void)refundDetailsScreenShown {
+    //NO OP
+}
+
+- (void)refundRecipientAdded {
+    //NO OP
+}
+
 - (void)sendPageView:(NSString *)page {
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:[NSString stringWithFormat:@"Page View - %@", page]];

@@ -93,6 +93,18 @@
     [self sendScreen:@"Enter recipient details"];
 }
 
+- (void)refundDetailsScreenShown {
+    if ([Credentials userLoggedIn]) {
+        [self sendScreen:@"Refund account 2"];
+    } else {
+        [self sendScreen:@"Refund account"];
+    }
+}
+
+- (void)refundRecipientAdded {
+    [self sendPaymentEvent:@"RefundAccountAdded" withLabel:@"DuringPayment"];
+}
+
 - (void)sendEvent:(NSString *)event category:(NSString *)category label:(NSString *)label {
     NSMutableDictionary *eventDict = [[GAIDictionaryBuilder createEventWithCategory:category
                                                                              action:event

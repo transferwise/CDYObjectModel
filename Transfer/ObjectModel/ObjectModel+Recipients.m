@@ -112,12 +112,4 @@
     return [self fetchEntitiesNamed:[Recipient entityName] withPredicate:notHiddenPredicate];
 }
 
-- (Recipient *)createRefundRecipient {
-    Recipient *recipient = [Recipient insertInManagedObjectContext:self.managedObjectContext];
-    [recipient setHiddenValue:YES];
-    [recipient setRefundRecipientValue:YES];
-    [recipient setUser:[self currentUser]];
-    return recipient;
-}
-
 @end

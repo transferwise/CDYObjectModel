@@ -18,5 +18,7 @@
 - (void)didCreatePayment:(NSDictionary *)paymentDetails;
 - (void)paymentPersonalProfileScreenShown;
 - (void)paymentRecipientProfileScreenShown;
+- (void)refundDetailsScreenShown;
+- (void)refundRecipientAdded;
 
 @end
