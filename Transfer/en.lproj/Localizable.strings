@@ -402,3 +402,8 @@ people who built Skype and PayPal.";
 2. A list of the shareholders with over 25% ownership (with % of ownership stated)
 3. Photo ID and proof of address for all of the above stakeholders";
 "business.profile.identification.footer.instructions.text" = "Our apologies for the inconvenience. Rest assured that we will never share your documents with 3rd parties.";
+
+"refund.controller.validation.error.empty.name" = "Holder's name not entered";
+"refund.details.save.error.title" = "Could not save";
+"refund.controller.validating.message" = "Validating...";
+"refund.controller.validation.error.title" = "Validation failed";

@@ -9,6 +9,7 @@ extern const struct PaymentAttributes {
 	__unsafe_unretained NSString *conversionRate;
 	__unsafe_unretained NSString *estimatedDelivery;
 	__unsafe_unretained NSString *estimatedDeliveryStringFromServer;
+	__unsafe_unretained NSString *isFixedAmount;
 	__unsafe_unretained NSString *lastUpdateTime;
 	__unsafe_unretained NSString *payIn;
 	__unsafe_unretained NSString *payOut;
@@ -24,6 +25,7 @@ extern const struct PaymentAttributes {
 
 extern const struct PaymentRelationships {
 	__unsafe_unretained NSString *recipient;
+	__unsafe_unretained NSString *refundRecipient;
 	__unsafe_unretained NSString *settlementRecipient;
 	__unsafe_unretained NSString *sourceCurrency;
 	__unsafe_unretained NSString *targetCurrency;
@@ -35,9 +37,11 @@ extern const struct PaymentFetchedProperties {
 
 @class Recipient;
 @class Recipient;
+@class Recipient;
 @class Currency;
 @class Currency;
 @class User;
+
 
 
 
@@ -107,6 +111,20 @@ extern const struct PaymentFetchedProperties {
 
 
 //- (BOOL)validateEstimatedDeliveryStringFromServer:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* isFixedAmount;
+
+
+
+@property BOOL isFixedAmountValue;
+- (BOOL)isFixedAmountValue;
+- (void)setIsFixedAmountValue:(BOOL)value_;
+
+//- (BOOL)validateIsFixedAmount:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -241,6 +259,13 @@ extern const struct PaymentFetchedProperties {
 
 
 
+@property (nonatomic, strong) Recipient *refundRecipient;
+
+//- (BOOL)validateRefundRecipient:(id*)value_ error:(NSError**)error_;
+
+
+
+
 @property (nonatomic, strong) Recipient *settlementRecipient;
 
 //- (BOOL)validateSettlementRecipient:(id*)value_ error:(NSError**)error_;
@@ -302,6 +327,15 @@ extern const struct PaymentFetchedProperties {
 
 - (NSString*)primitiveEstimatedDeliveryStringFromServer;
 - (void)setPrimitiveEstimatedDeliveryStringFromServer:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveIsFixedAmount;
+- (void)setPrimitiveIsFixedAmount:(NSNumber*)value;
+
+- (BOOL)primitiveIsFixedAmountValue;
+- (void)setPrimitiveIsFixedAmountValue:(BOOL)value_;
 
 
 
@@ -384,6 +418,11 @@ extern const struct PaymentFetchedProperties {
 
 - (Recipient*)primitiveRecipient;
 - (void)setPrimitiveRecipient:(Recipient*)value;
+
+
+
+- (Recipient*)primitiveRefundRecipient;
+- (void)setPrimitiveRefundRecipient:(Recipient*)value;
 
 
 

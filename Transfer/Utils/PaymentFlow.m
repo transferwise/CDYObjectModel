@@ -663,11 +663,13 @@
     [operation execute];
 }
 
-- (void)presentRefundAccountViewController {
+- (void)presentRefundAccountViewController:(TRWActionBlock)completion {
     PendingPayment *payment = self.objectModel.pendingPayment;
     RefundDetailsViewController *controller = [[RefundDetailsViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setCurrency:payment.sourceCurrency];
+    [controller setPayment:payment];
+    [controller setAfterValidationBlock:completion];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

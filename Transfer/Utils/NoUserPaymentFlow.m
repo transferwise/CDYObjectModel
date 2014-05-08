@@ -7,7 +7,6 @@
 //
 
 #import "NoUserPaymentFlow.h"
-#import "Constants.h"
 #import "PendingPayment.h"
 #import "ObjectModel+PendingPayments.h"
 
@@ -27,7 +26,9 @@
 - (void)presentFirstPaymentScreen {
     PendingPayment *payment = [self.objectModel pendingPayment];
     if (payment.isFixedAmountValue) {
-        [self presentRefundAccountViewController];
+        [self presentRefundAccountViewController:^{
+            [self presentRecipientDetails:NO];
+        }];
     } else {
         [self presentRecipientDetails:NO];
     }

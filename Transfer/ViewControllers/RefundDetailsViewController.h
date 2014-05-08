@@ -12,10 +12,13 @@
 @class Currency;
 @class RecipientType;
 @class CurrenciesOperation;
+@class PendingPayment;
 
 @interface RefundDetailsViewController : DataEntryViewController
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, strong) Currency *currency;
+@property (nonatomic, strong) PendingPayment *payment;
+@property (nonatomic, copy) TRWActionBlock afterValidationBlock;
 
 @end

@@ -5,7 +5,6 @@
 #import "Payment.h"
 
 extern const struct PendingPaymentAttributes {
-	__unsafe_unretained NSString *isFixedAmount;
 	__unsafe_unretained NSString *paymentPurpose;
 	__unsafe_unretained NSString *proposedPaymentsPurpose;
 	__unsafe_unretained NSString *recipientEmail;
@@ -30,7 +29,6 @@ extern const struct PendingPaymentFetchedProperties {
 
 
 
-
 @interface PendingPaymentID : NSManagedObjectID {}
 @end
 
@@ -39,20 +37,6 @@ extern const struct PendingPaymentFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (PendingPaymentID*)objectID;
-
-
-
-
-
-@property (nonatomic, strong) NSNumber* isFixedAmount;
-
-
-
-@property BOOL isFixedAmountValue;
-- (BOOL)isFixedAmountValue;
-- (void)setIsFixedAmountValue:(BOOL)value_;
-
-//- (BOOL)validateIsFixedAmount:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -148,15 +132,6 @@ extern const struct PendingPaymentFetchedProperties {
 @end
 
 @interface _PendingPayment (CoreDataGeneratedPrimitiveAccessors)
-
-
-- (NSNumber*)primitiveIsFixedAmount;
-- (void)setPrimitiveIsFixedAmount:(NSNumber*)value;
-
-- (BOOL)primitiveIsFixedAmountValue;
-- (void)setPrimitiveIsFixedAmountValue:(BOOL)value_;
-
-
 
 
 - (NSString*)primitivePaymentPurpose;

@@ -10,6 +10,7 @@
 #import "PersonalProfileValidation.h"
 #import "RecipientProfileValidation.h"
 #import "BusinessProfileValidation.h"
+#import "Constants.h"
 
 @class ObjectModel;
 
@@ -30,7 +31,7 @@ typedef void (^PaymentErrorBlock)(NSError *error);
 - (void)uploadVerificationData;
 - (void)registerUser;
 - (void)presentFirstPaymentScreen;
-- (void)presentRefundAccountViewController;
+- (void)presentRefundAccountViewController:(TRWActionBlock)completion;
 
 
 @end

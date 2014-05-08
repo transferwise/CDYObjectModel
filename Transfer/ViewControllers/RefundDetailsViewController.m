@@ -17,12 +17,19 @@
 #import "ObjectModel+PendingPayments.h"
 #import "ObjectModel+RecipientTypes.h"
 #import "CurrenciesOperation.h"
+#import "PendingPayment.h"
 #import "RecipientFieldCell.h"
 #import "TRWProgressHUD.h"
 #import "TRWAlertView.h"
 #import "Currency.h"
 #import "UIColor+Theme.h"
 #import "UITableView+FooterPositioning.h"
+#import "Recipient.h"
+#import "ObjectModel+Recipients.h"
+#import "NSString+Validation.h"
+#import "UIApplication+Keyboard.h"
+#import "NSMutableString+Issues.h"
+#import "RecipientOperation.h"
 
 CGFloat const TransferHeaderPaddingTop = 40;
 CGFloat const TransferHeaderPaddingBottom = 0;
@@ -38,6 +45,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 @property (nonatomic, strong) IBOutlet UIView *footer;
 @property (nonatomic, assign) CGFloat minimumFooterHeight;
 @property (nonatomic, strong) IBOutlet UIButton *footerButton;
+@property (nonatomic, strong) TransferwiseOperation *operation;
 
 @end
 
@@ -113,6 +121,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     [self.tableView setTableHeaderView:header];
 
     [self.footerButton setTitle:NSLocalizedString(@"refund.details.footer.button.title", nil) forState:UIControlStateNormal];
+    [self.footerButton addTarget:self action:@selector(continuePressed) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -212,5 +221,81 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     return nil;
 }
 
+- (void)continuePressed {
+    [UIApplication dismissKeyboard];
+
+    NSString *issues = [self validateInput];
+    if ([issues hasValue]) {
+        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"refund.details.save.error.title", nil) message:issues];
+        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+        [alertView show];
+        return;
+    }
+
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    [hud setMessage:NSLocalizedString(@"refund.controller.validating.message", nil)];
+
+    Recipient *recipient = [self.objectModel createRefundRecipient];
+    recipient.name = self.holderNameCell.value;
+    recipient.currency = self.currency;
+    recipient.type = self.recipientType;
+
+    for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
+        if ([cell isKindOfClass:[TransferTypeSelectionCell class]]) {
+            continue;
+        }
+
+        NSString *value = [cell value];
+        RecipientTypeField *field = cell.type;
+        [recipient setValue:[field stripPossiblePatternFromValue:value] forField:field];
+    }
+
+    [self.payment setRecipient:recipient];
+    [self.objectModel saveContext];
+
+    RecipientOperation *validate = [RecipientOperation validateOperationWithRecipient:recipient.objectID];
+    [self setOperation:validate];
+    [validate setObjectModel:self.objectModel];
+    [validate setResponseHandler:^(NSError *error) {
+        [self setOperation:nil];
+        [hud hide];
+
+        if (error) {
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"refund.controller.validation.error.title", nil) error:error];
+            [alertView show];
+            return;
+        }
+
+        self.afterValidationBlock();
+    }];
+    [validate execute];
+}
+
+- (NSString *)validateInput {
+    NSMutableString *issues = [NSMutableString string];
+
+    NSString *name = [self.holderNameCell value];
+    if (![name hasValue]) {
+        [issues appendIssue:NSLocalizedString(@"refund.controller.validation.error.empty.name", nil)];
+    }
+
+    for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
+        if ([cell isKindOfClass:[TransferTypeSelectionCell class]]) {
+            continue;
+        }
+
+        RecipientTypeField *field = cell.type;
+        NSString *value = [cell value];
+
+        NSString *valueIssue = [field hasIssueWithValue:value];
+        if (![valueIssue hasValue]) {
+            continue;
+        }
+
+        [issues appendIssue:valueIssue];
+    }
+
+    return [NSString stringWithString:issues];
+}
 
 @end

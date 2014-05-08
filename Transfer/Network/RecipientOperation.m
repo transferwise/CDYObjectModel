@@ -43,22 +43,21 @@ NSString *const kValidateRecipientPath = @"/recipient/validate";
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
-        [weakSelf.workModel performBlock:^{
+        [weakSelf.objectModel saveInBlock:^(CDYObjectModel *objectModel) {
+            ObjectModel *oModel = (ObjectModel *) objectModel;
             NSNumber *remoteId = response[@"id"];
             if (remoteId) {
-                Recipient *recipient = (Recipient *) [weakSelf.workModel.managedObjectContext objectWithID:weakSelf.recipient];
+                Recipient *recipient = (Recipient *) [oModel.managedObjectContext objectWithID:weakSelf.recipient];
                 [recipient setRemoteId:remoteId];
                 [recipient setHiddenValue:NO];
             }
-
-            [weakSelf.workModel saveContext:^{
-                weakSelf.responseHandler(nil);
-            }];
+        } completion:^{
+            weakSelf.responseHandler(nil);
         }];
     }];
 
-    [self.workModel performBlock:^{
-        Recipient *recipient = (Recipient *) [weakSelf.workModel.managedObjectContext objectWithID:self.recipient];
+    [self.objectModel performBlock:^{
+        Recipient *recipient = (Recipient *) [self.objectModel.managedObjectContext objectWithID:self.recipient];
         [self postData:[recipient data] toPath:path];
     }];
 }

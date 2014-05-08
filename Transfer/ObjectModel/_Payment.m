@@ -8,6 +8,7 @@ const struct PaymentAttributes PaymentAttributes = {
 	.conversionRate = @"conversionRate",
 	.estimatedDelivery = @"estimatedDelivery",
 	.estimatedDeliveryStringFromServer = @"estimatedDeliveryStringFromServer",
+	.isFixedAmount = @"isFixedAmount",
 	.lastUpdateTime = @"lastUpdateTime",
 	.payIn = @"payIn",
 	.payOut = @"payOut",
@@ -23,6 +24,7 @@ const struct PaymentAttributes PaymentAttributes = {
 
 const struct PaymentRelationships PaymentRelationships = {
 	.recipient = @"recipient",
+	.refundRecipient = @"refundRecipient",
 	.settlementRecipient = @"settlementRecipient",
 	.sourceCurrency = @"sourceCurrency",
 	.targetCurrency = @"targetCurrency",
@@ -60,6 +62,11 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 	
 	if ([key isEqualToString:@"conversionRateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"conversionRate"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"isFixedAmountValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"isFixedAmount"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -127,6 +134,32 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 
 @dynamic estimatedDeliveryStringFromServer;
 
+
+
+
+
+
+@dynamic isFixedAmount;
+
+
+
+- (BOOL)isFixedAmountValue {
+	NSNumber *result = [self isFixedAmount];
+	return [result boolValue];
+}
+
+- (void)setIsFixedAmountValue:(BOOL)value_ {
+	[self setIsFixedAmount:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveIsFixedAmountValue {
+	NSNumber *result = [self primitiveIsFixedAmount];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveIsFixedAmountValue:(BOOL)value_ {
+	[self setPrimitiveIsFixedAmount:[NSNumber numberWithBool:value_]];
+}
 
 
 
@@ -267,6 +300,10 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 
 
 @dynamic recipient;
+
+	
+
+@dynamic refundRecipient;
 
 	
 

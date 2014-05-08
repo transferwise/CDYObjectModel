@@ -7,6 +7,7 @@ const struct RecipientAttributes RecipientAttributes = {
 	.email = @"email",
 	.hidden = @"hidden",
 	.name = @"name",
+	.refundRecipient = @"refundRecipient",
 	.remoteId = @"remoteId",
 };
 
@@ -14,6 +15,7 @@ const struct RecipientRelationships RecipientRelationships = {
 	.currency = @"currency",
 	.fieldValues = @"fieldValues",
 	.payments = @"payments",
+	.refundForPayment = @"refundForPayment",
 	.settlementForPayments = @"settlementForPayments",
 	.type = @"type",
 	.user = @"user",
@@ -50,6 +52,11 @@ const struct RecipientFetchedProperties RecipientFetchedProperties = {
 	
 	if ([key isEqualToString:@"hiddenValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"hidden"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"refundRecipientValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"refundRecipient"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -100,6 +107,32 @@ const struct RecipientFetchedProperties RecipientFetchedProperties = {
 
 @dynamic name;
 
+
+
+
+
+
+@dynamic refundRecipient;
+
+
+
+- (BOOL)refundRecipientValue {
+	NSNumber *result = [self refundRecipient];
+	return [result boolValue];
+}
+
+- (void)setRefundRecipientValue:(BOOL)value_ {
+	[self setRefundRecipient:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveRefundRecipientValue {
+	NSNumber *result = [self primitiveRefundRecipient];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveRefundRecipientValue:(BOOL)value_ {
+	[self setPrimitiveRefundRecipient:[NSNumber numberWithBool:value_]];
+}
 
 
 
@@ -159,6 +192,10 @@ const struct RecipientFetchedProperties RecipientFetchedProperties = {
 	[self didAccessValueForKey:@"payments"];
 	return result;
 }
+	
+
+@dynamic refundForPayment;
+
 	
 
 @dynamic settlementForPayments;
