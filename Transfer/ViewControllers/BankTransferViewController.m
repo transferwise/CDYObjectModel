@@ -7,7 +7,7 @@
 //
 
 #import "BankTransferViewController.h"
-#import "BlueButton.h"
+#import "GreenButton.h"
 #import "TextCell.h"
 #import "UIColor+Theme.h"
 #import "Payment.h"
@@ -32,7 +32,7 @@
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 @property (strong, nonatomic) IBOutlet UILabel *headerLabel;
-@property (strong, nonatomic) IBOutlet BlueButton *doneButton;
+@property (strong, nonatomic) IBOutlet GreenButton *doneButton;
 @property (strong, nonatomic) IBOutlet UIView *footerBottomMessageView;
 @property (nonatomic, strong) IBOutlet UIView *contactSupportFooter;
 @property (nonatomic, strong) IBOutlet UIButton *contactSupportFooterButton;

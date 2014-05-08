@@ -68,6 +68,10 @@ static NSUInteger const kRowYouSend = 0;
     return self;
 }
 
+- (void)dealloc {
+    MCLog(@"dealloc");
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -94,7 +98,7 @@ static NSUInteger const kRowYouSend = 0;
     if (!IOS_7) {
         [self.theyReceiveCell setRoundedCorner:UIRectCornerBottomRight];
     }
-    [self.theyReceiveCell setEditable:NO];
+    [self.theyReceiveCell setEditable:YES];
 
     [self.titleLabel setText:NSLocalizedString(@"introduction.header.title.text", nil)];
 
@@ -122,8 +126,9 @@ static NSUInteger const kRowYouSend = 0;
     
     [[OHAttributedLabel appearance] setLinkColor:[UIColor whiteColor]];
 
+    __weak IntroductionViewController *weakSelf = self;
     [calculator setActivityHandler:^(BOOL calculating) {
-        [self showCalculationIndicator:calculating];
+        [weakSelf showCalculationIndicator:calculating];
     }];
 
     [calculator setCalculationHandler:^(CalculationResult *result, NSError *error) {
@@ -133,8 +138,8 @@ static NSUInteger const kRowYouSend = 0;
             return;
         }
 
-        self.result = result;
-        NSString *winMessage = [self winMessage:result];
+        weakSelf.result = result;
+        NSString *winMessage = [weakSelf winMessage:result];
         NSString *txt = [NSMutableString stringWithFormat:@"%@. %@", winMessage, NSLocalizedString(@"introduction.savings.message.why", nil)];
         NSMutableAttributedString *attrStr = [NSMutableAttributedString attributedStringWithString:txt];
 
@@ -142,12 +147,12 @@ static NSUInteger const kRowYouSend = 0;
         paragraphStyle.textAlignment = kCTTextAlignmentCenter;
         paragraphStyle.lineBreakMode = kCTLineBreakByWordWrapping;
         [attrStr setParagraphStyle:paragraphStyle];
-        [attrStr setFont:self.savingsLabel.font];
-        [attrStr setTextColor:self.savingsLabel.textColor];
+        [attrStr setFont:weakSelf.savingsLabel.font];
+        [attrStr setTextColor:weakSelf.savingsLabel.textColor];
 
         NSString *linkURLString = @"why:"; // build the "why" link
         [attrStr setLink:[NSURL URLWithString:linkURLString] range:[txt rangeOfString:NSLocalizedString(@"introduction.savings.message.why", nil)]];
-        self.savingsLabel.attributedText = attrStr;
+        weakSelf.savingsLabel.attributedText = attrStr;
     }];
 }
 
@@ -293,15 +298,13 @@ static NSUInteger const kRowYouSend = 0;
         [payment setEstimatedDelivery:[self.result estimatedDelivery]];
         [payment setEstimatedDeliveryStringFromServer:[self.result formattedEstimatedDelivery]];
 		[payment setTransferwiseTransferFee:[self.result transferwiseTransferFee]];
+        [payment setIsFixedAmountValue:self.result.isFixedTargetPayment];
 
 		PaymentFlow *paymentFlow = [[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
         [self setPaymentFlow:paymentFlow];
 
         [paymentFlow setObjectModel:self.objectModel];
-
-        [self.objectModel performBlock:^{
-            [paymentFlow presentFirstPaymentScreen];
-        }];
+        [paymentFlow presentFirstPaymentScreen];
     }];
 }
 

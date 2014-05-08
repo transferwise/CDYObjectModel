@@ -1,15 +1,15 @@
 //
-//  BlueButton.m
+//  GreenButton.m
 //  Transfer
 //
 //  Created by Jaanus Siim on 4/16/13.
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import "BlueButton.h"
+#import "GreenButton.h"
 #import "UIButton+Skinning.h"
 
-@implementation BlueButton
+@implementation GreenButton
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];

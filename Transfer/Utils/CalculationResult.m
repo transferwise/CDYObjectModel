@@ -128,6 +128,10 @@ NSNumberFormatter *__formatter;
     return [[MoneyFormatter sharedInstance] formatAmount:win withCurrency:self.sourceCurrency];
 }
 
+- (BOOL)isFixedTargetPayment {
+    return self.amountCurrency == TargetCurrency;
+}
+
 
 + (NSLocale *)defaultLocale {
     return [[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"];

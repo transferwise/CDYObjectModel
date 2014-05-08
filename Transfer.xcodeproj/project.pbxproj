@@ -56,6 +56,10 @@
 		EA0450DB17EC64BC008921DA /* IntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0450D917EC64BC008921DA /* IntroView.m */; };
 		EA0450DD17EC64E4008921DA /* IntroView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0450DC17EC64E4008921DA /* IntroView.xib */; };
 		EA0450DE17EC64E4008921DA /* IntroView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0450DC17EC64E4008921DA /* IntroView.xib */; };
+		EA0523F6191B596B00B32899 /* RefundDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0523F5191B596B00B32899 /* RefundDetailsViewController.m */; };
+		EA0523F7191B596B00B32899 /* RefundDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0523F5191B596B00B32899 /* RefundDetailsViewController.m */; };
+		EA0523F9191B5AFC00B32899 /* RefundDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0523F8191B5AFC00B32899 /* RefundDetailsViewController.xib */; };
+		EA0523FA191B5AFC00B32899 /* RefundDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0523F8191B5AFC00B32899 /* RefundDetailsViewController.xib */; };
 		EA13E032171BDF1A0019FBF0 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */; };
 		EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */; };
 		EA13E038171BE12E0019FBF0 /* MoneyEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */; };
@@ -147,7 +151,7 @@
 		EA31A13A17DDB29B00F937F7 /* LoginOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6BA171D26A00090A658 /* LoginOperation.m */; };
 		EA31A13B17DDB29B00F937F7 /* NSDictionary+SensibleData.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */; };
 		EA31A13C17DDB29B00F937F7 /* UIButton+Skinning.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */; };
-		EA31A13D17DDB29B00F937F7 /* BlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4D0171D4BB20099063F /* BlueButton.m */; };
+		EA31A13D17DDB29B00F937F7 /* GreenButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4D0171D4BB20099063F /* GreenButton.m */; };
 		EA31A13E17DDB29B00F937F7 /* GrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD73689171E6CB100A037B1 /* GrayButton.m */; };
 		EA31A13F17DDB29B00F937F7 /* RecipientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD736A1171E85C300A037B1 /* RecipientCell.m */; };
 		EA31A14017DDB29B00F937F7 /* UserRecipientsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD736A6171E87ED00A037B1 /* UserRecipientsOperation.m */; };
@@ -503,7 +507,7 @@
 		EAD736A7171E87ED00A037B1 /* UserRecipientsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD736A6171E87ED00A037B1 /* UserRecipientsOperation.m */; };
 		EAD7D4C2171D43440099063F /* NSDictionary+SensibleData.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */; };
 		EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */; };
-		EAD7D4D1171D4BB20099063F /* BlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4D0171D4BB20099063F /* BlueButton.m */; };
+		EAD7D4D1171D4BB20099063F /* GreenButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4D0171D4BB20099063F /* GreenButton.m */; };
 		EAD85B0B173920C300C22211 /* PersonalProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */; };
 		EAE1E3A317B2519000A45623 /* PaymentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */; };
 		EAE7B6AC17E9AC3F00E03D73 /* IdentificationNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */; };
@@ -593,6 +597,9 @@
 		EA0450D817EC64BC008921DA /* IntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroView.h; sourceTree = "<group>"; };
 		EA0450D917EC64BC008921DA /* IntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroView.m; sourceTree = "<group>"; };
 		EA0450DC17EC64E4008921DA /* IntroView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroView.xib; sourceTree = "<group>"; };
+		EA0523F4191B596B00B32899 /* RefundDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefundDetailsViewController.h; sourceTree = "<group>"; };
+		EA0523F5191B596B00B32899 /* RefundDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefundDetailsViewController.m; sourceTree = "<group>"; };
+		EA0523F8191B5AFC00B32899 /* RefundDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefundDetailsViewController.xib; sourceTree = "<group>"; };
 		EA12413E17AA88EC00C9B02B /* TransferDev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = TransferDev.plist; path = "/Users/jaanus/projects/mc-transfer-ios/TransferDev.plist"; sourceTree = "<absolute>"; };
 		EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
 		EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
@@ -864,7 +871,7 @@
 		EAA6AD0517A91A95006A347D /* NSString+Presentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Presentation.h"; sourceTree = "<group>"; };
 		EAA6AD0617A91A95006A347D /* NSString+Presentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Presentation.m"; sourceTree = "<group>"; };
 		EAA6AD0C17A91D1F006A347D /* NSStringPatternTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringPatternTest.m; sourceTree = "<group>"; };
-		EAAA1468171BC911005B9430 /* Transfer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transfer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAAA1468171BC911005B9430 /* TransferWise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransferWise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAAA146B171BC911005B9430 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EAAA146D171BC911005B9430 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EAAA146F171BC911005B9430 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -965,8 +972,8 @@
 		EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SensibleData.m"; sourceTree = "<group>"; };
 		EAD7D4CC171D4B4C0099063F /* UIButton+Skinning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Skinning.h"; sourceTree = "<group>"; };
 		EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Skinning.m"; sourceTree = "<group>"; };
-		EAD7D4CF171D4BB20099063F /* BlueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueButton.h; sourceTree = "<group>"; };
-		EAD7D4D0171D4BB20099063F /* BlueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueButton.m; sourceTree = "<group>"; };
+		EAD7D4CF171D4BB20099063F /* GreenButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenButton.h; sourceTree = "<group>"; };
+		EAD7D4D0171D4BB20099063F /* GreenButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreenButton.m; sourceTree = "<group>"; };
 		EAD85B09173920C300C22211 /* PersonalProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileOperation.h; sourceTree = "<group>"; };
 		EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileOperation.m; sourceTree = "<group>"; };
 		EAE1E3A117B2519000A45623 /* PaymentDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentDetailsViewController.h; sourceTree = "<group>"; };
@@ -1085,8 +1092,8 @@
 		EA13E02F171BDF050019FBF0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EAD7D4CF171D4BB20099063F /* BlueButton.h */,
-				EAD7D4D0171D4BB20099063F /* BlueButton.m */,
+				EAD7D4CF171D4BB20099063F /* GreenButton.h */,
+				EAD7D4D0171D4BB20099063F /* GreenButton.m */,
 				EAD667C9174F6F7B00D29BCB /* DismissKeyboardTableView.h */,
 				EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */,
 				EAD73688171E6CB100A037B1 /* GrayButton.h */,
@@ -1462,7 +1469,7 @@
 		EAAA1469171BC911005B9430 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EAAA1468171BC911005B9430 /* Transfer.app */,
+				EAAA1468171BC911005B9430 /* TransferWise.app */,
 				EA76D90C175CF80100AE3F86 /* TransferTests.octest */,
 				EA31A23817DDB29B00F937F7 /* TransferDev.app */,
 			);
@@ -1592,6 +1599,9 @@
 				EAA54F481733DA1400B65BF3 /* RecipientViewController.h */,
 				EAA54F491733DA1400B65BF3 /* RecipientViewController.m */,
 				EAA54F4A1733DA1400B65BF3 /* RecipientViewController.xib */,
+				EA0523F4191B596B00B32899 /* RefundDetailsViewController.h */,
+				EA0523F5191B596B00B32899 /* RefundDetailsViewController.m */,
+				EA0523F8191B5AFC00B32899 /* RefundDetailsViewController.xib */,
 				EAB72158171FC61B00DE29F5 /* SettingsViewController.h */,
 				EAB72159171FC61B00DE29F5 /* SettingsViewController.m */,
 				EAB7215A171FC61B00DE29F5 /* SettingsViewController.xib */,
@@ -1672,7 +1682,7 @@
 		EAD3966F171BD1DE00F6D011 /* ObjectModel */ = {
 			isa = PBXGroup;
 			children = (
-				EAD73696171E830600A037B1 /* Generated */,
+				EAD73696171E830600A037B1 /* _ */,
 				EA225CB3178ED8C7009D6B83 /* AllowedTypeFieldValue.h */,
 				EA225CB4178ED8C7009D6B83 /* AllowedTypeFieldValue.m */,
 				EA2379F41793E04400166361 /* BusinessProfile.h */,
@@ -1717,18 +1727,18 @@
 				EA225C90178EB350009D6B83 /* RecipientType.m */,
 				EA225C98178EB3DA009D6B83 /* RecipientTypeField.h */,
 				EA225C99178EB3DA009D6B83 /* RecipientTypeField.m */,
+				EA347739180D2C7500104417 /* Setting.h */,
+				EA34773A180D2C7500104417 /* Setting.m */,
 				EAAA1485171BC911005B9430 /* Transfer.xcdatamodeld */,
 				EA225C9E178EB511009D6B83 /* TypeFieldValue.h */,
 				EA225C9F178EB511009D6B83 /* TypeFieldValue.m */,
-				EA347739180D2C7500104417 /* Setting.h */,
-				EA34773A180D2C7500104417 /* Setting.m */,
 				EA2379F81793E04400166361 /* User.h */,
 				EA2379F91793E04400166361 /* User.m */,
 			);
 			path = ObjectModel;
 			sourceTree = "<group>";
 		};
-		EAD73696171E830600A037B1 /* Generated */ = {
+		EAD73696171E830600A037B1 /* _ */ = {
 			isa = PBXGroup;
 			children = (
 				EA225CB0178ED8C1009D6B83 /* _AllowedTypeFieldValue.h */,
@@ -1762,7 +1772,7 @@
 				EA2379F11793E03A00166361 /* _User.h */,
 				EA2379F21793E03A00166361 /* _User.m */,
 			);
-			name = Generated;
+			name = _;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1830,7 +1840,7 @@
 			);
 			name = TransferWise;
 			productName = Transfer;
-			productReference = EAAA1468171BC911005B9430 /* Transfer.app */;
+			productReference = EAAA1468171BC911005B9430 /* TransferWise.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1876,6 +1886,7 @@
 				EA31A1D217DDB29B00F937F7 /* MainViewController.xib in Resources */,
 				EA84056A17F0A40B00F44916 /* spinner.html in Resources */,
 				EA31A1D317DDB29B00F937F7 /* TransactionsViewController.xib in Resources */,
+				EA0523FA191B5AFC00B32899 /* RefundDetailsViewController.xib in Resources */,
 				EA31A1D417DDB29B00F937F7 /* ContactsViewController.xib in Resources */,
 				EA31A1D517DDB29B00F937F7 /* PaymentViewController.xib in Resources */,
 				EA31A1D617DDB29B00F937F7 /* IntroductionViewController.xib in Resources */,
@@ -1947,6 +1958,7 @@
 				EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */,
 				EA84056917F0A40B00F44916 /* spinner.html in Resources */,
 				EAD3967C171BD51400F6D011 /* TransactionsViewController.xib in Resources */,
+				EA0523F9191B5AFC00B32899 /* RefundDetailsViewController.xib in Resources */,
 				EAD39681171BD57000F6D011 /* ContactsViewController.xib in Resources */,
 				EAD39686171BD5B000F6D011 /* PaymentViewController.xib in Resources */,
 				EAD3968B171BD82300F6D011 /* IntroductionViewController.xib in Resources */,
@@ -2219,7 +2231,7 @@
 				EA31A13A17DDB29B00F937F7 /* LoginOperation.m in Sources */,
 				EA31A13B17DDB29B00F937F7 /* NSDictionary+SensibleData.m in Sources */,
 				EA31A13C17DDB29B00F937F7 /* UIButton+Skinning.m in Sources */,
-				EA31A13D17DDB29B00F937F7 /* BlueButton.m in Sources */,
+				EA31A13D17DDB29B00F937F7 /* GreenButton.m in Sources */,
 				EA31A13E17DDB29B00F937F7 /* GrayButton.m in Sources */,
 				EA31A13F17DDB29B00F937F7 /* RecipientCell.m in Sources */,
 				EA31A14017DDB29B00F937F7 /* UserRecipientsOperation.m in Sources */,
@@ -2366,6 +2378,7 @@
 				EA31A1BD17DDB29B00F937F7 /* FeedbackCoordinator.m in Sources */,
 				EABD864618E2B65D004A5A57 /* TransferMixpanel.m in Sources */,
 				EA2296C317E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
+				EA0523F7191B596B00B32899 /* RefundDetailsViewController.m in Sources */,
 				EA2296C717E08027001CF541 /* TransferBackButtonItem.m in Sources */,
 				BA665EA5E58A6DA4DEB8E622 /* GoogleAnalytics.m in Sources */,
 			);
@@ -2413,7 +2426,7 @@
 				EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */,
 				EAD7D4C2171D43440099063F /* NSDictionary+SensibleData.m in Sources */,
 				EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */,
-				EAD7D4D1171D4BB20099063F /* BlueButton.m in Sources */,
+				EAD7D4D1171D4BB20099063F /* GreenButton.m in Sources */,
 				EAD7368A171E6CB100A037B1 /* GrayButton.m in Sources */,
 				EAD736A2171E85C300A037B1 /* RecipientCell.m in Sources */,
 				EAD736A7171E87ED00A037B1 /* UserRecipientsOperation.m in Sources */,
@@ -2560,6 +2573,7 @@
 				EA8FC93E17D864F100E13969 /* FeedbackCoordinator.m in Sources */,
 				EABD864518E2B65D004A5A57 /* TransferMixpanel.m in Sources */,
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
+				EA0523F6191B596B00B32899 /* RefundDetailsViewController.m in Sources */,
 				EA2296C617E08027001CF541 /* TransferBackButtonItem.m in Sources */,
 				BA6650856E3051C31A982C78 /* GoogleAnalytics.m in Sources */,
 			);

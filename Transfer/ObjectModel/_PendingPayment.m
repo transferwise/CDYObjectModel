@@ -4,6 +4,7 @@
 #import "_PendingPayment.h"
 
 const struct PendingPaymentAttributes PendingPaymentAttributes = {
+	.isFixedAmount = @"isFixedAmount",
 	.paymentPurpose = @"paymentPurpose",
 	.proposedPaymentsPurpose = @"proposedPaymentsPurpose",
 	.recipientEmail = @"recipientEmail",
@@ -45,6 +46,11 @@ const struct PendingPaymentFetchedProperties PendingPaymentFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"isFixedAmountValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"isFixedAmount"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"sendVerificationLaterValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"sendVerificationLater"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -63,6 +69,32 @@ const struct PendingPaymentFetchedProperties PendingPaymentFetchedProperties = {
 
 	return keyPaths;
 }
+
+
+
+
+@dynamic isFixedAmount;
+
+
+
+- (BOOL)isFixedAmountValue {
+	NSNumber *result = [self isFixedAmount];
+	return [result boolValue];
+}
+
+- (void)setIsFixedAmountValue:(BOOL)value_ {
+	[self setIsFixedAmount:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveIsFixedAmountValue {
+	NSNumber *result = [self primitiveIsFixedAmount];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveIsFixedAmountValue:(BOOL)value_ {
+	[self setPrimitiveIsFixedAmount:[NSNumber numberWithBool:value_]];
+}
+
 
 
 

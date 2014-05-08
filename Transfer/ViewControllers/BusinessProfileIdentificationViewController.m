@@ -13,7 +13,7 @@
 #import "ObjectModel.h"
 #import "UITableView+FooterPositioning.h"
 #import "TransferBackButtonItem.h"
-#import "BlueButton.h"
+#import "GreenButton.h"
 #import "ConfirmPaymentCell.h"
 #import "GrayButton.h"
 #import "TRWAlertView.h"
@@ -26,7 +26,7 @@
 
 @property (nonatomic, strong) IBOutlet TextContainerView *headerView;
 @property (nonatomic, strong) IBOutlet TextContainerView *footerView;
-@property (nonatomic, strong) IBOutlet BlueButton *sentButton;
+@property (nonatomic, strong) IBOutlet GreenButton *sentButton;
 @property (nonatomic, strong) IBOutlet GrayButton *skipButton;
 
 - (IBAction)sentPressed;

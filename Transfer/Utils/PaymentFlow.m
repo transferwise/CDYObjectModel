@@ -45,6 +45,7 @@
 #import "AnalyticsCoordinator.h"
 #import "_RecipientType.h"
 #import "RecipientType.h"
+#import "RefundDetailsViewController.h"
 
 @interface PaymentFlow ()
 
@@ -660,6 +661,14 @@
     [operation setResponseHandler:completion];
 
     [operation execute];
+}
+
+- (void)presentRefundAccountViewController {
+    PendingPayment *payment = self.objectModel.pendingPayment;
+    RefundDetailsViewController *controller = [[RefundDetailsViewController alloc] init];
+    [controller setObjectModel:self.objectModel];
+    [controller setCurrency:payment.sourceCurrency];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

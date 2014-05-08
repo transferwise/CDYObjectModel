@@ -30,5 +30,7 @@ typedef void (^PaymentErrorBlock)(NSError *error);
 - (void)uploadVerificationData;
 - (void)registerUser;
 - (void)presentFirstPaymentScreen;
+- (void)presentRefundAccountViewController;
+
 
 @end

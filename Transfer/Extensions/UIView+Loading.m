@@ -10,6 +10,11 @@
 
 @implementation UIView (Loading)
 
++ (UINib *)viewNib {
+    NSString *expectedNibName = NSStringFromClass([self class]);
+    return [UINib nibWithNibName:expectedNibName bundle:nil];
+}
+
 + (id)loadInstance {
     NSString *expectedNibName = NSStringFromClass([self class]);
     return [UIView loadViewFromXib:expectedNibName];

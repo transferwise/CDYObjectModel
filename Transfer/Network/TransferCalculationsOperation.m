@@ -33,7 +33,7 @@ NSString *const kPaymentCalculationPath = @"/payment/calculate";
 - (void)execute {
     NSString *path = [self addTokenToPath:kPaymentCalculationPath];
 
-    __block __weak TransferCalculationsOperation *weakSelf = self;
+    __weak TransferCalculationsOperation *weakSelf = self;
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         CalculationResult *result = [CalculationResult resultWithData:response];
         [result setSourceCurrency:weakSelf.sourceCurrency];

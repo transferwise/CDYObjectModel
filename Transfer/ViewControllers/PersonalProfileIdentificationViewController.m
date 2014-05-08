@@ -9,7 +9,7 @@
 #import "PersonalProfileIdentificationViewController.h"
 #import "UIColor+Theme.h"
 #import "TextCell.h"
-#import "BlueButton.h"
+#import "GreenButton.h"
 #import "NSMutableString+Issues.h"
 #import "NSString+Validation.h"
 #import "TRWAlertView.h"
@@ -32,7 +32,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *excuseLabel;
 @property (strong, nonatomic) IBOutlet UILabel *explanationLabel;
 @property (strong, nonatomic) IBOutlet UILabel *skipLabel;
-@property (strong, nonatomic) IBOutlet BlueButton *continueButton;
+@property (strong, nonatomic) IBOutlet GreenButton *continueButton;
 @property (strong, nonatomic) IBOutlet UISwitch *skipSwitch;
 @property (nonatomic, assign) NSInteger selectedRow;
 @property (nonatomic, assign) NSInteger idVerificationRowIndex;

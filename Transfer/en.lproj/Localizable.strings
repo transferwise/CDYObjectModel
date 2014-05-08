@@ -216,6 +216,12 @@ A revolution in your pocket.";
 "recipient.import.from.phonebook.label" = "Import from phonebook";
 "recipient.save.error.title" = "Can't save";
 
+"refund.details.account.details.section.header" = "Your bank account details";
+"refund.details.controller.title" = "Refund account";
+"refund.details.header.description" = "To guarantee that the recipient receives a fixed amount, we asked you to send us a little bit of extra money in case the real rate was to change. To send the remaining deposit back to you after the transfer, we need your account details.";
+"refund.details.holders.name.label" = "Holder's name";
+"refund.details.footer.button.title" = "Continue";
+
 "settings.row.business.profile" = "Your business profile";
 "settings.row.claim.account" = "Register account";
 "settings.row.contact.support" = "Contact support";

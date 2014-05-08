@@ -10,6 +10,7 @@
 
 @interface UIView (Loading)
 
++ (UINib *)viewNib;
 + (id)loadInstance;
 
 @end

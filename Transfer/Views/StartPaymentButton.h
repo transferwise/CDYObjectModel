@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-#import "BlueButton.h"
+#import "GreenButton.h"
 
-@interface StartPaymentButton : BlueButton
+@interface StartPaymentButton : GreenButton
 
 - (void)showCalculating:(BOOL)calculating;
 

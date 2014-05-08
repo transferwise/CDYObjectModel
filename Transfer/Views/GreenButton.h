@@ -1,5 +1,5 @@
 //
-//  BlueButton.h
+//  GreenButton.h
 //  Transfer
 //
 //  Created by Jaanus Siim on 4/16/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BlueButton : UIButton
+@interface GreenButton : UIButton
 
 @end
