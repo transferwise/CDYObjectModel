@@ -1851,11 +1851,6 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Mooncascade OÜ";
-				TargetAttributes = {
-					EAAA1467171BC911005B9430 = {
-						DevelopmentTeam = W53MTDV45J;
-					};
-				};
 			};
 			buildConfigurationList = EAAA1463171BC911005B9430 /* Build configuration list for PBXProject "Transfer" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2814,8 +2809,8 @@
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0E0E7280-59BB-4846-9AB1-D9C1F2AFACC5";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0E0E7280-59BB-4846-9AB1-D9C1F2AFACC5";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2828,7 +2823,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaanus Siim (JE9U597J94)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2848,8 +2843,8 @@
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0E0E7280-59BB-4846-9AB1-D9C1F2AFACC5";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0E0E7280-59BB-4846-9AB1-D9C1F2AFACC5";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

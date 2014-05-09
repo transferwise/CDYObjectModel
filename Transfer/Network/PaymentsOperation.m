@@ -36,32 +36,31 @@ NSUInteger kPaymentsListLimit = 20;
 - (void)execute {
     NSString *path = [self addTokenToPath:kPaymentsListPath];
 
-    __block __weak PaymentsOperation *weakSelf = self;
+    __weak PaymentsOperation *weakSelf = self;
     [self setOperationErrorHandler:^(NSError *error) {
         weakSelf.completion(0, error);
     }];
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         //TODO jaanus: pull also recipient types here
-        [weakSelf.workModel.managedObjectContext performBlock:^{
-            NSMutableArray *existingPaymentIds = [NSMutableArray arrayWithArray:[weakSelf.workModel listRemoteIdsForExistingPayments]];
+        NSNumber *totalCount = response[@"total"];
+        [weakSelf.objectModel saveInBlock:^(CDYObjectModel *objectModel) {
+            ObjectModel *oModel = (ObjectModel *) objectModel;
+            NSMutableArray *existingPaymentIds = [NSMutableArray arrayWithArray:[oModel listRemoteIdsForExistingPayments]];
 
-            NSNumber *totalCount = response[@"total"];
             NSArray *payments = response[@"payments"];
             for (NSDictionary *data in payments) {
-                Payment *payment = [weakSelf.workModel createOrUpdatePaymentWithData:data];
+                Payment *payment = [oModel createOrUpdatePaymentWithData:data];
                 [existingPaymentIds removeObject:payment.remoteId];
             }
 
             if (weakSelf.offset == 0) {
                 MCLog(@"Have %d remote id's after zero pull", [existingPaymentIds count]);
-                [weakSelf.workModel removePaymentsWithIds:existingPaymentIds];
+                [oModel removePaymentsWithIds:existingPaymentIds];
             }
-
-            [weakSelf.workModel saveContext:^{
-                [[GoogleAnalytics sharedInstance] markHasCompletedPayments];
-                weakSelf.completion([totalCount integerValue], nil);
-            }];
+        } completion:^{
+            [[GoogleAnalytics sharedInstance] markHasCompletedPayments];
+            weakSelf.completion([totalCount integerValue], nil);
         }];
     }];
 

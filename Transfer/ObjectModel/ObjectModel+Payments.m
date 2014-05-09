@@ -46,6 +46,10 @@
     [payment setTargetCurrency:[self currencyWithCode:data[@"targetCurrency"]]];
     [payment setPayIn:data[@"payIn"]];
     [payment setRecipient:[self createOrUpdateRecipientWithData:data[@"recipient"] hideCreted:YES]];
+    NSDictionary *refund = data[@"refundRecipient"];
+    if (refund) {
+        [payment setRefundRecipient:[self createOrUpdateRecipientWithData:refund hideCreted:YES]];
+    }
     [payment setSubmittedDate:[NSDate dateFromServerString:data[@"submittedDate"]]];
     [payment setReceivedDate:[NSDate dateFromServerString:data[@"receivedDate"]]];
     [payment setTransferredDate:[NSDate dateFromServerString:data[@"transferredDate"]]];
