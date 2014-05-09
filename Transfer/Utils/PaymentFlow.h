@@ -31,6 +31,6 @@ typedef void (^PaymentErrorBlock)(NSError *error);
 - (void)registerUser;
 - (void)presentFirstPaymentScreen;
 - (void)presentRefundAccountViewController:(TRWActionBlock)completion;
-
+- (void)handleNextStepOfPendingPaymentCommit;
 
 @end

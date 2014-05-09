@@ -100,7 +100,7 @@ static NSUInteger const kRowYouSend = 0;
     if (!IOS_7) {
         [self.theyReceiveCell setRoundedCorner:UIRectCornerBottomRight];
     }
-    [self.theyReceiveCell setEditable:NO];
+    [self.theyReceiveCell setEditable:YES];
 
     MoneyCalculator *calculator = [[MoneyCalculator alloc] init];
     [self setCalculator:calculator];
@@ -308,6 +308,7 @@ static NSUInteger const kRowYouSend = 0;
         [payment setEstimatedDelivery:[self.calculationResult estimatedDelivery]];
         [payment setEstimatedDeliveryStringFromServer:[self.calculationResult formattedEstimatedDelivery]];
 		[payment setTransferwiseTransferFee:[self.calculationResult transferwiseTransferFee]];
+        [payment setIsFixedAmountValue:self.calculationResult.isFixedTargetPayment];
 
         PaymentFlow *paymentFlow = [[LoggedInPaymentFlow alloc] initWithPresentingController:self.navigationController];
         [self setPaymentFlow:paymentFlow];

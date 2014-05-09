@@ -11,7 +11,6 @@
 #import "ObjectModel+Users.h"
 #import "ObjectModel+PendingPayments.h"
 #import "PendingPayment.h"
-#import "Constants.h"
 
 @implementation LoggedInPaymentFlow
 
@@ -30,17 +29,26 @@
     MCLog(@"Commit payment");
     [self setPaymentErrorHandler:errorHandler];
 
-    [self uploadVerificationData];
+    [self handleNextStepOfPendingPaymentCommit];
 }
 
 - (void)presentFirstPaymentScreen {
     PendingPayment *payment = [self.objectModel pendingPayment];
-    if (payment.recipient && [payment.user personalProfileFilled]) {
-        [self presentPaymentConfirmation];
-    } else if ([payment.user personalProfileFilled]) {
-        [self presentRecipientDetails:YES];
+
+    TRWActionBlock additionalDetailsNeededBlock = ^{
+        if (payment.recipient && [payment.user personalProfileFilled]) {
+            [self presentPaymentConfirmation];
+        } else if ([payment.user personalProfileFilled]) {
+            [self presentRecipientDetails:YES];
+        } else {
+            [self presentRecipientDetails:NO];
+        }
+    };
+
+    if (payment.isFixedAmountValue) {
+        [self presentRefundAccountViewController:additionalDetailsNeededBlock];
     } else {
-        [self presentRecipientDetails:NO];
+        additionalDetailsNeededBlock();
     }
 }
 
