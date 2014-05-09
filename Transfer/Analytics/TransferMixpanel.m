@@ -30,11 +30,6 @@
     [self sendPageView:@"Confirmation"];
 }
 
-- (void)didCreatePayment:(NSDictionary *)paymentDetails {
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Transfer created" properties:paymentDetails];
-}
-
 - (void)paymentPersonalProfileScreenShown {
     [self sendPageView:@"Your details"];
 }

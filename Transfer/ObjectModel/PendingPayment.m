@@ -29,11 +29,23 @@ NSString *kAddressVerificationImageName = @"~/Documents/addressVerification.jpg"
     if ([self isAnyVerificationRequired] && [self sendVerificationLaterValue]) {
         dictionary[@"verificationProvideLater"] = @"true";
     }
+    if (self.refundRecipient) {
+        dictionary[@"refundRecipientId"] = self.refundRecipient.remoteId;
+    }
+
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
 - (BOOL)isAnyVerificationRequired {
     return self.verificiationNeededValue != IdentificationNoneRequired;
+}
+
+- (BOOL)needsToCommitRecipientData {
+    return self.recipient.remoteIdValue == 0;
+}
+
+- (BOOL)needsToCommitRefundRecipientData {
+    return self.refundRecipient && self.refundRecipient.remoteIdValue == 0;
 }
 
 + (NSString *)idPhotoPath {

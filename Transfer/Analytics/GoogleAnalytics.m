@@ -81,10 +81,6 @@
     //NO OP
 }
 
-- (void)didCreatePayment:(NSDictionary *)paymentDetails {
-    //NO OP
-}
-
 - (void)paymentPersonalProfileScreenShown {
     //NO OP
 }

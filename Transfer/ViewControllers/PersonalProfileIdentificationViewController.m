@@ -14,13 +14,11 @@
 #import "NSString+Validation.h"
 #import "TRWAlertView.h"
 #import "TRWProgressHUD.h"
-#import "PaymentFlow.h"
-#import "ObjectModel.h"
 #import "PendingPayment.h"
-#import "ObjectModel+PendingPayments.h"
 #import "TextEntryCell.h"
 #import "TransferBackButtonItem.h"
 #import "UITableView+FooterPositioning.h"
+#import "GoogleAnalytics.h"
 
 @interface PersonalProfileIdentificationViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -216,7 +214,15 @@
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
     [hud setMessage:self.completionMessage];
 
-    self.completionHandler(self.skipSwitch.isOn, [self.paymentPurposeCell.entryField text], ^(NSError *error) {
+    BOOL skipIdentification = self.skipSwitch.isOn;
+
+    if (skipIdentification) {
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"skipped"];
+    } else {
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"sent"];
+    }
+
+    self.completionHandler(skipIdentification, [self.paymentPurposeCell.entryField text], ^(NSError *error) {
         [hud hide];
         if (error) {
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) error:error];

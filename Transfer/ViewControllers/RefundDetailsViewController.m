@@ -65,7 +65,9 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
-    [self.tableView setSeparatorColor:[UIColor clearColor]];
+    if (IOS_7) {
+        [self.tableView setSeparatorColor:[UIColor clearColor]];
+    }
 
     [self.navigationItem setTitle:NSLocalizedString(@"refund.details.controller.title", nil)];
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
@@ -110,6 +112,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     [headerLabel setNumberOfLines:0];
     [headerLabel setFont:[UIFont systemFontOfSize:14]];
     [headerLabel setTextColor:[UIColor mainTextColor]];
+    [headerLabel setBackgroundColor:[UIColor clearColor]];
     [headerLabel setText:NSLocalizedString(@"refund.details.header.description", nil)];
     CGFloat fitHeight = [headerLabel sizeThatFits:CGSizeMake(CGRectGetWidth(headerFrame), CGFLOAT_MAX)].height;
     headerFrame.size.height = fitHeight;
@@ -255,7 +258,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
         [recipient setValue:[field stripPossiblePatternFromValue:value] forField:field];
     }
 
-    [self.payment setRecipient:recipient];
+    [self.payment setRefundRecipient:recipient];
     [self.objectModel saveContext];
 
     RecipientOperation *validate = [RecipientOperation validateOperationWithRecipient:recipient.objectID];

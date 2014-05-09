@@ -115,7 +115,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
-    [self.tableView setSeparatorColor:[UIColor clearColor]];
+    if (IOS_7) {
+        [self.tableView setSeparatorColor:[UIColor clearColor]];
+    }
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"CurrencySelectionCell" bundle:nil] forCellReuseIdentifier:TWCurrencySelectionCellIdentifier];

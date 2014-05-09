@@ -46,6 +46,7 @@
 #import "_RecipientType.h"
 #import "RecipientType.h"
 #import "RefundDetailsViewController.h"
+#import "Mixpanel.h"
 
 @interface PaymentFlow ()
 
@@ -330,15 +331,7 @@
             } else if ([Credentials userLoggedIn]) {
                 MCLog(@"Update sender profile");
                 [self updateSenderProfile:^{
-                    //TODO jaanus: copy/paste...
-                    Recipient *recipient = self.objectModel.pendingPayment.recipient;
-
-                    MCLog(@"Recipient created?%d", [recipient remoteIdValue] != 0);
-                    if ([recipient remoteIdValue] == 0) {
-                        [self commitRecipientData];
-                    } else {
-                        [self uploadVerificationData];
-                    }
+                    [self handleNextStepOfPendingPaymentCommit];
                 }];
             } else {
                 MCLog(@"Register user");
@@ -391,14 +384,7 @@
         }
 
         [self updateSenderProfile:^{
-            Recipient *recipient = self.objectModel.pendingPayment.recipient;
-
-            MCLog(@"Recipient created?%d", [recipient remoteIdValue] != 0);
-            if ([recipient remoteIdValue] == 0) {
-                [self commitRecipientData];
-            } else {
-                [self uploadVerificationData];
-            }
+            [self handleNextStepOfPendingPaymentCommit];
         }];
     }];
 
@@ -457,57 +443,6 @@
     [operation execute];
 }
 
-- (void)commitRecipientData {
-    MCLog(@"commitRecipientData");
-    [[GoogleAnalytics sharedInstance] sendEvent:@"RecipientAdded" category:@"recipient" label:@"DuringPayment"];
-    RecipientOperation *operation = [RecipientOperation createOperationWithRecipient:self.objectModel.pendingPayment.recipient.objectID];
-    [self setExecutedOperation:operation];
-    [operation setObjectModel:self.objectModel];
-
-    [operation setResponseHandler:^(NSError *error) {
-        if (error) {
-            self.paymentErrorHandler(error);
-            return;
-        }
-
-        [self commitPayment];
-    }];
-
-    [operation execute];
-}
-
-- (void)uploadVerificationData {
-    [self.objectModel performBlock:^{
-        PendingPayment *payment = [self.objectModel pendingPayment];
-        if (payment.isAnyVerificationRequired && payment.sendVerificationLaterValue) {
-            [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"skipped"];
-        } else if (payment.isAnyVerificationRequired) {
-            [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"sent"];
-        }
-        if ([payment isAnyVerificationRequired] && !payment.sendVerificationLaterValue) {
-            [self uploadNextVerificationData];
-        } else {
-            [self commitPayment];
-        }
-    }];
-}
-
-- (void)uploadNextVerificationData {
-    MCLog(@"uploadNextVerificationData");
-    [self.objectModel performBlock:^{
-        PendingPayment *payment = [self.objectModel pendingPayment];
-        if ([payment idVerificationRequired]) {
-            [self uploadIdVerification];
-        } else if ([payment addressVerificationRequired]) {
-            [self uploadAddressVerification];
-        } else if ([payment paymentPurposeRequired]) {
-            [self uploadPaymentPurpose];
-        } else {
-            [self commitPayment];
-        }
-    }];
-}
-
 - (void)uploadPaymentPurpose {
     MCLog(@"uploadPaymentPurpose");
     PendingPayment *pendingPayment = [self.objectModel pendingPayment];
@@ -526,7 +461,7 @@
             PendingPayment *payment = [self.objectModel pendingPayment];
             [payment removePaymentPurposeRequiredMarker];
             [self.objectModel saveContext:^{
-                [self uploadNextVerificationData];
+                [self handleNextStepOfPendingPaymentCommit];
             }];
         });
     }];
@@ -552,7 +487,7 @@
             PendingPayment *payment = [self.objectModel pendingPayment];
             [payment removerAddressVerificationRequiredMarker];
             [self.objectModel saveContext:^{
-                [self uploadNextVerificationData];
+                [self handleNextStepOfPendingPaymentCommit];
             }];
         });
     }];
@@ -578,7 +513,7 @@
             PendingPayment *payment = [self.objectModel pendingPayment];
             [payment removeIdVerificationRequiredMarker];
             [self.objectModel saveContext:^{
-                [self uploadNextVerificationData];
+                [self handleNextStepOfPendingPaymentCommit];
             }];
         });
     }];
@@ -593,11 +528,6 @@
 
 	NSNumber *transferFee = [payment transferwiseTransferFee];
 	NSString *currencyCode = [payment.sourceCurrency code];
-
-    if ([payment.recipient remoteIdValue] == 0) {
-        [self commitRecipientData];
-        return;
-    }
 
     CreatePaymentOperation *operation = [CreatePaymentOperation commitOperationWithPayment:[payment objectID]];
     [self setExecutedOperation:operation];
@@ -635,7 +565,7 @@
 
         [self.objectModel performBlock:^{
             Payment *createdPayment = (Payment *) [self.objectModel.managedObjectContext objectWithID:paymentID];
-            NSMutableDictionary *details = [NSMutableDictionary dictionary];
+            NSMutableDictionary *details = [[NSMutableDictionary alloc] init];
             details[@"recipientType"] = createdPayment.recipient.type.type;
             details[@"sourceCurrency"] = createdPayment.sourceCurrency.code;
             details[@"sourceValue"] = createdPayment.payIn;
@@ -643,7 +573,8 @@
             details[@"targetValue"] = createdPayment.payOut;
             details[@"userType"] = createdPayment.profileUsed;
 
-            [[AnalyticsCoordinator sharedInstance] didCreatePayment:details];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Transfer created" properties:details];
         }];
 
         [self presentUploadMoneyController:paymentID];
@@ -671,6 +602,52 @@
     [controller setPayment:payment];
     [controller setAfterValidationBlock:completion];
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)handleNextStepOfPendingPaymentCommit {
+    MCLog(@"handleNextStepOfPendingPaymentCommit");
+    [self.objectModel performBlock:^{
+        PendingPayment *payment = self.objectModel.pendingPayment;
+        if ([payment needsToCommitRecipientData]) {
+            MCLog(@"commit recipient");
+            [[GoogleAnalytics sharedInstance] sendEvent:@"RecipientAdded" category:@"recipient" label:@"DuringPayment"];
+            [self commitRecipient:payment.recipient];
+        } else if ([payment needsToCommitRefundRecipientData]) {
+            MCLog(@"commit refund");
+            [self commitRecipient:payment.refundRecipient];
+        } else if (!payment.sendVerificationLaterValue && [payment idVerificationRequired]) {
+            MCLog(@"Upload id");
+            [self uploadIdVerification];
+        } else if (!payment.sendVerificationLaterValue && [payment addressVerificationRequired]) {
+            MCLog(@"Upload address");
+            [self uploadAddressVerification];
+        } else if (!payment.sendVerificationLaterValue &&[payment paymentPurposeRequired]) {
+            MCLog(@"Upload paiment purpose");
+            [self uploadPaymentPurpose];
+        } else {
+            [self commitPayment];
+        }
+    }];
+}
+
+- (void)commitRecipient:(Recipient *)recipient {
+    MCLog(@"commitRecipientData");
+    RecipientOperation *operation = [RecipientOperation createOperationWithRecipient:recipient.objectID];
+    [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
+
+    [operation setResponseHandler:^(NSError *error) {
+        [self setExecutedOperation:nil];
+
+        if (error) {
+            self.paymentErrorHandler(error);
+            return;
+        }
+
+        [self handleNextStepOfPendingPaymentCommit];
+    }];
+
+    [operation execute];
 }
 
 @end

@@ -11,6 +11,9 @@
 - (void)removerAddressVerificationRequiredMarker;
 - (void)removeIdVerificationRequiredMarker;
 
+- (BOOL)needsToCommitRecipientData;
+- (BOOL)needsToCommitRefundRecipientData;
+
 + (NSString *)idPhotoPath;
 + (void)removePossibleImages;
 + (NSString *)addressPhotoPath;

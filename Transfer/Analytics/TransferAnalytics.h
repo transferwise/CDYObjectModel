@@ -15,7 +15,6 @@
 - (void)startScreenShown;
 - (void)markLoggedIn;
 - (void)confirmPaymentScreenShown;
-- (void)didCreatePayment:(NSDictionary *)paymentDetails;
 - (void)paymentPersonalProfileScreenShown;
 - (void)paymentRecipientProfileScreenShown;
 - (void)refundDetailsScreenShown;

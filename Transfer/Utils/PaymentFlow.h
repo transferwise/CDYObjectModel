@@ -28,7 +28,6 @@ typedef void (^PaymentErrorBlock)(NSError *error);
 - (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch;
 - (void)presentRecipientDetails:(BOOL)showMiniProfile;
 - (void)presentPaymentConfirmation;
-- (void)uploadVerificationData;
 - (void)registerUser;
 - (void)presentFirstPaymentScreen;
 - (void)presentRefundAccountViewController:(TRWActionBlock)completion;
