@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
+#import <CoreText/CoreText.h>
 #import "LoginViewController.h"
 #import "UIColor+Theme.h"
 #import "TableHeaderView.h"
@@ -21,6 +22,7 @@
 #import "OpenIDViewController.h"
 #import "TransferBackButtonItem.h"
 #import "GoogleAnalytics.h"
+#import "ResetPasswordViewController.h"
 
 static NSUInteger const kTableRowEmail = 0;
 
@@ -77,7 +79,16 @@ static NSUInteger const kTableRowEmail = 0;
 
     [self.loginButton setTitle:NSLocalizedString(@"button.title.log.in", nil) forState:UIControlStateNormal];
 
-    [self.footerMessageLabel setText:NSLocalizedString(@"login.controller.footer.message", nil)];
+    NSMutableAttributedString *forgotMessage = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"login.controller.forgot.password.link", nil)];
+    NSRange fullLengthRange = NSMakeRange(0, forgotMessage.length);
+    [forgotMessage setAttributes:@{NSForegroundColorAttributeName : [UIColor mainTextColor]} range:fullLengthRange];
+    [forgotMessage addAttribute:(NSString *) kCTUnderlineStyleAttributeName
+                          value:[NSNumber numberWithInt:kCTUnderlineStyleSingle]
+                          range:fullLengthRange];
+    [self.footerMessageLabel setAttributedText:forgotMessage];
+
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(forgotPasswordTapped)];
+    [self.footerMessageLabel addGestureRecognizer:tapGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -234,6 +245,12 @@ static NSUInteger const kTableRowEmail = 0;
     [controller setProvider:provider];
     [controller setEmail:self.emailCell.value];
     [controller setProviderName:providerName];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)forgotPasswordTapped {
+    ResetPasswordViewController *controller = [[ResetPasswordViewController alloc] init];
+    [controller setObjectModel:self.objectModel];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

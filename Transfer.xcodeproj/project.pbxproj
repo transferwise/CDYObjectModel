@@ -446,6 +446,12 @@
 		EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAAC203C17422ADB001DDE7A /* DropdownCell.xib */; };
 		EAAF8FB017436730008DF9E2 /* CreatePaymentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAF8FAF17436730008DF9E2 /* CreatePaymentOperation.m */; };
 		EAAF8FB81743B3E4008DF9E2 /* MoneyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAF8FB71743B3E4008DF9E2 /* MoneyFormatter.m */; };
+		EAB6170E191CD61900545C21 /* ResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB6170C191CD61900545C21 /* ResetPasswordViewController.m */; };
+		EAB6170F191CD61900545C21 /* ResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB6170C191CD61900545C21 /* ResetPasswordViewController.m */; };
+		EAB61710191CD61900545C21 /* ResetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB6170D191CD61900545C21 /* ResetPasswordViewController.xib */; };
+		EAB61711191CD61900545C21 /* ResetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB6170D191CD61900545C21 /* ResetPasswordViewController.xib */; };
+		EAB61714191CDD1000545C21 /* ResetPasswordOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB61713191CDD1000545C21 /* ResetPasswordOperation.m */; };
+		EAB61715191CDD1000545C21 /* ResetPasswordOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB61713191CDD1000545C21 /* ResetPasswordOperation.m */; };
 		EAB7215B171FC61B00DE29F5 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB72159171FC61B00DE29F5 /* SettingsViewController.m */; };
 		EAB7215C171FC61B00DE29F5 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB7215A171FC61B00DE29F5 /* SettingsViewController.xib */; };
 		EAB7215F171FCAAC00DE29F5 /* SettingsTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB7215E171FCAAC00DE29F5 /* SettingsTitleCell.m */; };
@@ -891,6 +897,11 @@
 		EAAF8FAF17436730008DF9E2 /* CreatePaymentOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatePaymentOperation.m; sourceTree = "<group>"; };
 		EAAF8FB61743B3E4008DF9E2 /* MoneyFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyFormatter.h; sourceTree = "<group>"; };
 		EAAF8FB71743B3E4008DF9E2 /* MoneyFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyFormatter.m; sourceTree = "<group>"; };
+		EAB6170B191CD61900545C21 /* ResetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPasswordViewController.h; sourceTree = "<group>"; };
+		EAB6170C191CD61900545C21 /* ResetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordViewController.m; sourceTree = "<group>"; };
+		EAB6170D191CD61900545C21 /* ResetPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResetPasswordViewController.xib; sourceTree = "<group>"; };
+		EAB61712191CDD1000545C21 /* ResetPasswordOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPasswordOperation.h; sourceTree = "<group>"; };
+		EAB61713191CDD1000545C21 /* ResetPasswordOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordOperation.m; sourceTree = "<group>"; };
 		EAB72158171FC61B00DE29F5 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		EAB72159171FC61B00DE29F5 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		EAB7215A171FC61B00DE29F5 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -1406,6 +1417,8 @@
 				EAA053EB175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m */,
 				EA7F8814176F2B44003B0F46 /* RemoveTokenOperation.h */,
 				EA7F8815176F2B44003B0F46 /* RemoveTokenOperation.m */,
+				EAB61712191CDD1000545C21 /* ResetPasswordOperation.h */,
+				EAB61713191CDD1000545C21 /* ResetPasswordOperation.m */,
 				EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */,
 				EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */,
 				EA88E680172F97D50021492C /* TransferwiseClient.h */,
@@ -1602,6 +1615,9 @@
 				EA0523F4191B596B00B32899 /* RefundDetailsViewController.h */,
 				EA0523F5191B596B00B32899 /* RefundDetailsViewController.m */,
 				EA0523F8191B5AFC00B32899 /* RefundDetailsViewController.xib */,
+				EAB6170B191CD61900545C21 /* ResetPasswordViewController.h */,
+				EAB6170C191CD61900545C21 /* ResetPasswordViewController.m */,
+				EAB6170D191CD61900545C21 /* ResetPasswordViewController.xib */,
 				EAB72158171FC61B00DE29F5 /* SettingsViewController.h */,
 				EAB72159171FC61B00DE29F5 /* SettingsViewController.m */,
 				EAB7215A171FC61B00DE29F5 /* SettingsViewController.xib */,
@@ -1903,6 +1919,7 @@
 				EA333F3918A4BEDC00D8A44E /* page_zoom.json in Resources */,
 				EA31A1EC17DDB29B00F937F7 /* TSAlertViewBackground2.png in Resources */,
 				EA31A1ED17DDB29B00F937F7 /* TSAlertViewBackground.png in Resources */,
+				EAB61711191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
 				EA31A1EE17DDB29B00F937F7 /* WhyView.xib in Resources */,
 				EA31A1EF17DDB29B00F937F7 /* CountrySelectionCell.xib in Resources */,
 				EA31A1F017DDB29B00F937F7 /* DateEntryCell.xib in Resources */,
@@ -1975,6 +1992,7 @@
 				EA333F3818A4BEDC00D8A44E /* page_zoom.json in Resources */,
 				BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */,
 				BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */,
+				EAB61710191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
 				BBC6912C172147FC00F0FB1A /* WhyView.xib in Resources */,
 				EA88E68F172F97E20021492C /* CountrySelectionCell.xib in Resources */,
 				EA88E691172F97E20021492C /* DateEntryCell.xib in Resources */,
@@ -2278,6 +2296,7 @@
 				EA31A16717DDB29B00F937F7 /* ConfirmPaymentCell.m in Sources */,
 				EA31A16817DDB29B00F937F7 /* RecipientEntrySelectionCell.m in Sources */,
 				EA31A16917DDB29B00F937F7 /* DropdownCell.m in Sources */,
+				EAB6170F191CD61900545C21 /* ResetPasswordViewController.m in Sources */,
 				EA31A16A17DDB29B00F937F7 /* BankTransferViewController.m in Sources */,
 				EA31A16B17DDB29B00F937F7 /* TextCell.m in Sources */,
 				EAD3647A17E2EBF2001EFE40 /* PaymentMethodSelectionView.m in Sources */,
@@ -2374,6 +2393,7 @@
 				EABD864618E2B65D004A5A57 /* TransferMixpanel.m in Sources */,
 				EA2296C317E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
 				EA0523F7191B596B00B32899 /* RefundDetailsViewController.m in Sources */,
+				EAB61715191CDD1000545C21 /* ResetPasswordOperation.m in Sources */,
 				EA2296C717E08027001CF541 /* TransferBackButtonItem.m in Sources */,
 				BA665EA5E58A6DA4DEB8E622 /* GoogleAnalytics.m in Sources */,
 			);
@@ -2473,6 +2493,7 @@
 				EA222E3C173A8A7100C5D613 /* ConfirmPaymentCell.m in Sources */,
 				EA042600173CF5C50048BFBD /* RecipientEntrySelectionCell.m in Sources */,
 				EAAC203B17422AB3001DDE7A /* DropdownCell.m in Sources */,
+				EAB6170E191CD61900545C21 /* ResetPasswordViewController.m in Sources */,
 				BB29BD47173CD2FF0016A6E9 /* BankTransferViewController.m in Sources */,
 				BB29BD4E173CDF6F0016A6E9 /* TextCell.m in Sources */,
 				EAD3647917E2EBF2001EFE40 /* PaymentMethodSelectionView.m in Sources */,
@@ -2569,6 +2590,7 @@
 				EABD864518E2B65D004A5A57 /* TransferMixpanel.m in Sources */,
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
 				EA0523F6191B596B00B32899 /* RefundDetailsViewController.m in Sources */,
+				EAB61714191CDD1000545C21 /* ResetPasswordOperation.m in Sources */,
 				EA2296C617E08027001CF541 /* TransferBackButtonItem.m in Sources */,
 				BA6650856E3051C31A982C78 /* GoogleAnalytics.m in Sources */,
 			);
