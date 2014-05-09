@@ -1867,6 +1867,14 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Mooncascade OÜ";
+				TargetAttributes = {
+					EA31A12117DDB29B00F937F7 = {
+						DevelopmentTeam = W53MTDV45J;
+					};
+					EAAA1467171BC911005B9430 = {
+						DevelopmentTeam = W53MTDV45J;
+					};
+				};
 			};
 			buildConfigurationList = EAAA1463171BC911005B9430 /* Build configuration list for PBXProject "Transfer" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2662,7 +2670,7 @@
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 				);
 				PRODUCT_NAME = TransferDev;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "584A4C1A-6D4D-4C36-AF4F-67DE7E722DFF";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -2697,8 +2705,8 @@
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 				);
 				PRODUCT_NAME = TransferDev;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "584A4C1A-6D4D-4C36-AF4F-67DE7E722DFF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "584A4C1A-6D4D-4C36-AF4F-67DE7E722DFF";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2831,7 +2839,7 @@
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "584A4C1A-6D4D-4C36-AF4F-67DE7E722DFF";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -2865,8 +2873,8 @@
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "584A4C1A-6D4D-4C36-AF4F-67DE7E722DFF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "584A4C1A-6D4D-4C36-AF4F-67DE7E722DFF";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
