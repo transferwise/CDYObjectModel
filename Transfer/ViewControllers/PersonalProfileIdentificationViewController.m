@@ -211,7 +211,7 @@
         return;
     }
 
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view disableUserInteractionForViews:@[self.navigationItem.leftBarButtonItem.customView]]; 
     [hud setMessage:self.completionMessage];
 
     BOOL skipIdentification = self.skipSwitch.isOn;

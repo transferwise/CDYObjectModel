@@ -11,7 +11,9 @@
 @interface TRWProgressHUD : MBProgressHUD
 
 + (TRWProgressHUD *)showHUDOnView:(UIView *)view;
++ (TRWProgressHUD *)showHUDOnView:(UIView *)view disableUserInteractionForViews:(NSArray*)viewsToDisable;
 - (void)hide;
 - (void)setMessage:(NSString *)message;
+
 
 @end

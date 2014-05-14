@@ -151,7 +151,7 @@
 }
 
 - (void)executeCompletion:(BOOL)skipped {
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view disableUserInteractionForViews:@[self.navigationItem.leftBarButtonItem.customView]];
     [hud setMessage:NSLocalizedString(@"business.profile.identification.making.payment.message", nil)];
 
     self.completionHandler(skipped, @"", ^(NSError *error) {

@@ -227,7 +227,7 @@ static NSUInteger const kReceiverSection = 2;
 }
 
 - (IBAction)footerButtonPressed:(id)sender {
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view disableUserInteractionForViews:@[self.navigationItem.leftBarButtonItem.customView]];
     [hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
 
     PendingPayment *input = [self.objectModel pendingPayment];

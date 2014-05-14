@@ -9,7 +9,7 @@
 #import "TransferBackButtonItem.h"
 #import "Constants.h"
 
-@interface TransferBackButtonItem ()
+@interface TransferBackButtonItem ()<UINavigationControllerDelegate>
 
 @property (nonatomic, copy) TRWActionBlock tapHandler;
 @property (nonatomic, assign) UINavigationController *navigationController;
@@ -36,18 +36,23 @@
     [button sizeToFit];
     TransferBackButtonItem *result = [[TransferBackButtonItem alloc] initWithCustomView:button];
     [button addTarget:result action:@selector(tapped) forControlEvents:UIControlEventTouchUpInside];
+    button.exclusiveTouch = YES;
     [result setTapHandler:tapHandler];
     [result setNavigationController:navigationController];
     return result;
 }
 
 - (void)tapped {
-    if (self.navigationController) {
+    
+    if (self.navigationController.topViewController.navigationItem.leftBarButtonItem == self) {
         [self.navigationController popViewControllerAnimated:YES];
         return;
     }
 
-    self.tapHandler();
+    if(self.tapHandler)
+    {
+        self.tapHandler();
+    }
 }
 
 @end

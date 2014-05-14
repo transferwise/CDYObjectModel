@@ -14,18 +14,24 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        [self commonSetup];
     }
     return self;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    [self commonSetup];
+    
+}
 
+-(void)commonSetup
+{
     [self setBackgroundColor:[UIColor clearColor]];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self skinWithImage:[UIImage imageNamed:@"GrayButton.png"] insets:UIEdgeInsetsMake(0, 15, 0, 15)];
     [self.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+    self.exclusiveTouch = YES;
 }
 
 @end
