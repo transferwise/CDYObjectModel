@@ -32,6 +32,10 @@
 }
 
 - (void)hide {
+    for(UIView* view in self.viewsToDisable)
+    {
+        view.userInteractionEnabled = YES;
+    }
     [self hide:YES];
 }
 
@@ -39,13 +43,5 @@
     [self setLabelText:message];
 }
 
--(void)removeFromSuperview
-{
-    for(UIView* view in self.viewsToDisable)
-    {
-        view.userInteractionEnabled = YES;
-    }
-    [super removeFromSuperview];
-}
 
 @end
