@@ -43,9 +43,11 @@
 }
 
 - (void)tapped {
-    
-    if (self.navigationController.topViewController.navigationItem.leftBarButtonItem == self) {
-        [self.navigationController popViewControllerAnimated:YES];
+    if(self.navigationController)
+    {
+        if (self.navigationController.topViewController.navigationItem.leftBarButtonItem == self) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
         return;
     }
 
