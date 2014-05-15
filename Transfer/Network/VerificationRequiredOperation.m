@@ -54,8 +54,8 @@ NSString *const kVerificationRequiredPath = @"/verification/required";
         }];
     }];
 
-    [self.workModel performBlock:^{
-        PendingPayment *payment = [weakSelf.workModel pendingPayment];
+    [self.objectModel performBlock:^{
+        PendingPayment *payment = [weakSelf.objectModel pendingPayment];
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         params[@"profile"] = [payment profileUsed];
         params[@"payIn"] = [payment payIn];
