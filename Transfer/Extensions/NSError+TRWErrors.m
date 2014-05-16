@@ -47,4 +47,15 @@
     return [NSString stringWithString:errorsString];
 }
 
+- (BOOL)twCodeNotFound {
+    NSArray *errors = self.userInfo[TRWErrors];
+    for (NSDictionary *error in errors) {
+        NSString *code = error[@"code"];
+        if ([code isEqualToString:@"NOT_FOUND"]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 @end

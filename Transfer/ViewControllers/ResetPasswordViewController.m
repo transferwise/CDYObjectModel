@@ -17,6 +17,7 @@
 #import "TRWProgressHUD.h"
 #import "ResetPasswordOperation.h"
 #import "TRWAlertView.h"
+#import "NSError+TRWErrors.h"
 
 @interface ResetPasswordViewController ()
 
@@ -104,12 +105,23 @@
     [operation setObjectModel:self.objectModel];
     [operation setResultHandler:^(NSError *error) {
         [hud hide];
-        if (error) {
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"reset.password.error.title", nil) error:error];
+        if (!error) {
+            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"reset.password.success.alert.title", nil) message:NSLocalizedString(@"reset.password.success.alert.message", nil)];
+            [alertView setConfirmButtonTitle:NSLocalizedString(@"reset.password.alert.dismiss.button", nil) action:^{
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
             [alertView show];
+            return;
         }
 
-        [self.navigationController popViewControllerAnimated:YES];
+        if (error.twCodeNotFound) {
+            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"reset.password.failed.alert.title", nil) message:NSLocalizedString(@"reset.password.not.found.alert.message", nil)];
+            [alertView setConfirmButtonTitle:NSLocalizedString(@"reset.password.alert.dismiss.button", nil)];
+            [alertView show];
+        } else {
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"reset.password.failed.alert.title", nil) error:error];
+            [alertView show];
+        }
     }];
     [operation execute];
 }
