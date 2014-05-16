@@ -24,15 +24,15 @@ typedef void (^PaymentErrorBlock)(NSError *error);
 @property (nonatomic, copy) VerificationStepSuccessBlock verificationSuccessBlock;
 
 - (id)initWithPresentingController:(UINavigationController *)controller;
-- (void)presentSenderDetails;
+
 - (void)validatePayment:(NSManagedObjectID *)paymentInput successBlock:(VerificationStepSuccessBlock)successBlock errorHandler:(PaymentErrorBlock)errorHandler;
 - (void)commitPaymentWithSuccessBlock:(VerificationStepSuccessBlock)successBlock ErrorHandler:(PaymentErrorBlock)errorHandler;
 - (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch;
 - (void)presentRecipientDetails:(BOOL)showMiniProfile;
 - (void)presentPaymentConfirmation;
 - (void)registerUser;
-- (void)presentFirstPaymentScreen;
-- (void)presentRefundAccountViewController:(TRWActionBlock)completion;
+- (void)presentRefundAccountViewController;
 - (void)handleNextStepOfPendingPaymentCommit;
+- (void)presentNextPaymentScreen;
 
 @end

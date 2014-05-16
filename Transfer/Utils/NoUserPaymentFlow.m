@@ -7,14 +7,9 @@
 //
 
 #import "NoUserPaymentFlow.h"
-#import "PendingPayment.h"
-#import "ObjectModel+PendingPayments.h"
 
 @implementation NoUserPaymentFlow
 
-- (void)presentSenderDetails {
-    [self presentPersonalProfileEntry:YES];
-}
 
 -(void)commitPaymentWithSuccessBlock:(VerificationStepSuccessBlock)successBlock ErrorHandler:(PaymentErrorBlock)errorHandler{
     MCLog(@"Commit payment");
@@ -22,17 +17,6 @@
     [self setVerificationSuccessBlock:successBlock];
 
     [self registerUser];
-}
-
-- (void)presentFirstPaymentScreen {
-    PendingPayment *payment = [self.objectModel pendingPayment];
-    if (payment.isFixedAmountValue) {
-        [self presentRefundAccountViewController:^{
-            [self presentRecipientDetails:NO];
-        }];
-    } else {
-        [self presentRecipientDetails:NO];
-    }
 }
 
 @end

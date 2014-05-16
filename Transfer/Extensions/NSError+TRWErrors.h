@@ -12,5 +12,6 @@
 
 - (BOOL)isTransferwiseError;
 - (NSString *)localizedTransferwiseMessage;
+- (BOOL)twCodeNotFound;
 
 @end

@@ -11,7 +11,6 @@
 #import "RecipientViewController.h"
 #import "ConfirmPaymentViewController.h"
 #import "PersonalProfileIdentificationViewController.h"
-#import "BankTransferViewController.h"
 #import "CreatePaymentOperation.h"
 #import "VerificationRequiredOperation.h"
 #import "Credentials.h"
@@ -67,10 +66,6 @@
     return self;
 }
 
-- (void)presentSenderDetails {
-    MCAssert(NO);
-}
-
 - (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch {
     [[AnalyticsCoordinator sharedInstance] paymentPersonalProfileScreenShown];
 
@@ -107,7 +102,7 @@
             [self.objectModel saveContext];
 
             if ([self personalProfileFilled]) {
-                [self pushNextScreenAfterPersonalProfile];
+                [self presentNextPaymentScreen];
             } else {
                 //TODO jaanus: this class should not show anything on screen
                 TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.needed.popup.title", nil) message:NSLocalizedString(@"personal.profile.needed.popup.message", nil)];
@@ -144,7 +139,7 @@
 
             if ([Credentials userLoggedIn]) {
                 handler(nil);
-                [self pushNextScreenAfterPersonalProfile];
+                [self presentNextPaymentScreen];
                 return;
             }
 
@@ -169,24 +164,11 @@
             handler(emailError);
         } else {
             handler(nil);
-            [self pushNextScreenAfterPersonalProfile];
+            [self presentNextPaymentScreen];
         }
     }];
 
     [operation execute];
-}
-
-- (void)pushNextScreenAfterPersonalProfile {
-    //TODO jaanus: after #106 pending payment should always have recipient, as it's presented before sender details
-    if (self.objectModel.pendingPayment.recipient) {
-        [self presentPaymentConfirmation];
-    } else {
-        [self presentRecipientDetails];
-    }
-}
-
-- (void)presentRecipientDetails {
-    [self presentRecipientDetails:YES];
 }
 
 - (void)presentRecipientDetails:(BOOL)showMiniProfile {
@@ -204,7 +186,7 @@
     [controller setFooterButtonTitle:NSLocalizedString(@"button.title.continue", nil)];
     [controller setRecipientValidation:self];
     [controller setAfterSaveAction:^{
-        [self presentNextScreenAfterRecipientDetails];
+        [self presentNextPaymentScreen];
     }];
     [controller setPreLoadRecipientsWithCurrency:self.objectModel.pendingPayment.targetCurrency];
     [self.navigationController pushViewController:controller animated:YES];
@@ -400,11 +382,6 @@
 
     [operation execute];
 }
-
-- (void)presentFirstPaymentScreen {
-    MCAssert(NO);
-}
-
 
 - (void)updateSenderProfile:(TRWActionBlock)completion {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -609,13 +586,15 @@
     [operation execute];
 }
 
-- (void)presentRefundAccountViewController:(TRWActionBlock)completion {
+- (void)presentRefundAccountViewController {
     PendingPayment *payment = self.objectModel.pendingPayment;
     RefundDetailsViewController *controller = [[RefundDetailsViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setCurrency:payment.sourceCurrency];
     [controller setPayment:payment];
-    [controller setAfterValidationBlock:completion];
+    [controller setAfterValidationBlock:^{
+        [self presentNextPaymentScreen];
+    }];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -663,6 +642,22 @@
     }];
 
     [operation execute];
+}
+
+- (void)presentNextPaymentScreen {
+    MCLog(@"presentNextPaymentScreen");
+    [self.objectModel performBlock:^{
+        PendingPayment *payment = [self.objectModel pendingPayment];
+        if (!payment.recipient) {
+            [self presentRecipientDetails:[payment.user personalProfileFilled]];
+        } else if (!payment.user.personalProfileFilled) {
+            [self presentPersonalProfileEntry:YES];
+        } else if (payment.isFixedAmountValue && !payment.refundRecipient) {
+            [self presentRefundAccountViewController];
+        } else {
+            [self presentPaymentConfirmation];
+        }
+    }];
 }
 
 @end
