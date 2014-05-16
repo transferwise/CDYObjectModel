@@ -316,7 +316,7 @@ static NSUInteger const kRowYouSend = 0;
         [paymentFlow setObjectModel:self.objectModel];
 
         [self.objectModel performBlock:^{
-            [paymentFlow presentFirstPaymentScreen];
+            [paymentFlow presentNextPaymentScreen];
         }];
     }];
 }
