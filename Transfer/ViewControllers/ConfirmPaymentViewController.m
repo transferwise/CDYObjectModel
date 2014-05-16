@@ -227,7 +227,7 @@ static NSUInteger const kReceiverSection = 2;
 }
 
 - (IBAction)footerButtonPressed:(id)sender {
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view disableUserInteractionForViews:@[self.navigationItem.leftBarButtonItem.customView]];
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
 
     PendingPayment *input = [self.objectModel pendingPayment];
@@ -240,7 +240,9 @@ static NSUInteger const kReceiverSection = 2;
         [input setRecipientEmail:email];
     }
 
-    [self.paymentFlow validatePayment:input.objectID errorHandler:^(NSError *error) {
+    [self.paymentFlow validatePayment:input.objectID successBlock:^{
+        [hud hide];
+    } errorHandler:^(NSError *error) {
         [hud hide];
         if (error) {
             [[GoogleAnalytics sharedInstance] sendAlertEvent:@"CreatingPaymentAlert" withLabel:[error localizedTransferwiseMessage]];

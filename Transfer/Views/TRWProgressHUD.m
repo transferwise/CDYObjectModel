@@ -9,21 +9,9 @@
 #import "TRWProgressHUD.h"
 
 @interface TRWProgressHUD ()
-@property (nonatomic,strong)NSArray* viewsToDisable;
 @end
 
 @implementation TRWProgressHUD
-
-+ (TRWProgressHUD *)showHUDOnView:(UIView *)view disableUserInteractionForViews:(NSArray*)viewsToDisable
-{
-    TRWProgressHUD* hud = [self showHUDOnView:view];
-    hud.viewsToDisable = viewsToDisable;
-    for(UIView* view in viewsToDisable)
-    {
-        view.userInteractionEnabled = NO;
-    }
-    return hud;
-}
 
 + (TRWProgressHUD *)showHUDOnView:(UIView *)view {
     TRWProgressHUD *hud = [TRWProgressHUD showHUDAddedTo:view animated:YES];
@@ -32,10 +20,6 @@
 }
 
 - (void)hide {
-    for(UIView* view in self.viewsToDisable)
-    {
-        view.userInteractionEnabled = YES;
-    }
     [self hide:YES];
 }
 

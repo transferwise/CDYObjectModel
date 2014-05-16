@@ -151,10 +151,12 @@
 }
 
 - (void)executeCompletion:(BOOL)skipped {
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view disableUserInteractionForViews:@[self.navigationItem.leftBarButtonItem.customView]];
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"business.profile.identification.making.payment.message", nil)];
 
-    self.completionHandler(skipped, @"", ^(NSError *error) {
+    self.completionHandler(skipped, @"", ^(void){
+        [hud hide];
+    }, ^(NSError *error) {
         [hud hide];
         if (error) {
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) error:error];

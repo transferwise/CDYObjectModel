@@ -248,13 +248,13 @@
 	[controller setIdentificationRequired:(IdentificationRequired) [payment verificiationNeededValue]];
 	[controller setProposedPaymentPurpose:[payment proposedPaymentsPurpose]];
     [controller setCompletionMessage:NSLocalizedString(@"identification.creating.payment.message", nil)];
-	[controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, PaymentErrorBlock errorBlock) {
+	[controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, VerificationStepSuccessBlock successBlock, PaymentErrorBlock errorBlock) {
         [self.objectModel performBlock:^{
             [payment setSendVerificationLaterValue:skipIdentification];
             [payment setPaymentPurpose:paymentPurpose];
 
             [self.objectModel saveContext:^{
-                [self commitPaymentWithErrorHandler:errorBlock];
+                [self commitPaymentWithSuccessBlock:successBlock ErrorHandler:errorBlock];
             }];
         }];
 	}];
@@ -277,9 +277,10 @@
     });
 }
 
-- (void)validatePayment:(NSManagedObjectID *)paymentInput errorHandler:(PaymentErrorBlock)errorHandler {
+- (void)validatePayment:(NSManagedObjectID *)paymentInput successBlock:(VerificationStepSuccessBlock)successBlock errorHandler:(PaymentErrorBlock)errorHandler {
     MCLog(@"Validate payment");
     self.paymentErrorHandler = errorHandler;
+    self.verificationSuccessBlock = successBlock;
 
     TRWActionBlock executeValidationBlock = ^{
         CreatePaymentOperation *operation = [CreatePaymentOperation validateOperationWithInput:paymentInput];
@@ -323,10 +324,19 @@
             MCLog(@"Any verification required? %d", pendingPayment.isAnyVerificationRequired);
             MCLog(@"Logged in? %d", [Credentials userLoggedIn]);
             if ([pendingPayment isAnyVerificationRequired] && [[pendingPayment profileUsed] isEqualToString:@"business"]) {
+                if(self.verificationSuccessBlock)
+                {
+                    self.verificationSuccessBlock();
+                    self.verificationSuccessBlock = nil;
+                }
                 [self presentBusinessVerificationScreen];
             } else if ([pendingPayment isAnyVerificationRequired]) {
                 MCLog(@"Present verification screen");
-                self.paymentErrorHandler(nil);
+                if(self.verificationSuccessBlock)
+                {
+                    self.verificationSuccessBlock();
+                    self.verificationSuccessBlock = nil;
+                }
                 [self presentVerificationScreen];
             } else if ([Credentials userLoggedIn]) {
                 MCLog(@"Update sender profile");
@@ -349,19 +359,19 @@
 
     BusinessProfileIdentificationViewController *controller = [[BusinessProfileIdentificationViewController alloc] init];
     [controller setObjectModel:self.objectModel];
-    [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, PaymentErrorBlock errorBlock) {
+    [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, VerificationStepSuccessBlock successBlock,PaymentErrorBlock errorBlock) {
         [self.objectModel performBlock:^{
             [payment setSendVerificationLaterValue:skipIdentification];
 
             [self.objectModel saveContext:^{
-                [self commitPaymentWithErrorHandler:errorBlock];
+                [self commitPaymentWithSuccessBlock:successBlock ErrorHandler:errorBlock];
             }];
         }];
     }];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)commitPaymentWithErrorHandler:(PaymentErrorBlock)errorHandler {
+- (void)commitPaymentWithSuccessBlock:(VerificationStepSuccessBlock)successBlock ErrorHandler:(PaymentErrorBlock)errorHandler {
     MCAssert(NO);
 }
 
@@ -578,6 +588,11 @@
         }];
 
         [self presentUploadMoneyController:paymentID];
+        if(self.verificationSuccessBlock)
+        {
+            self.verificationSuccessBlock();
+            self.verificationSuccessBlock = nil;
+        }
     }];
 
     [operation execute];

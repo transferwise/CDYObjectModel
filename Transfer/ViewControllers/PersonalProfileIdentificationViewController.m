@@ -95,6 +95,11 @@
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
+
 - (void)buildCells {
     if ([self.presentedSectionCells count] > 0) {
         return;
@@ -211,7 +216,7 @@
         return;
     }
 
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view disableUserInteractionForViews:@[self.navigationItem.leftBarButtonItem.customView]]; 
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:self.completionMessage];
 
     BOOL skipIdentification = self.skipSwitch.isOn;
@@ -222,7 +227,9 @@
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"sent"];
     }
 
-    self.completionHandler(skipIdentification, [self.paymentPurposeCell.entryField text], ^(NSError *error) {
+    self.completionHandler(skipIdentification, [self.paymentPurposeCell.entryField text], ^(void){
+        [hud hide];
+    }, ^(NSError *error) {
         [hud hide];
         if (error) {
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) error:error];

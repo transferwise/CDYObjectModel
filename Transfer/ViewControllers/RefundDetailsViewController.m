@@ -142,7 +142,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 
     [[AnalyticsCoordinator sharedInstance] refundDetailsScreenShown];
 
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view disableUserInteractionForViews:@[self.navigationItem.leftBarButtonItem.customView]];
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
 
 

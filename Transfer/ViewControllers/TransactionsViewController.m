@@ -298,9 +298,13 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[controller setIdentificationRequired:self.identificationRequired];
 	[controller setProposedFooterButtonTitle:NSLocalizedString(@"transactions.identification.done.button.title", nil)];
     [controller setCompletionMessage:NSLocalizedString(@"transactions.identification.uploading.message", nil)];
-    [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, PaymentErrorBlock errorBlock) {
+    [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, VerificationStepSuccessBlock successBlock, PaymentErrorBlock errorBlock) {
         [self uploadPaymentPurpose:paymentPurpose errorHandler:errorBlock completionHandler:^{
             [self.navigationController popViewControllerAnimated:YES];
+            if(successBlock)
+            {
+                successBlock();
+            }
         }];
     }];
 	[self.navigationController pushViewController:controller animated:YES];

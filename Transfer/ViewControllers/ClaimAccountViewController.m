@@ -115,7 +115,7 @@
         return;
     }
 
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view disableUserInteractionForViews:@[self.navigationItem.leftBarButtonItem.customView]];
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"claim.account.setting.password.message", nil)];
 
     ClaimAccountOperation *operation = [ClaimAccountOperation operationWithPassword:password];

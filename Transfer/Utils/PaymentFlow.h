@@ -14,17 +14,19 @@
 
 @class ObjectModel;
 
+typedef void (^VerificationStepSuccessBlock)(void);
 typedef void (^PaymentErrorBlock)(NSError *error);
 
 @interface PaymentFlow : NSObject <PersonalProfileValidation, RecipientProfileValidation, BusinessProfileValidation>
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, copy) PaymentErrorBlock paymentErrorHandler;
+@property (nonatomic, copy) VerificationStepSuccessBlock verificationSuccessBlock;
 
 - (id)initWithPresentingController:(UINavigationController *)controller;
 - (void)presentSenderDetails;
-- (void)validatePayment:(NSManagedObjectID *)paymentInput errorHandler:(PaymentErrorBlock)errorHandler;
-- (void)commitPaymentWithErrorHandler:(PaymentErrorBlock)errorHandler;
+- (void)validatePayment:(NSManagedObjectID *)paymentInput successBlock:(VerificationStepSuccessBlock)successBlock errorHandler:(PaymentErrorBlock)errorHandler;
+- (void)commitPaymentWithSuccessBlock:(VerificationStepSuccessBlock)successBlock ErrorHandler:(PaymentErrorBlock)errorHandler;
 - (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch;
 - (void)presentRecipientDetails:(BOOL)showMiniProfile;
 - (void)presentPaymentConfirmation;

@@ -205,7 +205,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setPresentedSectionCells:@[self.senderCells, @[self.importCell], self.recipientCells, self.currencyCells, @[]]];
     [self.tableView reloadData];
 
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view disableUserInteractionForViews:@[self.navigationItem.leftBarButtonItem.customView]];
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
 
     if (self.preLoadRecipientsWithCurrency) {
@@ -405,7 +405,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         return;
     }
 
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view disableUserInteractionForViews:@[self.navigationItem.leftBarButtonItem.customView]];
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view]; 
     [hud setMessage:NSLocalizedString(@"recipient.controller.validating.message", nil)];
 
     Recipient *recipientInput = [self.objectModel createRecipient];

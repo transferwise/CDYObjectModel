@@ -162,7 +162,7 @@
             return;
         }
 
-        TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view disableUserInteractionForViews:@[self.navigationItem.leftBarButtonItem.customView]];
+        TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
         [hud setMessage:NSLocalizedString(@"upload.money.refreshing.payment.message", nil)];
         PullPaymentDetailsOperation *operation = [PullPaymentDetailsOperation operationWithPaymentId:[self.payment remoteId]];
         [self setExecutedOperation:operation];

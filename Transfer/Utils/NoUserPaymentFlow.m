@@ -16,9 +16,10 @@
     [self presentPersonalProfileEntry:YES];
 }
 
-- (void)commitPaymentWithErrorHandler:(PaymentErrorBlock)errorHandler {
+-(void)commitPaymentWithSuccessBlock:(VerificationStepSuccessBlock)successBlock ErrorHandler:(PaymentErrorBlock)errorHandler{
     MCLog(@"Commit payment");
     [self setPaymentErrorHandler:errorHandler];
+    [self setVerificationSuccessBlock:successBlock];
 
     [self registerUser];
 }
