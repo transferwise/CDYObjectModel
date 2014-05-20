@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "TransactionsTabIcon.png"
+      "filename" : "tab_icon_transfers.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "TransactionsTabIcon@2x.png"
+      "filename" : "tab_icon_transfers@2x.png"
     }
   ],
   "info" : {

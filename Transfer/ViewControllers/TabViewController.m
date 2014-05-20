@@ -20,6 +20,7 @@
 @property (weak, nonatomic) TabItem *selectedItem;
 @property (assign, nonatomic)CGSize tabSize;
 @property (assign, nonatomic)CGSize lastTabSize;
+@property (assign, nonatomic)CGSize gapSize;
 
 @end
 
@@ -30,6 +31,7 @@
     [super viewDidLoad];
     UINib* nib = [UINib nibWithNibName:@"TabCell" bundle:[NSBundle mainBundle]];
     [self.tabBarCollectionView registerNib:nib forCellWithReuseIdentifier:@"TabCell"];
+    [self.tabBarCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Space"];
     [self selectItem:self.selectedItem];
 }
 
@@ -104,7 +106,7 @@
     NSUInteger index = [self.tabItems indexOfObject:item];
     if(index!=NSNotFound)
     {
-        TabCell *cell = (TabCell*) [self.tabBarCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+        TabCell *cell = (TabCell*) [self.tabBarCollectionView cellForItemAtIndexPath:[self indexPathForIndex:index]];
         [cell configureForSelectedState:selected];
     }
 }
@@ -114,17 +116,35 @@
     if(self.tabItems.count > 0)
     {
         UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout*)self.tabBarCollectionView.collectionViewLayout;
-        if(layout.scrollDirection == UICollectionViewScrollDirectionVertical)
+
+        if([self useFixedSizeTabs])
         {
-            CGFloat height = self.tabBarCollectionView.frame.size.height / [self.tabItems count];
-            self.tabSize = CGSizeMake(self.tabBarCollectionView.frame.size.width, roundf(height));
-            self.lastTabSize = CGSizeMake(self.tabSize.width, self.tabSize.height + [self roundingAdjustmentforDimension:height]);
+            if(layout.scrollDirection == UICollectionViewScrollDirectionVertical)
+            {
+                CGFloat height = self.tabBarCollectionView.frame.size.height - [self.tabItems count] * self.fixedSize.height;
+                self.gapSize = CGSizeMake(self.tabBarCollectionView.frame.size.width, height);
+                
+            }
+            else
+            {
+                CGFloat width = self.tabBarCollectionView.frame.size.width - [self.tabItems count] * self.fixedSize.width;
+                self.gapSize = CGSizeMake(width, self.tabBarCollectionView.frame.size.height);
+            }
         }
         else
         {
-            CGFloat width = self.tabBarCollectionView.frame.size.width / [self.tabItems count];
-            self.tabSize = CGSizeMake(roundf(width), self.tabBarCollectionView.frame.size.height);
-            self.lastTabSize = CGSizeMake(self.tabSize.width + [self roundingAdjustmentforDimension:width], self.tabSize.height);
+            if(layout.scrollDirection == UICollectionViewScrollDirectionVertical)
+            {
+                CGFloat height = self.tabBarCollectionView.frame.size.height / [self.tabItems count];
+                self.tabSize = CGSizeMake(self.tabBarCollectionView.frame.size.width, roundf(height));
+                self.lastTabSize = CGSizeMake(self.tabSize.width, self.tabSize.height + [self roundingAdjustmentforDimension:height]);
+            }
+            else
+            {
+                CGFloat width = self.tabBarCollectionView.frame.size.width / [self.tabItems count];
+                self.tabSize = CGSizeMake(roundf(width), self.tabBarCollectionView.frame.size.height);
+                self.lastTabSize = CGSizeMake(self.tabSize.width + [self roundingAdjustmentforDimension:width], self.tabSize.height);
+            }
         }
         
         [layout invalidateLayout];
@@ -155,13 +175,18 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.tabItems count];
+    return [self useFixedSizeTabs]?[self.tabItems count]+1:[self.tabItems count];
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([self useFixedSizeTabs] && indexPath.row == self.insertFlexibleSpaceAtIndex)
+    {
+        UICollectionViewCell *spacerCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Space" forIndexPath:indexPath];
+        return spacerCell;
+    }
     TabCell *cell = (TabCell*) [collectionView dequeueReusableCellWithReuseIdentifier:@"TabCell" forIndexPath:indexPath];
-    TabItem* item = self.tabItems[indexPath.row];
+    TabItem* item = self.tabItems[[self indexForIndexPath:indexPath]];
     [cell configureWithTabItem:item];
     if(item == self.selectedItem)
     {
@@ -173,18 +198,60 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self selectIndex:indexPath.row];
+    [self selectIndex:[self indexForIndexPath:indexPath]];
 }
 
 #pragma mark - Collection View Delegate
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == [self.tabItems count]-1)
+    if([self useFixedSizeTabs])
     {
-        return self.lastTabSize;
+        if(indexPath.row == self.insertFlexibleSpaceAtIndex)
+        {
+            return self.gapSize;
+        }
+        return self.fixedSize;
     }
-    return self.tabSize;
+    else
+    {
+        if (indexPath.row == [self.tabItems count]-1)
+        {
+            return self.lastTabSize;
+        }
+        return self.tabSize;
+    }
+}
+
+#pragma mark indexpath conversion
+
+-(NSIndexPath*)indexPathForIndex:(NSUInteger)index
+{
+    if([self useFixedSizeTabs] && index > self.insertFlexibleSpaceAtIndex)
+    {
+        return [NSIndexPath indexPathForRow:index+1 inSection:0];
+    }
+    else
+    {
+        return [NSIndexPath indexPathForRow:index inSection:0];
+    }
+}
+
+-(NSUInteger)indexForIndexPath:(NSIndexPath*)indexPath
+{
+    if ([self useFixedSizeTabs]  && indexPath.row >= self.insertFlexibleSpaceAtIndex)
+    {
+        return indexPath.row -1;
+    }
+    else
+    {
+        return indexPath.row;
+    }
+}
+
+-(BOOL)useFixedSizeTabs
+{
+    return (self.fixedSize.width >0 || self.fixedSize.width >0);
 }
 
 @end
