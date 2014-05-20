@@ -17,6 +17,7 @@
 #import "SignUpViewController.h"
 #import "ObjectModel+Recipients.h"
 #import "ObjectModel+Settings.h"
+#import "TabViewController.h"
 
 @interface MainViewController () <UINavigationControllerDelegate, UITabBarControllerDelegate>
 
@@ -48,21 +49,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    UIColor *selectedColor = [UIColor blackColor];
+    
+    TabViewController *tabController = [[TabViewController alloc] init];
+    
     TransactionsViewController *transactionsController = [[TransactionsViewController alloc] init];
     [self setTransactionsController:transactionsController];
     [transactionsController setObjectModel:self.objectModel];
+    TabItem *tabItem = [TabItem new];
+    tabItem.selectedColor = selectedColor;
+    tabItem.viewController = transactionsController;
+    [tabController addItem:tabItem];
 
     PaymentViewController *paymentController = [[PaymentViewController alloc] init];
     [self setPaymentController:paymentController];
     [paymentController setObjectModel:self.objectModel];
+    tabItem = [TabItem new];
+    tabItem.selectedColor = selectedColor;
+    tabItem.viewController = paymentController;
+    [tabController addItem:tabItem];
+
 
     ContactsViewController *contactsController = [[ContactsViewController alloc] init];
     [contactsController setObjectModel:self.objectModel];
+    tabItem = [TabItem new];
+    tabItem.selectedColor = selectedColor;
+    tabItem.viewController = contactsController;
+    [tabController addItem:tabItem];
 
-    UITabBarController *tabController = [[UITabBarController alloc] init];
-    [tabController setViewControllers:@[transactionsController, paymentController, contactsController]];
-    [tabController setDelegate:self];
-    [self setTabsController:tabController];
+//    UITabBarController *tabController = [[UITabBarController alloc] init];
+//    [tabController setViewControllers:@[transactionsController, paymentController, contactsController]];
+//    [tabController setDelegate:self];
+//    [self setTabsController:tabController];
 
     [self setViewControllers:@[tabController]];
 
