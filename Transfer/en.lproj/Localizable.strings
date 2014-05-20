@@ -51,7 +51,7 @@
 "contacts.controller.delete.conformation.title" = "Delete contact";
 "contacts.controller.deleting.message" = "Removing...";
 "contacts.controller.refreshing.message" = "Refreshing recipients";
-"contacts.controller.title" = "Recipients";
+"contacts.controller.title" = "Contacts";
 "contacts.refresh.error.message" = "Could not refresh your recipients";
 "contacts.refresh.error.title" = "Refresh error";
 
@@ -136,7 +136,7 @@ A revolution in your pocket.";
 "payment.controller.deposit.label" = "Your deposit";
 "payment.controller.estimated.exchange.rate.label" = "Estimated exchange rate";
 "payment.controller.payment.date.message" = "Money arrives %@";
-"payment.controller.title" = "New Transfer";
+"payment.controller.title" = "Send";
 "payment.controller.title.with.contact.name" = "Payment to %@";
 "payment.controller.transfer.fee.label" = "Total fee";
 "payment.controller.you.get.label" = "Receiver gets (estimated)";
