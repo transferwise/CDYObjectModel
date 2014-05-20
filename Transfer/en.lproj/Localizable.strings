@@ -96,6 +96,8 @@ identity and address";
 "introduction.header.sub.title.text" = "No hidden fees. No headache.
 A revolution in your pocket.";
 
+"invite.controller.title" = "Invite";
+
 "login.controller.footer.message" = "You will remain logged in until you manually log out of the app.";
 "login.controller.header.message" = "Enter your login details";
 "login.controller.logging.in.message" = "Logging in...";
@@ -179,6 +181,7 @@ A revolution in your pocket.";
 "personal.profile.needed.popup.message" = "You need to fill personal profile also to continue payment.";
 "personal.profile.needed.popup.title" = "Missing data";
 
+"profile.controller.title" = "Profile";
 "profile.selection.text.base" = "Or %@";
 "profile.selection.text.business.profile" = "send from a business";
 "profile.selection.text.personal.profile" = "send as yourself";

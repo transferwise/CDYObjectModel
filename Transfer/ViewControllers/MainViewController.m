@@ -49,7 +49,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    UIColor *selectedColor = [UIColor blackColor];
+    UIColor *selectedColor = [UIColor colorWithRed:31/255.0f green:39/255.0f blue:54/255.0f alpha:1.0f];
     
     TabViewController *tabController = [[TabViewController alloc] init];
     
@@ -59,22 +59,55 @@
     TabItem *tabItem = [TabItem new];
     tabItem.selectedColor = selectedColor;
     tabItem.viewController = transactionsController;
+    tabItem.title = NSLocalizedString(@"transactions.controller.title", nil);
+    tabItem.icon = [UIImage imageNamed:@"TransactionsTabIcon.png"];
     [tabController addItem:tabItem];
-
-    PaymentViewController *paymentController = [[PaymentViewController alloc] init];
-    [self setPaymentController:paymentController];
-    [paymentController setObjectModel:self.objectModel];
+    
     tabItem = [TabItem new];
     tabItem.selectedColor = selectedColor;
-    tabItem.viewController = paymentController;
+    [tabItem setActionBlock:^(TabItem* item){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Not implemented yet!" message:nil delegate:nil cancelButtonTitle:@"Aha!" otherButtonTitles:nil];
+        [alert show];
+        return NO;
+    }];
+    tabItem.title = NSLocalizedString(@"invite.controller.title", nil);
+    tabItem.icon = [UIImage imageNamed:@"tab_icon_invite"];
+    [tabController addItem:tabItem];
+
+    
+    tabItem = [TabItem new];
+    tabItem.title = NSLocalizedString(@"payment.controller.title", nil);
+    tabItem.icon = [UIImage imageNamed:@"NewPaymentTabIcon.png"];
+    tabItem.deSelectedColor = [UIColor colorWithRed:50/255.0f green:66/255.0f blue:102/255.0f alpha:1.0f];
+    [tabItem setActionBlock:^(TabItem* item){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Not implemented yet!" message:nil delegate:nil cancelButtonTitle:@"Aha!" otherButtonTitles:nil];
+        [alert show];
+//        PaymentViewController *paymentController = [[PaymentViewController alloc] init];
+//        [paymentController setObjectModel:self.objectModel];
+//        [self presentViewController:paymentController animated:YES completion:nil];
+        return NO;
+    }];
     [tabController addItem:tabItem];
 
 
     ContactsViewController *contactsController = [[ContactsViewController alloc] init];
     [contactsController setObjectModel:self.objectModel];
     tabItem = [TabItem new];
+    tabItem.title = NSLocalizedString(@"contacts.controller.title", nil);
+    tabItem.icon = [UIImage imageNamed:@"ContactsIcon.png"];
     tabItem.selectedColor = selectedColor;
     tabItem.viewController = contactsController;
+    [tabController addItem:tabItem];
+    
+    tabItem = [TabItem new];
+    tabItem.selectedColor = selectedColor;
+    [tabItem setActionBlock:^(TabItem* item){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Not implemented yet!" message:nil delegate:nil cancelButtonTitle:@"Aha!" otherButtonTitles:nil];
+        [alert show];
+        return NO;
+    }];
+    tabItem.title = NSLocalizedString(@"profile.controller.title", nil);
+    tabItem.icon = [UIImage imageNamed:@"tab_icon_profile"];
     [tabController addItem:tabItem];
 
 //    UITabBarController *tabController = [[UITabBarController alloc] init];

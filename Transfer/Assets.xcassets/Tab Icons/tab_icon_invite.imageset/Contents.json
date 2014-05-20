@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "NewPaymentTabIcon.png"
+      "filename" : "tab_icon_invite.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "NewPaymentTabIcon@2x.png"
+      "filename" : "tab_icon_invite@2x.png"
     }
   ],
   "info" : {

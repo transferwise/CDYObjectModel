@@ -7,23 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TabCell.h"
 
-@class TabItem;
-
-typedef BOOL(^TabItemActionBlock)(TabItem*);
-
-@interface TabItem : NSObject
-
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) UIImage *icon;
-@property (nonatomic, strong) UIViewController *viewController;
-@property (nonatomic, strong) TabItemActionBlock actionBlock;
-
-@property (nonatomic, strong) UIColor *selectedColor;
-@property (nonatomic, strong) UIColor *deSelectedColor;
-
-
-@end
 
 @interface TabViewController : UIViewController
 

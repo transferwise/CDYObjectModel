@@ -28,9 +28,15 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tabBarCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"TabCell"];
-    [self layoutTabs];
+    UINib* nib = [UINib nibWithNibName:@"TabCell" bundle:[NSBundle mainBundle]];
+    [self.tabBarCollectionView registerNib:nib forCellWithReuseIdentifier:@"TabCell"];
     [self selectItem:self.selectedItem];
+}
+
+-(void)viewDidLayoutSubviews
+{
+    [self layoutTabs];
+    [super viewDidLayoutSubviews];
 }
 
 -(NSMutableArray *)tabItems
@@ -78,8 +84,8 @@
             [self addChildViewController:newSelectedItem.viewController];
         }
         
-        [self setCellBackgroundColor:self.selectedItem.deSelectedColor forItem:self.selectedItem];
-        [self setCellBackgroundColor:newSelectedItem.selectedColor forItem:newSelectedItem];
+        [self setCellSelectedState:NO forItem:self.selectedItem];
+        [self setCellSelectedState:YES forItem:newSelectedItem];
         
         self.selectedItem = newSelectedItem;
     }
@@ -93,13 +99,13 @@
     
 }
 
--(void)setCellBackgroundColor:(UIColor*)color forItem:(TabItem*)item
+-(void)setCellSelectedState:(BOOL)selected forItem:(TabItem*)item
 {
     NSUInteger index = [self.tabItems indexOfObject:item];
     if(index!=NSNotFound)
     {
-        UICollectionViewCell *cell = [self.tabBarCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-        cell.backgroundColor = color;
+        TabCell *cell = (TabCell*) [self.tabBarCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+        [cell configureForSelectedState:selected];
     }
 }
 
@@ -121,7 +127,7 @@
             self.lastTabSize = CGSizeMake(self.tabSize.width + [self roundingAdjustmentforDimension:width], self.tabSize.height);
         }
         
-        [self.tabBarCollectionView reloadData];
+        [layout invalidateLayout];
         
         if([self.tabItems indexOfObject:self.selectedItem] == NSNotFound && [self.tabItems count] > 0)
         {
@@ -154,16 +160,14 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TabCell" forIndexPath:indexPath];
+    TabCell *cell = (TabCell*) [collectionView dequeueReusableCellWithReuseIdentifier:@"TabCell" forIndexPath:indexPath];
     TabItem* item = self.tabItems[indexPath.row];
+    [cell configureWithTabItem:item];
     if(item == self.selectedItem)
     {
-        cell.backgroundColor = self.selectedItem.selectedColor;
+        [cell configureForSelectedState:YES];
     }
-    else
-    {
-        cell.backgroundColor = self.selectedItem.deSelectedColor;
-    }
+    
     return cell;
 }
 
