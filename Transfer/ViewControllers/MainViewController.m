@@ -73,6 +73,7 @@
     paymentItem.icon = [UIImage imageNamed:@"NewPaymentTabIcon.png"];
     paymentItem.deSelectedColor = [UIColor colorWithRed:50/255.0f green:66/255.0f blue:102/255.0f alpha:1.0f];
     paymentItem.deselectedAlpha = 1.0f;
+    paymentItem.highlightedColor = [UIColor colorWithRed:70/255.0f green:89/255.0f blue:131/255.0f alpha:1.0f];
     [paymentItem setActionBlock:^(TabItem* item){
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Not implemented yet!" message:nil delegate:nil cancelButtonTitle:@"Aha!" otherButtonTitles:nil];
         [alert show];
@@ -117,8 +118,8 @@
 //    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuButton.png"] style:UIBarButtonItemStylePlain target:self action:@selector(menuPressed)];
 //    [tabController.navigationItem setLeftBarButtonItem:settingsButton];
 //
-//    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
-//    [tabController.navigationItem setTitleView:logoView];
+    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
+    [tabController.navigationItem setTitleView:logoView];
 
     [self setDelegate:self];
 }

@@ -21,6 +21,7 @@ typedef BOOL(^TabItemActionBlock)(TabItem*);
 
 @property (nonatomic, strong) UIColor *selectedColor;
 @property (nonatomic, strong) UIColor *deSelectedColor;
+@property (nonatomic, strong) UIColor *highlightedColor;
 
 @property (nonatomic, assign) CGFloat deselectedAlpha;
 
@@ -34,5 +35,6 @@ typedef BOOL(^TabItemActionBlock)(TabItem*);
 
 -(void)configureWithTabItem:(TabItem*)item;
 -(void)configureForSelectedState:(BOOL)selected;
+-(void)configureForHighlightedState;
 
 @end

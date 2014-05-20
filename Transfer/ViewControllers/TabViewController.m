@@ -194,7 +194,40 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self selectIndex:[self indexForIndexPath:indexPath]];
+    UICollectionViewCell *cell = [self.tabBarCollectionView cellForItemAtIndexPath:indexPath];
+    if([cell isKindOfClass:[TabCell class]])
+    {
+        [self selectIndex:[self indexForIndexPath:indexPath]];
+    }
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [self.tabBarCollectionView cellForItemAtIndexPath:indexPath];
+    if([cell isKindOfClass:[TabCell class]])
+    {
+        [((TabCell*)cell) configureForHighlightedState];
+    }
+    
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [self.tabBarCollectionView cellForItemAtIndexPath:indexPath];
+    if([cell isKindOfClass:[TabCell class]])
+    {
+        TabItem* item = self.tabItems[[self indexForIndexPath:indexPath]];
+        if(item == self.selectedItem)
+        {
+            [((TabCell*)cell) configureForSelectedState:YES];
+        }
+        else
+        {
+            [((TabCell*)cell) configureForSelectedState:NO];
+        }
+        
+
+    }
 }
 
 #pragma mark - Collection View Delegate

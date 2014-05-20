@@ -17,6 +17,8 @@
     {
         _deselectedAlpha = 0.75;
         _selectedColor = [UIColor colorWithRed:31/255.0f green:39/255.0f blue:54/255.0f alpha:1.0f];
+        _highlightedColor = [UIColor colorWithRed:49/255.0f green:67/255.0f blue:104/255.0f alpha:1.0f];
+
     }
     return self;
 }
@@ -55,6 +57,11 @@
         self.titleLabel.alpha = self.currentItem.deselectedAlpha;
         self.iconImage.alpha = self.currentItem.deselectedAlpha;
     }
+}
+
+-(void)configureForHighlightedState
+{
+    self.backgroundColor = self.currentItem.highlightedColor;
 }
 
 
