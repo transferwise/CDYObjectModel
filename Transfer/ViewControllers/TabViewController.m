@@ -8,10 +8,6 @@
 
 #import "TabViewController.h"
 
-@implementation TabItem
-
-@end
-
 @interface TabViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *tabBarCollectionView;

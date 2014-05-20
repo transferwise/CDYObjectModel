@@ -8,6 +8,21 @@
 
 #import "TabCell.h"
 
+@implementation TabItem
+
+-(id)init
+{
+    self = [super init];
+    if(self)
+    {
+        _deselectedAlpha = 0.75;
+        _selectedColor = [UIColor colorWithRed:31/255.0f green:39/255.0f blue:54/255.0f alpha:1.0f];
+    }
+    return self;
+}
+
+@end
+
 @interface TabCell ()
 
 @property (nonatomic, weak) TabItem* currentItem;
@@ -37,8 +52,8 @@
     else
     {
         self.backgroundColor = self.currentItem.deSelectedColor;
-        self.titleLabel.alpha = 0.75f;
-        self.iconImage.alpha = 0.75f;
+        self.titleLabel.alpha = self.currentItem.deselectedAlpha;
+        self.iconImage.alpha = self.currentItem.deselectedAlpha;
     }
 }
 

@@ -48,38 +48,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    UIColor *selectedColor = [UIColor colorWithRed:31/255.0f green:39/255.0f blue:54/255.0f alpha:1.0f];
-    
-    TabViewController *tabController = [[TabViewController alloc] init];
     
     TransactionsViewController *transactionsController = [[TransactionsViewController alloc] init];
     [self setTransactionsController:transactionsController];
     [transactionsController setObjectModel:self.objectModel];
-    TabItem *tabItem = [TabItem new];
-    tabItem.selectedColor = selectedColor;
-    tabItem.viewController = transactionsController;
-    tabItem.title = NSLocalizedString(@"transactions.controller.title", nil);
-    tabItem.icon = [UIImage imageNamed:@"TransactionsTabIcon.png"];
-    [tabController addItem:tabItem];
+    TabItem *transactionsItem = [TabItem new];
+    transactionsItem.viewController = transactionsController;
+    transactionsItem.title = NSLocalizedString(@"transactions.controller.title", nil);
+    transactionsItem.icon = [UIImage imageNamed:@"TransactionsTabIcon.png"];
+
     
-    tabItem = [TabItem new];
-    tabItem.selectedColor = selectedColor;
-    [tabItem setActionBlock:^(TabItem* item){
+    TabItem *inviteItem = [TabItem new];
+    [inviteItem setActionBlock:^(TabItem* item){
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Not implemented yet!" message:nil delegate:nil cancelButtonTitle:@"Aha!" otherButtonTitles:nil];
         [alert show];
         return NO;
     }];
-    tabItem.title = NSLocalizedString(@"invite.controller.title", nil);
-    tabItem.icon = [UIImage imageNamed:@"tab_icon_invite"];
-    [tabController addItem:tabItem];
+    inviteItem.title = NSLocalizedString(@"invite.controller.title", nil);
+    inviteItem.icon = [UIImage imageNamed:@"tab_icon_invite"];
 
     
-    tabItem = [TabItem new];
-    tabItem.title = NSLocalizedString(@"payment.controller.title", nil);
-    tabItem.icon = [UIImage imageNamed:@"NewPaymentTabIcon.png"];
-    tabItem.deSelectedColor = [UIColor colorWithRed:50/255.0f green:66/255.0f blue:102/255.0f alpha:1.0f];
-    [tabItem setActionBlock:^(TabItem* item){
+    TabItem *paymentItem = [TabItem new];
+    paymentItem.title = NSLocalizedString(@"payment.controller.title", nil);
+    paymentItem.icon = [UIImage imageNamed:@"NewPaymentTabIcon.png"];
+    paymentItem.deSelectedColor = [UIColor colorWithRed:50/255.0f green:66/255.0f blue:102/255.0f alpha:1.0f];
+    paymentItem.deselectedAlpha = 1.0f;
+    [paymentItem setActionBlock:^(TabItem* item){
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Not implemented yet!" message:nil delegate:nil cancelButtonTitle:@"Aha!" otherButtonTitles:nil];
         [alert show];
 //        PaymentViewController *paymentController = [[PaymentViewController alloc] init];
@@ -87,28 +81,28 @@
 //        [self presentViewController:paymentController animated:YES completion:nil];
         return NO;
     }];
-    [tabController addItem:tabItem];
 
 
     ContactsViewController *contactsController = [[ContactsViewController alloc] init];
     [contactsController setObjectModel:self.objectModel];
-    tabItem = [TabItem new];
-    tabItem.title = NSLocalizedString(@"contacts.controller.title", nil);
-    tabItem.icon = [UIImage imageNamed:@"ContactsIcon.png"];
-    tabItem.selectedColor = selectedColor;
-    tabItem.viewController = contactsController;
-    [tabController addItem:tabItem];
+    TabItem *contactsItem = [TabItem new];
+    contactsItem.title = NSLocalizedString(@"contacts.controller.title", nil);
+    contactsItem.icon = [UIImage imageNamed:@"ContactsIcon.png"];
+    contactsItem.viewController = contactsController;
     
-    tabItem = [TabItem new];
-    tabItem.selectedColor = selectedColor;
-    [tabItem setActionBlock:^(TabItem* item){
+    TabItem *profileItem = [TabItem new];
+    [profileItem setActionBlock:^(TabItem* item){
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Not implemented yet!" message:nil delegate:nil cancelButtonTitle:@"Aha!" otherButtonTitles:nil];
         [alert show];
         return NO;
     }];
-    tabItem.title = NSLocalizedString(@"profile.controller.title", nil);
-    tabItem.icon = [UIImage imageNamed:@"tab_icon_profile"];
-    [tabController addItem:tabItem];
+    profileItem.title = NSLocalizedString(@"profile.controller.title", nil);
+    profileItem.icon = [UIImage imageNamed:@"tab_icon_profile"];
+    
+    TabViewController *tabController = [[TabViewController alloc] init];
+    [tabController setItems:UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone?@[transactionsItem,inviteItem,paymentItem,contactsItem,profileItem]:@[paymentItem,transactionsItem,inviteItem,contactsItem,profileItem]];
+    [tabController selectItem:transactionsItem];
+    
 
 //    UITabBarController *tabController = [[UITabBarController alloc] init];
 //    [tabController setViewControllers:@[transactionsController, paymentController, contactsController]];
@@ -116,15 +110,15 @@
 //    [self setTabsController:tabController];
 
     [self setViewControllers:@[tabController]];
-
-    SWRevealViewController *revealController = [self revealViewController];
-    [self.navigationBar addGestureRecognizer:revealController.panGestureRecognizer];
-
-    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuButton.png"] style:UIBarButtonItemStylePlain target:self action:@selector(menuPressed)];
-    [tabController.navigationItem setLeftBarButtonItem:settingsButton];
-
-    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
-    [tabController.navigationItem setTitleView:logoView];
+    
+//    SWRevealViewController *revealController = [self revealViewController];
+//    [self.navigationBar addGestureRecognizer:revealController.panGestureRecognizer];
+//
+//    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuButton.png"] style:UIBarButtonItemStylePlain target:self action:@selector(menuPressed)];
+//    [tabController.navigationItem setLeftBarButtonItem:settingsButton];
+//
+//    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
+//    [tabController.navigationItem setTitleView:logoView];
 
     [self setDelegate:self];
 

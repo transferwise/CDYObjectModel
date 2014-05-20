@@ -19,4 +19,6 @@
 -(void)addItem:(TabItem*)newItem;
 -(void)setItems:(NSArray*)items;
 
+-(void)selectItem:(TabItem *)newSelectedItem;
+
 @end
