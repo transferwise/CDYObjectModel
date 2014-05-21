@@ -2703,7 +2703,7 @@
 					"DEV_VERSION=1",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/TransferDev.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2.5.1.9.8",
@@ -2738,7 +2738,7 @@
 					"DEV_VERSION=1",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/TransferDev.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2.5.1.9.8",

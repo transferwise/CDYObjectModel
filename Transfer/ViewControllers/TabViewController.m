@@ -117,7 +117,7 @@
         {
             if(layout.scrollDirection == UICollectionViewScrollDirectionVertical)
             {
-                CGFloat height = self.tabBarCollectionView.frame.size.height - [self.tabItems count] * self.fixedSize.height;
+                CGFloat height = self.tabBarCollectionView.frame.size.height  - self.tabBarCollectionView.contentInset.top - self.tabBarCollectionView.contentInset.bottom - [self.tabItems count] * self.fixedSize.height;
                 self.gapSize = CGSizeMake(self.tabBarCollectionView.frame.size.width, height);
                 
             }
@@ -131,7 +131,7 @@
         {
             if(layout.scrollDirection == UICollectionViewScrollDirectionVertical)
             {
-                CGFloat height = self.tabBarCollectionView.frame.size.height / [self.tabItems count];
+                CGFloat height = (self.tabBarCollectionView.frame.size.height - self.tabBarCollectionView.contentInset.top - self.tabBarCollectionView.contentInset.bottom) / [self.tabItems count];
                 self.tabSize = CGSizeMake(self.tabBarCollectionView.frame.size.width, roundf(height));
                 self.lastTabSize = CGSizeMake(self.tabSize.width, self.tabSize.height + [self roundingAdjustmentforDimension:height]);
             }

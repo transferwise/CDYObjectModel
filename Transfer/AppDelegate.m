@@ -38,11 +38,12 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    if (IOS_7) {
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    }
-
+    
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    
+    if (IOS_7) {
+        [[UIApplication sharedApplication] setStatusBarStyle:IPAD?UIStatusBarStyleDefault:UIStatusBarStyleLightContent];
+    }
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 

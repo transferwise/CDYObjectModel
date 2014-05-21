@@ -101,7 +101,7 @@
     profileItem.icon = [UIImage imageNamed:@"tab_icon_profile"];
     
     TabViewController *tabController = [[TabViewController alloc] init];
-    [tabController setItems:UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone?@[transactionsItem,inviteItem,paymentItem,contactsItem,profileItem]:@[paymentItem,transactionsItem,inviteItem,contactsItem,profileItem]];
+    [tabController setItems:IPAD?@[paymentItem,transactionsItem,inviteItem,contactsItem,profileItem]:@[transactionsItem,inviteItem,paymentItem,contactsItem,profileItem]];
     [tabController selectItem:transactionsItem];
     
 
@@ -118,8 +118,8 @@
 //    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuButton.png"] style:UIBarButtonItemStylePlain target:self action:@selector(menuPressed)];
 //    [tabController.navigationItem setLeftBarButtonItem:settingsButton];
 //
-    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
-    [tabController.navigationItem setTitleView:logoView];
+//    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
+//    [tabController.navigationItem setTitleView:logoView];
 
     [self setDelegate:self];
 }
@@ -219,6 +219,16 @@
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     NSUInteger numberOfControllers = [navigationController.viewControllers count];
+    
+    if(numberOfControllers == 1)
+    {
+        [self setNavigationBarHidden:YES animated:YES];
+    }
+    else
+    {
+        [self setNavigationBarHidden:NO animated:YES];
+    }
+    
     NSArray *recognizers = [navigationController.navigationBar gestureRecognizers];
     for (UIGestureRecognizer *recognizer in recognizers) {
         [recognizer setEnabled:numberOfControllers == 1];
