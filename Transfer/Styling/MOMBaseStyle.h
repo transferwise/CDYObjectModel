@@ -10,11 +10,11 @@
 /**
  Base class for styles applied to UIViews. Styles can be chained by being added through the @addStyle method.
  */
-@interface MOMStyle : NSObject <NSCopying>
+@interface MOMBaseStyle : NSObject <NSCopying>
 
-@property (nonatomic,readonly) MOMStyle *compositeStyle;
+@property (nonatomic,readonly) MOMBaseStyle *compositeStyle;
 
-@property (nonatomic,readonly) MOMStyle *child;
+@property (nonatomic,readonly) MOMBaseStyle *child;
 
 /**
  *  apply a color style to a view. Specific implementation should be written in child class.
@@ -46,7 +46,7 @@
  *
  *  @param style Style to add
  */
--(void)addStyle:(MOMStyle*)style;
+-(void)addStyle:(MOMBaseStyle*)style;
 
 
 /**
@@ -65,7 +65,7 @@
  *
  *  @return initialised style with a composite style.
  */
--(instancetype)initWithCompositeStyle:(MOMStyle*)compositeStyle;
+-(instancetype)initWithCompositeStyle:(MOMBaseStyle*)compositeStyle;
 
 
 @end
@@ -73,7 +73,7 @@
 
 typedef void (^ApplyAppearanceBlock)(UIView*);
 
-@interface MOMAppearanceStyle : MOMStyle
+@interface MOMAppearanceStyle : MOMBaseStyle
 
 -(ApplyAppearanceBlock)apperanceBlock;
 

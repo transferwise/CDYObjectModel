@@ -5,25 +5,25 @@
 //  Copyright (c) 2014 Matsomatic Limited All rights reserved.
 //
 
-#import "MOMStyle.h"
+#import "MOMBaseStyle.h"
 @class MOMAppearanceStyle;
 
-@interface MOMStyle ()
+@interface MOMBaseStyle ()
 
-@property (nonatomic, strong) MOMStyle* child;
-@property (nonatomic, strong) MOMStyle* compositeStyle;
+@property (nonatomic, strong) MOMBaseStyle* child;
+@property (nonatomic, strong) MOMBaseStyle* compositeStyle;
 
 @end
 
-@implementation MOMStyle
+@implementation MOMBaseStyle
 
 -(instancetype)copyWithZone:(NSZone *)zone
 {
-    MOMStyle* copy = [[[self class] alloc] init];
-    MOMStyle* styleIterator = self.child ;
+    MOMBaseStyle* copy = [[[self class] alloc] init];
+    MOMBaseStyle* styleIterator = self.child ;
     while (styleIterator)
     {
-        MOMStyle* childStyle = [styleIterator copy];
+        MOMBaseStyle* childStyle = [styleIterator copy];
         childStyle.child = nil;
         [copy addStyle:childStyle];
         styleIterator = styleIterator.child;
@@ -33,7 +33,7 @@
     return copy;
 }
 
--(instancetype)initWithCompositeStyle:(MOMStyle*)compositeStyle
+-(instancetype)initWithCompositeStyle:(MOMBaseStyle*)compositeStyle
 {
     self = [super init];
     if(self)
@@ -91,7 +91,7 @@
     return;
 }
 
--(void)addStyle:(MOMStyle*)style
+-(void)addStyle:(MOMBaseStyle*)style
 {
     if(self.child)
     {
@@ -118,7 +118,7 @@
 
 @implementation MOMAppearanceStyle
 
--(void)addStyle:(MOMStyle*)style
+-(void)addStyle:(MOMBaseStyle*)style
 {
     if([style isKindOfClass:[MOMAppearanceStyle class]])
     {
