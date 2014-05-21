@@ -99,7 +99,7 @@
 			<key>smallText</key>
 			<dict>
 				<key>fontSize</key>
-				<integer>10</integer>
+				<integer>12</integer>
 				<key>fontName</key>
 				<string>Avenir-Medium</string>
 				<key>color</key>

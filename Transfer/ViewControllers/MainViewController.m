@@ -225,13 +225,17 @@
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     NSUInteger numberOfControllers = [navigationController.viewControllers count];
     
-    if(numberOfControllers == 1)
+    if(IPAD)
     {
-        [self setNavigationBarHidden:YES animated:YES];
-    }
-    else
-    {
-        [self setNavigationBarHidden:NO animated:YES];
+        
+        if(numberOfControllers == 1)
+        {
+            [self setNavigationBarHidden:YES animated:YES];
+        }
+        else
+        {
+            [self setNavigationBarHidden:NO animated:YES];
+        }
     }
     
     NSArray *recognizers = [navigationController.navigationBar gestureRecognizers];

@@ -140,6 +140,7 @@ A revolution in your pocket.";
 "payment.controller.title.with.contact.name" = "Payment to %@";
 "payment.controller.transfer.fee.label" = "Total fee";
 "payment.controller.you.get.label" = "Receiver gets (estimated)";
+"payment.currencies.format" = "%@ to %@";
 "payment.status.cancelled.description" = "Cancelled";
 "payment.status.matched.description" = "Waiting to send";
 "payment.status.received.description" = "Converting";

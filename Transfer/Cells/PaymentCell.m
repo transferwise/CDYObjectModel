@@ -17,7 +17,8 @@
 @property (nonatomic, strong) IBOutlet UILabel *nameLabel;
 @property (nonatomic, strong) IBOutlet UILabel *moneyLabel;
 @property (nonatomic, strong) IBOutlet UILabel *statusLabel;
-@property (nonatomic, strong) IBOutlet UILabel *timeLabel;
+@property (nonatomic, strong) IBOutlet UILabel *currencyLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *statusIcon;
 
 @end
 
@@ -31,22 +32,12 @@
     return self;
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-
-    [self.nameLabel setTextColor:HEXCOLOR(0x003B5AFF)];
-    [self.moneyLabel setTextColor:HEXCOLOR(0x003B5AFF)];
-
-    [self.statusLabel setTextColor:[UIColor grayColor]];
-    [self.timeLabel setTextColor:[UIColor grayColor]];
-}
-
 
 - (void)configureWithPayment:(Payment *)payment {
     [self.nameLabel setText:[payment.recipient name]];
     [self.statusLabel setText:[payment localizedStatus]];
     [self.moneyLabel setText:[payment transferredAmountString]];
-    [self.timeLabel setText:[payment latestChangeTimeString]];
+    [self.currencyLabel setText:[payment transferredCurrenciesString]];
 
     CGRect moneyFrame = self.moneyLabel.frame;
     CGSize moneySize = [self.moneyLabel sizeThatFits:CGSizeMake(NSUIntegerMax, CGRectGetWidth(moneyFrame))];

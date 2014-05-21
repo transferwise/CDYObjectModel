@@ -30,11 +30,23 @@
 
 - (NSString *)localizedStatus {
     NSString *statusKey = [NSString stringWithFormat:@"payment.status.%@.description", self.paymentStatus];
-    return NSLocalizedString(statusKey, nil);
+    NSString *statusString = NSLocalizedString(statusKey, nil);
+    if([statusString rangeOfString:@"%@"].location != NSNotFound)
+    {
+        statusString = [NSString stringWithFormat:statusString, [self latestChangeTimeString]];
+    }
+    
+    return statusString;
 }
 
 - (NSString *)transferredAmountString {
-    return [NSString stringWithFormat:@"%@ %@ > %@", [[MoneyFormatter sharedInstance] formatAmount:self.payIn], self.sourceCurrency.code, self.targetCurrency.code];
+    return [NSString stringWithFormat:@"%@", [[MoneyFormatter sharedInstance] formatAmount:self.payIn]];
+}
+
+- (NSString *)transferredCurrenciesString
+{
+    NSString* currenciesFormat = NSLocalizedString(@"payment.currencies.format",nil);
+    return [NSString stringWithFormat:currenciesFormat, self.sourceCurrency.code, self.targetCurrency.code];
 }
 
 - (NSString *)latestChangeTimeString {

@@ -37,6 +37,10 @@
 		380021E0192CC980009B1D53 /* MOMBasicStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021DE192CC980009B1D53 /* MOMBasicStyle.m */; };
 		380021E3192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021E2192CC99D009B1D53 /* NSString+MOMStyle.m */; };
 		380021E4192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021E2192CC99D009B1D53 /* NSString+MOMStyle.m */; };
+		380021E6192CEB66009B1D53 /* TransactionsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021E5192CEB66009B1D53 /* TransactionsViewController~ipad.xib */; };
+		380021E7192CEB66009B1D53 /* TransactionsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021E5192CEB66009B1D53 /* TransactionsViewController~ipad.xib */; };
+		380021E9192CF84E009B1D53 /* Styles~ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 380021E8192CF84E009B1D53 /* Styles~ipad.plist */; };
+		380021EA192CF84E009B1D53 /* Styles~ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 380021E8192CF84E009B1D53 /* Styles~ipad.plist */; };
 		38E57F78192A51DD00D864A2 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
 		38E57F79192A51DD00D864A2 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
 		38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E57F77192A51DD00D864A2 /* TabViewController.xib */; };
@@ -602,6 +606,8 @@
 		380021DE192CC980009B1D53 /* MOMBasicStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOMBasicStyle.m; sourceTree = "<group>"; };
 		380021E1192CC99D009B1D53 /* NSString+MOMStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MOMStyle.h"; sourceTree = "<group>"; };
 		380021E2192CC99D009B1D53 /* NSString+MOMStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MOMStyle.m"; sourceTree = "<group>"; };
+		380021E5192CEB66009B1D53 /* TransactionsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransactionsViewController~ipad.xib"; sourceTree = "<group>"; };
+		380021E8192CF84E009B1D53 /* Styles~ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Styles~ipad.plist"; sourceTree = "<group>"; };
 		38E57F75192A51DD00D864A2 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
 		38E57F76192A51DD00D864A2 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
 		38E57F77192A51DD00D864A2 /* TabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabViewController.xib; sourceTree = "<group>"; };
@@ -1136,6 +1142,7 @@
 				380021B8192CC531009B1D53 /* MOMStyleFactory.m */,
 				380021B9192CC531009B1D53 /* Styles */,
 				380021D6192CC570009B1D53 /* Styles.plist */,
+				380021E8192CF84E009B1D53 /* Styles~ipad.plist */,
 				380021C2192CC531009B1D53 /* UIView+MOMStyle.h */,
 				380021C3192CC531009B1D53 /* UIView+MOMStyle.m */,
 				380021D9192CC89B009B1D53 /* UIColor+MOMStyle.h */,
@@ -1733,6 +1740,7 @@
 				EAD39678171BD51400F6D011 /* TransactionsViewController.h */,
 				EAD39679171BD51400F6D011 /* TransactionsViewController.m */,
 				EAD3967A171BD51400F6D011 /* TransactionsViewController.xib */,
+				380021E5192CEB66009B1D53 /* TransactionsViewController~ipad.xib */,
 				EAD3648217E2F394001EFE40 /* UploadMoneyViewController.h */,
 				EAD3648317E2F394001EFE40 /* UploadMoneyViewController.m */,
 				EAD3648417E2F394001EFE40 /* UploadMoneyViewController.xib */,
@@ -2050,6 +2058,7 @@
 				EA31A20117DDB29B00F937F7 /* RecipientViewController.xib in Resources */,
 				EA31A20217DDB29B00F937F7 /* CurrencySelectionCell.xib in Resources */,
 				EA31A20317DDB29B00F937F7 /* RecipientFieldCell.xib in Resources */,
+				380021E7192CEB66009B1D53 /* TransactionsViewController~ipad.xib in Resources */,
 				EA31A20A17DDB29B00F937F7 /* PersonalProfileIdentificationViewController.xib in Resources */,
 				EAD3649217E2F971001EFE40 /* PaymentMethodSelectionView.xib in Resources */,
 				EA31A20B17DDB29B00F937F7 /* ConfirmPaymentViewController.xib in Resources */,
@@ -2062,6 +2071,7 @@
 				EA31A21217DDB29B00F937F7 /* TextCell.xib in Resources */,
 				EA31A21317DDB29B00F937F7 /* ButtonCell.xib in Resources */,
 				EA31A21A17DDB29B00F937F7 /* OpenIDViewController.xib in Resources */,
+				380021EA192CF84E009B1D53 /* Styles~ipad.plist in Resources */,
 				EA31A21C17DDB29B00F937F7 /* ClaimAccountViewController.xib in Resources */,
 				380021D8192CC570009B1D53 /* Styles.plist in Resources */,
 				EA31A22017DDB29B00F937F7 /* ProfileEditViewController.xib in Resources */,
@@ -2128,6 +2138,7 @@
 				EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */,
 				EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */,
 				EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */,
+				380021E6192CEB66009B1D53 /* TransactionsViewController~ipad.xib in Resources */,
 				18D47903173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib in Resources */,
 				EAD3649117E2F971001EFE40 /* PaymentMethodSelectionView.xib in Resources */,
 				EA222E39173A861000C5D613 /* ConfirmPaymentViewController.xib in Resources */,
@@ -2140,6 +2151,7 @@
 				BB29BD4B173CDF480016A6E9 /* TextCell.xib in Resources */,
 				EAD6675B174A51C700D29BCB /* ButtonCell.xib in Resources */,
 				EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */,
+				380021E9192CF84E009B1D53 /* Styles~ipad.plist in Resources */,
 				EAC1051B17607C4600B3B018 /* ClaimAccountViewController.xib in Resources */,
 				380021D7192CC570009B1D53 /* Styles.plist in Resources */,
 				EA416E2C176860EA00904D97 /* ProfileEditViewController.xib in Resources */,

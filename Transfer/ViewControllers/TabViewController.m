@@ -119,6 +119,8 @@
             [self.containerView addSubview:newSelectedItem.viewController.view];
             newSelectedItem.viewController.view.frame = self.containerView.bounds;
             [self addChildViewController:newSelectedItem.viewController];
+            
+            self.navigationItem.title = newSelectedItem.viewController.title;
         }
         
         [self setCellSelectedState:NO forItem:self.selectedItem];
