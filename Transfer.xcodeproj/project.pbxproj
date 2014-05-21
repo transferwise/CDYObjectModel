@@ -17,6 +17,26 @@
 		380021AB192B9506009B1D53 /* TabViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021A9192B91A9009B1D53 /* TabViewController~ipad.xib */; };
 		380021AD192BA344009B1D53 /* TabCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021AC192BA344009B1D53 /* TabCell~ipad.xib */; };
 		380021AE192BABF6009B1D53 /* TabCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021AC192BA344009B1D53 /* TabCell~ipad.xib */; };
+		380021C6192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021B4192CC531009B1D53 /* UIColor+SinglePixelImage.m */; };
+		380021C7192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021B4192CC531009B1D53 /* UIColor+SinglePixelImage.m */; };
+		380021C8192CC531009B1D53 /* MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021B6192CC531009B1D53 /* MOMStyle.m */; };
+		380021C9192CC531009B1D53 /* MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021B6192CC531009B1D53 /* MOMStyle.m */; };
+		380021CA192CC531009B1D53 /* MOMStyleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021B8192CC531009B1D53 /* MOMStyleFactory.m */; };
+		380021CB192CC531009B1D53 /* MOMStyleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021B8192CC531009B1D53 /* MOMStyleFactory.m */; };
+		380021CE192CC531009B1D53 /* MOMCompoundStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021BD192CC531009B1D53 /* MOMCompoundStyle.m */; };
+		380021CF192CC531009B1D53 /* MOMCompoundStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021BD192CC531009B1D53 /* MOMCompoundStyle.m */; };
+		380021D2192CC531009B1D53 /* MOMRoundedCornerStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021C1192CC531009B1D53 /* MOMRoundedCornerStyle.m */; };
+		380021D3192CC531009B1D53 /* MOMRoundedCornerStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021C1192CC531009B1D53 /* MOMRoundedCornerStyle.m */; };
+		380021D4192CC531009B1D53 /* UIView+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021C3192CC531009B1D53 /* UIView+MOMStyle.m */; };
+		380021D5192CC531009B1D53 /* UIView+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021C3192CC531009B1D53 /* UIView+MOMStyle.m */; };
+		380021D7192CC570009B1D53 /* Styles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 380021D6192CC570009B1D53 /* Styles.plist */; };
+		380021D8192CC570009B1D53 /* Styles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 380021D6192CC570009B1D53 /* Styles.plist */; };
+		380021DB192CC89B009B1D53 /* UIColor+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021DA192CC89B009B1D53 /* UIColor+MOMStyle.m */; };
+		380021DC192CC89B009B1D53 /* UIColor+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021DA192CC89B009B1D53 /* UIColor+MOMStyle.m */; };
+		380021DF192CC980009B1D53 /* MOMBasicStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021DE192CC980009B1D53 /* MOMBasicStyle.m */; };
+		380021E0192CC980009B1D53 /* MOMBasicStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021DE192CC980009B1D53 /* MOMBasicStyle.m */; };
+		380021E3192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021E2192CC99D009B1D53 /* NSString+MOMStyle.m */; };
+		380021E4192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021E2192CC99D009B1D53 /* NSString+MOMStyle.m */; };
 		38E57F78192A51DD00D864A2 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
 		38E57F79192A51DD00D864A2 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
 		38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E57F77192A51DD00D864A2 /* TabViewController.xib */; };
@@ -563,6 +583,25 @@
 		2F2D1DE7BECC4078BB45E6AD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		380021A9192B91A9009B1D53 /* TabViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TabViewController~ipad.xib"; sourceTree = "<group>"; };
 		380021AC192BA344009B1D53 /* TabCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TabCell~ipad.xib"; sourceTree = "<group>"; };
+		380021B3192CC531009B1D53 /* UIColor+SinglePixelImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SinglePixelImage.h"; sourceTree = "<group>"; };
+		380021B4192CC531009B1D53 /* UIColor+SinglePixelImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SinglePixelImage.m"; sourceTree = "<group>"; };
+		380021B5192CC531009B1D53 /* MOMStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOMStyle.h; sourceTree = "<group>"; };
+		380021B6192CC531009B1D53 /* MOMStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOMStyle.m; sourceTree = "<group>"; };
+		380021B7192CC531009B1D53 /* MOMStyleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOMStyleFactory.h; sourceTree = "<group>"; };
+		380021B8192CC531009B1D53 /* MOMStyleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOMStyleFactory.m; sourceTree = "<group>"; };
+		380021BC192CC531009B1D53 /* MOMCompoundStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOMCompoundStyle.h; sourceTree = "<group>"; };
+		380021BD192CC531009B1D53 /* MOMCompoundStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOMCompoundStyle.m; sourceTree = "<group>"; };
+		380021C0192CC531009B1D53 /* MOMRoundedCornerStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOMRoundedCornerStyle.h; sourceTree = "<group>"; };
+		380021C1192CC531009B1D53 /* MOMRoundedCornerStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOMRoundedCornerStyle.m; sourceTree = "<group>"; };
+		380021C2192CC531009B1D53 /* UIView+MOMStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MOMStyle.h"; sourceTree = "<group>"; };
+		380021C3192CC531009B1D53 /* UIView+MOMStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MOMStyle.m"; sourceTree = "<group>"; };
+		380021D6192CC570009B1D53 /* Styles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Styles.plist; path = Transfer/Styling/Styles.plist; sourceTree = SOURCE_ROOT; };
+		380021D9192CC89B009B1D53 /* UIColor+MOMStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MOMStyle.h"; sourceTree = "<group>"; };
+		380021DA192CC89B009B1D53 /* UIColor+MOMStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MOMStyle.m"; sourceTree = "<group>"; };
+		380021DD192CC980009B1D53 /* MOMBasicStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOMBasicStyle.h; sourceTree = "<group>"; };
+		380021DE192CC980009B1D53 /* MOMBasicStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOMBasicStyle.m; sourceTree = "<group>"; };
+		380021E1192CC99D009B1D53 /* NSString+MOMStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MOMStyle.h"; sourceTree = "<group>"; };
+		380021E2192CC99D009B1D53 /* NSString+MOMStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MOMStyle.m"; sourceTree = "<group>"; };
 		38E57F75192A51DD00D864A2 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
 		38E57F76192A51DD00D864A2 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
 		38E57F77192A51DD00D864A2 /* TabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabViewController.xib; sourceTree = "<group>"; };
@@ -1087,6 +1126,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		380021AF192CC531009B1D53 /* Styling */ = {
+			isa = PBXGroup;
+			children = (
+				380021B0192CC531009B1D53 /* HelperCategories */,
+				380021B5192CC531009B1D53 /* MOMStyle.h */,
+				380021B6192CC531009B1D53 /* MOMStyle.m */,
+				380021B7192CC531009B1D53 /* MOMStyleFactory.h */,
+				380021B8192CC531009B1D53 /* MOMStyleFactory.m */,
+				380021B9192CC531009B1D53 /* Styles */,
+				380021D6192CC570009B1D53 /* Styles.plist */,
+				380021C2192CC531009B1D53 /* UIView+MOMStyle.h */,
+				380021C3192CC531009B1D53 /* UIView+MOMStyle.m */,
+				380021D9192CC89B009B1D53 /* UIColor+MOMStyle.h */,
+				380021DA192CC89B009B1D53 /* UIColor+MOMStyle.m */,
+			);
+			path = Styling;
+			sourceTree = "<group>";
+		};
+		380021B0192CC531009B1D53 /* HelperCategories */ = {
+			isa = PBXGroup;
+			children = (
+				380021E1192CC99D009B1D53 /* NSString+MOMStyle.h */,
+				380021E2192CC99D009B1D53 /* NSString+MOMStyle.m */,
+				380021B3192CC531009B1D53 /* UIColor+SinglePixelImage.h */,
+				380021B4192CC531009B1D53 /* UIColor+SinglePixelImage.m */,
+			);
+			path = HelperCategories;
+			sourceTree = "<group>";
+		};
+		380021B9192CC531009B1D53 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				380021DD192CC980009B1D53 /* MOMBasicStyle.h */,
+				380021DE192CC980009B1D53 /* MOMBasicStyle.m */,
+				380021BC192CC531009B1D53 /* MOMCompoundStyle.h */,
+				380021BD192CC531009B1D53 /* MOMCompoundStyle.m */,
+				380021C0192CC531009B1D53 /* MOMRoundedCornerStyle.h */,
+				380021C1192CC531009B1D53 /* MOMRoundedCornerStyle.m */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
 		BBC6911B1721414300F0FB1A /* TSAlertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1157,6 +1238,10 @@
 				EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */,
 				EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */,
 				EA13E045171BED910019FBF0 /* TableHeaderView.xib */,
+				38E57F80192B667F00D864A2 /* TabCell.h */,
+				38E57F81192B667F00D864A2 /* TabCell.m */,
+				38E57F84192B670500D864A2 /* TabCell.xib */,
+				380021AC192BA344009B1D53 /* TabCell~ipad.xib */,
 				EA0450CD17EC3635008921DA /* TextContainerView.h */,
 				EA0450CE17EC3635008921DA /* TextContainerView.m */,
 				EA2296C417E08027001CF541 /* TransferBackButtonItem.h */,
@@ -1168,10 +1253,6 @@
 				BBCC6336172169980094EABB /* WhyView.h */,
 				BBCC6337172169980094EABB /* WhyView.m */,
 				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
-				38E57F80192B667F00D864A2 /* TabCell.h */,
-				38E57F81192B667F00D864A2 /* TabCell.m */,
-				38E57F84192B670500D864A2 /* TabCell.xib */,
-				380021AC192BA344009B1D53 /* TabCell~ipad.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1552,6 +1633,7 @@
 				EA8FF6B5171D25530090A658 /* Network */,
 				EAD3966F171BD1DE00F6D011 /* ObjectModel */,
 				EA84056717F0A3FD00F44916 /* Resources */,
+				380021AF192CC531009B1D53 /* Styling */,
 				EA0253B217D5C87700F54C18 /* Support */,
 				EAAA1474171BC911005B9430 /* Supporting Files */,
 				EAB72162171FDC6700DE29F5 /* Utils */,
@@ -1981,6 +2063,7 @@
 				EA31A21317DDB29B00F937F7 /* ButtonCell.xib in Resources */,
 				EA31A21A17DDB29B00F937F7 /* OpenIDViewController.xib in Resources */,
 				EA31A21C17DDB29B00F937F7 /* ClaimAccountViewController.xib in Resources */,
+				380021D8192CC570009B1D53 /* Styles.plist in Resources */,
 				EA31A22017DDB29B00F937F7 /* ProfileEditViewController.xib in Resources */,
 				EA31A22117DDB29B00F937F7 /* ProfileSelectionView.xib in Resources */,
 				EA31A22217DDB29B00F937F7 /* TransferTypeSelectionCell.xib in Resources */,
@@ -2058,6 +2141,7 @@
 				EAD6675B174A51C700D29BCB /* ButtonCell.xib in Resources */,
 				EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */,
 				EAC1051B17607C4600B3B018 /* ClaimAccountViewController.xib in Resources */,
+				380021D7192CC570009B1D53 /* Styles.plist in Resources */,
 				EA416E2C176860EA00904D97 /* ProfileEditViewController.xib in Resources */,
 				EA92D985176AF1F20078D0C4 /* ProfileSelectionView.xib in Resources */,
 				BB9A2EB9176F495700C5E058 /* TransferTypeSelectionCell.xib in Resources */,
@@ -2277,6 +2361,7 @@
 				EA31A12F17DDB29B00F937F7 /* MoneyEntryCell.m in Sources */,
 				EA31A13017DDB29B00F937F7 /* LoginViewController.m in Sources */,
 				EA31A13117DDB29B00F937F7 /* UIColor+Theme.m in Sources */,
+				380021DC192CC89B009B1D53 /* UIColor+MOMStyle.m in Sources */,
 				EA31A13217DDB29B00F937F7 /* UIView+Loading.m in Sources */,
 				EA31A13317DDB29B00F937F7 /* TextEntryCell.m in Sources */,
 				EA31A13417DDB29B00F937F7 /* NSString+Validation.m in Sources */,
@@ -2293,10 +2378,13 @@
 				EA31A13F17DDB29B00F937F7 /* RecipientCell.m in Sources */,
 				EA31A14017DDB29B00F937F7 /* UserRecipientsOperation.m in Sources */,
 				EA31A14117DDB29B00F937F7 /* SettingsViewController.m in Sources */,
+				380021D5192CC531009B1D53 /* UIView+MOMStyle.m in Sources */,
 				EA31A14217DDB29B00F937F7 /* SettingsTitleCell.m in Sources */,
 				EA31A14317DDB29B00F937F7 /* MoneyCalculator.m in Sources */,
 				EA31A14417DDB29B00F937F7 /* TransferCalculationsOperation.m in Sources */,
+				380021C9192CC531009B1D53 /* MOMStyle.m in Sources */,
 				EA31A14517DDB29B00F937F7 /* CalculationResult.m in Sources */,
+				380021C7192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */,
 				EA31A14617DDB29B00F937F7 /* TSAlertView.m in Sources */,
 				EA333F3D18A4C00000D8A44E /* PageZoom.m in Sources */,
 				EA31A14717DDB29B00F937F7 /* WhyView.m in Sources */,
@@ -2382,6 +2470,7 @@
 				EA31A18D17DDB29B00F937F7 /* _Payment.m in Sources */,
 				EA31A18E17DDB29B00F937F7 /* Payment.m in Sources */,
 				EA31A18F17DDB29B00F937F7 /* ObjectModel+Payments.m in Sources */,
+				380021E4192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */,
 				EA31A19017DDB29B00F937F7 /* TabBarActivityIndicatorView.m in Sources */,
 				EA31A19117DDB29B00F937F7 /* _Currency.m in Sources */,
 				EA31A19217DDB29B00F937F7 /* Currency.m in Sources */,
@@ -2396,6 +2485,7 @@
 				EA31A19B17DDB29B00F937F7 /* _RecipientTypeField.m in Sources */,
 				EA31A19C17DDB29B00F937F7 /* RecipientTypeField.m in Sources */,
 				EA31A19D17DDB29B00F937F7 /* _TypeFieldValue.m in Sources */,
+				380021CF192CC531009B1D53 /* MOMCompoundStyle.m in Sources */,
 				EAE7B6B417E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */,
 				EA31A19E17DDB29B00F937F7 /* TypeFieldValue.m in Sources */,
 				EA31A19F17DDB29B00F937F7 /* NSDate+ServerTime.m in Sources */,
@@ -2404,10 +2494,12 @@
 				EA31A1A217DDB29B00F937F7 /* PairSourceCurrency.m in Sources */,
 				EA31A1A317DDB29B00F937F7 /* RecipientsOperation.m in Sources */,
 				EA0450DB17EC64BC008921DA /* IntroView.m in Sources */,
+				380021E0192CC980009B1D53 /* MOMBasicStyle.m in Sources */,
 				EA31A1A417DDB29B00F937F7 /* _AllowedTypeFieldValue.m in Sources */,
 				EA31A1A517DDB29B00F937F7 /* AllowedTypeFieldValue.m in Sources */,
 				38E57F79192A51DD00D864A2 /* TabViewController.m in Sources */,
 				EA31A1A617DDB29B00F937F7 /* _PairTargetCurrency.m in Sources */,
+				380021D3192CC531009B1D53 /* MOMRoundedCornerStyle.m in Sources */,
 				EA31A1A717DDB29B00F937F7 /* PairTargetCurrency.m in Sources */,
 				EA31A1A817DDB29B00F937F7 /* _Country.m in Sources */,
 				EA31A1A917DDB29B00F937F7 /* Country.m in Sources */,
@@ -2415,6 +2507,7 @@
 				EA31A1AA17DDB29B00F937F7 /* ObjectModel+Countries.m in Sources */,
 				EAD33EAC17E84C2700CE0608 /* PullPaymentDetailsOperation.m in Sources */,
 				EA31A1AB17DDB29B00F937F7 /* ObjectModel+Users.m in Sources */,
+				380021CB192CC531009B1D53 /* MOMStyleFactory.m in Sources */,
 				EA31A1AC17DDB29B00F937F7 /* _BusinessProfile.m in Sources */,
 				EA31A1AD17DDB29B00F937F7 /* _PersonalProfile.m in Sources */,
 				EA31A1AE17DDB29B00F937F7 /* _User.m in Sources */,
@@ -2476,6 +2569,7 @@
 				EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */,
 				EA13E03F171BE9B00019FBF0 /* LoginViewController.m in Sources */,
 				EA13E044171BEB010019FBF0 /* UIColor+Theme.m in Sources */,
+				380021DB192CC89B009B1D53 /* UIColor+MOMStyle.m in Sources */,
 				EA13E049171BEDC40019FBF0 /* UIView+Loading.m in Sources */,
 				EA13E04C171BEF5D0019FBF0 /* TextEntryCell.m in Sources */,
 				EA8FF682171D19B50090A658 /* NSString+Validation.m in Sources */,
@@ -2492,10 +2586,13 @@
 				EAD736A2171E85C300A037B1 /* RecipientCell.m in Sources */,
 				EAD736A7171E87ED00A037B1 /* UserRecipientsOperation.m in Sources */,
 				EAB7215B171FC61B00DE29F5 /* SettingsViewController.m in Sources */,
+				380021D4192CC531009B1D53 /* UIView+MOMStyle.m in Sources */,
 				EAB7215F171FCAAC00DE29F5 /* SettingsTitleCell.m in Sources */,
 				EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */,
 				EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */,
+				380021C8192CC531009B1D53 /* MOMStyle.m in Sources */,
 				EAEA6257172011C500A96770 /* CalculationResult.m in Sources */,
+				380021C6192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */,
 				BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */,
 				EA333F3C18A4C00000D8A44E /* PageZoom.m in Sources */,
 				BBCC6338172169980094EABB /* WhyView.m in Sources */,
@@ -2581,6 +2678,7 @@
 				EA225C67178E9C90009D6B83 /* _Payment.m in Sources */,
 				EA225C6B178E9C93009D6B83 /* Payment.m in Sources */,
 				EA225C71178E9F00009D6B83 /* ObjectModel+Payments.m in Sources */,
+				380021E3192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */,
 				EA225C75178EA124009D6B83 /* TabBarActivityIndicatorView.m in Sources */,
 				EA225C79178EA341009D6B83 /* _Currency.m in Sources */,
 				EA225C7C178EA346009D6B83 /* Currency.m in Sources */,
@@ -2595,6 +2693,7 @@
 				EA225C97178EB3D3009D6B83 /* _RecipientTypeField.m in Sources */,
 				EA225C9A178EB3DA009D6B83 /* RecipientTypeField.m in Sources */,
 				EA225C9D178EB50B009D6B83 /* _TypeFieldValue.m in Sources */,
+				380021CE192CC531009B1D53 /* MOMCompoundStyle.m in Sources */,
 				EAE7B6B317E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */,
 				EA225CA0178EB511009D6B83 /* TypeFieldValue.m in Sources */,
 				EA225CA3178EB591009D6B83 /* NSDate+ServerTime.m in Sources */,
@@ -2603,10 +2702,12 @@
 				EA225CAC178EC3B2009D6B83 /* PairSourceCurrency.m in Sources */,
 				EA225CAF178ECD68009D6B83 /* RecipientsOperation.m in Sources */,
 				EA0450DA17EC64BC008921DA /* IntroView.m in Sources */,
+				380021DF192CC980009B1D53 /* MOMBasicStyle.m in Sources */,
 				EA225CB2178ED8C1009D6B83 /* _AllowedTypeFieldValue.m in Sources */,
 				EA225CB5178ED8C7009D6B83 /* AllowedTypeFieldValue.m in Sources */,
 				38E57F78192A51DD00D864A2 /* TabViewController.m in Sources */,
 				EA225CBF178EEC6F009D6B83 /* _PairTargetCurrency.m in Sources */,
+				380021D2192CC531009B1D53 /* MOMRoundedCornerStyle.m in Sources */,
 				EA225CC2178EEC77009D6B83 /* PairTargetCurrency.m in Sources */,
 				EA225CCD179015B1009D6B83 /* _Country.m in Sources */,
 				EA225CD1179015B8009D6B83 /* Country.m in Sources */,
@@ -2614,6 +2715,7 @@
 				EA225CD4179015CA009D6B83 /* ObjectModel+Countries.m in Sources */,
 				EAD33EAB17E84C2700CE0608 /* PullPaymentDetailsOperation.m in Sources */,
 				EA2379E91793E01A00166361 /* ObjectModel+Users.m in Sources */,
+				380021CA192CC531009B1D53 /* MOMStyleFactory.m in Sources */,
 				EA2379ED1793E02B00166361 /* _BusinessProfile.m in Sources */,
 				EA2379F01793E02F00166361 /* _PersonalProfile.m in Sources */,
 				EA2379F31793E03A00166361 /* _User.m in Sources */,

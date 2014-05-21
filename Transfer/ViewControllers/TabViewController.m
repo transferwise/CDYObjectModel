@@ -55,7 +55,46 @@
 -(void)setItems:(NSArray*)items
 {
     self.tabItems = [items mutableCopy];
+    [self applyDefaultColors];
     [self layoutTabs];
+}
+
+-(void)applyDefaultColors
+{
+    for(TabItem* item in self.tabItems)
+    {
+        item.selectedColor = item.selectedColor?:self.defaultSelectedColor;
+        item.deSelectedColor = item.deSelectedColor?:self.defaultDeSelectedColor;
+        item.highlightedColor = item.highlightedColor?:self.defaultHighlightedColor;
+    }
+
+}
+
+-(void)setDefaultDeSelectedColor:(UIColor *)defaultDeSelectedColor
+{
+    if(_defaultDeSelectedColor != defaultDeSelectedColor)
+    {
+        _defaultDeSelectedColor = defaultDeSelectedColor;
+        [self applyDefaultColors];
+    }
+}
+
+-(void)setDefaultSelectedColor:(UIColor *)defaultSelectedColor
+{
+    if(_defaultSelectedColor != defaultSelectedColor)
+    {
+        _defaultSelectedColor = defaultSelectedColor;
+        [self applyDefaultColors];
+    }
+}
+
+-(void)setDefaultHighlightedColor:(UIColor *)defaultHighlightedColor
+{
+    if(_defaultHighlightedColor != defaultHighlightedColor)
+    {
+        _defaultHighlightedColor = defaultHighlightedColor;
+        [self applyDefaultColors];
+    }
 }
 
 -(void)selectItem:(TabItem *)newSelectedItem

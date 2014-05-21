@@ -18,6 +18,7 @@
 #import "ObjectModel+Recipients.h"
 #import "ObjectModel+Settings.h"
 #import "TabViewController.h"
+#import "UIColor+MOMStyle.h"
 
 @interface MainViewController () <UINavigationControllerDelegate, UITabBarControllerDelegate>
 
@@ -71,9 +72,9 @@
     TabItem *paymentItem = [TabItem new];
     paymentItem.title = NSLocalizedString(@"payment.controller.title", nil);
     paymentItem.icon = [UIImage imageNamed:@"NewPaymentTabIcon.png"];
-    paymentItem.deSelectedColor = [UIColor colorWithRed:50/255.0f green:66/255.0f blue:102/255.0f alpha:1.0f];
+    paymentItem.deSelectedColor = [UIColor colorFromStyle:@"lightBlue"];
     paymentItem.deselectedAlpha = 1.0f;
-    paymentItem.highlightedColor = [UIColor colorWithRed:70/255.0f green:89/255.0f blue:131/255.0f alpha:1.0f];
+    paymentItem.highlightedColor = [UIColor colorFromStyle:@"lightBlueHighlighted"];
     [paymentItem setActionBlock:^(TabItem* item){
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Not implemented yet!" message:nil delegate:nil cancelButtonTitle:@"Aha!" otherButtonTitles:nil];
         [alert show];
@@ -101,6 +102,10 @@
     profileItem.icon = [UIImage imageNamed:@"tab_icon_profile"];
     
     TabViewController *tabController = [[TabViewController alloc] init];
+    tabController.defaultSelectedColor = [UIColor colorFromStyle:@"darkBlue"];
+    tabController.defaultDeSelectedColor = [UIColor colorFromStyle:@"tabBarBlue"];
+    tabController.defaultHighlightedColor = [UIColor colorFromStyle:@"darkBlueHighlighted"];
+    
     [tabController setItems:IPAD?@[paymentItem,transactionsItem,inviteItem,contactsItem,profileItem]:@[transactionsItem,inviteItem,paymentItem,contactsItem,profileItem]];
     [tabController selectItem:transactionsItem];
     

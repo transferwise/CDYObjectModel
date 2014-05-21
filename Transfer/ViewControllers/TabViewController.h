@@ -12,9 +12,11 @@
 
 @interface TabViewController : UIViewController
 
-@property (nonatomic, strong) UIColor *backgroundColor;
 @property (nonatomic, assign) CGSize fixedSize;
 @property (nonatomic, assign) NSInteger insertFlexibleSpaceAtIndex;
+@property (nonatomic, strong) UIColor *defaultSelectedColor;
+@property (nonatomic, strong) UIColor *defaultDeSelectedColor;
+@property (nonatomic, strong) UIColor *defaultHighlightedColor;
 
 -(void)addItem:(TabItem*)newItem;
 -(void)setItems:(NSArray*)items;

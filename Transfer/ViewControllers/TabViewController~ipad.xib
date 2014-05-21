@@ -37,6 +37,9 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                     <cells/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="tabBarBlue"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="GJ1-NJ-ejK"/>
                         <outlet property="delegate" destination="-1" id="H4l-Fj-xZc"/>
