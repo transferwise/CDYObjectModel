@@ -5,17 +5,17 @@
 //  Copyright (c) 2014 Matsomatic Limited All rights reserved.
 //
 
-#import "MOMStyle.h"
+#import "MOMBaseStyle.h"
 
-@interface MOMCompoundStyle : MOMStyle
+@interface MOMCompoundStyle : MOMBaseStyle
 
-@property (nonatomic, strong) MOMStyle *bgStyle;
-@property (nonatomic, strong) MOMStyle *fontStyle;
-@property (nonatomic, strong) MOMStyle *selectedBgStyle;
-@property (nonatomic, strong) MOMStyle *selectedFontStyle;
-@property (nonatomic, strong) MOMStyle *highlightedBgStyle;
-@property (nonatomic, strong) MOMStyle *highlightedFontStyle;
-@property (nonatomic, strong) MOMStyle *appearanceStyle;
+@property (nonatomic, strong) MOMBaseStyle *bgStyle;
+@property (nonatomic, strong) MOMBaseStyle *fontStyle;
+@property (nonatomic, strong) MOMBaseStyle *selectedBgStyle;
+@property (nonatomic, strong) MOMBaseStyle *selectedFontStyle;
+@property (nonatomic, strong) MOMBaseStyle *highlightedBgStyle;
+@property (nonatomic, strong) MOMBaseStyle *highlightedFontStyle;
+@property (nonatomic, strong) MOMBaseStyle *appearanceStyle;
 
 /**
  *  apply this compound style to a view

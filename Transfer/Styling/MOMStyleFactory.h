@@ -5,7 +5,7 @@
 //  Copyright (c) 2014 Matsomatic Limited All rights reserved.
 //
 
-@class MOMStyle;
+@class MOMBaseStyle;
 @class MOMCompoundStyle;
 
 #define defaultStyleSheetName @"Styles"
@@ -19,7 +19,7 @@
 *
 *  @return a configured and ready to use MBStyle object.
 */
-+(MOMStyle*)getStyleForIdentifier:(NSString*)identifier;
++(MOMBaseStyle*)getStyleForIdentifier:(NSString*)identifier;
 
 /**
  *  Get a compound style

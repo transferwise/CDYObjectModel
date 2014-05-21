@@ -40,7 +40,7 @@
 
 -(MOMBasicStyle*)getChildBasicStyle
 {
-    MOMStyle *child = self.child;
+    MOMBaseStyle *child = self.child;
     while (child)
     {
         if ([child isKindOfClass:[MOMBasicStyle class]])

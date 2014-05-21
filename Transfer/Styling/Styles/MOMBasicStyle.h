@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Matsomatic. All rights reserved.
 //
 
-#import "MOMStyle.h"
+#import "MOMBaseStyle.h"
 
-@interface MOMBasicStyle : MOMStyle
+@interface MOMBasicStyle : MOMBaseStyle
 
 @property (nonatomic,copy) NSNumber* red; //< 0.0-1.0f value for red color
 @property (nonatomic,copy) NSNumber* green; //< 0.0-1.0f value for green color

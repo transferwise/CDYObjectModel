@@ -53,18 +53,18 @@ static NSDictionary* styleData;
 }
 
 
-+(MOMStyle *)getStyleForIdentifier:(NSString *)styleName
++(MOMBaseStyle *)getStyleForIdentifier:(NSString *)styleName
 {
     styleName = [styleName lowercaseString];
     
-    MOMStyle* result = [[self styleLibrary] objectForKey:styleName];
+    MOMBaseStyle* result = [[self styleLibrary] objectForKey:styleName];
     
     if(!result)
     {
         NSArray* styles = [styleName componentsSeparatedByString:@"."];
         for (NSString* identifier in styles)
         {
-            MOMStyle* currentStyle = [MOMStyleFactory getBaseStyleForIdentifier:identifier];
+            MOMBaseStyle* currentStyle = [MOMStyleFactory getBaseStyleForIdentifier:identifier];
             if(currentStyle)
             {
                 currentStyle = [currentStyle styleWrappedAsComposite];
@@ -86,10 +86,10 @@ static NSDictionary* styleData;
     return result;
 }
 
-+(MOMStyle *)getBaseStyleForIdentifier:(NSString *)identifier
++(MOMBaseStyle *)getBaseStyleForIdentifier:(NSString *)identifier
 {
     identifier = [identifier lowercaseString];
-    MOMStyle* result = [[self baseStyleLibrary] objectForKey:identifier];
+    MOMBaseStyle* result = [[self baseStyleLibrary] objectForKey:identifier];
     
     if(!result)
     {
@@ -150,7 +150,7 @@ static NSDictionary* styleData;
 +(MOMCompoundStyle*)compoundStyleForIdentifier:(NSString*)identifier
 {
     identifier = [identifier lowercaseString];
-    MOMStyle* result = [[self styleLibrary] objectForKey:identifier];
+    MOMBaseStyle* result = [[self styleLibrary] objectForKey:identifier];
     
     if(!result)
     {

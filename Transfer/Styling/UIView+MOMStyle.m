@@ -99,7 +99,7 @@
 -(void)setAppearanceStyle:(NSString *)compoundStyle
 {
     objc_setAssociatedObject(self, @selector(appearanceStyle), compoundStyle ,OBJC_ASSOCIATION_COPY);
-    MOMStyle* style = [MOMStyleFactory getStyleForIdentifier:compoundStyle];
+    MOMBaseStyle* style = [MOMStyleFactory getStyleForIdentifier:compoundStyle];
     [style applyAppearanceStyleToView:self];
 }
 
@@ -108,14 +108,14 @@
 -(void)setColorStyle:(NSString*)styleName forIdentifier:(SEL)identifier forControlState:(UIControlState)state
 {
     objc_setAssociatedObject(self, identifier, styleName,OBJC_ASSOCIATION_COPY);
-    MOMStyle* result = [MOMStyleFactory getStyleForIdentifier:styleName];
+    MOMBaseStyle* result = [MOMStyleFactory getStyleForIdentifier:styleName];
     [result applyColorStyleToView:self forControlState:state];
 }
 
 -(void)setFontStyle:(NSString*)styleName forIdentifier:(SEL)identifier forControlState:(UIControlState)state
 {
     objc_setAssociatedObject(self, identifier, styleName,OBJC_ASSOCIATION_COPY);
-    MOMStyle* result = [MOMStyleFactory getStyleForIdentifier:styleName];
+    MOMBaseStyle* result = [MOMStyleFactory getStyleForIdentifier:styleName];
     [result applyFontStyleToView:self forControlState:state];
 }
 

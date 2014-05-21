@@ -51,6 +51,11 @@
 				<key>color</key>
 				<string>212e4b</string>
 			</dict>
+			<key>navBarBlue</key>
+			<dict>
+				<key>color</key>
+				<string>537c9b</string>
+			</dict>
 			<key>lightBlue</key>
 			<dict>
 				<key>color</key>
@@ -85,7 +90,7 @@
 				<key>fontName</key>
 				<string>Avenir-Light</string>
 				<key>color</key>
-				<string>1e2022</string>
+				<string>ffffff</string>
 			</dict>
 			<key>H3</key>
 			<dict>

@@ -15,7 +15,7 @@
 +(UIColor*)colorFromStyle:(NSString*)styleIdentifier
 {
     UIColor* result;
-    MOMStyle* style = [MOMStyleFactory getStyleForIdentifier:styleIdentifier];
+    MOMBaseStyle* style = [MOMStyleFactory getStyleForIdentifier:styleIdentifier];
     if([style isKindOfClass:[MOMBasicStyle class]])
     {
         result = [((MOMBasicStyle*) style) color];

@@ -19,8 +19,8 @@
 		380021AE192BABF6009B1D53 /* TabCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021AC192BA344009B1D53 /* TabCell~ipad.xib */; };
 		380021C6192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021B4192CC531009B1D53 /* UIColor+SinglePixelImage.m */; };
 		380021C7192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021B4192CC531009B1D53 /* UIColor+SinglePixelImage.m */; };
-		380021C8192CC531009B1D53 /* MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021B6192CC531009B1D53 /* MOMStyle.m */; };
-		380021C9192CC531009B1D53 /* MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021B6192CC531009B1D53 /* MOMStyle.m */; };
+		380021C8192CC531009B1D53 /* MOMBaseStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021B6192CC531009B1D53 /* MOMBaseStyle.m */; };
+		380021C9192CC531009B1D53 /* MOMBaseStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021B6192CC531009B1D53 /* MOMBaseStyle.m */; };
 		380021CA192CC531009B1D53 /* MOMStyleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021B8192CC531009B1D53 /* MOMStyleFactory.m */; };
 		380021CB192CC531009B1D53 /* MOMStyleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021B8192CC531009B1D53 /* MOMStyleFactory.m */; };
 		380021CE192CC531009B1D53 /* MOMCompoundStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021BD192CC531009B1D53 /* MOMCompoundStyle.m */; };
@@ -589,8 +589,8 @@
 		380021AC192BA344009B1D53 /* TabCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TabCell~ipad.xib"; sourceTree = "<group>"; };
 		380021B3192CC531009B1D53 /* UIColor+SinglePixelImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SinglePixelImage.h"; sourceTree = "<group>"; };
 		380021B4192CC531009B1D53 /* UIColor+SinglePixelImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SinglePixelImage.m"; sourceTree = "<group>"; };
-		380021B5192CC531009B1D53 /* MOMStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOMStyle.h; sourceTree = "<group>"; };
-		380021B6192CC531009B1D53 /* MOMStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOMStyle.m; sourceTree = "<group>"; };
+		380021B5192CC531009B1D53 /* MOMBaseStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MOMBaseStyle.h; path = ../MOMBaseStyle.h; sourceTree = "<group>"; };
+		380021B6192CC531009B1D53 /* MOMBaseStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MOMBaseStyle.m; path = ../MOMBaseStyle.m; sourceTree = "<group>"; };
 		380021B7192CC531009B1D53 /* MOMStyleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOMStyleFactory.h; sourceTree = "<group>"; };
 		380021B8192CC531009B1D53 /* MOMStyleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOMStyleFactory.m; sourceTree = "<group>"; };
 		380021BC192CC531009B1D53 /* MOMCompoundStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOMCompoundStyle.h; sourceTree = "<group>"; };
@@ -608,6 +608,7 @@
 		380021E2192CC99D009B1D53 /* NSString+MOMStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MOMStyle.m"; sourceTree = "<group>"; };
 		380021E5192CEB66009B1D53 /* TransactionsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransactionsViewController~ipad.xib"; sourceTree = "<group>"; };
 		380021E8192CF84E009B1D53 /* Styles~ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Styles~ipad.plist"; sourceTree = "<group>"; };
+		380021EB192D0E23009B1D53 /* MOMStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MOMStyle.h; sourceTree = "<group>"; };
 		38E57F75192A51DD00D864A2 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
 		38E57F76192A51DD00D864A2 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
 		38E57F77192A51DD00D864A2 /* TabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabViewController.xib; sourceTree = "<group>"; };
@@ -1136,8 +1137,7 @@
 			isa = PBXGroup;
 			children = (
 				380021B0192CC531009B1D53 /* HelperCategories */,
-				380021B5192CC531009B1D53 /* MOMStyle.h */,
-				380021B6192CC531009B1D53 /* MOMStyle.m */,
+				380021EB192D0E23009B1D53 /* MOMStyle.h */,
 				380021B7192CC531009B1D53 /* MOMStyleFactory.h */,
 				380021B8192CC531009B1D53 /* MOMStyleFactory.m */,
 				380021B9192CC531009B1D53 /* Styles */,
@@ -1165,6 +1165,8 @@
 		380021B9192CC531009B1D53 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
+				380021B5192CC531009B1D53 /* MOMBaseStyle.h */,
+				380021B6192CC531009B1D53 /* MOMBaseStyle.m */,
 				380021DD192CC980009B1D53 /* MOMBasicStyle.h */,
 				380021DE192CC980009B1D53 /* MOMBasicStyle.m */,
 				380021BC192CC531009B1D53 /* MOMCompoundStyle.h */,
@@ -2394,7 +2396,7 @@
 				EA31A14217DDB29B00F937F7 /* SettingsTitleCell.m in Sources */,
 				EA31A14317DDB29B00F937F7 /* MoneyCalculator.m in Sources */,
 				EA31A14417DDB29B00F937F7 /* TransferCalculationsOperation.m in Sources */,
-				380021C9192CC531009B1D53 /* MOMStyle.m in Sources */,
+				380021C9192CC531009B1D53 /* MOMBaseStyle.m in Sources */,
 				EA31A14517DDB29B00F937F7 /* CalculationResult.m in Sources */,
 				380021C7192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */,
 				EA31A14617DDB29B00F937F7 /* TSAlertView.m in Sources */,
@@ -2602,7 +2604,7 @@
 				EAB7215F171FCAAC00DE29F5 /* SettingsTitleCell.m in Sources */,
 				EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */,
 				EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */,
-				380021C8192CC531009B1D53 /* MOMStyle.m in Sources */,
+				380021C8192CC531009B1D53 /* MOMBaseStyle.m in Sources */,
 				EAEA6257172011C500A96770 /* CalculationResult.m in Sources */,
 				380021C6192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */,
 				BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */,

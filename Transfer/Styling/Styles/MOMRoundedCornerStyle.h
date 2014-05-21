@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Matsomatic. All rights reserved.
 //
 
-#import "MOMStyle.h"
+#import "MOMBaseStyle.h"
 
 @interface MOMRoundedCornerStyle : MOMAppearanceStyle
 

@@ -27,6 +27,7 @@
 #import "Mixpanel.h"
 #import "AnalyticsCoordinator.h"
 #import "TransferMixpanel.h"
+#import "MOMStyle.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -77,15 +78,11 @@
 
     [NanTracking trackNanigansEvent:@"" type:@"install" name:@"main"];
 
-    [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeTextColor : [UIColor whiteColor]}];
+    MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"H2"];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [navFontStyle color], NSFontAttributeName : [navFontStyle font]}];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorFromStyle:@"navBarBlue"]];
 
-    if (IOS_7) {
-        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavigationBar7.png"] forBarMetrics:UIBarMetricsDefault];
-		[[UITabBar appearance] setTintColor:[UIColor transferWiseBlue]];
-    } else {
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavigationBar.png"] forBarMetrics:UIBarMetricsDefault];
-    }
+    
 
     [[UIBarButtonItem appearance] setBackgroundImage:[[UIImage alloc] init] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 
