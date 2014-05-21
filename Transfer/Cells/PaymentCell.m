@@ -9,7 +9,7 @@
 #import "PaymentCell.h"
 #import "Payment.h"
 #import "Recipient.h"
-#import "UIColor+Theme.h"
+#import "UIColor+MOMStyle.h"
 #import "Constants.h"
 
 @interface PaymentCell ()
@@ -24,13 +24,6 @@
 
 @implementation PaymentCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
 
 
 - (void)configureWithPayment:(Payment *)payment {
@@ -38,23 +31,6 @@
     [self.statusLabel setText:[payment localizedStatus]];
     [self.moneyLabel setText:[payment transferredAmountString]];
     [self.currencyLabel setText:[payment transferredCurrenciesString]];
-
-    CGRect moneyFrame = self.moneyLabel.frame;
-    CGSize moneySize = [self.moneyLabel sizeThatFits:CGSizeMake(NSUIntegerMax, CGRectGetWidth(moneyFrame))];
-    CGFloat widthChange = moneySize.width - CGRectGetWidth(moneyFrame);
-    moneyFrame.origin.x -= widthChange;
-    moneyFrame.size.width += widthChange;
-    [self.moneyLabel setFrame:moneyFrame];
-
-    CGRect nameFrame = self.nameLabel.frame;
-    nameFrame.size.width -= widthChange;
-    [self.nameLabel setFrame:nameFrame];
-
-    if ([payment isCancelled] || [payment moneyTransferred]) {
-        [self.backgroundView setBackgroundColor:[UIColor controllerBackgroundColor]];
-    } else {
-        [self.backgroundView setBackgroundColor:[UIColor whiteColor]];
-    }
 }
 
 @end
