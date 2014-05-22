@@ -64,7 +64,12 @@
     [[GAI sharedInstance] setDispatchInterval:5];
 #endif
 
+#if DEV_VERSION
+    [[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsDevTrackingId];
+#else
     [[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
+#endif
+    
 
     [NanTracking setFbAppId:@"274548709260402"];
 

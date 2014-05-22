@@ -208,7 +208,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
 
-    if (self.preLoadRecipientsWithCurrency) {
+    if (self.preLoadRecipientsWithCurrency && [Credentials userLoggedIn]) {
         [self.nameCell setAutoCompleteRecipients:[self.objectModel fetchedControllerForRecipientsWithCurrency:self.preLoadRecipientsWithCurrency]];
     } else {
         [self.nameCell setAutoCompleteRecipients:nil];
