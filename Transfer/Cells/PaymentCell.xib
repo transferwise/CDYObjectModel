@@ -19,7 +19,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="800" text="Name label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                        <rect key="frame" x="38" y="15" width="186" height="18"/>
+                        <rect key="frame" x="38" y="15" width="181" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" priority="250" constant="21" id="jqK-s3-cE2"/>
@@ -32,7 +32,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="800" text="Money label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5">
-                        <rect key="frame" x="224" y="15" width="86" height="21"/>
+                        <rect key="frame" x="219" y="15" width="86" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="PfJ-FS-nxn"/>
@@ -46,7 +46,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Status label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6">
-                        <rect key="frame" x="38" y="33" width="157" height="21"/>
+                        <rect key="frame" x="38" y="33" width="152" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="lNb-U2-WlS"/>
@@ -59,7 +59,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="800" text="Currency label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7">
-                        <rect key="frame" x="180" y="33" width="130" height="21"/>
+                        <rect key="frame" x="175" y="33" width="130" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="37x-jf-kKG"/>
@@ -88,7 +88,7 @@
                     <constraint firstItem="4" firstAttribute="top" secondItem="2Qf-I3-x2d" secondAttribute="top" constant="15" id="FOa-tR-xNp"/>
                     <constraint firstItem="7" firstAttribute="baseline" secondItem="6" secondAttribute="baseline" id="Fuf-Ja-UhZ"/>
                     <constraint firstItem="7" firstAttribute="leading" secondItem="6" secondAttribute="trailing" constant="-15" id="G1r-ry-V9j"/>
-                    <constraint firstAttribute="trailing" secondItem="5" secondAttribute="trailing" constant="10" id="HBI-0L-GvW"/>
+                    <constraint firstAttribute="trailing" secondItem="5" secondAttribute="trailing" constant="15" id="HBI-0L-GvW"/>
                     <constraint firstItem="4" firstAttribute="leading" secondItem="2Qf-I3-x2d" secondAttribute="leading" constant="38" id="QWF-lm-eGW"/>
                     <constraint firstAttribute="bottom" secondItem="6" secondAttribute="bottom" constant="15" id="UWY-6K-EPE"/>
                     <constraint firstItem="7" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" id="UhP-aJ-xJA"/>
