@@ -29,6 +29,7 @@ NSString *const TRWFeedbackEmail = @"feedback@transferwise.com";
 NSString *const TRWIdentificationEmail = @"id@transferwise.com";
 
 NSString *const TRWGoogleAnalyticsTrackingId = @"UA-16492313-2";
+NSString *const TRWGoogleAnalyticsDevTrackingId = @"UA-24270670-3";
 
 NSString *const TRWMixpanelToken = @"96ffee966b209ba8b874598f4d936ff6";
 

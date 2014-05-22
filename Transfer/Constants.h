@@ -44,6 +44,7 @@ extern NSString *const TRWMoveToPaymentViewNotification;
 extern NSString *const TRWApplicationKey;
 extern NSString *const TRWServerAddress;
 extern NSString *const TRWGoogleAnalyticsTrackingId;
+extern NSString *const TRWGoogleAnalyticsDevTrackingId;
 extern NSString *const TRWMixpanelToken;
 
 extern NSString *const TransferSandboxUsername;
