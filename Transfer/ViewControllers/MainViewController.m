@@ -55,7 +55,7 @@
     [transactionsController setObjectModel:self.objectModel];
     TabItem *transactionsItem = [TabItem new];
     transactionsItem.viewController = transactionsController;
-    transactionsItem.title = NSLocalizedString(@"transactions.controller.title", nil);
+    transactionsItem.title = NSLocalizedString(@"transactions.controller.tabbar.title", nil);
     transactionsItem.icon = [UIImage imageNamed:@"TransactionsTabIcon.png"];
 
     
@@ -65,12 +65,12 @@
         [alert show];
         return NO;
     }];
-    inviteItem.title = NSLocalizedString(@"invite.controller.title", nil);
+    inviteItem.title = NSLocalizedString(@"invite.controller.tabbar.title", nil);
     inviteItem.icon = [UIImage imageNamed:@"tab_icon_invite"];
 
     
     TabItem *paymentItem = [TabItem new];
-    paymentItem.title = NSLocalizedString(@"payment.controller.title", nil);
+    paymentItem.title = NSLocalizedString(@"payment.controller.tabbar.title", nil);
     paymentItem.icon = [UIImage imageNamed:@"NewPaymentTabIcon.png"];
     paymentItem.deSelectedColor = [UIColor colorFromStyle:@"lightBlue"];
     paymentItem.deselectedAlpha = 1.0f;
@@ -88,7 +88,7 @@
     ContactsViewController *contactsController = [[ContactsViewController alloc] init];
     [contactsController setObjectModel:self.objectModel];
     TabItem *contactsItem = [TabItem new];
-    contactsItem.title = NSLocalizedString(@"contacts.controller.title", nil);
+    contactsItem.title = NSLocalizedString(@"contacts.controller.tabbar.title", nil);
     contactsItem.icon = [UIImage imageNamed:@"ContactsIcon.png"];
     contactsItem.viewController = contactsController;
     
@@ -98,7 +98,7 @@
         [alert show];
         return NO;
     }];
-    profileItem.title = NSLocalizedString(@"profile.controller.title", nil);
+    profileItem.title = NSLocalizedString(@"profile.controller.tabbar.title", nil);
     profileItem.icon = [UIImage imageNamed:@"tab_icon_profile"];
     
     TabViewController *tabController = [[TabViewController alloc] init];

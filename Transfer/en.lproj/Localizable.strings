@@ -52,6 +52,7 @@
 "contacts.controller.deleting.message" = "Removing...";
 "contacts.controller.refreshing.message" = "Refreshing recipients";
 "contacts.controller.title" = "Contacts";
+"contacts.controller.tabbar.title" = "Contacts";
 "contacts.refresh.error.message" = "Could not refresh your recipients";
 "contacts.refresh.error.title" = "Refresh error";
 
@@ -96,7 +97,7 @@ identity and address";
 "introduction.header.sub.title.text" = "No hidden fees. No headache.
 A revolution in your pocket.";
 
-"invite.controller.title" = "Invite";
+"invite.controller.tabbar.title" = "Invite";
 
 "login.controller.footer.message" = "You will remain logged in until you manually log out of the app.";
 "login.controller.header.message" = "Enter your login details";
@@ -137,6 +138,7 @@ A revolution in your pocket.";
 "payment.controller.estimated.exchange.rate.label" = "Estimated exchange rate";
 "payment.controller.payment.date.message" = "Money arrives %@";
 "payment.controller.title" = "Send";
+"payment.controller.tabbar.title" = "Send";
 "payment.controller.title.with.contact.name" = "Payment to %@";
 "payment.controller.transfer.fee.label" = "Total fee";
 "payment.controller.you.get.label" = "Receiver gets (estimated)";
@@ -183,6 +185,7 @@ A revolution in your pocket.";
 "personal.profile.needed.popup.title" = "Missing data";
 
 "profile.controller.title" = "Profile";
+"profile.controller.tabbar.title" = "Profile";
 "profile.selection.text.base" = "Or %@";
 "profile.selection.text.business.profile" = "send from a business";
 "profile.selection.text.personal.profile" = "send as yourself";
@@ -256,7 +259,8 @@ A revolution in your pocket.";
 "sign.up.controller.existing.user.message" = "Already a user?";
 
 "transactions.controller.refreshing.message" = "Refreshing payments";
-"transactions.controller.title" = "Transfers";
+"transactions.controller.title" = "My Transfers";
+"transactions.controller.tabbar.title" = "Transfers";
 "transactions.identification.notification.message" = "We will soon review your documents";
 "transactions.identification.upload.message" = "Haven't uploaded them?";
 "transactions.identification.done.button.title" = "Upload";
