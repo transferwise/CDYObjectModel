@@ -29,6 +29,7 @@ typedef void (^CDYModelInjectionBlock)(CDYObjectModel *objectModel);
 @property (nonatomic, assign) BOOL wipeDatabaseOnSchemaConflict;
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, copy) CDYModelActionBlock databaseWipeCallback;
+@property (nonatomic, strong, readonly) NSURL *storeURL;
 
 - (id)initWithDataModelName:(NSString *)modelName storeType:(NSString *)storeType;
 - (id)initWithDataModelName:(NSString *)modelName storeURL:(NSURL *)storeURL storeType:(NSString *)storeType;
