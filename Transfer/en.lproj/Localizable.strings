@@ -420,3 +420,4 @@ people who built Skype and PayPal.";
 "reset.password.alert.dismiss.button" = "OK";
 "reset.password.failed.alert.title" = "Oops!";
 "reset.password.not.found.alert.message" = "There is no account registered with that email. Please provide a valid email.";
+"refund.controller.existing.recipients.preload.error.title" = "Can't load contacts";

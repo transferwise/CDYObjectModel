@@ -31,13 +31,16 @@
 #import "NSMutableString+Issues.h"
 #import "RecipientOperation.h"
 #import "AnalyticsCoordinator.h"
+#import "UserRecipientsOperation.h"
+#import "Credentials.h"
+#import "RecipientEntrySelectionCell.h"
 
 CGFloat const TransferHeaderPaddingTop = 40;
 CGFloat const TransferHeaderPaddingBottom = 0;
 
 @interface RefundDetailsViewController ()
 
-@property (nonatomic, strong) TextEntryCell *holderNameCell;
+@property (nonatomic, strong) RecipientEntrySelectionCell *holderNameCell;
 @property (nonatomic, strong) TransferTypeSelectionCell *transferTypeSelectionCell;
 @property (nonatomic, strong) RecipientType *recipientType;
 @property (nonatomic, strong) NSArray *recipientTypeFieldCells;
@@ -47,6 +50,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 @property (nonatomic, assign) CGFloat minimumFooterHeight;
 @property (nonatomic, strong) IBOutlet UIButton *footerButton;
 @property (nonatomic, strong) TransferwiseOperation *operation;
+@property (nonatomic, strong) Recipient *recipient;
 
 @end
 
@@ -72,7 +76,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     [self.navigationItem setTitle:NSLocalizedString(@"refund.details.controller.title", nil)];
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 
-    [self.tableView registerNib:[TextEntryCell viewNib] forCellReuseIdentifier:TWTextEntryCellIdentifier];
+    [self.tableView registerNib:[RecipientEntrySelectionCell viewNib] forCellReuseIdentifier:TRWRecipientEntrySelectionCellIdentifier];
     [self.tableView registerNib:[TransferTypeSelectionCell viewNib] forCellReuseIdentifier:TWTypeSelectionCellIdentifier];
     [self.tableView registerNib:[DropdownCell viewNib] forCellReuseIdentifier:TWDropdownCellIdentifier];
     [self.tableView registerNib:[RecipientFieldCell viewNib] forCellReuseIdentifier:TWRecipientFieldCellIdentifier];
@@ -80,11 +84,17 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 
     NSMutableArray *presentedSections = [NSMutableArray array];
 
-    TextEntryCell *holderName = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
-    [self setHolderNameCell:holderName];
-    [holderName configureWithTitle:NSLocalizedString(@"refund.details.holders.name.label", nil) value:@""];
+    RecipientEntrySelectionCell *nameCell = [self.tableView dequeueReusableCellWithIdentifier:TRWRecipientEntrySelectionCellIdentifier];
+    [self setHolderNameCell:nameCell];
+    [nameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
+    [nameCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [nameCell configureWithTitle:NSLocalizedString(@"refund.details.holders.name.label", nil) value:@""];
+    [nameCell setSelectionHandler:^(Recipient *recipient) {
+        [self didSelectRecipient:recipient];
+    }];
 
-    [presentedSections addObject:@[holderName]];
+
+    [presentedSections addObject:@[nameCell]];
 
     __weak RefundDetailsViewController *weakSelf = self;
 
@@ -146,6 +156,12 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
 
 
+    if ([Credentials userLoggedIn]) {
+        [self.holderNameCell setAutoCompleteRecipients:[self.objectModel fetchedControllerForRecipientsWithCurrency:self.currency]];
+    } else {
+        [self.holderNameCell setAutoCompleteRecipients:nil];
+    }
+
     void (^dataLoadCompletionBlock)() = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hide];
@@ -153,24 +169,28 @@ CGFloat const TransferHeaderPaddingBottom = 0;
         });
     };
 
-    CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
-    [self setExecutedOperation:currenciesOperation];
-    [currenciesOperation setObjectModel:self.objectModel];
-    [currenciesOperation setResultHandler:^(NSError *error) {
-        if (error) {
-            [hud hide];
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipient.types.load.error.title", nil) error:error];
-            [alertView show];
-            return;
-        }
 
-        [[AnalyticsCoordinator sharedInstance] refundRecipientAdded];
+    UserRecipientsOperation *recipientsOperation = nil;
+    if ([Credentials userLoggedIn]) {
+        recipientsOperation = [UserRecipientsOperation recipientsOperationWithCurrency:self.currency];
+        [recipientsOperation setObjectModel:self.objectModel];
+        [recipientsOperation setResponseHandler:^(NSError *error) {
+            if (error) {
+                [hud hide];
+                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"refund.controller.existing.recipients.preload.error.title", nil) error:error];
+                [alertView show];
+                return;
+            }
 
+            dataLoadCompletionBlock();
+        }];
+    }
+
+    if (recipientsOperation) {
+        [recipientsOperation execute];
+    } else {
         dataLoadCompletionBlock();
-    }];
-
-    [currenciesOperation execute];
-
+    }
 
     [self setShown:YES];
 }
@@ -274,6 +294,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
             return;
         }
 
+        [[AnalyticsCoordinator sharedInstance] refundRecipientAdded];
         self.afterValidationBlock();
     }];
     [validate execute];
@@ -304,6 +325,37 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     }
 
     return [NSString stringWithString:issues];
+}
+
+- (void)didSelectRecipient:(Recipient *)recipient {
+    [self setRecipient:recipient];
+    [self handleSelectionChangeToType:recipient ? recipient.type : self.currency.defaultRecipientType allTypes:[self.currency.recipientTypes array]];
+
+    if (!recipient) {
+        [self.holderNameCell setValue:@""];
+        [self.holderNameCell setEditable:YES];
+
+        for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
+            [fieldCell setValue:@""];
+            [fieldCell setEditable:YES];
+        }
+        return;
+    }
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.holderNameCell setValue:recipient.name];
+        [self.holderNameCell setEditable:NO];
+
+        for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
+            [fieldCell setEditable:NO];
+            if ([fieldCell isKindOfClass:[TransferTypeSelectionCell class]]) {
+                continue;
+            }
+
+            RecipientTypeField *field = fieldCell.type;
+            [fieldCell setValue:[recipient valueField:field]];
+        }
+    });
 }
 
 @end
