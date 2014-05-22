@@ -106,7 +106,17 @@
     tabController.defaultDeSelectedColor = [UIColor colorFromStyle:@"tabBarBlue"];
     tabController.defaultHighlightedColor = [UIColor colorFromStyle:@"darkBlueHighlighted"];
     
-    [tabController setItems:IPAD?@[paymentItem,transactionsItem,inviteItem,contactsItem,profileItem]:@[transactionsItem,inviteItem,paymentItem,contactsItem,profileItem]];
+    if(IPAD)
+    {
+        [tabController setItems:@[paymentItem,transactionsItem,inviteItem,contactsItem,profileItem]];
+        tabController.tabBarInsets = UIEdgeInsetsMake(20, 0, 20,0);
+        [self setNavigationBarHidden:YES];
+    }
+    else
+    {
+        [tabController setItems:@[transactionsItem,inviteItem,paymentItem,contactsItem,profileItem]];
+    }
+    
     [tabController selectItem:transactionsItem];
     
 
@@ -225,23 +235,15 @@
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     NSUInteger numberOfControllers = [navigationController.viewControllers count];
     
-    if(IPAD)
-    {
-        
-        if(numberOfControllers == 1)
-        {
-            [self setNavigationBarHidden:YES animated:YES];
-        }
-        else
-        {
-            [self setNavigationBarHidden:NO animated:YES];
-        }
-    }
-    
     NSArray *recognizers = [navigationController.navigationBar gestureRecognizers];
     for (UIGestureRecognizer *recognizer in recognizers) {
         [recognizer setEnabled:numberOfControllers == 1];
     }
+}
+
+-(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    
 }
 
 - (void)moveToPaymentsList {

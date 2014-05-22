@@ -68,8 +68,6 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    [self.navigationController setNavigationBarHidden:NO];
-
     if (!self.allRecipients) {
         NSFetchedResultsController *controller = [self.objectModel fetchedControllerForAllUserRecipients];
         [self setAllRecipients:controller];

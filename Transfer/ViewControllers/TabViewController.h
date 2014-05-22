@@ -17,6 +17,12 @@
 @property (nonatomic, strong) UIColor *defaultSelectedColor;
 @property (nonatomic, strong) UIColor *defaultDeSelectedColor;
 @property (nonatomic, strong) UIColor *defaultHighlightedColor;
+@property (nonatomic, assign) UIEdgeInsets tabBarInsets;
+
+
+@property (weak, nonatomic) IBOutlet UICollectionView *tabBarCollectionView;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
+
 
 -(void)addItem:(TabItem*)newItem;
 -(void)setItems:(NSArray*)items;

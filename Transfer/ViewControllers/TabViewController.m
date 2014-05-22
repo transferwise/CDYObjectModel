@@ -10,8 +10,6 @@
 
 @interface TabViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property (weak, nonatomic) IBOutlet UICollectionView *tabBarCollectionView;
-@property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (strong, nonatomic) NSMutableArray *tabItems;
 @property (weak, nonatomic) TabItem *selectedItem;
 @property (assign, nonatomic)CGSize tabSize;
@@ -35,6 +33,11 @@
 {
     [self layoutTabs];
     [super viewDidLayoutSubviews];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.tabBarCollectionView.contentInset = self.tabBarInsets;
 }
 
 -(NSMutableArray *)tabItems
@@ -115,10 +118,12 @@
         {
             [self.selectedItem.viewController.view removeFromSuperview];
             [self.selectedItem.viewController removeFromParentViewController];
+            
             [newSelectedItem.viewController willMoveToParentViewController:self];
+            [self addChildViewController:newSelectedItem.viewController];
+            [newSelectedItem.viewController didMoveToParentViewController:self];
             [self.containerView addSubview:newSelectedItem.viewController.view];
             newSelectedItem.viewController.view.frame = self.containerView.bounds;
-            [self addChildViewController:newSelectedItem.viewController];
             
             self.navigationItem.title = newSelectedItem.viewController.title;
         }
@@ -164,7 +169,8 @@
             }
             else
             {
-                CGFloat width = self.tabBarCollectionView.frame.size.width - [self.tabItems count] * self.fixedSize.width;
+                CGFloat width = self.tabBarCollectionView.frame.size.width - self.tabBarCollectionView.contentInset.left - self.tabBarCollectionView.contentInset.right - [self.tabItems count] * self.fixedSize.width;
+                
                 self.gapSize = CGSizeMake(width, self.tabBarCollectionView.frame.size.height);
             }
         }
@@ -178,7 +184,7 @@
             }
             else
             {
-                CGFloat width = self.tabBarCollectionView.frame.size.width / [self.tabItems count];
+                CGFloat width = (self.tabBarCollectionView.frame.size.width - self.tabBarCollectionView.contentInset.left - self.tabBarCollectionView.contentInset.right) / [self.tabItems count];
                 self.tabSize = CGSizeMake(roundf(width), self.tabBarCollectionView.frame.size.height);
                 self.lastTabSize = CGSizeMake(self.tabSize.width + [self roundingAdjustmentforDimension:width], self.tabSize.height);
             }
