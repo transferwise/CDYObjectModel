@@ -28,6 +28,31 @@
     return result;
 }
 
+static NSDictionary* statusLookupDictionary;
+-(NSDictionary*)statusLookup
+{
+    if(!statusLookupDictionary)
+    {
+        statusLookupDictionary = @{@"unknown":@(PaymentStatusUnknown),
+                                   @"cancelled":@(PaymentStatusCancelled),
+                                   @"matched":@(PaymentStatusMatched),
+                                   @"received":@(PaymentStatusReceived),
+                                   @"refunded":@(PaymentStatusRefunded),
+                                   @"submitted":@(PaymentStatusSubmitted),
+                                   @"transferred":@(PaymentStatusTransferred),
+                                   @"receivedwaitingrecipient":@(PaymentStatusReceivedWaitingRecipient)
+                                   };
+    }
+    return statusLookupDictionary;
+}
+
+-(PaymentStatus)status
+{
+    NSString* key = [self.paymentStatus lowercaseString];
+    NSNumber *statusNumber =[self statusLookup][key];
+    return statusNumber?[statusNumber unsignedIntegerValue]:PaymentStatusUnknown;
+}
+
 - (NSString *)localizedStatus {
     NSString *statusKey = [NSString stringWithFormat:@"payment.status.%@.description", self.paymentStatus];
     NSString *statusString = NSLocalizedString(statusKey, nil);

@@ -6,8 +6,20 @@ typedef NS_OPTIONS(short, PaymentMethod) {
     PaymentCard = 1 << 1
 };
 
+typedef NS_ENUM(NSUInteger, PaymentStatus) {
+    PaymentStatusUnknown = 0,
+    PaymentStatusCancelled,
+    PaymentStatusMatched,
+    PaymentStatusReceived,
+    PaymentStatusRefunded,
+    PaymentStatusSubmitted,
+    PaymentStatusTransferred,
+    PaymentStatusReceivedWaitingRecipient
+};
+
 @interface Payment : _Payment
 
+- (PaymentStatus)status;
 - (NSString *)localizedStatus;
 + (PaymentMethod)methodsWithData:(NSArray *)methods;
 - (NSString *)transferredAmountString;
