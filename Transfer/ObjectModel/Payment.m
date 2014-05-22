@@ -75,34 +75,25 @@ static NSDictionary* statusLookupDictionary;
 }
 
 - (NSString *)latestChangeTimeString {
-    NSDate *latestChangeDate = self.submittedDate;
+    NSDate *latestChangeDate = [self latestChangeDate];
     if (!latestChangeDate) {
         return @"";
     }
 
-    NSDateComponents *components = [[Payment gregorian] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:latestChangeDate toDate:[NSDate date] options:0];
+    NSDateComponents *latestChangeComponents = [[Payment gregorian] components:NSYearCalendarUnit  fromDate:latestChangeDate];
+    
+    NSDateComponents *nowComponents = [[Payment gregorian] components:NSYearCalendarUnit fromDate:[NSDate date]];
 
-    if (components.year > 1) {
-        return [NSString stringWithFormat:NSLocalizedString(@"payment.change.time.years.ago", nil), components.year];
-    } else if (components.year == 1) {
-        return NSLocalizedString(@"payment.change.time.one.year.ago", nil);
-    } else if (components.month > 1) {
-        return [NSString stringWithFormat:NSLocalizedString(@"payment.change.time.months.ago", nil), components.month];
-    } else if (components.month == 1) {
-        return NSLocalizedString(@"payment.change.time.one.month.ago", nil);
-    } else if (components.day > 1) {
-        return [NSString stringWithFormat:NSLocalizedString(@"payment.change.time.days.ago", nil), components.day];
-    } else if (components.day == 1) {
-        return NSLocalizedString(@"payment.change.time.one.day.ago", nil);
-    } else if (components.hour > 1) {
-        return [NSString stringWithFormat:NSLocalizedString(@"payment.change.time.hours.ago", nil), components.hour];
-    } else if (components.hour == 1) {
-        return NSLocalizedString(@"payment.change.time.one.hour.ago", nil);
-    } else if (components.minute > 1) {
-        return [NSString stringWithFormat:NSLocalizedString(@"payment.change.time.minutes.ago", nil), components.minute];
-    } else {
-        return NSLocalizedString(@"payment.change.time.one.minute.ago", nil);
+    NSDateFormatter* formatter;
+    if(latestChangeComponents.year != nowComponents.year)
+    {
+        formatter = [Payment longDateFormatter];
     }
+    else
+    {
+        formatter = [Payment shortDateFormatter];
+    }
+    return [formatter stringFromDate:latestChangeDate];
 }
 
 - (NSString *)payInWithCurrency {
@@ -176,6 +167,26 @@ static NSCalendar *__gregorian;
     }
 
     return __gregorian;
+}
+
+static NSDateFormatter *__longDateFormatter;
++ (NSDateFormatter *)longDateFormatter {
+    if (!__longDateFormatter) {
+        __longDateFormatter = [[NSDateFormatter alloc] init];
+        __longDateFormatter.dateFormat = NSLocalizedString(@"payment.date.format.long", nil);
+    }
+    
+    return __longDateFormatter;
+}
+
+static NSDateFormatter *__shortDateFormatter;
++ (NSDateFormatter *)shortDateFormatter {
+    if (!__shortDateFormatter) {
+        __shortDateFormatter = [[NSDateFormatter alloc] init];
+        __shortDateFormatter.dateFormat = NSLocalizedString(@"payment.date.format.short", nil);
+    }
+    
+    return __shortDateFormatter;
 }
 
 + (PaymentMethod)methodsWithData:(NSArray *)methods {
