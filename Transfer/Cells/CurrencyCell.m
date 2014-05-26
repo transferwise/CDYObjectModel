@@ -7,25 +7,25 @@
 //
 
 #import "CurrencyCell.h"
+#import "Currency.h"
+
+@interface CurrencyCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *flagImage;
+@property (weak, nonatomic) IBOutlet UILabel *currencyLabel;
+@end
 
 @implementation CurrencyCell
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+-(void)configureWithCurrency:(Currency *)currency
 {
-    // Drawing code
+    UIImage *flag = [UIImage imageNamed:currency.code];
+    if(!flag)
+    {
+        //TODO: set default
+    }
+    self.flagImage.image = flag;
+    self.currencyLabel.text = currency.code;
 }
-*/
 
 @end

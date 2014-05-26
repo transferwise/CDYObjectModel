@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Currency;
+
 @interface CurrencyCell : UICollectionViewCell
+
+-(void)configureWithCurrency:(Currency*)currency;
 
 @end

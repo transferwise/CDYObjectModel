@@ -7,8 +7,14 @@
 //
 
 #import "CurrencySelectorViewController.h"
+#import "CurrencyCell.h"
 
-@interface CurrencySelectorViewController ()
+@interface CurrencySelectorViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIView *highlightView;
+@property (weak, nonatomic) IBOutlet UIButton *selectButton;
+@property (nonatomic, assign) NSUInteger selectedIndex;
 
 @end
 
@@ -26,13 +32,82 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    UINib *cellNib = [UINib nibWithNibName:@"CurrencyCell" bundle:[NSBundle mainBundle]];
+    [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"CurrencyCell"];
 }
 
-- (void)didReceiveMemoryWarning
+-(void)viewDidLayoutSubviews
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewDidLayoutSubviews];
+    self.collectionView.contentInset = UIEdgeInsetsMake(self.highlightView.frame.origin.y - self.collectionView.frame.origin.y, 0, self.view.frame.size.height - self.highlightView.frame.origin.y - self.highlightView.frame.size.height, 0);
+    if(self.selectedIndex == NSNotFound)
+    {
+        self.selectedIndex = 0;
+    }
+    self.collectionView.contentOffset = [self calculateOffsetForCellAtIndex:self.selectedIndex];
+}
+
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [self.currencyArray count];
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CurrencyCell* cell = (CurrencyCell*)[self.collectionView dequeueReusableCellWithReuseIdentifier:@"CurrencyCell" forIndexPath:indexPath];
+    [cell configureWithCurrency:self.currencyArray[indexPath.row]];
+    return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.collectionView setContentOffset:[self calculateOffsetForCellAtIndex:indexPath.row] animated:YES];
+}
+
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    //Page to cells
+    CGFloat targetY = targetContentOffset->y + self.collectionView.contentInset.top;
+    CGFloat cellHeight =((UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout).itemSize.height;
+    CGFloat cellIndex = roundf(targetY/cellHeight);
+    targetY = cellIndex * cellHeight;
+    targetContentOffset->y = targetY - self.collectionView.contentInset.top;
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self calculateSelectedIndex];
+}
+
+-(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+    [self calculateSelectedIndex];
+}
+
+-(void)calculateSelectedIndex
+{
+    self.selectedIndex = [self.collectionView indexPathForItemAtPoint:[self.view convertPoint:self.highlightView.center toView:self.collectionView]].row;
+}
+
+-(CGPoint)calculateOffsetForCellAtIndex:(NSUInteger)index
+{
+    CGFloat cellHeight =((UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout).itemSize.height;
+    return CGPointMake(0, index * cellHeight - self.collectionView.contentInset.top);
+}
+
+- (IBAction)closeTapped:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)selectTapped:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.delegate currencySelector:self didSelectCurrencyAtIndex:self.selectedIndex];
+}
+
+-(void)setSelectedCurrency:(Currency*)selectedCurrency
+{
+    self.selectedIndex = [self.currencyArray indexOfObject:selectedCurrency];
 }
 
 @end

@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@class CurrencySelectorViewController;
+@class Currency;
+
+@protocol CurrencySelectorDelegate <NSObject>
+
+-(void)currencySelector:(CurrencySelectorViewController*)controller didSelectCurrencyAtIndex:(NSUInteger)selectedCurrencyIndex;
+
+@end
+
 @interface CurrencySelectorViewController : UIViewController
+
+@property (nonatomic,strong)NSArray* currencyArray;
+@property (nonatomic,weak) id<CurrencySelectorDelegate> delegate;
+
+-(void)setSelectedCurrency:(Currency*)selectedCurrency;
 
 @end
