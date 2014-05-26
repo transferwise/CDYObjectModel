@@ -69,7 +69,7 @@
 			<key>alpha1</key>
 			<dict>
 				<key>alpha</key>
-				<real>0.9</real>
+				<real>0.08</real>
 			</dict>
 		</dict>
 		<key>font</key>

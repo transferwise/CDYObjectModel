@@ -89,6 +89,7 @@ static NSUInteger const kRowYouSend = 0;
     if (!IOS_7) {
         [self.youSendCell setRoundedCorner:UIRectCornerTopRight];
     }
+    self.youSendCell.hostForCurrencySelector = self;
     [self.youSendCell setEditable:YES];
 
     [self setTheyReceiveCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
@@ -98,6 +99,7 @@ static NSUInteger const kRowYouSend = 0;
     if (!IOS_7) {
         [self.theyReceiveCell setRoundedCorner:UIRectCornerBottomRight];
     }
+    self.theyReceiveCell.hostForCurrencySelector = self;
     [self.theyReceiveCell setEditable:YES];
 
     [self.titleLabel setText:NSLocalizedString(@"introduction.header.title.text", nil)];
@@ -154,6 +156,17 @@ static NSUInteger const kRowYouSend = 0;
         [attrStr setLink:[NSURL URLWithString:linkURLString] range:[txt rangeOfString:NSLocalizedString(@"introduction.savings.message.why", nil)]];
         weakSelf.savingsLabel.attributedText = attrStr;
     }];
+    
+    MCAssert(self.objectModel);
+    
+    [self.calculator setObjectModel:self.objectModel];
+    [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSources]];
+    if (!self.dummyPresentation) {
+        [self.calculator forceCalculate];
+    }
+    
+    [self retrieveCurrencyPairs];
+    
 }
 
 - (NSString *)winMessage:(CalculationResult *)result {
@@ -179,16 +192,6 @@ static NSUInteger const kRowYouSend = 0;
 
     UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
     [self.navigationItem setTitleView:logoView];
-
-    MCAssert(self.objectModel);
-
-    [self.calculator setObjectModel:self.objectModel];
-    [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSources]];
-    if (!self.dummyPresentation) {
-        [self.calculator forceCalculate];
-    }
-
-    [self retrieveCurrencyPairs];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

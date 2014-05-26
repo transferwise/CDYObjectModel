@@ -20,6 +20,7 @@ typedef void (^CurrencyChangBlock)(Currency *currency);
 @property (nonatomic, strong, readonly) UITextField *moneyField;
 @property (nonatomic, strong) CurrencyChangBlock currencyChangedHandler;
 @property (nonatomic, strong) NSFetchedResultsController *currencies;
+@property (nonatomic, weak) UIViewController* hostForCurrencySelector;
 
 - (void)setTitle:(NSString *)title;
 - (void)setAmount:(NSString *)amount currency:(Currency *)currency;

@@ -14,19 +14,19 @@
 #import "MoneyFormatter.h"
 #import "NSString+Validation.h"
 #import "NSString+Presentation.h"
+#import "CurrencySelectorViewController.h"
 
 NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
-@interface MoneyEntryCell () <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, NSFetchedResultsControllerDelegate>
+@interface MoneyEntryCell () <UITextFieldDelegate, NSFetchedResultsControllerDelegate, CurrencySelectorDelegate>
 
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UITextField *moneyField;
-@property (nonatomic, strong) IBOutlet UITextField *currencyField;
-@property (nonatomic, strong) UIPickerView *picker;
 @property (nonatomic, strong) Currency *selectedCurrency;
 @property (nonatomic, strong) Currency *forced;
 @property (nonatomic, strong) IBOutlet RoundedCellBackgroundView *roundedBackground;
 @property (nonatomic, strong) PairSourceCurrency *source;
+@property (weak, nonatomic) IBOutlet UIButton *currencyButton;
 
 @end
 
@@ -49,19 +49,10 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     __block __weak MoneyEntryCell *weakSelf = self;
     [self addDoneButtonToField:self.moneyField withAction:^{
         [weakSelf.moneyField resignFirstResponder];
-        [weakSelf.currencyField resignFirstResponder];
     }];
-
-    [self.currencyField setInputAccessoryView:self.moneyField.inputAccessoryView];
 
     [self.moneyField setDelegate:self];
 
-    UIPickerView *picker = [[UIPickerView alloc] initWithFrame:CGRectZero];
-    [self setPicker:picker];
-    [picker setShowsSelectionIndicator:YES];
-    [self.currencyField setInputView:picker];
-    [picker setDataSource:self];
-    [picker setDelegate:self];
 }
 
 - (void)setTitle:(NSString *)title {
@@ -70,7 +61,6 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
 - (void)setAmount:(NSString *)amount currency:(Currency *)currency {
     [self.moneyField setText:amount];
-    [self.currencyField setText:currency.code];
 }
 
 - (NSString *)amount {
@@ -118,29 +108,30 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     return result == NSOrderedDescending || result == NSOrderedSame;
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 1;
+- (IBAction)selectCurrencyTapped:(id)sender
+{
+    CurrencySelectorViewController* selector = [[CurrencySelectorViewController alloc] init];
+    selector.delegate = self;
+    selector.currencyArray = [self.currencies.fetchedObjects valueForKey:@"currency"];
+    [selector setSelectedCurrency:self.selectedCurrency];
+    [self.hostForCurrencySelector presentViewController:selector animated:YES completion:nil];
+    
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return [self.currencies.fetchedObjects count];
-}
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    Currency *currency = [[self.currencies objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]] currency];
-    return [currency code];
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    id source = [self.currencies objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
+-(void)currencySelector:(CurrencySelectorViewController *)controller didSelectCurrencyAtIndex:(NSUInteger)selectedCurrencyIndex
+{
+    id source = [self.currencies objectAtIndexPath:[NSIndexPath indexPathForRow:selectedCurrencyIndex inSection:0]];
     [self setSource:source];
     Currency *selected = [source currency];
     [self setSelectedCurrency:selected];
-    [self.currencyField setText:selected.code];
+    [self.currencyButton setTitle:selected.code forState:UIControlStateNormal];
     self.currencyChangedHandler(selected);
+
 }
 
 - (void)setForcedCurrency:(Currency *)currency {
+    
     self.forced = currency;
 }
 
@@ -151,6 +142,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 }
 
 - (void)setCurrencies:(NSFetchedResultsController *)currencies {
+    
     [_currencies setDelegate:nil];
     _currencies = currencies;
     [_currencies setDelegate:self];
@@ -159,23 +151,17 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     [self setSource:source];
     Currency *selected = [source currency];
 
-    if (self.forced) {
+    if(self.forced)
+    {
         selected = self.forced;
-        [self.currencyField setUserInteractionEnabled:NO];
-        [self.currencyField setTextColor:[UIColor disabledEntryTextColor]];
+        self.currencyButton.enabled = NO;
     }
-
+    
     [self setSelectedCurrency:selected];
-    [self.currencyField setText:selected.code];
-    [self.picker reloadAllComponents];
-    [self.picker selectRow:0 inComponent:0 animated:NO];
+    [self.currencyButton setTitle:selected.code forState:UIControlStateNormal];
     self.currencyChangedHandler(selected);
 }
 
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    MCLog(@"Source currencies changes. Reload");
-    [self.picker reloadAllComponents];
-}
 
 - (void)setMoneyValue:(NSString *)moneyString {
     [self.moneyField setText:moneyString];

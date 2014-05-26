@@ -15,8 +15,6 @@
 		18D47903173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D47902173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib */; };
 		380021AA192B91A9009B1D53 /* TabViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021A9192B91A9009B1D53 /* TabViewController~ipad.xib */; };
 		380021AB192B9506009B1D53 /* TabViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021A9192B91A9009B1D53 /* TabViewController~ipad.xib */; };
-		380021AD192BA344009B1D53 /* TabCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021AC192BA344009B1D53 /* TabCell~ipad.xib */; };
-		380021AE192BABF6009B1D53 /* TabCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021AC192BA344009B1D53 /* TabCell~ipad.xib */; };
 		380021C6192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021B4192CC531009B1D53 /* UIColor+SinglePixelImage.m */; };
 		380021C7192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021B4192CC531009B1D53 /* UIColor+SinglePixelImage.m */; };
 		380021C8192CC531009B1D53 /* MOMBaseStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021B6192CC531009B1D53 /* MOMBaseStyle.m */; };
@@ -41,14 +39,24 @@
 		380021E7192CEB66009B1D53 /* TransactionsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021E5192CEB66009B1D53 /* TransactionsViewController~ipad.xib */; };
 		380021E9192CF84E009B1D53 /* Styles~ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 380021E8192CF84E009B1D53 /* Styles~ipad.plist */; };
 		380021EA192CF84E009B1D53 /* Styles~ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 380021E8192CF84E009B1D53 /* Styles~ipad.plist */; };
+		380021EF192F3DD3009B1D53 /* CurrencySelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021ED192F3DD3009B1D53 /* CurrencySelectorViewController.m */; };
+		380021F0192F3DD3009B1D53 /* CurrencySelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021ED192F3DD3009B1D53 /* CurrencySelectorViewController.m */; };
+		380021F1192F3DD3009B1D53 /* CurrencySelectorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021EE192F3DD3009B1D53 /* CurrencySelectorViewController.xib */; };
+		380021F2192F3DD3009B1D53 /* CurrencySelectorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021EE192F3DD3009B1D53 /* CurrencySelectorViewController.xib */; };
+		380021F7192F43EA009B1D53 /* TabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021F4192F43EA009B1D53 /* TabCell.m */; };
+		380021F8192F43EA009B1D53 /* TabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021F4192F43EA009B1D53 /* TabCell.m */; };
+		380021F9192F43EA009B1D53 /* TabCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021F5192F43EA009B1D53 /* TabCell.xib */; };
+		380021FA192F43EA009B1D53 /* TabCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021F5192F43EA009B1D53 /* TabCell.xib */; };
+		380021FB192F43EA009B1D53 /* TabCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021F6192F43EA009B1D53 /* TabCell~ipad.xib */; };
+		380021FC192F43EA009B1D53 /* TabCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021F6192F43EA009B1D53 /* TabCell~ipad.xib */; };
+		380021FF192F443E009B1D53 /* CurrencyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021FE192F443E009B1D53 /* CurrencyCell.m */; };
+		38002200192F443E009B1D53 /* CurrencyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021FE192F443E009B1D53 /* CurrencyCell.m */; };
+		3800220C192F5774009B1D53 /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3800220B192F5774009B1D53 /* CurrencyCell.xib */; };
+		3800220D192F5774009B1D53 /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3800220B192F5774009B1D53 /* CurrencyCell.xib */; };
 		38E57F78192A51DD00D864A2 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
 		38E57F79192A51DD00D864A2 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
 		38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E57F77192A51DD00D864A2 /* TabViewController.xib */; };
 		38E57F7B192A51DD00D864A2 /* TabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E57F77192A51DD00D864A2 /* TabViewController.xib */; };
-		38E57F82192B667F00D864A2 /* TabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F81192B667F00D864A2 /* TabCell.m */; };
-		38E57F83192B667F00D864A2 /* TabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F81192B667F00D864A2 /* TabCell.m */; };
-		38E57F85192B670500D864A2 /* TabCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E57F84192B670500D864A2 /* TabCell.xib */; };
-		38E57F86192B670500D864A2 /* TabCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E57F84192B670500D864A2 /* TabCell.xib */; };
 		BA6650856E3051C31A982C78 /* GoogleAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = BA66546EEC8C630867200E77 /* GoogleAnalytics.m */; };
 		BA665EA5E58A6DA4DEB8E622 /* GoogleAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = BA66546EEC8C630867200E77 /* GoogleAnalytics.m */; };
 		BB29BD47173CD2FF0016A6E9 /* BankTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29BD46173CD2FF0016A6E9 /* BankTransferViewController.m */; };
@@ -586,7 +594,6 @@
 		2C541BABB70E4B6195F5BC1A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		2F2D1DE7BECC4078BB45E6AD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		380021A9192B91A9009B1D53 /* TabViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TabViewController~ipad.xib"; sourceTree = "<group>"; };
-		380021AC192BA344009B1D53 /* TabCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TabCell~ipad.xib"; sourceTree = "<group>"; };
 		380021B3192CC531009B1D53 /* UIColor+SinglePixelImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SinglePixelImage.h"; sourceTree = "<group>"; };
 		380021B4192CC531009B1D53 /* UIColor+SinglePixelImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SinglePixelImage.m"; sourceTree = "<group>"; };
 		380021B5192CC531009B1D53 /* MOMBaseStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MOMBaseStyle.h; path = ../MOMBaseStyle.h; sourceTree = "<group>"; };
@@ -609,12 +616,19 @@
 		380021E5192CEB66009B1D53 /* TransactionsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransactionsViewController~ipad.xib"; sourceTree = "<group>"; };
 		380021E8192CF84E009B1D53 /* Styles~ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Styles~ipad.plist"; sourceTree = "<group>"; };
 		380021EB192D0E23009B1D53 /* MOMStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MOMStyle.h; sourceTree = "<group>"; };
+		380021EC192F3DD3009B1D53 /* CurrencySelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencySelectorViewController.h; sourceTree = "<group>"; };
+		380021ED192F3DD3009B1D53 /* CurrencySelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencySelectorViewController.m; sourceTree = "<group>"; };
+		380021EE192F3DD3009B1D53 /* CurrencySelectorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencySelectorViewController.xib; sourceTree = "<group>"; };
+		380021F3192F43EA009B1D53 /* TabCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabCell.h; sourceTree = "<group>"; };
+		380021F4192F43EA009B1D53 /* TabCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabCell.m; sourceTree = "<group>"; };
+		380021F5192F43EA009B1D53 /* TabCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabCell.xib; sourceTree = "<group>"; };
+		380021F6192F43EA009B1D53 /* TabCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TabCell~ipad.xib"; sourceTree = "<group>"; };
+		380021FD192F443E009B1D53 /* CurrencyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyCell.h; sourceTree = "<group>"; };
+		380021FE192F443E009B1D53 /* CurrencyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyCell.m; sourceTree = "<group>"; };
+		3800220B192F5774009B1D53 /* CurrencyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencyCell.xib; sourceTree = "<group>"; };
 		38E57F75192A51DD00D864A2 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
 		38E57F76192A51DD00D864A2 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
 		38E57F77192A51DD00D864A2 /* TabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabViewController.xib; sourceTree = "<group>"; };
-		38E57F80192B667F00D864A2 /* TabCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabCell.h; sourceTree = "<group>"; };
-		38E57F81192B667F00D864A2 /* TabCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabCell.m; sourceTree = "<group>"; };
-		38E57F84192B670500D864A2 /* TabCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabCell.xib; sourceTree = "<group>"; };
 		9C1FBDCF7CCD414999CC7D3D /* libPods-TransferTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TransferTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9D5DEC1F8394C87A604EF4F /* Pods-TransferTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransferTests.xcconfig"; path = "Pods/Pods-TransferTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		BA66546EEC8C630867200E77 /* GoogleAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalytics.m; sourceTree = "<group>"; };
@@ -1213,10 +1227,10 @@
 		EA13E02F171BDF050019FBF0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EAD7D4CF171D4BB20099063F /* GreenButton.h */,
-				EAD7D4D0171D4BB20099063F /* GreenButton.m */,
 				EAD667C9174F6F7B00D29BCB /* DismissKeyboardTableView.h */,
 				EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */,
+				EAD7D4CF171D4BB20099063F /* GreenButton.h */,
+				EAD7D4D0171D4BB20099063F /* GreenButton.m */,
 				EAD73688171E6CB100A037B1 /* GrayButton.h */,
 				EAD73689171E6CB100A037B1 /* GrayButton.m */,
 				EAE7B6AA17E9AC3F00E03D73 /* IdentificationNotificationView.h */,
@@ -1247,10 +1261,6 @@
 				EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */,
 				EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */,
 				EA13E045171BED910019FBF0 /* TableHeaderView.xib */,
-				38E57F80192B667F00D864A2 /* TabCell.h */,
-				38E57F81192B667F00D864A2 /* TabCell.m */,
-				38E57F84192B670500D864A2 /* TabCell.xib */,
-				380021AC192BA344009B1D53 /* TabCell~ipad.xib */,
 				EA0450CD17EC3635008921DA /* TextContainerView.h */,
 				EA0450CE17EC3635008921DA /* TextContainerView.m */,
 				EA2296C417E08027001CF541 /* TransferBackButtonItem.h */,
@@ -1278,6 +1288,9 @@
 				EA88E688172F97E20021492C /* CountrySelectionCell.h */,
 				EA88E689172F97E20021492C /* CountrySelectionCell.m */,
 				EA88E68A172F97E20021492C /* CountrySelectionCell.xib */,
+				380021FD192F443E009B1D53 /* CurrencyCell.h */,
+				380021FE192F443E009B1D53 /* CurrencyCell.m */,
+				3800220B192F5774009B1D53 /* CurrencyCell.xib */,
 				EA4AA60B17379C9D00E99150 /* CurrencySelectionCell.h */,
 				EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */,
 				EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */,
@@ -1308,6 +1321,10 @@
 				BB7EAE8C17AFE0DE006A7182 /* SwitchCell.h */,
 				BB7EAE8D17AFE0DE006A7182 /* SwitchCell.m */,
 				BB7EAE8917AFE037006A7182 /* SwitchCell.xib */,
+				380021F3192F43EA009B1D53 /* TabCell.h */,
+				380021F4192F43EA009B1D53 /* TabCell.m */,
+				380021F5192F43EA009B1D53 /* TabCell.xib */,
+				380021F6192F43EA009B1D53 /* TabCell~ipad.xib */,
 				BB29BD4D173CDF6F0016A6E9 /* TextCell.h */,
 				BB29BD4C173CDF6F0016A6E9 /* TextCell.m */,
 				BB29BD4A173CDF480016A6E9 /* TextCell.xib */,
@@ -1692,6 +1709,9 @@
 				EAD3967D171BD57000F6D011 /* ContactsViewController.h */,
 				EAD3967E171BD57000F6D011 /* ContactsViewController.m */,
 				EAD3967F171BD57000F6D011 /* ContactsViewController.xib */,
+				380021EC192F3DD3009B1D53 /* CurrencySelectorViewController.h */,
+				380021ED192F3DD3009B1D53 /* CurrencySelectorViewController.m */,
+				380021EE192F3DD3009B1D53 /* CurrencySelectorViewController.xib */,
 				EA88E661172F979F0021492C /* DataEntryViewController.h */,
 				EA88E662172F979F0021492C /* DataEntryViewController.m */,
 				EAD39687171BD82300F6D011 /* IntroductionViewController.h */,
@@ -2035,22 +2055,23 @@
 				380021AB192B9506009B1D53 /* TabViewController~ipad.xib in Resources */,
 				EA0450DE17EC64E4008921DA /* IntroView.xib in Resources */,
 				EA31A1D917DDB29B00F937F7 /* TableHeaderView.xib in Resources */,
-				38E57F86192B670500D864A2 /* TabCell.xib in Resources */,
 				EA31A1DA17DDB29B00F937F7 /* TextEntryCell.xib in Resources */,
 				EA31A1E117DDB29B00F937F7 /* RecipientCell.xib in Resources */,
 				EA31A1E617DDB29B00F937F7 /* SettingsViewController.xib in Resources */,
 				EAD3646717E1E19A001EFE40 /* Assets.xcassets in Resources */,
 				EA31A1E717DDB29B00F937F7 /* SettingsTitleCell.xib in Resources */,
+				380021FA192F43EA009B1D53 /* TabCell.xib in Resources */,
 				EA31A1E817DDB29B00F937F7 /* TSAlertViewMessageListViewShadow.png in Resources */,
 				EA31A1E917DDB29B00F937F7 /* TSAlertViewCancelButtonBackground.png in Resources */,
 				EA0450D717EC5BC1008921DA /* IntroViewController.xib in Resources */,
+				3800220D192F5774009B1D53 /* CurrencyCell.xib in Resources */,
 				EA31A1EA17DDB29B00F937F7 /* TSAlertViewButtonBackground.png in Resources */,
 				EA31A1EB17DDB29B00F937F7 /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
 				EAE7B6B017E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */,
 				EA333F3918A4BEDC00D8A44E /* page_zoom.json in Resources */,
+				380021F2192F3DD3009B1D53 /* CurrencySelectorViewController.xib in Resources */,
 				EA31A1EC17DDB29B00F937F7 /* TSAlertViewBackground2.png in Resources */,
 				EA31A1ED17DDB29B00F937F7 /* TSAlertViewBackground.png in Resources */,
-				380021AE192BABF6009B1D53 /* TabCell~ipad.xib in Resources */,
 				EAB61711191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
 				EA31A1EE17DDB29B00F937F7 /* WhyView.xib in Resources */,
 				EA31A1EF17DDB29B00F937F7 /* CountrySelectionCell.xib in Resources */,
@@ -2062,6 +2083,7 @@
 				EA31A20317DDB29B00F937F7 /* RecipientFieldCell.xib in Resources */,
 				380021E7192CEB66009B1D53 /* TransactionsViewController~ipad.xib in Resources */,
 				EA31A20A17DDB29B00F937F7 /* PersonalProfileIdentificationViewController.xib in Resources */,
+				380021FC192F43EA009B1D53 /* TabCell~ipad.xib in Resources */,
 				EAD3649217E2F971001EFE40 /* PaymentMethodSelectionView.xib in Resources */,
 				EA31A20B17DDB29B00F937F7 /* ConfirmPaymentViewController.xib in Resources */,
 				EAD3648817E2F394001EFE40 /* UploadMoneyViewController.xib in Resources */,
@@ -2115,22 +2137,23 @@
 				380021AA192B91A9009B1D53 /* TabViewController~ipad.xib in Resources */,
 				EA0450DD17EC64E4008921DA /* IntroView.xib in Resources */,
 				EA13E046171BED910019FBF0 /* TableHeaderView.xib in Resources */,
-				38E57F85192B670500D864A2 /* TabCell.xib in Resources */,
 				EA13E04E171BEF710019FBF0 /* TextEntryCell.xib in Resources */,
 				EAD736A4171E85D100A037B1 /* RecipientCell.xib in Resources */,
 				EAB7215C171FC61B00DE29F5 /* SettingsViewController.xib in Resources */,
 				EAD3646617E1E19A001EFE40 /* Assets.xcassets in Resources */,
 				EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */,
+				380021F9192F43EA009B1D53 /* TabCell.xib in Resources */,
 				BBC691241721416300F0FB1A /* TSAlertViewMessageListViewShadow.png in Resources */,
 				BBC691251721416300F0FB1A /* TSAlertViewCancelButtonBackground.png in Resources */,
 				EA0450D617EC5BC1008921DA /* IntroViewController.xib in Resources */,
+				3800220C192F5774009B1D53 /* CurrencyCell.xib in Resources */,
 				BBC691261721416300F0FB1A /* TSAlertViewButtonBackground.png in Resources */,
 				BBC691271721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
 				EAE7B6AF17E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */,
 				EA333F3818A4BEDC00D8A44E /* page_zoom.json in Resources */,
+				380021F1192F3DD3009B1D53 /* CurrencySelectorViewController.xib in Resources */,
 				BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */,
 				BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */,
-				380021AD192BA344009B1D53 /* TabCell~ipad.xib in Resources */,
 				EAB61710191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
 				BBC6912C172147FC00F0FB1A /* WhyView.xib in Resources */,
 				EA88E68F172F97E20021492C /* CountrySelectionCell.xib in Resources */,
@@ -2142,6 +2165,7 @@
 				EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */,
 				380021E6192CEB66009B1D53 /* TransactionsViewController~ipad.xib in Resources */,
 				18D47903173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib in Resources */,
+				380021FB192F43EA009B1D53 /* TabCell~ipad.xib in Resources */,
 				EAD3649117E2F971001EFE40 /* PaymentMethodSelectionView.xib in Resources */,
 				EA222E39173A861000C5D613 /* ConfirmPaymentViewController.xib in Resources */,
 				EAD3648717E2F394001EFE40 /* UploadMoneyViewController.xib in Resources */,
@@ -2385,6 +2409,7 @@
 				EA31A13817DDB29B00F937F7 /* TRWProgressHUD.m in Sources */,
 				EA31A13917DDB29B00F937F7 /* TransferwiseOperation.m in Sources */,
 				EA31A13A17DDB29B00F937F7 /* LoginOperation.m in Sources */,
+				380021F8192F43EA009B1D53 /* TabCell.m in Sources */,
 				EA31A13B17DDB29B00F937F7 /* NSDictionary+SensibleData.m in Sources */,
 				EA31A13C17DDB29B00F937F7 /* UIButton+Skinning.m in Sources */,
 				EA31A13D17DDB29B00F937F7 /* GreenButton.m in Sources */,
@@ -2458,6 +2483,7 @@
 				EA31A17417DDB29B00F937F7 /* DismissKeyboardTableView.m in Sources */,
 				EA31A17517DDB29B00F937F7 /* VerificationRequiredOperation.m in Sources */,
 				EA31A17617DDB29B00F937F7 /* UploadVerificationFileOperation.m in Sources */,
+				380021F0192F3DD3009B1D53 /* CurrencySelectorViewController.m in Sources */,
 				EA31A17717DDB29B00F937F7 /* OpenIDViewController.m in Sources */,
 				EA31A17817DDB29B00F937F7 /* PersonalProfileCommitter.m in Sources */,
 				EA31A17917DDB29B00F937F7 /* EmailCheckOperation.m in Sources */,
@@ -2472,7 +2498,6 @@
 				EA31A18117DDB29B00F937F7 /* ProfileEditViewController.m in Sources */,
 				EA31A18217DDB29B00F937F7 /* ProfileSource.m in Sources */,
 				EA31A18317DDB29B00F937F7 /* PersonalProfileSource.m in Sources */,
-				38E57F83192B667F00D864A2 /* TabCell.m in Sources */,
 				EA31A18417DDB29B00F937F7 /* BusinessProfileSource.m in Sources */,
 				EA31A18517DDB29B00F937F7 /* BusinessProfileCommitter.m in Sources */,
 				EA31A18617DDB29B00F937F7 /* PaymentProfileViewController.m in Sources */,
@@ -2546,6 +2571,7 @@
 				EABD864618E2B65D004A5A57 /* TransferMixpanel.m in Sources */,
 				EA2296C317E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
 				EA0523F7191B596B00B32899 /* RefundDetailsViewController.m in Sources */,
+				38002200192F443E009B1D53 /* CurrencyCell.m in Sources */,
 				EAB61715191CDD1000545C21 /* ResetPasswordOperation.m in Sources */,
 				EA2296C717E08027001CF541 /* TransferBackButtonItem.m in Sources */,
 				BA665EA5E58A6DA4DEB8E622 /* GoogleAnalytics.m in Sources */,
@@ -2593,6 +2619,7 @@
 				EA8FF6B4171D23B20090A658 /* TRWProgressHUD.m in Sources */,
 				EA8FF6B8171D25C20090A658 /* TransferwiseOperation.m in Sources */,
 				EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */,
+				380021F7192F43EA009B1D53 /* TabCell.m in Sources */,
 				EAD7D4C2171D43440099063F /* NSDictionary+SensibleData.m in Sources */,
 				EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */,
 				EAD7D4D1171D4BB20099063F /* GreenButton.m in Sources */,
@@ -2666,6 +2693,7 @@
 				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,
 				EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */,
 				EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */,
+				380021EF192F3DD3009B1D53 /* CurrencySelectorViewController.m in Sources */,
 				EA59298E1758CD6C007C0072 /* OpenIDViewController.m in Sources */,
 				EA59297117589F5C007C0072 /* PersonalProfileCommitter.m in Sources */,
 				EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */,
@@ -2680,7 +2708,6 @@
 				EA416E2B176860EA00904D97 /* ProfileEditViewController.m in Sources */,
 				EA416E301768673500904D97 /* ProfileSource.m in Sources */,
 				EA416E331768674700904D97 /* PersonalProfileSource.m in Sources */,
-				38E57F82192B667F00D864A2 /* TabCell.m in Sources */,
 				EA416E361768675400904D97 /* BusinessProfileSource.m in Sources */,
 				EA92D9541769BD9D0078D0C4 /* BusinessProfileCommitter.m in Sources */,
 				EA92D97F176AF1200078D0C4 /* PaymentProfileViewController.m in Sources */,
@@ -2754,6 +2781,7 @@
 				EABD864518E2B65D004A5A57 /* TransferMixpanel.m in Sources */,
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
 				EA0523F6191B596B00B32899 /* RefundDetailsViewController.m in Sources */,
+				380021FF192F443E009B1D53 /* CurrencyCell.m in Sources */,
 				EAB61714191CDD1000545C21 /* ResetPasswordOperation.m in Sources */,
 				EA2296C617E08027001CF541 /* TransferBackButtonItem.m in Sources */,
 				BA6650856E3051C31A982C78 /* GoogleAnalytics.m in Sources */,
