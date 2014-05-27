@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroductionViewController">
             <connections>
+                <outlet property="loginButton" destination="KVn-N5-EGf" id="xwX-R6-Luh"/>
                 <outlet property="startedButton" destination="UAL-I7-qIC" id="HsM-OH-U2p"/>
                 <outlet property="tableView" destination="w5b-eJ-Ssl" id="Rq4-Y8-MiI"/>
                 <outlet property="view" destination="o2g-cv-K3K" id="OFd-hp-K7v"/>
@@ -48,17 +49,33 @@
                         <action selector="startPaymentPressed:" destination="-1" eventType="touchUpInside" id="Tx5-vS-0V4"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KVn-N5-EGf">
+                    <rect key="frame" x="110" y="518" width="100" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="Fdi-Tc-HtQ"/>
+                        <constraint firstAttribute="height" constant="30" id="QBl-IE-FK0"/>
+                    </constraints>
+                    <state key="normal" title="Login">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="loginPressed:" destination="-1" eventType="touchUpInside" id="KMq-i8-xeW"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="w5b-eJ-Ssl" secondAttribute="bottom" constant="256" id="22B-xy-Gal"/>
                 <constraint firstAttribute="trailing" secondItem="UAL-I7-qIC" secondAttribute="trailing" id="2mt-xR-3dC"/>
+                <constraint firstAttribute="bottom" secondItem="KVn-N5-EGf" secondAttribute="bottom" constant="20" id="4Rh-Gf-bm9"/>
                 <constraint firstItem="w5b-eJ-Ssl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="o2g-cv-K3K" secondAttribute="top" constant="64" id="8a8-5c-G9v"/>
                 <constraint firstItem="w5b-eJ-Ssl" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" id="Bqo-uv-tWq"/>
                 <constraint firstItem="UAL-I7-qIC" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" id="PG8-cJ-E5J"/>
                 <constraint firstAttribute="bottom" secondItem="tx6-jd-3M7" secondAttribute="bottom" constant="501" id="Trq-5e-f1h"/>
                 <constraint firstAttribute="bottom" secondItem="w5b-eJ-Ssl" secondAttribute="bottom" priority="800" constant="303" id="aOE-4o-Ysb"/>
                 <constraint firstItem="tx6-jd-3M7" firstAttribute="top" secondItem="o2g-cv-K3K" secondAttribute="top" constant="45" id="dY3-JE-byz"/>
+                <constraint firstAttribute="centerX" secondItem="KVn-N5-EGf" secondAttribute="centerX" id="e1d-iQ-noq"/>
                 <constraint firstItem="UAL-I7-qIC" firstAttribute="top" secondItem="w5b-eJ-Ssl" secondAttribute="bottom" constant="10" id="eHV-p7-xed"/>
                 <constraint firstAttribute="trailing" secondItem="tx6-jd-3M7" secondAttribute="trailing" id="jRn-Ue-c5M"/>
                 <constraint firstItem="tx6-jd-3M7" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" id="kb1-oE-AvN"/>
