@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroductionViewController">
             <connections>
+                <outlet property="startedButton" destination="UAL-I7-qIC" id="HsM-OH-U2p"/>
                 <outlet property="tableView" destination="w5b-eJ-Ssl" id="Rq4-Y8-MiI"/>
                 <outlet property="view" destination="o2g-cv-K3K" id="OFd-hp-K7v"/>
             </connections>
@@ -34,15 +35,31 @@
                         <outlet property="delegate" destination="-1" id="KNd-7d-y5e"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAL-I7-qIC" customClass="StartPaymentButton">
+                    <rect key="frame" x="0.0" y="275" width="320" height="49"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="49" id="S7W-9S-7cf"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="startPaymentPressed:" destination="-1" eventType="touchUpInside" id="Tx5-vS-0V4"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="w5b-eJ-Ssl" secondAttribute="bottom" constant="256" id="22B-xy-Gal"/>
+                <constraint firstAttribute="trailing" secondItem="UAL-I7-qIC" secondAttribute="trailing" id="2mt-xR-3dC"/>
                 <constraint firstItem="w5b-eJ-Ssl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="o2g-cv-K3K" secondAttribute="top" constant="64" id="8a8-5c-G9v"/>
                 <constraint firstItem="w5b-eJ-Ssl" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" id="Bqo-uv-tWq"/>
+                <constraint firstItem="UAL-I7-qIC" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" id="PG8-cJ-E5J"/>
                 <constraint firstAttribute="bottom" secondItem="tx6-jd-3M7" secondAttribute="bottom" constant="501" id="Trq-5e-f1h"/>
                 <constraint firstAttribute="bottom" secondItem="w5b-eJ-Ssl" secondAttribute="bottom" priority="800" constant="303" id="aOE-4o-Ysb"/>
                 <constraint firstItem="tx6-jd-3M7" firstAttribute="top" secondItem="o2g-cv-K3K" secondAttribute="top" constant="45" id="dY3-JE-byz"/>
+                <constraint firstItem="UAL-I7-qIC" firstAttribute="top" secondItem="w5b-eJ-Ssl" secondAttribute="bottom" constant="10" id="eHV-p7-xed"/>
                 <constraint firstAttribute="trailing" secondItem="tx6-jd-3M7" secondAttribute="trailing" id="jRn-Ue-c5M"/>
                 <constraint firstItem="tx6-jd-3M7" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" id="kb1-oE-AvN"/>
                 <constraint firstAttribute="trailing" secondItem="w5b-eJ-Ssl" secondAttribute="trailing" id="wbi-xk-akF"/>

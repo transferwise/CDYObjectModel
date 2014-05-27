@@ -8,6 +8,7 @@
 
 #import "GreenButton.h"
 #import "UIButton+Skinning.h"
+#import "MOMStyle.h"
 
 @implementation GreenButton
 
@@ -27,10 +28,7 @@
 
 -(void)commonSetup
 {
-    [self setBackgroundColor:[UIColor clearColor]];
-    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self skinWithImage:[UIImage imageNamed:@"GreenButton.png"] insets:UIEdgeInsetsMake(0, 15, 0, 15)];
-    [self.titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
+    self.compoundStyle = @"greenButton";
     self.exclusiveTouch = YES;
 }
 

@@ -21,6 +21,11 @@
 				<key>color</key>
 				<string>ffffff</string>
 			</dict>
+			<key>green</key>
+			<dict>
+				<key>color</key>
+				<string>83b019</string>
+			</dict>
 			<key>darkText</key>
 			<dict>
 				<key>color</key>
@@ -165,9 +170,9 @@
 			<key>fontStyle</key>
 			<string>H4</string>
 			<key>highlightedBgStyle</key>
-			<string>lightBlue.alpha2</string>
+			<string>green.alpha2</string>
 			<key>bgStyle</key>
-			<string>lightBlue</string>
+			<string>green</string>
 		</dict>
 	</dict>
 </dict>

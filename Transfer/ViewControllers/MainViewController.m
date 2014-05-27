@@ -96,8 +96,9 @@
     TabItem *profileItem = [TabItem new];
     [profileItem setActionBlock:^(TabItem* item){
         [[TransferwiseClient sharedClient] clearCredentials];
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Cleared credentials! Reboot to be logged out." message:nil delegate:nil cancelButtonTitle:@"Aha!" otherButtonTitles:nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Cleared credentials!" message:nil delegate:nil cancelButtonTitle:@"Aha!" otherButtonTitles:nil];
         [alert show];
+        [self loggedOut];
         return NO;
     }];
     profileItem.title = NSLocalizedString(@"profile.controller.tabbar.title", nil);
