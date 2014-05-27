@@ -74,7 +74,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 }
 
 - (NSString *)amount {
-    return [self.moneyField text];
+    return [[self.moneyField text] stringByReplacingOccurrencesOfString:@" " withString:@""];
 }
 
 - (Currency *)currency {
