@@ -62,6 +62,9 @@
 "claim.account.password.not.entered" = "Password not entered";
 "claim.account.setting.password.message" = "Working...";
 
+"currency.selector.title" = "Select currency";
+"currency.selector.select.button.title" = "Select";
+
 "generic.error.message" = "We're currently updating TransferWise. Sorry for the hassle, but please try again in a few minutes.";
 "generic.error.title" = "Things are getting better";
 

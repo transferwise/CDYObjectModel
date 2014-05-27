@@ -15,6 +15,7 @@
 #import "NSString+Validation.h"
 #import "NSString+Presentation.h"
 #import "CurrencySelectorViewController.h"
+#import "MOMStyle.h"
 
 NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
@@ -114,6 +115,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     selector.delegate = self;
     selector.currencyArray = [self.currencies.fetchedObjects valueForKey:@"currency"];
     [selector setSelectedCurrency:self.selectedCurrency];
+    selector.view.backgroundColor = [UIColor colorFromStyle:[self.currencyButton.bgStyle stringByAppendingString:@".alpha2"]];
     [selector presentOnViewController:self.hostForCurrencySelector];
     
 }
