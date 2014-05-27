@@ -33,7 +33,7 @@
     [self.currencyLabel setText:[payment transferredCurrenciesString]];
     
     UIImage *icon;
-    switch (PaymentStatusRefunded){//[payment status]) {
+    switch ([payment status]) {
         case PaymentStatusCancelled:
             icon = [UIImage imageNamed:@"transfers_icon_cancelled"];
             break;
