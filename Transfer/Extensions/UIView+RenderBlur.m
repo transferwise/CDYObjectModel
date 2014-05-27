@@ -3,7 +3,7 @@
 //  DigitalEdition
 //
 //  Created by Mats Trovik on 12/02/2014.
-//  Copyright (c) 2014 Smith, Benjamin (UK). All rights reserved.
+//  Copyright (c) 2014 Matsomatic Limited. All rights reserved.
 //
 
 #import "UIView+RenderBlur.h"
@@ -15,10 +15,10 @@
 
 -(UIImage*)renderBlurWithTintColor:(UIColor*)tint
 {
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(self.bounds.size.width/4,self.bounds.size.height/2), YES, 0.0);
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(self.bounds.size.width/2,self.bounds.size.height/2), YES, 0.0);
     if([self respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)])
     {
-        [self drawViewHierarchyInRect:CGRectMake(0,0,self.bounds.size.width/4, self.bounds.size.height/2) afterScreenUpdates:NO];
+        [self drawViewHierarchyInRect:CGRectMake(0,0,self.bounds.size.width/2, self.bounds.size.height/2) afterScreenUpdates:NO];
     }
     else
     {
@@ -29,7 +29,15 @@
     
     UIGraphicsEndImageContext();
     
-    return [self blurredImage:result withRadius:10.0f iterations:4 tintColor:tint];
+    result = [self blurredImage:result withRadius:10.0f iterations:4 tintColor:tint];
+    
+    CGSize newSize = CGSizeMake(self.bounds.size.width,self.bounds.size.height);
+    UIGraphicsBeginImageContextWithOptions(newSize,YES, 0.0);
+    [result drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    result = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return result;
 }
 
 - (UIImage *)blurredImage:(UIImage*)inputImage withRadius:(CGFloat)radius iterations:(NSUInteger)iterations tintColor:(UIColor *)tintColor
