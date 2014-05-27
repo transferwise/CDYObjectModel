@@ -86,7 +86,7 @@
 }
 
 - (void)forceCalculate {
-    [self setWaitingAmount:[self.sendCell amount]];
+    [self setWaitingAmount:(self.amountCurrency == SourceCurrency ? [self.sendCell amount] : [self.receiveCell amount]) ];
 
     [self performCalculation];
 }
