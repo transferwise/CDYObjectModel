@@ -23,5 +23,6 @@
 @property (nonatomic,weak) id<CurrencySelectorDelegate> delegate;
 
 -(void)setSelectedCurrency:(Currency*)selectedCurrency;
+-(void)presentOnViewController:(UIViewController*)hostViewcontroller;
 
 @end

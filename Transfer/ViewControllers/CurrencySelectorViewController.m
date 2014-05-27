@@ -97,12 +97,39 @@
 }
 
 - (IBAction)closeTapped:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismiss];
 }
 
 - (IBAction)selectTapped:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismiss];
     [self.delegate currencySelector:self didSelectCurrencyAtIndex:self.selectedIndex];
+}
+
+-(void)presentOnViewController:(UIViewController*)hostViewcontroller
+{
+    [self willMoveToParentViewController:hostViewcontroller];
+    [hostViewcontroller.view addSubview:self.view];
+    CGRect newFrame = hostViewcontroller.view.bounds;
+    newFrame.origin.y = newFrame.size.height;
+    self.view.frame = newFrame;
+    [hostViewcontroller addChildViewController:self];
+    [self didMoveToParentViewController:hostViewcontroller];
+    [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.view.frame = hostViewcontroller.view.bounds;
+    } completion:nil];
+    
+}
+
+-(void)dismiss
+{
+    [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        CGRect newFrame = self.view.bounds;
+        newFrame.origin.y = newFrame.size.height;
+        self.view.frame = newFrame;
+    }completion:^(BOOL finished) {
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
+    }];
 }
 
 -(void)setSelectedCurrency:(Currency*)selectedCurrency
