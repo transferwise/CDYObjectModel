@@ -11,14 +11,17 @@
 #import <Accelerate/Accelerate.h>
 #import <QuartzCore/QuartzCore.h>
 
+#define kScaleDownFactor 2
+
 @implementation UIView (RenderBlur)
 
 -(UIImage*)renderBlurWithTintColor:(UIColor*)tint
 {
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(self.bounds.size.width/2,self.bounds.size.height/2), YES, 0.0);
+    //Create lower resolution image to make blurring faster
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(self.bounds.size.width/kScaleDownFactor,self.bounds.size.height/kScaleDownFactor), YES, 0.0);
     if([self respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)])
     {
-        [self drawViewHierarchyInRect:CGRectMake(0,0,self.bounds.size.width/2, self.bounds.size.height/2) afterScreenUpdates:NO];
+        [self drawViewHierarchyInRect:CGRectMake(0,0,self.bounds.size.width/kScaleDownFactor, self.bounds.size.height/kScaleDownFactor) afterScreenUpdates:NO];
     }
     else
     {
@@ -29,8 +32,10 @@
     
     UIGraphicsEndImageContext();
     
+    //Blur
     result = [self blurredImage:result withRadius:10.0f iterations:4 tintColor:tint];
     
+    //Scale back to original size
     CGSize newSize = CGSizeMake(self.bounds.size.width,self.bounds.size.height);
     UIGraphicsBeginImageContextWithOptions(newSize,YES, 0.0);
     [result drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
