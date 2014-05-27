@@ -32,11 +32,13 @@
 #import "StartPaymentButton.h"
 #import "AnalyticsCoordinator.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
+#import "MOMStyle.h"
 
 static NSUInteger const kRowYouSend = 0;
 
 @interface IntroductionViewController () <UITextFieldDelegate, OHAttributedLabelDelegate>
 
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet UIView *controlsView;
 @property (nonatomic, strong) IBOutlet OHAttributedLabel *savingsLabel;
 @property (nonatomic, strong) IBOutlet UILabel *loginTitle;
@@ -90,6 +92,7 @@ static NSUInteger const kRowYouSend = 0;
         [self.youSendCell setRoundedCorner:UIRectCornerTopRight];
     }
     self.youSendCell.hostForCurrencySelector = self.navigationController;
+    self.youSendCell.currencyButton.compoundStyle = @"sendButton";
     [self.youSendCell setEditable:YES];
 
     [self setTheyReceiveCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
@@ -100,6 +103,7 @@ static NSUInteger const kRowYouSend = 0;
         [self.theyReceiveCell setRoundedCorner:UIRectCornerBottomRight];
     }
     self.theyReceiveCell.hostForCurrencySelector = self.navigationController;
+    self.theyReceiveCell.currencyButton.compoundStyle = @"getButton";
     [self.theyReceiveCell setEditable:YES];
 
     [self.titleLabel setText:NSLocalizedString(@"introduction.header.title.text", nil)];
@@ -148,13 +152,13 @@ static NSUInteger const kRowYouSend = 0;
         OHParagraphStyle *paragraphStyle = [OHParagraphStyle defaultParagraphStyle];
         paragraphStyle.textAlignment = kCTTextAlignmentCenter;
         paragraphStyle.lineBreakMode = kCTLineBreakByWordWrapping;
-        [attrStr setParagraphStyle:paragraphStyle];
-        [attrStr setFont:weakSelf.savingsLabel.font];
-        [attrStr setTextColor:weakSelf.savingsLabel.textColor];
+//        [attrStr setParagraphStyle:paragraphStyle];
+//        [attrStr setFont:weakSelf.savingsLabel.font];
+//        [attrStr setTextColor:weakSelf.savingsLabel.textColor];
 
-        NSString *linkURLString = @"why:"; // build the "why" link
-        [attrStr setLink:[NSURL URLWithString:linkURLString] range:[txt rangeOfString:NSLocalizedString(@"introduction.savings.message.why", nil)]];
-        weakSelf.savingsLabel.attributedText = attrStr;
+//        NSString *linkURLString = @"why:"; // build the "why" link
+//        [attrStr setLink:[NSURL URLWithString:linkURLString] range:[txt rangeOfString:NSLocalizedString(@"introduction.savings.message.why", nil)]];
+//        weakSelf.savingsLabel.attributedText = attrStr;
     }];
     
     MCAssert(self.objectModel);
@@ -187,7 +191,6 @@ static NSUInteger const kRowYouSend = 0;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    [self.navigationController setNavigationBarHidden:NO];
     [self.navigationItem setHidesBackButton:YES];
 
     UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];

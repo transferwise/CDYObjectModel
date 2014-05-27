@@ -10,7 +10,7 @@
 
 @class ObjectModel;
 
-@interface IntroductionViewController : UITableViewController
+@interface IntroductionViewController : UIViewController
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, assign) BOOL dummyPresentation;

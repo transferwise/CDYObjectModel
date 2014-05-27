@@ -27,7 +27,6 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 @property (nonatomic, strong) Currency *forced;
 @property (nonatomic, strong) IBOutlet RoundedCellBackgroundView *roundedBackground;
 @property (nonatomic, strong) PairSourceCurrency *source;
-@property (weak, nonatomic) IBOutlet UIButton *currencyButton;
 
 @end
 
@@ -115,7 +114,8 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     selector.delegate = self;
     selector.currencyArray = [self.currencies.fetchedObjects valueForKey:@"currency"];
     [selector setSelectedCurrency:self.selectedCurrency];
-    selector.view.backgroundColor = [UIColor colorFromStyle:[self.currencyButton.bgStyle stringByAppendingString:@".alpha2"]];
+    MOMCompoundStyle* style = (MOMCompoundStyle*)[MOMStyleFactory getStyleForIdentifier:self.currencyButton.compoundStyle];
+    selector.view.backgroundColor = [(MOMBasicStyle*)style.highlightedBgStyle color];
     [selector presentOnViewController:self.hostForCurrencySelector];
     
 }
@@ -127,7 +127,6 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     [self setSource:source];
     Currency *selected = [source currency];
     [self setSelectedCurrency:selected];
-    [self.currencyButton setTitle:selected.code forState:UIControlStateNormal];
     self.currencyChangedHandler(selected);
 
 }
@@ -164,21 +163,20 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     self.currencyChangedHandler(selected);
 }
 
+-(void)setSelectedCurrency:(Currency *)selectedCurrency
+{
+    _selectedCurrency = selectedCurrency;
+    [self.currencyButton setTitle:selectedCurrency.code forState:UIControlStateNormal];
+    UIImage* flag = [UIImage imageNamed:selectedCurrency.code];
+    if(!flag)
+    {
+        //TODO: Set default
+    }
+    [self.currencyButton setImage:flag forState:UIControlStateNormal];
+}
 
 - (void)setMoneyValue:(NSString *)moneyString {
     [self.moneyField setText:moneyString];
-
-    CGRect moneyFrame = self.moneyField.frame;
-    CGFloat perfectWidth = [self.moneyField sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGRectGetHeight(moneyFrame))].width;
-    CGFloat moneyWidthChange = perfectWidth - CGRectGetWidth(moneyFrame);
-
-    moneyFrame.size.width += moneyWidthChange;
-    moneyFrame.origin.x -= moneyWidthChange;
-    [self.moneyField setFrame:moneyFrame];
-
-    CGRect titleFrame = self.titleLabel.frame;
-    titleFrame.size.width -= moneyWidthChange;
-    [self.titleLabel setFrame:titleFrame];
 }
 
 @end

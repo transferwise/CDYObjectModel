@@ -61,6 +61,11 @@
 				<key>color</key>
 				<string>324266</string>
 			</dict>
+			<key>paleBlue</key>
+			<dict>
+				<key>color</key>
+				<string>dee9ed</string>
+			</dict>
 			<key>lightBlueHighlighted</key>
 			<dict>
 				<key>color</key>
@@ -88,6 +93,15 @@
 				<key>color</key>
 				<string>1e2022</string>
 			</dict>
+			<key>H1</key>
+			<dict>
+				<key>fontSize</key>
+				<integer>26</integer>
+				<key>fontName</key>
+				<string>Avenir-Medium</string>
+				<key>color</key>
+				<string>1e2022</string>
+			</dict>
 			<key>H2</key>
 			<dict>
 				<key>fontSize</key>
@@ -106,6 +120,15 @@
 				<key>color</key>
 				<string>1e2022</string>
 			</dict>
+			<key>H4</key>
+			<dict>
+				<key>fontSize</key>
+				<integer>20</integer>
+				<key>fontName</key>
+				<string>Avenir-Medium</string>
+				<key>color</key>
+				<string>ffffff</string>
+			</dict>
 			<key>smallText</key>
 			<dict>
 				<key>fontSize</key>
@@ -119,18 +142,32 @@
 	</dict>
 	<key>compound</key>
 	<dict>
-		<key>button</key>
+		<key>sendButton</key>
 		<dict>
-			<key>highlightedFontStyle</key>
-			<string>P.link</string>
 			<key>fontStyle</key>
-			<string>P.blackShadow</string>
+			<string>H4</string>
 			<key>highlightedBgStyle</key>
-			<string>panel1.alpha1</string>
+			<string>tabBarBlue.alpha2</string>
 			<key>bgStyle</key>
-			<string>panel2</string>
-			<key>appearanceStyle</key>
-			<string>rounded</string>
+			<string>tabBarBlue</string>
+		</dict>
+		<key>getButton</key>
+		<dict>
+			<key>fontStyle</key>
+			<string>H4</string>
+			<key>highlightedBgStyle</key>
+			<string>lightBlue.alpha2</string>
+			<key>bgStyle</key>
+			<string>lightBlue</string>
+		</dict>
+		<key>greenButton</key>
+		<dict>
+			<key>fontStyle</key>
+			<string>H4</string>
+			<key>highlightedBgStyle</key>
+			<string>lightBlue.alpha2</string>
+			<key>bgStyle</key>
+			<string>lightBlue</string>
 		</dict>
 	</dict>
 </dict>

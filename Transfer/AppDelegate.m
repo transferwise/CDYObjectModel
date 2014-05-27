@@ -114,18 +114,9 @@
 
     MainViewController *frontViewController = [[MainViewController alloc] init];
     [frontViewController setObjectModel:model];
+    
 
-    SettingsViewController *rearViewController = [[SettingsViewController alloc] init];
-    [rearViewController setObjectModel:model];
-    
-    SWRevealViewController *mainRevealController = [[SWRevealViewController alloc]
-                                                    initWithRearViewController:rearViewController frontViewController:frontViewController];
-    
-    mainRevealController.delegate = frontViewController;
-    
-	self.viewController = mainRevealController;
-
-	self.window.rootViewController = self.viewController;
+	self.window.rootViewController = frontViewController;
 	[self.window makeKeyAndVisible];
 	return YES;
 }

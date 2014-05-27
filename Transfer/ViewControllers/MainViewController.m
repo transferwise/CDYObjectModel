@@ -19,6 +19,7 @@
 #import "ObjectModel+Settings.h"
 #import "TabViewController.h"
 #import "UIColor+MOMStyle.h"
+#import "TransferwiseClient.h"
 
 @interface MainViewController () <UINavigationControllerDelegate, UITabBarControllerDelegate>
 
@@ -94,7 +95,8 @@
     
     TabItem *profileItem = [TabItem new];
     [profileItem setActionBlock:^(TabItem* item){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Not implemented yet!" message:nil delegate:nil cancelButtonTitle:@"Aha!" otherButtonTitles:nil];
+        [[TransferwiseClient sharedClient] clearCredentials];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Cleared credentials! Reboot to be logged out." message:nil delegate:nil cancelButtonTitle:@"Aha!" otherButtonTitles:nil];
         [alert show];
         return NO;
     }];
@@ -118,23 +120,8 @@
     }
     
     [tabController selectItem:transactionsItem];
-    
-
-//    UITabBarController *tabController = [[UITabBarController alloc] init];
-//    [tabController setViewControllers:@[transactionsController, paymentController, contactsController]];
-//    [tabController setDelegate:self];
-//    [self setTabsController:tabController];
 
     [self setViewControllers:@[tabController]];
-    
-//    SWRevealViewController *revealController = [self revealViewController];
-//    [self.navigationBar addGestureRecognizer:revealController.panGestureRecognizer];
-//
-//    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MenuButton.png"] style:UIBarButtonItemStylePlain target:self action:@selector(menuPressed)];
-//    [tabController.navigationItem setLeftBarButtonItem:settingsButton];
-//
-//    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
-//    [tabController.navigationItem setTitleView:logoView];
 
     [self setDelegate:self];
 }
@@ -203,7 +190,7 @@
     }
 
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:presented];
-    [navigationController setNavigationBarHidden:!shownBefore];
+    [navigationController setNavigationBarHidden:YES];
     [self presentViewController:navigationController animated:shownBefore completion:nil];
 }
 
