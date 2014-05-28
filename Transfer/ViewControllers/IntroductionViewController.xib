@@ -54,7 +54,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="KVn-N5-EGf">
-                    <rect key="frame" x="110" y="500" width="100" height="28"/>
+                    <rect key="frame" x="110" y="510" width="100" height="28"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" priority="800" constant="100" id="Fdi-Tc-HtQ"/>
@@ -72,7 +72,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="save" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lrw-M9-5jB">
-                    <rect key="frame" x="15" y="364" width="290" height="21"/>
+                    <rect key="frame" x="15" y="360" width="290" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="290" id="pPR-Ms-cxk"/>
@@ -86,7 +86,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTr-o2-8Xr">
-                    <rect key="frame" x="15" y="390" width="290" height="21"/>
+                    <rect key="frame" x="15" y="386" width="290" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" priority="900" constant="21" id="EIT-OO-F2X"/>
@@ -100,7 +100,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="vs bank" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tkb-LF-80g">
-                    <rect key="frame" x="15" y="416" width="290" height="21"/>
+                    <rect key="frame" x="15" y="412" width="290" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="290" id="0bG-QA-HQB"/>
@@ -114,7 +114,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRX-dl-Alg">
-                    <rect key="frame" x="60" y="441" width="200" height="30"/>
+                    <rect key="frame" x="60" y="437" width="200" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="bW4-I8-zWx"/>
@@ -128,7 +128,7 @@
                     </userDefinedRuntimeAttributes>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PSX-uF-FAV" userLabel="Separator Line">
-                    <rect key="frame" x="80" y="481" width="160" height="1"/>
+                    <rect key="frame" x="80" y="482" width="160" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.792156862745098" green="0.84705882352941175" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -142,7 +142,7 @@
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="w5b-eJ-Ssl" secondAttribute="bottom" constant="256" id="22B-xy-Gal"/>
                 <constraint firstAttribute="trailing" secondItem="UAL-I7-qIC" secondAttribute="trailing" id="2mt-xR-3dC"/>
                 <constraint firstItem="eTr-o2-8Xr" firstAttribute="top" secondItem="Lrw-M9-5jB" secondAttribute="bottom" constant="5" id="2oa-Mw-5rj"/>
-                <constraint firstAttribute="bottom" secondItem="KVn-N5-EGf" secondAttribute="bottom" priority="800" constant="40" id="4Rh-Gf-bm9"/>
+                <constraint firstAttribute="bottom" secondItem="KVn-N5-EGf" secondAttribute="bottom" priority="800" constant="30" id="4Rh-Gf-bm9"/>
                 <constraint firstItem="w5b-eJ-Ssl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="o2g-cv-K3K" secondAttribute="top" constant="64" id="8a8-5c-G9v"/>
                 <constraint firstAttribute="centerX" secondItem="WRX-dl-Alg" secondAttribute="centerX" id="9Py-3r-f10"/>
                 <constraint firstItem="w5b-eJ-Ssl" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" id="Bqo-uv-tWq"/>
@@ -150,11 +150,11 @@
                 <constraint firstItem="KVn-N5-EGf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WRX-dl-Alg" secondAttribute="bottom" constant="29" id="E7F-4c-7xG"/>
                 <constraint firstItem="eTr-o2-8Xr" firstAttribute="centerX" secondItem="Lrw-M9-5jB" secondAttribute="centerX" id="O1S-JK-2eW"/>
                 <constraint firstItem="UAL-I7-qIC" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" id="PG8-cJ-E5J"/>
-                <constraint firstItem="Lrw-M9-5jB" firstAttribute="top" secondItem="UAL-I7-qIC" secondAttribute="bottom" priority="800" constant="40" id="Psx-Cb-GIV"/>
+                <constraint firstItem="Lrw-M9-5jB" firstAttribute="top" secondItem="UAL-I7-qIC" secondAttribute="bottom" priority="800" constant="36" id="Psx-Cb-GIV"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Lrw-M9-5jB" secondAttribute="bottom" constant="160" id="T8Y-Rg-Big"/>
                 <constraint firstAttribute="bottom" secondItem="tx6-jd-3M7" secondAttribute="bottom" priority="900" constant="501" id="Trq-5e-f1h"/>
                 <constraint firstAttribute="centerX" secondItem="PSX-uF-FAV" secondAttribute="centerX" id="Ujf-WL-RbA"/>
-                <constraint firstAttribute="bottom" secondItem="PSX-uF-FAV" secondAttribute="bottom" priority="800" constant="86" id="VLx-3S-8iO"/>
+                <constraint firstAttribute="bottom" secondItem="PSX-uF-FAV" secondAttribute="bottom" priority="800" constant="81" id="VLx-3S-8iO"/>
                 <constraint firstItem="Tkb-LF-80g" firstAttribute="top" secondItem="eTr-o2-8Xr" secondAttribute="bottom" constant="5" id="WQU-WJ-YUM"/>
                 <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="tx6-jd-3M7" secondAttribute="bottom" constant="501" id="YHC-LF-bw0"/>
                 <constraint firstAttribute="bottom" secondItem="w5b-eJ-Ssl" secondAttribute="bottom" priority="800" constant="304" id="aOE-4o-Ysb"/>
@@ -165,12 +165,12 @@
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="KVn-N5-EGf" secondAttribute="bottom" constant="20" id="gHH-Ia-1NT"/>
                 <constraint firstAttribute="trailing" secondItem="tx6-jd-3M7" secondAttribute="trailing" id="jRn-Ue-c5M"/>
                 <constraint firstItem="tx6-jd-3M7" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" id="kb1-oE-AvN"/>
-                <constraint firstItem="PSX-uF-FAV" firstAttribute="top" secondItem="WRX-dl-Alg" secondAttribute="bottom" constant="10" id="rad-Gh-oR1"/>
+                <constraint firstItem="PSX-uF-FAV" firstAttribute="top" secondItem="WRX-dl-Alg" secondAttribute="bottom" constant="15" id="rad-Gh-oR1"/>
                 <constraint firstAttribute="trailing" secondItem="w5b-eJ-Ssl" secondAttribute="trailing" id="wbi-xk-akF"/>
                 <constraint firstItem="Lrw-M9-5jB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="UAL-I7-qIC" secondAttribute="bottom" priority="900" constant="20" id="xB0-6H-oF9"/>
-                <constraint firstAttribute="bottom" secondItem="Lrw-M9-5jB" secondAttribute="bottom" priority="800" constant="183" id="xta-Hy-Llm"/>
+                <constraint firstAttribute="bottom" secondItem="Lrw-M9-5jB" secondAttribute="bottom" priority="800" constant="187" id="xta-Hy-Llm"/>
                 <constraint firstItem="WRX-dl-Alg" firstAttribute="top" secondItem="Tkb-LF-80g" secondAttribute="bottom" constant="4" id="zAv-yX-Ls9"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="PSX-uF-FAV" secondAttribute="bottom" constant="60" id="zXd-Xt-lsk"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="PSX-uF-FAV" secondAttribute="bottom" constant="55" id="zXd-Xt-lsk"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

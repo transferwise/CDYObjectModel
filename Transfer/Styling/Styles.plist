@@ -21,6 +21,11 @@
 				<key>color</key>
 				<string>ffffff</string>
 			</dict>
+			<key>white2</key>
+			<dict>
+				<key>color</key>
+				<string>f7f9fb</string>
+			</dict>
 			<key>green</key>
 			<dict>
 				<key>color</key>
