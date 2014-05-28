@@ -54,6 +54,12 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
 }
 
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.contentView.frame = self.bounds;
+}
+
 - (void)setTitle:(NSString *)title {
     [self.titleLabel setText:title];
 }

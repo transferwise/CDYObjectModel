@@ -10,6 +10,7 @@
 #import "UIColor+Theme.h"
 #import "NSString+Validation.h"
 #import "TRWAlertView.h"
+#import "MOMStyle.h"
 
 NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
@@ -71,8 +72,8 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 - (void)setEditable:(BOOL)editable {
     [self.entryField setEnabled:editable];
-    [self.titleLabel setTextColor:(editable ? [UIColor blackColor] : [UIColor disabledEntryTextColor])];
-    [self.entryField setTextColor:(editable ? [UIColor blackColor] : [UIColor disabledEntryTextColor])];
+    [self.titleLabel setTextColor:(editable ? [UIColor colorFromStyle:self.titleLabel.fontStyle] : [UIColor disabledEntryTextColor])];
+    [self.entryField setTextColor:(editable ? [UIColor colorFromStyle:self.entryField.fontStyle] : [UIColor disabledEntryTextColor])];
 }
 
 - (void)addDoneButton {

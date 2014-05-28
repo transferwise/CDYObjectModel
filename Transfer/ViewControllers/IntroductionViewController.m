@@ -39,8 +39,8 @@ static NSUInteger const kRowYouSend = 0;
 @interface IntroductionViewController () <UITextFieldDelegate, OHAttributedLabelDelegate>
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) IBOutlet UIView *controlsView;
-@property (nonatomic, strong) IBOutlet UILabel *loginTitle;
+
+
 @property (nonatomic, strong) IBOutlet StartPaymentButton *startedButton;
 @property (nonatomic, strong) IBOutlet UIButton *loginButton;
 @property (nonatomic, strong) MoneyEntryCell *youSendCell;
@@ -50,9 +50,6 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) WhyView *whyView;
 @property (nonatomic, strong) PaymentFlow *paymentFlow;
 @property (nonatomic, strong) CurrencyPairsOperation *executedOperation;
-@property (nonatomic, strong) IBOutlet UIView *headerView;
-@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
-@property (nonatomic, strong) IBOutlet UILabel *subTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *saveLabel;
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *vsLabel;
@@ -83,11 +80,11 @@ static NSUInteger const kRowYouSend = 0;
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"LandingBackground.png"]]];
 
-    [self.tableView registerNib:[UINib nibWithNibName:@"MoneyEntryCell" bundle:nil] forCellReuseIdentifier:TWMoneyEntryCellIdentifier];
+    
 
     self.whyView = [[WhyView alloc] init];
 
-    [self setYouSendCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
+    [self setYouSendCell:[[NSBundle mainBundle] loadNibNamed:@"MoneyEntryCell" owner:self options:nil][0]];
     [self.youSendCell setTitle:NSLocalizedString(@"money.entry.you.send.title", nil)];
     [self.youSendCell setAmount:@"1000" currency:nil];
     [self.youSendCell.moneyField setReturnKeyType:UIReturnKeyDone];
@@ -99,7 +96,7 @@ static NSUInteger const kRowYouSend = 0;
     self.youSendCell.titleLabel.fontStyle = @"P.navBarBlue";
     [self.youSendCell setEditable:YES];
 
-    [self setTheyReceiveCell:[self.tableView dequeueReusableCellWithIdentifier:TWMoneyEntryCellIdentifier]];
+    [self setTheyReceiveCell:[[NSBundle mainBundle] loadNibNamed:@"MoneyEntryCell" owner:self options:nil][0]];
     [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
     [self.theyReceiveCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:nil];
     [self.theyReceiveCell.moneyField setReturnKeyType:UIReturnKeyDone];
@@ -111,11 +108,6 @@ static NSUInteger const kRowYouSend = 0;
     self.theyReceiveCell.titleLabel.fontStyle = @"P.lightText";
     [self.theyReceiveCell setEditable:YES];
 
-    [self.titleLabel setText:NSLocalizedString(@"introduction.header.title.text", nil)];
-
-    [self.tableView setTableHeaderView:self.headerView];
-    [self.tableView setTableFooterView:self.controlsView];
-
     self.saveLabel.hidden=YES;
     self.amountLabel.hidden=YES;
     self.vsLabel.hidden=YES;
@@ -126,7 +118,6 @@ static NSUInteger const kRowYouSend = 0;
     NSAttributedString *underlinedHowString = [[NSAttributedString alloc] initWithString:howString attributes:@{NSForegroundColorAttributeName : [UIColor colorFromStyle:@"link"] ,NSUnderlineStyleAttributeName: @(NSUnderlineStyleThick)}];
     [self.howButton setAttributedTitle:underlinedHowString forState:UIControlStateNormal];
     
-    [self.loginTitle setText:NSLocalizedString(@"introduction.login.section.title", nil)];
 
     [self.startedButton setTitle:NSLocalizedString(@"button.title.get.started", nil) forState:UIControlStateNormal];
     [self.loginButton setTitle:NSLocalizedString(@"button.title.log.in", nil) forState:UIControlStateNormal];
