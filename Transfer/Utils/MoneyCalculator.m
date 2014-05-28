@@ -18,7 +18,6 @@
 @interface MoneyCalculator ()
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
-@property (nonatomic, assign) CalculationAmountCurrency amountCurrency;
 @property (nonatomic, copy) NSString *waitingAmount;
 @property (nonatomic, strong) Currency *waitingSourceCurrency;
 @property (nonatomic, strong) Currency *waitingTargetCurrency;

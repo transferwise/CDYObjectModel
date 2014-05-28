@@ -28,7 +28,7 @@
 @property (nonatomic, strong) UIViewController *transactionsController;
 @property (nonatomic, assign) BOOL launchTableViewGamAdjustmentDone;
 @property (nonatomic, assign) BOOL shown;
-@property (nonatomic, strong) UIViewController *paymentController;
+@property (nonatomic, strong) PaymentViewController *paymentController;
 
 @end
 
@@ -244,6 +244,14 @@
     self.tabsController.selectedViewController = self.paymentController;
     [self popToRootViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    if (viewController == self.paymentController && tabBarController.selectedViewController != self.paymentController) {
+        [self.paymentController resetAmountsToDefault];
+    }
+
+    return YES;
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {

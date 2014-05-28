@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TransferCalculationsOperation.h"
 
 @class CalculationResult;
 
@@ -23,6 +24,7 @@ typedef void (^CalculationActivityHandler)(BOOL calculating);
 @property (nonatomic, copy) MoneyCalculationHandler calculationHandler;
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, copy) CalculationActivityHandler activityHandler;
+@property (nonatomic, assign) CalculationAmountCurrency amountCurrency;
 
 - (void)forceCalculate;
 
