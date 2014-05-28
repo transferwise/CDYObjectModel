@@ -21,7 +21,6 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
 @interface MoneyEntryCell () <UITextFieldDelegate, NSFetchedResultsControllerDelegate, CurrencySelectorDelegate>
 
-@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UITextField *moneyField;
 @property (nonatomic, strong) Currency *selectedCurrency;
 @property (nonatomic, strong) Currency *forced;

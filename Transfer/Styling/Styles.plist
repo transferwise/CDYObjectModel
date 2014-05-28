@@ -134,6 +134,15 @@
 				<key>color</key>
 				<string>ffffff</string>
 			</dict>
+			<key>largeText</key>
+			<dict>
+				<key>fontSize</key>
+				<integer>20</integer>
+				<key>fontName</key>
+				<string>Avenir-Book</string>
+				<key>color</key>
+				<string>ffffff</string>
+			</dict>
 			<key>smallText</key>
 			<dict>
 				<key>fontSize</key>
@@ -142,6 +151,15 @@
 				<string>Avenir-Medium</string>
 				<key>color</key>
 				<string>ffffff</string>
+			</dict>
+			<key>link</key>
+			<dict>
+				<key>fontSize</key>
+				<integer>14</integer>
+				<key>fontName</key>
+				<string>Avenir-Heavy</string>
+				<key>color</key>
+				<string>5c86a6</string>
 			</dict>
 		</dict>
 	</dict>

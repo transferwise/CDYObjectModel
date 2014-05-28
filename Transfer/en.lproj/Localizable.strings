@@ -96,7 +96,9 @@ identity and address";
 "introduction.login.section.title" = "Already a user?";
 "introduction.savings.receive.message.base" = "You'll get %@ more vs your bank";
 "introduction.savings.pay.message.base" = "You'll pay %@ less vs your bank";
-"introduction.savings.message.why" = "Why?";
+"introduction.savings.message.part1" = "You'll save";
+"introduction.savings.message.part2" = "vs Your bank";
+"introduction.savings.message.how" = "SEE HOW";
 "introduction.header.sub.title.text" = "No hidden fees. No headache.
 A revolution in your pocket.";
 
