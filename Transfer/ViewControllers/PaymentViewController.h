@@ -16,4 +16,6 @@
 @property (nonatomic, strong) Recipient *recipient;
 @property (nonatomic, strong) ObjectModel *objectModel;
 
+- (void)resetAmountsToDefault;
+
 @end

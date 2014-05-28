@@ -327,4 +327,9 @@ static NSUInteger const kRowYouSend = 0;
     });
 }
 
+- (void)resetAmountsToDefault {
+    [self.youSendCell setAmount:@"1000" currency:self.youSendCell.currency];
+    [self.calculator setAmountCurrency:SourceCurrency];
+}
+
 @end
