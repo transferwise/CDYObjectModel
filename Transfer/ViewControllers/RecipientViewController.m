@@ -198,6 +198,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         return;
     }
 
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 
     [self presentProfileForSource:self.profileSelectionView.presentedSource];

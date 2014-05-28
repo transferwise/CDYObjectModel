@@ -116,11 +116,15 @@ static NSUInteger const kRowYouSend = 0;
     [self.tableView setTableHeaderView:self.headerView];
     [self.tableView setTableFooterView:self.controlsView];
 
-    self.saveLabel.text = @"";
-    self.amountLabel.text = @"";
-    self.vsLabel.text = @"";
-    [self.howButton setTitle:@"" forState:UIControlStateNormal];
-    self.howButton.enabled = NO;
+    self.saveLabel.hidden=YES;
+    self.amountLabel.hidden=YES;
+    self.vsLabel.hidden=YES;
+    self.howButton.hidden=YES;
+    self.saveLabel.text = NSLocalizedString(@"introduction.savings.message.part1" ,nil);
+    self.vsLabel.text = NSLocalizedString(@"introduction.savings.message.part2" ,nil);
+    NSString *howString = NSLocalizedString(@"introduction.savings.message.how",nil);
+    NSAttributedString *underlinedHowString = [[NSAttributedString alloc] initWithString:howString attributes:@{NSForegroundColorAttributeName : [UIColor colorFromStyle:@"link"] ,NSUnderlineStyleAttributeName: @(NSUnderlineStyleThick)}];
+    [self.howButton setAttributedTitle:underlinedHowString forState:UIControlStateNormal];
     
     [self.loginTitle setText:NSLocalizedString(@"introduction.login.section.title", nil)];
 
@@ -172,11 +176,10 @@ static NSUInteger const kRowYouSend = 0;
 
 - (void)displayWinMessage:(CalculationResult *)result
 {
-    self.saveLabel.text = NSLocalizedString(@"introduction.savings.message.part1" ,nil);
-    self.vsLabel.text = NSLocalizedString(@"introduction.savings.message.part2" ,nil);
-    NSString *howString = NSLocalizedString(@"introduction.savings.message.how",nil);
-    NSAttributedString *underlinedHowString = [[NSAttributedString alloc] initWithString:howString attributes:@{NSForegroundColorAttributeName : [UIColor colorFromStyle:@"link"] ,NSUnderlineStyleAttributeName: @(NSUnderlineStyleThick)}];
-    [self.howButton setAttributedTitle:underlinedHowString forState:UIControlStateNormal];
+    self.saveLabel.hidden = NO;
+    self.vsLabel.hidden = NO;
+    self.amountLabel.hidden = NO;
+    self.howButton.hidden = NO;
     self.howButton.enabled = YES;
     
     if(result.amountCurrency == SourceCurrency)
@@ -197,7 +200,7 @@ static NSUInteger const kRowYouSend = 0;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    self.navigationController.navigationBarHidden = YES;
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self.navigationItem setHidesBackButton:YES];
 
     UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
