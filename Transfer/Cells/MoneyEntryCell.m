@@ -146,13 +146,24 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     [_currencies setDelegate:nil];
     _currencies = currencies;
     [_currencies setDelegate:self];
-
-    id source = currencies.fetchedObjects[0];
-    [self setSource:source];
-    Currency *selected = [source currency];
-
-    if(self.forced)
+    
+    NSUInteger index = 0;
+    if(self.selectedCurrency)
     {
+        NSArray* codes = [currencies.fetchedObjects valueForKey:@"currency"];
+        index = [codes indexOfObject:self.selectedCurrency];
+        if(index == NSNotFound)
+        {
+            index = 0;
+        }
+    }
+
+    id source = currencies.fetchedObjects[index];
+    [self setSource:source];
+
+    Currency *selected = [source currency];
+    
+    if (self.forced) {
         selected = self.forced;
         self.currencyButton.enabled = NO;
     }
