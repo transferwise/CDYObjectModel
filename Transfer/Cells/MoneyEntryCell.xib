@@ -45,9 +45,20 @@
                         <rect key="frame" x="291" y="35" width="14" height="12"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     </imageView>
+                    <view contentMode="scaleToFill" id="vqA-Y2-RQw">
+                        <rect key="frame" x="0.0" y="79" width="205" height="1"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.87843143939971924" green="0.91372555494308472" blue="0.93333339691162109" alpha="1" colorSpace="deviceRGB"/>
+                    </view>
+                    <view contentMode="scaleToFill" id="jDF-Jh-Dgc">
+                        <rect key="frame" x="205" y="79" width="115" height="1"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.10588236153125763" green="0.14901961386203766" blue="0.22352942824363708" alpha="1" colorSpace="deviceRGB"/>
+                    </view>
                 </subviews>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="currencyButton" destination="Z6M-fZ-TwS" id="xz5-lS-qpG"/>
                 <outlet property="entryField" destination="4" id="22"/>
