@@ -96,6 +96,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
     [self refreshPaymentsList];
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
+    [self.navigationController setNavigationBarHidden:IPAD animated:YES];
 
 	[self checkPersonalVerificationNeeded];
 }
