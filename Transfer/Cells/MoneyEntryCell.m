@@ -154,11 +154,23 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     [_currencies setDelegate:nil];
     _currencies = currencies;
     [_currencies setDelegate:self];
+    
+    NSUInteger index = 0;
+    if(self.selectedCurrency)
+    {
+        NSArray* codes = [currencies.fetchedObjects valueForKey:@"currency"];
+        index = [codes indexOfObject:self.selectedCurrency];
+        if(index == NSNotFound)
+        {
+            index = 0;
+        }
+    }
 
-    id source = currencies.fetchedObjects[0];
+    id source = currencies.fetchedObjects[index];
     [self setSource:source];
-    Currency *selected = [source currency];
 
+    Currency *selected = [source currency];
+    
     if (self.forced) {
         selected = self.forced;
         [self.currencyField setUserInteractionEnabled:NO];
@@ -168,7 +180,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     [self setSelectedCurrency:selected];
     [self.currencyField setText:selected.code];
     [self.picker reloadAllComponents];
-    [self.picker selectRow:0 inComponent:0 animated:NO];
+    [self.picker selectRow:index inComponent:0 animated:NO];
     self.currencyChangedHandler(selected);
 }
 
