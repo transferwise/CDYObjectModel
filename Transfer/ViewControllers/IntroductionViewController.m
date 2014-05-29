@@ -164,6 +164,8 @@ static NSUInteger const kRowYouSend = 0;
     
     [self retrieveCurrencyPairs];
     
+    UITapGestureRecognizer *dismissRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
+    [self.view addGestureRecognizer:dismissRecogniser];
 }
 
 - (void)displayWinMessage:(CalculationResult *)result
@@ -271,6 +273,11 @@ static NSUInteger const kRowYouSend = 0;
     } else {
         [self.theyReceiveCell.moneyField becomeFirstResponder];
     }
+}
+
+-(void)dismissKeyboard:(id)sender
+{
+    [self.view endEditing:YES];
 }
 
 - (IBAction)loginPressed:(id)sender {
