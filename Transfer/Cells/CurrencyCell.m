@@ -23,7 +23,7 @@
     UIImage *flag = [UIImage imageNamed:currency.code];
     if(!flag)
     {
-        //TODO: set default
+        flag = [UIImage imageNamed:@"flag_default"];
     }
     self.flagImage.image = flag;
     self.currencyLabel.text = currency.code;

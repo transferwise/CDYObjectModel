@@ -189,7 +189,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     UIImage* flag = [UIImage imageNamed:selectedCurrency.code];
     if(!flag)
     {
-        //TODO: Set default
+        flag = [UIImage imageNamed:@"flag_default"];
     }
     [self.currencyButton setImage:flag forState:UIControlStateNormal];
 }
