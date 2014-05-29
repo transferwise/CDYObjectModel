@@ -28,10 +28,11 @@
 #import "PersonalProfileIdentificationViewController.h"
 #import "PendingPayment.h"
 #import "PaymentPurposeOperation.h"
+#import "PullToRefreshView.h"
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
-@interface TransactionsViewController () <UIScrollViewDelegate, NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface TransactionsViewController () <UIScrollViewDelegate, NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource, PullToRefreshViewDelegate>
 
 @property (nonatomic, strong) PaymentsOperation *executedOperation;
 @property (nonatomic, strong) IBOutlet UIView *loadingFooterView;
@@ -42,6 +43,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (nonatomic, strong) CheckPersonalProfileVerificationOperation *checkOperation;
 @property (nonatomic, assign) IdentificationRequired identificationRequired;
 @property (nonatomic, strong) TransferwiseOperation *executedUploadOperation;
+@property (nonatomic, weak) PullToRefreshView* refreshView;
 
 @end
 
@@ -62,6 +64,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"PaymentCell" bundle:nil] forCellReuseIdentifier:kPaymentCellIdentifier];
+    PullToRefreshView* refreshView = [PullToRefreshView addInstanceToScrollView:self.tableView];
+    refreshView.targetHeight = 60.0f;
+    refreshView.delegate = self;
+    self.refreshView = refreshView;
 
     UIView *footer = [[UIView alloc] initWithFrame:CGRectZero];
     [self.tableView setTableFooterView:footer];
@@ -179,10 +185,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
     [self.tableView setTableFooterView:nil];
 
-    TabBarActivityIndicatorView *hud = [TabBarActivityIndicatorView showHUDOnController:self];
-    [hud setMessage:NSLocalizedString(@"transactions.controller.refreshing.message", nil)];
-
-    [self refreshPaymentsWithOffset:0 hud:hud];
+    [self refreshPaymentsWithOffset:0 hud:nil];
 }
 
 - (void)refreshPaymentsWithOffset:(NSInteger)offset hud:(TabBarActivityIndicatorView *)hud {
@@ -193,6 +196,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [operation setCompletion:^(NSInteger totalCount, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hide];
+            [self.refreshView refreshComplete];
 
             [self setExecutedOperation:nil];
             if (totalCount > [self.payments.fetchedObjects count]) {
@@ -215,7 +219,14 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     if (!decelerate) {
         [self checkReloadNeeded];
     }
+    [self.refreshView scrollViewDidEndDragging];
 }
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.refreshView scrollViewDidScroll];
+}
+
 
 - (void)checkReloadNeeded {
     if (!self.tableView.tableFooterView) {
@@ -373,6 +384,13 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [operation setCompletionHandler:completion];
 
     [operation execute];
+}
+
+#pragma mark - PullToRefresh
+
+-(void)refreshRequested:(PullToRefreshView *)refreshView
+{
+    [self refreshPaymentsList];
 }
 
 @end
