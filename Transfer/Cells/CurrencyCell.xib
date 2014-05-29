@@ -17,7 +17,17 @@
                         <rect key="frame" x="120" y="14" width="15" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WWW" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tuf-xY-QxQ">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WWW" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tuf-xY-QxQ" userLabel="Label - WWW blue">
+                        <rect key="frame" x="150" y="12" width="63" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="H4.lightText"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WWW" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tGJ-DK-FGG" userLabel="Label - WWW white">
                         <rect key="frame" x="150" y="12" width="63" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
@@ -33,6 +43,8 @@
             <connections>
                 <outlet property="currencyLabel" destination="tuf-xY-QxQ" id="eeS-Cm-nSh"/>
                 <outlet property="flagImage" destination="mjr-Mk-b6f" id="TXz-zk-5ec"/>
+                <outlet property="viewToMask" destination="tGJ-DK-FGG" id="W30-K8-Zay"/>
+                <outlet property="whiteCurrencyLabel" destination="tGJ-DK-FGG" id="hTY-fs-bFe"/>
             </connections>
         </collectionViewCell>
     </objects>

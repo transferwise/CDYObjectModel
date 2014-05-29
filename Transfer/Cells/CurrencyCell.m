@@ -12,6 +12,7 @@
 @interface CurrencyCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *flagImage;
 @property (weak, nonatomic) IBOutlet UILabel *currencyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *whiteCurrencyLabel;
 @end
 
 @implementation CurrencyCell
@@ -26,6 +27,7 @@
     }
     self.flagImage.image = flag;
     self.currencyLabel.text = currency.code;
+    self.whiteCurrencyLabel.text = currency.code;
 }
 
 @end

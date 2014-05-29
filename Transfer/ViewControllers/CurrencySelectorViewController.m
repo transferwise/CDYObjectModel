@@ -18,6 +18,7 @@
 @property (nonatomic, assign) NSUInteger selectedIndex;
 @property (nonatomic, weak) UIView* blurView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (nonatomic, strong) NSMutableArray* maskedCells;
 
 @end
 
@@ -34,6 +35,7 @@
 
 - (void)viewDidLoad
 {
+
     [super viewDidLoad];
     UINib *cellNib = [UINib nibWithNibName:@"CurrencyCell" bundle:[NSBundle mainBundle]];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"CurrencyCell"];
@@ -51,7 +53,13 @@
         self.selectedIndex = 0;
     }
     self.collectionView.contentOffset = [self calculateOffsetForCellAtIndex:self.selectedIndex];
+        [self maskCenterCells];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //Mask the selected cell
+        [self maskCenterCells];
+    });
 }
+
 
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -63,6 +71,7 @@
 {
     CurrencyCell* cell = (CurrencyCell*)[self.collectionView dequeueReusableCellWithReuseIdentifier:@"CurrencyCell" forIndexPath:indexPath];
     [cell configureWithCurrency:self.currencyArray[indexPath.row]];
+    cell.viewToMask.hidden = YES;
     return cell;
 }
 
@@ -89,6 +98,74 @@
 -(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
     [self calculateSelectedIndex];
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self maskCenterCells];
+}
+
+-(void)maskCenterCells
+{
+    NSMutableArray *cellsToMask = [NSMutableArray arrayWithCapacity:2];
+    CGRect maskFrame = self.highlightView.frame;
+    NSIndexPath* indexPath = [self.collectionView indexPathForItemAtPoint:[self.view convertPoint:maskFrame.origin toView:self.collectionView]];
+    if (indexPath)
+    {
+        CurrencyCell* cell = (CurrencyCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+        if(cell)
+        {
+            [cellsToMask addObject:cell];
+        }
+    }
+    CGPoint bottomOfMask = maskFrame.origin;
+    bottomOfMask.y += maskFrame.size.height;
+    indexPath = [self.collectionView indexPathForItemAtPoint:[self.view convertPoint:bottomOfMask toView:self.collectionView]];
+    if (indexPath)
+    {
+        CurrencyCell* cell = (CurrencyCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+        if(cell)
+        {
+            [cellsToMask addObject:cell];
+        }
+    }
+    [self maskCells:cellsToMask];
+}
+
+-(void)maskCells:(NSArray*)cells
+{
+    for (CurrencyCell *cell in cells) {
+        cell.viewToMask.hidden = NO;
+        [self maskCell:cell];
+        [self.maskedCells removeObject:cell];
+    }
+    
+    for (CurrencyCell *cell in self.maskedCells) {
+        cell.viewToMask.hidden = YES;
+    }
+    
+    self.maskedCells = [cells mutableCopy];
+    
+}
+
+-(void)maskCell:(CurrencyCell*)cell
+{
+    CGRect maskFrame = self.highlightView.frame;
+    CGRect convertedMaskFrame = [self.view convertRect:maskFrame toView:cell.viewToMask];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    CGRect maskRect = convertedMaskFrame;
+    
+    // Create a path with the rectangle in it.
+    CGPathRef path = CGPathCreateWithRect(maskRect, NULL);
+    
+    // Set the path to the mask layer.
+    maskLayer.path = path;
+    
+    // Release the path since it's not covered by ARC.
+    CGPathRelease(path);
+    
+    // Set the mask of the view.
+    cell.viewToMask.layer.mask = maskLayer;
 }
 
 -(void)calculateSelectedIndex

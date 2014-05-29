@@ -12,6 +12,9 @@
 
 @interface CurrencyCell : UICollectionViewCell
 
+@property (weak, nonatomic) IBOutlet UIView *viewToMask;
+
+
 -(void)configureWithCurrency:(Currency*)currency;
 
 @end
