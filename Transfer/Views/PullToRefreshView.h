@@ -8,6 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PullToRefreshView : UIView
+@class PullToRefreshView;
+@protocol PullToRefreshViewDelegate <NSObject>
 
+-(void)refreshRequested:(PullToRefreshView*)refreshView;
+
+@end
+
+@interface PullToRefreshView : UIView<UIScrollViewDelegate>
+
+@property (nonatomic, assign) CGFloat targetHeight;
+@property (nonatomic, weak) id<PullToRefreshViewDelegate> delegate;
+
++(PullToRefreshView*)addInstanceToScrollView:(UIScrollView*)scrollView;
+
+-(void)addToScrollView:(UIScrollView*)scrollView;
+
+-(void)scrollViewDidEndDragging;
+
+-(void)scrollViewDidScroll;
+
+-(void)refreshComplete;
 @end
