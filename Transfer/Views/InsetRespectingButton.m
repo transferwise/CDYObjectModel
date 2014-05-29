@@ -10,22 +10,13 @@
 
 @implementation InsetRespectingButton
 
-- (id)initWithFrame:(CGRect)frame
+-(CGSize)intrinsicContentSize
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
+    CGSize s = [super intrinsicContentSize];
+    
+    return CGSizeMake(s.width + self.titleEdgeInsets.left + self.titleEdgeInsets.right,
+                      s.height + self.titleEdgeInsets.top + self.titleEdgeInsets.bottom);
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
 }
-*/
 
 @end
