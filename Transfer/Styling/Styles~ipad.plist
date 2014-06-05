@@ -21,6 +21,16 @@
 				<key>color</key>
 				<string>ffffff</string>
 			</dict>
+			<key>white2</key>
+			<dict>
+				<key>color</key>
+				<string>f7f9fb</string>
+			</dict>
+			<key>green</key>
+			<dict>
+				<key>color</key>
+				<string>83b019</string>
+			</dict>
 			<key>darkText</key>
 			<dict>
 				<key>color</key>
@@ -51,10 +61,20 @@
 				<key>color</key>
 				<string>212e4b</string>
 			</dict>
+			<key>navBarBlue</key>
+			<dict>
+				<key>color</key>
+				<string>537c9b</string>
+			</dict>
 			<key>lightBlue</key>
 			<dict>
 				<key>color</key>
 				<string>324266</string>
+			</dict>
+			<key>paleBlue</key>
+			<dict>
+				<key>color</key>
+				<string>dee9ed</string>
 			</dict>
 			<key>lightBlueHighlighted</key>
 			<dict>
@@ -66,6 +86,11 @@
 				<key>alpha</key>
 				<real>0.9</real>
 			</dict>
+			<key>alpha2</key>
+			<dict>
+				<key>alpha</key>
+				<real>0.95</real>
+			</dict>
 		</dict>
 		<key>font</key>
 		<dict>
@@ -73,6 +98,15 @@
 			<dict>
 				<key>fontSize</key>
 				<integer>15</integer>
+				<key>fontName</key>
+				<string>Avenir-Medium</string>
+				<key>color</key>
+				<string>1e2022</string>
+			</dict>
+			<key>H1</key>
+			<dict>
+				<key>fontSize</key>
+				<integer>26</integer>
 				<key>fontName</key>
 				<string>Avenir-Medium</string>
 				<key>color</key>
@@ -96,6 +130,42 @@
 				<key>color</key>
 				<string>1e2022</string>
 			</dict>
+			<key>H4</key>
+			<dict>
+				<key>fontSize</key>
+				<integer>20</integer>
+				<key>fontName</key>
+				<string>Avenir-Medium</string>
+				<key>color</key>
+				<string>ffffff</string>
+			</dict>
+			<key>H5</key>
+			<dict>
+				<key>fontSize</key>
+				<integer>16</integer>
+				<key>fontName</key>
+				<string>Avenir-Light</string>
+				<key>color</key>
+				<string>ffffff</string>
+			</dict>
+			<key>largeText</key>
+			<dict>
+				<key>fontSize</key>
+				<integer>27</integer>
+				<key>fontName</key>
+				<string>Avenir-Book</string>
+				<key>color</key>
+				<string>ffffff</string>
+			</dict>
+			<key>sumText</key>
+			<dict>
+				<key>fontSize</key>
+				<integer>26</integer>
+				<key>fontName</key>
+				<string>Avenir-Medium</string>
+				<key>color</key>
+				<string>ffffff</string>
+			</dict>
 			<key>smallText</key>
 			<dict>
 				<key>fontSize</key>
@@ -104,6 +174,24 @@
 				<string>Avenir-Medium</string>
 				<key>color</key>
 				<string>ffffff</string>
+			</dict>
+			<key>link</key>
+			<dict>
+				<key>fontSize</key>
+				<integer>17</integer>
+				<key>fontName</key>
+				<string>Avenir-Heavy</string>
+				<key>color</key>
+				<string>5c86a6</string>
+			</dict>
+			<key>mediumText</key>
+			<dict>
+				<key>fontSize</key>
+				<integer>19</integer>
+				<key>fontName</key>
+				<string>Avenir-Light</string>
+				<key>color</key>
+				<string>5c86a6</string>
 			</dict>
 		</dict>
 	</dict>
@@ -121,6 +209,33 @@
 			<string>panel2</string>
 			<key>appearanceStyle</key>
 			<string>rounded</string>
+		</dict>
+		<key>sendButton</key>
+		<dict>
+			<key>fontStyle</key>
+			<string>H4</string>
+			<key>highlightedBgStyle</key>
+			<string>tabBarBlue.alpha2</string>
+			<key>bgStyle</key>
+			<string>tabBarBlue</string>
+		</dict>
+		<key>getButton</key>
+		<dict>
+			<key>fontStyle</key>
+			<string>H4</string>
+			<key>highlightedBgStyle</key>
+			<string>lightBlue.alpha2</string>
+			<key>bgStyle</key>
+			<string>lightBlue</string>
+		</dict>
+		<key>greenButton</key>
+		<dict>
+			<key>fontStyle</key>
+			<string>H4</string>
+			<key>highlightedBgStyle</key>
+			<string>green.alpha2</string>
+			<key>bgStyle</key>
+			<string>green</string>
 		</dict>
 	</dict>
 </dict>
