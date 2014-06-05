@@ -10,6 +10,7 @@
                 <outlet property="howButton" destination="WRX-dl-Alg" id="DHq-E5-7S9"/>
                 <outlet property="loginButton" destination="KVn-N5-EGf" id="xwX-R6-Luh"/>
                 <outlet property="saveLabel" destination="Lrw-M9-5jB" id="Yvf-w4-cpa"/>
+                <outlet property="sendMoneyLabel" destination="NJU-Hs-h7h" id="THK-Lv-4ye"/>
                 <outlet property="startedButton" destination="UAL-I7-qIC" id="HsM-OH-U2p"/>
                 <outlet property="tableView" destination="jOH-gc-1dO" id="jrL-as-Nbw"/>
                 <outlet property="view" destination="o2g-cv-K3K" id="OFd-hp-K7v"/>
@@ -110,6 +111,16 @@
                         <outlet property="delegate" destination="-1" id="ljk-gc-qMO"/>
                     </connections>
                 </tableView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send money" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJU-Hs-h7h">
+                    <rect key="frame" x="336" y="35" width="97" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="mediumText.navbarblue"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -123,8 +134,10 @@
                 <constraint firstItem="eTr-o2-8Xr" firstAttribute="centerX" secondItem="Lrw-M9-5jB" secondAttribute="centerX" id="O1S-JK-2eW"/>
                 <constraint firstItem="Lrw-M9-5jB" firstAttribute="top" secondItem="UAL-I7-qIC" secondAttribute="bottom" constant="43" id="Psx-Cb-GIV"/>
                 <constraint firstItem="Tkb-LF-80g" firstAttribute="top" secondItem="eTr-o2-8Xr" secondAttribute="bottom" constant="-2" id="WQU-WJ-YUM"/>
+                <constraint firstAttribute="centerX" secondItem="NJU-Hs-h7h" secondAttribute="centerX" id="Yg2-4x-uQf"/>
                 <constraint firstAttribute="centerX" secondItem="Lrw-M9-5jB" secondAttribute="centerX" id="eZc-54-oSx"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="KVn-N5-EGf" secondAttribute="bottom" constant="20" id="gHH-Ia-1NT"/>
+                <constraint firstItem="NJU-Hs-h7h" firstAttribute="top" secondItem="o2g-cv-K3K" secondAttribute="top" constant="35" id="iTs-0d-6wV"/>
                 <constraint firstItem="UAL-I7-qIC" firstAttribute="top" secondItem="jOH-gc-1dO" secondAttribute="bottom" constant="29" id="igO-95-wk9"/>
                 <constraint firstAttribute="centerX" secondItem="UAL-I7-qIC" secondAttribute="centerX" id="t4U-c0-teW"/>
                 <constraint firstItem="WRX-dl-Alg" firstAttribute="top" secondItem="Tkb-LF-80g" secondAttribute="bottom" constant="19" id="zAv-yX-Ls9"/>

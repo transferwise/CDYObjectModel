@@ -53,6 +53,7 @@ static NSUInteger const kRowYouSend = 0;
 @property (weak, nonatomic) IBOutlet UILabel *saveLabel;
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *vsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sendMoneyLabel;
 @property (weak, nonatomic) IBOutlet UIButton *howButton;
 
 - (IBAction)loginPressed:(id)sender;
@@ -115,6 +116,7 @@ static NSUInteger const kRowYouSend = 0;
     self.howButton.hidden=YES;
     self.saveLabel.text = NSLocalizedString(@"introduction.savings.message.part1" ,nil);
     self.vsLabel.text = NSLocalizedString(@"introduction.savings.message.part2" ,nil);
+	self.sendMoneyLabel.text = NSLocalizedString(@"introduction.title", nil);
     NSString *howString = NSLocalizedString(@"introduction.savings.message.how",nil);
     NSAttributedString *underlinedHowString = [[NSAttributedString alloc] initWithString:howString attributes:@{NSForegroundColorAttributeName : [UIColor colorFromStyle:@"link"] ,NSUnderlineStyleAttributeName: @(NSUnderlineStyleThick)}];
     [self.howButton setAttributedTitle:underlinedHowString forState:UIControlStateNormal];

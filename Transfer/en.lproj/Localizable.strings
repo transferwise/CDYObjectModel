@@ -92,6 +92,7 @@ identity and address";
 "introduction.currencies.retrieve.error.message" = "Could not retrieve currencies from server";
 "introduction.currencies.retrieve.error.title" = "Currencies error";
 "introduction.calculation.error.title" = "Calculation failed";
+"introduction.title" = "Send money";
 "introduction.header.title.text" = "How much would you like to send?";
 "introduction.login.section.title" = "Already a user?";
 "introduction.savings.receive.message.base" = "You'll get %@ more vs your bank";
