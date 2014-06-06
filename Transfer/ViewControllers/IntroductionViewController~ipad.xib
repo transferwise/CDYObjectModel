@@ -112,7 +112,7 @@
                     </connections>
                 </tableView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send money" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJU-Hs-h7h">
-                    <rect key="frame" x="336" y="35" width="97" height="21"/>
+                    <rect key="frame" x="336" y="30" width="97" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -137,7 +137,7 @@
                 <constraint firstAttribute="centerX" secondItem="NJU-Hs-h7h" secondAttribute="centerX" id="Yg2-4x-uQf"/>
                 <constraint firstAttribute="centerX" secondItem="Lrw-M9-5jB" secondAttribute="centerX" id="eZc-54-oSx"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="KVn-N5-EGf" secondAttribute="bottom" constant="20" id="gHH-Ia-1NT"/>
-                <constraint firstItem="NJU-Hs-h7h" firstAttribute="top" secondItem="o2g-cv-K3K" secondAttribute="top" constant="35" id="iTs-0d-6wV"/>
+                <constraint firstItem="NJU-Hs-h7h" firstAttribute="top" secondItem="o2g-cv-K3K" secondAttribute="top" constant="30" id="iTs-0d-6wV"/>
                 <constraint firstItem="UAL-I7-qIC" firstAttribute="top" secondItem="jOH-gc-1dO" secondAttribute="bottom" constant="29" id="igO-95-wk9"/>
                 <constraint firstAttribute="centerX" secondItem="UAL-I7-qIC" secondAttribute="centerX" id="t4U-c0-teW"/>
                 <constraint firstItem="WRX-dl-Alg" firstAttribute="top" secondItem="Tkb-LF-80g" secondAttribute="bottom" constant="19" id="zAv-yX-Ls9"/>
