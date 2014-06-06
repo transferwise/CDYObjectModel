@@ -33,6 +33,7 @@
 #import "AnalyticsCoordinator.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 #import "MOMStyle.h"
+#import "NSString+DeviceSpecificLocalisation.h"
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -114,10 +115,10 @@ static NSUInteger const kRowYouSend = 0;
     self.amountLabel.hidden=YES;
     self.vsLabel.hidden=YES;
     self.howButton.hidden=YES;
-    self.saveLabel.text = NSLocalizedString(@"introduction.savings.message.part1" ,nil);
-    self.vsLabel.text = NSLocalizedString(@"introduction.savings.message.part2" ,nil);
+    self.saveLabel.text = NSLocalizedString([@"introduction.savings.message.part1" deviceSpecificLocalization], nil);
+    self.vsLabel.text = NSLocalizedString([@"introduction.savings.message.part2" deviceSpecificLocalization], nil);
 	self.sendMoneyLabel.text = NSLocalizedString(@"introduction.title", nil);
-    NSString *howString = NSLocalizedString(@"introduction.savings.message.how",nil);
+    NSString *howString = NSLocalizedString([@"introduction.savings.message.how" deviceSpecificLocalization], nil);
     NSAttributedString *underlinedHowString = [[NSAttributedString alloc] initWithString:howString attributes:@{NSForegroundColorAttributeName : [UIColor colorFromStyle:@"link"] ,NSUnderlineStyleAttributeName: @(NSUnderlineStyleThick)}];
     [self.howButton setAttributedTitle:underlinedHowString forState:UIControlStateNormal];
     
