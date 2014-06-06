@@ -150,6 +150,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Rounded" width="43" height="28"/>
+        <image name="Rounded" width="100" height="44"/>
     </resources>
 </document>

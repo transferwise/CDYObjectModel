@@ -2040,7 +2040,7 @@
 				ORGANIZATIONNAME = "Mooncascade OÜ";
 				TargetAttributes = {
 					EA31A12117DDB29B00F937F7 = {
-						DevelopmentTeam = RPBJ53J2Y4;
+						DevelopmentTeam = W53MTDV45J;
 					};
 					EAAA1467171BC911005B9430 = {
 						DevelopmentTeam = W53MTDV45J;
@@ -3007,7 +3007,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -3034,7 +3034,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};
@@ -3065,7 +3065,7 @@
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F4827BFF-6C5A-4B47-8051-4EE276CCD33B";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F4827BFF-6C5A-4B47-8051-4EE276CCD33B";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -3079,7 +3079,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: TransferWise LTD (W53MTDV45J)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -3099,7 +3099,7 @@
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "E8AFB171-D169-45C7-9517-B5FE6005D2DA";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E8AFB171-D169-45C7-9517-B5FE6005D2DA";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
