@@ -69,7 +69,7 @@ static NSUInteger const TransferwiseAppID = 612261027;
 #define IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 
 #define USE_FACEBOOK_EVENTS 1
-#define USE_APPSFLYER_EVENTS 1
+#define USE_APPSFLYER_EVENTS 0
 
 typedef NS_OPTIONS(short, IdentificationRequired) {
 	IdentificationNoneRequired = 0,
