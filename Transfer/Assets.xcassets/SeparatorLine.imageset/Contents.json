@@ -1,14 +1,36 @@
 {
   "images" : [
     {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1
+        },
+        "capInsets" : {
+          "right" : 160,
+          "left" : 159
+        }
+      },
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "SeparatorLine.png"
+      "filename" : "SeparatorLine.png",
+      "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1
+        },
+        "capInsets" : {
+          "right" : 320,
+          "left" : 319
+        }
+      },
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "SeparatorLine@2x.png"
+      "filename" : "SeparatorLine@2x.png",
+      "scale" : "2x"
     }
   ],
   "info" : {
