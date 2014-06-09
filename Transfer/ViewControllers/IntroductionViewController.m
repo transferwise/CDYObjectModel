@@ -108,7 +108,7 @@ static NSUInteger const kRowYouSend = 0;
     self.theyReceiveCell.hostForCurrencySelector = self.navigationController;
     self.theyReceiveCell.currencyButton.compoundStyle = @"getButton";
     self.theyReceiveCell.titleLabel.fontStyle = @"P.lightText";
-    //self.theyReceiveCell.contentView.bgStyle = @"white2";
+    self.theyReceiveCell.contentView.bgStyle = @"white2";
     [self.theyReceiveCell setEditable:YES];
 
     self.saveLabel.hidden=YES;
