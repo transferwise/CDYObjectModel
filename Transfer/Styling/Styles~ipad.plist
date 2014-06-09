@@ -106,7 +106,7 @@
 			<key>H1</key>
 			<dict>
 				<key>fontSize</key>
-				<integer>26</integer>
+				<integer>28</integer>
 				<key>fontName</key>
 				<string>Avenir-Medium</string>
 				<key>color</key>
@@ -133,7 +133,7 @@
 			<key>H4</key>
 			<dict>
 				<key>fontSize</key>
-				<integer>20</integer>
+				<integer>17</integer>
 				<key>fontName</key>
 				<string>Avenir-Medium</string>
 				<key>color</key>
