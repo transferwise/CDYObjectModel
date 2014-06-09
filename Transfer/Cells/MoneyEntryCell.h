@@ -23,6 +23,7 @@ typedef void (^CurrencyChangBlock)(Currency *currency);
 @property (nonatomic, weak) UIViewController* hostForCurrencySelector;
 @property (weak, nonatomic) IBOutlet UIButton *currencyButton;
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
+@property (nonatomic) BOOL leftSeparatorHidden;
 
 - (void)setTitle:(NSString *)title;
 - (void)setAmount:(NSString *)amount currency:(Currency *)currency;

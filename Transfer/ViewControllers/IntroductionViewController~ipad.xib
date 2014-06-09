@@ -23,10 +23,10 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAL-I7-qIC" customClass="StartPaymentButton">
-                    <rect key="frame" x="169" y="527" width="430" height="50"/>
+                    <rect key="frame" x="169" y="526" width="430" height="49"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="S7W-9S-7cf"/>
+                        <constraint firstAttribute="height" constant="49" id="S7W-9S-7cf"/>
                         <constraint firstAttribute="width" constant="430" id="qzi-sQ-qJg"/>
                     </constraints>
                     <state key="normal" title="Get started">
@@ -59,7 +59,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="save" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lrw-M9-5jB">
-                    <rect key="frame" x="366" y="620" width="36" height="21"/>
+                    <rect key="frame" x="366" y="618" width="36" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -69,7 +69,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTr-o2-8Xr">
-                    <rect key="frame" x="355" y="639" width="59" height="21"/>
+                    <rect key="frame" x="355" y="637" width="59" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -79,7 +79,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="vs bank" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tkb-LF-80g">
-                    <rect key="frame" x="354" y="658" width="60" height="21"/>
+                    <rect key="frame" x="354" y="656" width="60" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -89,7 +89,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRX-dl-Alg">
-                    <rect key="frame" x="366" y="698" width="37" height="34"/>
+                    <rect key="frame" x="366" y="696" width="37" height="34"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="How">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -99,12 +99,12 @@
                     </userDefinedRuntimeAttributes>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jOH-gc-1dO">
-                    <rect key="frame" x="169" y="338" width="430" height="159"/>
+                    <rect key="frame" x="169" y="337" width="430" height="160"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="430" id="5bh-g6-iRU"/>
-                        <constraint firstAttribute="height" constant="159" id="vQT-3f-CDc"/>
+                        <constraint firstAttribute="height" constant="160" id="vQT-3f-CDc"/>
                     </constraints>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="5SZ-hY-4me"/>
@@ -138,7 +138,7 @@
                 <constraint firstAttribute="centerX" secondItem="Lrw-M9-5jB" secondAttribute="centerX" id="eZc-54-oSx"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="KVn-N5-EGf" secondAttribute="bottom" constant="20" id="gHH-Ia-1NT"/>
                 <constraint firstItem="NJU-Hs-h7h" firstAttribute="top" secondItem="o2g-cv-K3K" secondAttribute="top" constant="30" id="iTs-0d-6wV"/>
-                <constraint firstItem="UAL-I7-qIC" firstAttribute="top" secondItem="jOH-gc-1dO" secondAttribute="bottom" constant="30" id="igO-95-wk9"/>
+                <constraint firstItem="UAL-I7-qIC" firstAttribute="top" secondItem="jOH-gc-1dO" secondAttribute="bottom" constant="29" id="igO-95-wk9"/>
                 <constraint firstAttribute="centerX" secondItem="UAL-I7-qIC" secondAttribute="centerX" id="t4U-c0-teW"/>
                 <constraint firstItem="WRX-dl-Alg" firstAttribute="top" secondItem="Tkb-LF-80g" secondAttribute="bottom" constant="19" id="zAv-yX-Ls9"/>
             </constraints>

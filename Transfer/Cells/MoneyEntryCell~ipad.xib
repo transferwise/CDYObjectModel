@@ -83,6 +83,7 @@
             <connections>
                 <outlet property="currencyButton" destination="Z6M-fZ-TwS" id="xz5-lS-qpG"/>
                 <outlet property="entryField" destination="4" id="22"/>
+                <outlet property="leftSeparatorHeight" destination="Jpj-oE-DFM" id="XX7-AR-GS4"/>
                 <outlet property="moneyField" destination="4" id="6"/>
                 <outlet property="titleLabel" destination="3" id="5"/>
             </connections>

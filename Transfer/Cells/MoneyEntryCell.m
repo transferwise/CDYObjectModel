@@ -26,6 +26,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 @property (nonatomic, strong) Currency *forced;
 @property (nonatomic, strong) IBOutlet RoundedCellBackgroundView *roundedBackground;
 @property (nonatomic, strong) PairSourceCurrency *source;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *leftSeparatorHeight;
 
 @end
 
@@ -66,6 +67,13 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
 - (void)setAmount:(NSString *)amount currency:(Currency *)currency {
     [self.moneyField setText:amount];
+}
+
+- (void)setLeftSeparatorHidden:(BOOL)leftSeparatorHidden
+{
+	if (leftSeparatorHidden && self.leftSeparatorHeight != nil) {
+		self.leftSeparatorHeight.constant = 0;
+	}
 }
 
 - (NSString *)amount {
