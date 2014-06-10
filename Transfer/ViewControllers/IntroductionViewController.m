@@ -80,9 +80,7 @@ static NSUInteger const kRowYouSend = 0;
     [super viewDidLoad];
 
     [self.tableView setBackgroundView:nil];
-    [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"LandingBackground.png"]]];
-
-    
+    [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"LandingBackground.png"]]];    
 
     self.whyView = [[WhyView alloc] init];
 
