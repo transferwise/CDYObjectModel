@@ -9,6 +9,7 @@
 #import "CurrencySelectorViewController.h"
 #import "CurrencyCell.h"
 #import "UIView+RenderBlur.h"
+#import "Constants.h"
 
 @interface CurrencySelectorViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -80,21 +81,30 @@
 }
 
 //nasty bit of code to recalculate cell sizes on orientation changes, there is a better way with autolayout, i am sure.
-//- (CGSize)collectionView:(UICollectionView *)collectionView
-//                  layout:(UICollectionViewLayout *)collectionViewLayout
-//  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    // Adjust cell size for orientation
-//    if (UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
-//        return CGSizeMake(170.f, 170.f);
-//    }
-//    return CGSizeMake(192.f, 192.f);
-//}
-//
-//- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-//{
-//    [self.collectionView performBatchUpdates:nil completion:nil];
-//}
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+	float height = 44.f;
+	
+	if(IPAD)
+	{
+		//ipad, landscape
+		if (UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+			return CGSizeMake(1024.f, height);
+		}
+		//ipad protrait
+		return CGSizeMake(768.f, height);
+	}
+	
+	//iphone, protrait
+    return CGSizeMake(320.f, height);
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [self.collectionView performBatchUpdates:nil completion:nil];
+}
 
 #pragma mark - UIScrollViewDelegate
 -(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset

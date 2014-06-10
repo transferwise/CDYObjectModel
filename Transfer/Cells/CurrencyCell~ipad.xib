@@ -13,12 +13,16 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mjr-Mk-b6f">
-                        <rect key="frame" x="120" y="14" width="15" height="15"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mjr-Mk-b6f">
+                        <rect key="frame" x="120" y="14" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="OZW-hx-8j7"/>
+                            <constraint firstAttribute="height" constant="16" id="TbK-K2-Es4"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WWW" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tuf-xY-QxQ" userLabel="Label - WWW blue">
-                        <rect key="frame" x="150" y="12" width="63" height="21"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WWW" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tuf-xY-QxQ" userLabel="Label - WWW blue">
+                        <rect key="frame" x="153" y="8" width="58" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -27,8 +31,8 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="H4.lightText"/>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WWW" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGJ-DK-FGG" userLabel="Label - WWW white">
-                        <rect key="frame" x="150" y="12" width="63" height="21"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WWW" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGJ-DK-FGG" userLabel="Label - WWW white">
+                        <rect key="frame" x="153" y="9" width="58" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -40,6 +44,14 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="mjr-Mk-b6f" secondAttribute="centerY" constant="0.5" id="9Z6-ID-gNH"/>
+                <constraint firstAttribute="centerX" secondItem="mjr-Mk-b6f" secondAttribute="centerX" constant="32.5" id="IVg-AO-vvn"/>
+                <constraint firstAttribute="centerY" secondItem="tGJ-DK-FGG" secondAttribute="centerY" constant="-0.5" id="dMP-Vj-JVi"/>
+                <constraint firstAttribute="centerX" secondItem="tuf-xY-QxQ" secondAttribute="centerX" constant="-22" id="gUW-Z7-lmi"/>
+                <constraint firstAttribute="centerX" secondItem="tGJ-DK-FGG" secondAttribute="centerX" constant="-21.5" id="oQD-Rf-Q7w"/>
+                <constraint firstAttribute="centerY" secondItem="tuf-xY-QxQ" secondAttribute="centerY" id="tmg-o5-wbg"/>
+            </constraints>
             <connections>
                 <outlet property="currencyLabel" destination="tuf-xY-QxQ" id="eeS-Cm-nSh"/>
                 <outlet property="flagImage" destination="mjr-Mk-b6f" id="TXz-zk-5ec"/>
