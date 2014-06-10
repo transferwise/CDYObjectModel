@@ -13,12 +13,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mjr-Mk-b6f">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="mjr-Mk-b6f">
                         <rect key="frame" x="120" y="14" width="15" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="15" id="OZW-hx-8j7"/>
-                            <constraint firstAttribute="height" constant="15" id="TbK-K2-Es4"/>
+                            <constraint firstAttribute="width" constant="15" placeholder="YES" id="OZW-hx-8j7"/>
+                            <constraint firstAttribute="height" constant="15" placeholder="YES" id="TbK-K2-Es4"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WWW" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tuf-xY-QxQ" userLabel="Label - WWW blue">
@@ -32,7 +32,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WWW" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGJ-DK-FGG" userLabel="Label - WWW white">
-                        <rect key="frame" x="153" y="9" width="58" height="28"/>
+                        <rect key="frame" x="153" y="8" width="58" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -45,11 +45,11 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="mjr-Mk-b6f" secondAttribute="centerY" constant="0.5" id="9Z6-ID-gNH"/>
-                <constraint firstAttribute="centerX" secondItem="mjr-Mk-b6f" secondAttribute="centerX" constant="32.5" id="IVg-AO-vvn"/>
-                <constraint firstAttribute="centerY" secondItem="tGJ-DK-FGG" secondAttribute="centerY" constant="-0.5" id="dMP-Vj-JVi"/>
+                <constraint firstAttribute="centerY" secondItem="mjr-Mk-b6f" secondAttribute="centerY" id="9Z6-ID-gNH"/>
+                <constraint firstAttribute="centerX" secondItem="mjr-Mk-b6f" secondAttribute="centerX" constant="32" id="IVg-AO-vvn"/>
+                <constraint firstAttribute="centerY" secondItem="tGJ-DK-FGG" secondAttribute="centerY" id="dMP-Vj-JVi"/>
                 <constraint firstAttribute="centerX" secondItem="tuf-xY-QxQ" secondAttribute="centerX" constant="-22" id="gUW-Z7-lmi"/>
-                <constraint firstAttribute="centerX" secondItem="tGJ-DK-FGG" secondAttribute="centerX" constant="-21.5" id="oQD-Rf-Q7w"/>
+                <constraint firstAttribute="centerX" secondItem="tGJ-DK-FGG" secondAttribute="centerX" constant="-22" id="oQD-Rf-Q7w"/>
                 <constraint firstAttribute="centerY" secondItem="tuf-xY-QxQ" secondAttribute="centerY" id="tmg-o5-wbg"/>
             </constraints>
             <connections>

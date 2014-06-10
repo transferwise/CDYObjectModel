@@ -80,7 +80,7 @@
     [self.collectionView setContentOffset:[self calculateOffsetForCellAtIndex:indexPath.row] animated:YES];
 }
 
-//nasty bit of code to recalculate cell sizes on orientation changes, there is a better way with autolayout, i am sure.
+//nasty bit of code to recalculate cell sizes on orientation changes, there is a better way with autolayout, I am sure.
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -101,9 +101,11 @@
     return CGSizeMake(320.f, height);
 }
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-	[self.collectionView performBatchUpdates:nil completion:nil];
+	[super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+	
+	[[self.collectionView collectionViewLayout] invalidateLayout];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -172,7 +174,6 @@
     }
     
     self.maskedCells = [cells mutableCopy];
-    
 }
 
 -(void)maskCell:(CurrencyCell*)cell

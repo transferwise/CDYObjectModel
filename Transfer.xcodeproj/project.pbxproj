@@ -1218,6 +1218,13 @@
 			path = Styles;
 			sourceTree = "<group>";
 		};
+		4781F48D194737C700B8926C /* JVFloatLabeledTextField */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = JVFloatLabeledTextField;
+			sourceTree = "<group>";
+		};
 		BBC6911B1721414300F0FB1A /* TSAlertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1526,6 +1533,7 @@
 		EA8FF68C171D22080090A658 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
+				4781F48D194737C700B8926C /* JVFloatLabeledTextField */,
 				EACD942B18D82C2C00369905 /* NanTracking */,
 				EA8FA85C1891065F00153EBC /* GoogleAnalyticsServicesiOS_3.03 */,
 				EAA4B36C17FD476A003B774F /* AF-iOS-SDK-v2.5.1.9.8 */,
