@@ -124,7 +124,7 @@ static NSUInteger const kRowYouSend = 0;
     [self.howButton setAttributedTitle:underlinedHowString forState:UIControlStateNormal];
     
 
-    [self.startedButton setTitle:NSLocalizedString(@"button.title.get.started", nil) forState:UIControlStateNormal];
+    [self.startedButton setTitle:NSLocalizedString([@"button.title.get.started" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
     [self.loginButton setTitle:NSLocalizedString(@"button.title.log.in", nil) forState:UIControlStateNormal];
 
     MoneyCalculator *calculator = [[MoneyCalculator alloc] init];
