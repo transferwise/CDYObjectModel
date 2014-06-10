@@ -18,15 +18,18 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JPQ-Ok-lhe">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPQ-Ok-lhe">
                     <rect key="frame" x="0.0" y="240" width="768" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="1xO-Bv-EyN"/>
+                    </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="white.alpha1"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="TXc-Tg-eIQ">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="TXc-Tg-eIQ">
                     <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.8901960784313725" green="0.90588235294117647" blue="0.90980392156862744" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -43,8 +46,13 @@
                     </connections>
                 </collectionView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xuV-No-F9e">
-                    <rect key="frame" x="25" y="30" width="15" height="22"/>
+                    <rect key="frame" x="21" y="23" width="40" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="4K0-5c-0do"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="CKM-XH-tyU"/>
+                        <constraint firstAttribute="width" constant="40" id="d17-VC-fKM"/>
+                    </constraints>
                     <state key="normal" image="currencies_modal_close_button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -52,9 +60,13 @@
                         <action selector="closeTapped:" destination="-1" eventType="touchUpInside" id="sSK-e7-dfc"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSB-S9-gVu">
-                    <rect key="frame" x="239" y="21" width="81" height="44"/>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSB-S9-gVu">
+                    <rect key="frame" x="688" y="23" width="66" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="3Sg-NJ-iAq"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="gYL-JT-7Kl"/>
+                    </constraints>
                     <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
                     <state key="normal" title="Select">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -66,8 +78,8 @@
                         <action selector="selectTapped:" destination="-1" eventType="touchUpInside" id="tna-en-0cT"/>
                     </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMG-Xg-vhw">
-                    <rect key="frame" x="85" y="32" width="150" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMG-Xg-vhw">
+                    <rect key="frame" x="363" y="32" width="42" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -79,14 +91,26 @@
             </subviews>
             <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="0.5" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="xuV-No-F9e" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="TMm-NQ-Qxt"/>
-                <constraint firstItem="xuV-No-F9e" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="zwd-cd-ind"/>
+                <constraint firstItem="JPQ-Ok-lhe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="240" placeholder="YES" id="C9t-9b-vH3"/>
+                <constraint firstItem="XSB-S9-gVu" firstAttribute="centerY" secondItem="xuV-No-F9e" secondAttribute="centerY" id="IDe-Bb-H1a"/>
+                <constraint firstItem="TXc-Tg-eIQ" firstAttribute="top" secondItem="xuV-No-F9e" secondAttribute="bottom" constant="1" id="MHZ-2j-cl2"/>
+                <constraint firstAttribute="bottom" secondItem="TXc-Tg-eIQ" secondAttribute="bottom" id="QZ0-p5-o5L"/>
+                <constraint firstAttribute="centerX" secondItem="fMG-Xg-vhw" secondAttribute="centerX" id="RcW-aq-fTK"/>
+                <constraint firstItem="xuV-No-F9e" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="21" id="TMm-NQ-Qxt"/>
+                <constraint firstAttribute="trailing" secondItem="TXc-Tg-eIQ" secondAttribute="trailing" id="Z3n-nH-bHZ"/>
+                <constraint firstItem="fMG-Xg-vhw" firstAttribute="centerY" secondItem="xuV-No-F9e" secondAttribute="centerY" constant="-0.5" id="ipj-0J-RhM"/>
+                <constraint firstItem="fMG-Xg-vhw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="32" id="izb-c4-oFq"/>
+                <constraint firstAttribute="trailing" secondItem="XSB-S9-gVu" secondAttribute="trailing" constant="14" id="r5k-ia-XdB"/>
+                <constraint firstItem="JPQ-Ok-lhe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="x5Q-v7-Bmy"/>
+                <constraint firstItem="TXc-Tg-eIQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xPf-UJ-G92"/>
+                <constraint firstAttribute="trailing" secondItem="JPQ-Ok-lhe" secondAttribute="trailing" id="ylC-oP-bJv"/>
+                <constraint firstItem="xuV-No-F9e" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="23" id="zwd-cd-ind"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>
-        <image name="currencies_modal_close_button" width="15" height="15"/>
+        <image name="currencies_modal_close_button" width="20" height="20"/>
     </resources>
 </document>

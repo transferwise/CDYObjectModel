@@ -6,9 +6,14 @@
       "filename" : "currencies_modal_close_button.png"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "scale" : "2x",
-      "filename" : "currencies_modal_close_button@2x.png"
+      "filename" : "currencies_modal_close_button@2x~iPhone.png"
+    },
+    {
+      "idiom" : "ipad",
+      "scale" : "2x",
+      "filename" : "currencies_modal_close_button@2x~ipad.png"
     }
   ],
   "info" : {

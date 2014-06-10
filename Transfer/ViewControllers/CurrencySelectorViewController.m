@@ -35,7 +35,6 @@
 
 - (void)viewDidLoad
 {
-
     [super viewDidLoad];
     UINib *cellNib = [UINib nibWithNibName:@"CurrencyCell" bundle:[NSBundle mainBundle]];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"CurrencyCell"];
@@ -53,15 +52,14 @@
         self.selectedIndex = 0;
     }
     self.collectionView.contentOffset = [self calculateOffsetForCellAtIndex:self.selectedIndex];
-        [self maskCenterCells];
+	[self maskCenterCells];
     dispatch_async(dispatch_get_main_queue(), ^{
         //Mask the selected cell
         [self maskCenterCells];
     });
 }
 
-
-
+#pragma mark - UICollectionViewDataSource
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return [self.currencyArray count];
@@ -75,11 +73,30 @@
     return cell;
 }
 
+#pragma mark - UICollectionViewDelegate
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.collectionView setContentOffset:[self calculateOffsetForCellAtIndex:indexPath.row] animated:YES];
 }
 
+//nasty bit of code to recalculate cell sizes on orientation changes, there is a better way with autolayout, i am sure.
+//- (CGSize)collectionView:(UICollectionView *)collectionView
+//                  layout:(UICollectionViewLayout *)collectionViewLayout
+//  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    // Adjust cell size for orientation
+//    if (UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+//        return CGSizeMake(170.f, 170.f);
+//    }
+//    return CGSizeMake(192.f, 192.f);
+//}
+//
+//- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+//{
+//    [self.collectionView performBatchUpdates:nil completion:nil];
+//}
+
+#pragma mark - UIScrollViewDelegate
 -(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
     //Page to cells
