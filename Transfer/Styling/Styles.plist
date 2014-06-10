@@ -16,6 +16,11 @@
 		</dict>
 		<key>color</key>
 		<dict>
+			<key>highlightBlue</key>
+			<dict>
+				<key>color</key>
+				<string>606b81</string>
+			</dict>
 			<key>white</key>
 			<dict>
 				<key>color</key>

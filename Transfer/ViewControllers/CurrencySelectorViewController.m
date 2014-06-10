@@ -10,6 +10,7 @@
 #import "CurrencyCell.h"
 #import "UIView+RenderBlur.h"
 #import "Constants.h"
+#import "UIColor+MOMStyle.h"
 
 @interface CurrencySelectorViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -42,6 +43,7 @@
     
     self.titleLabel.text = NSLocalizedString(@"currency.selector.title", nil);
     [self.selectButton setTitle:NSLocalizedString(@"currency.selector.select.button.title",nil) forState:UIControlStateNormal];
+	[self.selectButton setTitleColor:[UIColor colorFromStyle:@"highlightblue"] forState:UIControlStateHighlighted];
 }
 
 -(void)viewDidLayoutSubviews

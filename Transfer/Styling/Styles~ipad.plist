@@ -16,6 +16,11 @@
 		</dict>
 		<key>color</key>
 		<dict>
+			<key>highlightBlue</key>
+			<dict>
+				<key>color</key>
+				<string>606b81</string>
+			</dict>
 			<key>white</key>
 			<dict>
 				<key>color</key>
@@ -147,6 +152,15 @@
 				<string>Avenir-Light</string>
 				<key>color</key>
 				<string>ffffff</string>
+			</dict>
+			<key>H5Pressed</key>
+			<dict>
+				<key>fontSize</key>
+				<integer>17</integer>
+				<key>fontName</key>
+				<string>Avenir-Light</string>
+				<key>color</key>
+				<string>606b81</string>
 			</dict>
 			<key>largeText</key>
 			<dict>
