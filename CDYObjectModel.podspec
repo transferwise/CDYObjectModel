@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = 'CDYObjectModel'
-  spec.version      = '0.1.0'
+  spec.version      = '1.0'
   spec.summary      = "Wrapper layer on top of Core Data."
   spec.homepage     = "https://github.com/coodly/CDYObjectModel"
   spec.author       = { "Jaanus Siim" => "jaanus@coodly.com" }
