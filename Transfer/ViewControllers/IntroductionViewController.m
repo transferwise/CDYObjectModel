@@ -217,6 +217,11 @@ static NSUInteger const kRowYouSend = 0;
     [self.tableView adjustFooterViewSize];
 }
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+	[self.view setNeedsLayout];
+}
+
 - (void)retrieveCurrencyPairs {
     if (self.dummyPresentation) {
         //It is dummy instance used on app launch

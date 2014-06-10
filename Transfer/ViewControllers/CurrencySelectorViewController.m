@@ -103,7 +103,7 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    [self.collectionView performBatchUpdates:nil completion:nil];
+	[self.collectionView performBatchUpdates:nil completion:nil];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -137,9 +137,9 @@
     NSMutableArray *cellsToMask = [NSMutableArray arrayWithCapacity:2];
     CGRect maskFrame = self.highlightView.frame;
     NSIndexPath* indexPath = [self.collectionView indexPathForItemAtPoint:[self.view convertPoint:maskFrame.origin toView:self.collectionView]];
-    if (indexPath)
+	if (indexPath)
     {
-        CurrencyCell* cell = (CurrencyCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
+		CurrencyCell* cell = (CurrencyCell*) [self.collectionView cellForItemAtIndexPath:indexPath];
         if(cell)
         {
             [cellsToMask addObject:cell];

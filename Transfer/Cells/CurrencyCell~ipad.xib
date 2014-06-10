@@ -14,11 +14,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mjr-Mk-b6f">
-                        <rect key="frame" x="120" y="14" width="16" height="16"/>
+                        <rect key="frame" x="120" y="14" width="15" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="16" id="OZW-hx-8j7"/>
-                            <constraint firstAttribute="height" constant="16" id="TbK-K2-Es4"/>
+                            <constraint firstAttribute="width" constant="15" id="OZW-hx-8j7"/>
+                            <constraint firstAttribute="height" constant="15" id="TbK-K2-Es4"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WWW" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tuf-xY-QxQ" userLabel="Label - WWW blue">
