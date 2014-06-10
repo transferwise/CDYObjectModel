@@ -22,7 +22,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WWW" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tuf-xY-QxQ" userLabel="Label - WWW blue">
-                        <rect key="frame" x="153" y="8" width="58" height="28"/>
+                        <rect key="frame" x="154" y="8" width="58" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -32,7 +32,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WWW" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGJ-DK-FGG" userLabel="Label - WWW white">
-                        <rect key="frame" x="153" y="8" width="58" height="28"/>
+                        <rect key="frame" x="154" y="8" width="58" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -46,10 +46,10 @@
             </view>
             <constraints>
                 <constraint firstAttribute="centerY" secondItem="mjr-Mk-b6f" secondAttribute="centerY" id="9Z6-ID-gNH"/>
-                <constraint firstAttribute="centerX" secondItem="mjr-Mk-b6f" secondAttribute="centerX" constant="32" id="IVg-AO-vvn"/>
+                <constraint firstAttribute="centerX" secondItem="mjr-Mk-b6f" secondAttribute="centerX" constant="33" id="IVg-AO-vvn"/>
                 <constraint firstAttribute="centerY" secondItem="tGJ-DK-FGG" secondAttribute="centerY" id="dMP-Vj-JVi"/>
-                <constraint firstAttribute="centerX" secondItem="tuf-xY-QxQ" secondAttribute="centerX" constant="-22" id="gUW-Z7-lmi"/>
-                <constraint firstAttribute="centerX" secondItem="tGJ-DK-FGG" secondAttribute="centerX" constant="-22" id="oQD-Rf-Q7w"/>
+                <constraint firstAttribute="centerX" secondItem="tuf-xY-QxQ" secondAttribute="centerX" constant="-23" id="gUW-Z7-lmi"/>
+                <constraint firstAttribute="centerX" secondItem="tGJ-DK-FGG" secondAttribute="centerX" constant="-23" id="oQD-Rf-Q7w"/>
                 <constraint firstAttribute="centerY" secondItem="tuf-xY-QxQ" secondAttribute="centerY" id="tmg-o5-wbg"/>
             </constraints>
             <connections>

@@ -217,9 +217,10 @@ static NSUInteger const kRowYouSend = 0;
     [self.tableView adjustFooterViewSize];
 }
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-	[self.view setNeedsLayout];
+	[super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+	[self.view needsUpdateConstraints];
 }
 
 - (void)retrieveCurrencyPairs {
