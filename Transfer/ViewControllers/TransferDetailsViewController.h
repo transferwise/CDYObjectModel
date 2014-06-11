@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Payment.h"
 
 @interface TransferDetailsViewController : UIViewController
+
+- (void)configureWithPayment:(Payment *)payment;
 
 @end

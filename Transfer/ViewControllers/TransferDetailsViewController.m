@@ -40,4 +40,58 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)configureWithPayment:(Payment *)payment
+{
+    [self.nameLabel setText:[payment.recipient name]];
+    [self.statusLabel setText:[payment localizedStatus]];
+    [self.moneyLabel setText:[payment transferredAmountString]];
+    [self.currencyLabel setText:[payment transferredCurrenciesString]];
+    
+    UIImage *icon;
+    switch ([payment status]) {
+        case PaymentStatusCancelled:
+            icon = [UIImage imageNamed:@"transfers_icon_cancelled"];
+            break;
+        case PaymentStatusMatched:
+			icon = [UIImage imageNamed:@"transfers_icon_converting"];
+            break;
+        case PaymentStatusReceived:
+            icon = [UIImage imageNamed:@"transfers_icon_converting"];
+            break;
+        case PaymentStatusRefunded:
+            icon = [UIImage imageNamed:@"transfers_icon_cancelled"];
+            break;
+        case PaymentStatusReceivedWaitingRecipient:
+            icon = [UIImage imageNamed:@"transfers_icon_waiting"];
+            break;
+        case PaymentStatusSubmitted:
+            icon = [UIImage imageNamed:@"transfers_icon_waiting"];
+            break;
+        case PaymentStatusTransferred:
+            icon = [UIImage imageNamed:@"transfers_icon_complete"];
+            break;
+        case PaymentStatusUnknown:
+        default:
+            icon = [UIImage imageNamed:@"transfers_icon_cancelled"];
+            
+            break;
+    }
+    
+    self.statusIcon.image = icon;
+    
+    UIColor * conditionalColor;
+    if(payment.isCancelled)
+    {
+        conditionalColor = [UIColor colorFromStyle:@"lightText"];
+    }
+    else
+    {
+        conditionalColor = [UIColor colorFromStyle:@"darkText"];
+    }
+    
+    self.moneyLabel.textColor = conditionalColor;
+    self.nameLabel.textColor = conditionalColor;
+    
+}
+
 @end
