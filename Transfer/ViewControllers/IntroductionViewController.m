@@ -56,6 +56,7 @@ static NSUInteger const kRowYouSend = 0;
 @property (weak, nonatomic) IBOutlet UILabel *vsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sendMoneyLabel;
 @property (weak, nonatomic) IBOutlet UIButton *howButton;
+@property (weak, nonatomic) UITapGestureRecognizer *dismissRecogniser;
 
 - (IBAction)loginPressed:(id)sender;
 - (IBAction)startPaymentPressed:(id)sender;
@@ -73,7 +74,7 @@ static NSUInteger const kRowYouSend = 0;
 }
 
 - (void)dealloc {
-    MCLog(@"dealloc");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad {
@@ -166,8 +167,20 @@ static NSUInteger const kRowYouSend = 0;
     
     [self retrieveCurrencyPairs];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+}
+
+-(void)keyboardWillShow:(NSNotification*)note
+{
     UITapGestureRecognizer *dismissRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
     [self.view addGestureRecognizer:dismissRecogniser];
+    self.dismissRecogniser = dismissRecogniser;
+}
+
+-(void)keyboardDidHide:(NSNotification*)note
+{
+    [self.view removeGestureRecognizer:self.dismissRecogniser];
 }
 
 - (void)displayWinMessage:(CalculationResult *)result
