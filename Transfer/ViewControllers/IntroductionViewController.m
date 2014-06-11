@@ -216,6 +216,7 @@ static NSUInteger const kRowYouSend = 0;
 
     UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
     [self.navigationItem setTitleView:logoView];
+    [self.tableView layoutIfNeeded];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -228,8 +229,6 @@ static NSUInteger const kRowYouSend = 0;
     if (!self.dummyPresentation) {
         [[AnalyticsCoordinator sharedInstance] startScreenShown];
     }
-
-    [self.tableView adjustFooterViewSize];
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
