@@ -32,5 +32,6 @@ typedef void (^CurrencyChangBlock)(Currency *currency);
 - (void)setForcedCurrency:(Currency *)currency;
 - (void)setRoundedCorner:(UIRectCorner)corner;
 - (void)setMoneyValue:(NSString *)moneyString;
+- (void)initializeSelectorBackground;
 
 @end

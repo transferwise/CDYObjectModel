@@ -27,6 +27,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 @property (nonatomic, strong) IBOutlet RoundedCellBackgroundView *roundedBackground;
 @property (nonatomic, strong) PairSourceCurrency *source;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *leftSeparatorHeight;
+@property (strong, nonatomic) UIColor *selectorBackgroundColor;
 
 @end
 
@@ -74,6 +75,12 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 	if (leftSeparatorHidden && self.leftSeparatorHeight != nil) {
 		self.leftSeparatorHeight.constant = 0;
 	}
+}
+
+- (void)initializeSelectorBackground
+{
+	MOMCompoundStyle* style = (MOMCompoundStyle*)[MOMStyleFactory getStyleForIdentifier:self.currencyButton.compoundStyle];
+    self.selectorBackgroundColor = [(MOMBasicStyle*)style.highlightedBgStyle color];
 }
 
 - (NSString *)amount {
@@ -130,10 +137,8 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     selector.delegate = self;
     selector.currencyArray = [self.currencies.fetchedObjects valueForKey:@"currency"];
     [selector setSelectedCurrency:self.selectedCurrency];
-    MOMCompoundStyle* style = (MOMCompoundStyle*)[MOMStyleFactory getStyleForIdentifier:self.currencyButton.compoundStyle];
-    selector.view.backgroundColor = [(MOMBasicStyle*)style.highlightedBgStyle color];
+    selector.view.backgroundColor = self.selectorBackgroundColor;
     [selector presentOnViewController:self.hostForCurrencySelector];
-    
 }
 
 
