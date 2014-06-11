@@ -21,7 +21,7 @@
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(self.bounds.size.width/kScaleDownFactor,self.bounds.size.height/kScaleDownFactor), YES, 0.0);
     if([self respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)])
     {
-        [self drawViewHierarchyInRect:CGRectMake(0,0,self.bounds.size.width/kScaleDownFactor, self.bounds.size.height/kScaleDownFactor) afterScreenUpdates:NO];
+        [self drawViewHierarchyInRect:CGRectMake(0,0,self.bounds.size.width/kScaleDownFactor, self.bounds.size.height/kScaleDownFactor) afterScreenUpdates:YES];
     }
     else
     {
