@@ -26,7 +26,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="white.alpha1"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" id="TXc-Tg-eIQ">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" id="TXc-Tg-eIQ">
                     <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.8901960784313725" green="0.90588235294117647" blue="0.90980392156862744" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -83,6 +83,6 @@
         </view>
     </objects>
     <resources>
-        <image name="currencies_modal_close_button" width="15" height="15"/>
+        <image name="currencies_modal_close_button" width="20" height="20"/>
     </resources>
 </document>

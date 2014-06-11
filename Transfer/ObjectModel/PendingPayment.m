@@ -20,16 +20,16 @@ NSString *kAddressVerificationImageName = @"~/Documents/addressVerification.jpg"
     [dictionary setNotNilValue:self.recipient.remoteId forKey:@"recipientId"];
     [dictionary setNotNilValue:self.sourceCurrency.code forKey:@"sourceCurrency"];
     [dictionary setNotNilValue:self.targetCurrency.code forKey:@"targetCurrency"];
-    [dictionary setNotNilValue:self.payIn forKey:@"amount"];
+    [dictionary setValue:self.isFixedAmountValue?@"target":@"source" forKey:@"amountCurrency"];
+    [dictionary setNotNilValue:self.isFixedAmountValue?self.payOut:self.payIn forKey:@"amount"];
     [dictionary setNotNilValue:self.user.email forKey:@"email"];
-    //[self appendData:@"verificationProvideLater" data:dictionary];
     [dictionary setNotNilValue:self.profileUsed forKey:@"profile"];
     [dictionary setNotNilValue:self.reference forKey:@"paymentReference"];
     [dictionary setNotNilValue:self.recipientEmail forKey:@"recipientEmail"];
     if ([self isAnyVerificationRequired] && [self sendVerificationLaterValue]) {
         dictionary[@"verificationProvideLater"] = @"true";
     }
-    if (self.refundRecipient) {
+    if (self.refundRecipient && self.isFixedAmountValue) {
         dictionary[@"refundRecipientId"] = self.refundRecipient.remoteId;
     }
 

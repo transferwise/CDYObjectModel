@@ -56,6 +56,7 @@ static NSUInteger const kRowYouSend = 0;
 @property (weak, nonatomic) IBOutlet UILabel *vsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sendMoneyLabel;
 @property (weak, nonatomic) IBOutlet UIButton *howButton;
+@property (weak, nonatomic) UITapGestureRecognizer *dismissRecogniser;
 
 - (IBAction)loginPressed:(id)sender;
 - (IBAction)startPaymentPressed:(id)sender;
@@ -73,7 +74,7 @@ static NSUInteger const kRowYouSend = 0;
 }
 
 - (void)dealloc {
-    MCLog(@"dealloc");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad {
@@ -91,7 +92,7 @@ static NSUInteger const kRowYouSend = 0;
     if (!IOS_7) {
         [self.youSendCell setRoundedCorner:UIRectCornerTopRight];
     }
-    self.youSendCell.hostForCurrencySelector = self.navigationController;
+    self.youSendCell.hostForCurrencySelector = self;
     self.youSendCell.currencyButton.compoundStyle = @"sendButton";
     self.youSendCell.titleLabel.fontStyle = @"P.navBarBlue";
     [self.youSendCell setEditable:YES];
@@ -104,7 +105,7 @@ static NSUInteger const kRowYouSend = 0;
     if (!IOS_7) {
         [self.theyReceiveCell setRoundedCorner:UIRectCornerBottomRight];
     }
-    self.theyReceiveCell.hostForCurrencySelector = self.navigationController;
+    self.theyReceiveCell.hostForCurrencySelector = self;
     self.theyReceiveCell.currencyButton.compoundStyle = @"getButton";
     self.theyReceiveCell.titleLabel.fontStyle = @"P.lightText";
     self.theyReceiveCell.contentView.bgStyle = @"white2";
@@ -168,8 +169,20 @@ static NSUInteger const kRowYouSend = 0;
     
     [self retrieveCurrencyPairs];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+}
+
+-(void)keyboardWillShow:(NSNotification*)note
+{
     UITapGestureRecognizer *dismissRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
     [self.view addGestureRecognizer:dismissRecogniser];
+    self.dismissRecogniser = dismissRecogniser;
+}
+
+-(void)keyboardDidHide:(NSNotification*)note
+{
+    [self.view removeGestureRecognizer:self.dismissRecogniser];
 }
 
 - (void)displayWinMessage:(CalculationResult *)result
