@@ -51,6 +51,11 @@
 				<key>color</key>
 				<string>e3e7e8</string>
 			</dict>
+			<key>drakGray</key>
+			<dict>
+				<key>color</key>
+				<string>393f45</string>
+			</dict>
 			<key>darkBlue</key>
 			<dict>
 				<key>color</key>
@@ -75,6 +80,11 @@
 			<dict>
 				<key>color</key>
 				<string>324266</string>
+			</dict>
+			<key>lighterBlue</key>
+			<dict>
+				<key>color</key>
+				<string>8baab9</string>
 			</dict>
 			<key>paleBlue</key>
 			<dict>
@@ -143,6 +153,15 @@
 				<string>Avenir-Medium</string>
 				<key>color</key>
 				<string>ffffff</string>
+			</dict>
+			<key>H4Bold</key>
+			<dict>
+				<key>fontSize</key>
+				<integer>20</integer>
+				<key>fontName</key>
+				<string>Avenir-Heavy</string>
+				<key>color</key>
+				<string>393f45</string>
 			</dict>
 			<key>H5</key>
 			<dict>
