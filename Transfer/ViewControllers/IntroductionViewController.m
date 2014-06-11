@@ -95,6 +95,7 @@ static NSUInteger const kRowYouSend = 0;
     self.youSendCell.currencyButton.compoundStyle = @"sendButton";
     self.youSendCell.titleLabel.fontStyle = @"P.navBarBlue";
     [self.youSendCell setEditable:YES];
+	[self.youSendCell initializeSelectorBackground];
 
     [self setTheyReceiveCell:[[NSBundle mainBundle] loadNibNamed:@"MoneyEntryCell" owner:self options:nil][0]];
     [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
@@ -109,6 +110,7 @@ static NSUInteger const kRowYouSend = 0;
     self.theyReceiveCell.contentView.bgStyle = @"white2";
 	self.theyReceiveCell.leftSeparatorHidden = YES;
     [self.theyReceiveCell setEditable:YES];
+	[self.theyReceiveCell initializeSelectorBackground];
 
     self.saveLabel.hidden=YES;
     self.amountLabel.hidden=YES;
