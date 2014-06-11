@@ -83,6 +83,6 @@
         </view>
     </objects>
     <resources>
-        <image name="currencies_modal_close_button" width="15" height="15"/>
+        <image name="currencies_modal_close_button" width="20" height="20"/>
     </resources>
 </document>

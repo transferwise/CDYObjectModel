@@ -48,7 +48,6 @@
 
 -(void)viewDidLayoutSubviews
 {
-    [super viewDidLayoutSubviews];
     self.collectionView.contentInset = UIEdgeInsetsMake(self.highlightView.frame.origin.y - self.collectionView.frame.origin.y, 0, self.view.frame.size.height - self.highlightView.frame.origin.y - self.highlightView.frame.size.height, 0);
     if(self.selectedIndex == NSNotFound)
     {
@@ -60,6 +59,8 @@
         //Mask the selected cell
         [self maskCenterCells];
     });
+    [self.view layoutSubviews];
+    [super viewDidLayoutSubviews];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -221,6 +222,7 @@
 -(void)presentOnViewController:(UIViewController*)hostViewcontroller
 {
     [self willMoveToParentViewController:hostViewcontroller];
+    [hostViewcontroller addChildViewController:self];
     [hostViewcontroller.view addSubview:self.view];
     CGRect newFrame = hostViewcontroller.view.bounds;
     newFrame.origin.y = newFrame.size.height;
@@ -233,7 +235,6 @@
     newFrame.size.height = 0.0f;
     blurredimage.frame=newFrame;
     self.blurView = blurredimage;
-    [hostViewcontroller addChildViewController:self];
     [self didMoveToParentViewController:hostViewcontroller];
     [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.view.frame = hostViewcontroller.view.bounds;

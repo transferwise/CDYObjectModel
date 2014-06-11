@@ -91,7 +91,7 @@ static NSUInteger const kRowYouSend = 0;
     if (!IOS_7) {
         [self.youSendCell setRoundedCorner:UIRectCornerTopRight];
     }
-    self.youSendCell.hostForCurrencySelector = self.navigationController;
+    self.youSendCell.hostForCurrencySelector = self;
     self.youSendCell.currencyButton.compoundStyle = @"sendButton";
     self.youSendCell.titleLabel.fontStyle = @"P.navBarBlue";
     [self.youSendCell setEditable:YES];
@@ -103,7 +103,7 @@ static NSUInteger const kRowYouSend = 0;
     if (!IOS_7) {
         [self.theyReceiveCell setRoundedCorner:UIRectCornerBottomRight];
     }
-    self.theyReceiveCell.hostForCurrencySelector = self.navigationController;
+    self.theyReceiveCell.hostForCurrencySelector = self;
     self.theyReceiveCell.currencyButton.compoundStyle = @"getButton";
     self.theyReceiveCell.titleLabel.fontStyle = @"P.lightText";
     self.theyReceiveCell.contentView.bgStyle = @"white2";
