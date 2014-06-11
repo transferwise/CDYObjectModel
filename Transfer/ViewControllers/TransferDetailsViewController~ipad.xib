@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="headerPlaceholder" destination="P5J-cd-dCv" id="zCN-MV-MBf"/>
                 <outlet property="headerView" destination="jJD-by-0Jd" id="z78-Er-Ntb"/>
+                <outlet property="statusIcon" destination="8dh-F6-i1O" id="7wI-SB-I7T"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -25,10 +26,20 @@
                         <constraint firstAttribute="height" constant="115" id="iUb-q4-PLj"/>
                     </constraints>
                 </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8dh-F6-i1O">
+                    <rect key="frame" x="392" y="240" width="240" height="200"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="6IT-v3-Fgh"/>
+                        <constraint firstAttribute="height" constant="200" id="t5d-HJ-iOU"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="P5J-cd-dCv" secondAttribute="centerX" id="AnR-Mb-ADP"/>
+                <constraint firstAttribute="centerX" secondItem="8dh-F6-i1O" secondAttribute="centerX" id="Emq-JO-aeE"/>
+                <constraint firstItem="8dh-F6-i1O" firstAttribute="top" secondItem="P5J-cd-dCv" secondAttribute="bottom" constant="30" id="LBv-aA-GXh"/>
                 <constraint firstItem="P5J-cd-dCv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="95" id="X7U-mW-DXK"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

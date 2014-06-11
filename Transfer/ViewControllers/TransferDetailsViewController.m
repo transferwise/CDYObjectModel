@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) IBOutlet TransferDetialsHeaderView *headerView;
 @property (strong, nonatomic) IBOutlet UIView *headerPlaceholder;
+@property (strong, nonatomic) IBOutlet UIImageView *statusIcon;
 
 @end
 
