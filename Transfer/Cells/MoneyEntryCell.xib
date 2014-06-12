@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -13,15 +13,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Receiver gets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" id="3">
-                        <rect key="frame" x="15" y="14" width="90" height="21"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" text="Receiver gets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="3">
+                        <rect key="frame" x="15" y="12" width="88" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="26" id="oth-gZ-HCp"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="4">
-                        <rect key="frame" x="15" y="37" width="182" height="30"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4">
+                        <rect key="frame" x="16" y="38" width="182" height="27"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -29,9 +32,12 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="H1"/>
                         </userDefinedRuntimeAttributes>
                     </textField>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Z6M-fZ-TwS">
-                        <rect key="frame" x="205" y="0.0" width="115" height="79"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6M-fZ-TwS">
+                        <rect key="frame" x="206" y="0.0" width="114" height="79"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="114" id="tnU-X0-d6R"/>
+                        </constraints>
                         <inset key="contentEdgeInsets" minX="9" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <inset key="titleEdgeInsets" minX="18" minY="2" maxX="0.0" maxY="0.0"/>
                         <inset key="imageEdgeInsets" minX="10" minY="1" maxX="0.0" maxY="0.0"/>
@@ -42,27 +48,58 @@
                             <action selector="selectCurrencyTapped:" destination="2" eventType="touchUpInside" id="2Th-kz-Qbl"/>
                         </connections>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="center" image="selector_arrow" id="19">
-                        <rect key="frame" x="291" y="35" width="14" height="12"/>
+                    <imageView userInteractionEnabled="NO" contentMode="center" image="selector_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="19">
+                        <rect key="frame" x="293" y="35" width="14" height="12"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="14" id="fMh-BT-ng1"/>
+                            <constraint firstAttribute="height" constant="12" id="rGq-cX-iOs"/>
+                        </constraints>
                     </imageView>
-                    <view opaque="NO" contentMode="center" id="vqA-Y2-RQw" userLabel="SeparatorLineLeft">
-                        <rect key="frame" x="0.0" y="79" width="205" height="1"/>
+                    <view opaque="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="vqA-Y2-RQw" userLabel="SeparatorLineLeft">
+                        <rect key="frame" x="0.0" y="78" width="206" height="1"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.87843143939971924" green="0.91372555494308472" blue="0.93333339691162109" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Jpj-oE-DFM"/>
+                        </constraints>
                     </view>
-                    <view opaque="NO" contentMode="scaleToFill" id="qfe-SG-EbD" userLabel="SeparatorLineRight">
-                        <rect key="frame" x="205" y="79" width="115" height="1"/>
+                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qfe-SG-EbD" userLabel="SeparatorLineRight">
+                        <rect key="frame" x="206" y="79" width="114" height="0.0"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.10588236149999999" green="0.14901961389999999" blue="0.22352942819999999" alpha="0.48999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" id="lfF-rn-bey"/>
+                        </constraints>
                     </view>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="Z6M-fZ-TwS" firstAttribute="top" secondItem="XIZ-qO-L2z" secondAttribute="top" id="29H-fe-ZRD"/>
+                    <constraint firstItem="Z6M-fZ-TwS" firstAttribute="width" secondItem="qfe-SG-EbD" secondAttribute="width" id="BEO-Io-3wN"/>
+                    <constraint firstAttribute="trailing" secondItem="qfe-SG-EbD" secondAttribute="trailing" id="Ed4-To-Qme"/>
+                    <constraint firstItem="qfe-SG-EbD" firstAttribute="top" secondItem="Z6M-fZ-TwS" secondAttribute="bottom" id="G8H-is-mSV"/>
+                    <constraint firstAttribute="bottom" secondItem="vqA-Y2-RQw" secondAttribute="bottom" id="GQE-9B-xhZ"/>
+                    <constraint firstAttribute="bottom" secondItem="qfe-SG-EbD" secondAttribute="bottom" id="PjN-2l-7zK"/>
+                    <constraint firstItem="Z6M-fZ-TwS" firstAttribute="leading" secondItem="4" secondAttribute="trailing" constant="8" id="PxE-MB-Cpl"/>
+                    <constraint firstItem="vqA-Y2-RQw" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="13" id="TsR-H8-gXF"/>
+                    <constraint firstItem="vqA-Y2-RQw" firstAttribute="leading" secondItem="XIZ-qO-L2z" secondAttribute="leading" id="Weg-vc-1h3"/>
+                    <constraint firstItem="4" firstAttribute="top" secondItem="3" secondAttribute="bottom" id="Wmx-JN-uAs"/>
+                    <constraint firstItem="3" firstAttribute="leading" secondItem="XIZ-qO-L2z" secondAttribute="leading" constant="15" id="XGc-u2-R4a"/>
+                    <constraint firstItem="19" firstAttribute="top" secondItem="XIZ-qO-L2z" secondAttribute="top" constant="35" id="cUI-u5-LLO"/>
+                    <constraint firstItem="4" firstAttribute="leading" secondItem="XIZ-qO-L2z" secondAttribute="leading" constant="16" id="caz-n0-Cac"/>
+                    <constraint firstAttribute="trailing" secondItem="19" secondAttribute="trailing" constant="13" id="gy2-H4-AT1"/>
+                    <constraint firstItem="Z6M-fZ-TwS" firstAttribute="leading" secondItem="vqA-Y2-RQw" secondAttribute="trailing" id="jv7-yg-NXv"/>
+                    <constraint firstAttribute="trailing" secondItem="Z6M-fZ-TwS" secondAttribute="trailing" id="qzr-rI-nFM"/>
+                    <constraint firstItem="qfe-SG-EbD" firstAttribute="top" secondItem="19" secondAttribute="bottom" constant="32" id="uVd-US-h6Z"/>
+                    <constraint firstItem="3" firstAttribute="top" secondItem="XIZ-qO-L2z" secondAttribute="top" constant="12" id="wzz-7m-oUG"/>
+                </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="currencyButton" destination="Z6M-fZ-TwS" id="xz5-lS-qpG"/>
                 <outlet property="entryField" destination="4" id="22"/>
+                <outlet property="leftSeparatorHeight" destination="Jpj-oE-DFM" id="XX7-AR-GS4"/>
                 <outlet property="moneyField" destination="4" id="6"/>
                 <outlet property="titleLabel" destination="3" id="5"/>
             </connections>

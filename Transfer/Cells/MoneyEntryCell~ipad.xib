@@ -13,15 +13,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="Receiver gets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="3">
-                        <rect key="frame" x="15" y="14" width="88" height="17"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" text="Receiver gets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="3">
+                        <rect key="frame" x="15" y="12" width="88" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="26" id="oth-gZ-HCp"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                        <rect key="frame" x="16" y="34" width="182" height="31"/>
+                        <rect key="frame" x="16" y="38" width="182" height="27"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -80,7 +83,7 @@
                     <constraint firstItem="Z6M-fZ-TwS" firstAttribute="leading" secondItem="4" secondAttribute="trailing" constant="8" id="PxE-MB-Cpl"/>
                     <constraint firstItem="vqA-Y2-RQw" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="13" id="TsR-H8-gXF"/>
                     <constraint firstItem="vqA-Y2-RQw" firstAttribute="leading" secondItem="XIZ-qO-L2z" secondAttribute="leading" id="Weg-vc-1h3"/>
-                    <constraint firstItem="4" firstAttribute="top" secondItem="3" secondAttribute="bottom" constant="3" id="Wmx-JN-uAs"/>
+                    <constraint firstItem="4" firstAttribute="top" secondItem="3" secondAttribute="bottom" id="Wmx-JN-uAs"/>
                     <constraint firstItem="3" firstAttribute="leading" secondItem="XIZ-qO-L2z" secondAttribute="leading" constant="15" id="XGc-u2-R4a"/>
                     <constraint firstItem="19" firstAttribute="top" secondItem="XIZ-qO-L2z" secondAttribute="top" constant="35" id="cUI-u5-LLO"/>
                     <constraint firstItem="4" firstAttribute="leading" secondItem="XIZ-qO-L2z" secondAttribute="leading" constant="16" id="caz-n0-Cac"/>
@@ -88,7 +91,7 @@
                     <constraint firstItem="Z6M-fZ-TwS" firstAttribute="leading" secondItem="vqA-Y2-RQw" secondAttribute="trailing" id="jv7-yg-NXv"/>
                     <constraint firstAttribute="trailing" secondItem="Z6M-fZ-TwS" secondAttribute="trailing" id="qzr-rI-nFM"/>
                     <constraint firstItem="qfe-SG-EbD" firstAttribute="top" secondItem="19" secondAttribute="bottom" constant="32" id="uVd-US-h6Z"/>
-                    <constraint firstItem="3" firstAttribute="top" secondItem="XIZ-qO-L2z" secondAttribute="top" constant="14" id="wzz-7m-oUG"/>
+                    <constraint firstItem="3" firstAttribute="top" secondItem="XIZ-qO-L2z" secondAttribute="top" constant="12" id="wzz-7m-oUG"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
