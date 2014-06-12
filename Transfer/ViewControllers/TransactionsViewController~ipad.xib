@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TransactionsViewController">
             <connections>
+                <outlet property="detailContainer" destination="6gl-fD-9bd" id="Pro-Id-ctS"/>
                 <outlet property="loadingFooterView" destination="8" id="10"/>
                 <outlet property="tableView" destination="13" id="17"/>
+                <outlet property="titleLabel" destination="2V5-vW-DON" id="rHy-GN-uQb"/>
                 <outlet property="view" destination="11" id="18"/>
             </connections>
         </placeholder>
@@ -17,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
             <subviews>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="9">
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="9">
                     <rect key="frame" x="142" y="19" width="37" height="37"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -27,20 +29,106 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view contentMode="scaleToFill" id="11">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="22" sectionFooterHeight="22" id="13">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="13">
+                    <rect key="frame" x="0.0" y="64" width="512" height="704"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="separatorColor" red="0.87450987099999999" green="0.89019614459999996" blue="0.8980392814" alpha="1" colorSpace="deviceRGB"/>
+                    <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="14"/>
                         <outlet property="delegate" destination="-1" id="15"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6gl-fD-9bd" userLabel="DetailContainer">
+                    <rect key="frame" x="512" y="0.0" width="512" height="768"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v9d-Kt-fPW" userLabel="TitleBar">
+                    <rect key="frame" x="0.0" y="0.0" width="512" height="64"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2V5-vW-DON">
+                            <rect key="frame" x="0.0" y="20" width="512" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="h2.navBarBlue"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gwo-9l-kjw">
+                            <rect key="frame" x="0.0" y="63" width="512" height="1"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="qbK-Ki-l2x"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGray"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="0jR-ik-JUU"/>
+                        <constraint firstItem="Gwo-9l-kjw" firstAttribute="width" secondItem="v9d-Kt-fPW" secondAttribute="width" id="5UE-J3-wkI"/>
+                        <constraint firstAttribute="bottom" secondItem="2V5-vW-DON" secondAttribute="bottom" id="FRe-u5-tcD"/>
+                        <constraint firstAttribute="trailing" secondItem="2V5-vW-DON" secondAttribute="trailing" id="ckb-5I-ODG"/>
+                        <constraint firstAttribute="centerX" secondItem="Gwo-9l-kjw" secondAttribute="centerX" id="fBY-r5-bVK"/>
+                        <constraint firstItem="2V5-vW-DON" firstAttribute="leading" secondItem="v9d-Kt-fPW" secondAttribute="leading" id="mRn-IW-4Q1"/>
+                        <constraint firstAttribute="bottom" secondItem="Gwo-9l-kjw" secondAttribute="bottom" id="xj4-e8-oMK"/>
+                        <constraint firstItem="2V5-vW-DON" firstAttribute="top" secondItem="v9d-Kt-fPW" secondAttribute="top" constant="20" id="z9W-s8-d0U"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="navBarGray"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="omV-Yf-7m8" userLabel="Separator">
+                    <rect key="frame" x="512" y="0.0" width="1" height="768"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="1" id="fG2-K6-vUW"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGray"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h2f-uY-e4h" userLabel="shadow" customClass="GradientView">
+                    <rect key="frame" x="507" y="0.0" width="5" height="768"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="5" id="Bxl-4u-CLZ"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="v9d-Kt-fPW" firstAttribute="leading" secondItem="11" secondAttribute="leading" id="3F5-Z9-G4u"/>
+                <constraint firstItem="omV-Yf-7m8" firstAttribute="leading" secondItem="13" secondAttribute="trailing" id="5Wz-B0-4zD"/>
+                <constraint firstAttribute="centerX" secondItem="13" secondAttribute="trailing" id="5hT-8Z-NSZ"/>
+                <constraint firstAttribute="bottom" secondItem="13" secondAttribute="bottom" id="C9M-yf-YMH"/>
+                <constraint firstItem="omV-Yf-7m8" firstAttribute="top" secondItem="11" secondAttribute="top" id="LSs-RY-GNX"/>
+                <constraint firstItem="h2f-uY-e4h" firstAttribute="trailing" secondItem="13" secondAttribute="trailing" id="NTK-lf-Ft3"/>
+                <constraint firstAttribute="trailing" secondItem="6gl-fD-9bd" secondAttribute="trailing" id="Oce-So-KZb"/>
+                <constraint firstAttribute="bottom" secondItem="h2f-uY-e4h" secondAttribute="bottom" id="VsV-Gy-Spb"/>
+                <constraint firstAttribute="bottom" secondItem="omV-Yf-7m8" secondAttribute="bottom" id="bdu-TO-rsM"/>
+                <constraint firstItem="h2f-uY-e4h" firstAttribute="top" secondItem="11" secondAttribute="top" id="bz6-y9-M3j"/>
+                <constraint firstItem="6gl-fD-9bd" firstAttribute="top" secondItem="11" secondAttribute="top" id="eM7-cH-iMv"/>
+                <constraint firstItem="13" firstAttribute="width" secondItem="v9d-Kt-fPW" secondAttribute="width" id="fTd-a0-s9v"/>
+                <constraint firstItem="13" firstAttribute="top" secondItem="11" secondAttribute="top" constant="64" id="iz3-BS-YnI"/>
+                <constraint firstItem="13" firstAttribute="leading" secondItem="11" secondAttribute="leading" id="pBZ-oG-Wat"/>
+                <constraint firstItem="v9d-Kt-fPW" firstAttribute="top" secondItem="11" secondAttribute="top" id="qy5-fa-C4r"/>
+                <constraint firstAttribute="bottom" secondItem="6gl-fD-9bd" secondAttribute="bottom" id="vgg-dW-A8g"/>
+                <constraint firstItem="6gl-fD-9bd" firstAttribute="leading" secondItem="11" secondAttribute="centerX" id="zks-5h-PLc"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
