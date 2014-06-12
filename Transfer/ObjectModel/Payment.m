@@ -55,7 +55,7 @@ static NSDictionary* statusLookupDictionary;
 }
 
 - (NSString *)localizedStatus {
-    NSString *statusKey = [[NSString stringWithFormat:@"payment.status.%@.description", self.paymentStatus] deviceSpecificLocalization];
+    NSString *statusKey = [NSString stringWithFormat:@"payment.status.%@.description", self.paymentStatus];
     NSString *statusString = NSLocalizedString(statusKey, nil);
     if([statusString rangeOfString:@"%@"].location != NSNotFound)
     {

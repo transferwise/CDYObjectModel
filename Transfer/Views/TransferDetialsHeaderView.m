@@ -11,10 +11,10 @@
 
 @interface TransferDetialsHeaderView ()
 
-@property (weak, nonatomic) IBOutlet UILabel* yourTransferLabel;
-@property (weak, nonatomic) IBOutlet UILabel* transferNrLabel;
-@property (weak, nonatomic) IBOutlet UILabel* recipientNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel* statusLabel;
+@property (strong, nonatomic) IBOutlet UILabel* yourTransferLabel;
+@property (strong, nonatomic) IBOutlet UILabel* transferNrLabel;
+@property (strong, nonatomic) IBOutlet UILabel* recipientNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel* statusLabel;
 
 @end
 
