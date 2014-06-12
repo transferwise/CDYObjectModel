@@ -42,10 +42,11 @@
 
 - (void)configureWithPayment:(Payment *)payment
 {
-    [self.nameLabel setText:[payment.recipient name]];
-    [self.statusLabel setText:[payment localizedStatus]];
-    [self.moneyLabel setText:[payment transferredAmountString]];
-    [self.currencyLabel setText:[payment transferredCurrenciesString]];
+    self.headerView.recipientName = [payment.recipient name];
+	self.headerView.status = [payment localizedStatus];
+	
+//    [self.moneyLabel setText:[payment transferredAmountString]];
+//    [self.currencyLabel setText:[payment transferredCurrenciesString]];
     
     UIImage *icon;
     switch ([payment status]) {
@@ -77,21 +78,7 @@
             break;
     }
     
-    self.statusIcon.image = icon;
-    
-    UIColor * conditionalColor;
-    if(payment.isCancelled)
-    {
-        conditionalColor = [UIColor colorFromStyle:@"lightText"];
-    }
-    else
-    {
-        conditionalColor = [UIColor colorFromStyle:@"darkText"];
-    }
-    
-    self.moneyLabel.textColor = conditionalColor;
-    self.nameLabel.textColor = conditionalColor;
-    
+    self.statusIcon.image = icon;    
 }
 
 @end

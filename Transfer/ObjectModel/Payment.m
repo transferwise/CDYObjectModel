@@ -2,6 +2,7 @@
 #import "PendingPayment.h"
 #import "MoneyFormatter.h"
 #import "Currency.h"
+#import "NSString+DeviceSpecificLocalisation.h"
 
 
 @interface Payment ()
@@ -54,7 +55,7 @@ static NSDictionary* statusLookupDictionary;
 }
 
 - (NSString *)localizedStatus {
-    NSString *statusKey = [NSString stringWithFormat:@"payment.status.%@.description", self.paymentStatus];
+    NSString *statusKey = [[NSString stringWithFormat:@"payment.status.%@.description", self.paymentStatus] deviceSpecificLocalization];
     NSString *statusString = NSLocalizedString(statusKey, nil);
     if([statusString rangeOfString:@"%@"].location != NSNotFound)
     {

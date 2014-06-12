@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel* yourTransferLabel;
 @property (weak, nonatomic) IBOutlet UILabel* transferNrLabel;
 @property (weak, nonatomic) IBOutlet UILabel* recipientNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel* statusLabel;
 
 @end
 
@@ -48,6 +49,12 @@
 	[attributedName setAttributes:subAttrs range:NSMakeRange(0, 3)];
 	
 	[self.recipientNameLabel setAttributedText:attributedName];
+}
+
+- (void)setStatus:(NSString *)status
+{
+	//status is already localized in payment object
+	[self.status setText:status];
 }
 
 @end

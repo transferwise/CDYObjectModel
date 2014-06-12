@@ -97,6 +97,7 @@
             </constraints>
             <connections>
                 <outlet property="recipientNameLabel" destination="K1m-Ok-c6y" id="XRr-Vw-LDr"/>
+                <outlet property="statusLabel" destination="F0f-kV-mku" id="unt-tY-KlU"/>
                 <outlet property="transferNrLabel" destination="7NO-O2-ul7" id="vUc-pX-GYQ"/>
                 <outlet property="yourTransferLabel" destination="0bB-ke-DbF" id="Upa-IZ-Vqb"/>
             </connections>
