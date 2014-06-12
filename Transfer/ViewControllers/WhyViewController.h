@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "TransparentModalViewController.h"
 
-@interface WhyViewController : UIViewController
+@interface WhyViewController : TransparentModalViewController
 
 @end

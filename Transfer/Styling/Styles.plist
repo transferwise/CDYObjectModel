@@ -119,6 +119,11 @@
 				<key>fontName</key>
 				<string>Avenir-Light</string>
 			</dict>
+			<key>book</key>
+			<dict>
+				<key>fontName</key>
+				<string>Avenir-Book</string>
+			</dict>
 			<key>P</key>
 			<dict>
 				<key>fontSize</key>
