@@ -216,7 +216,6 @@ static NSUInteger const kRowYouSend = 0;
 
     UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
     [self.navigationItem setTitleView:logoView];
-    [self.tableView layoutIfNeeded];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
