@@ -77,6 +77,8 @@
 		479B69371948A2EB001FA4FE /* UIFont+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B69361948A2EB001FA4FE /* UIFont+MOMStyle.m */; };
 		479B693A19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693919499F9B001FA4FE /* TransferDetailsAmountsView.m */; };
 		479B693B19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693919499F9B001FA4FE /* TransferDetailsAmountsView.m */; };
+		479B693E1949C36F001FA4FE /* TransferDetialsRecipientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693D1949C36F001FA4FE /* TransferDetialsRecipientView.m */; };
+		479B693F1949C36F001FA4FE /* TransferDetialsRecipientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693D1949C36F001FA4FE /* TransferDetialsRecipientView.m */; };
 		47F1F5921941C87600FC4BEB /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
 		47FB7EA519419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
 		47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
@@ -672,6 +674,8 @@
 		479B69361948A2EB001FA4FE /* UIFont+MOMStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+MOMStyle.m"; sourceTree = "<group>"; };
 		479B693819499F9B001FA4FE /* TransferDetailsAmountsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferDetailsAmountsView.h; sourceTree = "<group>"; };
 		479B693919499F9B001FA4FE /* TransferDetailsAmountsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDetailsAmountsView.m; sourceTree = "<group>"; };
+		479B693C1949C36F001FA4FE /* TransferDetialsRecipientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferDetialsRecipientView.h; sourceTree = "<group>"; };
+		479B693D1949C36F001FA4FE /* TransferDetialsRecipientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDetialsRecipientView.m; sourceTree = "<group>"; };
 		47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencySelectorViewController~ipad.xib"; sourceTree = "<group>"; };
 		47FB7EA71941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DeviceSpecificLocalisation.h"; sourceTree = "<group>"; };
 		47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeviceSpecificLocalisation.m"; sourceTree = "<group>"; };
@@ -1324,6 +1328,8 @@
 				479B693319489303001FA4FE /* TransferDetialsHeaderView.m */,
 				479B693819499F9B001FA4FE /* TransferDetailsAmountsView.h */,
 				479B693919499F9B001FA4FE /* TransferDetailsAmountsView.m */,
+				479B693C1949C36F001FA4FE /* TransferDetialsRecipientView.h */,
+				479B693D1949C36F001FA4FE /* TransferDetialsRecipientView.m */,
 				EA8FF689171D1FA50090A658 /* TRWAlertView.h */,
 				EA8FF68A171D1FA50090A658 /* TRWAlertView.m */,
 				EA8FF6B2171D23B20090A658 /* TRWProgressHUD.h */,
@@ -2480,6 +2486,7 @@
 				EA31A12817DDB29B00F937F7 /* ObjectModel.m in Sources */,
 				EA0450D517EC5BC1008921DA /* IntroViewController.m in Sources */,
 				EA31A12917DDB29B00F937F7 /* MainViewController.m in Sources */,
+				479B693F1949C36F001FA4FE /* TransferDetialsRecipientView.m in Sources */,
 				EA31A12A17DDB29B00F937F7 /* TransactionsViewController.m in Sources */,
 				EA31A12B17DDB29B00F937F7 /* ContactsViewController.m in Sources */,
 				EA31A12C17DDB29B00F937F7 /* PaymentViewController.m in Sources */,
@@ -2799,6 +2806,7 @@
 				EAA053D2175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m in Sources */,
 				EAA053D6175DD5EE00ACD3F6 /* NoUserPaymentFlow.m in Sources */,
 				388F09FB1934A1BB00DBD93D /* UIView+RenderBlur.m in Sources */,
+				479B693E1949C36F001FA4FE /* TransferDetialsRecipientView.m in Sources */,
 				EAA053EC175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m in Sources */,
 				EAC1051A17607C4600B3B018 /* ClaimAccountViewController.m in Sources */,
 				EAB93B481761C74700A7337C /* ClaimAccountOperation.m in Sources */,

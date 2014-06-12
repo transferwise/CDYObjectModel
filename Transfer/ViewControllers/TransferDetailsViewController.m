@@ -8,12 +8,14 @@
 
 #import "TransferDetailsViewController.h"
 #import "TransferDetailsAmountsView.h"
+#import "TransferDetailsRecipientView.h"
 
 @interface TransferDetailsViewController ()
 
 @property (strong, nonatomic) IBOutlet TransferDetialsHeaderView *headerView;
-@property (strong, nonatomic) IBOutlet TransferDetailsAmountsView *amountsView;
 @property (strong, nonatomic) IBOutlet UIImageView *statusIcon;
+@property (strong, nonatomic) IBOutlet TransferDetailsAmountsView *amountsView;
+@property (strong, nonatomic) IBOutlet TransferDetialsRecipientView *accountView;
 
 @end
 
@@ -44,7 +46,9 @@
 - (void)configureWithPayment:(Payment *)payment
 {
 	self.headerView.transferNumber = [payment.remoteId stringValue];
-    self.headerView.recipientName = [payment.recipient name];
+	NSString* recipient = [payment.recipient fullName];
+    self.headerView.recipientName = recipient;
+	self.accountView.recipientName = recipient;
     
     switch ([payment status]) {
         case PaymentStatusCancelled:
@@ -82,13 +86,20 @@
 	self.amountsView.status = [self getStatusBasedLocalizations:@"payment.status.%@.description.conversion"
 														 status:payment.paymentStatus];;
 	self.amountsView.toAmount = [payment payOutStringWithCurrency];
-	self.amountsView.eta = [self getStatusBasedLocalizations:@"payment.status.%@.description.eta"
-													  status:payment.paymentStatus];;
+	NSString* eta = [self getStatusBasedLocalizations:@"payment.status.%@.description.eta"
+											   status:payment.paymentStatus];
+	if(eta length > 0)
+	{
+		self.amountsView.eta = [NSString stringWithFormat:eta, payment.paymentDateString];
+	}
+	else
+	{
+		self.amountsView.eta = nil;
+	}
 }
 
 - (NSString*)getStatusBasedLocalizations:(NSString *)localizationKey status:(NSString)status
 {
 	return NSLocalizedString([NSString stringWithFormat:localizationKey, status], nil);
 }
-
 @end

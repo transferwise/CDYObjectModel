@@ -8,12 +8,13 @@
 
 #import "TransferDetialsHeaderView.h"
 #import "UIFont+MOMStyle.h"
+#import <OHAttributedLabel.h>
 
 @interface TransferDetialsHeaderView ()
 
 @property (strong, nonatomic) IBOutlet UILabel* yourTransferLabel;
 @property (strong, nonatomic) IBOutlet UILabel* transferNrLabel;
-@property (strong, nonatomic) IBOutlet UILabel* recipientNameLabel;
+@property (strong, nonatomic) IBOutlet OHAttributedLabel* recipientNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel* statusLabel;
 
 @end
