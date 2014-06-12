@@ -44,6 +44,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (nonatomic, assign) IdentificationRequired identificationRequired;
 @property (nonatomic, strong) TransferwiseOperation *executedUploadOperation;
 @property (nonatomic, weak) PullToRefreshView* refreshView;
+@property (weak, nonatomic) IBOutlet UIView *detailContainer;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
@@ -81,6 +83,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[notificationView setTapHandler:^{
 		[self pushIdentificationScreen];
 	}];
+    
+    self.titleLabel.text = self.title;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -137,7 +142,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     Payment *payment = [self.payments objectAtIndexPath:indexPath];
     if ([payment.recipient.type hideFromCreationValue]) {
@@ -146,21 +150,36 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 	[[GoogleAnalytics sharedInstance] sendScreen:@"View payment"];
 
+    UIViewController *resultController;
     if ([payment isSubmitted]) {
         UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
         [controller setPayment:payment];
         [controller setObjectModel:self.objectModel];
         [controller setHideBottomButton:YES];
         [controller setShowContactSupportCell:YES];
-        [self.navigationController pushViewController:controller animated:YES];
+        resultController = controller;
     } else if ([payment isCancelled] || [payment moneyReceived] || [payment moneyTransferred]) {
         PaymentDetailsViewController *controller = [[PaymentDetailsViewController alloc] init];
         [controller setObjectModel:self.objectModel];
         [controller setPayment:payment];
         [controller setShowContactSupportCell:YES];
-        [self.navigationController pushViewController:controller animated:YES];
+        resultController = controller;
+    }
+    if(!self.detailContainer)
+    {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [self.navigationController pushViewController:resultController animated:YES];
+    }
+    else
+    {
+        [[self.childViewControllers lastObject] removeFromParentViewController];
+        [[self.detailContainer.subviews lastObject] removeFromSuperview];
+        [self addChildViewController:resultController];
+        [self.detailContainer addSubview:resultController.view];
+        resultController.view.frame = self.detailContainer.bounds;
     }
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	if (section == 0 && self.showIdentificationView) {

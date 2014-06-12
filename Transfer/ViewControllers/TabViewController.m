@@ -124,6 +124,7 @@
             [newSelectedItem.viewController didMoveToParentViewController:self];
             [self.containerView addSubview:newSelectedItem.viewController.view];
             newSelectedItem.viewController.view.frame = self.containerView.bounds;
+            newSelectedItem.viewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
             
             self.navigationItem.title = newSelectedItem.viewController.title;
         }

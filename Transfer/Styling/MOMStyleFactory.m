@@ -93,55 +93,67 @@ static NSDictionary* styleData;
     
     if(!result)
     {
-        NSDictionary* styleDataDictionary =[self styleDataDictionary][@"base"];
-        for(NSString* groupKey in [styleDataDictionary allKeys] )
+        if([identifier rangeOfString:@"@"].location == 0)
         {
-            NSDictionary* styleGroup = [styleDataDictionary valueForKey:groupKey];
-            for (NSString* key in [styleGroup allKeys])
+            NSString* fontSizeString = [identifier substringFromIndex:1];
+            CGFloat fontSize = [fontSizeString floatValue];
+            MOMBasicStyle *fontstyle = [[MOMBasicStyle alloc] init];
+            fontstyle.fontSize = @(fontSize);
+            result = fontstyle;
+            [[self baseStyleLibrary] setObject:result forKey:identifier];
+        }
+        else
+        {
+            NSDictionary* styleDataDictionary =[self styleDataDictionary][@"base"];
+            for(NSString* groupKey in [styleDataDictionary allKeys] )
             {
-                if ([key caseInsensitiveCompare:identifier]==NSOrderedSame)
+                NSDictionary* styleGroup = [styleDataDictionary valueForKey:groupKey];
+                for (NSString* key in [styleGroup allKeys])
                 {
-                    NSDictionary* styleData = styleGroup[key];
-                    if([groupKey caseInsensitiveCompare:@"font"]==NSOrderedSame
-                       ||
-                       [groupKey caseInsensitiveCompare:@"color"]==NSOrderedSame
-                       ||
-                       [groupKey caseInsensitiveCompare:@"basic"]==NSOrderedSame)
+                    if ([key caseInsensitiveCompare:identifier]==NSOrderedSame)
                     {
-                        MOMBasicStyle* fontStyle = [[MOMBasicStyle alloc] init];
-                        fontStyle.fontName = styleData[@"fontName"];
-                        fontStyle.fontSize = styleData[@"fontSize"];
-                        [self setColorPropertiesFromData:styleData onColorStyle:fontStyle];
-                        result = fontStyle;
-                    }
-                    else if ([groupKey caseInsensitiveCompare:@"appearance"]==NSOrderedSame)
-                    {
-                        Class class = NSClassFromString(styleData[@"class"]);
-                        if(class && [class isSubclassOfClass:([MOMAppearanceStyle class])])
+                        NSDictionary* styleData = styleGroup[key];
+                        if([groupKey caseInsensitiveCompare:@"font"]==NSOrderedSame
+                           ||
+                           [groupKey caseInsensitiveCompare:@"color"]==NSOrderedSame
+                           ||
+                           [groupKey caseInsensitiveCompare:@"basic"]==NSOrderedSame)
                         {
-                            id appearanceStyle = [[class alloc] init];
-                            if(appearanceStyle)
+                            MOMBasicStyle* fontStyle = [[MOMBasicStyle alloc] init];
+                            fontStyle.fontName = styleData[@"fontName"];
+                            fontStyle.fontSize = styleData[@"fontSize"];
+                            [self setColorPropertiesFromData:styleData onColorStyle:fontStyle];
+                            result = fontStyle;
+                        }
+                        else if ([groupKey caseInsensitiveCompare:@"appearance"]==NSOrderedSame)
+                        {
+                            Class class = NSClassFromString(styleData[@"class"]);
+                            if(class && [class isSubclassOfClass:([MOMAppearanceStyle class])])
                             {
-                                NSMutableDictionary* keyValues = [NSMutableDictionary dictionaryWithDictionary:styleData];
-                                [keyValues removeObjectForKey:@"class"];
-                                for(NSString *key in [keyValues allKeys])
+                                id appearanceStyle = [[class alloc] init];
+                                if(appearanceStyle)
                                 {
-                                    [appearanceStyle setValue:[keyValues objectForKey:key] forKey:key];
+                                    NSMutableDictionary* keyValues = [NSMutableDictionary dictionaryWithDictionary:styleData];
+                                    [keyValues removeObjectForKey:@"class"];
+                                    for(NSString *key in [keyValues allKeys])
+                                    {
+                                        [appearanceStyle setValue:[keyValues objectForKey:key] forKey:key];
+                                    }
+                                    result = appearanceStyle;
                                 }
-                                result = appearanceStyle;
                             }
                         }
+                        if
+                            (result)
+                        {
+                            [[self baseStyleLibrary] setObject:result forKey:identifier];
+                            break;
+                        }
                     }
-                    if
-                    (result)
-                    {
-                        [[self baseStyleLibrary] setObject:result forKey:identifier];
-                        break;
-                    }
+                    if(result) break;
                 }
                 if(result) break;
             }
-            if(result) break;
         }
     }
     return result;
