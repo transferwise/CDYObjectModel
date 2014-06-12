@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TransparentModalViewController.h"
 
 @class CurrencySelectorViewController;
 @class Currency;
@@ -17,12 +18,11 @@
 
 @end
 
-@interface CurrencySelectorViewController : UIViewController
+@interface CurrencySelectorViewController : TransparentModalViewController
 
 @property (nonatomic,strong)NSArray* currencyArray;
 @property (nonatomic,weak) id<CurrencySelectorDelegate> delegate;
 
 -(void)setSelectedCurrency:(Currency*)selectedCurrency;
--(void)presentOnViewController:(UIViewController*)hostViewcontroller;
 
 @end
