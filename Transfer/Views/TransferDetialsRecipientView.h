@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Recipient;
+
 @interface TransferDetialsRecipientView : UIView
 
-@property (strong, nonatomic) NSString* recipientName;
+- (void)configureWithRecipient:(Recipient *)recipient;
 
 @end

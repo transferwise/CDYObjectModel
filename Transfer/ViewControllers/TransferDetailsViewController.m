@@ -7,8 +7,10 @@
 //
 
 #import "TransferDetailsViewController.h"
+#import "TransferDetialsHeaderView.h"
 #import "TransferDetailsAmountsView.h"
-#import "TransferDetailsRecipientView.h"
+#import "TransferDetialsRecipientView.h"
+#import "Recipient.h"
 
 @interface TransferDetailsViewController ()
 
@@ -33,8 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.headerPlaceholder = self.headerView;
-    
+	[self setData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,16 +44,16 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)configureWithPayment:(Payment *)payment
+- (void)setData
 {
-	self.headerView.transferNumber = [payment.remoteId stringValue];
-	NSString* recipient = [payment.recipient fullName];
+	self.headerView.transferNumber = [self.payment.remoteId stringValue];
+	NSString* recipient = [self.payment.recipient name];
     self.headerView.recipientName = recipient;
-	self.accountView.recipientName = recipient;
     
-    switch ([payment status]) {
+	UIImage *icon;
+    switch ([self.payment status]) {
         case PaymentStatusCancelled:
-            icon = [UIImage imageNamed:@"transfers_status_cancelled"];
+            icon = [UIImage imageNamed:@"transfers_status_canceled"];
             break;
         case PaymentStatusMatched:
 			icon = [UIImage imageNamed:@"transfers_status_converting"];
@@ -74,32 +75,35 @@
             break;
         case PaymentStatusUnknown:
         default:
-            icon = [UIImage imageNamed:@"transfers_status_cancelled"];
+            icon = [UIImage imageNamed:@"transfers_status_canceled"];
             
             break;
     }
     self.statusIcon.image = icon;
 	self.headerView.status = [self getStatusBasedLocalizations:@"payment.status.%@.description.long"
-														status:payment.paymentStatus];;
+														status:self.payment.paymentStatus];;
 	
-	self.amountsView.fromAmount = [payment payInStringWithCurrency];
+	self.amountsView.fromAmount = [self.payment payInStringWithCurrency];
 	self.amountsView.status = [self getStatusBasedLocalizations:@"payment.status.%@.description.conversion"
-														 status:payment.paymentStatus];;
-	self.amountsView.toAmount = [payment payOutStringWithCurrency];
-	NSString* eta = [self getStatusBasedLocalizations:@"payment.status.%@.description.eta"
-											   status:payment.paymentStatus];
-	if(eta length > 0)
+														 status:self.payment.paymentStatus];;
+	self.amountsView.toAmount = [self.payment payOutStringWithCurrency];
+	NSString* eta = NSLocalizedString([self getStatusBasedLocalizations:@"payment.status.%@.description.eta"
+											   status:self.payment.paymentStatus], nil);
+	if(eta.length > 0 && self.payment.paymentDateString != nil)
 	{
-		self.amountsView.eta = [NSString stringWithFormat:eta, payment.paymentDateString];
+		self.amountsView.eta = [NSString stringWithFormat:eta, self.payment.paymentDateString];
 	}
 	else
 	{
 		self.amountsView.eta = nil;
 	}
+	
+	[self.accountView configureWithRecipient:self.payment.recipient];
 }
 
-- (NSString*)getStatusBasedLocalizations:(NSString *)localizationKey status:(NSString)status
+- (NSString*)getStatusBasedLocalizations:(NSString *)localizationKey status:(NSString*)status
 {
-	return NSLocalizedString([NSString stringWithFormat:localizationKey, status], nil);
+	NSString *key = [NSString stringWithFormat:localizationKey, status];
+	return NSLocalizedString(key, nil);
 }
 @end

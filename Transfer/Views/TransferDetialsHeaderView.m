@@ -9,6 +9,8 @@
 #import "TransferDetialsHeaderView.h"
 #import "UIFont+MOMStyle.h"
 #import <OHAttributedLabel.h>
+#import "UIFont+MOMStyle.h"
+#import "UIColor+MOMStyle.h"
 
 @interface TransferDetialsHeaderView ()
 
@@ -43,19 +45,27 @@
 
 - (void)setRecipientName:(NSString *)recipientName
 {
-	//to in the beginning must not be bold
-	NSMutableAttributedString *attributedName = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:NSLocalizedString(@"transferdetails.controller.transfer.recipient", nil), recipientName] attributes:@{NSFontAttributeName: [UIFont fontFromStyle:@"H4Bold"]}];
-	NSDictionary* subAttrs = @{NSFontAttributeName: [UIFont fontFromStyle:@"H4.darkGray"]};
-	//an assumption here that "to" will always be 2-3 symbols, should revisit when localizing to other langs
-	[attributedName setAttributes:subAttrs range:NSMakeRange(0, 3)];
+	NSString *key = NSLocalizedString(@"transferdetails.controller.transfer.recipient", nil);
+	//last two symbols of the key are %@
+	NSRange toRange = NSMakeRange(0, key.length - 2);
 	
-	[self.recipientNameLabel setAttributedText:attributedName];
+	NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:key, recipientName]];
+	
+    OHParagraphStyle *paragraphStyle = [OHParagraphStyle defaultParagraphStyle];
+    paragraphStyle.textAlignment = kCTTextAlignmentCenter;
+    paragraphStyle.lineBreakMode = kCTLineBreakByWordWrapping;
+    [attributedString setParagraphStyle:paragraphStyle];
+    [attributedString setFont:[UIFont fontFromStyle:@"heavy.@20"]];
+    [attributedString setFont:[UIFont fontFromStyle:@"medium.@20"] range:toRange];
+    [attributedString setTextColor:[UIColor colorFromStyle:@"darkGray"]];
+	
+	[self.recipientNameLabel setAttributedText:attributedString];
 }
 
 - (void)setStatus:(NSString *)status
 {
 	//status is already localized in payment object
-	[self.status setText:status];
+	[self.statusLabel setText:status];
 }
 
 @end

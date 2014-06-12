@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Payment.h"
 
+@class Payment;
+@class Recipient;
+
 @interface TransferDetailsViewController : UIViewController
 
-- (void)configureWithPayment:(Payment *)payment;
+@property (weak, nonatomic) Payment *payment;
 
 @end

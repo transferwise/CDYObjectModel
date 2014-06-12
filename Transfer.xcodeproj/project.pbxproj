@@ -83,6 +83,9 @@
 		479B693B19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693919499F9B001FA4FE /* TransferDetailsAmountsView.m */; };
 		479B693E1949C36F001FA4FE /* TransferDetialsRecipientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693D1949C36F001FA4FE /* TransferDetialsRecipientView.m */; };
 		479B693F1949C36F001FA4FE /* TransferDetialsRecipientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693D1949C36F001FA4FE /* TransferDetialsRecipientView.m */; };
+		479B69401949E7BB001FA4FE /* UIFont+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B69361948A2EB001FA4FE /* UIFont+MOMStyle.m */; };
+		479B69411949E7DA001FA4FE /* TransferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B692A19487865001FA4FE /* TransferDetailsViewController.m */; };
+		479B69421949E7ED001FA4FE /* TransferDetialsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693319489303001FA4FE /* TransferDetialsHeaderView.m */; };
 		47F1F5921941C87600FC4BEB /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
 		47FB7EA519419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
 		47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
@@ -2491,6 +2494,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				479B69421949E7ED001FA4FE /* TransferDetialsHeaderView.m in Sources */,
+				479B69411949E7DA001FA4FE /* TransferDetailsViewController.m in Sources */,
+				479B69401949E7BB001FA4FE /* UIFont+MOMStyle.m in Sources */,
 				38AA83421949B8DF0065AD2A /* GradientView.m in Sources */,
 				47F1F5921941C87600FC4BEB /* NSString+DeviceSpecificLocalisation.m in Sources */,
 				EA31A12517DDB29B00F937F7 /* main.m in Sources */,

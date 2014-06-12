@@ -14,13 +14,13 @@
 
 +(UIFont*)fontFromStyle:(NSString *)styleIdentifier
 {
-	UIFong* result;
+	UIFont* result;
     MOMBaseStyle* style = [MOMStyleFactory getStyleForIdentifier:styleIdentifier];
     if([style isKindOfClass:[MOMBasicStyle class]])
     {
-		MOMBasicStyle* style = (MOMBasicStyle*) style;
+		MOMBasicStyle* basicStyle = (MOMBasicStyle*)style;
 		
-		result = [UIFont fontWithName:style.fontName size:style.fontSize];
+		result = [UIFont fontWithName:basicStyle.fontName size:[basicStyle.fontSize floatValue]];
     }
     return result;
 }

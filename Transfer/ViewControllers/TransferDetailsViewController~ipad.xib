@@ -18,54 +18,60 @@
             <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="jJD-by-0Jd" userLabel="Header View" customClass="TransferDetialsHeaderView">
-                    <rect key="frame" x="412" y="100" width="200" height="88"/>
+                <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="88" translatesAutoresizingMaskIntoConstraints="NO" id="jJD-by-0Jd" userLabel="Header View" customClass="TransferDetialsHeaderView">
+                    <rect key="frame" x="0.0" y="100" width="1024" height="88"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bB-ke-DbF" userLabel="Label - Your Transfer">
-                            <rect key="frame" x="79" y="0.0" width="42" height="21"/>
+                            <rect key="frame" x="491" y="0.0" width="42" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="H4.lighterBlue"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.lighterBlue"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7NO-O2-ul7" userLabel="Label - Transfer Number">
-                            <rect key="frame" x="79" y="21" width="42" height="21"/>
+                            <rect key="frame" x="491" y="20" width="42" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="H4Bold"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@20.darkGray"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1m-Ok-c6y" userLabel="Label - Recipient Name" customClass="OHAttributedLabel">
-                            <rect key="frame" x="79" y="42" width="42" height="21"/>
+                            <rect key="frame" x="0.0" y="40" width="1024" height="27"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="27" id="pWL-35-HPR"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0f-kV-mku" userLabel="Label - Status">
-                            <rect key="frame" x="79" y="63" width="42" height="21"/>
+                            <rect key="frame" x="491" y="66" width="42" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.lighterBlue"/>
+                            </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="K1m-Ok-c6y" firstAttribute="top" secondItem="7NO-O2-ul7" secondAttribute="bottom" id="2SE-Dd-Vem"/>
-                        <constraint firstItem="F0f-kV-mku" firstAttribute="top" secondItem="K1m-Ok-c6y" secondAttribute="bottom" id="GP0-ut-5jn"/>
+                        <constraint firstItem="K1m-Ok-c6y" firstAttribute="top" secondItem="7NO-O2-ul7" secondAttribute="bottom" constant="-1" id="2SE-Dd-Vem"/>
+                        <constraint firstItem="F0f-kV-mku" firstAttribute="top" secondItem="K1m-Ok-c6y" secondAttribute="bottom" constant="-1" id="GP0-ut-5jn"/>
                         <constraint firstAttribute="centerX" secondItem="7NO-O2-ul7" secondAttribute="centerX" id="HW1-YI-mia"/>
                         <constraint firstAttribute="centerX" secondItem="K1m-Ok-c6y" secondAttribute="centerX" id="LXk-uN-7CD"/>
-                        <constraint firstAttribute="height" constant="88" placeholder="YES" id="QtJ-yn-iza"/>
                         <constraint firstAttribute="centerX" secondItem="0bB-ke-DbF" secondAttribute="centerX" id="WKP-H9-z2G"/>
                         <constraint firstAttribute="centerX" secondItem="F0f-kV-mku" secondAttribute="centerX" id="aY0-rL-wKC"/>
-                        <constraint firstAttribute="width" constant="200" placeholder="YES" id="gn4-Mb-xwE"/>
-                        <constraint firstItem="7NO-O2-ul7" firstAttribute="top" secondItem="0bB-ke-DbF" secondAttribute="bottom" id="vg8-Ta-EHa"/>
+                        <constraint firstItem="K1m-Ok-c6y" firstAttribute="leading" secondItem="jJD-by-0Jd" secondAttribute="leading" id="vAY-gv-jh5"/>
+                        <constraint firstItem="7NO-O2-ul7" firstAttribute="top" secondItem="0bB-ke-DbF" secondAttribute="bottom" constant="-1" id="vg8-Ta-EHa"/>
                         <constraint firstItem="0bB-ke-DbF" firstAttribute="top" secondItem="jJD-by-0Jd" secondAttribute="top" id="vhj-ic-X3w"/>
+                        <constraint firstAttribute="trailing" secondItem="K1m-Ok-c6y" secondAttribute="trailing" id="ykK-4B-JZg"/>
                     </constraints>
                     <connections>
                         <outlet property="recipientNameLabel" destination="K1m-Ok-c6y" id="XRr-Vw-LDr"/>
@@ -74,54 +80,54 @@
                         <outlet property="yourTransferLabel" destination="0bB-ke-DbF" id="Upa-IZ-Vqb"/>
                     </connections>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8dh-F6-i1O">
-                    <rect key="frame" x="412" y="218" width="200" height="200"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8dh-F6-i1O">
+                    <rect key="frame" x="412" y="221" width="200" height="200"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" priority="1" constant="200" id="4pe-wN-NIZ"/>
                         <constraint firstAttribute="width" priority="1" constant="200" id="6IT-v3-Fgh"/>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="pXp-Pg-8Id"/>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="pXp-Pg-8Id"/>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="t5d-HJ-iOU"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="gxD-Ss-q8P" customClass="TransferDetailsAmountsView">
-                    <rect key="frame" x="412" y="448" width="200" height="110"/>
+                    <rect key="frame" x="0.0" y="451" width="1024" height="110"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jG-a7-WpV" userLabel="Label - Status">
-                            <rect key="frame" x="79" y="21" width="42" height="21"/>
+                            <rect key="frame" x="491" y="20" width="42" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="H4Bold.lighterBlue"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@20.lighterBlue"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ds-Oe-207" userLabel="Label - From Amount">
-                            <rect key="frame" x="79" y="0.0" width="42" height="21"/>
+                            <rect key="frame" x="491" y="0.0" width="42" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="H4.darkGray"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.darkGray"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctn-3w-Ikq" userLabel="Label - To Amount">
-                            <rect key="frame" x="79" y="42" width="42" height="21"/>
+                            <rect key="frame" x="491" y="40" width="42" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="H4.darkGray"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.darkGray"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="42" translatesAutoresizingMaskIntoConstraints="NO" id="KaH-1y-EDd" userLabel="Label - ETA">
-                            <rect key="frame" x="79" y="63" width="42" height="41"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="1024" translatesAutoresizingMaskIntoConstraints="NO" id="KaH-1y-EDd" userLabel="Label - ETA">
+                            <rect key="frame" x="0.0" y="60" width="1024" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="keyPath" value="H4Bold.lighterBlue"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@20.lighterBlue"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
@@ -129,14 +135,15 @@
                     <constraints>
                         <constraint firstAttribute="centerX" secondItem="7ds-Oe-207" secondAttribute="centerX" id="8bo-sr-kaK"/>
                         <constraint firstAttribute="centerX" secondItem="0jG-a7-WpV" secondAttribute="centerX" id="Ajd-V7-nCc"/>
+                        <constraint firstAttribute="height" constant="110" placeholder="YES" id="KbG-1X-pnP"/>
                         <constraint firstAttribute="centerX" secondItem="ctn-3w-Ikq" secondAttribute="centerX" id="Tl3-fj-4Bp"/>
+                        <constraint firstAttribute="trailing" secondItem="KaH-1y-EDd" secondAttribute="trailing" id="bIy-ca-fwG"/>
                         <constraint firstItem="7ds-Oe-207" firstAttribute="top" secondItem="gxD-Ss-q8P" secondAttribute="top" id="bL9-H4-FXb"/>
-                        <constraint firstItem="KaH-1y-EDd" firstAttribute="top" secondItem="ctn-3w-Ikq" secondAttribute="bottom" id="d8g-6r-vMk"/>
-                        <constraint firstAttribute="height" constant="110" placeholder="YES" id="dg8-Fz-nvJ"/>
+                        <constraint firstItem="KaH-1y-EDd" firstAttribute="top" secondItem="ctn-3w-Ikq" secondAttribute="bottom" constant="-1" id="d8g-6r-vMk"/>
                         <constraint firstAttribute="centerX" secondItem="KaH-1y-EDd" secondAttribute="centerX" id="eSV-YB-pZh"/>
-                        <constraint firstAttribute="width" constant="200" placeholder="YES" id="lcx-CV-Qk7"/>
-                        <constraint firstItem="0jG-a7-WpV" firstAttribute="top" secondItem="7ds-Oe-207" secondAttribute="bottom" id="mbM-0C-JD3"/>
-                        <constraint firstItem="ctn-3w-Ikq" firstAttribute="top" secondItem="0jG-a7-WpV" secondAttribute="bottom" id="x1W-cx-ITj"/>
+                        <constraint firstItem="KaH-1y-EDd" firstAttribute="leading" secondItem="gxD-Ss-q8P" secondAttribute="leading" id="k1m-zs-GBE"/>
+                        <constraint firstItem="0jG-a7-WpV" firstAttribute="top" secondItem="7ds-Oe-207" secondAttribute="bottom" constant="-1" id="mbM-0C-JD3"/>
+                        <constraint firstItem="ctn-3w-Ikq" firstAttribute="top" secondItem="0jG-a7-WpV" secondAttribute="bottom" constant="-1" id="x1W-cx-ITj"/>
                     </constraints>
                     <connections>
                         <outlet property="amountFromLabel" destination="7ds-Oe-207" id="HDh-U3-eaD"/>
@@ -145,8 +152,8 @@
                         <outlet property="statusLabel" destination="0jG-a7-WpV" id="njw-te-BAH"/>
                     </connections>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="anS-pb-BWk" customClass="TransferDetialsRecipientView">
-                    <rect key="frame" x="362" y="618" width="300" height="100"/>
+                <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="300" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="anS-pb-BWk" customClass="TransferDetialsRecipientView">
+                    <rect key="frame" x="362" y="619" width="300" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpr-jT-3Kg" userLabel="Label - Account Header">
@@ -154,6 +161,9 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@17.lighterBlue"/>
+                            </userDefinedRuntimeAttributes>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JWj-M3-8IP" userLabel="View - Separator">
                             <rect key="frame" x="9" y="36" width="282" height="1"/>
@@ -167,12 +177,10 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="centerX" secondItem="JWj-M3-8IP" secondAttribute="centerX" id="BPJ-uW-AWp"/>
-                        <constraint firstAttribute="height" constant="100" placeholder="YES" id="EIX-Se-lBH"/>
-                        <constraint firstAttribute="width" constant="300" placeholder="YES" id="ZdL-ln-hte"/>
+                        <constraint firstAttribute="centerX" secondItem="JWj-M3-8IP" secondAttribute="centerX" id="dp2-gM-Jbn"/>
                         <constraint firstItem="JWj-M3-8IP" firstAttribute="top" secondItem="vpr-jT-3Kg" secondAttribute="bottom" constant="15" id="n8W-bv-6Qe"/>
                         <constraint firstItem="vpr-jT-3Kg" firstAttribute="top" secondItem="anS-pb-BWk" secondAttribute="top" id="sVy-ow-PCT"/>
-                        <constraint firstAttribute="centerX" secondItem="vpr-jT-3Kg" secondAttribute="centerX" id="ypd-b1-jg1"/>
+                        <constraint firstAttribute="centerX" secondItem="vpr-jT-3Kg" secondAttribute="centerX" id="v5X-on-Yg7"/>
                     </constraints>
                     <connections>
                         <outlet property="accountHeaderLabel" destination="vpr-jT-3Kg" id="akh-a1-2gB"/>
@@ -181,14 +189,18 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="gxD-Ss-q8P" firstAttribute="top" secondItem="8dh-F6-i1O" secondAttribute="bottom" constant="30" id="2ni-Y4-Sb4"/>
+                <constraint firstAttribute="trailing" secondItem="jJD-by-0Jd" secondAttribute="trailing" id="8Ae-SM-pfN"/>
+                <constraint firstItem="jJD-by-0Jd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8c2-nS-QMY"/>
+                <constraint firstItem="7ds-Oe-207" firstAttribute="top" secondItem="8dh-F6-i1O" secondAttribute="bottom" constant="30" id="Bat-hO-u9B"/>
+                <constraint firstItem="gxD-Ss-q8P" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Dav-W8-Qq7"/>
                 <constraint firstAttribute="centerX" secondItem="8dh-F6-i1O" secondAttribute="centerX" id="Emq-JO-aeE"/>
-                <constraint firstItem="8dh-F6-i1O" firstAttribute="top" secondItem="jJD-by-0Jd" secondAttribute="bottom" constant="30" id="IhB-34-s2t"/>
                 <constraint firstAttribute="centerX" secondItem="gxD-Ss-q8P" secondAttribute="centerX" id="Ovi-9F-5tM"/>
                 <constraint firstItem="jJD-by-0Jd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="Wjo-Kr-J1n"/>
                 <constraint firstAttribute="centerX" secondItem="anS-pb-BWk" secondAttribute="centerX" id="aQx-aj-aec"/>
-                <constraint firstItem="anS-pb-BWk" firstAttribute="top" secondItem="gxD-Ss-q8P" secondAttribute="bottom" constant="60" id="o8P-MB-BcN"/>
+                <constraint firstItem="8dh-F6-i1O" firstAttribute="top" secondItem="F0f-kV-mku" secondAttribute="bottom" constant="34" id="cz1-N2-3oZ"/>
                 <constraint firstAttribute="centerX" secondItem="jJD-by-0Jd" secondAttribute="centerX" id="qfG-pJ-b4Y"/>
+                <constraint firstItem="anS-pb-BWk" firstAttribute="top" secondItem="ctn-3w-Ikq" secondAttribute="bottom" constant="107" id="x4V-6i-PGA"/>
+                <constraint firstAttribute="trailing" secondItem="gxD-Ss-q8P" secondAttribute="trailing" id="zte-f7-UYI"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
