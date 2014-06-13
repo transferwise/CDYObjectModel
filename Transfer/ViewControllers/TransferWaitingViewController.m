@@ -10,6 +10,9 @@
 
 @interface TransferWaitingViewController ()
 
+@property (strong, nonatomic) IBOutlet UILabel *thankYouLabel;
+@property (strong, nonatomic) IBOutlet UILabel *messageLabel;
+
 @end
 
 @implementation TransferWaitingViewController
