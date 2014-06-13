@@ -14,20 +14,29 @@
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, assign) CalculationAmountCurrency amountCurrency;
-@property (strong, nonatomic) IBOutlet UILabel *transferwiseRateLabel;
-@property (strong, nonatomic) IBOutlet UILabel *transferwiseTransferFeeLabel;
-@property (strong, nonatomic) IBOutlet UILabel *transferwisePayOutLabel;
-@property (strong, nonatomic) IBOutlet UILabel *bankRateLabel;
-@property (strong, nonatomic) IBOutlet UILabel *bankTransferFeeLabel;
-@property (strong, nonatomic) IBOutlet UILabel *bankPayOutLabel;
 
-@property (nonatomic, strong) IBOutlet UILabel *bankColumnTitleLabel;
-@property (nonatomic, strong) IBOutlet UILabel *twTransferRateTitleLabel;
-@property (nonatomic, strong) IBOutlet UILabel *bankTransferRateTitleLabel;
-@property (nonatomic, strong) IBOutlet UILabel *twFeeTitleLabel;
-@property (nonatomic, strong) IBOutlet UILabel *bankFeeTitleLabel;
-@property (nonatomic, strong) IBOutlet UILabel *twYouGetTitleLabel;
-@property (nonatomic, strong) IBOutlet UILabel *bankYouGetTitleLabel;
+@property (nonatomic, weak) IBOutlet UIImageView * transferWiseHeaderImage;
+@property (weak, nonatomic) IBOutlet UILabel *transferwiseRateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *transferwiseTransferFeeLabel;
+@property (nonatomic, weak) IBOutlet UILabel *twTransferRateTitleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *twFeeTitleLabel;
+
+
+@property (nonatomic, weak) IBOutlet UIImageView * bankHeaderImage;
+@property (nonatomic, weak) IBOutlet UILabel *bankHeaderLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bankRateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bankTransferFeeLabel;
+@property (nonatomic, weak) IBOutlet UILabel *bankTransferRateTitleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *bankFeeTitleLabel;
+
+@property (nonatomic, weak) IBOutlet UILabel *vsLabel;
+@property (nonatomic, weak) IBOutlet UILabel *rateLabel;
+@property (nonatomic, weak) IBOutlet UILabel *feeLabel;
+@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic, weak) IBOutlet UIButton *actionButton;
+
+
+
 
 
 @end
@@ -49,30 +58,28 @@
 }
 
 - (void)awakeFromNib {
-    [self.bankColumnTitleLabel setText:NSLocalizedString(@"why.popup.bank.column.label", nil)];
-    [self.twTransferRateTitleLabel setText:NSLocalizedString(@"why.popup.tw.rate.title", nil)];
-    [self.bankTransferRateTitleLabel setText:NSLocalizedString(@"why.popup.bank.rate.title", nil)];
-    [self.twFeeTitleLabel setText:NSLocalizedString(@"why.popup.tw.fee.title", nil)];
-    [self.bankFeeTitleLabel setText:NSLocalizedString(@"why.popup.bank.fee.title", nil)];
+    self.twTransferRateTitleLabel.text = NSLocalizedString(@"why.popup.tw.rate.title", nil);
+    self.bankTransferRateTitleLabel.text = NSLocalizedString(@"why.popup.bank.rate.title", nil);
+    self.bankHeaderLabel.text = NSLocalizedString(@"why.popup.bank.column.label",nil);
+    self.twFeeTitleLabel.text = NSLocalizedString(@"why.popup.tw.fee.title", nil);
+    self.bankFeeTitleLabel.text = NSLocalizedString(@"why.popup.bank.fee.title", nil);
+    self.vsLabel.text = NSLocalizedString(@"why.popup.vs", nil);
+    self.rateLabel.text = NSLocalizedString(@"why.popup.rate", nil);
+    self.feeLabel.text = NSLocalizedString(@"why.popup.fee", nil);
+    self.titleLabel.text = NSLocalizedString(@"why.popup.title", nil);
 }
 
 
 - (void)setupWithResult:(CalculationResult *)result {
-    [self.transferwiseRateLabel setText:result.transferwiseRateString];
     [self.transferwiseTransferFeeLabel setText:result.transferwiseTransferFeeStringWithCurrency];
     [self.bankRateLabel setText:result.bankRateString];
+    self.transferwiseRateLabel.text = result.transferwiseRateString;
     [self.bankTransferFeeLabel setText:result.bankTotalFeeStringWithCurrency];
 
     if (result.amountCurrency == SourceCurrency) {
-        [self.transferwisePayOutLabel setText:result.transferwisePayOutStringWithCurrency];
-        [self.bankPayOutLabel setText:result.bankPayOutStringWithCurrency];
-        [self.twYouGetTitleLabel setText:NSLocalizedString(@"why.popup.tw.you.get.title", nil)];
-        [self.bankYouGetTitleLabel setText:NSLocalizedString(@"why.popup.bank.you.get.title", nil)];
+        [self.actionButton setTitle:[NSString stringWithFormat:NSLocalizedString(@"why.popup.button",nil),result.receiveWinAmountWithCurrency] forState:UIControlStateNormal];
     } else {
-        [self.transferwisePayOutLabel setText:result.transferwisePayInStringWithCurrency];
-        [self.bankPayOutLabel setText:result.bankPayInStringWithCurrency];
-        [self.twYouGetTitleLabel setText:NSLocalizedString(@"why.popup.tw.you.pay.title", nil)];
-        [self.bankYouGetTitleLabel setText:NSLocalizedString(@"why.popup.bank.you.pay.title", nil)];
+        [self.actionButton setTitle:[NSString stringWithFormat:NSLocalizedString(@"why.popup.button",nil),result.payWinAmountWithCurrency] forState:UIControlStateNormal];
     }
 }
 
