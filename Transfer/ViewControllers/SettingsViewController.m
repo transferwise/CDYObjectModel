@@ -120,6 +120,7 @@ typedef NS_ENUM(short, SettingsRow) {
     SettingsTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:kSettingsTitleCellIdentifier];
     [cell.imageView setImage:nil];
     [cell.textLabel setTextColor:[UIColor whiteColor]];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleDefault];
 
     SettingsRow code = (SettingsRow) [self.presentedRows[(NSUInteger) indexPath.row] shortValue];
     switch (code) {
@@ -130,6 +131,7 @@ typedef NS_ENUM(short, SettingsRow) {
             [cell setTitle:[self.objectModel.currentUser displayName]];
             [cell.imageView setImage:[UIImage imageNamed:@"ProfileIcon.png"]];
             [cell.textLabel setTextColor:[UIColor lightGrayColor]];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             break;
         case PersonalProfileRow:
             [cell setTitle:NSLocalizedString(@"settings.row.personal.profile", nil)];
@@ -145,6 +147,7 @@ typedef NS_ENUM(short, SettingsRow) {
             break;
         case FillerRow:
             [cell setTitle:@""];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             break;
         case ClaimAccountRow:
             [cell setTitle:NSLocalizedString(@"settings.row.claim.account", nil)];
