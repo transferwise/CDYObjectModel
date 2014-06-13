@@ -30,6 +30,7 @@
 #import "PaymentPurposeOperation.h"
 #import "PullToRefreshView.h"
 #import "TransferDetailsViewController.h"
+#import "TransferWaitingViewController.h"
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
@@ -158,11 +159,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
     UIViewController *resultController;
     if ([payment isSubmitted]) {
-        UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
-        [controller setPayment:payment];
-        [controller setObjectModel:self.objectModel];
-        [controller setHideBottomButton:YES];
-        [controller setShowContactSupportCell:YES];
+		TransferWaitingViewController *controller = [[TransferWaitingViewController alloc] init];
+        controller.payment = payment;
         resultController = controller;
     } else if ([payment isCancelled] || [payment moneyReceived] || [payment moneyTransferred]) {
         TransferDetailsViewController *controller = [[TransferDetailsViewController alloc] init];
