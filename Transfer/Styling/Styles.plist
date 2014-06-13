@@ -86,6 +86,11 @@
 				<key>color</key>
 				<string>dee9ed</string>
 			</dict>
+			<key>paleBlue2</key>
+			<dict>
+				<key>color</key>
+				<string>848da0</string>
+			</dict>
 			<key>tabBarBlue</key>
 			<dict>
 				<key>color</key>
