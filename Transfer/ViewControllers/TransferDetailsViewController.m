@@ -33,11 +33,6 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-	[self.supportButton setTitle:NSLocalizedString(@"transferdetails.controller.button.support", nil) forState:UIControlStateNormal];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -107,6 +102,7 @@
 	}
 	
 	[self.accountView configureWithRecipient:self.payment.recipient];
+	[self.supportButton setTitle:NSLocalizedString(@"transferdetails.controller.button.support", nil) forState:UIControlStateNormal];
 	
 	[self.view layoutIfNeeded];
 }
