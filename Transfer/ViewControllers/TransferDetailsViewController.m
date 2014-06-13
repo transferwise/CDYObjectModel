@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *statusIcon;
 @property (strong, nonatomic) IBOutlet TransferDetailsAmountsView *amountsView;
 @property (strong, nonatomic) IBOutlet TransferDetialsRecipientView *accountView;
+@property (strong, nonatomic) IBOutlet UIButton *supportButton;
 
 @end
 
@@ -30,6 +31,11 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	[self.supportButton setTitle:NSLocalizedString(@"transferdetails.controller.button.support", nil) forState:UIControlStateNormal];
 }
 
 - (void)viewDidLoad
@@ -101,6 +107,7 @@
 	}
 	
 	[self.accountView configureWithRecipient:self.payment.recipient];
+	
 	[self.view layoutIfNeeded];
 }
 

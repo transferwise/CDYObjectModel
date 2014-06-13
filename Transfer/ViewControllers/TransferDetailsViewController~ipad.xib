@@ -10,6 +10,7 @@
                 <outlet property="amountsView" destination="gxD-Ss-q8P" id="aSs-g7-DFH"/>
                 <outlet property="headerView" destination="jJD-by-0Jd" id="z78-Er-Ntb"/>
                 <outlet property="statusIcon" destination="8dh-F6-i1O" id="7wI-SB-I7T"/>
+                <outlet property="supportButton" destination="g0K-st-6YG" id="Hcn-2l-tWe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -210,19 +211,34 @@
                         <outlet property="detailsLabel" destination="NqY-J0-ze8" id="huL-Uc-Ecm"/>
                     </connections>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0K-st-6YG" customClass="LightGrayButton">
+                    <rect key="frame" x="60" y="678" width="904" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" priority="2" constant="354" id="4oG-tt-5So"/>
+                        <constraint firstAttribute="height" constant="30" id="Q9Q-tK-AjY"/>
+                    </constraints>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="g0K-st-6YG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="1iB-EB-NVL"/>
                 <constraint firstItem="anS-pb-BWk" firstAttribute="top" secondItem="0Is-L2-5Q3" secondAttribute="bottom" constant="46" id="7ly-PI-QTJ"/>
                 <constraint firstAttribute="trailing" secondItem="jJD-by-0Jd" secondAttribute="trailing" id="8Ae-SM-pfN"/>
                 <constraint firstItem="jJD-by-0Jd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8c2-nS-QMY"/>
                 <constraint firstItem="7ds-Oe-207" firstAttribute="top" secondItem="8dh-F6-i1O" secondAttribute="bottom" constant="24" id="Bat-hO-u9B"/>
                 <constraint firstItem="gxD-Ss-q8P" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Dav-W8-Qq7"/>
                 <constraint firstAttribute="centerX" secondItem="8dh-F6-i1O" secondAttribute="centerX" id="Emq-JO-aeE"/>
+                <constraint firstAttribute="trailing" secondItem="g0K-st-6YG" secondAttribute="trailing" constant="60" id="J9C-KG-aGd"/>
                 <constraint firstAttribute="centerX" secondItem="gxD-Ss-q8P" secondAttribute="centerX" id="Ovi-9F-5tM"/>
                 <constraint firstItem="jJD-by-0Jd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="94" id="Wjo-Kr-J1n"/>
+                <constraint firstAttribute="centerX" secondItem="g0K-st-6YG" secondAttribute="centerX" id="ZXu-vn-5GC"/>
                 <constraint firstAttribute="centerX" secondItem="anS-pb-BWk" secondAttribute="centerX" id="aQx-aj-aec"/>
                 <constraint firstItem="8dh-F6-i1O" firstAttribute="top" secondItem="F0f-kV-mku" secondAttribute="bottom" constant="21" id="cz1-N2-3oZ"/>
+                <constraint firstAttribute="bottom" secondItem="g0K-st-6YG" secondAttribute="bottom" constant="60" id="iXj-Qa-5ZH"/>
                 <constraint firstItem="anS-pb-BWk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pkq-6y-8cI"/>
                 <constraint firstAttribute="centerX" secondItem="jJD-by-0Jd" secondAttribute="centerX" id="qfG-pJ-b4Y"/>
                 <constraint firstAttribute="trailing" secondItem="anS-pb-BWk" secondAttribute="trailing" id="ufc-zP-ATK"/>
