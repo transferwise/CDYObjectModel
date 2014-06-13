@@ -26,6 +26,11 @@
 				<key>alpha</key>
 				<real>0.95</real>
 			</dict>
+			<key>blue</key>
+			<dict>
+				<key>color</key>
+				<string>e0e9ee</string>
+			</dict>
 			<key>cellSelected</key>
 			<dict>
 				<key>color</key>

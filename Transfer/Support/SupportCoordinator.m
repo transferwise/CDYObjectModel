@@ -67,7 +67,10 @@
                                                     otherButtonTitles:nil];
 
     [self setWriteButtonIndex:[actionSheet addButtonWithTitle:NSLocalizedString(@"support.sheet.write.message", nil)]];
-    [self setCallButtonIndex:[actionSheet addButtonWithTitle:NSLocalizedString(@"support.sheet.call", nil)]];
+	if(!IPAD)
+	{
+		[self setCallButtonIndex:[actionSheet addButtonWithTitle:NSLocalizedString(@"support.sheet.call", nil)]];
+	}
     NSInteger cancelButtonIndex = [actionSheet addButtonWithTitle:NSLocalizedString(@"button.title.cancel", nil)];
     [actionSheet setCancelButtonIndex:cancelButtonIndex];
 

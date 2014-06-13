@@ -11,6 +11,8 @@
 #import "TransferDetailsAmountsView.h"
 #import "TransferDetialsRecipientView.h"
 #import "Recipient.h"
+#import "SupportCoordinator.h"
+#import "GoogleAnalytics.h"
 
 @interface TransferDetailsViewController ()
 
@@ -105,6 +107,12 @@
 	[self.supportButton setTitle:NSLocalizedString(@"transferdetails.controller.button.support", nil) forState:UIControlStateNormal];
 	
 	[self.view layoutIfNeeded];
+}
+
+- (IBAction)contactSupportPressed {
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"view transfer"];
+    NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
+    [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 }
 
 - (NSString*)getStatusBasedLocalizations:(NSString *)localizationKey status:(NSString*)status
