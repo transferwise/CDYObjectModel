@@ -30,7 +30,7 @@
 
 -(void)commonSetup
 {
-    [self setTitleColor:[UIColor colorFromStyle:@"lighterBlue"] forState:UIControlStateNormal];
+    [self setTitleColor:[UIColor colorFromStyle:@"navBarBlue"] forState:UIControlStateNormal];
     [self.titleLabel setFont:[UIFont fontFromStyle:@"medium.@17"]];
 	[self setBackgroundImage:[UIImage imageFromColor:[UIColor colorFromStyle:@"cellSelected"]] forState:UIControlStateNormal];
     self.exclusiveTouch = YES;
