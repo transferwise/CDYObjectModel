@@ -87,6 +87,10 @@
 		479B69411949E7DA001FA4FE /* TransferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B692A19487865001FA4FE /* TransferDetailsViewController.m */; };
 		479B69421949E7ED001FA4FE /* TransferDetialsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693319489303001FA4FE /* TransferDetialsHeaderView.m */; };
 		47F1F5921941C87600FC4BEB /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
+		47FAF344194B2F11004CE986 /* LightGrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF343194B2F11004CE986 /* LightGrayButton.m */; };
+		47FAF345194B2F11004CE986 /* LightGrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF343194B2F11004CE986 /* LightGrayButton.m */; };
+		47FAF348194B3233004CE986 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF347194B3233004CE986 /* UIImage+Color.m */; };
+		47FAF349194B3233004CE986 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF347194B3233004CE986 /* UIImage+Color.m */; };
 		47FB7EA519419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
 		47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
 		47FB7EA91941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
@@ -686,6 +690,10 @@
 		479B693919499F9B001FA4FE /* TransferDetailsAmountsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDetailsAmountsView.m; sourceTree = "<group>"; };
 		479B693C1949C36F001FA4FE /* TransferDetialsRecipientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferDetialsRecipientView.h; sourceTree = "<group>"; };
 		479B693D1949C36F001FA4FE /* TransferDetialsRecipientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDetialsRecipientView.m; sourceTree = "<group>"; };
+		47FAF342194B2F11004CE986 /* LightGrayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightGrayButton.h; sourceTree = "<group>"; };
+		47FAF343194B2F11004CE986 /* LightGrayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightGrayButton.m; sourceTree = "<group>"; };
+		47FAF346194B3233004CE986 /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
+		47FAF347194B3233004CE986 /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencySelectorViewController~ipad.xib"; sourceTree = "<group>"; };
 		47FB7EA71941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DeviceSpecificLocalisation.h"; sourceTree = "<group>"; };
 		47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeviceSpecificLocalisation.m"; sourceTree = "<group>"; };
@@ -1302,6 +1310,8 @@
 				EAD7D4D0171D4BB20099063F /* GreenButton.m */,
 				EAD73688171E6CB100A037B1 /* GrayButton.h */,
 				EAD73689171E6CB100A037B1 /* GrayButton.m */,
+				47FAF342194B2F11004CE986 /* LightGrayButton.h */,
+				47FAF343194B2F11004CE986 /* LightGrayButton.m */,
 				EAE7B6AA17E9AC3F00E03D73 /* IdentificationNotificationView.h */,
 				EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */,
 				EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */,
@@ -1459,6 +1469,8 @@
 				EA88E679172F97C40021492C /* UIView+Container.m */,
 				EA13E047171BEDC40019FBF0 /* UIView+Loading.h */,
 				EA13E048171BEDC40019FBF0 /* UIView+Loading.m */,
+				47FAF346194B3233004CE986 /* UIImage+Color.h */,
+				47FAF347194B3233004CE986 /* UIImage+Color.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2617,6 +2629,7 @@
 				EA31A18417DDB29B00F937F7 /* BusinessProfileSource.m in Sources */,
 				EA31A18517DDB29B00F937F7 /* BusinessProfileCommitter.m in Sources */,
 				EA31A18617DDB29B00F937F7 /* PaymentProfileViewController.m in Sources */,
+				47FAF345194B2F11004CE986 /* LightGrayButton.m in Sources */,
 				EA31A18717DDB29B00F937F7 /* ProfileSelectionView.m in Sources */,
 				EA31A18817DDB29B00F937F7 /* RemoveTokenOperation.m in Sources */,
 				479B693B19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */,
@@ -2625,6 +2638,7 @@
 				EA31A18A17DDB29B00F937F7 /* TransferTypeSelectionCell.m in Sources */,
 				EA31A18B17DDB29B00F937F7 /* RoundedCellWhiteBackgroundView.m in Sources */,
 				EA31A18D17DDB29B00F937F7 /* _Payment.m in Sources */,
+				47FAF349194B3233004CE986 /* UIImage+Color.m in Sources */,
 				EA31A18E17DDB29B00F937F7 /* Payment.m in Sources */,
 				EA31A18F17DDB29B00F937F7 /* ObjectModel+Payments.m in Sources */,
 				380021E4192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */,
@@ -2846,6 +2860,7 @@
 				EA225C67178E9C90009D6B83 /* _Payment.m in Sources */,
 				EA225C6B178E9C93009D6B83 /* Payment.m in Sources */,
 				EA225C71178E9F00009D6B83 /* ObjectModel+Payments.m in Sources */,
+				47FAF344194B2F11004CE986 /* LightGrayButton.m in Sources */,
 				380021E3192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */,
 				EA225C75178EA124009D6B83 /* TabBarActivityIndicatorView.m in Sources */,
 				EA225C79178EA341009D6B83 /* _Currency.m in Sources */,
@@ -2871,6 +2886,7 @@
 				EA225CAC178EC3B2009D6B83 /* PairSourceCurrency.m in Sources */,
 				EA225CAF178ECD68009D6B83 /* RecipientsOperation.m in Sources */,
 				EA0450DA17EC64BC008921DA /* IntroView.m in Sources */,
+				47FAF348194B3233004CE986 /* UIImage+Color.m in Sources */,
 				380021DF192CC980009B1D53 /* MOMBasicStyle.m in Sources */,
 				EA225CB2178ED8C1009D6B83 /* _AllowedTypeFieldValue.m in Sources */,
 				EA225CB5178ED8C7009D6B83 /* AllowedTypeFieldValue.m in Sources */,
