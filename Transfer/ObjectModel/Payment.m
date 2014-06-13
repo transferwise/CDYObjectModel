@@ -2,6 +2,7 @@
 #import "PendingPayment.h"
 #import "MoneyFormatter.h"
 #import "Currency.h"
+#import "NSString+DeviceSpecificLocalisation.h"
 
 
 @interface Payment ()

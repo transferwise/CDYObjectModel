@@ -9,6 +9,16 @@
       "idiom" : "universal",
       "scale" : "2x",
       "filename" : "transfers_icon_waiting@2x.png"
+    },
+    {
+      "idiom" : "ipad",
+      "scale" : "1x",
+      "filename" : "transfers_icon_waiting~ipad.png"
+    },
+    {
+      "idiom" : "ipad",
+      "scale" : "2x",
+      "filename" : "transfers_icon_waiting@2x~ipad.png"
     }
   ],
   "info" : {
