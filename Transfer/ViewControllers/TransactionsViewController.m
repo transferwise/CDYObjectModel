@@ -63,9 +63,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.tableView setBackgroundView:nil];
-    [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
-
     [self.tableView registerNib:[UINib nibWithNibName:@"PaymentCell" bundle:nil] forCellReuseIdentifier:kPaymentCellIdentifier];
     PullToRefreshView* refreshView = [PullToRefreshView addInstanceToScrollView:self.tableView];
     refreshView.targetHeight = 60.0f;

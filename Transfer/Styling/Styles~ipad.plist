@@ -29,7 +29,7 @@
 			<key>cellSelected</key>
 			<dict>
 				<key>color</key>
-				<string>f5f7f9</string>
+				<string>e0e9ee</string>
 			</dict>
 			<key>darkBlue</key>
 			<dict>
@@ -108,8 +108,17 @@
 			</dict>
 			<key>separatorGray</key>
 			<dict>
+				<key>alpha</key>
+				<real>0.5</real>
 				<key>color</key>
 				<string>d6d9df</string>
+			</dict>
+			<key>dropShadow</key>
+			<dict>
+				<key>alpha</key>
+				<real>0.12</real>
+				<key>color</key>
+				<string>354464</string>
 			</dict>
 			<key>tabBarBlue</key>
 			<dict>
