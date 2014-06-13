@@ -35,7 +35,7 @@
     UIImage *icon;
     switch ([payment status]) {
         case PaymentStatusCancelled:
-            icon = [UIImage imageNamed:@"transfers_icon_cancelled"];
+            icon = [UIImage imageNamed:@"transfers_icon_canceled"];
             break;
         case PaymentStatusMatched:
            icon = [UIImage imageNamed:@"transfers_icon_converting"];
@@ -44,7 +44,7 @@
             icon = [UIImage imageNamed:@"transfers_icon_converting"];
             break;
         case PaymentStatusRefunded:
-            icon = [UIImage imageNamed:@"transfers_icon_cancelled"];
+            icon = [UIImage imageNamed:@"transfers_icon_canceled"];
             break;
         case PaymentStatusReceivedWaitingRecipient:
             icon = [UIImage imageNamed:@"transfers_icon_waiting"];
@@ -57,7 +57,7 @@
             break;
         case PaymentStatusUnknown:
         default:
-            icon = [UIImage imageNamed:@"transfers_icon_cancelled"];
+            icon = [UIImage imageNamed:@"transfers_icon_canceled"];
             
             break;
     }
