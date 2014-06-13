@@ -13,7 +13,8 @@
 
 @interface TransferDetialsRecipientView ()
 
-@property (strong, nonatomic) IBOutlet UILabel* accountHeaderLabel;
+@property (strong, nonatomic) IBOutlet UILabel *accountHeaderLabel;
+@property (strong, nonatomic) IBOutlet UILabel *detailsLabel;
 
 @end
 
@@ -30,11 +31,17 @@
 
 - (void)configureWithRecipient:(Recipient *)recipient
 {
-	[self.accountHeaderLabel setText:[NSString stringWithFormat:NSLocalizedString(@"transferdetails.controller.transfer.account.details", nil), [recipient name]]];
+	[self.accountHeaderLabel setText:[NSString stringWithFormat:NSLocalizedString(@"transferdetails.controller.transfer.account.to", nil), [recipient name]]];
+	NSString* email = [recipient email];
 	
-	for (TypeFieldValue *value in recipient.fieldValues) {
-        NSLog(@"%@ %@",value.valueForField.title, value.presentedValue);
-    }
+	if(email != nil && email.length > 0)
+	{
+		[self.detailsLabel setText:[NSString stringWithFormat:NSLocalizedString(@"transferdetails.controller.transfer.account.sent", nil), [recipient presentationStringFromAllValues], [recipient name], [recipient email]]];
+	}
+	else
+	{
+		[self.detailsLabel setText:[recipient presentationStringFromAllValues]];
+	}
 }
 
 @end

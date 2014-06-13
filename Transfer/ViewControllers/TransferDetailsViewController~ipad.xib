@@ -163,11 +163,11 @@
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="300" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="anS-pb-BWk" customClass="TransferDetialsRecipientView">
-                    <rect key="frame" x="362" y="539" width="300" height="100"/>
+                    <rect key="frame" x="0.0" y="539" width="1024" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpr-jT-3Kg" userLabel="Label - Account Header">
-                            <rect key="frame" x="129" y="0.0" width="42" height="21"/>
+                            <rect key="frame" x="491" y="0.0" width="42" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
@@ -176,7 +176,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <view alpha="0.49999999999999961" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JWj-M3-8IP" userLabel="View - Separator">
-                            <rect key="frame" x="9" y="36" width="282" height="1"/>
+                            <rect key="frame" x="371" y="36" width="282" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -184,19 +184,21 @@
                                 <constraint firstAttribute="width" constant="282" id="baz-8w-ljs"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NqY-J0-ze8">
-                            <rect key="frame" x="129" y="40" width="42" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="1024" translatesAutoresizingMaskIntoConstraints="NO" id="NqY-J0-ze8" userLabel="Label - Details">
+                            <rect key="frame" x="0.0" y="52" width="1024" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@16."/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@16.lighterGray"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="NqY-J0-ze8" firstAttribute="top" secondItem="JWj-M3-8IP" secondAttribute="bottom" constant="3" id="FFR-i5-66r"/>
+                        <constraint firstAttribute="trailing" secondItem="NqY-J0-ze8" secondAttribute="trailing" id="19R-fA-llk"/>
+                        <constraint firstItem="NqY-J0-ze8" firstAttribute="top" secondItem="JWj-M3-8IP" secondAttribute="bottom" constant="15" id="FFR-i5-66r"/>
+                        <constraint firstItem="NqY-J0-ze8" firstAttribute="leading" secondItem="anS-pb-BWk" secondAttribute="leading" id="TW8-Nm-t2E"/>
                         <constraint firstAttribute="centerX" secondItem="NqY-J0-ze8" secondAttribute="centerX" id="WQR-I4-SJR"/>
                         <constraint firstAttribute="centerX" secondItem="JWj-M3-8IP" secondAttribute="centerX" id="dp2-gM-Jbn"/>
                         <constraint firstItem="JWj-M3-8IP" firstAttribute="top" secondItem="vpr-jT-3Kg" secondAttribute="bottom" constant="15" id="n8W-bv-6Qe"/>
@@ -205,6 +207,7 @@
                     </constraints>
                     <connections>
                         <outlet property="accountHeaderLabel" destination="vpr-jT-3Kg" id="akh-a1-2gB"/>
+                        <outlet property="detailsLabel" destination="NqY-J0-ze8" id="huL-Uc-Ecm"/>
                     </connections>
                 </view>
             </subviews>
@@ -220,7 +223,9 @@
                 <constraint firstItem="jJD-by-0Jd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="94" id="Wjo-Kr-J1n"/>
                 <constraint firstAttribute="centerX" secondItem="anS-pb-BWk" secondAttribute="centerX" id="aQx-aj-aec"/>
                 <constraint firstItem="8dh-F6-i1O" firstAttribute="top" secondItem="F0f-kV-mku" secondAttribute="bottom" constant="21" id="cz1-N2-3oZ"/>
+                <constraint firstItem="anS-pb-BWk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pkq-6y-8cI"/>
                 <constraint firstAttribute="centerX" secondItem="jJD-by-0Jd" secondAttribute="centerX" id="qfG-pJ-b4Y"/>
+                <constraint firstAttribute="trailing" secondItem="anS-pb-BWk" secondAttribute="trailing" id="ufc-zP-ATK"/>
                 <constraint firstAttribute="trailing" secondItem="gxD-Ss-q8P" secondAttribute="trailing" id="zte-f7-UYI"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

@@ -26,6 +26,20 @@
     return [self presentationStringFromValue:value];
 }
 
+- (NSString *)presentationStringFromAllValues
+{
+	NSMutableString *details = [[NSMutableString alloc] init];
+	
+	for (TypeFieldValue *value in self.fieldValues) {
+		if (value.presentedValue.length > 0) {
+			[details appendString:[self presentationStringFromValue:value]];
+			[details appendString:@"\n"];
+		}
+    }
+	
+	return [details substringToIndex:details.length - 1];
+}
+
 - (NSString *)presentationStringFromValue:(TypeFieldValue *)value {
     if (!value || !value.value) {
         return @"";

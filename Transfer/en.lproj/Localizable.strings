@@ -302,7 +302,8 @@ It can take up to 2 working days.";
 "transferdetails.controller.transfer.header" = "Your transfer";
 "transferdetails.controller.transfer.number" = "#%@";
 "transferdetails.controller.transfer.recipient" = "to %@";
-"transferdetails.controller.transfer.account.details" = "%@'s account details";
+"transferdetails.controller.transfer.account.to" = "%@'s account details";
+"transferdetails.controller.transfer.account.sent" = "%@\nWe've sent email to %@ at\n%@";
 
 
 "upload.money.account.nr.title" = "Account number";
