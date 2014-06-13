@@ -9,16 +9,6 @@
       "idiom" : "universal",
       "scale" : "2x",
       "filename" : "transfers_icon_canceled@2x.png"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "1x",
-      "filename" : "transfers_icon_canceled~ipad.png"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "2x",
-      "filename" : "transfers_icon_canceled@2x~ipad.png"
     }
   ],
   "info" : {

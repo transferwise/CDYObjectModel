@@ -12,7 +12,6 @@
 #import "MoneyCalculator.h"
 #import "CalculationResult.h"
 #import "CurrencyPairsOperation.h"
-#import "WhyView.h"
 #import "TSAlertView.h"
 #import "MoneyFormatter.h"
 #import "TRWAlertView.h"
@@ -34,6 +33,8 @@
 #import <OHAttributedLabel/OHAttributedLabel.h>
 #import "MOMStyle.h"
 #import "NSString+DeviceSpecificLocalisation.h"
+#import "WhyViewController.h"
+#import "WhyView.h"
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -48,7 +49,6 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) MoneyEntryCell *theyReceiveCell;
 @property (nonatomic, strong) MoneyCalculator *calculator;
 @property (nonatomic, strong) CalculationResult *result;
-@property (nonatomic, strong) WhyView *whyView;
 @property (nonatomic, strong) PaymentFlow *paymentFlow;
 @property (nonatomic, strong) CurrencyPairsOperation *executedOperation;
 @property (weak, nonatomic) IBOutlet UILabel *saveLabel;
@@ -83,7 +83,6 @@ static NSUInteger const kRowYouSend = 0;
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"LandingBackground.png"]]];    
 
-    self.whyView = [[WhyView alloc] init];
 
     [self setYouSendCell:[[NSBundle mainBundle] loadNibNamed:@"MoneyEntryCell" owner:self options:nil][0]];
     [self.youSendCell setTitle:NSLocalizedString(@"money.entry.you.send.title", nil)];
@@ -342,6 +341,11 @@ static NSUInteger const kRowYouSend = 0;
         [paymentFlow setObjectModel:self.objectModel];
         [paymentFlow presentNextPaymentScreen];
     }];
+}
+- (IBAction)howButtonTapped:(id)sender {
+    WhyViewController * whyController = [[WhyViewController alloc] init];
+    [whyController.whyView setupWithResult:self.result];
+    [whyController presentOnViewController:self];
 }
 
 

@@ -261,6 +261,11 @@
 				<key>fontName</key>
 				<string>Avenir-Light</string>
 			</dict>
+			<key>book</key>
+			<dict>
+				<key>fontName</key>
+				<string>Avenir-Book</string>
+			</dict>
 		</dict>
 	</dict>
 	<key>compound</key>

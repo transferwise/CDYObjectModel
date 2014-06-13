@@ -8,7 +8,6 @@
 
 #import "CurrencySelectorViewController.h"
 #import "CurrencyCell.h"
-#import "UIView+RenderBlur.h"
 #import "Constants.h"
 #import "UIColor+MOMStyle.h"
 
@@ -18,8 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIView *highlightView;
 @property (weak, nonatomic) IBOutlet UIButton *selectButton;
 @property (nonatomic, assign) NSUInteger selectedIndex;
-@property (nonatomic, weak) UIImageView* blurView;
-@property (nonatomic, weak) UIViewController* hostViewController;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) NSMutableArray* maskedCells;
 
@@ -112,13 +109,6 @@
 	[super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 	
 	[[self.collectionView collectionViewLayout] invalidateLayout];
-    
-    self.blurView.hidden = YES;
-}
-
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [self redrawBlurView];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -229,55 +219,6 @@
     [self.delegate currencySelector:self didSelectCurrencyAtIndex:self.selectedIndex];
 }
 
--(void)presentOnViewController:(UIViewController*)hostViewcontroller
-{
-    self.hostViewController= hostViewcontroller;
-    [self willMoveToParentViewController:hostViewcontroller];
-    [hostViewcontroller addChildViewController:self];
-    [hostViewcontroller.view addSubview:self.view];
-    CGRect newFrame = hostViewcontroller.view.bounds;
-    newFrame.origin.y = newFrame.size.height;
-    UIImageView *blurredimage = [[UIImageView alloc] initWithFrame:hostViewcontroller.view.frame];
-    self.blurView = blurredimage;
-    [self redrawBlurView];
-    [hostViewcontroller.view insertSubview:blurredimage belowSubview:self.view];
-    blurredimage.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    blurredimage.contentMode = UIViewContentModeBottom;
-    blurredimage.clipsToBounds = YES;
-    self.view.frame = newFrame;
-    newFrame.size.height = 0.0f;
-    blurredimage.frame=newFrame;
-    [self didMoveToParentViewController:hostViewcontroller];
-    [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.view.frame = hostViewcontroller.view.bounds;
-        self.blurView.frame = hostViewcontroller.view.bounds;
-
-    } completion:nil];
-}
-
--(void)redrawBlurView
-{
-    self.view.hidden = YES;
-    self.blurView.hidden = YES;
-    self.blurView.image = [self.hostViewController.view renderBlurWithTintColor:[UIColor clearColor]];
-    self.view.hidden = NO;
-    self.blurView.hidden = NO;
-}
-
--(void)dismiss
-{
-    [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        CGRect newFrame = self.view.bounds;
-        newFrame.origin.y = newFrame.size.height;
-        self.view.frame = newFrame;
-        newFrame.size.height = 0.0f;
-        self.blurView.frame = newFrame;
-    }completion:^(BOOL finished) {
-        [self.view removeFromSuperview];
-        [self.blurView removeFromSuperview];
-        [self removeFromParentViewController];
-    }];
-}
 
 -(void)setSelectedCurrency:(Currency*)selectedCurrency
 {

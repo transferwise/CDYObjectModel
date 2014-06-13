@@ -26,6 +26,11 @@
 				<key>alpha</key>
 				<real>0.95</real>
 			</dict>
+			<key>alpha3</key>
+			<dict>
+				<key>alpha</key>
+				<real>0.97</real>
+			</dict>
 			<key>cellSelected</key>
 			<dict>
 				<key>color</key>
@@ -35,6 +40,11 @@
 			<dict>
 				<key>color</key>
 				<string>1f2736</string>
+			</dict>
+			<key>darkBlue2</key>
+			<dict>
+				<key>color</key>
+				<string>1e2a44</string>
 			</dict>
 			<key>darkBlueHighlighted</key>
 			<dict>
@@ -71,6 +81,16 @@
 				<key>color</key>
 				<string>465983</string>
 			</dict>
+			<key>lightBlue2</key>
+			<dict>
+				<key>color</key>
+				<string>8baab9</string>
+			</dict>
+			<key>lightBlue3</key>
+			<dict>
+				<key>color</key>
+				<string>232f49</string>
+			</dict>
 			<key>lightGray</key>
 			<dict>
 				<key>color</key>
@@ -100,6 +120,11 @@
 			<dict>
 				<key>color</key>
 				<string>dee9ed</string>
+			</dict>
+			<key>paleBlue2</key>
+			<dict>
+				<key>color</key>
+				<string>848da0</string>
 			</dict>
 			<key>tabBarBlue</key>
 			<dict>
@@ -133,6 +158,11 @@
 			<dict>
 				<key>fontName</key>
 				<string>Avenir-Light</string>
+			</dict>
+			<key>book</key>
+			<dict>
+				<key>fontName</key>
+				<string>Avenir-Book</string>
 			</dict>
 			<key>P</key>
 			<dict>
