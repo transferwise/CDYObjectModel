@@ -86,7 +86,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	}];
     
     self.titleLabel.text = self.title;
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -115,6 +114,12 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
+	
+	//select first row for ipad
+	if(IPAD)
+	{
+		[self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+	}
 
 	[[GoogleAnalytics sharedInstance] sendScreen:@"View transfers"];
 }
