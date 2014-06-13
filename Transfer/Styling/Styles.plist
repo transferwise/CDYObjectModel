@@ -76,6 +76,11 @@
 				<key>color</key>
 				<string>e3e7e8</string>
 			</dict>
+			<key>lighterGray</key>
+			<dict>
+				<key>color</key>
+				<string>aeb0b1</string>
+			</dict>
 			<key>lightText</key>
 			<dict>
 				<key>color</key>
