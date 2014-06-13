@@ -114,7 +114,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[super viewDidAppear:animated];
 	
 	//select first row for ipad
-	if(IPAD)
+	if(IPAD && [self.payments.fetchedObjects count] > 0)
 	{
 		[self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 	}
