@@ -16,4 +16,8 @@
 
 @property (weak, nonatomic) Payment *payment;
 
+- (void)setUpHeader;
+- (void)setUpAmounts;
+- (void)setUpAccounts;
+
 @end

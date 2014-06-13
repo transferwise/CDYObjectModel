@@ -58,8 +58,7 @@
 		3831AA39194B31A200B3EE5C /* WhyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA35194B31A200B3EE5C /* WhyViewController.m */; };
 		3831AA3B194B31A200B3EE5C /* WhyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA36194B31A200B3EE5C /* WhyViewController.xib */; };
 		3831AA3C194B31A200B3EE5C /* WhyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA36194B31A200B3EE5C /* WhyViewController.xib */; };
-		3831AA3E194B4D3000B3EE5C /* WhyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA3D194B4D3000B3EE5C /* WhyViewController~ipad.xib */; };
-		3831AA3F194B4F2E00B3EE5C /* WhyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA3D194B4D3000B3EE5C /* WhyViewController~ipad.xib */; };
+		3831AA41194B5A8B00B3EE5C /* WhyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */; };
 		388F09FB1934A1BB00DBD93D /* UIView+RenderBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */; };
 		388F09FC1934A1C000DBD93D /* UIView+RenderBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */; };
 		388F09FF1936434A00DBD93D /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
@@ -99,6 +98,12 @@
 		47FAF348194B3233004CE986 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF347194B3233004CE986 /* UIImage+Color.m */; };
 		47FAF349194B3233004CE986 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF347194B3233004CE986 /* UIImage+Color.m */; };
 		47FAF34A194B371B004CE986 /* WhyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA35194B31A200B3EE5C /* WhyViewController.m */; };
+		47FAF34E194B4E5D004CE986 /* TransferWaitingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF34C194B4E5D004CE986 /* TransferWaitingViewController.m */; };
+		47FAF34F194B4E5D004CE986 /* TransferWaitingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF34C194B4E5D004CE986 /* TransferWaitingViewController.m */; };
+		47FAF350194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FAF34D194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib */; };
+		47FAF351194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FAF34D194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib */; };
+		47FAF353194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FAF352194B4EF9004CE986 /* TransferWaitingViewController.xib */; };
+		47FAF354194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FAF352194B4EF9004CE986 /* TransferWaitingViewController.xib */; };
 		47FB7EA519419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
 		47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
 		47FB7EA91941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
@@ -674,7 +679,7 @@
 		3831AA34194B31A200B3EE5C /* WhyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhyViewController.h; sourceTree = "<group>"; };
 		3831AA35194B31A200B3EE5C /* WhyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhyViewController.m; sourceTree = "<group>"; };
 		3831AA36194B31A200B3EE5C /* WhyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhyViewController.xib; sourceTree = "<group>"; };
-		3831AA3D194B4D3000B3EE5C /* WhyViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WhyViewController~ipad.xib"; sourceTree = "<group>"; };
+		3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WhyViewController~ipad.xib"; sourceTree = "<group>"; };
 		388F09F91934A1BB00DBD93D /* UIView+RenderBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RenderBlur.h"; sourceTree = "<group>"; };
 		388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RenderBlur.m"; sourceTree = "<group>"; };
 		388F09FD1936434A00DBD93D /* InsetRespectingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsetRespectingButton.h; sourceTree = "<group>"; };
@@ -706,6 +711,10 @@
 		47FAF343194B2F11004CE986 /* LightGrayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightGrayButton.m; sourceTree = "<group>"; };
 		47FAF346194B3233004CE986 /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
 		47FAF347194B3233004CE986 /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
+		47FAF34B194B4E5D004CE986 /* TransferWaitingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferWaitingViewController.h; sourceTree = "<group>"; };
+		47FAF34C194B4E5D004CE986 /* TransferWaitingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferWaitingViewController.m; sourceTree = "<group>"; };
+		47FAF34D194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransferWaitingViewController~ipad.xib"; sourceTree = "<group>"; };
+		47FAF352194B4EF9004CE986 /* TransferWaitingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferWaitingViewController.xib; sourceTree = "<group>"; };
 		47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencySelectorViewController~ipad.xib"; sourceTree = "<group>"; };
 		47FB7EA71941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DeviceSpecificLocalisation.h"; sourceTree = "<group>"; };
 		47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeviceSpecificLocalisation.m"; sourceTree = "<group>"; };
@@ -1800,6 +1809,11 @@
 		EAAA148D171BD057005B9430 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3831AA32194B31A200B3EE5C /* TransparentModalViewController.h */,
+				3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */,
+				3831AA34194B31A200B3EE5C /* WhyViewController.h */,
+				3831AA35194B31A200B3EE5C /* WhyViewController.m */,
+				3831AA36194B31A200B3EE5C /* WhyViewController.xib */,
 				BB29BD45173CD2FF0016A6E9 /* BankTransferViewController.h */,
 				BB29BD46173CD2FF0016A6E9 /* BankTransferViewController.m */,
 				BB29BD48173CD30C0016A6E9 /* BankTransferViewController.xib */,
@@ -1887,12 +1901,11 @@
 				479B692A19487865001FA4FE /* TransferDetailsViewController.m */,
 				479B692B19487865001FA4FE /* TransferDetailsViewController.xib */,
 				479B692E194878CA001FA4FE /* TransferDetailsViewController~ipad.xib */,
-				3831AA32194B31A200B3EE5C /* TransparentModalViewController.h */,
-				3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */,
-				3831AA34194B31A200B3EE5C /* WhyViewController.h */,
-				3831AA35194B31A200B3EE5C /* WhyViewController.m */,
-				3831AA36194B31A200B3EE5C /* WhyViewController.xib */,
-				3831AA3D194B4D3000B3EE5C /* WhyViewController~ipad.xib */,
+				47FAF34B194B4E5D004CE986 /* TransferWaitingViewController.h */,
+				47FAF34C194B4E5D004CE986 /* TransferWaitingViewController.m */,
+				47FAF352194B4EF9004CE986 /* TransferWaitingViewController.xib */,
+				47FAF34D194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib */,
+				3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -2183,7 +2196,6 @@
 				EA31A1D717DDB29B00F937F7 /* MoneyEntryCell.xib in Resources */,
 				EA31A1D817DDB29B00F937F7 /* LoginViewController.xib in Resources */,
 				380021AB192B9506009B1D53 /* TabViewController~ipad.xib in Resources */,
-				3831AA3F194B4F2E00B3EE5C /* WhyViewController~ipad.xib in Resources */,
 				EA0450DE17EC64E4008921DA /* IntroView.xib in Resources */,
 				EA31A1D917DDB29B00F937F7 /* TableHeaderView.xib in Resources */,
 				EA31A1DA17DDB29B00F937F7 /* TextEntryCell.xib in Resources */,
@@ -2191,6 +2203,7 @@
 				EA31A1E617DDB29B00F937F7 /* SettingsViewController.xib in Resources */,
 				EAD3646717E1E19A001EFE40 /* Assets.xcassets in Resources */,
 				EA31A1E717DDB29B00F937F7 /* SettingsTitleCell.xib in Resources */,
+				47FAF354194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */,
 				380021FA192F43EA009B1D53 /* TabCell.xib in Resources */,
 				EA31A1E817DDB29B00F937F7 /* TSAlertViewMessageListViewShadow.png in Resources */,
 				EA31A1E917DDB29B00F937F7 /* TSAlertViewCancelButtonBackground.png in Resources */,
@@ -2226,6 +2239,7 @@
 				EA31A21317DDB29B00F937F7 /* ButtonCell.xib in Resources */,
 				EA31A21A17DDB29B00F937F7 /* OpenIDViewController.xib in Resources */,
 				380021EA192CF84E009B1D53 /* Styles~ipad.plist in Resources */,
+				47FAF351194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */,
 				EA31A21C17DDB29B00F937F7 /* ClaimAccountViewController.xib in Resources */,
 				380021D8192CC570009B1D53 /* Styles.plist in Resources */,
 				EA31A22017DDB29B00F937F7 /* ProfileEditViewController.xib in Resources */,
@@ -2273,7 +2287,6 @@
 				EA13E04E171BEF710019FBF0 /* TextEntryCell.xib in Resources */,
 				EAD736A4171E85D100A037B1 /* RecipientCell.xib in Resources */,
 				EAB7215C171FC61B00DE29F5 /* SettingsViewController.xib in Resources */,
-				3831AA3E194B4D3000B3EE5C /* WhyViewController~ipad.xib in Resources */,
 				4710499719470AFD00660B2F /* CurrencyCell~ipad.xib in Resources */,
 				EAD3646617E1E19A001EFE40 /* Assets.xcassets in Resources */,
 				EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */,
@@ -2281,12 +2294,14 @@
 				BBC691241721416300F0FB1A /* TSAlertViewMessageListViewShadow.png in Resources */,
 				BBC691251721416300F0FB1A /* TSAlertViewCancelButtonBackground.png in Resources */,
 				EA0450D617EC5BC1008921DA /* IntroViewController.xib in Resources */,
+				47FAF353194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */,
 				3800220C192F5774009B1D53 /* CurrencyCell.xib in Resources */,
 				BBC691261721416300F0FB1A /* TSAlertViewButtonBackground.png in Resources */,
 				BBC691271721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
 				EAE7B6AF17E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */,
 				EA333F3818A4BEDC00D8A44E /* page_zoom.json in Resources */,
 				380021F1192F3DD3009B1D53 /* CurrencySelectorViewController.xib in Resources */,
+				3831AA41194B5A8B00B3EE5C /* WhyViewController~ipad.xib in Resources */,
 				BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */,
 				BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */,
 				EAB61710191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
@@ -2316,6 +2331,7 @@
 				EAD6675B174A51C700D29BCB /* ButtonCell.xib in Resources */,
 				EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */,
 				380021E9192CF84E009B1D53 /* Styles~ipad.plist in Resources */,
+				47FAF350194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */,
 				EAC1051B17607C4600B3B018 /* ClaimAccountViewController.xib in Resources */,
 				380021D7192CC570009B1D53 /* Styles.plist in Resources */,
 				EA416E2C176860EA00904D97 /* ProfileEditViewController.xib in Resources */,
@@ -2533,6 +2549,7 @@
 				EA31A12517DDB29B00F937F7 /* main.m in Sources */,
 				EA31A12617DDB29B00F937F7 /* AppDelegate.m in Sources */,
 				EA31A12717DDB29B00F937F7 /* Transfer.xcdatamodeld in Sources */,
+				47FAF34F194B4E5D004CE986 /* TransferWaitingViewController.m in Sources */,
 				EA31A12817DDB29B00F937F7 /* ObjectModel.m in Sources */,
 				EA0450D517EC5BC1008921DA /* IntroViewController.m in Sources */,
 				EA31A12917DDB29B00F937F7 /* MainViewController.m in Sources */,
@@ -2844,6 +2861,7 @@
 				EAAF8FB81743B3E4008DF9E2 /* MoneyFormatter.m in Sources */,
 				EA1861E017463F8D00BD01BB /* UINavigationController+StackManipulations.m in Sources */,
 				EA1861E31746442900BD01BB /* RegisterOperation.m in Sources */,
+				47FAF34E194B4E5D004CE986 /* TransferWaitingViewController.m in Sources */,
 				EAD66759174A51B900D29BCB /* ButtonCell.m in Sources */,
 				EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */,
 				EAE7B6AC17E9AC3F00E03D73 /* IdentificationNotificationView.m in Sources */,

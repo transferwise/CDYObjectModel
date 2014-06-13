@@ -49,9 +49,9 @@
 
 - (void)setData
 {
-	self.headerView.transferNumber = [self.payment.remoteId stringValue];
-	NSString* recipient = [self.payment.recipient name];
-    self.headerView.recipientName = recipient;
+	[self setUpHeader];
+	[self setUpAmounts];
+	[self setUpAccounts];
     
 	UIImage *icon;
     switch ([self.payment status]) {
@@ -83,15 +83,28 @@
             break;
     }
     self.statusIcon.image = icon;
-	self.headerView.status = [self getStatusBasedLocalizations:@"payment.status.%@.description.long"
-														status:self.payment.paymentStatus];;
 	
+	[self.supportButton setTitle:NSLocalizedString(@"transferdetails.controller.button.support", nil) forState:UIControlStateNormal];
+	
+	[self.view layoutIfNeeded];
+}
+
+- (void)setUpHeader
+{
+	self.headerView.transferNumber = [self.payment.remoteId stringValue];
+	self.headerView.recipientName = [self.payment.recipient name];
+	self.headerView.status = [self getStatusBasedLocalizations:@"payment.status.%@.description.long"
+														status:self.payment.paymentStatus];
+}
+
+- (void)setUpAmounts
+{
 	self.amountsView.fromAmount = [self.payment payInStringWithCurrency];
 	self.amountsView.status = [self getStatusBasedLocalizations:@"payment.status.%@.description.conversion"
-														 status:self.payment.paymentStatus];;
+														 status:self.payment.paymentStatus];
 	self.amountsView.toAmount = [self.payment payOutStringWithCurrency];
 	NSString* eta = NSLocalizedString([self getStatusBasedLocalizations:@"payment.status.%@.description.eta"
-											   status:self.payment.paymentStatus], nil);
+																 status:self.payment.paymentStatus], nil);
 	if(eta.length > 0 && self.payment.paymentDateString != nil)
 	{
 		self.amountsView.shouldArrive = eta;
@@ -102,11 +115,11 @@
 		self.amountsView.shouldArrive = nil;
 		self.amountsView.eta = nil;
 	}
-	
+}
+
+- (void)setUpAccounts
+{
 	[self.accountView configureWithRecipient:self.payment.recipient];
-	[self.supportButton setTitle:NSLocalizedString(@"transferdetails.controller.button.support", nil) forState:UIControlStateNormal];
-	
-	[self.view layoutIfNeeded];
 }
 
 - (IBAction)contactSupportPressed {
