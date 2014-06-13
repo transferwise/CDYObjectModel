@@ -155,12 +155,30 @@ A revolution in your pocket.";
 "payment.controller.transfer.fee.label" = "Total fee";
 "payment.controller.you.get.label" = "Receiver gets (estimated)";
 "payment.currencies.format" = "%@ to %@";
+
 "payment.status.cancelled.description" = "Cancelled %@";
+"payment.status.cancelled.description.long" = "has now been cancelled.";
+"payment.status.cancelled.description.conversion" = "was not converted to";
+"payment.status.cancelled.description.eta" = "";
 "payment.status.matched.description" = "Waiting to send";
+"payment.status.matched.description.long" = "is on its way.";
+"payment.status.matched.description.conversion" = "have been converted to";
+"payment.status.matched.description.eta" = "& should arrive on";
 "payment.status.received.description" = "Converting";
+"payment.status.received.description.long" = "is now being converted.";
+"payment.status.received.description.conversion" = "is estimated to convert to";
+"payment.status.received.description.eta" = "& should arrive on";
 "payment.status.refunded.description" = "Refunded %@";
 "payment.status.submitted.description" = "Waiting for money";
+"payment.status.submitted.description.long" = "will start once we received the money.";
+"payment.status.submitted.description.conversion" = "We're now waiting for your
+bank transfer to reach our account.
+It can take up to 2 working days.";
+"payment.status.submitted.description.eta" = "";
 "payment.status.transferred.description" = "Received %@";
+"payment.status.transferred.description.long" = "has been transfered.";
+"payment.status.transferred.description.conversion" = "have been converted to";
+"payment.status.transferred.description.eta" = "& should arrive on";
 "payment.status.receivedWaitingRecipient.description" = "Waiting for recipient";
 "payment.status.unknown.description" = "Unknown";
 
@@ -280,6 +298,13 @@ A revolution in your pocket.";
 
 "transfer.pay.in.too.low.message.base" = "The entered amount is too small to convert, please change it under 'You send'. Current minimum is %@ %@";
 "transfer.pay.in.too.low.title" = "Amount too small";
+
+"transferdetails.controller.transfer.header" = "Your transfer";
+"transferdetails.controller.transfer.number" = "#%@";
+"transferdetails.controller.transfer.recipient" = "to %@";
+"transferdetails.controller.transfer.account.to" = "%@'s account details";
+"transferdetails.controller.transfer.account.sent" = "%@\nWe've sent email to %@ at\n%@";
+
 
 "upload.money.account.nr.title" = "Account number";
 "upload.money.address.title" = "Our address";

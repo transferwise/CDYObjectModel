@@ -53,21 +53,19 @@
 		38002200192F443E009B1D53 /* CurrencyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021FE192F443E009B1D53 /* CurrencyCell.m */; };
 		3800220C192F5774009B1D53 /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3800220B192F5774009B1D53 /* CurrencyCell.xib */; };
 		3800220D192F5774009B1D53 /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3800220B192F5774009B1D53 /* CurrencyCell.xib */; };
+		3831AA37194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
+		3831AA38194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
+		3831AA39194B31A200B3EE5C /* WhyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA35194B31A200B3EE5C /* WhyViewController.m */; };
+		3831AA3A194B31A200B3EE5C /* WhyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA35194B31A200B3EE5C /* WhyViewController.m */; };
+		3831AA3B194B31A200B3EE5C /* WhyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA36194B31A200B3EE5C /* WhyViewController.xib */; };
+		3831AA3C194B31A200B3EE5C /* WhyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA36194B31A200B3EE5C /* WhyViewController.xib */; };
 		388F09FB1934A1BB00DBD93D /* UIView+RenderBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */; };
 		388F09FC1934A1C000DBD93D /* UIView+RenderBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */; };
 		388F09FF1936434A00DBD93D /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
-		389351A0194AF0CC0075F71C /* WhyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3893519F194AF0CC0075F71C /* WhyView.m */; };
-		389351A1194AF0CC0075F71C /* WhyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3893519F194AF0CC0075F71C /* WhyView.m */; };
 		38AA83411949B8DF0065AD2A /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA83401949B8DF0065AD2A /* GradientView.m */; };
 		38AA83421949B8DF0065AD2A /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA83401949B8DF0065AD2A /* GradientView.m */; };
 		38AA83CF1949C7220065AD2A /* PaymentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AA83CE1949C7220065AD2A /* PaymentCell~ipad.xib */; };
 		38AA83D01949C7220065AD2A /* PaymentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AA83CE1949C7220065AD2A /* PaymentCell~ipad.xib */; };
-		38AA83D31949F6BF0065AD2A /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA83D21949F6BF0065AD2A /* TransparentModalViewController.m */; };
-		38AA83D41949F83F0065AD2A /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA83D21949F6BF0065AD2A /* TransparentModalViewController.m */; };
-		38AA83D81949F95E0065AD2A /* WhyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA83D61949F95E0065AD2A /* WhyViewController.m */; };
-		38AA83D91949F95E0065AD2A /* WhyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA83D61949F95E0065AD2A /* WhyViewController.m */; };
-		38AA83DA1949F95E0065AD2A /* WhyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AA83D71949F95E0065AD2A /* WhyViewController.xib */; };
-		38AA83DB1949F95E0065AD2A /* WhyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AA83D71949F95E0065AD2A /* WhyViewController.xib */; };
 		38C8A79D19371DBC00714FB3 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */; };
 		38C8A79E19371DBC00714FB3 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */; };
 		38E57F78192A51DD00D864A2 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
@@ -80,6 +78,20 @@
 		4710499819470B2A00660B2F /* CurrencyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */; };
 		473F62931940BDD9001E280B /* IntroductionViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* IntroductionViewController~ipad.xib */; };
 		47592CC71940C35800ECDAF2 /* IntroductionViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* IntroductionViewController~ipad.xib */; };
+		479B692C19487865001FA4FE /* TransferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B692A19487865001FA4FE /* TransferDetailsViewController.m */; };
+		479B692D19487865001FA4FE /* TransferDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479B692B19487865001FA4FE /* TransferDetailsViewController.xib */; };
+		479B692F194878CA001FA4FE /* TransferDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479B692E194878CA001FA4FE /* TransferDetailsViewController~ipad.xib */; };
+		479B6930194878EE001FA4FE /* TransferDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479B692B19487865001FA4FE /* TransferDetailsViewController.xib */; };
+		479B6931194878EE001FA4FE /* TransferDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479B692E194878CA001FA4FE /* TransferDetailsViewController~ipad.xib */; };
+		479B693419489303001FA4FE /* TransferDetialsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693319489303001FA4FE /* TransferDetialsHeaderView.m */; };
+		479B69371948A2EB001FA4FE /* UIFont+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B69361948A2EB001FA4FE /* UIFont+MOMStyle.m */; };
+		479B693A19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693919499F9B001FA4FE /* TransferDetailsAmountsView.m */; };
+		479B693B19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693919499F9B001FA4FE /* TransferDetailsAmountsView.m */; };
+		479B693E1949C36F001FA4FE /* TransferDetialsRecipientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693D1949C36F001FA4FE /* TransferDetialsRecipientView.m */; };
+		479B693F1949C36F001FA4FE /* TransferDetialsRecipientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693D1949C36F001FA4FE /* TransferDetialsRecipientView.m */; };
+		479B69401949E7BB001FA4FE /* UIFont+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B69361948A2EB001FA4FE /* UIFont+MOMStyle.m */; };
+		479B69411949E7DA001FA4FE /* TransferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B692A19487865001FA4FE /* TransferDetailsViewController.m */; };
+		479B69421949E7ED001FA4FE /* TransferDetialsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693319489303001FA4FE /* TransferDetialsHeaderView.m */; };
 		47F1F5921941C87600FC4BEB /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
 		47FB7EA519419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
 		47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
@@ -104,6 +116,7 @@
 		BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC691201721416300F0FB1A /* TSAlertViewBackground2.png */; };
 		BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC691211721416300F0FB1A /* TSAlertViewBackground.png */; };
 		BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC691221721416300F0FB1A /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -Wno-deprecated-declarations"; }; };
+		BBCC6338172169980094EABB /* WhyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC6337172169980094EABB /* WhyView.m */; };
 		BC92EA001E7D4BE89CF454A0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F2D1DE7BECC4078BB45E6AD /* libPods.a */; };
 		EA01331E1765FC7700D63C82 /* RoundedCellBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */; };
 		EA0253B617D5C89500F54C18 /* SupportCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0253B517D5C89500F54C18 /* SupportCoordinator.m */; };
@@ -230,6 +243,7 @@
 		EA31A14417DDB29B00F937F7 /* TransferCalculationsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */; };
 		EA31A14517DDB29B00F937F7 /* CalculationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6256172011C500A96770 /* CalculationResult.m */; };
 		EA31A14617DDB29B00F937F7 /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC691221721416300F0FB1A /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -Wno-deprecated-declarations"; }; };
+		EA31A14717DDB29B00F937F7 /* WhyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC6337172169980094EABB /* WhyView.m */; };
 		EA31A14817DDB29B00F937F7 /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
 		EA31A14917DDB29B00F937F7 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
 		EA31A14A17DDB29B00F937F7 /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
@@ -649,20 +663,18 @@
 		380021FD192F443E009B1D53 /* CurrencyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyCell.h; sourceTree = "<group>"; };
 		380021FE192F443E009B1D53 /* CurrencyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyCell.m; sourceTree = "<group>"; };
 		3800220B192F5774009B1D53 /* CurrencyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencyCell.xib; sourceTree = "<group>"; };
+		3831AA32194B31A200B3EE5C /* TransparentModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentModalViewController.h; sourceTree = "<group>"; };
+		3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentModalViewController.m; sourceTree = "<group>"; };
+		3831AA34194B31A200B3EE5C /* WhyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhyViewController.h; sourceTree = "<group>"; };
+		3831AA35194B31A200B3EE5C /* WhyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhyViewController.m; sourceTree = "<group>"; };
+		3831AA36194B31A200B3EE5C /* WhyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhyViewController.xib; sourceTree = "<group>"; };
 		388F09F91934A1BB00DBD93D /* UIView+RenderBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RenderBlur.h"; sourceTree = "<group>"; };
 		388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RenderBlur.m"; sourceTree = "<group>"; };
 		388F09FD1936434A00DBD93D /* InsetRespectingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsetRespectingButton.h; sourceTree = "<group>"; };
 		388F09FE1936434A00DBD93D /* InsetRespectingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsetRespectingButton.m; sourceTree = "<group>"; };
-		3893519E194AF0CC0075F71C /* WhyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhyView.h; sourceTree = "<group>"; };
-		3893519F194AF0CC0075F71C /* WhyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhyView.m; sourceTree = "<group>"; };
 		38AA833F1949B8DF0065AD2A /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
 		38AA83401949B8DF0065AD2A /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		38AA83CE1949C7220065AD2A /* PaymentCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PaymentCell~ipad.xib"; sourceTree = "<group>"; };
-		38AA83D11949F6BF0065AD2A /* TransparentModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentModalViewController.h; sourceTree = "<group>"; };
-		38AA83D21949F6BF0065AD2A /* TransparentModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentModalViewController.m; sourceTree = "<group>"; };
-		38AA83D51949F95E0065AD2A /* WhyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhyViewController.h; sourceTree = "<group>"; };
-		38AA83D61949F95E0065AD2A /* WhyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhyViewController.m; sourceTree = "<group>"; };
-		38AA83D71949F95E0065AD2A /* WhyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhyViewController.xib; sourceTree = "<group>"; };
 		38C8A79B19371DBC00714FB3 /* PullToRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshView.h; sourceTree = "<group>"; };
 		38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullToRefreshView.m; sourceTree = "<group>"; };
 		38E57F75192A51DD00D864A2 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
@@ -671,6 +683,18 @@
 		470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MoneyEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencyCell~ipad.xib"; sourceTree = "<group>"; };
 		473F62921940BDD9001E280B /* IntroductionViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "IntroductionViewController~ipad.xib"; sourceTree = "<group>"; };
+		479B692919487865001FA4FE /* TransferDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferDetailsViewController.h; sourceTree = "<group>"; };
+		479B692A19487865001FA4FE /* TransferDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDetailsViewController.m; sourceTree = "<group>"; };
+		479B692B19487865001FA4FE /* TransferDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferDetailsViewController.xib; sourceTree = "<group>"; };
+		479B692E194878CA001FA4FE /* TransferDetailsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransferDetailsViewController~ipad.xib"; sourceTree = "<group>"; };
+		479B693219489303001FA4FE /* TransferDetialsHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferDetialsHeaderView.h; sourceTree = "<group>"; };
+		479B693319489303001FA4FE /* TransferDetialsHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDetialsHeaderView.m; sourceTree = "<group>"; };
+		479B69351948A2EB001FA4FE /* UIFont+MOMStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+MOMStyle.h"; sourceTree = "<group>"; };
+		479B69361948A2EB001FA4FE /* UIFont+MOMStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+MOMStyle.m"; sourceTree = "<group>"; };
+		479B693819499F9B001FA4FE /* TransferDetailsAmountsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferDetailsAmountsView.h; sourceTree = "<group>"; };
+		479B693919499F9B001FA4FE /* TransferDetailsAmountsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDetailsAmountsView.m; sourceTree = "<group>"; };
+		479B693C1949C36F001FA4FE /* TransferDetialsRecipientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferDetialsRecipientView.h; sourceTree = "<group>"; };
+		479B693D1949C36F001FA4FE /* TransferDetialsRecipientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDetialsRecipientView.m; sourceTree = "<group>"; };
 		47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencySelectorViewController~ipad.xib"; sourceTree = "<group>"; };
 		47FB7EA71941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DeviceSpecificLocalisation.h"; sourceTree = "<group>"; };
 		47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeviceSpecificLocalisation.m"; sourceTree = "<group>"; };
@@ -704,6 +728,8 @@
 		BBC691211721416300F0FB1A /* TSAlertViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewBackground.png; path = TSAlertView/TSAlertViewBackground.png; sourceTree = "<group>"; };
 		BBC691221721416300F0FB1A /* TSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSAlertView.m; path = TSAlertView/TSAlertView.m; sourceTree = "<group>"; };
 		BBC691231721416300F0FB1A /* TSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSAlertView.h; path = TSAlertView/TSAlertView.h; sourceTree = "<group>"; };
+		BBCC6336172169980094EABB /* WhyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhyView.h; sourceTree = "<group>"; };
+		BBCC6337172169980094EABB /* WhyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhyView.m; sourceTree = "<group>"; };
 		EA01331C1765FC7700D63C82 /* RoundedCellBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedCellBackgroundView.h; sourceTree = "<group>"; };
 		EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedCellBackgroundView.m; sourceTree = "<group>"; };
 		EA0253B417D5C89500F54C18 /* SupportCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportCoordinator.h; sourceTree = "<group>"; };
@@ -1203,6 +1229,8 @@
 				380021C3192CC531009B1D53 /* UIView+MOMStyle.m */,
 				380021D9192CC89B009B1D53 /* UIColor+MOMStyle.h */,
 				380021DA192CC89B009B1D53 /* UIColor+MOMStyle.m */,
+				479B69351948A2EB001FA4FE /* UIFont+MOMStyle.h */,
+				479B69361948A2EB001FA4FE /* UIFont+MOMStyle.m */,
 			);
 			path = Styling;
 			sourceTree = "<group>";
@@ -1314,10 +1342,18 @@
 				EA0450CE17EC3635008921DA /* TextContainerView.m */,
 				EA2296C417E08027001CF541 /* TransferBackButtonItem.h */,
 				EA2296C517E08027001CF541 /* TransferBackButtonItem.m */,
+				479B693219489303001FA4FE /* TransferDetialsHeaderView.h */,
+				479B693319489303001FA4FE /* TransferDetialsHeaderView.m */,
+				479B693819499F9B001FA4FE /* TransferDetailsAmountsView.h */,
+				479B693919499F9B001FA4FE /* TransferDetailsAmountsView.m */,
+				479B693C1949C36F001FA4FE /* TransferDetialsRecipientView.h */,
+				479B693D1949C36F001FA4FE /* TransferDetialsRecipientView.m */,
 				EA8FF689171D1FA50090A658 /* TRWAlertView.h */,
 				EA8FF68A171D1FA50090A658 /* TRWAlertView.m */,
 				EA8FF6B2171D23B20090A658 /* TRWProgressHUD.h */,
 				EA8FF6B3171D23B20090A658 /* TRWProgressHUD.m */,
+				BBCC6336172169980094EABB /* WhyView.h */,
+				BBCC6337172169980094EABB /* WhyView.m */,
 				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
 				388F09FD1936434A00DBD93D /* InsetRespectingButton.h */,
 				388F09FE1936434A00DBD93D /* InsetRespectingButton.m */,
@@ -1325,8 +1361,6 @@
 				38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */,
 				38AA833F1949B8DF0065AD2A /* GradientView.h */,
 				38AA83401949B8DF0065AD2A /* GradientView.m */,
-				3893519E194AF0CC0075F71C /* WhyView.h */,
-				3893519F194AF0CC0075F71C /* WhyView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1751,6 +1785,11 @@
 		EAAA148D171BD057005B9430 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3831AA32194B31A200B3EE5C /* TransparentModalViewController.h */,
+				3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */,
+				3831AA34194B31A200B3EE5C /* WhyViewController.h */,
+				3831AA35194B31A200B3EE5C /* WhyViewController.m */,
+				3831AA36194B31A200B3EE5C /* WhyViewController.xib */,
 				BB29BD45173CD2FF0016A6E9 /* BankTransferViewController.h */,
 				BB29BD46173CD2FF0016A6E9 /* BankTransferViewController.m */,
 				BB29BD48173CD30C0016A6E9 /* BankTransferViewController.xib */,
@@ -1834,11 +1873,10 @@
 				38E57F76192A51DD00D864A2 /* TabViewController.m */,
 				38E57F77192A51DD00D864A2 /* TabViewController.xib */,
 				380021A9192B91A9009B1D53 /* TabViewController~ipad.xib */,
-				38AA83D11949F6BF0065AD2A /* TransparentModalViewController.h */,
-				38AA83D21949F6BF0065AD2A /* TransparentModalViewController.m */,
-				38AA83D51949F95E0065AD2A /* WhyViewController.h */,
-				38AA83D61949F95E0065AD2A /* WhyViewController.m */,
-				38AA83D71949F95E0065AD2A /* WhyViewController.xib */,
+				479B692919487865001FA4FE /* TransferDetailsViewController.h */,
+				479B692A19487865001FA4FE /* TransferDetailsViewController.m */,
+				479B692B19487865001FA4FE /* TransferDetailsViewController.xib */,
+				479B692E194878CA001FA4FE /* TransferDetailsViewController~ipad.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -2109,6 +2147,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				479B6930194878EE001FA4FE /* TransferDetailsViewController.xib in Resources */,
+				479B6931194878EE001FA4FE /* TransferDetailsViewController~ipad.xib in Resources */,
 				4710499819470B2A00660B2F /* CurrencyCell~ipad.xib in Resources */,
 				470DEFAE19460C8D00684FEB /* MoneyEntryCell~ipad.xib in Resources */,
 				47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */,
@@ -2118,6 +2158,7 @@
 				38E57F7B192A51DD00D864A2 /* TabViewController.xib in Resources */,
 				EA31A1D217DDB29B00F937F7 /* MainViewController.xib in Resources */,
 				EA84056A17F0A40B00F44916 /* spinner.html in Resources */,
+				3831AA3C194B31A200B3EE5C /* WhyViewController.xib in Resources */,
 				EA31A1D317DDB29B00F937F7 /* TransactionsViewController.xib in Resources */,
 				EA0523FA191B5AFC00B32899 /* RefundDetailsViewController.xib in Resources */,
 				EA31A1D417DDB29B00F937F7 /* ContactsViewController.xib in Resources */,
@@ -2147,7 +2188,6 @@
 				EA31A1ED17DDB29B00F937F7 /* TSAlertViewBackground.png in Resources */,
 				EAB61711191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
 				EA31A1EF17DDB29B00F937F7 /* CountrySelectionCell.xib in Resources */,
-				38AA83DB1949F95E0065AD2A /* WhyViewController.xib in Resources */,
 				EA31A1F017DDB29B00F937F7 /* DateEntryCell.xib in Resources */,
 				EA31A1F117DDB29B00F937F7 /* SignUpViewController.xib in Resources */,
 				EA31A1F217DDB29B00F937F7 /* PaymentCell.xib in Resources */,
@@ -2196,6 +2236,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				479B692F194878CA001FA4FE /* TransferDetailsViewController~ipad.xib in Resources */,
 				EAAA1478171BC911005B9430 /* InfoPlist.strings in Resources */,
 				EAAA1490171BD07E005B9430 /* Localizable.strings in Resources */,
 				38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */,
@@ -2206,6 +2247,7 @@
 				EAD39681171BD57000F6D011 /* ContactsViewController.xib in Resources */,
 				EAD39686171BD5B000F6D011 /* PaymentViewController.xib in Resources */,
 				EAD3968B171BD82300F6D011 /* IntroductionViewController.xib in Resources */,
+				3831AA3B194B31A200B3EE5C /* WhyViewController.xib in Resources */,
 				EA13E038171BE12E0019FBF0 /* MoneyEntryCell.xib in Resources */,
 				EA13E040171BE9B00019FBF0 /* LoginViewController.xib in Resources */,
 				380021AA192B91A9009B1D53 /* TabViewController~ipad.xib in Resources */,
@@ -2234,7 +2276,6 @@
 				EA88E691172F97E20021492C /* DateEntryCell.xib in Resources */,
 				EA88E698172F980A0021492C /* SignUpViewController.xib in Resources */,
 				EA35C77217327981005602F7 /* PaymentCell.xib in Resources */,
-				38AA83DA1949F95E0065AD2A /* WhyViewController.xib in Resources */,
 				EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */,
 				EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */,
 				EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */,
@@ -2248,6 +2289,7 @@
 				EA042603173CF5E20048BFBD /* RecipientEntrySelectionCell.xib in Resources */,
 				473F62931940BDD9001E280B /* IntroductionViewController~ipad.xib in Resources */,
 				47FB7EA519419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */,
+				479B692D19487865001FA4FE /* TransferDetailsViewController.xib in Resources */,
 				EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */,
 				470DEFAD1945F02300684FEB /* MoneyEntryCell~ipad.xib in Resources */,
 				EAD3648E17E2F6EF001EFE40 /* CardPaymentViewController.xib in Resources */,
@@ -2464,6 +2506,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				479B69421949E7ED001FA4FE /* TransferDetialsHeaderView.m in Sources */,
+				479B69411949E7DA001FA4FE /* TransferDetailsViewController.m in Sources */,
+				479B69401949E7BB001FA4FE /* UIFont+MOMStyle.m in Sources */,
 				38AA83421949B8DF0065AD2A /* GradientView.m in Sources */,
 				47F1F5921941C87600FC4BEB /* NSString+DeviceSpecificLocalisation.m in Sources */,
 				EA31A12517DDB29B00F937F7 /* main.m in Sources */,
@@ -2472,6 +2517,7 @@
 				EA31A12817DDB29B00F937F7 /* ObjectModel.m in Sources */,
 				EA0450D517EC5BC1008921DA /* IntroViewController.m in Sources */,
 				EA31A12917DDB29B00F937F7 /* MainViewController.m in Sources */,
+				479B693F1949C36F001FA4FE /* TransferDetialsRecipientView.m in Sources */,
 				EA31A12A17DDB29B00F937F7 /* TransactionsViewController.m in Sources */,
 				EA31A12B17DDB29B00F937F7 /* ContactsViewController.m in Sources */,
 				EA31A12C17DDB29B00F937F7 /* PaymentViewController.m in Sources */,
@@ -2507,6 +2553,7 @@
 				380021C7192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */,
 				EA31A14617DDB29B00F937F7 /* TSAlertView.m in Sources */,
 				EA333F3D18A4C00000D8A44E /* PageZoom.m in Sources */,
+				EA31A14717DDB29B00F937F7 /* WhyView.m in Sources */,
 				EACD942F18D82C2C00369905 /* NanTracking.m in Sources */,
 				EA31A14817DDB29B00F937F7 /* Credentials.m in Sources */,
 				EA31A14917DDB29B00F937F7 /* SWRevealViewController.m in Sources */,
@@ -2517,6 +2564,7 @@
 				EA31A14E17DDB29B00F937F7 /* CountriesOperation.m in Sources */,
 				EA31A14F17DDB29B00F937F7 /* NetworkErrorCodes.m in Sources */,
 				EA31A15017DDB29B00F937F7 /* UserDetailsOperation.m in Sources */,
+				3831AA38194B31A200B3EE5C /* TransparentModalViewController.m in Sources */,
 				EA31A15117DDB29B00F937F7 /* CountrySelectionCell.m in Sources */,
 				EA31A15217DDB29B00F937F7 /* DateEntryCell.m in Sources */,
 				EA31A15317DDB29B00F937F7 /* Constants.m in Sources */,
@@ -2528,7 +2576,6 @@
 				EA31A15817DDB29B00F937F7 /* RecipientViewController.m in Sources */,
 				EA31A15917DDB29B00F937F7 /* CurrenciesOperation.m in Sources */,
 				EA0450D017EC3635008921DA /* TextContainerView.m in Sources */,
-				38AA83D91949F95E0065AD2A /* WhyViewController.m in Sources */,
 				EA31A15A17DDB29B00F937F7 /* TransferwiseClient.m in Sources */,
 				EA31A15B17DDB29B00F937F7 /* RecipientTypesOperation.m in Sources */,
 				EA31A15C17DDB29B00F937F7 /* CurrencySelectionCell.m in Sources */,
@@ -2563,7 +2610,6 @@
 				EA31A17317DDB29B00F937F7 /* PhoneBookAddress.m in Sources */,
 				EA31A17417DDB29B00F937F7 /* DismissKeyboardTableView.m in Sources */,
 				EA31A17517DDB29B00F937F7 /* VerificationRequiredOperation.m in Sources */,
-				389351A1194AF0CC0075F71C /* WhyView.m in Sources */,
 				EA31A17617DDB29B00F937F7 /* UploadVerificationFileOperation.m in Sources */,
 				380021F0192F3DD3009B1D53 /* CurrencySelectorViewController.m in Sources */,
 				EA31A17717DDB29B00F937F7 /* OpenIDViewController.m in Sources */,
@@ -2586,11 +2632,13 @@
 				EA31A18617DDB29B00F937F7 /* PaymentProfileViewController.m in Sources */,
 				EA31A18717DDB29B00F937F7 /* ProfileSelectionView.m in Sources */,
 				EA31A18817DDB29B00F937F7 /* RemoveTokenOperation.m in Sources */,
+				479B693B19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */,
 				EA31A18917DDB29B00F937F7 /* UITableView+FooterPositioning.m in Sources */,
 				38C8A79E19371DBC00714FB3 /* PullToRefreshView.m in Sources */,
 				EA31A18A17DDB29B00F937F7 /* TransferTypeSelectionCell.m in Sources */,
 				EA31A18B17DDB29B00F937F7 /* RoundedCellWhiteBackgroundView.m in Sources */,
 				EA31A18D17DDB29B00F937F7 /* _Payment.m in Sources */,
+				3831AA3A194B31A200B3EE5C /* WhyViewController.m in Sources */,
 				EA31A18E17DDB29B00F937F7 /* Payment.m in Sources */,
 				EA31A18F17DDB29B00F937F7 /* ObjectModel+Payments.m in Sources */,
 				380021E4192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */,
@@ -2648,7 +2696,6 @@
 				EA31A1B917DDB29B00F937F7 /* SwitchCell.m in Sources */,
 				EA31A1BA17DDB29B00F937F7 /* PaymentDetailsViewController.m in Sources */,
 				EA347738180D2C6C00104417 /* _Setting.m in Sources */,
-				38AA83D41949F83F0065AD2A /* TransparentModalViewController.m in Sources */,
 				EA677B46189B855200505139 /* StartPaymentButton.m in Sources */,
 				EA31A1BB17DDB29B00F937F7 /* SupportCoordinator.m in Sources */,
 				EA31A1BC17DDB29B00F937F7 /* UIDevice-Hardware.m in Sources */,
@@ -2683,6 +2730,7 @@
 				EAAA147A171BC911005B9430 /* main.m in Sources */,
 				EAAA147E171BC911005B9430 /* AppDelegate.m in Sources */,
 				EAAA1487171BC911005B9430 /* Transfer.xcdatamodeld in Sources */,
+				3831AA39194B31A200B3EE5C /* WhyViewController.m in Sources */,
 				EAD39672171BD2A300F6D011 /* ObjectModel.m in Sources */,
 				EA0450D417EC5BC1008921DA /* IntroViewController.m in Sources */,
 				EAD39676171BD4EE00F6D011 /* MainViewController.m in Sources */,
@@ -2694,7 +2742,6 @@
 				EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */,
 				EA13E03F171BE9B00019FBF0 /* LoginViewController.m in Sources */,
 				EA13E044171BEB010019FBF0 /* UIColor+Theme.m in Sources */,
-				38AA83D31949F6BF0065AD2A /* TransparentModalViewController.m in Sources */,
 				380021DB192CC89B009B1D53 /* UIColor+MOMStyle.m in Sources */,
 				EA13E049171BEDC40019FBF0 /* UIView+Loading.m in Sources */,
 				EA13E04C171BEF5D0019FBF0 /* TextEntryCell.m in Sources */,
@@ -2707,6 +2754,7 @@
 				EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */,
 				380021F7192F43EA009B1D53 /* TabCell.m in Sources */,
 				EAD7D4C2171D43440099063F /* NSDictionary+SensibleData.m in Sources */,
+				479B693A19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */,
 				EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */,
 				EAD7D4D1171D4BB20099063F /* GreenButton.m in Sources */,
 				EAD7368A171E6CB100A037B1 /* GrayButton.m in Sources */,
@@ -2724,8 +2772,11 @@
 				380021C6192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */,
 				BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */,
 				EA333F3C18A4C00000D8A44E /* PageZoom.m in Sources */,
+				BBCC6338172169980094EABB /* WhyView.m in Sources */,
 				EACD942E18D82C2C00369905 /* NanTracking.m in Sources */,
+				479B693419489303001FA4FE /* TransferDetialsHeaderView.m in Sources */,
 				EA88E65B172F96490021492C /* Credentials.m in Sources */,
+				479B69371948A2EB001FA4FE /* UIFont+MOMStyle.m in Sources */,
 				EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */,
 				EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */,
 				EA88E667172F979F0021492C /* PersonalProfileViewController.m in Sources */,
@@ -2744,7 +2795,6 @@
 				EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */,
 				EAA54F4B1733DA1400B65BF3 /* RecipientViewController.m in Sources */,
 				EAA54F501733DC3500B65BF3 /* CurrenciesOperation.m in Sources */,
-				389351A0194AF0CC0075F71C /* WhyView.m in Sources */,
 				EA0450CF17EC3635008921DA /* TextContainerView.m in Sources */,
 				EAA54F581733E8F700B65BF3 /* TransferwiseClient.m in Sources */,
 				EAA54F5B1733EF1A00B65BF3 /* RecipientTypesOperation.m in Sources */,
@@ -2789,7 +2839,9 @@
 				EACF7640175C71B4008F2A03 /* RecipientProfileCommitter.m in Sources */,
 				EAA053D2175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m in Sources */,
 				EAA053D6175DD5EE00ACD3F6 /* NoUserPaymentFlow.m in Sources */,
+				3831AA37194B31A200B3EE5C /* TransparentModalViewController.m in Sources */,
 				388F09FB1934A1BB00DBD93D /* UIView+RenderBlur.m in Sources */,
+				479B693E1949C36F001FA4FE /* TransferDetialsRecipientView.m in Sources */,
 				EAA053EC175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m in Sources */,
 				EAC1051A17607C4600B3B018 /* ClaimAccountViewController.m in Sources */,
 				EAB93B481761C74700A7337C /* ClaimAccountOperation.m in Sources */,
@@ -2806,13 +2858,13 @@
 				BB9A2E83176B711400C5E058 /* UITableView+FooterPositioning.m in Sources */,
 				BB9A2EBC176F4BC600C5E058 /* TransferTypeSelectionCell.m in Sources */,
 				BB704E7D177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m in Sources */,
+				479B692C19487865001FA4FE /* TransferDetailsViewController.m in Sources */,
 				EA225C67178E9C90009D6B83 /* _Payment.m in Sources */,
 				EA225C6B178E9C93009D6B83 /* Payment.m in Sources */,
 				EA225C71178E9F00009D6B83 /* ObjectModel+Payments.m in Sources */,
 				380021E3192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */,
 				EA225C75178EA124009D6B83 /* TabBarActivityIndicatorView.m in Sources */,
 				EA225C79178EA341009D6B83 /* _Currency.m in Sources */,
-				38AA83D81949F95E0065AD2A /* WhyViewController.m in Sources */,
 				EA225C7C178EA346009D6B83 /* Currency.m in Sources */,
 				EA225C7F178EA3C2009D6B83 /* _Recipient.m in Sources */,
 				EA225C82178EA3C8009D6B83 /* Recipient.m in Sources */,

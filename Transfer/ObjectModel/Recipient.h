@@ -7,6 +7,7 @@
 - (NSString *)detailsRowOne;
 - (NSString *)detailsRowTwo;
 - (NSString *)valueField:(RecipientTypeField *)field;
+- (NSString *)presentationStringFromAllValues;
 - (void)setValue:(NSString *)value forField:(RecipientTypeField *)field;
 - (NSDictionary *)data;
 
