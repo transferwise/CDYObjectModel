@@ -16,6 +16,9 @@ NS_ENUM(NSInteger, GradientOrientation)
 
 @interface GradientView : UIView
 
+@property (nonatomic, copy)NSString *toColorStyle;
+@property (nonatomic, copy)NSString *fromColorStyle;
+
 @property (nonatomic, strong)UIColor *toColor;
 @property (nonatomic, strong)UIColor *fromColor;
 

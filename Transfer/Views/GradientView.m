@@ -8,6 +8,7 @@
 
 #import "GradientView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "MOMStyle.h"
 
 
 @implementation GradientView
@@ -46,6 +47,18 @@
     self.gradient.endPoint = orientation == OrientationHorizontal?CGPointMake(1.0f, 0.5f):CGPointMake(0.5f, 1.0f);
 }
 
+-(void)setToColorStyle:(NSString *)toColorStyle
+{
+    _toColorStyle = toColorStyle;
+    [self setToColor:[UIColor colorFromStyle:toColorStyle]];
+}
+
+-(void)setFromColorStyle:(NSString *)fromColorStyle
+{
+    _fromColorStyle = fromColorStyle;
+    [self setToColor:[UIColor colorFromStyle:fromColorStyle]];
+}
+
 -(void)setFromColor:(UIColor *)fromColor
 {
     _fromColor = fromColor;
@@ -60,7 +73,7 @@
 
 -(void)updateColor
 {
-    self.gradient.colors = [NSArray arrayWithObjects:(id)[self.fromColor?:[UIColor clearColor]CGColor], (id)[self.toColor?:[UIColor colorWithWhite:0.0f alpha:0.12f] CGColor], nil];
+    self.gradient.colors = [NSArray arrayWithObjects:(id)[self.fromColor?:[UIColor clearColor]CGColor], (id)[self.toColor?:[UIColor colorWithWhite:0.0f alpha:0.7f] CGColor], nil];
 }
 
 -(CAGradientLayer*)gradient
