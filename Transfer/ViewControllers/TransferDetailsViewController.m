@@ -91,14 +91,17 @@
 											   status:self.payment.paymentStatus], nil);
 	if(eta.length > 0 && self.payment.paymentDateString != nil)
 	{
-		self.amountsView.eta = [NSString stringWithFormat:eta, self.payment.paymentDateString];
+		self.amountsView.shouldArrive = eta;
+		self.amountsView.eta = self.payment.paymentDateString;
 	}
 	else
 	{
+		self.amountsView.shouldArrive = nil;
 		self.amountsView.eta = nil;
 	}
 	
 	[self.accountView configureWithRecipient:self.payment.recipient];
+	[self.view layoutIfNeeded];
 }
 
 - (NSString*)getStatusBasedLocalizations:(NSString *)localizationKey status:(NSString*)status

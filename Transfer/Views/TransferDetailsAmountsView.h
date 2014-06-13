@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSString* fromAmount;
 @property (strong, nonatomic) NSString* toAmount;
 @property (strong, nonatomic) NSString* status;
+@property (strong, nonatomic) NSString* shouldArrive;
 @property (strong, nonatomic) NSString* eta;
 
 @end

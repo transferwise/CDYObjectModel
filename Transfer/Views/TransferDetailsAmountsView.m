@@ -13,6 +13,7 @@
 @property (strong, nonatomic) IBOutlet UILabel* amountFromLabel;
 @property (strong, nonatomic) IBOutlet UILabel* statusLabel;
 @property (strong, nonatomic) IBOutlet UILabel* amountToLabel;
+@property (strong, nonatomic) IBOutlet UILabel* shouldArriveLabel;
 @property (strong, nonatomic) IBOutlet UILabel* etaLabel;
 
 @end
@@ -46,6 +47,11 @@
 - (void)setEta:(NSString *)eta
 {
 	[self.etaLabel setText:eta];
+}
+
+- (void)setShouldArrive:(NSString *)shouldArrive
+{
+	[self.shouldArriveLabel setText:shouldArrive];
 }
 
 @end
