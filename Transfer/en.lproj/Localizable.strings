@@ -309,16 +309,19 @@ A revolution in your pocket.";
 "upload.money.card.payment.success.title" = "Success";
 
 "why.popup.bank.column.label" = "Average bank";
-"why.popup.tw.rate.title" = "The exchange rate";
-"why.popup.bank.rate.title" = "Bank's exchange rate";
-"why.popup.tw.fee.title" = "Fee";
-"why.popup.bank.fee.title" = "Fee + hidden profit";
+"why.popup.tw.rate.title" = "We use the real exchange rate";
+"why.popup.bank.rate.title" = "Banks set their own exchange rate";
+"why.popup.tw.fee.title" = "We're 85% cheaper";
+"why.popup.bank.fee.title" = "Bank fee + hidden profit";
 "why.popup.tw.you.get.title" = "You get";
 "why.popup.bank.you.get.title" = "You would have got";
 "why.popup.tw.you.pay.title" = "You pay";
 "why.popup.bank.you.pay.title" = "You would have payed";
-"whypopup.button" = "Sounds cool";
-"whypopup.title" = "Get %@ more vs a bank";
+"why.popup.button" = "Got it, I save %@";
+"why.popup.title" = "See why you save";
+"why.popup.vs" = "VS";
+"why.popup.rate" = "RATE";
+"why.popup.fee" = "FEE";
 
 "errors.CRD_NOT_VALID.message" = "Incorrect credentials.";
 "errors.TRWErrorDomain.1.message" = "Could not read server response.";

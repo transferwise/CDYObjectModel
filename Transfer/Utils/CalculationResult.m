@@ -91,7 +91,7 @@
 }
 
 - (NSString *)bankTotalFeeStringWithCurrency {
-    return [[MoneyFormatter sharedInstance] formatAmount:self.bankTotalFee withCurrency:self.targetCurrency];
+    return [[MoneyFormatter sharedInstance] formatAmount:self.bankTotalFee withCurrency:self.sourceCurrency];
 }
 
 - (NSString *)bankPayOutStringWithCurrency{
