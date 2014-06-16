@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IntrinsicSizeUIView.h"
 
 @class Recipient;
 
-@interface TransferDetialsRecipientView : UIView
+@interface TransferDetialsRecipientView : IntrinsicSizeUIView
 
 - (void)configureWithRecipient:(Recipient *)recipient;
 

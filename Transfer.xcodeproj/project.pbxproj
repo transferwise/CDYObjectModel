@@ -105,6 +105,8 @@
 		47FAF351194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FAF34D194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib */; };
 		47FAF353194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FAF352194B4EF9004CE986 /* TransferWaitingViewController.xib */; };
 		47FAF354194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FAF352194B4EF9004CE986 /* TransferWaitingViewController.xib */; };
+		47FAF357194F0A46004CE986 /* IntrinsicSizeUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF356194F0A46004CE986 /* IntrinsicSizeUIView.m */; };
+		47FAF358194F0A47004CE986 /* IntrinsicSizeUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF356194F0A46004CE986 /* IntrinsicSizeUIView.m */; };
 		47FB7EA519419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
 		47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
 		47FB7EA91941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
@@ -716,6 +718,8 @@
 		47FAF34C194B4E5D004CE986 /* TransferWaitingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferWaitingViewController.m; sourceTree = "<group>"; };
 		47FAF34D194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransferWaitingViewController~ipad.xib"; sourceTree = "<group>"; };
 		47FAF352194B4EF9004CE986 /* TransferWaitingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferWaitingViewController.xib; sourceTree = "<group>"; };
+		47FAF355194F0A46004CE986 /* IntrinsicSizeUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntrinsicSizeUIView.h; sourceTree = "<group>"; };
+		47FAF356194F0A46004CE986 /* IntrinsicSizeUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntrinsicSizeUIView.m; sourceTree = "<group>"; };
 		47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencySelectorViewController~ipad.xib"; sourceTree = "<group>"; };
 		47FB7EA71941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DeviceSpecificLocalisation.h"; sourceTree = "<group>"; };
 		47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeviceSpecificLocalisation.m"; sourceTree = "<group>"; };
@@ -1384,6 +1388,8 @@
 				38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */,
 				38AA833F1949B8DF0065AD2A /* GradientView.h */,
 				38AA83401949B8DF0065AD2A /* GradientView.m */,
+				47FAF355194F0A46004CE986 /* IntrinsicSizeUIView.h */,
+				47FAF356194F0A46004CE986 /* IntrinsicSizeUIView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2744,6 +2750,7 @@
 				EA0523F7191B596B00B32899 /* RefundDetailsViewController.m in Sources */,
 				38002200192F443E009B1D53 /* CurrencyCell.m in Sources */,
 				EAB61715191CDD1000545C21 /* ResetPasswordOperation.m in Sources */,
+				47FAF358194F0A47004CE986 /* IntrinsicSizeUIView.m in Sources */,
 				EA2296C717E08027001CF541 /* TransferBackButtonItem.m in Sources */,
 				BA665EA5E58A6DA4DEB8E622 /* GoogleAnalytics.m in Sources */,
 			);
@@ -2833,6 +2840,7 @@
 				EA34773F180D2CE700104417 /* ObjectModel+Settings.m in Sources */,
 				EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */,
 				EAA54F4B1733DA1400B65BF3 /* RecipientViewController.m in Sources */,
+				47FAF357194F0A46004CE986 /* IntrinsicSizeUIView.m in Sources */,
 				EAA54F501733DC3500B65BF3 /* CurrenciesOperation.m in Sources */,
 				EA0450CF17EC3635008921DA /* TextContainerView.m in Sources */,
 				EAA54F581733E8F700B65BF3 /* TransferwiseClient.m in Sources */,

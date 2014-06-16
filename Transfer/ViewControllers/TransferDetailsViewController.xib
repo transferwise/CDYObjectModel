@@ -43,16 +43,16 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1m-Ok-c6y" userLabel="Label - Recipient Name" customClass="OHAttributedLabel">
-                            <rect key="frame" x="0.0" y="12" width="320" height="27"/>
+                            <rect key="frame" x="0.0" y="12" width="320" height="23"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="27" id="pWL-35-HPR"/>
+                                <constraint firstAttribute="height" constant="23" id="pWL-35-HPR"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0f-kV-mku" userLabel="Label - Status">
-                            <rect key="frame" x="147" y="34" width="26" height="12"/>
+                            <rect key="frame" x="147" y="30" width="26" height="12"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <nil key="highlightedColor"/>
@@ -82,21 +82,21 @@
                     </connections>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8dh-F6-i1O">
-                    <rect key="frame" x="120" y="161" width="80" height="40"/>
+                    <rect key="frame" x="120" y="157" width="80" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" priority="1" constant="80" id="4pe-wN-NIZ"/>
-                        <constraint firstAttribute="width" priority="1" constant="80" id="6IT-v3-Fgh"/>
+                        <constraint firstAttribute="height" priority="250" constant="80" id="4pe-wN-NIZ"/>
+                        <constraint firstAttribute="width" priority="250" constant="80" id="6IT-v3-Fgh"/>
                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="pXp-Pg-8Id"/>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="t5d-HJ-iOU"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="gxD-Ss-q8P" customClass="TransferDetailsAmountsView">
-                    <rect key="frame" x="0.0" y="261" width="320" height="110"/>
+                    <rect key="frame" x="0.0" y="271" width="320" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jG-a7-WpV" userLabel="Label - Status">
-                            <rect key="frame" x="147" y="-30" width="26" height="12"/>
+                            <rect key="frame" x="147" y="-4" width="26" height="12"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <nil key="highlightedColor"/>
@@ -105,7 +105,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ds-Oe-207" userLabel="Label - From Amount">
-                            <rect key="frame" x="147" y="-36" width="26" height="12"/>
+                            <rect key="frame" x="147" y="-10" width="26" height="12"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <nil key="highlightedColor"/>
@@ -114,7 +114,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctn-3w-Ikq" userLabel="Label - To Amount">
-                            <rect key="frame" x="147" y="-24" width="26" height="12"/>
+                            <rect key="frame" x="147" y="2" width="26" height="12"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <nil key="highlightedColor"/>
@@ -123,7 +123,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KaH-1y-EDd" userLabel="Label - Should Arrive">
-                            <rect key="frame" x="147" y="-18" width="26" height="12"/>
+                            <rect key="frame" x="147" y="8" width="26" height="12"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <nil key="highlightedColor"/>
@@ -132,7 +132,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Is-L2-5Q3">
-                            <rect key="frame" x="147" y="-12" width="26" height="12"/>
+                            <rect key="frame" x="147" y="14" width="26" height="12"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <nil key="highlightedColor"/>
@@ -145,7 +145,7 @@
                     <constraints>
                         <constraint firstAttribute="centerX" secondItem="7ds-Oe-207" secondAttribute="centerX" id="8bo-sr-kaK"/>
                         <constraint firstAttribute="centerX" secondItem="0jG-a7-WpV" secondAttribute="centerX" id="Ajd-V7-nCc"/>
-                        <constraint firstAttribute="height" constant="110" placeholder="YES" id="KbG-1X-pnP"/>
+                        <constraint firstAttribute="height" constant="100" placeholder="YES" id="KbG-1X-pnP"/>
                         <constraint firstAttribute="centerX" secondItem="ctn-3w-Ikq" secondAttribute="centerX" id="Tl3-fj-4Bp"/>
                         <constraint firstItem="KaH-1y-EDd" firstAttribute="top" secondItem="ctn-3w-Ikq" secondAttribute="bottom" constant="-6" id="d8g-6r-vMk"/>
                         <constraint firstAttribute="centerX" secondItem="KaH-1y-EDd" secondAttribute="centerX" id="eSV-YB-pZh"/>
@@ -162,7 +162,7 @@
                         <outlet property="statusLabel" destination="0jG-a7-WpV" id="njw-te-BAH"/>
                     </connections>
                 </view>
-                <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="300" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="anS-pb-BWk" customClass="TransferDetialsRecipientView">
+                <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="anS-pb-BWk" customClass="TransferDetialsRecipientView">
                     <rect key="frame" x="0.0" y="271" width="320" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -172,7 +172,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@17.lighterBlue"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@15.lighterBlue"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <view alpha="0.49999999999999961" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JWj-M3-8IP" userLabel="View - Separator">
@@ -189,7 +189,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@16.lighterGray"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@14.lighterGray"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
@@ -228,7 +228,6 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="g0K-st-6YG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1iB-EB-NVL"/>
-                <constraint firstItem="anS-pb-BWk" firstAttribute="top" secondItem="0Is-L2-5Q3" secondAttribute="bottom" constant="10" id="7ly-PI-QTJ"/>
                 <constraint firstAttribute="trailing" secondItem="jJD-by-0Jd" secondAttribute="trailing" id="8Ae-SM-pfN"/>
                 <constraint firstItem="jJD-by-0Jd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8c2-nS-QMY"/>
                 <constraint firstItem="7ds-Oe-207" firstAttribute="top" secondItem="8dh-F6-i1O" secondAttribute="bottom" constant="24" id="Bat-hO-u9B"/>

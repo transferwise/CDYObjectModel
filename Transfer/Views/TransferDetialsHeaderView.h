@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IntrinsicSizeUIView.h"
 
-@interface TransferDetialsHeaderView : UIView
+@interface TransferDetialsHeaderView : IntrinsicSizeUIView
 
 @property (weak, nonatomic) NSString* transferNumber;
 @property (weak, nonatomic) NSString* recipientName;

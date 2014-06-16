@@ -82,7 +82,7 @@
                     </connections>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8dh-F6-i1O">
-                    <rect key="frame" x="412" y="188" width="200" height="200"/>
+                    <rect key="frame" x="412" y="203" width="200" height="200"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" priority="1" constant="200" id="4pe-wN-NIZ"/>
@@ -92,7 +92,7 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="gxD-Ss-q8P" customClass="TransferDetailsAmountsView">
-                    <rect key="frame" x="0.0" y="412" width="1024" height="110"/>
+                    <rect key="frame" x="0.0" y="427" width="1024" height="110"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jG-a7-WpV" userLabel="Label - Status">
@@ -164,7 +164,7 @@
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="300" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="anS-pb-BWk" customClass="TransferDetialsRecipientView">
-                    <rect key="frame" x="0.0" y="539" width="1024" height="100"/>
+                    <rect key="frame" x="0.0" y="583" width="1024" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpr-jT-3Kg" userLabel="Label - Account Header">
@@ -229,18 +229,18 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="g0K-st-6YG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="1iB-EB-NVL"/>
-                <constraint firstItem="anS-pb-BWk" firstAttribute="top" secondItem="0Is-L2-5Q3" secondAttribute="bottom" constant="46" id="7ly-PI-QTJ"/>
                 <constraint firstAttribute="trailing" secondItem="jJD-by-0Jd" secondAttribute="trailing" id="8Ae-SM-pfN"/>
                 <constraint firstItem="jJD-by-0Jd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8c2-nS-QMY"/>
                 <constraint firstItem="7ds-Oe-207" firstAttribute="top" secondItem="8dh-F6-i1O" secondAttribute="bottom" constant="24" id="Bat-hO-u9B"/>
                 <constraint firstItem="gxD-Ss-q8P" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Dav-W8-Qq7"/>
+                <constraint firstItem="8dh-F6-i1O" firstAttribute="top" secondItem="jJD-by-0Jd" secondAttribute="bottom" constant="21" id="EE1-Zg-EIh"/>
                 <constraint firstAttribute="centerX" secondItem="8dh-F6-i1O" secondAttribute="centerX" id="Emq-JO-aeE"/>
                 <constraint firstAttribute="trailing" secondItem="g0K-st-6YG" secondAttribute="trailing" constant="60" id="J9C-KG-aGd"/>
                 <constraint firstAttribute="centerX" secondItem="gxD-Ss-q8P" secondAttribute="centerX" id="Ovi-9F-5tM"/>
+                <constraint firstItem="anS-pb-BWk" firstAttribute="top" secondItem="gxD-Ss-q8P" secondAttribute="bottom" constant="46" id="R29-Ib-AIl"/>
                 <constraint firstItem="jJD-by-0Jd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="94" id="Wjo-Kr-J1n"/>
                 <constraint firstAttribute="centerX" secondItem="g0K-st-6YG" secondAttribute="centerX" id="ZXu-vn-5GC"/>
                 <constraint firstAttribute="centerX" secondItem="anS-pb-BWk" secondAttribute="centerX" id="aQx-aj-aec"/>
-                <constraint firstItem="8dh-F6-i1O" firstAttribute="top" secondItem="F0f-kV-mku" secondAttribute="bottom" constant="21" id="cz1-N2-3oZ"/>
                 <constraint firstAttribute="bottom" secondItem="g0K-st-6YG" secondAttribute="bottom" constant="60" id="iXj-Qa-5ZH"/>
                 <constraint firstItem="anS-pb-BWk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pkq-6y-8cI"/>
                 <constraint firstAttribute="centerX" secondItem="jJD-by-0Jd" secondAttribute="centerX" id="qfG-pJ-b4Y"/>
