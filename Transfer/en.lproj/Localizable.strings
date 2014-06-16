@@ -341,9 +341,9 @@ It can take up to 2 working days.";
 
 "why.popup.bank.column.label" = "Average bank";
 "why.popup.tw.rate.title" = "We use the real exchange rate";
-"why.popup.bank.rate.title" = "Banks set their own exchange rate";
+"why.popup.bank.rate.title" = "Banks set their \nown exchange rate";
 "why.popup.tw.fee.title" = "We're 85% cheaper";
-"why.popup.bank.fee.title" = "Bank fee + hidden profit";
+"why.popup.bank.fee.title" = "Bank fee \n+ hidden profit";
 "why.popup.tw.you.get.title" = "You get";
 "why.popup.bank.you.get.title" = "You would have got";
 "why.popup.tw.you.pay.title" = "You pay";

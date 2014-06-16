@@ -97,6 +97,9 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="link"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="howButtonTapped:" destination="-1" eventType="touchUpInside" id="M5D-Je-ddx"/>
+                    </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jOH-gc-1dO">
                     <rect key="frame" x="169" y="337" width="430" height="160"/>
