@@ -10,6 +10,7 @@
 #import "Recipient.h"
 #import "TypeFieldValue.h"
 #import "RecipientTypeField.h"
+#import "Constants.h"
 
 @interface TransferDetialsRecipientView ()
 
@@ -34,7 +35,7 @@
 	[self.accountHeaderLabel setText:[NSString stringWithFormat:NSLocalizedString(@"transferdetails.controller.transfer.account.to", nil), [recipient name]]];
 	NSString* email = [recipient email];
 	
-	if(email != nil && email.length > 0)
+	if(IPAD && email != nil && email.length > 0)
 	{
 		[self.detailsLabel setText:[NSString stringWithFormat:NSLocalizedString(@"transferdetails.controller.transfer.account.sent", nil), [recipient presentationStringFromAllValues], [recipient name], [recipient email]]];
 	}
