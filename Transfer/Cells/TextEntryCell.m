@@ -16,7 +16,6 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 @interface TextEntryCell ()
 
-@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UITextField *entryField;
 @property (nonatomic, copy) TRWActionBlock doneButtonAction;
 @property (nonatomic, assign) BOOL valueModified;
@@ -44,19 +43,8 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 }
 
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value {
-    [self.titleLabel setText:title];
+    [self.entryField setPlaceholder:title];
     [self setValue:value];
-
-    CGRect titleFrame = self.titleLabel.frame;
-    CGSize titleSize = [self.titleLabel sizeThatFits:CGSizeMake(NSUIntegerMax, CGRectGetHeight(titleFrame))];
-    CGFloat widthChange = titleSize.width - CGRectGetWidth(titleFrame);
-    titleFrame.size.width += widthChange;
-    [self.titleLabel setFrame:titleFrame];
-
-    CGRect entryFrame = self.entryField.frame;
-    entryFrame.origin.x += widthChange;
-    entryFrame.size.width -= widthChange;
-    [self.entryField setFrame:entryFrame];
 }
 
 - (NSString *)value {
@@ -72,7 +60,6 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 - (void)setEditable:(BOOL)editable {
     [self.entryField setEnabled:editable];
-    [self.titleLabel setTextColor:(editable ? [UIColor colorFromStyle:self.titleLabel.fontStyle] : [UIColor disabledEntryTextColor])];
     [self.entryField setTextColor:(editable ? [UIColor colorFromStyle:self.entryField.fontStyle] : [UIColor disabledEntryTextColor])];
 }
 
@@ -125,7 +112,7 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
         return;
     }
 
-    TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:[self.titleLabel text] message:self.validationIssue];
+    TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:self.entryField.placeholder message:self.validationIssue];
     [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
     [alertView show];
 }

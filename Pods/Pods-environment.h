@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_Facebook_iOS_SDK 7
 #define COCOAPODS_VERSION_PATCH_Facebook_iOS_SDK 1
 
+// JVFloatLabeledTextField
+#define COCOAPODS_POD_AVAILABLE_JVFloatLabeledTextField
+#define COCOAPODS_VERSION_MAJOR_JVFloatLabeledTextField 0
+#define COCOAPODS_VERSION_MINOR_JVFloatLabeledTextField 0
+#define COCOAPODS_VERSION_PATCH_JVFloatLabeledTextField 8
+
 // Lockbox
 #define COCOAPODS_POD_AVAILABLE_Lockbox
 #define COCOAPODS_VERSION_MAJOR_Lockbox 1

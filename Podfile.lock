@@ -8,6 +8,7 @@ PODS:
   - CDYObjectModel/Core (0.1.0)
   - CXAlertView (1.0.1)
   - Facebook-iOS-SDK (3.7.1)
+  - JVFloatLabeledTextField (0.0.8)
   - Kiwi (2.1)
   - Lockbox (1.4.3)
   - MBProgressHUD (0.7)
@@ -23,6 +24,7 @@ DEPENDENCIES:
   - CDYObjectModel (from `https://github.com/coodly/CDYObjectModel.git`)
   - CXAlertView (~> 1.0.1)
   - Facebook-iOS-SDK
+  - JVFloatLabeledTextField
   - Kiwi
   - Lockbox
   - MBProgressHUD
@@ -39,18 +41,19 @@ EXTERNAL SOURCES:
     :git: https://github.com/coodly/CDYObjectModel.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 7f9bcd7c287a75476cd5c61e82fd3380e93e4c54
+  AFNetworking: 13fd672bb1f6919946d259d97f31000015680dfa
   CDYAnalyticsCoordinator: 75094418537506be1355dd6cc0248f622d9f591e
   CDYObjectModel: eaff3ecf28903ebc1c404b2fa1480b88c385d701
-  CXAlertView: 59e8305700c59a27730c636765cb76311d311b88
-  Facebook-iOS-SDK: ded70122240311504d96e045e3b7316bb6b008b9
-  Kiwi: 054ef97d0e50c279b21113a0880a906fa153a7fd
-  Lockbox: e9d697391dab1952a1e214103231a10d2a552eb0
-  MBProgressHUD: 1fd8591a2216d5dec6de24e09187bb03bcbe9946
-  Mixpanel: 16e6f1d5f8aeb9282ee864e169557de0bd9549df
-  OCMock: 4320c8b003c01f9718e69453690228298b9614b5
-  OHAttributedLabel: d5f82252c15c67ccb033522e84a395f9f8fa3ef9
-  SMPageControl: c723bd0716b6bfc6ea927de2538b64c1929f7da6
-  TestFlightSDK: fe0567a897456b6f65b180541892ef0154986e01
+  CXAlertView: 29bfa5841d168a016e1a70474ed840d0f4f67c2c
+  Facebook-iOS-SDK: 215cb2b4a7c83887bf7ed0409eba71b558f8ac65
+  JVFloatLabeledTextField: 16dea87b899a7b62026eb8d8cf9902c08b1953da
+  Kiwi: bd8d652f1a18e245c24db893cd53a108d531baf1
+  Lockbox: 6c53a3dfe0ee74174cd22290ade247be8fb9190f
+  MBProgressHUD: 1458a93b44933b4ccfb97c13d54202c943522bb2
+  Mixpanel: f80261f894ae0a71231da2a7eed67ce9ba1d5a26
+  OCMock: 363db8429164eaa219ea96a51f06e830ef3e7393
+  OHAttributedLabel: 526aaf0e4e8013e441381563adf952245675b881
+  SMPageControl: 6ba95e9f946c4c5d3ac4c3a26d221b43ca2c6f2d
+  TestFlightSDK: 36b8a207c5a119a3144aa2e6d24973eb9d5e0d0a
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.33.1
