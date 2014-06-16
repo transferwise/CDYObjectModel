@@ -11,6 +11,7 @@
 #import <OHAttributedLabel.h>
 #import "UIFont+MOMStyle.h"
 #import "UIColor+MOMStyle.h"
+#import "Constants.h"
 
 @interface TransferDetialsHeaderView ()
 
@@ -55,8 +56,16 @@
     paragraphStyle.textAlignment = kCTTextAlignmentCenter;
     paragraphStyle.lineBreakMode = kCTLineBreakByWordWrapping;
     [attributedString setParagraphStyle:paragraphStyle];
-    [attributedString setFont:[UIFont fontFromStyle:@"heavy.@20"]];
-    [attributedString setFont:[UIFont fontFromStyle:@"medium.@20"] range:toRange];
+	if(IPAD)
+	{
+		[attributedString setFont:[UIFont fontFromStyle:@"heavy.@20"]];
+		[attributedString setFont:[UIFont fontFromStyle:@"medium.@20"] range:toRange];
+	}
+	else
+	{
+		[attributedString setFont:[UIFont fontFromStyle:@"heavy.@17"]];
+		[attributedString setFont:[UIFont fontFromStyle:@"medium.@17"] range:toRange];
+	}
     [attributedString setTextColor:[UIColor colorFromStyle:@"darkGray"]];
 	
 	[self.recipientNameLabel setAttributedText:attributedString];

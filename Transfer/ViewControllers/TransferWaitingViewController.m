@@ -15,7 +15,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel1;
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel2;
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel3;
-@property (strong, nonatomic) IBOutlet LightGrayButton *noTransferButton;
+@property (strong, nonatomic) IBOutlet UIButton *noTransferButton;
 
 @end
 
