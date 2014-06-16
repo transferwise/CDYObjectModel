@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="200" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="tx6-jd-3M7">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="200" translatesAutoresizingMaskIntoConstraints="NO" id="tx6-jd-3M7">
                     <rect key="frame" x="0.0" y="45" width="320" height="22"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <constraints>
@@ -186,6 +186,5 @@
     </objects>
     <resources>
         <image name="Rounded" width="43" height="28"/>
-        <image name="logo" width="166" height="23"/>
     </resources>
 </document>
