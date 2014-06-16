@@ -300,11 +300,16 @@ It can take up to 2 working days.";
 "transfer.pay.in.too.low.title" = "Amount too small";
 
 "transferdetails.controller.transfer.header" = "Your transfer";
+"transferdetails.controller.transfer.thankyou" = "Thank you!";
+"transferdetails.controller.transfer.message1" = "We're now waiting for your";
+"transferdetails.controller.transfer.message2" = "bank transfer to reach our account.";
+"transferdetails.controller.transfer.message3" = "It can take up to 2 working days.";
 "transferdetails.controller.transfer.number" = "#%@";
 "transferdetails.controller.transfer.recipient" = "to %@";
 "transferdetails.controller.transfer.account.to" = "%@'s account details";
 "transferdetails.controller.transfer.account.sent" = "%@\nWe've sent email to %@ at\n%@";
 "transferdetails.controller.button.support" = "Contact support";
+"transferdetails.controller.button.notransfer" = "I haven't made the transfer yet";
 
 
 "upload.money.account.nr.title" = "Account number";
