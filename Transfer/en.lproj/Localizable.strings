@@ -170,7 +170,8 @@ A revolution in your pocket.";
 "payment.status.received.description.eta" = "& should arrive on";
 "payment.status.refunded.description" = "Refunded %@";
 "payment.status.submitted.description" = "Waiting for money";
-"payment.status.submitted.description.long" = "will start once we received the money.";
+"payment.status.submitted.description.long" = "will start once we";
+"payment.status.submitted.description.long2" = "received the money.";
 "payment.status.submitted.description.conversion" = "We're now waiting for your
 bank transfer to reach our account.
 It can take up to 2 working days.";
