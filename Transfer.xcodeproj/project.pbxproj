@@ -76,6 +76,8 @@
 		38B092F1195044EA00315BE4 /* TextFieldSuggestionTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092EF195044EA00315BE4 /* TextFieldSuggestionTable.m */; };
 		38B092F419504B7300315BE4 /* NameSuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092F319504B7300315BE4 /* NameSuggestionCellProvider.m */; };
 		38B092F519504B7300315BE4 /* NameSuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092F319504B7300315BE4 /* NameSuggestionCellProvider.m */; };
+		38B092F819509CB000315BE4 /* ProgressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092F719509CB000315BE4 /* ProgressButton.m */; };
+		38B092F919509CB000315BE4 /* ProgressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092F719509CB000315BE4 /* ProgressButton.m */; };
 		38C632F2194EEBBC008C9E46 /* WhyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */; };
 		38C8A79D19371DBC00714FB3 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */; };
 		38C8A79E19371DBC00714FB3 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */; };
@@ -709,6 +711,8 @@
 		38B092EF195044EA00315BE4 /* TextFieldSuggestionTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldSuggestionTable.m; sourceTree = "<group>"; };
 		38B092F219504B7300315BE4 /* NameSuggestionCellProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSuggestionCellProvider.h; sourceTree = "<group>"; };
 		38B092F319504B7300315BE4 /* NameSuggestionCellProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameSuggestionCellProvider.m; sourceTree = "<group>"; };
+		38B092F619509CB000315BE4 /* ProgressButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressButton.h; sourceTree = "<group>"; };
+		38B092F719509CB000315BE4 /* ProgressButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressButton.m; sourceTree = "<group>"; };
 		38C8A79B19371DBC00714FB3 /* PullToRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshView.h; sourceTree = "<group>"; };
 		38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullToRefreshView.m; sourceTree = "<group>"; };
 		38E57F75192A51DD00D864A2 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
@@ -1413,6 +1417,8 @@
 				47FAF356194F0A46004CE986 /* IntrinsicSizeUIView.m */,
 				38B092EE195044EA00315BE4 /* TextFieldSuggestionTable.h */,
 				38B092EF195044EA00315BE4 /* TextFieldSuggestionTable.m */,
+				38B092F619509CB000315BE4 /* ProgressButton.h */,
+				38B092F719509CB000315BE4 /* ProgressButton.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2641,6 +2647,7 @@
 				3831AA38194B31A200B3EE5C /* TransparentModalViewController.m in Sources */,
 				EA31A15117DDB29B00F937F7 /* CountrySelectionCell.m in Sources */,
 				EA31A15217DDB29B00F937F7 /* DateEntryCell.m in Sources */,
+				38B092F919509CB000315BE4 /* ProgressButton.m in Sources */,
 				EA31A15317DDB29B00F937F7 /* Constants.m in Sources */,
 				EA31A15417DDB29B00F937F7 /* SignUpViewController.m in Sources */,
 				EA31A15517DDB29B00F937F7 /* PaymentsOperation.m in Sources */,
@@ -2848,6 +2855,7 @@
 				38C8A79D19371DBC00714FB3 /* PullToRefreshView.m in Sources */,
 				380021D4192CC531009B1D53 /* UIView+MOMStyle.m in Sources */,
 				EAB7215F171FCAAC00DE29F5 /* SettingsTitleCell.m in Sources */,
+				38B092F819509CB000315BE4 /* ProgressButton.m in Sources */,
 				EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */,
 				38B092EC195044AB00315BE4 /* NonEditTextField.m in Sources */,
 				EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */,
