@@ -13,7 +13,7 @@ NS_ENUM(NSUInteger, NameOrder)
 {
     LastNameFirst =0,
     FirstNameFirst,
-    NickNamefirst
+    NickNameFirst
 };
 
 @interface NameLookupWrapper : NSObject

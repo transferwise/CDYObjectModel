@@ -1,0 +1,136 @@
+//
+//  NameSuggestionCellProvider.m
+//  Transfer
+//
+//  Created by Mats Trovik on 17/06/2014.
+//  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
+//
+
+#import "NameSuggestionCellProvider.h"
+#import "TextFieldSuggestionTable.h"
+#import "AddressBookManager.h"
+#import "NameLookupWrapper.h"
+
+
+@interface NameSuggestionCellProvider ()<SuggestionTableCellProvider>
+
+@property (nonatomic, strong) AddressBookManager* addressBookManager;
+@property (nonatomic, strong) NSArray* dataSource;
+@property (copy) NSString* filterString;
+
+@end
+
+@implementation NameSuggestionCellProvider
+
+-(id)init
+{
+    self = [super init];
+    if(self)
+    {
+        _addressBookManager = [[AddressBookManager alloc] init];
+        [self refreshNameLookupWithCompletion:nil];
+    }
+    return self;
+}
+
+-(void)refreshNameLookupWithCompletion:(void(^)(void))completionBlock
+{
+    [_addressBookManager getNameLookupWithHandler:^(NSArray *nameLookup) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            if(self.filterString)
+            {
+                NSMutableArray* workArray = [nameLookup mutableCopy];
+                
+                NSArray* firstnameMatches = [workArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NameLookupWrapper* evaluatedObject, NSDictionary *bindings) {
+                    return [evaluatedObject.firstName rangeOfString:self.filterString].location == 0;
+                }]];
+                firstnameMatches = [firstnameMatches sortedArrayUsingComparator:^NSComparisonResult(NameLookupWrapper* obj1, NameLookupWrapper* obj2) {
+                    return [obj1.firstName caseInsensitiveCompare:obj2.firstName];
+                }];
+                [workArray removeObjectsInArray:firstnameMatches];
+                
+                NSArray* lastnameMatches = [workArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NameLookupWrapper* evaluatedObject, NSDictionary *bindings) {
+                    return [evaluatedObject.lastName rangeOfString:self.filterString].location == 0;
+                }]];
+                lastnameMatches = [lastnameMatches sortedArrayUsingComparator:^NSComparisonResult(NameLookupWrapper* obj1, NameLookupWrapper* obj2) {
+                    return [obj1.lastName caseInsensitiveCompare:obj2.lastName];
+                }];
+                [workArray removeObjectsInArray:lastnameMatches];
+                
+                NSArray* nicknameMatches = [workArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NameLookupWrapper* evaluatedObject, NSDictionary *bindings) {
+                    return [evaluatedObject.nickName rangeOfString:self.filterString].location == 0;
+                }]];
+                nicknameMatches = [firstnameMatches sortedArrayUsingComparator:^NSComparisonResult(NameLookupWrapper* obj1, NameLookupWrapper* obj2) {
+                    return [obj1.nickName caseInsensitiveCompare:obj2.nickName];
+                }];
+                [workArray removeObjectsInArray:nicknameMatches];
+                
+                self.dataSource = @[firstnameMatches, lastnameMatches, nicknameMatches];
+            }
+            else
+            {
+                self.dataSource = nil;
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(completionBlock)
+                {
+                    completionBlock();
+                }
+            });
+        });
+
+    }];
+}
+
+#pragma mark - Suggestion table cell provider
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if(section < [self.dataSource count])
+    {
+        return [self.dataSource[section] count];
+    }
+    return 0;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [self.dataSource count];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SuggestionCell"];
+    if(!cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SuggestionCell"];
+    }
+    
+    NameLookupWrapper* wrapper = self.dataSource[indexPath.section][indexPath.row];
+    switch (indexPath.row) {
+        case 2:
+            cell.textLabel.text = [wrapper presentableString:NickNameFirst];
+            break;
+        case 1:
+            cell.textLabel.text = [wrapper presentableString:LastNameFirst];
+            break;
+        case 0:
+        default:
+            cell.textLabel.text = [wrapper presentableString:FirstNameFirst];
+            break;
+    }
+    return cell;
+}
+
+-(void)filterForText:(NSString *)text completionBlock:(void (^)(BOOL))completionBlock
+{
+    self.filterString = text;
+    [self refreshNameLookupWithCompletion:^{
+        completionBlock(YES);
+    }];
+}
+
+
+@end

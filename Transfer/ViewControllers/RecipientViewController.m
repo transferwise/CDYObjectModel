@@ -52,6 +52,9 @@
 #import "TransferBackButtonItem.h"
 #import "GoogleAnalytics.h"
 #import "NSError+TRWErrors.h"
+#import "TextFieldSuggestionTable.h"
+#import "NameSuggestionCellProvider.h"
+#import "NameLookupWrapper.h"
 
 static NSUInteger const kSenderSection = 0;
 static NSUInteger const kImportSection = 1;
@@ -61,7 +64,7 @@ static NSUInteger const kRecipientFieldsSection = 4;
 
 NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
-@interface RecipientViewController () <ABPeoplePickerNavigationControllerDelegate>
+@interface RecipientViewController () <ABPeoplePickerNavigationControllerDelegate, SuggestionTableDelegate>
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
@@ -95,6 +98,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, strong) NSArray *senderCells;
 
 @property (nonatomic, strong) ProfileSelectionView *profileSelectionView;
+
+@property (nonatomic, strong) NameSuggestionCellProvider* cellProvider;
 
 - (IBAction)addButtonPressed:(id)sender;
 
@@ -180,6 +185,16 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
 
     self.minimumFooterHeight = self.footer.frame.size.height;
+    
+    self.cellProvider = [[NameSuggestionCellProvider alloc] init];
+    
+    TextFieldSuggestionTable* suggestionsTable = [[TextFieldSuggestionTable alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    suggestionsTable.hidden = YES;
+    [self.view addSubview:suggestionsTable];
+    suggestionsTable.textField = nameCell.entryField;
+    suggestionsTable.dataSource = self.cellProvider;
+    suggestionsTable.suggestionTableDelegate = self;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -573,6 +588,27 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self.senderNameCell.textLabel setText:name];
     [self.senderNameCell.detailTextLabel setText:@""];
     [self.tableView reloadData];
+}
+
+#pragma mark - Suggestion Table
+
+
+
+-(void)suggestionTableDidStartEditing:(TextFieldSuggestionTable *)table
+{
+    CGRect newFrame = table.frame;
+    newFrame.origin = [self.view convertPoint:table.textField.superview.frame.origin fromView:table.textField.superview.superview];
+    newFrame.origin.y += table.textField.superview.frame.size.height;
+    table.frame = newFrame;
+    [self.view addSubview:table];
+    
+}
+
+-(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
+{
+    [self.nameCell.entryField resignFirstResponder];
+    NameLookupWrapper* wrapper = (NameLookupWrapper*)object;
+    self.nameCell.entryField.text = [NSString stringWithFormat:@"%@ %@", wrapper.firstName, wrapper.lastName];
 }
 
 @end

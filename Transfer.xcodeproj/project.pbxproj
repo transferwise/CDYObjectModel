@@ -70,6 +70,12 @@
 		38B092E6194F325B00315BE4 /* AddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092E4194F2EB700315BE4 /* AddressBookManager.m */; };
 		38B092E9194F449600315BE4 /* NameLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092E8194F449600315BE4 /* NameLookupWrapper.m */; };
 		38B092EA194F46D700315BE4 /* NameLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092E8194F449600315BE4 /* NameLookupWrapper.m */; };
+		38B092EC195044AB00315BE4 /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092EB195044AB00315BE4 /* NonEditTextField.m */; };
+		38B092ED195044AB00315BE4 /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092EB195044AB00315BE4 /* NonEditTextField.m */; };
+		38B092F0195044EA00315BE4 /* TextFieldSuggestionTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092EF195044EA00315BE4 /* TextFieldSuggestionTable.m */; };
+		38B092F1195044EA00315BE4 /* TextFieldSuggestionTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092EF195044EA00315BE4 /* TextFieldSuggestionTable.m */; };
+		38B092F419504B7300315BE4 /* NameSuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092F319504B7300315BE4 /* NameSuggestionCellProvider.m */; };
+		38B092F519504B7300315BE4 /* NameSuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092F319504B7300315BE4 /* NameSuggestionCellProvider.m */; };
 		38C632F2194EEBBC008C9E46 /* WhyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */; };
 		38C8A79D19371DBC00714FB3 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */; };
 		38C8A79E19371DBC00714FB3 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */; };
@@ -287,7 +293,6 @@
 		EA31A15C17DDB29B00F937F7 /* CurrencySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */; };
 		EA31A15D17DDB29B00F937F7 /* RecipientFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */; };
 		EA31A15E17DDB29B00F937F7 /* RecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069091737CF57007C8DEE /* RecipientOperation.m */; };
-		EA31A15F17DDB29B00F937F7 /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */; };
 		EA31A16017DDB29B00F937F7 /* PersonalProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */; };
 		EA31A16117DDB29B00F937F7 /* PersonalProfileIdentificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D478FF173A3B5300FC317E /* PersonalProfileIdentificationViewController.m */; };
 		EA31A16217DDB29B00F937F7 /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC92173B7C28008773FC /* BusinessProfileViewController.m */; };
@@ -571,7 +576,6 @@
 		EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */; };
 		EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */; };
 		EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069091737CF57007C8DEE /* RecipientOperation.m */; };
-		EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */; };
 		EAD33EAB17E84C2700CE0608 /* PullPaymentDetailsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD33EAA17E84C2700CE0608 /* PullPaymentDetailsOperation.m */; };
 		EAD33EAC17E84C2700CE0608 /* PullPaymentDetailsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD33EAA17E84C2700CE0608 /* PullPaymentDetailsOperation.m */; };
 		EAD3646617E1E19A001EFE40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD3646517E1E19A001EFE40 /* Assets.xcassets */; };
@@ -700,6 +704,11 @@
 		38B092E4194F2EB700315BE4 /* AddressBookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookManager.m; sourceTree = "<group>"; };
 		38B092E7194F449600315BE4 /* NameLookupWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameLookupWrapper.h; sourceTree = "<group>"; };
 		38B092E8194F449600315BE4 /* NameLookupWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameLookupWrapper.m; sourceTree = "<group>"; };
+		38B092EB195044AB00315BE4 /* NonEditTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonEditTextField.m; sourceTree = "<group>"; };
+		38B092EE195044EA00315BE4 /* TextFieldSuggestionTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldSuggestionTable.h; sourceTree = "<group>"; };
+		38B092EF195044EA00315BE4 /* TextFieldSuggestionTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldSuggestionTable.m; sourceTree = "<group>"; };
+		38B092F219504B7300315BE4 /* NameSuggestionCellProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSuggestionCellProvider.h; sourceTree = "<group>"; };
+		38B092F319504B7300315BE4 /* NameSuggestionCellProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameSuggestionCellProvider.m; sourceTree = "<group>"; };
 		38C8A79B19371DBC00714FB3 /* PullToRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshView.h; sourceTree = "<group>"; };
 		38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullToRefreshView.m; sourceTree = "<group>"; };
 		38E57F75192A51DD00D864A2 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
@@ -1037,7 +1046,6 @@
 		EA92D982176AF1DF0078D0C4 /* ProfileSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSelectionView.m; sourceTree = "<group>"; };
 		EA92D984176AF1F20078D0C4 /* ProfileSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSelectionView.xib; sourceTree = "<group>"; };
 		EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonEditTextField.h; sourceTree = "<group>"; };
-		EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonEditTextField.m; sourceTree = "<group>"; };
 		EAA053D0175DD5DC00ACD3F6 /* LoggedInPaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggedInPaymentFlow.h; sourceTree = "<group>"; };
 		EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggedInPaymentFlow.m; sourceTree = "<group>"; };
 		EAA053D4175DD5EE00ACD3F6 /* NoUserPaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoUserPaymentFlow.h; sourceTree = "<group>"; };
@@ -1358,7 +1366,7 @@
 				EA0450D917EC64BC008921DA /* IntroView.m */,
 				EA0450DC17EC64E4008921DA /* IntroView.xib */,
 				EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */,
-				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
+				38B092EB195044AB00315BE4 /* NonEditTextField.m */,
 				EAD3647717E2EBF2001EFE40 /* PaymentMethodSelectionView.h */,
 				EAD3647817E2EBF2001EFE40 /* PaymentMethodSelectionView.m */,
 				EAD3649017E2F971001EFE40 /* PaymentMethodSelectionView.xib */,
@@ -1395,7 +1403,6 @@
 				EA8FF6B3171D23B20090A658 /* TRWProgressHUD.m */,
 				BBCC6336172169980094EABB /* WhyView.h */,
 				BBCC6337172169980094EABB /* WhyView.m */,
-				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
 				388F09FD1936434A00DBD93D /* InsetRespectingButton.h */,
 				388F09FE1936434A00DBD93D /* InsetRespectingButton.m */,
 				38C8A79B19371DBC00714FB3 /* PullToRefreshView.h */,
@@ -1404,6 +1411,8 @@
 				38AA83401949B8DF0065AD2A /* GradientView.m */,
 				47FAF355194F0A46004CE986 /* IntrinsicSizeUIView.h */,
 				47FAF356194F0A46004CE986 /* IntrinsicSizeUIView.m */,
+				38B092EE195044EA00315BE4 /* TextFieldSuggestionTable.h */,
+				38B092EF195044EA00315BE4 /* TextFieldSuggestionTable.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1574,7 +1583,7 @@
 			path = SWRevealViewController;
 			sourceTree = "<group>";
 		};
-		EA88E669172F97B10021492C /* Model */ = {
+		EA88E669172F97B10021492C /* AddressBookInteraction */ = {
 			isa = PBXGroup;
 			children = (
 				EAD66785174CD3FE00D29BCB /* PhoneBookAddress.h */,
@@ -1585,7 +1594,10 @@
 				38B092E4194F2EB700315BE4 /* AddressBookManager.m */,
 				38B092E7194F449600315BE4 /* NameLookupWrapper.h */,
 				38B092E8194F449600315BE4 /* NameLookupWrapper.m */,
+				38B092F219504B7300315BE4 /* NameSuggestionCellProvider.h */,
+				38B092F319504B7300315BE4 /* NameSuggestionCellProvider.m */,
 			);
+			name = AddressBookInteraction;
 			path = Model;
 			sourceTree = "<group>";
 		};
@@ -1801,7 +1813,7 @@
 				EA88E658172F963B0021492C /* Credentials */,
 				EA13E041171BEAF00019FBF0 /* Extensions */,
 				EA8FC93A17D864DB00E13969 /* Feedback */,
-				EA88E669172F97B10021492C /* Model */,
+				EA88E669172F97B10021492C /* AddressBookInteraction */,
 				EA8FF6B5171D25530090A658 /* Network */,
 				EAD3966F171BD1DE00F6D011 /* ObjectModel */,
 				EA84056717F0A3FD00F44916 /* Resources */,
@@ -2645,7 +2657,6 @@
 				EA347749180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */,
 				EA31A15E17DDB29B00F937F7 /* RecipientOperation.m in Sources */,
 				38B092EA194F46D700315BE4 /* NameLookupWrapper.m in Sources */,
-				EA31A15F17DDB29B00F937F7 /* NonEditTextField.m in Sources */,
 				EA31A16017DDB29B00F937F7 /* PersonalProfileOperation.m in Sources */,
 				EA31A16117DDB29B00F937F7 /* PersonalProfileIdentificationViewController.m in Sources */,
 				EAD3648D17E2F6EF001EFE40 /* CardPaymentViewController.m in Sources */,
@@ -2687,6 +2698,7 @@
 				EA31A17E17DDB29B00F937F7 /* ClaimAccountViewController.m in Sources */,
 				EA31A17F17DDB29B00F937F7 /* ClaimAccountOperation.m in Sources */,
 				EA34773C180D2C7500104417 /* Setting.m in Sources */,
+				38B092F519504B7300315BE4 /* NameSuggestionCellProvider.m in Sources */,
 				EA31A18017DDB29B00F937F7 /* RoundedCellBackgroundView.m in Sources */,
 				EA31A18117DDB29B00F937F7 /* ProfileEditViewController.m in Sources */,
 				EA31A18217DDB29B00F937F7 /* ProfileSource.m in Sources */,
@@ -2703,6 +2715,7 @@
 				EA31A18A17DDB29B00F937F7 /* TransferTypeSelectionCell.m in Sources */,
 				EA31A18B17DDB29B00F937F7 /* RoundedCellWhiteBackgroundView.m in Sources */,
 				EA31A18D17DDB29B00F937F7 /* _Payment.m in Sources */,
+				38B092ED195044AB00315BE4 /* NonEditTextField.m in Sources */,
 				47FAF349194B3233004CE986 /* UIImage+Color.m in Sources */,
 				EA31A18E17DDB29B00F937F7 /* Payment.m in Sources */,
 				EA31A18F17DDB29B00F937F7 /* ObjectModel+Payments.m in Sources */,
@@ -2735,6 +2748,7 @@
 				EA31A1A417DDB29B00F937F7 /* _AllowedTypeFieldValue.m in Sources */,
 				EA31A1A517DDB29B00F937F7 /* AllowedTypeFieldValue.m in Sources */,
 				38E57F79192A51DD00D864A2 /* TabViewController.m in Sources */,
+				38B092F1195044EA00315BE4 /* TextFieldSuggestionTable.m in Sources */,
 				EA31A1A617DDB29B00F937F7 /* _PairTargetCurrency.m in Sources */,
 				380021D3192CC531009B1D53 /* MOMRoundedCornerStyle.m in Sources */,
 				EA31A1A717DDB29B00F937F7 /* PairTargetCurrency.m in Sources */,
@@ -2811,6 +2825,7 @@
 				EA13E044171BEB010019FBF0 /* UIColor+Theme.m in Sources */,
 				380021DB192CC89B009B1D53 /* UIColor+MOMStyle.m in Sources */,
 				EA13E049171BEDC40019FBF0 /* UIView+Loading.m in Sources */,
+				38B092F0195044EA00315BE4 /* TextFieldSuggestionTable.m in Sources */,
 				EA13E04C171BEF5D0019FBF0 /* TextEntryCell.m in Sources */,
 				EA8FF682171D19B50090A658 /* NSString+Validation.m in Sources */,
 				EA8FF685171D1A320090A658 /* NSMutableString+Issues.m in Sources */,
@@ -2822,6 +2837,7 @@
 				380021F7192F43EA009B1D53 /* TabCell.m in Sources */,
 				EAD7D4C2171D43440099063F /* NSDictionary+SensibleData.m in Sources */,
 				479B693A19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */,
+				38B092F419504B7300315BE4 /* NameSuggestionCellProvider.m in Sources */,
 				EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */,
 				EAD7D4D1171D4BB20099063F /* GreenButton.m in Sources */,
 				EAD7368A171E6CB100A037B1 /* GrayButton.m in Sources */,
@@ -2833,6 +2849,7 @@
 				380021D4192CC531009B1D53 /* UIView+MOMStyle.m in Sources */,
 				EAB7215F171FCAAC00DE29F5 /* SettingsTitleCell.m in Sources */,
 				EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */,
+				38B092EC195044AB00315BE4 /* NonEditTextField.m in Sources */,
 				EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */,
 				380021C8192CC531009B1D53 /* MOMBaseStyle.m in Sources */,
 				EAEA6257172011C500A96770 /* CalculationResult.m in Sources */,
@@ -2871,7 +2888,6 @@
 				EA347748180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */,
 				EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */,
 				388F09FF1936434A00DBD93D /* InsetRespectingButton.m in Sources */,
-				EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */,
 				EAD85B0B173920C300C22211 /* PersonalProfileOperation.m in Sources */,
 				18D47900173A3B5300FC317E /* PersonalProfileIdentificationViewController.m in Sources */,
 				EAD3648C17E2F6EF001EFE40 /* CardPaymentViewController.m in Sources */,

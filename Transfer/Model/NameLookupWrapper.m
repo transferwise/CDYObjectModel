@@ -41,7 +41,7 @@
 -(NSString*)presentableString:(enum NameOrder)order
 {
     switch (order) {
-        case NickNamefirst:
+        case NickNameFirst:
             return [NSString stringWithFormat:@"\"%@\", %@ %@", self.nickName, self.firstName, self.lastName];
             break;
         case FirstNameFirst:
