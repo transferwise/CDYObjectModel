@@ -28,11 +28,7 @@
 
 + (TransferBackButtonItem *)backButtonForPoppedNavigationController:(UINavigationController *)navigationController tapHandler:(TRWActionBlock)tapHandler {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    if (IOS_7) {
-        [button setImage:[UIImage imageNamed:@"BackButtonArrow7"] forState:UIControlStateNormal];
-    } else {
-        [button setImage:[UIImage imageNamed:@"BackButtonArrow.png"] forState:UIControlStateNormal];
-    }
+    [button setImage:[UIImage imageNamed:@"BackButtonArrow"] forState:UIControlStateNormal];
     [button sizeToFit];
     TransferBackButtonItem *result = [[TransferBackButtonItem alloc] initWithCustomView:button];
     [button addTarget:result action:@selector(tapped) forControlEvents:UIControlEventTouchUpInside];
