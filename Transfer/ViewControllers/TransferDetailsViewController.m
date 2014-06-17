@@ -14,6 +14,7 @@
 #import "SupportCoordinator.h"
 #import "GoogleAnalytics.h"
 #import "NSString+DeviceSpecificLocalisation.h"
+#import "TransferBackButtonItem.h"
 
 @interface TransferDetailsViewController ()
 
@@ -36,9 +37,18 @@
     return self;
 }
 
+- (void)setPayment:(Payment *)payment
+{
+	_payment = payment;
+	[self setTitle:[self getStatusBasedLocalization:@"transferdetails.controller.%@.header"
+											 status:self.payment.paymentStatus]];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
+	self.navigationController.navigationBar.topItem.title = @"";
 	[self setData];
 }
 
@@ -94,17 +104,17 @@
 {
 	self.headerView.transferNumber = [self.payment.remoteId stringValue];
 	self.headerView.recipientName = [self.payment.recipient name];
-	self.headerView.status = [self getStatusBasedLocalizations:@"payment.status.%@.description.long"
+	self.headerView.status = [self getStatusBasedLocalization:@"payment.status.%@.description.long"
 														status:self.payment.paymentStatus];
 }
 
 - (void)setUpAmounts
 {
 	self.amountsView.fromAmount = [self.payment payInStringWithCurrency];
-	self.amountsView.status = [self getStatusBasedLocalizations:@"payment.status.%@.description.conversion"
+	self.amountsView.status = [self getStatusBasedLocalization:@"payment.status.%@.description.conversion"
 														 status:self.payment.paymentStatus];
 	self.amountsView.toAmount = [self.payment payOutStringWithCurrency];
-	NSString* eta = NSLocalizedString([self getStatusBasedLocalizations:@"payment.status.%@.description.eta"
+	NSString* eta = NSLocalizedString([self getStatusBasedLocalization:@"payment.status.%@.description.eta"
 																 status:self.payment.paymentStatus], nil);
 	if(eta.length > 0 && self.payment.paymentDateString != nil)
 	{
@@ -129,7 +139,7 @@
     [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 }
 
-- (NSString*)getStatusBasedLocalizations:(NSString *)localizationKey status:(NSString*)status
+- (NSString*)getStatusBasedLocalization:(NSString *)localizationKey status:(NSString*)status
 {
 	NSString *key = [NSString stringWithFormat:localizationKey, status];
 	return NSLocalizedString(key, nil);
