@@ -13,6 +13,7 @@
 #import "Recipient.h"
 #import "SupportCoordinator.h"
 #import "GoogleAnalytics.h"
+#import "NSString+DeviceSpecificLocalisation.h"
 
 @interface TransferDetailsViewController ()
 
@@ -84,7 +85,7 @@
     }
     self.statusIcon.image = icon;
 	
-	[self.supportButton setTitle:NSLocalizedString(@"transferdetails.controller.button.support", nil) forState:UIControlStateNormal];
+	[self.supportButton setTitle:NSLocalizedString([@"transferdetails.controller.button.support" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
 	
 	[self.view layoutIfNeeded];
 }
