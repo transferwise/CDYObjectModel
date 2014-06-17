@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "IntrinsicSizeUIView.h"
 
-@interface TransferDetailsAmountsView : IntrinsicSizeUIView
+@interface TransferDetailsAmountsView : UIView
 
 @property (strong, nonatomic) NSString* fromAmount;
 @property (strong, nonatomic) NSString* toAmount;
