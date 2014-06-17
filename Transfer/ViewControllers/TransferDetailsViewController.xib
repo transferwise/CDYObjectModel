@@ -159,7 +159,7 @@
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="249" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="anS-pb-BWk" customClass="TransferDetialsRecipientView">
-                    <rect key="frame" x="0.0" y="375" width="320" height="56"/>
+                    <rect key="frame" x="0.0" y="373" width="320" height="58"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpr-jT-3Kg" userLabel="Label - Account Header">
@@ -192,12 +192,12 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="NqY-J0-ze8" secondAttribute="trailing" id="19R-fA-llk"/>
                         <constraint firstItem="NqY-J0-ze8" firstAttribute="top" secondItem="JWj-M3-8IP" secondAttribute="bottom" constant="17" id="FFR-i5-66r"/>
+                        <constraint firstAttribute="bottom" secondItem="NqY-J0-ze8" secondAttribute="bottom" constant="2" id="J9T-9Y-VPP"/>
                         <constraint firstItem="NqY-J0-ze8" firstAttribute="leading" secondItem="anS-pb-BWk" secondAttribute="leading" id="TW8-Nm-t2E"/>
                         <constraint firstAttribute="centerX" secondItem="NqY-J0-ze8" secondAttribute="centerX" id="WQR-I4-SJR"/>
                         <constraint firstAttribute="centerX" secondItem="JWj-M3-8IP" secondAttribute="centerX" id="dp2-gM-Jbn"/>
                         <constraint firstItem="JWj-M3-8IP" firstAttribute="top" secondItem="vpr-jT-3Kg" secondAttribute="bottom" constant="14" id="n8W-bv-6Qe"/>
                         <constraint firstItem="JWj-M3-8IP" firstAttribute="leading" secondItem="anS-pb-BWk" secondAttribute="leading" id="qSb-6k-Q1V"/>
-                        <constraint firstAttribute="bottom" secondItem="NqY-J0-ze8" secondAttribute="bottom" id="rY2-bY-egr"/>
                         <constraint firstItem="vpr-jT-3Kg" firstAttribute="top" secondItem="anS-pb-BWk" secondAttribute="top" id="sVy-ow-PCT"/>
                         <constraint firstAttribute="centerX" secondItem="vpr-jT-3Kg" secondAttribute="centerX" id="v5X-on-Yg7"/>
                         <constraint firstAttribute="trailing" secondItem="JWj-M3-8IP" secondAttribute="trailing" id="xGh-7H-777"/>
