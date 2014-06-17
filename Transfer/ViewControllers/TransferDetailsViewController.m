@@ -48,7 +48,6 @@
 {
     [super viewDidLoad];
 	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
-	self.navigationController.navigationBar.topItem.title = @"";
 	[self setData];
 }
 
