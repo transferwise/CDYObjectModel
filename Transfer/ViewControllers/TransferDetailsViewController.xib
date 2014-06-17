@@ -162,6 +162,14 @@
                     <rect key="frame" x="0.0" y="373" width="320" height="58"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYu-Er-01d" userLabel="View - Background">
+                            <rect key="frame" x="0.0" y="26" width="320" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="blue"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpr-jT-3Kg" userLabel="Label - Account Header">
                             <rect key="frame" x="147" y="0.0" width="26" height="12"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -191,15 +199,19 @@
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="NqY-J0-ze8" secondAttribute="trailing" id="19R-fA-llk"/>
+                        <constraint firstItem="fYu-Er-01d" firstAttribute="leading" secondItem="anS-pb-BWk" secondAttribute="leading" id="6qc-h0-fpE"/>
                         <constraint firstItem="NqY-J0-ze8" firstAttribute="top" secondItem="JWj-M3-8IP" secondAttribute="bottom" constant="17" id="FFR-i5-66r"/>
                         <constraint firstAttribute="bottom" secondItem="NqY-J0-ze8" secondAttribute="bottom" constant="2" id="J9T-9Y-VPP"/>
                         <constraint firstItem="NqY-J0-ze8" firstAttribute="leading" secondItem="anS-pb-BWk" secondAttribute="leading" id="TW8-Nm-t2E"/>
                         <constraint firstAttribute="centerX" secondItem="NqY-J0-ze8" secondAttribute="centerX" id="WQR-I4-SJR"/>
+                        <constraint firstAttribute="trailing" secondItem="fYu-Er-01d" secondAttribute="trailing" id="WyD-ZK-6At"/>
+                        <constraint firstItem="JWj-M3-8IP" firstAttribute="bottom" secondItem="fYu-Er-01d" secondAttribute="top" constant="1" id="Z5d-nU-Yx7"/>
                         <constraint firstAttribute="centerX" secondItem="JWj-M3-8IP" secondAttribute="centerX" id="dp2-gM-Jbn"/>
                         <constraint firstItem="JWj-M3-8IP" firstAttribute="top" secondItem="vpr-jT-3Kg" secondAttribute="bottom" constant="14" id="n8W-bv-6Qe"/>
                         <constraint firstItem="JWj-M3-8IP" firstAttribute="leading" secondItem="anS-pb-BWk" secondAttribute="leading" id="qSb-6k-Q1V"/>
                         <constraint firstItem="vpr-jT-3Kg" firstAttribute="top" secondItem="anS-pb-BWk" secondAttribute="top" id="sVy-ow-PCT"/>
                         <constraint firstAttribute="centerX" secondItem="vpr-jT-3Kg" secondAttribute="centerX" id="v5X-on-Yg7"/>
+                        <constraint firstAttribute="bottom" secondItem="fYu-Er-01d" secondAttribute="bottom" id="vDc-56-Y0d"/>
                         <constraint firstAttribute="trailing" secondItem="JWj-M3-8IP" secondAttribute="trailing" id="xGh-7H-777"/>
                     </constraints>
                     <connections>
@@ -207,7 +219,7 @@
                         <outlet property="detailsLabel" destination="NqY-J0-ze8" id="huL-Uc-Ecm"/>
                     </connections>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0K-st-6YG" userLabel="Button - Contact Support" customClass="LightGrayButton">
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0K-st-6YG" userLabel="Button - Contact Support" customClass="BlueButton">
                     <rect key="frame" x="0.0" y="431" width="320" height="49"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
@@ -223,7 +235,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="anS-pb-BWk" firstAttribute="top" secondItem="gxD-Ss-q8P" secondAttribute="bottom" priority="249" constant="21" id="0f2-g0-eeU"/>
+                <constraint firstItem="anS-pb-BWk" firstAttribute="top" secondItem="gxD-Ss-q8P" secondAttribute="bottom" priority="249" constant="20" id="0f2-g0-eeU"/>
                 <constraint firstItem="gxD-Ss-q8P" firstAttribute="top" secondItem="8dh-F6-i1O" secondAttribute="bottom" constant="13" id="0nT-IE-qYn"/>
                 <constraint firstItem="g0K-st-6YG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1iB-EB-NVL"/>
                 <constraint firstAttribute="trailing" secondItem="anS-pb-BWk" secondAttribute="trailing" id="2co-u8-Nk5"/>

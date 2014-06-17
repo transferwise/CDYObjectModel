@@ -107,6 +107,8 @@
 		47FAF354194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FAF352194B4EF9004CE986 /* TransferWaitingViewController.xib */; };
 		47FAF357194F0A46004CE986 /* IntrinsicSizeUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF356194F0A46004CE986 /* IntrinsicSizeUIView.m */; };
 		47FAF358194F0A47004CE986 /* IntrinsicSizeUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF356194F0A46004CE986 /* IntrinsicSizeUIView.m */; };
+		47FAF35B195031E7004CE986 /* BlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF35A195031E7004CE986 /* BlueButton.m */; };
+		47FAF35C195031E7004CE986 /* BlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF35A195031E7004CE986 /* BlueButton.m */; };
 		47FB7EA519419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
 		47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
 		47FB7EA91941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
@@ -720,6 +722,8 @@
 		47FAF352194B4EF9004CE986 /* TransferWaitingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferWaitingViewController.xib; sourceTree = "<group>"; };
 		47FAF355194F0A46004CE986 /* IntrinsicSizeUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntrinsicSizeUIView.h; sourceTree = "<group>"; };
 		47FAF356194F0A46004CE986 /* IntrinsicSizeUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntrinsicSizeUIView.m; sourceTree = "<group>"; };
+		47FAF359195031E7004CE986 /* BlueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueButton.h; sourceTree = "<group>"; };
+		47FAF35A195031E7004CE986 /* BlueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueButton.m; sourceTree = "<group>"; };
 		47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencySelectorViewController~ipad.xib"; sourceTree = "<group>"; };
 		47FB7EA71941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DeviceSpecificLocalisation.h"; sourceTree = "<group>"; };
 		47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeviceSpecificLocalisation.m"; sourceTree = "<group>"; };
@@ -1337,6 +1341,8 @@
 				EAD73689171E6CB100A037B1 /* GrayButton.m */,
 				47FAF342194B2F11004CE986 /* LightGrayButton.h */,
 				47FAF343194B2F11004CE986 /* LightGrayButton.m */,
+				47FAF359195031E7004CE986 /* BlueButton.h */,
+				47FAF35A195031E7004CE986 /* BlueButton.m */,
 				EAE7B6AA17E9AC3F00E03D73 /* IdentificationNotificationView.h */,
 				EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */,
 				EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */,
@@ -2655,6 +2661,7 @@
 				EA31A17417DDB29B00F937F7 /* DismissKeyboardTableView.m in Sources */,
 				EA31A17517DDB29B00F937F7 /* VerificationRequiredOperation.m in Sources */,
 				EA31A17617DDB29B00F937F7 /* UploadVerificationFileOperation.m in Sources */,
+				47FAF35C195031E7004CE986 /* BlueButton.m in Sources */,
 				380021F0192F3DD3009B1D53 /* CurrencySelectorViewController.m in Sources */,
 				EA31A17717DDB29B00F937F7 /* OpenIDViewController.m in Sources */,
 				EA31A17817DDB29B00F937F7 /* PersonalProfileCommitter.m in Sources */,
@@ -2928,6 +2935,7 @@
 				EA225C9D178EB50B009D6B83 /* _TypeFieldValue.m in Sources */,
 				380021CE192CC531009B1D53 /* MOMCompoundStyle.m in Sources */,
 				EAE7B6B317E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */,
+				47FAF35B195031E7004CE986 /* BlueButton.m in Sources */,
 				38AA83411949B8DF0065AD2A /* GradientView.m in Sources */,
 				EA225CA0178EB511009D6B83 /* TypeFieldValue.m in Sources */,
 				EA225CA3178EB591009D6B83 /* NSDate+ServerTime.m in Sources */,
