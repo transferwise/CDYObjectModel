@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TextFieldSuggestionTable.h"
 
-@interface NameSuggestionCellProvider : NSObject
+@interface NameSuggestionCellProvider : NSObject<SuggestionTableCellProvider>
 
 @end

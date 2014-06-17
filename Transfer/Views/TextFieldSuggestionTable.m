@@ -8,19 +8,17 @@
 
 #import "TextFieldSuggestionTable.h"
 
-@implementation TextFieldSuggestionTable
+@interface TextFieldSuggestionTable ()<UITableViewDelegate>
 
--(void)linkToTextField:(UITextField*)textField
-{
-    [textField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventAllEditingEvents];
-    [textField addTarget:self action:@selector(didStartEditing:) forControlEvents:UIControlEventEditingDidBegin];
-    [textField addTarget:self action:@selector(didEndEditing:) forControlEvents:UIControlEventEditingDidEnd];
-}
+@end
+
+@implementation TextFieldSuggestionTable
 
 #pragma mark - input text changed
 
 -(void)didStartEditing:(UITextField*)field
 {
+    self.delegate = self;
     if ([self.suggestionTableDelegate respondsToSelector:@selector(suggestionTableDidStartEditing:)])
     {
         [self.suggestionTableDelegate suggestionTableDidStartEditing:self];
@@ -39,27 +37,50 @@
 {
     if (field.isFirstResponder)
     {
-        if ([field.text length]>0)
+        self.hidden = ([field.text length] <= 0 || [self.visibleCells count] == 0);
+        if(self.dataSource)
         {
-            self.hidden = NO;
-            if(self.cellProvider)
-            {
-                [self.cellProvider filterForText:field.text completionBlock:^(BOOL contentDidChange) {
-                    if(contentDidChange)
-                    {
-                        [self reloadData];
-                    }
-                }];
-            }
+            [self.dataSource filterForText:field.text completionBlock:^(BOOL contentDidChange) {
+                if(contentDidChange)
+                {
+                    [self reloadData];
+                    self.hidden = (! field.isFirstResponder || [self.visibleCells count] == 0);
+                }
+            }];
         }
-        else
-        {
-            self.hidden = YES;
-        }
+
+        
     }
     else
     {
         self.hidden = YES;
+    }
+}
+
+#pragma mark - text field
+
+-(void)setTextField:(UITextField *)textField
+{
+    if (_textField)
+    {
+        [_textField removeTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventAllEditingEvents];
+        [_textField removeTarget:self action:@selector(didStartEditing:) forControlEvents:UIControlEventEditingDidBegin];
+        [_textField removeTarget:self action:@selector(didEndEditing:) forControlEvents:UIControlEventEditingDidEnd];
+    }
+    
+    _textField = textField;
+    [textField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventAllEditingEvents];
+    [textField addTarget:self action:@selector(didStartEditing:) forControlEvents:UIControlEventEditingDidBegin];
+    [textField addTarget:self action:@selector(didEndEditing:) forControlEvents:UIControlEventEditingDidEnd];
+}
+
+#pragma mark - Table view delegate
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([self.suggestionTableDelegate respondsToSelector:@selector(suggestionTable:selectedObject:)])
+    {
+        [self.suggestionTableDelegate suggestionTable:self selectedObject:[self.delegate respondsToSelector:@selector(objectForIndexPath:)]?[self.dataSource objectForIndexPath:indexPath]:nil];
     }
 }
 

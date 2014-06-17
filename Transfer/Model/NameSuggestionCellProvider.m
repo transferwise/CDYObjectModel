@@ -7,12 +7,11 @@
 //
 
 #import "NameSuggestionCellProvider.h"
-#import "TextFieldSuggestionTable.h"
 #import "AddressBookManager.h"
 #import "NameLookupWrapper.h"
 
 
-@interface NameSuggestionCellProvider ()<SuggestionTableCellProvider>
+@interface NameSuggestionCellProvider ()
 
 @property (nonatomic, strong) AddressBookManager* addressBookManager;
 @property (nonatomic, strong) NSArray* dataSource;
@@ -38,12 +37,12 @@
     [_addressBookManager getNameLookupWithHandler:^(NSArray *nameLookup) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
-            if(self.filterString)
+            if([self.filterString length] > 0)
             {
                 NSMutableArray* workArray = [nameLookup mutableCopy];
                 
                 NSArray* firstnameMatches = [workArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NameLookupWrapper* evaluatedObject, NSDictionary *bindings) {
-                    return [evaluatedObject.firstName rangeOfString:self.filterString].location == 0;
+                    return evaluatedObject.firstName && [[evaluatedObject.firstName lowercaseString] rangeOfString:self.filterString].location == 0;
                 }]];
                 firstnameMatches = [firstnameMatches sortedArrayUsingComparator:^NSComparisonResult(NameLookupWrapper* obj1, NameLookupWrapper* obj2) {
                     return [obj1.firstName caseInsensitiveCompare:obj2.firstName];
@@ -51,7 +50,7 @@
                 [workArray removeObjectsInArray:firstnameMatches];
                 
                 NSArray* lastnameMatches = [workArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NameLookupWrapper* evaluatedObject, NSDictionary *bindings) {
-                    return [evaluatedObject.lastName rangeOfString:self.filterString].location == 0;
+                    return evaluatedObject.lastName && [[evaluatedObject.lastName lowercaseString] rangeOfString:self.filterString].location == 0;
                 }]];
                 lastnameMatches = [lastnameMatches sortedArrayUsingComparator:^NSComparisonResult(NameLookupWrapper* obj1, NameLookupWrapper* obj2) {
                     return [obj1.lastName caseInsensitiveCompare:obj2.lastName];
@@ -59,9 +58,9 @@
                 [workArray removeObjectsInArray:lastnameMatches];
                 
                 NSArray* nicknameMatches = [workArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NameLookupWrapper* evaluatedObject, NSDictionary *bindings) {
-                    return [evaluatedObject.nickName rangeOfString:self.filterString].location == 0;
+                    return evaluatedObject.nickName && [[evaluatedObject.nickName lowercaseString] rangeOfString:self.filterString].location == 0;
                 }]];
-                nicknameMatches = [firstnameMatches sortedArrayUsingComparator:^NSComparisonResult(NameLookupWrapper* obj1, NameLookupWrapper* obj2) {
+                nicknameMatches = [nicknameMatches sortedArrayUsingComparator:^NSComparisonResult(NameLookupWrapper* obj1, NameLookupWrapper* obj2) {
                     return [obj1.nickName caseInsensitiveCompare:obj2.nickName];
                 }];
                 [workArray removeObjectsInArray:nicknameMatches];
@@ -109,7 +108,7 @@
     }
     
     NameLookupWrapper* wrapper = self.dataSource[indexPath.section][indexPath.row];
-    switch (indexPath.row) {
+    switch (indexPath.section) {
         case 2:
             cell.textLabel.text = [wrapper presentableString:NickNameFirst];
             break;
@@ -126,11 +125,17 @@
 
 -(void)filterForText:(NSString *)text completionBlock:(void (^)(BOOL))completionBlock
 {
-    self.filterString = text;
+    self.filterString = [text lowercaseString];
     [self refreshNameLookupWithCompletion:^{
         completionBlock(YES);
     }];
 }
+
+-(id)objectForIndexPath:(NSIndexPath *)indexPath
+{
+    return self.dataSource[indexPath.section][indexPath.row];
+}
+
 
 
 @end

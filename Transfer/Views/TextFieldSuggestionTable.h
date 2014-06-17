@@ -15,6 +15,7 @@
 @optional
 -(void)suggestionTableDidStartEditing:(TextFieldSuggestionTable*)table;
 -(void)suggestionTableDidEndEditing:(TextFieldSuggestionTable*)table;
+-(void)suggestionTable:(TextFieldSuggestionTable*)table selectedObject:(id)object;
 
 @end
 
@@ -30,6 +31,6 @@
 @interface TextFieldSuggestionTable : UITableView
 
 @property (nonatomic,weak) id<SuggestionTableDelegate> suggestionTableDelegate;
-@property (nonatomic, weak) id<SuggestionTableCellProvider> cellProvider;
-
+@property (nonatomic, weak) id<SuggestionTableCellProvider> dataSource;
+@property (nonatomic, strong) UITextField *textField;
 @end
