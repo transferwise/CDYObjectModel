@@ -26,6 +26,7 @@
 #import "_RecipientType.h"
 #import "RecipientType.h"
 #import "GoogleAnalytics.h"
+#import "AddressBookManager.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
@@ -34,6 +35,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) NSFetchedResultsController *allRecipients;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) AddressBookManager *addressBookManager;
 
 @end
 
@@ -42,8 +44,10 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 - (id)init {
     self = [super initWithNibName:@"ContactsViewController" bundle:nil];
     if (self) {
-        UITabBarItem *barItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"contacts.controller.title", nil) image:[UIImage imageNamed:@"ContactsIcon.png"] tag:0];
-        [self setTabBarItem:barItem];
+        [self setTitle:NSLocalizedString(@"contacts.controller.title", nil)];
+        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"AddButton.png"] style:UIBarButtonItemStylePlain target:self action:@selector(addContactPressed)];
+        [self.navigationItem setRightBarButtonItem:addButton];
+        _addressBookManager = [[AddressBookManager alloc] init];
     }
     return self;
 }
@@ -58,6 +62,11 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     if (IOS_7) {
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
+    
+    [self.addressBookManager getNameLookupWithHandler:^(NSArray *nameLookup) {
+        NSLog(@"%@",[nameLookup valueForKey:@"firstName"]);
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,9 +86,6 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     }
 
     [self refreshRecipients];
-
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"AddButton.png"] style:UIBarButtonItemStylePlain target:self action:@selector(addContactPressed)];
-    [self.tabBarController.navigationItem setRightBarButtonItem:addButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

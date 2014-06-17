@@ -66,6 +66,10 @@
 		38AA83421949B8DF0065AD2A /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA83401949B8DF0065AD2A /* GradientView.m */; };
 		38AA83CF1949C7220065AD2A /* PaymentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AA83CE1949C7220065AD2A /* PaymentCell~ipad.xib */; };
 		38AA83D01949C7220065AD2A /* PaymentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AA83CE1949C7220065AD2A /* PaymentCell~ipad.xib */; };
+		38B092E5194F2EB700315BE4 /* AddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092E4194F2EB700315BE4 /* AddressBookManager.m */; };
+		38B092E6194F325B00315BE4 /* AddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092E4194F2EB700315BE4 /* AddressBookManager.m */; };
+		38B092E9194F449600315BE4 /* NameLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092E8194F449600315BE4 /* NameLookupWrapper.m */; };
+		38B092EA194F46D700315BE4 /* NameLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092E8194F449600315BE4 /* NameLookupWrapper.m */; };
 		38C632F2194EEBBC008C9E46 /* WhyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */; };
 		38C8A79D19371DBC00714FB3 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */; };
 		38C8A79E19371DBC00714FB3 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */; };
@@ -690,6 +694,10 @@
 		38AA833F1949B8DF0065AD2A /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
 		38AA83401949B8DF0065AD2A /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		38AA83CE1949C7220065AD2A /* PaymentCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PaymentCell~ipad.xib"; sourceTree = "<group>"; };
+		38B092E3194F2EB700315BE4 /* AddressBookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookManager.h; sourceTree = "<group>"; };
+		38B092E4194F2EB700315BE4 /* AddressBookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookManager.m; sourceTree = "<group>"; };
+		38B092E7194F449600315BE4 /* NameLookupWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameLookupWrapper.h; sourceTree = "<group>"; };
+		38B092E8194F449600315BE4 /* NameLookupWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameLookupWrapper.m; sourceTree = "<group>"; };
 		38C8A79B19371DBC00714FB3 /* PullToRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshView.h; sourceTree = "<group>"; };
 		38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullToRefreshView.m; sourceTree = "<group>"; };
 		38E57F75192A51DD00D864A2 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
@@ -1567,6 +1575,10 @@
 				EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */,
 				EAD6677F174CB34600D29BCB /* PhoneBookProfile.h */,
 				EAD66780174CB34600D29BCB /* PhoneBookProfile.m */,
+				38B092E3194F2EB700315BE4 /* AddressBookManager.h */,
+				38B092E4194F2EB700315BE4 /* AddressBookManager.m */,
+				38B092E7194F449600315BE4 /* NameLookupWrapper.h */,
+				38B092E8194F449600315BE4 /* NameLookupWrapper.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2626,6 +2638,7 @@
 				EA31A15D17DDB29B00F937F7 /* RecipientFieldCell.m in Sources */,
 				EA347749180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */,
 				EA31A15E17DDB29B00F937F7 /* RecipientOperation.m in Sources */,
+				38B092EA194F46D700315BE4 /* NameLookupWrapper.m in Sources */,
 				EA31A15F17DDB29B00F937F7 /* NonEditTextField.m in Sources */,
 				EA31A16017DDB29B00F937F7 /* PersonalProfileOperation.m in Sources */,
 				EA31A16117DDB29B00F937F7 /* PersonalProfileIdentificationViewController.m in Sources */,
@@ -2699,6 +2712,7 @@
 				EA31A19917DDB29B00F937F7 /* RecipientType.m in Sources */,
 				EA31A19A17DDB29B00F937F7 /* ObjectModel+RecipientTypes.m in Sources */,
 				EA31A19B17DDB29B00F937F7 /* _RecipientTypeField.m in Sources */,
+				38B092E6194F325B00315BE4 /* AddressBookManager.m in Sources */,
 				EA31A19C17DDB29B00F937F7 /* RecipientTypeField.m in Sources */,
 				EA31A19D17DDB29B00F937F7 /* _TypeFieldValue.m in Sources */,
 				380021CF192CC531009B1D53 /* MOMCompoundStyle.m in Sources */,
@@ -2855,6 +2869,7 @@
 				18D47900173A3B5300FC317E /* PersonalProfileIdentificationViewController.m in Sources */,
 				EAD3648C17E2F6EF001EFE40 /* CardPaymentViewController.m in Sources */,
 				1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */,
+				38B092E5194F2EB700315BE4 /* AddressBookManager.m in Sources */,
 				1864AC9E173B7C80008773FC /* BusinessProfileOperation.m in Sources */,
 				1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */,
 				EA0450C917EC3544008921DA /* BusinessProfileIdentificationViewController.m in Sources */,
@@ -2862,6 +2877,7 @@
 				EA222E38173A861000C5D613 /* ConfirmPaymentViewController.m in Sources */,
 				EA222E3C173A8A7100C5D613 /* ConfirmPaymentCell.m in Sources */,
 				EA042600173CF5C50048BFBD /* RecipientEntrySelectionCell.m in Sources */,
+				38B092E9194F449600315BE4 /* NameLookupWrapper.m in Sources */,
 				EAAC203B17422AB3001DDE7A /* DropdownCell.m in Sources */,
 				EAB6170E191CD61900545C21 /* ResetPasswordViewController.m in Sources */,
 				BB29BD47173CD2FF0016A6E9 /* BankTransferViewController.m in Sources */,
