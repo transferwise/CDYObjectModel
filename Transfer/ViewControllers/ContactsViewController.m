@@ -26,6 +26,7 @@
 #import "_RecipientType.h"
 #import "RecipientType.h"
 #import "GoogleAnalytics.h"
+#import "AddressBookManager.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
@@ -42,8 +43,9 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 - (id)init {
     self = [super initWithNibName:@"ContactsViewController" bundle:nil];
     if (self) {
-        UITabBarItem *barItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"contacts.controller.title", nil) image:[UIImage imageNamed:@"ContactsIcon.png"] tag:0];
-        [self setTabBarItem:barItem];
+        [self setTitle:NSLocalizedString(@"contacts.controller.title", nil)];
+        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"AddButton.png"] style:UIBarButtonItemStylePlain target:self action:@selector(addContactPressed)];
+        [self.navigationItem setRightBarButtonItem:addButton];
     }
     return self;
 }
@@ -58,6 +60,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     if (IOS_7) {
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,9 +80,6 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     }
 
     [self refreshRecipients];
-
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"AddButton.png"] style:UIBarButtonItemStylePlain target:self action:@selector(addContactPressed)];
-    [self.tabBarController.navigationItem setRightBarButtonItem:addButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

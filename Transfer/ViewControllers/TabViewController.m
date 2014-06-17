@@ -127,6 +127,7 @@
             newSelectedItem.viewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
             
             self.navigationItem.title = newSelectedItem.viewController.title;
+            self.navigationItem.rightBarButtonItems = newSelectedItem.viewController.navigationItem.rightBarButtonItems;
         }
         
         [self setCellSelectedState:NO forItem:self.selectedItem];
