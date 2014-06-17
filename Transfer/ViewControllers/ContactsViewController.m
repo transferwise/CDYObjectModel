@@ -35,7 +35,6 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) NSFetchedResultsController *allRecipients;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) AddressBookManager *addressBookManager;
 
 @end
 
@@ -47,7 +46,6 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
         [self setTitle:NSLocalizedString(@"contacts.controller.title", nil)];
         UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"AddButton.png"] style:UIBarButtonItemStylePlain target:self action:@selector(addContactPressed)];
         [self.navigationItem setRightBarButtonItem:addButton];
-        _addressBookManager = [[AddressBookManager alloc] init];
     }
     return self;
 }
@@ -62,10 +60,6 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     if (IOS_7) {
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
-    
-    [self.addressBookManager getNameLookupWithHandler:^(NSArray *nameLookup) {
-        NSLog(@"%@",[nameLookup valueForKey:@"firstName"]);
-    }];
     
 }
 
