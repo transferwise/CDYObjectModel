@@ -10,6 +10,7 @@
 #import "TextEntryCell.h"
 #import "UIView+Container.h"
 #import "Constants.h"
+#import "DataEntryDefaultHeader.h"
 
 @interface DataEntryViewController () <UITextFieldDelegate>
 
@@ -55,6 +56,38 @@
     UITableViewCell *cell = self.presentedSectionCells[indexPath.section][indexPath.row];
     return CGRectGetHeight(cell.frame);
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    NSString* title = [self tableView:tableView titleForHeaderInSection:section];
+    if(title)
+    {
+        return 60.0f;
+    }
+    
+    return UITableViewAutomaticDimension;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return UITableViewAutomaticDimension;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return nil;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    NSString* title = [self tableView:tableView titleForHeaderInSection:section];
+    if(title)
+    {
+        DataEntryDefaultHeader* header = [DataEntryDefaultHeader instance];
+        header.titleLabel.text = title;
+        return header;
+    }
+    return nil;
+}
+
 
 #pragma mark - Table view data source
 

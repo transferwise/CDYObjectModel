@@ -11,6 +11,7 @@
 #import "NSString+Validation.h"
 #import "TRWAlertView.h"
 #import "MOMStyle.h"
+#import <JVFloatLabeledTextField.h>
 
 NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
@@ -31,15 +32,33 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
+        [self commonSetup];
     }
     return self;
+}
+
+-(void)awakeFromNib
+{
+    [self commonSetup];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+-(void)commonSetup
+{
+    if([_entryField isKindOfClass:[JVFloatLabeledTextField class]])
+    {
+        JVFloatLabeledTextField* field = (JVFloatLabeledTextField*) _entryField;
+        field.fontStyle = @"medium.@16.darkText";
+        MOMBasicStyle* fontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@12"];
+        field.floatingLabelFont = [fontStyle font];
+        field.floatingLabelTextColor = [UIColor colorFromStyle:@"lightText"];
+        [field addObserver:self forKeyPath:@"isFirstResponder" options:NSKeyValueObservingOptionNew context:nil];
+    }
 }
 
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value {
@@ -119,6 +138,28 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 - (void)markTouched {
     [self setValueModified:YES];
+}
+
+#pragma mark - KVO
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if(object == self && [keyPath isEqualToString:@"isFirstResponder"])
+    {
+        JVFloatLabeledTextField* field = (JVFloatLabeledTextField*) _entryField;
+        if (self.isFirstResponder)
+        {
+            field.floatingLabelTextColor = [UIColor colorFromStyle:@"lightBlue"];
+        }
+        else
+        {
+            field.floatingLabelTextColor = [UIColor colorFromStyle:@"lightText"];
+        }
+    }
+    else
+    {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
 @end

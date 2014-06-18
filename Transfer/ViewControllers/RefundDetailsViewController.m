@@ -10,7 +10,7 @@
 #import "TransferBackButtonItem.h"
 #import "TextEntryCell.h"
 #import "UIView+Loading.h"
-#import "TransferTypeSelectionCell.h"
+#import "TransferTypeSelectionHeader.h"
 #import "RecipientTypeField.h"
 #import "RecipientType.h"
 #import "DropdownCell.h"
@@ -41,7 +41,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 @interface RefundDetailsViewController ()
 
 @property (nonatomic, strong) RecipientEntrySelectionCell *holderNameCell;
-@property (nonatomic, strong) TransferTypeSelectionCell *transferTypeSelectionCell;
+@property (nonatomic, strong) TransferTypeSelectionHeader *transferTypeSelectionCell;
 @property (nonatomic, strong) RecipientType *recipientType;
 @property (nonatomic, strong) NSArray *recipientTypeFieldCells;
 @property (nonatomic, assign) BOOL shown;
@@ -77,7 +77,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 
     [self.tableView registerNib:[RecipientEntrySelectionCell viewNib] forCellReuseIdentifier:TRWRecipientEntrySelectionCellIdentifier];
-    [self.tableView registerNib:[TransferTypeSelectionCell viewNib] forCellReuseIdentifier:TWTypeSelectionCellIdentifier];
+    [self.tableView registerNib:[TransferTypeSelectionHeader viewNib] forCellReuseIdentifier:TWTypeSelectionCellIdentifier];
     [self.tableView registerNib:[DropdownCell viewNib] forCellReuseIdentifier:TWDropdownCellIdentifier];
     [self.tableView registerNib:[RecipientFieldCell viewNib] forCellReuseIdentifier:TWRecipientFieldCellIdentifier];
 
@@ -269,7 +269,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     recipient.type = self.recipientType;
 
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
-        if ([cell isKindOfClass:[TransferTypeSelectionCell class]]) {
+        if ([cell isKindOfClass:[TransferTypeSelectionHeader class]]) {
             continue;
         }
 
@@ -309,7 +309,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     }
 
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
-        if ([cell isKindOfClass:[TransferTypeSelectionCell class]]) {
+        if ([cell isKindOfClass:[TransferTypeSelectionHeader class]]) {
             continue;
         }
 
@@ -348,7 +348,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 
         for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
             [fieldCell setEditable:NO];
-            if ([fieldCell isKindOfClass:[TransferTypeSelectionCell class]]) {
+            if ([fieldCell isKindOfClass:[TransferTypeSelectionHeader class]]) {
                 continue;
             }
 

@@ -78,6 +78,10 @@
 		38B092F519504B7300315BE4 /* NameSuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092F319504B7300315BE4 /* NameSuggestionCellProvider.m */; };
 		38B092F819509CB000315BE4 /* ProgressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092F719509CB000315BE4 /* ProgressButton.m */; };
 		38B092F919509CB000315BE4 /* ProgressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092F719509CB000315BE4 /* ProgressButton.m */; };
+		38B092FC1951AEE700315BE4 /* DataEntryDefaultHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092FB1951AEE700315BE4 /* DataEntryDefaultHeader.m */; };
+		38B092FD1951AEE700315BE4 /* DataEntryDefaultHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092FB1951AEE700315BE4 /* DataEntryDefaultHeader.m */; };
+		38B092FF1951B19B00315BE4 /* DataEntryDefaultHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B092FE1951B19B00315BE4 /* DataEntryDefaultHeader.xib */; };
+		38B093001951B19B00315BE4 /* DataEntryDefaultHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B092FE1951B19B00315BE4 /* DataEntryDefaultHeader.xib */; };
 		38C632F2194EEBBC008C9E46 /* WhyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */; };
 		38C8A79D19371DBC00714FB3 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */; };
 		38C8A79E19371DBC00714FB3 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */; };
@@ -135,8 +139,8 @@
 		BB7EAE8E17AFE0DF006A7182 /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7EAE8D17AFE0DE006A7182 /* SwitchCell.m */; };
 		BB92B144172A747300B6F096 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B143172A747300B6F096 /* CoreText.framework */; };
 		BB9A2E83176B711400C5E058 /* UITableView+FooterPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9A2E82176B711400C5E058 /* UITableView+FooterPositioning.m */; };
-		BB9A2EB9176F495700C5E058 /* TransferTypeSelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB9A2EB8176F495600C5E058 /* TransferTypeSelectionCell.xib */; };
-		BB9A2EBC176F4BC600C5E058 /* TransferTypeSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9A2EBB176F4BC600C5E058 /* TransferTypeSelectionCell.m */; };
+		BB9A2EB9176F495700C5E058 /* TransferTypeSelectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB9A2EB8176F495600C5E058 /* TransferTypeSelectionHeader.xib */; };
+		BB9A2EBC176F4BC600C5E058 /* TransferTypeSelectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9A2EBB176F4BC600C5E058 /* TransferTypeSelectionHeader.m */; };
 		BBC691241721416300F0FB1A /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911C1721416300F0FB1A /* TSAlertViewMessageListViewShadow.png */; };
 		BBC691251721416300F0FB1A /* TSAlertViewCancelButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911D1721416300F0FB1A /* TSAlertViewCancelButtonBackground.png */; };
 		BBC691261721416300F0FB1A /* TSAlertViewButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911E1721416300F0FB1A /* TSAlertViewButtonBackground.png */; };
@@ -337,7 +341,7 @@
 		EA31A18717DDB29B00F937F7 /* ProfileSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D982176AF1DF0078D0C4 /* ProfileSelectionView.m */; };
 		EA31A18817DDB29B00F937F7 /* RemoveTokenOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7F8815176F2B44003B0F46 /* RemoveTokenOperation.m */; };
 		EA31A18917DDB29B00F937F7 /* UITableView+FooterPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9A2E82176B711400C5E058 /* UITableView+FooterPositioning.m */; };
-		EA31A18A17DDB29B00F937F7 /* TransferTypeSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9A2EBB176F4BC600C5E058 /* TransferTypeSelectionCell.m */; };
+		EA31A18A17DDB29B00F937F7 /* TransferTypeSelectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9A2EBB176F4BC600C5E058 /* TransferTypeSelectionHeader.m */; };
 		EA31A18B17DDB29B00F937F7 /* RoundedCellWhiteBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB704E7C177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m */; };
 		EA31A18D17DDB29B00F937F7 /* _Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C66178E9C90009D6B83 /* _Payment.m */; };
 		EA31A18E17DDB29B00F937F7 /* Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C6A178E9C93009D6B83 /* Payment.m */; };
@@ -441,7 +445,7 @@
 		EA31A21C17DDB29B00F937F7 /* ClaimAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */; };
 		EA31A22017DDB29B00F937F7 /* ProfileEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */; };
 		EA31A22117DDB29B00F937F7 /* ProfileSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA92D984176AF1F20078D0C4 /* ProfileSelectionView.xib */; };
-		EA31A22217DDB29B00F937F7 /* TransferTypeSelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB9A2EB8176F495600C5E058 /* TransferTypeSelectionCell.xib */; };
+		EA31A22217DDB29B00F937F7 /* TransferTypeSelectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB9A2EB8176F495600C5E058 /* TransferTypeSelectionHeader.xib */; };
 		EA31A22717DDB29B00F937F7 /* TabBarActivityIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA225C74178EA124009D6B83 /* TabBarActivityIndicatorView.xib */; };
 		EA31A22817DDB29B00F937F7 /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = EA225CB7178EEA8A009D6B83 /* currencies.json */; };
 		EA31A22917DDB29B00F937F7 /* currency_pairs.json in Resources */ = {isa = PBXBuildFile; fileRef = EA225CB8178EEA8A009D6B83 /* currency_pairs.json */; };
@@ -713,6 +717,9 @@
 		38B092F319504B7300315BE4 /* NameSuggestionCellProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameSuggestionCellProvider.m; sourceTree = "<group>"; };
 		38B092F619509CB000315BE4 /* ProgressButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressButton.h; sourceTree = "<group>"; };
 		38B092F719509CB000315BE4 /* ProgressButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressButton.m; sourceTree = "<group>"; };
+		38B092FA1951AEE700315BE4 /* DataEntryDefaultHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryDefaultHeader.h; sourceTree = "<group>"; };
+		38B092FB1951AEE700315BE4 /* DataEntryDefaultHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryDefaultHeader.m; sourceTree = "<group>"; };
+		38B092FE1951B19B00315BE4 /* DataEntryDefaultHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DataEntryDefaultHeader.xib; sourceTree = "<group>"; };
 		38C8A79B19371DBC00714FB3 /* PullToRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshView.h; sourceTree = "<group>"; };
 		38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullToRefreshView.m; sourceTree = "<group>"; };
 		38E57F75192A51DD00D864A2 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
@@ -767,9 +774,9 @@
 		BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BB9A2E81176B711400C5E058 /* UITableView+FooterPositioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FooterPositioning.h"; sourceTree = "<group>"; };
 		BB9A2E82176B711400C5E058 /* UITableView+FooterPositioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FooterPositioning.m"; sourceTree = "<group>"; };
-		BB9A2EB8176F495600C5E058 /* TransferTypeSelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferTypeSelectionCell.xib; sourceTree = "<group>"; };
-		BB9A2EBA176F4BC500C5E058 /* TransferTypeSelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferTypeSelectionCell.h; sourceTree = "<group>"; };
-		BB9A2EBB176F4BC600C5E058 /* TransferTypeSelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferTypeSelectionCell.m; sourceTree = "<group>"; };
+		BB9A2EB8176F495600C5E058 /* TransferTypeSelectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferTypeSelectionHeader.xib; sourceTree = "<group>"; };
+		BB9A2EBA176F4BC500C5E058 /* TransferTypeSelectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferTypeSelectionHeader.h; sourceTree = "<group>"; };
+		BB9A2EBB176F4BC600C5E058 /* TransferTypeSelectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferTypeSelectionHeader.m; sourceTree = "<group>"; };
 		BBC6911C1721416300F0FB1A /* TSAlertViewMessageListViewShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewMessageListViewShadow.png; path = TSAlertView/TSAlertViewMessageListViewShadow.png; sourceTree = "<group>"; };
 		BBC6911D1721416300F0FB1A /* TSAlertViewCancelButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewCancelButtonBackground.png; path = TSAlertView/TSAlertViewCancelButtonBackground.png; sourceTree = "<group>"; };
 		BBC6911E1721416300F0FB1A /* TSAlertViewButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewButtonBackground.png; path = TSAlertView/TSAlertViewButtonBackground.png; sourceTree = "<group>"; };
@@ -1419,6 +1426,9 @@
 				38B092EF195044EA00315BE4 /* TextFieldSuggestionTable.m */,
 				38B092F619509CB000315BE4 /* ProgressButton.h */,
 				38B092F719509CB000315BE4 /* ProgressButton.m */,
+				38B092FA1951AEE700315BE4 /* DataEntryDefaultHeader.h */,
+				38B092FB1951AEE700315BE4 /* DataEntryDefaultHeader.m */,
+				38B092FE1951B19B00315BE4 /* DataEntryDefaultHeader.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1481,9 +1491,9 @@
 				EA13E04A171BEF5D0019FBF0 /* TextEntryCell.h */,
 				EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */,
 				EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */,
-				BB9A2EBA176F4BC500C5E058 /* TransferTypeSelectionCell.h */,
-				BB9A2EBB176F4BC600C5E058 /* TransferTypeSelectionCell.m */,
-				BB9A2EB8176F495600C5E058 /* TransferTypeSelectionCell.xib */,
+				BB9A2EBA176F4BC500C5E058 /* TransferTypeSelectionHeader.h */,
+				BB9A2EBB176F4BC600C5E058 /* TransferTypeSelectionHeader.m */,
+				BB9A2EB8176F495600C5E058 /* TransferTypeSelectionHeader.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2276,6 +2286,7 @@
 				EAD3648817E2F394001EFE40 /* UploadMoneyViewController.xib in Resources */,
 				EA31A20C17DDB29B00F937F7 /* ConfirmPaymentCell.xib in Resources */,
 				EA31A20F17DDB29B00F937F7 /* RecipientEntrySelectionCell.xib in Resources */,
+				38B093001951B19B00315BE4 /* DataEntryDefaultHeader.xib in Resources */,
 				EA31A21017DDB29B00F937F7 /* DropdownCell.xib in Resources */,
 				EAD3648F17E2F6EF001EFE40 /* CardPaymentViewController.xib in Resources */,
 				EA31A21117DDB29B00F937F7 /* BankTransferViewController.xib in Resources */,
@@ -2288,7 +2299,7 @@
 				380021D8192CC570009B1D53 /* Styles.plist in Resources */,
 				EA31A22017DDB29B00F937F7 /* ProfileEditViewController.xib in Resources */,
 				EA31A22117DDB29B00F937F7 /* ProfileSelectionView.xib in Resources */,
-				EA31A22217DDB29B00F937F7 /* TransferTypeSelectionCell.xib in Resources */,
+				EA31A22217DDB29B00F937F7 /* TransferTypeSelectionHeader.xib in Resources */,
 				EA0450CC17EC3544008921DA /* BusinessProfileIdentificationViewController.xib in Resources */,
 				EA31A22717DDB29B00F937F7 /* TabBarActivityIndicatorView.xib in Resources */,
 				EA31A22817DDB29B00F937F7 /* currencies.json in Resources */,
@@ -2368,6 +2379,7 @@
 				47FB7EA519419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */,
 				479B692D19487865001FA4FE /* TransferDetailsViewController.xib in Resources */,
 				EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */,
+				38B092FF1951B19B00315BE4 /* DataEntryDefaultHeader.xib in Resources */,
 				470DEFAD1945F02300684FEB /* MoneyEntryCell~ipad.xib in Resources */,
 				EAD3648E17E2F6EF001EFE40 /* CardPaymentViewController.xib in Resources */,
 				BB29BD49173CD30D0016A6E9 /* BankTransferViewController.xib in Resources */,
@@ -2380,7 +2392,7 @@
 				380021D7192CC570009B1D53 /* Styles.plist in Resources */,
 				EA416E2C176860EA00904D97 /* ProfileEditViewController.xib in Resources */,
 				EA92D985176AF1F20078D0C4 /* ProfileSelectionView.xib in Resources */,
-				BB9A2EB9176F495700C5E058 /* TransferTypeSelectionCell.xib in Resources */,
+				BB9A2EB9176F495700C5E058 /* TransferTypeSelectionHeader.xib in Resources */,
 				EA0450CB17EC3544008921DA /* BusinessProfileIdentificationViewController.xib in Resources */,
 				EA225C76178EA124009D6B83 /* TabBarActivityIndicatorView.xib in Resources */,
 				EA225CBA178EEA8A009D6B83 /* currencies.json in Resources */,
@@ -2677,6 +2689,7 @@
 				EA31A16817DDB29B00F937F7 /* RecipientEntrySelectionCell.m in Sources */,
 				EA31A16917DDB29B00F937F7 /* DropdownCell.m in Sources */,
 				EAB6170F191CD61900545C21 /* ResetPasswordViewController.m in Sources */,
+				38B092FD1951AEE700315BE4 /* DataEntryDefaultHeader.m in Sources */,
 				EA31A16A17DDB29B00F937F7 /* BankTransferViewController.m in Sources */,
 				EA31A16B17DDB29B00F937F7 /* TextCell.m in Sources */,
 				EAD3647A17E2EBF2001EFE40 /* PaymentMethodSelectionView.m in Sources */,
@@ -2719,7 +2732,7 @@
 				479B693B19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */,
 				EA31A18917DDB29B00F937F7 /* UITableView+FooterPositioning.m in Sources */,
 				38C8A79E19371DBC00714FB3 /* PullToRefreshView.m in Sources */,
-				EA31A18A17DDB29B00F937F7 /* TransferTypeSelectionCell.m in Sources */,
+				EA31A18A17DDB29B00F937F7 /* TransferTypeSelectionHeader.m in Sources */,
 				EA31A18B17DDB29B00F937F7 /* RoundedCellWhiteBackgroundView.m in Sources */,
 				EA31A18D17DDB29B00F937F7 /* _Payment.m in Sources */,
 				38B092ED195044AB00315BE4 /* NonEditTextField.m in Sources */,
@@ -2815,6 +2828,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38B092FC1951AEE700315BE4 /* DataEntryDefaultHeader.m in Sources */,
 				EAAA147A171BC911005B9430 /* main.m in Sources */,
 				EAAA147E171BC911005B9430 /* AppDelegate.m in Sources */,
 				EAAA1487171BC911005B9430 /* Transfer.xcdatamodeld in Sources */,
@@ -2951,7 +2965,7 @@
 				EA92D983176AF1DF0078D0C4 /* ProfileSelectionView.m in Sources */,
 				EA7F8816176F2B44003B0F46 /* RemoveTokenOperation.m in Sources */,
 				BB9A2E83176B711400C5E058 /* UITableView+FooterPositioning.m in Sources */,
-				BB9A2EBC176F4BC600C5E058 /* TransferTypeSelectionCell.m in Sources */,
+				BB9A2EBC176F4BC600C5E058 /* TransferTypeSelectionHeader.m in Sources */,
 				BB704E7D177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m in Sources */,
 				479B692C19487865001FA4FE /* TransferDetailsViewController.m in Sources */,
 				EA225C67178E9C90009D6B83 /* _Payment.m in Sources */,

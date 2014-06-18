@@ -6,8 +6,7 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "TextEntryCell.h"
+#import "DataEntryDefaultHeader.h"
 
 @class RecipientType;
 
@@ -15,7 +14,7 @@ typedef void (^RecipientTypeChangedInSelectionCellBlock)(RecipientType *type, NS
 
 extern NSString *const TWTypeSelectionCellIdentifier;
 
-@interface TransferTypeSelectionCell : TextEntryCell
+@interface TransferTypeSelectionHeader : DataEntryDefaultHeader
 
 @property (nonatomic, copy) RecipientTypeChangedInSelectionCellBlock selectionChangeHandler;
 

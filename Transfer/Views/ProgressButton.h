@@ -10,4 +10,6 @@
 
 @interface ProgressButton : UIButton
 
+@property (nonatomic,assign) CGFloat progress;
+
 @end
