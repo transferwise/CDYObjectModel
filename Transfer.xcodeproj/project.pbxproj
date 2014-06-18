@@ -84,6 +84,8 @@
 		473F62931940BDD9001E280B /* IntroductionViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* IntroductionViewController~ipad.xib */; };
 		474D1A9F19518073008BC7A7 /* ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1A9E19518073008BC7A7 /* ColoredButton.m */; };
 		474D1AA019518073008BC7A7 /* ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1A9E19518073008BC7A7 /* ColoredButton.m */; };
+		474D1AA61951A500008BC7A7 /* RedGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1AA51951A500008BC7A7 /* RedGradientButton.m */; };
+		474D1AA71951A500008BC7A7 /* RedGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1AA51951A500008BC7A7 /* RedGradientButton.m */; };
 		47592CC71940C35800ECDAF2 /* IntroductionViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* IntroductionViewController~ipad.xib */; };
 		479B692C19487865001FA4FE /* TransferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B692A19487865001FA4FE /* TransferDetailsViewController.m */; };
 		479B692D19487865001FA4FE /* TransferDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479B692B19487865001FA4FE /* TransferDetailsViewController.xib */; };
@@ -712,6 +714,8 @@
 		473F62921940BDD9001E280B /* IntroductionViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "IntroductionViewController~ipad.xib"; sourceTree = "<group>"; };
 		474D1A9D19518073008BC7A7 /* ColoredButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredButton.h; sourceTree = "<group>"; };
 		474D1A9E19518073008BC7A7 /* ColoredButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColoredButton.m; sourceTree = "<group>"; };
+		474D1AA41951A500008BC7A7 /* RedGradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedGradientButton.h; sourceTree = "<group>"; };
+		474D1AA51951A500008BC7A7 /* RedGradientButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedGradientButton.m; sourceTree = "<group>"; };
 		479B692919487865001FA4FE /* TransferDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferDetailsViewController.h; sourceTree = "<group>"; };
 		479B692A19487865001FA4FE /* TransferDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDetailsViewController.m; sourceTree = "<group>"; };
 		479B692B19487865001FA4FE /* TransferDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferDetailsViewController.xib; sourceTree = "<group>"; };
@@ -1355,6 +1359,8 @@
 				47FAF343194B2F11004CE986 /* LightGrayButton.m */,
 				47FAF359195031E7004CE986 /* BlueButton.h */,
 				47FAF35A195031E7004CE986 /* BlueButton.m */,
+				474D1AA41951A500008BC7A7 /* RedGradientButton.h */,
+				474D1AA51951A500008BC7A7 /* RedGradientButton.m */,
 				EAE7B6AA17E9AC3F00E03D73 /* IdentificationNotificationView.h */,
 				EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */,
 				EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */,
@@ -2709,6 +2715,7 @@
 				38C8A79E19371DBC00714FB3 /* PullToRefreshView.m in Sources */,
 				EA31A18A17DDB29B00F937F7 /* TransferTypeSelectionCell.m in Sources */,
 				EA31A18B17DDB29B00F937F7 /* RoundedCellWhiteBackgroundView.m in Sources */,
+				474D1AA71951A500008BC7A7 /* RedGradientButton.m in Sources */,
 				EA31A18D17DDB29B00F937F7 /* _Payment.m in Sources */,
 				47FAF349194B3233004CE986 /* UIImage+Color.m in Sources */,
 				EA31A18E17DDB29B00F937F7 /* Payment.m in Sources */,
@@ -2961,6 +2968,7 @@
 				EAE7B6B317E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */,
 				47FAF35B195031E7004CE986 /* BlueButton.m in Sources */,
 				38AA83411949B8DF0065AD2A /* GradientView.m in Sources */,
+				474D1AA61951A500008BC7A7 /* RedGradientButton.m in Sources */,
 				EA225CA0178EB511009D6B83 /* TypeFieldValue.m in Sources */,
 				EA225CA3178EB591009D6B83 /* NSDate+ServerTime.m in Sources */,
 				EA225CA6178EC32D009D6B83 /* ObjectModel+CurrencyPairs.m in Sources */,

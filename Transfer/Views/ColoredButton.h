@@ -10,7 +10,8 @@
 
 @interface ColoredButton : UIButton
 
--(void)configureWithTitleColor:(NSString *)titleColor
+- (void)commonSetup;
+- (void)configureWithTitleColor:(NSString *)titleColor
 					 titleFont:(NSString *)titleFont
 						 color:(NSString *)color
 				highlightColor:(NSString *)highlightColor;

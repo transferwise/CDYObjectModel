@@ -13,5 +13,7 @@
 @interface PaymentCell : UITableViewCell
 
 - (void)configureWithPayment:(Payment *)payment;
+- (void)showCancelButton:(BOOL)animated;
+- (void)hideCancelButton:(BOOL)animated;
 
 @end

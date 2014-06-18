@@ -84,6 +84,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	}];
     
     self.titleLabel.text = self.title;
+	
+	[self addGestureRecognizers];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -122,6 +124,15 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[[GoogleAnalytics sharedInstance] sendScreen:@"View transfers"];
 }
 
+- (void)addGestureRecognizers {
+	UISwipeGestureRecognizer* swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedLeft:)];
+	swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+	[self.tableView addGestureRecognizer:swipeLeft];
+	
+	UISwipeGestureRecognizer* swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedRight:)];
+	swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+	[self.tableView addGestureRecognizer:swipeRight];
+}
 
 #pragma mark - Table view data source
 
@@ -402,6 +413,52 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [operation setCompletionHandler:completion];
 
     [operation execute];
+}
+
+#pragma mark - SwipeToCancel
+- (void)swipedLeft:(UISwipeGestureRecognizer *)sender
+{
+	[self handleSwipe:sender isLeft:YES];
+}
+
+- (void)swipedRight:(UISwipeGestureRecognizer *)sender
+{
+	[self handleSwipe:sender isLeft:NO];
+}
+
+- (void)handleSwipe:(UISwipeGestureRecognizer *)sender isLeft:(BOOL)isLeft
+{
+	CGPoint location = [sender locationInView:self.tableView];
+	
+    //Get the corresponding index path within the table view
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:location];
+	
+    //Check if index path is valid
+    if(indexPath)
+    {
+		PaymentCell *cell = (PaymentCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+		
+		if (isLeft)
+		{
+			Payment* payment = [self.payments objectAtIndexPath:indexPath];
+			
+			//Be sure that we actually have a payment
+			if(payment)
+			{
+				PaymentStatus status = [payment status];
+				
+				if(status != PaymentStatusCancelled && status != PaymentStatusTransferred)
+				{
+					//show cancel button
+					[cell showCancelButton:YES];
+				}
+			}
+		}
+        else
+		{
+			[cell hideCancelButton:YES];
+		}
+    }
 }
 
 #pragma mark - PullToRefresh

@@ -11,21 +11,6 @@
 
 @implementation LightGrayButton
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self commonSetup];
-    }
-    return self;
-}
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self commonSetup];
-    
-}
-
 -(void)commonSetup
 {
 	[super configureWithTitleColor:@"navBarBlue"
