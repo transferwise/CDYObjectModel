@@ -7,9 +7,6 @@
 //
 
 #import "BlueButton.h"
-#import "UIFont+MOMStyle.h"
-#import "UIColor+MOMStyle.h"
-#import "UIImage+Color.h"
 
 @implementation BlueButton
 
@@ -30,11 +27,7 @@
 
 -(void)commonSetup
 {
-    [self setTitleColor:[UIColor colorFromStyle:@"white"] forState:UIControlStateNormal];
-    [self.titleLabel setFont:[UIFont fontFromStyle:@"medium.@16"]];
-	[self setBackgroundImage:[UIImage imageFromColor:[UIColor colorFromStyle:@"lightBlue3"]] forState:UIControlStateNormal];
-	[self setBackgroundImage:[UIImage imageFromColor:[UIColor colorFromStyle:@"blue"]] forState:UIControlStateHighlighted];
-    self.exclusiveTouch = YES;
+	[super configureWithTitleColor:@"white" titleFont:@"medium.@16" color:@"lightBlue3" highlightColor:@"blue"];
 }
 
 @end

@@ -17,6 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="ULj-Hz-q6S" appends="YES" id="CNF-Sx-Cvd"/>
+                        </connections>
                     </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="800" text="Name label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4">
                         <rect key="frame" x="46" y="12" width="168" height="18"/>
@@ -81,6 +85,7 @@
                         </constraints>
                     </imageView>
                 </subviews>
+                <gestureRecognizers/>
                 <constraints>
                     <constraint firstItem="12" firstAttribute="top" secondItem="2Qf-I3-x2d" secondAttribute="top" id="1ie-yW-fTN"/>
                     <constraint firstAttribute="bottom" secondItem="12" secondAttribute="bottom" id="2FH-kC-0Ee"/>
@@ -109,5 +114,10 @@
                 <outlet property="statusLabel" destination="6" id="10"/>
             </connections>
         </tableViewCell>
+        <swipeGestureRecognizer direction="left" id="ULj-Hz-q6S">
+            <connections>
+                <action selector="swipedLeft:" destination="3" id="8hz-8z-Ndd"/>
+            </connections>
+        </swipeGestureRecognizer>
     </objects>
 </document>

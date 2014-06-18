@@ -24,8 +24,6 @@
 
 @implementation PaymentCell
 
-
-
 - (void)configureWithPayment:(Payment *)payment {
     [self.nameLabel setText:[payment.recipient name]];
     [self.statusLabel setText:[payment localizedStatus]];
@@ -87,6 +85,11 @@
 -(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {
     self.contentView.bgStyle=highlighted?@"cellSelected":@"white";
+}
+
+- (IBAction)swipedLeft:(id)sender
+{
+	
 }
 
 @end
