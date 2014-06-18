@@ -8,24 +8,18 @@
 
 #import "DataEntryDefaultHeader.h"
 
+@interface DataEntryDefaultHeader ()
+
+
+@end
+
 @implementation DataEntryDefaultHeader
 
-- (id)initWithFrame:(CGRect)frame
++(instancetype)instance
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    return [[NSBundle mainBundle] loadNibNamed:@"DataEntryDefaultHeader" owner:nil options:nil][0];
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+
 
 @end

@@ -10,4 +10,8 @@
 
 @interface DataEntryDefaultHeader : UIView
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
++(instancetype)instance;
+
 @end
