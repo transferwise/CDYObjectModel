@@ -20,12 +20,16 @@
 @property (nonatomic, strong) IBOutlet UILabel *currencyLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *statusIcon;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *cancelButtonLeft;
+@property (strong, nonatomic) IBOutlet UIButton *cancelButton;
 
 @end
 
 @implementation PaymentCell
 
-- (void)configureWithPayment:(Payment *)payment {
+- (void)configureWithPayment:(Payment *)payment
+{
+	[self.cancelButton setTitle:NSLocalizedString(@"button.title.cancel", nil) forState:UIControlStateNormal];
+	
     [self.nameLabel setText:[payment.recipient name]];
     [self.statusLabel setText:[payment localizedStatus]];
     [self.moneyLabel setText:[payment transferredAmountString]];

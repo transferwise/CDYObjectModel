@@ -39,10 +39,23 @@
 						 color:(NSString *)color
 				highlightColor:(NSString *)highlightColor
 {
-	[self setTitleColor:[UIColor colorFromStyle:titleColor] forState:UIControlStateNormal];
-    [self.titleLabel setFont:[UIFont fontFromStyle:titleFont]];
-	[self setBackgroundImage:[UIImage imageFromColor:[UIColor colorFromStyle:color]] forState:UIControlStateNormal];
-	[self setBackgroundImage:[UIImage imageFromColor:[UIColor colorFromStyle:highlightColor]] forState:UIControlStateHighlighted];
+	if (titleColor != nil)
+	{
+		[self setTitleColor:[UIColor colorFromStyle:titleColor] forState:UIControlStateNormal];
+		
+	}
+	if (titleColor != nil)
+	{
+		[self.titleLabel setFont:[UIFont fontFromStyle:titleFont]];
+	}
+	if (color != nil)
+	{
+		[self setBackgroundImage:[UIImage imageFromColor:[UIColor colorFromStyle:color]] forState:UIControlStateNormal];
+	}
+	if (highlightColor != nil)
+	{
+		[self setBackgroundImage:[UIImage imageFromColor:[UIColor colorFromStyle:highlightColor]] forState:UIControlStateHighlighted];
+	}
     self.exclusiveTouch = YES;
 }
 

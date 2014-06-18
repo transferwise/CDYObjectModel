@@ -160,6 +160,16 @@
 				<key>color</key>
 				<string>f7f9fb</string>
 			</dict>
+			<key>redGradientStart</key>
+			<dict>
+				<key>color</key>
+				<string>b52f54</string>
+			</dict>
+			<key>redGradientEnd</key>
+			<dict>
+				<key>color</key>
+				<string>c72247</string>
+			</dict>
 		</dict>
 		<key>font</key>
 		<dict>

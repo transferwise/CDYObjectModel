@@ -116,6 +116,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="backgroundView" destination="12" id="13"/>
+                <outlet property="cancelButton" destination="Li6-7X-mnd" id="Jz4-BG-PwY"/>
                 <outlet property="cancelButtonLeft" destination="HiX-w4-CjY" id="qfO-f1-IaU"/>
                 <outlet property="currencyLabel" destination="7" id="Eja-o7-jjb"/>
                 <outlet property="moneyLabel" destination="5" id="9"/>
