@@ -76,11 +76,11 @@
 
 #pragma mark - Table view delegate
 
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.suggestionTableDelegate respondsToSelector:@selector(suggestionTable:selectedObject:)])
     {
-        [self.suggestionTableDelegate suggestionTable:self selectedObject:[self.delegate respondsToSelector:@selector(objectForIndexPath:)]?[self.dataSource objectForIndexPath:indexPath]:nil];
+        [self.suggestionTableDelegate suggestionTable:self selectedObject:[self.dataSource respondsToSelector:@selector(objectForIndexPath:)]?[self.dataSource objectForIndexPath:indexPath]:nil];
     }
 }
 

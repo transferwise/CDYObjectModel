@@ -51,7 +51,7 @@
             }
             else
             {
-                return [NSString stringWithFormat:@"%@, %@", self.firstName, self.lastName];
+                return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
             }
             break;
         case LastNameFirst:
@@ -62,7 +62,7 @@
             }
             else
             {
-                return [NSString stringWithFormat:@"%@, %@", self.firstName, self.lastName];
+                return [NSString stringWithFormat:@"%@, %@", self.lastName, self.firstName];
             }
 
             break;

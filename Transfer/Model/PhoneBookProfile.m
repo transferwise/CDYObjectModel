@@ -29,6 +29,12 @@
     ABRecordRef _record;
 }
 
+- (id)initWithRecordId:(ABRecordID)recordId {
+    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
+    ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook, recordId);
+    return [self initWithRecord:person selectedAddressIdentifier:kABMultiValueInvalidIdentifier];
+}
+
 - (id)initWithRecord:(ABRecordRef)person {
     return [self initWithRecord:person selectedAddressIdentifier:kABMultiValueInvalidIdentifier];
 }
@@ -101,7 +107,6 @@
     CFRelease(theProperty);
     return items;
 }
-
 
 - (NSString *)description {
     NSMutableString *description = [NSMutableString stringWithFormat:@"<%@: ", NSStringFromClass([self class])];

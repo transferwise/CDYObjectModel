@@ -24,6 +24,7 @@
 
 - (id)initWithRecord:(ABRecordRef)person;
 - (id)initWithRecord:(ABRecordRef)person selectedAddressIdentifier:(ABMultiValueIdentifier)identifier;
+- (id)initWithRecordId:(ABRecordID)recordId;
 
 - (void)loadData;
 - (NSUInteger)addressesCount;

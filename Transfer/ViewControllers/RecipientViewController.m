@@ -279,6 +279,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (void)loadDataFromProfile:(PhoneBookProfile *)profile {
     self.nameCell.value = profile.fullName;
+    self.emailCell.value = profile.email;
 }
 
 - (void)didSelectRecipient:(Recipient *)recipient {
@@ -619,7 +620,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 {
     [self.nameCell.entryField resignFirstResponder];
     NameLookupWrapper* wrapper = (NameLookupWrapper*)object;
-    self.nameCell.entryField.text = [NSString stringWithFormat:@"%@ %@", wrapper.firstName, wrapper.lastName];
+    PhoneBookProfile* profile = [[PhoneBookProfile alloc] initWithRecordId:wrapper.recordId];
+    [profile loadData];
+    [self loadDataFromProfile:profile];
+    
 }
 
 @end
