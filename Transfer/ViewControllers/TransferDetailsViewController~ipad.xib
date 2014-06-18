@@ -164,7 +164,7 @@
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="300" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="anS-pb-BWk" customClass="TransferDetialsRecipientView">
-                    <rect key="frame" x="0.0" y="583" width="1024" height="100"/>
+                    <rect key="frame" x="0.0" y="584" width="1024" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpr-jT-3Kg" userLabel="Label - Account Header">
@@ -237,7 +237,7 @@
                 <constraint firstAttribute="centerX" secondItem="8dh-F6-i1O" secondAttribute="centerX" id="Emq-JO-aeE"/>
                 <constraint firstAttribute="trailing" secondItem="g0K-st-6YG" secondAttribute="trailing" constant="60" id="J9C-KG-aGd"/>
                 <constraint firstAttribute="centerX" secondItem="gxD-Ss-q8P" secondAttribute="centerX" id="Ovi-9F-5tM"/>
-                <constraint firstItem="anS-pb-BWk" firstAttribute="top" secondItem="gxD-Ss-q8P" secondAttribute="bottom" constant="46" id="R29-Ib-AIl"/>
+                <constraint firstItem="anS-pb-BWk" firstAttribute="top" secondItem="gxD-Ss-q8P" secondAttribute="bottom" constant="47" id="R29-Ib-AIl"/>
                 <constraint firstItem="jJD-by-0Jd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="94" id="Wjo-Kr-J1n"/>
                 <constraint firstAttribute="centerX" secondItem="g0K-st-6YG" secondAttribute="centerX" id="ZXu-vn-5GC"/>
                 <constraint firstAttribute="centerX" secondItem="anS-pb-BWk" secondAttribute="centerX" id="aQx-aj-aec"/>
