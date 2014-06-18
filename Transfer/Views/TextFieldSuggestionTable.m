@@ -14,6 +14,14 @@
 
 @implementation TextFieldSuggestionTable
 
+-(void)layoutSubviews
+{
+    if(!self.tableFooterView)
+    {
+        self.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    }
+}
+
 #pragma mark - input text changed
 
 -(void)didStartEditing:(UITextField*)field

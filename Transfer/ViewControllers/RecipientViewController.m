@@ -55,6 +55,7 @@
 #import "TextFieldSuggestionTable.h"
 #import "NameSuggestionCellProvider.h"
 #import "NameLookupWrapper.h"
+#import "MOMStyle.h"
 
 static NSUInteger const kSenderSection = 0;
 static NSUInteger const kRecipientSection = 1;
@@ -127,6 +128,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self.tableView registerNib:[UINib nibWithNibName:@"RecipientEntrySelectionCell" bundle:nil] forCellReuseIdentifier:TRWRecipientEntrySelectionCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"DropdownCell" bundle:nil] forCellReuseIdentifier:TWDropdownCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"ConfirmPaymentCell" bundle:nil] forCellReuseIdentifier:TWConfirmPaymentCellIdentifier];
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
     [self setProfileSelectionView:[ProfileSelectionView loadInstance]];
     [self presentProfileForSource:self.profileSelectionView.presentedSource];
@@ -186,6 +189,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     suggestionsTable.textField = nameCell.entryField;
     suggestionsTable.dataSource = self.cellProvider;
     suggestionsTable.suggestionTableDelegate = self;
+    suggestionsTable.backgroundColor = [UIColor colorFromStyle:@"lightGray.alpha2"];
     
 }
 
