@@ -19,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UILabel* transferNrLabel;
 @property (strong, nonatomic) IBOutlet OHAttributedLabel* recipientNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel* statusLabel;
+@property (strong, nonatomic) IBOutlet UILabel* statusLabelWaiting;
 
 @end
 
@@ -75,6 +76,12 @@
 {
 	//status is already localized in payment object
 	[self.statusLabel setText:status];
+}
+
+- (void)setStatusWaiting:(NSString *)statusWaiting
+{
+	//waiting for transfer has a two-line status
+	[self.statusLabelWaiting setText:statusWaiting];
 }
 
 @end

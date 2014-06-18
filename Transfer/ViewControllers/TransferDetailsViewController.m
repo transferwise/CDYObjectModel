@@ -104,7 +104,13 @@
 	self.headerView.transferNumber = [self.payment.remoteId stringValue];
 	self.headerView.recipientName = [self.payment.recipient name];
 	self.headerView.status = [self getStatusBasedLocalization:@"payment.status.%@.description.long"
-														status:self.payment.paymentStatus];
+													   status:self.payment.paymentStatus];
+	//waiting has a two-line status
+	if (self.payment.status == PaymentStatusSubmitted)
+	{
+		self.headerView.statusWaiting = NSLocalizedString(@"payment.status.submitted.description.long2", nil);
+	}
+	
 }
 
 - (void)setUpAmounts

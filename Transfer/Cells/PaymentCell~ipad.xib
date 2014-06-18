@@ -17,6 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                     </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="800" text="Name label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4">
                         <rect key="frame" x="46" y="12" width="168" height="18"/>
@@ -80,7 +81,18 @@
                             <constraint firstAttribute="width" constant="16" id="rxo-d1-Gfs"/>
                         </constraints>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKV-vq-dAg" userLabel="Button - Cancel" customClass="RedGradientButton">
+                        <rect key="frame" x="320" y="0.0" width="120" height="69"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="3jh-f5-W9m"/>
+                        </constraints>
+                        <state key="normal" title="Button">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
+                <gestureRecognizers/>
                 <constraints>
                     <constraint firstItem="12" firstAttribute="top" secondItem="2Qf-I3-x2d" secondAttribute="top" id="1ie-yW-fTN"/>
                     <constraint firstAttribute="bottom" secondItem="12" secondAttribute="bottom" id="2FH-kC-0Ee"/>
@@ -96,12 +108,18 @@
                     <constraint firstAttribute="centerY" secondItem="n2z-dX-IdV" secondAttribute="centerY" id="Z6V-P8-Ulp"/>
                     <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" id="aL3-c9-qcN"/>
                     <constraint firstItem="n2z-dX-IdV" firstAttribute="leading" secondItem="2Qf-I3-x2d" secondAttribute="leading" constant="15" id="f8F-uw-w7N"/>
+                    <constraint firstItem="AKV-vq-dAg" firstAttribute="top" secondItem="2Qf-I3-x2d" secondAttribute="top" id="gC7-AI-9h9"/>
                     <constraint firstItem="5" firstAttribute="leading" secondItem="4" secondAttribute="trailing" id="ho2-VZ-DxY"/>
+                    <constraint firstAttribute="bottom" secondItem="AKV-vq-dAg" secondAttribute="bottom" id="j29-gV-6Na"/>
+                    <constraint firstAttribute="trailing" secondItem="AKV-vq-dAg" secondAttribute="leading" priority="250" id="sXS-Xy-h9d"/>
                     <constraint firstItem="12" firstAttribute="leading" secondItem="2Qf-I3-x2d" secondAttribute="leading" id="y8c-Sb-K07"/>
+                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="AKV-vq-dAg" secondAttribute="trailing" id="zPK-Wz-I3m"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="backgroundView" destination="12" id="13"/>
+                <outlet property="cancelButton" destination="AKV-vq-dAg" id="JrW-ZY-I0Z"/>
+                <outlet property="cancelButtonLeft" destination="sXS-Xy-h9d" id="yjJ-X2-8IA"/>
                 <outlet property="currencyLabel" destination="7" id="Eja-o7-jjb"/>
                 <outlet property="moneyLabel" destination="5" id="9"/>
                 <outlet property="nameLabel" destination="4" id="8"/>

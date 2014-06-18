@@ -19,14 +19,17 @@
 @property (nonatomic, strong) IBOutlet UILabel *statusLabel;
 @property (nonatomic, strong) IBOutlet UILabel *currencyLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *statusIcon;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *cancelButtonLeft;
+@property (strong, nonatomic) IBOutlet UIButton *cancelButton;
 
 @end
 
 @implementation PaymentCell
 
-
-
-- (void)configureWithPayment:(Payment *)payment {
+- (void)configureWithPayment:(Payment *)payment
+{
+	[self.cancelButton setTitle:NSLocalizedString(@"button.title.cancel", nil) forState:UIControlStateNormal];
+	
     [self.nameLabel setText:[payment.recipient name]];
     [self.statusLabel setText:[payment localizedStatus]];
     [self.moneyLabel setText:[payment transferredAmountString]];
@@ -76,17 +79,38 @@
     
     self.moneyLabel.textColor = conditionalColor;
     self.nameLabel.textColor = conditionalColor;
-    
 }
 
--(void)setSelected:(BOOL)selected animated:(BOOL)animated
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     self.contentView.bgStyle=selected?@"cellSelected":@"white";
 }
 
--(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {
     self.contentView.bgStyle=highlighted?@"cellSelected":@"white";
+}
+
+- (void)showCancelButton:(BOOL)animated
+{
+	[self.contentView layoutIfNeeded];
+	[UIView animateWithDuration:0.2 animations:^{
+		self.cancelButtonLeft.constant = 500;
+		[self.moneyLabel setHidden:YES];
+		[self.currencyLabel setHidden:YES];
+		[self.contentView layoutIfNeeded];
+	}];
+}
+
+- (void)hideCancelButton:(BOOL)animated
+{
+	[self.contentView layoutIfNeeded];
+	[UIView animateWithDuration:0.2 animations:^{
+		self.cancelButtonLeft.constant = 0;
+		[self.moneyLabel setHidden:NO];
+		[self.currencyLabel setHidden:NO];
+		[self.contentView layoutIfNeeded];
+	}];
 }
 
 @end

@@ -63,13 +63,24 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.lighterBlue"/>
                             </userDefinedRuntimeAttributes>
                         </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGr-ZR-JTK" userLabel="Label - Status Waiting">
+                            <rect key="frame" x="491" y="67" width="42" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.lighterBlue"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="K1m-Ok-c6y" firstAttribute="top" secondItem="7NO-O2-ul7" secondAttribute="bottom" constant="-6" id="2SE-Dd-Vem"/>
+                        <constraint firstItem="jGr-ZR-JTK" firstAttribute="top" secondItem="F0f-kV-mku" secondAttribute="bottom" constant="-6" id="EaT-6r-ORf"/>
                         <constraint firstItem="F0f-kV-mku" firstAttribute="top" secondItem="K1m-Ok-c6y" secondAttribute="bottom" constant="-5" id="GP0-ut-5jn"/>
                         <constraint firstAttribute="centerX" secondItem="7NO-O2-ul7" secondAttribute="centerX" id="HW1-YI-mia"/>
                         <constraint firstAttribute="centerX" secondItem="K1m-Ok-c6y" secondAttribute="centerX" id="LXk-uN-7CD"/>
+                        <constraint firstAttribute="centerX" secondItem="jGr-ZR-JTK" secondAttribute="centerX" id="S4L-K9-tmE"/>
                         <constraint firstAttribute="centerX" secondItem="0bB-ke-DbF" secondAttribute="centerX" id="WKP-H9-z2G"/>
                         <constraint firstAttribute="centerX" secondItem="F0f-kV-mku" secondAttribute="centerX" id="aY0-rL-wKC"/>
                         <constraint firstItem="K1m-Ok-c6y" firstAttribute="leading" secondItem="jJD-by-0Jd" secondAttribute="leading" id="vAY-gv-jh5"/>
@@ -80,6 +91,7 @@
                     <connections>
                         <outlet property="recipientNameLabel" destination="K1m-Ok-c6y" id="XRr-Vw-LDr"/>
                         <outlet property="statusLabel" destination="F0f-kV-mku" id="unt-tY-KlU"/>
+                        <outlet property="statusLabelWaiting" destination="jGr-ZR-JTK" id="YBK-6L-Z52"/>
                         <outlet property="transferNrLabel" destination="7NO-O2-ul7" id="vUc-pX-GYQ"/>
                         <outlet property="yourTransferLabel" destination="0bB-ke-DbF" id="Upa-IZ-Vqb"/>
                     </connections>
@@ -168,7 +180,7 @@
                         <action selector="contactSupportPressed" destination="-1" eventType="touchUpInside" id="o6e-El-lq7"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECd-cI-GOp" userLabel="Button - Contact Support" customClass="LightGrayButton">
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECd-cI-GOp" userLabel="Button - No Transfer" customClass="LightGrayButton">
                     <rect key="frame" x="60" y="590" width="904" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
@@ -180,7 +192,6 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="contactSupportPressed" destination="-1" eventType="touchUpInside" id="l35-Wa-Cyk"/>
                         <action selector="noTransferButtonTap:" destination="-1" eventType="touchUpInside" id="6NC-df-4A2"/>
                     </connections>
                 </button>

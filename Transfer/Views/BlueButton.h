@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ColoredButton.h"
 
-@interface BlueButton : UIButton
+@interface BlueButton : ColoredButton
 
 @end

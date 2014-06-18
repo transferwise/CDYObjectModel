@@ -159,11 +159,11 @@
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="249" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="anS-pb-BWk" customClass="TransferDetialsRecipientView">
-                    <rect key="frame" x="0.0" y="373" width="320" height="58"/>
+                    <rect key="frame" x="0.0" y="372" width="320" height="59"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYu-Er-01d" userLabel="View - Background">
-                            <rect key="frame" x="0.0" y="26" width="320" height="32"/>
+                            <rect key="frame" x="0.0" y="27" width="320" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <userDefinedRuntimeAttributes>
@@ -180,7 +180,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <view alpha="0.49999999999999961" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JWj-M3-8IP" userLabel="View - Separator">
-                            <rect key="frame" x="0.0" y="26" width="320" height="1"/>
+                            <rect key="frame" x="0.0" y="27" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -188,7 +188,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="NqY-J0-ze8" userLabel="Label - Details">
-                            <rect key="frame" x="0.0" y="44" width="320" height="12"/>
+                            <rect key="frame" x="0.0" y="45" width="320" height="12"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <nil key="highlightedColor"/>
@@ -207,7 +207,7 @@
                         <constraint firstAttribute="trailing" secondItem="fYu-Er-01d" secondAttribute="trailing" id="WyD-ZK-6At"/>
                         <constraint firstItem="JWj-M3-8IP" firstAttribute="bottom" secondItem="fYu-Er-01d" secondAttribute="top" constant="1" id="Z5d-nU-Yx7"/>
                         <constraint firstAttribute="centerX" secondItem="JWj-M3-8IP" secondAttribute="centerX" id="dp2-gM-Jbn"/>
-                        <constraint firstItem="JWj-M3-8IP" firstAttribute="top" secondItem="vpr-jT-3Kg" secondAttribute="bottom" constant="14" id="n8W-bv-6Qe"/>
+                        <constraint firstItem="JWj-M3-8IP" firstAttribute="top" secondItem="vpr-jT-3Kg" secondAttribute="bottom" constant="15" id="n8W-bv-6Qe"/>
                         <constraint firstItem="JWj-M3-8IP" firstAttribute="leading" secondItem="anS-pb-BWk" secondAttribute="leading" id="qSb-6k-Q1V"/>
                         <constraint firstItem="vpr-jT-3Kg" firstAttribute="top" secondItem="anS-pb-BWk" secondAttribute="top" id="sVy-ow-PCT"/>
                         <constraint firstAttribute="centerX" secondItem="vpr-jT-3Kg" secondAttribute="centerX" id="v5X-on-Yg7"/>

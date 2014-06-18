@@ -7,34 +7,17 @@
 //
 
 #import "LightGrayButton.h"
-#import "UIFont+MOMStyle.h"
 #import "UIColor+MOMStyle.h"
-#import "UIImage+Color.h"
 
 @implementation LightGrayButton
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self commonSetup];
-    }
-    return self;
-}
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self commonSetup];
-    
-}
-
 -(void)commonSetup
 {
-    [self setTitleColor:[UIColor colorFromStyle:@"navBarBlue"] forState:UIControlStateNormal];
-    [self.titleLabel setFont:[UIFont fontFromStyle:@"medium.@17"]];
-	[self setBackgroundImage:[UIImage imageFromColor:[UIColor colorFromStyle:@"blue"]] forState:UIControlStateNormal];
-	[self setBackgroundImage:[UIImage imageFromColor:[UIColor colorFromStyle:@"cellSelected"]] forState:UIControlStateHighlighted];
-    self.exclusiveTouch = YES;
+	[super configureWithTitleColor:@"navBarBlue"
+						 titleFont:@"medium.@17"
+							 color:@"blue"
+					highlightColor:@"cellSelected"];
+	
 	self.layer.borderWidth = 1.f;
 	self.layer.cornerRadius = 2.f;
 	self.layer.masksToBounds = YES;

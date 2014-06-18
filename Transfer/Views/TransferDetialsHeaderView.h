@@ -14,5 +14,6 @@
 @property (weak, nonatomic) NSString* transferNumber;
 @property (weak, nonatomic) NSString* recipientName;
 @property (weak, nonatomic) NSString* status;
+@property (weak, nonatomic) NSString* statusWaiting;
 
 @end
