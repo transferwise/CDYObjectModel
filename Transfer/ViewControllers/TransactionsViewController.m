@@ -48,6 +48,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (nonatomic, weak) PullToRefreshView* refreshView;
 @property (weak, nonatomic) IBOutlet UIView *detailContainer;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) PaymentCell* cancellingCell;
 
 @end
 
@@ -163,6 +164,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     }
 
 	[[GoogleAnalytics sharedInstance] sendScreen:@"View payment"];
+	
+	[self removeCancellingFromCell];
 
     UIViewController *resultController;
     if ([payment isSubmitted]) {
@@ -425,6 +428,15 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[self handleSwipe:sender isLeft:NO];
 }
 
+- (void)removeCancellingFromCell
+{
+	if (self.cancellingCell != nil)
+	{
+		[self.cancellingCell hideCancelButton:YES];
+		self.cancellingCell = nil;
+	}
+}
+
 - (void)handleSwipe:(UISwipeGestureRecognizer *)sender isLeft:(BOOL)isLeft
 {
 	CGPoint location = [sender locationInView:self.tableView];
@@ -450,12 +462,17 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 				{
 					//show cancel button
 					[cell showCancelButton:YES];
+					
+					[self removeCancellingFromCell];
+					
+					self.cancellingCell = cell;
 				}
 			}
 		}
         else
 		{
 			[cell hideCancelButton:YES];
+			self.cancellingCell = nil;
 		}
     }
 }
