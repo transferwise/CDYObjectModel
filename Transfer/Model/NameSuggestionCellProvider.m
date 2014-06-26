@@ -10,6 +10,7 @@
 #import "AddressBookManager.h"
 #import "NameLookupWrapper.h"
 #import "NameSuggestionCell.h"
+#import "MOMstyle.h"
 
 
 @interface NameSuggestionCellProvider ()
@@ -111,18 +112,27 @@
     NameSuggestionCell* cell = (NameSuggestionCell*)[tableView dequeueReusableCellWithIdentifier:@"NameSuggestionCell"];
     
     NameLookupWrapper* wrapper = self.dataSource[indexPath.section][indexPath.row];
+    NSString* text;
     switch (indexPath.section) {
         case 2:
-            cell.nameLabel.text = [wrapper presentableString:NickNameFirst];
+           text = [wrapper presentableString:NickNameFirst];
             break;
         case 1:
-            cell.nameLabel.text = [wrapper presentableString:LastNameFirst];
+            text = [wrapper presentableString:LastNameFirst];
             break;
         case 0:
         default:
-            cell.nameLabel.text = [wrapper presentableString:FirstNameFirst];
+            text = [wrapper presentableString:FirstNameFirst];
             break;
     }
+    
+    NSMutableAttributedString * attributedText= [[NSMutableAttributedString alloc] initWithString:text];
+    NSRange range = [[text lowercaseString] rangeOfString:self.filterString];
+    if(range.location != NSNotFound)
+    {
+        [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"darkText"] range:range];
+    }
+    cell.nameLabel.attributedText = attributedText;
     
     cell.emailLabel.text = wrapper.email;
     cell.tag = wrapper.recordId;
