@@ -110,7 +110,14 @@
         for(NSInteger i = 0; i < count; i++)
         {
             ABRecordRef record = CFArrayGetValueAtIndex(people, i);
-            NameLookupWrapper *wrapper = [[NameLookupWrapper alloc] initWithId:ABRecordGetRecordID(record) firstname:(__bridge NSString *)(ABRecordCopyValue(record, kABPersonFirstNameProperty)) lastName:(__bridge NSString *)(ABRecordCopyValue(record, kABPersonLastNameProperty)) nickName:(__bridge NSString *)(ABRecordCopyValue(record, kABPersonNicknameProperty))];
+            
+            CFTypeRef theProperty = ABRecordCopyValue(record, kABPersonEmailProperty);
+            NSArray *items = (__bridge_transfer NSArray *) ABMultiValueCopyArrayOfAllValues(theProperty);
+            NSString *email = [items lastObject];
+            CFRelease(theProperty);
+            
+            NameLookupWrapper *wrapper = [[NameLookupWrapper alloc] initWithId:ABRecordGetRecordID(record) firstname:(__bridge NSString *)(ABRecordCopyValue(record, kABPersonFirstNameProperty)) lastName:(__bridge NSString *)(ABRecordCopyValue(record, kABPersonLastNameProperty)) email:email nickName:(__bridge NSString *)(ABRecordCopyValue(record, kABPersonNicknameProperty))];
+    
             if(wrapper)
             {
                 [result addObject:wrapper];

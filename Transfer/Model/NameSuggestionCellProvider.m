@@ -9,6 +9,7 @@
 #import "NameSuggestionCellProvider.h"
 #import "AddressBookManager.h"
 #import "NameLookupWrapper.h"
+#import "NameSuggestionCell.h"
 
 
 @interface NameSuggestionCellProvider ()
@@ -16,6 +17,7 @@
 @property (nonatomic, strong) AddressBookManager* addressBookManager;
 @property (nonatomic, strong) NSArray* dataSource;
 @property (copy) NSString* filterString;
+@property (nonatomic, strong) UINib *cellNib;
 
 @end
 
@@ -101,25 +103,35 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SuggestionCell"];
-    if(!cell)
+    if(!self.cellNib)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SuggestionCell"];
+        self.cellNib = [UINib nibWithNibName:@"NameSuggestionCell" bundle:[NSBundle mainBundle]];
+        [tableView registerNib:self.cellNib forCellReuseIdentifier:@"NameSuggestionCell"];
     }
+    NameSuggestionCell* cell = (NameSuggestionCell*)[tableView dequeueReusableCellWithIdentifier:@"NameSuggestionCell"];
     
     NameLookupWrapper* wrapper = self.dataSource[indexPath.section][indexPath.row];
     switch (indexPath.section) {
         case 2:
-            cell.textLabel.text = [wrapper presentableString:NickNameFirst];
+            cell.nameLabel.text = [wrapper presentableString:NickNameFirst];
             break;
         case 1:
-            cell.textLabel.text = [wrapper presentableString:LastNameFirst];
+            cell.nameLabel.text = [wrapper presentableString:LastNameFirst];
             break;
         case 0:
         default:
-            cell.textLabel.text = [wrapper presentableString:FirstNameFirst];
+            cell.nameLabel.text = [wrapper presentableString:FirstNameFirst];
             break;
     }
+    
+    cell.emailLabel.text = wrapper.email;
+    cell.tag = wrapper.recordId;
+    [self.addressBookManager getImageForRecordId:wrapper.recordId completion:^(UIImage *image) {
+        if(cell.tag == wrapper.recordId)
+        {
+            cell.thumbnailImage.image = image;
+        }
+    }];
     return cell;
 }
 

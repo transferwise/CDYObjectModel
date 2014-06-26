@@ -188,6 +188,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     TextFieldSuggestionTable* suggestionsTable = [[TextFieldSuggestionTable alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     suggestionsTable.hidden = YES;
     [self.view addSubview:suggestionsTable];
+    suggestionsTable.rowHeight = 60.0f;
     suggestionsTable.textField = nameCell.entryField;
     suggestionsTable.dataSource = self.cellProvider;
     suggestionsTable.suggestionTableDelegate = self;

@@ -21,9 +21,10 @@ NS_ENUM(NSUInteger, NameOrder)
 @property (nonatomic, readonly) NSString* firstName;
 @property (nonatomic, readonly) NSString* lastName;
 @property (nonatomic, readonly) NSString* nickName;
+@property (nonatomic, readonly) NSString* email;
 @property (nonatomic, readonly) ABRecordID recordId;
 
--(instancetype)initWithId:(ABRecordID)recordId firstname:(NSString*)first lastName:(NSString*)last nickName:(NSString*)nickName;
+-(instancetype)initWithId:(ABRecordID)recordId firstname:(NSString*)first lastName:(NSString*)last email:(NSString*)email nickName:(NSString*)nickName;
 
 -(NSString*)presentableString:(enum NameOrder)order;
 -(NSString*)presentableString;

@@ -13,13 +13,14 @@
 @property (nonatomic, strong) NSString* firstName;
 @property (nonatomic, strong) NSString* lastName;
 @property (nonatomic, strong) NSString* nickName;
+@property (nonatomic, strong) NSString* email;
 @property (nonatomic, assign) ABRecordID recordId;
 
 @end
 
 @implementation NameLookupWrapper
 
--(instancetype)initWithId:(ABRecordID)recordId firstname:(NSString*)first lastName:(NSString*)last nickName:(NSString*)nickName
+-(instancetype)initWithId:(ABRecordID)recordId firstname:(NSString*)first lastName:(NSString*)last email:(NSString*)email nickName:(NSString*)nickName
 {
     if(!recordId)
     {
@@ -33,6 +34,7 @@
         _firstName = first;
         _lastName = last;
         _nickName = nickName;
+        _email = email;
     }
     
     return self;
