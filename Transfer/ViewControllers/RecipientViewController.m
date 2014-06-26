@@ -56,6 +56,7 @@
 #import "NameSuggestionCellProvider.h"
 #import "NameLookupWrapper.h"
 #import "MOMStyle.h"
+#import "UIView+RenderBlur.h"
 
 static NSUInteger const kSenderSection = 0;
 static NSUInteger const kRecipientSection = 1;
@@ -626,9 +627,21 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 -(void)suggestionTableDidStartEditing:(TextFieldSuggestionTable *)table
 {
+    [table removeFromSuperview];
+    UIImageView* background = [[UIImageView alloc] initWithImage:[self.view renderBlurWithTintColor:nil]];
+    background.contentMode = UIViewContentModeBottom;
+    table.backgroundView = background;
+    
+    UIView *colorOverlay = [[UIView alloc] initWithFrame:background.bounds];
+    colorOverlay.bgStyle = @"darkBlue.alpha2";
+    colorOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    [background addSubview:colorOverlay];
+    
+    
     CGRect newFrame = table.frame;
     newFrame.origin = [self.view convertPoint:table.textField.superview.frame.origin fromView:table.textField.superview.superview];
     newFrame.origin.y += table.textField.superview.frame.size.height;
+    newFrame.size.height = self.view.frame.size.height - newFrame.origin.y;
     table.frame = newFrame;
     [self.view addSubview:table];
     
