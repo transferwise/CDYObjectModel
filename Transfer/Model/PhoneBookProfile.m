@@ -32,7 +32,9 @@
 - (id)initWithRecordId:(ABRecordID)recordId {
     ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
     ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook, recordId);
-    return [self initWithRecord:person selectedAddressIdentifier:kABMultiValueInvalidIdentifier];
+    PhoneBookProfile *result = [self initWithRecord:person selectedAddressIdentifier:kABMultiValueInvalidIdentifier];
+    CFRelease(addressBook);
+    return result;
 }
 
 - (id)initWithRecord:(ABRecordRef)person {

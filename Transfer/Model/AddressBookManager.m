@@ -23,30 +23,78 @@
 
 @implementation AddressBookManager
 
--(void)dealloc
-{
-    if (self.addressBook != NULL)
-    {
-        CFRelease(self.addressBook);
-    }
-    
-}
-
 -(void)getNameLookupWithHandler:(NameLookupHandler)handler
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if (self.addressBook == NULL)
-        {
-            [self requestAddressBookWithHandler:^(bool granted, CFErrorRef error) {
-                [self retrieveNames:handler];
-            }];
-        }
-        else
+    [self getAddressBookAndExecuteInBackground:^(BOOL hasAddressBook) {
+        if(hasAddressBook)
         {
             [self retrieveNames:handler];
         }
-    });
+        else
+        {
+            if(handler)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    handler(nil);
+                });
+            }
+        }
+    }];
 }
+
+-(void)getImageForRecordId:(ABRecordID)recordId completion:(void(^)(UIImage* image))completionBlock{
+    if(!completionBlock)
+    {
+        return;
+    }
+    
+    UIImage *cachedResult = [self.dataCache objectForKey:[self thumbnailKeyForRecord:recordId]];
+    if(cachedResult)
+    {
+        completionBlock(cachedResult);
+        return;
+    }
+    [self getAddressBookAndExecuteInBackground:^(BOOL hasAddressBook) {
+        UIImage *result;
+        if (hasAddressBook)
+        {
+            ABRecordRef person = ABAddressBookGetPersonWithRecordID(self.addressBook, recordId);
+            CFDataRef imageData = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail);
+            if(imageData != NULL)
+            {
+                result = [UIImage imageWithData:(__bridge NSData *)(imageData)];
+                CFRelease(imageData);
+                if(result)
+                {
+                    [self.dataCache setObject:result forKey:[self thumbnailKeyForRecord:recordId]];
+                }
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(result);
+        });
+    }];
+}
+
+-(void)getAddressBookAndExecuteInBackground:(void(^)(BOOL hasAddressBook))excecutionBlock
+{
+    if(excecutionBlock)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            if (self.addressBook == NULL)
+            {
+                [self requestAddressBookWithHandler:^(bool granted, CFErrorRef error) {
+                    excecutionBlock(self.addressBook != nil);
+                }];
+            }
+            else
+            {
+                excecutionBlock(YES);
+            }
+        });
+    }
+}
+
 
 -(void)retrieveNames:(NameLookupHandler)handler
 {
@@ -68,6 +116,7 @@
         }
         
         immutableResult = [NSArray arrayWithArray:result];
+        CFRelease(people);
         
         [self.dataCache setObject:immutableResult forKey:cachedNameLookup];
         
@@ -113,12 +162,16 @@ void addressBookExternalChangeCallback (ABAddressBookRef notificationaddressbook
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [[GoogleAnalytics sharedInstance] sendEvent:@"ABpermission" category:@"permission" label:@"declined"];
                     });
-                    CFRelease(self.addressBook);
                     self.addressBook = NULL;
                 }
                 handler(granted,error);
         });
     }
+}
+
+-(NSString*)thumbnailKeyForRecord:(ABRecordID)recordId
+{
+    return [NSString stringWithFormat:@"TN:%d",recordId];
 }
 
 -(NSCache *)dataCache
@@ -131,5 +184,6 @@ void addressBookExternalChangeCallback (ABAddressBookRef notificationaddressbook
     
     return _dataCache;
 }
+
 
 @end

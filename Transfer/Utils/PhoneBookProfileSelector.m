@@ -36,6 +36,7 @@
     }
 
     self.completionHandler = completion;
+    CFRelease(addressBookRef);
     ABPeoplePickerNavigationController *pickerController = [[ABPeoplePickerNavigationController alloc] init];
     [pickerController setDisplayedProperties:@[@(kABPersonFirstNameProperty), @(kABPersonLastNameProperty), @(kABPersonEmailProperty), @(kABPersonBirthdayProperty), @(kABPersonAddressProperty)]];
     pickerController.peoplePickerDelegate = self;
