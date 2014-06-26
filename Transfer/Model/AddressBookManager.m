@@ -18,7 +18,9 @@
 
 @interface AddressBookManager ()
 @property (nonatomic,assign) ABAddressBookRef addressBook;
-@property (nonatomic, strong) NSCache *dataCache;
+
++(NSCache*)sharedDataCache;
+
 @end
 
 @implementation AddressBookManager
@@ -48,7 +50,7 @@
         return;
     }
     
-    UIImage *cachedResult = [self.dataCache objectForKey:[self thumbnailKeyForRecord:recordId]];
+    UIImage *cachedResult = [[AddressBookManager sharedDataCache] objectForKey:[self thumbnailKeyForRecord:recordId]];
     if(cachedResult)
     {
         completionBlock(cachedResult);
@@ -66,7 +68,7 @@
                 CFRelease(imageData);
                 if(result)
                 {
-                    [self.dataCache setObject:result forKey:[self thumbnailKeyForRecord:recordId]];
+                    [[AddressBookManager sharedDataCache] setObject:result forKey:[self thumbnailKeyForRecord:recordId]];
                 }
             }
         }
@@ -99,7 +101,7 @@
 -(void)retrieveNames:(NameLookupHandler)handler
 {
     
-    NSArray *immutableResult = [self.dataCache objectForKey:cachedNameLookup];
+    NSArray *immutableResult = [[AddressBookManager sharedDataCache] objectForKey:cachedNameLookup];
     if(!immutableResult)
     {
         CFArrayRef people =ABAddressBookCopyArrayOfAllPeople(self.addressBook);
@@ -118,7 +120,7 @@
         immutableResult = [NSArray arrayWithArray:result];
         CFRelease(people);
         
-        [self.dataCache setObject:immutableResult forKey:cachedNameLookup];
+        [[AddressBookManager sharedDataCache] setObject:immutableResult forKey:cachedNameLookup];
         
     }
     
@@ -138,9 +140,9 @@ void addressBookExternalChangeCallback (ABAddressBookRef notificationaddressbook
 {
     AddressBookManager *wrappedSelf = (__bridge AddressBookManager*) context;
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-       if ([wrappedSelf.dataCache objectForKey:cachedNameLookup])
+       if ([[AddressBookManager sharedDataCache] objectForKey:cachedNameLookup])
        {
-           [wrappedSelf.dataCache removeObjectForKey:cachedNameLookup];
+           [[AddressBookManager sharedDataCache] removeObjectForKey:cachedNameLookup];
            [wrappedSelf retrieveNames:nil];
        }
   });
@@ -174,15 +176,50 @@ void addressBookExternalChangeCallback (ABAddressBookRef notificationaddressbook
     return [NSString stringWithFormat:@"TN:%d",recordId];
 }
 
--(NSCache *)dataCache
+
+static NSCache* dataCache;
++(NSCache *)sharedDataCache
 {
     //Lazy load data cache
-    if (! _dataCache)
+    if (! dataCache)
     {
-        _dataCache = [[NSCache alloc] init];
+        dataCache = [[NSCache alloc] init];
     }
     
-    return _dataCache;
+    return dataCache;
+}
+
+static ABAddressBookRef mainThreadAddressBook;
++(ABAddressBookRef)sharedMainThreadAddressbook
+{
+    if ([NSThread isMainThread])
+    {
+        if (mainThreadAddressBook == NULL)
+        {
+            ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
+            
+            if(addressBook) {
+                
+                dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+                
+                ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
+                    if(granted)
+                    {
+                        mainThreadAddressBook = addressBook;
+                    }
+                    if (!granted) {
+                        mainThreadAddressBook = NULL;
+                    }
+                    dispatch_semaphore_signal(sema);
+                });
+                
+                dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+
+            }
+        }
+        return mainThreadAddressBook;
+    }
+    return NULL;
 }
 
 

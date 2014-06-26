@@ -100,7 +100,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 @property (nonatomic, strong) ProfileSelectionView *profileSelectionView;
 
-@property (nonatomic, strong) NameSuggestionCellProvider* cellProvider;
+@property (nonatomic, strong) NameSuggestionCellProvider *cellProvider;
+@property (nonatomic, strong) PhoneBookProfile *lastSelectedProfile;
+
 
 - (IBAction)addButtonPressed:(id)sender;
 
@@ -282,8 +284,19 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 
 - (void)loadDataFromProfile:(PhoneBookProfile *)profile {
+    
+    self.lastSelectedProfile = profile;
     self.nameCell.value = profile.fullName;
     self.emailCell.value = profile.email;
+    
+    __weak typeof(self) weakSelf = self;
+    [profile loadThumbnail:^(PhoneBookProfile* profile, UIImage *image) {
+        if ([weakSelf.lastSelectedProfile isEqual:profile])
+        {
+            weakSelf.nameCell.thumbnailImage.image = image;
+        }
+    }];
+    
 }
 
 - (void)didSelectRecipient:(Recipient *)recipient {

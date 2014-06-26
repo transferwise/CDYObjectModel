@@ -10,6 +10,7 @@
 #import "PhoneBookProfile.h"
 #import "Constants.h"
 #import "PhoneBookAddress.h"
+#import "AddressBookManager.h"
 
 @interface PhoneBookProfile ()
 
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) PhoneBookAddress *address;
 @property (nonatomic, copy) NSString *organisation;
 @property (nonatomic, assign) ABMultiValueIdentifier selectedAddressIdentifier;
+@property (nonatomic, strong) AddressBookManager* addressBookManager;
 
 @end
 
@@ -30,11 +32,18 @@
 }
 
 - (id)initWithRecordId:(ABRecordID)recordId {
-    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
-    ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook, recordId);
-    PhoneBookProfile *result = [self initWithRecord:person selectedAddressIdentifier:kABMultiValueInvalidIdentifier];
-    CFRelease(addressBook);
-    return result;
+    ABAddressBookRef addressBook = [AddressBookManager sharedMainThreadAddressbook];
+    if (addressBook)
+    {
+        ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook, recordId);
+        self = [self initWithRecord:person selectedAddressIdentifier:kABMultiValueInvalidIdentifier];
+        return self;
+    }
+    else
+    {
+        self = nil;
+        return self;
+    }
 }
 
 - (id)initWithRecord:(ABRecordRef)person {
@@ -73,6 +82,23 @@
 
 }
 
+-(void)loadThumbnail:(void (^)(PhoneBookProfile* profile, UIImage *image))completionBlock
+{
+    if(!self.addressBookManager)
+    {
+        self.addressBookManager = [[AddressBookManager alloc] init];
+    }
+    ABRecordID recordId = ABRecordGetRecordID(_record);
+    __weak typeof(self) weakSelf = self;
+    [self.addressBookManager getImageForRecordId:recordId completion:^(UIImage *image)
+    {
+        if(completionBlock)
+        {
+            completionBlock(weakSelf,image);
+        }
+    }];
+}
+
 - (PhoneBookAddress *)addressWithIdentifier:(ABMultiValueIdentifier)identifier {
     CFTypeRef theProperty = ABRecordCopyValue(_record, kABPersonAddressProperty);
     NSDictionary *items = (__bridge_transfer NSDictionary *) ABMultiValueCopyValueAtIndex(theProperty, self.selectedAddressIdentifier);
@@ -105,9 +131,13 @@
 
 - (NSArray *)arrayForProperty:(ABPropertyID)anID {
     CFTypeRef theProperty = ABRecordCopyValue(_record, anID);
-    NSArray *items = (__bridge_transfer NSArray *) ABMultiValueCopyArrayOfAllValues(theProperty);
-    CFRelease(theProperty);
-    return items;
+    if(theProperty != NULL)
+    {
+        NSArray *items = (__bridge_transfer NSArray *) ABMultiValueCopyArrayOfAllValues(theProperty);
+        CFRelease(theProperty);
+        return items;
+    }
+    return nil;
 }
 
 - (NSString *)description {

@@ -19,5 +19,6 @@ typedef void (^RecipientSelectionBlock)(Recipient *recipient);
 
 @property (nonatomic, strong) NSFetchedResultsController *autoCompleteRecipients;
 @property (nonatomic, copy) RecipientSelectionBlock selectionHandler;
+@property (weak, nonatomic) IBOutlet UIImageView *thumbnailImage;
 
 @end
