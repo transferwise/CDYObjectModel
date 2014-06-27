@@ -88,6 +88,11 @@
     return nil;
 }
 
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return nil;
+}
+
 
 #pragma mark - Table view data source
 
