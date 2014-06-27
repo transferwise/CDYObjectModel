@@ -31,6 +31,11 @@
 				<key>alpha</key>
 				<real>0.97</real>
 			</dict>
+			<key>alpha4</key>
+			<dict>
+				<key>alpha</key>
+				<real>0.5</real>
+			</dict>
 			<key>blue</key>
 			<dict>
 				<key>color</key>

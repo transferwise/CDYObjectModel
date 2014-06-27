@@ -30,7 +30,7 @@
 
 @interface TextFieldSuggestionTable : UITableView
 
-@property (nonatomic,weak) id<SuggestionTableDelegate> suggestionTableDelegate;
-@property (nonatomic, weak) id<SuggestionTableCellProvider> dataSource;
-@property (nonatomic, strong) UITextField *textField;
+@property (nonatomic,weak) IBOutlet id<SuggestionTableDelegate> suggestionTableDelegate;
+@property (nonatomic, weak) IBOutlet id<SuggestionTableCellProvider> dataSource;
+@property (nonatomic, strong) IBOutlet UITextField *textField;
 @end

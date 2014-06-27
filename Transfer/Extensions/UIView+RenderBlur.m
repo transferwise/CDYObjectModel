@@ -33,7 +33,7 @@
     UIGraphicsEndImageContext();
     
     //Blur
-    result = [self blurredImage:result withRadius:10.0f iterations:4 tintColor:tint];
+    result = [self blurredImage:result withRadius:6.0f iterations:4 tintColor:tint];
     
     //Scale back to original size
     CGSize newSize = CGSizeMake(self.bounds.size.width,self.bounds.size.height);

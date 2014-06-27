@@ -101,6 +101,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 @property (nonatomic, strong) ProfileSelectionView *profileSelectionView;
 
+@property (nonatomic, strong) IBOutlet TextFieldSuggestionTable* suggestionTable;
 @property (nonatomic, strong) NameSuggestionCellProvider *cellProvider;
 @property (nonatomic, strong) PhoneBookProfile *lastSelectedProfile;
 
@@ -186,14 +187,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     
     self.cellProvider = [[NameSuggestionCellProvider alloc] init];
     
-    TextFieldSuggestionTable* suggestionsTable = [[TextFieldSuggestionTable alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    suggestionsTable.hidden = YES;
-    [self.view addSubview:suggestionsTable];
-    suggestionsTable.rowHeight = 60.0f;
-    suggestionsTable.textField = nameCell.entryField;
-    suggestionsTable.dataSource = self.cellProvider;
-    suggestionsTable.suggestionTableDelegate = self;
-    suggestionsTable.backgroundColor = [UIColor colorFromStyle:@"lightGray.alpha2"];
+    self.suggestionTable.hidden = YES;
+    [self.view addSubview:self.suggestionTable];
+    self.suggestionTable.textField = nameCell.entryField;
+    self.suggestionTable.dataSource = self.cellProvider;
+    
     
 }
 
@@ -633,7 +631,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     table.backgroundView = background;
     
     UIView *colorOverlay = [[UIView alloc] initWithFrame:background.bounds];
-    colorOverlay.bgStyle = @"darkBlue.alpha2";
+    colorOverlay.bgStyle = @"darkBlue.alpha4";
     colorOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     [background addSubview:colorOverlay];
     
