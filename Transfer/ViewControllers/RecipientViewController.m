@@ -638,7 +638,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     
     CGRect newFrame = table.frame;
     newFrame.origin = [self.view convertPoint:table.textField.superview.frame.origin fromView:table.textField.superview.superview];
-    newFrame.origin.y += table.textField.superview.frame.size.height;
+    newFrame.origin.y += table.textField.superview.frame.size.height + (1.0f/[[UIScreen mainScreen] scale]);
     newFrame.size.height = self.view.frame.size.height - newFrame.origin.y;
     table.frame = newFrame;
     [self.view addSubview:table];
