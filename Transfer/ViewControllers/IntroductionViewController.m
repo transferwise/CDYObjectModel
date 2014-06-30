@@ -86,7 +86,7 @@ static NSUInteger const kRowYouSend = 0;
 
     [self setYouSendCell:[[NSBundle mainBundle] loadNibNamed:@"MoneyEntryCell" owner:self options:nil][0]];
     [self.youSendCell setTitle:NSLocalizedString(@"money.entry.you.send.title", nil)];
-    [self.youSendCell setAmount:@"1000" currency:nil];
+    [self.youSendCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:nil];
     [self.youSendCell.moneyField setReturnKeyType:UIReturnKeyDone];
     if (!IOS_7) {
         [self.youSendCell setRoundedCorner:UIRectCornerTopRight];
