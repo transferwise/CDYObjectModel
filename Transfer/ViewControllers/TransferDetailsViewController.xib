@@ -23,12 +23,12 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="KMX-bp-X1m">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                        <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="KMX-bp-X1m" customClass="IntrinsicSizeUIView">
+                            <rect key="frame" x="0.0" y="30" width="320" height="431"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="jJD-by-0Jd" userLabel="Header View" customClass="TransferDetialsHeaderView">
-                                    <rect key="frame" x="0.0" y="30" width="320" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bB-ke-DbF" userLabel="Label - Your Transfer">
@@ -89,7 +89,7 @@
                                     </connections>
                                 </view>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="8dh-F6-i1O">
-                                    <rect key="frame" x="120" y="100" width="80" height="80"/>
+                                    <rect key="frame" x="120" y="70" width="80" height="80"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="4pe-wN-NIZ"/>
@@ -97,7 +97,7 @@
                                     </constraints>
                                 </imageView>
                                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="gxD-Ss-q8P" customClass="TransferDetailsAmountsView">
-                                    <rect key="frame" x="0.0" y="200" width="320" height="50"/>
+                                    <rect key="frame" x="0.0" y="170" width="320" height="50"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jG-a7-WpV" userLabel="Label - Status">
@@ -167,11 +167,11 @@
                                     </connections>
                                 </view>
                                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="249" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="anS-pb-BWk" customClass="TransferDetialsRecipientView">
-                                    <rect key="frame" x="0.0" y="250" width="320" height="119"/>
+                                    <rect key="frame" x="0.0" y="220" width="320" height="137"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYu-Er-01d" userLabel="View - Background">
-                                            <rect key="frame" x="0.0" y="87" width="320" height="32"/>
+                                            <rect key="frame" x="0.0" y="87" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             <userDefinedRuntimeAttributes>
@@ -209,7 +209,7 @@
                                         <constraint firstAttribute="trailing" secondItem="NqY-J0-ze8" secondAttribute="trailing" id="19R-fA-llk"/>
                                         <constraint firstItem="fYu-Er-01d" firstAttribute="leading" secondItem="anS-pb-BWk" secondAttribute="leading" id="6qc-h0-fpE"/>
                                         <constraint firstItem="NqY-J0-ze8" firstAttribute="top" secondItem="JWj-M3-8IP" secondAttribute="bottom" constant="17" id="FFR-i5-66r"/>
-                                        <constraint firstAttribute="bottom" secondItem="NqY-J0-ze8" secondAttribute="bottom" constant="2" id="J9T-9Y-VPP"/>
+                                        <constraint firstAttribute="bottom" secondItem="NqY-J0-ze8" secondAttribute="bottom" constant="20" id="J9T-9Y-VPP"/>
                                         <constraint firstItem="NqY-J0-ze8" firstAttribute="leading" secondItem="anS-pb-BWk" secondAttribute="leading" id="TW8-Nm-t2E"/>
                                         <constraint firstAttribute="centerX" secondItem="NqY-J0-ze8" secondAttribute="centerX" id="WQR-I4-SJR"/>
                                         <constraint firstAttribute="trailing" secondItem="fYu-Er-01d" secondAttribute="trailing" id="WyD-ZK-6At"/>
@@ -237,9 +237,9 @@
                                 <constraint firstItem="gxD-Ss-q8P" firstAttribute="top" secondItem="8dh-F6-i1O" secondAttribute="bottom" constant="20" id="HqW-9n-BHe"/>
                                 <constraint firstAttribute="trailing" secondItem="anS-pb-BWk" secondAttribute="trailing" id="KGH-or-Dzg"/>
                                 <constraint firstAttribute="trailing" secondItem="gxD-Ss-q8P" secondAttribute="trailing" id="Mhz-vx-EaI"/>
-                                <constraint firstItem="jJD-by-0Jd" firstAttribute="top" secondItem="KMX-bp-X1m" secondAttribute="top" constant="30" id="XQd-3K-CXk"/>
+                                <constraint firstItem="jJD-by-0Jd" firstAttribute="top" secondItem="KMX-bp-X1m" secondAttribute="top" id="XQd-3K-CXk"/>
                                 <constraint firstItem="jJD-by-0Jd" firstAttribute="leading" secondItem="KMX-bp-X1m" secondAttribute="leading" id="btx-Mf-5qX"/>
-                                <constraint firstAttribute="height" priority="800" constant="431" id="ho0-V8-Pav"/>
+                                <constraint firstAttribute="height" priority="800" constant="431" placeholder="YES" id="ho0-V8-Pav"/>
                                 <constraint firstItem="gxD-Ss-q8P" firstAttribute="leading" secondItem="KMX-bp-X1m" secondAttribute="leading" id="nrB-yv-A6X"/>
                                 <constraint firstItem="8dh-F6-i1O" firstAttribute="top" secondItem="jJD-by-0Jd" secondAttribute="bottom" constant="20" id="sL3-kh-Lzw"/>
                             </constraints>
@@ -247,7 +247,7 @@
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="KMX-bp-X1m" secondAttribute="bottom" id="ZLW-Xv-KCo"/>
-                        <constraint firstItem="KMX-bp-X1m" firstAttribute="top" secondItem="RC5-kk-Kyq" secondAttribute="top" id="gXh-Od-3hE"/>
+                        <constraint firstItem="KMX-bp-X1m" firstAttribute="top" secondItem="RC5-kk-Kyq" secondAttribute="top" constant="30" id="gXh-Od-3hE"/>
                         <constraint firstItem="KMX-bp-X1m" firstAttribute="leading" secondItem="RC5-kk-Kyq" secondAttribute="leading" id="oud-9g-CO3"/>
                         <constraint firstAttribute="trailing" secondItem="KMX-bp-X1m" secondAttribute="trailing" id="pPo-ZL-8Da"/>
                     </constraints>
