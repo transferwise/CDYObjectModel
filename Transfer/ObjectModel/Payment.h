@@ -14,7 +14,8 @@ typedef NS_ENUM(NSUInteger, PaymentStatus) {
     PaymentStatusRefunded,
     PaymentStatusSubmitted,
     PaymentStatusTransferred,
-    PaymentStatusReceivedWaitingRecipient
+    PaymentStatusReceivedWaitingRecipient,
+    PaymentStatusUserHasPaid //Status when this device has a record of the user having pressed the "I have paid" button.
 };
 
 @interface Payment : _Payment

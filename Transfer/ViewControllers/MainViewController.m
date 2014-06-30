@@ -23,7 +23,7 @@
 
 @interface MainViewController () <UINavigationControllerDelegate, UITabBarControllerDelegate>
 
-@property (nonatomic, strong) UITabBarController *tabsController;
+@property (nonatomic, strong) TabViewController *tabController;
 @property (nonatomic, strong) UIView *revealTapView;
 @property (nonatomic, strong) UIViewController *transactionsController;
 @property (nonatomic, assign) BOOL launchTableViewGamAdjustmentDone;
@@ -121,6 +121,8 @@
     }
     
     [tabController selectItem:transactionsItem];
+    
+    self.tabController = tabController;
 
     [self setViewControllers:@[tabController]];
 
@@ -144,8 +146,6 @@
         return;
     }
 
-    [self.tabsController setSelectedIndex:1];
-    [self.tabsController setSelectedIndex:0];
     [self setLaunchTableViewGamAdjustmentDone:YES];
 
     if (![Credentials userLoggedIn] && !self.shown && ![self.objectModel hasIntroBeenShown]) {
@@ -229,21 +229,19 @@
     }
 }
 
--(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+-(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)vieTwController animated:(BOOL)animated
 {
     
 }
 
 - (void)moveToPaymentsList {
-    self.tabsController.selectedViewController = self.transactionsController;
+    [self.tabController selectIndex:IPAD?1:0];
     [self popToRootViewControllerAnimated:YES];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)moveToPaymentView {
-    self.tabsController.selectedViewController = self.paymentController;
+    [self.tabController selectIndex:IPAD?0:2];
     [self popToRootViewControllerAnimated:YES];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {

@@ -23,6 +23,7 @@ const struct PaymentAttributes PaymentAttributes = {
 };
 
 const struct PaymentRelationships PaymentRelationships = {
+	.paymentMadeIndicator = @"paymentMadeIndicator",
 	.recipient = @"recipient",
 	.refundRecipient = @"refundRecipient",
 	.settlementRecipient = @"settlementRecipient",
@@ -298,6 +299,10 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 
 
 
+
+@dynamic paymentMadeIndicator;
+
+	
 
 @dynamic recipient;
 
