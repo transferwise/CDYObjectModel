@@ -12,7 +12,7 @@
 
 -(void)commonSetup
 {
-	[super configureWithTitleColor:@"white" titleFont:@"medium.@16" color:@"lightBlue3" highlightColor:@"blue"];
+	[super configureWithTitleColor:@"white" titleFont:@"medium.@16" color:@"lightBlue3" highlightColor:@"darkBlueHighlighted"];
 }
 
 @end
