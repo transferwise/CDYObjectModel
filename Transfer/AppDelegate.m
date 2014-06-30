@@ -28,6 +28,7 @@
 #import "AnalyticsCoordinator.h"
 #import "TransferMixpanel.h"
 #import "MOMStyle.h"
+#import "ConnectionAwareViewController.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -117,8 +118,9 @@
     MainViewController *frontViewController = [[MainViewController alloc] init];
     [frontViewController setObjectModel:model];
     
+    ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:frontViewController];
 
-	self.window.rootViewController = frontViewController;
+	self.window.rootViewController = root;
 	[self.window makeKeyAndVisible];
 	return YES;
 }

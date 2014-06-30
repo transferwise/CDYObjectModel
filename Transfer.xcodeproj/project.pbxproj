@@ -86,6 +86,8 @@
 		38B0931A1951FA8300315BE4 /* SettlementRecipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B093161951FA8300315BE4 /* SettlementRecipient.m */; };
 		38B0931D1951FB6000315BE4 /* ProgressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B0931C1951FB6000315BE4 /* ProgressButton.m */; };
 		38B0931E1951FB6000315BE4 /* ProgressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B0931C1951FB6000315BE4 /* ProgressButton.m */; };
+		38B1C5D6195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */; };
+		38B1C5D7195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */; };
 		38BD98A3195C5973009F9B4A /* NameSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */; };
 		38BD98A4195C5973009F9B4A /* NameSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */; };
 		38BD98A5195C5973009F9B4A /* NameSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */; };
@@ -734,6 +736,8 @@
 		38B093161951FA8300315BE4 /* SettlementRecipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettlementRecipient.m; sourceTree = "<group>"; };
 		38B0931B1951FB6000315BE4 /* ProgressButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressButton.h; sourceTree = "<group>"; };
 		38B0931C1951FB6000315BE4 /* ProgressButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressButton.m; sourceTree = "<group>"; };
+		38B1C5D4195DBA6400BEE66E /* ConnectionAwareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionAwareViewController.h; sourceTree = "<group>"; };
+		38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionAwareViewController.m; sourceTree = "<group>"; };
 		38BD98A0195C5973009F9B4A /* NameSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSuggestionCell.h; sourceTree = "<group>"; };
 		38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameSuggestionCell.m; sourceTree = "<group>"; };
 		38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NameSuggestionCell.xib; sourceTree = "<group>"; };
@@ -1988,6 +1992,8 @@
 				3831AA35194B31A200B3EE5C /* WhyViewController.m */,
 				3831AA36194B31A200B3EE5C /* WhyViewController.xib */,
 				3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */,
+				38B1C5D4195DBA6400BEE66E /* ConnectionAwareViewController.h */,
+				38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -2754,6 +2760,7 @@
 				EA31A18017DDB29B00F937F7 /* RoundedCellBackgroundView.m in Sources */,
 				EA31A18117DDB29B00F937F7 /* ProfileEditViewController.m in Sources */,
 				EA31A18217DDB29B00F937F7 /* ProfileSource.m in Sources */,
+				38B1C5D7195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */,
 				EA31A18317DDB29B00F937F7 /* PersonalProfileSource.m in Sources */,
 				EA31A18417DDB29B00F937F7 /* BusinessProfileSource.m in Sources */,
 				EA31A18517DDB29B00F937F7 /* BusinessProfileCommitter.m in Sources */,
@@ -3018,6 +3025,7 @@
 				EA225C8B178EB297009D6B83 /* ObjectModel+Recipients.m in Sources */,
 				EA225C8E178EB343009D6B83 /* _RecipientType.m in Sources */,
 				EA225C91178EB350009D6B83 /* RecipientType.m in Sources */,
+				38B1C5D6195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */,
 				EA225C94178EB36B009D6B83 /* ObjectModel+RecipientTypes.m in Sources */,
 				EA225C97178EB3D3009D6B83 /* _RecipientTypeField.m in Sources */,
 				EA225C9A178EB3DA009D6B83 /* RecipientTypeField.m in Sources */,
