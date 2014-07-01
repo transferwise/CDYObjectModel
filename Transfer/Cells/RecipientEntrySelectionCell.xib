@@ -30,12 +30,12 @@
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="VK7-7g-Sgm">
-                        <rect key="frame" x="268" y="13" width="32" height="32"/>
+                        <rect key="frame" x="273" y="13" width="32" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.87450987099999999" green="0.89019614459999996" blue="0.8980392814" alpha="1" colorSpace="deviceRGB"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ThumbnailMask" id="k1M-dQ-zQL">
-                        <rect key="frame" x="268" y="13" width="32" height="32"/>
+                        <rect key="frame" x="273" y="13" width="32" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     </imageView>
                 </subviews>
@@ -50,7 +50,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Down.png" width="14" height="12"/>
+        <image name="Down.png" width="32" height="32"/>
         <image name="ThumbnailMask" width="32" height="32"/>
     </resources>
 </document>

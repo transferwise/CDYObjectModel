@@ -62,13 +62,14 @@
     
     
     CGSize size = self.bounds.size;
-    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    CGFloat scale = [[UIScreen mainScreen] scale];
+    CGRect rect = CGRectMake(0, 0, size.width * scale, size.height * scale);
 
     CGRect progressRect = rect;
-    progressRect.size.width = round(self.progress * size.width);
+    progressRect.size.width = round(self.progress * size.width * scale );
     
     CGRect remainingRect = rect;
-    remainingRect.size.width = size.width - progressRect.size.width;
+    remainingRect.size.width = size.width * scale - progressRect.size.width ;
     remainingRect.origin.x = progressRect.size.width;
 
     
