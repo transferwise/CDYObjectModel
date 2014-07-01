@@ -170,13 +170,28 @@
                                     <rect key="frame" x="0.0" y="220" width="320" height="137"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYu-Er-01d" userLabel="View - Background">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYu-Er-01d" userLabel="View - BackgroundContainer">
                                             <rect key="frame" x="0.0" y="87" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DBs-2e-gDp" userLabel="View - BackgroundColor">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="300" id="T9h-2i-dKC"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="blue"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="blue"/>
-                                            </userDefinedRuntimeAttributes>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="DBs-2e-gDp" secondAttribute="trailing" id="5bX-d6-uYp"/>
+                                                <constraint firstItem="DBs-2e-gDp" firstAttribute="top" secondItem="fYu-Er-01d" secondAttribute="top" id="AQT-6O-2PQ"/>
+                                                <constraint firstItem="DBs-2e-gDp" firstAttribute="leading" secondItem="fYu-Er-01d" secondAttribute="leading" id="IOx-2P-NbH"/>
+                                            </constraints>
                                         </view>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpr-jT-3Kg" userLabel="Label - Account Header">
                                             <rect key="frame" x="147" y="60" width="26" height="12"/>

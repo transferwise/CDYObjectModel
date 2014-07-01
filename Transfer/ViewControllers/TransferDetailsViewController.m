@@ -65,17 +65,16 @@
     
 	UIImage *icon;
     switch ([self.payment status]) {
+        case PaymentStatusRefunded:
         case PaymentStatusCancelled:
             icon = [UIImage imageNamed:@"transfers_status_cancelled"];
+            self.supportButton.alpha = 0.97;
             break;
         case PaymentStatusMatched:
 			icon = [UIImage imageNamed:@"transfers_status_converting"];
             break;
         case PaymentStatusReceived:
             icon = [UIImage imageNamed:@"transfers_status_converting"];
-            break;
-        case PaymentStatusRefunded:
-            icon = [UIImage imageNamed:@"transfers_status_cancelled"];
             break;
         case PaymentStatusReceivedWaitingRecipient:
             icon = [UIImage imageNamed:@"transfers_status_waiting"];

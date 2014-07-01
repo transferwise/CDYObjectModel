@@ -35,7 +35,7 @@
 	[self.accountHeaderLabel setText:[NSString stringWithFormat:NSLocalizedString(@"transferdetails.controller.transfer.account.to", nil), [recipient name]]];
 	NSString* email = [recipient email];
 	
-	if(IPAD && email != nil && email.length > 0)
+	if (email.length > 0)
 	{
 		[self.detailsLabel setText:[NSString stringWithFormat:NSLocalizedString(@"transferdetails.controller.transfer.account.sent", nil), [recipient presentationStringFromAllValues], [recipient name], [recipient email]]];
 	}
