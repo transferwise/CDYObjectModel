@@ -12,14 +12,13 @@
 #import "GradientView.h"
 #import "MOMStyle.h"
 
-#define numberOfClouds 4
-
 @interface ConnectionAwareViewController ()
 
 @property (nonatomic, weak) UIViewController *wrappedViewController;
 @property (nonatomic, strong) Reachability *reachability;
 @property (nonatomic, weak) UIView *connectionAlert;
 @property (nonatomic, strong) NSArray* clouds;
+@property (nonatomic, assign) NSUInteger numberOfClouds;
 
 @end
 
@@ -31,6 +30,7 @@
     if (self) {
         [self addChildViewController:wrappedViewController];
         _wrappedViewController = wrappedViewController;
+        _numberOfClouds = IPAD?7:4;
     }
     return self;
 }
@@ -45,7 +45,9 @@
     self.wrappedViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.wrappedViewController.view];
     
-    self.reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    NSURL* url = [NSURL URLWithString:TRWServerAddress];
+    self.reachability = [Reachability reachabilityWithHostname:[url host]];
     __weak typeof(self) weakSelf = self;
     self.reachability.reachableBlock = ^(Reachability*reach)
     {
@@ -69,16 +71,16 @@
 {
     if(self.clouds)
     {
-        NSTimeInterval duration = (IPAD?30.0f:30.0f) + pow((3.3f),index);
+        NSTimeInterval duration = (IPAD?40.0f:30.0f) + pow((3.3f),index);
         
         UIView* cloud = self.clouds[index];
         CGRect startFrame = cloud.frame;
         startFrame.origin.x = ((self.connectionAlert.bounds.size.width + startFrame.size.width) * timeOffset ) - startFrame.size.width;
-        startFrame.origin.y = 30.0f + roundf((self.connectionAlert.bounds.size.height - 50.0f)/numberOfClouds*index);
+        startFrame.origin.y = 30.0f + roundf((self.connectionAlert.bounds.size.height - 50.0f)/self.numberOfClouds*index);
         cloud.frame = startFrame;
         [UIView animateWithDuration:duration - duration*timeOffset delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
             CGRect endFrame = cloud.frame;
-            endFrame.origin.x = self.view.bounds.size.width;
+            endFrame.origin.x = self.connectionAlert.bounds.size.width;
             cloud.frame = endFrame;
         } completion:^(BOOL finished) {
             if(finished)
@@ -105,9 +107,9 @@
     gradientView.center = center;
     self.connectionAlert = gradientView;
     
-    NSMutableArray* clouds = [NSMutableArray arrayWithCapacity:numberOfClouds];
+    NSMutableArray* clouds = [NSMutableArray arrayWithCapacity:self.numberOfClouds];
     self.clouds = clouds;
-    for(int i=0 ; i<numberOfClouds ;i++)
+    for(int i=0 ; i<self.numberOfClouds ;i++)
     {
         UIImageView* cloud = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Cloud"]];
         if (i%2 != 0)
