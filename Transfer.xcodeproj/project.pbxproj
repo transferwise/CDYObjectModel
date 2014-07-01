@@ -59,6 +59,10 @@
 		3831AA3B194B31A200B3EE5C /* WhyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA36194B31A200B3EE5C /* WhyViewController.xib */; };
 		3831AA3C194B31A200B3EE5C /* WhyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA36194B31A200B3EE5C /* WhyViewController.xib */; };
 		3831AA41194B5A8B00B3EE5C /* WhyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */; };
+		388D6AB71961AF5700DCFEA6 /* _PaymentMadeIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 388D6AB61961AF5700DCFEA6 /* _PaymentMadeIndicator.m */; };
+		388D6AB81961AF5700DCFEA6 /* _PaymentMadeIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 388D6AB61961AF5700DCFEA6 /* _PaymentMadeIndicator.m */; };
+		388D6ABB1961AF7100DCFEA6 /* PaymentMadeIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 388D6ABA1961AF7100DCFEA6 /* PaymentMadeIndicator.m */; };
+		388D6ABC1961AF7100DCFEA6 /* PaymentMadeIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 388D6ABA1961AF7100DCFEA6 /* PaymentMadeIndicator.m */; };
 		388F09FB1934A1BB00DBD93D /* UIView+RenderBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */; };
 		388F09FC1934A1C000DBD93D /* UIView+RenderBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */; };
 		388F09FF1936434A00DBD93D /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
@@ -709,6 +713,11 @@
 		3831AA35194B31A200B3EE5C /* WhyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhyViewController.m; sourceTree = "<group>"; };
 		3831AA36194B31A200B3EE5C /* WhyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhyViewController.xib; sourceTree = "<group>"; };
 		3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WhyViewController~ipad.xib"; sourceTree = "<group>"; };
+		388D6AB41961AE8900DCFEA6 /* Transfer 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Transfer 2.xcdatamodel"; sourceTree = "<group>"; };
+		388D6AB51961AF5700DCFEA6 /* _PaymentMadeIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _PaymentMadeIndicator.h; sourceTree = "<group>"; };
+		388D6AB61961AF5700DCFEA6 /* _PaymentMadeIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PaymentMadeIndicator.m; sourceTree = "<group>"; };
+		388D6AB91961AF7100DCFEA6 /* PaymentMadeIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentMadeIndicator.h; sourceTree = "<group>"; };
+		388D6ABA1961AF7100DCFEA6 /* PaymentMadeIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMadeIndicator.m; sourceTree = "<group>"; };
 		388F09F91934A1BB00DBD93D /* UIView+RenderBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RenderBlur.h"; sourceTree = "<group>"; };
 		388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RenderBlur.m"; sourceTree = "<group>"; };
 		388F09FD1936434A00DBD93D /* InsetRespectingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsetRespectingButton.h; sourceTree = "<group>"; };
@@ -2091,6 +2100,8 @@
 				EA225CC1178EEC77009D6B83 /* PairTargetCurrency.m */,
 				EA225C69178E9C93009D6B83 /* Payment.h */,
 				EA225C6A178E9C93009D6B83 /* Payment.m */,
+				388D6AB91961AF7100DCFEA6 /* PaymentMadeIndicator.h */,
+				388D6ABA1961AF7100DCFEA6 /* PaymentMadeIndicator.m */,
 				EA1E4E23179E713100F8D932 /* PendingPayment.h */,
 				EA1E4E24179E713100F8D932 /* PendingPayment.m */,
 				EA2379F61793E04400166361 /* PersonalProfile.h */,
@@ -2129,6 +2140,8 @@
 				EA225CBE178EEC6F009D6B83 /* _PairTargetCurrency.m */,
 				EA225C65178E9C90009D6B83 /* _Payment.h */,
 				EA225C66178E9C90009D6B83 /* _Payment.m */,
+				388D6AB51961AF5700DCFEA6 /* _PaymentMadeIndicator.h */,
+				388D6AB61961AF5700DCFEA6 /* _PaymentMadeIndicator.m */,
 				EA1E4E1F179E712A00F8D932 /* _PendingPayment.h */,
 				EA1E4E20179E712A00F8D932 /* _PendingPayment.m */,
 				EA2379EE1793E02F00166361 /* _PersonalProfile.h */,
@@ -2649,6 +2662,7 @@
 				EA31A12F17DDB29B00F937F7 /* MoneyEntryCell.m in Sources */,
 				EA31A13017DDB29B00F937F7 /* LoginViewController.m in Sources */,
 				EA31A13117DDB29B00F937F7 /* UIColor+Theme.m in Sources */,
+				388D6AB81961AF5700DCFEA6 /* _PaymentMadeIndicator.m in Sources */,
 				380021DC192CC89B009B1D53 /* UIColor+MOMStyle.m in Sources */,
 				EA31A13217DDB29B00F937F7 /* UIView+Loading.m in Sources */,
 				EA31A13317DDB29B00F937F7 /* TextEntryCell.m in Sources */,
@@ -2751,6 +2765,7 @@
 				EA31A17E17DDB29B00F937F7 /* ClaimAccountViewController.m in Sources */,
 				EA31A17F17DDB29B00F937F7 /* ClaimAccountOperation.m in Sources */,
 				EA34773C180D2C7500104417 /* Setting.m in Sources */,
+				388D6ABC1961AF7100DCFEA6 /* PaymentMadeIndicator.m in Sources */,
 				EA31A18017DDB29B00F937F7 /* RoundedCellBackgroundView.m in Sources */,
 				EA31A18117DDB29B00F937F7 /* ProfileEditViewController.m in Sources */,
 				EA31A18217DDB29B00F937F7 /* ProfileSource.m in Sources */,
@@ -2904,6 +2919,7 @@
 				EAB7215F171FCAAC00DE29F5 /* SettingsTitleCell.m in Sources */,
 				EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */,
 				EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */,
+				388D6ABB1961AF7100DCFEA6 /* PaymentMadeIndicator.m in Sources */,
 				380021C8192CC531009B1D53 /* MOMBaseStyle.m in Sources */,
 				EAEA6257172011C500A96770 /* CalculationResult.m in Sources */,
 				380021C6192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */,
@@ -2926,6 +2942,7 @@
 				EA88E690172F97E20021492C /* DateEntryCell.m in Sources */,
 				EA88E693172F97F50021492C /* Constants.m in Sources */,
 				EA88E697172F980A0021492C /* SignUpViewController.m in Sources */,
+				388D6AB71961AF5700DCFEA6 /* _PaymentMadeIndicator.m in Sources */,
 				EA35C76C1732790D005602F7 /* PaymentsOperation.m in Sources */,
 				EA35C77017327973005602F7 /* PaymentCell.m in Sources */,
 				EA34773F180D2CE700104417 /* ObjectModel+Settings.m in Sources */,
@@ -3404,9 +3421,10 @@
 		EAAA1485171BC911005B9430 /* Transfer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				388D6AB41961AE8900DCFEA6 /* Transfer 2.xcdatamodel */,
 				EAAA1486171BC911005B9430 /* Transfer.xcdatamodel */,
 			);
-			currentVersion = EAAA1486171BC911005B9430 /* Transfer.xcdatamodel */;
+			currentVersion = 388D6AB41961AE8900DCFEA6 /* Transfer 2.xcdatamodel */;
 			name = Transfer.xcdatamodeld;
 			path = ../Transfer.xcdatamodeld;
 			sourceTree = "<group>";
