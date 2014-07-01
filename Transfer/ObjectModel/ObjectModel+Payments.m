@@ -125,6 +125,7 @@
     {
         indicator = [PaymentMadeIndicator insertInManagedObjectContext:self.managedObjectContext];
         indicator.paymentRemoteId = payment.remoteId;
+        payment.paymentMadeIndicator = indicator;
     }
 }
 

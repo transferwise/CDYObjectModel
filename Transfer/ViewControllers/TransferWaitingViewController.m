@@ -8,6 +8,8 @@
 
 #import "TransferWaitingViewController.h"
 #import "LightGrayButton.h"
+#import "ObjectModel+Payments.h"
+#import "Constants.h"
 
 @interface TransferWaitingViewController ()
 
@@ -56,5 +58,10 @@
 }
 
 - (IBAction)noTransferButtonTap:(id)sender {
+    __weak typeof(self) weakSelf = self;
+    [self.objectModel performBlock:^{
+        [weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment];
+    }];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
 }
 @end

@@ -181,6 +181,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     {
         TransferWaitingViewController *controller = [[TransferWaitingViewController alloc] init];
         controller.payment = payment;
+        controller.objectModel = self.objectModel;
         resultController = controller;
         
     }
