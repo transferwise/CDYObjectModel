@@ -20,6 +20,7 @@
 #import "TabViewController.h"
 #import "UIColor+MOMStyle.h"
 #import "TransferwiseClient.h"
+#import "ConnectionAwareViewController.h"
 
 @interface MainViewController () <UINavigationControllerDelegate, UITabBarControllerDelegate>
 
@@ -192,7 +193,8 @@
 
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:presented];
     [navigationController setNavigationBarHidden:YES];
-    [self presentViewController:navigationController animated:shownBefore completion:nil];
+    ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
+    [self presentViewController:wrapper animated:shownBefore completion:nil];
 }
 
 - (void)loggedOut {

@@ -10,12 +10,16 @@
 #import <Reachability.h>
 #import "Constants.h"
 #import "GradientView.h"
+#import "MOMStyle.h"
+
+#define numberOfClouds 4
 
 @interface ConnectionAwareViewController ()
 
 @property (nonatomic, weak) UIViewController *wrappedViewController;
 @property (nonatomic, strong) Reachability *reachability;
 @property (nonatomic, weak) UIView *connectionAlert;
+@property (nonatomic, strong) NSArray* clouds;
 
 @end
 
@@ -41,31 +45,128 @@
     self.wrappedViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.wrappedViewController.view];
     
-    //Create Alert
-    
-    GradientView* gradientView = [[GradientView alloc] initWithFrame:CGRectMake(0,0,IPAD?1024:320,64)];
-    gradientView.orientation = OrientationVertical;
-    gradientView.fromColor = [UIColor colorWithRed:91.0f/255.0f green:130.0f/255.0f blue:156.0f/255.0f alpha:1.0f];
-    gradientView.toColor = [UIColor colorWithRed:83.0f/255.0f green:124.0f/255.0f blue:155.0f/255.0f alpha:1.0f];
-    [self.view addSubview:gradientView];
-    self.connectionAlert = gradientView;
-
-    self.reachability = [Reachability reachabilityWithHostname:TRWServerAddress];
+    self.reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
     __weak typeof(self) weakSelf = self;
     self.reachability.reachableBlock = ^(Reachability*reach)
     {
-        [weakSelf showConnectionAlert:(YES)];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf showConnectionAlert:NO];
+        });
+        
     };
     self.reachability.unreachableBlock = ^(Reachability*reach)
     {
-        [weakSelf showConnectionAlert:(NO)];
+        dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf showConnectionAlert:YES];
+        });
     };
+    
+    [self.reachability startNotifier];
 
+}
+
+-(void)animateCloud:(NSUInteger)index offset:(float)timeOffset
+{
+    if(self.clouds)
+    {
+        NSTimeInterval duration = (IPAD?30.0f:30.0f) + pow((3.3f),index);
+        
+        UIView* cloud = self.clouds[index];
+        CGRect startFrame = cloud.frame;
+        startFrame.origin.x = ((self.connectionAlert.bounds.size.width + startFrame.size.width) * timeOffset ) - startFrame.size.width;
+        startFrame.origin.y = 30.0f + roundf((self.connectionAlert.bounds.size.height - 50.0f)/numberOfClouds*index);
+        cloud.frame = startFrame;
+        [UIView animateWithDuration:duration - duration*timeOffset delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
+            CGRect endFrame = cloud.frame;
+            endFrame.origin.x = self.view.bounds.size.width;
+            cloud.frame = endFrame;
+        } completion:^(BOOL finished) {
+            if(finished)
+            {
+                [self animateCloud:[self.clouds indexOfObject:cloud] offset:0];
+            }
+        }];
+    }
+}
+
+-(void)createAlert
+{
+    //Create Alert
+    
+    GradientView* gradientView = [[GradientView alloc] initWithFrame:CGRectMake(0,0,IPAD?1024:320,74)];
+    gradientView.orientation = OrientationVertical;
+    gradientView.fromColor = [UIColor colorWithRed:91.0f/255.0f green:130.0f/255.0f blue:156.0f/255.0f alpha:1.0f];
+    gradientView.toColor = [UIColor colorWithRed:83.0f/255.0f green:124.0f/255.0f blue:155.0f/255.0f alpha:1.0f];
+    gradientView.clipsToBounds = YES;
+    gradientView.autoresizingMask =  UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin;
+    [self.view addSubview:gradientView];
+    CGPoint center = gradientView.center;
+    center.x = self.view.bounds.size.width/2.0f;
+    gradientView.center = center;
+    self.connectionAlert = gradientView;
+    
+    NSMutableArray* clouds = [NSMutableArray arrayWithCapacity:numberOfClouds];
+    self.clouds = clouds;
+    for(int i=0 ; i<numberOfClouds ;i++)
+    {
+        UIImageView* cloud = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Cloud"]];
+        if (i%2 != 0)
+        {
+            CGRect newFrame = cloud.frame;
+            newFrame.size = CGSizeMake(newFrame.size.width/2.0f, newFrame.size.height/2.0f);
+            cloud.frame = newFrame;
+        }
+        [gradientView addSubview:cloud];
+        [clouds addObject:cloud];
+        float timeOffset = 1.0f - 0.9f * (arc4random()%100/100.0f);
+        cloud.alpha = 0.8 - 0.5 * (arc4random()%100/100.0f);
+        [self animateCloud:i offset:timeOffset];
+    }
+    
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(gradientView.bounds.size.width/2.0f - 150, 30, 300, 44)];
+    title.textAlignment = NSTextAlignmentCenter;
+    title.fontStyle = @"H2";
+    title.text = NSLocalizedString(@"network.alert",nil);
+    [gradientView addSubview:title];
+
+}
+
+-(void)toggleAlert
+{
+    [self showConnectionAlert:!self.connectionAlert];
+    
 }
 
 -(void)showConnectionAlert:(BOOL)shouldShow
 {
-    
+    if(shouldShow)
+    {
+        if(!self.connectionAlert)
+        {
+            [self createAlert];
+            CGRect startFrame = self.connectionAlert.frame;
+            startFrame.origin.y = -startFrame.size.height;
+            self.connectionAlert.frame = startFrame;
+            [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:0.6 initialSpringVelocity:0.0 options:0 animations:^{
+                CGRect startFrame = self.connectionAlert.frame;
+                startFrame.origin.y = -10;
+                self.connectionAlert.frame = startFrame;
+            } completion:nil];
+        }
+    }
+    else
+    {
+        UIView* disappearingView = self.connectionAlert;
+        self.connectionAlert = nil;
+        self.clouds = nil;
+        [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+            CGRect startFrame = disappearingView.frame;
+            startFrame.origin.y = -startFrame.size.height;
+            disappearingView.frame = startFrame;
+        } completion:^(BOOL finished) {
+            [disappearingView removeFromSuperview];
+        }];
+    }
 }
 
 
