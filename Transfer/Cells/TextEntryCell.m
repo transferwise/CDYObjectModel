@@ -53,10 +53,10 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     if([_entryField isKindOfClass:[JVFloatLabeledTextField class]])
     {
         JVFloatLabeledTextField* field = (JVFloatLabeledTextField*) _entryField;
-        field.fontStyle = @"medium.@16.darkText";
-        MOMBasicStyle* fontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@12"];
+        field.fontStyle = @"medium.@16.darkText2";
+        MOMBasicStyle* fontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@13"];
         field.floatingLabelFont = [fontStyle font];
-        field.floatingLabelTextColor = [UIColor colorFromStyle:@"lightText"];
+        field.floatingLabelTextColor = [UIColor colorFromStyle:@"lightText2"];
         [field addObserver:self forKeyPath:@"isFirstResponder" options:NSKeyValueObservingOptionNew context:nil];
     }
 }
@@ -149,11 +149,11 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
         JVFloatLabeledTextField* field = (JVFloatLabeledTextField*) _entryField;
         if (self.isFirstResponder)
         {
-            field.floatingLabelTextColor = [UIColor colorFromStyle:@"lightBlue"];
+            field.floatingLabelTextColor = [UIColor colorFromStyle:@"navBarBlue"];
         }
         else
         {
-            field.floatingLabelTextColor = [UIColor colorFromStyle:@"lightText"];
+            field.floatingLabelTextColor = [UIColor colorFromStyle:@"lightText2"];
         }
     }
     else

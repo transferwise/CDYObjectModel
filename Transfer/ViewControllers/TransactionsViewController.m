@@ -169,14 +169,28 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
     UIViewController *resultController;
     if ([payment isSubmitted]) {
-		TransferWaitingViewController *controller = [[TransferWaitingViewController alloc] init];
-        controller.payment = payment;
+        UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+        [controller setPayment:payment];
+        [controller setObjectModel:self.objectModel];
+        [controller setHideBottomButton:YES];
+        [controller setShowContactSupportCell:YES];
         resultController = controller;
-    } else if ([payment isCancelled] || [payment moneyReceived] || [payment moneyTransferred]) {
+
+    }
+    else if (payment.status == PaymentStatusUserHasPaid)
+    {
+        TransferWaitingViewController *controller = [[TransferWaitingViewController alloc] init];
+        controller.payment = payment;
+        controller.objectModel = self.objectModel;
+        resultController = controller;
+        
+    }
+    else {
         TransferDetailsViewController *controller = [[TransferDetailsViewController alloc] init];
         controller.payment = payment;
         resultController = controller;
     }
+    
     if(!self.detailContainer)
     {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];

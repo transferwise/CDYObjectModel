@@ -28,5 +28,6 @@
 -(void)setItems:(NSArray*)items;
 
 -(void)selectItem:(TabItem *)newSelectedItem;
+-(void)selectIndex:(NSUInteger)index;
 
 @end

@@ -51,6 +51,10 @@ static NSDictionary* statusLookupDictionary;
 {
     NSString* key = [self.paymentStatus lowercaseString];
     NSNumber *statusNumber =[self statusLookup][key];
+    if(self.paymentMadeIndicator && [statusNumber unsignedIntegerValue] == PaymentStatusSubmitted)
+    {
+        statusNumber = @(PaymentStatusUserHasPaid);
+    }
     return statusNumber?[statusNumber unsignedIntegerValue]:PaymentStatusUnknown;
 }
 
@@ -102,7 +106,7 @@ static NSDictionary* statusLookupDictionary;
 }
 
 - (BOOL)isSubmitted {
-    return [self.paymentStatus isEqualToString:@"submitted"];
+    return self.status == PaymentStatusSubmitted;
 }
 
 - (NSString *)payInStringWithCurrency {
@@ -135,15 +139,15 @@ static NSDictionary* statusLookupDictionary;
 
 
 - (BOOL)isCancelled {
-    return [self.paymentStatus isEqualToString:@"cancelled"] || [self.paymentStatus isEqualToString:@"refunded"];
+    return self.status == PaymentStatusCancelled || self.status == PaymentStatusRefunded;
 }
 
 - (BOOL)moneyReceived {
-    return [self.paymentStatus isEqualToString:@"matched"] || [self.paymentStatus isEqualToString:@"received"];
+    return self.status == PaymentStatusMatched || self.status == PaymentStatusReceived;
 }
 
 - (BOOL)moneyTransferred {
-    return [self.paymentStatus isEqualToString:@"transferred"];
+    return self.status == PaymentStatusTransferred;
 }
 
 - (NSString *)transferredDateString {

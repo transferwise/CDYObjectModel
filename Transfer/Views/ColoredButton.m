@@ -7,8 +7,7 @@
 //
 
 #import "ColoredButton.h"
-#import "UIFont+MOMStyle.h"
-#import "UIColor+MOMStyle.h"
+#import "MOMStyle.h"
 #import "UIImage+Color.h"
 
 @implementation ColoredButton
@@ -39,22 +38,26 @@
 						 color:(NSString *)color
 				highlightColor:(NSString *)highlightColor
 {
-	if (titleColor != nil)
+    NSString *fontStyle;
+	if (titleColor && titleFont)
 	{
-		[self setTitleColor:[UIColor colorFromStyle:titleColor] forState:UIControlStateNormal];
-		
+		fontStyle = [NSString stringWithFormat:@"%@.%@",titleFont,titleColor];
 	}
-	if (titleColor != nil)
+    else
+    {
+        fontStyle = titleFont?:titleColor;
+    }
+	if (fontStyle)
 	{
-		[self.titleLabel setFont:[UIFont fontFromStyle:titleFont]];
+		self.fontStyle = fontStyle;
 	}
 	if (color != nil)
 	{
-		[self setBackgroundImage:[UIImage imageFromColor:[UIColor colorFromStyle:color]] forState:UIControlStateNormal];
+		self.bgStyle = color;
 	}
 	if (highlightColor != nil)
 	{
-		[self setBackgroundImage:[UIImage imageFromColor:[UIColor colorFromStyle:highlightColor]] forState:UIControlStateHighlighted];
+		self.highlightedBgStyle = highlightColor;
 	}
     self.exclusiveTouch = YES;
 }

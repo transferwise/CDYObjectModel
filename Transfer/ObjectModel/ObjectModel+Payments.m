@@ -15,6 +15,7 @@
 #import "Constants.h"
 #import "ObjectModel+Users.h"
 #import "Credentials.h"
+#import "PaymentMadeIndicator.h"
 
 @implementation ObjectModel (Payments)
 
@@ -29,6 +30,12 @@
     NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"user = %@", [self currentUser]];
     NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[remoteIdPredicate, userPredicate]];
     return [self fetchEntityNamed:[Payment entityName] withPredicate:predicate];
+}
+
+-(PaymentMadeIndicator*)paymentMadeIndicatorForPayment:(Payment*)payment
+{
+    NSPredicate *remoteIdPredicate = [NSPredicate predicateWithFormat:@"paymentRemoteId = %@", payment.remoteId];
+    return [self fetchEntityNamed:[PaymentMadeIndicator entityName] withPredicate:remoteIdPredicate];
 }
 
 - (Payment *)createOrUpdatePaymentWithData:(NSDictionary *)rawData {
@@ -66,6 +73,19 @@
 	}
     [payment setPaymentOptionsValue:availableMethods];
     [payment setPresentableValue:YES];
+    
+    PaymentMadeIndicator* indicator = [self paymentMadeIndicatorForPayment:payment];
+    if(indicator)
+    {
+        if(payment.status == PaymentStatusSubmitted || payment.status == PaymentStatusUserHasPaid)
+        {
+            payment.paymentMadeIndicator = indicator;
+        }
+        else
+        {
+            [self deleteObject:indicator];
+        }
+    }
 
     return payment;
 }
@@ -92,6 +112,21 @@
 - (NSArray *)paymentsWithRemoteIds:(NSArray *)array {
     NSPredicate *remoteIdPredicate = [NSPredicate predicateWithFormat:@"remoteId IN %@", array];
     return [self fetchEntitiesNamed:[Payment entityName] withPredicate:remoteIdPredicate];
+}
+
+-(void)togglePaymentMadeForPayment:(Payment*)payment
+{
+    PaymentMadeIndicator* indicator = payment.paymentMadeIndicator;
+    if (indicator)
+    {
+        [self deleteObject:indicator];
+    }
+    else
+    {
+        indicator = [PaymentMadeIndicator insertInManagedObjectContext:self.managedObjectContext];
+        indicator.paymentRemoteId = payment.remoteId;
+        payment.paymentMadeIndicator = indicator;
+    }
 }
 
 @end

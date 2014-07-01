@@ -65,8 +65,10 @@
     
 	UIImage *icon;
     switch ([self.payment status]) {
+        case PaymentStatusRefunded:
         case PaymentStatusCancelled:
-            icon = [UIImage imageNamed:@"transfers_status_canceled"];
+            icon = [UIImage imageNamed:@"transfers_status_cancelled"];
+            self.supportButton.alpha = 0.97;
             break;
         case PaymentStatusMatched:
 			icon = [UIImage imageNamed:@"transfers_status_converting"];
@@ -74,13 +76,11 @@
         case PaymentStatusReceived:
             icon = [UIImage imageNamed:@"transfers_status_converting"];
             break;
-        case PaymentStatusRefunded:
-            icon = [UIImage imageNamed:@"transfers_status_cancelled"];
-            break;
         case PaymentStatusReceivedWaitingRecipient:
             icon = [UIImage imageNamed:@"transfers_status_waiting"];
             break;
         case PaymentStatusSubmitted:
+        case PaymentStatusUserHasPaid:
             icon = [UIImage imageNamed:@"transfers_status_waiting"];
             break;
         case PaymentStatusTransferred:
@@ -88,7 +88,7 @@
             break;
         case PaymentStatusUnknown:
         default:
-            icon = [UIImage imageNamed:@"transfers_status_canceled"];
+            icon = [UIImage imageNamed:@"transfers_status_cancelled"];
             
             break;
     }
@@ -106,7 +106,7 @@
 	self.headerView.status = [self getStatusBasedLocalization:@"payment.status.%@.description.long"
 													   status:self.payment.paymentStatus];
 	//waiting has a two-line status
-	if (self.payment.status == PaymentStatusSubmitted)
+	if (self.payment.status == PaymentStatusUserHasPaid)
 	{
 		self.headerView.statusWaiting = NSLocalizedString(@"payment.status.submitted.description.long2", nil);
 	}

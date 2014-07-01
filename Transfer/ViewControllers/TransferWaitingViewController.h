@@ -7,7 +7,10 @@
 //
 
 #import "TransferDetailsViewController.h"
+@class ObjectModel;
 
 @interface TransferWaitingViewController : TransferDetailsViewController
+
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 @end
