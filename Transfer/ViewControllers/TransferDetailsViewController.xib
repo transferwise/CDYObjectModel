@@ -24,7 +24,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="KMX-bp-X1m" customClass="IntrinsicSizeUIView">
-                            <rect key="frame" x="0.0" y="30" width="320" height="431"/>
+                            <rect key="frame" x="0.0" y="26" width="320" height="431"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="jJD-by-0Jd" userLabel="Header View" customClass="TransferDetialsHeaderView">
@@ -89,7 +89,7 @@
                                     </connections>
                                 </view>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="8dh-F6-i1O">
-                                    <rect key="frame" x="120" y="70" width="80" height="80"/>
+                                    <rect key="frame" x="120" y="63" width="80" height="80"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="4pe-wN-NIZ"/>
@@ -97,7 +97,7 @@
                                     </constraints>
                                 </imageView>
                                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="gxD-Ss-q8P" customClass="TransferDetailsAmountsView">
-                                    <rect key="frame" x="0.0" y="170" width="320" height="50"/>
+                                    <rect key="frame" x="0.0" y="156" width="320" height="50"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jG-a7-WpV" userLabel="Label - Status">
@@ -167,11 +167,11 @@
                                     </connections>
                                 </view>
                                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="249" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="anS-pb-BWk" customClass="TransferDetialsRecipientView">
-                                    <rect key="frame" x="0.0" y="220" width="320" height="137"/>
+                                    <rect key="frame" x="0.0" y="206" width="320" height="124"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYu-Er-01d" userLabel="View - BackgroundContainer">
-                                            <rect key="frame" x="0.0" y="87" width="320" height="50"/>
+                                            <rect key="frame" x="0.0" y="74" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DBs-2e-gDp" userLabel="View - BackgroundColor">
@@ -194,7 +194,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpr-jT-3Kg" userLabel="Label - Account Header">
-                                            <rect key="frame" x="147" y="60" width="26" height="12"/>
+                                            <rect key="frame" x="147" y="47" width="26" height="12"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
@@ -203,7 +203,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <view alpha="0.49999999999999961" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JWj-M3-8IP" userLabel="View - Separator">
-                                            <rect key="frame" x="0.0" y="87" width="320" height="1"/>
+                                            <rect key="frame" x="0.0" y="74" width="320" height="1"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -211,7 +211,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="NqY-J0-ze8" userLabel="Label - Details">
-                                            <rect key="frame" x="0.0" y="105" width="320" height="12"/>
+                                            <rect key="frame" x="0.0" y="92" width="320" height="12"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
@@ -232,7 +232,7 @@
                                         <constraint firstAttribute="centerX" secondItem="JWj-M3-8IP" secondAttribute="centerX" id="dp2-gM-Jbn"/>
                                         <constraint firstItem="JWj-M3-8IP" firstAttribute="top" secondItem="vpr-jT-3Kg" secondAttribute="bottom" constant="15" id="n8W-bv-6Qe"/>
                                         <constraint firstItem="JWj-M3-8IP" firstAttribute="leading" secondItem="anS-pb-BWk" secondAttribute="leading" id="qSb-6k-Q1V"/>
-                                        <constraint firstItem="vpr-jT-3Kg" firstAttribute="top" secondItem="anS-pb-BWk" secondAttribute="top" constant="60" id="sVy-ow-PCT"/>
+                                        <constraint firstItem="vpr-jT-3Kg" firstAttribute="top" secondItem="anS-pb-BWk" secondAttribute="top" constant="47" id="sVy-ow-PCT"/>
                                         <constraint firstAttribute="centerX" secondItem="vpr-jT-3Kg" secondAttribute="centerX" id="v5X-on-Yg7"/>
                                         <constraint firstAttribute="bottom" secondItem="fYu-Er-01d" secondAttribute="bottom" id="vDc-56-Y0d"/>
                                         <constraint firstAttribute="trailing" secondItem="JWj-M3-8IP" secondAttribute="trailing" id="xGh-7H-777"/>
@@ -249,20 +249,20 @@
                                 <constraint firstAttribute="centerX" secondItem="8dh-F6-i1O" secondAttribute="centerX" id="3Yh-kT-pdr"/>
                                 <constraint firstItem="anS-pb-BWk" firstAttribute="top" secondItem="gxD-Ss-q8P" secondAttribute="bottom" id="FoY-rJ-1b4"/>
                                 <constraint firstItem="anS-pb-BWk" firstAttribute="leading" secondItem="KMX-bp-X1m" secondAttribute="leading" id="HIi-pJ-oAj"/>
-                                <constraint firstItem="gxD-Ss-q8P" firstAttribute="top" secondItem="8dh-F6-i1O" secondAttribute="bottom" constant="20" id="HqW-9n-BHe"/>
+                                <constraint firstItem="gxD-Ss-q8P" firstAttribute="top" secondItem="8dh-F6-i1O" secondAttribute="bottom" constant="13" id="HqW-9n-BHe"/>
                                 <constraint firstAttribute="trailing" secondItem="anS-pb-BWk" secondAttribute="trailing" id="KGH-or-Dzg"/>
                                 <constraint firstAttribute="trailing" secondItem="gxD-Ss-q8P" secondAttribute="trailing" id="Mhz-vx-EaI"/>
                                 <constraint firstItem="jJD-by-0Jd" firstAttribute="top" secondItem="KMX-bp-X1m" secondAttribute="top" id="XQd-3K-CXk"/>
                                 <constraint firstItem="jJD-by-0Jd" firstAttribute="leading" secondItem="KMX-bp-X1m" secondAttribute="leading" id="btx-Mf-5qX"/>
                                 <constraint firstAttribute="height" priority="800" constant="431" placeholder="YES" id="ho0-V8-Pav"/>
                                 <constraint firstItem="gxD-Ss-q8P" firstAttribute="leading" secondItem="KMX-bp-X1m" secondAttribute="leading" id="nrB-yv-A6X"/>
-                                <constraint firstItem="8dh-F6-i1O" firstAttribute="top" secondItem="jJD-by-0Jd" secondAttribute="bottom" constant="20" id="sL3-kh-Lzw"/>
+                                <constraint firstItem="8dh-F6-i1O" firstAttribute="top" secondItem="jJD-by-0Jd" secondAttribute="bottom" constant="13" id="sL3-kh-Lzw"/>
                             </constraints>
                         </view>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="KMX-bp-X1m" secondAttribute="bottom" id="ZLW-Xv-KCo"/>
-                        <constraint firstItem="KMX-bp-X1m" firstAttribute="top" secondItem="RC5-kk-Kyq" secondAttribute="top" constant="30" id="gXh-Od-3hE"/>
+                        <constraint firstItem="KMX-bp-X1m" firstAttribute="top" secondItem="RC5-kk-Kyq" secondAttribute="top" constant="26" id="gXh-Od-3hE"/>
                         <constraint firstItem="KMX-bp-X1m" firstAttribute="leading" secondItem="RC5-kk-Kyq" secondAttribute="leading" id="oud-9g-CO3"/>
                         <constraint firstAttribute="trailing" secondItem="KMX-bp-X1m" secondAttribute="trailing" id="pPo-ZL-8Da"/>
                     </constraints>
