@@ -13,7 +13,7 @@
 #import "ObjectModel.h"
 #import "Constants.h"
 #import "NSAttributedString+Attributes.h"
-#import "IntroductionViewController.h"
+#import "NewPaymentViewcontroller.h"
 #import "SignUpViewController.h"
 #import "ObjectModel+Settings.h"
 #import "GoogleAnalytics.h"
@@ -157,7 +157,7 @@
         [controller setObjectModel:self.objectModel];
         presented = controller;
     } else {
-        IntroductionViewController *controller = [[IntroductionViewController alloc] init];
+        NewPaymentViewcontroller *controller = [[NewPaymentViewcontroller alloc] init];
         [controller setObjectModel:self.objectModel];
         presented = controller;
     }

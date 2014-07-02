@@ -10,7 +10,7 @@
 #import "TransactionsViewController.h"
 #import "PaymentViewController.h"
 #import "ContactsViewController.h"
-#import "IntroductionViewController.h"
+#import "NewPaymentViewcontroller.h"
 #import "Credentials.h"
 #import "GoogleAnalytics.h"
 #import "IntroViewController.h"
@@ -78,11 +78,12 @@
     paymentItem.deselectedAlpha = 1.0f;
     paymentItem.highlightedColor = [UIColor colorFromStyle:@"lightBlueHighlighted"];
     [paymentItem setActionBlock:^(TabItem* item){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Not implemented yet!" message:nil delegate:nil cancelButtonTitle:@"Aha!" otherButtonTitles:nil];
-        [alert show];
-//        PaymentViewController *paymentController = [[PaymentViewController alloc] init];
-//        [paymentController setObjectModel:self.objectModel];
-//        [self presentViewController:paymentController animated:YES completion:nil];
+        NewPaymentViewcontroller *controller = [[NewPaymentViewcontroller alloc] init];
+        [controller setObjectModel:self.objectModel];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+        [navigationController setNavigationBarHidden:YES];
+        ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
+        [self presentViewController:wrapper animated:YES completion:nil];
         return NO;
     }];
 
@@ -154,7 +155,7 @@
         [self setNavigationBarHidden:YES];
         [self pushViewController:controller animated:NO];
     } else if (![Credentials userLoggedIn] && !self.shown) {
-        IntroductionViewController *controller = [[IntroductionViewController alloc] init];
+        NewPaymentViewcontroller *controller = [[NewPaymentViewcontroller alloc] init];
         [controller setObjectModel:self.objectModel];
         [controller setDummyPresentation:YES];
         [self setNavigationBarHidden:YES];
@@ -181,7 +182,7 @@
             [controller setObjectModel:self.objectModel];
             presented = controller;
         } else {
-            IntroductionViewController *controller = [[IntroductionViewController alloc] init];
+            NewPaymentViewcontroller *controller = [[NewPaymentViewcontroller alloc] init];
             [controller setObjectModel:self.objectModel];
             presented = controller;
         }
@@ -239,11 +240,13 @@
 - (void)moveToPaymentsList {
     [self.tabController selectIndex:IPAD?1:0];
     [self popToRootViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)moveToPaymentView {
     [self.tabController selectIndex:IPAD?0:2];
     [self popToRootViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
