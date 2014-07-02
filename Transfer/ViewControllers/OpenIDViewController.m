@@ -15,7 +15,7 @@
 #import "ObjectModel.h"
 #import "ObjectModel+RecipientTypes.h"
 #import "TransferBackButtonItem.h"
-#import "AppsFlyer.h"
+#import "AppsFlyerTracker.h"
 #import "ObjectModel+Users.h"
 #import "User.h"
 #import "GoogleAnalytics.h"
@@ -107,8 +107,8 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(NSError *error) {
 #if USE_APPSFLYER_EVENTS
-                    [AppsFlyer setAppUID:self.objectModel.currentUser.pReference];
-                    [AppsFlyer notifyAppID:AppsFlyerIdentifier event:@"sign-in" eventValue:@""];
+                    [AppsFlyerTracker sharedTracker].customerUserID = self.objectModel.currentUser.pReference;
+                    [[AppsFlyerTracker sharedTracker] trackEvent:@"sign-in" withValue:@""];
 #endif
                 }];
 

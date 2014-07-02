@@ -35,7 +35,7 @@
 #import "UploadMoneyViewController.h"
 #import "GoogleAnalytics.h"
 #import "BusinessProfileIdentificationViewController.h"
-#import "AppsFlyer.h"
+#import "AppsFlyerTracker.h"
 #import "CalculationResult.h"
 #import "LoggedInPaymentFlow.h"
 #import "NanTracking.h"
@@ -543,9 +543,9 @@
 
 #if USE_APPSFLYER_EVENTS
         MCLog(@"Log AppsFlyer purchase %@ - %@", transferFee, currencyCode);
-        [AppsFlyer setCurrencyCode:currencyCode];
-        [AppsFlyer setAppUID:[self.objectModel.currentUser pReference]];
-        [AppsFlyer notifyAppID:AppsFlyerIdentifier event:@"purchase" eventValue:[__formatter stringFromNumber:transferFee]];
+        [[AppsFlyerTracker sharedTracker] setCurrencyCode:currencyCode];
+        [AppsFlyerTracker sharedTracker].customerUserID = [self.objectModel.currentUser pReference];
+        [[AppsFlyerTracker sharedTracker] trackEvent:@"purchase" withValue:[__formatter stringFromNumber:transferFee]];
 #endif
 
         [NanTracking trackNanigansEvent:self.objectModel.currentUser.pReference type:@"purchase" name:@"main" value:[__formatter stringFromNumber:transferFee]];

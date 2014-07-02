@@ -11,7 +11,7 @@
 #import "Credentials.h"
 #import "GoogleAnalytics.h"
 #import "Constants.h"
-#import "AppsFlyer.h"
+#import "AppsFlyerTracker.h"
 #import "ObjectModel+Users.h"
 #import "User.h"
 
@@ -48,8 +48,8 @@ NSString *const kSetPasswordPath = @"/account/setPassword";
 
 #if USE_APPSFLYER_EVENTS
         [weakSelf.workModel performBlock:^{
-            [AppsFlyer setAppUID:[weakSelf.workModel.currentUser pReference]];
-            [AppsFlyer notifyAppID:AppsFlyerIdentifier event:@"registration" eventValue:@""];
+            [AppsFlyerTracker sharedTracker].customerUserID = [weakSelf.workModel.currentUser pReference];
+            [[AppsFlyerTracker sharedTracker] trackEvent:@"registration" withValue:@""];
         }];
 #endif
 

@@ -20,7 +20,7 @@
 #import "FeedbackCoordinator.h"
 #import "UIColor+Theme.h"
 #import "GoogleAnalytics.h"
-#import "AppsFlyer.h"
+#import "AppsFlyerTracker.h"
 #import "NanTracking.h"
 #import "FBSettings.h"
 #import "FBAppEvents.h"
@@ -70,6 +70,9 @@
 #else
     [[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
 #endif
+    
+    [AppsFlyerTracker sharedTracker].appsFlyerDevKey = AppsFlyerDevKey;
+    [AppsFlyerTracker sharedTracker].appleAppID = AppsFlyerIdentifier;
     
 
     [NanTracking setFbAppId:@"274548709260402"];
@@ -150,7 +153,7 @@
 
 #if USE_APPSFLYER_EVENTS
     // Track Installs, updates & sessions (must)
-    [AppsFlyer notifyAppID:AppsFlyerIdentifier];
+    [[AppsFlyerTracker sharedTracker] trackAppLaunch];
 #endif
 
     [[TransferwiseClient sharedClient] updateConfigurationOptions];
