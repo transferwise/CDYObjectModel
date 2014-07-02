@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @class ObjectModel;
+@class Recipient;
 
 @interface NewPaymentViewController : UIViewController
 
+@property (nonatomic, strong) Recipient *recipient;
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, assign) BOOL dummyPresentation;
 

@@ -36,6 +36,7 @@
 #import "NSString+DeviceSpecificLocalisation.h"
 #import "WhyViewController.h"
 #import "WhyView.h"
+#import "Recipient.h"
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -89,7 +90,6 @@ static NSUInteger const kRowYouSend = 0;
 
 
     [self setYouSendCell:[[NSBundle mainBundle] loadNibNamed:@"MoneyEntryCell" owner:self options:nil][0]];
-    [self.youSendCell setTitle:NSLocalizedString(@"money.entry.you.send.title", nil)];
     [self.youSendCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:nil];
     [self.youSendCell.moneyField setReturnKeyType:UIReturnKeyDone];
     if (!IOS_7) {
@@ -102,9 +102,9 @@ static NSUInteger const kRowYouSend = 0;
 	[self.youSendCell initializeSelectorBackground];
 
     [self setTheyReceiveCell:[[NSBundle mainBundle] loadNibNamed:@"MoneyEntryCell" owner:self options:nil][0]];
-    [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
     [self.theyReceiveCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:nil];
     [self.theyReceiveCell.moneyField setReturnKeyType:UIReturnKeyDone];
+    [self.theyReceiveCell setForcedCurrency:self.recipient ? self.recipient.currency : nil];
     if (!IOS_7) {
         [self.theyReceiveCell setRoundedCorner:UIRectCornerBottomRight];
     }
@@ -160,6 +160,9 @@ static NSUInteger const kRowYouSend = 0;
 
         weakSelf.result = result;
         [weakSelf displayWinMessage:result];
+        
+        [self updateCellTitles];
+        
     }];
     
     MCAssert(self.objectModel);
@@ -219,6 +222,14 @@ static NSUInteger const kRowYouSend = 0;
     
     UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
     [self.navigationItem setTitleView:logoView];
+    
+    if (self.recipient) {
+        [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSourcesContainingTargetCurrency:self.recipient.currency]];
+    } else {
+        [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSources]];
+    }
+
+    [self updateCellTitles];
     
     self.loginButton.hidden = [Credentials userLoggedIn];
     self.modalCloseButton.hidden = ![Credentials userLoggedIn];
@@ -341,6 +352,7 @@ static NSUInteger const kRowYouSend = 0;
         [payment setEstimatedDeliveryStringFromServer:[self.result formattedEstimatedDelivery]];
 		[payment setTransferwiseTransferFee:[self.result transferwiseTransferFee]];
         [payment setIsFixedAmountValue:self.result.isFixedTargetPayment];
+        [payment setRecipient:self.recipient];
         
 		PaymentFlow *paymentFlow = [Credentials userLoggedIn]?[[LoggedInPaymentFlow alloc] initWithPresentingController:self.navigationController]:[[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
         [self setPaymentFlow:paymentFlow];
@@ -364,6 +376,34 @@ static NSUInteger const kRowYouSend = 0;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.startedButton showCalculating:calculating];
     });
+}
+
+-(void)updateCellTitles
+{
+    if (self.result.isFixedTargetPayment)
+    {
+        [self.youSendCell setTitle:NSLocalizedString(@"money.entry.you.send.title", nil)];
+        if(self.recipient)
+        {
+            [self.theyReceiveCell setTitle:[NSString stringWithFormat:NSLocalizedString(@"money.entry.recipient.receive.exactly.title", nil),self.recipient.name]];
+        }
+        else
+        {
+            [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.exactly.title", nil)];
+        }
+    }
+    else
+    {
+        [self.youSendCell setTitle:NSLocalizedString(@"money.entry.you.send.exactly.title", nil)];
+        if(self.recipient)
+        {
+            [self.theyReceiveCell setTitle:[NSString stringWithFormat:NSLocalizedString(@"money.entry.recipient.receive.title", nil),self.recipient.name]];
+        }
+        else
+        {
+            [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
+        }
+    }
 }
 
 @end

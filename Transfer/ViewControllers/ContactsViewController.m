@@ -15,7 +15,7 @@
 #import "TRWProgressHUD.h"
 #import "RecipientViewController.h"
 #import "DeleteRecipientOperation.h"
-#import "PaymentViewController.h"
+#import "NewPaymentViewController.h"
 #import "RecipientProfileCommitter.h"
 #import "ObjectModel+Currencies.h"
 #import "ObjectModel+Recipients.h"
@@ -27,6 +27,7 @@
 #import "RecipientType.h"
 #import "GoogleAnalytics.h"
 #import "AddressBookManager.h"
+#import "ConnectionAwareViewController.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
@@ -128,10 +129,14 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     }
 
     [[GoogleAnalytics sharedInstance] sendScreen:@"New payment to"];
-    PaymentViewController *controller = [[PaymentViewController alloc] init];
+    NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setRecipient:recipient];
-    [self.navigationController pushViewController:controller animated:YES];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    [navigationController setNavigationBarHidden:YES];
+    ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
+    [self presentViewController:wrapper animated:YES completion:nil];
+
 }
 
 - (void)refreshRecipients {
