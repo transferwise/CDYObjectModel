@@ -10,7 +10,7 @@
 
 @class ObjectModel;
 
-@interface NewPaymentViewcontroller : UIViewController
+@interface NewPaymentViewController : UIViewController
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, assign) BOOL dummyPresentation;

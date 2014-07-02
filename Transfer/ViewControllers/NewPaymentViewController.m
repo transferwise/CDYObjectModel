@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import "NewPaymentViewcontroller.h"
+#import "NewPaymentViewController.h"
 #import "MoneyEntryCell.h"
 #import "LoginViewController.h"
 #import "MoneyCalculator.h"
@@ -39,7 +39,7 @@
 
 static NSUInteger const kRowYouSend = 0;
 
-@interface NewPaymentViewcontroller () <UITextFieldDelegate, OHAttributedLabelDelegate>
+@interface NewPaymentViewController () <UITextFieldDelegate, OHAttributedLabelDelegate>
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 
@@ -67,10 +67,10 @@ static NSUInteger const kRowYouSend = 0;
 
 @end
 
-@implementation NewPaymentViewcontroller
+@implementation NewPaymentViewController
 
 - (id)init {
-    self = [super initWithNibName:@"NewPaymentViewcontroller" bundle:nil];
+    self = [super initWithNibName:@"NewPaymentViewController" bundle:nil];
     if (self) {
         // Custom initialization
     }
@@ -146,7 +146,7 @@ static NSUInteger const kRowYouSend = 0;
     
     [[OHAttributedLabel appearance] setLinkColor:[UIColor whiteColor]];
 
-    __weak NewPaymentViewcontroller *weakSelf = self;
+    __weak NewPaymentViewController *weakSelf = self;
     [calculator setActivityHandler:^(BOOL calculating) {
         [weakSelf showCalculationIndicator:calculating];
     }];

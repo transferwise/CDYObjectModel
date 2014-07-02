@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewPaymentViewcontroller">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewPaymentViewController">
             <connections>
                 <outlet property="amountLabel" destination="eTr-o2-8Xr" id="udi-ps-WMt"/>
                 <outlet property="howButton" destination="WRX-dl-Alg" id="DHq-E5-7S9"/>

@@ -10,7 +10,7 @@
 #import "TransactionsViewController.h"
 #import "PaymentViewController.h"
 #import "ContactsViewController.h"
-#import "NewPaymentViewcontroller.h"
+#import "NewPaymentViewController.h"
 #import "Credentials.h"
 #import "GoogleAnalytics.h"
 #import "IntroViewController.h"
@@ -78,7 +78,7 @@
     paymentItem.deselectedAlpha = 1.0f;
     paymentItem.highlightedColor = [UIColor colorFromStyle:@"lightBlueHighlighted"];
     [paymentItem setActionBlock:^(TabItem* item){
-        NewPaymentViewcontroller *controller = [[NewPaymentViewcontroller alloc] init];
+        NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
         [controller setObjectModel:self.objectModel];
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
         [navigationController setNavigationBarHidden:YES];
@@ -155,7 +155,7 @@
         [self setNavigationBarHidden:YES];
         [self pushViewController:controller animated:NO];
     } else if (![Credentials userLoggedIn] && !self.shown) {
-        NewPaymentViewcontroller *controller = [[NewPaymentViewcontroller alloc] init];
+        NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
         [controller setObjectModel:self.objectModel];
         [controller setDummyPresentation:YES];
         [self setNavigationBarHidden:YES];
@@ -182,7 +182,7 @@
             [controller setObjectModel:self.objectModel];
             presented = controller;
         } else {
-            NewPaymentViewcontroller *controller = [[NewPaymentViewcontroller alloc] init];
+            NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
             [controller setObjectModel:self.objectModel];
             presented = controller;
         }

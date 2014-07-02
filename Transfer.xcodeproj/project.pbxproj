@@ -109,12 +109,12 @@
 		470DEFAE19460C8D00684FEB /* MoneyEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */; };
 		4710499719470AFD00660B2F /* CurrencyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */; };
 		4710499819470B2A00660B2F /* CurrencyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */; };
-		473F62931940BDD9001E280B /* NewPaymentViewcontroller~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* NewPaymentViewcontroller~ipad.xib */; };
+		473F62931940BDD9001E280B /* NewPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */; };
 		474D1A9F19518073008BC7A7 /* ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1A9E19518073008BC7A7 /* ColoredButton.m */; };
 		474D1AA019518073008BC7A7 /* ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1A9E19518073008BC7A7 /* ColoredButton.m */; };
 		474D1AA61951A500008BC7A7 /* RedGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1AA51951A500008BC7A7 /* RedGradientButton.m */; };
 		474D1AA71951A500008BC7A7 /* RedGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1AA51951A500008BC7A7 /* RedGradientButton.m */; };
-		47592CC71940C35800ECDAF2 /* NewPaymentViewcontroller~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* NewPaymentViewcontroller~ipad.xib */; };
+		47592CC71940C35800ECDAF2 /* NewPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */; };
 		479B692C19487865001FA4FE /* TransferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B692A19487865001FA4FE /* TransferDetailsViewController.m */; };
 		479B692D19487865001FA4FE /* TransferDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479B692B19487865001FA4FE /* TransferDetailsViewController.xib */; };
 		479B692F194878CA001FA4FE /* TransferDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479B692E194878CA001FA4FE /* TransferDetailsViewController~ipad.xib */; };
@@ -267,7 +267,7 @@
 		EA31A12A17DDB29B00F937F7 /* TransactionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39679171BD51400F6D011 /* TransactionsViewController.m */; };
 		EA31A12B17DDB29B00F937F7 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3967E171BD57000F6D011 /* ContactsViewController.m */; };
 		EA31A12C17DDB29B00F937F7 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39683171BD5B000F6D011 /* PaymentViewController.m */; };
-		EA31A12D17DDB29B00F937F7 /* NewPaymentViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39688171BD82300F6D011 /* NewPaymentViewcontroller.m */; };
+		EA31A12D17DDB29B00F937F7 /* NewPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39688171BD82300F6D011 /* NewPaymentViewController.m */; };
 		EA31A12E17DDB29B00F937F7 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */; };
 		EA31A12F17DDB29B00F937F7 /* MoneyEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */; };
 		EA31A13017DDB29B00F937F7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E03D171BE9B00019FBF0 /* LoginViewController.m */; };
@@ -430,7 +430,7 @@
 		EA31A1D317DDB29B00F937F7 /* TransactionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD3967A171BD51400F6D011 /* TransactionsViewController.xib */; };
 		EA31A1D417DDB29B00F937F7 /* ContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD3967F171BD57000F6D011 /* ContactsViewController.xib */; };
 		EA31A1D517DDB29B00F937F7 /* PaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39684171BD5B000F6D011 /* PaymentViewController.xib */; };
-		EA31A1D617DDB29B00F937F7 /* NewPaymentViewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39689171BD82300F6D011 /* NewPaymentViewcontroller.xib */; };
+		EA31A1D617DDB29B00F937F7 /* NewPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39689171BD82300F6D011 /* NewPaymentViewController.xib */; };
 		EA31A1D717DDB29B00F937F7 /* MoneyEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */; };
 		EA31A1D817DDB29B00F937F7 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E03E171BE9B00019FBF0 /* LoginViewController.xib */; };
 		EA31A1D917DDB29B00F937F7 /* TableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E045171BED910019FBF0 /* TableHeaderView.xib */; };
@@ -623,8 +623,8 @@
 		EAD39681171BD57000F6D011 /* ContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD3967F171BD57000F6D011 /* ContactsViewController.xib */; };
 		EAD39685171BD5B000F6D011 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39683171BD5B000F6D011 /* PaymentViewController.m */; };
 		EAD39686171BD5B000F6D011 /* PaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39684171BD5B000F6D011 /* PaymentViewController.xib */; };
-		EAD3968A171BD82300F6D011 /* NewPaymentViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39688171BD82300F6D011 /* NewPaymentViewcontroller.m */; };
-		EAD3968B171BD82300F6D011 /* NewPaymentViewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39689171BD82300F6D011 /* NewPaymentViewcontroller.xib */; };
+		EAD3968A171BD82300F6D011 /* NewPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39688171BD82300F6D011 /* NewPaymentViewController.m */; };
+		EAD3968B171BD82300F6D011 /* NewPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39689171BD82300F6D011 /* NewPaymentViewController.xib */; };
 		EAD66759174A51B900D29BCB /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66758174A51B900D29BCB /* ButtonCell.m */; };
 		EAD6675B174A51C700D29BCB /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD6675A174A51C700D29BCB /* ButtonCell.xib */; };
 		EAD6675E174A565500D29BCB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD6675C174A565500D29BCB /* AddressBook.framework */; };
@@ -759,7 +759,7 @@
 		38E57F77192A51DD00D864A2 /* TabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabViewController.xib; sourceTree = "<group>"; };
 		470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MoneyEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencyCell~ipad.xib"; sourceTree = "<group>"; };
-		473F62921940BDD9001E280B /* NewPaymentViewcontroller~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NewPaymentViewcontroller~ipad.xib"; sourceTree = "<group>"; };
+		473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NewPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
 		474D1A9D19518073008BC7A7 /* ColoredButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredButton.h; sourceTree = "<group>"; };
 		474D1A9E19518073008BC7A7 /* ColoredButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColoredButton.m; sourceTree = "<group>"; };
 		474D1AA41951A500008BC7A7 /* RedGradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedGradientButton.h; sourceTree = "<group>"; };
@@ -1191,9 +1191,9 @@
 		EAD39682171BD5B000F6D011 /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
 		EAD39683171BD5B000F6D011 /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
 		EAD39684171BD5B000F6D011 /* PaymentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentViewController.xib; sourceTree = "<group>"; };
-		EAD39687171BD82300F6D011 /* NewPaymentViewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPaymentViewcontroller.h; sourceTree = "<group>"; };
-		EAD39688171BD82300F6D011 /* NewPaymentViewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPaymentViewcontroller.m; sourceTree = "<group>"; };
-		EAD39689171BD82300F6D011 /* NewPaymentViewcontroller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewPaymentViewcontroller.xib; sourceTree = "<group>"; };
+		EAD39687171BD82300F6D011 /* NewPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPaymentViewController.h; sourceTree = "<group>"; };
+		EAD39688171BD82300F6D011 /* NewPaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPaymentViewController.m; sourceTree = "<group>"; };
+		EAD39689171BD82300F6D011 /* NewPaymentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewPaymentViewController.xib; sourceTree = "<group>"; };
 		EAD66757174A51B900D29BCB /* ButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonCell.h; sourceTree = "<group>"; };
 		EAD66758174A51B900D29BCB /* ButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonCell.m; sourceTree = "<group>"; };
 		EAD6675A174A51C700D29BCB /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
@@ -1930,10 +1930,6 @@
 				47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */,
 				EA88E661172F979F0021492C /* DataEntryViewController.h */,
 				EA88E662172F979F0021492C /* DataEntryViewController.m */,
-				EAD39687171BD82300F6D011 /* NewPaymentViewcontroller.h */,
-				EAD39688171BD82300F6D011 /* NewPaymentViewcontroller.m */,
-				EAD39689171BD82300F6D011 /* NewPaymentViewcontroller.xib */,
-				473F62921940BDD9001E280B /* NewPaymentViewcontroller~ipad.xib */,
 				EA0450D117EC5BC1008921DA /* IntroViewController.h */,
 				EA0450D217EC5BC1008921DA /* IntroViewController.m */,
 				EA0450D317EC5BC1008921DA /* IntroViewController.xib */,
@@ -1943,6 +1939,10 @@
 				EAD39673171BD4EE00F6D011 /* MainViewController.h */,
 				EAD39674171BD4EE00F6D011 /* MainViewController.m */,
 				EAD39675171BD4EE00F6D011 /* MainViewController.xib */,
+				EAD39687171BD82300F6D011 /* NewPaymentViewController.h */,
+				EAD39688171BD82300F6D011 /* NewPaymentViewController.m */,
+				EAD39689171BD82300F6D011 /* NewPaymentViewController.xib */,
+				473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */,
 				EA59298B1758CD6C007C0072 /* OpenIDViewController.h */,
 				EA59298C1758CD6C007C0072 /* OpenIDViewController.m */,
 				EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */,
@@ -2282,7 +2282,7 @@
 				4710499819470B2A00660B2F /* CurrencyCell~ipad.xib in Resources */,
 				470DEFAE19460C8D00684FEB /* MoneyEntryCell~ipad.xib in Resources */,
 				47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */,
-				47592CC71940C35800ECDAF2 /* NewPaymentViewcontroller~ipad.xib in Resources */,
+				47592CC71940C35800ECDAF2 /* NewPaymentViewController~ipad.xib in Resources */,
 				EA31A1D017DDB29B00F937F7 /* InfoPlist.strings in Resources */,
 				EA31A1D117DDB29B00F937F7 /* Localizable.strings in Resources */,
 				38E57F7B192A51DD00D864A2 /* TabViewController.xib in Resources */,
@@ -2293,7 +2293,7 @@
 				EA0523FA191B5AFC00B32899 /* RefundDetailsViewController.xib in Resources */,
 				EA31A1D417DDB29B00F937F7 /* ContactsViewController.xib in Resources */,
 				EA31A1D517DDB29B00F937F7 /* PaymentViewController.xib in Resources */,
-				EA31A1D617DDB29B00F937F7 /* NewPaymentViewcontroller.xib in Resources */,
+				EA31A1D617DDB29B00F937F7 /* NewPaymentViewController.xib in Resources */,
 				EA31A1D717DDB29B00F937F7 /* MoneyEntryCell.xib in Resources */,
 				EA31A1D817DDB29B00F937F7 /* LoginViewController.xib in Resources */,
 				380021AB192B9506009B1D53 /* TabViewController~ipad.xib in Resources */,
@@ -2381,7 +2381,7 @@
 				EA0523F9191B5AFC00B32899 /* RefundDetailsViewController.xib in Resources */,
 				EAD39681171BD57000F6D011 /* ContactsViewController.xib in Resources */,
 				EAD39686171BD5B000F6D011 /* PaymentViewController.xib in Resources */,
-				EAD3968B171BD82300F6D011 /* NewPaymentViewcontroller.xib in Resources */,
+				EAD3968B171BD82300F6D011 /* NewPaymentViewController.xib in Resources */,
 				3831AA3B194B31A200B3EE5C /* WhyViewController.xib in Resources */,
 				EA13E038171BE12E0019FBF0 /* MoneyEntryCell.xib in Resources */,
 				EA13E040171BE9B00019FBF0 /* LoginViewController.xib in Resources */,
@@ -2427,7 +2427,7 @@
 				EAD3648717E2F394001EFE40 /* UploadMoneyViewController.xib in Resources */,
 				EA222E3E173A8A7C00C5D613 /* ConfirmPaymentCell.xib in Resources */,
 				EA042603173CF5E20048BFBD /* RecipientEntrySelectionCell.xib in Resources */,
-				473F62931940BDD9001E280B /* NewPaymentViewcontroller~ipad.xib in Resources */,
+				473F62931940BDD9001E280B /* NewPaymentViewController~ipad.xib in Resources */,
 				47FB7EA519419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */,
 				479B692D19487865001FA4FE /* TransferDetailsViewController.xib in Resources */,
 				EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */,
@@ -2663,7 +2663,7 @@
 				EA31A12A17DDB29B00F937F7 /* TransactionsViewController.m in Sources */,
 				EA31A12B17DDB29B00F937F7 /* ContactsViewController.m in Sources */,
 				EA31A12C17DDB29B00F937F7 /* PaymentViewController.m in Sources */,
-				EA31A12D17DDB29B00F937F7 /* NewPaymentViewcontroller.m in Sources */,
+				EA31A12D17DDB29B00F937F7 /* NewPaymentViewController.m in Sources */,
 				EA31A12E17DDB29B00F937F7 /* TableHeaderView.m in Sources */,
 				EA31A12F17DDB29B00F937F7 /* MoneyEntryCell.m in Sources */,
 				EA31A13017DDB29B00F937F7 /* LoginViewController.m in Sources */,
@@ -2895,7 +2895,7 @@
 				EAD3967B171BD51400F6D011 /* TransactionsViewController.m in Sources */,
 				EAD39680171BD57000F6D011 /* ContactsViewController.m in Sources */,
 				EAD39685171BD5B000F6D011 /* PaymentViewController.m in Sources */,
-				EAD3968A171BD82300F6D011 /* NewPaymentViewcontroller.m in Sources */,
+				EAD3968A171BD82300F6D011 /* NewPaymentViewController.m in Sources */,
 				EA13E032171BDF1A0019FBF0 /* TableHeaderView.m in Sources */,
 				EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */,
 				EA13E03F171BE9B00019FBF0 /* LoginViewController.m in Sources */,
