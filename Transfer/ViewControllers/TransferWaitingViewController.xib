@@ -99,7 +99,7 @@
                                     </constraints>
                                 </imageView>
                                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="Qim-Hp-yQF" userLabel="Header View" customClass="TransferDetialsHeaderView">
-                                    <rect key="frame" x="0.0" y="163" width="320" height="60"/>
+                                    <rect key="frame" x="0.0" y="158" width="320" height="60"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqR-kL-SVq" userLabel="Label - Your Transfer">
@@ -173,7 +173,7 @@
                                     </connections>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEe-YD-6Z4" userLabel="Button - No Transfer" customClass="LightGrayButton">
-                                    <rect key="frame" x="15" y="243" width="290" height="45"/>
+                                    <rect key="frame" x="15" y="249" width="290" height="45"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="A62-cQ-hmw"/>
@@ -191,14 +191,14 @@
                                 <constraint firstItem="VMj-aZ-kxz" firstAttribute="top" secondItem="KMX-bp-X1m" secondAttribute="top" id="1ln-Wu-gAg"/>
                                 <constraint firstItem="gEe-YD-6Z4" firstAttribute="leading" secondItem="KMX-bp-X1m" secondAttribute="leading" constant="15" id="311-UF-DnI"/>
                                 <constraint firstAttribute="centerX" secondItem="8dh-F6-i1O" secondAttribute="centerX" id="3Yh-kT-pdr"/>
-                                <constraint firstItem="gEe-YD-6Z4" firstAttribute="top" secondItem="Qim-Hp-yQF" secondAttribute="bottom" constant="20" id="BAY-ip-6eY"/>
+                                <constraint firstItem="gEe-YD-6Z4" firstAttribute="top" secondItem="Qim-Hp-yQF" secondAttribute="bottom" constant="31" id="BAY-ip-6eY"/>
                                 <constraint firstAttribute="trailing" secondItem="gEe-YD-6Z4" secondAttribute="trailing" constant="15" id="BAz-dg-em6"/>
                                 <constraint firstItem="8dh-F6-i1O" firstAttribute="top" secondItem="VMj-aZ-kxz" secondAttribute="bottom" constant="13" id="THL-MV-fZb"/>
                                 <constraint firstAttribute="trailing" secondItem="VMj-aZ-kxz" secondAttribute="trailing" id="apb-91-51X"/>
                                 <constraint firstItem="VMj-aZ-kxz" firstAttribute="leading" secondItem="KMX-bp-X1m" secondAttribute="leading" id="gOb-n1-Stj"/>
                                 <constraint firstAttribute="height" priority="800" constant="431" placeholder="YES" id="ho0-V8-Pav"/>
                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gEe-YD-6Z4" secondAttribute="bottom" constant="20" id="tF3-dV-n1o"/>
-                                <constraint firstItem="Qim-Hp-yQF" firstAttribute="top" secondItem="8dh-F6-i1O" secondAttribute="bottom" constant="20" id="u3e-1I-6Y4"/>
+                                <constraint firstItem="Qim-Hp-yQF" firstAttribute="top" secondItem="8dh-F6-i1O" secondAttribute="bottom" constant="15" id="u3e-1I-6Y4"/>
                                 <constraint firstAttribute="trailing" secondItem="Qim-Hp-yQF" secondAttribute="trailing" id="vJQ-Wl-BPt"/>
                                 <constraint firstItem="Qim-Hp-yQF" firstAttribute="leading" secondItem="KMX-bp-X1m" secondAttribute="leading" id="wpn-cJ-GX5"/>
                             </constraints>
