@@ -76,17 +76,14 @@
         UIView* cloud = self.clouds[index];
         CGRect startFrame = cloud.frame;
         startFrame.origin.x = ((self.connectionAlert.bounds.size.width + startFrame.size.width) * timeOffset ) - startFrame.size.width;
-        startFrame.origin.y = 30.0f + roundf((self.connectionAlert.bounds.size.height - 50.0f)/self.numberOfClouds*index);
+        startFrame.origin.y = 30.0f + roundf((self.connectionAlert.bounds.size.height - 40.0f)/self.numberOfClouds*index);
         cloud.frame = startFrame;
         [UIView animateWithDuration:duration - duration*timeOffset delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
             CGRect endFrame = cloud.frame;
             endFrame.origin.x = self.connectionAlert.bounds.size.width;
             cloud.frame = endFrame;
         } completion:^(BOOL finished) {
-            if(finished)
-            {
-                [self animateCloud:[self.clouds indexOfObject:cloud] offset:0];
-            }
+            [self animateCloud:[self.clouds indexOfObject:cloud] offset:finished?0:1.0f - 0.9f * (arc4random()%100/100.0f)];
         }];
     }
 }
@@ -112,16 +109,20 @@
     for(int i=0 ; i<self.numberOfClouds ;i++)
     {
         UIImageView* cloud = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Cloud"]];
-        if (i%2 != 0)
+        if (i%2 == 0)
         {
             CGRect newFrame = cloud.frame;
             newFrame.size = CGSizeMake(newFrame.size.width/2.0f, newFrame.size.height/2.0f);
             cloud.frame = newFrame;
+            cloud.alpha = 0.15;
+        }
+        else
+        {
+            cloud.alpha = 0.10;
         }
         [gradientView addSubview:cloud];
         [clouds addObject:cloud];
         float timeOffset = 1.0f - 0.9f * (arc4random()%100/100.0f);
-        cloud.alpha = 0.8 - 0.5 * (arc4random()%100/100.0f);
         [self animateCloud:i offset:timeOffset];
     }
     
