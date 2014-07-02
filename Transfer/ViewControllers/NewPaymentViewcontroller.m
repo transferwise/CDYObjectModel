@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import "IntroductionViewController.h"
+#import "NewPaymentViewcontroller.h"
 #import "MoneyEntryCell.h"
 #import "LoginViewController.h"
 #import "MoneyCalculator.h"
@@ -17,6 +17,7 @@
 #import "TRWAlertView.h"
 #import "PaymentFlow.h"
 #import "NoUserPaymentFlow.h"
+#import "LoggedInPaymentFlow.h"
 #import "Credentials.h"
 #import "ObjectModel+RecipientTypes.h"
 #import "ObjectModel+CurrencyPairs.h"
@@ -38,7 +39,7 @@
 
 static NSUInteger const kRowYouSend = 0;
 
-@interface IntroductionViewController () <UITextFieldDelegate, OHAttributedLabelDelegate>
+@interface NewPaymentViewcontroller () <UITextFieldDelegate, OHAttributedLabelDelegate>
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 
@@ -57,16 +58,19 @@ static NSUInteger const kRowYouSend = 0;
 @property (weak, nonatomic) IBOutlet UILabel *sendMoneyLabel;
 @property (weak, nonatomic) IBOutlet UIButton *howButton;
 @property (weak, nonatomic) UITapGestureRecognizer *dismissRecogniser;
+@property (weak, nonatomic) IBOutlet UIButton *modalCloseButton;
+
+
 
 - (IBAction)loginPressed:(id)sender;
 - (IBAction)startPaymentPressed:(id)sender;
 
 @end
 
-@implementation IntroductionViewController
+@implementation NewPaymentViewcontroller
 
 - (id)init {
-    self = [super initWithNibName:@"IntroductionViewController" bundle:nil];
+    self = [super initWithNibName:@"NewPaymentViewcontroller" bundle:nil];
     if (self) {
         // Custom initialization
     }
@@ -142,7 +146,7 @@ static NSUInteger const kRowYouSend = 0;
     
     [[OHAttributedLabel appearance] setLinkColor:[UIColor whiteColor]];
 
-    __weak IntroductionViewController *weakSelf = self;
+    __weak NewPaymentViewcontroller *weakSelf = self;
     [calculator setActivityHandler:^(BOOL calculating) {
         [weakSelf showCalculationIndicator:calculating];
     }];
@@ -212,9 +216,12 @@ static NSUInteger const kRowYouSend = 0;
 
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self.navigationItem setHidesBackButton:YES];
-
+    
     UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
     [self.navigationItem setTitleView:logoView];
+    
+    self.loginButton.hidden = [Credentials userLoggedIn];
+    self.modalCloseButton.hidden = ![Credentials userLoggedIn];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -334,8 +341,8 @@ static NSUInteger const kRowYouSend = 0;
         [payment setEstimatedDeliveryStringFromServer:[self.result formattedEstimatedDelivery]];
 		[payment setTransferwiseTransferFee:[self.result transferwiseTransferFee]];
         [payment setIsFixedAmountValue:self.result.isFixedTargetPayment];
-
-		PaymentFlow *paymentFlow = [[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
+        
+		PaymentFlow *paymentFlow = [Credentials userLoggedIn]?[[LoggedInPaymentFlow alloc] initWithPresentingController:self.navigationController]:[[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
         [self setPaymentFlow:paymentFlow];
 
         [paymentFlow setObjectModel:self.objectModel];
@@ -348,6 +355,10 @@ static NSUInteger const kRowYouSend = 0;
     [whyController presentOnViewController:self];
 }
 
+- (IBAction)closeModalTapped:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)showCalculationIndicator:(BOOL)calculating {
     dispatch_async(dispatch_get_main_queue(), ^{

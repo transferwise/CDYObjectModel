@@ -4,11 +4,12 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroductionViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewPaymentViewcontroller">
             <connections>
                 <outlet property="amountLabel" destination="eTr-o2-8Xr" id="udi-ps-WMt"/>
                 <outlet property="howButton" destination="WRX-dl-Alg" id="DHq-E5-7S9"/>
                 <outlet property="loginButton" destination="KVn-N5-EGf" id="xwX-R6-Luh"/>
+                <outlet property="modalCloseButton" destination="JFE-j8-Q2Z" id="8JU-v8-fqy"/>
                 <outlet property="saveLabel" destination="Lrw-M9-5jB" id="Yvf-w4-cpa"/>
                 <outlet property="sendMoneyLabel" destination="NJU-Hs-h7h" id="THK-Lv-4ye"/>
                 <outlet property="startedButton" destination="UAL-I7-qIC" id="HsM-OH-U2p"/>
@@ -124,12 +125,28 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="mediumText.navbarblue"/>
                     </userDefinedRuntimeAttributes>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JFE-j8-Q2Z">
+                    <rect key="frame" x="0.0" y="20" width="76" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="o8U-LY-4TB"/>
+                        <constraint firstAttribute="width" constant="76" id="toP-AF-YuP"/>
+                    </constraints>
+                    <state key="normal" image="currencies_modal_close_button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="closeModalTapped:" destination="-1" eventType="touchUpInside" id="KLd-rU-UGJ"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="eTr-o2-8Xr" firstAttribute="top" secondItem="Lrw-M9-5jB" secondAttribute="bottom" constant="-2" id="2oa-Mw-5rj"/>
                 <constraint firstAttribute="bottom" secondItem="KVn-N5-EGf" secondAttribute="bottom" priority="800" constant="30" id="4Rh-Gf-bm9"/>
+                <constraint firstItem="JFE-j8-Q2Z" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" id="7Dy-KD-lNU"/>
                 <constraint firstAttribute="centerX" secondItem="WRX-dl-Alg" secondAttribute="centerX" id="9Py-3r-f10"/>
+                <constraint firstItem="JFE-j8-Q2Z" firstAttribute="top" secondItem="o2g-cv-K3K" secondAttribute="top" constant="20" id="AsX-5o-SBM"/>
                 <constraint firstItem="Tkb-LF-80g" firstAttribute="centerX" secondItem="eTr-o2-8Xr" secondAttribute="centerX" id="Cen-RH-wCk"/>
                 <constraint firstAttribute="centerY" secondItem="jOH-gc-1dO" secondAttribute="centerY" constant="95" id="CrD-N2-mMA"/>
                 <constraint firstAttribute="centerX" secondItem="jOH-gc-1dO" secondAttribute="centerX" id="DHS-AZ-UVI"/>
@@ -154,5 +171,6 @@
     </objects>
     <resources>
         <image name="Rounded" width="100" height="44"/>
+        <image name="currencies_modal_close_button" width="20" height="20"/>
     </resources>
 </document>
