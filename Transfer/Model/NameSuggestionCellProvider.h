@@ -11,4 +11,6 @@
 
 @interface NameSuggestionCellProvider : NSObject<SuggestionTableCellProvider>
 
+@property (nonatomic, strong) NSFetchedResultsController *autoCompleteRecipients;
+
 @end

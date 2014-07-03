@@ -223,9 +223,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
 
     if (self.preLoadRecipientsWithCurrency && [Credentials userLoggedIn]) {
-        [self.nameCell setAutoCompleteRecipients:[self.objectModel fetchedControllerForRecipientsWithCurrency:self.preLoadRecipientsWithCurrency]];
-    } else {
-        [self.nameCell setAutoCompleteRecipients:nil];
+        [self.cellProvider setAutoCompleteRecipients:[self.objectModel fetchedControllerForRecipientsWithCurrency:self.preLoadRecipientsWithCurrency]];
     }
 
     [self.currencyCell setAllCurrencies:[self.objectModel fetchedControllerForAllCurrencies]];
@@ -284,7 +282,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 
 - (void)loadDataFromProfile:(PhoneBookProfile *)profile {
-    
+    [self didSelectRecipient:nil];
     self.lastSelectedProfile = profile;
     self.nameCell.value = profile.fullName;
     self.emailCell.value = profile.email;
@@ -317,7 +315,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     dispatch_async(dispatch_get_main_queue(), ^{
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"ExistingRecipientSelected"];
         [self.nameCell setValue:recipient.name];
-        [self.nameCell setEditable:NO];
+        [self.emailCell setValue:recipient.email];
 
         for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
             [fieldCell setEditable:NO];
@@ -440,6 +438,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     recipientInput.name = self.nameCell.value;
     recipientInput.currency = self.currency;
     recipientInput.type = self.recipientType;
+    recipientInput.email = self.emailCell.value;
 
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
         if ([cell isKindOfClass:[TransferTypeSelectionHeader class]]) {
@@ -649,9 +648,16 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 {
     [self.nameCell.entryField resignFirstResponder];
     NameLookupWrapper* wrapper = (NameLookupWrapper*)object;
-    PhoneBookProfile* profile = [[PhoneBookProfile alloc] initWithRecordId:wrapper.recordId];
-    [profile loadData];
-    [self loadDataFromProfile:profile];
+    if(wrapper.recordId)
+    {
+        PhoneBookProfile* profile = [[PhoneBookProfile alloc] initWithRecordId:wrapper.recordId];
+        [profile loadData];
+        [self loadDataFromProfile:profile];
+    }
+    else if (wrapper.managedObjectId)
+    {
+        [self didSelectRecipient:(Recipient*)[self.objectModel.managedObjectContext objectWithID:wrapper.managedObjectId]];
+    }
     
 }
 

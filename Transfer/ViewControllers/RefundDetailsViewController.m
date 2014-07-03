@@ -155,13 +155,14 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
 
-
+//TODO: Rework with autoSuggestions instead
+    /*
     if ([Credentials userLoggedIn]) {
         [self.holderNameCell setAutoCompleteRecipients:[self.objectModel fetchedControllerForRecipientsWithCurrency:self.currency]];
     } else {
         [self.holderNameCell setAutoCompleteRecipients:nil];
     }
-
+*/
     void (^dataLoadCompletionBlock)() = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hide];

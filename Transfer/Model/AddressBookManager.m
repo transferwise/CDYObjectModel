@@ -143,7 +143,7 @@
                         CFRelease(theProperty);
             for(NSString *email in items)
             {
-                NameLookupWrapper *wrapper = [[NameLookupWrapper alloc] initWithId:ABRecordGetRecordID(record) firstname:firstname lastName:lastName email:email nickName:nickname];
+                NameLookupWrapper *wrapper = [[NameLookupWrapper alloc] initWithRecordId:ABRecordGetRecordID(record) firstname:firstname lastName:lastName email:email nickName:nickname];
                 if(wrapper)
                 {
                     [result addObject:wrapper];
