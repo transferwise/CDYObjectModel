@@ -43,19 +43,6 @@
 
 @implementation WhyView
 
-- (id)init {
-    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"WhyView" owner:self options:nil];
-    self = (WhyView *) [nib objectAtIndex:0];
-    return self;
-}
-
-- (id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
 
 - (void)awakeFromNib {
     self.twTransferRateTitleLabel.text = NSLocalizedString(@"why.popup.tw.rate.title", nil);
