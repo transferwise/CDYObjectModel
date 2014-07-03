@@ -2242,6 +2242,7 @@
 		EAAA1460171BC911005B9430 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastTestingUpgradeCheck = 0510;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Mooncascade OÜ";
 				TargetAttributes = {
@@ -3170,7 +3171,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2.5.1.9.8",
+					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 				);
@@ -3206,7 +3207,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2.5.1.9.8",
+					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 				);
@@ -3341,7 +3342,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2.5.1.9.8",
+					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 				);
@@ -3376,7 +3377,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2.5.1.9.8",
+					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 				);
