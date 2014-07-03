@@ -97,7 +97,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    [self.tableView setContentOffset:CGPointZero];
+    [self.tableView setContentOffset:self.tableView.contentOffset];
 
     if (!self.payments) {
         NSFetchedResultsController *controller = [self.objectModel fetchedControllerForAllPayments];
