@@ -74,10 +74,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     UIView *footer = [[UIView alloc] initWithFrame:CGRectZero];
     [self.tableView setTableFooterView:footer];
 
-    if (IOS_7) {
-        [self setEdgesForExtendedLayout:UIRectEdgeNone];
-    }
-
 	IdentificationNotificationView *notificationView = [IdentificationNotificationView loadInstance];
 	[self setIdentificationView:notificationView];
 	[notificationView setTapHandler:^{
@@ -97,7 +93,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    [self.tableView setContentOffset:self.tableView.contentOffset];
+    [self.tableView setContentOffset:CGPointMake(0,- self.tableView.contentInset.top)];
 
     if (!self.payments) {
         NSFetchedResultsController *controller = [self.objectModel fetchedControllerForAllPayments];
