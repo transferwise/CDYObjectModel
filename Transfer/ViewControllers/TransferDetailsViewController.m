@@ -68,7 +68,6 @@
         case PaymentStatusRefunded:
         case PaymentStatusCancelled:
             icon = [UIImage imageNamed:@"transfers_status_cancelled"];
-            self.supportButton.alpha = 0.97;
             break;
         case PaymentStatusMatched:
 			icon = [UIImage imageNamed:@"transfers_status_converting"];
