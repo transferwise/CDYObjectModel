@@ -18,12 +18,23 @@
 
 @interface AddressBookManager ()
 @property (nonatomic,assign) ABAddressBookRef addressBook;
+@property (nonatomic,strong) dispatch_queue_t dispatchQueue;
 
 +(NSCache*)sharedDataCache;
 
 @end
 
 @implementation AddressBookManager
+
+-(id)init
+{
+    self = [super init];
+    if(self)
+    {
+        self.dispatchQueue = dispatch_queue_create("com.transferwise.addressBookManagerQueue", NULL);
+    }
+    return self;
+}
 
 -(void)getNameLookupWithHandler:(NameLookupHandler)handler
 {
@@ -61,14 +72,17 @@
         if (hasAddressBook)
         {
             ABRecordRef person = ABAddressBookGetPersonWithRecordID(self.addressBook, recordId);
-            CFDataRef imageData = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail);
-            if(imageData != NULL)
+            if(ABPersonHasImageData(person))
             {
-                result = [UIImage imageWithData:(__bridge NSData *)(imageData)];
-                CFRelease(imageData);
-                if(result)
+                CFDataRef imageData = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail);
+                if(imageData != NULL)
                 {
-                    [[AddressBookManager sharedDataCache] setObject:result forKey:[self thumbnailKeyForRecord:recordId]];
+                    result = [UIImage imageWithData:(__bridge NSData *)(imageData)];
+                    CFRelease(imageData);
+                    if(result)
+                    {
+                        [[AddressBookManager sharedDataCache] setObject:result forKey:[self thumbnailKeyForRecord:recordId]];
+                    }
                 }
             }
         }
@@ -82,7 +96,7 @@
 {
     if(excecutionBlock)
     {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_async(self.dispatchQueue, ^{
             if (self.addressBook == NULL)
             {
                 [self requestAddressBookWithHandler:^(bool granted, CFErrorRef error) {
@@ -146,7 +160,7 @@
 void addressBookExternalChangeCallback (ABAddressBookRef notificationaddressbook,CFDictionaryRef info,void *context)
 {
     AddressBookManager *wrappedSelf = (__bridge AddressBookManager*) context;
-  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+  dispatch_async(wrappedSelf.dispatchQueue, ^{
        if ([[AddressBookManager sharedDataCache] objectForKey:cachedNameLookup])
        {
            [[AddressBookManager sharedDataCache] removeObjectForKey:cachedNameLookup];
