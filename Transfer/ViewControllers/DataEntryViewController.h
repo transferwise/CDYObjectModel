@@ -16,4 +16,7 @@
 - (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath;
 - (void)textFieldEntryFinished;
 
+
+-(void)reloadSeparators;
+
 @end

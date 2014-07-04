@@ -250,6 +250,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [currenciesOperation execute];
 
     [self setShown:YES];
+    [self reloadSeparators];
 }
 
 

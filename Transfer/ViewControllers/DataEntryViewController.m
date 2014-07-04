@@ -256,6 +256,7 @@
 
 }
 
+#pragma mark - keyboard overlap
 -(void)keyboardWillShow:(NSNotification*)note
 {
     CGRect newframe = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
@@ -328,6 +329,12 @@
     [UIView commitAnimations];
 
     self.cachedInsets = UIEdgeInsetsZero;
+}
+
+-(void)reloadSeparators
+{
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 }
 
 @end
