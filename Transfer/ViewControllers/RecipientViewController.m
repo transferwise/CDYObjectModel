@@ -58,10 +58,9 @@
 #import "MOMStyle.h"
 #import "UIView+RenderBlur.h"
 
-static NSUInteger const kSenderSection = 0;
-static NSUInteger const kRecipientSection = 1;
-static NSUInteger const kCurrencySection = 2;
-static NSUInteger const kRecipientFieldsSection = 3;
+static NSUInteger const kRecipientSection = 0;
+static NSUInteger const kCurrencySection = 1;
+static NSUInteger const kRecipientFieldsSection = 2;
 
 NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
@@ -96,10 +95,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, assign) CGFloat minimumFooterHeight;
 @property (nonatomic, assign) BOOL shown;
 
-@property (nonatomic, strong) ConfirmPaymentCell *senderNameCell;
-@property (nonatomic, strong) NSArray *senderCells;
-
-@property (nonatomic, strong) ProfileSelectionView *profileSelectionView;
 
 @property (nonatomic, strong) IBOutlet TextFieldSuggestionTable* suggestionTable;
 @property (nonatomic, strong) NameSuggestionCellProvider *cellProvider;
@@ -131,21 +126,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self.tableView registerNib:[UINib nibWithNibName:@"RecipientFieldCell" bundle:nil] forCellReuseIdentifier:TWRecipientFieldCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"RecipientEntrySelectionCell" bundle:nil] forCellReuseIdentifier:TRWRecipientEntrySelectionCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"DropdownCell" bundle:nil] forCellReuseIdentifier:TWDropdownCellIdentifier];
-    [self.tableView registerNib:[UINib nibWithNibName:@"ConfirmPaymentCell" bundle:nil] forCellReuseIdentifier:TWConfirmPaymentCellIdentifier];
-    
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
-    [self setProfileSelectionView:[ProfileSelectionView loadInstance]];
-    [self presentProfileForSource:self.profileSelectionView.presentedSource];
-
-    __block __weak RecipientViewController *weakSelf = self;
-    [self.profileSelectionView setSelectionHandler:^(ProfileSource *selected) {
-        [weakSelf presentProfileForSource:selected];
-    }];
-
-
-    [self setSenderNameCell:[self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier]];
-    [self setSenderCells:@[self.senderNameCell]];
 
     
     RecipientEntrySelectionCell *nameCell = [self.tableView dequeueReusableCellWithIdentifier:TRWRecipientEntrySelectionCellIdentifier];
@@ -214,9 +195,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 
-    [self presentProfileForSource:self.profileSelectionView.presentedSource];
-
-    [self setPresentedSectionCells:@[self.senderCells, self.recipientCells, self.currencyCells, @[]]];
+    [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, @[]]];
     [self.tableView reloadData];
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
@@ -351,7 +330,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     NSArray *cells = [self buildCellsForType:type allTypes:allTypes];
     [self setRecipientType:type];
     [self setRecipientTypeFieldCells:cells];
-    [self setPresentedSectionCells:@[self.senderCells, self.recipientCells, self.currencyCells, cells]];
+    [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, cells]];
 
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:[self.presentedSections count] - 1] withRowAnimation:UITableViewRowAnimationNone];
     [self performSelector:@selector(updateFooterSize) withObject:nil afterDelay:0.5];
@@ -521,8 +500,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSNumber *sectionCode = self.presentedSections[(NSUInteger) section];
     switch ([sectionCode integerValue]) {
-        case kSenderSection:
-            return NSLocalizedString(@"recipient.controller.section.title.sender", nil);
         case kRecipientSection:
             return nil;
         case kCurrencySection:
@@ -551,11 +528,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     NSMutableArray *cells = [NSMutableArray arrayWithArray:presentedSectionCells];
     NSMutableArray *sectionIndexes = [NSMutableArray array];
 
-    if (self.showMiniProfile) {
-        [sectionIndexes addObject:@(kSenderSection)];
-    } else {
-        [cells removeObject:self.senderCells];
-    }
     [sectionIndexes addObject:@(kRecipientSection)];
 
     if (self.preLoadRecipientsWithCurrency) {
@@ -570,32 +542,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setPresentedSections:sectionIndexes];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    NSInteger sectionIndex = [self.presentedSections[section] integerValue];
-    if (sectionIndex != kSenderSection) {
-        return nil;
-    }
 
-    if (![self.objectModel.currentUser businessProfileFilled]) {
-        return nil;
-    }
 
-    return self.profileSelectionView;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    NSInteger sectionIndex = [self.presentedSections[section] integerValue];
-    if (sectionIndex != kSenderSection) {
-        return 0;
-    }
-
-    if (![self.objectModel.currentUser businessProfileFilled]) {
-        return 0;
-    }
-
-    return CGRectGetHeight(self.profileSelectionView.frame);
-}
-
+/* TODO: move this to the "select profile screen"
 - (void)presentProfileForSource:(ProfileSource *)source {
     User *user = [self.objectModel currentUser];
     NSString *name;
@@ -617,7 +566,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self.senderNameCell.detailTextLabel setText:@""];
     [self.tableView reloadData];
 }
-
+*/
 #pragma mark - Suggestion Table
 
 
