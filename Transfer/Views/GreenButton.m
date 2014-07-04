@@ -9,6 +9,7 @@
 #import "GreenButton.h"
 #import "UIButton+Skinning.h"
 #import "MOMStyle.h"
+#import "Constants.h"
 
 @implementation GreenButton
 
@@ -28,8 +29,33 @@
 
 -(void)commonSetup
 {
+
     self.compoundStyle = @"greenButton";
+    
+    if(IPAD)
+    {
+        [self setBackgroundImage:[UIImage imageNamed:@"GreenButton"] forState:UIControlStateNormal];
+        [self setBackgroundImage:[UIImage imageNamed:@"GreenButtonSelected"] forState:UIControlStateHighlighted];
+    }
+    
     self.exclusiveTouch = YES;
+}
+
+-(void)setHighlighted:(BOOL)highlighted
+{
+    [super setHighlighted:highlighted];
+    
+     if(IPAD)
+     {
+         if(highlighted)
+         {
+             self.contentEdgeInsets = UIEdgeInsetsMake(2, 0, 0, 0);
+         }
+         else
+         {
+        self.contentEdgeInsets = UIEdgeInsetsZero;
+         }
+     }
 }
 
 @end
