@@ -57,7 +57,8 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
         MOMBasicStyle* fontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@13"];
         field.floatingLabelFont = [fontStyle font];
         field.floatingLabelTextColor = [UIColor colorFromStyle:@"lightText2"];
-        [field addObserver:self forKeyPath:@"isFirstResponder" options:NSKeyValueObservingOptionNew context:nil];
+        field.floatingLabelActiveTextColor =  [UIColor colorFromStyle:@"navBarBlue"];
+        field.floatingLabelYPadding = @(2.0f);
     }
 }
 
@@ -138,28 +139,6 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 - (void)markTouched {
     [self setValueModified:YES];
-}
-
-#pragma mark - KVO
-
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if(object == self && [keyPath isEqualToString:@"isFirstResponder"])
-    {
-        JVFloatLabeledTextField* field = (JVFloatLabeledTextField*) _entryField;
-        if (self.isFirstResponder)
-        {
-            field.floatingLabelTextColor = [UIColor colorFromStyle:@"navBarBlue"];
-        }
-        else
-        {
-            field.floatingLabelTextColor = [UIColor colorFromStyle:@"lightText2"];
-        }
-    }
-    else
-    {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
 }
 
 @end
