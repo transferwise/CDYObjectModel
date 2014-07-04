@@ -79,7 +79,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 @property (nonatomic, strong) NSArray *recipientTypeFieldCells;
 
-@property (nonatomic, strong) IBOutlet UIView *footer;
 @property (nonatomic, strong) IBOutlet UIButton *addButton;
 
 @property (nonatomic, strong) Currency *currency;
@@ -117,9 +116,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self.tableView setBackgroundView:nil];
-    [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"CurrencySelectionCell" bundle:nil] forCellReuseIdentifier:TWCurrencySelectionCellIdentifier];
@@ -163,8 +159,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     if (self.preLoadRecipientsWithCurrency) {
         [self.currencyCell setEditable:NO];
     }
-
-    self.minimumFooterHeight = self.footer.frame.size.height;
     
     self.cellProvider = [[NameSuggestionCellProvider alloc] init];
     
@@ -215,7 +209,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hide];
             [self didSelectRecipient:self.recipient];
-            [self.tableView setTableFooterView:self.footer];
         });
     };
 

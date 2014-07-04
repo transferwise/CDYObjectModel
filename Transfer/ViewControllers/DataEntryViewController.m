@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "DataEntryDefaultHeader.h"
 #import "UIResponder+FirstResponder.h"
+#import "MOMStyle.h"
 
 @interface DataEntryViewController () <UITextFieldDelegate>
 
@@ -29,6 +30,9 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     }
+    
+    self.tableView.bgStyle = @"white";
+    self.tableView.tableFooterView = [[UIView alloc] init];
     
 }
 
@@ -258,6 +262,10 @@
     NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
     
+    CGFloat overlap = self.tableView.frame.origin.y + self.tableView.frame.size.height - newframe.origin.y;
+    
+    if(overlap >0)
+    {
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:duration];
@@ -270,27 +278,42 @@
     }
     
     UIEdgeInsets newInsets = self.cachedInsets;
-    newInsets.bottom += newframe.size.height;
+    newInsets.bottom += overlap;
     self.tableView.contentInset = newInsets;
     
     [UIView commitAnimations];
-    
-    dispatch_after(duration, dispatch_get_main_queue(), ^{
+        
         UIView *firstResponder = [UIResponder currentFirstResponder];
         if(firstResponder)
         {
-            NSArray *indexPaths = [self.tableView indexPathsForRowsInRect:[self.tableView convertRect:firstResponder.frame fromView:[firstResponder superview]]];
-            if([indexPaths count]>0)
+            UIView* superview = firstResponder.superview;
+            UITableViewCell *cell;
+            while (superview && ![superview isKindOfClass:[UITableViewCell class]])
             {
-                [self.tableView scrollToRowAtIndexPath:[indexPaths lastObject] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                superview = superview.superview;
+            }
+            if ([superview isKindOfClass:[UITableViewCell class]])
+            {
+                cell = (UITableViewCell*)superview;
+            }
+            if(cell)
+            {
+                NSIndexPath *path = [self.tableView indexPathForCell:cell];
+                if(path)
+                {
+                    [self.tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionNone animated:YES];
+                }
             }
         }
-    });
+
+    
+    //dispatch_after(duration, dispatch_get_main_queue(), ^{
+       //    });
+    }
 }
 
 -(void)keyboardWillHide:(NSNotification*)note
 {
-    CGRect newframe = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
     
