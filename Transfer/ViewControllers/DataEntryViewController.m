@@ -11,8 +11,11 @@
 #import "UIView+Container.h"
 #import "Constants.h"
 #import "DataEntryDefaultHeader.h"
+#import "UIResponder+FirstResponder.h"
 
 @interface DataEntryViewController () <UITextFieldDelegate>
+
+@property (nonatomic, assign) UIEdgeInsets cachedInsets;
 
 @end
 
@@ -21,6 +24,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    if(!IPAD)
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    }
+    
+}
+
+-(void)dealloc
+{
+    if(!IPAD)
+    {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -175,7 +193,7 @@
         if ([self isEntryCell:viewCell]) {
             TextEntryCell *entryCell = (TextEntryCell *) viewCell;
             [entryCell.entryField becomeFirstResponder];
-            [self.tableView scrollToRowAtIndexPath:moveToIndexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
+            [self.tableView scrollToRowAtIndexPath:moveToIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
             return YES;
         }
     }
@@ -232,6 +250,61 @@
 
 - (void)textFieldEntryFinished {
 
+}
+
+-(void)keyboardWillShow:(NSNotification*)note
+{
+    CGRect newframe = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:duration];
+    [UIView setAnimationCurve:curve];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    
+    if(UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, UIEdgeInsetsZero))
+    {
+        self.cachedInsets = self.tableView.contentInset;
+    }
+    
+    UIEdgeInsets newInsets = self.cachedInsets;
+    newInsets.bottom += newframe.size.height;
+    self.tableView.contentInset = newInsets;
+    
+    [UIView commitAnimations];
+    
+    dispatch_after(duration, dispatch_get_main_queue(), ^{
+        UIView *firstResponder = [UIResponder currentFirstResponder];
+        if(firstResponder)
+        {
+            NSArray *indexPaths = [self.tableView indexPathsForRowsInRect:[self.tableView convertRect:firstResponder.frame fromView:[firstResponder superview]]];
+            if([indexPaths count]>0)
+            {
+                [self.tableView scrollToRowAtIndexPath:[indexPaths lastObject] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            }
+        }
+    });
+}
+
+-(void)keyboardWillHide:(NSNotification*)note
+{
+    CGRect newframe = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:duration];
+    [UIView setAnimationCurve:curve];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    
+    self.tableView.contentInset = self.cachedInsets;
+    
+    [UIView commitAnimations];
+
+    self.cachedInsets = UIEdgeInsetsZero;
 }
 
 @end
