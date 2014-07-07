@@ -11,5 +11,6 @@
 @interface ProgressButton : UIButton
 
 @property (nonatomic,assign) CGFloat progress;
+@property (nonatomic, assign) BOOL addShadow;
 
 @end

@@ -10,4 +10,6 @@
 
 @interface GreenButton : UIButton
 
+@property (nonatomic, assign) BOOL addShadow;
+
 @end

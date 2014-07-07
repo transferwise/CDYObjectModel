@@ -8,9 +8,10 @@
 
 #import "ProgressButton.h"
 #import "MOMStyle.h"
+#import "Constants.h"
 
 @interface ProgressButton ()
-@property (nonatomic,assign)CGSize lastDrawnSize;
+@property (nonatomic, assign) CGSize lastDrawnSize;
 @end
 
 @implementation ProgressButton
@@ -33,6 +34,7 @@
 {
     self.fontStyle = @"H4";
     self.exclusiveTouch = YES;
+    self.backgroundColor = [UIColor clearColor];
 }
 
 -(void)setProgress:(CGFloat)progress
@@ -53,48 +55,134 @@
     [super layoutSubviews];
 }
 
+-(void)setAddShadow:(BOOL)addShadow
+{
+    _addShadow = addShadow;
+    [self redrawImages];
+}
+
 -(void)redrawImages
 {
-    UIColor* progressColor = [UIColor colorFromStyle:@"darkGreen"];
-    UIColor* remainingColor = [UIColor colorFromStyle:@"green"];
-    UIColor* progressColorHighlight = [UIColor colorFromStyle:@"darkGreen.alpha2"];
-    UIColor* remainingColorHighlight = [UIColor colorFromStyle:@"green.alpha2"];
-    
     
     CGSize size = self.bounds.size;
     CGFloat scale = [[UIScreen mainScreen] scale];
-    CGRect rect = CGRectMake(0, 0, size.width * scale, size.height * scale);
-
+    size.height *= scale;
+    size.width *= scale;
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    
     CGRect progressRect = rect;
-    progressRect.size.width = round(self.progress * size.width * scale );
+    progressRect.size.width = round(self.progress * size.width);
     
     CGRect remainingRect = rect;
-    remainingRect.size.width = size.width * scale - progressRect.size.width ;
+    remainingRect.size.width = size.width - progressRect.size.width ;
     remainingRect.origin.x = progressRect.size.width;
-
     
-    UIGraphicsBeginImageContext(rect.size);
+    
+    UIColor* progressColor = [UIColor colorFromStyle:@"darkGreen"];
+    UIColor* remainingColor = [UIColor colorFromStyle:@"green"];
+    UIColor* progressSelected = [UIColor colorFromStyle:@"darkGreenSelected"];
+    UIColor* remainingSelected = [UIColor colorFromStyle:@"greenSelected"];
+    
+    UIGraphicsBeginImageContextWithOptions(size,YES, 0.0);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [progressColor CGColor]);
     CGContextFillRect(context, progressRect);
     CGContextSetFillColorWithColor(context, [remainingColor CGColor]);
     CGContextFillRect(context, remainingRect);
+    
+    if(self.addShadow)
+    {
+        CGRect progressShadowRect = progressRect;
+        progressShadowRect.origin.y = size.height - 4.0f * scale;
+        progressShadowRect.size.height = 4.0f * scale;
+        
+        CGRect remainingShadowRect = remainingRect;
+        remainingShadowRect.origin.y = size.height - 4.0f * scale;
+        remainingShadowRect.size.height = 4.0f * scale;
+        
+        UIColor* progressShadow = [UIColor colorFromStyle:@"darkGreenShadow"];
+        UIColor* remainingShadow = [UIColor colorFromStyle:@"greenShadow"];
+        
+        CGContextSetFillColorWithColor(context, [progressShadow CGColor]);
+        CGContextFillRect(context, progressShadowRect);
+        CGContextSetFillColorWithColor(context, [remainingShadow CGColor]);
+        CGContextFillRect(context, remainingShadowRect);
+    }
+    
     UIImage* normal = UIGraphicsGetImageFromCurrentImageContext();
     [self setBackgroundImage:normal forState:UIControlStateNormal];
     UIGraphicsEndImageContext();
     
-    UIGraphicsBeginImageContext(rect.size);
+    UIGraphicsBeginImageContextWithOptions(size,NO, 0.0);
     context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [progressColorHighlight CGColor]);
-    CGContextFillRect(context, progressRect);
-    CGContextSetFillColorWithColor(context, [remainingColorHighlight CGColor]);
-    CGContextFillRect(context, remainingRect);
+    
+    if(self.addShadow)
+    {
+        progressRect.origin.y += 2.0f*scale;
+        CGContextSetFillColorWithColor(context, [progressSelected CGColor]);
+        CGContextFillRect(context, progressRect);
+        
+        remainingRect.origin.y += 2.0f*scale;
+        CGContextSetFillColorWithColor(context, [remainingSelected CGColor]);
+        CGContextFillRect(context, remainingRect);
+        
+        CGRect progressShadowRect = progressRect;
+        progressShadowRect.origin.y = size.height - 2.0f * scale;
+        progressShadowRect.size.height = 2.0f * scale;
+        
+        CGRect remainingShadowRect = remainingRect;
+        remainingShadowRect.origin.y = size.height - 2.0f * scale;
+        remainingShadowRect.size.height = 2.0f * scale;
+        
+        CGRect alphaRect = rect;
+        alphaRect.origin.y =0.0f;
+        alphaRect.size.height = 2.0f * scale;
+        
+        UIColor* progressShadow = [UIColor colorFromStyle:@"darkGreenShadow"];
+        UIColor* remainingShadow = [UIColor colorFromStyle:@"greenShadow"];
+        
+        CGContextSetFillColorWithColor(context, [progressShadow CGColor]);
+        CGContextFillRect(context, progressShadowRect);
+        CGContextSetFillColorWithColor(context, [remainingShadow CGColor]);
+        CGContextFillRect(context, remainingShadowRect);
+        CGContextBeginTransparencyLayer(context, NULL);
+        CGContextSetFillColorWithColor(context, [[UIColor clearColor] CGColor]);
+        CGContextFillRect(context, alphaRect);
+        CGContextEndTransparencyLayer(context);
+    }
+    else
+    {
+        CGContextSetFillColorWithColor(context, [progressSelected CGColor]);
+        CGContextFillRect(context, progressRect);
+        CGContextSetFillColorWithColor(context, [remainingSelected CGColor]);
+        CGContextFillRect(context, remainingRect);
+    }
+    
     UIImage* highlight = UIGraphicsGetImageFromCurrentImageContext();
     [self setBackgroundImage:highlight forState:UIControlStateHighlighted];
     UIGraphicsEndImageContext();
     
-    self.lastDrawnSize = size;
+    
+    self.lastDrawnSize = self.bounds.size;
     
 }
+
+-(void)setHighlighted:(BOOL)highlighted
+{
+    [super setHighlighted:highlighted];
+    
+    if(IPAD)
+    {
+        if(highlighted)
+        {
+            self.contentEdgeInsets = UIEdgeInsetsMake(4, 0, 0, 0);
+        }
+        else
+        {
+            self.contentEdgeInsets = UIEdgeInsetsZero;
+        }
+    }
+}
+
 
 @end
