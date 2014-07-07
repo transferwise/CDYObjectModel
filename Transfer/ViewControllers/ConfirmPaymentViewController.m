@@ -31,9 +31,7 @@
 #import "NSError+TRWErrors.h"
 #import "AnalyticsCoordinator.h"
 
-static NSUInteger const kTransferSection = 0;
 static NSUInteger const kSenderSection = 1;
-static NSUInteger const kReceiverSection = 2;
 
 @interface ConfirmPaymentViewController ()
 

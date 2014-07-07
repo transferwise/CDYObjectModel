@@ -24,8 +24,10 @@
 
 - (id)initWithRecord:(ABRecordRef)person;
 - (id)initWithRecord:(ABRecordRef)person selectedAddressIdentifier:(ABMultiValueIdentifier)identifier;
+- (id)initWithRecordId:(ABRecordID)recordId;
 
 - (void)loadData;
+- (void)loadThumbnail:(void(^)(PhoneBookProfile* profile, UIImage *image))completionBlock;
 - (NSUInteger)addressesCount;
 
 @end

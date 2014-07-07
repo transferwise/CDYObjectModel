@@ -30,6 +30,7 @@
 @property (nonatomic, strong) BankTransferViewController *bankViewController;
 @property (nonatomic, strong) CardPaymentViewController *cardViewController;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 
 @end
 
@@ -90,7 +91,7 @@
             [self selectionChangedToIndex:selectedIndex];
         }];
         [selectionView setTitles:@[NSLocalizedString(@"payment.method.card", nil), NSLocalizedString(@"payment.method.regular", nil)]];
-        [self.view addSubview:selectionView];
+        [self.containerView addSubview:selectionView];
 
         CGFloat selectionHeight = CGRectGetHeight(selectionView.frame);
 
@@ -109,18 +110,18 @@
 - (void)selectionChangedToIndex:(NSInteger)index {
     if (index == 1) {
         [[GoogleAnalytics sharedInstance] sendScreen:@"Bank transfer payment"];
-        [self.view bringSubviewToFront:self.bankViewController.view];
+        [self.containerView bringSubviewToFront:self.bankViewController.view];
     } else {
 		[[GoogleAnalytics sharedInstance] sendScreen:@"Debit card payment"];
         [self.cardViewController loadCardView];
-        [self.view bringSubviewToFront:self.cardViewController.view];
+        [self.containerView bringSubviewToFront:self.cardViewController.view];
     }
 }
 
 - (void)attachChildController:(UIViewController *)controller {
     [self addChildViewController:controller];
-    [controller.view setFrame:self.view.bounds];
-    [self.view addSubview:controller.view];
+    [controller.view setFrame:self.containerView.bounds];
+    [self.containerView addSubview:controller.view];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

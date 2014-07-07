@@ -11,7 +11,7 @@
 extern NSString *const TWSwitchCellIdentifier;
 
 @interface SwitchCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet UILabel *textLabel;
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UISwitch *toggleSwitch;
 
 @end

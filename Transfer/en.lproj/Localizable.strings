@@ -124,7 +124,12 @@ A revolution in your pocket.";
 "money.entry.priority.payment.title" = "Priority Payment";
 "money.entry.receive.fixed.amount.title" = "Receive fixed amount";
 "money.entry.they.receive.title" = "Receiver gets";
+"money.entry.they.receive.exactly.title" = "Receiver gets exactly";
 "money.entry.you.send.title" = "You send";
+"money.entry.you.send.exactly.title" = "You send exactly";
+"money.entry.recipient.receive.title" = "%@ gets";
+"money.entry.recipient.receive.exactly.title" = "%@ gets exactly";
+
 
 "openid.login.error.title" = "Login failed";
 "openid.login.generic.error.message" = "Login failed. Please try again later.";
@@ -223,10 +228,11 @@ It can take up to 2 working days.";
 
 "recipient.controller.add.button.title" = "Add";
 "recipient.controller.add.mode.title" = "Add recipient";
-"recipient.controller.cell.label.name" = "Recipient name";
+"recipient.controller.cell.label.email" = "Email";
+"recipient.controller.cell.label.name" = "Name";
 "recipient.controller.confirm.payment.button.title" = "Confirm payment";
 "recipient.controller.creating.message" = "Creating...";
-"recipient.controller.payment.mode.title" = "Recipient details";
+"recipient.controller.payment.mode.title" = "Select a recipient";
 "recipient.controller.recipient.types.load.error.title" = "Data error";
 "recipient.controller.recipients.preload.error.title" = "Can't load contacts";
 "recipient.controller.refreshing.message" = "Loading...";
@@ -235,7 +241,7 @@ It can take up to 2 working days.";
 "recipient.controller.section.title.currency" = "Currency";
 "recipient.controller.section.title.recipient" = "Who are you sending money to?";
 "recipient.controller.section.title.sender" = "Sender";
-"recipient.controller.section.title.type.fields" = "Bank account details";
+"recipient.controller.section.title.type.fields" = "Bank Details";
 "recipient.controller.validating.message" = "Validating...";
 "recipient.controller.validation.error.empty.name" = "Name not entered";
 "recipient.controller.validation.error.field.empty" = "%@ not entered";
@@ -482,3 +488,5 @@ people who built Skype and PayPal.";
 "reset.password.failed.alert.title" = "Oops!";
 "reset.password.not.found.alert.message" = "There is no account registered with that email. Please provide a valid email.";
 "refund.controller.existing.recipients.preload.error.title" = "Can't load contacts";
+
+"network.alert" = "No network";

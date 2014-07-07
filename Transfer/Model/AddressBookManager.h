@@ -15,6 +15,8 @@ typedef void(^NameLookupHandler)(NSArray* nameLookup);
 @interface AddressBookManager : NSObject
 
 -(void)getNameLookupWithHandler:(NameLookupHandler)handler;
+-(void)getImageForRecordId:(ABRecordID)recordId completion:(void(^)(UIImage* image))completionBlock;
++(ABAddressBookRef)sharedMainThreadAddressbook;
 
 void addressBookExternalChangeCallback (ABAddressBookRef notificationaddressbook,CFDictionaryRef info,void *context);
 

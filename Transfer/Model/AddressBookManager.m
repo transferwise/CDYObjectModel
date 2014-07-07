@@ -18,40 +18,112 @@
 
 @interface AddressBookManager ()
 @property (nonatomic,assign) ABAddressBookRef addressBook;
-@property (nonatomic, strong) NSCache *dataCache;
+@property (nonatomic,strong) dispatch_queue_t dispatchQueue;
+
++(NSCache*)sharedDataCache;
+
 @end
 
 @implementation AddressBookManager
 
+-(id)init
+{
+    self = [super init];
+    if(self)
+    {
+        self.dispatchQueue = dispatch_queue_create("com.transferwise.addressBookManagerQueue", NULL);
+    }
+    return self;
+}
+
 -(void)dealloc
 {
-    if (self.addressBook != NULL)
+    if(_addressBook)
     {
-        CFRelease(self.addressBook);
+        CFRelease(_addressBook);
     }
-    
 }
 
 -(void)getNameLookupWithHandler:(NameLookupHandler)handler
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if (self.addressBook == NULL)
-        {
-            [self requestAddressBookWithHandler:^(bool granted, CFErrorRef error) {
-                [self retrieveNames:handler];
-            }];
-        }
-        else
+    [self getAddressBookAndExecuteInBackground:^(BOOL hasAddressBook) {
+        if(hasAddressBook)
         {
             [self retrieveNames:handler];
         }
-    });
+        else
+        {
+            if(handler)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    handler(nil);
+                });
+            }
+        }
+    }];
 }
+
+-(void)getImageForRecordId:(ABRecordID)recordId completion:(void(^)(UIImage* image))completionBlock{
+    if(!completionBlock)
+    {
+        return;
+    }
+    
+    UIImage *cachedResult = [[AddressBookManager sharedDataCache] objectForKey:[self thumbnailKeyForRecord:recordId]];
+    if(cachedResult)
+    {
+        completionBlock(cachedResult);
+        return;
+    }
+    [self getAddressBookAndExecuteInBackground:^(BOOL hasAddressBook) {
+        UIImage *result;
+        if (hasAddressBook)
+        {
+            ABRecordRef person = ABAddressBookGetPersonWithRecordID(self.addressBook, recordId);
+            if(ABPersonHasImageData(person))
+            {
+                CFDataRef imageData = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail);
+                if(imageData != NULL)
+                {
+                    result = [UIImage imageWithData:(__bridge NSData *)(imageData)];
+                    CFRelease(imageData);
+                    if(result)
+                    {
+                        [[AddressBookManager sharedDataCache] setObject:result forKey:[self thumbnailKeyForRecord:recordId]];
+                    }
+                }
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(result);
+        });
+    }];
+}
+
+-(void)getAddressBookAndExecuteInBackground:(void(^)(BOOL hasAddressBook))excecutionBlock
+{
+    if(excecutionBlock)
+    {
+        dispatch_async(self.dispatchQueue, ^{
+            if (self.addressBook == NULL)
+            {
+                [self requestAddressBookWithHandler:^(bool granted, CFErrorRef error) {
+                    excecutionBlock(self.addressBook != nil);
+                }];
+            }
+            else
+            {
+                excecutionBlock(YES);
+            }
+        });
+    }
+}
+
 
 -(void)retrieveNames:(NameLookupHandler)handler
 {
     
-    NSArray *immutableResult = [self.dataCache objectForKey:cachedNameLookup];
+    NSArray *immutableResult = [[AddressBookManager sharedDataCache] objectForKey:cachedNameLookup];
     if(!immutableResult)
     {
         CFArrayRef people =ABAddressBookCopyArrayOfAllPeople(self.addressBook);
@@ -60,16 +132,29 @@
         for(NSInteger i = 0; i < count; i++)
         {
             ABRecordRef record = CFArrayGetValueAtIndex(people, i);
-            NameLookupWrapper *wrapper = [[NameLookupWrapper alloc] initWithId:ABRecordGetRecordID(record) firstname:(__bridge NSString *)(ABRecordCopyValue(record, kABPersonFirstNameProperty)) lastName:(__bridge NSString *)(ABRecordCopyValue(record, kABPersonLastNameProperty)) nickName:(__bridge NSString *)(ABRecordCopyValue(record, kABPersonNicknameProperty))];
-            if(wrapper)
+            
+            NSString *firstname = (__bridge_transfer NSString *)ABRecordCopyValue(record, kABPersonFirstNameProperty);
+            NSString *lastName =(__bridge_transfer NSString *) ABRecordCopyValue(record, kABPersonLastNameProperty);
+            NSString *nickname = (__bridge_transfer NSString *)ABRecordCopyValue(record, kABPersonNicknameProperty);
+
+            
+            CFTypeRef theProperty = ABRecordCopyValue(record, kABPersonEmailProperty);
+            NSArray *items = (__bridge_transfer NSArray *) ABMultiValueCopyArrayOfAllValues(theProperty);
+                        CFRelease(theProperty);
+            for(NSString *email in items)
             {
-                [result addObject:wrapper];
+                NameLookupWrapper *wrapper = [[NameLookupWrapper alloc] initWithRecordId:ABRecordGetRecordID(record) firstname:firstname lastName:lastName email:email nickName:nickname];
+                if(wrapper)
+                {
+                    [result addObject:wrapper];
+                }
             }
         }
         
         immutableResult = [NSArray arrayWithArray:result];
+        CFRelease(people);
         
-        [self.dataCache setObject:immutableResult forKey:cachedNameLookup];
+        [[AddressBookManager sharedDataCache] setObject:immutableResult forKey:cachedNameLookup];
         
     }
     
@@ -88,10 +173,10 @@
 void addressBookExternalChangeCallback (ABAddressBookRef notificationaddressbook,CFDictionaryRef info,void *context)
 {
     AddressBookManager *wrappedSelf = (__bridge AddressBookManager*) context;
-  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-       if ([wrappedSelf.dataCache objectForKey:cachedNameLookup])
+  dispatch_async(wrappedSelf.dispatchQueue, ^{
+       if ([[AddressBookManager sharedDataCache] objectForKey:cachedNameLookup])
        {
-           [wrappedSelf.dataCache removeObjectForKey:cachedNameLookup];
+           [[AddressBookManager sharedDataCache] removeObjectForKey:cachedNameLookup];
            [wrappedSelf retrieveNames:nil];
        }
   });
@@ -113,7 +198,6 @@ void addressBookExternalChangeCallback (ABAddressBookRef notificationaddressbook
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [[GoogleAnalytics sharedInstance] sendEvent:@"ABpermission" category:@"permission" label:@"declined"];
                     });
-                    CFRelease(self.addressBook);
                     self.addressBook = NULL;
                 }
                 handler(granted,error);
@@ -121,15 +205,56 @@ void addressBookExternalChangeCallback (ABAddressBookRef notificationaddressbook
     }
 }
 
--(NSCache *)dataCache
+-(NSString*)thumbnailKeyForRecord:(ABRecordID)recordId
+{
+    return [NSString stringWithFormat:@"TN:%d",recordId];
+}
+
+
+static NSCache* dataCache;
++(NSCache *)sharedDataCache
 {
     //Lazy load data cache
-    if (! _dataCache)
+    if (! dataCache)
     {
-        _dataCache = [[NSCache alloc] init];
+        dataCache = [[NSCache alloc] init];
     }
     
-    return _dataCache;
+    return dataCache;
 }
+
+static ABAddressBookRef mainThreadAddressBook;
++(ABAddressBookRef)sharedMainThreadAddressbook
+{
+    if ([NSThread isMainThread])
+    {
+        if (mainThreadAddressBook == NULL)
+        {
+            ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
+            
+            if(addressBook) {
+                
+                dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+                
+                ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
+                    if(granted)
+                    {
+                        mainThreadAddressBook = addressBook;
+                    }
+                    if (!granted) {
+                        mainThreadAddressBook = NULL;
+                    }
+                    dispatch_semaphore_signal(sema);
+                });
+                
+                dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+
+            }
+        }
+        return mainThreadAddressBook;
+    }
+    return NULL;
+}
+
 
 @end

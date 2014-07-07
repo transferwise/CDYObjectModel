@@ -10,7 +10,7 @@
 #import "TransactionsViewController.h"
 #import "PaymentViewController.h"
 #import "ContactsViewController.h"
-#import "IntroductionViewController.h"
+#import "NewPaymentViewController.h"
 #import "Credentials.h"
 #import "GoogleAnalytics.h"
 #import "IntroViewController.h"
@@ -20,10 +20,11 @@
 #import "TabViewController.h"
 #import "UIColor+MOMStyle.h"
 #import "TransferwiseClient.h"
+#import "ConnectionAwareViewController.h"
 
 @interface MainViewController () <UINavigationControllerDelegate, UITabBarControllerDelegate>
 
-@property (nonatomic, strong) UITabBarController *tabsController;
+@property (nonatomic, strong) TabViewController *tabController;
 @property (nonatomic, strong) UIView *revealTapView;
 @property (nonatomic, strong) UIViewController *transactionsController;
 @property (nonatomic, assign) BOOL launchTableViewGamAdjustmentDone;
@@ -77,11 +78,12 @@
     paymentItem.deselectedAlpha = 1.0f;
     paymentItem.highlightedColor = [UIColor colorFromStyle:@"lightBlueHighlighted"];
     [paymentItem setActionBlock:^(TabItem* item){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Not implemented yet!" message:nil delegate:nil cancelButtonTitle:@"Aha!" otherButtonTitles:nil];
-        [alert show];
-//        PaymentViewController *paymentController = [[PaymentViewController alloc] init];
-//        [paymentController setObjectModel:self.objectModel];
-//        [self presentViewController:paymentController animated:YES completion:nil];
+        NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
+        [controller setObjectModel:self.objectModel];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+        [navigationController setNavigationBarHidden:YES];
+        ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
+        [self presentViewController:wrapper animated:YES completion:nil];
         return NO;
     }];
 
@@ -121,6 +123,8 @@
     }
     
     [tabController selectItem:transactionsItem];
+    
+    self.tabController = tabController;
 
     [self setViewControllers:@[tabController]];
 
@@ -144,8 +148,6 @@
         return;
     }
 
-    [self.tabsController setSelectedIndex:1];
-    [self.tabsController setSelectedIndex:0];
     [self setLaunchTableViewGamAdjustmentDone:YES];
 
     if (![Credentials userLoggedIn] && !self.shown && ![self.objectModel hasIntroBeenShown]) {
@@ -153,7 +155,7 @@
         [self setNavigationBarHidden:YES];
         [self pushViewController:controller animated:NO];
     } else if (![Credentials userLoggedIn] && !self.shown) {
-        IntroductionViewController *controller = [[IntroductionViewController alloc] init];
+        NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
         [controller setObjectModel:self.objectModel];
         [controller setDummyPresentation:YES];
         [self setNavigationBarHidden:YES];
@@ -180,7 +182,7 @@
             [controller setObjectModel:self.objectModel];
             presented = controller;
         } else {
-            IntroductionViewController *controller = [[IntroductionViewController alloc] init];
+            NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
             [controller setObjectModel:self.objectModel];
             presented = controller;
         }
@@ -192,7 +194,8 @@
 
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:presented];
     [navigationController setNavigationBarHidden:YES];
-    [self presentViewController:navigationController animated:shownBefore completion:nil];
+    ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
+    [self presentViewController:wrapper animated:shownBefore completion:nil];
 }
 
 - (void)loggedOut {
@@ -229,19 +232,19 @@
     }
 }
 
--(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+-(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)vieTwController animated:(BOOL)animated
 {
     
 }
 
 - (void)moveToPaymentsList {
-    self.tabsController.selectedViewController = self.transactionsController;
+    [self.tabController selectIndex:IPAD?1:0];
     [self popToRootViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)moveToPaymentView {
-    self.tabsController.selectedViewController = self.paymentController;
+    [self.tabController selectIndex:IPAD?0:2];
     [self popToRootViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

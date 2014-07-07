@@ -76,10 +76,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     UIView *footer = [[UIView alloc] initWithFrame:CGRectZero];
     [self.tableView setTableFooterView:footer];
 
-    if (IOS_7) {
-        [self setEdgesForExtendedLayout:UIRectEdgeNone];
-    }
-
 	IdentificationNotificationView *notificationView = [IdentificationNotificationView loadInstance];
 	[self setIdentificationView:notificationView];
 	[notificationView setTapHandler:^{
@@ -99,7 +95,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    [self.tableView setContentOffset:CGPointZero];
+    [self.tableView setContentOffset:CGPointMake(0,- self.tableView.contentInset.top)];
 
     if (!self.payments) {
         NSFetchedResultsController *controller = [self.objectModel fetchedControllerForAllPayments];
@@ -171,14 +167,28 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
     UIViewController *resultController;
     if ([payment isSubmitted]) {
-		TransferWaitingViewController *controller = [[TransferWaitingViewController alloc] init];
-        controller.payment = payment;
+        UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+        [controller setPayment:payment];
+        [controller setObjectModel:self.objectModel];
+        [controller setHideBottomButton:YES];
+        [controller setShowContactSupportCell:YES];
         resultController = controller;
-    } else if ([payment isCancelled] || [payment moneyReceived] || [payment moneyTransferred]) {
+
+    }
+    else if (payment.status == PaymentStatusUserHasPaid)
+    {
+        TransferWaitingViewController *controller = [[TransferWaitingViewController alloc] init];
+        controller.payment = payment;
+        controller.objectModel = self.objectModel;
+        resultController = controller;
+        
+    }
+    else {
         TransferDetailsViewController *controller = [[TransferDetailsViewController alloc] init];
         controller.payment = payment;
         resultController = controller;
     }
+    
     if(!self.detailContainer)
     {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];

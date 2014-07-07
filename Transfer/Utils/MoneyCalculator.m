@@ -61,7 +61,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"Send changed:%@", field.text);
         [self setAmountCurrency:SourceCurrency];
-        [self setWaitingAmount:field.text];
+        [self setWaitingAmount:[field.text stringByReplacingOccurrencesOfString:@" " withString:@""]];
         [self performCalculation];
     });
 }
@@ -70,7 +70,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"Receive changed:%@", field.text);
         [self setAmountCurrency:TargetCurrency];
-        [self setWaitingAmount:field.text];
+        [self setWaitingAmount:[field.text stringByReplacingOccurrencesOfString:@" " withString:@""]];
         [self performCalculation];
     });
 }

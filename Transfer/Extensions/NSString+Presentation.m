@@ -96,15 +96,16 @@
 }
 
 - (NSString *)moneyFormatting {
-	return [self stringByReplacingOccurrencesOfString:@" " withString:@""];
+	NSString* workingCopy = [self copy];
+    [workingCopy stringByReplacingOccurrencesOfString:@" " withString:@""];
 
     NSString *cents = @"";
-    NSRange dotLocation = [self rangeOfString:@"."];
+    NSRange dotLocation = [workingCopy rangeOfString:@"."];
     if (dotLocation.location != NSNotFound) {
-        cents = [self substringFromIndex:dotLocation.location];
+        cents = [workingCopy substringFromIndex:dotLocation.location];
     }
 
-    NSString *money = [self stringByReplacingOccurrencesOfString:cents withString:@""];
+    NSString *money = [workingCopy stringByReplacingOccurrencesOfString:cents withString:@""];
     money = [money stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSNumber *moneyNumber = [[MoneyFormatter sharedInstance] numberFromString:money];
     NSString *formatted = [[MoneyFormatter sharedInstance] formatAmount:moneyNumber];

@@ -13,13 +13,14 @@
 @property (nonatomic, strong) NSString* firstName;
 @property (nonatomic, strong) NSString* lastName;
 @property (nonatomic, strong) NSString* nickName;
+@property (nonatomic, strong) NSString* email;
 @property (nonatomic, assign) ABRecordID recordId;
 
 @end
 
 @implementation NameLookupWrapper
 
--(instancetype)initWithId:(ABRecordID)recordId firstname:(NSString*)first lastName:(NSString*)last nickName:(NSString*)nickName
+-(instancetype)initWithRecordId:(ABRecordID)recordId firstname:(NSString*)first lastName:(NSString*)last email:(NSString*)email nickName:(NSString*)nickName
 {
     if(!recordId)
     {
@@ -33,6 +34,27 @@
         _firstName = first;
         _lastName = last;
         _nickName = nickName;
+        _email = email;
+    }
+    
+    return self;
+}
+
+-(instancetype)initWithManagedObjectId:(NSManagedObjectID*)objectId firstname:(NSString*)first lastName:(NSString*)last email:(NSString*)email nickName:(NSString*)nickName
+{
+    if(!objectId)
+    {
+        return nil;
+    }
+    
+    self = [super init];
+    if(self)
+    {
+        _managedObjectId = objectId;
+        _firstName = first;
+        _lastName = last;
+        _nickName = nickName;
+        _email = email;
     }
     
     return self;
@@ -41,28 +63,28 @@
 -(NSString*)presentableString:(enum NameOrder)order
 {
     switch (order) {
-        case NickNamefirst:
-            return [NSString stringWithFormat:@"\"%@\", %@ %@", self.nickName, self.firstName, self.lastName];
+        case NickNameFirst:
+            return [NSString stringWithFormat:@"\"%@\", %@ %@", self.nickName, self.firstName?:@"", self.lastName?:@""];
             break;
         case FirstNameFirst:
             if (self.nickName)
             {
-                return [NSString stringWithFormat:@"%@ \"%@\" %@", self.firstName, self.nickName, self.lastName];
+                return [NSString stringWithFormat:@"%@ \"%@\" %@", self.firstName, self.nickName, self.lastName?:@""];
             }
             else
             {
-                return [NSString stringWithFormat:@"%@, %@", self.firstName, self.lastName];
+                return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName?:@""];
             }
             break;
         case LastNameFirst:
         default:
             if (self.nickName)
             {
-                return [NSString stringWithFormat:@"%@, %@ \"%@\"", self.lastName, self.firstName, self.nickName];
+                return [NSString stringWithFormat:@"%@, %@ \"%@\"", self.lastName, self.firstName?:@"", self.nickName];
             }
             else
             {
-                return [NSString stringWithFormat:@"%@, %@", self.firstName, self.lastName];
+                return [NSString stringWithFormat:@"%@, %@", self.lastName, self.firstName?:@""];
             }
 
             break;

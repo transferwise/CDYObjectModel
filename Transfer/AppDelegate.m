@@ -20,7 +20,7 @@
 #import "FeedbackCoordinator.h"
 #import "UIColor+Theme.h"
 #import "GoogleAnalytics.h"
-#import "AppsFlyer.h"
+#import "AppsFlyerTracker.h"
 #import "NanTracking.h"
 #import "FBSettings.h"
 #import "FBAppEvents.h"
@@ -28,6 +28,7 @@
 #import "AnalyticsCoordinator.h"
 #import "TransferMixpanel.h"
 #import "MOMStyle.h"
+#import "ConnectionAwareViewController.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -70,6 +71,9 @@
     [[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
 #endif
     
+    [AppsFlyerTracker sharedTracker].appsFlyerDevKey = AppsFlyerDevKey;
+    [AppsFlyerTracker sharedTracker].appleAppID = AppsFlyerIdentifier;
+    
 
     [NanTracking setFbAppId:@"274548709260402"];
 
@@ -106,7 +110,7 @@
 
     [[TransferwiseClient sharedClient] setObjectModel:model];
 #if DEV_VERSION
-//    [[TransferwiseClient sharedClient] setBasicUsername:TransferSandboxUsername password:TransferSandboxPassword];
+    [[TransferwiseClient sharedClient] setBasicUsername:TransferSandboxUsername password:TransferSandboxPassword];
 #endif
 
     [[SupportCoordinator sharedInstance] setObjectModel:model];
@@ -117,8 +121,9 @@
     MainViewController *frontViewController = [[MainViewController alloc] init];
     [frontViewController setObjectModel:model];
     
+    ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:frontViewController];
 
-	self.window.rootViewController = frontViewController;
+	self.window.rootViewController = root;
 	[self.window makeKeyAndVisible];
 	return YES;
 }
@@ -148,7 +153,7 @@
 
 #if USE_APPSFLYER_EVENTS
     // Track Installs, updates & sessions (must)
-    [AppsFlyer notifyAppID:AppsFlyerIdentifier];
+    [[AppsFlyerTracker sharedTracker] trackAppLaunch];
 #endif
 
     [[TransferwiseClient sharedClient] updateConfigurationOptions];

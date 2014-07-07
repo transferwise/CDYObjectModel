@@ -13,7 +13,7 @@ NS_ENUM(NSUInteger, NameOrder)
 {
     LastNameFirst =0,
     FirstNameFirst,
-    NickNamefirst
+    NickNameFirst
 };
 
 @interface NameLookupWrapper : NSObject
@@ -21,9 +21,12 @@ NS_ENUM(NSUInteger, NameOrder)
 @property (nonatomic, readonly) NSString* firstName;
 @property (nonatomic, readonly) NSString* lastName;
 @property (nonatomic, readonly) NSString* nickName;
+@property (nonatomic, readonly) NSString* email;
 @property (nonatomic, readonly) ABRecordID recordId;
+@property (nonatomic, readonly) NSManagedObjectID *managedObjectId;
 
--(instancetype)initWithId:(ABRecordID)recordId firstname:(NSString*)first lastName:(NSString*)last nickName:(NSString*)nickName;
+-(instancetype)initWithRecordId:(ABRecordID)recordId firstname:(NSString*)first lastName:(NSString*)last email:(NSString*)email nickName:(NSString*)nickName;
+-(instancetype)initWithManagedObjectId:(NSManagedObjectID*)objectId firstname:(NSString*)first lastName:(NSString*)last email:(NSString*)email nickName:(NSString*)nickName;
 
 -(NSString*)presentableString:(enum NameOrder)order;
 -(NSString*)presentableString;

@@ -24,6 +24,7 @@ extern const struct PaymentAttributes {
 } PaymentAttributes;
 
 extern const struct PaymentRelationships {
+	__unsafe_unretained NSString *paymentMadeIndicator;
 	__unsafe_unretained NSString *recipient;
 	__unsafe_unretained NSString *refundRecipient;
 	__unsafe_unretained NSString *settlementRecipient;
@@ -35,6 +36,7 @@ extern const struct PaymentRelationships {
 extern const struct PaymentFetchedProperties {
 } PaymentFetchedProperties;
 
+@class PaymentMadeIndicator;
 @class Recipient;
 @class Recipient;
 @class Recipient;
@@ -252,6 +254,13 @@ extern const struct PaymentFetchedProperties {
 
 
 
+@property (nonatomic, strong) PaymentMadeIndicator *paymentMadeIndicator;
+
+//- (BOOL)validatePaymentMadeIndicator:(id*)value_ error:(NSError**)error_;
+
+
+
+
 @property (nonatomic, strong) Recipient *recipient;
 
 //- (BOOL)validateRecipient:(id*)value_ error:(NSError**)error_;
@@ -413,6 +422,11 @@ extern const struct PaymentFetchedProperties {
 - (void)setPrimitiveTransferredDate:(NSDate*)value;
 
 
+
+
+
+- (PaymentMadeIndicator*)primitivePaymentMadeIndicator;
+- (void)setPrimitivePaymentMadeIndicator:(PaymentMadeIndicator*)value;
 
 
 

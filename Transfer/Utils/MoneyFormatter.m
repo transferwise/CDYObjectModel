@@ -12,7 +12,7 @@
 
 @interface MoneyFormatter ()
 
-@property (nonatomic, strong) NSNumberFormatter *formatterWithCurrency;
+
 @property (nonatomic, strong) NSNumberFormatter *formatterWithoutCurrency;
 
 @end
@@ -38,12 +38,7 @@
 - (id)initSingleton {
     self = [super init];
     if (self) {
-       _formatterWithCurrency = [[NSNumberFormatter alloc] init];
-        [_formatterWithCurrency setGeneratesDecimalNumbers:YES];
-        [_formatterWithCurrency setLocale:[CalculationResult defaultLocale]];
-        [_formatterWithCurrency setNumberStyle:NSNumberFormatterCurrencyStyle];
-        [_formatterWithCurrency setCurrencyDecimalSeparator:@"."];
-        [_formatterWithCurrency setCurrencyGroupingSeparator:@" "];
+
 
         _formatterWithoutCurrency = [[NSNumberFormatter alloc] init];
         [_formatterWithoutCurrency setGeneratesDecimalNumbers:YES];
@@ -58,8 +53,7 @@
 }
 
 - (NSString *)formatAmount:(NSNumber *)amount withCurrency:(NSString *)currencyCode {
-    [self.formatterWithCurrency setCurrencyCode:currencyCode];
-    return [self.formatterWithCurrency stringFromNumber:amount];
+    return [NSString stringWithFormat:@"%@ %@",[self.formatterWithoutCurrency stringFromNumber:amount],currencyCode];
 }
 
 - (NSString *)formatAmount:(NSNumber *)amount {

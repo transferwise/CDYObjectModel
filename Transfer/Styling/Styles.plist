@@ -31,6 +31,11 @@
 				<key>alpha</key>
 				<real>0.97</real>
 			</dict>
+			<key>alpha4</key>
+			<dict>
+				<key>alpha</key>
+				<real>0.5</real>
+			</dict>
 			<key>blue</key>
 			<dict>
 				<key>color</key>
@@ -61,10 +66,20 @@
 				<key>color</key>
 				<string>1e2022</string>
 			</dict>
+			<key>darkText2</key>
+			<dict>
+				<key>color</key>
+				<string>25272a</string>
+			</dict>
 			<key>green</key>
 			<dict>
 				<key>color</key>
 				<string>83b019</string>
+			</dict>
+			<key>darkGreen</key>
+			<dict>
+				<key>color</key>
+				<string>74a402</string>
 			</dict>
 			<key>highlightBlue</key>
 			<dict>
@@ -82,10 +97,7 @@
 				<string>324266</string>
 			</dict>
 			<key>lightBlueHighlighted</key>
-			<dict>
-				<key>color</key>
-				<string>465983</string>
-			</dict>
+			<dict/>
 			<key>lightBlue2</key>
 			<dict>
 				<key>color</key>
@@ -110,6 +122,11 @@
 			<dict>
 				<key>color</key>
 				<string>8da7ae</string>
+			</dict>
+			<key>lightText2</key>
+			<dict>
+				<key>color</key>
+				<string>b5b6b8</string>
 			</dict>
 			<key>navBarBlue</key>
 			<dict>

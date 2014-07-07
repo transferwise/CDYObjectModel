@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DataEntryViewController : UITableViewController
+@interface DataEntryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSArray *presentedSectionCells;
+@property (nonatomic, weak) IBOutlet UITableView* tableView;
 
 - (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath;
 - (void)textFieldEntryFinished;
+
+
+-(void)reloadSeparators;
 
 @end

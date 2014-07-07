@@ -78,6 +78,12 @@
 #define COCOAPODS_VERSION_MINOR_OHAttributedLabel 4
 #define COCOAPODS_VERSION_PATCH_OHAttributedLabel 1
 
+// Reachability
+#define COCOAPODS_POD_AVAILABLE_Reachability
+#define COCOAPODS_VERSION_MAJOR_Reachability 3
+#define COCOAPODS_VERSION_MINOR_Reachability 1
+#define COCOAPODS_VERSION_PATCH_Reachability 1
+
 // SMPageControl
 #define COCOAPODS_POD_AVAILABLE_SMPageControl
 #define COCOAPODS_VERSION_MAJOR_SMPageControl 1

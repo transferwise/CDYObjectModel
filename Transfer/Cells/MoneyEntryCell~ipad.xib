@@ -24,7 +24,7 @@
                         <rect key="frame" x="16" y="38" width="182" height="27"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="H1"/>
                         </userDefinedRuntimeAttributes>

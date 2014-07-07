@@ -26,16 +26,17 @@
 #import "ConfirmPaymentCell.h"
 #import "SupportCoordinator.h"
 #import "GoogleAnalytics.h"
+#import "ObjectModel+Payments.h"
 
 @interface BankTransferViewController ()
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 @property (strong, nonatomic) IBOutlet UILabel *headerLabel;
-@property (strong, nonatomic) IBOutlet GreenButton *doneButton;
 @property (strong, nonatomic) IBOutlet UIView *footerBottomMessageView;
 @property (nonatomic, strong) IBOutlet UIView *contactSupportFooter;
 @property (nonatomic, strong) IBOutlet UIButton *contactSupportFooterButton;
+@property (strong, nonatomic) IBOutletCollection(GreenButton) NSArray *doneButtons;
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
@@ -59,7 +60,10 @@
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
 
     [self.headerLabel setText:NSLocalizedString(@"upload.money.header.label", @"")];
-    [self.doneButton setTitle:NSLocalizedString(@"upload.money.done.button.title", @"") forState:UIControlStateNormal];
+    for(UIButton *button in self.doneButtons)
+    {
+        [button setTitle:NSLocalizedString(@"upload.money.done.button.title", @"") forState:UIControlStateNormal];
+    }
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TextCell" bundle:nil] forCellReuseIdentifier:TWTextCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"ConfirmPaymentCell" bundle:nil] forCellReuseIdentifier:TWConfirmPaymentCellIdentifier];
@@ -133,6 +137,10 @@
 }
 
 - (IBAction)doneBtnClicked:(id)sender {
+    __weak typeof(self) weakSelf = self;
+    [self.objectModel performBlock:^{
+        [weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment];
+    }];
     [[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"BankTransfer"];
     if ([Credentials temporaryAccount]) {
         ClaimAccountViewController *controller = [[ClaimAccountViewController alloc] init];
