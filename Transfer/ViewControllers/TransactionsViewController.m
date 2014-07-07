@@ -31,6 +31,8 @@
 #import "PullToRefreshView.h"
 #import "TransferDetailsViewController.h"
 #import "TransferWaitingViewController.h"
+#import "TRWAlertView.h"
+#import "TRWProgressHUD.h"
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
@@ -471,7 +473,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 				if(status != PaymentStatusCancelled && status != PaymentStatusTransferred)
 				{
 					//show cancel button
-					[cell showCancelButton:YES];
+					[cell showCancelButton:YES action:^{
+						[self confirmPaymentCancel:payment cell:cell];
+					}];
 					
 					[self removeCancellingFromCell];
 					
@@ -485,6 +489,30 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 			self.cancellingCell = nil;
 		}
     }
+}
+
+- (void)confirmPaymentCancel:(Payment *)payment cell:(PaymentCell *)cell
+{
+	TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"transactions.cancel.confirmation.title", nil)
+													   message:[NSString stringWithFormat:NSLocalizedString(@"transactions.cancel.confirmation.message", nil), [payment.recipient name]]];
+	[alertView setLeftButtonTitle:NSLocalizedString(@"button.title.yes", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
+	
+	[alertView setLeftButtonAction:^{
+		[cell hideCancelButton:NO];
+		[self cancelPayment:payment];
+	}];
+	[alertView setRightButtonAction:^{
+		[cell hideCancelButton:YES];
+		
+	}];
+	
+	[alertView show];
+	self.cancellingCell = nil;
+}
+
+- (void)cancelPayment:(Payment *)payment
+{
+	
 }
 
 #pragma mark - PullToRefresh

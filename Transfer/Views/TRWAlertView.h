@@ -12,6 +12,7 @@
 @interface TRWAlertView : UIAlertView
 
 @property (nonatomic, copy) TRWActionBlock leftButtonAction;
+@property (nonatomic, copy)	TRWActionBlock rightButtonAction;
 
 - (void)setConfirmButtonTitle:(NSString *)title;
 - (void)setConfirmButtonTitle:(NSString *)title action:(TRWActionBlock)action;

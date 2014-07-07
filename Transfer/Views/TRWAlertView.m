@@ -59,6 +59,10 @@
     if (buttonIndex == self.leftButtonIndex && self.leftButtonAction) {
         self.leftButtonAction();
     }
+	else if(self.rightButtonAction)
+	{
+		self.rightButtonAction();
+	}
 }
 
 @end

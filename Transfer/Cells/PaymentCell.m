@@ -10,7 +10,6 @@
 #import "Payment.h"
 #import "Recipient.h"
 #import "MOMStyle.h"
-#import "Constants.h"
 
 @interface PaymentCell ()
 
@@ -21,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *statusIcon;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *cancelButtonLeft;
 @property (strong, nonatomic) IBOutlet UIButton *cancelButton;
+@property (strong, nonatomic) TRWActionBlock cancelBlock;
 
 @end
 
@@ -92,26 +92,36 @@
     self.contentView.bgStyle=highlighted?@"cellSelected":@"white";
 }
 
-- (void)showCancelButton:(BOOL)animated
+- (void)showCancelButton:(BOOL)animated action:(TRWActionBlock)action
 {
 	[self.contentView layoutIfNeeded];
-	[UIView animateWithDuration:0.2 animations:^{
+	[UIView animateWithDuration:animated ? 0.2 : 0 animations:^{
 		self.cancelButtonLeft.constant = 500;
 		[self.moneyLabel setHidden:YES];
 		[self.currencyLabel setHidden:YES];
 		[self.contentView layoutIfNeeded];
+		self.cancelBlock = action;
 	}];
 }
 
 - (void)hideCancelButton:(BOOL)animated
 {
 	[self.contentView layoutIfNeeded];
-	[UIView animateWithDuration:0.2 animations:^{
+	[UIView animateWithDuration:animated ? 0.2 : 0 animations:^{
 		self.cancelButtonLeft.constant = 0;
 		[self.moneyLabel setHidden:NO];
 		[self.currencyLabel setHidden:NO];
 		[self.contentView layoutIfNeeded];
+		self.cancelBlock = nil;
 	}];
+}
+
+- (IBAction)cancelTapped:(id)sender
+{
+	if (self.cancelBlock != nil)
+	{
+		self.cancelBlock();
+	}
 }
 
 @end
