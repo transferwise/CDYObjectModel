@@ -473,7 +473,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 				if(status != PaymentStatusCancelled && status != PaymentStatusTransferred)
 				{
 					//show cancel button
-					[cell showCancelButton:YES];
+					[cell showCancelButton:YES action:^{
+						
+					}];
 					
 					[self removeCancellingFromCell];
 					
