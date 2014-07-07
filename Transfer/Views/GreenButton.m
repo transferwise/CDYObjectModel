@@ -34,8 +34,8 @@
     
     if(self.addShadow)
     {
-        [self setBackgroundImage:[self normalImage] forState:UIControlStateNormal];
-        [self setBackgroundImage:[self selectedimage] forState:UIControlStateHighlighted];
+        [self setBackgroundImage:[self normalStateImage] forState:UIControlStateNormal];
+        [self setBackgroundImage:[self selectedStateImage] forState:UIControlStateHighlighted];
         
     }
 }
@@ -47,8 +47,8 @@
     if(self.addShadow)
     {
         // set background images
-        [self setBackgroundImage:[self normalImage] forState:UIControlStateNormal];
-        [self setBackgroundImage:[self selectedimage] forState:UIControlStateHighlighted];
+        [self setBackgroundImage:[self normalStateImage] forState:UIControlStateNormal];
+        [self setBackgroundImage:[self selectedStateImage] forState:UIControlStateHighlighted];
         
     }
     else
@@ -76,20 +76,20 @@
     
 }
 
-static __weak UIImage* normalImage;
--(UIImage*)normalImage
+static __weak UIImage* normalStateImage;
+-(UIImage*)normalStateImage
 {
-    UIImage *result = normalImage;
+    UIImage *result = normalStateImage;
     if (!result)
     {
         
         CGFloat scale = [[UIScreen mainScreen] scale];
-        CGSize size = CGSizeMake(3.0f*scale, 8.0f*scale);
+        CGSize size = CGSizeMake(3.0f, 8.0f);
         
-        CGRect mainRect = CGRectMake(0.0f, 0.0f, 3.0f*scale, 4.0f*scale);
+        CGRect mainRect = CGRectMake(0.0f, 0.0f, 3.0f, 4.0f);
         
         
-        CGRect shadowRect = CGRectMake(0.0f, 4.0f * scale, 3.0f*scale, 4.0f*scale);
+        CGRect shadowRect = CGRectMake(0.0f, 4.0f, 3.0f, 4.0f);
         
         
         UIColor* greenColor = [UIColor colorFromStyle:@"green"];
@@ -102,30 +102,32 @@ static __weak UIImage* normalImage;
         CGContextSetFillColorWithColor(context, [greenShadow CGColor]);
         CGContextFillRect(context, shadowRect);
         
-        UIImage* normal = UIGraphicsGetImageFromCurrentImageContext();
-        normal = [normal resizableImageWithCapInsets:UIEdgeInsetsMake(3, 1, 4, 1)];
-        UIGraphicsEndImageContext();
-        result = normal;
-        normalImage = normal;
+        CGImageRef cgImage = CGBitmapContextCreateImage(context);
+        UIImage* image = [UIImage imageWithCGImage:cgImage scale:scale orientation:UIImageOrientationUp];
+        CGImageRelease(cgImage);
+                UIGraphicsEndImageContext();
+        image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(3, 1, 4, 1)];
+        result = image;
+        normalStateImage = image;
     }
     
     return result;
 }
 
-static __weak UIImage* selectedImage;
--(UIImage*)selectedimage
+static __weak UIImage* selectedStateImage;
+-(UIImage*)selectedStateImage
 {
-    UIImage *result = selectedImage;
+    UIImage *result = selectedStateImage;
     if (!result)
     {
         
         CGFloat scale = [[UIScreen mainScreen] scale];
-        CGSize size = CGSizeMake(3.0f*scale, 8.0f*scale);
+        CGSize size = CGSizeMake(3.0f, 8.0f);
         
-        CGRect mainRect = CGRectMake(0.0f, 2.0f*scale, 3.0f*scale, 2.0f*scale);
+        CGRect mainRect = CGRectMake(0.0f, 2.0f, 3.0f, 4.0f);
         
         
-        CGRect shadowRect = CGRectMake(0.0f, 4.0f * scale, 3.0f*scale, 4.0f*scale);
+        CGRect shadowRect = CGRectMake(0.0f, 6.0f, 3.0f, 2.0f);
         
         
         UIColor* greenColor = [UIColor colorFromStyle:@"greenSelected"];
@@ -138,11 +140,14 @@ static __weak UIImage* selectedImage;
         CGContextSetFillColorWithColor(context, [greenShadow CGColor]);
         CGContextFillRect(context, shadowRect);
         
-        UIImage* normal = UIGraphicsGetImageFromCurrentImageContext();
-        normal = [normal resizableImageWithCapInsets:UIEdgeInsetsMake(3, 1, 4, 1)];
+        CGImageRef cgImage = CGBitmapContextCreateImage(context);
+        UIImage* image = [UIImage imageWithCGImage:cgImage scale:scale orientation:UIImageOrientationUp];
+        CGImageRelease(cgImage);
         UIGraphicsEndImageContext();
-        result = normal;
-        selectedImage = normal;
+
+        image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(3, 1, 4, 1)];
+        result = image;
+        selectedStateImage = image;
     }
     
     return result;
