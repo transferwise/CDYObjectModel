@@ -66,8 +66,6 @@
     
     CGSize size = self.bounds.size;
     CGFloat scale = [[UIScreen mainScreen] scale];
-    size.height *= scale;
-    size.width *= scale;
     CGRect rect = CGRectMake(0, 0, size.width, size.height);
     
     CGRect progressRect = rect;
@@ -93,12 +91,12 @@
     if(self.addShadow)
     {
         CGRect progressShadowRect = progressRect;
-        progressShadowRect.origin.y = size.height - 4.0f * scale;
-        progressShadowRect.size.height = 4.0f * scale;
+        progressShadowRect.origin.y = size.height - 4.0f;
+        progressShadowRect.size.height = 4.0f;
         
         CGRect remainingShadowRect = remainingRect;
-        remainingShadowRect.origin.y = size.height - 4.0f * scale;
-        remainingShadowRect.size.height = 4.0f * scale;
+        remainingShadowRect.origin.y = size.height - 4.0f;
+        remainingShadowRect.size.height = 4.0f;
         
         UIColor* progressShadow = [UIColor colorFromStyle:@"darkGreenShadow"];
         UIColor* remainingShadow = [UIColor colorFromStyle:@"greenShadow"];
@@ -109,7 +107,9 @@
         CGContextFillRect(context, remainingShadowRect);
     }
     
-    UIImage* normal = UIGraphicsGetImageFromCurrentImageContext();
+    CGImageRef cgImage = CGBitmapContextCreateImage(context);
+    UIImage* normal = [UIImage imageWithCGImage:cgImage scale:scale orientation:UIImageOrientationUp];
+    CGImageRelease(cgImage);
     [self setBackgroundImage:normal forState:UIControlStateNormal];
     UIGraphicsEndImageContext();
     
@@ -118,25 +118,25 @@
     
     if(self.addShadow)
     {
-        progressRect.origin.y += 2.0f*scale;
+        progressRect.origin.y += 2.0f;
         CGContextSetFillColorWithColor(context, [progressSelected CGColor]);
         CGContextFillRect(context, progressRect);
         
-        remainingRect.origin.y += 2.0f*scale;
+        remainingRect.origin.y += 2.0f;
         CGContextSetFillColorWithColor(context, [remainingSelected CGColor]);
         CGContextFillRect(context, remainingRect);
         
         CGRect progressShadowRect = progressRect;
-        progressShadowRect.origin.y = size.height - 2.0f * scale;
-        progressShadowRect.size.height = 2.0f * scale;
+        progressShadowRect.origin.y = size.height - 2.0f;
+        progressShadowRect.size.height = 2.0f;
         
         CGRect remainingShadowRect = remainingRect;
-        remainingShadowRect.origin.y = size.height - 2.0f * scale;
-        remainingShadowRect.size.height = 2.0f * scale;
+        remainingShadowRect.origin.y = size.height - 2.0f;
+        remainingShadowRect.size.height = 2.0f;
         
         CGRect alphaRect = rect;
         alphaRect.origin.y =0.0f;
-        alphaRect.size.height = 2.0f * scale;
+        alphaRect.size.height = 2.0f;
         
         UIColor* progressShadow = [UIColor colorFromStyle:@"darkGreenShadow"];
         UIColor* remainingShadow = [UIColor colorFromStyle:@"greenShadow"];
@@ -158,7 +158,9 @@
         CGContextFillRect(context, remainingRect);
     }
     
-    UIImage* highlight = UIGraphicsGetImageFromCurrentImageContext();
+    cgImage = CGBitmapContextCreateImage(context);
+    UIImage* highlight = [UIImage imageWithCGImage:cgImage scale:scale orientation:UIImageOrientationUp];
+    CGImageRelease(cgImage);
     [self setBackgroundImage:highlight forState:UIControlStateHighlighted];
     UIGraphicsEndImageContext();
     
