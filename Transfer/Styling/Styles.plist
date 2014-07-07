@@ -74,9 +74,29 @@
 			<key>green</key>
 			<dict>
 				<key>color</key>
-				<string>83b019</string>
+				<string>85b319</string>
+			</dict>
+			<key>greenShadow</key>
+			<dict>
+				<key>color</key>
+				<string>63950d</string>
+			</dict>
+			<key>greenSelected</key>
+			<dict>
+				<key>color</key>
+				<string>88b71a</string>
 			</dict>
 			<key>darkGreen</key>
+			<dict>
+				<key>color</key>
+				<string>74a402</string>
+			</dict>
+			<key>darkGreenShadow</key>
+			<dict>
+				<key>color</key>
+				<string>548401</string>
+			</dict>
+			<key>darkGreenSelected</key>
 			<dict>
 				<key>color</key>
 				<string>74a402</string>
