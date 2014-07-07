@@ -33,6 +33,10 @@
 #import "TransferWaitingViewController.h"
 #import "TRWAlertView.h"
 #import "TRWProgressHUD.h"
+#import "UIGestureRecognizer+Cancel.h"
+
+#define HORIZ_SWIPE_DRAG_MIN  12
+#define VERT_SWIPE_DRAG_MAX    4
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
@@ -51,6 +55,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (weak, nonatomic) IBOutlet UIView *detailContainer;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) PaymentCell* cancellingCell;
+@property (nonatomic) CGPoint touchStart;
 
 @end
 
@@ -83,8 +88,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	}];
     
     self.titleLabel.text = self.title;
-	
-	[self addGestureRecognizers];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -122,17 +125,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 	[[GoogleAnalytics sharedInstance] sendScreen:@"View transfers"];
 }
-
-- (void)addGestureRecognizers {
-	UISwipeGestureRecognizer* swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedLeft:)];
-	swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
-	[self.tableView addGestureRecognizer:swipeLeft];
-	
-	UISwipeGestureRecognizer* swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedRight:)];
-	swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
-	[self.tableView addGestureRecognizer:swipeRight];
-}
-
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [[self.payments sections] count];
@@ -148,7 +140,25 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
     Payment *payment = [self.payments objectAtIndexPath:indexPath];
 
-    [cell configureWithPayment:payment];
+	[cell configureWithPayment:payment
+		   willShowCancelBlock:^{
+			   //this will be called each time a touch starts
+			   //including the touch that hides the button
+			   //so not cancelling if the same cell is receiving touches
+			   if(self.cancellingCell != cell)
+			   {
+				   [self removeCancellingFromCell];
+			   }
+		   }
+			didShowCancelBlock:^{
+				self.cancellingCell = cell;
+			}
+			didHideCancelBlock:^{
+				self.cancellingCell = nil;
+			}
+			 cancelTappedBlock:^{
+				 [self confirmPaymentCancel:payment cell:cell];
+			 }];
 
     return cell;
 }
@@ -203,7 +213,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         resultController.view.frame = self.detailContainer.bounds;
     }
 }
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	if (section == 0 && self.showIdentificationView) {
@@ -430,16 +439,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 }
 
 #pragma mark - SwipeToCancel
-- (void)swipedLeft:(UISwipeGestureRecognizer *)sender
-{
-	[self handleSwipe:sender isLeft:YES];
-}
-
-- (void)swipedRight:(UISwipeGestureRecognizer *)sender
-{
-	[self handleSwipe:sender isLeft:NO];
-}
-
 - (void)removeCancellingFromCell
 {
 	if (self.cancellingCell != nil)
@@ -447,48 +446,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 		[self.cancellingCell hideCancelButton:YES];
 		self.cancellingCell = nil;
 	}
-}
-
-- (void)handleSwipe:(UISwipeGestureRecognizer *)sender isLeft:(BOOL)isLeft
-{
-	CGPoint location = [sender locationInView:self.tableView];
-	
-    //Get the corresponding index path within the table view
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:location];
-	
-    //Check if index path is valid
-    if(indexPath)
-    {
-		PaymentCell *cell = (PaymentCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-		
-		if (isLeft)
-		{
-			Payment* payment = [self.payments objectAtIndexPath:indexPath];
-			
-			//Be sure that we actually have a payment
-			if(payment)
-			{
-				PaymentStatus status = [payment status];
-				
-				if(status != PaymentStatusCancelled && status != PaymentStatusTransferred)
-				{
-					//show cancel button
-					[cell showCancelButton:YES action:^{
-						[self confirmPaymentCancel:payment cell:cell];
-					}];
-					
-					[self removeCancellingFromCell];
-					
-					self.cancellingCell = cell;
-				}
-			}
-		}
-        else
-		{
-			[cell hideCancelButton:YES];
-			self.cancellingCell = nil;
-		}
-    }
 }
 
 - (void)confirmPaymentCancel:(Payment *)payment cell:(PaymentCell *)cell
@@ -512,7 +469,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 - (void)cancelPayment:(Payment *)payment
 {
-	
+	//TODO: implement payment cancelling when api supports it.
 }
 
 #pragma mark - PullToRefresh

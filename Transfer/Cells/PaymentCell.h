@@ -11,10 +11,14 @@
 
 @class Payment;
 
-@interface PaymentCell : UITableViewCell
+@interface PaymentCell : UITableViewCell<UIGestureRecognizerDelegate>
 
-- (void)configureWithPayment:(Payment *)payment;
-- (void)showCancelButton:(BOOL)animated action:(TRWActionBlock)action;
+- (void)configureWithPayment:(Payment *)payment
+		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
+		  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
+		  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
+		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock;
+
 - (void)hideCancelButton:(BOOL)animated;
 
 @end

@@ -20,15 +20,32 @@
 @property (weak, nonatomic) IBOutlet UIImageView *statusIcon;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *cancelButtonLeft;
 @property (strong, nonatomic) IBOutlet UIButton *cancelButton;
-@property (strong, nonatomic) TRWActionBlock cancelBlock;
+@property (strong, nonatomic) TRWActionBlock willShowCancelBlock;
+@property (strong, nonatomic) TRWActionBlock didShowCancelBlock;
+@property (strong, nonatomic) TRWActionBlock didHideCancelBlock;
+@property (strong, nonatomic) TRWActionBlock cancelTappedBlock;
+@property (nonatomic) BOOL canBeCancelled;
+@property (nonatomic) BOOL isCancelShown;
+@property (nonatomic) CGPoint touchStart;
+@property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
 
 @end
 
 @implementation PaymentCell
 
 - (void)configureWithPayment:(Payment *)payment
+		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
+		  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
+		  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
+		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock
 {
-	[self.cancelButton setTitle:NSLocalizedString(@"button.title.cancel", nil) forState:UIControlStateNormal];
+	self.willShowCancelBlock = willShowCancelBlock;
+	self.didShowCancelBlock = didShowCancelBlock;
+	self.didHideCancelBlock = didHideCancelBlock;
+	self.cancelTappedBlock = cancelTappedBlock;
+	
+	[self.cancelButton setTitle:NSLocalizedString(@"button.title.cancel", nil)
+					   forState:UIControlStateNormal];
 	
     [self.nameLabel setText:[payment.recipient name]];
     [self.statusLabel setText:[payment localizedStatus]];
@@ -39,30 +56,37 @@
     switch ([payment status]) {
         case PaymentStatusCancelled:
             icon = [UIImage imageNamed:@"transfers_icon_cancelled"];
+			self.canBeCancelled = NO;
             break;
         case PaymentStatusMatched:
            icon = [UIImage imageNamed:@"transfers_icon_converting"];
+			self.canBeCancelled = YES;
             break;
         case PaymentStatusReceived:
             icon = [UIImage imageNamed:@"transfers_icon_converting"];
+			self.canBeCancelled = YES;
             break;
         case PaymentStatusRefunded:
             icon = [UIImage imageNamed:@"transfers_icon_cancelled"];
+			self.canBeCancelled = NO;
             break;
         case PaymentStatusReceivedWaitingRecipient:
             icon = [UIImage imageNamed:@"transfers_icon_waiting"];
+			self.canBeCancelled = YES;
             break;
         case PaymentStatusSubmitted:
         case PaymentStatusUserHasPaid:
             icon = [UIImage imageNamed:@"transfers_icon_waiting"];
+			self.canBeCancelled = YES;
             break;
         case PaymentStatusTransferred:
             icon = [UIImage imageNamed:@"transfers_icon_complete"];
+			self.canBeCancelled = NO;
             break;
         case PaymentStatusUnknown:
         default:
             icon = [UIImage imageNamed:@"transfers_icon_cancelled"];
-            
+            self.canBeCancelled = NO;
             break;
     }
     
@@ -80,6 +104,13 @@
     
     self.moneyLabel.textColor = conditionalColor;
     self.nameLabel.textColor = conditionalColor;
+	
+	if(!self.panRecognizer)
+	{
+		self.panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+		self.panRecognizer.delegate = self;
+		[self addGestureRecognizer:self.panRecognizer];
+	}
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -92,16 +123,77 @@
     self.contentView.bgStyle=highlighted?@"cellSelected":@"white";
 }
 
-- (void)showCancelButton:(BOOL)animated action:(TRWActionBlock)action
+#pragma mark - Cancel button show/hide + tap
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
-	[self.contentView layoutIfNeeded];
-	[UIView animateWithDuration:animated ? 0.2 : 0 animations:^{
-		self.cancelButtonLeft.constant = 500;
-		[self.moneyLabel setHidden:YES];
-		[self.currencyLabel setHidden:YES];
-		[self.contentView layoutIfNeeded];
-		self.cancelBlock = action;
-	}];
+	return YES;
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer
+{
+	//all kinds of gesture recognizers can end up here, so check that we are dealing with pan
+	if(self.canBeCancelled && [gestureRecognizer isMemberOfClass:[UIPanGestureRecognizer class]])
+	{
+		UIView *cell = [gestureRecognizer view];
+		CGPoint translation = [gestureRecognizer translationInView:[cell superview]];
+		
+		// Check for horizontal gesture
+		if (fabsf(translation.x) > fabsf(translation.y))
+		{
+			return YES;
+		}
+	}
+	
+    return NO;
+}
+
+- (void)handlePan:(UIPanGestureRecognizer *)recognizer
+{
+	CGPoint currentPosition = [recognizer locationInView:self];
+	switch (recognizer.state)
+	{
+		case UIGestureRecognizerStateBegan:
+			//mark the start position
+			self.touchStart = currentPosition;
+			self.willShowCancelBlock();
+			break;
+		case UIGestureRecognizerStateChanged:
+			{
+				float dx = self.touchStart.x - currentPosition.x;
+				
+				if(dx > 0)
+				{
+					//swiping to show, simply set constraint
+					self.cancelButtonLeft.constant = dx;
+				}
+				else
+				{
+					//swiping to hide, add to button with and set to constraint
+					self.cancelButtonLeft.constant = self.cancelButton.frame.size.width + dx;
+				}
+			}
+			break;
+		case UIGestureRecognizerStateEnded:
+			//if button has been swiped wisible the whole width treat it as shown
+			if(self.cancelButtonLeft.constant >= self.cancelButton.frame.size.width)
+			{
+				[self.moneyLabel setHidden:YES];
+				[self.currencyLabel setHidden:YES];
+				self.didShowCancelBlock();
+			}
+			//else the button has either been swiped to hidden
+			//or it has not been swiped out completely
+			else
+			{
+				[self hideCancelButton:YES];
+				self.didHideCancelBlock();
+			}
+			break;
+		default:
+			self.touchStart = CGPointZero;
+			break;
+	}
 }
 
 - (void)hideCancelButton:(BOOL)animated
@@ -112,15 +204,14 @@
 		[self.moneyLabel setHidden:NO];
 		[self.currencyLabel setHidden:NO];
 		[self.contentView layoutIfNeeded];
-		self.cancelBlock = nil;
 	}];
 }
 
 - (IBAction)cancelTapped:(id)sender
 {
-	if (self.cancelBlock != nil)
+	if (self.cancelTappedBlock != nil)
 	{
-		self.cancelBlock();
+		self.cancelTappedBlock();
 	}
 }
 
