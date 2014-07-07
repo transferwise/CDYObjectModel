@@ -135,7 +135,6 @@
             
             NSString *firstname = (__bridge_transfer NSString *)ABRecordCopyValue(record, kABPersonFirstNameProperty);
             NSString *lastName =(__bridge_transfer NSString *) ABRecordCopyValue(record, kABPersonLastNameProperty);
-            NSString *nickname = (__bridge_transfer NSString *)ABRecordCopyValue(record, kABPersonNicknameProperty);
 
             
             CFTypeRef theProperty = ABRecordCopyValue(record, kABPersonEmailProperty);
@@ -143,7 +142,7 @@
                         CFRelease(theProperty);
             for(NSString *email in items)
             {
-                NameLookupWrapper *wrapper = [[NameLookupWrapper alloc] initWithRecordId:ABRecordGetRecordID(record) firstname:firstname lastName:lastName email:email nickName:nickname];
+                NameLookupWrapper *wrapper = [[NameLookupWrapper alloc] initWithRecordId:ABRecordGetRecordID(record) firstname:firstname lastName:lastName email:email];
                 if(wrapper)
                 {
                     [result addObject:wrapper];

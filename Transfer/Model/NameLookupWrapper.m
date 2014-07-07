@@ -20,7 +20,7 @@
 
 @implementation NameLookupWrapper
 
--(instancetype)initWithRecordId:(ABRecordID)recordId firstname:(NSString*)first lastName:(NSString*)last email:(NSString*)email nickName:(NSString*)nickName
+-(instancetype)initWithRecordId:(ABRecordID)recordId firstname:(NSString*)first lastName:(NSString*)last email:(NSString*)email
 {
     if(!recordId)
     {
@@ -33,14 +33,13 @@
         _recordId = recordId;
         _firstName = first;
         _lastName = last;
-        _nickName = nickName;
         _email = email;
     }
     
     return self;
 }
 
--(instancetype)initWithManagedObjectId:(NSManagedObjectID*)objectId firstname:(NSString*)first lastName:(NSString*)last email:(NSString*)email nickName:(NSString*)nickName
+-(instancetype)initWithManagedObjectId:(NSManagedObjectID*)objectId firstname:(NSString*)first lastName:(NSString*)last email:(NSString*)email
 {
     if(!objectId)
     {
@@ -53,7 +52,6 @@
         _managedObjectId = objectId;
         _firstName = first;
         _lastName = last;
-        _nickName = nickName;
         _email = email;
     }
     
@@ -63,30 +61,12 @@
 -(NSString*)presentableString:(enum NameOrder)order
 {
     switch (order) {
-        case NickNameFirst:
-            return [NSString stringWithFormat:@"\"%@\", %@ %@", self.nickName, self.firstName?:@"", self.lastName?:@""];
-            break;
         case FirstNameFirst:
-            if (self.nickName)
-            {
-                return [NSString stringWithFormat:@"%@ \"%@\" %@", self.firstName, self.nickName, self.lastName?:@""];
-            }
-            else
-            {
                 return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName?:@""];
-            }
             break;
         case LastNameFirst:
         default:
-            if (self.nickName)
-            {
-                return [NSString stringWithFormat:@"%@, %@ \"%@\"", self.lastName, self.firstName?:@"", self.nickName];
-            }
-            else
-            {
-                return [NSString stringWithFormat:@"%@, %@", self.lastName, self.firstName?:@""];
-            }
-
+            return [NSString stringWithFormat:@"%@, %@", self.lastName, self.firstName?:@""];
             break;
     }
 }
