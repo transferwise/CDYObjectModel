@@ -31,6 +31,8 @@
 #import "PullToRefreshView.h"
 #import "TransferDetailsViewController.h"
 #import "TransferWaitingViewController.h"
+#import "TRWAlertView.h"
+#import "TRWProgressHUD.h"
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 

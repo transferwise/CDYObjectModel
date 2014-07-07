@@ -91,7 +91,7 @@
     self.contentView.bgStyle=highlighted?@"cellSelected":@"white";
 }
 
-- (void)showCancelButton:(BOOL)animated
+- (void)showCancelButton:(BOOL)animated action:(TRWActionBlock)action
 {
 	[self.contentView layoutIfNeeded];
 	[UIView animateWithDuration:0.2 animations:^{
