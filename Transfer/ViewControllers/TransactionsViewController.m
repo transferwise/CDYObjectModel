@@ -142,7 +142,13 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 	[cell configureWithPayment:payment
 		   willShowCancelBlock:^{
-			   [self removeCancellingFromCell];
+			   //this will be called each time a touch starts
+			   //including the touch that hides the button
+			   //so not cancelling if the same cell is receiving touches
+			   if(self.cancellingCell != cell)
+			   {
+				   [self removeCancellingFromCell];
+			   }
 		   }
 			didShowCancelBlock:^{
 				self.cancellingCell = cell;

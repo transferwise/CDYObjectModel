@@ -39,9 +39,6 @@
 		  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
 		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock
 {
-	self.cancelButtonLeft.constant = 0;
-	[self layoutIfNeeded];
-	
 	self.willShowCancelBlock = willShowCancelBlock;
 	self.didShowCancelBlock = didShowCancelBlock;
 	self.didHideCancelBlock = didHideCancelBlock;
@@ -135,7 +132,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer
 {
-	if(self.canBeCancelled)
+	//all kinds of gesture recognizers can end up here, so check that we are dealing with pan
+	if(self.canBeCancelled && [gestureRecognizer isMemberOfClass:[UIPanGestureRecognizer class]])
 	{
 		UIView *cell = [gestureRecognizer view];
 		CGPoint translation = [gestureRecognizer translationInView:[cell superview]];
@@ -161,8 +159,20 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 			self.willShowCancelBlock();
 			break;
 		case UIGestureRecognizerStateChanged:
-			//add the delta to button constraint (this works for both directions)
-			self.cancelButtonLeft.constant = self.touchStart.x - currentPosition.x;
+			{
+				float dx = self.touchStart.x - currentPosition.x;
+				
+				if(dx > 0)
+				{
+					//swiping to show, simply set constraint
+					self.cancelButtonLeft.constant = dx;
+				}
+				else
+				{
+					//swiping to hide, add to button with and set to constraint
+					self.cancelButtonLeft.constant = self.cancelButton.frame.size.width + dx;
+				}
+			}
 			break;
 		case UIGestureRecognizerStateEnded:
 			//if button has been swiped wisible the whole width treat it as shown
