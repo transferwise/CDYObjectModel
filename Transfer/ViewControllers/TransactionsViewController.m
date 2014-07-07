@@ -140,14 +140,16 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
     Payment *payment = [self.payments objectAtIndexPath:indexPath];
 
-    [cell configureWithPayment:payment
-			  cancelShownBlock:^{
-				  [self removeCancellingFromCell];
-				  self.cancellingCell = cell;
-			  }
-			 cancelHiddenBlock:^{
-				 self.cancellingCell = nil;
-			 }
+	[cell configureWithPayment:payment
+		   willShowCancelBlock:^{
+			   [self removeCancellingFromCell];
+		   }
+			didShowCancelBlock:^{
+				self.cancellingCell = cell;
+			}
+			didHideCancelBlock:^{
+				self.cancellingCell = nil;
+			}
 			 cancelTappedBlock:^{
 				 [self confirmPaymentCancel:payment cell:cell];
 			 }];

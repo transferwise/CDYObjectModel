@@ -14,8 +14,9 @@
 @interface PaymentCell : UITableViewCell<UIGestureRecognizerDelegate>
 
 - (void)configureWithPayment:(Payment *)payment
-			cancelShownBlock:(TRWActionBlock)cancelShownBlock
-		   cancelHiddenBlock:(TRWActionBlock)cancelHiddenBlock
+		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
+		  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
+		  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
 		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock;
 
 - (void)hideCancelButton:(BOOL)animated;

@@ -20,8 +20,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *statusIcon;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *cancelButtonLeft;
 @property (strong, nonatomic) IBOutlet UIButton *cancelButton;
-@property (strong, nonatomic) TRWActionBlock cancelShownBlock;
-@property (strong, nonatomic) TRWActionBlock cancelHiddenBlock;
+@property (strong, nonatomic) TRWActionBlock willShowCancelBlock;
+@property (strong, nonatomic) TRWActionBlock didShowCancelBlock;
+@property (strong, nonatomic) TRWActionBlock didHideCancelBlock;
 @property (strong, nonatomic) TRWActionBlock cancelTappedBlock;
 @property (nonatomic) BOOL canBeCancelled;
 @property (nonatomic) BOOL isCancelShown;
@@ -33,15 +34,17 @@
 @implementation PaymentCell
 
 - (void)configureWithPayment:(Payment *)payment
-			cancelShownBlock:(TRWActionBlock)cancelShownBlock
-		   cancelHiddenBlock:(TRWActionBlock)cancelHiddenBlock
+		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
+		  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
+		  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
 		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock
 {
 	self.cancelButtonLeft.constant = 0;
 	[self layoutIfNeeded];
 	
-	self.cancelShownBlock = cancelShownBlock;
-	self.cancelHiddenBlock = cancelHiddenBlock;
+	self.willShowCancelBlock = willShowCancelBlock;
+	self.didShowCancelBlock = didShowCancelBlock;
+	self.didHideCancelBlock = didHideCancelBlock;
 	self.cancelTappedBlock = cancelTappedBlock;
 	
 	[self.cancelButton setTitle:NSLocalizedString(@"button.title.cancel", nil)
@@ -123,6 +126,7 @@
     self.contentView.bgStyle=highlighted?@"cellSelected":@"white";
 }
 
+#pragma mark - Cancel button show/hide + tap
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
@@ -154,11 +158,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 		case UIGestureRecognizerStateBegan:
 			//mark the start position
 			self.touchStart = currentPosition;
+			self.willShowCancelBlock();
 			break;
 		case UIGestureRecognizerStateChanged:
 			//add the delta to button constraint (this works for both directions)
 			self.cancelButtonLeft.constant = self.touchStart.x - currentPosition.x;
-			NSLog(@"%f", self.cancelButtonLeft.constant);
 			break;
 		case UIGestureRecognizerStateEnded:
 			//if button has been swiped wisible the whole width treat it as shown
@@ -166,14 +170,14 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 			{
 				[self.moneyLabel setHidden:YES];
 				[self.currencyLabel setHidden:YES];
-				self.cancelShownBlock();
+				self.didShowCancelBlock();
 			}
 			//else the button has either been swiped to hidden
 			//or it has not been swiped out completely
 			else
 			{
 				[self hideCancelButton:YES];
-				self.cancelHiddenBlock();
+				self.didHideCancelBlock();
 			}
 			break;
 		default:
