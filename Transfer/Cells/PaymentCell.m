@@ -95,7 +95,7 @@
 - (void)showCancelButton:(BOOL)animated action:(TRWActionBlock)action
 {
 	[self.contentView layoutIfNeeded];
-	[UIView animateWithDuration:0.2 animations:^{
+	[UIView animateWithDuration:animated ? 0.2 : 0 animations:^{
 		self.cancelButtonLeft.constant = 500;
 		[self.moneyLabel setHidden:YES];
 		[self.currencyLabel setHidden:YES];
@@ -107,7 +107,7 @@
 - (void)hideCancelButton:(BOOL)animated
 {
 	[self.contentView layoutIfNeeded];
-	[UIView animateWithDuration:0.2 animations:^{
+	[UIView animateWithDuration:animated ? 0.2 : 0 animations:^{
 		self.cancelButtonLeft.constant = 0;
 		[self.moneyLabel setHidden:NO];
 		[self.currencyLabel setHidden:NO];
