@@ -91,15 +91,7 @@
                 }];
                 [workArray removeObjectsInArray:lastnameMatches];
                 
-                NSArray *nicknameMatches = [workArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NameLookupWrapper *evaluatedObject, NSDictionary *bindings) {
-                    return evaluatedObject.nickName && [[evaluatedObject.nickName lowercaseString] rangeOfString:self.filterString].location == 0;
-                }]];
-                nicknameMatches = [nicknameMatches sortedArrayUsingComparator:^NSComparisonResult(NameLookupWrapper *obj1, NameLookupWrapper *obj2) {
-                    return [obj1.nickName caseInsensitiveCompare:obj2.nickName];
-                }];
-                [workArray removeObjectsInArray:nicknameMatches];
-                
-                self.dataSource = @[filteredRecipients, firstnameMatches, lastnameMatches, nicknameMatches];
+                self.dataSource = @[filteredRecipients, firstnameMatches, lastnameMatches];
             }
             else
             {
@@ -145,9 +137,6 @@
     NameLookupWrapper *wrapper = self.dataSource[indexPath.section][indexPath.row];
     NSString *text;
     switch (indexPath.section) {
-        case 3:
-           text = [wrapper presentableString:NickNameFirst];
-            break;
         case 2:
             text = [wrapper presentableString:LastNameFirst];
             break;
@@ -212,7 +201,7 @@
     {
         if(recipient.email)
         {
-            NameLookupWrapper* wrapper = [[NameLookupWrapper alloc] initWithManagedObjectId:recipient.objectID firstname:recipient.name lastName:nil email:recipient.email nickName:nil];
+            NameLookupWrapper* wrapper = [[NameLookupWrapper alloc] initWithManagedObjectId:recipient.objectID firstname:recipient.name lastName:nil email:recipient.email];
             [result addObject:wrapper];
         }
     }
