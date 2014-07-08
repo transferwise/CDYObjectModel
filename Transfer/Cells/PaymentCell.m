@@ -30,7 +30,6 @@
 @property (nonatomic) BOOL canBeCancelled;
 @property (nonatomic) CGPoint touchStart;
 @property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
-@property (nonatomic, weak) UITableView* parent;
 
 @end
 
@@ -65,8 +64,7 @@
 		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
 		  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
 		  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
-		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock
-					  parent:(UITableView *)parent;
+		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock;
 {
 	self.willShowCancelBlock = willShowCancelBlock;
 	self.didShowCancelBlock = didShowCancelBlock;
@@ -198,18 +196,39 @@
 			}
 			break;
 		case UIGestureRecognizerStateEnded:
-			//if button has been swiped wisible the whole width treat it as shown
+			//if button has been swiped visible the whole width treat it as shown
 			if(self.cancelButtonLeft.constant >= self.cancelButton.frame.size.width)
 			{
 				self.isCancelVisible = YES;
 				self.didShowCancelBlock();
 			}
-			//else the button has either been swiped to hidden
-			//or it has not been swiped out completely
-			else
+			//if the button has been swiped hidden the whole width treat it as hidden
+			else if(self.cancelButtonLeft.constant <= 0)
 			{
 				self.isCancelVisible = NO;
 				self.didHideCancelBlock();
+			}
+			//handle flick and half length swipes
+			else
+			{
+				float dx = self.touchStart.x - currentPosition.x;
+				
+				//if this is a half swipe finish it
+				if (self.cancelButton.frame.size.width / 2 <= fabsf(dx))
+				{
+					[self showOrHideCancel:dx];
+				}
+				//if this is a flick finish it
+				else if(fabsf([recognizer velocityInView:self].x) > 700)
+				{
+					[self showOrHideCancel:dx];
+				}
+				//hopeless hide cancel
+				else
+				{
+					self.isCancelVisible = NO;
+					self.didHideCancelBlock();
+				}
 			}
 			self.touchStart = CGPointZero;
 			break;
@@ -219,11 +238,25 @@
 	}
 }
 
+- (void)showOrHideCancel:(float)dx
+{
+	if (dx > 0)
+	{
+		self.isCancelVisible = YES;
+		self.didShowCancelBlock();
+	}
+	else
+	{
+		self.isCancelVisible = NO;
+		self.didHideCancelBlock();
+	}
+}
+
 - (void)showCancelButton
 {
 	[self.contentView layoutIfNeeded];
-	[UIView animateWithDuration:0.2 animations:^{
-		//low priority random high number will work
+	[UIView animateWithDuration:0.1 animations:^{
+		//low priority constraint random high number will work
 		self.cancelButtonLeft.constant = 1000;
 		[self.moneyLabel setHidden:YES];
 		[self.currencyLabel setHidden:YES];
@@ -234,7 +267,7 @@
 - (void)hideCancelButton
 {
 	[self.contentView layoutIfNeeded];
-	[UIView animateWithDuration:0.2 animations:^{
+	[UIView animateWithDuration:0.1 animations:^{
 		self.cancelButtonLeft.constant = 0;
 		[self.moneyLabel setHidden:NO];
 		[self.currencyLabel setHidden:NO];

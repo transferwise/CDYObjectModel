@@ -137,8 +137,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     PaymentCell *cell = [tableView dequeueReusableCellWithIdentifier:kPaymentCellIdentifier];
     Payment *payment = [self.payments objectAtIndexPath:indexPath];
 	
-	NSLog(@"%@", self.cancellingCellIndex);
-
 	[cell configureWithPayment:payment
 		   willShowCancelBlock:^{
 			   //this will be called each time a touch starts
@@ -157,8 +155,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 			}
 			 cancelTappedBlock:^{
 				 [self confirmPaymentCancel:payment cellIndex:indexPath];
-			 }
-						parent:tableView];
+			 }];
 
 	//set cancelling visible when scrolling
 	if(self.cancellingCellIndex && self.cancellingCellIndex.row == indexPath.row)
