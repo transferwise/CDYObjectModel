@@ -100,6 +100,14 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, strong) PhoneBookProfile *lastSelectedProfile;
 
 
+// iPad
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *firstColumnHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnLeftEdgeConstraint;
+
+
 - (IBAction)addButtonPressed:(id)sender;
 
 @end
@@ -191,6 +199,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, @[]]];
     [self.tableView reloadData];
+    [self refreshTableViewSizes];
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
@@ -327,6 +336,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, cells]];
 
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:[self.presentedSections count] - 1] withRowAnimation:UITableViewRowAnimationNone];
+    [self refreshTableViewSizes];
     [self performSelector:@selector(updateFooterSize) withObject:nil afterDelay:0.5];
 
 }
@@ -536,7 +546,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setPresentedSections:sectionIndexes];
 }
 
-
+-(void)refreshTableViewSizes
+{
+    self.firstColumnHeightConstraint.constant= self.tableView.contentSize.height;
+}
 
 /* TODO: move this to the "select profile screen"
 - (void)presentProfileForSource:(ProfileSource *)source {
