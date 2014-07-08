@@ -158,7 +158,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 			}
 			 cancelTappedBlock:^{
 				 [self confirmPaymentCancel:payment cellIndex:indexPath];
-			 }];
+			 }
+						parent:tableView];
 
     return cell;
 }

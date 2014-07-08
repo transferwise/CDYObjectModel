@@ -17,7 +17,8 @@
 		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
 		  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
 		  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
-		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock;
+		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock
+					  parent:(UITableView *)parent;
 
 - (void)hideCancelButton:(BOOL)animated;
 

@@ -28,6 +28,7 @@
 @property (nonatomic) BOOL isCancelVisible;
 @property (nonatomic) CGPoint touchStart;
 @property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
+@property (nonatomic, weak) UITableView* parent;
 
 @end
 
@@ -49,6 +50,7 @@
 		  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
 		  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
 		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock
+					  parent:(UITableView *)parent;
 {
 	self.willShowCancelBlock = willShowCancelBlock;
 	self.didShowCancelBlock = didShowCancelBlock;
@@ -135,12 +137,6 @@
 }
 
 #pragma mark - Cancel button show/hide + tap
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
-shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-	return YES;
-}
-
 - (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer
 {
 	//all kinds of gesture recognizers can end up here, so check that we are dealing with pan
@@ -152,6 +148,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 		// Check for horizontal gesture
 		if (fabsf(translation.x) > fabsf(translation.y))
 		{
+			self.parent.scrollEnabled = NO;
 			return YES;
 		}
 	}
@@ -202,9 +199,12 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 				self.isCancelVisible = NO;
 				self.didHideCancelBlock();
 			}
+			self.touchStart = CGPointZero;
+			self.parent.scrollEnabled = YES;
 			break;
 		default:
 			self.touchStart = CGPointZero;
+			self.parent.scrollEnabled = YES;
 			break;
 	}
 }
