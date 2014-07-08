@@ -25,19 +25,32 @@
 @property (strong, nonatomic) TRWActionBlock didHideCancelBlock;
 @property (strong, nonatomic) TRWActionBlock cancelTappedBlock;
 @property (nonatomic) BOOL canBeCancelled;
-@property (nonatomic) BOOL isCancelShown;
+@property (nonatomic) BOOL isCancelVisible;
 @property (nonatomic) CGPoint touchStart;
 @property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
+@property (nonatomic, weak) UITableView* parent;
 
 @end
 
 @implementation PaymentCell
+
+- (void)prepareForReuse
+{
+	//reset for reuse
+	self.isCancelVisible = NO;
+	self.canBeCancelled = NO;
+	self.touchStart = CGPointZero;
+	self.cancelButtonLeft.constant = 0;
+	[self.moneyLabel setHidden:NO];
+	[self.currencyLabel setHidden:NO];
+}
 
 - (void)configureWithPayment:(Payment *)payment
 		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
 		  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
 		  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
 		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock
+					  parent:(UITableView *)parent;
 {
 	self.willShowCancelBlock = willShowCancelBlock;
 	self.didShowCancelBlock = didShowCancelBlock;
@@ -124,12 +137,6 @@
 }
 
 #pragma mark - Cancel button show/hide + tap
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
-shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-	return YES;
-}
-
 - (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer
 {
 	//all kinds of gesture recognizers can end up here, so check that we are dealing with pan
@@ -141,6 +148,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 		// Check for horizontal gesture
 		if (fabsf(translation.x) > fabsf(translation.y))
 		{
+			self.parent.scrollEnabled = NO;
 			return YES;
 		}
 	}
@@ -162,12 +170,12 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 			{
 				float dx = self.touchStart.x - currentPosition.x;
 				
-				if(dx > 0)
+				if(dx > 0 && !self.isCancelVisible)
 				{
 					//swiping to show, simply set constraint
 					self.cancelButtonLeft.constant = dx;
 				}
-				else
+				if(dx < 0 && self.isCancelVisible)
 				{
 					//swiping to hide, add to button with and set to constraint
 					self.cancelButtonLeft.constant = self.cancelButton.frame.size.width + dx;
@@ -180,6 +188,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 			{
 				[self.moneyLabel setHidden:YES];
 				[self.currencyLabel setHidden:YES];
+				self.isCancelVisible = YES;
 				self.didShowCancelBlock();
 			}
 			//else the button has either been swiped to hidden
@@ -187,11 +196,15 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 			else
 			{
 				[self hideCancelButton:YES];
+				self.isCancelVisible = NO;
 				self.didHideCancelBlock();
 			}
+			self.touchStart = CGPointZero;
+			self.parent.scrollEnabled = YES;
 			break;
 		default:
 			self.touchStart = CGPointZero;
+			self.parent.scrollEnabled = YES;
 			break;
 	}
 }
@@ -204,6 +217,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 		[self.moneyLabel setHidden:NO];
 		[self.currencyLabel setHidden:NO];
 		[self.contentView layoutIfNeeded];
+		self.isCancelVisible = NO;
 	}];
 }
 

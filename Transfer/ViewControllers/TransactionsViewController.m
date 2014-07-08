@@ -54,7 +54,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (nonatomic, weak) PullToRefreshView* refreshView;
 @property (weak, nonatomic) IBOutlet UIView *detailContainer;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) PaymentCell* cancellingCell;
+@property (weak, nonatomic) NSIndexPath* cancellingCellIndex;
 @property (nonatomic) CGPoint touchStart;
 
 @end
@@ -145,20 +145,21 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 			   //this will be called each time a touch starts
 			   //including the touch that hides the button
 			   //so not cancelling if the same cell is receiving touches
-			   if(self.cancellingCell != cell)
+			   if(self.cancellingCellIndex && self.cancellingCellIndex.row != indexPath.row)
 			   {
 				   [self removeCancellingFromCell];
 			   }
 		   }
 			didShowCancelBlock:^{
-				self.cancellingCell = cell;
+				self.cancellingCellIndex = indexPath;
 			}
 			didHideCancelBlock:^{
-				self.cancellingCell = nil;
+				self.cancellingCellIndex = nil;
 			}
 			 cancelTappedBlock:^{
-				 [self confirmPaymentCancel:payment cell:cell];
-			 }];
+				 [self confirmPaymentCancel:payment cellIndex:indexPath];
+			 }
+						parent:tableView];
 
     return cell;
 }
@@ -439,32 +440,38 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 }
 
 #pragma mark - SwipeToCancel
+- (PaymentCell *)getPaymentCell:(NSIndexPath *)index
+{
+	PaymentCell* cell = (PaymentCell *)[self.tableView cellForRowAtIndexPath:index];
+	return cell;
+}
+
 - (void)removeCancellingFromCell
 {
-	if (self.cancellingCell != nil)
+	if (self.cancellingCellIndex != nil)
 	{
-		[self.cancellingCell hideCancelButton:YES];
-		self.cancellingCell = nil;
+		[[self getPaymentCell:self.cancellingCellIndex] hideCancelButton:YES];
+		self.cancellingCellIndex = nil;
 	}
 }
 
-- (void)confirmPaymentCancel:(Payment *)payment cell:(PaymentCell *)cell
+- (void)confirmPaymentCancel:(Payment *)payment cellIndex:(NSIndexPath *)cellIndex
 {
 	TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"transactions.cancel.confirmation.title", nil)
 													   message:[NSString stringWithFormat:NSLocalizedString(@"transactions.cancel.confirmation.message", nil), [payment.recipient name]]];
 	[alertView setLeftButtonTitle:NSLocalizedString(@"button.title.yes", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
 	
 	[alertView setLeftButtonAction:^{
-		[cell hideCancelButton:NO];
+		[[self getPaymentCell:cellIndex] hideCancelButton:NO];
 		[self cancelPayment:payment];
 	}];
 	[alertView setRightButtonAction:^{
-		[cell hideCancelButton:YES];
+		[[self getPaymentCell:cellIndex] hideCancelButton:YES];
 		
 	}];
 	
 	[alertView show];
-	self.cancellingCell = nil;
+	self.cancellingCellIndex = nil;
 }
 
 - (void)cancelPayment:(Payment *)payment
