@@ -22,12 +22,20 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
 @property (strong, nonatomic) NSMutableArray *presentedButtons;
 @property (nonatomic, weak,) UIButton * lastSelectedButton;
 @property (weak, nonatomic) IBOutlet UIView *tabContainer;
+@property (weak, nonatomic) IBOutlet UIView *separatorLine;
 
 @end
 
 @implementation TransferTypeSelectionHeader
 
-
+-(void)awakeFromNib
+{
+    CGRect newFrame = self.separatorLine.frame;
+    newFrame.size.height = 1.0f/[[UIScreen mainScreen] scale];
+    newFrame.origin.y += (1.0f - newFrame.size.height);
+    self.separatorLine.frame = newFrame;
+    
+}
 
 -(void)updateSelectedButton
 {
