@@ -109,6 +109,8 @@
 		38E57F7B192A51DD00D864A2 /* TabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E57F77192A51DD00D864A2 /* TabViewController.xib */; };
 		38EFAAEC196C48EF00126192 /* RecipientViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EFAAEB196C48EF00126192 /* RecipientViewController~ipad.xib */; };
 		38EFAAED196C48EF00126192 /* RecipientViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EFAAEB196C48EF00126192 /* RecipientViewController~ipad.xib */; };
+		38EFAAF0196C5F8600126192 /* MatsWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EFAAEF196C5F8600126192 /* MatsWindow.m */; };
+		38EFAAF1196C5F8600126192 /* MatsWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EFAAEF196C5F8600126192 /* MatsWindow.m */; };
 		470DEFAD1945F02300684FEB /* MoneyEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */; };
 		470DEFAE19460C8D00684FEB /* MoneyEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */; };
 		4710499719470AFD00660B2F /* CurrencyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */; };
@@ -766,6 +768,8 @@
 		38E57F76192A51DD00D864A2 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
 		38E57F77192A51DD00D864A2 /* TabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabViewController.xib; sourceTree = "<group>"; };
 		38EFAAEB196C48EF00126192 /* RecipientViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecipientViewController~ipad.xib"; sourceTree = "<group>"; };
+		38EFAAEE196C5F8600126192 /* MatsWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatsWindow.h; sourceTree = "<group>"; };
+		38EFAAEF196C5F8600126192 /* MatsWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatsWindow.m; sourceTree = "<group>"; };
 		470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MoneyEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencyCell~ipad.xib"; sourceTree = "<group>"; };
 		473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NewPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
@@ -1489,6 +1493,8 @@
 				47FAF356194F0A46004CE986 /* IntrinsicSizeUIView.m */,
 				474D1A9D19518073008BC7A7 /* ColoredButton.h */,
 				474D1A9E19518073008BC7A7 /* ColoredButton.m */,
+				38EFAAEE196C5F8600126192 /* MatsWindow.h */,
+				38EFAAEF196C5F8600126192 /* MatsWindow.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2849,6 +2855,7 @@
 				38BD98A4195C5973009F9B4A /* NameSuggestionCell.m in Sources */,
 				EA31A1A617DDB29B00F937F7 /* _PairTargetCurrency.m in Sources */,
 				380021D3192CC531009B1D53 /* MOMRoundedCornerStyle.m in Sources */,
+				38EFAAF1196C5F8600126192 /* MatsWindow.m in Sources */,
 				EA31A1A717DDB29B00F937F7 /* PairTargetCurrency.m in Sources */,
 				EA31A1A817DDB29B00F937F7 /* _Country.m in Sources */,
 				EA31A1A917DDB29B00F937F7 /* Country.m in Sources */,
@@ -3029,6 +3036,7 @@
 				EAA053D2175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m in Sources */,
 				EAA053D6175DD5EE00ACD3F6 /* NoUserPaymentFlow.m in Sources */,
 				3831AA37194B31A200B3EE5C /* TransparentModalViewController.m in Sources */,
+				38EFAAF0196C5F8600126192 /* MatsWindow.m in Sources */,
 				388F09FB1934A1BB00DBD93D /* UIView+RenderBlur.m in Sources */,
 				479B693E1949C36F001FA4FE /* TransferDetialsRecipientView.m in Sources */,
 				EAA053EC175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m in Sources */,

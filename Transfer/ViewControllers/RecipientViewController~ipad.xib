@@ -10,10 +10,10 @@
                 <outlet property="firstColumnHeightConstraint" destination="WNq-7i-U6Z" id="crc-wm-i6R"/>
                 <outlet property="secondColumnHeightConstraint" destination="Kcl-Pf-3Gx" id="Kcz-Sj-9dy"/>
                 <outlet property="secondColumnLeftEdgeConstraint" destination="9M8-ca-8M9" id="WO7-2A-uFx"/>
+                <outlet property="secondColumnTableView" destination="JU1-IW-1ic" id="kWz-uA-6eh"/>
                 <outlet property="secondColumnTopConstraint" destination="YnC-cC-hmy" id="yqv-eq-74Z"/>
                 <outlet property="suggestionTable" destination="hPU-EE-Qdr" id="3n8-tf-V5C"/>
                 <outlet property="tableView" destination="4" id="mQW-cW-CUy"/>
-                <outlet property="tableViewTopConstraint" destination="YnC-cC-hmy" id="vPb-cA-Bvt"/>
                 <outlet property="view" destination="fPl-yO-Yh3" id="DJL-eZ-Wik"/>
             </connections>
         </placeholder>
@@ -22,12 +22,12 @@
             <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XCE-KC-Di1">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCE-KC-Di1">
                     <rect key="frame" x="100" y="0.0" width="824" height="768"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="824" placeholderIntrinsicHeight="568" translatesAutoresizingMaskIntoConstraints="NO" id="bP7-ah-Jiz">
-                            <rect key="frame" x="0.0" y="200" width="824" height="568"/>
+                        <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="824" placeholderIntrinsicHeight="568" translatesAutoresizingMaskIntoConstraints="NO" id="bP7-ah-Jiz">
+                            <rect key="frame" x="0.0" y="0.0" width="824" height="568"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="1024" placeholderIntrinsicHeight="721" bouncesZoom="NO" style="plain" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4" customClass="DismissKeyboardTableView">
@@ -59,6 +59,10 @@
                                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                                     <color key="separatorColor" red="0.8862745098" green="0.8980392157" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="fSM-ZB-YvM"/>
+                                        <outlet property="delegate" destination="-1" id="lNt-1W-EvG"/>
+                                    </connections>
                                 </tableView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -73,7 +77,7 @@
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="bP7-ah-Jiz" secondAttribute="bottom" id="9sT-JZ-FS3"/>
                         <constraint firstAttribute="trailing" secondItem="bP7-ah-Jiz" secondAttribute="trailing" id="PU1-bP-YZO"/>
-                        <constraint firstItem="bP7-ah-Jiz" firstAttribute="top" secondItem="XCE-KC-Di1" secondAttribute="top" constant="200" id="fwL-dI-WgT"/>
+                        <constraint firstItem="bP7-ah-Jiz" firstAttribute="top" secondItem="XCE-KC-Di1" secondAttribute="top" id="fwL-dI-WgT"/>
                         <constraint firstItem="bP7-ah-Jiz" firstAttribute="leading" secondItem="XCE-KC-Di1" secondAttribute="leading" id="y4g-S3-dfn"/>
                     </constraints>
                 </scrollView>
