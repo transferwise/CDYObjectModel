@@ -25,13 +25,24 @@
 @property (strong, nonatomic) TRWActionBlock didHideCancelBlock;
 @property (strong, nonatomic) TRWActionBlock cancelTappedBlock;
 @property (nonatomic) BOOL canBeCancelled;
-@property (nonatomic) BOOL isCancelShown;
+@property (nonatomic) BOOL isCancelVisible;
 @property (nonatomic) CGPoint touchStart;
 @property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
 
 @end
 
 @implementation PaymentCell
+
+- (void)prepareForReuse
+{
+	//reset for reuse
+	self.isCancelVisible = NO;
+	self.canBeCancelled = NO;
+	self.touchStart = CGPointZero;
+	self.cancelButtonLeft.constant = 0;
+	[self.moneyLabel setHidden:NO];
+	[self.currencyLabel setHidden:NO];
+}
 
 - (void)configureWithPayment:(Payment *)payment
 		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
@@ -162,12 +173,12 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 			{
 				float dx = self.touchStart.x - currentPosition.x;
 				
-				if(dx > 0)
+				if(dx > 0 && !self.isCancelVisible)
 				{
 					//swiping to show, simply set constraint
 					self.cancelButtonLeft.constant = dx;
 				}
-				else
+				if(dx < 0 && self.isCancelVisible)
 				{
 					//swiping to hide, add to button with and set to constraint
 					self.cancelButtonLeft.constant = self.cancelButton.frame.size.width + dx;
@@ -180,6 +191,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 			{
 				[self.moneyLabel setHidden:YES];
 				[self.currencyLabel setHidden:YES];
+				self.isCancelVisible = YES;
 				self.didShowCancelBlock();
 			}
 			//else the button has either been swiped to hidden
@@ -187,6 +199,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 			else
 			{
 				[self hideCancelButton:YES];
+				self.isCancelVisible = NO;
 				self.didHideCancelBlock();
 			}
 			break;
@@ -204,6 +217,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 		[self.moneyLabel setHidden:NO];
 		[self.currencyLabel setHidden:NO];
 		[self.contentView layoutIfNeeded];
+		self.isCancelVisible = NO;
 	}];
 }
 
