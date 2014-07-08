@@ -153,11 +153,17 @@
 		{
 			[self showOrHideCancel:dx];
 		}
-		//hopeless hide cancel
+		//hopeless, put it back to where it was
 		else
 		{
-			self.isCancelVisible = NO;
-			self.didHideCancelBlock();
+			if (self.isCancelVisible)
+			{
+				self.isCancelVisible = YES;
+			}
+			else
+			{
+				self.isCancelVisible = NO;
+			}
 		}
 	}
 }
