@@ -117,6 +117,8 @@
 		474D1AA61951A500008BC7A7 /* RedGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1AA51951A500008BC7A7 /* RedGradientButton.m */; };
 		474D1AA71951A500008BC7A7 /* RedGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1AA51951A500008BC7A7 /* RedGradientButton.m */; };
 		47592CC71940C35800ECDAF2 /* NewPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */; };
+		476C6B88196C18BF007002F9 /* SwipeToCancelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */; };
+		476C6B89196C18BF007002F9 /* SwipeToCancelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */; };
 		479B692C19487865001FA4FE /* TransferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B692A19487865001FA4FE /* TransferDetailsViewController.m */; };
 		479B692D19487865001FA4FE /* TransferDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479B692B19487865001FA4FE /* TransferDetailsViewController.xib */; };
 		479B692F194878CA001FA4FE /* TransferDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479B692E194878CA001FA4FE /* TransferDetailsViewController~ipad.xib */; };
@@ -770,6 +772,8 @@
 		474D1A9E19518073008BC7A7 /* ColoredButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColoredButton.m; sourceTree = "<group>"; };
 		474D1AA41951A500008BC7A7 /* RedGradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedGradientButton.h; sourceTree = "<group>"; };
 		474D1AA51951A500008BC7A7 /* RedGradientButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedGradientButton.m; sourceTree = "<group>"; };
+		476C6B86196C18BF007002F9 /* SwipeToCancelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeToCancelCell.h; sourceTree = "<group>"; };
+		476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeToCancelCell.m; sourceTree = "<group>"; };
 		479B692919487865001FA4FE /* TransferDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferDetailsViewController.h; sourceTree = "<group>"; };
 		479B692A19487865001FA4FE /* TransferDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDetailsViewController.m; sourceTree = "<group>"; };
 		479B692B19487865001FA4FE /* TransferDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferDetailsViewController.xib; sourceTree = "<group>"; };
@@ -1551,6 +1555,8 @@
 				EA13E04A171BEF5D0019FBF0 /* TextEntryCell.h */,
 				EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */,
 				EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */,
+				476C6B86196C18BF007002F9 /* SwipeToCancelCell.h */,
+				476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2841,6 +2847,7 @@
 				EA31A1A517DDB29B00F937F7 /* AllowedTypeFieldValue.m in Sources */,
 				38E57F79192A51DD00D864A2 /* TabViewController.m in Sources */,
 				38BD98A4195C5973009F9B4A /* NameSuggestionCell.m in Sources */,
+				476C6B89196C18BF007002F9 /* SwipeToCancelCell.m in Sources */,
 				EA31A1A617DDB29B00F937F7 /* _PairTargetCurrency.m in Sources */,
 				380021D3192CC531009B1D53 /* MOMRoundedCornerStyle.m in Sources */,
 				EA31A1A717DDB29B00F937F7 /* PairTargetCurrency.m in Sources */,
@@ -3057,6 +3064,7 @@
 				EA225C88178EB241009D6B83 /* ObjectModel+Currencies.m in Sources */,
 				EA225C8B178EB297009D6B83 /* ObjectModel+Recipients.m in Sources */,
 				EA225C8E178EB343009D6B83 /* _RecipientType.m in Sources */,
+				476C6B88196C18BF007002F9 /* SwipeToCancelCell.m in Sources */,
 				EA225C91178EB350009D6B83 /* RecipientType.m in Sources */,
 				38B1C5D6195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */,
 				EA225C94178EB36B009D6B83 /* ObjectModel+RecipientTypes.m in Sources */,

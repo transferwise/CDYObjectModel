@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Constants.h"
+#import "SwipeToCancelCell.h"
 
 @class Payment;
 
-@interface PaymentCell : UITableViewCell<UIGestureRecognizerDelegate>
+@interface PaymentCell : SwipeToCancelCell
 
 - (void)configureWithPayment:(Payment *)payment
 		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock

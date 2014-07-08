@@ -468,16 +468,15 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[alertView setLeftButtonTitle:NSLocalizedString(@"button.title.yes", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
 	
 	[alertView setLeftButtonAction:^{
-		[self getPaymentCell:cellIndex].isCancelVisible = NO;
+		[self removeCancellingFromCell];
 		[self cancelPayment:payment];
 	}];
 	[alertView setRightButtonAction:^{
-		[self getPaymentCell:cellIndex].isCancelVisible = NO;
+		[self removeCancellingFromCell];
 		
 	}];
 	
 	[alertView show];
-	self.cancellingCellIndex = nil;
 }
 
 - (void)cancelPayment:(Payment *)payment

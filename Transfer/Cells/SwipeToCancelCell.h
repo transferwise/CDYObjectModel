@@ -1,0 +1,24 @@
+//
+//  SwipeToCancelCellTableViewCell.h
+//  Transfer
+//
+//  Created by Juhan Hion on 08.07.14.
+//  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "Constants.h"
+
+@interface SwipeToCancelCell : UITableViewCell<UIGestureRecognizerDelegate>
+
+@property (nonatomic) BOOL isCancelVisible;
+@property (nonatomic) BOOL canBeCancelled;
+
+- (void)configureWithWillShowCancelBlock:(TRWActionBlock)willShowCancelBlock
+					  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
+					  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
+					   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock;
+
+- (void)hideOnCancelShow;
+- (void)showOnCancelHide;
+@end
