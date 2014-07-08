@@ -35,9 +35,6 @@
 #import "TRWProgressHUD.h"
 #import "UIGestureRecognizer+Cancel.h"
 
-#define HORIZ_SWIPE_DRAG_MIN  12
-#define VERT_SWIPE_DRAG_MAX    4
-
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 @interface TransactionsViewController () <UIScrollViewDelegate, NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource, PullToRefreshViewDelegate>
@@ -54,7 +51,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (nonatomic, weak) PullToRefreshView* refreshView;
 @property (weak, nonatomic) IBOutlet UIView *detailContainer;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) NSIndexPath* cancellingCellIndex;
+@property (strong, nonatomic) NSIndexPath* cancellingCellIndex;
 @property (nonatomic) CGPoint touchStart;
 
 @end
@@ -135,10 +132,12 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     return [sectionInfo numberOfObjects];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     PaymentCell *cell = [tableView dequeueReusableCellWithIdentifier:kPaymentCellIdentifier];
-
     Payment *payment = [self.payments objectAtIndexPath:indexPath];
+	
+	NSLog(@"%@", self.cancellingCellIndex);
 
 	[cell configureWithPayment:payment
 		   willShowCancelBlock:^{
@@ -161,6 +160,16 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 			 }
 						parent:tableView];
 
+	//set cancelling visible when scrolling
+	if(self.cancellingCellIndex && self.cancellingCellIndex.row == indexPath.row)
+	{
+		cell.isCancelVisible = YES;
+	}
+	else
+	{
+		cell.isCancelVisible = NO;
+	}
+	
     return cell;
 }
 
@@ -450,7 +459,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 {
 	if (self.cancellingCellIndex != nil)
 	{
-		[[self getPaymentCell:self.cancellingCellIndex] hideCancelButton:YES];
+		[self getPaymentCell:self.cancellingCellIndex].isCancelVisible = NO;
 		self.cancellingCellIndex = nil;
 	}
 }
@@ -462,11 +471,11 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[alertView setLeftButtonTitle:NSLocalizedString(@"button.title.yes", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
 	
 	[alertView setLeftButtonAction:^{
-		[[self getPaymentCell:cellIndex] hideCancelButton:NO];
+		[self getPaymentCell:cellIndex].isCancelVisible = NO;
 		[self cancelPayment:payment];
 	}];
 	[alertView setRightButtonAction:^{
-		[[self getPaymentCell:cellIndex] hideCancelButton:YES];
+		[self getPaymentCell:cellIndex].isCancelVisible = NO;
 		
 	}];
 	

@@ -20,6 +20,6 @@
 		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock
 					  parent:(UITableView *)parent;
 
-- (void)hideCancelButton:(BOOL)animated;
+@property (nonatomic) BOOL isCancelVisible;
 
 @end

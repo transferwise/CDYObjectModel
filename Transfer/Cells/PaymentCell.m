@@ -11,6 +11,9 @@
 #import "Recipient.h"
 #import "MOMStyle.h"
 
+#define HORIZ_SWIPE_DRAG_MIN  12
+#define VERT_SWIPE_DRAG_MAX    4
+
 @interface PaymentCell ()
 
 @property (nonatomic, strong) IBOutlet UILabel *nameLabel;
@@ -25,7 +28,6 @@
 @property (strong, nonatomic) TRWActionBlock didHideCancelBlock;
 @property (strong, nonatomic) TRWActionBlock cancelTappedBlock;
 @property (nonatomic) BOOL canBeCancelled;
-@property (nonatomic) BOOL isCancelVisible;
 @property (nonatomic) CGPoint touchStart;
 @property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
 @property (nonatomic, weak) UITableView* parent;
@@ -33,6 +35,20 @@
 @end
 
 @implementation PaymentCell
+
+- (void)setIsCancelVisible:(BOOL)isCancelVisible
+{
+	if (isCancelVisible)
+	{
+		[self showCancelButton];
+	}
+	else
+	{
+		[self hideCancelButton];
+	}
+	
+	_isCancelVisible = isCancelVisible;
+}
 
 - (void)prepareForReuse
 {
@@ -128,12 +144,12 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    self.contentView.bgStyle=selected?@"cellSelected":@"white";
+    self.contentView.bgStyle = selected ? @"cellSelected" : @"white";
 }
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {
-    self.contentView.bgStyle=highlighted?@"cellSelected":@"white";
+    self.contentView.bgStyle = highlighted ? @"cellSelected" : @"white";
 }
 
 #pragma mark - Cancel button show/hide + tap
@@ -148,7 +164,6 @@
 		// Check for horizontal gesture
 		if (fabsf(translation.x) > fabsf(translation.y))
 		{
-			self.parent.scrollEnabled = NO;
 			return YES;
 		}
 	}
@@ -186,8 +201,6 @@
 			//if button has been swiped wisible the whole width treat it as shown
 			if(self.cancelButtonLeft.constant >= self.cancelButton.frame.size.width)
 			{
-				[self.moneyLabel setHidden:YES];
-				[self.currencyLabel setHidden:YES];
 				self.isCancelVisible = YES;
 				self.didShowCancelBlock();
 			}
@@ -195,29 +208,37 @@
 			//or it has not been swiped out completely
 			else
 			{
-				[self hideCancelButton:YES];
 				self.isCancelVisible = NO;
 				self.didHideCancelBlock();
 			}
 			self.touchStart = CGPointZero;
-			self.parent.scrollEnabled = YES;
 			break;
 		default:
 			self.touchStart = CGPointZero;
-			self.parent.scrollEnabled = YES;
 			break;
 	}
 }
 
-- (void)hideCancelButton:(BOOL)animated
+- (void)showCancelButton
 {
 	[self.contentView layoutIfNeeded];
-	[UIView animateWithDuration:animated ? 0.2 : 0 animations:^{
+	[UIView animateWithDuration:0.2 animations:^{
+		//low priority random high number will work
+		self.cancelButtonLeft.constant = 1000;
+		[self.moneyLabel setHidden:YES];
+		[self.currencyLabel setHidden:YES];
+		[self.contentView layoutIfNeeded];
+	}];
+}
+
+- (void)hideCancelButton
+{
+	[self.contentView layoutIfNeeded];
+	[UIView animateWithDuration:0.2 animations:^{
 		self.cancelButtonLeft.constant = 0;
 		[self.moneyLabel setHidden:NO];
 		[self.currencyLabel setHidden:NO];
 		[self.contentView layoutIfNeeded];
-		self.isCancelVisible = NO;
 	}];
 }
 
