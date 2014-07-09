@@ -456,7 +456,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 {
 	if (self.cancellingCellIndex != nil)
 	{
-		[self getPaymentCell:self.cancellingCellIndex].isCancelVisible = NO;
+		[[self getPaymentCell:self.cancellingCellIndex] setIsCancelVisible:NO animated:YES];
 		self.cancellingCellIndex = nil;
 	}
 }

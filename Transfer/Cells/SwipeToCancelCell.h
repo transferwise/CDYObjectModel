@@ -11,7 +11,7 @@
 
 @interface SwipeToCancelCell : UITableViewCell<UIGestureRecognizerDelegate>
 
-@property (nonatomic) BOOL isCancelVisible;
+@property (nonatomic, readonly) BOOL isCancelVisible;
 @property (nonatomic) BOOL canBeCancelled;
 
 - (void)configureWithWillShowCancelBlock:(TRWActionBlock)willShowCancelBlock
@@ -19,6 +19,7 @@
 					  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
 					   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock;
 
+- (void)setIsCancelVisible:(BOOL)isCancelVisible animated:(BOOL)animated;
 - (void)hideOnCancelShow;
 - (void)showOnCancelHide;
 @end
