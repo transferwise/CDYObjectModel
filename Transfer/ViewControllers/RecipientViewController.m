@@ -607,7 +607,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     NSNumber *sectionCode = self.presentedSections[(NSUInteger) section];
     switch ([sectionCode integerValue]) {
         case kRecipientSection:
-            return nil;
+            return IPAD?NSLocalizedString(@"recipient.controller.section.title.currency", nil):nil;
         case kCurrencySection:
             return NSLocalizedString(@"recipient.controller.section.title.currency", nil);
         case kRecipientFieldsSection:
