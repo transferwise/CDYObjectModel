@@ -8,18 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "Constants.h"
+#import "SwipeToCancelCell.h"
 
 @class Payment;
 
-@interface PaymentCell : UITableViewCell<UIGestureRecognizerDelegate>
+@interface PaymentCell : SwipeToCancelCell
 
 - (void)configureWithPayment:(Payment *)payment
 		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
 		  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
 		  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
-		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock
-					  parent:(UITableView *)parent;
+		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock;
 
-- (void)hideCancelButton:(BOOL)animated;
+@property (nonatomic) BOOL isCancelVisible;
 
 @end
