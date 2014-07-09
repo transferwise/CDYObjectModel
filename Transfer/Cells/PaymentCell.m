@@ -55,11 +55,11 @@
             break;
         case PaymentStatusMatched:
            icon = [UIImage imageNamed:@"transfers_icon_converting"];
-			self.canBeCancelled = YES;
+			self.canBeCancelled = NO;
             break;
         case PaymentStatusReceived:
             icon = [UIImage imageNamed:@"transfers_icon_converting"];
-			self.canBeCancelled = YES;
+			self.canBeCancelled = NO;
             break;
         case PaymentStatusRefunded:
             icon = [UIImage imageNamed:@"transfers_icon_cancelled"];
@@ -67,12 +67,15 @@
             break;
         case PaymentStatusReceivedWaitingRecipient:
             icon = [UIImage imageNamed:@"transfers_icon_waiting"];
-			self.canBeCancelled = YES;
+			self.canBeCancelled = NO;
             break;
         case PaymentStatusSubmitted:
+			icon = [UIImage imageNamed:@"transfers_icon_waiting"];
+			self.canBeCancelled = YES;
+            break;
         case PaymentStatusUserHasPaid:
             icon = [UIImage imageNamed:@"transfers_icon_waiting"];
-			self.canBeCancelled = YES;
+			self.canBeCancelled = NO;
             break;
         case PaymentStatusTransferred:
             icon = [UIImage imageNamed:@"transfers_icon_complete"];
