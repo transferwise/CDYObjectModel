@@ -8,8 +8,8 @@
 
 #import "SwipeToCancelCell.h"
 
-#define SLOW_FLICK_VELOCITY	350
-#define FAST_FLICK_VELOCITY	700
+#define SLOW_FLICK_VELOCITY	100
+#define AUTO_ANIMATION_DURATION 0.3f
 
 @interface SwipeToCancelCell ()
 
@@ -21,6 +21,8 @@
 @property (strong, nonatomic) TRWActionBlock cancelTappedBlock;
 @property (nonatomic) CGPoint touchStart;
 @property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
+
+@property (nonatomic, assign) BOOL isCancelVisible;
 
 @end
 
@@ -56,18 +58,36 @@
 	}
 }
 
+#pragma mark cancel button visiblity
+
+- (void)setIsCancelVisible:(BOOL)isCancelVisible animated:(BOOL)animated
+{
+    if (animated)
+    {
+        [self animateWithDuration:AUTO_ANIMATION_DURATION easeOutOnly:NO isShow:isCancelVisible];
+    }
+    else
+    {
+        self.isCancelVisible = isCancelVisible;
+    }
+    
+    if(isCancelVisible)
+    {
+        [self didShow];
+    }
+    else
+    {
+        [self didHide];
+    }
+    
+}
+
 - (void)setIsCancelVisible:(BOOL)isCancelVisible
 {
-	if (isCancelVisible)
-	{
-		[self showCancelButton:YES];
-	}
-	else
-	{
-		[self hideCancelButton:YES];
-	}
-	
 	_isCancelVisible = isCancelVisible;
+    self.cancelButtonLeft.constant = isCancelVisible?self.cancelButton.bounds.size.width:0.0f;
+    [self layoutIfNeeded];
+    
 }
 
 #pragma mark - pan + tap
@@ -131,13 +151,13 @@
 	if(self.cancelButtonLeft.constant >= self.cancelButton.frame.size.width)
 	{
 		self.isCancelVisible = YES;
-		self.didShowCancelBlock();
+		[self didShow];
 	}
 	//if the button has been swiped hidden the whole width treat it as hidden
 	else if(self.cancelButtonLeft.constant <= 0)
 	{
 		self.isCancelVisible = NO;
-		self.didHideCancelBlock();
+		[self didHide];
 	}
 	//handle flick and half length swipes
 	else
@@ -145,29 +165,59 @@
 		float dx = self.touchStart.x - currentPosition.x;
 		CGPoint velocity = [recognizer velocityInView:self];
 		
-		//if this is a half swipe finish it
-		if (self.cancelButton.frame.size.width / 2 <= fabsf(dx))
-		{
-			[self showOrHideCancel:dx fast:NO];
-		}
-		//if this is a flick finish it
-		else if(fabsf(velocity.x) > SLOW_FLICK_VELOCITY)
-		{
-			[self showOrHideCancel:dx fast:velocity.x >= FAST_FLICK_VELOCITY];
-		}
-		//hopeless, put it back to where it was
-		else
-		{
-			if (self.isCancelVisible)
+        BOOL shouldShow;
+        CGFloat distanceLeft = 0.0f;
+        BOOL easeOutOnly;
+        NSTimeInterval duration = 0.0f;
+        
+        if(fabsf(velocity.x) > SLOW_FLICK_VELOCITY)
+        {
+            // Flick
+            shouldShow = velocity.x < 0;
+            duration = 1/fabsf(velocity.x);
+            easeOutOnly = YES;
+        }
+        else
+        {
+            //Too slow! Dismiss to left or right depending on offset
+            if(fabsf(dx) > self.cancelButton.frame.size.width / 2)
 			{
-				self.isCancelVisible = YES;
-			}
-			else
-			{
-				self.isCancelVisible = NO;
-			}
-		}
-	}
+				shouldShow = !self.isCancelVisible;
+            }
+            else
+            {
+                shouldShow = self.isCancelVisible;
+            }
+            
+            duration = AUTO_ANIMATION_DURATION/self.cancelButton.bounds.size.width;
+            
+            easeOutOnly = NO;
+        }
+        
+        if(dx > 0 && !self.isCancelVisible)
+        {
+            distanceLeft = shouldShow?self.cancelButton.bounds.size.width - dx: dx;
+            
+        }
+        else if(dx < 0 && self.isCancelVisible)
+        {
+            distanceLeft = shouldShow?-dx:self.cancelButton.bounds.size.width + dx;
+        }
+        
+        
+        duration *= distanceLeft;
+
+        
+        [self animateWithDuration:duration easeOutOnly:easeOutOnly isShow:shouldShow];
+        if(shouldShow)
+        {
+            [self didShow];
+        }
+        else
+        {
+            [self didHide];
+        }
+    }
 }
 
 - (IBAction)cancelTapped:(id)sender
@@ -178,48 +228,18 @@
 	}
 }
 
-#pragma mark - Show/Hide
-- (void)showOrHideCancel:(float)dx fast:(BOOL)isFast
+#pragma mark Hide/Show events
+
+-(void)didHide
 {
-	if (dx > 0)
-	{
-		[self showCancelButton:isFast];
-		self.isCancelVisible = YES;
-		self.didShowCancelBlock();
-	}
-	else
-	{
-		[self hideCancelButton:isFast];
-		self.isCancelVisible = NO;
-		self.didHideCancelBlock();
-	}
+    [self showOnCancelHide];
+    self.didHideCancelBlock();
 }
 
-- (void)showCancelButton:(BOOL)isFast
+-(void)didShow
 {
-	//this will get called multiple times
-	//only animate, if necessary
-	if(self.cancelButtonLeft.constant < 1000)
-	{
-		[self animateWithBlock:^{
-			//low priority constraint random high number will work
-			self.cancelButtonLeft.constant = 1000;
-			[self hideOnCancelShow];
-		} isFast:isFast];
-	}
-}
-
-- (void)hideCancelButton:(BOOL)isFast
-{
-	//this will get called multiple times
-	//only animate, if necessary
-	if(self.cancelButtonLeft.constant > 0)
-	{
-		[self animateWithBlock:^{
-			self.cancelButtonLeft.constant = 0;
-			[self showOnCancelHide];
-		} isFast:isFast];
-	}
+    [self hideOnCancelShow];
+    self.didShowCancelBlock();
 }
 
 - (void)hideOnCancelShow
@@ -233,13 +253,14 @@
 }
 
 #pragma mark - Animation helper
-- (void)animateWithBlock:(TRWActionBlock)cancelButtonAnimationBlock isFast:(BOOL)isFast
+- (void)animateWithDuration:(NSTimeInterval)duration easeOutOnly:(BOOL)outOnly isShow:(BOOL)show
 {
-	[self.contentView layoutIfNeeded];
-	[UIView animateWithDuration:isFast ? 0.05 : 0.5 animations:^{
-		cancelButtonAnimationBlock();
-		[self.contentView layoutIfNeeded];
-	}];
+    [self.contentView layoutIfNeeded];
+    
+	[UIView animateWithDuration:duration delay:0.0f options:outOnly?UIViewAnimationOptionCurveEaseOut:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.isCancelVisible = show;
+        [self.contentView layoutIfNeeded];
+    } completion:nil];
 }
 
 @end
