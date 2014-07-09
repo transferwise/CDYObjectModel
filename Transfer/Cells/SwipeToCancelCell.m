@@ -8,7 +8,8 @@
 
 #import "SwipeToCancelCell.h"
 
-#define FLICK_VELOCITY	700
+#define SLOW_FLICK_VELOCITY	350
+#define FAST_FLICK_VELOCITY	700
 
 @interface SwipeToCancelCell ()
 
@@ -59,11 +60,11 @@
 {
 	if (isCancelVisible)
 	{
-		[self showCancelButton];
+		[self showCancelButton:YES];
 	}
 	else
 	{
-		[self hideCancelButton];
+		[self hideCancelButton:YES];
 	}
 	
 	_isCancelVisible = isCancelVisible;
@@ -142,16 +143,17 @@
 	else
 	{
 		float dx = self.touchStart.x - currentPosition.x;
+		CGPoint velocity = [recognizer velocityInView:self];
 		
 		//if this is a half swipe finish it
 		if (self.cancelButton.frame.size.width / 2 <= fabsf(dx))
 		{
-			[self showOrHideCancel:dx];
+			[self showOrHideCancel:dx fast:NO];
 		}
 		//if this is a flick finish it
-		else if(fabsf([recognizer velocityInView:self].x) > FLICK_VELOCITY)
+		else if(fabsf(velocity.x) > SLOW_FLICK_VELOCITY)
 		{
-			[self showOrHideCancel:dx];
+			[self showOrHideCancel:dx fast:velocity.x >= FAST_FLICK_VELOCITY];
 		}
 		//hopeless, put it back to where it was
 		else
@@ -177,39 +179,47 @@
 }
 
 #pragma mark - Show/Hide
-- (void)showOrHideCancel:(float)dx
+- (void)showOrHideCancel:(float)dx fast:(BOOL)isFast
 {
 	if (dx > 0)
 	{
+		[self showCancelButton:isFast];
 		self.isCancelVisible = YES;
 		self.didShowCancelBlock();
 	}
 	else
 	{
+		[self hideCancelButton:isFast];
 		self.isCancelVisible = NO;
 		self.didHideCancelBlock();
 	}
 }
 
-- (void)showCancelButton
+- (void)showCancelButton:(BOOL)isFast
 {
-	[self.contentView layoutIfNeeded];
-	[UIView animateWithDuration:0.1 animations:^{
-		//low priority constraint random high number will work
-		self.cancelButtonLeft.constant = 1000;
-		[self hideOnCancelShow];
-		[self.contentView layoutIfNeeded];
-	}];
+	//this will get called multiple times
+	//only animate, if necessary
+	if(self.cancelButtonLeft.constant < 1000)
+	{
+		[self animateWithBlock:^{
+			//low priority constraint random high number will work
+			self.cancelButtonLeft.constant = 1000;
+			[self hideOnCancelShow];
+		} isFast:isFast];
+	}
 }
 
-- (void)hideCancelButton
+- (void)hideCancelButton:(BOOL)isFast
 {
-	[self.contentView layoutIfNeeded];
-	[UIView animateWithDuration:0.1 animations:^{
-		self.cancelButtonLeft.constant = 0;
-		[self showOnCancelHide];
-		[self.contentView layoutIfNeeded];
-	}];
+	//this will get called multiple times
+	//only animate, if necessary
+	if(self.cancelButtonLeft.constant > 0)
+	{
+		[self animateWithBlock:^{
+			self.cancelButtonLeft.constant = 0;
+			[self showOnCancelHide];
+		} isFast:isFast];
+	}
 }
 
 - (void)hideOnCancelShow
@@ -220,6 +230,16 @@
 - (void)showOnCancelHide
 {
 	//override on subclass to show things that are behind cancel button
+}
+
+#pragma mark - Animation helper
+- (void)animateWithBlock:(TRWActionBlock)cancelButtonAnimationBlock isFast:(BOOL)isFast
+{
+	[self.contentView layoutIfNeeded];
+	[UIView animateWithDuration:isFast ? 0.05 : 0.5 animations:^{
+		cancelButtonAnimationBlock();
+		[self.contentView layoutIfNeeded];
+	}];
 }
 
 @end
