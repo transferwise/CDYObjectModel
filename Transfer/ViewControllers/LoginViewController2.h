@@ -1,5 +1,5 @@
 //
-//  LgoinViewController2.h
+//  LgoinViewController.h
 //  Transfer
 //
 //  Created by Juhan Hion on 09.07.14.
@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LgoinViewController2 : UIViewController
+@class ObjectModel;
+
+@interface LoginViewController2 : UIViewController
+
+@property (nonatomic) ObjectModel *objectModel;
 
 @end

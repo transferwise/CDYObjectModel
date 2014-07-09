@@ -11,5 +11,6 @@
 @interface FloatingLabelTextField : JVFloatLabeledTextField
 
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value;
+- (BOOL)hasValue;
 
 @end

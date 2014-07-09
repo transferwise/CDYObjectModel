@@ -46,4 +46,9 @@
     [self setText:value];
 }
 
+- (void)hasValue
+{
+	
+}
+
 @end

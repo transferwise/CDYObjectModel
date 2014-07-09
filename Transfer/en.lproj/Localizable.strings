@@ -476,7 +476,10 @@ people who built Skype and PayPal.";
 "refund.details.save.error.title" = "Could not save";
 "refund.controller.validating.message" = "Validating...";
 "refund.controller.validation.error.title" = "Validation failed";
+
 "login.controller.forgot.password.link" = "Forgot password";
+"login.controller.or" = "Or";
+
 "reset.password.controller.title" = "Request password reset";
 "reset.password.controller.email.cell.label" = "Your email";
 "reset.password.header.description" = "Enter the email address you registered with. We'll send you an email in order to let you choose a new password.";
