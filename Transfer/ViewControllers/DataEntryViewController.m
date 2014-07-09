@@ -197,7 +197,10 @@
         if ([self isEntryCell:viewCell]) {
             TextEntryCell *entryCell = (TextEntryCell *) viewCell;
             [entryCell.entryField becomeFirstResponder];
-            [self.tableView scrollToRowAtIndexPath:moveToIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            if([self.tableView indexPathForCell:entryCell])
+            {
+                [self.tableView scrollToRowAtIndexPath:moveToIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            }
             return YES;
         }
     }

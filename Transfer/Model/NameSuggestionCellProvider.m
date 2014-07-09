@@ -133,6 +133,7 @@
         [tableView registerNib:self.cellNib forCellReuseIdentifier:@"NameSuggestionCell"];
     }
     NameSuggestionCell *cell = (NameSuggestionCell*)[tableView dequeueReusableCellWithIdentifier:@"NameSuggestionCell"];
+    cell.translatesAutoresizingMaskIntoConstraints = NO;
     
     NameLookupWrapper *wrapper = self.dataSource[indexPath.section][indexPath.row];
     NSString *text;

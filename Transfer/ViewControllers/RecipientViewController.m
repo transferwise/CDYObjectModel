@@ -108,7 +108,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnLeftEdgeConstraint;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewLeftMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewRightMargin;
 
 - (IBAction)addButtonPressed:(id)sender;
 
@@ -173,27 +174,37 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     
     self.cellProvider = [[NameSuggestionCellProvider alloc] init];
     
+    self.suggestionTable = [[NSBundle mainBundle] loadNibNamed:@"TextFieldSuggestionTable" owner:self options:nil][0];
+    
     self.suggestionTable.hidden = YES;
+    self.suggestionTable.suggestionTableDelegate = self;
     [self.view addSubview:self.suggestionTable];
     self.suggestionTable.textField = nameCell.entryField;
     self.suggestionTable.dataSource = self.cellProvider;
-    
-    
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    if(UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
+    [self configureForInterfaceOrientation:toInterfaceOrientation];
+}
+
+-(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation
+{
+    if(UIInterfaceOrientationIsPortrait(orientation))
     {
+        self.scrollViewLeftMargin.constant = 208.0f;
+        self.scrollViewRightMargin.constant = 208.0f;
+        
         self.secondColumnLeftEdgeConstraint.constant = -360;
         self.secondColumnTopConstraint.constant = self.firstColumnHeightConstraint.constant;
     }
     else
     {
+        self.scrollViewLeftMargin.constant = 100.0f;
+        self.scrollViewRightMargin.constant = 100.0f;
         self.secondColumnLeftEdgeConstraint.constant = 100.0f;
         self.secondColumnTopConstraint.constant = 0.0f;
     }
-    
 }
 
 -(void)setupTableView:(UITableView*)tableView
@@ -227,6 +238,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, @[]]];
     [self.tableView reloadData];
     [self refreshTableViewSizes];
+    
+    [self configureForInterfaceOrientation:self.interfaceOrientation];
+
+    
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
@@ -637,6 +652,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 {
     self.firstColumnHeightConstraint.constant= self.tableView.contentSize.height;
     self.secondColumnHeightConstraint.constant = self.secondColumnTableView.contentSize.height;
+    [self.tableView layoutIfNeeded];
+    [self.secondColumnTableView layoutIfNeeded];
 }
 
 /* TODO: move this to the "select profile screen"
@@ -683,6 +700,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     newFrame.origin = [self.view convertPoint:table.textField.superview.frame.origin fromView:table.textField.superview.superview];
     newFrame.origin.y += table.textField.superview.frame.size.height + (1.0f/[[UIScreen mainScreen] scale]);
     newFrame.size.height = self.view.frame.size.height - newFrame.origin.y;
+    newFrame.size.width = table.textField.superview.frame.size.width;
     table.frame = newFrame;
     [self.view addSubview:table];
     
