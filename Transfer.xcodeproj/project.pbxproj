@@ -115,6 +115,8 @@
 		47233CD7196D457300449042 /* LgoinViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 47233CD4196D457300449042 /* LgoinViewController2.m */; };
 		47233CD8196D457300449042 /* LgoinViewController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47233CD5196D457300449042 /* LgoinViewController2.xib */; };
 		47233CD9196D457300449042 /* LgoinViewController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47233CD5196D457300449042 /* LgoinViewController2.xib */; };
+		473DF972196D5ED600524C64 /* FloatingLabelTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 473DF971196D5ED600524C64 /* FloatingLabelTextField.m */; };
+		473DF973196D5ED600524C64 /* FloatingLabelTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 473DF971196D5ED600524C64 /* FloatingLabelTextField.m */; };
 		473F62931940BDD9001E280B /* NewPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */; };
 		474D1A9F19518073008BC7A7 /* ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1A9E19518073008BC7A7 /* ColoredButton.m */; };
 		474D1AA019518073008BC7A7 /* ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1A9E19518073008BC7A7 /* ColoredButton.m */; };
@@ -774,6 +776,8 @@
 		47233CD3196D457300449042 /* LgoinViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LgoinViewController2.h; sourceTree = "<group>"; };
 		47233CD4196D457300449042 /* LgoinViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LgoinViewController2.m; sourceTree = "<group>"; };
 		47233CD5196D457300449042 /* LgoinViewController2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LgoinViewController2.xib; sourceTree = "<group>"; };
+		473DF970196D5ED600524C64 /* FloatingLabelTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingLabelTextField.h; sourceTree = "<group>"; };
+		473DF971196D5ED600524C64 /* FloatingLabelTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingLabelTextField.m; sourceTree = "<group>"; };
 		473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NewPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
 		474D1A9D19518073008BC7A7 /* ColoredButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredButton.h; sourceTree = "<group>"; };
 		474D1A9E19518073008BC7A7 /* ColoredButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColoredButton.m; sourceTree = "<group>"; };
@@ -1497,6 +1501,8 @@
 				47FAF356194F0A46004CE986 /* IntrinsicSizeUIView.m */,
 				474D1A9D19518073008BC7A7 /* ColoredButton.h */,
 				474D1A9E19518073008BC7A7 /* ColoredButton.m */,
+				473DF970196D5ED600524C64 /* FloatingLabelTextField.h */,
+				473DF971196D5ED600524C64 /* FloatingLabelTextField.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2757,6 +2763,7 @@
 				EA31A15C17DDB29B00F937F7 /* CurrencySelectionCell.m in Sources */,
 				EA31A15D17DDB29B00F937F7 /* RecipientFieldCell.m in Sources */,
 				EA347749180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */,
+				473DF973196D5ED600524C64 /* FloatingLabelTextField.m in Sources */,
 				EA31A15E17DDB29B00F937F7 /* RecipientOperation.m in Sources */,
 				38B092EA194F46D700315BE4 /* NameLookupWrapper.m in Sources */,
 				EA31A15F17DDB29B00F937F7 /* NonEditTextField.m in Sources */,
@@ -3058,6 +3065,7 @@
 				EA92D97F176AF1200078D0C4 /* PaymentProfileViewController.m in Sources */,
 				EA92D983176AF1DF0078D0C4 /* ProfileSelectionView.m in Sources */,
 				EA7F8816176F2B44003B0F46 /* RemoveTokenOperation.m in Sources */,
+				473DF972196D5ED600524C64 /* FloatingLabelTextField.m in Sources */,
 				BB9A2E83176B711400C5E058 /* UITableView+FooterPositioning.m in Sources */,
 				BB704E7D177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m in Sources */,
 				479B692C19487865001FA4FE /* TransferDetailsViewController.m in Sources */,
