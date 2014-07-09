@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecipientViewController">
             <connections>
                 <outlet property="addButton" destination="dT4-Xh-GCh" id="kic-Pf-fRX"/>
+                <outlet property="containerScrollView" destination="XCE-KC-Di1" id="pzl-ap-iqn"/>
                 <outlet property="firstColumnHeightConstraint" destination="WNq-7i-U6Z" id="crc-wm-i6R"/>
                 <outlet property="scrollViewLeftMargin" destination="Ggt-4Q-DOr" id="4Ny-o8-EGR"/>
                 <outlet property="scrollViewRightMargin" destination="ZGe-vY-sC7" id="ocm-0f-wjg"/>
@@ -23,15 +24,15 @@
             <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCE-KC-Di1">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCE-KC-Di1">
                     <rect key="frame" x="100" y="0.0" width="824" height="768"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="824" placeholderIntrinsicHeight="568" translatesAutoresizingMaskIntoConstraints="NO" id="bP7-ah-Jiz" customClass="IntrinsicSizeUIView">
-                            <rect key="frame" x="0.0" y="200" width="824" height="568"/>
+                            <rect key="frame" x="0.0" y="160" width="824" height="568"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="1024" placeholderIntrinsicHeight="721" scrollEnabled="NO" bouncesZoom="NO" style="plain" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4">
+                                <tableView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="1024" placeholderIntrinsicHeight="721" scrollEnabled="NO" bouncesZoom="NO" style="plain" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4">
                                     <rect key="frame" x="0.0" y="0.0" width="360" height="568"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -48,7 +49,7 @@
                                         <outlet property="delegate" destination="-1" id="7"/>
                                     </connections>
                                 </tableView>
-                                <tableView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="1024" placeholderIntrinsicHeight="721" scrollEnabled="NO" bouncesZoom="NO" style="plain" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JU1-IW-1ic">
+                                <tableView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="1024" placeholderIntrinsicHeight="721" scrollEnabled="NO" bouncesZoom="NO" style="plain" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JU1-IW-1ic">
                                     <rect key="frame" x="464" y="0.0" width="360" height="700"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -77,20 +78,25 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="bP7-ah-Jiz" secondAttribute="bottom" id="9sT-JZ-FS3"/>
+                        <constraint firstAttribute="bottom" secondItem="bP7-ah-Jiz" secondAttribute="bottom" constant="100" id="9sT-JZ-FS3"/>
                         <constraint firstAttribute="trailing" secondItem="bP7-ah-Jiz" secondAttribute="trailing" id="PU1-bP-YZO"/>
-                        <constraint firstItem="bP7-ah-Jiz" firstAttribute="top" secondItem="XCE-KC-Di1" secondAttribute="top" constant="200" id="fwL-dI-WgT"/>
+                        <constraint firstItem="bP7-ah-Jiz" firstAttribute="top" secondItem="XCE-KC-Di1" secondAttribute="top" constant="160" id="fwL-dI-WgT"/>
                         <constraint firstItem="bP7-ah-Jiz" firstAttribute="leading" secondItem="XCE-KC-Di1" secondAttribute="leading" id="y4g-S3-dfn"/>
                     </constraints>
                 </scrollView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT4-Xh-GCh" customClass="ProgressButton">
-                    <rect key="frame" x="352" y="724" width="320" height="44"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT4-Xh-GCh" customClass="ProgressButton">
+                    <rect key="frame" x="352" y="619" width="320" height="49"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="49" id="YCP-7W-WcA"/>
+                        <constraint firstAttribute="width" constant="320" id="pga-Ud-nMY"/>
+                    </constraints>
                     <state key="normal" title="Button"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="progress">
                             <real key="value" value="0.29999999999999999"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="addShadow" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="addButtonPressed:" destination="-1" eventType="touchUpInside" id="icT-jK-9V9"/>
@@ -103,6 +109,8 @@
                 <constraint firstItem="XCE-KC-Di1" firstAttribute="leading" secondItem="fPl-yO-Yh3" secondAttribute="leading" constant="100" id="Ggt-4Q-DOr"/>
                 <constraint firstItem="XCE-KC-Di1" firstAttribute="top" secondItem="fPl-yO-Yh3" secondAttribute="top" id="TIz-rc-Hx3"/>
                 <constraint firstAttribute="trailing" secondItem="XCE-KC-Di1" secondAttribute="trailing" constant="100" id="ZGe-vY-sC7"/>
+                <constraint firstAttribute="centerX" secondItem="dT4-Xh-GCh" secondAttribute="centerX" id="bCk-b4-Pc5"/>
+                <constraint firstAttribute="bottom" secondItem="dT4-Xh-GCh" secondAttribute="bottom" constant="100" id="ykB-zY-Em7"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>

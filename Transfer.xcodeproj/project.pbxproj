@@ -53,6 +53,8 @@
 		38002200192F443E009B1D53 /* CurrencyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021FE192F443E009B1D53 /* CurrencyCell.m */; };
 		3800220C192F5774009B1D53 /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3800220B192F5774009B1D53 /* CurrencyCell.xib */; };
 		3800220D192F5774009B1D53 /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3800220B192F5774009B1D53 /* CurrencyCell.xib */; };
+		38062176196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */; };
+		38062177196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */; };
 		3831AA37194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
 		3831AA38194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
 		3831AA39194B31A200B3EE5C /* WhyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA35194B31A200B3EE5C /* WhyViewController.m */; };
@@ -111,8 +113,6 @@
 		38EFABDA196D7E2400126192 /* RecipientViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EFABD8196D7E1D00126192 /* RecipientViewController~ipad.xib */; };
 		38EFABDF196D7EAB00126192 /* DataEntryDefaultHeader~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EFABDB196D7EAB00126192 /* DataEntryDefaultHeader~ipad.xib */; };
 		38EFABE0196D7EAB00126192 /* DataEntryDefaultHeader~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EFABDB196D7EAB00126192 /* DataEntryDefaultHeader~ipad.xib */; };
-		38EFABE1196D7EAB00126192 /* MatsWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EFABDD196D7EAB00126192 /* MatsWindow.m */; };
-		38EFABE2196D7EAB00126192 /* MatsWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EFABDD196D7EAB00126192 /* MatsWindow.m */; };
 		38EFABE3196D7EAB00126192 /* TextFieldSuggestionTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EFABDE196D7EAB00126192 /* TextFieldSuggestionTable.xib */; };
 		38EFABE4196D7EAB00126192 /* TextFieldSuggestionTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EFABDE196D7EAB00126192 /* TextFieldSuggestionTable.xib */; };
 		470DEFAD1945F02300684FEB /* MoneyEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */; };
@@ -729,6 +729,7 @@
 		380021FD192F443E009B1D53 /* CurrencyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyCell.h; sourceTree = "<group>"; };
 		380021FE192F443E009B1D53 /* CurrencyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyCell.m; sourceTree = "<group>"; };
 		3800220B192F5774009B1D53 /* CurrencyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencyCell.xib; sourceTree = "<group>"; };
+		38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransferTypeSelectionHeader~ipad.xib"; sourceTree = "<group>"; };
 		3831AA32194B31A200B3EE5C /* TransparentModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentModalViewController.h; sourceTree = "<group>"; };
 		3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentModalViewController.m; sourceTree = "<group>"; };
 		3831AA34194B31A200B3EE5C /* WhyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhyViewController.h; sourceTree = "<group>"; };
@@ -781,8 +782,6 @@
 		38E57F77192A51DD00D864A2 /* TabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabViewController.xib; sourceTree = "<group>"; };
 		38EFABD8196D7E1D00126192 /* RecipientViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecipientViewController~ipad.xib"; sourceTree = "<group>"; };
 		38EFABDB196D7EAB00126192 /* DataEntryDefaultHeader~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DataEntryDefaultHeader~ipad.xib"; sourceTree = "<group>"; };
-		38EFABDC196D7EAB00126192 /* MatsWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatsWindow.h; sourceTree = "<group>"; };
-		38EFABDD196D7EAB00126192 /* MatsWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatsWindow.m; sourceTree = "<group>"; };
 		38EFABDE196D7EAB00126192 /* TextFieldSuggestionTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldSuggestionTable.xib; sourceTree = "<group>"; };
 		470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MoneyEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencyCell~ipad.xib"; sourceTree = "<group>"; };
@@ -1437,15 +1436,13 @@
 		EA13E02F171BDF050019FBF0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				38EFABDB196D7EAB00126192 /* DataEntryDefaultHeader~ipad.xib */,
-				38EFABDC196D7EAB00126192 /* MatsWindow.h */,
-				38EFABDD196D7EAB00126192 /* MatsWindow.m */,
 				38EFABDE196D7EAB00126192 /* TextFieldSuggestionTable.xib */,
 				47FAF359195031E7004CE986 /* BlueButton.h */,
 				47FAF35A195031E7004CE986 /* BlueButton.m */,
 				38B093011951FA2A00315BE4 /* DataEntryDefaultHeader.h */,
 				38B093021951FA2A00315BE4 /* DataEntryDefaultHeader.m */,
 				38B093031951FA2A00315BE4 /* DataEntryDefaultHeader.xib */,
+				38EFABDB196D7EAB00126192 /* DataEntryDefaultHeader~ipad.xib */,
 				EAD667C9174F6F7B00D29BCB /* DismissKeyboardTableView.h */,
 				EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */,
 				EAD7D4CF171D4BB20099063F /* GreenButton.h */,
@@ -1501,6 +1498,7 @@
 				38B093061951FA2A00315BE4 /* TransferTypeSelectionHeader.h */,
 				38B093071951FA2A00315BE4 /* TransferTypeSelectionHeader.m */,
 				38B093081951FA2A00315BE4 /* TransferTypeSelectionHeader.xib */,
+				38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */,
 				EA8FF689171D1FA50090A658 /* TRWAlertView.h */,
 				EA8FF68A171D1FA50090A658 /* TRWAlertView.m */,
 				EA8FF6B2171D23B20090A658 /* TRWProgressHUD.h */,
@@ -2332,6 +2330,7 @@
 			files = (
 				479B6930194878EE001FA4FE /* TransferDetailsViewController.xib in Resources */,
 				479B6931194878EE001FA4FE /* TransferDetailsViewController~ipad.xib in Resources */,
+				38062177196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */,
 				4710499819470B2A00660B2F /* CurrencyCell~ipad.xib in Resources */,
 				470DEFAE19460C8D00684FEB /* MoneyEntryCell~ipad.xib in Resources */,
 				47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */,
@@ -2430,6 +2429,7 @@
 			files = (
 				479B692F194878CA001FA4FE /* TransferDetailsViewController~ipad.xib in Resources */,
 				EAAA1478171BC911005B9430 /* InfoPlist.strings in Resources */,
+				38062176196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */,
 				EAAA1490171BD07E005B9430 /* Localizable.strings in Resources */,
 				38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */,
 				EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */,
@@ -2708,7 +2708,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				47FAF34A194B371B004CE986 /* WhyViewController.m in Sources */,
-				38EFABE2196D7EAB00126192 /* MatsWindow.m in Sources */,
 				479B69421949E7ED001FA4FE /* TransferDetialsHeaderView.m in Sources */,
 				479B69411949E7DA001FA4FE /* TransferDetailsViewController.m in Sources */,
 				479B69401949E7BB001FA4FE /* UIFont+MOMStyle.m in Sources */,
@@ -3146,7 +3145,6 @@
 				EAD33EAB17E84C2700CE0608 /* PullPaymentDetailsOperation.m in Sources */,
 				38BD98A3195C5973009F9B4A /* NameSuggestionCell.m in Sources */,
 				EA2379E91793E01A00166361 /* ObjectModel+Users.m in Sources */,
-				38EFABE1196D7EAB00126192 /* MatsWindow.m in Sources */,
 				380021CA192CC531009B1D53 /* MOMStyleFactory.m in Sources */,
 				EA2379ED1793E02B00166361 /* _BusinessProfile.m in Sources */,
 				EA2379F01793E02F00166361 /* _PersonalProfile.m in Sources */,

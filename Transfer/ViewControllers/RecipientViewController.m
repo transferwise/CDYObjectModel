@@ -57,6 +57,7 @@
 #import "NameLookupWrapper.h"
 #import "MOMStyle.h"
 #import "UIView+RenderBlur.h"
+#import "UIResponder+FirstResponder.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
@@ -99,8 +100,12 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, strong) NameSuggestionCellProvider *cellProvider;
 @property (nonatomic, strong) PhoneBookProfile *lastSelectedProfile;
 
+@property (nonatomic, assign) CGFloat cellHeight;
+
 
 // iPad
+@property (weak, nonatomic) IBOutlet UIScrollView *containerScrollView;
+
 @property (nonatomic, weak) IBOutlet UITableView *secondColumnTableView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *firstColumnHeightConstraint;
@@ -136,6 +141,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     {
         [self setupTableView:self.secondColumnTableView];
     }
+    
+    self.cellHeight = IPAD ? 70.0f : 60.0f;
     
     RecipientEntrySelectionCell *nameCell = [self.tableView dequeueReusableCellWithIdentifier:TRWRecipientEntrySelectionCellIdentifier];
     [self setNameCell:nameCell];
@@ -192,8 +199,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 {
     if(UIInterfaceOrientationIsPortrait(orientation))
     {
-        self.scrollViewLeftMargin.constant = 208.0f;
-        self.scrollViewRightMargin.constant = 208.0f;
+        self.scrollViewLeftMargin.constant = 204.0f;
+        self.scrollViewRightMargin.constant = 204.0f;
         
         self.secondColumnLeftEdgeConstraint.constant = -360;
         self.secondColumnTopConstraint.constant = self.firstColumnHeightConstraint.constant;
@@ -439,7 +446,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60;
+    return self.cellHeight;
 }
 
 - (IBAction)addButtonPressed:(id)sender {
@@ -721,6 +728,80 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self didSelectRecipient:(Recipient*)[self.objectModel.managedObjectContext objectWithID:wrapper.managedObjectId]];
     }
     
+}
+
+#pragma mark - Keyboard show/hide
+
+
+
+
+-(void)keyboardWillShow:(NSNotification*)note
+{
+    if(IPAD)
+    {
+        CGRect newframe = [self.view convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:self.view.window];
+        NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+        
+        CGFloat overlap = self.containerScrollView.frame.origin.y + self.containerScrollView.frame.size.height - newframe.origin.y;
+        
+        if(overlap >0)
+        {
+            
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:duration];
+            [UIView setAnimationCurve:curve];
+            [UIView setAnimationBeginsFromCurrentState:YES];
+            
+            if(UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, UIEdgeInsetsZero))
+            {
+                self.cachedInsets = self.containerScrollView.contentInset;
+            }
+            
+            UIEdgeInsets newInsets = self.cachedInsets;
+            newInsets.bottom += overlap;
+            self.containerScrollView.contentInset = newInsets;
+            
+            [UIView commitAnimations];
+            
+            UIView *firstResponder = [UIResponder currentFirstResponder];
+            if(firstResponder)
+            {
+                CGRect rectToShow = [self.containerScrollView convertRect:firstResponder.frame fromView:firstResponder.superview];
+                rectToShow.size.height += 20.0f;
+                [self.containerScrollView scrollRectToVisible:rectToShow animated:YES];
+            }
+        }
+    }
+    else
+    {
+        [super keyboardWillShow:note];
+    }
+}
+
+-(void)keyboardWillHide:(NSNotification*)note
+{
+    if(IPAD)
+    {
+        NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+        
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:duration];
+        [UIView setAnimationCurve:curve];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        
+        self.containerScrollView.contentInset = self.cachedInsets;
+        
+        [UIView commitAnimations];
+        
+        self.cachedInsets = UIEdgeInsetsZero;
+    }
+    else
+    {
+        [super keyboardWillHide:note];
+    }
 }
 
 @end

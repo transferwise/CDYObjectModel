@@ -29,37 +29,11 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 @implementation TextEntryCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        [self commonSetup];
-    }
-    return self;
-}
-
--(void)awakeFromNib
-{
-    [self commonSetup];
-}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
-}
-
--(void)commonSetup
-{
-    if([_entryField isKindOfClass:[JVFloatLabeledTextField class]])
-    {
-        JVFloatLabeledTextField* field = (JVFloatLabeledTextField*) _entryField;
-        field.fontStyle = @"medium.@16.darkText2";
-        MOMBasicStyle* fontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@13"];
-        field.floatingLabelFont = [fontStyle font];
-        field.floatingLabelTextColor = [UIColor colorFromStyle:@"lightText2"];
-        field.floatingLabelActiveTextColor =  [UIColor colorFromStyle:@"navBarBlue"];
-        field.floatingLabelYPadding = @(2.0f);
-    }
 }
 
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value {

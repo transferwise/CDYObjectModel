@@ -14,22 +14,13 @@
 #import "UIResponder+FirstResponder.h"
 #import "MOMStyle.h"
 
-@interface DataEntryViewController () <UITextFieldDelegate>
-
-@property (nonatomic, assign) UIEdgeInsets cachedInsets;
-
-@end
-
 @implementation DataEntryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    if(!IPAD)
-    {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     self.tableView.bgStyle = @"white";
     self.tableView.tableFooterView = [[UIView alloc] init];
@@ -38,11 +29,8 @@
 
 -(void)dealloc
 {
-    if(!IPAD)
-    {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,20 +40,20 @@
 
 - (void)setPresentedSectionCells:(NSArray *)presentedSectionCells {
     _presentedSectionCells = presentedSectionCells;
-
+    
     for (NSArray *sectionCells in presentedSectionCells) {
         for (id cell in sectionCells) {
-
+            
             if (![self isEntryCell:cell]) {
                 continue;
             }
-
+            
             TextEntryCell *entryCell = cell;
             [entryCell.entryField setDelegate:self];
             [entryCell.entryField setReturnKeyType:UIReturnKeyNext];
         }
     }
-
+    
     UITableViewCell *lastCell = [[presentedSectionCells lastObject] lastObject];
     if ([self isEntryCell:lastCell]) {
         TextEntryCell *entryCell = (TextEntryCell *) lastCell;
@@ -83,7 +71,7 @@
     NSString* title = [self tableView:tableView titleForHeaderInSection:section];
     if(title)
     {
-        return 60.0f;
+        return IPAD?75.0f:60.0f;
     }
     
     return UITableViewAutomaticDimension;
@@ -141,7 +129,7 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
+    
     id cell = [self cellForIndexPath:indexPath];
     if ([self isEntryCell:cell]) {
         TextEntryCell *entryCell = cell;
@@ -158,16 +146,16 @@
 #pragma mark - Text field delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     UITableViewCell *containingCell = [textField findContainerOfType:[UITableViewCell class]];
-
+    
     BOOL moved = [self moveFocusOnNextEntryAfterCell:containingCell];
-
+    
     if (!moved && [containingCell isKindOfClass:[TextEntryCell class]]) {
         TextEntryCell *entryCell = (TextEntryCell *) containingCell;
         [entryCell.entryField resignFirstResponder];
     }
-
+    
     [self textFieldEntryFinished];
-
+    
     return YES;
 }
 
@@ -182,15 +170,15 @@
 
 - (BOOL)moveFocusOnNextEntryAfterCell:(UITableViewCell *)cell {
     NSIndexPath *indexPath = [self indexPathForCell:cell];
-
+    
     if (indexPath == nil) {
         return NO;
     }
-
+    
     if ([cell isKindOfClass:[TextEntryCell class]]) {
         [(TextEntryCell *)cell markTouched];
     }
-
+    
     NSIndexPath *moveToIndexPath = indexPath;
     while ((moveToIndexPath = [self nextEditableIndexPathAfter:moveToIndexPath]) != nil) {
         UITableViewCell *viewCell = [self cellForIndexPath:moveToIndexPath];
@@ -204,14 +192,14 @@
             return YES;
         }
     }
-
+    
     return NO;
 }
 
 - (NSIndexPath *)nextEditableIndexPathAfter:(NSIndexPath *)indexPath {
     NSUInteger section = (NSUInteger) indexPath.section;
     NSUInteger row = (NSUInteger) indexPath.row;
-
+    
     for (; section < [self.presentedSectionCells count]; section++) {
         NSArray *sectionCells = self.presentedSectionCells[section];
         for (; row < [sectionCells count]; row++) {
@@ -219,23 +207,23 @@
             if (![self isEntryCell:cell]) {
                 continue;
             }
-
+            
             NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:section];
             if ([path isEqual:indexPath]) {
                 continue;
             }
-
+            
             TextEntryCell *entryCell = cell;
             if (![entryCell.entryField isEnabled]) {
                 continue;
             }
-
+            
             return path;
         }
-
+        
         row = 0;
     }
-
+    
     return nil;
 }
 
@@ -247,7 +235,7 @@
             return [NSIndexPath indexPathForRow:row inSection:section];
         }
     }
-
+    
     return nil;
 }
 
@@ -256,82 +244,84 @@
 }
 
 - (void)textFieldEntryFinished {
-
+    
 }
 
 #pragma mark - keyboard overlap
 -(void)keyboardWillShow:(NSNotification*)note
 {
-    CGRect newframe = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    
-    CGFloat overlap = self.tableView.frame.origin.y + self.tableView.frame.size.height - newframe.origin.y;
-    
-    if(overlap >0)
+    if(!IPAD)
     {
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:duration];
-    [UIView setAnimationCurve:curve];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    
-    if(UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, UIEdgeInsetsZero))
-    {
-        self.cachedInsets = self.tableView.contentInset;
-    }
-    
-    UIEdgeInsets newInsets = self.cachedInsets;
-    newInsets.bottom += overlap;
-    self.tableView.contentInset = newInsets;
-    
-    [UIView commitAnimations];
+        CGRect newframe = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
         
-        UIView *firstResponder = [UIResponder currentFirstResponder];
-        if(firstResponder)
+        CGFloat overlap = self.tableView.frame.origin.y + self.tableView.frame.size.height - newframe.origin.y;
+        
+        if(overlap >0)
         {
-            UIView* superview = firstResponder.superview;
-            UITableViewCell *cell;
-            while (superview && ![superview isKindOfClass:[UITableViewCell class]])
+            
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:duration];
+            [UIView setAnimationCurve:curve];
+            [UIView setAnimationBeginsFromCurrentState:YES];
+            
+            if(UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, UIEdgeInsetsZero))
             {
-                superview = superview.superview;
+                self.cachedInsets = self.tableView.contentInset;
             }
-            if ([superview isKindOfClass:[UITableViewCell class]])
+            
+            UIEdgeInsets newInsets = self.cachedInsets;
+            newInsets.bottom += overlap;
+            self.tableView.contentInset = newInsets;
+            
+            [UIView commitAnimations];
+            
+            UIView *firstResponder = [UIResponder currentFirstResponder];
+            if(firstResponder)
             {
-                cell = (UITableViewCell*)superview;
-            }
-            if(cell)
-            {
-                NSIndexPath *path = [self.tableView indexPathForCell:cell];
-                if(path)
+                UIView* superview = firstResponder.superview;
+                UITableViewCell *cell;
+                while (superview && ![superview isKindOfClass:[UITableViewCell class]])
                 {
-                    [self.tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionNone animated:YES];
+                    superview = superview.superview;
+                }
+                if ([superview isKindOfClass:[UITableViewCell class]])
+                {
+                    cell = (UITableViewCell*)superview;
+                }
+                if(cell)
+                {
+                    NSIndexPath *path = [self.tableView indexPathForCell:cell];
+                    if(path)
+                    {
+                        [self.tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionNone animated:YES];
+                    }
                 }
             }
         }
-
-    
-    //dispatch_after(duration, dispatch_get_main_queue(), ^{
-       //    });
     }
 }
 
 -(void)keyboardWillHide:(NSNotification*)note
 {
-    NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:duration];
-    [UIView setAnimationCurve:curve];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    
-    self.tableView.contentInset = self.cachedInsets;
-    
-    [UIView commitAnimations];
-
-    self.cachedInsets = UIEdgeInsetsZero;
+    if(!IPAD)
+    {
+        NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+        
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:duration];
+        [UIView setAnimationCurve:curve];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        
+        self.tableView.contentInset = self.cachedInsets;
+        
+        [UIView commitAnimations];
+        
+        self.cachedInsets = UIEdgeInsetsZero;
+    }
 }
 
 -(void)reloadSeparators

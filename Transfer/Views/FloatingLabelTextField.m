@@ -11,6 +11,7 @@
 #import "UIColor+MOMStyle.h"
 #import "MOMStyleFactory.h"
 #import "MOMBasicStyle.h"
+#import "Constants.h"
 
 @implementation FloatingLabelTextField
 
@@ -32,8 +33,9 @@
 
 - (void)commonSetup
 {
-	self.fontStyle = @"medium.@16.darkText2";
-	MOMBasicStyle* fontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@13"];
+    BOOL isIpad = IPAD;
+	self.fontStyle = isIpad?@"medium.@19.darkText2":@"medium.@16.darkText2";
+	MOMBasicStyle* fontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:isIpad?@"medium.@16":@"medium.@13"];
 	self.floatingLabelFont = [fontStyle font];
 	self.floatingLabelTextColor = [UIColor colorFromStyle:@"lightText2"];
 	self.floatingLabelActiveTextColor =  [UIColor colorFromStyle:@"navBarBlue"];

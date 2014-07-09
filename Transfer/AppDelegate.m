@@ -29,7 +29,6 @@
 #import "TransferMixpanel.h"
 #import "MOMStyle.h"
 #import "ConnectionAwareViewController.h"
-#import "MatsWindow.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -48,7 +47,7 @@
         [[UIApplication sharedApplication] setStatusBarStyle:IPAD?UIStatusBarStyleDefault:UIStatusBarStyleLightContent];
     }
 
-    self.window = [[MatsWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
 #if USE_TESTFLIGHT
     [TestFlight setOptions:@{TFOptionReportCrashes : @NO}];
