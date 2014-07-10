@@ -22,4 +22,5 @@
 - (void)setIsCancelVisible:(BOOL)isCancelVisible animated:(BOOL)animated;
 - (void)hideOnCancelShow;
 - (void)showOnCancelHide;
+
 @end
