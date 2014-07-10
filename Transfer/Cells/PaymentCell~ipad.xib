@@ -13,12 +13,25 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKV-vq-dAg" userLabel="Button - Cancel" customClass="RedGradientButton">
+                        <rect key="frame" x="200" y="0.0" width="120" height="69"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="3jh-f5-W9m"/>
+                        </constraints>
+                        <state key="normal" title="Button">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="cancelTapped:" destination="3" eventType="touchUpInside" id="RIZ-eO-GBA"/>
+                        </connections>
+                    </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="12" userLabel="View - Sliding Content">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                        <rect key="frame" x="-120" y="0.0" width="440" height="69"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="800" text="Name label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                                <rect key="frame" x="46" y="12" width="168" height="18"/>
+                                <rect key="frame" x="46" y="12" width="288" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="250" constant="21" id="jqK-s3-cE2"/>
@@ -31,7 +44,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="800" text="Money label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5">
-                                <rect key="frame" x="214" y="12" width="86" height="21"/>
+                                <rect key="frame" x="334" y="12" width="86" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="PfJ-FS-nxn"/>
@@ -45,7 +58,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Status label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6">
-                                <rect key="frame" x="46" y="36" width="109" height="21"/>
+                                <rect key="frame" x="46" y="36" width="229" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="lNb-U2-WlS"/>
@@ -58,7 +71,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="800" text="Currency label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7">
-                                <rect key="frame" x="170" y="36" width="130" height="21"/>
+                                <rect key="frame" x="290" y="36" width="130" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="37x-jf-kKG"/>
@@ -99,37 +112,28 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="white"/>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKV-vq-dAg" userLabel="Button - Cancel" customClass="RedGradientButton">
-                        <rect key="frame" x="200" y="0.0" width="120" height="69"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="120" id="3jh-f5-W9m"/>
-                        </constraints>
-                        <state key="normal" title="Button">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <connections>
-                            <action selector="cancelTapped:" destination="3" eventType="touchUpInside" id="RIZ-eO-GBA"/>
-                        </connections>
-                    </button>
                 </subviews>
                 <gestureRecognizers/>
                 <constraints>
                     <constraint firstItem="12" firstAttribute="top" secondItem="2Qf-I3-x2d" secondAttribute="top" id="1ie-yW-fTN"/>
                     <constraint firstAttribute="bottom" secondItem="12" secondAttribute="bottom" id="2FH-kC-0Ee"/>
-                    <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" id="aL3-c9-qcN"/>
+                    <constraint firstItem="12" firstAttribute="leading" secondItem="2Qf-I3-x2d" secondAttribute="leading" priority="1" id="MXR-qT-yEO"/>
+                    <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" id="Rbw-wx-D70"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="12" secondAttribute="trailing" placeholder="YES" id="aL3-c9-qcN"/>
                     <constraint firstItem="AKV-vq-dAg" firstAttribute="top" secondItem="2Qf-I3-x2d" secondAttribute="top" id="gC7-AI-9h9"/>
                     <constraint firstAttribute="bottom" secondItem="AKV-vq-dAg" secondAttribute="bottom" id="j29-gV-6Na"/>
-                    <constraint firstItem="12" firstAttribute="leading" secondItem="2Qf-I3-x2d" secondAttribute="leading" id="y8c-Sb-K07"/>
+                    <constraint firstItem="12" firstAttribute="leading" relation="lessThanOrEqual" secondItem="2Qf-I3-x2d" secondAttribute="leading" constant="-120" id="vb0-ED-TrS"/>
+                    <constraint firstItem="12" firstAttribute="leading" relation="lessThanOrEqual" secondItem="2Qf-I3-x2d" secondAttribute="leading" id="y8c-Sb-K07"/>
                     <constraint firstAttribute="trailing" secondItem="AKV-vq-dAg" secondAttribute="trailing" id="zPK-Wz-I3m"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="cancelButton" destination="AKV-vq-dAg" id="JrW-ZY-I0Z"/>
+                <outlet property="contentViewTrailing" destination="MXR-qT-yEO" id="mAt-hU-N7J"/>
                 <outlet property="currencyLabel" destination="7" id="Eja-o7-jjb"/>
                 <outlet property="moneyLabel" destination="5" id="9"/>
                 <outlet property="nameLabel" destination="4" id="8"/>
-                <outlet property="slidingContentView" destination="12" id="GAP-S9-gSQ"/>
+                <outlet property="slidingContentView" destination="12" id="1Wq-fk-nWD"/>
                 <outlet property="statusIcon" destination="n2z-dX-IdV" id="TdX-89-nlT"/>
                 <outlet property="statusLabel" destination="6" id="10"/>
             </connections>
