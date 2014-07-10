@@ -39,42 +39,42 @@
 			<key>blue</key>
 			<dict>
 				<key>color</key>
-				<string>f5f7f9</string>
+				<string>f3f6f8</string>
 			</dict>
 			<key>cellSelected</key>
 			<dict>
 				<key>color</key>
-				<string>e0e9ee</string>
+				<string>f5f7f9</string>
 			</dict>
 			<key>cellSeparator</key>
 			<dict>
 				<key>color</key>
-				<string>e2e5e7</string>
+				<string>e3e7e8</string>
 			</dict>
 			<key>darkBlue</key>
 			<dict>
 				<key>color</key>
-				<string>1f2736</string>
+				<string>363d4e</string>
 			</dict>
 			<key>darkBlue2</key>
 			<dict>
 				<key>color</key>
-				<string>1e2a44</string>
+				<string>232f49</string>
 			</dict>
 			<key>darkBlueHighlighted</key>
 			<dict>
 				<key>color</key>
-				<string>314368</string>
+				<string>354464</string>
 			</dict>
 			<key>darkText</key>
 			<dict>
 				<key>color</key>
-				<string>1e2022</string>
+				<string>363d4e</string>
 			</dict>
 			<key>darkText2</key>
 			<dict>
 				<key>color</key>
-				<string>25272a</string>
+				<string>363d4e</string>
 			</dict>
 			<key>green</key>
 			<dict>
@@ -84,7 +84,7 @@
 			<key>greenShadow</key>
 			<dict>
 				<key>color</key>
-				<string>63950d</string>
+				<string>64960d</string>
 			</dict>
 			<key>greenSelected</key>
 			<dict>
@@ -94,17 +94,17 @@
 			<key>darkGreen</key>
 			<dict>
 				<key>color</key>
-				<string>74a402</string>
+				<string>85b319</string>
 			</dict>
 			<key>darkGreenShadow</key>
 			<dict>
 				<key>color</key>
-				<string>548401</string>
+				<string>64960d</string>
 			</dict>
 			<key>darkGreenSelected</key>
 			<dict>
 				<key>color</key>
-				<string>74a402</string>
+				<string>88b71a</string>
 			</dict>
 			<key>highlightBlue</key>
 			<dict>
@@ -114,19 +114,19 @@
 			<key>darkGray</key>
 			<dict>
 				<key>color</key>
-				<string>393f45</string>
+				<string>363d4e</string>
 			</dict>
 			<key>lightBlue</key>
 			<dict>
 				<key>color</key>
-				<string>324266</string>
+				<string>354464</string>
 			</dict>
 			<key>lightBlueHighlighted</key>
 			<dict/>
 			<key>lightBlue2</key>
 			<dict>
 				<key>color</key>
-				<string>8baab9</string>
+				<string>84a2b0</string>
 			</dict>
 			<key>lightBlue3</key>
 			<dict>
@@ -141,17 +141,17 @@
 			<key>lighterGray</key>
 			<dict>
 				<key>color</key>
-				<string>aeb0b1</string>
+				<string>e3e7e8</string>
 			</dict>
 			<key>lightText</key>
 			<dict>
 				<key>color</key>
-				<string>8da7ae</string>
+				<string>84a2b0</string>
 			</dict>
 			<key>lightText2</key>
 			<dict>
 				<key>color</key>
-				<string>b5b6b8</string>
+				<string>84a2b0</string>
 			</dict>
 			<key>navBarBlue</key>
 			<dict>
@@ -161,22 +161,22 @@
 			<key>lighterBlue</key>
 			<dict>
 				<key>color</key>
-				<string>8baab9</string>
+				<string>84a2b0</string>
 			</dict>
 			<key>paleBlue</key>
 			<dict>
 				<key>color</key>
-				<string>dee9ed</string>
+				<string>e0e9ee</string>
 			</dict>
 			<key>paleBlue2</key>
 			<dict>
 				<key>color</key>
-				<string>848da0</string>
+				<string>84a2b0</string>
 			</dict>
 			<key>tabBarBlue</key>
 			<dict>
 				<key>color</key>
-				<string>212e4b</string>
+				<string>232f49</string>
 			</dict>
 			<key>white</key>
 			<dict>
@@ -186,7 +186,7 @@
 			<key>white2</key>
 			<dict>
 				<key>color</key>
-				<string>f7f9fb</string>
+				<string>f5f7f9</string>
 			</dict>
 			<key>redGradientStart</key>
 			<dict>
@@ -196,7 +196,7 @@
 			<key>redGradientEnd</key>
 			<dict>
 				<key>color</key>
-				<string>c72247</string>
+				<string>df4a32</string>
 			</dict>
 		</dict>
 		<key>font</key>
@@ -228,7 +228,7 @@
 				<key>fontName</key>
 				<string>Avenir-Medium</string>
 				<key>color</key>
-				<string>1e2022</string>
+				<string>363d4e</string>
 			</dict>
 			<key>H1</key>
 			<dict>
@@ -237,7 +237,7 @@
 				<key>fontName</key>
 				<string>Avenir-Medium</string>
 				<key>color</key>
-				<string>1e2022</string>
+				<string>363d4e</string>
 			</dict>
 			<key>H2</key>
 			<dict>
@@ -255,7 +255,7 @@
 				<key>fontName</key>
 				<string>Avenir-Heavy</string>
 				<key>color</key>
-				<string>1e2022</string>
+				<string>363d4e</string>
 			</dict>
 			<key>H4</key>
 			<dict>
@@ -273,7 +273,7 @@
 				<key>fontName</key>
 				<string>Avenir-Heavy</string>
 				<key>color</key>
-				<string>8baab9</string>
+				<string>84a2b0</string>
 			</dict>
 			<key>H5</key>
 			<dict>
@@ -291,7 +291,7 @@
 				<key>fontName</key>
 				<string>Avenir-Light</string>
 				<key>color</key>
-				<string>606b81</string>
+				<string>354464</string>
 			</dict>
 			<key>largeText</key>
 			<dict>
@@ -318,7 +318,7 @@
 				<key>fontName</key>
 				<string>Avenir-Heavy</string>
 				<key>color</key>
-				<string>5c86a6</string>
+				<string>29b2e0</string>
 			</dict>
 		</dict>
 	</dict>
