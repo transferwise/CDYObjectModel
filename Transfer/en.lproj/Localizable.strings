@@ -302,9 +302,9 @@ It can take up to 2 working days.";
 "transactions.identification.upload.message" = "Haven't uploaded them?";
 "transactions.identification.done.button.title" = "Upload";
 "transactions.identification.uploading.message" = "Uploading...";
-"transactions.cancel.confirmation.title" = "Cancel payment?";
-"transactions.cancel.confirmation.message" = "Are you sure you want to cancel you payment to %@.
-You cannot undo this later.";
+"transactions.cancel.confirmation.title" = "Cancel this transfer?";
+"transactions.cancel.confirmation.message" = "Please confirm you want to cancel this transfer.
+This can't be undone.";
 
 "transfer.pay.in.too.low.message.base" = "The entered amount is too small to convert, please change it under 'You send'. Current minimum is %@ %@";
 "transfer.pay.in.too.low.title" = "Amount too small";

@@ -50,6 +50,7 @@
 	
 	[self.cancelButton setTitle:NSLocalizedString(@"button.title.cancel", nil)
 					   forState:UIControlStateNormal];
+	[self.cancelButton setTitleEdgeInsets:UIEdgeInsetsMake(2.0f, 0.0f, 0.0f, 0.0f)];
 	
 	if(!self.panRecognizer)
 	{
