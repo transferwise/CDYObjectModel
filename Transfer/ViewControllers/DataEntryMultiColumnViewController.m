@@ -25,8 +25,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
-    self.tableView.bgStyle = @"white";
-    self.tableView.tableFooterView = [[UIView alloc] init];
+    for(UITableView* tableView in self.tableViews)
+    {
+        tableView.bgStyle = @"white";
+        tableView.tableFooterView = [[UIView alloc] init];
+    }
     
 }
 
@@ -41,23 +44,27 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setPresentedSectionCells:(NSArray *)presentedSectionCells {
-    _presentedSectionCells = presentedSectionCells;
+- (void)setSectionCellsByTableView:(NSArray *)sectionCellsByTableView
+{
+    _sectionCellsByTableView = sectionCellsByTableView;
     
-    for (NSArray *sectionCells in presentedSectionCells) {
-        for (id cell in sectionCells) {
-            
-            if (![self isEntryCell:cell]) {
-                continue;
+    for(NSArray* tableViewSections in sectionCellsByTableView)
+    {
+        for (NSArray *sectionCells in tableViewSections) {
+            for (id cell in sectionCells) {
+                
+                if (![self isEntryCell:cell]) {
+                    continue;
+                }
+                
+                TextEntryCell *entryCell = cell;
+                [entryCell.entryField setDelegate:self];
+                [entryCell.entryField setReturnKeyType:UIReturnKeyNext];
             }
-            
-            TextEntryCell *entryCell = cell;
-            [entryCell.entryField setDelegate:self];
-            [entryCell.entryField setReturnKeyType:UIReturnKeyNext];
         }
     }
     
-    UITableViewCell *lastCell = [[presentedSectionCells lastObject] lastObject];
+    UITableViewCell *lastCell = [[[sectionCellsByTableView lastObject] lastObject] lastObject];
     if ([self isEntryCell:lastCell]) {
         TextEntryCell *entryCell = (TextEntryCell *) lastCell;
         [entryCell.entryField setReturnKeyType:UIReturnKeyDone];
@@ -66,7 +73,8 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = self.presentedSectionCells[indexPath.section][indexPath.row];
+    NSUInteger index = [self.tableViews indexOfObject:tableView];
+    UITableViewCell *cell = self.sectionCellsByTableView[index][indexPath.section][indexPath.row];
     return CGRectGetHeight(cell.frame);
 }
 
@@ -110,39 +118,37 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.presentedSectionCells count];
+    NSUInteger index = [self.tableViews indexOfObject:tableView];
+    return [self.sectionCellsByTableView[index] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSArray *sectionCells = self.presentedSectionCells[(NSUInteger) section];
+    NSUInteger index = [self.tableViews indexOfObject:tableView];
+    NSArray *sectionCells = self.sectionCellsByTableView[index][(NSUInteger) section];
     return [sectionCells count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [self cellForIndexPath:indexPath];
+    NSUInteger index = [self.tableViews indexOfObject:tableView];
+    UITableViewCell *cell = self.sectionCellsByTableView[index][indexPath.section][indexPath.row];
     return cell;
 }
 
-- (UITableViewCell *)cellForIndexPath:(NSIndexPath *)indexPath {
-    NSUInteger section = (NSUInteger) indexPath.section;
-    NSUInteger row = (NSUInteger) indexPath.row;
-    return self.presentedSectionCells[section][row];
-}
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    id cell = [self cellForIndexPath:indexPath];
+    id cell = [tableView cellForRowAtIndexPath:indexPath];
     if ([self isEntryCell:cell]) {
         TextEntryCell *entryCell = cell;
         [entryCell.entryField becomeFirstResponder];
     } else {
-        [self tappedCellAtIndexPath:indexPath];
+        [self tappedCellAtIndexPath:indexPath inTableView:tableView];
     }
 }
 
-- (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView*)tableView {
     MCLog(@"tappedCellAtIndexPath:%@", indexPath);
 }
 
@@ -182,29 +188,44 @@
         [(TextEntryCell *)cell markTouched];
     }
     
-    NSIndexPath *moveToIndexPath = indexPath;
-    while ((moveToIndexPath = [self nextEditableIndexPathAfter:moveToIndexPath]) != nil) {
-        UITableViewCell *viewCell = [self cellForIndexPath:moveToIndexPath];
-        if ([self isEntryCell:viewCell]) {
-            TextEntryCell *entryCell = (TextEntryCell *) viewCell;
-            [entryCell.entryField becomeFirstResponder];
-            if([self.tableView indexPathForCell:entryCell])
-            {
-                [self.tableView scrollToRowAtIndexPath:moveToIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    NSUInteger tableViewIndex = [self indexOfTableViewContainingCell:cell];
+
+     NSIndexPath *moveToIndexPath = indexPath;
+    
+    while (tableViewIndex != NSNotFound)
+    {
+        UITableView* tableView = self.tableViews[tableViewIndex];
+        while ((moveToIndexPath = [self nextEditableIndexPathAfter:moveToIndexPath inTableViewWithIndex:tableViewIndex]) != nil) {
+            UITableViewCell *viewCell = [self tableView:tableView cellForRowAtIndexPath:moveToIndexPath];
+            if ([self isEntryCell:viewCell]) {
+                TextEntryCell *entryCell = (TextEntryCell *) viewCell;
+                [entryCell.entryField becomeFirstResponder];
+                [self scrollToCell:entryCell inTableView:tableView];
+                return YES;
             }
-            return YES;
         }
+        moveToIndexPath = [NSIndexPath indexPathForRow:-1 inSection:0];
+        tableViewIndex++;
+        if(tableViewIndex >= [self.tableViews count])
+        {
+            tableViewIndex = NSNotFound;
+        }
+
+            
     }
     
     return NO;
+    
 }
 
-- (NSIndexPath *)nextEditableIndexPathAfter:(NSIndexPath *)indexPath {
+- (NSIndexPath *)nextEditableIndexPathAfter:(NSIndexPath *)indexPath inTableViewWithIndex:(NSUInteger)tableViewIndex {
     NSUInteger section = (NSUInteger) indexPath.section;
-    NSUInteger row = (NSUInteger) indexPath.row;
+    NSUInteger row = (NSUInteger) MAX(0,indexPath.row);
     
-    for (; section < [self.presentedSectionCells count]; section++) {
-        NSArray *sectionCells = self.presentedSectionCells[section];
+    NSUInteger count = [self.sectionCellsByTableView[tableViewIndex] count];
+    
+    for (; section < count ; section++) {
+        NSArray *sectionCells = self.sectionCellsByTableView[tableViewIndex][section];
         for (; row < [sectionCells count]; row++) {
             id cell = sectionCells[row];
             if (![self isEntryCell:cell]) {
@@ -230,12 +251,32 @@
     return nil;
 }
 
+-(NSUInteger)indexOfTableViewContainingCell:(UITableViewCell *)cell
+{
+    for (NSArray *tableViewSectionIndex in self.sectionCellsByTableView)
+    {
+        for (NSUInteger section = 0; section < [tableViewSectionIndex count]; section++) {
+            NSArray *sectionCells = tableViewSectionIndex[section];
+            NSUInteger row = [sectionCells indexOfObject:cell];
+            if (row != NSNotFound) {
+                return [self.sectionCellsByTableView indexOfObject:tableViewSectionIndex];
+            }
+        }
+    }
+    
+    return NSNotFound;
+}
+
 - (NSIndexPath *)indexPathForCell:(UITableViewCell *)cell {
-    for (NSUInteger section = 0; section < [self.presentedSectionCells count]; section++) {
-        NSArray *sectionCells = self.presentedSectionCells[section];
-        NSUInteger row = [sectionCells indexOfObject:cell];
-        if (row != NSNotFound) {
-            return [NSIndexPath indexPathForRow:row inSection:section];
+    
+    for (NSArray *tableViewSectionIndex in self.sectionCellsByTableView)
+    {
+        for (NSUInteger section = 0; section < [tableViewSectionIndex count]; section++) {
+            NSArray *sectionCells = tableViewSectionIndex[section];
+            NSUInteger row = [sectionCells indexOfObject:cell];
+            if (row != NSNotFound) {
+                return [NSIndexPath indexPathForRow:row inSection:section];
+            }
         }
     }
     
@@ -253,13 +294,14 @@
 #pragma mark - keyboard overlap
 -(void)keyboardWillShow:(NSNotification*)note
 {
-    if(!IPAD)
+    if([self.tableViews count] == 1)
     {
+        UITableView* tableView = self.tableViews[0];
         CGRect newframe = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
         NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
         UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
         
-        CGFloat overlap = self.tableView.frame.origin.y + self.tableView.frame.size.height - newframe.origin.y;
+        CGFloat overlap = tableView.frame.origin.y + tableView.frame.size.height - newframe.origin.y;
         
         if(overlap >0)
         {
@@ -271,12 +313,12 @@
             
             if(UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, UIEdgeInsetsZero))
             {
-                self.cachedInsets = self.tableView.contentInset;
+                self.cachedInsets = tableView.contentInset;
             }
             
             UIEdgeInsets newInsets = self.cachedInsets;
             newInsets.bottom += overlap;
-            self.tableView.contentInset = newInsets;
+            tableView.contentInset = newInsets;
             
             [UIView commitAnimations];
             
@@ -295,10 +337,10 @@
                 }
                 if(cell)
                 {
-                    NSIndexPath *path = [self.tableView indexPathForCell:cell];
+                    NSIndexPath *path = [tableView indexPathForCell:cell];
                     if(path)
                     {
-                        [self.tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionNone animated:YES];
+                        [tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionNone animated:YES];
                     }
                 }
             }
@@ -308,8 +350,9 @@
 
 -(void)keyboardWillHide:(NSNotification*)note
 {
-    if(!IPAD)
+    if([self.tableViews count] == 1)
     {
+        UITableView* tableView = self.tableViews[0];
         NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
         UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
         
@@ -319,7 +362,7 @@
         [UIView setAnimationCurve:curve];
         [UIView setAnimationBeginsFromCurrentState:YES];
         
-        self.tableView.contentInset = self.cachedInsets;
+        tableView.contentInset = self.cachedInsets;
         
         [UIView commitAnimations];
         
@@ -327,10 +370,27 @@
     }
 }
 
+-(void)scrollToCell:(UITableViewCell*)cell inTableView:(UITableView*)tableView
+{
+    NSIndexPath *path = [tableView indexPathForCell:cell];
+    if(path)
+    {
+        [tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
+}
+
 -(void)reloadSeparators
 {
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    for(UITableView* tableView in self.tableViews)
+    {
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    }
+}
+
+-(BOOL)hasMoreThanOneTableView
+{
+    return [self.tableViews count] > 1;
 }
 
 @end

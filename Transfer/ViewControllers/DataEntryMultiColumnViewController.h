@@ -10,10 +10,12 @@
 
 @interface DataEntryMultiColumnViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) NSArray *presentedSectionCells;
-@property (nonatomic, weak) IBOutlet UITableView* tableView;
+@property (nonatomic, strong) NSArray *sectionCellsByTableView;
+@property (nonatomic, strong) IBOutletCollection(UITableView) NSArray* tableViews;
 
-- (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath;
+-(BOOL)hasMoreThanOneTableView;
+
+- (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView*)tableView;
 - (void)textFieldEntryFinished;
 
 
@@ -22,4 +24,7 @@
 -(void)keyboardWillShow:(NSNotification*)note; // Only handles fullscreen iPhone tables. Ovverride for iPad
 -(void)keyboardWillHide:(NSNotification*)note; // Only handles fullscreen iPhone tables. Ovverride for iPad
 @property (nonatomic, assign) UIEdgeInsets cachedInsets;
+
+-(void)scrollToCell:(UITableViewCell*)cell inTableView:(UITableView*)tableView;
+
 @end
