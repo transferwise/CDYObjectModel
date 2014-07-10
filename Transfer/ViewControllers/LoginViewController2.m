@@ -21,7 +21,7 @@
 #import "NSMutableString+Issues.h"
 #import "OpenIDViewController.h"
 #import "ResetPasswordViewController.h"
-#import "UIFont+MOMStyle.h";
+#import "UIFont+MOMStyle.h"
 
 @interface LoginViewController2 () <UITextFieldDelegate>
 
