@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
+#import "DataEntryViewController.h"
 #import "RecipientViewController.h"
 
 @class ObjectModel;

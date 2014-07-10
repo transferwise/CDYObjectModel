@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DataEntryViewController.h"
+#import "DataEntryMultiColumnViewController.h"
 #import "Constants.h"
 
 @class ObjectModel;
@@ -20,8 +20,7 @@ typedef NS_ENUM(short, RecipientReportingType) {
     RecipientReportingLoggedIn
 };
 
-@interface RecipientViewController : DataEntryViewController
-
+@interface RecipientViewController : DataEntryMultiColumnViewController
 @property (nonatomic, copy) TRWActionBlock afterSaveAction;
 @property (nonatomic, copy) NSString *footerButtonTitle;
 @property (nonatomic, strong) Currency *preLoadRecipientsWithCurrency;
