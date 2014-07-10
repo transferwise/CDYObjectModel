@@ -14,6 +14,9 @@
 #import "UIResponder+FirstResponder.h"
 #import "MOMStyle.h"
 
+@interface DataEntryViewController() <UITextFieldDelegate>
+@end
+
 @implementation DataEntryViewController
 
 - (void)viewDidLoad {
