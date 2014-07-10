@@ -26,7 +26,7 @@
                             <action selector="cancelTapped:" destination="3" eventType="touchUpInside" id="Gaa-gw-ehi"/>
                         </connections>
                     </button>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="12" userLabel="View - Sliding Content">
+                    <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="12" userLabel="View - Sliding Content">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -115,18 +115,23 @@
                 <constraints>
                     <constraint firstItem="12" firstAttribute="top" secondItem="2Qf-I3-x2d" secondAttribute="top" id="1ie-yW-fTN"/>
                     <constraint firstAttribute="trailing" secondItem="Li6-7X-mnd" secondAttribute="trailing" id="1jk-3R-UfY"/>
+                    <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" placeholder="YES" id="21r-rO-74y"/>
                     <constraint firstAttribute="bottom" secondItem="12" secondAttribute="bottom" id="2FH-kC-0Ee"/>
+                    <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" priority="1" id="DzN-3a-1VV"/>
+                    <constraint firstItem="12" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2Qf-I3-x2d" secondAttribute="leading" constant="-90" id="OEN-9T-zF5"/>
                     <constraint firstAttribute="bottom" secondItem="Li6-7X-mnd" secondAttribute="bottom" id="TBc-5z-kla"/>
-                    <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" id="aL3-c9-qcN"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="12" secondAttribute="trailing" id="aL3-c9-qcN"/>
                     <constraint firstItem="Li6-7X-mnd" firstAttribute="top" secondItem="2Qf-I3-x2d" secondAttribute="top" id="egS-FA-CLC"/>
-                    <constraint firstItem="12" firstAttribute="leading" secondItem="2Qf-I3-x2d" secondAttribute="leading" id="y8c-Sb-K07"/>
+                    <constraint firstItem="12" firstAttribute="leading" relation="lessThanOrEqual" secondItem="2Qf-I3-x2d" secondAttribute="leading" id="y8c-Sb-K07"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="cancelButton" destination="Li6-7X-mnd" id="Jz4-BG-PwY"/>
+                <outlet property="contentViewTrailing" destination="DzN-3a-1VV" id="fq4-6G-GRV"/>
                 <outlet property="currencyLabel" destination="7" id="Eja-o7-jjb"/>
                 <outlet property="moneyLabel" destination="5" id="9"/>
                 <outlet property="nameLabel" destination="4" id="8"/>
+                <outlet property="slidingContentView" destination="12" id="Dng-xu-RoD"/>
                 <outlet property="statusIcon" destination="n2z-dX-IdV" id="TdX-89-nlT"/>
                 <outlet property="statusLabel" destination="6" id="10"/>
             </connections>
