@@ -68,13 +68,6 @@
 - (void)textFieldEntryFinished;
 
 /**
- *  Force a refresh of all separators in all tableviews. 
- *
- *  Added as some tableviews seemd to lose separator lines intermittently.
- */
--(void)reloadSeparators;
-
-/**
  *  Called when keyboard will show
  *
  *  override to customise behaviour. The default implementation only handles the case when only one tableview is associated.
