@@ -28,6 +28,9 @@
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *emailTextField;
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *passwordTextField;
 @property (strong, nonatomic) IBOutlet GreenButton *loginButton;
+@property (strong, nonatomic) IBOutlet UILabel *forgotPasswordLabel;
+@property (strong, nonatomic) IBOutlet GreenButton *googleLoginButton;
+@property (strong, nonatomic) IBOutlet GreenButton *yahooLoginButton;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (strong, nonatomic) IBOutlet UILabel *orLabel;
 
@@ -50,6 +53,8 @@
 {
     [super viewDidLoad];
 	
+	self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+	
 	[self.emailTextField configureWithTitle:NSLocalizedString(@"login.email.field.title", nil) value:@""];
 	self.emailTextField.delegate = self;
 	[self.emailTextField setReturnKeyType:UIReturnKeyNext];
@@ -62,6 +67,13 @@
 	
 	[self.loginButton setTitle:NSLocalizedString(@"button.title.log.in", nil) forState:UIControlStateNormal];
 	
+	[self.forgotPasswordLabel setText:NSLocalizedString(@"login.controller.forgot.password.link", nil)];
+	UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(forgotPasswordTapped)];
+    [self.forgotPasswordLabel addGestureRecognizer:tapGestureRecognizer];
+	
+	[self.googleLoginButton setTitle:NSLocalizedString(@"button.title.log.in.google", nil) forState:UIControlStateNormal];
+	[self.yahooLoginButton setTitle:NSLocalizedString(@"button.title.log.in.yahoo", nil) forState:UIControlStateNormal];
+	
 	[self.orLabel setText:NSLocalizedString(@"login.controller.or", nil)];
 }
 
@@ -71,7 +83,6 @@
 	
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationItem setTitle:NSLocalizedString(@"login.controller.title", nil)];
-    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 	
     [[GoogleAnalytics sharedInstance] sendScreen:@"Login"];
 }

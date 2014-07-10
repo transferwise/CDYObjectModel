@@ -27,7 +27,9 @@
 "button.title.get.started" = "Get started";
 "button.title.get.started.ipad" = "Get Started";
 "button.title.import.from.phonebook" = "Import from phonebook";
-"button.title.log.in" = "LOGIN";
+"button.title.log.in" = "Login";
+"button.title.log.in.google" = "Log in with Google";
+"button.title.log.in.yahoo" = "Log in with Yahoo!";
 "button.title.ok" = "OK";
 "button.title.retry" = "Retry";
 "button.title.yes" = "Yes";
