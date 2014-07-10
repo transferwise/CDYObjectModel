@@ -53,6 +53,7 @@ typedef void (^CDYModelInjectionBlock)(CDYObjectModel *objectModel);
 - (NSArray *)fetchEntitiesNamed:(NSString *)entityName withPredicate:(NSPredicate *)predicate;
 - (NSArray *)fetchEntitiesNamed:(NSString *)entityName withSortDescriptors:(NSArray *)descriptors;
 - (NSArray *)fetchEntitiesNamed:(NSString *)entityName usingPredicate:(NSPredicate *)predicate withSortDescriptors:(NSArray *)descriptors;
+- (NSArray *)fetchEntitiesNamed:(NSString *)entityName usingPredicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)descriptors limit:(NSUInteger)limit;
 
 - (NSArray *)fetchAttributeNamed:(NSString *)attributeName forEntity:(NSString *)entityName;
 - (NSArray *)fetchAttributeNamed:(NSString *)attributeName forEntity:(NSString *)entityName withPredicate:(NSPredicate *)predicate;
