@@ -23,10 +23,9 @@
                         <rect key="frame" x="269" y="9" width="40" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.87450987099999999" green="0.89019614459999996" blue="0.8980392814" alpha="1" colorSpace="deviceRGB"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ThumbnailMask" id="k1M-dQ-zQL">
-                        <rect key="frame" x="269" y="9" width="40" height="40"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="rounded"/>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                 </subviews>
             </tableViewCellContentView>
@@ -37,7 +36,4 @@
             </connections>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="ThumbnailMask" width="32" height="32"/>
-    </resources>
 </document>

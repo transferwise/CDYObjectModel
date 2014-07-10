@@ -34,13 +34,12 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="9pw-2U-mM2">
-                        <rect key="frame" x="273" y="14" width="32" height="32"/>
+                        <rect key="frame" x="269" y="10" width="40" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.87450987099999999" green="0.89019614459999996" blue="0.8980392814" alpha="1" colorSpace="deviceRGB"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NameSuggestionThumbnailMask" id="zWa-gX-h4e">
-                        <rect key="frame" x="273" y="14" width="32" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="rounded"/>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                 </subviews>
                 <userDefinedRuntimeAttributes>
@@ -54,7 +53,4 @@
             </connections>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="NameSuggestionThumbnailMask" width="32" height="32"/>
-    </resources>
 </document>
