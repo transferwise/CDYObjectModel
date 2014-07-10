@@ -11,7 +11,7 @@
 				<key>class</key>
 				<string>MOMRoundedCornerStyle</string>
 				<key>radius</key>
-				<integer>5</integer>
+				<integer>20</integer>
 			</dict>
 		</dict>
 		<key>color</key>
