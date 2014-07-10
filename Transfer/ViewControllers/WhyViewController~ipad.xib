@@ -91,7 +91,7 @@
                         <constraint firstItem="zJf-cr-8c5" firstAttribute="top" secondItem="gdS-U1-huq" secondAttribute="bottom" constant="5" id="yzS-U1-AGy"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="darkBlue2.alpha3"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="TWBlue.alpha3"/>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aGZ-IH-zOS" userLabel="RightColumn">
@@ -185,7 +185,7 @@
                         <constraint firstItem="bBC-PJ-eVv" firstAttribute="centerX" secondItem="oEy-fq-pFN" secondAttribute="centerX" id="sXn-DL-0nh"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlue3.alpha3"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="TWBlue.alpha3"/>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehO-9s-ggY">

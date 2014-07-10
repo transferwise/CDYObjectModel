@@ -36,7 +36,7 @@
                     </collectionViewFlowLayout>
                     <cells/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="tabBarBlue"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="TWBlue"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="ULK-js-DFE"/>
