@@ -113,17 +113,4 @@
 {
     self.contentView.bgStyle = highlighted ? @"cellSelected" : @"white";
 }
-
-#pragma mark - SwipeToCancelCell overrides
-- (void)hideOnCancelShow
-{
-	[self.moneyLabel setHidden:YES];
-	[self.currencyLabel setHidden:YES];
-}
-
-- (void)showOnCancelHide
-{
-	[self.moneyLabel setHidden:NO];
-	[self.currencyLabel setHidden:NO];
-}
 @end

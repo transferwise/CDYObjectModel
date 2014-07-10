@@ -67,7 +67,7 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
     self.presentedButtons = [NSMutableArray array];
 
     CGFloat groupedCellWidth = CGRectGetWidth(self.tabContainer.frame) - 20;
-    CGFloat gap = 4.0f;
+    CGFloat gap = IPAD?10.0f:4.0f;
     NSUInteger index = 0;
 
     for (RecipientType *type in allTypes) {
@@ -88,8 +88,8 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
     [button setBackgroundImage:[UIImage imageNamed:@"DeselectedTab"] forState:UIControlStateNormal];
     [button setBackgroundImage:[UIImage imageNamed:@"SelectedTab"] forState:UIControlStateSelected];
-    button.fontStyle = @"medium.@15.lighterBlue";
-    button.selectedFontStyle = @"medium.@15.darkText2";
+    button.fontStyle = @"medium.@17.lighterBlue";
+    button.selectedFontStyle = @"medium.@17.darkText2";
     [button addTarget:self action:@selector(tabTapped:) forControlEvents:UIControlEventTouchUpInside];
     return button;
 }

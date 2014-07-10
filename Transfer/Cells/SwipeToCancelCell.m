@@ -13,7 +13,8 @@
 
 @interface SwipeToCancelCell ()
 
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *cancelButtonLeft;
+@property (strong, nonatomic) IBOutlet UIView *slidingContentView;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *contentViewTrailing;
 @property (strong, nonatomic) IBOutlet UIButton *cancelButton;
 @property (strong, nonatomic) TRWActionBlock willShowCancelBlock;
 @property (strong, nonatomic) TRWActionBlock didShowCancelBlock;
@@ -34,7 +35,7 @@
 	self.isCancelVisible = NO;
 	self.canBeCancelled = NO;
 	self.touchStart = CGPointZero;
-	self.cancelButtonLeft.constant = 0;
+	self.contentViewTrailing.constant = 0;
 }
 
 - (void)configureWithWillShowCancelBlock:(TRWActionBlock)willShowCancelBlock
@@ -85,7 +86,7 @@
 - (void)setIsCancelVisible:(BOOL)isCancelVisible
 {
 	_isCancelVisible = isCancelVisible;
-    self.cancelButtonLeft.constant = isCancelVisible?self.cancelButton.bounds.size.width:0.0f;
+    self.contentViewTrailing.constant = isCancelVisible?self.cancelButton.bounds.size.width:0.0f;
     [self layoutIfNeeded];
     
 }
@@ -126,12 +127,12 @@
 			if(dx > 0 && !self.isCancelVisible)
 			{
 				//swiping to show, simply set constraint
-				self.cancelButtonLeft.constant = dx;
+				self.contentViewTrailing.constant = dx;
 			}
 			if(dx < 0 && self.isCancelVisible)
 			{
 				//swiping to hide, add to button with and set to constraint
-				self.cancelButtonLeft.constant = self.cancelButton.frame.size.width + dx;
+				self.contentViewTrailing.constant = self.cancelButton.frame.size.width + dx;
 			}
 		}
 			break;
@@ -148,13 +149,13 @@
 - (void)handleSwipeEnd:(UIPanGestureRecognizer *)recognizer currentPosition:(CGPoint)currentPosition
 {
 	//if button has been swiped visible the whole width treat it as shown
-	if(self.cancelButtonLeft.constant >= self.cancelButton.frame.size.width)
+	if(self.contentViewTrailing.constant >= self.cancelButton.frame.size.width)
 	{
 		self.isCancelVisible = YES;
 		[self didShow];
 	}
 	//if the button has been swiped hidden the whole width treat it as hidden
-	else if(self.cancelButtonLeft.constant <= 0)
+	else if(self.contentViewTrailing.constant <= 0)
 	{
 		self.isCancelVisible = NO;
 		[self didHide];
@@ -263,4 +264,17 @@
     } completion:nil];
 }
 
+#pragma mark - Width Equal to superview
+- (void)updateConstraints
+{
+	[super updateConstraints];
+	NSLayoutConstraint* c = [NSLayoutConstraint constraintWithItem:self.slidingContentView
+														 attribute:NSLayoutAttributeWidth
+														 relatedBy:NSLayoutRelationEqual
+															toItem:self.contentView
+														 attribute:NSLayoutAttributeWidth
+														multiplier:1.0f
+														  constant:0.f];
+	[self.contentView addConstraint:c];
+}
 @end

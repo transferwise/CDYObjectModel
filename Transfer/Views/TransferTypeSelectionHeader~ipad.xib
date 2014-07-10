@@ -7,21 +7,21 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="9ZX-Hd-Zwf" customClass="TransferTypeSelectionHeader">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="106"/>
+            <rect key="frame" x="0.0" y="0.0" width="360" height="125"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="28z-Fr-eRv">
-                    <rect key="frame" x="20" y="28" width="280" height="20"/>
+                    <rect key="frame" x="20" y="28" width="320" height="20"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.navBarBlue"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@19.navBarBlue"/>
                     </userDefinedRuntimeAttributes>
                 </label>
                 <view contentMode="scaleToFill" id="IDc-ZV-bhR">
-                    <rect key="frame" x="10" y="105" width="310" height="1"/>
+                    <rect key="frame" x="10" y="124" width="350" height="1"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <userDefinedRuntimeAttributes>
@@ -29,7 +29,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" id="UX0-SE-fa5">
-                    <rect key="frame" x="0.0" y="56" width="320" height="50"/>
+                    <rect key="frame" x="0.0" y="75" width="360" height="50"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
