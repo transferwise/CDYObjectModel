@@ -89,7 +89,7 @@
 
     MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"H2"];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [navFontStyle color], NSFontAttributeName : [navFontStyle font]}];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorFromStyle:@"navBarBlue"]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorFromStyle:@"CoreFont"]];
     [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
     [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:-2 forBarMetrics:UIBarMetricsDefault];
 

@@ -97,7 +97,7 @@ static NSUInteger const kRowYouSend = 0;
     }
     self.youSendCell.hostForCurrencySelector = self;
     self.youSendCell.currencyButton.compoundStyle = @"sendButton";
-    self.youSendCell.titleLabel.fontStyle = @"P.navBarBlue";
+    self.youSendCell.titleLabel.fontStyle = @"P.CoreFont";
     [self.youSendCell setEditable:YES];
 	[self.youSendCell initializeSelectorBackground];
 
@@ -110,7 +110,7 @@ static NSUInteger const kRowYouSend = 0;
     }
     self.theyReceiveCell.hostForCurrencySelector = self;
     self.theyReceiveCell.currencyButton.compoundStyle = @"getButton";
-    self.theyReceiveCell.titleLabel.fontStyle = @"P.lightText";
+    self.theyReceiveCell.titleLabel.fontStyle = @"P.CoreFont";
     self.theyReceiveCell.contentView.bgStyle = @"white2";
 	self.theyReceiveCell.leftSeparatorHidden = YES;
     [self.theyReceiveCell setEditable:YES];

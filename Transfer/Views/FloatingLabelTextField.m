@@ -37,8 +37,8 @@
 	self.fontStyle = isIpad?@"medium.@19.darkText2":@"medium.@16.darkText2";
 	MOMBasicStyle* fontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:isIpad?@"medium.@16":@"medium.@13"];
 	self.floatingLabelFont = [fontStyle font];
-	self.floatingLabelTextColor = [UIColor colorFromStyle:@"lightText2"];
-	self.floatingLabelActiveTextColor =  [UIColor colorFromStyle:@"navBarBlue"];
+	self.floatingLabelTextColor = [UIColor colorFromStyle:@"CoreFont"];
+	self.floatingLabelActiveTextColor =  [UIColor colorFromStyle:@"CoreFont"];
 	self.floatingLabelYPadding = @(2.0f);
 }
 

@@ -37,8 +37,6 @@
 		380021E4192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021E2192CC99D009B1D53 /* NSString+MOMStyle.m */; };
 		380021E6192CEB66009B1D53 /* TransactionsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021E5192CEB66009B1D53 /* TransactionsViewController~ipad.xib */; };
 		380021E7192CEB66009B1D53 /* TransactionsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021E5192CEB66009B1D53 /* TransactionsViewController~ipad.xib */; };
-		380021E9192CF84E009B1D53 /* Styles~ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 380021E8192CF84E009B1D53 /* Styles~ipad.plist */; };
-		380021EA192CF84E009B1D53 /* Styles~ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 380021E8192CF84E009B1D53 /* Styles~ipad.plist */; };
 		380021EF192F3DD3009B1D53 /* CurrencySelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021ED192F3DD3009B1D53 /* CurrencySelectorViewController.m */; };
 		380021F0192F3DD3009B1D53 /* CurrencySelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021ED192F3DD3009B1D53 /* CurrencySelectorViewController.m */; };
 		380021F1192F3DD3009B1D53 /* CurrencySelectorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021EE192F3DD3009B1D53 /* CurrencySelectorViewController.xib */; };
@@ -723,7 +721,6 @@
 		380021E1192CC99D009B1D53 /* NSString+MOMStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MOMStyle.h"; sourceTree = "<group>"; };
 		380021E2192CC99D009B1D53 /* NSString+MOMStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MOMStyle.m"; sourceTree = "<group>"; };
 		380021E5192CEB66009B1D53 /* TransactionsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransactionsViewController~ipad.xib"; sourceTree = "<group>"; };
-		380021E8192CF84E009B1D53 /* Styles~ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Styles~ipad.plist"; sourceTree = "<group>"; };
 		380021EB192D0E23009B1D53 /* MOMStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MOMStyle.h; sourceTree = "<group>"; };
 		380021EC192F3DD3009B1D53 /* CurrencySelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencySelectorViewController.h; sourceTree = "<group>"; };
 		380021ED192F3DD3009B1D53 /* CurrencySelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencySelectorViewController.m; sourceTree = "<group>"; };
@@ -1357,7 +1354,6 @@
 				380021B8192CC531009B1D53 /* MOMStyleFactory.m */,
 				380021B9192CC531009B1D53 /* Styles */,
 				380021D6192CC570009B1D53 /* Styles.plist */,
-				380021E8192CF84E009B1D53 /* Styles~ipad.plist */,
 				380021C2192CC531009B1D53 /* UIView+MOMStyle.h */,
 				380021C3192CC531009B1D53 /* UIView+MOMStyle.m */,
 				380021D9192CC89B009B1D53 /* UIColor+MOMStyle.h */,
@@ -2415,7 +2411,6 @@
 				EA31A21217DDB29B00F937F7 /* TextCell.xib in Resources */,
 				EA31A21317DDB29B00F937F7 /* ButtonCell.xib in Resources */,
 				EA31A21A17DDB29B00F937F7 /* OpenIDViewController.xib in Resources */,
-				380021EA192CF84E009B1D53 /* Styles~ipad.plist in Resources */,
 				47FAF351194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */,
 				EA31A21C17DDB29B00F937F7 /* ClaimAccountViewController.xib in Resources */,
 				380021D8192CC570009B1D53 /* Styles.plist in Resources */,
@@ -2516,7 +2511,6 @@
 				BB29BD4B173CDF480016A6E9 /* TextCell.xib in Resources */,
 				EAD6675B174A51C700D29BCB /* ButtonCell.xib in Resources */,
 				EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */,
-				380021E9192CF84E009B1D53 /* Styles~ipad.plist in Resources */,
 				47FAF350194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */,
 				EAC1051B17607C4600B3B018 /* ClaimAccountViewController.xib in Resources */,
 				380021D7192CC570009B1D53 /* Styles.plist in Resources */,

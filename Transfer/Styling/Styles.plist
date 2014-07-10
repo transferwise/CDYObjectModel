@@ -123,7 +123,7 @@
 			</dict>
 			<key>lightBlueHighlighted</key>
 			<dict/>
-			<key>lightBlue2</key>
+			<key>CoreFont</key>
 			<dict>
 				<key>color</key>
 				<string>84a2b0</string>
@@ -143,35 +143,15 @@
 				<key>color</key>
 				<string>e3e7e8</string>
 			</dict>
-			<key>lightText</key>
-			<dict>
-				<key>color</key>
-				<string>84a2b0</string>
-			</dict>
-			<key>lightText2</key>
-			<dict>
-				<key>color</key>
-				<string>84a2b0</string>
-			</dict>
 			<key>navBarBlue</key>
 			<dict>
 				<key>color</key>
 				<string>537c9b</string>
 			</dict>
-			<key>lighterBlue</key>
-			<dict>
-				<key>color</key>
-				<string>84a2b0</string>
-			</dict>
 			<key>paleBlue</key>
 			<dict>
 				<key>color</key>
 				<string>e0e9ee</string>
-			</dict>
-			<key>paleBlue2</key>
-			<dict>
-				<key>color</key>
-				<string>84a2b0</string>
 			</dict>
 			<key>tabBarBlue</key>
 			<dict>

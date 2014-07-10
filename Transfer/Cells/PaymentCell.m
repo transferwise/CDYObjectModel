@@ -93,7 +93,7 @@
     UIColor * conditionalColor;
     if(payment.isCancelled)
     {
-        conditionalColor = [UIColor colorFromStyle:@"lightText"];
+        conditionalColor = [UIColor colorFromStyle:@"CoreFont"];
     }
     else
     {
