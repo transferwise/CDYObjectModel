@@ -56,7 +56,7 @@
 								<object class="NSColor" key="IBUITextColor" id="256238042">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MCAwIDAAA</bytes>
-									<string key="IBUIColorCocoaTouchKeyPath">darkTextColor</string>
+									<string key="IBUIColorCocoaTouchKeyPath">DarkFontColor</string>
 								</object>
 								<object class="NSColor" key="IBUIHighlightedColor" id="481189753">
 									<int key="NSColorSpace">3</int>

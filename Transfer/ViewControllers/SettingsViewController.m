@@ -130,7 +130,7 @@ typedef NS_ENUM(short, SettingsRow) {
         case UserProfileRow:
             [cell setTitle:[self.objectModel.currentUser displayName]];
             [cell.imageView setImage:[UIImage imageNamed:@"ProfileIcon.png"]];
-            [cell.textLabel setTextColor:[UIColor lightGrayColor]];
+            [cell.textLabel setTextColor:[UIColor SeparatorGreyColor]];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             break;
         case PersonalProfileRow:

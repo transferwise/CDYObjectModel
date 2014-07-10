@@ -15,7 +15,7 @@
                     <rect key="frame" x="20" y="11" width="280" height="21"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" cocoaTouchSystemColor="DarkFontColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>

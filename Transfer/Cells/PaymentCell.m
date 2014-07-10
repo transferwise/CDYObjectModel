@@ -97,7 +97,7 @@
     }
     else
     {
-        conditionalColor = [UIColor colorFromStyle:@"darkText"];
+        conditionalColor = [UIColor colorFromStyle:@"DarkFont"];
     }
     
     self.moneyLabel.textColor = conditionalColor;
@@ -106,11 +106,11 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    self.contentView.bgStyle = selected ? @"cellSelected" : @"white";
+    self.contentView.bgStyle = selected ? @"LightBlueHighlighted" : @"white";
 }
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {
-    self.contentView.bgStyle = highlighted ? @"cellSelected" : @"white";
+    self.contentView.bgStyle = highlighted ? @"LightBlueHighlighted" : @"white";
 }
 @end

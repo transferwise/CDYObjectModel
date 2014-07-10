@@ -17,7 +17,7 @@
                         <rect key="frame" x="20" y="10" width="240" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" cocoaTouchSystemColor="DarkFontColor"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@19.CoreFont"/>
@@ -27,7 +27,7 @@
                         <rect key="frame" x="20" y="36" width="240" height="21"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" cocoaTouchSystemColor="DarkFontColor"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@15.CoreFont"/>
@@ -43,7 +43,7 @@
                     </imageView>
                 </subviews>
                 <userDefinedRuntimeAttributes>
-                    <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="white2"/>
+                    <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="LightBlueHighlighted"/>
                 </userDefinedRuntimeAttributes>
             </tableViewCellContentView>
             <connections>

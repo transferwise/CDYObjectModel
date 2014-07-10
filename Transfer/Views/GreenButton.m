@@ -93,13 +93,13 @@ static __weak UIImage* normalStateImage;
         
         
         UIColor* greenColor = [UIColor colorFromStyle:@"green"];
-        UIColor* greenShadow = [UIColor colorFromStyle:@"greenShadow"];
+        UIColor* GreenShadow = [UIColor colorFromStyle:@"GreenShadow"];
         
         UIGraphicsBeginImageContextWithOptions(size,YES, 0.0);
         CGContextRef context = UIGraphicsGetCurrentContext();
         CGContextSetFillColorWithColor(context, [greenColor CGColor]);
         CGContextFillRect(context, mainRect);
-        CGContextSetFillColorWithColor(context, [greenShadow CGColor]);
+        CGContextSetFillColorWithColor(context, [GreenShadow CGColor]);
         CGContextFillRect(context, shadowRect);
         
         CGImageRef cgImage = CGBitmapContextCreateImage(context);
@@ -130,14 +130,14 @@ static __weak UIImage* selectedStateImage;
         CGRect shadowRect = CGRectMake(0.0f, 6.0f, 3.0f, 2.0f);
         
         
-        UIColor* greenColor = [UIColor colorFromStyle:@"greenSelected"];
-        UIColor* greenShadow = [UIColor colorFromStyle:@"greenShadow"];
+        UIColor* greenColor = [UIColor colorFromStyle:@"GreenHighlighted"];
+        UIColor* GreenShadow = [UIColor colorFromStyle:@"GreenShadow"];
         
         UIGraphicsBeginImageContextWithOptions(size,NO, 0.0);
         CGContextRef context = UIGraphicsGetCurrentContext();
         CGContextSetFillColorWithColor(context, [greenColor CGColor]);
         CGContextFillRect(context, mainRect);
-        CGContextSetFillColorWithColor(context, [greenShadow CGColor]);
+        CGContextSetFillColorWithColor(context, [GreenShadow CGColor]);
         CGContextFillRect(context, shadowRect);
         
         CGImageRef cgImage = CGBitmapContextCreateImage(context);

@@ -38,7 +38,7 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     {
         CGFloat lineThickness = 1.0f / [[UIScreen mainScreen] scale];
         UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(10.0f, self.contentView.frame.size.height - lineThickness, self.contentView.frame.size.width - 15.0f, lineThickness)];
-        separatorLine.bgStyle = @"cellSeparator";
+        separatorLine.bgStyle = @"SeparatorGrey";
         separatorLine.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 
         [self.contentView addSubview:separatorLine];

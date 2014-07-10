@@ -34,7 +34,7 @@
                                 <constraint firstAttribute="width" constant="160" id="751-ZK-xDc"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" cocoaTouchSystemColor="DarkFontColor"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.white"/>
@@ -44,7 +44,7 @@
                             <rect key="frame" x="324" y="332" width="160" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" cocoaTouchSystemColor="DarkFontColor"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="book.@18.CoreFont"/>
@@ -57,7 +57,7 @@
                                 <constraint firstAttribute="height" constant="21" id="uEp-Tr-GOK"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" cocoaTouchSystemColor="DarkFontColor"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.white"/>
@@ -67,7 +67,7 @@
                             <rect key="frame" x="324" y="477" width="160" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" cocoaTouchSystemColor="DarkFontColor"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="book.@18.CoreFont"/>
@@ -114,7 +114,7 @@
                                 <constraint firstAttribute="height" constant="21" id="NhZ-7C-Bbk"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" cocoaTouchSystemColor="DarkFontColor"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.CoreFont"/>
@@ -124,7 +124,7 @@
                             <rect key="frame" x="29" y="332" width="160" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" cocoaTouchSystemColor="DarkFontColor"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="book.@18.CoreFont"/>
@@ -137,7 +137,7 @@
                                 <constraint firstAttribute="height" constant="21" id="Hlg-GL-5qn"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" cocoaTouchSystemColor="DarkFontColor"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.CoreFont"/>
@@ -147,7 +147,7 @@
                             <rect key="frame" x="29" y="478" width="160" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" cocoaTouchSystemColor="DarkFontColor"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="book.@18.CoreFont"/>
@@ -160,7 +160,7 @@
                                 <constraint firstAttribute="height" constant="21" id="wFJ-dX-vxW"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" cocoaTouchSystemColor="DarkFontColor"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="book.@16.CoreFont"/>

@@ -34,7 +34,7 @@
 - (void)commonSetup
 {
     BOOL isIpad = IPAD;
-	self.fontStyle = isIpad?@"medium.@19.darkText2":@"medium.@16.darkText2";
+	self.fontStyle = isIpad?@"medium.@19.DarkFont":@"medium.@16.DarkFont";
 	MOMBasicStyle* fontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:isIpad?@"medium.@16":@"medium.@13"];
 	self.floatingLabelFont = [fontStyle font];
 	self.floatingLabelTextColor = [UIColor colorFromStyle:@"CoreFont"];

@@ -152,7 +152,7 @@
     NSRange range = [[text lowercaseString] rangeOfString:self.filterString];
     if(range.location != NSNotFound)
     {
-        [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"darkText"] range:range];
+        [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"DarkFont"] range:range];
     }
     cell.nameLabel.attributedText = attributedText;
     

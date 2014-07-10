@@ -107,9 +107,9 @@
     profileItem.icon = [UIImage imageNamed:@"tab_icon_profile"];
     
     TabViewController *tabController = [[TabViewController alloc] init];
-    tabController.defaultSelectedColor = [UIColor colorFromStyle:@"darkBlue"];
+    tabController.defaultSelectedColor = [UIColor colorFromStyle:@"DarkFont"];
     tabController.defaultDeSelectedColor = [UIColor colorFromStyle:@"TWBlue"];
-    tabController.defaultHighlightedColor = [UIColor colorFromStyle:@"darkBlueHighlighted"];
+    tabController.defaultHighlightedColor = [UIColor colorFromStyle:@"TWBlueHighlighted"];
     
     if(IPAD)
     {

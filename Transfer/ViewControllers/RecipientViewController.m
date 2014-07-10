@@ -709,7 +709,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         table.backgroundView = background;
         
         UIView *colorOverlay = [[UIView alloc] initWithFrame:background.bounds];
-        colorOverlay.bgStyle = @"darkBlue.alpha4";
+        colorOverlay.bgStyle = @"DarkFont.alpha4";
         colorOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         [background addSubview:colorOverlay];
     }

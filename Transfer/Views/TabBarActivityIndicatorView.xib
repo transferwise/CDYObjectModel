@@ -69,7 +69,7 @@
 						<object class="NSColor" key="IBUITextColor" id="982157995">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
-							<string key="IBUIColorCocoaTouchKeyPath">darkTextColor</string>
+							<string key="IBUIColorCocoaTouchKeyPath">DarkFontColor</string>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>

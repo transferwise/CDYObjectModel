@@ -27,8 +27,8 @@
 	
 	self.gradientLayer = [CAGradientLayer layer];
 	[self.gradientLayer setColors:[NSArray arrayWithObjects:
-					  (id)[UIColor colorFromStyle:@"redGradientStart"].CGColor,
-					  (id)[UIColor colorFromStyle:@"redGradientEnd"].CGColor,
+					  (id)[UIColor colorFromStyle:@"RedShadow"].CGColor,
+					  (id)[UIColor colorFromStyle:@"Red"].CGColor,
 					  nil]];
 	[self.gradientLayer setStartPoint:CGPointMake(0.0, 0.5)];
 	[self.gradientLayer setEndPoint:CGPointMake(1.0, 0.5)];
