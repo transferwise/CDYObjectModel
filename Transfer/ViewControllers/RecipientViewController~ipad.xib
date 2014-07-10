@@ -13,10 +13,10 @@
                 <outlet property="scrollViewRightMargin" destination="ZGe-vY-sC7" id="ocm-0f-wjg"/>
                 <outlet property="secondColumnHeightConstraint" destination="Kcl-Pf-3Gx" id="Kcz-Sj-9dy"/>
                 <outlet property="secondColumnLeftEdgeConstraint" destination="9M8-ca-8M9" id="WO7-2A-uFx"/>
-                <outlet property="secondColumnTableView" destination="JU1-IW-1ic" id="kWz-uA-6eh"/>
                 <outlet property="secondColumnTopConstraint" destination="YnC-cC-hmy" id="yqv-eq-74Z"/>
-                <outlet property="tableView" destination="4" id="mQW-cW-CUy"/>
                 <outlet property="view" destination="fPl-yO-Yh3" id="DJL-eZ-Wik"/>
+                <outletCollection property="tableViews" destination="4" id="lsV-cZ-2Mt"/>
+                <outletCollection property="tableViews" destination="JU1-IW-1ic" id="hfi-Kd-cmK"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

@@ -91,7 +91,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 @property (nonatomic, strong) DataEntryDefaultHeader *recipientFieldsHeader;
 
-@property (nonatomic, strong) NSArray *presentedSections;
+@property (nonatomic, strong) NSArray *presentedSectionsByTableView;
 @property (nonatomic, assign) CGFloat minimumFooterHeight;
 @property (nonatomic, assign) BOOL shown;
 
@@ -105,8 +105,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 // iPad
 @property (weak, nonatomic) IBOutlet UIScrollView *containerScrollView;
-
-@property (nonatomic, weak) IBOutlet UITableView *secondColumnTableView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *firstColumnHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnHeightConstraint;
@@ -133,18 +131,15 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self setupTableView:self.tableView];
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
-    
-    if(self.secondColumnTableView)
+    for (UITableView* tableView in self.tableViews)
     {
-        [self setupTableView:self.secondColumnTableView];
+        [self setupTableView:tableView];
     }
+
     
     self.cellHeight = IPAD ? 70.0f : 60.0f;
     
-    RecipientEntrySelectionCell *nameCell = [self.tableView dequeueReusableCellWithIdentifier:TRWRecipientEntrySelectionCellIdentifier];
+    RecipientEntrySelectionCell *nameCell = [self.tableViews[0] dequeueReusableCellWithIdentifier:TRWRecipientEntrySelectionCellIdentifier];
     [self setNameCell:nameCell];
     [nameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [nameCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
@@ -153,7 +148,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self didSelectRecipient:recipient];
     }];
     
-    TextEntryCell *emailCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+    TextEntryCell *emailCell = [self.tableViews[0] dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     self.emailCell = emailCell;
     [emailCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [emailCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
@@ -163,8 +158,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setRecipientCells:@[nameCell,emailCell]];
 
     NSMutableArray *currencyCells = [NSMutableArray array];
-
-    CurrencySelectionCell *currencyCell = [self.secondColumnTableView?:self.tableView dequeueReusableCellWithIdentifier:TWCurrencySelectionCellIdentifier];
+    
+    UITableView *secondColumn = [self hasMoreThanOneTableView]?self.tableViews[1]:self.tableViews[0];
+    CurrencySelectionCell *currencyCell = [secondColumn dequeueReusableCellWithIdentifier:TWCurrencySelectionCellIdentifier];
     [self setCurrencyCell:currencyCell];
     [currencyCell setSelectionHandler:^(Currency *currency) {
         [self handleCurrencySelection:currency];
@@ -182,7 +178,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     self.cellProvider = [[NameSuggestionCellProvider alloc] init];
     
     self.suggestionTable = [[NSBundle mainBundle] loadNibNamed:@"TextFieldSuggestionTable" owner:self options:nil][0];
-    
+    self.suggestionTable.rowHeight = self.cellHeight;
     self.suggestionTable.hidden = YES;
     self.suggestionTable.suggestionTableDelegate = self;
     [self.view addSubview:self.suggestionTable];
@@ -221,6 +217,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [tableView registerNib:[UINib nibWithNibName:@"RecipientFieldCell" bundle:nil] forCellReuseIdentifier:TWRecipientFieldCellIdentifier];
     [tableView registerNib:[UINib nibWithNibName:@"RecipientEntrySelectionCell" bundle:nil] forCellReuseIdentifier:TRWRecipientEntrySelectionCellIdentifier];
     [tableView registerNib:[UINib nibWithNibName:@"DropdownCell" bundle:nil] forCellReuseIdentifier:TWDropdownCellIdentifier];
+    
+    [tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -242,8 +240,15 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 
-    [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, @[]]];
-    [self.tableView reloadData];
+    if([self hasMoreThanOneTableView])
+    {
+        [self setSectionCellsByTableView:@[@[self.recipientCells], @[self.currencyCells, @[]]]];
+    }
+    else
+    {
+        [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells, @[]]]];
+    }
+    [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
     [self refreshTableViewSizes];
     
     [self configureForInterfaceOrientation:self.interfaceOrientation];
@@ -382,24 +387,28 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     NSArray *cells = [self buildCellsForType:type allTypes:allTypes];
     [self setRecipientType:type];
     [self setRecipientTypeFieldCells:cells];
-    [self setPresentedSectionCells:@[self.recipientCells, self.currencyCells, cells]];
-
-    if(self.secondColumnTableView)
+    if([self hasMoreThanOneTableView])
     {
-        [self.secondColumnTableView reloadSections:[NSIndexSet indexSetWithIndex:[self.presentedSections count] - 2] withRowAnimation:UITableViewRowAnimationNone];
+        [self setSectionCellsByTableView:@[@[self.recipientCells], @[self.currencyCells, cells]]];
     }
     else
     {
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:[self.presentedSections count] - 1] withRowAnimation:UITableViewRowAnimationNone];
+        [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells, cells]]];
+    }
+
+    
+    if([self hasMoreThanOneTableView])
+    {
+        [self.tableViews[1] reloadSections:[NSIndexSet indexSetWithIndex:[self.presentedSectionsByTableView[1] count] - 1 ] withRowAnimation:UITableViewRowAnimationNone];
+    }
+    else
+    {
+        [self.tableViews[0] reloadSections:[NSIndexSet indexSetWithIndex:[self.presentedSectionsByTableView[0] count] - 1 ] withRowAnimation:UITableViewRowAnimationNone];
     }
     [self refreshTableViewSizes];
-    [self performSelector:@selector(updateFooterSize) withObject:nil afterDelay:0.5];
 
 }
 
-- (void)updateFooterSize {
-    [self.tableView adjustFooterViewSizeForMinimumHeight:self.minimumFooterHeight];
-}
 
 - (NSArray *)buildCellsForType:(RecipientType *)type allTypes:(NSArray *)allTypes {
     MCLog(@"Build cells for type:%@", type.type);
@@ -423,17 +432,19 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     self.recipientFieldsHeader.titleLabel.text =  NSLocalizedString(@"recipient.controller.section.title.type.fields", nil);
 
     //Generate cells
+    
+    UITableView* tableView = [self hasMoreThanOneTableView]?self.tableViews[1]:self.tableViews[0];
     for (RecipientTypeField *field in type.fields) {
         TextEntryCell *createdCell;
         if ([field.allowedValues count] > 0) {
-            DropdownCell *cell = [self.secondColumnTableView?:self.tableView dequeueReusableCellWithIdentifier:TWDropdownCellIdentifier];
+            DropdownCell *cell = [tableView dequeueReusableCellWithIdentifier:TWDropdownCellIdentifier];
             [cell setAllElements:[self.objectModel fetchedControllerForAllowedValuesOnField:field]];
             [cell configureWithTitle:field.title value:@""];
             [cell setType:field];
             [result addObject:cell];
             createdCell = cell;
         } else {
-            RecipientFieldCell *cell = [self.secondColumnTableView?:self.tableView dequeueReusableCellWithIdentifier:TWRecipientFieldCellIdentifier];
+            RecipientFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TWRecipientFieldCellIdentifier];
             [cell setFieldType:field];
             [result addObject:cell];
             createdCell = cell;
@@ -537,51 +548,19 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if(tableView == self.secondColumnTableView)
-    {
-        section ++;
-    }
-    return [super tableView:tableView numberOfRowsInSection:section];
-}
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if(tableView == self.secondColumnTableView)
-    {
-        indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section +1];
-    }
-    
-    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
-}
+
+
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if(self.secondColumnTableView)
-    {
-        if (tableView == self.secondColumnTableView)
-        {
-            return [super numberOfSectionsInTableView:tableView] - 1;
-        }
-        else
-        {
-            return 1;
-        }
-    }
-    else
-    {
-        return [super numberOfSectionsInTableView:tableView];
-    }
+    return [super numberOfSectionsInTableView:tableView];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if(tableView == self.secondColumnTableView)
-    {
-        section ++;
-    }
-    if ([self.presentedSections[section] integerValue] == kRecipientFieldsSection)
+    NSUInteger index = [self.tableViews indexOfObject:tableView];
+    if ([self.presentedSectionsByTableView[index][section] integerValue] == kRecipientFieldsSection)
     {
         return self.recipientFieldsHeader.frame.size.height;
     }
@@ -592,11 +571,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if(tableView == self.secondColumnTableView)
-    {
-        section ++;
-    }
-    if ([self.presentedSections[section] integerValue] == kRecipientFieldsSection)
+     NSUInteger index = [self.tableViews indexOfObject:tableView];
+    if ([self.presentedSectionsByTableView[index][section] integerValue] == kRecipientFieldsSection)
     {
         return self.recipientFieldsHeader;
     }
@@ -606,12 +582,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    if(tableView == self.secondColumnTableView)
-    {
-        section ++;
-    }
-    
-    NSNumber *sectionCode = self.presentedSections[(NSUInteger) section];
+
+    NSUInteger index = [self.tableViews indexOfObject:tableView];
+    NSNumber *sectionCode = self.presentedSectionsByTableView[index][(NSUInteger) section];
     switch ([sectionCode integerValue]) {
         case kRecipientSection:
             return IPAD?NSLocalizedString(@"recipient.controller.section.title.currency", nil):nil;
@@ -637,30 +610,60 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     return YES;
 }
 
-- (void)setPresentedSectionCells:(NSArray *)presentedSectionCells {
-    NSMutableArray *cells = [NSMutableArray arrayWithArray:presentedSectionCells];
-    NSMutableArray *sectionIndexes = [NSMutableArray array];
-
-    [sectionIndexes addObject:@(kRecipientSection)];
-
-    if (self.preLoadRecipientsWithCurrency) {
-        [cells removeObject:self.currencyCells];
-    } else {
-        [sectionIndexes addObject:@(kCurrencySection)];
+- (void)setSectionCellsByTableView:(NSArray*)sectionCellsByTableView
+{
+    NSMutableArray* finalSectionCellsByTableView = [sectionCellsByTableView mutableCopy];
+    NSMutableArray* finalPresentedSectionsByTableView = [NSMutableArray array];
+    if([self hasMoreThanOneTableView])
+    {
+        [finalPresentedSectionsByTableView addObject:@[@(kRecipientSection)]];
+        
+        NSMutableArray *cells = [sectionCellsByTableView[1] mutableCopy];
+        NSMutableArray *sectionIndexes = [NSMutableArray array];
+        
+        if (self.preLoadRecipientsWithCurrency) {
+            [cells removeObject:self.currencyCells];
+        } else {
+            [sectionIndexes addObject:@(kCurrencySection)];
+        }
+        
+        finalSectionCellsByTableView[1] = cells;
+        
+        [sectionIndexes addObject:@(kRecipientFieldsSection)];
+        
+        [finalPresentedSectionsByTableView addObject:sectionIndexes];
     }
-
-    [sectionIndexes addObject:@(kRecipientFieldsSection)];
-
-    [super setPresentedSectionCells:cells];
-    [self setPresentedSections:sectionIndexes];
+    else
+    {
+        NSMutableArray *cells = [sectionCellsByTableView[0] mutableCopy];
+        NSMutableArray *sectionIndexes = [NSMutableArray array];
+        [sectionIndexes addObject:@(kRecipientSection)];
+        
+        if (self.preLoadRecipientsWithCurrency) {
+            [cells removeObject:self.currencyCells];
+        } else {
+            [sectionIndexes addObject:@(kCurrencySection)];
+        }
+        
+        finalSectionCellsByTableView[0] = cells;
+        
+        [sectionIndexes addObject:@(kRecipientFieldsSection)];
+        
+        [finalPresentedSectionsByTableView addObject:sectionIndexes];
+    }
+    [super setSectionCellsByTableView:finalSectionCellsByTableView];
+    [self setPresentedSectionsByTableView:finalPresentedSectionsByTableView];
 }
 
 -(void)refreshTableViewSizes
 {
-    self.firstColumnHeightConstraint.constant= self.tableView.contentSize.height;
-    self.secondColumnHeightConstraint.constant = self.secondColumnTableView.contentSize.height;
-    [self.tableView layoutIfNeeded];
-    [self.secondColumnTableView layoutIfNeeded];
+    if([self hasMoreThanOneTableView])
+    {
+        self.firstColumnHeightConstraint.constant= ((UITableView*)self.tableViews[0]).contentSize.height;
+        self.secondColumnHeightConstraint.constant =((UITableView*) self.tableViews[1]).contentSize.height;
+        [self.tableViews[0] layoutIfNeeded];
+        [self.tableViews[1] layoutIfNeeded];
+    }
 }
 
 /* TODO: move this to the "select profile screen"
@@ -802,6 +805,12 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     {
         [super keyboardWillHide:note];
     }
+}
+
+-(void)scrollToCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView
+{
+    CGRect rectToShow = [self.containerScrollView convertRect:cell.frame fromView:cell.superview];
+    [self.containerScrollView scrollRectToVisible:rectToShow animated:YES];
 }
 
 @end

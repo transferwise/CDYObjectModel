@@ -61,6 +61,8 @@
 		3831AA3B194B31A200B3EE5C /* WhyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA36194B31A200B3EE5C /* WhyViewController.xib */; };
 		3831AA3C194B31A200B3EE5C /* WhyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA36194B31A200B3EE5C /* WhyViewController.xib */; };
 		3831AA41194B5A8B00B3EE5C /* WhyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */; };
+		38342BAB196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
+		38342BAC196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
 		388D6AB71961AF5700DCFEA6 /* _PaymentMadeIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 388D6AB61961AF5700DCFEA6 /* _PaymentMadeIndicator.m */; };
 		388D6AB81961AF5700DCFEA6 /* _PaymentMadeIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 388D6AB61961AF5700DCFEA6 /* _PaymentMadeIndicator.m */; };
 		388D6ABB1961AF7100DCFEA6 /* PaymentMadeIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 388D6ABA1961AF7100DCFEA6 /* PaymentMadeIndicator.m */; };
@@ -736,6 +738,8 @@
 		3831AA35194B31A200B3EE5C /* WhyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhyViewController.m; sourceTree = "<group>"; };
 		3831AA36194B31A200B3EE5C /* WhyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhyViewController.xib; sourceTree = "<group>"; };
 		3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WhyViewController~ipad.xib"; sourceTree = "<group>"; };
+		38342BA9196E9362002FF371 /* DataEntryMultiColumnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryMultiColumnViewController.h; sourceTree = "<group>"; };
+		38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryMultiColumnViewController.m; sourceTree = "<group>"; };
 		388D6AB41961AE8900DCFEA6 /* Transfer 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Transfer 2.xcdatamodel"; sourceTree = "<group>"; };
 		388D6AB51961AF5700DCFEA6 /* _PaymentMadeIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _PaymentMadeIndicator.h; sourceTree = "<group>"; };
 		388D6AB61961AF5700DCFEA6 /* _PaymentMadeIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PaymentMadeIndicator.m; sourceTree = "<group>"; };
@@ -1974,6 +1978,8 @@
 				380021ED192F3DD3009B1D53 /* CurrencySelectorViewController.m */,
 				380021EE192F3DD3009B1D53 /* CurrencySelectorViewController.xib */,
 				47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */,
+				38342BA9196E9362002FF371 /* DataEntryMultiColumnViewController.h */,
+				38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */,
 				EA88E661172F979F0021492C /* DataEntryViewController.h */,
 				EA88E662172F979F0021492C /* DataEntryViewController.m */,
 				EA0450D117EC5BC1008921DA /* IntroViewController.h */,
@@ -2921,6 +2927,7 @@
 				EA347738180D2C6C00104417 /* _Setting.m in Sources */,
 				EA677B46189B855200505139 /* StartPaymentButton.m in Sources */,
 				EA31A1BB17DDB29B00F937F7 /* SupportCoordinator.m in Sources */,
+				38342BAC196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */,
 				EA31A1BC17DDB29B00F937F7 /* UIDevice-Hardware.m in Sources */,
 				EA31A1BD17DDB29B00F937F7 /* FeedbackCoordinator.m in Sources */,
 				EABD864618E2B65D004A5A57 /* TransferMixpanel.m in Sources */,
@@ -3112,6 +3119,7 @@
 				476C6B88196C18BF007002F9 /* SwipeToCancelCell.m in Sources */,
 				EA225C91178EB350009D6B83 /* RecipientType.m in Sources */,
 				38B1C5D6195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */,
+				38342BAB196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */,
 				EA225C94178EB36B009D6B83 /* ObjectModel+RecipientTypes.m in Sources */,
 				EA225C97178EB3D3009D6B83 /* _RecipientTypeField.m in Sources */,
 				EA225C9A178EB3DA009D6B83 /* RecipientTypeField.m in Sources */,
