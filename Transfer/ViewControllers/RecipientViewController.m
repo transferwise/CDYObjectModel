@@ -702,15 +702,17 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 -(void)suggestionTableDidStartEditing:(TextFieldSuggestionTable *)table
 {
     [table removeFromSuperview];
-    UIImageView* background = [[UIImageView alloc] initWithImage:[self.view renderBlurWithTintColor:nil]];
-    background.contentMode = UIViewContentModeBottom;
-    table.backgroundView = background;
-    
-    UIView *colorOverlay = [[UIView alloc] initWithFrame:background.bounds];
-    colorOverlay.bgStyle = @"darkBlue.alpha4";
-    colorOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    [background addSubview:colorOverlay];
-    
+    if(!IPAD)
+    {
+        UIImageView* background = [[UIImageView alloc] initWithImage:[self.view renderBlurWithTintColor:nil]];
+        background.contentMode = UIViewContentModeBottom;
+        table.backgroundView = background;
+        
+        UIView *colorOverlay = [[UIView alloc] initWithFrame:background.bounds];
+        colorOverlay.bgStyle = @"darkBlue.alpha4";
+        colorOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        [background addSubview:colorOverlay];
+    }
     
     CGRect newFrame = table.frame;
     newFrame.origin = [self.view convertPoint:table.textField.superview.frame.origin fromView:table.textField.superview.superview];
@@ -776,6 +778,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             {
                 [self scrollScrollViewToShowView:firstResponder];
             }
+            
+            [self suggestionTableDidStartEditing:self.suggestionTable];
             
             [UIView commitAnimations];
             
