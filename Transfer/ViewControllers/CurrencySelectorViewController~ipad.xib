@@ -85,7 +85,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="H2"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="light.@19.lightBlue"/>
                     </userDefinedRuntimeAttributes>
                 </label>
             </subviews>

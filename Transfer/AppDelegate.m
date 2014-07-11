@@ -87,7 +87,7 @@
 
     [NanTracking trackNanigansEvent:@"" type:@"install" name:@"main"];
 
-    MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"H2"];
+    MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"light.@{18,19}.LightBlue"];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [navFontStyle color], NSFontAttributeName : [navFontStyle font]}];
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorFromStyle:@"CoreFont"]];
     [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];

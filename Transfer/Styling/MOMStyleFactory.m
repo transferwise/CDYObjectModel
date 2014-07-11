@@ -96,6 +96,20 @@ static NSDictionary* styleData;
         if([identifier rangeOfString:@"@"].location == 0)
         {
             NSString* fontSizeString = [identifier substringFromIndex:1];
+            NSRange startBrace = [identifier rangeOfString:@"{"];
+            NSRange endBrace = [identifier rangeOfString:@"}"];
+            NSRange comma = [identifier rangeOfString:@","];
+            if(comma.location != NSNotFound && startBrace.location != NSNotFound && endBrace.location != NSNotFound && startBrace.location < comma.location && comma.location < endBrace.location)
+            {
+                if(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
+                {
+                    fontSizeString = [identifier substringWithRange:NSMakeRange(startBrace.location + 1, comma.location-startBrace.location - 1)];
+                }
+                else
+                {
+                    fontSizeString = [identifier substringWithRange:NSMakeRange(comma.location + 1, endBrace.location-comma.location - 1)];
+                }
+            }
             CGFloat fontSize = [fontSizeString floatValue];
             MOMBasicStyle *fontstyle = [[MOMBasicStyle alloc] init];
             fontstyle.fontSize = @(fontSize);
