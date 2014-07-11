@@ -26,7 +26,7 @@
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@{26,28}"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@{26,28}.DarkFont"/>
                         </userDefinedRuntimeAttributes>
                     </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Z6M-fZ-TwS">

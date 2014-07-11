@@ -26,7 +26,7 @@
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@{26,28}"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@{26,28}.DarkFont"/>
                         </userDefinedRuntimeAttributes>
                     </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Z6M-fZ-TwS">
@@ -43,7 +43,7 @@
                         </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="center" image="selector_arrow" id="19">
-                        <rect key="frame" x="293" y="35" width="14" height="12"/>
+                        <rect key="frame" x="290" y="31" width="20" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <view opaque="NO" contentMode="center" id="vqA-Y2-RQw" userLabel="SeparatorLineLeft">

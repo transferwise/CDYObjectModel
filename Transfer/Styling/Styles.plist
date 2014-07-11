@@ -172,25 +172,25 @@
 		<key>sendButton</key>
 		<dict>
 			<key>fontStyle</key>
-			<string>H4</string>
+			<string>medium.@{17,20}.white</string>
 			<key>highlightedBgStyle</key>
-			<string>tabBarBlue.alpha2</string>
+			<string>TWblue.alpha2</string>
 			<key>bgStyle</key>
-			<string>tabBarBlue</string>
+			<string>TWBlue</string>
 		</dict>
 		<key>getButton</key>
 		<dict>
 			<key>fontStyle</key>
-			<string>H4</string>
+			<string>medium.@{17,20}.white</string>
 			<key>highlightedBgStyle</key>
-			<string>lightBlue.alpha2</string>
+			<string>TWBlueHighlighted.alpha2</string>
 			<key>bgStyle</key>
-			<string>lightBlue</string>
+			<string>TWBlueHighlighted</string>
 		</dict>
 		<key>greenButton</key>
 		<dict>
 			<key>fontStyle</key>
-			<string>H4</string>
+			<string>medium.@{17,20}.lightBlue</string>
 			<key>highlightedBgStyle</key>
 			<string>green.alpha2</string>
 			<key>bgStyle</key>
