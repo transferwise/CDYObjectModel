@@ -32,7 +32,7 @@
 
 -(void)commonSetup
 {
-    self.fontStyle = @"medium.@20";
+    self.fontStyle = @"medium.@20.white";
     self.exclusiveTouch = YES;
     self.backgroundColor = [UIColor clearColor];
 }
@@ -76,7 +76,7 @@
     remainingRect.origin.x = progressRect.size.width;
     
     
-    UIColor* progressColor = [UIColor colorFromStyle:@"Green"];
+    UIColor* progressColor = [UIColor colorFromStyle:@"GreenHighlighted"];
     UIColor* remainingColor = [UIColor colorFromStyle:@"green"];
     UIColor* progressSelected = [UIColor colorFromStyle:@"GreenHighlighted"];
     UIColor* remainingSelected = [UIColor colorFromStyle:@"GreenHighlighted"];

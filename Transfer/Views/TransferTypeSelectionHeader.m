@@ -89,7 +89,7 @@ NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier"
     [button setBackgroundImage:[UIImage imageNamed:@"DeselectedTab"] forState:UIControlStateNormal];
     [button setBackgroundImage:[UIImage imageNamed:@"SelectedTab"] forState:UIControlStateSelected];
     button.fontStyle = @"medium.@17.CoreFont";
-    button.selectedFontStyle = @"medium.@17.DarkFont";
+    button.selectedFontStyle = @"medium.@17.ElectricBlue";
     [button addTarget:self action:@selector(tabTapped:) forControlEvents:UIControlEventTouchUpInside];
     return button;
 }

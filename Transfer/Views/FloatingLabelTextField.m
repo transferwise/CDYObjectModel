@@ -34,11 +34,13 @@
 - (void)commonSetup
 {
     BOOL isIpad = IPAD;
-	self.fontStyle = isIpad?@"medium.@19.DarkFont":@"medium.@16.DarkFont";
+	self.fontStyle = @"heavy.@{16,19}.DarkFont";
+    //Placeholder? Corefont
+    //medium
 	MOMBasicStyle* fontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:isIpad?@"medium.@16":@"medium.@13"];
 	self.floatingLabelFont = [fontStyle font];
 	self.floatingLabelTextColor = [UIColor colorFromStyle:@"CoreFont"];
-	self.floatingLabelActiveTextColor =  [UIColor colorFromStyle:@"CoreFont"];
+	self.floatingLabelActiveTextColor =  [UIColor colorFromStyle:@"TWElectricBlue"];
 	self.floatingLabelYPadding = @(2.0f);
 }
 

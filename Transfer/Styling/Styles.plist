@@ -172,7 +172,7 @@
 		<key>sendButton</key>
 		<dict>
 			<key>fontStyle</key>
-			<string>medium.@{17,20}.white</string>
+			<string>medium.@{17,19}.white</string>
 			<key>highlightedBgStyle</key>
 			<string>TWblue.alpha2</string>
 			<key>bgStyle</key>
@@ -181,7 +181,7 @@
 		<key>getButton</key>
 		<dict>
 			<key>fontStyle</key>
-			<string>medium.@{17,20}.white</string>
+			<string>medium.@{17,19}.white</string>
 			<key>highlightedBgStyle</key>
 			<string>TWBlueHighlighted.alpha2</string>
 			<key>bgStyle</key>
@@ -190,7 +190,7 @@
 		<key>greenButton</key>
 		<dict>
 			<key>fontStyle</key>
-			<string>medium.@{17,20}.lightBlue</string>
+			<string>medium.@{17,19}.white</string>
 			<key>highlightedBgStyle</key>
 			<string>green.alpha2</string>
 			<key>bgStyle</key>
