@@ -32,7 +32,7 @@
 
 -(void)commonSetup
 {
-    self.fontStyle = @"H4";
+    self.fontStyle = @"medium.@20";
     self.exclusiveTouch = YES;
     self.backgroundColor = [UIColor clearColor];
 }
