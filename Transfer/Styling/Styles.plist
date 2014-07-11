@@ -165,15 +165,6 @@
 				<key>color</key>
 				<string>84a2b0</string>
 			</dict>
-			<key>P</key>
-			<dict>
-				<key>fontSize</key>
-				<integer>15</integer>
-				<key>fontName</key>
-				<string>Avenir-Medium</string>
-				<key>color</key>
-				<string>363d4e</string>
-			</dict>
 			<key>H1</key>
 			<dict>
 				<key>fontSize</key>

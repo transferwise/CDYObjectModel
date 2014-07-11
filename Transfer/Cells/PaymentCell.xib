@@ -67,7 +67,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="P.CoreFont"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value=light.@15.CoreFont"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="800" text="Currency label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7">
@@ -81,7 +81,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="P.CoreFont"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value=light.@15.CoreFont"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n2z-dX-IdV">
