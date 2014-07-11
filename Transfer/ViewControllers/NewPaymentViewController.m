@@ -8,7 +8,7 @@
 
 #import "NewPaymentViewController.h"
 #import "MoneyEntryCell.h"
-#import "LoginViewController2.h"
+#import "LoginViewController.h"
 #import "MoneyCalculator.h"
 #import "CalculationResult.h"
 #import "CurrencyPairsOperation.h"
@@ -319,7 +319,7 @@ static NSUInteger const kRowYouSend = 0;
 }
 
 - (IBAction)loginPressed:(id)sender {
-	LoginViewController2 *controller = [[LoginViewController2 alloc] init];
+	LoginViewController *controller = [[LoginViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [self.navigationController pushViewController:controller animated:YES];
 }
