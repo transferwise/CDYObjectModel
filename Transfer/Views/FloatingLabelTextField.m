@@ -41,7 +41,7 @@
 {
     
 	self.fontStyle = @"heavy.@{16,19}.DarkFont";
-    self.placeholderStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@{16,19}.CoreFont"];
+    self.placeholderStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@{16,19}.Greygory"];
     
 	MOMBasicStyle* fontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@{13,16}"];
 	self.floatingLabelFont = [fontStyle font];

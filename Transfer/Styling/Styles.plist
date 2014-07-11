@@ -41,6 +41,11 @@
 				<key>color</key>
 				<string>84a2b0</string>
 			</dict>
+			<key>GreyGory</key>
+			<dict>
+				<key>color</key>
+				<string>aab0b2</string>
+			</dict>
 			<key>DarkFont</key>
 			<dict>
 				<key>color</key>
@@ -114,7 +119,7 @@
 			<key>Yahoo</key>
 			<dict>
 				<key>color</key>
-				<string>df4a32</string>
+				<string>5e2483</string>
 			</dict>
 			<key>YahooHighlighted</key>
 			<dict>

@@ -14,7 +14,7 @@
 -(void)commonSetup
 {
 	[super configureWithTitleColor:@"CoreFont"
-						 titleFont:@"medium.@17"
+						 titleFont:@"medium.@17.TWElectricBlue"
 							 color:@"LightBlueHighlighted"
 					highlightColor:@"LightBlueHighlighted"];
 	
