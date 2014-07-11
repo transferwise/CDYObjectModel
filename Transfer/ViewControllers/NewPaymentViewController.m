@@ -124,7 +124,7 @@ static NSUInteger const kRowYouSend = 0;
     self.vsLabel.text = NSLocalizedString([@"introduction.savings.message.part2" deviceSpecificLocalization], nil);
 	self.sendMoneyLabel.text = NSLocalizedString(@"introduction.title", nil);
     NSString *howString = NSLocalizedString([@"introduction.savings.message.how" deviceSpecificLocalization], nil);
-    NSAttributedString *underlinedHowString = [[NSAttributedString alloc] initWithString:howString attributes:@{NSForegroundColorAttributeName : [UIColor colorFromStyle:@"link"] ,NSUnderlineStyleAttributeName: @(NSUnderlineStyleThick)}];
+    NSAttributedString *underlinedHowString = [[NSAttributedString alloc] initWithString:howString attributes:@{NSForegroundColorAttributeName : [UIColor colorFromStyle:@"TWElectricBlue"] ,NSUnderlineStyleAttributeName: @(NSUnderlineStyleThick)}];
     [self.howButton setAttributedTitle:underlinedHowString forState:UIControlStateNormal];
     
 
