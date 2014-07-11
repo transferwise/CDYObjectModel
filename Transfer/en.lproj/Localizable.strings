@@ -326,7 +326,7 @@ This can't be undone.";
 "transferdetails.controller.transfer.account.sent" = "%@\nWe've sent email to %@ at\n%@";
 "transferdetails.controller.button.support.ipad" = "Contact support";
 "transferdetails.controller.button.support" = "Contact customer support";
-"transferdetails.controller.button.notransfer" = "I haven't made the transfer yet";
+"transferdetails.controller.button.notransfer" = "Bank transfer not done yet";
 
 "upload.money.account.nr.title" = "Account number";
 "upload.money.address.title" = "Our address";
