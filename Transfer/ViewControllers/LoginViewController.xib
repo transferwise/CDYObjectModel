@@ -78,8 +78,8 @@
                     <rect key="frame" x="0.0" y="367" width="320" height="201"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gzj-xE-Yjr" userLabel="Forgot Password Label">
-                            <rect key="frame" x="139" y="274" width="42" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gzj-xE-Yjr" userLabel="Forgot Password Label">
+                            <rect key="frame" x="139" y="30" width="42" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -132,6 +132,8 @@
                         <constraint firstAttribute="centerX" secondItem="2d1-LU-JcI" secondAttribute="centerX" id="PWp-g6-eGw"/>
                         <constraint firstItem="Uqc-Ct-ZJ1" firstAttribute="width" secondItem="2Sf-8q-59z" secondAttribute="width" id="Uux-Kh-sft"/>
                         <constraint firstItem="2Sf-8q-59z" firstAttribute="top" secondItem="2d1-LU-JcI" secondAttribute="bottom" constant="30" id="Yi3-P4-IGW"/>
+                        <constraint firstItem="Gzj-xE-Yjr" firstAttribute="top" secondItem="Eab-el-220" secondAttribute="top" constant="30" id="gLe-c2-aWr"/>
+                        <constraint firstAttribute="centerX" secondItem="Gzj-xE-Yjr" secondAttribute="centerX" id="iTE-j6-WL2"/>
                         <constraint firstAttribute="bottom" secondItem="Uqc-Ct-ZJ1" secondAttribute="bottom" id="j3W-5f-YtY"/>
                         <constraint firstItem="2Sf-8q-59z" firstAttribute="leading" secondItem="Eab-el-220" secondAttribute="leading" id="uWd-ge-OSE"/>
                     </constraints>
