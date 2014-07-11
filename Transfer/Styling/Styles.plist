@@ -183,6 +183,13 @@
 				<key>color</key>
 				<string>e6edf1</string>
 			</dict>
+			<key>separatorGray</key>
+			<dict>
+				<key>alpha</key>
+				<real>0.5</real>
+				<key>color</key>
+				<string>d6d9df</string>
+			</dict>
 			<key>tabBarBlue</key>
 			<dict>
 				<key>color</key>

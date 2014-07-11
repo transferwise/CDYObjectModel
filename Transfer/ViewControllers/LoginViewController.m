@@ -42,7 +42,7 @@
 #pragma mark - Init
 - (id)init
 {
-    self = [super initWithNibName:@"LoginViewController2" bundle:nil];
+    self = [super initWithNibName:@"LoginViewController" bundle:nil];
     if (self) {
         // Custom initialization
     }
@@ -72,8 +72,14 @@
 	UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(forgotPasswordTapped)];
     [self.forgotPasswordLabel addGestureRecognizer:tapGestureRecognizer];
 	
-	[self.googleLoginButton setTitle:NSLocalizedString(@"button.title.log.in.google", nil) forState:UIControlStateNormal];
-	[self.yahooLoginButton setTitle:NSLocalizedString(@"button.title.log.in.yahoo", nil) forState:UIControlStateNormal];
+	[self.googleLoginButton setTitle:NSLocalizedString([@"button.title.log.in.google" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
+	[self.yahooLoginButton setTitle:NSLocalizedString([@"button.title.log.in.yahoo" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
+	
+	if (!IPAD)
+	{
+		self.googleLoginButton.addShadow = NO;
+		self.yahooLoginButton.addShadow = NO;
+	}
 	
 	[self.orLabel setText:NSLocalizedString([@"login.controller.or" deviceSpecificLocalization], nil)];
 }
