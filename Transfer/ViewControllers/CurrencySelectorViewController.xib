@@ -60,7 +60,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="H5"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="light.@{16,17}.LightBlue"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="selectTapped:" destination="-1" eventType="touchUpInside" id="tna-en-0cT"/>
