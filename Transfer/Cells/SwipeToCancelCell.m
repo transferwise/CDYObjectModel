@@ -50,6 +50,7 @@
 	
 	[self.cancelButton setTitle:NSLocalizedString(@"button.title.cancel", nil)
 					   forState:UIControlStateNormal];
+	[self.cancelButton setTitleEdgeInsets:UIEdgeInsetsMake(2.0f, 0.0f, 0.0f, 0.0f)];
 	
 	if(!self.panRecognizer)
 	{
@@ -267,7 +268,6 @@
 #pragma mark - Width Equal to superview
 - (void)updateConstraints
 {
-	[super updateConstraints];
 	NSLayoutConstraint* c = [NSLayoutConstraint constraintWithItem:self.slidingContentView
 														 attribute:NSLayoutAttributeWidth
 														 relatedBy:NSLayoutRelationEqual
@@ -276,5 +276,6 @@
 														multiplier:1.0f
 														  constant:0.f];
 	[self.contentView addConstraint:c];
+	[super updateConstraints];
 }
 @end
