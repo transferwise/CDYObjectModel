@@ -34,12 +34,6 @@
 	[self.gradientLayer setEndPoint:CGPointMake(1.0, 0.5)];
 	
 	[self.layer insertSublayer:self.gradientLayer atIndex:0];
-	
-	self.borderLayer = [CALayer layer];
-	self.borderLayer.borderColor = [UIColor colorWithRed:1/255.0 green:1/255.0 blue:1/255.0 alpha:0.1].CGColor;
-	self.borderLayer.borderWidth = 3;
-	
-	[self.layer addSublayer:self.borderLayer];
 }
 
 - (void)layoutSubviews
@@ -47,7 +41,6 @@
 	[super layoutSubviews];
 	
 	[self.gradientLayer setFrame:self.bounds];
-	[self.borderLayer setFrame:CGRectMake(self.bounds.origin.x, self.bounds.origin.y, 3, self.bounds.size.height)];
 }
 
 @end
