@@ -38,7 +38,7 @@
                         <constraint firstAttribute="height" constant="1" id="vHM-sh-uTK"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGray"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="SeparatorGrey"/>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RCm-Tg-pZv" userLabel="Password TextField" customClass="FloatingLabelTextField">
@@ -57,7 +57,7 @@
                         <constraint firstAttribute="height" constant="1" id="aIc-s5-uLA"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGray"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="SeparatorGrey"/>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1z-HI-x7D" userLabel="Login Button" customClass="GreenButton">
@@ -87,7 +87,7 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.lighterBlue"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.CoreFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8f-4O-fgG" userLabel="Yahoo Login Button" customClass="GreenButton">
@@ -135,7 +135,7 @@
                         <constraint firstItem="Z2S-88-Izr" firstAttribute="top" secondItem="5AO-Ch-ke6" secondAttribute="top" constant="45" id="rLP-as-dUi"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="paleBlue3"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="LightBlue"/>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVw-3E-NCJ" userLabel="Forgot Password Label">
@@ -145,7 +145,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@16.crispBlue"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@16.TWElectricblue"/>
                     </userDefinedRuntimeAttributes>
                 </label>
             </subviews>

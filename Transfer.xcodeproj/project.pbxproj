@@ -155,6 +155,7 @@
 		479B69421949E7ED001FA4FE /* TransferDetialsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693319489303001FA4FE /* TransferDetialsHeaderView.m */; };
 		47C580A3196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47C580A4196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
+		47DBE05919703494008915A6 /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
 		47F1F5921941C87600FC4BEB /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
 		47FAF344194B2F11004CE986 /* LightGrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF343194B2F11004CE986 /* LightGrayButton.m */; };
 		47FAF345194B2F11004CE986 /* LightGrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF343194B2F11004CE986 /* LightGrayButton.m */; };
@@ -2713,6 +2714,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47DBE05919703494008915A6 /* InsetRespectingButton.m in Sources */,
 				47FAF34A194B371B004CE986 /* WhyViewController.m in Sources */,
 				479B69421949E7ED001FA4FE /* TransferDetialsHeaderView.m in Sources */,
 				479B69411949E7DA001FA4FE /* TransferDetailsViewController.m in Sources */,

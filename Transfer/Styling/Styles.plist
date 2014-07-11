@@ -192,7 +192,7 @@
 			<key>fontStyle</key>
 			<string>medium.@{17,19}.white</string>
 			<key>highlightedBgStyle</key>
-			<string>green.alpha2</string>
+			<string>greenHilighted</string>
 			<key>bgStyle</key>
 			<string>green</string>
 		</dict>
