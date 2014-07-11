@@ -480,7 +480,8 @@ people who built Skype and PayPal.";
 "refund.controller.validation.error.title" = "Validation failed";
 
 "login.controller.forgot.password.link" = "Forgot password";
-"login.controller.or" = "Or";
+"login.controller.or" = "Or log in with";
+"login.controller.or.ipad" = "Or";
 
 "reset.password.controller.title" = "Request password reset";
 "reset.password.controller.email.cell.label" = "Your email";

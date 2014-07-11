@@ -4,16 +4,165 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LgoinViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
+                <outlet property="emailTextField" destination="Sqf-jN-fvd" id="pva-OL-Vn3"/>
+                <outlet property="forgotPasswordLabel" destination="Gzj-xE-Yjr" id="ZWy-f1-Rwh"/>
+                <outlet property="googleLoginButton" destination="2Sf-8q-59z" id="BRf-2K-vsj"/>
+                <outlet property="loginButton" destination="uSj-Tb-62N" id="wrl-Rn-Dv8"/>
+                <outlet property="orLabel" destination="2d1-LU-JcI" id="8nI-dK-9ah"/>
+                <outlet property="passwordTextField" destination="UJr-a0-Czd" id="dAI-mg-ysB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="yahooLoginButton" destination="Uqc-Ct-ZJ1" id="gAu-Xp-nGd"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sqf-jN-fvd" userLabel="Email TextField" customClass="FloatingLabelTextField">
+                    <rect key="frame" x="0.0" y="130" width="320" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" placeholder="YES" id="c5K-jG-eut"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OOe-X8-gxb" userLabel="Separator View">
+                    <rect key="frame" x="8" y="210" width="320" height="1"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="fek-HK-kQ5"/>
+                    </constraints>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGray"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UJr-a0-Czd" userLabel="Password TextField" customClass="FloatingLabelTextField">
+                    <rect key="frame" x="-5" y="221" width="320" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" placeholder="YES" id="DmN-tB-1bM"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7f-aP-kB6" userLabel="Separator View">
+                    <rect key="frame" x="-5" y="281" width="320" height="1"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="MaW-ap-Zmh"/>
+                    </constraints>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGray"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSj-Tb-62N" userLabel="Login Button" customClass="GreenButton">
+                    <rect key="frame" x="0.0" y="312" width="320" height="55"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="dEk-hB-rjg"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="addShadow" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eab-el-220" customClass="IntrinsicSizeUIView">
+                    <rect key="frame" x="0.0" y="367" width="320" height="201"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gzj-xE-Yjr" userLabel="Forgot Password Label">
+                            <rect key="frame" x="139" y="274" width="42" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@16.crispBlue"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2d1-LU-JcI" userLabel="Or Label">
+                            <rect key="frame" x="139" y="95" width="42" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.lighterBlue"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uqc-Ct-ZJ1" userLabel="Yahoo Login Button" customClass="GreenButton">
+                            <rect key="frame" x="160" y="146" width="160" height="55"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="55" id="aC6-gc-c7i"/>
+                            </constraints>
+                            <state key="normal" title="Button">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="addShadow" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Sf-8q-59z" userLabel="Google Login Button" customClass="GreenButton">
+                            <rect key="frame" x="0.0" y="146" width="160" height="55"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="55" id="OGi-8O-46Q"/>
+                            </constraints>
+                            <state key="normal" title="Button">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="addShadow" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="2Sf-8q-59z" secondAttribute="bottom" id="BWA-xI-3cW"/>
+                        <constraint firstAttribute="trailing" secondItem="Uqc-Ct-ZJ1" secondAttribute="trailing" id="GmF-1V-aAH"/>
+                        <constraint firstItem="Uqc-Ct-ZJ1" firstAttribute="leading" secondItem="2Sf-8q-59z" secondAttribute="trailing" id="I5e-Td-xNB"/>
+                        <constraint firstAttribute="centerX" secondItem="2d1-LU-JcI" secondAttribute="centerX" id="PWp-g6-eGw"/>
+                        <constraint firstItem="Uqc-Ct-ZJ1" firstAttribute="width" secondItem="2Sf-8q-59z" secondAttribute="width" id="Uux-Kh-sft"/>
+                        <constraint firstItem="2Sf-8q-59z" firstAttribute="top" secondItem="2d1-LU-JcI" secondAttribute="bottom" constant="30" id="Yi3-P4-IGW"/>
+                        <constraint firstAttribute="bottom" secondItem="Uqc-Ct-ZJ1" secondAttribute="bottom" id="j3W-5f-YtY"/>
+                        <constraint firstItem="2Sf-8q-59z" firstAttribute="leading" secondItem="Eab-el-220" secondAttribute="leading" id="uWd-ge-OSE"/>
+                    </constraints>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="paleBlue3"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="UJr-a0-Czd" firstAttribute="centerX" secondItem="Sqf-jN-fvd" secondAttribute="centerX" constant="-5" id="8eg-H2-CFw"/>
+                <constraint firstItem="UJr-a0-Czd" firstAttribute="bottom" secondItem="x7f-aP-kB6" secondAttribute="top" constant="10" id="8ye-SL-RVX"/>
+                <constraint firstItem="uSj-Tb-62N" firstAttribute="width" secondItem="UJr-a0-Czd" secondAttribute="width" id="9PX-lT-qeF"/>
+                <constraint firstItem="uSj-Tb-62N" firstAttribute="bottom" secondItem="Eab-el-220" secondAttribute="top" id="Ehu-CB-vo4"/>
+                <constraint firstItem="UJr-a0-Czd" firstAttribute="centerX" secondItem="x7f-aP-kB6" secondAttribute="centerX" id="HvS-XH-QMP"/>
+                <constraint firstItem="UJr-a0-Czd" firstAttribute="top" secondItem="OOe-X8-gxb" secondAttribute="bottom" constant="10" id="MNW-jQ-nkJ"/>
+                <constraint firstItem="Sqf-jN-fvd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="MOr-k6-BXT"/>
+                <constraint firstAttribute="bottom" secondItem="Eab-el-220" secondAttribute="bottom" id="OBE-MG-xlt"/>
+                <constraint firstItem="uSj-Tb-62N" firstAttribute="centerX" secondItem="UJr-a0-Czd" secondAttribute="centerX" constant="5" id="Veh-qm-MTw"/>
+                <constraint firstItem="UJr-a0-Czd" firstAttribute="width" secondItem="Sqf-jN-fvd" secondAttribute="width" id="cYf-NV-jm4"/>
+                <constraint firstAttribute="trailing" secondItem="Eab-el-220" secondAttribute="trailing" id="dii-nJ-N22"/>
+                <constraint firstItem="OOe-X8-gxb" firstAttribute="centerX" secondItem="Sqf-jN-fvd" secondAttribute="centerX" constant="8" id="exC-lb-U8L"/>
+                <constraint firstItem="uSj-Tb-62N" firstAttribute="top" secondItem="x7f-aP-kB6" secondAttribute="bottom" constant="30" id="qfS-D0-H5Z"/>
+                <constraint firstItem="OOe-X8-gxb" firstAttribute="top" secondItem="Sqf-jN-fvd" secondAttribute="bottom" constant="10" id="rYl-UV-Lzu"/>
+                <constraint firstItem="Sqf-jN-fvd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="130" id="sbd-nD-ZJR"/>
+                <constraint firstAttribute="trailing" secondItem="Sqf-jN-fvd" secondAttribute="trailing" id="wIu-Cw-Ezs"/>
+                <constraint firstItem="OOe-X8-gxb" firstAttribute="width" secondItem="Sqf-jN-fvd" secondAttribute="width" id="wMx-cd-bmu"/>
+                <constraint firstItem="UJr-a0-Czd" firstAttribute="width" secondItem="x7f-aP-kB6" secondAttribute="width" id="wYT-Bc-oPI"/>
+                <constraint firstItem="Eab-el-220" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zFW-vm-IMh"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

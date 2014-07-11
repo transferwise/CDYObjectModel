@@ -1,5 +1,5 @@
 //
-//  LgoinViewController.m
+//  LoginViewController.m
 //  Transfer
 //
 //  Created by Juhan Hion on 09.07.14.
@@ -22,6 +22,7 @@
 #import "OpenIDViewController.h"
 #import "ResetPasswordViewController.h"
 #import "UIFont+MOMStyle.h"
+#import "NSString+DeviceSpecificLocalisation.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -74,7 +75,7 @@
 	[self.googleLoginButton setTitle:NSLocalizedString(@"button.title.log.in.google", nil) forState:UIControlStateNormal];
 	[self.yahooLoginButton setTitle:NSLocalizedString(@"button.title.log.in.yahoo", nil) forState:UIControlStateNormal];
 	
-	[self.orLabel setText:NSLocalizedString(@"login.controller.or", nil)];
+	[self.orLabel setText:NSLocalizedString([@"login.controller.or" deviceSpecificLocalization], nil)];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -84,7 +85,14 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationItem setTitle:NSLocalizedString(@"login.controller.title", nil)];
 	
-//	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
+	if (IPAD)
+	{
+		
+	}
+	else
+	{
+		[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
+	}
 	
     [[GoogleAnalytics sharedInstance] sendScreen:@"Login"];
 }
