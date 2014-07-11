@@ -189,6 +189,13 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [self configureForInterfaceOrientation:toInterfaceOrientation];
+    self.suggestionTable.alpha = 0.0f;
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [self suggestionTableDidStartEditing:self.suggestionTable];
+    self.suggestionTable.alpha = 1.0f;
 }
 
 -(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation
@@ -313,7 +320,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [currenciesOperation execute];
 
     [self setShown:YES];
-    [self reloadSeparators];
 }
 
 
@@ -587,7 +593,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     NSNumber *sectionCode = self.presentedSectionsByTableView[index][(NSUInteger) section];
     switch ([sectionCode integerValue]) {
         case kRecipientSection:
-            return IPAD?NSLocalizedString(@"recipient.controller.section.title.currency", nil):nil;
+            return IPAD?NSLocalizedString(@"recipient.controller.section.title.ipad.recipient", nil):nil;
         case kCurrencySection:
             return NSLocalizedString(@"recipient.controller.section.title.currency", nil);
         case kRecipientFieldsSection:
@@ -696,19 +702,21 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 -(void)suggestionTableDidStartEditing:(TextFieldSuggestionTable *)table
 {
     [table removeFromSuperview];
-    UIImageView* background = [[UIImageView alloc] initWithImage:[self.view renderBlurWithTintColor:nil]];
-    background.contentMode = UIViewContentModeBottom;
-    table.backgroundView = background;
-    
-    UIView *colorOverlay = [[UIView alloc] initWithFrame:background.bounds];
-    colorOverlay.bgStyle = @"darkBlue.alpha4";
-    colorOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    [background addSubview:colorOverlay];
-    
+    if(!IPAD)
+    {
+        UIImageView* background = [[UIImageView alloc] initWithImage:[self.view renderBlurWithTintColor:nil]];
+        background.contentMode = UIViewContentModeBottom;
+        table.backgroundView = background;
+        
+        UIView *colorOverlay = [[UIView alloc] initWithFrame:background.bounds];
+        colorOverlay.bgStyle = @"darkBlue.alpha4";
+        colorOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        [background addSubview:colorOverlay];
+    }
     
     CGRect newFrame = table.frame;
     newFrame.origin = [self.view convertPoint:table.textField.superview.frame.origin fromView:table.textField.superview.superview];
-    newFrame.origin.y += table.textField.superview.frame.size.height + (1.0f/[[UIScreen mainScreen] scale]);
+    newFrame.origin.y += table.textField.superview.frame.size.height;
     newFrame.size.height = self.view.frame.size.height - newFrame.origin.y;
     newFrame.size.width = table.textField.superview.frame.size.width;
     table.frame = newFrame;
@@ -765,16 +773,20 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             newInsets.bottom += overlap;
             self.containerScrollView.contentInset = newInsets;
             
-            [UIView commitAnimations];
-            
             UIView *firstResponder = [UIResponder currentFirstResponder];
             if(firstResponder)
             {
-                CGRect rectToShow = [self.containerScrollView convertRect:firstResponder.frame fromView:firstResponder.superview];
-                rectToShow.size.height += 20.0f;
-                [self.containerScrollView scrollRectToVisible:rectToShow animated:YES];
+                [self scrollScrollViewToShowView:firstResponder];
             }
+            
+            [self suggestionTableDidStartEditing:self.suggestionTable];
+            
+            [UIView commitAnimations];
+            
+
         }
+        
+        self.suggestionTable.contentInset = UIEdgeInsetsMake(0, 0, newframe.size.height, 0);
     }
     else
     {
@@ -800,6 +812,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [UIView commitAnimations];
         
         self.cachedInsets = UIEdgeInsetsZero;
+        self.suggestionTable.contentInset = UIEdgeInsetsZero;
     }
     else
     {
@@ -807,10 +820,41 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
 }
 
+-(void)textFieldEntryFinished
+{
+    if(IPAD)
+    {
+        self.containerScrollView.scrollEnabled = YES;
+    }
+    else
+    {
+        ((UITableView*)self.tableViews[0]).scrollEnabled = YES;
+    }
+}
+
 -(void)scrollToCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView
 {
-    CGRect rectToShow = [self.containerScrollView convertRect:cell.frame fromView:cell.superview];
-    [self.containerScrollView scrollRectToVisible:rectToShow animated:YES];
+    if(IPAD)
+    {
+        [self scrollScrollViewToShowView:cell];
+    }
+    else
+    {
+         [super scrollToCell:cell inTableView:tableView];
+        tableView.scrollEnabled = NO;
+    }
+}
+
+-(void)scrollScrollViewToShowView:(UIView*)targetView
+{
+    
+        if(targetView == self.nameCell || targetView == self.nameCell.entryField)
+        {
+            self.containerScrollView.scrollEnabled = NO;
+        }
+    CGRect showRect = CGRectMake(0, self.containerScrollView.contentSize.height - 1, 1, 1);
+        [self.containerScrollView scrollRectToVisible:showRect animated:NO];
+
 }
 
 @end

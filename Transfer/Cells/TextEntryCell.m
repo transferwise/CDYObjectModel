@@ -22,6 +22,7 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 @property (nonatomic, assign) BOOL valueModified;
 @property (nonatomic, strong) IBOutlet UIButton *errorButton;
 @property (nonatomic, copy) NSString *validationIssue;
+@property (nonatomic, weak) IBOutlet UIView *separatorLine;
 
 - (IBAction)errorButtonTapped;
 
@@ -29,6 +30,21 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 @implementation TextEntryCell
 
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.contentView.frame = self.bounds;
+    if (!self.separatorLine)
+    {
+        CGFloat lineThickness = 1.0f / [[UIScreen mainScreen] scale];
+        UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(10.0f, self.contentView.frame.size.height - lineThickness, self.contentView.frame.size.width - 15.0f, lineThickness)];
+        separatorLine.bgStyle = @"cellSeparator";
+        separatorLine.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+
+        [self.contentView addSubview:separatorLine];
+        self.separatorLine = separatorLine;
+    }
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
