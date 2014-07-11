@@ -13,6 +13,12 @@
 #import "MOMBasicStyle.h"
 #import "Constants.h"
 
+@interface FloatingLabelTextField ()
+
+@property (nonatomic,strong)MOMBasicStyle* placeholderStyle;
+
+@end
+
 @implementation FloatingLabelTextField
 
 - (id)initWithFrame:(CGRect)frame
@@ -33,20 +39,31 @@
 
 - (void)commonSetup
 {
-    BOOL isIpad = IPAD;
+    
 	self.fontStyle = @"heavy.@{16,19}.DarkFont";
-    //Placeholder? Corefont
-    //medium
-	MOMBasicStyle* fontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:isIpad?@"medium.@16":@"medium.@13"];
+    self.placeholderStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@{16,19}.CoreFont"];
+    
+	MOMBasicStyle* fontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@{13,16}"];
 	self.floatingLabelFont = [fontStyle font];
 	self.floatingLabelTextColor = [UIColor colorFromStyle:@"CoreFont"];
 	self.floatingLabelActiveTextColor =  [UIColor colorFromStyle:@"TWElectricBlue"];
 	self.floatingLabelYPadding = @(2.0f);
+
+    
 }
+
+
+- (void)drawPlaceholderInRect:(CGRect)rect {
+
+    // We use self.font.pointSize in order to match the input text's font size
+    [self.placeholder drawInRect:rect
+                  withAttributes:@{NSForegroundColorAttributeName:[self.placeholderStyle color] , NSFontAttributeName:[self.placeholderStyle font]}];
+}
+
 
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value
 {
-    [self setPlaceholder:title];
+    self.placeholder=title;
     [self setText:value];
 }
 
