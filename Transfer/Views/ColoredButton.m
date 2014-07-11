@@ -38,7 +38,7 @@ static __weak UIImage* selectedStateImage;
 	//override in an inheriting class to customize
 	//don't forget to call super in inheriging class
 	
-	if(self.addShadow)
+	if (self.addShadow)
     {
         [self setBackgroundImagesWithShadow];
     }
@@ -97,7 +97,7 @@ static __weak UIImage* selectedStateImage;
 
 -(void)setHighlighted:(BOOL)highlighted
 {
-    [super setHighlighted:highlighted];
+	[super setHighlighted:highlighted];
     if(self.addShadow)
     {
         if (highlighted)
@@ -121,15 +121,15 @@ static __weak UIImage* selectedStateImage;
 
 -(UIImage*)normalStateImage
 {
-    return [ColoredButton getButtonImage:NO];
+    return [ColoredButton getBackgroundImage:NO];
 }
 
 -(UIImage*)selectedStateImage
 {
-    return [ColoredButton getButtonImage:YES];
+    return [ColoredButton getBackgroundImage:YES];
 }
 
-+ (UIImage *)getButtonImage:(BOOL)selected
++ (UIImage *)getBackgroundImage:(BOOL)selected
 {
 	UIImage *result = selected ? selectedStateImage : normalStateImage;
 	
