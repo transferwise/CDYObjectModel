@@ -17,7 +17,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@19.navBarBlue"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@19.CoreFont"/>
                     </userDefinedRuntimeAttributes>
                 </label>
                 <view contentMode="scaleToFill" id="IDc-ZV-bhR">
@@ -25,7 +25,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="cellseparator"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="corefont"/>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" id="UX0-SE-fa5">

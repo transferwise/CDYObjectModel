@@ -32,7 +32,7 @@
 
 -(void)commonSetup
 {
-    self.fontStyle = @"H4";
+    self.fontStyle = @"medium.@20.white";
     self.exclusiveTouch = YES;
     self.backgroundColor = [UIColor clearColor];
 }
@@ -76,10 +76,10 @@
     remainingRect.origin.x = progressRect.size.width;
     
     
-    UIColor* progressColor = [UIColor colorFromStyle:@"darkGreen"];
+    UIColor* progressColor = [UIColor colorFromStyle:@"GreenHighlighted"];
     UIColor* remainingColor = [UIColor colorFromStyle:@"green"];
-    UIColor* progressSelected = [UIColor colorFromStyle:@"darkGreenSelected"];
-    UIColor* remainingSelected = [UIColor colorFromStyle:@"greenSelected"];
+    UIColor* progressSelected = [UIColor colorFromStyle:@"GreenHighlighted"];
+    UIColor* remainingSelected = [UIColor colorFromStyle:@"GreenHighlighted"];
     
     UIGraphicsBeginImageContextWithOptions(size,YES, 0.0);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -98,8 +98,8 @@
         remainingShadowRect.origin.y = size.height - 4.0f;
         remainingShadowRect.size.height = 4.0f;
         
-        UIColor* progressShadow = [UIColor colorFromStyle:@"darkGreenShadow"];
-        UIColor* remainingShadow = [UIColor colorFromStyle:@"greenShadow"];
+        UIColor* progressShadow = [UIColor colorFromStyle:@"GreenShadow"];
+        UIColor* remainingShadow = [UIColor colorFromStyle:@"GreenShadow"];
         
         CGContextSetFillColorWithColor(context, [progressShadow CGColor]);
         CGContextFillRect(context, progressShadowRect);
@@ -138,8 +138,8 @@
         alphaRect.origin.y =0.0f;
         alphaRect.size.height = 2.0f;
         
-        UIColor* progressShadow = [UIColor colorFromStyle:@"darkGreenShadow"];
-        UIColor* remainingShadow = [UIColor colorFromStyle:@"greenShadow"];
+        UIColor* progressShadow = [UIColor colorFromStyle:@"GreenShadow"];
+        UIColor* remainingShadow = [UIColor colorFromStyle:@"GreenShadow"];
         
         CGContextSetFillColorWithColor(context, [progressShadow CGColor]);
         CGContextFillRect(context, progressShadowRect);

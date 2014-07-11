@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -13,62 +13,37 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYi-Ee-Ibh" userLabel="Name Label">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DYi-Ee-Ibh" userLabel="Name Label">
                         <rect key="frame" x="20" y="10" width="240" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="Aar-4D-itG"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@16.lightText"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@19.CoreFont"/>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZtD-jg-ew5" userLabel="email label">
-                        <rect key="frame" x="20" y="29" width="240" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="vgU-cZ-mgm"/>
-                        </constraints>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZtD-jg-ew5" userLabel="email label">
+                        <rect key="frame" x="20" y="36" width="240" height="21"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@13.lightText"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.CoreFont"/>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9pw-2U-mM2">
-                        <rect key="frame" x="273" y="14" width="32" height="32"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="9pw-2U-mM2">
+                        <rect key="frame" x="269" y="15" width="40" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.87450987099999999" green="0.89019614459999996" blue="0.8980392814" alpha="1" colorSpace="deviceRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="32" id="KAd-Ib-gEn"/>
-                            <constraint firstAttribute="height" constant="32" id="unv-6Q-N7A"/>
-                        </constraints>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NameSuggestionThumbnailMask" translatesAutoresizingMaskIntoConstraints="NO" id="zWa-gX-h4e">
-                        <rect key="frame" x="273" y="14" width="32" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="rounded"/>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="zWa-gX-h4e" firstAttribute="width" secondItem="9pw-2U-mM2" secondAttribute="width" id="5Or-xr-mm8"/>
-                    <constraint firstItem="DYi-Ee-Ibh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="I8U-sy-yiK"/>
-                    <constraint firstItem="ZtD-jg-ew5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ISU-VP-rzA"/>
-                    <constraint firstItem="zWa-gX-h4e" firstAttribute="height" secondItem="9pw-2U-mM2" secondAttribute="height" id="Msx-nF-oU8"/>
-                    <constraint firstItem="DYi-Ee-Ibh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Q2Q-RN-Whs"/>
-                    <constraint firstItem="ZtD-jg-ew5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="29" id="WvP-d0-2Ji"/>
-                    <constraint firstItem="zWa-gX-h4e" firstAttribute="centerX" secondItem="9pw-2U-mM2" secondAttribute="centerX" id="eXY-Zt-4Vf"/>
-                    <constraint firstAttribute="trailing" secondItem="DYi-Ee-Ibh" secondAttribute="trailing" constant="60" id="hWC-Bi-7Oa"/>
-                    <constraint firstItem="zWa-gX-h4e" firstAttribute="centerY" secondItem="9pw-2U-mM2" secondAttribute="centerY" id="kGg-Zb-zDe"/>
-                    <constraint firstAttribute="trailing" secondItem="9pw-2U-mM2" secondAttribute="trailing" constant="15" id="oA8-z7-eDf"/>
-                    <constraint firstItem="9pw-2U-mM2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="p5H-i9-jNv"/>
-                    <constraint firstAttribute="trailing" secondItem="ZtD-jg-ew5" secondAttribute="trailing" constant="60" id="rTf-Jn-bLe"/>
-                </constraints>
                 <userDefinedRuntimeAttributes>
-                    <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="white2"/>
+                    <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="LightBlueHighlighted"/>
                 </userDefinedRuntimeAttributes>
             </tableViewCellContentView>
             <connections>
@@ -78,7 +53,4 @@
             </connections>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="NameSuggestionThumbnailMask" width="32" height="32"/>
-    </resources>
 </document>

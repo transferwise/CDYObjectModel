@@ -63,7 +63,7 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="h2.navBarBlue"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium@19.CoreFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gwo-9l-kjw">
@@ -90,7 +90,7 @@
                         <constraint firstItem="2V5-vW-DON" firstAttribute="top" secondItem="v9d-Kt-fPW" secondAttribute="top" constant="20" id="z9W-s8-d0U"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="navBarGray"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightbluehighlighted"/>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="omV-Yf-7m8" userLabel="Separator">
@@ -101,7 +101,7 @@
                         <constraint firstAttribute="width" constant="1" id="fG2-K6-vUW"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGray"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorgrey"/>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h2f-uY-e4h" userLabel="shadow" customClass="GradientView">
@@ -112,7 +112,7 @@
                         <constraint firstAttribute="width" constant="8" id="Bxl-4u-CLZ"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fromColorStyle" value="dropshadow"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fromColorStyle" value="TWHighlighted.alpha"/>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>

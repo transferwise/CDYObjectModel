@@ -74,9 +74,8 @@
     TabItem *paymentItem = [TabItem new];
     paymentItem.title = NSLocalizedString(@"payment.controller.tabbar.title", nil);
     paymentItem.icon = [UIImage imageNamed:@"NewPaymentTabIcon.png"];
-    paymentItem.deSelectedColor = [UIColor colorFromStyle:@"lightBlue"];
-    paymentItem.deselectedAlpha = 1.0f;
-    paymentItem.highlightedColor = [UIColor colorFromStyle:@"lightBlueHighlighted"];
+    paymentItem.deSelectedColor = [UIColor colorFromStyle:@"TWBlueHighlighted"];
+    paymentItem.textColor = [UIColor whiteColor];
     [paymentItem setActionBlock:^(TabItem* item){
         NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
         [controller setObjectModel:self.objectModel];
@@ -107,9 +106,9 @@
     profileItem.icon = [UIImage imageNamed:@"tab_icon_profile"];
     
     TabViewController *tabController = [[TabViewController alloc] init];
-    tabController.defaultSelectedColor = [UIColor colorFromStyle:@"darkBlue"];
-    tabController.defaultDeSelectedColor = [UIColor colorFromStyle:@"tabBarBlue"];
-    tabController.defaultHighlightedColor = [UIColor colorFromStyle:@"darkBlueHighlighted"];
+    tabController.defaultSelectedColor = [UIColor colorFromStyle:@"TWBlue"];
+    tabController.defaultDeSelectedColor = [UIColor colorFromStyle:@"TWBlue"];
+    tabController.defaultHighlightedColor = [UIColor colorFromStyle:@"TWBlueHighlighted"];
     
     if(IPAD)
     {

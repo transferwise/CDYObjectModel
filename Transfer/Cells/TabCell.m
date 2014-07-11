@@ -7,6 +7,7 @@
 //
 
 #import "TabCell.h"
+#import "MOMStyle.h"
 
 @implementation TabItem
 
@@ -15,7 +16,9 @@
     self = [super init];
     if(self)
     {
-        _deselectedAlpha = 0.75;
+        _textColor = [UIColor colorFromStyle:@"CoreFont"];
+        _textSelectedColor = [UIColor colorFromStyle:@"TWElectricBlue"];
+
     }
     return self;
 }
@@ -45,14 +48,12 @@
     if(selected)
     {
         self.backgroundColor = self.currentItem.selectedColor;
-        self.titleLabel.alpha = 1.0f;
-        self.iconImage.alpha = 1.0f;
+        self.titleLabel.textColor = self.currentItem.textSelectedColor;
     }
     else
     {
         self.backgroundColor = self.currentItem.deSelectedColor;
-        self.titleLabel.alpha = self.currentItem.deselectedAlpha;
-        self.iconImage.alpha = self.currentItem.deselectedAlpha;
+        self.titleLabel.textColor = self.currentItem.textColor;
     }
 }
 

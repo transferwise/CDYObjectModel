@@ -128,7 +128,7 @@
     
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(gradientView.bounds.size.width/2.0f - 150, 30, 300, 44)];
     title.textAlignment = NSTextAlignmentCenter;
-    title.fontStyle = @"H2";
+    title.fontStyle = @"light.@{18,19}.CoreFont";
     title.text = NSLocalizedString(@"network.alert",nil);
     [gradientView addSubview:title];
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -40,7 +40,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="H3"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@15"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="800" text="Money label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5">
@@ -54,7 +54,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="H3"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Status label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6">
@@ -67,7 +67,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="P.lightText"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="light.@15.CoreFont"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="800" text="Currency label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7">
@@ -81,7 +81,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="P.lightText"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="light.@15.CoreFont"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n2z-dX-IdV">
@@ -111,6 +111,15 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="white"/>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <view opaque="NO" alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PM1-IY-QhE" userLabel="View - Shadow">
+                        <rect key="frame" x="320" y="0.0" width="3" height="69"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="3" id="dlo-uW-VMy"/>
+                        </constraints>
+                        <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="12" firstAttribute="top" secondItem="2Qf-I3-x2d" secondAttribute="top" id="1ie-yW-fTN"/>
@@ -118,7 +127,10 @@
                     <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" placeholder="YES" id="21r-rO-74y"/>
                     <constraint firstAttribute="bottom" secondItem="12" secondAttribute="bottom" id="2FH-kC-0Ee"/>
                     <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" priority="1" id="DzN-3a-1VV"/>
+                    <constraint firstItem="PM1-IY-QhE" firstAttribute="top" secondItem="12" secondAttribute="top" id="F9c-oJ-0TJ"/>
+                    <constraint firstItem="PM1-IY-QhE" firstAttribute="leading" secondItem="12" secondAttribute="trailing" id="GPf-1g-ZlS"/>
                     <constraint firstItem="12" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2Qf-I3-x2d" secondAttribute="leading" constant="-90" id="OEN-9T-zF5"/>
+                    <constraint firstItem="PM1-IY-QhE" firstAttribute="bottom" secondItem="12" secondAttribute="bottom" id="QEQ-fc-ZPT"/>
                     <constraint firstAttribute="bottom" secondItem="Li6-7X-mnd" secondAttribute="bottom" id="TBc-5z-kla"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="12" secondAttribute="trailing" id="aL3-c9-qcN"/>
                     <constraint firstItem="Li6-7X-mnd" firstAttribute="top" secondItem="2Qf-I3-x2d" secondAttribute="top" id="egS-FA-CLC"/>

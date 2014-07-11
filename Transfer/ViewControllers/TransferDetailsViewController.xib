@@ -38,7 +38,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@17.lighterBlue"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@17.CoreFont"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7NO-O2-ul7" userLabel="Label - Transfer Number">
@@ -47,7 +47,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@17.darkGray"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@17.DarkFont"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1m-Ok-c6y" userLabel="Label - Recipient Name" customClass="OHAttributedLabel">
@@ -65,7 +65,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@17.lighterBlue"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@17.CoreFont"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                     </subviews>
@@ -106,7 +106,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.lighterBlue"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.CoreFont"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ds-Oe-207" userLabel="Label - From Amount">
@@ -115,7 +115,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.darkGray"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.DarkFont"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctn-3w-Ikq" userLabel="Label - To Amount">
@@ -124,7 +124,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.darkGray"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.DarkFont"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KaH-1y-EDd" userLabel="Label - Should Arrive">
@@ -133,7 +133,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.lighterBlue"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.CoreFont"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Is-L2-5Q3">
@@ -142,7 +142,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.lighterBlue"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.CoreFont"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                     </subviews>
@@ -199,7 +199,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@15.lighterBlue"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@15.CoreFont"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <view alpha="0.49999999999999961" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JWj-M3-8IP" userLabel="View - Separator">
@@ -216,7 +216,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@14.lighterBlue"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@14.CoreFont"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                     </subviews>

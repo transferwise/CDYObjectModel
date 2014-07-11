@@ -67,7 +67,7 @@
 		[attributedString setFont:[UIFont fontFromStyle:@"heavy.@17"]];
 		[attributedString setFont:[UIFont fontFromStyle:@"medium.@17"] range:toRange];
 	}
-    [attributedString setTextColor:[UIColor colorFromStyle:@"darkGray"]];
+    [attributedString setTextColor:[UIColor colorFromStyle:@"DarkFont"]];
 	
 	[self.recipientNameLabel setAttributedText:attributedString];
 }

@@ -33,7 +33,7 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.lighterBlue"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.CoreFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7NO-O2-ul7" userLabel="Label - Transfer Number">
@@ -42,7 +42,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@20.darkGray"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@20.DarkFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1m-Ok-c6y" userLabel="Label - Recipient Name" customClass="OHAttributedLabel">
@@ -60,7 +60,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.lighterBlue"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.CoreFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGr-ZR-JTK" userLabel="Label - Status Waiting">
@@ -69,7 +69,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.lighterBlue"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.CoreFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
@@ -107,7 +107,7 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@20.darkGray"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@20.DarkFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33e-1t-Ruy" userLabel="Label - Message1">
@@ -116,7 +116,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.lighterBlue"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.CoreFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kmp-qQ-wvp" userLabel="Label - Message2">
@@ -128,7 +128,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.lighterBlue"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.CoreFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fe-OX-nDn" userLabel="Label - Message3">
@@ -140,7 +140,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.lighterBlue"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.CoreFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
@@ -166,7 +166,7 @@
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="t5d-HJ-iOU"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0K-st-6YG" userLabel="Button - Contact Support" customClass="LightGrayButton">
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0K-st-6YG" userLabel="Button - Contact Support" customClass="SeparatorGreyButton">
                     <rect key="frame" x="60" y="530" width="904" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
@@ -180,7 +180,7 @@
                         <action selector="contactSupportPressed" destination="-1" eventType="touchUpInside" id="o6e-El-lq7"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECd-cI-GOp" userLabel="Button - No Transfer" customClass="LightGrayButton">
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECd-cI-GOp" userLabel="Button - No Transfer" customClass="SeparatorGreyButton">
                     <rect key="frame" x="60" y="590" width="904" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>

@@ -29,7 +29,6 @@
 #import "TransferMixpanel.h"
 #import "MOMStyle.h"
 #import "ConnectionAwareViewController.h"
-#import "UIFont+MOMStyle.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -88,28 +87,18 @@
 
     [NanTracking trackNanigansEvent:@"" type:@"install" name:@"main"];
 
-	if(IPAD)
-	{
-		[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorFromStyle:@"paleBlue2"], NSFontAttributeName : [UIFont fontFromStyle:@"medium.@19"]}];
-		[[UINavigationBar appearance] setBarTintColor:[UIColor colorFromStyle:@"white"]];
-		[[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-		[[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
-	}
-	else
-	{
-		MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"H2"];
-		[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [navFontStyle color], NSFontAttributeName : [navFontStyle font]}];
-		[[UINavigationBar appearance] setBarTintColor:[UIColor colorFromStyle:@"navBarBlue"]];
-		[[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
-		[[UINavigationBar appearance] setTitleVerticalPositionAdjustment:-2 forBarMetrics:UIBarMetricsDefault];
-	}
+    MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"light.@{18,19}.LightBlue"];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [navFontStyle color], NSFontAttributeName : [navFontStyle font]}];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorFromStyle:@"CoreFont"]];
+    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:-2 forBarMetrics:UIBarMetricsDefault];
 
     
 
     [[UIBarButtonItem appearance] setBackgroundImage:[[UIImage alloc] init] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 
-//    UIImage *backButton = [[UIImage imageNamed:@"NavBarBackButton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 5)];
-//    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    UIImage *backButton = [[UIImage imageNamed:@"NavBarBackButton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 5)];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 
     ObjectModel *model = [[ObjectModel alloc] init];
     [self setObjectModel:model];

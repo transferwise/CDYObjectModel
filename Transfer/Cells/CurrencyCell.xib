@@ -24,7 +24,7 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="H4.lightText"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.CoreFont"/>
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WWW" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tGJ-DK-FGG" userLabel="Label - WWW white">
@@ -34,7 +34,7 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="H4.white"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.white"/>
                         </userDefinedRuntimeAttributes>
                     </label>
                 </subviews>

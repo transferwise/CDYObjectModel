@@ -56,7 +56,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="link"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@{14,17}.TWElectricBlue"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="loginPressed:" destination="-1" eventType="touchUpInside" id="KMq-i8-xeW"/>
@@ -69,7 +69,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="largeText.navbarblue"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="book.@{20,27}.CoreFont"/>
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTr-o2-8Xr">
@@ -79,7 +79,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="sumText.lightBlue"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@{20,27}.DarkFont"/>
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="vs bank" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tkb-LF-80g">
@@ -89,7 +89,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="largeText.navbarblue"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="book.@{20,27}.CoreFont"/>
                     </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRX-dl-Alg">
@@ -99,7 +99,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="link"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@{14,17}.TWElectricBlue"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="howButtonTapped:" destination="-1" eventType="touchUpInside" id="M5D-Je-ddx"/>
@@ -125,7 +125,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="mediumText.navbarblue"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@19.CoreFont"/>
                     </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JFE-j8-Q2Z">
@@ -168,7 +168,7 @@
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
             <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="paleBlue"/>
+                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="LightBlue"/>
             </userDefinedRuntimeAttributes>
         </view>
     </objects>
