@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ColoredButton.h"
 
-@interface GreenButton : UIButton
-
-@property (nonatomic, assign) BOOL addShadow;
+@interface GreenButton : ColoredButton
 
 @end

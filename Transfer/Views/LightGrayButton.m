@@ -13,6 +13,7 @@
 
 -(void)commonSetup
 {
+	[super commonSetup];
 	[super configureWithTitleColor:@"navBarBlue"
 						 titleFont:@"medium.@17"
 							 color:@"blue"

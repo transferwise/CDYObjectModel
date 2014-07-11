@@ -10,7 +10,10 @@
 
 @interface ColoredButton : UIButton
 
+@property (nonatomic, assign) BOOL addShadow;
+
 - (void)commonSetup;
+- (void)configureWithCompoundStyle:(NSString *)compoundStyle;
 - (void)configureWithTitleColor:(NSString *)titleColor
 					 titleFont:(NSString *)titleFont
 						 color:(NSString *)color

@@ -21,6 +21,7 @@
 
 - (void)commonSetup
 {
+	[super commonSetup];
 	[super configureWithTitleColor:@"white" titleFont:IPAD ? @"medium.@14" : @"medium.@17" color:nil highlightColor:@"blue"];
 	
 	[self setBackgroundColor:[UIColor colorWithRed:1/255.0 green:1/255.0 blue:1/255.0 alpha:0.1]];
