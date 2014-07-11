@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-#import "SeparatorGreyButton.h"
+#import "LightGrayButton.h"
 #import "UIColor+MOMStyle.h"
 
-@implementation SeparatorGreyButton
+@implementation LightGrayButton
 
 -(void)commonSetup
 {
 	[super configureWithTitleColor:@"CoreFont"
 						 titleFont:@"medium.@17"
-							 color:@"blue"
+							 color:@"LightBlueHighlighted"
 					highlightColor:@"LightBlueHighlighted"];
 	
 	self.layer.borderWidth = 1.f;

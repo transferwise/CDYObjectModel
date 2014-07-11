@@ -74,7 +74,7 @@
     TabItem *paymentItem = [TabItem new];
     paymentItem.title = NSLocalizedString(@"payment.controller.tabbar.title", nil);
     paymentItem.icon = [UIImage imageNamed:@"NewPaymentTabIcon.png"];
-    paymentItem.deSelectedColor = [UIColor colorFromStyle:@"TWBlue"];
+    paymentItem.deSelectedColor = [UIColor colorFromStyle:@"TWBlueHighlighted"];
     paymentItem.deselectedAlpha = 1.0f;
     paymentItem.highlightedColor = [UIColor colorFromStyle:@"lightBlueHighlighted"];
     [paymentItem setActionBlock:^(TabItem* item){

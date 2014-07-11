@@ -24,7 +24,7 @@
 }
 
 + (UIColor *)disabledEntryTextColor {
-    return [UIColor DarkFontColor];
+    return [UIColor darkTextColor];
 }
 
 + (UIColor *)transferWiseBlue {

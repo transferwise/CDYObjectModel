@@ -32,7 +32,7 @@
 	[super awakeFromNib];
 
 	[self.messageLabel setText:NSLocalizedString(@"transactions.identification.notification.message", nil)];
-	[self.messageLabel setTextColor:[UIColor DarkFontColor]];
+	[self.messageLabel setTextColor:[UIColor darkTextColor]];
 
 	[self.bottomBackground setBackgroundColor:[UIColor controllerBackgroundColor]];
 

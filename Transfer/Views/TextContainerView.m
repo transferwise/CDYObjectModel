@@ -27,7 +27,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 
-    [self.textLabel setTextColor:[UIColor DarkFontColor]];
+    [self.textLabel setTextColor:[UIColor darkTextColor]];
 }
 
 

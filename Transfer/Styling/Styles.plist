@@ -36,132 +36,90 @@
 				<key>alpha</key>
 				<real>0.5</real>
 			</dict>
-			<key>blue</key>
-			<dict>
-				<key>color</key>
-				<string>f3f6f8</string>
-			</dict>
-			<key>cellSelected</key>
-			<dict>
-				<key>color</key>
-				<string>f5f7f9</string>
-			</dict>
-			<key>cellSeparator</key>
-			<dict>
-				<key>color</key>
-				<string>e3e7e8</string>
-			</dict>
-			<key>darkBlue</key>
-			<dict>
-				<key>color</key>
-				<string>363d4e</string>
-			</dict>
-			<key>darkBlueHighlighted</key>
-			<dict>
-				<key>color</key>
-				<string>354464</string>
-			</dict>
-			<key>darkText</key>
-			<dict>
-				<key>color</key>
-				<string>363d4e</string>
-			</dict>
-			<key>darkText2</key>
-			<dict>
-				<key>color</key>
-				<string>363d4e</string>
-			</dict>
-			<key>green</key>
-			<dict>
-				<key>color</key>
-				<string>85b319</string>
-			</dict>
-			<key>greenShadow</key>
-			<dict>
-				<key>color</key>
-				<string>64960d</string>
-			</dict>
-			<key>greenSelected</key>
-			<dict>
-				<key>color</key>
-				<string>88b71a</string>
-			</dict>
-			<key>darkGreen</key>
-			<dict>
-				<key>color</key>
-				<string>85b319</string>
-			</dict>
-			<key>darkGreenShadow</key>
-			<dict>
-				<key>color</key>
-				<string>64960d</string>
-			</dict>
-			<key>darkGreenSelected</key>
-			<dict>
-				<key>color</key>
-				<string>88b71a</string>
-			</dict>
-			<key>highlightBlue</key>
-			<dict>
-				<key>color</key>
-				<string>606b81</string>
-			</dict>
-			<key>darkGray</key>
-			<dict>
-				<key>color</key>
-				<string>363d4e</string>
-			</dict>
-			<key>lightBlueHighlighted</key>
-			<dict/>
 			<key>CoreFont</key>
 			<dict>
 				<key>color</key>
 				<string>84a2b0</string>
-			</dict>
-			<key>lightGray</key>
-			<dict>
-				<key>color</key>
-				<string>e3e7e8</string>
-			</dict>
-			<key>lighterGray</key>
-			<dict>
-				<key>color</key>
-				<string>e3e7e8</string>
-			</dict>
-			<key>navBarBlue</key>
-			<dict>
-				<key>color</key>
-				<string>537c9b</string>
-			</dict>
-			<key>paleBlue</key>
-			<dict>
-				<key>color</key>
-				<string>e0e9ee</string>
 			</dict>
 			<key>TWBlue</key>
 			<dict>
 				<key>color</key>
 				<string>232f49</string>
 			</dict>
-			<key>white</key>
+			<key>DarkFont</key>
 			<dict>
 				<key>color</key>
-				<string>ffffff</string>
+				<string>363d4e</string>
 			</dict>
-			<key>white2</key>
+			<key>LightBlue</key>
+			<dict>
+				<key>color</key>
+				<string>e0e9ee</string>
+			</dict>
+			<key>TWElectricblue</key>
+			<dict>
+				<key>color</key>
+				<string>29b2e0</string>
+			</dict>
+			<key>TWBlueHighlighted</key>
+			<dict>
+				<key>color</key>
+				<string>354464</string>
+			</dict>
+			<key>LightBlueHighlighted</key>
 			<dict>
 				<key>color</key>
 				<string>f5f7f9</string>
 			</dict>
-			<key>redGradientStart</key>
+			<key>SeparatorGrey</key>
+			<dict>
+				<key>color</key>
+				<string>e2e5e7</string>
+			</dict>
+			<key>GreenHighlighted</key>
+			<dict>
+				<key>color</key>
+				<string>88b71a</string>
+			</dict>
+			<key>Green</key>
+			<dict>
+				<key>color</key>
+				<string>85b319</string>
+			</dict>
+			<key>GreenShadow</key>
+			<dict>
+				<key>color</key>
+				<string>64960d</string>
+			</dict>
+			<key>RedShadow</key>
 			<dict>
 				<key>color</key>
 				<string>ae2e46</string>
 			</dict>
-			<key>redGradientEnd</key>
+			<key>Red</key>
 			<dict>
 				<key>color</key>
 				<string>df4a32</string>
+			</dict>
+			<key>RedHighlighted</key>
+			<dict>
+				<key>color</key>
+				<string>e9523a</string>
+			</dict>
+			<key>Yahoo</key>
+			<dict>
+				<key>color</key>
+				<string>df4a32</string>
+			</dict>
+			<key>YahooHighlighted</key>
+			<dict>
+				<key>color</key>
+				<string>7a42a6</string>
+			</dict>
+			<key>YahooShadow</key>
+			<dict>
+				<key>color</key>
+				<string>5e3081</string>
 			</dict>
 		</dict>
 		<key>font</key>
