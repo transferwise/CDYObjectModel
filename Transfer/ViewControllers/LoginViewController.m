@@ -60,7 +60,9 @@
 {
     [super viewDidLoad];
 	
-	[NavigationBarCustomiser setLogin];
+	[NavigationBarCustomiser setWhite];
+	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController
+																									   isBlue:YES]];
 	
 	self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 	
@@ -101,8 +103,6 @@
 	
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationItem setTitle:NSLocalizedString(@"login.controller.title", nil)];
-	
-	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 	
     [[GoogleAnalytics sharedInstance] sendScreen:@"Login"];
 }
