@@ -118,7 +118,7 @@ A revolution in your pocket.";
 "login.controller.header.message" = "Enter your login details";
 "login.controller.logging.in.message" = "Logging in...";
 "login.controller.title" = "Login";
-"login.email.field.title" = "Email";
+"login.email.field.title" = "Your email";
 "login.error.generic.message" = "Login failed. Please try again.";
 "login.error.title" = "Can't log in";
 "login.password.field.title" = "Password";

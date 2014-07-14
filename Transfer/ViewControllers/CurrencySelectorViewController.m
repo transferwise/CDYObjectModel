@@ -36,6 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
     UINib *cellNib = [UINib nibWithNibName:@"CurrencyCell" bundle:[NSBundle mainBundle]];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"CurrencyCell"];
     

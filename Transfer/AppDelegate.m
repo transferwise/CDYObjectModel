@@ -45,10 +45,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    
-    if (IOS_7) {
-        [[UIApplication sharedApplication] setStatusBarStyle:IPAD?UIStatusBarStyleDefault:UIStatusBarStyleLightContent];
-    }
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
