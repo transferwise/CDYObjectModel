@@ -211,7 +211,7 @@
                         <outlet property="detailsLabel" destination="NqY-J0-ze8" id="huL-Uc-Ecm"/>
                     </connections>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0K-st-6YG" userLabel="Button - Contact Support" customClass="LightGrayButton">
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0K-st-6YG" userLabel="Button - Contact Support" customClass="LightBlueButton">
                     <rect key="frame" x="60" y="663" width="904" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
