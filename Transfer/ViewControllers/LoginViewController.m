@@ -93,14 +93,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationItem setTitle:NSLocalizedString(@"login.controller.title", nil)];
 	
-	if (IPAD)
-	{
-		
-	}
-	else
-	{
-		[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
-	}
+	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 	
     [[GoogleAnalytics sharedInstance] sendScreen:@"Login"];
 }
