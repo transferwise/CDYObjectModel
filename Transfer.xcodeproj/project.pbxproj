@@ -127,6 +127,10 @@
 		47233CD7196D457300449042 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47233CD4196D457300449042 /* LoginViewController.m */; };
 		47233CD8196D457300449042 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47233CD5196D457300449042 /* LoginViewController.xib */; };
 		47233CD9196D457300449042 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47233CD5196D457300449042 /* LoginViewController.xib */; };
+		4723EA0D1973D8E900B4345F /* RedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA0C1973D8E900B4345F /* RedButton.m */; };
+		4723EA0E1973D8E900B4345F /* RedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA0C1973D8E900B4345F /* RedButton.m */; };
+		4723EA111973D9B500B4345F /* YahooButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA101973D9B500B4345F /* YahooButton.m */; };
+		4723EA121973D9B500B4345F /* YahooButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA101973D9B500B4345F /* YahooButton.m */; };
 		473DF972196D5ED600524C64 /* FloatingLabelTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 473DF971196D5ED600524C64 /* FloatingLabelTextField.m */; };
 		473DF973196D5ED600524C64 /* FloatingLabelTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 473DF971196D5ED600524C64 /* FloatingLabelTextField.m */; };
 		473DF975196D637200524C64 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473DF974196D637200524C64 /* LoginViewController~ipad.xib */; };
@@ -794,6 +798,10 @@
 		47233CD3196D457300449042 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		47233CD4196D457300449042 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		47233CD5196D457300449042 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		4723EA0B1973D8E900B4345F /* RedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedButton.h; sourceTree = "<group>"; };
+		4723EA0C1973D8E900B4345F /* RedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedButton.m; sourceTree = "<group>"; };
+		4723EA0F1973D9B500B4345F /* YahooButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YahooButton.h; sourceTree = "<group>"; };
+		4723EA101973D9B500B4345F /* YahooButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YahooButton.m; sourceTree = "<group>"; };
 		473DF970196D5ED600524C64 /* FloatingLabelTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingLabelTextField.h; sourceTree = "<group>"; };
 		473DF971196D5ED600524C64 /* FloatingLabelTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingLabelTextField.m; sourceTree = "<group>"; };
 		473DF974196D637200524C64 /* LoginViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~ipad.xib"; sourceTree = "<group>"; };
@@ -1471,6 +1479,8 @@
 				38B0931C1951FB6000315BE4 /* ProgressButton.m */,
 				474D1AA41951A500008BC7A7 /* RedGradientButton.h */,
 				474D1AA51951A500008BC7A7 /* RedGradientButton.m */,
+				4723EA0B1973D8E900B4345F /* RedButton.h */,
+				4723EA0C1973D8E900B4345F /* RedButton.m */,
 				EA01331C1765FC7700D63C82 /* RoundedCellBackgroundView.h */,
 				EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */,
 				BB704E7B177300C30042F8A9 /* RoundedCellWhiteBackgroundView.h */,
@@ -1522,6 +1532,8 @@
 				474D1A9E19518073008BC7A7 /* ColoredButton.m */,
 				473DF970196D5ED600524C64 /* FloatingLabelTextField.h */,
 				473DF971196D5ED600524C64 /* FloatingLabelTextField.m */,
+				4723EA0F1973D9B500B4345F /* YahooButton.h */,
+				4723EA101973D9B500B4345F /* YahooButton.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2727,6 +2739,7 @@
 				47FAF34F194B4E5D004CE986 /* TransferWaitingViewController.m in Sources */,
 				EA31A12817DDB29B00F937F7 /* ObjectModel.m in Sources */,
 				EA0450D517EC5BC1008921DA /* IntroViewController.m in Sources */,
+				4723EA121973D9B500B4345F /* YahooButton.m in Sources */,
 				EA31A12917DDB29B00F937F7 /* MainViewController.m in Sources */,
 				479B693F1949C36F001FA4FE /* TransferDetialsRecipientView.m in Sources */,
 				EA31A12A17DDB29B00F937F7 /* TransactionsViewController.m in Sources */,
@@ -2741,6 +2754,7 @@
 				EA31A13217DDB29B00F937F7 /* UIView+Loading.m in Sources */,
 				EA31A13317DDB29B00F937F7 /* TextEntryCell.m in Sources */,
 				EA31A13417DDB29B00F937F7 /* NSString+Validation.m in Sources */,
+				4723EA0E1973D8E900B4345F /* RedButton.m in Sources */,
 				EA31A13517DDB29B00F937F7 /* NSMutableString+Issues.m in Sources */,
 				EA31A13617DDB29B00F937F7 /* UIApplication+Keyboard.m in Sources */,
 				EA31A13717DDB29B00F937F7 /* TRWAlertView.m in Sources */,
@@ -2972,6 +2986,7 @@
 				EAD3968A171BD82300F6D011 /* NewPaymentViewController.m in Sources */,
 				EA13E032171BDF1A0019FBF0 /* TableHeaderView.m in Sources */,
 				EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */,
+				4723EA111973D9B500B4345F /* YahooButton.m in Sources */,
 				EA13E044171BEB010019FBF0 /* UIColor+Theme.m in Sources */,
 				380021DB192CC89B009B1D53 /* UIColor+MOMStyle.m in Sources */,
 				EA13E049171BEDC40019FBF0 /* UIView+Loading.m in Sources */,
@@ -2986,6 +3001,7 @@
 				EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */,
 				380021F7192F43EA009B1D53 /* TabCell.m in Sources */,
 				EAD7D4C2171D43440099063F /* NSDictionary+SensibleData.m in Sources */,
+				4723EA0D1973D8E900B4345F /* RedButton.m in Sources */,
 				479B693A19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */,
 				EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */,
 				EAD7D4D1171D4BB20099063F /* GreenButton.m in Sources */,

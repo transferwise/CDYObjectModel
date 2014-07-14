@@ -23,6 +23,8 @@
 #import "ResetPasswordViewController.h"
 #import "UIFont+MOMStyle.h"
 #import "NSString+DeviceSpecificLocalisation.h"
+#import "RedButton.h"
+#import "YahooButton.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -30,8 +32,8 @@
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *passwordTextField;
 @property (strong, nonatomic) IBOutlet GreenButton *loginButton;
 @property (strong, nonatomic) IBOutlet UILabel *forgotPasswordLabel;
-@property (strong, nonatomic) IBOutlet GreenButton *googleLoginButton;
-@property (strong, nonatomic) IBOutlet GreenButton *yahooLoginButton;
+@property (strong, nonatomic) IBOutlet RedButton *googleLoginButton;
+@property (strong, nonatomic) IBOutlet YahooButton *yahooLoginButton;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (strong, nonatomic) IBOutlet UILabel *orLabel;
 

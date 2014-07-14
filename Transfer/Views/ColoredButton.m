@@ -19,8 +19,8 @@
 
 @implementation ColoredButton
 
-static __weak UIImage* normalStateImage;
-static __weak UIImage* selectedStateImage;
+UIImage* normalStateImage;
+UIImage* selectedStateImage;
 
 #pragma mark - Init
 - (id)initWithFrame:(CGRect)frame
@@ -71,7 +71,7 @@ static __weak UIImage* selectedStateImage;
 }
 
 #pragma mark - Properties
--(void)setHighlighted:(BOOL)highlighted
+- (void)setHighlighted:(BOOL)highlighted
 {
 	[super setHighlighted:highlighted];
     if(self.addShadow)
@@ -95,23 +95,23 @@ static __weak UIImage* selectedStateImage;
 	[self setBackgroundImage:[self selectedStateImage] forState:UIControlStateHighlighted];
 }
 
-- (UIImage*)normalStateImage
+- (UIImage *)normalStateImage
 {
-    return [ColoredButton getBackgroundImage:NO
-									 bgStyle:[self getColorFromStyle:self.compoundStyleContainer.bgStyle]
-						  highlightedBgStyle:[self getColorFromStyle:self.compoundStyleContainer.highlightedBgStyle]
-								  shdowStyle:self.shadowColor];
+    return [self getBackgroundImage:NO
+							bgStyle:[self getColorFromStyle:self.compoundStyleContainer.bgStyle]
+				 highlightedBgStyle:[self getColorFromStyle:self.compoundStyleContainer.highlightedBgStyle]
+						 shdowStyle:self.shadowColor];
 }
 
-- (UIImage*)selectedStateImage
+- (UIImage *)selectedStateImage
 {
-    return [ColoredButton getBackgroundImage:YES
-									 bgStyle:[self getColorFromStyle:self.compoundStyleContainer.bgStyle]
-						  highlightedBgStyle:[self getColorFromStyle:self.compoundStyleContainer.highlightedBgStyle]
-								  shdowStyle:self.shadowColor];
+    return [self getBackgroundImage:YES
+							bgStyle:[self getColorFromStyle:self.compoundStyleContainer.bgStyle]
+				 highlightedBgStyle:[self getColorFromStyle:self.compoundStyleContainer.highlightedBgStyle]
+						 shdowStyle:self.shadowColor];
 }
 
-+ (UIImage *)getBackgroundImage:(BOOL)selected
+- (UIImage *)getBackgroundImage:(BOOL)selected
 						bgStyle:(UIColor *)bgStyle
 			 highlightedBgStyle:(UIColor *)highlightedBgStyle
 					 shdowStyle:(NSString *)shadowStyle
