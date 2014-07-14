@@ -90,6 +90,9 @@
 	}
 	
 	[self.orLabel setText:NSLocalizedString([@"login.controller.or" deviceSpecificLocalization], nil)];
+	
+	UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+	[self.view addGestureRecognizer:recognizer];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -251,6 +254,11 @@
     ResetPasswordViewController *controller = [[ResetPasswordViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)dismissKeyboard
+{
+    [UIApplication dismissKeyboard];
 }
 
 @end
