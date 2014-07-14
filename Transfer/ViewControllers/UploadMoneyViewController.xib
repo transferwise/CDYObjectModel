@@ -18,30 +18,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d86-2N-68O">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="114"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hbg-QF-0LT">
-                            <rect key="frame" x="0.0" y="64" width="320" height="50"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGrey"/>
-                            </userDefinedRuntimeAttributes>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lqF-lS-i3s">
-                            <rect key="frame" x="0.0" y="113" width="320" height="1"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="1" id="I3E-Gc-wfQ"/>
-                            </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="corefont"/>
-                            </userDefinedRuntimeAttributes>
-                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3b-qz-iWf" customClass="HeaderTabView">
-                            <rect key="frame" x="0.0" y="64" width="320" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <constraints>
@@ -49,23 +30,22 @@
                             </constraints>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="rjy-zF-Gcn"/>
-                                <outlet property="separatorLine" destination="lqF-lS-i3s" id="oer-EO-YHK"/>
                             </connections>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="lqF-lS-i3s" secondAttribute="trailing" id="9HR-a6-igO"/>
-                        <constraint firstItem="lqF-lS-i3s" firstAttribute="leading" secondItem="d86-2N-68O" secondAttribute="leading" id="I6P-QN-7XL"/>
                         <constraint firstAttribute="bottom" secondItem="g3b-qz-iWf" secondAttribute="bottom" id="SR6-J2-Wev"/>
-                        <constraint firstAttribute="height" constant="114" id="aTh-rv-4fz"/>
+                        <constraint firstAttribute="height" constant="50" id="aTh-rv-4fz"/>
                         <constraint firstAttribute="trailing" secondItem="g3b-qz-iWf" secondAttribute="trailing" id="c4h-09-lkx"/>
-                        <constraint firstAttribute="bottom" secondItem="lqF-lS-i3s" secondAttribute="bottom" id="hgr-s7-qJf"/>
                         <constraint firstItem="g3b-qz-iWf" firstAttribute="leading" secondItem="d86-2N-68O" secondAttribute="leading" id="xkt-Iu-FNB"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlue"/>
+                    </userDefinedRuntimeAttributes>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hE2-TZ-AdX">
-                    <rect key="frame" x="0.0" y="114" width="320" height="454"/>
+                    <rect key="frame" x="0.0" y="50" width="320" height="518"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="454" translatesAutoresizingMaskIntoConstraints="NO" id="mlD-gY-NzT" customClass="IntrinsicSizeUIView">
@@ -74,6 +54,7 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                     <constraints>
                         <constraint firstItem="mlD-gY-NzT" firstAttribute="leading" secondItem="hE2-TZ-AdX" secondAttribute="leading" id="0d2-fE-1t3"/>
                         <constraint firstAttribute="trailing" secondItem="mlD-gY-NzT" secondAttribute="trailing" id="can-RP-WpN"/>
@@ -81,16 +62,16 @@
                         <constraint firstItem="mlD-gY-NzT" firstAttribute="top" secondItem="hE2-TZ-AdX" secondAttribute="top" constant="20" id="mnr-dW-sKj"/>
                     </constraints>
                 </scrollView>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J6G-cJ-NU1" customClass="GradientView">
-                    <rect key="frame" x="0.0" y="114" width="320" height="20"/>
+                <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J6G-cJ-NU1" customClass="GradientView">
+                    <rect key="frame" x="0.0" y="50" width="320" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="orientation" value="1"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fromColorStyle" value="red"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fromColorStyle" value="white"/>
                         <userDefinedRuntimeAttribute type="color" keyPath="toColor">
-                            <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="value" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>

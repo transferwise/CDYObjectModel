@@ -31,6 +31,12 @@
 
 -(void)awakeFromNib
 {
+    if(!self.separatorLine)
+    {
+        UIView *separator = [[UIView alloc]initWithFrame:self.bounds];
+        self.separatorLine = separator;
+        [self addSubview:separator];
+    }
     self.separatorLine.bgStyle = @"corefont";
 }
 
@@ -40,7 +46,7 @@
     [super layoutSubviews];
     CGRect newFrame = self.separatorLine.frame;
     newFrame.size.height = 1.0f/[[UIScreen mainScreen] scale];
-    newFrame.origin.y += (1.0f - newFrame.size.height);
+    newFrame.origin.y = self.bounds.size.height - newFrame.size.height;
     self.separatorLine.frame = newFrame;
 }
 
@@ -69,7 +75,7 @@
     CGRect frame = CGRectMake(groupedCellWidth / titles.count * index + 10.0 + gap/2 , 0, (groupedCellWidth / titles.count) - gap, CGRectGetHeight(self.frame));
     [button setFrame:frame];
     
-    [self addSubview:button];
+    [self insertSubview:button aboveSubview:self.separatorLine];
     [self.presentedButtons addObject:button];
     index ++;
 
@@ -110,3 +116,4 @@
 }
 
 @end
+

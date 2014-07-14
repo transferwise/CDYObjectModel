@@ -92,12 +92,12 @@
     }];
 
     BankTransferViewController *bankController = [[BankTransferViewController alloc] init];
-    [self setBankViewController:bankController];
     [self attachChildController:bankController];
     [bankController setPayment:self.payment];
     [bankController setObjectModel:self.objectModel];
     [bankController setHideBottomButton:self.hideBottomButton];
     [bankController setShowContactSupportCell:self.showContactSupportCell];
+    [self setBankViewController:bankController];
     
     [self headerTabView:nil tabTappedAtIndex:0];
 
@@ -108,11 +108,13 @@
 - (void)headerTabView:(HeaderTabView *)tabView tabTappedAtIndex:(NSUInteger)index {
     if (index == 1) {
         [[GoogleAnalytics sharedInstance] sendScreen:@"Bank transfer payment"];
-        [self.containerView bringSubviewToFront:self.bankViewController.view];
+        [self.containerView addSubview:self.bankViewController.view];
+        [self.cardViewController.view removeFromSuperview];
     } else {
 		[[GoogleAnalytics sharedInstance] sendScreen:@"Debit card payment"];
         [self.cardViewController loadCardView];
-        [self.containerView bringSubviewToFront:self.cardViewController.view];
+        [self.containerView addSubview:self.cardViewController.view];
+        [self.bankViewController.view removeFromSuperview];
     }
 }
 
