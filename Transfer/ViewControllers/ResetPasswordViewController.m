@@ -48,6 +48,7 @@
 	
 	[self.emailTextField configureWithTitle:NSLocalizedString(@"reset.password.controller.email.cell.label", nil) value:@""];
     [self.emailTextField setKeyboardType:UIKeyboardTypeEmailAddress];
+	[self.emailTextField setReturnKeyType:UIReturnKeyDone];
 	self.emailTextField.delegate = self;
 
 	[self.continueButton setTitle:NSLocalizedString(@"reset.controller.footer.button.title", nil) forState:UIControlStateNormal];
@@ -83,7 +84,7 @@
 #pragma mark - TextField delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [self resetPasswordPressed];
+	[textField resignFirstResponder];
 	
     return YES;
 }
