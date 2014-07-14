@@ -131,6 +131,10 @@
 		4723EA0E1973D8E900B4345F /* RedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA0C1973D8E900B4345F /* RedButton.m */; };
 		4723EA111973D9B500B4345F /* YahooButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA101973D9B500B4345F /* YahooButton.m */; };
 		4723EA121973D9B500B4345F /* YahooButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA101973D9B500B4345F /* YahooButton.m */; };
+		4723EA151973F32400B4345F /* ImageColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA141973F32400B4345F /* ImageColoredButton.m */; };
+		4723EA161973F32400B4345F /* ImageColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA141973F32400B4345F /* ImageColoredButton.m */; };
+		4723EA191973F3CA00B4345F /* GoogleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA181973F3CA00B4345F /* GoogleButton.m */; };
+		4723EA1A1973F3CA00B4345F /* GoogleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA181973F3CA00B4345F /* GoogleButton.m */; };
 		473DF972196D5ED600524C64 /* FloatingLabelTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 473DF971196D5ED600524C64 /* FloatingLabelTextField.m */; };
 		473DF973196D5ED600524C64 /* FloatingLabelTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 473DF971196D5ED600524C64 /* FloatingLabelTextField.m */; };
 		473DF975196D637200524C64 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473DF974196D637200524C64 /* LoginViewController~ipad.xib */; };
@@ -802,6 +806,10 @@
 		4723EA0C1973D8E900B4345F /* RedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedButton.m; sourceTree = "<group>"; };
 		4723EA0F1973D9B500B4345F /* YahooButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YahooButton.h; sourceTree = "<group>"; };
 		4723EA101973D9B500B4345F /* YahooButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YahooButton.m; sourceTree = "<group>"; };
+		4723EA131973F32400B4345F /* ImageColoredButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageColoredButton.h; sourceTree = "<group>"; };
+		4723EA141973F32400B4345F /* ImageColoredButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageColoredButton.m; sourceTree = "<group>"; };
+		4723EA171973F3CA00B4345F /* GoogleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleButton.h; sourceTree = "<group>"; };
+		4723EA181973F3CA00B4345F /* GoogleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleButton.m; sourceTree = "<group>"; };
 		473DF970196D5ED600524C64 /* FloatingLabelTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingLabelTextField.h; sourceTree = "<group>"; };
 		473DF971196D5ED600524C64 /* FloatingLabelTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingLabelTextField.m; sourceTree = "<group>"; };
 		473DF974196D637200524C64 /* LoginViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~ipad.xib"; sourceTree = "<group>"; };
@@ -1530,10 +1538,14 @@
 				47FAF356194F0A46004CE986 /* IntrinsicSizeUIView.m */,
 				474D1A9D19518073008BC7A7 /* ColoredButton.h */,
 				474D1A9E19518073008BC7A7 /* ColoredButton.m */,
+				4723EA131973F32400B4345F /* ImageColoredButton.h */,
+				4723EA141973F32400B4345F /* ImageColoredButton.m */,
 				473DF970196D5ED600524C64 /* FloatingLabelTextField.h */,
 				473DF971196D5ED600524C64 /* FloatingLabelTextField.m */,
 				4723EA0F1973D9B500B4345F /* YahooButton.h */,
 				4723EA101973D9B500B4345F /* YahooButton.m */,
+				4723EA171973F3CA00B4345F /* GoogleButton.h */,
+				4723EA181973F3CA00B4345F /* GoogleButton.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2864,6 +2876,7 @@
 				38B1C5D7195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */,
 				EA31A18317DDB29B00F937F7 /* PersonalProfileSource.m in Sources */,
 				EA31A18417DDB29B00F937F7 /* BusinessProfileSource.m in Sources */,
+				4723EA161973F32400B4345F /* ImageColoredButton.m in Sources */,
 				EA31A18517DDB29B00F937F7 /* BusinessProfileCommitter.m in Sources */,
 				EA31A18617DDB29B00F937F7 /* PaymentProfileViewController.m in Sources */,
 				47FAF345194B2F11004CE986 /* LightBlueButton.m in Sources */,
@@ -2880,6 +2893,7 @@
 				EA31A18F17DDB29B00F937F7 /* ObjectModel+Payments.m in Sources */,
 				38B0930A1951FA2A00315BE4 /* DataEntryDefaultHeader.m in Sources */,
 				38B0931E1951FB6000315BE4 /* ProgressButton.m in Sources */,
+				4723EA1A1973F3CA00B4345F /* GoogleButton.m in Sources */,
 				380021E4192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */,
 				EA31A19017DDB29B00F937F7 /* TabBarActivityIndicatorView.m in Sources */,
 				EA31A19117DDB29B00F937F7 /* _Currency.m in Sources */,
@@ -3111,6 +3125,7 @@
 				EA92D9541769BD9D0078D0C4 /* BusinessProfileCommitter.m in Sources */,
 				EA92D97F176AF1200078D0C4 /* PaymentProfileViewController.m in Sources */,
 				EA92D983176AF1DF0078D0C4 /* ProfileSelectionView.m in Sources */,
+				4723EA151973F32400B4345F /* ImageColoredButton.m in Sources */,
 				EA7F8816176F2B44003B0F46 /* RemoveTokenOperation.m in Sources */,
 				473DF972196D5ED600524C64 /* FloatingLabelTextField.m in Sources */,
 				BB9A2E83176B711400C5E058 /* UITableView+FooterPositioning.m in Sources */,
@@ -3127,6 +3142,7 @@
 				EA225C7C178EA346009D6B83 /* Currency.m in Sources */,
 				EA225C7F178EA3C2009D6B83 /* _Recipient.m in Sources */,
 				38B093171951FA8300315BE4 /* NameSuggestionCellProvider.m in Sources */,
+				4723EA191973F3CA00B4345F /* GoogleButton.m in Sources */,
 				EA225C82178EA3C8009D6B83 /* Recipient.m in Sources */,
 				EA225C85178EB21C009D6B83 /* NSDictionary+Cleanup.m in Sources */,
 				EA225C88178EB241009D6B83 /* ObjectModel+Currencies.m in Sources */,

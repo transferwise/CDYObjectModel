@@ -13,7 +13,8 @@
 - (void)commonSetup
 {
 	[super configureWithCompoundStyle:@"YahooButton"
-						   shadowColor:@"YahooShadow"];
+						  shadowColor:@"YahooShadow"
+							imageName:@"Yahoo"];
 	[super commonSetup];
 }
 
