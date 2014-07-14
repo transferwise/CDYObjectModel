@@ -135,6 +135,8 @@
 		4723EA161973F32400B4345F /* ImageColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA141973F32400B4345F /* ImageColoredButton.m */; };
 		4723EA191973F3CA00B4345F /* GoogleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA181973F3CA00B4345F /* GoogleButton.m */; };
 		4723EA1A1973F3CA00B4345F /* GoogleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA181973F3CA00B4345F /* GoogleButton.m */; };
+		4723EA1D1974095B00B4345F /* NavigationBarCustomiser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA1C1974095B00B4345F /* NavigationBarCustomiser.m */; };
+		4723EA1E1974095B00B4345F /* NavigationBarCustomiser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA1C1974095B00B4345F /* NavigationBarCustomiser.m */; };
 		473DF972196D5ED600524C64 /* FloatingLabelTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 473DF971196D5ED600524C64 /* FloatingLabelTextField.m */; };
 		473DF973196D5ED600524C64 /* FloatingLabelTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 473DF971196D5ED600524C64 /* FloatingLabelTextField.m */; };
 		473DF975196D637200524C64 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473DF974196D637200524C64 /* LoginViewController~ipad.xib */; };
@@ -810,6 +812,8 @@
 		4723EA141973F32400B4345F /* ImageColoredButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageColoredButton.m; sourceTree = "<group>"; };
 		4723EA171973F3CA00B4345F /* GoogleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleButton.h; sourceTree = "<group>"; };
 		4723EA181973F3CA00B4345F /* GoogleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleButton.m; sourceTree = "<group>"; };
+		4723EA1B1974095B00B4345F /* NavigationBarCustomiser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationBarCustomiser.h; sourceTree = "<group>"; };
+		4723EA1C1974095B00B4345F /* NavigationBarCustomiser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationBarCustomiser.m; sourceTree = "<group>"; };
 		473DF970196D5ED600524C64 /* FloatingLabelTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingLabelTextField.h; sourceTree = "<group>"; };
 		473DF971196D5ED600524C64 /* FloatingLabelTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingLabelTextField.m; sourceTree = "<group>"; };
 		473DF974196D637200524C64 /* LoginViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~ipad.xib"; sourceTree = "<group>"; };
@@ -2120,6 +2124,8 @@
 				EACF763E175C71B4008F2A03 /* RecipientProfileCommitter.h */,
 				EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */,
 				EA59296E17589F3A007C0072 /* RecipientProfileValidation.h */,
+				4723EA1B1974095B00B4345F /* NavigationBarCustomiser.h */,
+				4723EA1C1974095B00B4345F /* NavigationBarCustomiser.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2957,6 +2963,7 @@
 				EA677B46189B855200505139 /* StartPaymentButton.m in Sources */,
 				EA31A1BB17DDB29B00F937F7 /* SupportCoordinator.m in Sources */,
 				38342BAC196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */,
+				4723EA1E1974095B00B4345F /* NavigationBarCustomiser.m in Sources */,
 				EA31A1BC17DDB29B00F937F7 /* UIDevice-Hardware.m in Sources */,
 				EA31A1BD17DDB29B00F937F7 /* FeedbackCoordinator.m in Sources */,
 				EABD864618E2B65D004A5A57 /* TransferMixpanel.m in Sources */,
@@ -3206,6 +3213,7 @@
 				EA677B45189B855200505139 /* StartPaymentButton.m in Sources */,
 				EA0253B617D5C89500F54C18 /* SupportCoordinator.m in Sources */,
 				EA0253BE17D5E49100F54C18 /* UIDevice-Hardware.m in Sources */,
+				4723EA1D1974095B00B4345F /* NavigationBarCustomiser.m in Sources */,
 				EA8FC93E17D864F100E13969 /* FeedbackCoordinator.m in Sources */,
 				EABD864518E2B65D004A5A57 /* TransferMixpanel.m in Sources */,
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,

@@ -25,6 +25,8 @@
 #import "NSString+DeviceSpecificLocalisation.h"
 #import "GoogleButton.h"
 #import "YahooButton.h"
+#import "UIColor+MOMStyle.h"
+#import "NavigationBarCustomiser.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -56,11 +58,7 @@
 {
     [super viewDidLoad];
 	
-	//these must be white as an exception
-//	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorFromStyle:@"TWElectricblue"], NSFontAttributeName : [UIFont fontFromStyle:@"medium.@19"]}];
-//	[[UINavigationBar appearance] setBarTintColor:[UIColor colorFromStyle:@"white"]];
-//	[[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-//	[[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+	[NavigationBarCustomiser setLogin];
 	
 	self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 	
@@ -102,6 +100,11 @@
 	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 	
     [[GoogleAnalytics sharedInstance] sendScreen:@"Login"];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+	[NavigationBarCustomiser setDefault];
 }
 
 - (void)didReceiveMemoryWarning
