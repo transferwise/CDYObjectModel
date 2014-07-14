@@ -9,21 +9,22 @@
 #import "ResetPasswordViewController.h"
 #import "TransferBackButtonItem.h"
 #import "UIColor+Theme.h"
-#import "TextEntryCell.h"
 #import "UIView+Loading.h"
-#import "ObjectModel.h"
-#import "UITableView+FooterPositioning.h"
 #import "NSString+Validation.h"
 #import "TRWProgressHUD.h"
 #import "ResetPasswordOperation.h"
 #import "TRWAlertView.h"
 #import "NSError+TRWErrors.h"
+#import "FloatingLabelTextField.h"
+#import "GreenButton.h"
+#import "NavigationBarCustomiser.h"
 
 @interface ResetPasswordViewController ()
 
-@property (nonatomic, strong) TextEntryCell *emailCell;
-@property (nonatomic, strong) IBOutlet UIView *footerView;
-@property (nonatomic, strong) IBOutlet UIButton *continueButton;
+@property (strong, nonatomic) IBOutlet FloatingLabelTextField *emailTextField;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *separatorViewHeight;
+@property (strong, nonatomic) IBOutlet GreenButton *continueButton;
+@property (strong, nonatomic) IBOutlet UILabel *messageLabel;
 
 @end
 
@@ -37,45 +38,34 @@
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+	
+	[NavigationBarCustomiser setWhite];
+	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController
+																									   isBlue:YES]];
+	
+	[self.emailTextField configureWithTitle:NSLocalizedString(@"reset.password.controller.email.cell.label", nil) value:@""];
+    [self.emailTextField setKeyboardType:UIKeyboardTypeEmailAddress];
+	self.emailTextField.delegate = self;
 
-    [self.tableView setBackgroundView:nil];
-    [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
+	[self.continueButton setTitle:NSLocalizedString(@"reset.controller.footer.button.title", nil) forState:UIControlStateNormal];
+	
+	[self.messageLabel setText:NSLocalizedString(@"reset.password.header.description", nil)];
+}
 
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationItem setTitle:NSLocalizedString(@"reset.password.controller.title", nil)];
-    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
+}
 
-    [self.tableView registerNib:[TextEntryCell viewNib] forCellReuseIdentifier:TWTextEntryCellIdentifier];
-
-    TextEntryCell *emailCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
-    [self setEmailCell:emailCell];
-    [emailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
-    [emailCell configureWithTitle:NSLocalizedString(@"reset.password.controller.email.cell.label", nil) value:@""];
-
-    [self setPresentedSectionCells:@[@[emailCell]]];
-
-    //TODO jaanus: copy/paste
-    CGRect headerFrame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame) - 40, 100);
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:headerFrame];
-    [headerLabel setNumberOfLines:0];
-    [headerLabel setFont:[UIFont systemFontOfSize:14]];
-    [headerLabel setTextColor:[UIColor mainTextColor]];
-    [headerLabel setBackgroundColor:[UIColor clearColor]];
-    [headerLabel setText:NSLocalizedString(@"reset.password.header.description", nil)];
-    CGFloat fitHeight = [headerLabel sizeThatFits:CGSizeMake(CGRectGetWidth(headerFrame), CGFLOAT_MAX)].height;
-    headerFrame.size.height = fitHeight;
-    headerFrame.origin.x = 20;
-    headerFrame.origin.y = 100;
-    [headerLabel setFrame:headerFrame];
-    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(headerFrame) + 100 + 20)];
-    [header setBackgroundColor:[UIColor clearColor]];
-    [header addSubview:headerLabel];
-    [self.tableView setTableHeaderView:header];
-
-    [self.tableView setTableFooterView:self.footerView];
-
-    [self.continueButton setTitle:NSLocalizedString(@"reset.controller.footer.button.title", nil) forState:UIControlStateNormal];
+- (void)viewDidDisappear:(BOOL)animated
+{
+	[NavigationBarCustomiser setDefault];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,16 +73,32 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)updateViewConstraints
+{
+	self.separatorViewHeight.constant = 1.0f / [[UIScreen mainScreen] scale];
+	
+	[super updateViewConstraints];
 }
 
-- (IBAction)resetPasswordPressed {
-    NSString *email = [self.emailCell value];
-    if (![email hasValue]) {
+#pragma mark - TextField delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self resetPasswordPressed];
+	
+    return YES;
+}
+
+#pragma mark - Reset Password
+- (IBAction)resetPasswordPressed
+{
+    NSString *email = self.emailTextField.text;
+    if (![email hasValue])
+	{
         [self showError:NSLocalizedString(@"reset.password.email.not.entered", nil)];
         return;
-    } else if (![email isValidEmail]) {
+    }
+	else if (![email isValidEmail])
+	{
         [self showError:NSLocalizedString(@"reset.password.invaild.email.error", nil)];
         return;
     }

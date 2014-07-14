@@ -64,8 +64,6 @@
 	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController
 																									   isBlue:YES]];
 	
-	self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-	
 	[self.emailTextField configureWithTitle:NSLocalizedString(@"login.email.field.title", nil) value:@""];
 	self.emailTextField.delegate = self;
 	[self.emailTextField setReturnKeyType:UIReturnKeyNext];

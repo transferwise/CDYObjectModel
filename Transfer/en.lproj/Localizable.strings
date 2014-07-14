@@ -486,9 +486,12 @@ people who built Skype and PayPal.";
 "login.controller.or" = "Or log in with";
 "login.controller.or.ipad" = "Or";
 
-"reset.password.controller.title" = "Request password reset";
+"reset.password.controller.title" = "Reset password";
 "reset.password.controller.email.cell.label" = "Your email";
-"reset.password.header.description" = "Enter the email address you registered with. We'll send you an email in order to let you choose a new password.";
+"reset.password.header.description" = "Enter the email address you
+registered with. We'll send you
+an email in order to let you
+choose a new password.";
 "reset.controller.footer.button.title" = "Reset password";
 "reset.password.email.not.entered" = "Email not entered.";
 "reset.password.invaild.email.error" = "Please provide a valid email.";

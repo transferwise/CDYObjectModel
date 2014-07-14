@@ -11,6 +11,6 @@
 
 @class ObjectModel;
 
-@interface LoginViewController : DismissKeyboardViewController
+@interface LoginViewController : DismissKeyboardViewController<UITextFieldDelegate>
 
 @end
