@@ -103,8 +103,8 @@
 		38BD98A5195C5973009F9B4A /* NameSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */; };
 		38BD98A6195C5973009F9B4A /* NameSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */; };
 		38C632F2194EEBBC008C9E46 /* WhyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */; };
-		38C7B28F19740F07004324E8 /* HeaderTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C7B28E19740F07004324E8 /* HeaderTabView.m */; };
-		38C7B29019740F07004324E8 /* HeaderTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C7B28E19740F07004324E8 /* HeaderTabView.m */; };
+		38C7B29319742596004324E8 /* HeaderTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C7B29219742596004324E8 /* HeaderTabView.m */; };
+		38C7B29419742596004324E8 /* HeaderTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C7B29219742596004324E8 /* HeaderTabView.m */; };
 		38C8A79D19371DBC00714FB3 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */; };
 		38C8A79E19371DBC00714FB3 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */; };
 		38CACA61196EE21600BFCF82 /* NameSuggestionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CACA60196EE21600BFCF82 /* NameSuggestionCell~ipad.xib */; };
@@ -129,6 +129,16 @@
 		47233CD7196D457300449042 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47233CD4196D457300449042 /* LoginViewController.m */; };
 		47233CD8196D457300449042 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47233CD5196D457300449042 /* LoginViewController.xib */; };
 		47233CD9196D457300449042 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47233CD5196D457300449042 /* LoginViewController.xib */; };
+		4723EA0D1973D8E900B4345F /* RedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA0C1973D8E900B4345F /* RedButton.m */; };
+		4723EA0E1973D8E900B4345F /* RedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA0C1973D8E900B4345F /* RedButton.m */; };
+		4723EA111973D9B500B4345F /* YahooButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA101973D9B500B4345F /* YahooButton.m */; };
+		4723EA121973D9B500B4345F /* YahooButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA101973D9B500B4345F /* YahooButton.m */; };
+		4723EA151973F32400B4345F /* ImageColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA141973F32400B4345F /* ImageColoredButton.m */; };
+		4723EA161973F32400B4345F /* ImageColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA141973F32400B4345F /* ImageColoredButton.m */; };
+		4723EA191973F3CA00B4345F /* GoogleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA181973F3CA00B4345F /* GoogleButton.m */; };
+		4723EA1A1973F3CA00B4345F /* GoogleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA181973F3CA00B4345F /* GoogleButton.m */; };
+		4723EA1D1974095B00B4345F /* NavigationBarCustomiser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA1C1974095B00B4345F /* NavigationBarCustomiser.m */; };
+		4723EA1E1974095B00B4345F /* NavigationBarCustomiser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA1C1974095B00B4345F /* NavigationBarCustomiser.m */; };
 		473DF972196D5ED600524C64 /* FloatingLabelTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 473DF971196D5ED600524C64 /* FloatingLabelTextField.m */; };
 		473DF973196D5ED600524C64 /* FloatingLabelTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 473DF971196D5ED600524C64 /* FloatingLabelTextField.m */; };
 		473DF975196D637200524C64 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473DF974196D637200524C64 /* LoginViewController~ipad.xib */; };
@@ -781,8 +791,8 @@
 		38BD98A0195C5973009F9B4A /* NameSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSuggestionCell.h; sourceTree = "<group>"; };
 		38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameSuggestionCell.m; sourceTree = "<group>"; };
 		38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NameSuggestionCell.xib; sourceTree = "<group>"; };
-		38C7B28D19740F07004324E8 /* HeaderTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderTabView.h; sourceTree = "<group>"; };
-		38C7B28E19740F07004324E8 /* HeaderTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderTabView.m; sourceTree = "<group>"; };
+		38C7B29119742596004324E8 /* HeaderTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderTabView.h; sourceTree = "<group>"; };
+		38C7B29219742596004324E8 /* HeaderTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderTabView.m; sourceTree = "<group>"; };
 		38C8A79B19371DBC00714FB3 /* PullToRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshView.h; sourceTree = "<group>"; };
 		38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullToRefreshView.m; sourceTree = "<group>"; };
 		38CACA60196EE21600BFCF82 /* NameSuggestionCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NameSuggestionCell~ipad.xib"; sourceTree = "<group>"; };
@@ -798,6 +808,16 @@
 		47233CD3196D457300449042 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		47233CD4196D457300449042 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		47233CD5196D457300449042 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		4723EA0B1973D8E900B4345F /* RedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedButton.h; sourceTree = "<group>"; };
+		4723EA0C1973D8E900B4345F /* RedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedButton.m; sourceTree = "<group>"; };
+		4723EA0F1973D9B500B4345F /* YahooButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YahooButton.h; sourceTree = "<group>"; };
+		4723EA101973D9B500B4345F /* YahooButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YahooButton.m; sourceTree = "<group>"; };
+		4723EA131973F32400B4345F /* ImageColoredButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageColoredButton.h; sourceTree = "<group>"; };
+		4723EA141973F32400B4345F /* ImageColoredButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageColoredButton.m; sourceTree = "<group>"; };
+		4723EA171973F3CA00B4345F /* GoogleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleButton.h; sourceTree = "<group>"; };
+		4723EA181973F3CA00B4345F /* GoogleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleButton.m; sourceTree = "<group>"; };
+		4723EA1B1974095B00B4345F /* NavigationBarCustomiser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationBarCustomiser.h; sourceTree = "<group>"; };
+		4723EA1C1974095B00B4345F /* NavigationBarCustomiser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationBarCustomiser.m; sourceTree = "<group>"; };
 		473DF970196D5ED600524C64 /* FloatingLabelTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingLabelTextField.h; sourceTree = "<group>"; };
 		473DF971196D5ED600524C64 /* FloatingLabelTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingLabelTextField.m; sourceTree = "<group>"; };
 		473DF974196D637200524C64 /* LoginViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~ipad.xib"; sourceTree = "<group>"; };
@@ -1443,6 +1463,8 @@
 		EA13E02F171BDF050019FBF0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				38C7B29119742596004324E8 /* HeaderTabView.h */,
+				38C7B29219742596004324E8 /* HeaderTabView.m */,
 				47FAF359195031E7004CE986 /* BlueButton.h */,
 				47FAF35A195031E7004CE986 /* BlueButton.m */,
 				38B093011951FA2A00315BE4 /* DataEntryDefaultHeader.h */,
@@ -1475,6 +1497,8 @@
 				38B0931C1951FB6000315BE4 /* ProgressButton.m */,
 				474D1AA41951A500008BC7A7 /* RedGradientButton.h */,
 				474D1AA51951A500008BC7A7 /* RedGradientButton.m */,
+				4723EA0B1973D8E900B4345F /* RedButton.h */,
+				4723EA0C1973D8E900B4345F /* RedButton.m */,
 				EA01331C1765FC7700D63C82 /* RoundedCellBackgroundView.h */,
 				EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */,
 				BB704E7B177300C30042F8A9 /* RoundedCellWhiteBackgroundView.h */,
@@ -1524,10 +1548,14 @@
 				47FAF356194F0A46004CE986 /* IntrinsicSizeUIView.m */,
 				474D1A9D19518073008BC7A7 /* ColoredButton.h */,
 				474D1A9E19518073008BC7A7 /* ColoredButton.m */,
+				4723EA131973F32400B4345F /* ImageColoredButton.h */,
+				4723EA141973F32400B4345F /* ImageColoredButton.m */,
 				473DF970196D5ED600524C64 /* FloatingLabelTextField.h */,
 				473DF971196D5ED600524C64 /* FloatingLabelTextField.m */,
-				38C7B28D19740F07004324E8 /* HeaderTabView.h */,
-				38C7B28E19740F07004324E8 /* HeaderTabView.m */,
+				4723EA0F1973D9B500B4345F /* YahooButton.h */,
+				4723EA101973D9B500B4345F /* YahooButton.m */,
+				4723EA171973F3CA00B4345F /* GoogleButton.h */,
+				4723EA181973F3CA00B4345F /* GoogleButton.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2102,6 +2130,8 @@
 				EACF763E175C71B4008F2A03 /* RecipientProfileCommitter.h */,
 				EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */,
 				EA59296E17589F3A007C0072 /* RecipientProfileValidation.h */,
+				4723EA1B1974095B00B4345F /* NavigationBarCustomiser.h */,
+				4723EA1C1974095B00B4345F /* NavigationBarCustomiser.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2733,6 +2763,7 @@
 				47FAF34F194B4E5D004CE986 /* TransferWaitingViewController.m in Sources */,
 				EA31A12817DDB29B00F937F7 /* ObjectModel.m in Sources */,
 				EA0450D517EC5BC1008921DA /* IntroViewController.m in Sources */,
+				4723EA121973D9B500B4345F /* YahooButton.m in Sources */,
 				EA31A12917DDB29B00F937F7 /* MainViewController.m in Sources */,
 				479B693F1949C36F001FA4FE /* TransferDetialsRecipientView.m in Sources */,
 				EA31A12A17DDB29B00F937F7 /* TransactionsViewController.m in Sources */,
@@ -2747,6 +2778,7 @@
 				EA31A13217DDB29B00F937F7 /* UIView+Loading.m in Sources */,
 				EA31A13317DDB29B00F937F7 /* TextEntryCell.m in Sources */,
 				EA31A13417DDB29B00F937F7 /* NSString+Validation.m in Sources */,
+				4723EA0E1973D8E900B4345F /* RedButton.m in Sources */,
 				EA31A13517DDB29B00F937F7 /* NSMutableString+Issues.m in Sources */,
 				EA31A13617DDB29B00F937F7 /* UIApplication+Keyboard.m in Sources */,
 				EA31A13717DDB29B00F937F7 /* TRWAlertView.m in Sources */,
@@ -2799,7 +2831,6 @@
 				38AEB3C81966B8BF00B852E1 /* UIResponder+FirstResponder.m in Sources */,
 				EA31A15C17DDB29B00F937F7 /* CurrencySelectionCell.m in Sources */,
 				EA31A15D17DDB29B00F937F7 /* RecipientFieldCell.m in Sources */,
-				38C7B29019740F07004324E8 /* HeaderTabView.m in Sources */,
 				EA347749180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */,
 				473DF973196D5ED600524C64 /* FloatingLabelTextField.m in Sources */,
 				EA31A15E17DDB29B00F937F7 /* RecipientOperation.m in Sources */,
@@ -2854,9 +2885,11 @@
 				EA31A18017DDB29B00F937F7 /* RoundedCellBackgroundView.m in Sources */,
 				EA31A18117DDB29B00F937F7 /* ProfileEditViewController.m in Sources */,
 				EA31A18217DDB29B00F937F7 /* ProfileSource.m in Sources */,
+				38C7B29419742596004324E8 /* HeaderTabView.m in Sources */,
 				38B1C5D7195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */,
 				EA31A18317DDB29B00F937F7 /* PersonalProfileSource.m in Sources */,
 				EA31A18417DDB29B00F937F7 /* BusinessProfileSource.m in Sources */,
+				4723EA161973F32400B4345F /* ImageColoredButton.m in Sources */,
 				EA31A18517DDB29B00F937F7 /* BusinessProfileCommitter.m in Sources */,
 				EA31A18617DDB29B00F937F7 /* PaymentProfileViewController.m in Sources */,
 				47FAF345194B2F11004CE986 /* LightBlueButton.m in Sources */,
@@ -2873,6 +2906,7 @@
 				EA31A18F17DDB29B00F937F7 /* ObjectModel+Payments.m in Sources */,
 				38B0930A1951FA2A00315BE4 /* DataEntryDefaultHeader.m in Sources */,
 				38B0931E1951FB6000315BE4 /* ProgressButton.m in Sources */,
+				4723EA1A1973F3CA00B4345F /* GoogleButton.m in Sources */,
 				380021E4192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */,
 				EA31A19017DDB29B00F937F7 /* TabBarActivityIndicatorView.m in Sources */,
 				EA31A19117DDB29B00F937F7 /* _Currency.m in Sources */,
@@ -2936,6 +2970,7 @@
 				EA677B46189B855200505139 /* StartPaymentButton.m in Sources */,
 				EA31A1BB17DDB29B00F937F7 /* SupportCoordinator.m in Sources */,
 				38342BAC196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */,
+				4723EA1E1974095B00B4345F /* NavigationBarCustomiser.m in Sources */,
 				EA31A1BC17DDB29B00F937F7 /* UIDevice-Hardware.m in Sources */,
 				EA31A1BD17DDB29B00F937F7 /* FeedbackCoordinator.m in Sources */,
 				EABD864618E2B65D004A5A57 /* TransferMixpanel.m in Sources */,
@@ -2979,6 +3014,7 @@
 				EAD3968A171BD82300F6D011 /* NewPaymentViewController.m in Sources */,
 				EA13E032171BDF1A0019FBF0 /* TableHeaderView.m in Sources */,
 				EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */,
+				4723EA111973D9B500B4345F /* YahooButton.m in Sources */,
 				EA13E044171BEB010019FBF0 /* UIColor+Theme.m in Sources */,
 				380021DB192CC89B009B1D53 /* UIColor+MOMStyle.m in Sources */,
 				EA13E049171BEDC40019FBF0 /* UIView+Loading.m in Sources */,
@@ -2993,6 +3029,7 @@
 				EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */,
 				380021F7192F43EA009B1D53 /* TabCell.m in Sources */,
 				EAD7D4C2171D43440099063F /* NSDictionary+SensibleData.m in Sources */,
+				4723EA0D1973D8E900B4345F /* RedButton.m in Sources */,
 				479B693A19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */,
 				EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */,
 				EAD7D4D1171D4BB20099063F /* GreenButton.m in Sources */,
@@ -3045,7 +3082,6 @@
 				EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */,
 				EA347748180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */,
 				EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */,
-				38C7B28F19740F07004324E8 /* HeaderTabView.m in Sources */,
 				388F09FF1936434A00DBD93D /* InsetRespectingButton.m in Sources */,
 				EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */,
 				EAD85B0B173920C300C22211 /* PersonalProfileOperation.m in Sources */,
@@ -3100,9 +3136,11 @@
 				EA416E301768673500904D97 /* ProfileSource.m in Sources */,
 				EA416E331768674700904D97 /* PersonalProfileSource.m in Sources */,
 				EA416E361768675400904D97 /* BusinessProfileSource.m in Sources */,
+				38C7B29319742596004324E8 /* HeaderTabView.m in Sources */,
 				EA92D9541769BD9D0078D0C4 /* BusinessProfileCommitter.m in Sources */,
 				EA92D97F176AF1200078D0C4 /* PaymentProfileViewController.m in Sources */,
 				EA92D983176AF1DF0078D0C4 /* ProfileSelectionView.m in Sources */,
+				4723EA151973F32400B4345F /* ImageColoredButton.m in Sources */,
 				EA7F8816176F2B44003B0F46 /* RemoveTokenOperation.m in Sources */,
 				473DF972196D5ED600524C64 /* FloatingLabelTextField.m in Sources */,
 				BB9A2E83176B711400C5E058 /* UITableView+FooterPositioning.m in Sources */,
@@ -3119,6 +3157,7 @@
 				EA225C7C178EA346009D6B83 /* Currency.m in Sources */,
 				EA225C7F178EA3C2009D6B83 /* _Recipient.m in Sources */,
 				38B093171951FA8300315BE4 /* NameSuggestionCellProvider.m in Sources */,
+				4723EA191973F3CA00B4345F /* GoogleButton.m in Sources */,
 				EA225C82178EA3C8009D6B83 /* Recipient.m in Sources */,
 				EA225C85178EB21C009D6B83 /* NSDictionary+Cleanup.m in Sources */,
 				EA225C88178EB241009D6B83 /* ObjectModel+Currencies.m in Sources */,
@@ -3182,6 +3221,7 @@
 				EA677B45189B855200505139 /* StartPaymentButton.m in Sources */,
 				EA0253B617D5C89500F54C18 /* SupportCoordinator.m in Sources */,
 				EA0253BE17D5E49100F54C18 /* UIDevice-Hardware.m in Sources */,
+				4723EA1D1974095B00B4345F /* NavigationBarCustomiser.m in Sources */,
 				EA8FC93E17D864F100E13969 /* FeedbackCoordinator.m in Sources */,
 				EABD864518E2B65D004A5A57 /* TransferMixpanel.m in Sources */,
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,

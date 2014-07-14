@@ -29,6 +29,12 @@
     return self;
 }
 
+-(void)awakeFromNib
+{
+    self.separatorLine.bgStyle = @"corefont";
+}
+
+
 -(void)layoutSubviews
 {
     [super layoutSubviews];
@@ -77,6 +83,7 @@
     [button setBackgroundImage:[UIImage imageNamed:@"HighlightedTab"] forState:UIControlStateHighlighted];
     button.fontStyle = @"medium.@17.CoreFont";
     button.selectedFontStyle = @"medium.@17.TWElectricBlue";
+    button.adjustsImageWhenHighlighted = NO;
     [button addTarget:self action:@selector(tabTapped:) forControlEvents:UIControlEventTouchUpInside];
     return button;
 }

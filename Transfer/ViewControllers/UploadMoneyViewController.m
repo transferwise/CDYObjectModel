@@ -24,13 +24,18 @@
 #import "ClaimAccountViewController.h"
 #import "Credentials.h"
 #import "FeedbackCoordinator.h"
+#import "HeaderTabView.h"
 
-@interface UploadMoneyViewController ()
+@interface UploadMoneyViewController ()<HeaderTabViewDelegate>
 
 @property (nonatomic, strong) BankTransferViewController *bankViewController;
 @property (nonatomic, strong) CardPaymentViewController *cardViewController;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
-@property (weak, nonatomic) IBOutlet UIView *containerView;
+
+@property (nonatomic, weak) IBOutlet UIView *containerView;
+
+@property (nonatomic,weak) IBOutlet HeaderTabView *tabView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tabViewHeightConstraint;
 
 @end
 
@@ -49,6 +54,15 @@
 
     [self setTitle:NSLocalizedString(@"upload.money.title", @"")];
 
+    if ([self.payment multiplePaymentMethods]) {
+        [self.tabView setTabTitles:@[NSLocalizedString(@"payment.method.card", nil), NSLocalizedString(@"payment.method.regular", nil)]];
+        [self.tabView setSelectedIndex:0];
+    }
+    else
+    {
+        self.tabViewHeightConstraint.constant = 0;
+    }
+    
     CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
     [self setCardViewController:cardController];
     [self attachChildController:cardController];
@@ -84,30 +98,14 @@
     [bankController setObjectModel:self.objectModel];
     [bankController setHideBottomButton:self.hideBottomButton];
     [bankController setShowContactSupportCell:self.showContactSupportCell];
+    
+    [self headerTabView:nil tabTappedAtIndex:0];
 
-    if ([self.payment multiplePaymentMethods]) {
-        PaymentMethodSelectionView *selectionView = [PaymentMethodSelectionView loadInstance];
-        [selectionView setSegmentChangeHandler:^(NSInteger selectedIndex) {
-            [self selectionChangedToIndex:selectedIndex];
-        }];
-        [selectionView setTitles:@[NSLocalizedString(@"payment.method.card", nil), NSLocalizedString(@"payment.method.regular", nil)]];
-        [self.containerView addSubview:selectionView];
-
-        CGFloat selectionHeight = CGRectGetHeight(selectionView.frame);
-
-        NSArray *movedControllers = @[self.bankViewController, self.cardViewController];
-        for (UIViewController *controller in movedControllers) {
-            CGRect frame = controller.view.frame;
-            frame.origin.y += selectionHeight;
-            frame.size.height -= selectionHeight;
-            [controller.view setFrame:frame];
-        }
-
-        [self selectionChangedToIndex:0];
-    }
+    
 }
 
-- (void)selectionChangedToIndex:(NSInteger)index {
+
+- (void)headerTabView:(HeaderTabView *)tabView tabTappedAtIndex:(NSUInteger)index {
     if (index == 1) {
         [[GoogleAnalytics sharedInstance] sendScreen:@"Bank transfer payment"];
         [self.containerView bringSubviewToFront:self.bankViewController.view];

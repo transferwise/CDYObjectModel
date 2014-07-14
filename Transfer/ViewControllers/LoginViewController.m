@@ -23,6 +23,10 @@
 #import "ResetPasswordViewController.h"
 #import "UIFont+MOMStyle.h"
 #import "NSString+DeviceSpecificLocalisation.h"
+#import "GoogleButton.h"
+#import "YahooButton.h"
+#import "UIColor+MOMStyle.h"
+#import "NavigationBarCustomiser.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -30,10 +34,12 @@
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *passwordTextField;
 @property (strong, nonatomic) IBOutlet GreenButton *loginButton;
 @property (strong, nonatomic) IBOutlet UILabel *forgotPasswordLabel;
-@property (strong, nonatomic) IBOutlet GreenButton *googleLoginButton;
-@property (strong, nonatomic) IBOutlet GreenButton *yahooLoginButton;
+@property (strong, nonatomic) IBOutlet GoogleButton *googleLoginButton;
+@property (strong, nonatomic) IBOutlet YahooButton *yahooLoginButton;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (strong, nonatomic) IBOutlet UILabel *orLabel;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *emailSeparatorHeight;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *passwordSeparatorHeight;
 
 @end
 
@@ -53,6 +59,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	[NavigationBarCustomiser setLogin];
 	
 	self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 	
@@ -91,22 +99,28 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationItem setTitle:NSLocalizedString(@"login.controller.title", nil)];
 	
-	if (IPAD)
-	{
-		
-	}
-	else
-	{
-		[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
-	}
+	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 	
     [[GoogleAnalytics sharedInstance] sendScreen:@"Login"];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+	[NavigationBarCustomiser setDefault];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)updateViewConstraints
+{
+	self.passwordSeparatorHeight.constant = 1.0f / [[UIScreen mainScreen] scale];
+	self.emailSeparatorHeight.constant = 1.0f / [[UIScreen mainScreen] scale];
+	
+	[super updateViewConstraints];
 }
 
 #pragma mark - TextField delegate

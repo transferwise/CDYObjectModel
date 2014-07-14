@@ -6,11 +6,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
+                <outlet property="emailSeparatorHeight" destination="fek-HK-kQ5" id="Tbv-kT-VgQ"/>
                 <outlet property="emailTextField" destination="Sqf-jN-fvd" id="pva-OL-Vn3"/>
                 <outlet property="forgotPasswordLabel" destination="Gzj-xE-Yjr" id="ZWy-f1-Rwh"/>
                 <outlet property="googleLoginButton" destination="2Sf-8q-59z" id="BRf-2K-vsj"/>
                 <outlet property="loginButton" destination="uSj-Tb-62N" id="wrl-Rn-Dv8"/>
                 <outlet property="orLabel" destination="2d1-LU-JcI" id="8nI-dK-9ah"/>
+                <outlet property="passwordSeparatorHeight" destination="MaW-ap-Zmh" id="uzN-SV-IhO"/>
                 <outlet property="passwordTextField" destination="UJr-a0-Czd" id="dAI-mg-ysB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yahooLoginButton" destination="Uqc-Ct-ZJ1" id="gAu-Xp-nGd"/>
@@ -22,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sqf-jN-fvd" userLabel="Email TextField" customClass="FloatingLabelTextField">
-                    <rect key="frame" x="20" y="133" width="300" height="70"/>
+                    <rect key="frame" x="20" y="133" width="302" height="70"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" placeholder="YES" id="c5K-jG-eut"/>
@@ -31,7 +33,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OOe-X8-gxb" userLabel="Separator View">
-                    <rect key="frame" x="10" y="212" width="310" height="1"/>
+                    <rect key="frame" x="10" y="212" width="312" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="fek-HK-kQ5"/>
@@ -42,7 +44,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UJr-a0-Czd" userLabel="Password TextField" customClass="FloatingLabelTextField">
-                    <rect key="frame" x="20" y="222" width="300" height="70"/>
+                    <rect key="frame" x="20" y="222" width="302" height="70"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" placeholder="YES" id="DmN-tB-1bM"/>
@@ -51,7 +53,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7f-aP-kB6" userLabel="Separator View">
-                    <rect key="frame" x="10" y="301" width="310" height="1"/>
+                    <rect key="frame" x="10" y="301" width="312" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="MaW-ap-Zmh"/>
@@ -61,8 +63,8 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGrey"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSj-Tb-62N" userLabel="Login Button" customClass="GreenButton">
-                    <rect key="frame" x="0.0" y="331" width="320" height="52"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSj-Tb-62N" userLabel="Login Button" customClass="GreenButton">
+                    <rect key="frame" x="0.0" y="331" width="322" height="52"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="52" id="dEk-hB-rjg"/>
@@ -78,11 +80,11 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eab-el-220" customClass="IntrinsicSizeUIView">
-                    <rect key="frame" x="0.0" y="383" width="320" height="185"/>
+                    <rect key="frame" x="0.0" y="383" width="322" height="185"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gzj-xE-Yjr" userLabel="Forgot Password Label">
-                            <rect key="frame" x="139" y="28" width="42" height="21"/>
+                            <rect key="frame" x="140" y="28" width="42" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -92,7 +94,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2d1-LU-JcI" userLabel="Or Label">
-                            <rect key="frame" x="139" y="90" width="42" height="21"/>
+                            <rect key="frame" x="140" y="90" width="42" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -101,8 +103,8 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="book.@18.CoreFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uqc-Ct-ZJ1" userLabel="Yahoo Login Button" customClass="GreenButton">
-                            <rect key="frame" x="160" y="135" width="160" height="50"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uqc-Ct-ZJ1" userLabel="Yahoo Login Button" customClass="YahooButton">
+                            <rect key="frame" x="161" y="135" width="161" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Button">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -114,8 +116,8 @@
                                 <action selector="yahooLogInPressed:" destination="-1" eventType="touchUpInside" id="3tO-LF-T4a"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Sf-8q-59z" userLabel="Google Login Button" customClass="GreenButton">
-                            <rect key="frame" x="0.0" y="135" width="160" height="50"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Sf-8q-59z" userLabel="Google Login Button" customClass="GoogleButton">
+                            <rect key="frame" x="0.0" y="135" width="161" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="rAd-N1-RFz"/>

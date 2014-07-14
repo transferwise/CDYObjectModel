@@ -30,6 +30,8 @@
 #import "MOMStyle.h"
 #import "ConnectionAwareViewController.h"
 #import "UIFont+MOMStyle.h"
+#import "UIImage+Color.h"
+#import "NavigationBarCustomiser.h"
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -88,23 +90,7 @@
 
     [NanTracking trackNanigansEvent:@"" type:@"install" name:@"main"];
 
-	if(IPAD)
-	{
-		[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorFromStyle:@"TWElectricblue"], NSFontAttributeName : [UIFont fontFromStyle:@"medium.@19"]}];
-		[[UINavigationBar appearance] setBarTintColor:[UIColor colorFromStyle:@"white"]];
-		[[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-		[[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
-	}
-	else
-	{
-		MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"light.@{18,19}.LightBlue"];
-		[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [navFontStyle color], NSFontAttributeName : [navFontStyle font]}];
-		[[UINavigationBar appearance] setBarTintColor:[UIColor colorFromStyle:@"CoreFont"]];
-		[[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
-		[[UINavigationBar appearance] setTitleVerticalPositionAdjustment:-2 forBarMetrics:UIBarMetricsDefault];
-	}
-
-    
+	[NavigationBarCustomiser setDefault];
 
     [[UIBarButtonItem appearance] setBackgroundImage:[[UIImage alloc] init] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 
