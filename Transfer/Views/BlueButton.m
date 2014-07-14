@@ -12,7 +12,8 @@
 
 -(void)commonSetup
 {
-	[super configureWithTitleColor:@"white" titleFont:@"medium.@16" color:@"TWBlue.alpha2" highlightColor:@"TWBlueHighlighted.alpha2"];
+	[super configureWithCompoundStyle:@"blueButton"];
+	[super commonSetup];
 }
 
 @end

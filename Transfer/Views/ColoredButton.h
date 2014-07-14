@@ -13,10 +13,9 @@
 @property (nonatomic, assign) BOOL addShadow;
 
 - (void)commonSetup;
+
 - (void)configureWithCompoundStyle:(NSString *)compoundStyle;
-- (void)configureWithTitleColor:(NSString *)titleColor
-					 titleFont:(NSString *)titleFont
-						 color:(NSString *)color
-				highlightColor:(NSString *)highlightColor;
+- (void)configureWithCompoundStyle:(NSString *)compoundStyle
+					   shadowColor:(NSString *)shadowColor;
 
 @end

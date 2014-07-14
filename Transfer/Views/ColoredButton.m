@@ -10,6 +10,13 @@
 #import "MOMStyle.h"
 #import "UIImage+Color.h"
 
+@interface ColoredButton ()
+
+@property (strong, nonatomic) MOMCompoundStyle* compoundStyleContainer;
+@property (strong, nonatomic) NSString* shadowColor;
+
+@end
+
 @implementation ColoredButton
 
 static __weak UIImage* normalStateImage;
@@ -36,7 +43,7 @@ static __weak UIImage* selectedStateImage;
 - (void)commonSetup
 {
 	//override in an inheriting class to customize
-	//don't forget to call super in inheriging class
+	//don't forget to call super in inheriting class
 	
 	if (self.addShadow)
     {
@@ -46,55 +53,24 @@ static __weak UIImage* selectedStateImage;
 
 - (void)configureWithCompoundStyle:(NSString *)compoundStyle
 {
+	[self configureWithCompoundStyle:compoundStyle
+						 shadowColor:nil];
+}
+
+- (void)configureWithCompoundStyle:(NSString *)compoundStyle
+					   shadowColor:(NSString *)shadowColor
+{
+	//apply style
 	self.compoundStyle = compoundStyle;
+	//save shadow color
+	self.shadowColor = shadowColor;
+	//get style to get to actual colors later
+	self.compoundStyleContainer = [MOMStyleFactory compoundStyleForIdentifier:compoundStyle];
+	
 	self.exclusiveTouch = YES;
 }
 
--(void)configureWithTitleColor:(NSString *)titleColor
-					 titleFont:(NSString *)titleFont
-						 color:(NSString *)color
-				highlightColor:(NSString *)highlightColor
-{
-    NSString *fontStyle;
-	if (titleColor && titleFont)
-	{
-		fontStyle = [NSString stringWithFormat:@"%@.%@",titleFont,titleColor];
-	}
-    else
-    {
-        fontStyle = titleFont?:titleColor;
-    }
-	if (fontStyle)
-	{
-		self.fontStyle = fontStyle;
-	}
-	if (color != nil)
-	{
-		self.bgStyle = color;
-	}
-	if (highlightColor != nil)
-	{
-		self.highlightedBgStyle = highlightColor;
-	}
-    self.exclusiveTouch = YES;
-}
-
 #pragma mark - Properties
--(void)setAddShadow:(BOOL)addShadow
-{
-    _addShadow = addShadow;
-    
-    if(self.addShadow)
-    {
-		[self setBackgroundImagesWithShadow];
-    }
-    else
-    {
-        //reapply style
-		self.compoundStyle = @"greenButton";
-    }
-}
-
 -(void)setHighlighted:(BOOL)highlighted
 {
 	[super setHighlighted:highlighted];
@@ -119,17 +95,26 @@ static __weak UIImage* selectedStateImage;
 	[self setBackgroundImage:[self selectedStateImage] forState:UIControlStateHighlighted];
 }
 
--(UIImage*)normalStateImage
+- (UIImage*)normalStateImage
 {
-    return [ColoredButton getBackgroundImage:NO];
+    return [ColoredButton getBackgroundImage:NO
+									 bgStyle:[self getColorFromStyle:self.compoundStyleContainer.bgStyle]
+						  highlightedBgStyle:[self getColorFromStyle:self.compoundStyleContainer.highlightedBgStyle]
+								  shdowStyle:self.shadowColor];
 }
 
--(UIImage*)selectedStateImage
+- (UIImage*)selectedStateImage
 {
-    return [ColoredButton getBackgroundImage:YES];
+    return [ColoredButton getBackgroundImage:YES
+									 bgStyle:[self getColorFromStyle:self.compoundStyleContainer.bgStyle]
+						  highlightedBgStyle:[self getColorFromStyle:self.compoundStyleContainer.highlightedBgStyle]
+								  shdowStyle:self.shadowColor];
 }
 
 + (UIImage *)getBackgroundImage:(BOOL)selected
+						bgStyle:(UIColor *)bgStyle
+			 highlightedBgStyle:(UIColor *)highlightedBgStyle
+					 shdowStyle:(NSString *)shadowStyle
 {
 	UIImage *result = selected ? selectedStateImage : normalStateImage;
 	
@@ -141,14 +126,14 @@ static __weak UIImage* selectedStateImage;
 		CGRect mainRect = CGRectMake(0.0f, selected ? 2.0f : 0.0f, 3.0f, 4.0f);
         CGRect shadowRect = CGRectMake(0.0f, selected ? 6.0f : 4.0f, 3.0f, selected ? 2.0f : 4.0f);
 		
-		UIColor* greenColor = selected ? [UIColor colorFromStyle:@"greenSelected"] : [UIColor colorFromStyle:@"green"];
-        UIColor* greenShadow = [UIColor colorFromStyle:@"greenShadow"];
+		UIColor* bgColor = selected ? highlightedBgStyle : bgStyle;
+        UIColor* shadowColor = [UIColor colorFromStyle:shadowStyle];
 		
 		UIGraphicsBeginImageContextWithOptions(size, selected ? NO : YES, 0.0);
         CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSetFillColorWithColor(context, [greenColor CGColor]);
+        CGContextSetFillColorWithColor(context, [bgColor CGColor]);
         CGContextFillRect(context, mainRect);
-        CGContextSetFillColorWithColor(context, [greenShadow CGColor]);
+        CGContextSetFillColorWithColor(context, [shadowColor CGColor]);
         CGContextFillRect(context, shadowRect);
         
         CGImageRef cgImage = CGBitmapContextCreateImage(context);
@@ -170,5 +155,15 @@ static __weak UIImage* selectedStateImage;
 	}
 	
 	return result;
+}
+
+- (UIColor *)getColorFromStyle:(MOMBaseStyle *)style
+{
+	if([style isKindOfClass:[MOMBaseStyle class]])
+	{
+		return ((MOMBasicStyle *)style).color;
+	}
+	
+	return nil;
 }
 @end

@@ -172,7 +172,7 @@
                                         <outlet property="yourTransferLabel" destination="oqR-kL-SVq" id="PvI-zb-Uv4"/>
                                     </connections>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEe-YD-6Z4" userLabel="Button - No Transfer" customClass="SeparatorGreyButton">
+                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEe-YD-6Z4" userLabel="Button - No Transfer" customClass="LightBlueButton">
                                     <rect key="frame" x="15" y="249" width="290" height="45"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <constraints>

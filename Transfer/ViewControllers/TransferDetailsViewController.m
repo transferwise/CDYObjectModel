@@ -15,6 +15,7 @@
 #import "GoogleAnalytics.h"
 #import "NSString+DeviceSpecificLocalisation.h"
 #import "TransferBackButtonItem.h"
+#import "BlueButton.h"
 
 @interface TransferDetailsViewController ()
 
@@ -22,7 +23,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *statusIcon;
 @property (strong, nonatomic) IBOutlet TransferDetailsAmountsView *amountsView;
 @property (strong, nonatomic) IBOutlet TransferDetialsRecipientView *accountView;
-@property (strong, nonatomic) IBOutlet UIButton *supportButton;
+@property (strong, nonatomic) IBOutlet ColoredButton *supportButton;
 
 @end
 
@@ -48,6 +49,7 @@
 {
     [super viewDidLoad];
 	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
+	[self.supportButton commonSetup];
 	[self setData];
 }
 

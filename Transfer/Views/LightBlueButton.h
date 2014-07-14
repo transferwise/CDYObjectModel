@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ColoredButton.h"
 
-@interface LightGrayButton : ColoredButton
+@interface LightBlueButton : ColoredButton
 
 @end

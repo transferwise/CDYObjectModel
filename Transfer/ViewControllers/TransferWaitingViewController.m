@@ -7,7 +7,7 @@
 //
 
 #import "TransferWaitingViewController.h"
-#import "LightGrayButton.h"
+#import "LightBlueButton.h"
 #import "ObjectModel+Payments.h"
 #import "Constants.h"
 
@@ -17,7 +17,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel1;
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel2;
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel3;
-@property (strong, nonatomic) IBOutlet UIButton *noTransferButton;
+@property (strong, nonatomic) IBOutlet ColoredButton *noTransferButton;
 
 @end
 

@@ -6,17 +6,14 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-#import "LightGrayButton.h"
+#import "LightBlueButton.h"
 #import "UIColor+MOMStyle.h"
 
-@implementation LightGrayButton
+@implementation LightBlueButton
 
 -(void)commonSetup
 {
-	[super configureWithTitleColor:@"CoreFont"
-						 titleFont:@"medium.@17"
-							 color:@"LightBlueHighlighted"
-					highlightColor:@"LightBlueHighlighted"];
+	[super configureWithCompoundStyle:@"lightBlueButton"];
 	
 	self.layer.borderWidth = 1.f;
 	self.layer.cornerRadius = 2.f;

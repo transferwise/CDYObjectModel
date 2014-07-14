@@ -192,9 +192,32 @@
 			<key>fontStyle</key>
 			<string>medium.@{17,19}.white</string>
 			<key>highlightedBgStyle</key>
-			<string>greenHilighted</string>
+			<string>GreenHighlighted</string>
 			<key>bgStyle</key>
-			<string>green</string>
+			<string>Green</string>
+		</dict>
+		<key>blueButton</key>
+		<dict>
+			<key>fontStyle</key>
+			<string>medium.@{17,19}.white</string>
+			<key>highlightedBgStyle</key>
+			<string>TWBlueHighlighted.alpha2</string>
+			<key>bgStyle</key>
+			<string>TWBlue.alpha2</string>
+		</dict>
+		<key>lightBlueButton</key>
+		<dict>
+			<key>fontStyle</key>
+			<string>medium.@{17,19}.CoreFont</string>
+			<key>highlightedBgStyle</key>
+			<string>LightBlueHighlighted</string>
+			<key>bgStyle</key>
+			<string>LightBlueHighlighted</string>
+		</dict>
+		<key>redGradientButton</key>
+		<dict>
+			<key>fontStyle</key>
+			<string>medium.@{14,17}.white</string>
 		</dict>
 	</dict>
 </dict>

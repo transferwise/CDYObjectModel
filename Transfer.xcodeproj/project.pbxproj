@@ -157,8 +157,8 @@
 		47C580A4196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47DBE05919703494008915A6 /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
 		47F1F5921941C87600FC4BEB /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
-		47FAF344194B2F11004CE986 /* LightGrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF343194B2F11004CE986 /* LightGrayButton.m */; };
-		47FAF345194B2F11004CE986 /* LightGrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF343194B2F11004CE986 /* LightGrayButton.m */; };
+		47FAF344194B2F11004CE986 /* LightBlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF343194B2F11004CE986 /* LightBlueButton.m */; };
+		47FAF345194B2F11004CE986 /* LightBlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF343194B2F11004CE986 /* LightBlueButton.m */; };
 		47FAF348194B3233004CE986 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF347194B3233004CE986 /* UIImage+Color.m */; };
 		47FAF349194B3233004CE986 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF347194B3233004CE986 /* UIImage+Color.m */; };
 		47FAF34A194B371B004CE986 /* WhyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA35194B31A200B3EE5C /* WhyViewController.m */; };
@@ -818,8 +818,8 @@
 		479B693D1949C36F001FA4FE /* TransferDetialsRecipientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDetialsRecipientView.m; sourceTree = "<group>"; };
 		47C580A1196AC1A7007771DB /* UIGestureRecognizer+Cancel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Cancel.h"; sourceTree = "<group>"; };
 		47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Cancel.m"; sourceTree = "<group>"; };
-		47FAF342194B2F11004CE986 /* LightGrayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightGrayButton.h; sourceTree = "<group>"; };
-		47FAF343194B2F11004CE986 /* LightGrayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightGrayButton.m; sourceTree = "<group>"; };
+		47FAF342194B2F11004CE986 /* LightBlueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightBlueButton.h; sourceTree = "<group>"; };
+		47FAF343194B2F11004CE986 /* LightBlueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightBlueButton.m; sourceTree = "<group>"; };
 		47FAF346194B3233004CE986 /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
 		47FAF347194B3233004CE986 /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		47FAF34B194B4E5D004CE986 /* TransferWaitingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferWaitingViewController.h; sourceTree = "<group>"; };
@@ -1457,8 +1457,8 @@
 				EA0450D817EC64BC008921DA /* IntroView.h */,
 				EA0450D917EC64BC008921DA /* IntroView.m */,
 				EA0450DC17EC64E4008921DA /* IntroView.xib */,
-				47FAF342194B2F11004CE986 /* LightGrayButton.h */,
-				47FAF343194B2F11004CE986 /* LightGrayButton.m */,
+				47FAF342194B2F11004CE986 /* LightBlueButton.h */,
+				47FAF343194B2F11004CE986 /* LightBlueButton.m */,
 				EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */,
 				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
 				EAD3647717E2EBF2001EFE40 /* PaymentMethodSelectionView.h */,
@@ -2852,7 +2852,7 @@
 				EA31A18417DDB29B00F937F7 /* BusinessProfileSource.m in Sources */,
 				EA31A18517DDB29B00F937F7 /* BusinessProfileCommitter.m in Sources */,
 				EA31A18617DDB29B00F937F7 /* PaymentProfileViewController.m in Sources */,
-				47FAF345194B2F11004CE986 /* LightGrayButton.m in Sources */,
+				47FAF345194B2F11004CE986 /* LightBlueButton.m in Sources */,
 				EA31A18717DDB29B00F937F7 /* ProfileSelectionView.m in Sources */,
 				EA31A18817DDB29B00F937F7 /* RemoveTokenOperation.m in Sources */,
 				479B693B19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */,
@@ -3104,7 +3104,7 @@
 				EA225C6B178E9C93009D6B83 /* Payment.m in Sources */,
 				38B0931D1951FB6000315BE4 /* ProgressButton.m in Sources */,
 				EA225C71178E9F00009D6B83 /* ObjectModel+Payments.m in Sources */,
-				47FAF344194B2F11004CE986 /* LightGrayButton.m in Sources */,
+				47FAF344194B2F11004CE986 /* LightBlueButton.m in Sources */,
 				380021E3192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */,
 				EA225C75178EA124009D6B83 /* TabBarActivityIndicatorView.m in Sources */,
 				EA225C79178EA341009D6B83 /* _Currency.m in Sources */,

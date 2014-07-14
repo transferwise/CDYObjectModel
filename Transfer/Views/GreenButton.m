@@ -15,7 +15,8 @@
 
 -(void)commonSetup
 {
-	[super configureWithCompoundStyle:@"greenButton"];
+	[super configureWithCompoundStyle:@"greenButton"
+						  shadowColor:@"greenShadow"];
 	[super commonSetup];
 }
 
