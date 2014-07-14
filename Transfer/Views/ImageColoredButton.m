@@ -21,6 +21,7 @@
 	[self setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
 	CGFloat left = (1 - (self.frame.size.width / 2));
 	[self setImageEdgeInsets:UIEdgeInsetsMake(0, IPAD ? left : left + 20, 0, 0)];
+	[self setTitleEdgeInsets:UIEdgeInsetsMake(0, -20, 0, 0)];
 	[super commonSetup];
 }
 
