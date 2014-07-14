@@ -85,8 +85,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-
-    [self.tableView adjustFooterViewSizeForMinimumHeight:44];
 }
 
 - (IBAction)resetPasswordPressed {
