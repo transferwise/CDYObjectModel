@@ -28,9 +28,9 @@
           "height" : 1
         },
         "capInsets" : {
-          "bottom" : 2,
+          "bottom" : 3,
           "top" : 2,
-          "right" : 2,
+          "right" : 3,
           "left" : 2
         }
       },

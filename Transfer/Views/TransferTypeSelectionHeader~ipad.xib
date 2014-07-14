@@ -28,17 +28,20 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="corefont"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <view contentMode="scaleToFill" id="UX0-SE-fa5">
+                <view contentMode="scaleToFill" id="UX0-SE-fa5" customClass="HeaderTabView">
                     <rect key="frame" x="0.0" y="68" width="360" height="50"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="delegate" destination="9ZX-Hd-Zwf" id="qDK-0p-kv2"/>
+                        <outlet property="separatorLine" destination="IDc-ZV-bhR" id="7w1-Fw-wvZ"/>
+                    </connections>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="separatorLine" destination="IDc-ZV-bhR" id="oKe-Ac-gb6"/>
-                <outlet property="tabContainer" destination="UX0-SE-fa5" id="hpj-QO-egb"/>
+                <outlet property="tabView" destination="UX0-SE-fa5" id="70s-4n-rOG"/>
                 <outlet property="titleLabel" destination="28z-Fr-eRv" id="hO1-tr-Sva"/>
             </connections>
         </view>

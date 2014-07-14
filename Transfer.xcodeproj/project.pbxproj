@@ -103,6 +103,8 @@
 		38BD98A5195C5973009F9B4A /* NameSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */; };
 		38BD98A6195C5973009F9B4A /* NameSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */; };
 		38C632F2194EEBBC008C9E46 /* WhyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */; };
+		38C7B28F19740F07004324E8 /* HeaderTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C7B28E19740F07004324E8 /* HeaderTabView.m */; };
+		38C7B29019740F07004324E8 /* HeaderTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C7B28E19740F07004324E8 /* HeaderTabView.m */; };
 		38C8A79D19371DBC00714FB3 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */; };
 		38C8A79E19371DBC00714FB3 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */; };
 		38CACA61196EE21600BFCF82 /* NameSuggestionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CACA60196EE21600BFCF82 /* NameSuggestionCell~ipad.xib */; };
@@ -779,6 +781,8 @@
 		38BD98A0195C5973009F9B4A /* NameSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSuggestionCell.h; sourceTree = "<group>"; };
 		38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameSuggestionCell.m; sourceTree = "<group>"; };
 		38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NameSuggestionCell.xib; sourceTree = "<group>"; };
+		38C7B28D19740F07004324E8 /* HeaderTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderTabView.h; sourceTree = "<group>"; };
+		38C7B28E19740F07004324E8 /* HeaderTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderTabView.m; sourceTree = "<group>"; };
 		38C8A79B19371DBC00714FB3 /* PullToRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshView.h; sourceTree = "<group>"; };
 		38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullToRefreshView.m; sourceTree = "<group>"; };
 		38CACA60196EE21600BFCF82 /* NameSuggestionCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NameSuggestionCell~ipad.xib"; sourceTree = "<group>"; };
@@ -1522,6 +1526,8 @@
 				474D1A9E19518073008BC7A7 /* ColoredButton.m */,
 				473DF970196D5ED600524C64 /* FloatingLabelTextField.h */,
 				473DF971196D5ED600524C64 /* FloatingLabelTextField.m */,
+				38C7B28D19740F07004324E8 /* HeaderTabView.h */,
+				38C7B28E19740F07004324E8 /* HeaderTabView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2793,6 +2799,7 @@
 				38AEB3C81966B8BF00B852E1 /* UIResponder+FirstResponder.m in Sources */,
 				EA31A15C17DDB29B00F937F7 /* CurrencySelectionCell.m in Sources */,
 				EA31A15D17DDB29B00F937F7 /* RecipientFieldCell.m in Sources */,
+				38C7B29019740F07004324E8 /* HeaderTabView.m in Sources */,
 				EA347749180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */,
 				473DF973196D5ED600524C64 /* FloatingLabelTextField.m in Sources */,
 				EA31A15E17DDB29B00F937F7 /* RecipientOperation.m in Sources */,
@@ -3038,6 +3045,7 @@
 				EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */,
 				EA347748180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */,
 				EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */,
+				38C7B28F19740F07004324E8 /* HeaderTabView.m in Sources */,
 				388F09FF1936434A00DBD93D /* InsetRespectingButton.m in Sources */,
 				EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */,
 				EAD85B0B173920C300C22211 /* PersonalProfileOperation.m in Sources */,
