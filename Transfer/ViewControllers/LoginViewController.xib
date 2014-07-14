@@ -6,11 +6,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
+                <outlet property="emailSeparatorHeight" destination="fek-HK-kQ5" id="Tbv-kT-VgQ"/>
                 <outlet property="emailTextField" destination="Sqf-jN-fvd" id="pva-OL-Vn3"/>
                 <outlet property="forgotPasswordLabel" destination="Gzj-xE-Yjr" id="ZWy-f1-Rwh"/>
                 <outlet property="googleLoginButton" destination="2Sf-8q-59z" id="BRf-2K-vsj"/>
                 <outlet property="loginButton" destination="uSj-Tb-62N" id="wrl-Rn-Dv8"/>
                 <outlet property="orLabel" destination="2d1-LU-JcI" id="8nI-dK-9ah"/>
+                <outlet property="passwordSeparatorHeight" destination="MaW-ap-Zmh" id="uzN-SV-IhO"/>
                 <outlet property="passwordTextField" destination="UJr-a0-Czd" id="dAI-mg-ysB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yahooLoginButton" destination="Uqc-Ct-ZJ1" id="gAu-Xp-nGd"/>

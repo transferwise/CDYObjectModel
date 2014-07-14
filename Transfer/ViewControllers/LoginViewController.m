@@ -38,6 +38,8 @@
 @property (strong, nonatomic) IBOutlet YahooButton *yahooLoginButton;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (strong, nonatomic) IBOutlet UILabel *orLabel;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *emailSeparatorHeight;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *passwordSeparatorHeight;
 
 @end
 
@@ -111,6 +113,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)updateViewConstraints
+{
+	self.passwordSeparatorHeight.constant = 1.0f / [[UIScreen mainScreen] scale];
+	self.emailSeparatorHeight.constant = 1.0f / [[UIScreen mainScreen] scale];
+	
+	[super updateViewConstraints];
 }
 
 #pragma mark - TextField delegate
