@@ -10,7 +10,7 @@
                 <outlet property="amountsView" destination="gxD-Ss-q8P" id="aSs-g7-DFH"/>
                 <outlet property="headerView" destination="jJD-by-0Jd" id="z78-Er-Ntb"/>
                 <outlet property="statusIcon" destination="8dh-F6-i1O" id="7wI-SB-I7T"/>
-                <outlet property="supportButton" destination="g0K-st-6YG" id="2Wz-E6-6IY"/>
+                <outlet property="supportButton" destination="g0K-st-6YG" id="Hcn-2l-tWe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -191,7 +191,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@16.SeparatorGrey"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@16.CoreFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
@@ -211,7 +211,7 @@
                         <outlet property="detailsLabel" destination="NqY-J0-ze8" id="huL-Uc-Ecm"/>
                     </connections>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0K-st-6YG" userLabel="Button - Contact Support" customClass="LightBlueButton">
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0K-st-6YG" userLabel="Button - Contact Support" customClass="LightGrayButton">
                     <rect key="frame" x="60" y="663" width="904" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>

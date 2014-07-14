@@ -206,7 +206,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         self.scrollViewRightMargin.constant = 204.0f;
         
         self.secondColumnLeftEdgeConstraint.constant = -360;
-        self.secondColumnTopConstraint.constant = self.firstColumnHeightConstraint.constant;
+        self.secondColumnTopConstraint.constant = self.firstColumnHeightConstraint.constant + 60.0f;
     }
     else
     {
@@ -702,6 +702,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 -(void)suggestionTableDidStartEditing:(TextFieldSuggestionTable *)table
 {
     [table removeFromSuperview];
+    UIView* viewToAlignTo = self.nameCell;
     if(!IPAD)
     {
         UIImageView* background = [[UIImageView alloc] initWithImage:[self.view renderBlurWithTintColor:nil]];
@@ -713,12 +714,16 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         colorOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         [background addSubview:colorOverlay];
     }
+    else
+    {
+        viewToAlignTo = self.nameCell.separatorLine;
+    }
     
     CGRect newFrame = table.frame;
-    newFrame.origin = [self.view convertPoint:table.textField.superview.frame.origin fromView:table.textField.superview.superview];
-    newFrame.origin.y += table.textField.superview.frame.size.height;
+    newFrame.origin = [self.view convertPoint:viewToAlignTo.frame.origin fromView:viewToAlignTo.superview];
+    newFrame.origin.y += viewToAlignTo.frame.size.height;
     newFrame.size.height = self.view.frame.size.height - newFrame.origin.y;
-    newFrame.size.width = table.textField.superview.frame.size.width;
+    newFrame.size.width = viewToAlignTo.frame.size.width;
     table.frame = newFrame;
     [self.view addSubview:table];
     
