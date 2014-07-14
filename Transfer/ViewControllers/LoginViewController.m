@@ -56,6 +56,12 @@
 {
     [super viewDidLoad];
 	
+	//these must be white as an exception
+//	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorFromStyle:@"TWElectricblue"], NSFontAttributeName : [UIFont fontFromStyle:@"medium.@19"]}];
+//	[[UINavigationBar appearance] setBarTintColor:[UIColor colorFromStyle:@"white"]];
+//	[[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+//	[[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+	
 	self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 	
 	[self.emailTextField configureWithTitle:NSLocalizedString(@"login.email.field.title", nil) value:@""];
