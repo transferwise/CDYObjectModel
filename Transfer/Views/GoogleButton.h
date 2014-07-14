@@ -1,5 +1,5 @@
 //
-//  YahooButton.h
+//  GoogleButton.h
 //  Transfer
 //
 //  Created by Juhan Hion on 14.07.14.
@@ -8,6 +8,6 @@
 
 #import "ImageColoredButton.h"
 
-@interface YahooButton : ImageColoredButton
+@interface GoogleButton : ImageColoredButton
 
 @end
