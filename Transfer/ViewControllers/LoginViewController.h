@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DismissKeyboardViewController.h"
 
 @class ObjectModel;
 
-@interface LoginViewController : UIViewController
-
-@property (nonatomic) ObjectModel *objectModel;
+@interface LoginViewController : DismissKeyboardViewController
 
 @end
