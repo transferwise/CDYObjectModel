@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#define BankTransferDetailCellIdentifier @"BankTransferDetailCell"
+
 @interface BankTransferDetailCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *headerLabel;
+@property (weak, nonatomic) IBOutlet UILabel *valueLabel;
 
 @end
