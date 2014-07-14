@@ -15,6 +15,7 @@ extern NSString *const TWTextEntryCellIdentifier;
 
 @property (nonatomic, strong, readonly) UITextField *entryField;
 @property (nonatomic, copy) NSString *cellTag;
+@property (nonatomic, weak) IBOutlet UIView *separatorLine;
 
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value;
 - (NSString *)value;

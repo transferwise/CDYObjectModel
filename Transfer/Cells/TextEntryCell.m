@@ -22,7 +22,6 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 @property (nonatomic, assign) BOOL valueModified;
 @property (nonatomic, strong) IBOutlet UIButton *errorButton;
 @property (nonatomic, copy) NSString *validationIssue;
-@property (nonatomic, weak) IBOutlet UIView *separatorLine;
 
 - (IBAction)errorButtonTapped;
 
