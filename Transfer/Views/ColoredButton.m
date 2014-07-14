@@ -12,15 +12,15 @@
 
 @interface ColoredButton ()
 
+@property (strong, nonatomic) NSString* compoundStyleName;
 @property (strong, nonatomic) MOMCompoundStyle* compoundStyleContainer;
 @property (strong, nonatomic) NSString* shadowColor;
+@property (weak, nonatomic) UIImage* normalStateImage;
+@property (weak, nonatomic) UIImage* selectedStateImage;
 
 @end
 
 @implementation ColoredButton
-
-UIImage* normalStateImage;
-UIImage* selectedStateImage;
 
 #pragma mark - Init
 - (id)initWithFrame:(CGRect)frame
@@ -66,6 +66,8 @@ UIImage* selectedStateImage;
 	self.shadowColor = shadowColor;
 	//get style to get to actual colors later
 	self.compoundStyleContainer = [MOMStyleFactory compoundStyleForIdentifier:compoundStyle];
+	//save style name
+	self.compoundStyleName = compoundStyle;
 	
 	self.exclusiveTouch = YES;
 }
@@ -87,28 +89,30 @@ UIImage* selectedStateImage;
     }
 }
 
+- (void)setAddShadow:(BOOL)addShadow
+{
+	_addShadow = addShadow;
+	
+	if(!addShadow)
+	{
+		self.compoundStyle = self.compoundStyleName;
+	}
+}
+
 #pragma mark - Helpers
 - (void)setBackgroundImagesWithShadow
 {
 	// set background images
-	[self setBackgroundImage:[self normalStateImage] forState:UIControlStateNormal];
-	[self setBackgroundImage:[self selectedStateImage] forState:UIControlStateHighlighted];
-}
-
-- (UIImage *)normalStateImage
-{
-    return [self getBackgroundImage:NO
-							bgStyle:[self getColorFromStyle:self.compoundStyleContainer.bgStyle]
-				 highlightedBgStyle:[self getColorFromStyle:self.compoundStyleContainer.highlightedBgStyle]
-						 shdowStyle:self.shadowColor];
-}
-
-- (UIImage *)selectedStateImage
-{
-    return [self getBackgroundImage:YES
-							bgStyle:[self getColorFromStyle:self.compoundStyleContainer.bgStyle]
-				 highlightedBgStyle:[self getColorFromStyle:self.compoundStyleContainer.highlightedBgStyle]
-						 shdowStyle:self.shadowColor];
+	[self setBackgroundImage:[self getBackgroundImage:NO
+											  bgStyle:[self getColorFromStyle:self.compoundStyleContainer.bgStyle]
+								   highlightedBgStyle:[self getColorFromStyle:self.compoundStyleContainer.highlightedBgStyle]
+										   shdowStyle:self.shadowColor]
+					forState:UIControlStateNormal];
+	[self setBackgroundImage:[self getBackgroundImage:YES
+											  bgStyle:[self getColorFromStyle:self.compoundStyleContainer.bgStyle]
+								   highlightedBgStyle:[self getColorFromStyle:self.compoundStyleContainer.highlightedBgStyle]
+										   shdowStyle:self.shadowColor]
+					forState:UIControlStateHighlighted];
 }
 
 - (UIImage *)getBackgroundImage:(BOOL)selected
@@ -116,7 +120,7 @@ UIImage* selectedStateImage;
 			 highlightedBgStyle:(UIColor *)highlightedBgStyle
 					 shdowStyle:(NSString *)shadowStyle
 {
-	UIImage *result = selected ? selectedStateImage : normalStateImage;
+	UIImage *result = selected ? self.selectedStateImage : self.normalStateImage;
 	
 	if (!result)
 	{
@@ -146,11 +150,11 @@ UIImage* selectedStateImage;
 		
         if (selected)
 		{
-			selectedStateImage = image;
+			self.selectedStateImage = image;
 		}
 		else
 		{
-			normalStateImage = image;
+			self.normalStateImage = image;
 		}
 	}
 	

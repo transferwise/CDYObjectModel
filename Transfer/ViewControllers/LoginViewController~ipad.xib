@@ -90,7 +90,7 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.CoreFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8f-4O-fgG" userLabel="Yahoo Login Button" customClass="GreenButton">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8f-4O-fgG" userLabel="Yahoo Login Button" customClass="YahooButton">
                             <rect key="frame" x="297" y="156" width="430" height="55"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
