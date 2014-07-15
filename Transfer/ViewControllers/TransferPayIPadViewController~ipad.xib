@@ -115,7 +115,6 @@
                     </state>
                     <connections>
                         <action selector="cancelTapped:" destination="-1" eventType="touchUpInside" id="VC6-Ix-AQ5"/>
-                        <action selector="contactSupportPressed" destination="-1" eventType="touchUpInside" id="j0t-k3-L9C"/>
                     </connections>
                 </button>
             </subviews>
@@ -123,8 +122,8 @@
             <constraints>
                 <constraint firstItem="rdL-bg-wXf" firstAttribute="trailing" secondItem="wT7-RD-Q1J" secondAttribute="trailing" id="2MO-se-whB"/>
                 <constraint firstAttribute="centerX" secondItem="wT7-RD-Q1J" secondAttribute="centerX" id="61x-7b-X64"/>
-                <constraint firstItem="wT7-RD-Q1J" firstAttribute="top" secondItem="EgC-g7-YkB" secondAttribute="bottom" constant="308" id="8gH-vO-QhK"/>
                 <constraint firstAttribute="centerX" secondItem="d1H-cT-clM" secondAttribute="centerX" id="9ex-JR-vnP"/>
+                <constraint firstAttribute="bottom" secondItem="rdL-bg-wXf" secondAttribute="bottom" constant="88" id="CpR-St-4J3"/>
                 <constraint firstItem="d1H-cT-clM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="D5a-VY-J7y"/>
                 <constraint firstItem="d1H-cT-clM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="94" id="W74-eI-Tm4"/>
                 <constraint firstItem="EgC-g7-YkB" firstAttribute="top" secondItem="d1H-cT-clM" secondAttribute="bottom" constant="53" id="b3X-Ln-U9I"/>
