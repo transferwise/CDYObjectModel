@@ -492,6 +492,8 @@ people who built Skype and PayPal.";
 registered with. We'll send you
 an email in order to let you
 choose a new password.";
+"reset.password.header.description.ipad" = "Enter the email address you registered with.
+We'll send you an email in order to let you choose a new password.";
 "reset.controller.footer.button.title" = "Reset password";
 "reset.password.email.not.entered" = "Email not entered.";
 "reset.password.invaild.email.error" = "Please provide a valid email.";
