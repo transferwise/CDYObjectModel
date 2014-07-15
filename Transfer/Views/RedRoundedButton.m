@@ -14,7 +14,6 @@
 {
 	[super configureWithCompoundStyle:@"redRoundedButton"];
 	[self setBackgroundImage:[UIImage imageNamed:@"RoundedRedButton"] forState:UIControlStateNormal];
-	[self setTitleEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 20)];
 	[super commonSetup];
 }
 

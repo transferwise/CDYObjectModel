@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Constants.h"
+#import "TransferPayIPadViewController.h"
 
 @class ObjectModel;
 
-@interface TransactionsViewController : UIViewController
+@interface TransactionsViewController : UIViewController<TransferPayIpadViewControllerDelegate>
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 

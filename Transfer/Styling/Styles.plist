@@ -244,19 +244,23 @@
 		</dict>
 		<key>blueRoundedButton</key>
 		<dict>
+			<key>appearanceStyle</key>
+			<string>rounded</string>
 			<key>fontStyle</key>
 			<string>heavy.@17.TWElectricBlue</string>
 			<key>highlightedBgStyle</key>
-			<string>white</string>
+			<string>TWElectricBlue.alpha1</string>
 			<key>bgStyle</key>
 			<string>white</string>
 		</dict>
 		<key>redRoundedButton</key>
 		<dict>
+			<key>appearanceStyle</key>
+			<string>rounded</string>
 			<key>fontStyle</key>
 			<string>heavy.@17.Red</string>
 			<key>highlightedBgStyle</key>
-			<string>white</string>
+			<string>Red.alpha1</string>
 			<key>bgStyle</key>
 			<string>white</string>
 		</dict>

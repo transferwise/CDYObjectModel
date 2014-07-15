@@ -12,7 +12,7 @@
 
 - (void)commonSetup
 {
-	[self setTitleEdgeInsets:UIEdgeInsetsMake(2, 20, 2, 20)];
+	[self setTitleEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 20)];
 }
 
 @end

@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "TransferDetailsViewController.h"
 
+@protocol TransferPayIpadViewControllerDelegate <NSObject>
+
+- (void)cancelPaymentWithConfirmation:(Payment *)payment;
+
+@end
+
 @interface TransferPayIPadViewController : TransferDetailsViewController
+
+@property (weak, nonatomic) id<TransferPayIpadViewControllerDelegate> delegate;
 
 @end

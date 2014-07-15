@@ -59,7 +59,7 @@
 
 - (IBAction)cancelTapped:(id)sender
 {
-	
+	[self.delegate cancelPaymentWithConfirmation:self.payment];
 }
 
 - (IBAction)contactSupportPressed
