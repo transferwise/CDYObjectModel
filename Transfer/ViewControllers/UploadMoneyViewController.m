@@ -24,14 +24,20 @@
 #import "ClaimAccountViewController.h"
 #import "Credentials.h"
 #import "FeedbackCoordinator.h"
+#import "HeaderTabView.h"
+#import "SupportCoordinator.h"
 
-@interface UploadMoneyViewController ()
+@interface UploadMoneyViewController ()<HeaderTabViewDelegate>
 
 @property (nonatomic, strong) BankTransferViewController *bankViewController;
 @property (nonatomic, strong) CardPaymentViewController *cardViewController;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
-@property (weak, nonatomic) IBOutlet UIView *containerView;
 
+@property (nonatomic, weak) IBOutlet UIView *containerView;
+
+@property (nonatomic,weak) IBOutlet HeaderTabView *tabView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tabViewHeightConstraint;
+@property (nonatomic,weak) IBOutlet UIButton *contactButton;
 @end
 
 @implementation UploadMoneyViewController
@@ -49,6 +55,15 @@
 
     [self setTitle:NSLocalizedString(@"upload.money.title", @"")];
 
+    if ([self.payment multiplePaymentMethods]) {
+        [self.tabView setTabTitles:@[NSLocalizedString(@"payment.method.card", nil), NSLocalizedString(@"payment.method.regular", nil)]];
+        [self.tabView setSelectedIndex:0];
+    }
+    else
+    {
+        self.tabViewHeightConstraint.constant = 0;
+    }
+    
     CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
     [self setCardViewController:cardController];
     [self attachChildController:cardController];
@@ -78,43 +93,29 @@
     }];
 
     BankTransferViewController *bankController = [[BankTransferViewController alloc] init];
-    [self setBankViewController:bankController];
     [self attachChildController:bankController];
     [bankController setPayment:self.payment];
     [bankController setObjectModel:self.objectModel];
-    [bankController setHideBottomButton:self.hideBottomButton];
-    [bankController setShowContactSupportCell:self.showContactSupportCell];
+    [self setBankViewController:bankController];
+    
+    [self headerTabView:nil tabTappedAtIndex:0];
+    
+    [self.contactButton setTitle:NSLocalizedString(@"transferdetails.controller.button.support",nil) forState:UIControlStateNormal];
 
-    if ([self.payment multiplePaymentMethods]) {
-        PaymentMethodSelectionView *selectionView = [PaymentMethodSelectionView loadInstance];
-        [selectionView setSegmentChangeHandler:^(NSInteger selectedIndex) {
-            [self selectionChangedToIndex:selectedIndex];
-        }];
-        [selectionView setTitles:@[NSLocalizedString(@"payment.method.card", nil), NSLocalizedString(@"payment.method.regular", nil)]];
-        [self.containerView addSubview:selectionView];
-
-        CGFloat selectionHeight = CGRectGetHeight(selectionView.frame);
-
-        NSArray *movedControllers = @[self.bankViewController, self.cardViewController];
-        for (UIViewController *controller in movedControllers) {
-            CGRect frame = controller.view.frame;
-            frame.origin.y += selectionHeight;
-            frame.size.height -= selectionHeight;
-            [controller.view setFrame:frame];
-        }
-
-        [self selectionChangedToIndex:0];
-    }
+    
 }
 
-- (void)selectionChangedToIndex:(NSInteger)index {
+
+- (void)headerTabView:(HeaderTabView *)tabView tabTappedAtIndex:(NSUInteger)index {
     if (index == 1) {
         [[GoogleAnalytics sharedInstance] sendScreen:@"Bank transfer payment"];
-        [self.containerView bringSubviewToFront:self.bankViewController.view];
+        [self.containerView addSubview:self.bankViewController.view];
+        [self.cardViewController.view removeFromSuperview];
     } else {
 		[[GoogleAnalytics sharedInstance] sendScreen:@"Debit card payment"];
         [self.cardViewController loadCardView];
-        [self.containerView bringSubviewToFront:self.cardViewController.view];
+        [self.containerView addSubview:self.cardViewController.view];
+        [self.bankViewController.view removeFromSuperview];
     }
 }
 
@@ -192,6 +193,11 @@
 
         [operation execute];
     });
+}
+
+- (IBAction)contactSupportPressed {
+    NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
+    [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 }
 
 @end

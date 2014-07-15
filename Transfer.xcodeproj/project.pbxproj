@@ -103,6 +103,12 @@
 		38BD98A5195C5973009F9B4A /* NameSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */; };
 		38BD98A6195C5973009F9B4A /* NameSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */; };
 		38C632F2194EEBBC008C9E46 /* WhyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */; };
+		38C7B29319742596004324E8 /* HeaderTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C7B29219742596004324E8 /* HeaderTabView.m */; };
+		38C7B29419742596004324E8 /* HeaderTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C7B29219742596004324E8 /* HeaderTabView.m */; };
+		38C7B2981974364C004324E8 /* BankTransferDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C7B2961974364C004324E8 /* BankTransferDetailCell.m */; };
+		38C7B2991974364C004324E8 /* BankTransferDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C7B2961974364C004324E8 /* BankTransferDetailCell.m */; };
+		38C7B29A1974364C004324E8 /* BankTransferDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C7B2971974364C004324E8 /* BankTransferDetailCell.xib */; };
+		38C7B29B1974364C004324E8 /* BankTransferDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C7B2971974364C004324E8 /* BankTransferDetailCell.xib */; };
 		38C8A79D19371DBC00714FB3 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */; };
 		38C8A79E19371DBC00714FB3 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */; };
 		38CACA61196EE21600BFCF82 /* NameSuggestionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CACA60196EE21600BFCF82 /* NameSuggestionCell~ipad.xib */; };
@@ -797,6 +803,11 @@
 		38BD98A0195C5973009F9B4A /* NameSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSuggestionCell.h; sourceTree = "<group>"; };
 		38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameSuggestionCell.m; sourceTree = "<group>"; };
 		38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NameSuggestionCell.xib; sourceTree = "<group>"; };
+		38C7B29119742596004324E8 /* HeaderTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderTabView.h; sourceTree = "<group>"; };
+		38C7B29219742596004324E8 /* HeaderTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderTabView.m; sourceTree = "<group>"; };
+		38C7B2951974364C004324E8 /* BankTransferDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BankTransferDetailCell.h; sourceTree = "<group>"; };
+		38C7B2961974364C004324E8 /* BankTransferDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BankTransferDetailCell.m; sourceTree = "<group>"; };
+		38C7B2971974364C004324E8 /* BankTransferDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BankTransferDetailCell.xib; sourceTree = "<group>"; };
 		38C8A79B19371DBC00714FB3 /* PullToRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshView.h; sourceTree = "<group>"; };
 		38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullToRefreshView.m; sourceTree = "<group>"; };
 		38CACA60196EE21600BFCF82 /* NameSuggestionCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NameSuggestionCell~ipad.xib"; sourceTree = "<group>"; };
@@ -1485,6 +1496,8 @@
 				EAD7D4D0171D4BB20099063F /* GreenButton.m */,
 				EAD73688171E6CB100A037B1 /* GrayButton.h */,
 				EAD73689171E6CB100A037B1 /* GrayButton.m */,
+				38C7B29119742596004324E8 /* HeaderTabView.h */,
+				38C7B29219742596004324E8 /* HeaderTabView.m */,
 				EAE7B6AA17E9AC3F00E03D73 /* IdentificationNotificationView.h */,
 				EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */,
 				EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */,
@@ -1632,6 +1645,9 @@
 				EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */,
 				476C6B86196C18BF007002F9 /* SwipeToCancelCell.h */,
 				476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */,
+				38C7B2951974364C004324E8 /* BankTransferDetailCell.h */,
+				38C7B2961974364C004324E8 /* BankTransferDetailCell.m */,
+				38C7B2971974364C004324E8 /* BankTransferDetailCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2390,6 +2406,7 @@
 				470DEFAE19460C8D00684FEB /* MoneyEntryCell~ipad.xib in Resources */,
 				47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */,
 				47592CC71940C35800ECDAF2 /* NewPaymentViewController~ipad.xib in Resources */,
+				38C7B29B1974364C004324E8 /* BankTransferDetailCell.xib in Resources */,
 				EA31A1D017DDB29B00F937F7 /* InfoPlist.strings in Resources */,
 				EA31A1D117DDB29B00F937F7 /* Localizable.strings in Resources */,
 				38E57F7B192A51DD00D864A2 /* TabViewController.xib in Resources */,
@@ -2492,6 +2509,7 @@
 				38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */,
 				EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */,
 				EA84056917F0A40B00F44916 /* spinner.html in Resources */,
+				38C7B29A1974364C004324E8 /* BankTransferDetailCell.xib in Resources */,
 				EAD3967C171BD51400F6D011 /* TransactionsViewController.xib in Resources */,
 				EA0523F9191B5AFC00B32899 /* RefundDetailsViewController.xib in Resources */,
 				EAD39681171BD57000F6D011 /* ContactsViewController.xib in Resources */,
@@ -2855,6 +2873,7 @@
 				38B092EA194F46D700315BE4 /* NameLookupWrapper.m in Sources */,
 				EA31A15F17DDB29B00F937F7 /* NonEditTextField.m in Sources */,
 				EA31A16017DDB29B00F937F7 /* PersonalProfileOperation.m in Sources */,
+				38C7B2991974364C004324E8 /* BankTransferDetailCell.m in Sources */,
 				EA31A16117DDB29B00F937F7 /* PersonalProfileIdentificationViewController.m in Sources */,
 				EAD3648D17E2F6EF001EFE40 /* CardPaymentViewController.m in Sources */,
 				EA31A16217DDB29B00F937F7 /* BusinessProfileViewController.m in Sources */,
@@ -2904,6 +2923,7 @@
 				EA31A18017DDB29B00F937F7 /* RoundedCellBackgroundView.m in Sources */,
 				EA31A18117DDB29B00F937F7 /* ProfileEditViewController.m in Sources */,
 				EA31A18217DDB29B00F937F7 /* ProfileSource.m in Sources */,
+				38C7B29419742596004324E8 /* HeaderTabView.m in Sources */,
 				38B1C5D7195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */,
 				EA31A18317DDB29B00F937F7 /* PersonalProfileSource.m in Sources */,
 				EA31A18417DDB29B00F937F7 /* BusinessProfileSource.m in Sources */,
@@ -3107,6 +3127,7 @@
 				18D47900173A3B5300FC317E /* PersonalProfileIdentificationViewController.m in Sources */,
 				EAD3648C17E2F6EF001EFE40 /* CardPaymentViewController.m in Sources */,
 				1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */,
+				38C7B2981974364C004324E8 /* BankTransferDetailCell.m in Sources */,
 				38B092E5194F2EB700315BE4 /* AddressBookManager.m in Sources */,
 				1864AC9E173B7C80008773FC /* BusinessProfileOperation.m in Sources */,
 				1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */,
@@ -3156,6 +3177,7 @@
 				EA416E301768673500904D97 /* ProfileSource.m in Sources */,
 				EA416E331768674700904D97 /* PersonalProfileSource.m in Sources */,
 				EA416E361768675400904D97 /* BusinessProfileSource.m in Sources */,
+				38C7B29319742596004324E8 /* HeaderTabView.m in Sources */,
 				EA92D9541769BD9D0078D0C4 /* BusinessProfileCommitter.m in Sources */,
 				EA92D97F176AF1200078D0C4 /* PaymentProfileViewController.m in Sources */,
 				EA92D983176AF1DF0078D0C4 /* ProfileSelectionView.m in Sources */,

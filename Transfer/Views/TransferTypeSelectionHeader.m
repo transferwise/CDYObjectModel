@@ -12,91 +12,32 @@
 #import "Constants.h"
 #import "UIColor+Theme.h"
 #import "MOMStyle.h"
+#import "HeaderTabView.h"
 
 NSString *const TWTypeSelectionCellIdentifier = @"TWTypeSelectionCellIdentifier";
 
-@interface TransferTypeSelectionHeader ()
+@interface TransferTypeSelectionHeader () <HeaderTabViewDelegate>
 
 @property (nonatomic, strong) RecipientType *selectedType;
 @property (nonatomic, strong) NSArray *allRecipientTypes;
-@property (strong, nonatomic) NSMutableArray *presentedButtons;
-@property (nonatomic, weak,) UIButton * lastSelectedButton;
-@property (weak, nonatomic) IBOutlet UIView *tabContainer;
-@property (weak, nonatomic) IBOutlet UIView *separatorLine;
+@property (nonatomic, weak) IBOutlet HeaderTabView* tabView;
 
 @end
 
 @implementation TransferTypeSelectionHeader
 
--(void)awakeFromNib
-{
-    CGRect newFrame = self.separatorLine.frame;
-    newFrame.size.height = 1.0f/[[UIScreen mainScreen] scale];
-    newFrame.origin.y += (1.0f - newFrame.size.height);
-    self.separatorLine.frame = newFrame;
-    
-}
-
--(void)updateSelectedButton
-{
-    self.lastSelectedButton.selected = NO;
-    self.lastSelectedButton = self.presentedButtons[[self.allRecipientTypes indexOfObject:self.selectedType]];
-    self.lastSelectedButton.selected = YES;
-}
 
 - (void)setSelectedType:(RecipientType *)selected allTypes:(NSArray *)allTypes {
-    if ([allTypes isEqualToArray:self.allRecipientTypes] && self.presentedButtons.count == allTypes.count) {
-        [self setSelectedType:selected];
-        [self updateSelectedButton];
-        return;
+    if (![allTypes isEqualToArray:self.allRecipientTypes])
+    {
+        self.allRecipientTypes = allTypes;
+        [self.tabView setTabTitles:[allTypes valueForKey:@"title"]];
     }
-    
     [self setSelectedType:selected];
-    [self setAllRecipientTypes:allTypes];
-
-    for (UILabel *presented in self.presentedButtons) {
-        [presented removeFromSuperview];
-    }
-    
-    for (UIView *view in self.subviews) {
-        //Removing the separation lines
-        if(CGRectGetWidth(view.frame) == 1)
-            [view removeFromSuperview];
-    }
-
-    self.presentedButtons = [NSMutableArray array];
-
-    CGFloat groupedCellWidth = CGRectGetWidth(self.tabContainer.frame) - 20;
-    CGFloat gap = IPAD?10.0f:4.0f;
-    NSUInteger index = 0;
-
-    for (RecipientType *type in allTypes) {
-        UIButton *button = [self createButton];
-        [button setTitle:type.title forState:UIControlStateNormal];
-        CGRect frame = CGRectMake(groupedCellWidth / allTypes.count * index + 10.0 + gap/2 , 0, (groupedCellWidth / allTypes.count) - gap, CGRectGetHeight(self.tabContainer.frame));
-        [button setFrame:frame];
-
-        [self.tabContainer addSubview:button];
-        [self.presentedButtons addObject:button];
-        index ++;
-    }
-
-    [self updateSelectedButton];
+    [self.tabView setSelectedIndex:[allTypes indexOfObject:selected]];
 }
 
-- (UIButton *)createButton {
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
-    [button setBackgroundImage:[UIImage imageNamed:@"DeselectedTab"] forState:UIControlStateNormal];
-    [button setBackgroundImage:[UIImage imageNamed:@"SelectedTab"] forState:UIControlStateSelected];
-    button.fontStyle = @"medium.@17.CoreFont";
-    button.selectedFontStyle = @"medium.@17.TWElectricBlue";
-    [button addTarget:self action:@selector(tabTapped:) forControlEvents:UIControlEventTouchUpInside];
-    return button;
-}
-
-- (void)tabTapped:(UIButton*)sender {
-    MCLog(@"Tapped");
-    NSUInteger index = [self.presentedButtons indexOfObject:sender];
+- (void)headerTabView:(HeaderTabView *)tabView tabTappedAtIndex:(NSUInteger)index {
     RecipientType *tappedOn = self.allRecipientTypes[index];
     [self changeSelectedTypeTo:tappedOn];
 }

@@ -9,14 +9,14 @@
           "height" : 1
         },
         "capInsets" : {
-          "bottom" : 1,
-          "top" : 1,
-          "right" : 1,
-          "left" : 1
+          "bottom" : 20,
+          "top" : 19,
+          "right" : 19,
+          "left" : 26
         }
       },
       "idiom" : "universal",
-      "filename" : "Selected.png",
+      "filename" : "rounded_button_iphone_red.png",
       "scale" : "1x"
     },
     {
@@ -28,14 +28,14 @@
           "height" : 1
         },
         "capInsets" : {
-          "bottom" : 3,
-          "top" : 2,
-          "right" : 3,
-          "left" : 2
+          "bottom" : 40,
+          "top" : 39,
+          "right" : 39,
+          "left" : 51
         }
       },
       "idiom" : "universal",
-      "filename" : "Selected@2x.png",
+      "filename" : "rounded_button_iphone_red@2x.png",
       "scale" : "2x"
     }
   ],

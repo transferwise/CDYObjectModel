@@ -36,7 +36,6 @@
 
 -(void)commonSetup
 {
-    self.orientation = OrientationHorizontal;
     [self updateColor];
 }
 
@@ -56,7 +55,7 @@
 -(void)setFromColorStyle:(NSString *)fromColorStyle
 {
     _fromColorStyle = fromColorStyle;
-    [self setToColor:[UIColor colorFromStyle:fromColorStyle]];
+    [self setFromColor:[UIColor colorFromStyle:fromColorStyle]];
 }
 
 -(void)setFromColor:(UIColor *)fromColor

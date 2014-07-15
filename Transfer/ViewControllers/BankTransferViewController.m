@@ -11,6 +11,7 @@
 #import "TextCell.h"
 #import "UIColor+Theme.h"
 #import "Payment.h"
+#import "Currency.h"
 #import "Constants.h"
 #import "TransferwiseOperation.h"
 #import "ObjectModel.h"
@@ -23,10 +24,11 @@
 #import "ObjectModel+Users.h"
 #import "User.h"
 #import "UITableView+FooterPositioning.h"
-#import "ConfirmPaymentCell.h"
+#import "BankTransferDetailCell.h"
 #import "SupportCoordinator.h"
 #import "GoogleAnalytics.h"
 #import "ObjectModel+Payments.h"
+#import "MOMStyle.h"
 
 @interface BankTransferViewController ()
 
@@ -36,9 +38,11 @@
 @property (strong, nonatomic) IBOutlet UIView *footerBottomMessageView;
 @property (nonatomic, strong) IBOutlet UIView *contactSupportFooter;
 @property (nonatomic, strong) IBOutlet UIButton *contactSupportFooterButton;
-@property (strong, nonatomic) IBOutletCollection(GreenButton) NSArray *doneButtons;
+@property (weak, nonatomic) IBOutlet UIButton *doneButton;
+@property (nonatomic,weak) IBOutlet UILabel *addressLabel;
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableHeightConstraint;
 
 - (IBAction)contactSupportPressed;
 
@@ -59,31 +63,78 @@
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
 
-    [self.headerLabel setText:NSLocalizedString(@"upload.money.header.label", @"")];
-    for(UIButton *button in self.doneButtons)
-    {
-        [button setTitle:NSLocalizedString(@"upload.money.done.button.title", @"") forState:UIControlStateNormal];
-    }
+    
+    [self.doneButton setTitle:NSLocalizedString(@"upload.money.done.button.title", @"") forState:UIControlStateNormal];
 
-    [self.tableView registerNib:[UINib nibWithNibName:@"TextCell" bundle:nil] forCellReuseIdentifier:TWTextCellIdentifier];
-    [self.tableView registerNib:[UINib nibWithNibName:@"ConfirmPaymentCell" bundle:nil] forCellReuseIdentifier:TWConfirmPaymentCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"BankTransferDetailCell" bundle:nil] forCellReuseIdentifier:BankTransferDetailCellIdentifier];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-    [self loadDataToCells];
+    
+    [self loadData];
+    
 }
 
-- (void)loadDataToCells {
-    MCLog(@"loadDataToCells");
+- (void)loadData {
+    MCLog(@"loadData");
+    
+    
+    //Header
+    NSString *exactlyString = NSLocalizedString(@"upload.money.header.label.exactly", @"");
+    exactlyString = [NSString stringWithFormat:exactlyString,self.payment.payInWithCurrency];
+    
+    NSString* currencyCode = self.payment.sourceCurrency.code;
+    NSString* headerFormat;
+    if ([currencyCode caseInsensitiveCompare:@"GBP"]==NSOrderedSame)
+    {
+        headerFormat = NSLocalizedString(@"upload.money.header.label.GBP", @"");
+    }
+    else if ([currencyCode caseInsensitiveCompare:@"EUR"]==NSOrderedSame)
+    {
+        headerFormat = NSLocalizedString(@"upload.money.header.label.EUR", @"");
+    }
+    else
+    {
+        headerFormat = NSLocalizedString(@"upload.money.header.label", @"");
+    }
+    
+    NSString *text = [NSString stringWithFormat:headerFormat,exactlyString];
+    NSRange exactlyRange = [text rangeOfString:exactlyString];
+    
+    NSMutableAttributedString *finalText = [[NSMutableAttributedString alloc] initWithString:text];
+    [finalText addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"DarkFont"] range:exactlyRange];
+    
+    [self.headerLabel setAttributedText:finalText];
+    [self.headerView setNeedsLayout];
+    [self.headerView layoutIfNeeded];
+    
+    CGFloat height = [self.headerView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    CGRect frame = self.headerView.frame;
+    frame.size.height = height;
+    self.headerView.frame = frame;
+    
+    self.tableView.tableHeaderView = self.headerView;
+    
+    //Footer
+    
+    self.addressLabel.text = NSLocalizedString(@"upload.money.our.address.label", @"");
+    [self.footerView setNeedsLayout];
+    [self.footerView layoutIfNeeded];
+    height = [self.footerView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    frame = self.footerView.frame;
+    frame.size.height = height;
+    self.footerView.frame = frame;
+    
+    self.tableView.tableFooterView = self.footerView;
+
+    
+    //Cells
+
+    
     NSMutableArray *presentedCells = [NSMutableArray array];
 
-    TextCell *amountCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
-    [amountCell configureWithTitle:NSLocalizedString(@"upload.money.amount.title", nil) text:self.payment.payInWithCurrency];
-    [presentedCells addObject:amountCell];
-
-    TextCell *toCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
+    BankTransferDetailCell *toCell = [self.tableView dequeueReusableCellWithIdentifier:BankTransferDetailCellIdentifier];
     [toCell configureWithTitle:NSLocalizedString(@"upload.money.to.title", nil) text:self.payment.settlementRecipient.name];
     [presentedCells addObject:toCell];
 
@@ -92,32 +143,33 @@
     [presentedCells addObjectsFromArray:accountCells];
 
     //TODO jaanus: bank name cell
-    TextCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
-    [referenceCell configureWithTitle:NSLocalizedString(@"upload.money.reference.title", nil) text:self.objectModel.currentUser.pReference];
+    BankTransferDetailCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:BankTransferDetailCellIdentifier];
+    [referenceCell configureWithTitle: NSLocalizedString(@"upload.money.reference.title", nil) text:self.objectModel.currentUser.pReference];
     [presentedCells addObject:referenceCell];
 
-    TextCell *addressCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
-    [addressCell configureWithTitle:NSLocalizedString(@"upload.money.address.title", nil) text:NSLocalizedString(@"upload.money.our.address.label", @"")];
-    [presentedCells addObject:addressCell];
-    CGRect addressFrame = addressCell.frame;
-    //TODO jaanus: calculate actual height
-    addressFrame.size.height = 80;
-    [addressCell setFrame:addressFrame];
-
-    if (self.showContactSupportCell) {
-        [self.contactSupportFooterButton setTitle:NSLocalizedString(@"support.contact.cell.label", nil) forState:UIControlStateNormal];
-        [self.tableView setTableFooterView:self.contactSupportFooter];
+    if ([currencyCode caseInsensitiveCompare:@"EUR"]==NSOrderedSame)
+    {
+        BankTransferDetailCell *euroInfoCell = [self.tableView dequeueReusableCellWithIdentifier:
+                                BankTransferDetailCellIdentifier];
+        [euroInfoCell configureWithTitle:NSLocalizedString(@"upload.money.info.label.EUR",nil) text:nil];
+        CGRect infoFrame = euroInfoCell.frame;
+        CGRect headerFrame = euroInfoCell.headerLabel.frame;
+        [euroInfoCell.headerLabel sizeToFit];
+        headerFrame.size.height = euroInfoCell.headerLabel.frame.size.height;
+        euroInfoCell.headerLabel.frame = headerFrame;
+        infoFrame.size.height = headerFrame.origin.y + headerFrame.size.height + 8.0f;
+        [euroInfoCell setFrame:infoFrame];
+        [presentedCells addObject:euroInfoCell];
     }
 
     [self setPresentedSectionCells:@[presentedCells]];
 
     [self.tableView reloadData];
     [self.tableView setTableHeaderView:self.headerView];
+    
+    [self.tableView layoutIfNeeded];
+    self.tableHeightConstraint.constant = self.tableView.contentSize.height;
 
-    if (!self.hideBottomButton) {
-        [self.tableView setTableFooterView:self.footerView];
-        [self.tableView adjustFooterViewSize];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -129,7 +181,7 @@
 - (NSArray *)buildAccountCellForType:(RecipientType *)type recipient:(Recipient *)recipient {
     NSMutableArray *result = [NSMutableArray array];
     for (RecipientTypeField *field in type.fields) {
-        TextCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
+        BankTransferDetailCell *cell = [self.tableView dequeueReusableCellWithIdentifier:BankTransferDetailCellIdentifier];
         [cell configureWithTitle:field.title text:[recipient valueField:field]];
         [result addObject:cell];
     }
@@ -152,9 +204,5 @@
 }
 
 
-- (IBAction)contactSupportPressed {
-    NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
-    [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
-}
-
 @end
+

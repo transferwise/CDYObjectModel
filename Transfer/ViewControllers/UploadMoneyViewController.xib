@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="5056"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UploadMoneyViewController">
             <connections>
+                <outlet property="contactButton" destination="Z9S-ZR-rBv" id="rPR-WN-ZwR"/>
                 <outlet property="containerView" destination="mlD-gY-NzT" id="Wcf-hV-dcw"/>
+                <outlet property="tabView" destination="g3b-qz-iWf" id="ytk-qq-KmG"/>
+                <outlet property="tabViewHeightConstraint" destination="aTh-rv-4fz" id="tsJ-y2-qeA"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -15,18 +18,90 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mlD-gY-NzT">
-                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d86-2N-68O">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3b-qz-iWf" customClass="HeaderTabView">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="iig-7l-Uow"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="rjy-zF-Gcn"/>
+                            </connections>
+                        </view>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="g3b-qz-iWf" secondAttribute="bottom" id="SR6-J2-Wev"/>
+                        <constraint firstAttribute="height" constant="50" id="aTh-rv-4fz"/>
+                        <constraint firstAttribute="trailing" secondItem="g3b-qz-iWf" secondAttribute="trailing" id="c4h-09-lkx"/>
+                        <constraint firstItem="g3b-qz-iWf" firstAttribute="leading" secondItem="d86-2N-68O" secondAttribute="leading" id="xkt-Iu-FNB"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlue"/>
+                    </userDefinedRuntimeAttributes>
                 </view>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hE2-TZ-AdX">
+                    <rect key="frame" x="0.0" y="50" width="320" height="518"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="454" translatesAutoresizingMaskIntoConstraints="NO" id="mlD-gY-NzT" customClass="IntrinsicSizeUIView">
+                            <rect key="frame" x="0.0" y="20" width="320" height="454"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstItem="mlD-gY-NzT" firstAttribute="leading" secondItem="hE2-TZ-AdX" secondAttribute="leading" id="0d2-fE-1t3"/>
+                        <constraint firstAttribute="trailing" secondItem="mlD-gY-NzT" secondAttribute="trailing" id="can-RP-WpN"/>
+                        <constraint firstAttribute="bottom" secondItem="mlD-gY-NzT" secondAttribute="bottom" constant="50" id="mFx-Ff-qZc"/>
+                        <constraint firstItem="mlD-gY-NzT" firstAttribute="top" secondItem="hE2-TZ-AdX" secondAttribute="top" constant="20" id="mnr-dW-sKj"/>
+                    </constraints>
+                </scrollView>
+                <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J6G-cJ-NU1" customClass="GradientView">
+                    <rect key="frame" x="0.0" y="50" width="320" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="orientation" value="1"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fromColorStyle" value="white"/>
+                        <userDefinedRuntimeAttribute type="color" keyPath="toColor">
+                            <color key="value" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z9S-ZR-rBv" userLabel="Button - Contact Support" customClass="BlueButton">
+                    <rect key="frame" x="0.0" y="519" width="320" height="49"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="49" id="dek-FS-AU0"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="contactSupportPressed" destination="-1" eventType="touchUpInside" id="2pu-eB-9Tm"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="mlD-gY-NzT" secondAttribute="trailing" id="II1-Du-Td7"/>
-                <constraint firstItem="mlD-gY-NzT" firstAttribute="top" secondItem="1" secondAttribute="top" constant="64" id="VBN-Et-sZN"/>
-                <constraint firstAttribute="bottom" secondItem="mlD-gY-NzT" secondAttribute="bottom" id="e0r-f6-YqC"/>
-                <constraint firstItem="mlD-gY-NzT" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="k3g-Kr-cdb"/>
+                <constraint firstAttribute="bottom" secondItem="Z9S-ZR-rBv" secondAttribute="bottom" id="3NE-Qa-yeO"/>
+                <constraint firstAttribute="bottom" secondItem="hE2-TZ-AdX" secondAttribute="bottom" id="4Oe-OQ-FDS"/>
+                <constraint firstItem="hE2-TZ-AdX" firstAttribute="top" secondItem="d86-2N-68O" secondAttribute="bottom" id="7ap-B0-7ue"/>
+                <constraint firstItem="hE2-TZ-AdX" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="8dX-Kw-eHB"/>
+                <constraint firstItem="Z9S-ZR-rBv" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Enz-A8-JS7"/>
+                <constraint firstItem="d86-2N-68O" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="GQF-di-Zev"/>
+                <constraint firstAttribute="trailing" secondItem="Z9S-ZR-rBv" secondAttribute="trailing" id="V8b-R6-UdT"/>
+                <constraint firstAttribute="trailing" secondItem="d86-2N-68O" secondAttribute="trailing" id="YXI-8M-fUR"/>
+                <constraint firstAttribute="trailing" secondItem="hE2-TZ-AdX" secondAttribute="trailing" id="o37-xv-ey1"/>
+                <constraint firstItem="d86-2N-68O" firstAttribute="top" secondItem="1" secondAttribute="top" id="vQ6-fm-oeR"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
