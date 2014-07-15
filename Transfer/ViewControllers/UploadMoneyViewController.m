@@ -37,7 +37,7 @@
 
 @property (nonatomic,weak) IBOutlet HeaderTabView *tabView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tabViewHeightConstraint;
-
+@property (nonatomic,weak) IBOutlet UIButton *contactButton;
 @end
 
 @implementation UploadMoneyViewController
@@ -96,11 +96,11 @@
     [self attachChildController:bankController];
     [bankController setPayment:self.payment];
     [bankController setObjectModel:self.objectModel];
-    [bankController setHideBottomButton:self.hideBottomButton];
-    [bankController setShowContactSupportCell:self.showContactSupportCell];
     [self setBankViewController:bankController];
     
     [self headerTabView:nil tabTappedAtIndex:0];
+    
+    [self.contactButton setTitle:NSLocalizedString(@"transferdetails.controller.button.support",nil) forState:UIControlStateNormal];
 
     
 }

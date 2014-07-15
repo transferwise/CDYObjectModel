@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UploadMoneyViewController">
             <connections>
+                <outlet property="contactButton" destination="Z9S-ZR-rBv" id="rPR-WN-ZwR"/>
                 <outlet property="containerView" destination="mlD-gY-NzT" id="Wcf-hV-dcw"/>
                 <outlet property="tabView" destination="g3b-qz-iWf" id="ytk-qq-KmG"/>
                 <outlet property="tabViewHeightConstraint" destination="aTh-rv-4fz" id="tsJ-y2-qeA"/>

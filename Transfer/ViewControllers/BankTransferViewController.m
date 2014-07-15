@@ -157,7 +157,7 @@
         [euroInfoCell.headerLabel sizeToFit];
         headerFrame.size.height = euroInfoCell.headerLabel.frame.size.height;
         euroInfoCell.headerLabel.frame = headerFrame;
-        infoFrame.size.height = headerFrame.origin.y + headerFrame.size.height + 15.0f;
+        infoFrame.size.height = headerFrame.origin.y + headerFrame.size.height + 8.0f;
         [euroInfoCell setFrame:infoFrame];
         [presentedCells addObject:euroInfoCell];
     }
