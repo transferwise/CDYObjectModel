@@ -101,7 +101,7 @@
     [[GoogleAnalytics sharedInstance] sendScreen:@"Login"];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
 	[NavigationBarCustomiser setDefault];
 }
