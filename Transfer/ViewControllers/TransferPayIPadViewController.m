@@ -9,11 +9,14 @@
 #import "TransferPayIPadViewController.h"
 #import "TransferDetialsHeaderView.h"
 #import "NSString+DeviceSpecificLocalisation.h"
+#import "GreenButton.h"
+#import "GoogleAnalytics.h"
+#import "SupportCoordinator.h"
 
 @interface TransferPayIPadViewController ()
 
 @property (strong, nonatomic) IBOutlet TransferDetialsHeaderView *headerView;
-@property (strong, nonatomic) IBOutlet UIButton *payButton;
+@property (strong, nonatomic) IBOutlet GreenButton *payButton;
 @property (strong, nonatomic) IBOutlet UIButton *supportButton;
 @property (strong, nonatomic) IBOutlet UIButton *cancelButton;
 
@@ -32,17 +35,37 @@
 
 - (void)setUpHeader
 {
+	[self.payButton setTitle:[NSString stringWithFormat:NSLocalizedString(@"transferdetails.controller.button.pay", nil), [self.payment payInStringWithCurrency]]
+					forState:UIControlStateNormal];
+	[self.cancelButton setTitle:NSLocalizedString(@"transferdetails.controller.button.cancel", nil) forState:UIControlStateNormal];
+	
 	[super setUpHeader];
-	//init buttons here
 }
 
 - (void)setUpAmounts
 {
-	//empty
+	//empty so nothing gets initialized
 }
 
 - (void)setUpAccounts
 {
-	//empty
+	//empty so nothing gets initialized
+}
+
+- (IBAction)payTapped:(id)sender
+{
+	
+}
+
+- (IBAction)cancelTapped:(id)sender
+{
+	
+}
+
+- (IBAction)contactSupportPressed
+{
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"view transfer"];
+    NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
+    [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 }
 @end

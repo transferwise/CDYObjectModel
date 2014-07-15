@@ -6,7 +6,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TransferPayIPadViewController">
             <connections>
+                <outlet property="cancelButton" destination="rdL-bg-wXf" id="zTG-JP-fAi"/>
                 <outlet property="headerView" destination="d1H-cT-clM" id="Dfo-8V-tr4"/>
+                <outlet property="payButton" destination="EgC-g7-YkB" id="LjP-30-Zgh"/>
+                <outlet property="supportButton" destination="wT7-RD-Q1J" id="nZb-CS-JNn"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -77,26 +80,61 @@
                         <outlet property="yourTransferLabel" destination="Zmd-kL-1EY" id="dkW-Jh-478"/>
                     </connections>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EgC-g7-YkB" customClass="GreenButton">
-                    <rect key="frame" x="337" y="242" width="350" height="50"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EgC-g7-YkB" userLabel="Pay - Button" customClass="GreenButton">
+                    <rect key="frame" x="337" y="235" width="350" height="54"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="Omk-ip-2lr"/>
-                        <constraint firstAttribute="width" constant="350" id="bOA-Cw-5Xp"/>
+                        <constraint firstAttribute="height" constant="54" id="Omk-ip-2lr"/>
+                        <constraint firstAttribute="width" priority="750" constant="350" id="bOA-Cw-5Xp"/>
                     </constraints>
                     <state key="normal" title="Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="addShadow" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="payTapped:" destination="-1" eventType="touchUpInside" id="fVg-Ez-EHP"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wT7-RD-Q1J" userLabel="Contact support - Button" customClass="BlueRoundedButton">
+                    <rect key="frame" x="485" y="597" width="55" height="34"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="contactSupportPressed" destination="-1" eventType="touchUpInside" id="EBX-Ad-3zx"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdL-bg-wXf" userLabel="Cancel - Button" customClass="RedRoundedButton">
+                    <rect key="frame" x="485" y="646" width="55" height="34"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="cancelTapped:" destination="-1" eventType="touchUpInside" id="VC6-Ix-AQ5"/>
+                        <action selector="contactSupportPressed" destination="-1" eventType="touchUpInside" id="j0t-k3-L9C"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="rdL-bg-wXf" firstAttribute="trailing" secondItem="wT7-RD-Q1J" secondAttribute="trailing" id="2MO-se-whB"/>
+                <constraint firstAttribute="centerX" secondItem="wT7-RD-Q1J" secondAttribute="centerX" id="61x-7b-X64"/>
+                <constraint firstItem="wT7-RD-Q1J" firstAttribute="top" secondItem="EgC-g7-YkB" secondAttribute="bottom" constant="308" id="8gH-vO-QhK"/>
                 <constraint firstAttribute="centerX" secondItem="d1H-cT-clM" secondAttribute="centerX" id="9ex-JR-vnP"/>
                 <constraint firstItem="d1H-cT-clM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="D5a-VY-J7y"/>
                 <constraint firstItem="d1H-cT-clM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="94" id="W74-eI-Tm4"/>
-                <constraint firstItem="EgC-g7-YkB" firstAttribute="top" secondItem="d1H-cT-clM" secondAttribute="bottom" constant="60" id="b3X-Ln-U9I"/>
+                <constraint firstItem="EgC-g7-YkB" firstAttribute="top" secondItem="d1H-cT-clM" secondAttribute="bottom" constant="53" id="b3X-Ln-U9I"/>
+                <constraint firstItem="rdL-bg-wXf" firstAttribute="leading" secondItem="wT7-RD-Q1J" secondAttribute="leading" id="bPd-j5-Nyw"/>
+                <constraint firstItem="rdL-bg-wXf" firstAttribute="top" secondItem="wT7-RD-Q1J" secondAttribute="bottom" constant="15" id="bux-QP-wYf"/>
+                <constraint firstAttribute="centerX" secondItem="rdL-bg-wXf" secondAttribute="centerX" id="npZ-VM-b7e"/>
                 <constraint firstAttribute="centerX" secondItem="EgC-g7-YkB" secondAttribute="centerX" id="pyZ-Ux-zOM"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EgC-g7-YkB" secondAttribute="trailing" constant="50" id="uWX-PU-kTr"/>
                 <constraint firstAttribute="trailing" secondItem="d1H-cT-clM" secondAttribute="trailing" id="w8S-L4-zc1"/>
+                <constraint firstItem="EgC-g7-YkB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="xxb-9B-3Lz"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>

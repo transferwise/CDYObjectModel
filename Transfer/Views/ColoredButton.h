@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "InsetRespectingButton.h"
 
-@interface ColoredButton : UIButton
+@interface ColoredButton : InsetRespectingButton
 
 @property (nonatomic, assign) BOOL addShadow;
 

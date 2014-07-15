@@ -333,6 +333,8 @@ This can't be undone.";
 "transferdetails.controller.button.support.ipad" = "Contact support";
 "transferdetails.controller.button.support" = "Contact customer support";
 "transferdetails.controller.button.notransfer" = "Bank transfer not done yet";
+"transferdetails.controller.button.pay" = "Pay %@ now";
+"transferdetails.controller.button.cancel" = "Cancel transfer";
 
 "upload.money.account.nr.title" = "Account number";
 "upload.money.address.title" = "Our address";

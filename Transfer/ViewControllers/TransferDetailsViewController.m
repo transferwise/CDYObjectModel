@@ -23,7 +23,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *statusIcon;
 @property (strong, nonatomic) IBOutlet TransferDetailsAmountsView *amountsView;
 @property (strong, nonatomic) IBOutlet TransferDetialsRecipientView *accountView;
-@property (strong, nonatomic) IBOutlet ColoredButton *supportButton;
+@property (strong, nonatomic) IBOutlet UIButton *supportButton;
 
 @end
 
@@ -49,7 +49,6 @@
 {
     [super viewDidLoad];
 	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
-	[self.supportButton commonSetup];
 	[self setData];
 }
 
@@ -139,7 +138,8 @@
 	[self.accountView configureWithRecipient:self.payment.recipient];
 }
 
-- (IBAction)contactSupportPressed {
+- (IBAction)contactSupportPressed
+{
     [[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"view transfer"];
     NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
     [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
