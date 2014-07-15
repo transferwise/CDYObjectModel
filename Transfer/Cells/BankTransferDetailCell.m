@@ -10,16 +10,9 @@
 
 @implementation BankTransferDetailCell
 
-- (void)awakeFromNib
-{
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)configureWithTitle:(NSString *)title text:(NSString *)text {
+    [self.headerLabel setText:title];
+    [self.valueLabel setText:text];
 }
 
 @end

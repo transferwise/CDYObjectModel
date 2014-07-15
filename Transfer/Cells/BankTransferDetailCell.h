@@ -14,4 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *headerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
 
+- (void)configureWithTitle:(NSString *)title text:(NSString *)text;
+
 @end

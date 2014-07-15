@@ -25,6 +25,7 @@
 #import "Credentials.h"
 #import "FeedbackCoordinator.h"
 #import "HeaderTabView.h"
+#import "SupportCoordinator.h"
 
 @interface UploadMoneyViewController ()<HeaderTabViewDelegate>
 
@@ -192,6 +193,11 @@
 
         [operation execute];
     });
+}
+
+- (IBAction)contactSupportPressed {
+    NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
+    [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 }
 
 @end

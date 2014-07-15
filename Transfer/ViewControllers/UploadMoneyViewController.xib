@@ -75,13 +75,29 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z9S-ZR-rBv" userLabel="Button - Contact Support" customClass="BlueButton">
+                    <rect key="frame" x="0.0" y="519" width="320" height="49"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="49" id="dek-FS-AU0"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="contactSupportPressed" destination="-1" eventType="touchUpInside" id="2pu-eB-9Tm"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="Z9S-ZR-rBv" secondAttribute="bottom" id="3NE-Qa-yeO"/>
                 <constraint firstAttribute="bottom" secondItem="hE2-TZ-AdX" secondAttribute="bottom" id="4Oe-OQ-FDS"/>
                 <constraint firstItem="hE2-TZ-AdX" firstAttribute="top" secondItem="d86-2N-68O" secondAttribute="bottom" id="7ap-B0-7ue"/>
                 <constraint firstItem="hE2-TZ-AdX" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="8dX-Kw-eHB"/>
+                <constraint firstItem="Z9S-ZR-rBv" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Enz-A8-JS7"/>
                 <constraint firstItem="d86-2N-68O" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="GQF-di-Zev"/>
+                <constraint firstAttribute="trailing" secondItem="Z9S-ZR-rBv" secondAttribute="trailing" id="V8b-R6-UdT"/>
                 <constraint firstAttribute="trailing" secondItem="d86-2N-68O" secondAttribute="trailing" id="YXI-8M-fUR"/>
                 <constraint firstAttribute="trailing" secondItem="hE2-TZ-AdX" secondAttribute="trailing" id="o37-xv-ey1"/>
                 <constraint firstItem="d86-2N-68O" firstAttribute="top" secondItem="1" secondAttribute="top" id="vQ6-fm-oeR"/>

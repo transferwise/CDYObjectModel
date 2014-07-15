@@ -6,6 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BankTransferViewController">
             <connections>
+                <outlet property="addressLabel" destination="7wU-EP-uQi" id="TS2-mo-LYv"/>
+                <outlet property="doneButton" destination="vVH-WE-6fL" id="yvp-cB-p3e"/>
                 <outlet property="footerView" destination="TBf-ks-sBe" id="Ff6-Nv-PYy"/>
                 <outlet property="headerLabel" destination="0go-zj-Qsx" id="9aB-Mz-TGL"/>
                 <outlet property="headerView" destination="I7x-yl-vAr" id="8g1-ob-hMY"/>
@@ -42,11 +44,11 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view contentMode="scaleToFill" id="I7x-yl-vAr" userLabel="ViewHeader" customClass="IntrinsicSizeUIView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="31"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="0go-zj-Qsx">
-                    <rect key="frame" x="30" y="0.0" width="260" height="21"/>
+                    <rect key="frame" x="30" y="0.0" width="260" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="highlightedColor"/>
@@ -57,7 +59,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="0go-zj-Qsx" secondAttribute="bottom" constant="20" id="Ent-hQ-M0P"/>
+                <constraint firstAttribute="bottom" secondItem="0go-zj-Qsx" secondAttribute="bottom" constant="5" id="Ent-hQ-M0P"/>
                 <constraint firstItem="0go-zj-Qsx" firstAttribute="top" secondItem="I7x-yl-vAr" secondAttribute="top" id="HLp-J9-cB1"/>
                 <constraint firstItem="0go-zj-Qsx" firstAttribute="leading" secondItem="I7x-yl-vAr" secondAttribute="leading" constant="30" id="qUZ-aw-9Ze"/>
                 <constraint firstAttribute="trailing" secondItem="0go-zj-Qsx" secondAttribute="trailing" constant="30" id="xvG-31-09s"/>
@@ -65,27 +67,28 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view contentMode="scaleToFill" id="TBf-ks-sBe" customClass="IntrinsicSizeUIView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="124"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="kov-xa-8Th">
-                    <rect key="frame" x="30" y="0.0" width="260" height="21"/>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVH-WE-6fL" customClass="InsetRespectingButton">
+                    <rect key="frame" x="113" y="27" width="95" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.corefont"/>
-                    </userDefinedRuntimeAttributes>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVH-WE-6fL" customClass="InsetRespectingButton">
-                    <rect key="frame" x="117" y="29" width="86" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="FTU-Cz-qeA"/>
+                    </constraints>
+                    <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                    <state key="normal" title="Button" backgroundImage="RoundedBlueButton">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@16.TWElectricBlue"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="doneBtnClicked:" destination="-1" eventType="touchUpInside" id="f6Z-aP-LDW"/>
+                    </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="7wU-EP-uQi">
-                    <rect key="frame" x="30" y="67" width="260" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="7wU-EP-uQi">
+                    <rect key="frame" x="30" y="85" width="260" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="highlightedColor"/>
@@ -93,9 +96,30 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.corefont"/>
                     </userDefinedRuntimeAttributes>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Juh-Ff-cpz">
+                    <rect key="frame" x="80" y="0.0" width="160" height="27"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="160" id="L5W-ui-GlM"/>
+                        <constraint firstAttribute="height" constant="27" id="t4f-Gj-Ouc"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Juh-Ff-cpz" firstAttribute="top" secondItem="TBf-ks-sBe" secondAttribute="top" id="7JV-cp-9al"/>
+                <constraint firstAttribute="trailing" secondItem="7wU-EP-uQi" secondAttribute="trailing" constant="30" id="9k7-qv-Bl0"/>
+                <constraint firstItem="7wU-EP-uQi" firstAttribute="top" secondItem="vVH-WE-6fL" secondAttribute="bottom" constant="18" id="KGu-JS-tLi"/>
+                <constraint firstItem="vVH-WE-6fL" firstAttribute="top" secondItem="Juh-Ff-cpz" secondAttribute="bottom" id="SNf-OQ-Lwy"/>
+                <constraint firstAttribute="centerX" secondItem="vVH-WE-6fL" secondAttribute="centerX" id="VAG-1L-WvR"/>
+                <constraint firstAttribute="centerX" secondItem="Juh-Ff-cpz" secondAttribute="centerX" id="VHe-ia-e9A"/>
+                <constraint firstItem="7wU-EP-uQi" firstAttribute="leading" secondItem="TBf-ks-sBe" secondAttribute="leading" constant="30" id="t60-Nw-Vv6"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
+    <resources>
+        <image name="RoundedBlueButton" width="50" height="40"/>
+    </resources>
 </document>
