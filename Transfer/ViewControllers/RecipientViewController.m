@@ -435,7 +435,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         self.recipientFieldsHeader = [[NSBundle mainBundle] loadNibNamed:@"DataEntryDefaultHeader" owner:self options:nil][0];
     }
     
-    self.recipientFieldsHeader.titleLabel.text =  NSLocalizedString(@"recipient.controller.section.title.type.fields", nil);
+    NSString *recipientName = [self.nameCell.value length] > 0 ? self.nameCell.value: NSLocalizedString(@"recipient.controller.section.title.recipient.placeholder", nil);
+    NSString *recipientHeaderTitle =[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.section.title.recipient.bank.details", nil),recipientName];
+    
+    self.recipientFieldsHeader.titleLabel.text =  recipientHeaderTitle;
 
     //Generate cells
     
@@ -597,7 +600,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         case kCurrencySection:
             return NSLocalizedString(@"recipient.controller.section.title.currency", nil);
         case kRecipientFieldsSection:
-            return NSLocalizedString(@"recipient.controller.section.title.type.fields", nil);
+        {
+            ;NSString *recipientName = [self.nameCell.value length] > 0 ? self.nameCell.value: NSLocalizedString(@"recipient.controller.section.title.recipient.placeholder", nil);
+            return [NSString stringWithFormat:NSLocalizedString(@"recipient.controller.section.title.recipient.bank.details", nil),recipientName];
+        }
         default:
             MCLog(@"Unhandled section:%d", section);
             return nil;
