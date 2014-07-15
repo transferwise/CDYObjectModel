@@ -82,12 +82,6 @@
 	[self.googleLoginButton setTitle:NSLocalizedString([@"button.title.log.in.google" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
 	[self.yahooLoginButton setTitle:NSLocalizedString([@"button.title.log.in.yahoo" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
 	
-	if (!IPAD)
-	{
-		self.googleLoginButton.addShadow = NO;
-		self.yahooLoginButton.addShadow = NO;
-	}
-	
 	[self.orLabel setText:NSLocalizedString([@"login.controller.or" deviceSpecificLocalization], nil)];
 }
 

@@ -10,8 +10,17 @@
 #import "TransferDetailsViewController.h"
 #import "ObjectModel.h"
 
+@protocol TransferPayIpadViewControllerDelegate <NSObject>
+
+- (void)cancelPaymentWithConfirmation:(Payment *)payment;
+
+@end
+
 @interface TransferPayIPadViewController : TransferDetailsViewController
 
+
 @property (nonatomic, strong) ObjectModel *objectModel;
+@property (weak, nonatomic) id<TransferPayIpadViewControllerDelegate> delegate;
+
 
 @end
