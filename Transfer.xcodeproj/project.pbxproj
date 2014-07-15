@@ -157,6 +157,8 @@
 		4723EA341975644A00B4345F /* RedRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA321975644A00B4345F /* RedRoundedButton.m */; };
 		4723EA3719756A9800B4345F /* RoundedButtonWithInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */; };
 		4723EA3819756A9800B4345F /* RoundedButtonWithInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */; };
+		4723EA3A19758F8E00B4345F /* RecipientCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4723EA3919758F8E00B4345F /* RecipientCell~ipad.xib */; };
+		4723EA3B19758F8E00B4345F /* RecipientCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4723EA3919758F8E00B4345F /* RecipientCell~ipad.xib */; };
 		473DF972196D5ED600524C64 /* FloatingLabelTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 473DF971196D5ED600524C64 /* FloatingLabelTextField.m */; };
 		473DF973196D5ED600524C64 /* FloatingLabelTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 473DF971196D5ED600524C64 /* FloatingLabelTextField.m */; };
 		473DF975196D637200524C64 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473DF974196D637200524C64 /* LoginViewController~ipad.xib */; };
@@ -851,6 +853,7 @@
 		4723EA321975644A00B4345F /* RedRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedRoundedButton.m; sourceTree = "<group>"; };
 		4723EA3519756A9800B4345F /* RoundedButtonWithInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedButtonWithInsets.h; sourceTree = "<group>"; };
 		4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedButtonWithInsets.m; sourceTree = "<group>"; };
+		4723EA3919758F8E00B4345F /* RecipientCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecipientCell~ipad.xib"; sourceTree = "<group>"; };
 		473DF970196D5ED600524C64 /* FloatingLabelTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingLabelTextField.h; sourceTree = "<group>"; };
 		473DF971196D5ED600524C64 /* FloatingLabelTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingLabelTextField.m; sourceTree = "<group>"; };
 		473DF974196D637200524C64 /* LoginViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~ipad.xib"; sourceTree = "<group>"; };
@@ -1639,6 +1642,7 @@
 				EAD736A0171E85C300A037B1 /* RecipientCell.h */,
 				EAD736A1171E85C300A037B1 /* RecipientCell.m */,
 				EAD736A3171E85D100A037B1 /* RecipientCell.xib */,
+				4723EA3919758F8E00B4345F /* RecipientCell~ipad.xib */,
 				EA0425FE173CF5C50048BFBD /* RecipientEntrySelectionCell.h */,
 				EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */,
 				EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */,
@@ -2442,6 +2446,7 @@
 				EA0450DE17EC64E4008921DA /* IntroView.xib in Resources */,
 				38CACA65196EE4D400BFCF82 /* TextFieldSuggestionTable~ipad.xib in Resources */,
 				EA31A1D917DDB29B00F937F7 /* TableHeaderView.xib in Resources */,
+				4723EA3B19758F8E00B4345F /* RecipientCell~ipad.xib in Resources */,
 				EA31A1DA17DDB29B00F937F7 /* TextEntryCell.xib in Resources */,
 				38EFABE4196D7EAB00126192 /* TextFieldSuggestionTable.xib in Resources */,
 				EA31A1E117DDB29B00F937F7 /* RecipientCell.xib in Resources */,
@@ -2545,6 +2550,7 @@
 				4710499719470AFD00660B2F /* CurrencyCell~ipad.xib in Resources */,
 				38CACA64196EE4D400BFCF82 /* TextFieldSuggestionTable~ipad.xib in Resources */,
 				EAD3646617E1E19A001EFE40 /* Assets.xcassets in Resources */,
+				4723EA3A19758F8E00B4345F /* RecipientCell~ipad.xib in Resources */,
 				EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */,
 				38EFABE3196D7EAB00126192 /* TextFieldSuggestionTable.xib in Resources */,
 				380021F9192F43EA009B1D53 /* TabCell.xib in Resources */,
