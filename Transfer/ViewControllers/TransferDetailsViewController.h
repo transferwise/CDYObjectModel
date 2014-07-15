@@ -20,4 +20,6 @@
 - (void)setUpAmounts;
 - (void)setUpAccounts;
 
+- (NSString*)getStatusBasedLocalization:(NSString *)localizationKey status:(NSString*)status;
+
 @end

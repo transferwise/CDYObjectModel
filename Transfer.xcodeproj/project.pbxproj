@@ -141,6 +141,10 @@
 		4723EA211974363000B4345F /* ResetPasswordViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4723EA1F1974363000B4345F /* ResetPasswordViewController~ipad.xib */; };
 		4723EA24197436D000B4345F /* DismissKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA23197436D000B4345F /* DismissKeyboardViewController.m */; };
 		4723EA25197436D000B4345F /* DismissKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA23197436D000B4345F /* DismissKeyboardViewController.m */; };
+		4723EA291975349C00B4345F /* TransferPayIPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA271975349C00B4345F /* TransferPayIPadViewController.m */; };
+		4723EA2A1975349C00B4345F /* TransferPayIPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA271975349C00B4345F /* TransferPayIPadViewController.m */; };
+		4723EA2B1975349C00B4345F /* TransferPayIPadViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4723EA281975349C00B4345F /* TransferPayIPadViewController~ipad.xib */; };
+		4723EA2C1975349C00B4345F /* TransferPayIPadViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4723EA281975349C00B4345F /* TransferPayIPadViewController~ipad.xib */; };
 		473DF972196D5ED600524C64 /* FloatingLabelTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 473DF971196D5ED600524C64 /* FloatingLabelTextField.m */; };
 		473DF973196D5ED600524C64 /* FloatingLabelTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 473DF971196D5ED600524C64 /* FloatingLabelTextField.m */; };
 		473DF975196D637200524C64 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473DF974196D637200524C64 /* LoginViewController~ipad.xib */; };
@@ -821,6 +825,9 @@
 		4723EA1F1974363000B4345F /* ResetPasswordViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResetPasswordViewController~ipad.xib"; sourceTree = "<group>"; };
 		4723EA22197436D000B4345F /* DismissKeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissKeyboardViewController.h; sourceTree = "<group>"; };
 		4723EA23197436D000B4345F /* DismissKeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissKeyboardViewController.m; sourceTree = "<group>"; };
+		4723EA261975349C00B4345F /* TransferPayIPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferPayIPadViewController.h; sourceTree = "<group>"; };
+		4723EA271975349C00B4345F /* TransferPayIPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferPayIPadViewController.m; sourceTree = "<group>"; };
+		4723EA281975349C00B4345F /* TransferPayIPadViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransferPayIPadViewController~ipad.xib"; sourceTree = "<group>"; };
 		473DF970196D5ED600524C64 /* FloatingLabelTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingLabelTextField.h; sourceTree = "<group>"; };
 		473DF971196D5ED600524C64 /* FloatingLabelTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingLabelTextField.m; sourceTree = "<group>"; };
 		473DF974196D637200524C64 /* LoginViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~ipad.xib"; sourceTree = "<group>"; };
@@ -2085,6 +2092,9 @@
 				47FAF34C194B4E5D004CE986 /* TransferWaitingViewController.m */,
 				47FAF352194B4EF9004CE986 /* TransferWaitingViewController.xib */,
 				47FAF34D194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib */,
+				4723EA261975349C00B4345F /* TransferPayIPadViewController.h */,
+				4723EA271975349C00B4345F /* TransferPayIPadViewController.m */,
+				4723EA281975349C00B4345F /* TransferPayIPadViewController~ipad.xib */,
 				3831AA32194B31A200B3EE5C /* TransparentModalViewController.h */,
 				3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */,
 				EAD3648217E2F394001EFE40 /* UploadMoneyViewController.h */,
@@ -2429,6 +2439,7 @@
 				38EFABDA196D7E2400126192 /* RecipientViewController~ipad.xib in Resources */,
 				EA31A1F217DDB29B00F937F7 /* PaymentCell.xib in Resources */,
 				EA31A20117DDB29B00F937F7 /* RecipientViewController.xib in Resources */,
+				4723EA2C1975349C00B4345F /* TransferPayIPadViewController~ipad.xib in Resources */,
 				38EFABE0196D7EAB00126192 /* DataEntryDefaultHeader~ipad.xib in Resources */,
 				EA31A20217DDB29B00F937F7 /* CurrencySelectionCell.xib in Resources */,
 				EA31A20317DDB29B00F937F7 /* RecipientFieldCell.xib in Resources */,
@@ -2530,6 +2541,7 @@
 				38EFABD9196D7E1D00126192 /* RecipientViewController~ipad.xib in Resources */,
 				380021E6192CEB66009B1D53 /* TransactionsViewController~ipad.xib in Resources */,
 				18D47903173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib in Resources */,
+				4723EA2B1975349C00B4345F /* TransferPayIPadViewController~ipad.xib in Resources */,
 				38EFABDF196D7EAB00126192 /* DataEntryDefaultHeader~ipad.xib in Resources */,
 				380021FB192F43EA009B1D53 /* TabCell~ipad.xib in Resources */,
 				EAD3649117E2F971001EFE40 /* PaymentMethodSelectionView.xib in Resources */,
@@ -2938,6 +2950,7 @@
 				EA31A1A017DDB29B00F937F7 /* ObjectModel+CurrencyPairs.m in Sources */,
 				EA31A1A117DDB29B00F937F7 /* _PairSourceCurrency.m in Sources */,
 				EA31A1A217DDB29B00F937F7 /* PairSourceCurrency.m in Sources */,
+				4723EA2A1975349C00B4345F /* TransferPayIPadViewController.m in Sources */,
 				EA31A1A317DDB29B00F937F7 /* RecipientsOperation.m in Sources */,
 				EA0450DB17EC64BC008921DA /* IntroView.m in Sources */,
 				380021E0192CC980009B1D53 /* MOMBasicStyle.m in Sources */,
@@ -3189,6 +3202,7 @@
 				EA225CAC178EC3B2009D6B83 /* PairSourceCurrency.m in Sources */,
 				EA225CAF178ECD68009D6B83 /* RecipientsOperation.m in Sources */,
 				EA0450DA17EC64BC008921DA /* IntroView.m in Sources */,
+				4723EA291975349C00B4345F /* TransferPayIPadViewController.m in Sources */,
 				47FAF348194B3233004CE986 /* UIImage+Color.m in Sources */,
 				380021DF192CC980009B1D53 /* MOMBasicStyle.m in Sources */,
 				38B093191951FA8300315BE4 /* SettlementRecipient.m in Sources */,

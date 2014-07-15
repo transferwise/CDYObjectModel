@@ -31,6 +31,7 @@
 #import "PullToRefreshView.h"
 #import "TransferDetailsViewController.h"
 #import "TransferWaitingViewController.h"
+#import "TransferPayIPadViewController.h"
 #import "TRWAlertView.h"
 #import "TRWProgressHUD.h"
 #import "UIGestureRecognizer+Cancel.h"
@@ -183,24 +184,33 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[self removeCancellingFromCell];
 
     UIViewController *resultController;
-    if ([payment isSubmitted]) {
-        UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
-        [controller setPayment:payment];
-        [controller setObjectModel:self.objectModel];
-        [controller setHideBottomButton:YES];
-        [controller setShowContactSupportCell:YES];
-        resultController = controller;
-
+    if ([payment isSubmitted])
+	{
+		if(IPAD)
+		{
+			TransferPayIPadViewController *controller = [[TransferPayIPadViewController alloc] init];
+			controller.payment = payment;
+			resultController = controller;
+		}
+		else
+		{
+			UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+			[controller setPayment:payment];
+			[controller setObjectModel:self.objectModel];
+			[controller setHideBottomButton:YES];
+			[controller setShowContactSupportCell:YES];
+			resultController = controller;
+		}
     }
     else if (payment.status == PaymentStatusUserHasPaid)
     {
         TransferWaitingViewController *controller = [[TransferWaitingViewController alloc] init];
         controller.payment = payment;
         controller.objectModel = self.objectModel;
-        resultController = controller;
-        
+        resultController = controller;        
     }
-    else {
+    else
+	{
         TransferDetailsViewController *controller = [[TransferDetailsViewController alloc] init];
         controller.payment = payment;
         resultController = controller;

@@ -179,12 +179,14 @@ A revolution in your pocket.";
 "payment.status.received.description.eta" = "& should arrive on";
 "payment.status.refunded.description" = "Refunded %@";
 "payment.status.submitted.description" = "Waiting for money";
-"payment.status.submitted.description.long" = "will start once we";
-"payment.status.submitted.description.long2" = "received the money.";
-"payment.status.submitted.description.conversion" = "We're now waiting for your
+"payment.status.submitted.description.long" = "is waiting for your money.";
+"payment.status.payed.description" = "Waiting for money";
+"payment.status.payed.description.long" = "will start once we";
+"payment.status.payed.description.long2" = "received the money.";
+"payment.status.payed.description.conversion" = "We're now waiting for your
 bank transfer to reach our account.
 It can take up to 2 working days.";
-"payment.status.submitted.description.eta" = "";
+"payment.status.payed.description.eta" = "";
 "payment.status.transferred.description" = "Received %@";
 "payment.status.transferred.description.long" = "has been transfered.";
 "payment.status.transferred.description.conversion" = "have been converted to";
