@@ -20,7 +20,6 @@
 #import "LoginOperation.h"
 #import "NSMutableString+Issues.h"
 #import "OpenIDViewController.h"
-#import "ResetPasswordViewController.h"
 #import "UIFont+MOMStyle.h"
 #import "NSString+DeviceSpecificLocalisation.h"
 #import "GoogleButton.h"
@@ -244,10 +243,17 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+#pragma mark - Password reset
 - (void)forgotPasswordTapped
 {
     ResetPasswordViewController *controller = [[ResetPasswordViewController alloc] init];
     [controller setObjectModel:self.objectModel];
+	controller.delegate = self;
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)resetEmailSent:(NSString *)email
+{
+	self.emailTextField.text = email;
 }
 @end

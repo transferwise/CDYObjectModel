@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "DismissKeyboardViewController.h"
+#import "ResetPasswordViewController.h"
 
 @class ObjectModel;
 
-@interface LoginViewController : DismissKeyboardViewController<UITextFieldDelegate>
+@interface LoginViewController : DismissKeyboardViewController<UITextFieldDelegate, ResetPasswordViewControllerDelegate>
 
 @end

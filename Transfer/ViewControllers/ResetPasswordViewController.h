@@ -9,8 +9,16 @@
 #import "DataEntryViewController.h"
 #import "DismissKeyboardViewController.h"
 
+@protocol ResetPasswordViewControllerDelegate
+
+- (void)resetEmailSent:(NSString *)email;
+
+@end
+
 @class ObjectModel;
 
 @interface ResetPasswordViewController : DismissKeyboardViewController<UITextFieldDelegate>
+
+@property (weak, nonatomic) id<ResetPasswordViewControllerDelegate> delegate;
 
 @end
