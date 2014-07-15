@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DismissKeyboardViewController.h"
+#import "ResetPasswordViewController.h"
 
 @class ObjectModel;
 
-@interface LoginViewController : UIViewController
-
-@property (nonatomic) ObjectModel *objectModel;
+@interface LoginViewController : DismissKeyboardViewController<UITextFieldDelegate, ResetPasswordViewControllerDelegate>
 
 @end

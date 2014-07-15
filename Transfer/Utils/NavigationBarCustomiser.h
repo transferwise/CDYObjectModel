@@ -11,6 +11,6 @@
 @interface NavigationBarCustomiser : NSObject
 
 + (void)setDefault;
-+ (void)setLogin;
++ (void)setWhite;
 
 @end

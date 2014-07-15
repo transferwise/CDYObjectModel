@@ -20,7 +20,6 @@
 #import "LoginOperation.h"
 #import "NSMutableString+Issues.h"
 #import "OpenIDViewController.h"
-#import "ResetPasswordViewController.h"
 #import "UIFont+MOMStyle.h"
 #import "NSString+DeviceSpecificLocalisation.h"
 #import "GoogleButton.h"
@@ -60,9 +59,9 @@
 {
     [super viewDidLoad];
 	
-	[NavigationBarCustomiser setLogin];
-	
-	self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+	[NavigationBarCustomiser setWhite];
+	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController
+																									   isBlue:YES]];
 	
 	[self.emailTextField configureWithTitle:NSLocalizedString(@"login.email.field.title", nil) value:@""];
 	self.emailTextField.delegate = self;
@@ -98,8 +97,6 @@
 	
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationItem setTitle:NSLocalizedString(@"login.controller.title", nil)];
-	
-	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 	
     [[GoogleAnalytics sharedInstance] sendScreen:@"Login"];
 }
@@ -246,11 +243,17 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+#pragma mark - Password reset
 - (void)forgotPasswordTapped
 {
     ResetPasswordViewController *controller = [[ResetPasswordViewController alloc] init];
     [controller setObjectModel:self.objectModel];
+	controller.delegate = self;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+- (void)resetEmailSent:(NSString *)email
+{
+	self.emailTextField.text = email;
+}
 @end

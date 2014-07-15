@@ -18,17 +18,30 @@
 
 @implementation TransferBackButtonItem
 
-+ (TransferBackButtonItem *)backButtonWithTapHandler:(TRWActionBlock)tapHandler {
-    return [TransferBackButtonItem backButtonForPoppedNavigationController:nil tapHandler:tapHandler];
++ (TransferBackButtonItem *)backButtonWithTapHandler:(TRWActionBlock)tapHandler
+{
+    return [TransferBackButtonItem backButtonForPoppedNavigationController:nil
+																tapHandler:tapHandler
+																	isBlue:NO];
 }
 
-+ (TransferBackButtonItem *)backButtonForPoppedNavigationController:(UINavigationController *)navigationController {
-    return [TransferBackButtonItem backButtonForPoppedNavigationController:navigationController tapHandler:nil];
++ (TransferBackButtonItem *)backButtonForPoppedNavigationController:(UINavigationController *)navigationController
+{
+    return [self backButtonForPoppedNavigationController:navigationController isBlue:NO];
 }
 
-+ (TransferBackButtonItem *)backButtonForPoppedNavigationController:(UINavigationController *)navigationController tapHandler:(TRWActionBlock)tapHandler {
++ (TransferBackButtonItem *)backButtonForPoppedNavigationController:(UINavigationController *)navigationController
+															 isBlue:(BOOL)isBlue
+{
+	return [TransferBackButtonItem backButtonForPoppedNavigationController:navigationController tapHandler:nil isBlue:isBlue];
+}
+
++ (TransferBackButtonItem *)backButtonForPoppedNavigationController:(UINavigationController *)navigationController
+														 tapHandler:(TRWActionBlock)tapHandler
+															 isBlue:(BOOL)isBlue
+{
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"BackButtonArrow"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:isBlue ? @"BackButtonArrowBlue" : @"BackButtonArrow"] forState:UIControlStateNormal];
     CGRect newFrame = button.frame;
     newFrame.size = CGSizeMake(44, 44);
     button.contentEdgeInsets = UIEdgeInsetsMake(0,0,0,25);

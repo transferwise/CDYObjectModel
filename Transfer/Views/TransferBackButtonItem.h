@@ -13,5 +13,7 @@
 
 + (TransferBackButtonItem *)backButtonWithTapHandler:(TRWActionBlock)tapHandler;
 + (TransferBackButtonItem *)backButtonForPoppedNavigationController:(UINavigationController *)navigationController;
++ (TransferBackButtonItem *)backButtonForPoppedNavigationController:(UINavigationController *)navigationController
+															 isBlue:(BOOL)isBlue;
 
 @end

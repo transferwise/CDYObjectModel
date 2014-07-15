@@ -18,6 +18,12 @@
 
 @implementation TransparentModalViewController
 
+-(void)viewDidLoad
+{
+	[super viewDidLoad];
+	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+}
+
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
 	[super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
@@ -68,6 +74,7 @@
 
 -(IBAction)dismiss
 {
+	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
         CGRect newFrame = self.view.bounds;
         newFrame.origin.y = newFrame.size.height;
