@@ -63,13 +63,10 @@
                         <constraint firstItem="mlD-gY-NzT" firstAttribute="top" secondItem="hE2-TZ-AdX" secondAttribute="top" constant="20" id="mnr-dW-sKj"/>
                     </constraints>
                 </scrollView>
-                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J6G-cJ-NU1" customClass="GradientView">
+                <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J6G-cJ-NU1" customClass="GradientView">
                     <rect key="frame" x="0.0" y="50" width="320" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="eGG-3T-8Jr"/>
-                    </constraints>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="orientation" value="1"/>
@@ -98,15 +95,12 @@
                 <constraint firstAttribute="bottom" secondItem="Z9S-ZR-rBv" secondAttribute="bottom" id="3NE-Qa-yeO"/>
                 <constraint firstAttribute="bottom" secondItem="hE2-TZ-AdX" secondAttribute="bottom" id="4Oe-OQ-FDS"/>
                 <constraint firstItem="hE2-TZ-AdX" firstAttribute="top" secondItem="d86-2N-68O" secondAttribute="bottom" id="7ap-B0-7ue"/>
-                <constraint firstAttribute="trailing" secondItem="J6G-cJ-NU1" secondAttribute="trailing" id="8Xj-Dp-PZs"/>
                 <constraint firstItem="hE2-TZ-AdX" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="8dX-Kw-eHB"/>
                 <constraint firstItem="Z9S-ZR-rBv" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Enz-A8-JS7"/>
                 <constraint firstItem="d86-2N-68O" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="GQF-di-Zev"/>
                 <constraint firstAttribute="trailing" secondItem="Z9S-ZR-rBv" secondAttribute="trailing" id="V8b-R6-UdT"/>
                 <constraint firstAttribute="trailing" secondItem="d86-2N-68O" secondAttribute="trailing" id="YXI-8M-fUR"/>
-                <constraint firstItem="J6G-cJ-NU1" firstAttribute="top" secondItem="1" secondAttribute="top" constant="50" id="hDi-NQ-bNw"/>
                 <constraint firstAttribute="trailing" secondItem="hE2-TZ-AdX" secondAttribute="trailing" id="o37-xv-ey1"/>
-                <constraint firstItem="J6G-cJ-NU1" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="q7h-xF-iSo"/>
                 <constraint firstItem="d86-2N-68O" firstAttribute="top" secondItem="1" secondAttribute="top" id="vQ6-fm-oeR"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

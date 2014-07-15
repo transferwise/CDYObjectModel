@@ -190,6 +190,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 		{
 			TransferPayIPadViewController *controller = [[TransferPayIPadViewController alloc] init];
 			controller.payment = payment;
+            controller.objectModel = self.objectModel;
 			resultController = controller;
 		}
 		else

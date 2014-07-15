@@ -9,6 +9,7 @@
 #import "TransferPayIPadViewController.h"
 #import "TransferDetialsHeaderView.h"
 #import "NSString+DeviceSpecificLocalisation.h"
+#import "UploadMoneyViewController.h"
 
 @interface TransferPayIPadViewController ()
 
@@ -44,5 +45,15 @@
 - (void)setUpAccounts
 {
 	//empty
+}
+
+-(IBAction)buttonaction
+{
+    UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+    [controller setPayment:self.payment];
+    [controller setObjectModel:self.objectModel];
+    [controller setHideBottomButton:YES];
+    [controller setShowContactSupportCell:YES];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 @end

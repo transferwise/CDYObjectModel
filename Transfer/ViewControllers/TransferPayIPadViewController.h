@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "TransferDetailsViewController.h"
+#import "ObjectModel.h"
 
 @interface TransferPayIPadViewController : TransferDetailsViewController
+
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 @end

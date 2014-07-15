@@ -35,6 +35,7 @@
     {
         UIView *separator = [[UIView alloc]initWithFrame:self.bounds];
         self.separatorLine = separator;
+        separator.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [self addSubview:separator];
     }
     self.separatorLine.bgStyle = @"corefont";
@@ -48,6 +49,9 @@
     newFrame.size.height = 1.0f/[[UIScreen mainScreen] scale];
     newFrame.origin.y = self.bounds.size.height - newFrame.size.height;
     self.separatorLine.frame = newFrame;
+    
+    [self layoutButtons];
+    
 }
 
 -(void)setTabTitles:(NSArray*)titles
@@ -65,21 +69,40 @@
     
     self.presentedButtons = [NSMutableArray array];
     
-    CGFloat groupedCellWidth = CGRectGetWidth(self.frame) - 20;
-    CGFloat gap = IPAD?10.0f:4.0f;
+    
     NSUInteger index = 0;
     
     for (NSString* title in titles) {
     UIButton *button = [self createButton];
     [button setTitle:title forState:UIControlStateNormal];
-    CGRect frame = CGRectMake(groupedCellWidth / titles.count * index + 10.0 + gap/2 , 0, (groupedCellWidth / titles.count) - gap, CGRectGetHeight(self.frame));
-    [button setFrame:frame];
     
     [self insertSubview:button aboveSubview:self.separatorLine];
     [self.presentedButtons addObject:button];
     index ++;
 
     }
+    [self layoutButtons];
+}
+
+-(void)layoutButtons
+{
+    CGFloat margin = 10.0f;
+    CGFloat groupedCellWidth = CGRectGetWidth(self.frame) - 2 * margin;
+    CGFloat gap = IPAD?10.0f:4.0f;
+    NSUInteger count = [self.presentedButtons count];
+    
+    CGFloat cellWidth = groupedCellWidth/count;
+    if( self.fixedTabWidth)
+    {
+        cellWidth = [self.fixedTabWidth floatValue] + gap;
+        groupedCellWidth = cellWidth * count;
+        margin = (CGRectGetWidth(self.frame) - groupedCellWidth )/ 2;
+    }
+    
+    [self.presentedButtons enumerateObjectsUsingBlock:^(id button, NSUInteger index, BOOL *stop) {
+        CGRect frame = CGRectMake(cellWidth * index + margin + gap/2 , 0, (cellWidth) - gap, CGRectGetHeight(self.frame));
+        [button setFrame:frame];
+    }];
 }
 
 - (UIButton *)createButton {

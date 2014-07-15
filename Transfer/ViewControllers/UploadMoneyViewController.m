@@ -110,6 +110,7 @@
     if (index == 1) {
         [[GoogleAnalytics sharedInstance] sendScreen:@"Bank transfer payment"];
         [self.containerView addSubview:self.bankViewController.view];
+        
         [self.cardViewController.view removeFromSuperview];
     } else {
 		[[GoogleAnalytics sharedInstance] sendScreen:@"Debit card payment"];
@@ -127,7 +128,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
         [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
     }]];

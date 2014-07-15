@@ -113,6 +113,9 @@
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="fromColorStyle" value="TWBlueHighlighted.alpha1"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="orientation">
+                            <integer key="value" value="0"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
