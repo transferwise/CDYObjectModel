@@ -64,6 +64,8 @@
         self.tabViewHeightConstraint.constant = 0;
     }
     
+    self.containerView.translatesAutoresizingMaskIntoConstraints = NO;
+    
     CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
     [self setCardViewController:cardController];
     [self attachChildController:cardController];
@@ -110,14 +112,18 @@
     if (index == 1) {
         [[GoogleAnalytics sharedInstance] sendScreen:@"Bank transfer payment"];
         [self.containerView addSubview:self.bankViewController.view];
-        
+        self.bankViewController.tableView.contentInset = IPAD?UIEdgeInsetsMake(20, 0, 0, 0):UIEdgeInsetsMake(20, 0, 50, 0);
+        [self.bankViewController.tableView setContentOffset:CGPointMake(0,-self.bankViewController.tableView.contentInset.top)];
+        self.bankViewController.view.frame = self.containerView.bounds;
         [self.cardViewController.view removeFromSuperview];
     } else {
 		[[GoogleAnalytics sharedInstance] sendScreen:@"Debit card payment"];
         [self.cardViewController loadCardView];
         [self.containerView addSubview:self.cardViewController.view];
+        self.cardViewController.view.frame = self.containerView.bounds;
         [self.bankViewController.view removeFromSuperview];
     }
+    
 }
 
 - (void)attachChildController:(UIViewController *)controller {
@@ -132,6 +138,8 @@
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
         [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
     }]];
+    [self.containerView setNeedsLayout];
+    [self.containerView layoutIfNeeded];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

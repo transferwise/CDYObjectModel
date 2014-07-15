@@ -11,6 +11,7 @@
                 <outlet property="footerView" destination="TBf-ks-sBe" id="Ff6-Nv-PYy"/>
                 <outlet property="headerLabel" destination="0go-zj-Qsx" id="9aB-Mz-TGL"/>
                 <outlet property="headerView" destination="I7x-yl-vAr" id="8g1-ob-hMY"/>
+                <outlet property="tableHeightConstraint" destination="gjJ-jb-tKR" id="iu8-hQ-QwX"/>
                 <outlet property="tableView" destination="GWX-Km-zzH" id="vCD-9B-6sX"/>
                 <outlet property="view" destination="o8Y-mV-d91" id="8LB-Fg-3tH"/>
             </connections>
@@ -24,6 +25,11 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="169"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="169" id="Byp-uZ-HYe"/>
+                        <constraint firstAttribute="height" constant="169" id="gjJ-jb-tKR"/>
+                        <constraint firstAttribute="width" constant="320" id="sSp-iY-ZyI"/>
+                    </constraints>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="BaH-zT-jWA"/>
                         <outlet property="delegate" destination="-1" id="thI-UQ-c9W"/>
@@ -32,10 +38,8 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="GWX-Km-zzH" secondAttribute="trailing" id="3bb-m6-7ri"/>
-                <constraint firstAttribute="bottom" secondItem="GWX-Km-zzH" secondAttribute="bottom" id="EDg-FK-GqN"/>
+                <constraint firstAttribute="centerX" secondItem="GWX-Km-zzH" secondAttribute="centerX" id="b1a-gV-PVx"/>
                 <constraint firstItem="GWX-Km-zzH" firstAttribute="top" secondItem="o8Y-mV-d91" secondAttribute="top" id="vJt-QG-4L2"/>
-                <constraint firstItem="GWX-Km-zzH" firstAttribute="leading" secondItem="o8Y-mV-d91" secondAttribute="leading" id="ywi-8c-1jR"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>

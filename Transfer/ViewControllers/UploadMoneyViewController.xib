@@ -45,24 +45,11 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlue"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hE2-TZ-AdX">
+                <view contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="454" translatesAutoresizingMaskIntoConstraints="NO" id="mlD-gY-NzT" userLabel="ContentView">
                     <rect key="frame" x="0.0" y="50" width="320" height="518"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="454" translatesAutoresizingMaskIntoConstraints="NO" id="mlD-gY-NzT" customClass="IntrinsicSizeUIView">
-                            <rect key="frame" x="0.0" y="20" width="320" height="454"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        </view>
-                    </subviews>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
-                    <constraints>
-                        <constraint firstItem="mlD-gY-NzT" firstAttribute="leading" secondItem="hE2-TZ-AdX" secondAttribute="leading" id="0d2-fE-1t3"/>
-                        <constraint firstAttribute="trailing" secondItem="mlD-gY-NzT" secondAttribute="trailing" id="can-RP-WpN"/>
-                        <constraint firstAttribute="bottom" secondItem="mlD-gY-NzT" secondAttribute="bottom" constant="50" id="mFx-Ff-qZc"/>
-                        <constraint firstItem="mlD-gY-NzT" firstAttribute="top" secondItem="hE2-TZ-AdX" secondAttribute="top" constant="20" id="mnr-dW-sKj"/>
-                    </constraints>
-                </scrollView>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J6G-cJ-NU1" customClass="GradientView">
                     <rect key="frame" x="0.0" y="50" width="320" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -96,17 +83,17 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Z9S-ZR-rBv" secondAttribute="bottom" id="3NE-Qa-yeO"/>
-                <constraint firstAttribute="bottom" secondItem="hE2-TZ-AdX" secondAttribute="bottom" id="4Oe-OQ-FDS"/>
-                <constraint firstItem="hE2-TZ-AdX" firstAttribute="top" secondItem="d86-2N-68O" secondAttribute="bottom" id="7ap-B0-7ue"/>
                 <constraint firstAttribute="trailing" secondItem="J6G-cJ-NU1" secondAttribute="trailing" id="8Xj-Dp-PZs"/>
-                <constraint firstItem="hE2-TZ-AdX" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="8dX-Kw-eHB"/>
                 <constraint firstItem="Z9S-ZR-rBv" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Enz-A8-JS7"/>
                 <constraint firstItem="d86-2N-68O" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="GQF-di-Zev"/>
+                <constraint firstAttribute="trailing" secondItem="mlD-gY-NzT" secondAttribute="trailing" id="HGG-Je-uM0"/>
+                <constraint firstAttribute="bottom" secondItem="mlD-gY-NzT" secondAttribute="bottom" id="Qfu-6a-YcB"/>
                 <constraint firstAttribute="trailing" secondItem="Z9S-ZR-rBv" secondAttribute="trailing" id="V8b-R6-UdT"/>
                 <constraint firstAttribute="trailing" secondItem="d86-2N-68O" secondAttribute="trailing" id="YXI-8M-fUR"/>
                 <constraint firstItem="J6G-cJ-NU1" firstAttribute="top" secondItem="1" secondAttribute="top" constant="50" id="hDi-NQ-bNw"/>
-                <constraint firstAttribute="trailing" secondItem="hE2-TZ-AdX" secondAttribute="trailing" id="o37-xv-ey1"/>
+                <constraint firstItem="mlD-gY-NzT" firstAttribute="top" secondItem="1" secondAttribute="top" constant="50" id="oYn-L2-b55"/>
                 <constraint firstItem="J6G-cJ-NU1" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="q7h-xF-iSo"/>
+                <constraint firstItem="mlD-gY-NzT" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="sTE-FT-mWX"/>
                 <constraint firstItem="d86-2N-68O" firstAttribute="top" secondItem="1" secondAttribute="top" id="vQ6-fm-oeR"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
