@@ -253,10 +253,6 @@
 			<string>rounded</string>
 			<key>fontStyle</key>
 			<string>heavy.@17.TWElectricBlue</string>
-			<key>highlightedBgStyle</key>
-			<string>TWElectricBlue.alpha1</string>
-			<key>bgStyle</key>
-			<string>white</string>
 		</dict>
 		<key>redRoundedButton</key>
 		<dict>
@@ -264,10 +260,6 @@
 			<string>rounded</string>
 			<key>fontStyle</key>
 			<string>heavy.@17.Red</string>
-			<key>highlightedBgStyle</key>
-			<string>Red.alpha1</string>
-			<key>bgStyle</key>
-			<string>white</string>
 		</dict>
 	</dict>
 </dict>
