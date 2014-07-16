@@ -69,14 +69,14 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Mc7-YO-T8n" secondAttribute="bottom" id="0iI-Ud-DBw"/>
                     <constraint firstItem="Mc7-YO-T8n" firstAttribute="top" secondItem="3Qo-c7-f7Y" secondAttribute="top" id="9TP-eM-jFQ"/>
-                    <constraint firstItem="Mc7-YO-T8n" firstAttribute="leading" secondItem="3Qo-c7-f7Y" secondAttribute="leading" id="Gqg-5f-UNC"/>
-                    <constraint firstAttribute="trailing" secondItem="Mc7-YO-T8n" secondAttribute="trailing" id="xw2-zH-17P"/>
+                    <constraint firstItem="Mc7-YO-T8n" firstAttribute="leading" secondItem="3Qo-c7-f7Y" secondAttribute="leading" placeholder="YES" id="Gqg-5f-UNC"/>
+                    <constraint firstAttribute="trailing" secondItem="Mc7-YO-T8n" secondAttribute="trailing" placeholder="YES" id="xw2-zH-17P"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="bankLabel" destination="2OX-sm-jjG" id="iNo-Ug-hQV"/>
                 <outlet property="nameLabel" destination="yjj-Z6-Np6" id="DwG-2c-YqA"/>
-                <outlet property="slidingContentView" destination="Mc7-YO-T8n" id="8vy-CB-PZK"/>
+                <outlet property="slidingContentView" destination="Mc7-YO-T8n" id="EZl-IN-16q"/>
             </connections>
         </tableViewCell>
     </objects>

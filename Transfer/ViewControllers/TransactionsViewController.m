@@ -43,7 +43,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (nonatomic, strong) PaymentsOperation *executedOperation;
 @property (nonatomic, strong) IBOutlet UIView *loadingFooterView;
 @property (nonatomic, strong) NSFetchedResultsController *payments;
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IdentificationNotificationView *identificationView;
 @property (nonatomic, assign) BOOL showIdentificationView;
 @property (nonatomic, strong) CheckPersonalProfileVerificationOperation *checkOperation;
@@ -51,7 +50,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (nonatomic, strong) TransferwiseOperation *executedUploadOperation;
 @property (nonatomic, weak) PullToRefreshView* refreshView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) NSIndexPath* cancellingCellIndex;
 @property (nonatomic) CGPoint touchStart;
 
 @end
@@ -158,14 +156,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 			 }];
 
 	//set cancelling visible when scrolling
-	if(self.cancellingCellIndex && self.cancellingCellIndex.row == indexPath.row)
-	{
-		cell.isCancelVisible = YES;
-	}
-	else
-	{
-		cell.isCancelVisible = NO;
-	}
+	[self setCancellingVisibleForScrolling:cell indexPath:indexPath];
 	
     return cell;
 }
@@ -479,8 +470,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 			[self removeCancellingFromCell];
 		}];
 }
-
-
 
 #pragma mark - PullToRefresh
 

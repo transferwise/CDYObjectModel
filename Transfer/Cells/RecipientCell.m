@@ -34,7 +34,18 @@
     [super awakeFromNib];
 }
 
-- (void)configureWithRecipient:(Recipient *)recipient {
+- (void)configureWithPayment:(Recipient *)recipient
+		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
+		  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
+		  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
+		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock;
+{
+	//configure swipe to cancel
+	[super configureWithWillShowCancelBlock:willShowCancelBlock
+						 didShowCancelBlock:didShowCancelBlock
+						 didHideCancelBlock:didHideCancelBlock
+						  cancelTappedBlock:cancelTappedBlock];
+	
     [self.nameLabel setText:[recipient name]];
     [self.bankLabel setText:[self getSortCodeOrIban:recipient]];
 }

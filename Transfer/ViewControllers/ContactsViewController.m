@@ -35,7 +35,6 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) NSFetchedResultsController *allRecipients;
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
 
 @end
 
@@ -108,9 +107,30 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RecipientCell *cell = [tableView dequeueReusableCellWithIdentifier:kRecipientCellIdentifier];
-
     Recipient *recipient = [self.allRecipients objectAtIndexPath:indexPath];
-    [cell configureWithRecipient:recipient];
+	
+    [cell configureWithPayment:recipient
+		   willShowCancelBlock:^{
+			   //this will be called each time a touch starts
+			   //including the touch that hides the button
+			   //so not cancelling if the same cell is receiving touches
+			   if(self.cancellingCellIndex && self.cancellingCellIndex.row != indexPath.row)
+			   {
+				   [self removeCancellingFromCell];
+			   }
+		   }
+			didShowCancelBlock:^{
+				self.cancellingCellIndex = indexPath;
+			}
+			didHideCancelBlock:^{
+				self.cancellingCellIndex = nil;
+			}
+			 cancelTappedBlock:^{
+				 [self confirmRecipientDelete:recipient indexPath:indexPath];
+			 }];
+	
+	//set cancelling visible when scrolling
+	[self setCancellingVisibleForScrolling:cell indexPath:indexPath];
 
     return cell;
 }
@@ -195,24 +215,22 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (editingStyle != UITableViewCellEditingStyleDelete)
-//	{
-//        return;
-//    }
-//
-//    Recipient *recipient = [self.allRecipients objectAtIndexPath:indexPath];
-//    TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"contacts.controller.delete.conformation.title", nil)
-//                                                       message:[NSString stringWithFormat:NSLocalizedString(@"contacts.controller.delete.confirmation.message", nil), recipient.name]];
-//    [alertView setLeftButtonTitle:NSLocalizedString(@"button.title.delete", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
-//
-//    [alertView setLeftButtonAction:^{
-//        [self deleteRecipient:recipient];
-//    }];
-//
-//    [alertView show];
-//}
+- (void)confirmRecipientDelete:(Recipient *)recipient indexPath:(NSIndexPath *)indexPath
+{
+	TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"contacts.controller.delete.conformation.title", nil)
+                                                       message:[NSString stringWithFormat:NSLocalizedString(@"contacts.controller.delete.confirmation.message", nil), recipient.name]];
+    [alertView setLeftButtonTitle:NSLocalizedString(@"button.title.delete", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
+
+    [alertView setLeftButtonAction:^{
+        [self deleteRecipient:recipient];
+		[self removeCancellingFromCell];
+    }];
+	[alertView setRightButtonAction:^{
+		[self removeCancellingFromCell];
+    }];
+
+    [alertView show];
+}
 
 - (void)deleteRecipient:(Recipient *)recipient
 {

@@ -139,6 +139,8 @@
 		470DEFAE19460C8D00684FEB /* MoneyEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */; };
 		470EB61419768175001C5D97 /* ContactsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470EB61319768175001C5D97 /* ContactsViewController~ipad.xib */; };
 		470EB61519768175001C5D97 /* ContactsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470EB61319768175001C5D97 /* ContactsViewController~ipad.xib */; };
+		470EB6181976BE98001C5D97 /* CancelableCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 470EB6171976BE98001C5D97 /* CancelableCellViewController.m */; };
+		470EB6191976BE98001C5D97 /* CancelableCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 470EB6171976BE98001C5D97 /* CancelableCellViewController.m */; };
 		4710499719470AFD00660B2F /* CurrencyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */; };
 		4710499819470B2A00660B2F /* CurrencyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */; };
 		47233CD6196D457300449042 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47233CD4196D457300449042 /* LoginViewController.m */; };
@@ -847,6 +849,8 @@
 		38EFABDE196D7EAB00126192 /* TextFieldSuggestionTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldSuggestionTable.xib; sourceTree = "<group>"; };
 		470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MoneyEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		470EB61319768175001C5D97 /* ContactsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ContactsViewController~ipad.xib"; sourceTree = "<group>"; };
+		470EB6161976BE98001C5D97 /* CancelableCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelableCellViewController.h; sourceTree = "<group>"; };
+		470EB6171976BE98001C5D97 /* CancelableCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelableCellViewController.m; sourceTree = "<group>"; };
 		4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencyCell~ipad.xib"; sourceTree = "<group>"; };
 		47233CD3196D457300449042 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		47233CD4196D457300449042 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -2170,6 +2174,8 @@
 				3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */,
 				38B1C5D4195DBA6400BEE66E /* ConnectionAwareViewController.h */,
 				38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */,
+				470EB6161976BE98001C5D97 /* CancelableCellViewController.h */,
+				470EB6171976BE98001C5D97 /* CancelableCellViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -2976,6 +2982,7 @@
 				4723EA25197436D000B4345F /* DismissKeyboardViewController.m in Sources */,
 				EA31A17A17DDB29B00F937F7 /* RecipientProfileCommitter.m in Sources */,
 				EA31A17B17DDB29B00F937F7 /* LoggedInPaymentFlow.m in Sources */,
+				470EB6191976BE98001C5D97 /* CancelableCellViewController.m in Sources */,
 				EA31A17C17DDB29B00F937F7 /* NoUserPaymentFlow.m in Sources */,
 				388F09FC1934A1C000DBD93D /* UIView+RenderBlur.m in Sources */,
 				EA31A17D17DDB29B00F937F7 /* RegisterWithoutPasswordOperation.m in Sources */,
@@ -3235,6 +3242,7 @@
 				4723EA24197436D000B4345F /* DismissKeyboardViewController.m in Sources */,
 				3831AA37194B31A200B3EE5C /* TransparentModalViewController.m in Sources */,
 				388F09FB1934A1BB00DBD93D /* UIView+RenderBlur.m in Sources */,
+				470EB6181976BE98001C5D97 /* CancelableCellViewController.m in Sources */,
 				479B693E1949C36F001FA4FE /* TransferDetialsRecipientView.m in Sources */,
 				EAA053EC175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m in Sources */,
 				EAC1051A17607C4600B3B018 /* ClaimAccountViewController.m in Sources */,

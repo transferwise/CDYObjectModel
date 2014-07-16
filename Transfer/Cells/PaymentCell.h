@@ -20,6 +20,4 @@
 		  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
 		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock;
 
-@property (nonatomic) BOOL isCancelVisible;
-
 @end
