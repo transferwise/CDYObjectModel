@@ -104,13 +104,11 @@
                 <constraints>
                     <constraint firstItem="12" firstAttribute="top" secondItem="2Qf-I3-x2d" secondAttribute="top" id="1ie-yW-fTN"/>
                     <constraint firstAttribute="bottom" secondItem="12" secondAttribute="bottom" id="2FH-kC-0Ee"/>
-                    <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" priority="1" id="3fE-pg-33M"/>
                     <constraint firstItem="12" firstAttribute="leading" secondItem="2Qf-I3-x2d" secondAttribute="leading" placeholder="YES" id="YYS-uf-UQt"/>
                     <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" placeholder="YES" id="bdA-NM-gGV"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="contentViewTrailing" destination="3fE-pg-33M" id="ssO-Up-5Zh"/>
                 <outlet property="currencyLabel" destination="7" id="Eja-o7-jjb"/>
                 <outlet property="moneyLabel" destination="5" id="9"/>
                 <outlet property="nameLabel" destination="4" id="8"/>

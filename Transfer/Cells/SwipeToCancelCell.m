@@ -15,7 +15,7 @@
 @interface SwipeToCancelCell ()
 
 @property (strong, nonatomic) IBOutlet UIView *slidingContentView;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *contentViewTrailing;
+@property (strong, nonatomic) NSLayoutConstraint *contentViewTrailing;
 @property (strong, nonatomic) UIButton *cancelButton;
 @property (strong, nonatomic) TRWActionBlock willShowCancelBlock;
 @property (strong, nonatomic) TRWActionBlock didShowCancelBlock;
@@ -37,7 +37,10 @@
 	self.isCancelVisible = NO;
 	self.canBeCancelled = NO;
 	self.touchStart = CGPointZero;
-	self.contentViewTrailing.constant = 0;
+	if(self.contentViewTrailing)
+	{
+		self.contentViewTrailing.constant = 0;
+	}
 }
 
 - (void)configureWithWillShowCancelBlock:(TRWActionBlock)willShowCancelBlock
@@ -355,35 +358,54 @@
 #pragma mark - Sliding Content Width Equal to superview
 - (void)updateConstraints
 {
+	[self setUpSlidingContentConstraints];
+	[super updateConstraints];
+}
+
+- (void)setUpSlidingContentConstraints
+{
 	NSLayoutConstraint* equalWidths = [NSLayoutConstraint constraintWithItem:self.slidingContentView
-														 attribute:NSLayoutAttributeWidth
-														 relatedBy:NSLayoutRelationEqual
-															toItem:self.contentView
-														 attribute:NSLayoutAttributeWidth
-														multiplier:1.0f
-														  constant:0.f];
+																   attribute:NSLayoutAttributeWidth
+																   relatedBy:NSLayoutRelationEqual
+																	  toItem:self.contentView
+																   attribute:NSLayoutAttributeWidth
+																  multiplier:1.f
+																	constant:0.f];
 	NSLayoutConstraint* trailing = [NSLayoutConstraint constraintWithItem:self.contentView
 																attribute:NSLayoutAttributeTrailing
 																relatedBy:NSLayoutRelationGreaterThanOrEqual
 																   toItem:self.slidingContentView
 																attribute:NSLayoutAttributeTrailing
-															   multiplier:1.0f
+															   multiplier:1.f
 																 constant:0.f];
 	NSLayoutConstraint* leading = [NSLayoutConstraint constraintWithItem:self.slidingContentView
-																attribute:NSLayoutAttributeLeading
-																relatedBy:NSLayoutRelationLessThanOrEqual
-																   toItem:self.contentView
-																attribute:NSLayoutAttributeLeading
-															   multiplier:1.0f
-																 constant:0.f];
-	NSLayoutConstraint* leadingLowerLimit = [NSLayoutConstraint constraintWithItem:self.slidingContentView
 															   attribute:NSLayoutAttributeLeading
-															   relatedBy:NSLayoutRelationGreaterThanOrEqual
+															   relatedBy:NSLayoutRelationLessThanOrEqual
 																  toItem:self.contentView
 															   attribute:NSLayoutAttributeLeading
-															  multiplier:1.0f
-																constant:IPAD ? -120.f : -90.f];
+															  multiplier:1.f
+																constant:0.f];
+	NSLayoutConstraint* leadingLowerLimit = [NSLayoutConstraint constraintWithItem:self.slidingContentView
+																		 attribute:NSLayoutAttributeLeading
+																		 relatedBy:NSLayoutRelationGreaterThanOrEqual
+																			toItem:self.contentView
+																		 attribute:NSLayoutAttributeLeading
+																		multiplier:1.f
+																		  constant:IPAD ? -120.f : -90.f];
+	if (!self.contentViewTrailing)
+	{
+		self.contentViewTrailing = [NSLayoutConstraint constraintWithItem:self.contentView
+																attribute:NSLayoutAttributeTrailing
+																relatedBy:NSLayoutRelationEqual
+																   toItem:self.slidingContentView
+																attribute:NSLayoutAttributeTrailing
+															   multiplier:1.f
+																 constant:0.f];
+		self.contentViewTrailing.priority = 1;
+		[self.contentView addConstraint:self.contentViewTrailing];
+	}
+	
 	[self.contentView addConstraints:@[equalWidths, trailing, leading, leadingLowerLimit]];
-	[super updateConstraints];
 }
+
 @end
