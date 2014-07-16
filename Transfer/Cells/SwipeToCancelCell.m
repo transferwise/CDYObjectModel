@@ -355,14 +355,14 @@
 #pragma mark - Sliding Content Width Equal to superview
 - (void)updateConstraints
 {
-	NSLayoutConstraint* c = [NSLayoutConstraint constraintWithItem:self.slidingContentView
+	NSLayoutConstraint* equalWidths = [NSLayoutConstraint constraintWithItem:self.slidingContentView
 														 attribute:NSLayoutAttributeWidth
 														 relatedBy:NSLayoutRelationEqual
 															toItem:self.contentView
 														 attribute:NSLayoutAttributeWidth
 														multiplier:1.0f
 														  constant:0.f];
-	[self.contentView addConstraint:c];
+	[self.contentView addConstraints:@[equalWidths]];
 	[super updateConstraints];
 }
 @end
