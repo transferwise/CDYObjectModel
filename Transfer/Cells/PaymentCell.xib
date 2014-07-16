@@ -103,9 +103,8 @@
                     <constraint firstItem="12" firstAttribute="top" secondItem="2Qf-I3-x2d" secondAttribute="top" id="1ie-yW-fTN"/>
                     <constraint firstAttribute="bottom" secondItem="12" secondAttribute="bottom" id="2FH-kC-0Ee"/>
                     <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" priority="1" id="DzN-3a-1VV"/>
-                    <constraint firstItem="12" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2Qf-I3-x2d" secondAttribute="leading" constant="-90" id="OEN-9T-zF5"/>
                     <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" placeholder="YES" id="QiI-Fj-jLS"/>
-                    <constraint firstItem="12" firstAttribute="leading" relation="lessThanOrEqual" secondItem="2Qf-I3-x2d" secondAttribute="leading" id="y8c-Sb-K07"/>
+                    <constraint firstItem="12" firstAttribute="leading" secondItem="2Qf-I3-x2d" secondAttribute="leading" placeholder="YES" id="zdq-9d-5Sd"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

@@ -369,7 +369,21 @@
 																attribute:NSLayoutAttributeTrailing
 															   multiplier:1.0f
 																 constant:0.f];
-	[self.contentView addConstraints:@[equalWidths, trailing]];
+	NSLayoutConstraint* leading = [NSLayoutConstraint constraintWithItem:self.slidingContentView
+																attribute:NSLayoutAttributeLeading
+																relatedBy:NSLayoutRelationLessThanOrEqual
+																   toItem:self.contentView
+																attribute:NSLayoutAttributeLeading
+															   multiplier:1.0f
+																 constant:0.f];
+	NSLayoutConstraint* leadingLowerLimit = [NSLayoutConstraint constraintWithItem:self.slidingContentView
+															   attribute:NSLayoutAttributeLeading
+															   relatedBy:NSLayoutRelationGreaterThanOrEqual
+																  toItem:self.contentView
+															   attribute:NSLayoutAttributeLeading
+															  multiplier:1.0f
+																constant:IPAD ? -120.f : -90.f];
+	[self.contentView addConstraints:@[equalWidths, trailing, leading, leadingLowerLimit]];
 	[super updateConstraints];
 }
 @end
