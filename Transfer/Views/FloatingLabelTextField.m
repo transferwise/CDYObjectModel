@@ -41,9 +41,9 @@
 {
     
 	self.fontStyle = @"heavy.@{16,19}.DarkFont";
-    self.placeholderStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@{16,19}.Greygory"];
+    self.placeholderStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@{17,19}.Greygory"];
     
-	MOMBasicStyle* fontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@{13,16}"];
+	MOMBasicStyle* fontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@{14,16}"];
 	self.floatingLabelFont = [fontStyle font];
 	self.floatingLabelTextColor = [UIColor colorFromStyle:@"CoreFont"];
 	self.floatingLabelActiveTextColor =  [UIColor colorFromStyle:@"TWElectricBlue"];

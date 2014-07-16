@@ -16,7 +16,7 @@
 
 + (void)setDefault
 {
-	MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"light.@{18,19}.CoreFont"];
+	MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@{18,19}.CoreFont"];
 	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [navFontStyle color], NSFontAttributeName : [navFontStyle font]}];
 	[[UINavigationBar appearance] setBackgroundImage:[UIImage imageFromColor:[UIColor colorFromStyle:@"LightBlue"]] forBarMetrics:UIBarMetricsDefault];
 	[[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];

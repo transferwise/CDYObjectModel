@@ -153,9 +153,9 @@
         CGRect headerFrame = euroInfoCell.headerLabel.frame;
         [euroInfoCell.headerLabel sizeToFit];
         headerFrame.size.height = euroInfoCell.headerLabel.frame.size.height;
-        euroInfoCell.headerLabel.frame = headerFrame;
-        infoFrame.size.height = headerFrame.origin.y + headerFrame.size.height + 8.0f;
+        infoFrame.size.height = headerFrame.origin.y + headerFrame.size.height + 0.0f;
         [euroInfoCell setFrame:infoFrame];
+        euroInfoCell.headerLabel.frame = headerFrame;
         [presentedCells addObject:euroInfoCell];
     }
 
