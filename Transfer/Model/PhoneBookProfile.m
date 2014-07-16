@@ -147,4 +147,9 @@
     return description;
 }
 
+-(ABRecordID)recordId
+{
+    return ABRecordGetRecordID(_record);
+}
+
 @end
