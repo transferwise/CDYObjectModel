@@ -29,6 +29,7 @@
 #import "GoogleAnalytics.h"
 #import "ObjectModel+Payments.h"
 #import "MOMStyle.h"
+#import "CancelHelper.h"
 
 @interface BankTransferViewController ()
 
@@ -40,6 +41,7 @@
 @property (nonatomic, strong) IBOutlet UIButton *contactSupportFooterButton;
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
 @property (nonatomic,weak) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
@@ -62,8 +64,8 @@
 
     
     [self.doneButton setTitle:NSLocalizedString(@"upload.money.done.button.title", @"") forState:UIControlStateNormal];
-    
     [self.contactSupportFooterButton setTitle:NSLocalizedString(@"transferdetails.controller.button.support", @"") forState:UIControlStateNormal];
+    [self.cancelButton setTitle:NSLocalizedString(@"upload.money.cancel.button.title", @"") forState:UIControlStateNormal];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"BankTransferDetailCell" bundle:nil] forCellReuseIdentifier:BankTransferDetailCellIdentifier];
 }
@@ -130,7 +132,7 @@
     NSMutableArray *presentedCells = [NSMutableArray array];
 
     BankTransferDetailCell *toCell = [self.tableView dequeueReusableCellWithIdentifier:BankTransferDetailCellIdentifier];
-    [toCell configureWithTitle:NSLocalizedString(@"upload.money.to.title", nil) text:self.payment.settlementRecipient.name];
+    [toCell configureWithTitle:[self addColon:NSLocalizedString(@"upload.money.to.title", nil)] text:self.payment.settlementRecipient.name];
     [presentedCells addObject:toCell];
 
     RecipientType *type = self.payment.settlementRecipient.type;
@@ -139,7 +141,7 @@
 
     //TODO jaanus: bank name cell
     BankTransferDetailCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:BankTransferDetailCellIdentifier];
-    [referenceCell configureWithTitle: NSLocalizedString(@"upload.money.reference.title", nil) text:self.objectModel.currentUser.pReference];
+    [referenceCell configureWithTitle: [self addColon:NSLocalizedString(@"upload.money.reference.title", nil)] text:self.objectModel.currentUser.pReference];
     [presentedCells addObject:referenceCell];
 
     if ([currencyCode caseInsensitiveCompare:@"EUR"]==NSOrderedSame)
@@ -173,7 +175,7 @@
     NSMutableArray *result = [NSMutableArray array];
     for (RecipientTypeField *field in type.fields) {
         BankTransferDetailCell *cell = [self.tableView dequeueReusableCellWithIdentifier:BankTransferDetailCellIdentifier];
-        [cell configureWithTitle:field.title text:[recipient valueField:field]];
+        [cell configureWithTitle:[self addColon:field.title] text:[recipient valueField:field]];
         [result addObject:cell];
     }
     return result;
@@ -199,5 +201,14 @@
     [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 }
 
+- (IBAction)cancel:(UIButton*)sender
+{
+    [CancelHelper cancelPayment:self.payment cancelBlock:nil dontCancelBlock:nil];
+}
+
+-(NSString*)addColon:(NSString*)original
+{
+    return [original stringByAppendingString:@":"];
+}
 @end
 
