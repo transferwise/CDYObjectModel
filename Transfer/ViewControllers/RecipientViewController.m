@@ -329,6 +329,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     self.nameCell.value = profile.fullName;
     self.emailCell.value = profile.email;
     
+    [self updateBankDetailHeaderText];
+    
     __weak typeof(self) weakSelf = self;
     [profile loadThumbnail:^(PhoneBookProfile* profile, UIImage *image) {
         if ([weakSelf.lastSelectedProfile isEqual:profile])
@@ -359,6 +361,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self.nameCell setValue:recipient.name];
         [self.emailCell setValue:recipient.email];
 
+        [self updateBankDetailHeaderText];
+        
         for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
             [fieldCell setEditable:NO];
             if ([fieldCell isKindOfClass:[TransferTypeSelectionHeader class]]) {
@@ -435,10 +439,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         self.recipientFieldsHeader = [[NSBundle mainBundle] loadNibNamed:@"DataEntryDefaultHeader" owner:self options:nil][0];
     }
     
-    NSString *recipientName = [self.nameCell.value length] > 0 ? self.nameCell.value: NSLocalizedString(@"recipient.controller.section.title.recipient.placeholder", nil);
-    NSString *recipientHeaderTitle =[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.section.title.recipient.bank.details", nil),recipientName];
-    
-    self.recipientFieldsHeader.titleLabel.text =  recipientHeaderTitle;
+    [self updateBankDetailHeaderText];
 
     //Generate cells
     
@@ -600,10 +601,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         case kCurrencySection:
             return NSLocalizedString(@"recipient.controller.section.title.currency", nil);
         case kRecipientFieldsSection:
-        {
-            ;NSString *recipientName = [self.nameCell.value length] > 0 ? self.nameCell.value: NSLocalizedString(@"recipient.controller.section.title.recipient.placeholder", nil);
-            return [NSString stringWithFormat:NSLocalizedString(@"recipient.controller.section.title.recipient.bank.details", nil),recipientName];
-        }
+            return nil; //Set directly on headerview.
         default:
             MCLog(@"Unhandled section:%d", section);
             return nil;
@@ -841,6 +839,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     {
         ((UITableView*)self.tableViews[0]).scrollEnabled = YES;
     }
+    
+    [self updateBankDetailHeaderText];
 }
 
 -(void)scrollToCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView
@@ -866,6 +866,14 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     CGRect showRect = CGRectMake(0, self.containerScrollView.contentSize.height - 1, 1, 1);
         [self.containerScrollView scrollRectToVisible:showRect animated:NO];
 
+}
+
+#pragma mark - bank detail header text
+
+-(void)updateBankDetailHeaderText
+{
+    NSString *recipientName = [self.nameCell.value length] > 0 ? self.nameCell.value: NSLocalizedString(@"recipient.controller.section.title.recipient.placeholder", nil);
+    self.recipientFieldsHeader.titleLabel.text =  [NSString stringWithFormat:NSLocalizedString(@"recipient.controller.section.title.recipient.bank.details", nil),recipientName];
 }
 
 @end
