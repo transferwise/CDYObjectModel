@@ -61,6 +61,8 @@
 		3831AA41194B5A8B00B3EE5C /* WhyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */; };
 		38342BAB196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
 		38342BAC196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
+		3887CBBA197690FC004DFFFD /* OptionalSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */; };
+		3887CBBB197690FC004DFFFD /* OptionalSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */; };
 		388D6AB71961AF5700DCFEA6 /* _PaymentMadeIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 388D6AB61961AF5700DCFEA6 /* _PaymentMadeIndicator.m */; };
 		388D6AB81961AF5700DCFEA6 /* _PaymentMadeIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 388D6AB61961AF5700DCFEA6 /* _PaymentMadeIndicator.m */; };
 		388D6ABB1961AF7100DCFEA6 /* PaymentMadeIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 388D6ABA1961AF7100DCFEA6 /* PaymentMadeIndicator.m */; };
@@ -780,6 +782,8 @@
 		3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WhyViewController~ipad.xib"; sourceTree = "<group>"; };
 		38342BA9196E9362002FF371 /* DataEntryMultiColumnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryMultiColumnViewController.h; sourceTree = "<group>"; };
 		38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryMultiColumnViewController.m; sourceTree = "<group>"; };
+		3887CBB8197690FC004DFFFD /* OptionalSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionalSplitViewController.h; sourceTree = "<group>"; };
+		3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionalSplitViewController.m; sourceTree = "<group>"; };
 		388D6AB41961AE8900DCFEA6 /* Transfer 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Transfer 2.xcdatamodel"; sourceTree = "<group>"; };
 		388D6AB51961AF5700DCFEA6 /* _PaymentMadeIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _PaymentMadeIndicator.h; sourceTree = "<group>"; };
 		388D6AB61961AF5700DCFEA6 /* _PaymentMadeIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PaymentMadeIndicator.m; sourceTree = "<group>"; };
@@ -2097,6 +2101,8 @@
 				EA59298B1758CD6C007C0072 /* OpenIDViewController.h */,
 				EA59298C1758CD6C007C0072 /* OpenIDViewController.m */,
 				EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */,
+				3887CBB8197690FC004DFFFD /* OptionalSplitViewController.h */,
+				3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */,
 				EAE1E3A117B2519000A45623 /* PaymentDetailsViewController.h */,
 				EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */,
 				EA92D97D176AF1200078D0C4 /* PaymentProfileViewController.h */,
@@ -2871,6 +2877,7 @@
 				EA31A13917DDB29B00F937F7 /* TransferwiseOperation.m in Sources */,
 				EA31A13A17DDB29B00F937F7 /* LoginOperation.m in Sources */,
 				380021F8192F43EA009B1D53 /* TabCell.m in Sources */,
+				3887CBBB197690FC004DFFFD /* OptionalSplitViewController.m in Sources */,
 				EA31A13B17DDB29B00F937F7 /* NSDictionary+SensibleData.m in Sources */,
 				EA31A13C17DDB29B00F937F7 /* UIButton+Skinning.m in Sources */,
 				EA31A13D17DDB29B00F937F7 /* GreenButton.m in Sources */,
@@ -3128,6 +3135,7 @@
 				EAD736A2171E85C300A037B1 /* RecipientCell.m in Sources */,
 				EAD736A7171E87ED00A037B1 /* UserRecipientsOperation.m in Sources */,
 				EAB7215B171FC61B00DE29F5 /* SettingsViewController.m in Sources */,
+				3887CBBA197690FC004DFFFD /* OptionalSplitViewController.m in Sources */,
 				47FB7EA91941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m in Sources */,
 				38C8A79D19371DBC00714FB3 /* PullToRefreshView.m in Sources */,
 				380021D4192CC531009B1D53 /* UIView+MOMStyle.m in Sources */,

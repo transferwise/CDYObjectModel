@@ -49,7 +49,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (nonatomic, assign) IdentificationRequired identificationRequired;
 @property (nonatomic, strong) TransferwiseOperation *executedUploadOperation;
 @property (nonatomic, weak) PullToRefreshView* refreshView;
-@property (weak, nonatomic) IBOutlet UIView *detailContainer;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) NSIndexPath* cancellingCellIndex;
 @property (nonatomic) CGPoint touchStart;
@@ -216,20 +215,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         controller.payment = payment;
         resultController = controller;
     }
+
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if(!self.detailContainer)
-    {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [self.navigationController pushViewController:resultController animated:YES];
-    }
-    else
-    {
-        [[self.childViewControllers lastObject] removeFromParentViewController];
-        [[self.detailContainer.subviews lastObject] removeFromSuperview];
-        [self addChildViewController:resultController];
-        [self.detailContainer addSubview:resultController.view];
-        resultController.view.frame = self.detailContainer.bounds;
-    }
+    [self presentDetail:resultController];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

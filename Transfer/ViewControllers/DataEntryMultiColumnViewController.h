@@ -41,7 +41,7 @@
 /**
  *  set this property to an NSArray containing NSArrays of sections containing NSArrays of UITableViewCells. 
  *
- * The root NSArray must have as many elemts as there are associated tableviews in {@link: #tableViews}
+ * The root NSArray must have as many elemts as there are associated tableviews @see tableViews
  */
 @property (nonatomic, strong) NSArray *sectionCellsByTableView;
 
@@ -81,7 +81,7 @@
  *
  *  override to customise behaviour. The default implementation only handles the case when only one tableview is associated.
  *
- *  @param note @see UIKeyboardWillHideotification
+ *  @param note @see UIKeyboardWillHideNotification
  */
 -(void)keyboardWillHide:(NSNotification*)note; // Only handles single tables. Ovverride for iPad
 
