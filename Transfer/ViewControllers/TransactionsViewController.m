@@ -34,6 +34,7 @@
 #import "TRWAlertView.h"
 #import "TRWProgressHUD.h"
 #import "UIGestureRecognizer+Cancel.h"
+#import "CancelHelper.h"
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
@@ -447,7 +448,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 #pragma mark - TransferPayIPadViewController delegate
 - (void)cancelPaymentWithConfirmation:(Payment *)payment
 {
-	[self cancelPayment:payment
+	[CancelHelper cancelPayment:payment
 			cancelBlock:nil
 		dontCancelBlock:nil];
 }
@@ -470,7 +471,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 - (void)confirmPaymentCancel:(Payment *)payment cellIndex:(NSIndexPath *)cellIndex
 {
-	[self cancelPayment:payment
+	[CancelHelper cancelPayment:payment
 			cancelBlock:^{
 				[self removeCancellingFromCell];
 			}
@@ -479,35 +480,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 		}];
 }
 
-- (void)cancelPayment:(Payment *)payment
-		  cancelBlock:(TRWActionBlock)cancelBlock
-	  dontCancelBlock:(TRWActionBlock)dontCancelBlock
-{
-	TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"transactions.cancel.confirmation.title", nil)
-													   message:[NSString stringWithFormat:NSLocalizedString(@"transactions.cancel.confirmation.message", nil), [payment.recipient name]]];
-	[alertView setLeftButtonTitle:NSLocalizedString(@"button.title.yes", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
-	
-	[alertView setLeftButtonAction:^{
-		if(cancelBlock)
-		{
-			cancelBlock();
-		}
-		[self cancelPayment:payment];
-	}];
-	[alertView setRightButtonAction:^{
-		if (dontCancelBlock)
-		{
-			dontCancelBlock();
-		}
-	}];
-	
-	[alertView show];
-}
 
-- (void)cancelPayment:(Payment *)payment
-{
-	//TODO: implement payment cancelling when api supports it.
-}
 
 #pragma mark - PullToRefresh
 

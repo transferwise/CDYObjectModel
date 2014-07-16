@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BankTransferViewController">
             <connections>
                 <outlet property="addressLabel" destination="7wU-EP-uQi" id="TS2-mo-LYv"/>
+                <outlet property="cancelButton" destination="ydK-1S-nLb" id="2bH-9w-SVQ"/>
                 <outlet property="doneButton" destination="vVH-WE-6fL" id="yvp-cB-p3e"/>
                 <outlet property="footerView" destination="TBf-ks-sBe" id="Ff6-Nv-PYy"/>
                 <outlet property="headerLabel" destination="0go-zj-Qsx" id="9aB-Mz-TGL"/>
@@ -63,7 +64,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view contentMode="scaleToFill" id="TBf-ks-sBe" customClass="IntrinsicSizeUIView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="124"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="185"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVH-WE-6fL" customClass="InsetRespectingButton">
@@ -101,15 +102,35 @@
                         <constraint firstAttribute="height" constant="20" id="t4f-Gj-Ouc"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ydK-1S-nLb" customClass="InsetRespectingButton">
+                    <rect key="frame" x="113" y="117" width="95" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="8Oc-Qk-a9Q"/>
+                    </constraints>
+                    <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                    <state key="normal" title="Button" backgroundImage="RoundedRedButton">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@16.red"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="cancel:" destination="-1" eventType="touchUpInside" id="uNN-v7-ArF"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Juh-Ff-cpz" firstAttribute="top" secondItem="TBf-ks-sBe" secondAttribute="top" id="7JV-cp-9al"/>
                 <constraint firstAttribute="trailing" secondItem="7wU-EP-uQi" secondAttribute="trailing" constant="30" id="9k7-qv-Bl0"/>
                 <constraint firstItem="7wU-EP-uQi" firstAttribute="top" secondItem="vVH-WE-6fL" secondAttribute="bottom" constant="18" id="KGu-JS-tLi"/>
+                <constraint firstItem="ydK-1S-nLb" firstAttribute="top" secondItem="7wU-EP-uQi" secondAttribute="bottom" constant="18" id="LXN-oj-6OM"/>
                 <constraint firstItem="vVH-WE-6fL" firstAttribute="top" secondItem="Juh-Ff-cpz" secondAttribute="bottom" id="SNf-OQ-Lwy"/>
                 <constraint firstAttribute="centerX" secondItem="vVH-WE-6fL" secondAttribute="centerX" id="VAG-1L-WvR"/>
                 <constraint firstAttribute="centerX" secondItem="Juh-Ff-cpz" secondAttribute="centerX" id="VHe-ia-e9A"/>
+                <constraint firstAttribute="centerX" secondItem="ydK-1S-nLb" secondAttribute="centerX" id="ahF-jQ-RTY"/>
+                <constraint firstAttribute="bottom" secondItem="ydK-1S-nLb" secondAttribute="bottom" constant="28" id="j9J-14-e0a"/>
                 <constraint firstItem="7wU-EP-uQi" firstAttribute="leading" secondItem="TBf-ks-sBe" secondAttribute="leading" constant="30" id="t60-Nw-Vv6"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -117,5 +138,6 @@
     </objects>
     <resources>
         <image name="RoundedBlueButton" width="50" height="40"/>
+        <image name="RoundedRedButton" width="50" height="40"/>
     </resources>
 </document>
