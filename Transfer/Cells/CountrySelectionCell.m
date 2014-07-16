@@ -43,7 +43,7 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
     [pickerView setDataSource:self];
     [pickerView setShowsSelectionIndicator:YES];
 
-    [self addDoneButton];
+    //[self addDoneButton];
 }
 
 - (void)setAllCountries:(NSFetchedResultsController *)allCountries {

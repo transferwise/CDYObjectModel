@@ -118,7 +118,14 @@
 	self.amountsView.fromAmount = [self.payment payInStringWithCurrency];
 	self.amountsView.status = [self getStatusBasedLocalization:@"payment.status.%@.description.conversion"
 														 status:self.payment.paymentStatus];
-	self.amountsView.toAmount = [self.payment payOutStringWithCurrency];
+    if(self.payment.status != PaymentStatusRefunded)
+    {
+        self.amountsView.toAmount = [self.payment payOutStringWithCurrency];
+    }
+    else
+    {
+         self.amountsView.toAmount = @"";
+    }
 	NSString* eta = NSLocalizedString([self getStatusBasedLocalization:@"payment.status.%@.description.eta"
 																 status:self.payment.paymentStatus], nil);
 	if(eta.length > 0 && self.payment.paymentDateString != nil)

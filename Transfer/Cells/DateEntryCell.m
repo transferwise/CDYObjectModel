@@ -37,7 +37,7 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
     [picker setDatePickerMode:UIDatePickerModeDate];
     [picker addTarget:self action:@selector(pickerDateChanged) forControlEvents:UIControlEventValueChanged];
 
-    [self addDoneButton];
+   // [self addDoneButton];
 }
 
 - (void)setValue:(NSString *)value {

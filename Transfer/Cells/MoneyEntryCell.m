@@ -44,14 +44,6 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 - (void)awakeFromNib {
     [super awakeFromNib];
 
-    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 20, 44)];
-    [toolbar setBarStyle:UIBarStyleBlackTranslucent];
-
-    __block __weak MoneyEntryCell *weakSelf = self;
-    [self addDoneButtonToField:self.moneyField withAction:^{
-        [weakSelf.moneyField resignFirstResponder];
-    }];
-
     [self.moneyField setDelegate:self];
 
 }
@@ -108,6 +100,12 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     }
 
     return NO;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (BOOL)entryBelowMaxAmount:(NSString *)amountString {
@@ -168,6 +166,8 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     [_currencies setDelegate:nil];
     _currencies = currencies;
     [_currencies setDelegate:self];
+    
+    [currencies performFetch:nil];
     
     NSUInteger index = 0;
     if(self.selectedCurrency)
