@@ -36,6 +36,11 @@
 				<key>alpha</key>
 				<real>0.5</real>
 			</dict>
+			<key>Black</key>
+			<dict>
+				<key>color</key>
+				<string>000000</string>
+			</dict>
 			<key>CoreFont</key>
 			<dict>
 				<key>color</key>

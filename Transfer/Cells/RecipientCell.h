@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SwipeToCancelCell.h"
 
 @class Recipient;
 
-@interface RecipientCell : UITableViewCell
+@interface RecipientCell : SwipeToCancelCell
 
 - (void)configureWithRecipient:(Recipient *)recipient;
 

@@ -37,7 +37,6 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="accountLabel" destination="5" id="7"/>
                 <outlet property="bankLabel" destination="6" id="8"/>
                 <outlet property="nameLabel" destination="3" id="4"/>
             </connections>

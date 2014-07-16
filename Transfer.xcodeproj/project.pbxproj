@@ -133,6 +133,8 @@
 		38EFABE4196D7EAB00126192 /* TextFieldSuggestionTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EFABDE196D7EAB00126192 /* TextFieldSuggestionTable.xib */; };
 		470DEFAD1945F02300684FEB /* MoneyEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */; };
 		470DEFAE19460C8D00684FEB /* MoneyEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */; };
+		470EB61419768175001C5D97 /* ContactsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470EB61319768175001C5D97 /* ContactsViewController~ipad.xib */; };
+		470EB61519768175001C5D97 /* ContactsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470EB61319768175001C5D97 /* ContactsViewController~ipad.xib */; };
 		4710499719470AFD00660B2F /* CurrencyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */; };
 		4710499819470B2A00660B2F /* CurrencyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */; };
 		47233CD6196D457300449042 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47233CD4196D457300449042 /* LoginViewController.m */; };
@@ -836,6 +838,7 @@
 		38EFABDB196D7EAB00126192 /* DataEntryDefaultHeader~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DataEntryDefaultHeader~ipad.xib"; sourceTree = "<group>"; };
 		38EFABDE196D7EAB00126192 /* TextFieldSuggestionTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldSuggestionTable.xib; sourceTree = "<group>"; };
 		470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MoneyEntryCell~ipad.xib"; sourceTree = "<group>"; };
+		470EB61319768175001C5D97 /* ContactsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ContactsViewController~ipad.xib"; sourceTree = "<group>"; };
 		4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencyCell~ipad.xib"; sourceTree = "<group>"; };
 		47233CD3196D457300449042 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		47233CD4196D457300449042 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -2066,6 +2069,7 @@
 				EAD3967D171BD57000F6D011 /* ContactsViewController.h */,
 				EAD3967E171BD57000F6D011 /* ContactsViewController.m */,
 				EAD3967F171BD57000F6D011 /* ContactsViewController.xib */,
+				470EB61319768175001C5D97 /* ContactsViewController~ipad.xib */,
 				380021EC192F3DD3009B1D53 /* CurrencySelectorViewController.h */,
 				380021ED192F3DD3009B1D53 /* CurrencySelectorViewController.m */,
 				380021EE192F3DD3009B1D53 /* CurrencySelectorViewController.xib */,
@@ -2440,6 +2444,7 @@
 				470DEFAE19460C8D00684FEB /* MoneyEntryCell~ipad.xib in Resources */,
 				47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */,
 				47592CC71940C35800ECDAF2 /* NewPaymentViewController~ipad.xib in Resources */,
+				470EB61519768175001C5D97 /* ContactsViewController~ipad.xib in Resources */,
 				38C7B29B1974364C004324E8 /* BankTransferDetailCell.xib in Resources */,
 				EA31A1D017DDB29B00F937F7 /* InfoPlist.strings in Resources */,
 				EA31A1D117DDB29B00F937F7 /* Localizable.strings in Resources */,
@@ -2547,6 +2552,7 @@
 				38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */,
 				EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */,
 				EA84056917F0A40B00F44916 /* spinner.html in Resources */,
+				470EB61419768175001C5D97 /* ContactsViewController~ipad.xib in Resources */,
 				38C7B29A1974364C004324E8 /* BankTransferDetailCell.xib in Resources */,
 				EAD3967C171BD51400F6D011 /* TransactionsViewController.xib in Resources */,
 				EA0523F9191B5AFC00B32899 /* RefundDetailsViewController.xib in Resources */,

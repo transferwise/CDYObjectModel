@@ -13,7 +13,6 @@
 @interface RecipientCell ()
 
 @property (nonatomic, strong) IBOutlet UILabel *nameLabel;
-@property (nonatomic, strong) IBOutlet UILabel *accountLabel;
 @property (nonatomic, strong) IBOutlet UILabel *bankLabel;
 
 @end
@@ -30,15 +29,11 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-
-    [self.accountLabel setTextColor:[UIColor mainTextColor]];
-    [self.bankLabel setTextColor:[UIColor mainTextColor]];
 }
 
 - (void)configureWithRecipient:(Recipient *)recipient {
     [self.nameLabel setText:[recipient name]];
-    [self.accountLabel setText:[recipient detailsRowOne]];
-    [self.bankLabel setText:[recipient detailsRowTwo]];
+    [self.bankLabel setText:[recipient presentationStringFromAllValues]];
 }
 
 @end
