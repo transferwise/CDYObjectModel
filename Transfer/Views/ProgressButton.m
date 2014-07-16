@@ -32,7 +32,7 @@
 
 -(void)commonSetup
 {
-    self.fontStyle = @"medium.@20.white";
+    self.compoundStyle = @"greenButton";
     self.exclusiveTouch = YES;
     self.backgroundColor = [UIColor clearColor];
 }
