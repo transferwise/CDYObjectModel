@@ -349,7 +349,7 @@ This can't be undone.";
 "upload.money.bic.title" = "BIC";
 "upload.money.data.error.title" = "Data error";
 "upload.money.done.button.title" = "I made this transfer";
-"upload.money.cancel.button.title" = "Cancel this transfer";
+"upload.money.cancel.button.title" = "Cancel";
 "upload.money.our.address.label" = "Our address: 56 Shoreditch High Street, London E1 6JJ, United Kingdom";
 "upload.money.header.label.GBP" = "Connect to your online banking & transfer %@ to Transferwise's UK account below. \nIt's free.";
 "upload.money.header.label.EUR" = "Connect to your online banking or call your bank. Transfer %@ to Transferwise's European account.";
