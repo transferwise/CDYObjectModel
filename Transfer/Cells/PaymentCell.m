@@ -23,13 +23,6 @@
 
 @implementation PaymentCell
 
-- (void)prepareForReuse
-{
-	[super prepareForReuse];
-	[self.moneyLabel setHidden:NO];
-	[self.currencyLabel setHidden:NO];
-}
-
 - (void)configureWithPayment:(Payment *)payment
 		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
 		  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock

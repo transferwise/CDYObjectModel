@@ -9,6 +9,7 @@
 #import "RecipientCell.h"
 #import "UIColor+Theme.h"
 #import "Recipient.h"
+#import "UIView+MOMStyle.h"
 
 #define UK_SORT	@"UK Sort code"
 #define IBAN	@"IBAN"
@@ -21,18 +22,6 @@
 @end
 
 @implementation RecipientCell
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-}
 
 - (void)configureWithPayment:(Recipient *)recipient
 		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
@@ -64,6 +53,16 @@
 		return @"IBAN";
 	}
 	return @"";
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    self.contentView.bgStyle = selected ? @"LightBlueHighlighted" : @"white";
+}
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
+    self.contentView.bgStyle = highlighted ? @"LightBlueHighlighted" : @"white";
 }
 
 @end

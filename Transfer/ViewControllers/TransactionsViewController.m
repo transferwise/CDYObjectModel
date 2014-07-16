@@ -162,8 +162,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 }
 
 #pragma mark - Table view delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     Payment *payment = [self.payments objectAtIndexPath:indexPath];
     if ([payment.recipient.type hideFromCreationValue]) {
         return;
