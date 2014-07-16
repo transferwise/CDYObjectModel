@@ -333,13 +333,11 @@
 
 -(void)didHide
 {
-    [self showOnCancelHide];
     self.didHideCancelBlock();
 }
 
 -(void)didShow
 {
-    [self hideOnCancelShow];
     self.didShowCancelBlock();
 }
 
