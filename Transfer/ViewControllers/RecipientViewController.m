@@ -98,7 +98,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 @property (nonatomic, strong) IBOutlet TextFieldSuggestionTable* suggestionTable;
 @property (nonatomic, strong) NameSuggestionCellProvider *cellProvider;
-@property (nonatomic, strong) PhoneBookProfile *lastSelectedProfile;
+@property (nonatomic, strong) NameLookupWrapper *lastSelectedWrapper;
 
 @property (nonatomic, assign) CGFloat cellHeight;
 
@@ -323,17 +323,20 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 
-- (void)loadDataFromProfile:(PhoneBookProfile *)profile {
+- (void)loadDataFromWrapper:(NameLookupWrapper *)wrapper {
     [self didSelectRecipient:nil];
-    self.lastSelectedProfile = profile;
-    self.nameCell.value = profile.fullName;
-    self.emailCell.value = profile.email;
+    self.lastSelectedWrapper = wrapper;
+    self.nameCell.value = [wrapper presentableString:FirstNameFirst];
+    self.emailCell.value = wrapper.email;
     
     [self updateBankDetailHeaderText];
     
+    PhoneBookProfile* profile = [[PhoneBookProfile alloc] initWithRecordId:wrapper.recordId];
+    [profile loadData];
+    
     __weak typeof(self) weakSelf = self;
     [profile loadThumbnail:^(PhoneBookProfile* profile, UIImage *image) {
-        if ([weakSelf.lastSelectedProfile isEqual:profile])
+        if (weakSelf.lastSelectedWrapper.recordId == profile.recordId )
         {
             weakSelf.nameCell.thumbnailImage.image = image;
         }
@@ -739,9 +742,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     NameLookupWrapper* wrapper = (NameLookupWrapper*)object;
     if(wrapper.recordId)
     {
-        PhoneBookProfile* profile = [[PhoneBookProfile alloc] initWithRecordId:wrapper.recordId];
-        [profile loadData];
-        [self loadDataFromProfile:profile];
+        [self loadDataFromWrapper:wrapper];
     }
     else if (wrapper.managedObjectId)
     {

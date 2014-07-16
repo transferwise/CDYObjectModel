@@ -21,6 +21,7 @@
 @property (nonatomic, strong, readonly) NSDate *dateOfBirth;
 @property (nonatomic, strong, readonly) PhoneBookAddress *address;
 @property (nonatomic, copy, readonly) NSString *organisation;
+@property (nonatomic,readonly) ABRecordID recordId;
 
 - (id)initWithRecord:(ABRecordRef)person;
 - (id)initWithRecord:(ABRecordRef)person selectedAddressIdentifier:(ABMultiValueIdentifier)identifier;
