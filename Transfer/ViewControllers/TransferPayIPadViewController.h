@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TransferDetailsViewController.h"
+#import "ObjectModel.h"
 
 @protocol TransferPayIpadViewControllerDelegate <NSObject>
 
@@ -17,6 +18,9 @@
 
 @interface TransferPayIPadViewController : TransferDetailsViewController
 
+
+@property (nonatomic, strong) ObjectModel *objectModel;
 @property (weak, nonatomic) id<TransferPayIpadViewControllerDelegate> delegate;
+
 
 @end

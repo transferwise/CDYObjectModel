@@ -42,7 +42,6 @@
 @property (nonatomic,weak) IBOutlet UILabel *addressLabel;
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableHeightConstraint;
 
 - (IBAction)contactSupportPressed;
 
@@ -60,11 +59,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView setBackgroundView:nil];
-    [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
 
     
     [self.doneButton setTitle:NSLocalizedString(@"upload.money.done.button.title", @"") forState:UIControlStateNormal];
+    
+    [self.contactSupportFooterButton setTitle:NSLocalizedString(@"transferdetails.controller.button.support", @"") forState:UIControlStateNormal];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"BankTransferDetailCell" bundle:nil] forCellReuseIdentifier:BankTransferDetailCellIdentifier];
 }
@@ -114,8 +113,6 @@
     frame.size.height = height;
     self.headerView.frame = frame;
     
-    self.tableView.tableHeaderView = self.headerView;
-    
     //Footer
     
     self.addressLabel.text = NSLocalizedString(@"upload.money.our.address.label", @"");
@@ -125,8 +122,6 @@
     frame = self.footerView.frame;
     frame.size.height = height;
     self.footerView.frame = frame;
-    
-    self.tableView.tableFooterView = self.footerView;
 
     
     //Cells
@@ -165,17 +160,13 @@
     [self setPresentedSectionCells:@[presentedCells]];
 
     [self.tableView reloadData];
-    [self.tableView setTableHeaderView:self.headerView];
-    
-    [self.tableView layoutIfNeeded];
-    self.tableHeightConstraint.constant = self.tableView.contentSize.height;
+    self.tableView.tableHeaderView = self.headerView;
+    self.tableView.tableFooterView = self.footerView;
 
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-
-    [self.tableView adjustFooterViewSize];
 }
 
 - (NSArray *)buildAccountCellForType:(RecipientType *)type recipient:(Recipient *)recipient {
@@ -203,6 +194,10 @@
     }
 }
 
+- (IBAction)contactSupportPressed {
+    NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
+    [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
+}
 
 @end
 

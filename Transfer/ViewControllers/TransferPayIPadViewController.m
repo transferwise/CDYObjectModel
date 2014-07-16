@@ -9,9 +9,12 @@
 #import "TransferPayIPadViewController.h"
 #import "TransferDetialsHeaderView.h"
 #import "NSString+DeviceSpecificLocalisation.h"
+
+#import "UploadMoneyViewController.h"
 #import "GreenButton.h"
 #import "GoogleAnalytics.h"
 #import "SupportCoordinator.h"
+#import "ConnectionAwareViewController.h"
 
 @interface TransferPayIPadViewController ()
 
@@ -54,7 +57,28 @@
 
 - (IBAction)payTapped:(id)sender
 {
-	
+    UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+    [controller setPayment:self.payment];
+    [controller setObjectModel:self.objectModel];
+    [controller setHideBottomButton:YES];
+    [controller setShowContactSupportCell:YES];
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    [navigationController setNavigationBarHidden:NO];
+    ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
+    UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,40,40)];
+    [closeButton setImage:[UIImage imageNamed:@"currencies_modal_close_button"] forState:UIControlStateNormal];
+    [closeButton addTarget:self action:@selector(dismissPayment:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *dismissButton = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
+    [controller.navigationItem setLeftBarButtonItem:dismissButton];
+    
+    [self presentViewController:wrapper animated:YES completion:nil];
+
+}
+
+-(void)dismissPayment:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)cancelTapped:(id)sender
@@ -68,4 +92,5 @@
     NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
     [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 }
+
 @end
