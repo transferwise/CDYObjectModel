@@ -20,6 +20,7 @@
 @interface HeaderTabView : UIView
 
 @property (weak, nonatomic) IBOutlet UIView *separatorLine;
+@property (nonatomic, strong) NSNumber* fixedTabWidth;
 
 -(void)setSelectedIndex:(NSUInteger)index;
 

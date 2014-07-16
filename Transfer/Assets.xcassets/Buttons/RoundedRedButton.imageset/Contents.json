@@ -11,11 +11,11 @@
         "capInsets" : {
           "bottom" : 20,
           "top" : 19,
-          "right" : 19,
+          "right" : 23,
           "left" : 26
         }
       },
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "filename" : "rounded_button_iphone_red.png",
       "scale" : "1x"
     },
@@ -30,12 +30,50 @@
         "capInsets" : {
           "bottom" : 40,
           "top" : 39,
-          "right" : 39,
-          "left" : 51
+          "right" : 49,
+          "left" : 50
         }
       },
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "filename" : "rounded_button_iphone_red@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 22,
+          "top" : 21,
+          "right" : 26,
+          "left" : 23
+        }
+      },
+      "idiom" : "ipad",
+      "filename" : "rounded_button_ipad_red.png",
+      "scale" : "1x"
+    },
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 44,
+          "top" : 43,
+          "right" : 50,
+          "left" : 49
+        }
+      },
+      "idiom" : "ipad",
+      "filename" : "rounded_button_ipad_red@2x.png",
       "scale" : "2x"
     }
   ],

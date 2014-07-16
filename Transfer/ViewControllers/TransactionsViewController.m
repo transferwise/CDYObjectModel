@@ -183,24 +183,35 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[self removeCancellingFromCell];
 
     UIViewController *resultController;
-    if ([payment isSubmitted]) {
-        UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
-        [controller setPayment:payment];
-        [controller setObjectModel:self.objectModel];
-        [controller setHideBottomButton:YES];
-        [controller setShowContactSupportCell:YES];
-        resultController = controller;
-
+    if ([payment isSubmitted])
+	{
+		if(IPAD)
+		{
+			TransferPayIPadViewController *controller = [[TransferPayIPadViewController alloc] init];
+			controller.payment = payment;
+            controller.objectModel = self.objectModel;
+			controller.delegate = self;
+			resultController = controller;
+		}
+		else
+		{
+			UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+			[controller setPayment:payment];
+			[controller setObjectModel:self.objectModel];
+			[controller setHideBottomButton:YES];
+			[controller setShowContactSupportCell:YES];
+			resultController = controller;
+		}
     }
     else if (payment.status == PaymentStatusUserHasPaid)
     {
         TransferWaitingViewController *controller = [[TransferWaitingViewController alloc] init];
         controller.payment = payment;
         controller.objectModel = self.objectModel;
-        resultController = controller;
-        
+        resultController = controller;        
     }
-    else {
+    else
+	{
         TransferDetailsViewController *controller = [[TransferDetailsViewController alloc] init];
         controller.payment = payment;
         resultController = controller;
@@ -444,6 +455,13 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
     [operation execute];
 }
+#pragma mark - TransferPayIPadViewController delegate
+- (void)cancelPaymentWithConfirmation:(Payment *)payment
+{
+	[self cancelPayment:payment
+			cancelBlock:nil
+		dontCancelBlock:nil];
+}
 
 #pragma mark - SwipeToCancel
 - (PaymentCell *)getPaymentCell:(NSIndexPath *)index
@@ -463,17 +481,35 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 - (void)confirmPaymentCancel:(Payment *)payment cellIndex:(NSIndexPath *)cellIndex
 {
+	[self cancelPayment:payment
+			cancelBlock:^{
+				[self removeCancellingFromCell];
+			}
+		dontCancelBlock:^{
+			[self removeCancellingFromCell];
+		}];
+}
+
+- (void)cancelPayment:(Payment *)payment
+		  cancelBlock:(TRWActionBlock)cancelBlock
+	  dontCancelBlock:(TRWActionBlock)dontCancelBlock
+{
 	TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"transactions.cancel.confirmation.title", nil)
 													   message:[NSString stringWithFormat:NSLocalizedString(@"transactions.cancel.confirmation.message", nil), [payment.recipient name]]];
 	[alertView setLeftButtonTitle:NSLocalizedString(@"button.title.yes", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
 	
 	[alertView setLeftButtonAction:^{
-		[self removeCancellingFromCell];
+		if(cancelBlock)
+		{
+			cancelBlock();
+		}
 		[self cancelPayment:payment];
 	}];
 	[alertView setRightButtonAction:^{
-		[self removeCancellingFromCell];
-		
+		if (dontCancelBlock)
+		{
+			dontCancelBlock();
+		}
 	}];
 	
 	[alertView show];

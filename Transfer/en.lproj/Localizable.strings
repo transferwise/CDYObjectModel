@@ -179,12 +179,14 @@ A revolution in your pocket.";
 "payment.status.received.description.eta" = "& should arrive on";
 "payment.status.refunded.description" = "Refunded %@";
 "payment.status.submitted.description" = "Waiting for money";
-"payment.status.submitted.description.long" = "will start once we";
-"payment.status.submitted.description.long2" = "received the money.";
-"payment.status.submitted.description.conversion" = "We're now waiting for your
+"payment.status.submitted.description.long" = "is waiting for your money.";
+"payment.status.payed.description" = "Waiting for money";
+"payment.status.payed.description.long" = "will start once we";
+"payment.status.payed.description.long2" = "received the money.";
+"payment.status.payed.description.conversion" = "We're now waiting for your
 bank transfer to reach our account.
 It can take up to 2 working days.";
-"payment.status.submitted.description.eta" = "";
+"payment.status.payed.description.eta" = "";
 "payment.status.transferred.description" = "Received %@";
 "payment.status.transferred.description.long" = "has been transfered.";
 "payment.status.transferred.description.conversion" = "have been converted to";
@@ -332,6 +334,8 @@ This can't be undone.";
 "transferdetails.controller.button.support.ipad" = "Contact support";
 "transferdetails.controller.button.support" = "Contact customer support";
 "transferdetails.controller.button.notransfer" = "Bank transfer not done yet";
+"transferdetails.controller.button.pay" = "Pay %@ now";
+"transferdetails.controller.button.cancel" = "Cancel transfer";
 
 "upload.money.account.nr.title" = "Account number";
 "upload.money.address.title" = "Our address";
@@ -340,7 +344,7 @@ This can't be undone.";
 "upload.money.bic.title" = "BIC";
 "upload.money.data.error.title" = "Data error";
 "upload.money.done.button.title" = "I have made the payment";
-"upload.money.our.address.label" = "Our address\n56 Shoreditch High Street\nLondon E1 6JJ\nUnited Kingdom";
+"upload.money.our.address.label" = "Our address: 56 Shoreditch High Street, London E1 6JJ, United Kingdom";
 "upload.money.header.label.GBP" = "Connect to your online banking & transfer %@ to Transferwise's UK account below. \nIt's free.";
 "upload.money.header.label.EUR" = "Connect to your online banking or call your bank. Transfer %@ to Transferwise's european account.";
 "upload.money.header.label" = "Connect to your online banking or call your bank. Transfer %@ to Transferwise's account.";

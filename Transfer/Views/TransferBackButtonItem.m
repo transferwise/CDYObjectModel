@@ -22,12 +22,12 @@
 {
     return [TransferBackButtonItem backButtonForPoppedNavigationController:nil
 																tapHandler:tapHandler
-																	isBlue:NO];
+																	isBlue:YES];
 }
 
 + (TransferBackButtonItem *)backButtonForPoppedNavigationController:(UINavigationController *)navigationController
 {
-    return [self backButtonForPoppedNavigationController:navigationController isBlue:NO];
+    return [self backButtonForPoppedNavigationController:navigationController isBlue:YES];
 }
 
 + (TransferBackButtonItem *)backButtonForPoppedNavigationController:(UINavigationController *)navigationController
