@@ -758,9 +758,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 -(void)keyboardWillShow:(NSNotification*)note
 {
+    CGRect newframe = [self.view convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:self.view.window];
     if(IPAD)
     {
-        CGRect newframe = [self.view convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:self.view.window];
         NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
         UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
         
@@ -801,6 +801,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     else
     {
         [super keyboardWillShow:note];
+        self.suggestionTable.contentInset = UIEdgeInsetsMake(0, 0, newframe.size.height, 0);
     }
 }
 
@@ -827,6 +828,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     else
     {
         [super keyboardWillHide:note];
+        self.suggestionTable.contentInset = UIEdgeInsetsZero;
     }
 }
 
