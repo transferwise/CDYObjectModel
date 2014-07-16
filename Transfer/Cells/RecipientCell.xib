@@ -18,48 +18,67 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="800" text="Name label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yjj-Z6-Np6">
-                                <rect key="frame" x="39" y="14" width="179" height="18"/>
+                                <rect key="frame" x="60" y="14" width="79" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="179" id="oFx-ay-oEN"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@15.black"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@16.black"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Bank label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OX-sm-jjG" userLabel="Label - Bank label">
-                                <rect key="frame" x="39" y="33" width="150" height="21"/>
+                                <rect key="frame" x="60" y="33" width="68" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="Fve-yV-Dj0"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.CoreFont"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@16.CoreFont"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AXX-0g-i5g">
-                                <rect key="frame" x="10" y="27" width="16" height="16"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AXX-0g-i5g" userLabel="Image View - Recipient">
+                                <rect key="frame" x="10" y="15" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="16" id="LML-9X-3Us"/>
+                                    <constraint firstAttribute="height" constant="40" id="CzV-Jb-tPr"/>
+                                    <constraint firstAttribute="width" constant="40" id="bZR-CX-1ZP"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Send label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vv1-Dr-5rv">
+                                <rect key="frame" x="226" y="24" width="81" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@16.TWElectricBlue"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOM-Zk-EFF" userLabel="Label - Initials">
+                                <rect key="frame" x="10" y="25" width="40" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="light.@17.CoreFont"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="AXX-0g-i5g" secondAttribute="bottom" constant="26" id="7Jr-kV-Ba5"/>
                             <constraint firstItem="AXX-0g-i5g" firstAttribute="leading" secondItem="Mc7-YO-T8n" secondAttribute="leading" constant="10" id="87M-G2-igF"/>
                             <constraint firstItem="2OX-sm-jjG" firstAttribute="top" secondItem="yjj-Z6-Np6" secondAttribute="bottom" constant="1" id="B8j-sM-f5Q"/>
-                            <constraint firstAttribute="bottom" secondItem="2OX-sm-jjG" secondAttribute="bottom" constant="15" id="d2a-wK-f9j"/>
-                            <constraint firstItem="AXX-0g-i5g" firstAttribute="top" secondItem="Mc7-YO-T8n" secondAttribute="top" constant="27" id="exi-3g-PHZ"/>
+                            <constraint firstAttribute="trailing" secondItem="vv1-Dr-5rv" secondAttribute="trailing" constant="13" id="BOl-DA-vpS"/>
+                            <constraint firstAttribute="centerY" secondItem="vv1-Dr-5rv" secondAttribute="centerY" id="I7r-P2-Ax1"/>
+                            <constraint firstItem="AXX-0g-i5g" firstAttribute="leading" secondItem="DOM-Zk-EFF" secondAttribute="leading" id="OWO-AM-gs4"/>
+                            <constraint firstAttribute="centerY" secondItem="AXX-0g-i5g" secondAttribute="centerY" id="Pkd-PE-Bbh"/>
+                            <constraint firstAttribute="centerY" secondItem="2OX-sm-jjG" secondAttribute="centerY" constant="-12" id="dTu-Bp-IQZ"/>
                             <constraint firstItem="2OX-sm-jjG" firstAttribute="leading" secondItem="yjj-Z6-Np6" secondAttribute="leading" id="fLo-MY-Zyf"/>
-                            <constraint firstItem="2OX-sm-jjG" firstAttribute="leading" secondItem="AXX-0g-i5g" secondAttribute="trailing" constant="13" id="g17-Qg-s3g"/>
-                            <constraint firstItem="yjj-Z6-Np6" firstAttribute="top" secondItem="Mc7-YO-T8n" secondAttribute="top" constant="14" id="ja0-PP-DoK"/>
+                            <constraint firstAttribute="centerY" secondItem="yjj-Z6-Np6" secondAttribute="centerY" constant="12" id="fki-Cy-vLV"/>
+                            <constraint firstItem="2OX-sm-jjG" firstAttribute="leading" secondItem="AXX-0g-i5g" secondAttribute="trailing" constant="10" id="g17-Qg-s3g"/>
+                            <constraint firstItem="AXX-0g-i5g" firstAttribute="trailing" secondItem="DOM-Zk-EFF" secondAttribute="trailing" id="mPK-i5-YtW"/>
+                            <constraint firstItem="AXX-0g-i5g" firstAttribute="bottom" secondItem="DOM-Zk-EFF" secondAttribute="bottom" constant="10" id="uFI-jR-GlJ"/>
+                            <constraint firstItem="AXX-0g-i5g" firstAttribute="top" secondItem="DOM-Zk-EFF" secondAttribute="top" constant="-10" id="zma-wj-01d"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="white"/>
@@ -75,7 +94,10 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="bankLabel" destination="2OX-sm-jjG" id="iNo-Ug-hQV"/>
+                <outlet property="initialsLabel" destination="DOM-Zk-EFF" id="1Uq-vo-u68"/>
                 <outlet property="nameLabel" destination="yjj-Z6-Np6" id="DwG-2c-YqA"/>
+                <outlet property="recipientImage" destination="AXX-0g-i5g" id="eUV-Ea-qWJ"/>
+                <outlet property="sendLabel" destination="vv1-Dr-5rv" id="CY9-Ff-kcb"/>
                 <outlet property="slidingContentView" destination="Mc7-YO-T8n" id="EZl-IN-16q"/>
             </connections>
         </tableViewCell>

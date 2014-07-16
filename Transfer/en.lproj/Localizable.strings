@@ -53,14 +53,16 @@
 "confirm.payment.sender.marker.label" = "Sender (you)";
 "confirm.payment.sender.section.title" = "Sender";
 
+"contacts.controller.delete.button.title" = "Delete";
 "contacts.controller.delete.confirmation.message" = "Are you sure you wish to remove %@ from your recipients?";
 "contacts.controller.delete.conformation.title" = "Delete contact";
 "contacts.controller.deleting.message" = "Removing...";
 "contacts.controller.refreshing.message" = "Refreshing recipients";
-"contacts.controller.title" = "Contacts";
+"contacts.controller.title" = "Recipients";
 "contacts.controller.tabbar.title" = "Contacts";
 "contacts.refresh.error.message" = "Could not refresh your recipients";
 "contacts.refresh.error.title" = "Refresh error";
+"contacts.controller.send.button.title" = "Send %@";
 
 "claim.account.controller.title" = "Choose a password";
 "claim.account.error.title" = "Error";
@@ -242,7 +244,6 @@ It can take up to 2 working days.";
 "recipient.controller.cell.label.name" = "Name";
 "recipient.controller.confirm.payment.button.title" = "Confirm payment";
 "recipient.controller.creating.message" = "Creating...";
-"recipient.controller.delete.button.title" = "Delete";
 "recipient.controller.payment.mode.title" = "Select a recipient";
 "recipient.controller.recipient.types.load.error.title" = "Data error";
 "recipient.controller.recipients.preload.error.title" = "Can't load contacts";

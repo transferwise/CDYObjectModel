@@ -10,6 +10,9 @@
 #import "UIColor+Theme.h"
 #import "Recipient.h"
 #import "UIView+MOMStyle.h"
+#import "Currency.h"
+#import "UIColor+MOMStyle.h"
+#import "UIImage+Color.h"
 
 #define UK_SORT	@"UK Sort code"
 #define IBAN	@"IBAN"
@@ -18,6 +21,9 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *nameLabel;
 @property (nonatomic, strong) IBOutlet UILabel *bankLabel;
+@property (strong, nonatomic) IBOutlet UILabel *sendLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *recipientImage;
+@property (strong, nonatomic) IBOutlet UILabel *initialsLabel;
 
 @end
 
@@ -37,9 +43,12 @@
 	
     [self.nameLabel setText:[recipient name]];
     [self.bankLabel setText:[self getSortCodeOrIban:recipient]];
+	[self.sendLabel setText:[NSString stringWithFormat:NSLocalizedString(@"contacts.controller.send.button.title", nil), recipient.currency.code]];
+	[self.recipientImage setImage:[self getRecipientImage:recipient]];
+	[self maskRecipientImage];
 	
 	self.canBeCancelled = YES;
-	self.cancelButtonTitle = NSLocalizedString(@"recipient.controller.delete.button.title", nil);
+	self.cancelButtonTitle = NSLocalizedString(@"contacts.controller.delete.button.title", nil);
 }
 
 //this is a temporary solution before bank info becomes available
@@ -56,6 +65,59 @@
 		return @"IBAN";
 	}
 	return @"";
+}
+
+- (UIImage *)getRecipientImage:(Recipient *)recipient
+{
+	//if recipient has an image
+	if(false)
+	{
+		//recipient image is not available yet
+		[self.initialsLabel setHidden:YES];
+	}
+	//generate image
+	else
+	{
+		[self.initialsLabel setHidden:NO];
+		[self.initialsLabel setText:[self getInitials:[recipient name]]];
+		return [UIImage imageFromColor:[UIColor colorFromStyle:@"LightBlue"]];
+	}
+}
+
+- (NSString *)getInitials:(NSString *)name
+{
+	if (name)
+	{
+		NSArray *components = [name componentsSeparatedByString:@" "];
+		
+		if (components.count < 1)
+		{
+			return nil;
+		}
+		else if (components.count == 1)
+		{
+			return [self getFirstChar:[components firstObject]];
+		}
+		else
+		{
+			return [NSString stringWithFormat:@"%@%@",
+				[self getFirstChar:[components firstObject]],
+				[self getFirstChar:[components lastObject]]];
+		}
+	}
+	
+	return nil;
+}
+
+- (NSString *)getFirstChar:(id)input
+{
+	return [[((NSString *)input) substringToIndex:1] uppercaseString];
+}
+
+- (void)maskRecipientImage
+{
+	self.recipientImage.layer.cornerRadius = 20;
+	self.recipientImage.clipsToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
