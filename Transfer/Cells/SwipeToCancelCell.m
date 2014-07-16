@@ -29,6 +29,7 @@
 
 @implementation SwipeToCancelCell
 
+#pragma mark - Init
 - (void)prepareForReuse
 {
 	//reset for reuse
@@ -60,7 +61,54 @@
 	}
 }
 
-#pragma mark cancel button visiblity
+#pragma mark - Add swipe specific views/constraints
+- (void)layoutSubviews
+{
+	[self setShadowView];
+	
+	[super layoutSubviews];
+}
+
+- (void)setShadowView
+{
+	UIView* shadowView = [[UIView alloc] init];
+	shadowView.translatesAutoresizingMaskIntoConstraints = NO;
+	[shadowView setBackgroundColor:[UIColor blackColor]];
+	[shadowView setAlpha:0.05f];
+	[self.contentView addSubview:shadowView];
+	
+	NSLayoutConstraint* width = [NSLayoutConstraint constraintWithItem:shadowView
+															 attribute:NSLayoutAttributeWidth
+															 relatedBy:NSLayoutRelationEqual
+																toItem:nil
+															 attribute:NSLayoutAttributeNotAnAttribute
+															multiplier:1.0f
+															  constant:3.0f];
+	NSLayoutConstraint* height = [NSLayoutConstraint constraintWithItem:shadowView
+															  attribute:NSLayoutAttributeHeight
+															  relatedBy:NSLayoutRelationEqual
+																 toItem:self.slidingContentView
+															  attribute:NSLayoutAttributeHeight
+															 multiplier:1.0f
+															   constant:0.f];
+	NSLayoutConstraint* horizontalPosition = [NSLayoutConstraint constraintWithItem:shadowView
+																		  attribute:NSLayoutAttributeLeading
+																		  relatedBy:NSLayoutRelationEqual
+																			 toItem:self.slidingContentView
+																		  attribute:NSLayoutAttributeTrailing
+																		 multiplier:1.0f
+																		   constant:0.f];
+	NSLayoutConstraint* verticalPosition = [NSLayoutConstraint constraintWithItem:shadowView
+																		attribute:NSLayoutAttributeTop
+																		relatedBy:NSLayoutRelationEqual
+																		   toItem:self.slidingContentView
+																		attribute:NSLayoutAttributeTop
+																	   multiplier:1.0f
+																		 constant:0.f];
+	[self.contentView addConstraints:@[width, height, horizontalPosition, verticalPosition]];
+}
+
+#pragma mark - Cancel button visiblity
 
 - (void)setIsCancelVisible:(BOOL)isCancelVisible animated:(BOOL)animated
 {
@@ -265,7 +313,7 @@
     } completion:nil];
 }
 
-#pragma mark - Width Equal to superview
+#pragma mark - Sliding Content Width Equal to superview
 - (void)updateConstraints
 {
 	NSLayoutConstraint* c = [NSLayoutConstraint constraintWithItem:self.slidingContentView
