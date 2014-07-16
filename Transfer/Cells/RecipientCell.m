@@ -10,6 +10,9 @@
 #import "UIColor+Theme.h"
 #import "Recipient.h"
 
+#define UK_SORT	@"UK Sort code"
+#define IBAN	@"IBAN"
+
 @interface RecipientCell ()
 
 @property (nonatomic, strong) IBOutlet UILabel *nameLabel;
@@ -33,7 +36,23 @@
 
 - (void)configureWithRecipient:(Recipient *)recipient {
     [self.nameLabel setText:[recipient name]];
-    [self.bankLabel setText:[recipient presentationStringFromAllValues]];
+    [self.bankLabel setText:[self getSortCodeOrIban:recipient]];
+}
+
+//this is a temporary solution before bank info becomes available
+- (NSString *)getSortCodeOrIban:(Recipient *)recipient
+{
+	NSString* details = [recipient presentationStringFromAllValues];
+	
+	if([details rangeOfString:UK_SORT].location != NSNotFound)
+	{
+		return @"UK Sort Code";
+	}
+	else if([details rangeOfString:IBAN].location != NSNotFound)
+	{
+		return @"IBAN";
+	}
+	return @"";
 }
 
 @end
