@@ -7,6 +7,7 @@
 //
 
 #import "SwipeToCancelCell.h"
+#import "RedGradientButton.h"
 
 #define SLOW_FLICK_VELOCITY	100
 #define AUTO_ANIMATION_DURATION 0.3f
@@ -15,7 +16,7 @@
 
 @property (strong, nonatomic) IBOutlet UIView *slidingContentView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *contentViewTrailing;
-@property (strong, nonatomic) IBOutlet UIButton *cancelButton;
+@property (strong, nonatomic) UIButton *cancelButton;
 @property (strong, nonatomic) TRWActionBlock willShowCancelBlock;
 @property (strong, nonatomic) TRWActionBlock didShowCancelBlock;
 @property (strong, nonatomic) TRWActionBlock didHideCancelBlock;
@@ -49,10 +50,6 @@
 	self.didHideCancelBlock = didHideCancelBlock;
 	self.cancelTappedBlock = cancelTappedBlock;
 	
-	[self.cancelButton setTitle:NSLocalizedString(@"button.title.cancel", nil)
-					   forState:UIControlStateNormal];
-	[self.cancelButton setTitleEdgeInsets:UIEdgeInsetsMake(2.0f, 0.0f, 0.0f, 0.0f)];
-	
 	if(!self.panRecognizer)
 	{
 		self.panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
@@ -65,6 +62,7 @@
 - (void)layoutSubviews
 {
 	[self setShadowView];
+	[self setCancelButton];
 	
 	[super layoutSubviews];
 }
@@ -108,6 +106,59 @@
 	[self.contentView addConstraints:@[width, height, horizontalPosition, verticalPosition]];
 }
 
+- (void)setCancelButton
+{
+	self.cancelButton = [[RedGradientButton alloc] init];
+	self.cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
+	
+	if(self.cancelButtonTitle)
+	{
+		[self.cancelButton setTitle:self.cancelButtonTitle
+						   forState:UIControlStateNormal];
+	}
+	else
+	{
+		[self.cancelButton setTitle:NSLocalizedString(@"button.title.cancel", nil)
+						   forState:UIControlStateNormal];
+	}
+	[self.cancelButton setTitleEdgeInsets:UIEdgeInsetsMake(2.0f, 0.0f, 0.0f, 0.0f)];
+	
+	[self.cancelButton addTarget:self
+						  action:@selector(cancelTapped:)
+				forControlEvents:UIControlEventTouchUpInside];
+	[self.contentView insertSubview:self.cancelButton belowSubview:self.slidingContentView];
+	
+	NSLayoutConstraint* width = [NSLayoutConstraint constraintWithItem:self.cancelButton
+															 attribute:NSLayoutAttributeWidth
+															 relatedBy:NSLayoutRelationEqual
+																toItem:nil
+															 attribute:NSLayoutAttributeNotAnAttribute
+															multiplier:1.0f
+															  constant:IPAD ? 120 : 90];
+	NSLayoutConstraint* height = [NSLayoutConstraint constraintWithItem:self.cancelButton
+															  attribute:NSLayoutAttributeHeight
+															  relatedBy:NSLayoutRelationEqual
+																 toItem:self.contentView
+															  attribute:NSLayoutAttributeHeight
+															 multiplier:1.0f
+															   constant:0.f];
+	NSLayoutConstraint* horizontalPosition = [NSLayoutConstraint constraintWithItem:self.cancelButton
+																		  attribute:NSLayoutAttributeTrailing
+																		  relatedBy:NSLayoutRelationEqual
+																			 toItem:self.contentView
+																		  attribute:NSLayoutAttributeTrailing
+																		 multiplier:1.0f
+																		   constant:0.f];
+	NSLayoutConstraint* verticalPosition = [NSLayoutConstraint constraintWithItem:self.cancelButton
+																		attribute:NSLayoutAttributeTop
+																		relatedBy:NSLayoutRelationEqual
+																		   toItem:self.contentView
+																		attribute:NSLayoutAttributeTop
+																	   multiplier:1.0f
+																		 constant:0.f];
+	[self.contentView addConstraints:@[width, height, horizontalPosition, verticalPosition]];
+}
+
 #pragma mark - Cancel button visiblity
 
 - (void)setIsCancelVisible:(BOOL)isCancelVisible animated:(BOOL)animated
@@ -135,7 +186,7 @@
 - (void)setIsCancelVisible:(BOOL)isCancelVisible
 {
 	_isCancelVisible = isCancelVisible;
-    self.contentViewTrailing.constant = isCancelVisible?self.cancelButton.bounds.size.width:0.0f;
+    self.contentViewTrailing.constant = isCancelVisible ? self.cancelButton.bounds.size.width : 0.0f;
     [self layoutIfNeeded];
     
 }
@@ -270,7 +321,7 @@
     }
 }
 
-- (IBAction)cancelTapped:(id)sender
+- (void)cancelTapped:(id)sender
 {
 	if (self.cancelTappedBlock != nil)
 	{

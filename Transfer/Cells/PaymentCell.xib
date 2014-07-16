@@ -13,19 +13,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Li6-7X-mnd" userLabel="Button - Cancel" customClass="RedGradientButton">
-                        <rect key="frame" x="230" y="0.0" width="90" height="69"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="90" id="YE6-8a-ELw"/>
-                        </constraints>
-                        <state key="normal" title="Button">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <connections>
-                            <action selector="cancelTapped:" destination="3" eventType="touchUpInside" id="Gaa-gw-ehi"/>
-                        </connections>
-                    </button>
                     <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="12" userLabel="View - Sliding Content">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,19 +101,15 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="12" firstAttribute="top" secondItem="2Qf-I3-x2d" secondAttribute="top" id="1ie-yW-fTN"/>
-                    <constraint firstAttribute="trailing" secondItem="Li6-7X-mnd" secondAttribute="trailing" id="1jk-3R-UfY"/>
                     <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" placeholder="YES" id="21r-rO-74y"/>
                     <constraint firstAttribute="bottom" secondItem="12" secondAttribute="bottom" id="2FH-kC-0Ee"/>
                     <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" priority="1" id="DzN-3a-1VV"/>
                     <constraint firstItem="12" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2Qf-I3-x2d" secondAttribute="leading" constant="-90" id="OEN-9T-zF5"/>
-                    <constraint firstAttribute="bottom" secondItem="Li6-7X-mnd" secondAttribute="bottom" id="TBc-5z-kla"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="12" secondAttribute="trailing" id="aL3-c9-qcN"/>
-                    <constraint firstItem="Li6-7X-mnd" firstAttribute="top" secondItem="2Qf-I3-x2d" secondAttribute="top" id="egS-FA-CLC"/>
                     <constraint firstItem="12" firstAttribute="leading" relation="lessThanOrEqual" secondItem="2Qf-I3-x2d" secondAttribute="leading" id="y8c-Sb-K07"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="cancelButton" destination="Li6-7X-mnd" id="Jz4-BG-PwY"/>
                 <outlet property="contentViewTrailing" destination="DzN-3a-1VV" id="fq4-6G-GRV"/>
                 <outlet property="currencyLabel" destination="7" id="Eja-o7-jjb"/>
                 <outlet property="moneyLabel" destination="5" id="9"/>

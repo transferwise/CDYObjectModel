@@ -33,6 +33,16 @@
     return self;
 }
 
+- (id)init
+{
+	self = [super init];
+	if (self)
+	{
+		[self commonSetup];
+	}
+	return self;
+}
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];

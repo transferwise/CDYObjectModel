@@ -13,6 +13,7 @@
 
 @property (nonatomic, readonly) BOOL isCancelVisible;
 @property (nonatomic) BOOL canBeCancelled;
+@property (nonatomic, strong) NSString* cancelButtonTitle;
 
 - (void)configureWithWillShowCancelBlock:(TRWActionBlock)willShowCancelBlock
 					  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
