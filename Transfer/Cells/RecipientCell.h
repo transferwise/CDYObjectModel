@@ -13,7 +13,7 @@
 
 @interface RecipientCell : SwipeToCancelCell
 
-- (void)configureWithPayment:(Recipient *)recipient
+- (void)configureWithRecipient:(Recipient *)recipient
 		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
 		  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
 		  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock

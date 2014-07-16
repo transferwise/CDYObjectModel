@@ -107,7 +107,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     RecipientCell *cell = [tableView dequeueReusableCellWithIdentifier:kRecipientCellIdentifier];
     Recipient *recipient = [self.allRecipients objectAtIndexPath:indexPath];
 	
-    [cell configureWithPayment:recipient
+    [cell configureWithRecipient:recipient
 		   willShowCancelBlock:^{
 			   //this will be called each time a touch starts
 			   //including the touch that hides the button
@@ -161,6 +161,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
 	
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	[self removeCancellingFromCell];
 	
     [self presentViewController:wrapper animated:YES completion:nil];
 }

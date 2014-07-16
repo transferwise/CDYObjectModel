@@ -24,12 +24,13 @@
 @property (strong, nonatomic) IBOutlet UILabel *sendLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *recipientImage;
 @property (strong, nonatomic) IBOutlet UILabel *initialsLabel;
+@property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
 
 @end
 
 @implementation RecipientCell
 
-- (void)configureWithPayment:(Recipient *)recipient
+- (void)configureWithRecipient:(Recipient *)recipient
 		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
 		  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
 		  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
@@ -44,11 +45,23 @@
     [self.nameLabel setText:[recipient name]];
     [self.bankLabel setText:[self getSortCodeOrIban:recipient]];
 	[self.sendLabel setText:[NSString stringWithFormat:NSLocalizedString(@"contacts.controller.send.button.title", nil), recipient.currency.code]];
+	
+	if(!self.tapRecognizer)
+	{
+		self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sendTapped)];
+		[self.sendLabel addGestureRecognizer:self.tapRecognizer];
+	}
+	
 	[self.recipientImage setImage:[self getRecipientImage:recipient]];
 	[self maskRecipientImage];
 	
 	self.canBeCancelled = YES;
 	self.cancelButtonTitle = NSLocalizedString(@"contacts.controller.delete.button.title", nil);
+}
+
+- (void)sendTapped
+{
+	
 }
 
 //this is a temporary solution before bank info becomes available
