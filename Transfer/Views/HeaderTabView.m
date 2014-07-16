@@ -110,6 +110,7 @@
     [button setBackgroundImage:[UIImage imageNamed:@"DeselectedTab"] forState:UIControlStateNormal];
     [button setBackgroundImage:[UIImage imageNamed:@"SelectedTab"] forState:UIControlStateSelected];
     [button setBackgroundImage:[UIImage imageNamed:@"HighlightedTab"] forState:UIControlStateHighlighted];
+    [button setBackgroundImage:[UIImage imageNamed:@"HighlightedTab"] forState:(UIControlStateHighlighted|UIControlStateSelected)];
     button.fontStyle = @"medium.@17.CoreFont";
     button.selectedFontStyle = @"medium.@17.TWElectricBlue";
     button.adjustsImageWhenHighlighted = NO;
