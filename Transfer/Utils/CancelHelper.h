@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#import "Payment.h"
+#import "TRWAlertView.h"
+
 @interface CancelHelper : NSObject
+
++ (void)cancelPayment:(Payment *)payment
+		  cancelBlock:(TRWActionBlock)cancelBlock
+	  dontCancelBlock:(TRWActionBlock)dontCancelBlock;
 
 @end
