@@ -25,7 +25,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" id="IDc-ZV-bhR">
-                            <rect key="frame" x="10" y="49" width="310" height="1"/>
+                            <rect key="frame" x="0.0" y="49" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <userDefinedRuntimeAttributes>
