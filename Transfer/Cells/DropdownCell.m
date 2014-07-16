@@ -38,7 +38,7 @@ NSString *const TWDropdownCellIdentifier = @"TWDropdownCellIdentifier";
 
     [self.entryField setInputView:pickerView];
 
-    [self addDoneButton];
+    //[self addDoneButton];
 }
 
 - (NSString *)value {

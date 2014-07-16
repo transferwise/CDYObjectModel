@@ -72,25 +72,25 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     [self.entryField setTextColor:(editable ? [UIColor colorFromStyle:self.entryField.fontStyle] : [UIColor disabledEntryTextColor])];
 }
 
-- (void)addDoneButton {
-    __block __weak TextEntryCell *weakSelf = self;
-    [self addDoneButtonToField:self.entryField withAction:^{
-        [weakSelf.entryField.delegate textFieldShouldReturn:weakSelf.entryField];
-    }];
-}
-
-- (void)addDoneButtonToField:(UITextField *)field withAction:(TRWActionBlock)action {
-    [self setDoneButtonAction:action];
-
-    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 20, 44)];
-    [toolbar setBarStyle:UIBarStyleBlackTranslucent];
-
-    UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    //TODO jaanus: button title based on entry return key type
-    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed)];
-    [toolbar setItems:@[flexible, done]];
-    [field setInputAccessoryView:toolbar];
-}
+//- (void)addDoneButton {
+//    __block __weak TextEntryCell *weakSelf = self;
+//    [self addDoneButtonToField:self.entryField withAction:^{
+//        [weakSelf.entryField.delegate textFieldShouldReturn:weakSelf.entryField];
+//    }];
+//}
+//
+//- (void)addDoneButtonToField:(UITextField *)field withAction:(TRWActionBlock)action {
+//    [self setDoneButtonAction:action];
+//
+//    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 20, 44)];
+//    [toolbar setBarStyle:UIBarStyleBlackTranslucent];
+//
+//    UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+//    //TODO jaanus: button title based on entry return key type
+//    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed)];
+//    [toolbar setItems:@[flexible, done]];
+//    [field setInputAccessoryView:toolbar];
+//}
 
 - (void)setValueWhenEditable:(NSString *)value {
     if (![self.entryField isEnabled]) {

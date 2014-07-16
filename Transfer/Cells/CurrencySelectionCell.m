@@ -46,7 +46,7 @@ NSString *const TWCurrencySelectionCellIdentifier = @"TWCurrencySelectionCellIde
 
     [self.currencyField setInputView:pickerView];
 
-    [self addDoneButton];
+    //[self addDoneButton];
 }
 
 - (void)setAllCurrencies:(NSFetchedResultsController *)currencies {
