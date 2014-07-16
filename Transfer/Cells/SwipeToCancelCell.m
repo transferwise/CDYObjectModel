@@ -343,16 +343,6 @@
     self.didShowCancelBlock();
 }
 
-- (void)hideOnCancelShow
-{
-	//override in subcalss to hide things that are behind cancel button
-}
-
-- (void)showOnCancelHide
-{
-	//override on subclass to show things that are behind cancel button
-}
-
 #pragma mark - Animation helper
 - (void)animateWithDuration:(NSTimeInterval)duration easeOutOnly:(BOOL)outOnly isShow:(BOOL)show
 {
