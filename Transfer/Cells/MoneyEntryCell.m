@@ -167,6 +167,8 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     _currencies = currencies;
     [_currencies setDelegate:self];
     
+    [currencies performFetch:nil];
+    
     NSUInteger index = 0;
     if(self.selectedCurrency)
     {

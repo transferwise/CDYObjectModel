@@ -278,6 +278,15 @@ static NSUInteger const kRowYouSend = 0;
             [alertView show];
             return;
         }
+        else
+        {
+            if (self.recipient) {
+                [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSourcesContainingTargetCurrency:self.recipient.currency]];
+            } else {
+                [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSources]];
+            }
+        }
+        
     }];
 
     [operation setObjectModel:self.objectModel];
