@@ -362,7 +362,14 @@
 														 attribute:NSLayoutAttributeWidth
 														multiplier:1.0f
 														  constant:0.f];
-	[self.contentView addConstraints:@[equalWidths]];
+	NSLayoutConstraint* trailing = [NSLayoutConstraint constraintWithItem:self.contentView
+																attribute:NSLayoutAttributeTrailing
+																relatedBy:NSLayoutRelationGreaterThanOrEqual
+																   toItem:self.slidingContentView
+																attribute:NSLayoutAttributeTrailing
+															   multiplier:1.0f
+																 constant:0.f];
+	[self.contentView addConstraints:@[equalWidths, trailing]];
 	[super updateConstraints];
 }
 @end
