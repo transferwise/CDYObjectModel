@@ -37,6 +37,9 @@
 	
     [self.nameLabel setText:[recipient name]];
     [self.bankLabel setText:[self getSortCodeOrIban:recipient]];
+	
+	self.canBeCancelled = YES;
+	self.cancelButtonTitle = NSLocalizedString(@"recipient.controller.delete.button.title", nil);
 }
 
 //this is a temporary solution before bank info becomes available

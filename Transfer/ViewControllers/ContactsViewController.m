@@ -57,8 +57,6 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [super viewDidLoad];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"RecipientCell" bundle:nil] forCellReuseIdentifier:kRecipientCellIdentifier];
-    [self.tableView setBackgroundView:nil];
-    [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -138,8 +136,6 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
     Recipient *recipient = [self.allRecipients objectAtIndexPath:indexPath];
 
     if ([recipient.type hideFromCreationValue])
@@ -163,8 +159,10 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     [navigationController setNavigationBarHidden:YES];
     ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
+	
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
     [self presentViewController:wrapper animated:YES completion:nil];
-
 }
 
 - (void)refreshRecipients

@@ -242,6 +242,7 @@ It can take up to 2 working days.";
 "recipient.controller.cell.label.name" = "Name";
 "recipient.controller.confirm.payment.button.title" = "Confirm payment";
 "recipient.controller.creating.message" = "Creating...";
+"recipient.controller.delete.button.title" = "Delete";
 "recipient.controller.payment.mode.title" = "Select a recipient";
 "recipient.controller.recipient.types.load.error.title" = "Data error";
 "recipient.controller.recipients.preload.error.title" = "Can't load contacts";
