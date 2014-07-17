@@ -343,7 +343,7 @@
 #pragma mark indexpath conversion
 - (CGFloat)getCenteringInset
 {
-	return self.fixedSize.height / 2 - self.tabBarInsets.top / 2;
+	return (self.fixedSize.height / 2 - self.tabBarInsets.top / 2) + 10;
 }
 
 - (NSIndexPath*)indexPathForIndex:(NSUInteger)index
