@@ -64,17 +64,17 @@
 			<key>Green</key>
 			<dict>
 				<key>color</key>
-				<string>85b319</string>
+				<string>64b209</string>
 			</dict>
 			<key>GreenHighlighted</key>
 			<dict>
 				<key>color</key>
-				<string>88b71a</string>
+				<string>67b809</string>
 			</dict>
 			<key>GreenShadow</key>
 			<dict>
 				<key>color</key>
-				<string>64960d</string>
+				<string>2d960c</string>
 			</dict>
 			<key>LightBlue</key>
 			<dict>
