@@ -48,7 +48,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     if (self)
 	{
         [self setTitle:NSLocalizedString(@"contacts.controller.title", nil)];
-        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"AddButton.png"] style:UIBarButtonItemStylePlain target:self action:@selector(addContactPressed)];
+        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"AddButton"] style:UIBarButtonItemStylePlain target:self action:@selector(addContactPressed)];
         [self.navigationItem setRightBarButtonItem:addButton];
     }
     return self;
