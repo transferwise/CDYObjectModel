@@ -70,7 +70,6 @@
         item.deSelectedColor = item.deSelectedColor?:self.defaultDeSelectedColor;
         item.highlightedColor = item.highlightedColor?:self.defaultHighlightedColor;
     }
-
 }
 
 -(void)setDefaultDeSelectedColor:(UIColor *)defaultDeSelectedColor
@@ -307,7 +306,7 @@
 {
     if([self useFixedSizeTabs] && index > self.insertFlexibleSpaceAtIndex)
     {
-        return [NSIndexPath indexPathForRow:index+1 inSection:0];
+        return [NSIndexPath indexPathForRow:index + 1 inSection:0];
     }
     else
     {
@@ -319,7 +318,7 @@
 {
     if ([self useFixedSizeTabs]  && indexPath.row >= self.insertFlexibleSpaceAtIndex)
     {
-        return indexPath.row -1;
+        return indexPath.row - 1;
     }
     else
     {
@@ -329,7 +328,7 @@
 
 -(BOOL)useFixedSizeTabs
 {
-    return (self.fixedSize.width >0 || self.fixedSize.width >0);
+    return (self.fixedSize.width > 0 || self.fixedSize.height > 0);
 }
 
 @end
