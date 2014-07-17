@@ -63,6 +63,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 	self.footerView = [[[NSBundle mainBundle] loadNibNamed:@"RecipientsFooterView" owner:self options:nil] objectAtIndex:0];
 	[self.footerView commonSetup];
 	self.footerView.delegate = self;
+	self.tableView.tableFooterView = self.footerView;
 }
 
 - (void)didReceiveMemoryWarning
@@ -144,16 +145,6 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 	[self setCancellingVisibleForScrolling:cell indexPath:indexPath];
 
     return cell;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-	return self.footerView;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-	return self.footerView.frame.size.height;
 }
 
 - (void)sendTapped:(UITapGestureRecognizer *)gestureRecognizer
