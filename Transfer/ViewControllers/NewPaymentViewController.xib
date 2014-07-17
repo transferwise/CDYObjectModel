@@ -170,7 +170,7 @@
                 <constraint firstItem="w5b-eJ-Ssl" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" id="Bqo-uv-tWq"/>
                 <constraint firstItem="Tkb-LF-80g" firstAttribute="centerX" secondItem="eTr-o2-8Xr" secondAttribute="centerX" id="Cen-RH-wCk"/>
                 <constraint firstItem="6Et-gt-hPN" firstAttribute="top" secondItem="o2g-cv-K3K" secondAttribute="top" constant="20" id="DRT-lI-4cP"/>
-                <constraint firstItem="KVn-N5-EGf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WRX-dl-Alg" secondAttribute="bottom" constant="29" id="E7F-4c-7xG"/>
+                <constraint firstItem="KVn-N5-EGf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WRX-dl-Alg" secondAttribute="bottom" constant="14" id="E7F-4c-7xG"/>
                 <constraint firstItem="eTr-o2-8Xr" firstAttribute="centerX" secondItem="Lrw-M9-5jB" secondAttribute="centerX" id="O1S-JK-2eW"/>
                 <constraint firstItem="UAL-I7-qIC" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" id="PG8-cJ-E5J"/>
                 <constraint firstItem="Lrw-M9-5jB" firstAttribute="top" secondItem="UAL-I7-qIC" secondAttribute="bottom" priority="800" constant="36" id="Psx-Cb-GIV"/>
