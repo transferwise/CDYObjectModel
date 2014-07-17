@@ -127,43 +127,52 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 				 [self confirmRecipientDelete:recipient indexPath:indexPath];
 			 }];
 	
+	UITapGestureRecognizer* recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sendTapped:)];
+	[recognizer setNumberOfTapsRequired:1];
+	[cell.sendLabel addGestureRecognizer:recognizer];
+	
 	//set cancelling visible when scrolling
 	[self setCancellingVisibleForScrolling:cell indexPath:indexPath];
 
     return cell;
 }
 
+- (void)sendTapped:(id)sender
+{
+	
+}
+
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Recipient *recipient = [self.allRecipients objectAtIndexPath:indexPath];
-
-    if ([recipient.type hideFromCreationValue])
-	{
-        return;
-    }
-
-    if (![self.objectModel canMakePaymentToCurrency:recipient.currency])
-	{
-        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"payment.controller.currency.payment.error.title", nil)
-                                                           message:[NSString stringWithFormat:NSLocalizedString(@"payment.controller.currency.payment.error.message", nil), recipient.currency.code]];
-        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-        [alertView show];
-        return;
-    }
-
-    [[GoogleAnalytics sharedInstance] sendScreen:@"New payment to"];
-    NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
-    [controller setRecipient:recipient];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-    [navigationController setNavigationBarHidden:YES];
-    ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
+//    Recipient *recipient = [self.allRecipients objectAtIndexPath:indexPath];
+//
+//    if ([recipient.type hideFromCreationValue])
+//	{
+//        return;
+//    }
+//
+//    if (![self.objectModel canMakePaymentToCurrency:recipient.currency])
+//	{
+//        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"payment.controller.currency.payment.error.title", nil)
+//                                                           message:[NSString stringWithFormat:NSLocalizedString(@"payment.controller.currency.payment.error.message", nil), recipient.currency.code]];
+//        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+//        [alertView show];
+//        return;
+//    }
+//
+//    [[GoogleAnalytics sharedInstance] sendScreen:@"New payment to"];
+//    NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
+//    [controller setObjectModel:self.objectModel];
+//    [controller setRecipient:recipient];
+//    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+//    [navigationController setNavigationBarHidden:YES];
+//    ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
 	
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	[self removeCancellingFromCell];
 	
-    [self presentViewController:wrapper animated:YES completion:nil];
+//    [self presentViewController:wrapper animated:YES completion:nil];
 }
 
 - (void)refreshRecipients

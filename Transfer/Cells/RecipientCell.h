@@ -13,6 +13,8 @@
 
 @interface RecipientCell : SwipeToCancelCell
 
+@property (strong, nonatomic) IBOutlet UILabel *sendLabel;
+
 - (void)configureWithRecipient:(Recipient *)recipient
 		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
 		  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock

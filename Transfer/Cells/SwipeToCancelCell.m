@@ -183,7 +183,6 @@
     {
         [self didHide];
     }
-    
 }
 
 - (void)setIsCancelVisible:(BOOL)isCancelVisible
@@ -191,7 +190,6 @@
 	_isCancelVisible = isCancelVisible;
     self.contentViewTrailing.constant = isCancelVisible ? self.cancelButton.bounds.size.width : 0.0f;
     [self layoutIfNeeded];
-    
 }
 
 #pragma mark - pan + tap
