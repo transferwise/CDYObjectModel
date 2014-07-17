@@ -63,6 +63,10 @@
 		38342BAC196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
 		385A66861977C9A200D00D1F /* GrayRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 385A66851977C9A200D00D1F /* GrayRoundedButton.m */; };
 		385A66871977C9A200D00D1F /* GrayRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 385A66851977C9A200D00D1F /* GrayRoundedButton.m */; };
+		385A668A197816AE00D00D1F /* RecipientCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385A6689197816AE00D00D1F /* RecipientCell~ipad.xib */; };
+		385A668B197816AE00D00D1F /* RecipientCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385A6689197816AE00D00D1F /* RecipientCell~ipad.xib */; };
+		385A668D1978178500D00D1F /* ContactsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385A668C1978178500D00D1F /* ContactsViewController~ipad.xib */; };
+		385A668E1978178500D00D1F /* ContactsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385A668C1978178500D00D1F /* ContactsViewController~ipad.xib */; };
 		3887CBBA197690FC004DFFFD /* OptionalSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */; };
 		3887CBBB197690FC004DFFFD /* OptionalSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */; };
 		3887CBBE1976AF2B004DFFFD /* CancelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBBD1976AF2B004DFFFD /* CancelHelper.m */; };
@@ -139,8 +143,6 @@
 		38EFABE4196D7EAB00126192 /* TextFieldSuggestionTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EFABDE196D7EAB00126192 /* TextFieldSuggestionTable.xib */; };
 		470DEFAD1945F02300684FEB /* MoneyEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */; };
 		470DEFAE19460C8D00684FEB /* MoneyEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */; };
-		470EB61419768175001C5D97 /* ContactsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470EB61319768175001C5D97 /* ContactsViewController~ipad.xib */; };
-		470EB61519768175001C5D97 /* ContactsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470EB61319768175001C5D97 /* ContactsViewController~ipad.xib */; };
 		470EB6181976BE98001C5D97 /* CancelableCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 470EB6171976BE98001C5D97 /* CancelableCellViewController.m */; };
 		470EB6191976BE98001C5D97 /* CancelableCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 470EB6171976BE98001C5D97 /* CancelableCellViewController.m */; };
 		4710499719470AFD00660B2F /* CurrencyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */; };
@@ -173,8 +175,6 @@
 		4723EA341975644A00B4345F /* RedRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA321975644A00B4345F /* RedRoundedButton.m */; };
 		4723EA3719756A9800B4345F /* RoundedButtonWithInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */; };
 		4723EA3819756A9800B4345F /* RoundedButtonWithInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */; };
-		4723EA3A19758F8E00B4345F /* RecipientCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4723EA3919758F8E00B4345F /* RecipientCell~ipad.xib */; };
-		4723EA3B19758F8E00B4345F /* RecipientCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4723EA3919758F8E00B4345F /* RecipientCell~ipad.xib */; };
 		47343ACE1977E093009D9C3A /* RecipientsFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47343ACD1977E093009D9C3A /* RecipientsFooterView.m */; };
 		47343ACF1977E093009D9C3A /* RecipientsFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47343ACD1977E093009D9C3A /* RecipientsFooterView.m */; };
 		47343AD11977E0B1009D9C3A /* RecipientsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47343AD01977E0B1009D9C3A /* RecipientsFooterView.xib */; };
@@ -796,6 +796,8 @@
 		38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryMultiColumnViewController.m; sourceTree = "<group>"; };
 		385A66841977C9A200D00D1F /* GrayRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GrayRoundedButton.h; path = Views/GrayRoundedButton.h; sourceTree = "<group>"; };
 		385A66851977C9A200D00D1F /* GrayRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GrayRoundedButton.m; path = Views/GrayRoundedButton.m; sourceTree = "<group>"; };
+		385A6689197816AE00D00D1F /* RecipientCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecipientCell~ipad.xib"; sourceTree = "<group>"; };
+		385A668C1978178500D00D1F /* ContactsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ContactsViewController~ipad.xib"; sourceTree = "<group>"; };
 		3887CBB8197690FC004DFFFD /* OptionalSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionalSplitViewController.h; sourceTree = "<group>"; };
 		3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionalSplitViewController.m; sourceTree = "<group>"; };
 		3887CBBC1976AF2B004DFFFD /* CancelHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelHelper.h; sourceTree = "<group>"; };
@@ -858,7 +860,6 @@
 		38EFABDB196D7EAB00126192 /* DataEntryDefaultHeader~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DataEntryDefaultHeader~ipad.xib"; sourceTree = "<group>"; };
 		38EFABDE196D7EAB00126192 /* TextFieldSuggestionTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldSuggestionTable.xib; sourceTree = "<group>"; };
 		470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MoneyEntryCell~ipad.xib"; sourceTree = "<group>"; };
-		470EB61319768175001C5D97 /* ContactsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ContactsViewController~ipad.xib"; sourceTree = "<group>"; };
 		470EB6161976BE98001C5D97 /* CancelableCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelableCellViewController.h; sourceTree = "<group>"; };
 		470EB6171976BE98001C5D97 /* CancelableCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelableCellViewController.m; sourceTree = "<group>"; };
 		4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencyCell~ipad.xib"; sourceTree = "<group>"; };
@@ -887,7 +888,6 @@
 		4723EA321975644A00B4345F /* RedRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RedRoundedButton.m; path = Views/RedRoundedButton.m; sourceTree = "<group>"; };
 		4723EA3519756A9800B4345F /* RoundedButtonWithInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundedButtonWithInsets.h; path = Views/RoundedButtonWithInsets.h; sourceTree = "<group>"; };
 		4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoundedButtonWithInsets.m; path = Views/RoundedButtonWithInsets.m; sourceTree = "<group>"; };
-		4723EA3919758F8E00B4345F /* RecipientCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecipientCell~ipad.xib"; sourceTree = "<group>"; };
 		47343ACC1977E093009D9C3A /* RecipientsFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientsFooterView.h; sourceTree = "<group>"; };
 		47343ACD1977E093009D9C3A /* RecipientsFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientsFooterView.m; sourceTree = "<group>"; };
 		47343AD01977E0B1009D9C3A /* RecipientsFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientsFooterView.xib; sourceTree = "<group>"; };
@@ -1693,7 +1693,7 @@
 				EAD736A0171E85C300A037B1 /* RecipientCell.h */,
 				EAD736A1171E85C300A037B1 /* RecipientCell.m */,
 				EAD736A3171E85D100A037B1 /* RecipientCell.xib */,
-				4723EA3919758F8E00B4345F /* RecipientCell~ipad.xib */,
+				385A6689197816AE00D00D1F /* RecipientCell~ipad.xib */,
 				EA0425FE173CF5C50048BFBD /* RecipientEntrySelectionCell.h */,
 				EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */,
 				EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */,
@@ -2109,7 +2109,7 @@
 				EAD3967D171BD57000F6D011 /* ContactsViewController.h */,
 				EAD3967E171BD57000F6D011 /* ContactsViewController.m */,
 				EAD3967F171BD57000F6D011 /* ContactsViewController.xib */,
-				470EB61319768175001C5D97 /* ContactsViewController~ipad.xib */,
+				385A668C1978178500D00D1F /* ContactsViewController~ipad.xib */,
 				380021EC192F3DD3009B1D53 /* CurrencySelectorViewController.h */,
 				380021ED192F3DD3009B1D53 /* CurrencySelectorViewController.m */,
 				380021EE192F3DD3009B1D53 /* CurrencySelectorViewController.xib */,
@@ -2488,9 +2488,9 @@
 				38062177196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */,
 				4710499819470B2A00660B2F /* CurrencyCell~ipad.xib in Resources */,
 				470DEFAE19460C8D00684FEB /* MoneyEntryCell~ipad.xib in Resources */,
+				385A668B197816AE00D00D1F /* RecipientCell~ipad.xib in Resources */,
 				47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */,
 				47592CC71940C35800ECDAF2 /* NewPaymentViewController~ipad.xib in Resources */,
-				470EB61519768175001C5D97 /* ContactsViewController~ipad.xib in Resources */,
 				38C7B29B1974364C004324E8 /* BankTransferDetailCell.xib in Resources */,
 				EA31A1D017DDB29B00F937F7 /* InfoPlist.strings in Resources */,
 				EA31A1D117DDB29B00F937F7 /* Localizable.strings in Resources */,
@@ -2511,7 +2511,6 @@
 				EA0450DE17EC64E4008921DA /* IntroView.xib in Resources */,
 				38CACA65196EE4D400BFCF82 /* TextFieldSuggestionTable~ipad.xib in Resources */,
 				EA31A1D917DDB29B00F937F7 /* TableHeaderView.xib in Resources */,
-				4723EA3B19758F8E00B4345F /* RecipientCell~ipad.xib in Resources */,
 				EA31A1DA17DDB29B00F937F7 /* TextEntryCell.xib in Resources */,
 				38EFABE4196D7EAB00126192 /* TextFieldSuggestionTable.xib in Resources */,
 				38C7B2A119756A9C004324E8 /* BankTransferViewController~ipad.xib in Resources */,
@@ -2524,6 +2523,7 @@
 				380021FA192F43EA009B1D53 /* TabCell.xib in Resources */,
 				38B0930C1951FA2A00315BE4 /* DataEntryDefaultHeader.xib in Resources */,
 				EA31A1E817DDB29B00F937F7 /* TSAlertViewMessageListViewShadow.png in Resources */,
+				385A668E1978178500D00D1F /* ContactsViewController~ipad.xib in Resources */,
 				EA31A1E917DDB29B00F937F7 /* TSAlertViewCancelButtonBackground.png in Resources */,
 				EA0450D717EC5BC1008921DA /* IntroViewController.xib in Resources */,
 				3800220D192F5774009B1D53 /* CurrencyCell.xib in Resources */,
@@ -2598,9 +2598,9 @@
 				38062176196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */,
 				EAAA1490171BD07E005B9430 /* Localizable.strings in Resources */,
 				38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */,
+				385A668A197816AE00D00D1F /* RecipientCell~ipad.xib in Resources */,
 				EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */,
 				EA84056917F0A40B00F44916 /* spinner.html in Resources */,
-				470EB61419768175001C5D97 /* ContactsViewController~ipad.xib in Resources */,
 				38C7B29A1974364C004324E8 /* BankTransferDetailCell.xib in Resources */,
 				EAD3967C171BD51400F6D011 /* TransactionsViewController.xib in Resources */,
 				EA0523F9191B5AFC00B32899 /* RefundDetailsViewController.xib in Resources */,
@@ -2621,7 +2621,6 @@
 				4710499719470AFD00660B2F /* CurrencyCell~ipad.xib in Resources */,
 				38CACA64196EE4D400BFCF82 /* TextFieldSuggestionTable~ipad.xib in Resources */,
 				EAD3646617E1E19A001EFE40 /* Assets.xcassets in Resources */,
-				4723EA3A19758F8E00B4345F /* RecipientCell~ipad.xib in Resources */,
 				EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */,
 				38EFABE3196D7EAB00126192 /* TextFieldSuggestionTable.xib in Resources */,
 				38C7B2A019756A9C004324E8 /* BankTransferViewController~ipad.xib in Resources */,
@@ -2634,6 +2633,7 @@
 				3800220C192F5774009B1D53 /* CurrencyCell.xib in Resources */,
 				38B0930B1951FA2A00315BE4 /* DataEntryDefaultHeader.xib in Resources */,
 				BBC691261721416300F0FB1A /* TSAlertViewButtonBackground.png in Resources */,
+				385A668D1978178500D00D1F /* ContactsViewController~ipad.xib in Resources */,
 				BBC691271721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
 				EAE7B6AF17E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */,
 				EA333F3818A4BEDC00D8A44E /* page_zoom.json in Resources */,
