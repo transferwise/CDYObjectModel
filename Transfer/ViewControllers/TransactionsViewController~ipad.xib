@@ -93,17 +93,6 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightbluehighlighted"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="omV-Yf-7m8" userLabel="Separator">
-                    <rect key="frame" x="512" y="0.0" width="1" height="768"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="1" id="fG2-K6-vUW"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="SeparatorGrey.alpha1"/>
-                    </userDefinedRuntimeAttributes>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h2f-uY-e4h" userLabel="shadow" customClass="GradientView">
                     <rect key="frame" x="504" y="0.0" width="8" height="768"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -112,10 +101,24 @@
                         <constraint firstAttribute="width" constant="8" id="Bxl-4u-CLZ"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fromColorStyle" value="TWBlueHighlighted.alpha1"/>
+                        <userDefinedRuntimeAttribute type="color" keyPath="fromColor">
+                            <color key="value" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="toColorStyle" value="TWBlueHighlighted.alpha5"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="orientation">
                             <integer key="value" value="0"/>
                         </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="omV-Yf-7m8" userLabel="Separator">
+                    <rect key="frame" x="512" y="0.0" width="1" height="768"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="1" id="fG2-K6-vUW"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="SeparatorGrey"/>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
