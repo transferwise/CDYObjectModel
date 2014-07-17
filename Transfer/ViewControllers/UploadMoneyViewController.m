@@ -112,7 +112,7 @@
     if (index == 1) {
         [[GoogleAnalytics sharedInstance] sendScreen:@"Bank transfer payment"];
         [self.containerView addSubview:self.bankViewController.view];
-        self.bankViewController.tableView.contentInset = IPAD?UIEdgeInsetsMake(55, 0, 0, 0):UIEdgeInsetsMake(55, 0, 50, 0);
+        self.bankViewController.tableView.contentInset = IPAD?UIEdgeInsetsMake(55, 0, 0, 0):UIEdgeInsetsMake(20, 0, 50, 0);
         [self.bankViewController.tableView setContentOffset:CGPointMake(0,-self.bankViewController.tableView.contentInset.top)];
         self.bankViewController.view.frame = self.containerView.bounds;
         self.bankViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;

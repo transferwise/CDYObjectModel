@@ -44,36 +44,28 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="172"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVH-WE-6fL" customClass="InsetRespectingButton">
-                    <rect key="frame" x="337" y="51" width="95" height="45"/>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVH-WE-6fL" customClass="BlueRoundedButton">
+                    <rect key="frame" x="357" y="51" width="55" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="FTU-Cz-qeA"/>
                     </constraints>
-                    <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                     <state key="normal" title="Button" backgroundImage="RoundedBlueButton">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@16.TWElectricBlue"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="doneBtnClicked:" destination="-1" eventType="touchUpInside" id="f6Z-aP-LDW"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAz-f4-Wka" customClass="InsetRespectingButton">
-                    <rect key="frame" x="338" y="111" width="95" height="45"/>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAz-f4-Wka" customClass="GrayRoundedButton">
+                    <rect key="frame" x="358" y="111" width="55" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="arX-FH-TEw"/>
                     </constraints>
-                    <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                     <state key="normal" title="Button" backgroundImage="Rounded">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@16.corefont"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="contactSupportPressed" destination="-1" eventType="touchUpInside" id="QoG-Qj-QEu"/>
                     </connections>

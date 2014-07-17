@@ -61,6 +61,8 @@
 		3831AA41194B5A8B00B3EE5C /* WhyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */; };
 		38342BAB196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
 		38342BAC196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
+		385A66861977C9A200D00D1F /* GrayRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 385A66851977C9A200D00D1F /* GrayRoundedButton.m */; };
+		385A66871977C9A200D00D1F /* GrayRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 385A66851977C9A200D00D1F /* GrayRoundedButton.m */; };
 		3887CBBA197690FC004DFFFD /* OptionalSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */; };
 		3887CBBB197690FC004DFFFD /* OptionalSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */; };
 		3887CBBE1976AF2B004DFFFD /* CancelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBBD1976AF2B004DFFFD /* CancelHelper.m */; };
@@ -786,6 +788,8 @@
 		3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WhyViewController~ipad.xib"; sourceTree = "<group>"; };
 		38342BA9196E9362002FF371 /* DataEntryMultiColumnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryMultiColumnViewController.h; sourceTree = "<group>"; };
 		38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryMultiColumnViewController.m; sourceTree = "<group>"; };
+		385A66841977C9A200D00D1F /* GrayRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GrayRoundedButton.h; path = Views/GrayRoundedButton.h; sourceTree = "<group>"; };
+		385A66851977C9A200D00D1F /* GrayRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GrayRoundedButton.m; path = Views/GrayRoundedButton.m; sourceTree = "<group>"; };
 		3887CBB8197690FC004DFFFD /* OptionalSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionalSplitViewController.h; sourceTree = "<group>"; };
 		3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionalSplitViewController.m; sourceTree = "<group>"; };
 		3887CBBC1976AF2B004DFFFD /* CancelHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelHelper.h; sourceTree = "<group>"; };
@@ -797,8 +801,8 @@
 		388D6ABA1961AF7100DCFEA6 /* PaymentMadeIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMadeIndicator.m; sourceTree = "<group>"; };
 		388F09F91934A1BB00DBD93D /* UIView+RenderBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RenderBlur.h"; sourceTree = "<group>"; };
 		388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RenderBlur.m"; sourceTree = "<group>"; };
-		388F09FD1936434A00DBD93D /* InsetRespectingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsetRespectingButton.h; sourceTree = "<group>"; };
-		388F09FE1936434A00DBD93D /* InsetRespectingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsetRespectingButton.m; sourceTree = "<group>"; };
+		388F09FD1936434A00DBD93D /* InsetRespectingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InsetRespectingButton.h; path = Views/InsetRespectingButton.h; sourceTree = "<group>"; };
+		388F09FE1936434A00DBD93D /* InsetRespectingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InsetRespectingButton.m; path = Views/InsetRespectingButton.m; sourceTree = "<group>"; };
 		38AA833F1949B8DF0065AD2A /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
 		38AA83401949B8DF0065AD2A /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		38AA83CE1949C7220065AD2A /* PaymentCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PaymentCell~ipad.xib"; sourceTree = "<group>"; };
@@ -822,8 +826,8 @@
 		38B093141951FA8300315BE4 /* NameSuggestionCellProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameSuggestionCellProvider.m; sourceTree = "<group>"; };
 		38B093151951FA8300315BE4 /* SettlementRecipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettlementRecipient.h; sourceTree = "<group>"; };
 		38B093161951FA8300315BE4 /* SettlementRecipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettlementRecipient.m; sourceTree = "<group>"; };
-		38B0931B1951FB6000315BE4 /* ProgressButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressButton.h; sourceTree = "<group>"; };
-		38B0931C1951FB6000315BE4 /* ProgressButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressButton.m; sourceTree = "<group>"; };
+		38B0931B1951FB6000315BE4 /* ProgressButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProgressButton.h; path = Views/ProgressButton.h; sourceTree = "<group>"; };
+		38B0931C1951FB6000315BE4 /* ProgressButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProgressButton.m; path = Views/ProgressButton.m; sourceTree = "<group>"; };
 		38B1C5D4195DBA6400BEE66E /* ConnectionAwareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionAwareViewController.h; sourceTree = "<group>"; };
 		38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionAwareViewController.m; sourceTree = "<group>"; };
 		38BD98A0195C5973009F9B4A /* NameSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSuggestionCell.h; sourceTree = "<group>"; };
@@ -855,14 +859,14 @@
 		47233CD3196D457300449042 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		47233CD4196D457300449042 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		47233CD5196D457300449042 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		4723EA0B1973D8E900B4345F /* RedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedButton.h; sourceTree = "<group>"; };
-		4723EA0C1973D8E900B4345F /* RedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedButton.m; sourceTree = "<group>"; };
-		4723EA0F1973D9B500B4345F /* YahooButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YahooButton.h; sourceTree = "<group>"; };
-		4723EA101973D9B500B4345F /* YahooButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YahooButton.m; sourceTree = "<group>"; };
-		4723EA131973F32400B4345F /* ImageColoredButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageColoredButton.h; sourceTree = "<group>"; };
-		4723EA141973F32400B4345F /* ImageColoredButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageColoredButton.m; sourceTree = "<group>"; };
-		4723EA171973F3CA00B4345F /* GoogleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleButton.h; sourceTree = "<group>"; };
-		4723EA181973F3CA00B4345F /* GoogleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleButton.m; sourceTree = "<group>"; };
+		4723EA0B1973D8E900B4345F /* RedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RedButton.h; path = Views/RedButton.h; sourceTree = "<group>"; };
+		4723EA0C1973D8E900B4345F /* RedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RedButton.m; path = Views/RedButton.m; sourceTree = "<group>"; };
+		4723EA0F1973D9B500B4345F /* YahooButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YahooButton.h; path = Views/YahooButton.h; sourceTree = "<group>"; };
+		4723EA101973D9B500B4345F /* YahooButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YahooButton.m; path = Views/YahooButton.m; sourceTree = "<group>"; };
+		4723EA131973F32400B4345F /* ImageColoredButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageColoredButton.h; path = Views/ImageColoredButton.h; sourceTree = "<group>"; };
+		4723EA141973F32400B4345F /* ImageColoredButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageColoredButton.m; path = Views/ImageColoredButton.m; sourceTree = "<group>"; };
+		4723EA171973F3CA00B4345F /* GoogleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoogleButton.h; path = Views/GoogleButton.h; sourceTree = "<group>"; };
+		4723EA181973F3CA00B4345F /* GoogleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoogleButton.m; path = Views/GoogleButton.m; sourceTree = "<group>"; };
 		4723EA1B1974095B00B4345F /* NavigationBarCustomiser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationBarCustomiser.h; sourceTree = "<group>"; };
 		4723EA1C1974095B00B4345F /* NavigationBarCustomiser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationBarCustomiser.m; sourceTree = "<group>"; };
 		4723EA1F1974363000B4345F /* ResetPasswordViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResetPasswordViewController~ipad.xib"; sourceTree = "<group>"; };
@@ -871,21 +875,21 @@
 		4723EA261975349C00B4345F /* TransferPayIPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferPayIPadViewController.h; sourceTree = "<group>"; };
 		4723EA271975349C00B4345F /* TransferPayIPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferPayIPadViewController.m; sourceTree = "<group>"; };
 		4723EA281975349C00B4345F /* TransferPayIPadViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransferPayIPadViewController~ipad.xib"; sourceTree = "<group>"; };
-		4723EA2D1975639E00B4345F /* BlueRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueRoundedButton.h; sourceTree = "<group>"; };
-		4723EA2E1975639E00B4345F /* BlueRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueRoundedButton.m; sourceTree = "<group>"; };
-		4723EA311975644A00B4345F /* RedRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedRoundedButton.h; sourceTree = "<group>"; };
-		4723EA321975644A00B4345F /* RedRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedRoundedButton.m; sourceTree = "<group>"; };
-		4723EA3519756A9800B4345F /* RoundedButtonWithInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedButtonWithInsets.h; sourceTree = "<group>"; };
-		4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedButtonWithInsets.m; sourceTree = "<group>"; };
+		4723EA2D1975639E00B4345F /* BlueRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlueRoundedButton.h; path = Views/BlueRoundedButton.h; sourceTree = "<group>"; };
+		4723EA2E1975639E00B4345F /* BlueRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlueRoundedButton.m; path = Views/BlueRoundedButton.m; sourceTree = "<group>"; };
+		4723EA311975644A00B4345F /* RedRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RedRoundedButton.h; path = Views/RedRoundedButton.h; sourceTree = "<group>"; };
+		4723EA321975644A00B4345F /* RedRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RedRoundedButton.m; path = Views/RedRoundedButton.m; sourceTree = "<group>"; };
+		4723EA3519756A9800B4345F /* RoundedButtonWithInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundedButtonWithInsets.h; path = Views/RoundedButtonWithInsets.h; sourceTree = "<group>"; };
+		4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoundedButtonWithInsets.m; path = Views/RoundedButtonWithInsets.m; sourceTree = "<group>"; };
 		4723EA3919758F8E00B4345F /* RecipientCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecipientCell~ipad.xib"; sourceTree = "<group>"; };
 		473DF970196D5ED600524C64 /* FloatingLabelTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingLabelTextField.h; sourceTree = "<group>"; };
 		473DF971196D5ED600524C64 /* FloatingLabelTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingLabelTextField.m; sourceTree = "<group>"; };
 		473DF974196D637200524C64 /* LoginViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~ipad.xib"; sourceTree = "<group>"; };
 		473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NewPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
-		474D1A9D19518073008BC7A7 /* ColoredButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredButton.h; sourceTree = "<group>"; };
-		474D1A9E19518073008BC7A7 /* ColoredButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColoredButton.m; sourceTree = "<group>"; };
-		474D1AA41951A500008BC7A7 /* RedGradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedGradientButton.h; sourceTree = "<group>"; };
-		474D1AA51951A500008BC7A7 /* RedGradientButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedGradientButton.m; sourceTree = "<group>"; };
+		474D1A9D19518073008BC7A7 /* ColoredButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColoredButton.h; path = Views/ColoredButton.h; sourceTree = "<group>"; };
+		474D1A9E19518073008BC7A7 /* ColoredButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColoredButton.m; path = Views/ColoredButton.m; sourceTree = "<group>"; };
+		474D1AA41951A500008BC7A7 /* RedGradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RedGradientButton.h; path = Views/RedGradientButton.h; sourceTree = "<group>"; };
+		474D1AA51951A500008BC7A7 /* RedGradientButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RedGradientButton.m; path = Views/RedGradientButton.m; sourceTree = "<group>"; };
 		476C6B86196C18BF007002F9 /* SwipeToCancelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeToCancelCell.h; sourceTree = "<group>"; };
 		476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeToCancelCell.m; sourceTree = "<group>"; };
 		479B692919487865001FA4FE /* TransferDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferDetailsViewController.h; sourceTree = "<group>"; };
@@ -902,8 +906,8 @@
 		479B693D1949C36F001FA4FE /* TransferDetialsRecipientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDetialsRecipientView.m; sourceTree = "<group>"; };
 		47C580A1196AC1A7007771DB /* UIGestureRecognizer+Cancel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Cancel.h"; sourceTree = "<group>"; };
 		47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Cancel.m"; sourceTree = "<group>"; };
-		47FAF342194B2F11004CE986 /* LightBlueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightBlueButton.h; sourceTree = "<group>"; };
-		47FAF343194B2F11004CE986 /* LightBlueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightBlueButton.m; sourceTree = "<group>"; };
+		47FAF342194B2F11004CE986 /* LightBlueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LightBlueButton.h; path = Views/LightBlueButton.h; sourceTree = "<group>"; };
+		47FAF343194B2F11004CE986 /* LightBlueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LightBlueButton.m; path = Views/LightBlueButton.m; sourceTree = "<group>"; };
 		47FAF346194B3233004CE986 /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
 		47FAF347194B3233004CE986 /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		47FAF34B194B4E5D004CE986 /* TransferWaitingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferWaitingViewController.h; sourceTree = "<group>"; };
@@ -912,8 +916,8 @@
 		47FAF352194B4EF9004CE986 /* TransferWaitingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferWaitingViewController.xib; sourceTree = "<group>"; };
 		47FAF355194F0A46004CE986 /* IntrinsicSizeUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntrinsicSizeUIView.h; sourceTree = "<group>"; };
 		47FAF356194F0A46004CE986 /* IntrinsicSizeUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntrinsicSizeUIView.m; sourceTree = "<group>"; };
-		47FAF359195031E7004CE986 /* BlueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueButton.h; sourceTree = "<group>"; };
-		47FAF35A195031E7004CE986 /* BlueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueButton.m; sourceTree = "<group>"; };
+		47FAF359195031E7004CE986 /* BlueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlueButton.h; path = Views/BlueButton.h; sourceTree = "<group>"; };
+		47FAF35A195031E7004CE986 /* BlueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlueButton.m; path = Views/BlueButton.m; sourceTree = "<group>"; };
 		47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencySelectorViewController~ipad.xib"; sourceTree = "<group>"; };
 		47FB7EA71941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DeviceSpecificLocalisation.h"; sourceTree = "<group>"; };
 		47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeviceSpecificLocalisation.m"; sourceTree = "<group>"; };
@@ -1070,8 +1074,8 @@
 		EA225CD3179015CA009D6B83 /* ObjectModel+Countries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+Countries.m"; sourceTree = "<group>"; };
 		EA2296C017E04D1B001CF541 /* PaymentPurposeOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentPurposeOperation.h; sourceTree = "<group>"; };
 		EA2296C117E04D1B001CF541 /* PaymentPurposeOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentPurposeOperation.m; sourceTree = "<group>"; };
-		EA2296C417E08027001CF541 /* TransferBackButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferBackButtonItem.h; sourceTree = "<group>"; };
-		EA2296C517E08027001CF541 /* TransferBackButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferBackButtonItem.m; sourceTree = "<group>"; };
+		EA2296C417E08027001CF541 /* TransferBackButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TransferBackButtonItem.h; path = Views/TransferBackButtonItem.h; sourceTree = "<group>"; };
+		EA2296C517E08027001CF541 /* TransferBackButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TransferBackButtonItem.m; path = Views/TransferBackButtonItem.m; sourceTree = "<group>"; };
 		EA2379E71793E01A00166361 /* ObjectModel+Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+Users.h"; sourceTree = "<group>"; };
 		EA2379E81793E01A00166361 /* ObjectModel+Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+Users.m"; sourceTree = "<group>"; };
 		EA2379EB1793E02B00166361 /* _BusinessProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BusinessProfile.h; sourceTree = "<group>"; };
@@ -1133,8 +1137,8 @@
 		EA59298C1758CD6C007C0072 /* OpenIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenIDViewController.m; sourceTree = "<group>"; };
 		EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenIDViewController.xib; sourceTree = "<group>"; };
 		EA61557417A69A5A008B6C79 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		EA677B43189B855200505139 /* StartPaymentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartPaymentButton.h; sourceTree = "<group>"; };
-		EA677B44189B855200505139 /* StartPaymentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartPaymentButton.m; sourceTree = "<group>"; };
+		EA677B43189B855200505139 /* StartPaymentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartPaymentButton.h; path = Views/StartPaymentButton.h; sourceTree = "<group>"; };
+		EA677B44189B855200505139 /* StartPaymentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartPaymentButton.m; path = Views/StartPaymentButton.m; sourceTree = "<group>"; };
 		EA76D90C175CF80100AE3F86 /* TransferTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransferTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		EA76D913175CF80100AE3F86 /* TransferTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TransferTests-Info.plist"; sourceTree = "<group>"; };
@@ -1330,8 +1334,8 @@
 		EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneBookAddress.m; sourceTree = "<group>"; };
 		EAD667C9174F6F7B00D29BCB /* DismissKeyboardTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissKeyboardTableView.h; sourceTree = "<group>"; };
 		EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissKeyboardTableView.m; sourceTree = "<group>"; };
-		EAD73688171E6CB100A037B1 /* GrayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrayButton.h; sourceTree = "<group>"; };
-		EAD73689171E6CB100A037B1 /* GrayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrayButton.m; sourceTree = "<group>"; };
+		EAD73688171E6CB100A037B1 /* GrayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GrayButton.h; path = Views/GrayButton.h; sourceTree = "<group>"; };
+		EAD73689171E6CB100A037B1 /* GrayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GrayButton.m; path = Views/GrayButton.m; sourceTree = "<group>"; };
 		EAD73693171E7A3200A037B1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EAD736A0171E85C300A037B1 /* RecipientCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientCell.h; sourceTree = "<group>"; };
 		EAD736A1171E85C300A037B1 /* RecipientCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientCell.m; sourceTree = "<group>"; };
@@ -1342,8 +1346,8 @@
 		EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SensibleData.m"; sourceTree = "<group>"; };
 		EAD7D4CC171D4B4C0099063F /* UIButton+Skinning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Skinning.h"; sourceTree = "<group>"; };
 		EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Skinning.m"; sourceTree = "<group>"; };
-		EAD7D4CF171D4BB20099063F /* GreenButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenButton.h; sourceTree = "<group>"; };
-		EAD7D4D0171D4BB20099063F /* GreenButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreenButton.m; sourceTree = "<group>"; };
+		EAD7D4CF171D4BB20099063F /* GreenButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GreenButton.h; path = Views/GreenButton.h; sourceTree = "<group>"; };
+		EAD7D4D0171D4BB20099063F /* GreenButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GreenButton.m; path = Views/GreenButton.m; sourceTree = "<group>"; };
 		EAD85B09173920C300C22211 /* PersonalProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileOperation.h; sourceTree = "<group>"; };
 		EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileOperation.m; sourceTree = "<group>"; };
 		EAE1E3A117B2519000A45623 /* PaymentDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentDetailsViewController.h; sourceTree = "<group>"; };
@@ -1471,6 +1475,49 @@
 			path = Styles;
 			sourceTree = "<group>";
 		};
+		385A66881977D19700D00D1F /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				47FAF359195031E7004CE986 /* BlueButton.h */,
+				47FAF35A195031E7004CE986 /* BlueButton.m */,
+				4723EA2D1975639E00B4345F /* BlueRoundedButton.h */,
+				4723EA2E1975639E00B4345F /* BlueRoundedButton.m */,
+				474D1A9D19518073008BC7A7 /* ColoredButton.h */,
+				474D1A9E19518073008BC7A7 /* ColoredButton.m */,
+				4723EA171973F3CA00B4345F /* GoogleButton.h */,
+				4723EA181973F3CA00B4345F /* GoogleButton.m */,
+				EAD7D4CF171D4BB20099063F /* GreenButton.h */,
+				EAD7D4D0171D4BB20099063F /* GreenButton.m */,
+				EAD73688171E6CB100A037B1 /* GrayButton.h */,
+				EAD73689171E6CB100A037B1 /* GrayButton.m */,
+				385A66841977C9A200D00D1F /* GrayRoundedButton.h */,
+				385A66851977C9A200D00D1F /* GrayRoundedButton.m */,
+				4723EA131973F32400B4345F /* ImageColoredButton.h */,
+				4723EA141973F32400B4345F /* ImageColoredButton.m */,
+				388F09FD1936434A00DBD93D /* InsetRespectingButton.h */,
+				388F09FE1936434A00DBD93D /* InsetRespectingButton.m */,
+				47FAF342194B2F11004CE986 /* LightBlueButton.h */,
+				47FAF343194B2F11004CE986 /* LightBlueButton.m */,
+				38B0931B1951FB6000315BE4 /* ProgressButton.h */,
+				38B0931C1951FB6000315BE4 /* ProgressButton.m */,
+				4723EA0B1973D8E900B4345F /* RedButton.h */,
+				4723EA0C1973D8E900B4345F /* RedButton.m */,
+				474D1AA41951A500008BC7A7 /* RedGradientButton.h */,
+				474D1AA51951A500008BC7A7 /* RedGradientButton.m */,
+				4723EA311975644A00B4345F /* RedRoundedButton.h */,
+				4723EA321975644A00B4345F /* RedRoundedButton.m */,
+				4723EA3519756A9800B4345F /* RoundedButtonWithInsets.h */,
+				4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */,
+				EA677B43189B855200505139 /* StartPaymentButton.h */,
+				EA677B44189B855200505139 /* StartPaymentButton.m */,
+				EA2296C417E08027001CF541 /* TransferBackButtonItem.h */,
+				EA2296C517E08027001CF541 /* TransferBackButtonItem.m */,
+				4723EA0F1973D9B500B4345F /* YahooButton.h */,
+				4723EA101973D9B500B4345F /* YahooButton.m */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
 		38AEB3C01964369F00B852E1 /* AF-iOS-SDK-v2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1523,20 +1570,12 @@
 		EA13E02F171BDF050019FBF0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				47FAF359195031E7004CE986 /* BlueButton.h */,
-				47FAF35A195031E7004CE986 /* BlueButton.m */,
-				4723EA2D1975639E00B4345F /* BlueRoundedButton.h */,
-				4723EA2E1975639E00B4345F /* BlueRoundedButton.m */,
 				38B093011951FA2A00315BE4 /* DataEntryDefaultHeader.h */,
 				38B093021951FA2A00315BE4 /* DataEntryDefaultHeader.m */,
 				38B093031951FA2A00315BE4 /* DataEntryDefaultHeader.xib */,
 				38EFABDB196D7EAB00126192 /* DataEntryDefaultHeader~ipad.xib */,
 				EAD667C9174F6F7B00D29BCB /* DismissKeyboardTableView.h */,
 				EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */,
-				EAD7D4CF171D4BB20099063F /* GreenButton.h */,
-				EAD7D4D0171D4BB20099063F /* GreenButton.m */,
-				EAD73688171E6CB100A037B1 /* GrayButton.h */,
-				EAD73689171E6CB100A037B1 /* GrayButton.m */,
 				38C7B29119742596004324E8 /* HeaderTabView.h */,
 				38C7B29219742596004324E8 /* HeaderTabView.m */,
 				EAE7B6AA17E9AC3F00E03D73 /* IdentificationNotificationView.h */,
@@ -1545,8 +1584,6 @@
 				EA0450D817EC64BC008921DA /* IntroView.h */,
 				EA0450D917EC64BC008921DA /* IntroView.m */,
 				EA0450DC17EC64E4008921DA /* IntroView.xib */,
-				47FAF342194B2F11004CE986 /* LightBlueButton.h */,
-				47FAF343194B2F11004CE986 /* LightBlueButton.m */,
 				EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */,
 				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
 				EAD3647717E2EBF2001EFE40 /* PaymentMethodSelectionView.h */,
@@ -1555,24 +1592,12 @@
 				EA92D981176AF1DF0078D0C4 /* ProfileSelectionView.h */,
 				EA92D982176AF1DF0078D0C4 /* ProfileSelectionView.m */,
 				EA92D984176AF1F20078D0C4 /* ProfileSelectionView.xib */,
-				38B0931B1951FB6000315BE4 /* ProgressButton.h */,
-				38B0931C1951FB6000315BE4 /* ProgressButton.m */,
-				474D1AA41951A500008BC7A7 /* RedGradientButton.h */,
-				474D1AA51951A500008BC7A7 /* RedGradientButton.m */,
-				4723EA0B1973D8E900B4345F /* RedButton.h */,
-				4723EA0C1973D8E900B4345F /* RedButton.m */,
-				4723EA311975644A00B4345F /* RedRoundedButton.h */,
-				4723EA321975644A00B4345F /* RedRoundedButton.m */,
 				EA01331C1765FC7700D63C82 /* RoundedCellBackgroundView.h */,
 				EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */,
 				BB704E7B177300C30042F8A9 /* RoundedCellWhiteBackgroundView.h */,
 				BB704E7C177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m */,
-				4723EA3519756A9800B4345F /* RoundedButtonWithInsets.h */,
-				4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */,
 				EA415D4317A7B2A900E9B56A /* SpinningImageView.h */,
 				EA415D4417A7B2A900E9B56A /* SpinningImageView.m */,
-				EA677B43189B855200505139 /* StartPaymentButton.h */,
-				EA677B44189B855200505139 /* StartPaymentButton.m */,
 				EA225C72178EA124009D6B83 /* TabBarActivityIndicatorView.h */,
 				EA225C73178EA124009D6B83 /* TabBarActivityIndicatorView.m */,
 				EA225C74178EA124009D6B83 /* TabBarActivityIndicatorView.xib */,
@@ -1585,8 +1610,6 @@
 				38B093051951FA2A00315BE4 /* TextFieldSuggestionTable.m */,
 				38EFABDE196D7EAB00126192 /* TextFieldSuggestionTable.xib */,
 				38CACA63196EE4D400BFCF82 /* TextFieldSuggestionTable~ipad.xib */,
-				EA2296C417E08027001CF541 /* TransferBackButtonItem.h */,
-				EA2296C517E08027001CF541 /* TransferBackButtonItem.m */,
 				479B693219489303001FA4FE /* TransferDetialsHeaderView.h */,
 				479B693319489303001FA4FE /* TransferDetialsHeaderView.m */,
 				479B693819499F9B001FA4FE /* TransferDetailsAmountsView.h */,
@@ -1604,24 +1627,14 @@
 				BBCC6336172169980094EABB /* WhyView.h */,
 				BBCC6337172169980094EABB /* WhyView.m */,
 				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
-				388F09FD1936434A00DBD93D /* InsetRespectingButton.h */,
-				388F09FE1936434A00DBD93D /* InsetRespectingButton.m */,
 				38C8A79B19371DBC00714FB3 /* PullToRefreshView.h */,
 				38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */,
 				38AA833F1949B8DF0065AD2A /* GradientView.h */,
 				38AA83401949B8DF0065AD2A /* GradientView.m */,
 				47FAF355194F0A46004CE986 /* IntrinsicSizeUIView.h */,
 				47FAF356194F0A46004CE986 /* IntrinsicSizeUIView.m */,
-				474D1A9D19518073008BC7A7 /* ColoredButton.h */,
-				474D1A9E19518073008BC7A7 /* ColoredButton.m */,
-				4723EA131973F32400B4345F /* ImageColoredButton.h */,
-				4723EA141973F32400B4345F /* ImageColoredButton.m */,
 				473DF970196D5ED600524C64 /* FloatingLabelTextField.h */,
 				473DF971196D5ED600524C64 /* FloatingLabelTextField.m */,
-				4723EA0F1973D9B500B4345F /* YahooButton.h */,
-				4723EA101973D9B500B4345F /* YahooButton.m */,
-				4723EA171973F3CA00B4345F /* GoogleButton.h */,
-				4723EA181973F3CA00B4345F /* GoogleButton.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2023,6 +2036,7 @@
 				EAD3646517E1E19A001EFE40 /* Assets.xcassets */,
 				EABD864218E2B63A004A5A57 /* Analytics */,
 				EA225CB6178EEA89009D6B83 /* BaseData */,
+				385A66881977D19700D00D1F /* Buttons */,
 				EA13E033171BE0E50019FBF0 /* Cells */,
 				EA88E658172F963B0021492C /* Credentials */,
 				EA13E041171BEAF00019FBF0 /* Extensions */,
@@ -2937,6 +2951,7 @@
 				EA31A15D17DDB29B00F937F7 /* RecipientFieldCell.m in Sources */,
 				EA347749180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */,
 				473DF973196D5ED600524C64 /* FloatingLabelTextField.m in Sources */,
+				385A66871977C9A200D00D1F /* GrayRoundedButton.m in Sources */,
 				EA31A15E17DDB29B00F937F7 /* RecipientOperation.m in Sources */,
 				38B092EA194F46D700315BE4 /* NameLookupWrapper.m in Sources */,
 				EA31A15F17DDB29B00F937F7 /* NonEditTextField.m in Sources */,
@@ -3197,6 +3212,7 @@
 				EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */,
 				388F09FF1936434A00DBD93D /* InsetRespectingButton.m in Sources */,
 				EAD069141737E5A1007C8DEE /* NonEditTextField.m in Sources */,
+				385A66861977C9A200D00D1F /* GrayRoundedButton.m in Sources */,
 				EAD85B0B173920C300C22211 /* PersonalProfileOperation.m in Sources */,
 				18D47900173A3B5300FC317E /* PersonalProfileIdentificationViewController.m in Sources */,
 				EAD3648C17E2F6EF001EFE40 /* CardPaymentViewController.m in Sources */,
