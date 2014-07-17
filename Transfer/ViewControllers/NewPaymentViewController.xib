@@ -70,7 +70,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@{14,17}.TWElectricBlue"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@{16,17}.TWElectricBlue"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="loginPressed:" destination="-1" eventType="touchUpInside" id="KMq-i8-xeW"/>
