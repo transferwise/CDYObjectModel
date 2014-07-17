@@ -23,6 +23,7 @@
 @property (strong, nonatomic) TRWActionBlock cancelTappedBlock;
 @property (nonatomic) CGPoint touchStart;
 @property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
+@property (nonatomic, strong) UIView *shadowView;
 
 @property (nonatomic, assign) BOOL isCancelVisible;
 
@@ -72,94 +73,100 @@
 
 - (void)setShadowView
 {
-	UIView* shadowView = [[UIView alloc] init];
-	shadowView.translatesAutoresizingMaskIntoConstraints = NO;
-	[shadowView setBackgroundColor:[UIColor blackColor]];
-	[shadowView setAlpha:0.05f];
-	[self.contentView addSubview:shadowView];
-	
-	NSLayoutConstraint* width = [NSLayoutConstraint constraintWithItem:shadowView
-															 attribute:NSLayoutAttributeWidth
-															 relatedBy:NSLayoutRelationEqual
-																toItem:nil
-															 attribute:NSLayoutAttributeNotAnAttribute
-															multiplier:1.0f
-															  constant:3.0f];
-	NSLayoutConstraint* height = [NSLayoutConstraint constraintWithItem:shadowView
-															  attribute:NSLayoutAttributeHeight
-															  relatedBy:NSLayoutRelationEqual
-																 toItem:self.slidingContentView
-															  attribute:NSLayoutAttributeHeight
-															 multiplier:1.0f
-															   constant:0.f];
-	NSLayoutConstraint* horizontalPosition = [NSLayoutConstraint constraintWithItem:shadowView
-																		  attribute:NSLayoutAttributeLeading
-																		  relatedBy:NSLayoutRelationEqual
-																			 toItem:self.slidingContentView
-																		  attribute:NSLayoutAttributeTrailing
-																		 multiplier:1.0f
-																		   constant:0.f];
-	NSLayoutConstraint* verticalPosition = [NSLayoutConstraint constraintWithItem:shadowView
-																		attribute:NSLayoutAttributeTop
-																		relatedBy:NSLayoutRelationEqual
-																		   toItem:self.slidingContentView
-																		attribute:NSLayoutAttributeTop
-																	   multiplier:1.0f
-																		 constant:0.f];
-	[self.contentView addConstraints:@[width, height, horizontalPosition, verticalPosition]];
+	if (!self.shadowView)
+	{
+		self.shadowView = [[UIView alloc] init];
+		self.shadowView.translatesAutoresizingMaskIntoConstraints = NO;
+		[self.shadowView setBackgroundColor:[UIColor blackColor]];
+		[self.shadowView setAlpha:0.1f];
+		[self.contentView addSubview:self.shadowView];
+		
+		NSLayoutConstraint* width = [NSLayoutConstraint constraintWithItem:self.shadowView
+																 attribute:NSLayoutAttributeWidth
+																 relatedBy:NSLayoutRelationEqual
+																	toItem:nil
+																 attribute:NSLayoutAttributeNotAnAttribute
+																multiplier:1.0f
+																  constant:3.0f];
+		NSLayoutConstraint* height = [NSLayoutConstraint constraintWithItem:self.shadowView
+																  attribute:NSLayoutAttributeHeight
+																  relatedBy:NSLayoutRelationEqual
+																	 toItem:self.slidingContentView
+																  attribute:NSLayoutAttributeHeight
+																 multiplier:1.0f
+																   constant:0.f];
+		NSLayoutConstraint* horizontalPosition = [NSLayoutConstraint constraintWithItem:self.shadowView
+																			  attribute:NSLayoutAttributeLeading
+																			  relatedBy:NSLayoutRelationEqual
+																				 toItem:self.slidingContentView
+																			  attribute:NSLayoutAttributeTrailing
+																			 multiplier:1.0f
+																			   constant:0.f];
+		NSLayoutConstraint* verticalPosition = [NSLayoutConstraint constraintWithItem:self.shadowView
+																			attribute:NSLayoutAttributeTop
+																			relatedBy:NSLayoutRelationEqual
+																			   toItem:self.slidingContentView
+																			attribute:NSLayoutAttributeTop
+																		   multiplier:1.0f
+																			 constant:0.f];
+		[self.contentView addConstraints:@[width, height, horizontalPosition, verticalPosition]];
+	}
 }
 
 - (void)setCancelButton
 {
-	self.cancelButton = [[RedGradientButton alloc] init];
-	self.cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
-	
-	if(self.cancelButtonTitle)
+	if (!self.cancelButton)
 	{
-		[self.cancelButton setTitle:self.cancelButtonTitle
-						   forState:UIControlStateNormal];
+		self.cancelButton = [[RedGradientButton alloc] init];
+		self.cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
+		
+		if(self.cancelButtonTitle)
+		{
+			[self.cancelButton setTitle:self.cancelButtonTitle
+							   forState:UIControlStateNormal];
+		}
+		else
+		{
+			[self.cancelButton setTitle:NSLocalizedString(@"button.title.cancel", nil)
+							   forState:UIControlStateNormal];
+		}
+		[self.cancelButton setTitleEdgeInsets:UIEdgeInsetsMake(2.0f, 0.0f, 0.0f, 0.0f)];
+		
+		[self.cancelButton addTarget:self
+							  action:@selector(cancelTapped:)
+					forControlEvents:UIControlEventTouchUpInside];
+		[self.contentView insertSubview:self.cancelButton belowSubview:self.slidingContentView];
+		
+		NSLayoutConstraint* width = [NSLayoutConstraint constraintWithItem:self.cancelButton
+																 attribute:NSLayoutAttributeWidth
+																 relatedBy:NSLayoutRelationEqual
+																	toItem:nil
+																 attribute:NSLayoutAttributeNotAnAttribute
+																multiplier:1.0f
+																  constant:IPAD ? 120 : 90];
+		NSLayoutConstraint* height = [NSLayoutConstraint constraintWithItem:self.cancelButton
+																  attribute:NSLayoutAttributeHeight
+																  relatedBy:NSLayoutRelationEqual
+																	 toItem:self.contentView
+																  attribute:NSLayoutAttributeHeight
+																 multiplier:1.0f
+																   constant:0.f];
+		NSLayoutConstraint* horizontalPosition = [NSLayoutConstraint constraintWithItem:self.cancelButton
+																			  attribute:NSLayoutAttributeTrailing
+																			  relatedBy:NSLayoutRelationEqual
+																				 toItem:self.contentView
+																			  attribute:NSLayoutAttributeTrailing
+																			 multiplier:1.0f
+																			   constant:0.f];
+		NSLayoutConstraint* verticalPosition = [NSLayoutConstraint constraintWithItem:self.cancelButton
+																			attribute:NSLayoutAttributeTop
+																			relatedBy:NSLayoutRelationEqual
+																			   toItem:self.contentView
+																			attribute:NSLayoutAttributeTop
+																		   multiplier:1.0f
+																			 constant:0.f];
+		[self.contentView addConstraints:@[width, height, horizontalPosition, verticalPosition]];
 	}
-	else
-	{
-		[self.cancelButton setTitle:NSLocalizedString(@"button.title.cancel", nil)
-						   forState:UIControlStateNormal];
-	}
-	[self.cancelButton setTitleEdgeInsets:UIEdgeInsetsMake(2.0f, 0.0f, 0.0f, 0.0f)];
-	
-	[self.cancelButton addTarget:self
-						  action:@selector(cancelTapped:)
-				forControlEvents:UIControlEventTouchUpInside];
-	[self.contentView insertSubview:self.cancelButton belowSubview:self.slidingContentView];
-	
-	NSLayoutConstraint* width = [NSLayoutConstraint constraintWithItem:self.cancelButton
-															 attribute:NSLayoutAttributeWidth
-															 relatedBy:NSLayoutRelationEqual
-																toItem:nil
-															 attribute:NSLayoutAttributeNotAnAttribute
-															multiplier:1.0f
-															  constant:IPAD ? 120 : 90];
-	NSLayoutConstraint* height = [NSLayoutConstraint constraintWithItem:self.cancelButton
-															  attribute:NSLayoutAttributeHeight
-															  relatedBy:NSLayoutRelationEqual
-																 toItem:self.contentView
-															  attribute:NSLayoutAttributeHeight
-															 multiplier:1.0f
-															   constant:0.f];
-	NSLayoutConstraint* horizontalPosition = [NSLayoutConstraint constraintWithItem:self.cancelButton
-																		  attribute:NSLayoutAttributeTrailing
-																		  relatedBy:NSLayoutRelationEqual
-																			 toItem:self.contentView
-																		  attribute:NSLayoutAttributeTrailing
-																		 multiplier:1.0f
-																		   constant:0.f];
-	NSLayoutConstraint* verticalPosition = [NSLayoutConstraint constraintWithItem:self.cancelButton
-																		attribute:NSLayoutAttributeTop
-																		relatedBy:NSLayoutRelationEqual
-																		   toItem:self.contentView
-																		attribute:NSLayoutAttributeTop
-																	   multiplier:1.0f
-																		 constant:0.f];
-	[self.contentView addConstraints:@[width, height, horizontalPosition, verticalPosition]];
 }
 
 #pragma mark - Cancel button visiblity
@@ -183,7 +190,6 @@
     {
         [self didHide];
     }
-    
 }
 
 - (void)setIsCancelVisible:(BOOL)isCancelVisible
@@ -191,7 +197,6 @@
 	_isCancelVisible = isCancelVisible;
     self.contentViewTrailing.constant = isCancelVisible ? self.cancelButton.bounds.size.width : 0.0f;
     [self layoutIfNeeded];
-    
 }
 
 #pragma mark - pan + tap

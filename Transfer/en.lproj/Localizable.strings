@@ -63,6 +63,9 @@
 "contacts.refresh.error.message" = "Could not refresh your recipients";
 "contacts.refresh.error.title" = "Refresh error";
 "contacts.controller.send.button.title" = "Send %@";
+"contacts.controller.footer.invite" = "Earn 50£ by inviting
+your friends to TransferWise";
+"contacts.controller.footer.invite.button.title" = "Invite friends";
 
 "claim.account.controller.title" = "Choose a password";
 "claim.account.error.title" = "Error";

@@ -13,7 +13,9 @@
 
 @interface RecipientCell : SwipeToCancelCell
 
-- (void)configureWithPayment:(Recipient *)recipient
+@property (strong, nonatomic) IBOutlet UILabel *sendLabel;
+
+- (void)configureWithRecipient:(Recipient *)recipient
 		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
 		  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
 		  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock

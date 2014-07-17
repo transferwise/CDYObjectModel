@@ -28,13 +28,15 @@
 #import "GoogleAnalytics.h"
 #import "AddressBookManager.h"
 #import "ConnectionAwareViewController.h"
+#import "RecipientsFooterView.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
-@interface ContactsViewController () <NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface ContactsViewController () <NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource, RecipientsFooterViewDelegate>
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) NSFetchedResultsController *allRecipients;
+@property (nonatomic, strong) RecipientsFooterView *footerView;
 
 @end
 
@@ -57,6 +59,10 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [super viewDidLoad];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"RecipientCell" bundle:nil] forCellReuseIdentifier:kRecipientCellIdentifier];
+	
+	self.footerView = [[[NSBundle mainBundle] loadNibNamed:@"RecipientsFooterView" owner:self options:nil] objectAtIndex:0];
+	[self.footerView commonSetup];
+	self.footerView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,6 +85,8 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     }
 
     [self refreshRecipients];
+	
+	self.tableView.tableFooterView = self.footerView;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -99,6 +107,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.allRecipients sections] objectAtIndex:(NSUInteger) section];
+	//last row will be invite cell
     return [sectionInfo numberOfObjects];
 }
 
@@ -107,7 +116,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     RecipientCell *cell = [tableView dequeueReusableCellWithIdentifier:kRecipientCellIdentifier];
     Recipient *recipient = [self.allRecipients objectAtIndexPath:indexPath];
 	
-    [cell configureWithPayment:recipient
+    [cell configureWithRecipient:recipient
 		   willShowCancelBlock:^{
 			   //this will be called each time a touch starts
 			   //including the touch that hides the button
@@ -127,42 +136,67 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 				 [self confirmRecipientDelete:recipient indexPath:indexPath];
 			 }];
 	
+	UITapGestureRecognizer* recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sendTapped:)];
+	[recognizer setNumberOfTapsRequired:1];
+	[cell.sendLabel addGestureRecognizer:recognizer];
+	
 	//set cancelling visible when scrolling
 	[self setCancellingVisibleForScrolling:cell indexPath:indexPath];
 
     return cell;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+	return self.footerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+	return self.footerView.frame.size.height;
+}
+
+- (void)sendTapped:(UITapGestureRecognizer *)gestureRecognizer
+{
+	[self removeCancellingFromCell];
+	CGPoint point = [gestureRecognizer locationInView:self.tableView];
+	NSIndexPath* indexPath = [self.tableView indexPathForRowAtPoint:point];
+	
+	if (indexPath)
+	{
+		Recipient *recipient = [self.allRecipients objectAtIndexPath:indexPath];
+		
+		if ([recipient.type hideFromCreationValue])
+		{
+			return;
+		}
+		
+		if (![self.objectModel canMakePaymentToCurrency:recipient.currency])
+		{
+			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"payment.controller.currency.payment.error.title", nil)
+															   message:[NSString stringWithFormat:NSLocalizedString(@"payment.controller.currency.payment.error.message", nil), recipient.currency.code]];
+			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+			[alertView show];
+			return;
+		}
+		
+		[[GoogleAnalytics sharedInstance] sendScreen:@"New payment to"];
+		NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
+		[controller setObjectModel:self.objectModel];
+		[controller setRecipient:recipient];
+		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+		[navigationController setNavigationBarHidden:YES];
+		ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
+		
+		[self presentViewController:wrapper animated:YES completion:nil];
+	}
+}
+
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Recipient *recipient = [self.allRecipients objectAtIndexPath:indexPath];
-
-    if ([recipient.type hideFromCreationValue])
-	{
-        return;
-    }
-
-    if (![self.objectModel canMakePaymentToCurrency:recipient.currency])
-	{
-        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"payment.controller.currency.payment.error.title", nil)
-                                                           message:[NSString stringWithFormat:NSLocalizedString(@"payment.controller.currency.payment.error.message", nil), recipient.currency.code]];
-        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-        [alertView show];
-        return;
-    }
-
-    [[GoogleAnalytics sharedInstance] sendScreen:@"New payment to"];
-    NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
-    [controller setRecipient:recipient];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-    [navigationController setNavigationBarHidden:YES];
-    ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
-	
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	
-    [self presentViewController:wrapper animated:YES completion:nil];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+	[self removeCancellingFromCell];
 }
 
 - (void)refreshRecipients
@@ -211,6 +245,11 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
         [self.navigationController popViewControllerAnimated:YES];
     }];
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)inviteFriends
+{
+	//implement friends invitation
 }
 
 - (void)confirmRecipientDelete:(Recipient *)recipient indexPath:(NSIndexPath *)indexPath

@@ -21,7 +21,7 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *nameLabel;
 @property (nonatomic, strong) IBOutlet UILabel *bankLabel;
-@property (strong, nonatomic) IBOutlet UILabel *sendLabel;
+
 @property (strong, nonatomic) IBOutlet UIImageView *recipientImage;
 @property (strong, nonatomic) IBOutlet UILabel *initialsLabel;
 
@@ -29,7 +29,7 @@
 
 @implementation RecipientCell
 
-- (void)configureWithPayment:(Recipient *)recipient
+- (void)configureWithRecipient:(Recipient *)recipient
 		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
 		  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
 		  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
