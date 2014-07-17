@@ -28,10 +28,11 @@
 #import "GoogleAnalytics.h"
 #import "AddressBookManager.h"
 #import "ConnectionAwareViewController.h"
+#import "RecipientsFooterView.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
-@interface ContactsViewController () <NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface ContactsViewController () <NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource, RecipientsFooterViewDelegate>
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) NSFetchedResultsController *allRecipients;
@@ -99,6 +100,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.allRecipients sections] objectAtIndex:(NSUInteger) section];
+	//last row will be invite cell
     return [sectionInfo numberOfObjects];
 }
 
@@ -135,6 +137,19 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 	[self setCancellingVisibleForScrolling:cell indexPath:indexPath];
 
     return cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+	RecipientsFooterView *footer = [[RecipientsFooterView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 160)];
+//	footer.translatesAutoresizingMaskIntoConstraints = NO;
+	footer.delegate = self;
+	return footer;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+	return 160.f;
 }
 
 - (void)sendTapped:(UITapGestureRecognizer *)gestureRecognizer
@@ -226,6 +241,11 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
         [self.navigationController popViewControllerAnimated:YES];
     }];
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)inviteFriends
+{
+	//implement friends invitation
 }
 
 - (void)confirmRecipientDelete:(Recipient *)recipient indexPath:(NSIndexPath *)indexPath
