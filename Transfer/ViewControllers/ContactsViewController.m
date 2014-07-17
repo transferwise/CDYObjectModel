@@ -36,6 +36,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) NSFetchedResultsController *allRecipients;
+@property (nonatomic, strong) RecipientsFooterView *footerView;
 
 @end
 
@@ -58,6 +59,12 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [super viewDidLoad];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"RecipientCell" bundle:nil] forCellReuseIdentifier:kRecipientCellIdentifier];
+	
+	self.footerView = [[[NSBundle mainBundle] loadNibNamed:@"RecipientsFooterView" owner:self options:nil] objectAtIndex:0];
+	[self.footerView commonSetup];
+	self.footerView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 160);
+	self.footerView.delegate = self;
+	self.tableView.tableFooterView = self.footerView;
 }
 
 - (void)didReceiveMemoryWarning
@@ -137,19 +144,6 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 	[self setCancellingVisibleForScrolling:cell indexPath:indexPath];
 
     return cell;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-	RecipientsFooterView *footer = [[RecipientsFooterView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 160)];
-//	footer.translatesAutoresizingMaskIntoConstraints = NO;
-	footer.delegate = self;
-	return footer;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-	return 160.f;
 }
 
 - (void)sendTapped:(UITapGestureRecognizer *)gestureRecognizer

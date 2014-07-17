@@ -18,4 +18,6 @@
 
 @property (weak, nonatomic) id<RecipientsFooterViewDelegate> delegate;
 
+- (void)commonSetup;
+
 @end

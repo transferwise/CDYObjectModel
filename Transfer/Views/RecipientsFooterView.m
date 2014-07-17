@@ -17,26 +17,6 @@
 
 @implementation RecipientsFooterView
 
-- (id)init
-{
-	self = [super init];
-	if (self)
-	{
-		[self commonSetup];
-	}
-	return self;
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self)
-	{
-        [self commonSetup];
-    }
-    return self;
-}
-
 - (void)commonSetup
 {
 	[self.inviteLabel setText:NSLocalizedString(@"contacts.controller.footer.invite", nil)];
