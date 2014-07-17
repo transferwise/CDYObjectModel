@@ -252,14 +252,21 @@
 			<key>appearanceStyle</key>
 			<string>rounded</string>
 			<key>fontStyle</key>
-			<string>heavy.@17.TWElectricBlue</string>
+			<string>heavy.@{16,17}.TWElectricBlue</string>
 		</dict>
 		<key>redRoundedButton</key>
 		<dict>
 			<key>appearanceStyle</key>
 			<string>rounded</string>
 			<key>fontStyle</key>
-			<string>heavy.@17.Red</string>
+			<string>heavy.@{16,17}.Red</string>
+		</dict>
+		<key>greyRoundedButton</key>
+		<dict>
+			<key>appearanceStyle</key>
+			<string>rounded</string>
+			<key>fontStyle</key>
+			<string>heavy.@{16,17}.corefont</string>
 		</dict>
 	</dict>
 </dict>

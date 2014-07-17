@@ -40,14 +40,11 @@
                         <action selector="startPaymentPressed:" destination="-1" eventType="touchUpInside" id="Tx5-vS-0V4"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="KVn-N5-EGf" customClass="InsetRespectingButton">
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="KVn-N5-EGf" customClass="BlueRoundedButton">
                     <rect key="frame" x="638" y="950" width="100" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="800" constant="100" id="Fdi-Tc-HtQ"/>
                         <constraint firstAttribute="height" constant="44" id="QBl-IE-FK0"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="ZHF-kv-5YW"/>
-                        <constraint firstAttribute="width" constant="100" id="lud-vJ-Fqc"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
                     <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
@@ -159,7 +156,7 @@
                 <constraint firstItem="Tkb-LF-80g" firstAttribute="top" secondItem="eTr-o2-8Xr" secondAttribute="bottom" constant="-2" id="WQU-WJ-YUM"/>
                 <constraint firstAttribute="centerX" secondItem="NJU-Hs-h7h" secondAttribute="centerX" id="Yg2-4x-uQf"/>
                 <constraint firstAttribute="centerX" secondItem="Lrw-M9-5jB" secondAttribute="centerX" id="eZc-54-oSx"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="KVn-N5-EGf" secondAttribute="bottom" constant="20" id="gHH-Ia-1NT"/>
+                <constraint firstAttribute="bottom" secondItem="KVn-N5-EGf" secondAttribute="bottom" constant="20" id="gHH-Ia-1NT"/>
                 <constraint firstItem="NJU-Hs-h7h" firstAttribute="top" secondItem="o2g-cv-K3K" secondAttribute="top" constant="30" id="iTs-0d-6wV"/>
                 <constraint firstItem="UAL-I7-qIC" firstAttribute="top" secondItem="jOH-gc-1dO" secondAttribute="bottom" constant="29" id="igO-95-wk9"/>
                 <constraint firstAttribute="centerX" secondItem="UAL-I7-qIC" secondAttribute="centerX" id="t4U-c0-teW"/>
