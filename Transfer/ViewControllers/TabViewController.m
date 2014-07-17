@@ -40,6 +40,18 @@
     self.tabBarCollectionView.contentInset = self.tabBarInsets;
 }
 
+-(NSInteger)insertFlexibleSpaceAtIndex
+{
+	if (self.centerVertically)
+	{
+		return _insertFlexibleSpaceAtIndex + 1;
+	}
+	else
+	{
+		return _insertFlexibleSpaceAtIndex;
+	}
+}
+
 -(NSMutableArray *)tabItems
 {
     if(!_tabItems)
@@ -165,7 +177,7 @@
             if(layout.scrollDirection == UICollectionViewScrollDirectionVertical)
             {
                 CGFloat height = self.tabBarCollectionView.frame.size.height  - self.tabBarCollectionView.contentInset.top - self.tabBarCollectionView.contentInset.bottom - [self.tabItems count] * self.fixedSize.height;
-                self.gapSize = CGSizeMake(self.tabBarCollectionView.frame.size.width, height);
+                self.gapSize = CGSizeMake(self.tabBarCollectionView.frame.size.width, self.centerVertically ? height / 2 : height);
                 
             }
             else
@@ -219,17 +231,42 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self useFixedSizeTabs]?[self.tabItems count]+1:[self.tabItems count];
+	if(self.centerVertically)
+	{
+		if([self useFixedSizeTabs])
+		{
+			return [self.tabItems count] + 2;
+		}
+		else
+		{
+			return [self.tabItems count] + 1;
+		}
+	}
+	else if([self useFixedSizeTabs])
+	{
+		return [self.tabItems count] + 1;
+	}
+	else
+	{
+		return [self.tabItems count];
+	}
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self useFixedSizeTabs] && indexPath.row == self.insertFlexibleSpaceAtIndex)
+	if (self.centerVertically && indexPath.row == 0)
+	{
+		UICollectionViewCell *spacerCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Space" forIndexPath:indexPath];
+        return spacerCell;
+	}
+    else if ([self useFixedSizeTabs] && indexPath.row == self.insertFlexibleSpaceAtIndex)
     {
         UICollectionViewCell *spacerCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Space" forIndexPath:indexPath];
         return spacerCell;
     }
+	
     TabCell *cell = (TabCell*) [collectionView dequeueReusableCellWithReuseIdentifier:@"TabCell" forIndexPath:indexPath];
+	NSLog(@"%li", (long)indexPath.row);
     TabItem* item = self.tabItems[[self indexForIndexPath:indexPath]];
     [cell configureWithTabItem:item];
     if(item == self.selectedItem)
@@ -256,7 +293,6 @@
     {
         [((TabCell*)cell) configureForHighlightedState];
     }
-    
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath
@@ -273,8 +309,6 @@
         {
             [((TabCell*)cell) configureForSelectedState:NO];
         }
-        
-
     }
 }
 
@@ -282,48 +316,86 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([self useFixedSizeTabs])
+    if ([self useFixedSizeTabs])
     {
-        if(indexPath.row == self.insertFlexibleSpaceAtIndex)
+		if (self.centerVertically && indexPath.row == 0)
+		{
+			return CGSizeMake(self.gapSize.width, self.gapSize.height + [self getCenteringInset]);
+		}
+        else if (indexPath.row == self.insertFlexibleSpaceAtIndex)
         {
-            return self.gapSize;
+            return CGSizeMake(self.gapSize.width, self.gapSize.height - [self getCenteringInset]);
         }
+		
         return self.fixedSize;
     }
     else
     {
-        if (indexPath.row == [self.tabItems count]-1)
+        if (indexPath.row == [self.tabItems count] - 1)
         {
             return self.lastTabSize;
         }
+		
         return self.tabSize;
     }
 }
 
 #pragma mark indexpath conversion
-
--(NSIndexPath*)indexPathForIndex:(NSUInteger)index
+- (CGFloat)getCenteringInset
 {
-    if([self useFixedSizeTabs] && index > self.insertFlexibleSpaceAtIndex)
-    {
-        return [NSIndexPath indexPathForRow:index + 1 inSection:0];
-    }
-    else
-    {
-        return [NSIndexPath indexPathForRow:index inSection:0];
-    }
+	return self.fixedSize.height / 2 - self.tabBarInsets.top / 2;
 }
 
--(NSUInteger)indexForIndexPath:(NSIndexPath*)indexPath
+- (NSIndexPath*)indexPathForIndex:(NSUInteger)index
 {
-    if ([self useFixedSizeTabs]  && indexPath.row >= self.insertFlexibleSpaceAtIndex)
-    {
-        return indexPath.row - 1;
-    }
-    else
-    {
-        return indexPath.row;
-    }
+	if (self.centerVertically)
+	{
+		if([self useFixedSizeTabs] && index > self.insertFlexibleSpaceAtIndex)
+		{
+			return [NSIndexPath indexPathForRow:index + 2 inSection:0];
+		}
+		else
+		{
+			return [NSIndexPath indexPathForRow:index + 1 inSection:0];
+		}
+	}
+	else
+	{
+		if([self useFixedSizeTabs] && index > self.insertFlexibleSpaceAtIndex)
+		{
+			return [NSIndexPath indexPathForRow:index + 1 inSection:0];
+		}
+		else
+		{
+			return [NSIndexPath indexPathForRow:index inSection:0];
+		}
+	}
+}
+
+- (NSUInteger)indexForIndexPath:(NSIndexPath*)indexPath
+{
+	if (self.centerVertically)
+	{
+		if ([self useFixedSizeTabs]  && indexPath.row >= self.insertFlexibleSpaceAtIndex)
+		{
+			return indexPath.row - 2;
+		}
+		else
+		{
+			return indexPath.row - 1;
+		}
+	}
+	else
+	{
+		if ([self useFixedSizeTabs]  && indexPath.row >= self.insertFlexibleSpaceAtIndex)
+		{
+			return indexPath.row - 1;
+		}
+		else
+		{
+			return indexPath.row;
+		}
+	}
 }
 
 -(BOOL)useFixedSizeTabs
