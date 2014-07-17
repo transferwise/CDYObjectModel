@@ -29,6 +29,7 @@
 #import "AddressBookManager.h"
 #import "ConnectionAwareViewController.h"
 #import "RecipientsFooterView.h"
+#import "ContactDetailsViewController.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
@@ -146,15 +147,6 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     return cell;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-	return self.footerView;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-	return self.footerView.frame.size.height;
-}
 
 - (void)sendTapped:(UITapGestureRecognizer *)gestureRecognizer
 {
@@ -197,6 +189,8 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 	[self removeCancellingFromCell];
+    ContactDetailsViewController* detailController = [[ContactDetailsViewController alloc] init];
+    [self presentDetail:detailController];
 }
 
 - (void)refreshRecipients
