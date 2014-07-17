@@ -63,7 +63,7 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium@19.CoreFont"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@19.CoreFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gwo-9l-kjw">
