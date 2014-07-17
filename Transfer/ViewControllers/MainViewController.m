@@ -114,6 +114,7 @@
     {
         [tabController setItems:@[paymentItem,transactionsItem,inviteItem,contactsItem,profileItem]];
         tabController.tabBarInsets = UIEdgeInsetsMake(20, 0, 20,0);
+		tabController.centerVertically = YES;
         [self setNavigationBarHidden:YES];
     }
     else

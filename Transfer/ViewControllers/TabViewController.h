@@ -18,6 +18,7 @@
 @property (nonatomic, strong) UIColor *defaultDeSelectedColor;
 @property (nonatomic, strong) UIColor *defaultHighlightedColor;
 @property (nonatomic, assign) UIEdgeInsets tabBarInsets;
+@property (nonatomic, assign) BOOL centerVertically;
 
 
 @property (weak, nonatomic) IBOutlet UICollectionView *tabBarCollectionView;
