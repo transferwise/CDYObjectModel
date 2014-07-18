@@ -14,6 +14,7 @@
 #import "NSDate+ServerTime.h"
 #import "Constants.h"
 #import "ObjectModel+Users.h"
+#import "ObjectModel+PayInMethod.h"
 #import "Credentials.h"
 
 @implementation ObjectModel (Payments)
@@ -56,15 +57,10 @@
     [payment setCancelledDate:[NSDate dateFromServerString:data[@"cancelledDate"]]];
     [payment setEstimatedDelivery:[NSDate dateFromServerString:data[@"estimatedDelivery"]]];
     [payment setEstimatedDeliveryStringFromServer:data[@"formattedEstimatedDelivery"]];
-    [payment setSettlementRecipient:[self createOrUpdateSettlementRecipientWithData:data[@"settlementRecipient"]]];
+    [payment setPayInMethods:[self createPayInMethodsWithData:data[@"payInMethods"]]];
     [payment setConversionRate:data[@"conversionRate"]];
     [payment setPayOut:data[@"payOut"]];
     [payment setProfileUsed:data[@"profile"]];
-    PaymentMethod availableMethods = [Payment methodsWithData:data[@"payInMethodsAvlable"]];
-	if (availableMethods == PaymentNone) {
-		availableMethods = [Payment methodsWithData:data[@"payInMethodsAvailable"]];
-	}
-    [payment setPaymentOptionsValue:availableMethods];
     [payment setPresentableValue:YES];
 
     return payment;

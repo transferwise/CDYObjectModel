@@ -49,6 +49,15 @@
         <relationship name="currency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="targets" inverseEntity="Currency" syncable="YES"/>
         <relationship name="source" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PairSourceCurrency" inverseName="targets" inverseEntity="PairSourceCurrency" syncable="YES"/>
     </entity>
+    <entity name="PayInMethod" representedClassName="PayInMethod" syncable="YES">
+        <attribute name="bankName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="disabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="disabledReason" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="transferWiseAddress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="payment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Payment" inverseName="payInMethods" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="recipient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="payInMethods" inverseEntity="Recipient" syncable="YES"/>
+    </entity>
     <entity name="Payment" representedClassName="Payment" syncable="YES">
         <attribute name="cancelledDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="conversionRate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -57,7 +66,6 @@
         <attribute name="isFixedAmount" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="lastUpdateTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="payIn" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="paymentOptions" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="paymentStatus" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="payOut" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="presentable" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
@@ -66,9 +74,9 @@
         <attribute name="remoteId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="submittedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="transferredDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="payInMethods" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PayInMethod" inverseName="payment" inverseEntity="PayInMethod" syncable="YES"/>
         <relationship name="recipient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="payments" inverseEntity="Recipient" syncable="YES"/>
         <relationship name="refundRecipient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="refundForPayment" inverseEntity="Recipient" syncable="YES"/>
-        <relationship name="settlementRecipient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="settlementForPayments" inverseEntity="Recipient" syncable="YES"/>
         <relationship name="sourceCurrency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="sourceForPayments" inverseEntity="Currency" syncable="YES"/>
         <relationship name="targetCurrency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="targetForPayments" inverseEntity="Currency" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="payments" inverseEntity="User" syncable="YES"/>
@@ -101,9 +109,9 @@
         <attribute name="remoteId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="currency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="currencyForRecipients" inverseEntity="Currency" syncable="YES"/>
         <relationship name="fieldValues" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TypeFieldValue" inverseName="recipient" inverseEntity="TypeFieldValue" syncable="YES"/>
+        <relationship name="payInMethods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PayInMethod" inverseName="recipient" inverseEntity="PayInMethod" syncable="YES"/>
         <relationship name="payments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="recipient" inverseEntity="Payment" syncable="YES"/>
         <relationship name="refundForPayment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Payment" inverseName="refundRecipient" inverseEntity="Payment" syncable="YES"/>
-        <relationship name="settlementForPayments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="settlementRecipient" inverseEntity="Payment" syncable="YES"/>
         <relationship name="type" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientType" inverseName="recipients" inverseEntity="RecipientType" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="contacts" inverseEntity="User" syncable="YES"/>
     </entity>
@@ -154,7 +162,7 @@
         <element name="Currency" positionX="0" positionY="0" width="128" height="210"/>
         <element name="PairSourceCurrency" positionX="0" positionY="0" width="128" height="120"/>
         <element name="PairTargetCurrency" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="Payment" positionX="0" positionY="0" width="128" height="373"/>
+        <element name="Payment" positionX="0" positionY="0" width="128" height="358"/>
         <element name="PendingPayment" positionX="0" positionY="0" width="128" height="148"/>
         <element name="PersonalProfile" positionX="0" positionY="0" width="128" height="195"/>
         <element name="Recipient" positionX="0" positionY="0" width="128" height="208"/>
@@ -163,5 +171,6 @@
         <element name="Setting" positionX="0" positionY="0" width="128" height="75"/>
         <element name="TypeFieldValue" positionX="0" positionY="0" width="128" height="90"/>
         <element name="User" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="PayInMethod" positionX="36" positionY="180" width="128" height="148"/>
     </elements>
 </model>

@@ -13,6 +13,12 @@
 		1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */; };
 		18D47900173A3B5300FC317E /* PersonalProfileIdentificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D478FF173A3B5300FC317E /* PersonalProfileIdentificationViewController.m */; };
 		18D47903173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D47902173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib */; };
+		38C2793C197953CC00388C8A /* _PayInMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C2793B197953CC00388C8A /* _PayInMethod.m */; };
+		38C2793D197953CC00388C8A /* _PayInMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C2793B197953CC00388C8A /* _PayInMethod.m */; };
+		38C27940197953E600388C8A /* PayInMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C2793F197953E600388C8A /* PayInMethod.m */; };
+		38C27941197953E600388C8A /* PayInMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C2793F197953E600388C8A /* PayInMethod.m */; };
+		38C27944197955DB00388C8A /* ObjectModel+PayInMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C27943197955DB00388C8A /* ObjectModel+PayInMethod.m */; };
+		38C27945197955DB00388C8A /* ObjectModel+PayInMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C27943197955DB00388C8A /* ObjectModel+PayInMethod.m */; };
 		BA6650856E3051C31A982C78 /* GoogleAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = BA66546EEC8C630867200E77 /* GoogleAnalytics.m */; };
 		BA665EA5E58A6DA4DEB8E622 /* GoogleAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = BA66546EEC8C630867200E77 /* GoogleAnalytics.m */; };
 		BB29BD47173CD2FF0016A6E9 /* BankTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29BD46173CD2FF0016A6E9 /* BankTransferViewController.m */; };
@@ -549,6 +555,13 @@
 		18D47902173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalProfileIdentificationViewController.xib; sourceTree = "<group>"; };
 		2C541BABB70E4B6195F5BC1A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		2F2D1DE7BECC4078BB45E6AD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		38C2793919794D6100388C8A /* Transfer_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v2.xcdatamodel; sourceTree = "<group>"; };
+		38C2793A197953CC00388C8A /* _PayInMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _PayInMethod.h; sourceTree = "<group>"; };
+		38C2793B197953CC00388C8A /* _PayInMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PayInMethod.m; sourceTree = "<group>"; };
+		38C2793E197953E600388C8A /* PayInMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayInMethod.h; sourceTree = "<group>"; };
+		38C2793F197953E600388C8A /* PayInMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayInMethod.m; sourceTree = "<group>"; };
+		38C27942197955DB00388C8A /* ObjectModel+PayInMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+PayInMethod.h"; sourceTree = "<group>"; };
+		38C27943197955DB00388C8A /* ObjectModel+PayInMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+PayInMethod.m"; sourceTree = "<group>"; };
 		9C1FBDCF7CCD414999CC7D3D /* libPods-TransferTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TransferTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9D5DEC1F8394C87A604EF4F /* Pods-TransferTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransferTests.xcconfig"; path = "Pods/Pods-TransferTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		BA66546EEC8C630867200E77 /* GoogleAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalytics.m; sourceTree = "<group>"; };
@@ -1713,6 +1726,8 @@
 				EA225C87178EB241009D6B83 /* ObjectModel+Currencies.m */,
 				EA225CA4178EC32D009D6B83 /* ObjectModel+CurrencyPairs.h */,
 				EA225CA5178EC32D009D6B83 /* ObjectModel+CurrencyPairs.m */,
+				38C27942197955DB00388C8A /* ObjectModel+PayInMethod.h */,
+				38C27943197955DB00388C8A /* ObjectModel+PayInMethod.m */,
 				EA225C6F178E9F00009D6B83 /* ObjectModel+Payments.h */,
 				EA225C70178E9F00009D6B83 /* ObjectModel+Payments.m */,
 				EA1E4E26179E71C300F8D932 /* ObjectModel+PendingPayments.h */,
@@ -1731,6 +1746,8 @@
 				EA225CAB178EC3B2009D6B83 /* PairSourceCurrency.m */,
 				EA225CC0178EEC76009D6B83 /* PairTargetCurrency.h */,
 				EA225CC1178EEC77009D6B83 /* PairTargetCurrency.m */,
+				38C2793E197953E600388C8A /* PayInMethod.h */,
+				38C2793F197953E600388C8A /* PayInMethod.m */,
 				EA225C69178E9C93009D6B83 /* Payment.h */,
 				EA225C6A178E9C93009D6B83 /* Payment.m */,
 				EA1E4E23179E713100F8D932 /* PendingPayment.h */,
@@ -1769,6 +1786,8 @@
 				EA225CA8178EC3A4009D6B83 /* _PairSourceCurrency.m */,
 				EA225CBD178EEC6F009D6B83 /* _PairTargetCurrency.h */,
 				EA225CBE178EEC6F009D6B83 /* _PairTargetCurrency.m */,
+				38C2793A197953CC00388C8A /* _PayInMethod.h */,
+				38C2793B197953CC00388C8A /* _PayInMethod.m */,
 				EA225C65178E9C90009D6B83 /* _Payment.h */,
 				EA225C66178E9C90009D6B83 /* _Payment.m */,
 				EA1E4E1F179E712A00F8D932 /* _PendingPayment.h */,
@@ -2236,6 +2255,7 @@
 				EA31A12A17DDB29B00F937F7 /* TransactionsViewController.m in Sources */,
 				EA31A12B17DDB29B00F937F7 /* ContactsViewController.m in Sources */,
 				EA31A12C17DDB29B00F937F7 /* PaymentViewController.m in Sources */,
+				38C27945197955DB00388C8A /* ObjectModel+PayInMethod.m in Sources */,
 				EA31A12D17DDB29B00F937F7 /* IntroductionViewController.m in Sources */,
 				EA31A12E17DDB29B00F937F7 /* TableHeaderView.m in Sources */,
 				EA31A12F17DDB29B00F937F7 /* MoneyEntryCell.m in Sources */,
@@ -2318,6 +2338,7 @@
 				EA31A17217DDB29B00F937F7 /* PhoneBookProfileSelector.m in Sources */,
 				EA31A17317DDB29B00F937F7 /* PhoneBookAddress.m in Sources */,
 				EA31A17417DDB29B00F937F7 /* DismissKeyboardTableView.m in Sources */,
+				38C27941197953E600388C8A /* PayInMethod.m in Sources */,
 				EA31A17517DDB29B00F937F7 /* VerificationRequiredOperation.m in Sources */,
 				EA31A17617DDB29B00F937F7 /* UploadVerificationFileOperation.m in Sources */,
 				EA31A17717DDB29B00F937F7 /* OpenIDViewController.m in Sources */,
@@ -2381,6 +2402,7 @@
 				EA31A1AD17DDB29B00F937F7 /* _PersonalProfile.m in Sources */,
 				EA31A1AE17DDB29B00F937F7 /* _User.m in Sources */,
 				EA31A1AF17DDB29B00F937F7 /* BusinessProfile.m in Sources */,
+				38C2793D197953CC00388C8A /* _PayInMethod.m in Sources */,
 				EA31A1B017DDB29B00F937F7 /* PersonalProfile.m in Sources */,
 				EA31A1B117DDB29B00F937F7 /* User.m in Sources */,
 				EA31A1B217DDB29B00F937F7 /* _PendingPayment.m in Sources */,
@@ -2433,6 +2455,7 @@
 				EAD3967B171BD51400F6D011 /* TransactionsViewController.m in Sources */,
 				EAD39680171BD57000F6D011 /* ContactsViewController.m in Sources */,
 				EAD39685171BD5B000F6D011 /* PaymentViewController.m in Sources */,
+				38C27944197955DB00388C8A /* ObjectModel+PayInMethod.m in Sources */,
 				EAD3968A171BD82300F6D011 /* IntroductionViewController.m in Sources */,
 				EA13E032171BDF1A0019FBF0 /* TableHeaderView.m in Sources */,
 				EA13E036171BE1210019FBF0 /* MoneyEntryCell.m in Sources */,
@@ -2515,6 +2538,7 @@
 				EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */,
 				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
 				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,
+				38C27940197953E600388C8A /* PayInMethod.m in Sources */,
 				EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */,
 				EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */,
 				EA59298E1758CD6C007C0072 /* OpenIDViewController.m in Sources */,
@@ -2578,6 +2602,7 @@
 				EA2379F01793E02F00166361 /* _PersonalProfile.m in Sources */,
 				EA2379F31793E03A00166361 /* _User.m in Sources */,
 				EA2379FA1793E04400166361 /* BusinessProfile.m in Sources */,
+				38C2793C197953CC00388C8A /* _PayInMethod.m in Sources */,
 				EA2379FB1793E04400166361 /* PersonalProfile.m in Sources */,
 				EA2379FC1793E04400166361 /* User.m in Sources */,
 				EA1E4E21179E712A00F8D932 /* _PendingPayment.m in Sources */,
@@ -2925,9 +2950,10 @@
 		EAAA1485171BC911005B9430 /* Transfer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				38C2793919794D6100388C8A /* Transfer_v2.xcdatamodel */,
 				EAAA1486171BC911005B9430 /* Transfer.xcdatamodel */,
 			);
-			currentVersion = EAAA1486171BC911005B9430 /* Transfer.xcdatamodel */;
+			currentVersion = 38C2793919794D6100388C8A /* Transfer_v2.xcdatamodel */;
 			name = Transfer.xcdatamodeld;
 			path = ../Transfer.xcdatamodeld;
 			sourceTree = "<group>";

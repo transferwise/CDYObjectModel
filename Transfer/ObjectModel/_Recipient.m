@@ -13,9 +13,9 @@ const struct RecipientAttributes RecipientAttributes = {
 const struct RecipientRelationships RecipientRelationships = {
 	.currency = @"currency",
 	.fieldValues = @"fieldValues",
+	.payInMethods = @"payInMethods",
 	.payments = @"payments",
 	.refundForPayment = @"refundForPayment",
-	.settlementForPayments = @"settlementForPayments",
 	.type = @"type",
 	.user = @"user",
 };
@@ -149,6 +149,19 @@ const struct RecipientFetchedProperties RecipientFetchedProperties = {
 }
 	
 
+@dynamic payInMethods;
+
+	
+- (NSMutableSet*)payInMethodsSet {
+	[self willAccessValueForKey:@"payInMethods"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"payInMethods"];
+  
+	[self didAccessValueForKey:@"payInMethods"];
+	return result;
+}
+	
+
 @dynamic payments;
 
 	
@@ -164,19 +177,6 @@ const struct RecipientFetchedProperties RecipientFetchedProperties = {
 
 @dynamic refundForPayment;
 
-	
-
-@dynamic settlementForPayments;
-
-	
-- (NSMutableSet*)settlementForPaymentsSet {
-	[self willAccessValueForKey:@"settlementForPayments"];
-  
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"settlementForPayments"];
-  
-	[self didAccessValueForKey:@"settlementForPayments"];
-	return result;
-}
 	
 
 @dynamic type;

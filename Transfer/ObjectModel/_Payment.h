@@ -13,7 +13,6 @@ extern const struct PaymentAttributes {
 	__unsafe_unretained NSString *lastUpdateTime;
 	__unsafe_unretained NSString *payIn;
 	__unsafe_unretained NSString *payOut;
-	__unsafe_unretained NSString *paymentOptions;
 	__unsafe_unretained NSString *paymentStatus;
 	__unsafe_unretained NSString *presentable;
 	__unsafe_unretained NSString *profileUsed;
@@ -24,9 +23,9 @@ extern const struct PaymentAttributes {
 } PaymentAttributes;
 
 extern const struct PaymentRelationships {
+	__unsafe_unretained NSString *payInMethods;
 	__unsafe_unretained NSString *recipient;
 	__unsafe_unretained NSString *refundRecipient;
-	__unsafe_unretained NSString *settlementRecipient;
 	__unsafe_unretained NSString *sourceCurrency;
 	__unsafe_unretained NSString *targetCurrency;
 	__unsafe_unretained NSString *user;
@@ -35,13 +34,12 @@ extern const struct PaymentRelationships {
 extern const struct PaymentFetchedProperties {
 } PaymentFetchedProperties;
 
-@class Recipient;
+@class PayInMethod;
 @class Recipient;
 @class Recipient;
 @class Currency;
 @class Currency;
 @class User;
-
 
 
 
@@ -160,20 +158,6 @@ extern const struct PaymentFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* paymentOptions;
-
-
-
-@property int16_t paymentOptionsValue;
-- (int16_t)paymentOptionsValue;
-- (void)setPaymentOptionsValue:(int16_t)value_;
-
-//- (BOOL)validatePaymentOptions:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
 @property (nonatomic, strong) NSString* paymentStatus;
 
 
@@ -252,6 +236,13 @@ extern const struct PaymentFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSOrderedSet *payInMethods;
+
+- (NSMutableOrderedSet*)payInMethodsSet;
+
+
+
+
 @property (nonatomic, strong) Recipient *recipient;
 
 //- (BOOL)validateRecipient:(id*)value_ error:(NSError**)error_;
@@ -262,13 +253,6 @@ extern const struct PaymentFetchedProperties {
 @property (nonatomic, strong) Recipient *refundRecipient;
 
 //- (BOOL)validateRefundRecipient:(id*)value_ error:(NSError**)error_;
-
-
-
-
-@property (nonatomic, strong) Recipient *settlementRecipient;
-
-//- (BOOL)validateSettlementRecipient:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -298,6 +282,11 @@ extern const struct PaymentFetchedProperties {
 @end
 
 @interface _Payment (CoreDataGeneratedAccessors)
+
+- (void)addPayInMethods:(NSOrderedSet*)value_;
+- (void)removePayInMethods:(NSOrderedSet*)value_;
+- (void)addPayInMethodsObject:(PayInMethod*)value_;
+- (void)removePayInMethodsObject:(PayInMethod*)value_;
 
 @end
 
@@ -358,15 +347,6 @@ extern const struct PaymentFetchedProperties {
 
 
 
-- (NSNumber*)primitivePaymentOptions;
-- (void)setPrimitivePaymentOptions:(NSNumber*)value;
-
-- (int16_t)primitivePaymentOptionsValue;
-- (void)setPrimitivePaymentOptionsValue:(int16_t)value_;
-
-
-
-
 - (NSString*)primitivePaymentStatus;
 - (void)setPrimitivePaymentStatus:(NSString*)value;
 
@@ -416,6 +396,11 @@ extern const struct PaymentFetchedProperties {
 
 
 
+- (NSMutableOrderedSet*)primitivePayInMethods;
+- (void)setPrimitivePayInMethods:(NSMutableOrderedSet*)value;
+
+
+
 - (Recipient*)primitiveRecipient;
 - (void)setPrimitiveRecipient:(Recipient*)value;
 
@@ -423,11 +408,6 @@ extern const struct PaymentFetchedProperties {
 
 - (Recipient*)primitiveRefundRecipient;
 - (void)setPrimitiveRefundRecipient:(Recipient*)value;
-
-
-
-- (Recipient*)primitiveSettlementRecipient;
-- (void)setPrimitiveSettlementRecipient:(Recipient*)value;
 
 
 

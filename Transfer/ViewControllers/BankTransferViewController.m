@@ -26,6 +26,7 @@
 #import "ConfirmPaymentCell.h"
 #import "SupportCoordinator.h"
 #import "GoogleAnalytics.h"
+#import "PayInMethod.h"
 
 @interface BankTransferViewController ()
 
@@ -67,7 +68,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
     [self loadDataToCells];
 }
 
@@ -75,16 +75,21 @@
     MCLog(@"loadDataToCells");
     NSMutableArray *presentedCells = [NSMutableArray array];
 
+    NSOrderedSet *payInMethodTypes = [self.payment.enabledPayInMethods valueForKey:@"type"];
+    NSUInteger indexOfPaymentType= [payInMethodTypes indexOfObject:@"REGULAR"];
+    
+    PayInMethod* method = self.payment.enabledPayInMethods[indexOfPaymentType];
+    
     TextCell *amountCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
     [amountCell configureWithTitle:NSLocalizedString(@"upload.money.amount.title", nil) text:self.payment.payInWithCurrency];
     [presentedCells addObject:amountCell];
 
     TextCell *toCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
-    [toCell configureWithTitle:NSLocalizedString(@"upload.money.to.title", nil) text:self.payment.settlementRecipient.name];
+    [toCell configureWithTitle:NSLocalizedString(@"upload.money.to.title", nil) text:method.recipient.name];
     [presentedCells addObject:toCell];
 
-    RecipientType *type = self.payment.settlementRecipient.type;
-    NSArray *accountCells = [self buildAccountCellForType:type recipient:self.payment.settlementRecipient];
+    RecipientType *type = method.recipient.type;
+    NSArray *accountCells = [self buildAccountCellForType:type recipient:method.recipient];
     [presentedCells addObjectsFromArray:accountCells];
 
     //TODO jaanus: bank name cell

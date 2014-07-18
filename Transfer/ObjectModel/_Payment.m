@@ -12,7 +12,6 @@ const struct PaymentAttributes PaymentAttributes = {
 	.lastUpdateTime = @"lastUpdateTime",
 	.payIn = @"payIn",
 	.payOut = @"payOut",
-	.paymentOptions = @"paymentOptions",
 	.paymentStatus = @"paymentStatus",
 	.presentable = @"presentable",
 	.profileUsed = @"profileUsed",
@@ -23,9 +22,9 @@ const struct PaymentAttributes PaymentAttributes = {
 };
 
 const struct PaymentRelationships PaymentRelationships = {
+	.payInMethods = @"payInMethods",
 	.recipient = @"recipient",
 	.refundRecipient = @"refundRecipient",
-	.settlementRecipient = @"settlementRecipient",
 	.sourceCurrency = @"sourceCurrency",
 	.targetCurrency = @"targetCurrency",
 	.user = @"user",
@@ -67,11 +66,6 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 	}
 	if ([key isEqualToString:@"isFixedAmountValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"isFixedAmount"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
-	if ([key isEqualToString:@"paymentOptionsValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"paymentOptions"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -186,32 +180,6 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 
 
 
-@dynamic paymentOptions;
-
-
-
-- (int16_t)paymentOptionsValue {
-	NSNumber *result = [self paymentOptions];
-	return [result shortValue];
-}
-
-- (void)setPaymentOptionsValue:(int16_t)value_ {
-	[self setPaymentOptions:[NSNumber numberWithShort:value_]];
-}
-
-- (int16_t)primitivePaymentOptionsValue {
-	NSNumber *result = [self primitivePaymentOptions];
-	return [result shortValue];
-}
-
-- (void)setPrimitivePaymentOptionsValue:(int16_t)value_ {
-	[self setPrimitivePaymentOptions:[NSNumber numberWithShort:value_]];
-}
-
-
-
-
-
 @dynamic paymentStatus;
 
 
@@ -299,15 +267,24 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 
 
 
+@dynamic payInMethods;
+
+	
+- (NSMutableOrderedSet*)payInMethodsSet {
+	[self willAccessValueForKey:@"payInMethods"];
+  
+	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"payInMethods"];
+  
+	[self didAccessValueForKey:@"payInMethods"];
+	return result;
+}
+	
+
 @dynamic recipient;
 
 	
 
 @dynamic refundRecipient;
-
-	
-
-@dynamic settlementRecipient;
 
 	
 
