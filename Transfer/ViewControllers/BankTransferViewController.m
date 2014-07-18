@@ -98,7 +98,7 @@
     [presentedCells addObject:referenceCell];
 
     TextCell *addressCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
-    [addressCell configureWithTitle:NSLocalizedString(@"upload.money.address.title", nil) text:NSLocalizedString(@"upload.money.our.address.label", @"")];
+    [addressCell configureWithTitle:NSLocalizedString(@"upload.money.address.title", nil) text:method.transferWiseAddress];
     [presentedCells addObject:addressCell];
     CGRect addressFrame = addressCell.frame;
     //TODO jaanus: calculate actual height
