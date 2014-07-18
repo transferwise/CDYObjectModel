@@ -29,6 +29,7 @@
         [self addChildViewController:controller];
         [self.detailContainer addSubview:controller.view];
         controller.view.frame = self.detailContainer.bounds;
+        controller.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         self.presentedDetailController=controller;
     }
 }
