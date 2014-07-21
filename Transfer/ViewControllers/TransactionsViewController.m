@@ -28,6 +28,8 @@
 #import "PersonalProfileIdentificationViewController.h"
 #import "PendingPayment.h"
 #import "PaymentPurposeOperation.h"
+#import "Currency.h"
+#import "TransferBackButtonItem.h"
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
@@ -143,12 +145,42 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[[GoogleAnalytics sharedInstance] sendScreen:@"View payment"];
 
     if ([payment isSubmitted]) {
-        UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
-        [controller setPayment:payment];
-        [controller setObjectModel:self.objectModel];
-        [controller setHideBottomButton:YES];
-        [controller setShowContactSupportCell:YES];
-        [self.navigationController pushViewController:controller animated:YES];
+        if([payment.sourceCurrency.code caseInsensitiveCompare:@"USD"] == NSOrderedSame)
+        {
+            //Temporarily don't display pay in info for USD as no API available
+            //Added Viewcontrolle rin code to avoid adding extraf iles for this trivial view
+            //TODO: remove once USD API is ready
+            
+            CGRect labelFrame = self.view.frame;
+            labelFrame.origin.x +=20;
+            labelFrame.size.width -= 40;
+            UILabel * infoLabel = [[UILabel alloc] initWithFrame:labelFrame];
+            infoLabel.font = [UIFont systemFontOfSize:16];
+            infoLabel.textColor = [UIColor colorWithWhite:9.0/15.0 alpha:1.0f];
+            infoLabel.numberOfLines = 0;
+            infoLabel.textAlignment = NSTextAlignmentCenter;
+            infoLabel.text = NSLocalizedString(@"usd.not.supported", nil);
+
+            UIView *contentView = [[UIView alloc] initWithFrame:self.view.frame];
+            contentView.backgroundColor = [UIColor whiteColor];
+            [contentView addSubview:infoLabel];
+            
+            UIViewController *placeholderController = [[UIViewController alloc] init];
+            placeholderController.view = contentView;
+            [placeholderController.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
+            placeholderController.title = NSLocalizedString(@"usd.coming.soon",nil);
+            [self.navigationController pushViewController:placeholderController animated:YES];
+            
+        }
+        else
+        {
+            UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+            [controller setPayment:payment];
+            [controller setObjectModel:self.objectModel];
+            [controller setHideBottomButton:YES];
+            [controller setShowContactSupportCell:YES];
+            [self.navigationController pushViewController:controller animated:YES];
+        }
     } else if ([payment isCancelled] || [payment moneyReceived] || [payment moneyTransferred]) {
         PaymentDetailsViewController *controller = [[PaymentDetailsViewController alloc] init];
         [controller setObjectModel:self.objectModel];

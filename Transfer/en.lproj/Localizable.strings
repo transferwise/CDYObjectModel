@@ -421,3 +421,6 @@ people who built Skype and PayPal.";
 "reset.password.failed.alert.title" = "Oops!";
 "reset.password.not.found.alert.message" = "There is no account registered with that email. Please provide a valid email.";
 "refund.controller.existing.recipients.preload.error.title" = "Can't load contacts";
+
+"usd.coming.soon" = "Coming soon";
+"usd.not.supported" = "Sending USD abroad will soon be supported in our mobile applications.\n\nIn the mean time, please go to transferwise.com to pay for this transfer.";
