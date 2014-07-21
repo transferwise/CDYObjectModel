@@ -63,7 +63,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 	self.footerView = [[[NSBundle mainBundle] loadNibNamed:@"RecipientsFooterView" owner:self options:nil] objectAtIndex:0];
 	[self.footerView commonSetup];
 	self.footerView.delegate = self;
-	[self.footerView setFrame:CGRectMake(0, 0, 0, self.footerView.frame.size.height * [UIScreen mainScreen].scale)];
+	[self.footerView setFrame:CGRectMake(0, 0, 0, self.footerView.frame.size.height)];
 	self.tableView.tableFooterView = self.footerView;
 }
 
@@ -273,8 +273,9 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
         [operation setObjectModel:self.objectModel];
         [operation setResponseHandler:^(NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
+				[self setExecutedOperation:nil];
                 [hud hide];
-                [self handleListRefreshWithPossibleError:error];
+                [self refreshRecipients];
             });
         }];
 
