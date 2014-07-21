@@ -54,18 +54,15 @@
 #import "NSError+TRWErrors.h"
 
 static NSUInteger const kSenderSection = 0;
-static NSUInteger const kImportSection = 1;
-static NSUInteger const kRecipientSection = 2;
-static NSUInteger const kCurrencySection = 3;
-static NSUInteger const kRecipientFieldsSection = 4;
+static NSUInteger const kRecipientSection = 1;
+static NSUInteger const kCurrencySection = 2;
+static NSUInteger const kRecipientFieldsSection = 3;
 
 NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 @interface RecipientViewController () <ABPeoplePickerNavigationControllerDelegate>
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
-
-@property (nonatomic, strong) ButtonCell *importCell;
 
 @property (nonatomic, strong) NSArray *recipientCells;
 @property (nonatomic, strong) RecipientEntrySelectionCell *nameCell;
@@ -141,9 +138,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setSenderNameCell:[self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier]];
     [self setSenderCells:@[self.senderNameCell]];
 
-    self.importCell = [self.tableView dequeueReusableCellWithIdentifier:kButtonCellIdentifier];
-    [self.importCell.textLabel setText:NSLocalizedString(@"recipient.import.from.phonebook.label", nil)];
-
     NSMutableArray *recipientCells = [NSMutableArray array];
 
     RecipientEntrySelectionCell *nameCell = [self.tableView dequeueReusableCellWithIdentifier:TRWRecipientEntrySelectionCellIdentifier];
@@ -210,7 +204,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     [self presentProfileForSource:self.profileSelectionView.presentedSource];
 
-    [self setPresentedSectionCells:@[self.senderCells, @[self.importCell], self.recipientCells, self.currencyCells, @[]]];
+    [self setPresentedSectionCells:@[self.senderCells, self.recipientCells, self.currencyCells, @[]]];
     [self.tableView reloadData];
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
@@ -276,17 +270,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setShown:YES];
 }
 
-- (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.presentedSections[indexPath.section] integerValue] != kImportSection) {
-        return;
-    }
-
-    PhoneBookProfileSelector *selector = [[PhoneBookProfileSelector alloc] init];
-    [self setProfileSelector:selector];
-    [selector presentOnController:self completionHandler:^(PhoneBookProfile *profile) {
-        [self loadDataFromProfile:profile];
-    }];
-}
 
 - (void)loadDataFromProfile:(PhoneBookProfile *)profile {
     self.nameCell.value = profile.fullName;
@@ -350,7 +333,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     NSArray *cells = [self buildCellsForType:type allTypes:allTypes];
     [self setRecipientType:type];
     [self setRecipientTypeFieldCells:cells];
-    [self setPresentedSectionCells:@[self.senderCells, @[self.importCell], self.recipientCells, self.currencyCells, cells]];
+    [self setPresentedSectionCells:@[self.senderCells, self.recipientCells, self.currencyCells, cells]];
 
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:[self.presentedSections count] - 1] withRowAnimation:UITableViewRowAnimationNone];
     [self performSelector:@selector(updateFooterSize) withObject:nil afterDelay:0.5];
@@ -488,10 +471,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     switch ([sectionCode integerValue]) {
         case kSenderSection:
             return NSLocalizedString(@"recipient.controller.section.title.sender", nil);
-        case kImportSection:
-            return NSLocalizedString(@"recipient.controller.section.title.recipient", nil);
         case kRecipientSection:
-            return nil;
+            return NSLocalizedString(@"recipient.controller.section.title.recipient", nil);
         case kCurrencySection:
             return NSLocalizedString(@"recipient.controller.section.title.currency", nil);
         case kRecipientFieldsSection:
@@ -523,8 +504,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     } else {
         [cells removeObject:self.senderCells];
     }
-
-    [sectionIndexes addObject:@(kImportSection)];
     [sectionIndexes addObject:@(kRecipientSection)];
 
     if (self.preLoadRecipientsWithCurrency) {
