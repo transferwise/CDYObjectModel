@@ -56,7 +56,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOM-Zk-EFF" userLabel="Label - Initials">
-                                <rect key="frame" x="10" y="25" width="40" height="20"/>
+                                <rect key="frame" x="10" y="27" width="40" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
@@ -78,7 +78,7 @@
                             <constraint firstItem="2OX-sm-jjG" firstAttribute="leading" secondItem="AXX-0g-i5g" secondAttribute="trailing" constant="10" id="g17-Qg-s3g"/>
                             <constraint firstItem="AXX-0g-i5g" firstAttribute="trailing" secondItem="DOM-Zk-EFF" secondAttribute="trailing" id="mPK-i5-YtW"/>
                             <constraint firstItem="AXX-0g-i5g" firstAttribute="bottom" secondItem="DOM-Zk-EFF" secondAttribute="bottom" constant="10" id="uFI-jR-GlJ"/>
-                            <constraint firstItem="AXX-0g-i5g" firstAttribute="top" secondItem="DOM-Zk-EFF" secondAttribute="top" constant="-10" id="zma-wj-01d"/>
+                            <constraint firstItem="AXX-0g-i5g" firstAttribute="top" secondItem="DOM-Zk-EFF" secondAttribute="top" constant="-12" id="zma-wj-01d"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="white"/>
