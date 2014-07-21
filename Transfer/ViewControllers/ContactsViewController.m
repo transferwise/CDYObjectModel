@@ -48,7 +48,10 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     if (self)
 	{
         [self setTitle:NSLocalizedString(@"contacts.controller.title", nil)];
-        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"AddButton"] style:UIBarButtonItemStylePlain target:self action:@selector(addContactPressed)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+        [button addTarget:self  action:@selector(addContactPressed) forControlEvents:UIControlEventTouchUpInside];
+        [button setImage:[UIImage imageNamed:@"AddButton"] forState:UIControlStateNormal];
+        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithCustomView:button];
         [self.navigationItem setRightBarButtonItem:addButton];
     }
     return self;
