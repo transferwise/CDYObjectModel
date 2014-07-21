@@ -138,7 +138,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setSenderNameCell:[self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier]];
     [self setSenderCells:@[self.senderNameCell]];
 
-    NSMutableArray *recipientCells = [NSMutableArray array];
+
 
     RecipientEntrySelectionCell *nameCell = [self.tableView dequeueReusableCellWithIdentifier:TRWRecipientEntrySelectionCellIdentifier];
     [self setNameCell:nameCell];
@@ -148,16 +148,15 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [nameCell setSelectionHandler:^(Recipient *recipient) {
         [self didSelectRecipient:recipient];
     }];
-    [recipientCells addObject:nameCell];
     
     TextEntryCell *emailCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     self.emailCell = emailCell;
     [emailCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [emailCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [emailCell configureWithTitle:NSLocalizedString(@"recipient.controller.cell.label.email", nil) value:@""];
+  
     [self setRecipientCells:@[nameCell,emailCell]];
     
-    [self setRecipientCells:recipientCells];
 
     NSMutableArray *currencyCells = [NSMutableArray array];
 
@@ -283,7 +282,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self.nameCell setValue:@""];
            [self.emailCell setValue:@""];
         [self.nameCell setEditable:YES];
-        [self.emailCell setEditable:NO];
 
         for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
             [fieldCell setValue:@""];
@@ -297,7 +295,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self.nameCell setValue:recipient.name];
         [self.emailCell setValue:recipient.email];
         [self.nameCell setEditable:NO];
-        [self.emailCell setEditable:NO];
 
         for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
             [fieldCell setEditable:NO];
