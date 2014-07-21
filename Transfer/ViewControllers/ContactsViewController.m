@@ -51,7 +51,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 88, 44)];
         [button addTarget:self  action:@selector(addContactPressed) forControlEvents:UIControlEventTouchUpInside];
         [button setImage:[UIImage imageNamed:@"AddButton"] forState:UIControlStateNormal];
-		[button setImageEdgeInsets:UIEdgeInsetsMake(0, 60, 0, -15)];
+		[button setImageEdgeInsets:UIEdgeInsetsMake(0, 58, 0, -17)];
         UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithCustomView:button];
         [self.navigationItem setRightBarButtonItem:addButton];
     }
