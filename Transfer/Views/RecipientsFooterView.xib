@@ -42,7 +42,6 @@
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="0.3635062188" blue="0.44071224440000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="aCd-Lp-Wav" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Es9-W9-pni"/>
                 <constraint firstItem="aCd-Lp-Wav" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="MsN-CV-IPP"/>
