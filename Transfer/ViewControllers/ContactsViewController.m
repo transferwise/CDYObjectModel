@@ -63,7 +63,6 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 	self.footerView = [[[NSBundle mainBundle] loadNibNamed:@"RecipientsFooterView" owner:self options:nil] objectAtIndex:0];
 	[self.footerView commonSetup];
 	self.footerView.delegate = self;
-	[self.footerView setFrame:CGRectMake(0, 0, 0, self.footerView.frame.size.height)];
 	self.tableView.tableFooterView = self.footerView;
 }
 
