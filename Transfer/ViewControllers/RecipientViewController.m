@@ -392,6 +392,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     PendingPayment *payment = self.objectModel.pendingPayment;
 
     if (self.recipient) {
+        self.recipient.email = self.emailCell.value;
         [payment setRecipient:self.recipient];
         [self.objectModel saveContext:self.afterSaveAction];
         return;
