@@ -7,6 +7,7 @@ const struct CurrencyAttributes CurrencyAttributes = {
 	.code = @"code",
 	.index = @"index",
 	.name = @"name",
+	.referenceMaxLength = @"referenceMaxLength",
 	.symbol = @"symbol",
 };
 
@@ -54,6 +55,11 @@ const struct CurrencyFetchedProperties CurrencyFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"referenceMaxLengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"referenceMaxLength"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -96,6 +102,32 @@ const struct CurrencyFetchedProperties CurrencyFetchedProperties = {
 
 @dynamic name;
 
+
+
+
+
+
+@dynamic referenceMaxLength;
+
+
+
+- (int16_t)referenceMaxLengthValue {
+	NSNumber *result = [self referenceMaxLength];
+	return [result shortValue];
+}
+
+- (void)setReferenceMaxLengthValue:(int16_t)value_ {
+	[self setReferenceMaxLength:[NSNumber numberWithShort:value_]];
+}
+
+- (int16_t)primitiveReferenceMaxLengthValue {
+	NSNumber *result = [self primitiveReferenceMaxLength];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveReferenceMaxLengthValue:(int16_t)value_ {
+	[self setPrimitiveReferenceMaxLength:[NSNumber numberWithShort:value_]];
+}
 
 
 
