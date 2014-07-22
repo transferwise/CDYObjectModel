@@ -186,6 +186,7 @@ A revolution in your pocket.";
 "recipient.controller.add.button.title" = "Add";
 "recipient.controller.add.mode.title" = "Add recipient";
 "recipient.controller.cell.label.name" = "Recipient name";
+"recipient.controller.cell.label.email" = "Recipient email";
 "recipient.controller.confirm.payment.button.title" = "Confirm payment";
 "recipient.controller.creating.message" = "Creating...";
 "recipient.controller.payment.mode.title" = "Recipient details";
