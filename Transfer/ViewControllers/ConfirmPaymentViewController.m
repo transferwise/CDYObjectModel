@@ -33,6 +33,8 @@
 #import "NSMutableString+Issues.h"
 #import "Currency.h"
 
+#define REF_LENGTH_THRESHOLD	5
+
 static NSUInteger const kSenderSection = 1;
 
 @interface ConfirmPaymentViewController ()
@@ -108,7 +110,7 @@ static NSUInteger const kSenderSection = 1;
     [receiverCells addObjectsFromArray:fieldCells];
 
     TextEntryCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
-	referenceCell.maxValueLength = self.payment.targetCurrency.referenceMaxLengthValue;
+	referenceCell.maxValueLength = [self getReferenceMaxLength:self.payment];
     [self setReferenceCell:referenceCell];
     [referenceCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
     [receiverCells addObject:referenceCell];
@@ -188,12 +190,11 @@ static NSUInteger const kSenderSection = 1;
     [self fillDeliveryDetails:self.estimatedExchangeRateLabel];
 
     [self.senderNameCell.detailTextLabel setText:NSLocalizedString(@"confirm.payment.sender.marker.label", nil)];
-
-    if ([payment businessProfileUsed]) {
-        [self.senderNameCell.textLabel setText:payment.user.businessProfile.name];
-    } else {
-        [self.senderNameCell.imageView setImage:[UIImage imageNamed:@"ProfileIcon.png"]];
-        [self.senderNameCell.textLabel setText:[payment.user.personalProfile fullName]];
+	[self.senderNameCell.textLabel setText:[self getSenderName:payment]];
+	
+    if (![payment businessProfileUsed])
+	{
+		[self.senderNameCell.imageView setImage:[UIImage imageNamed:@"ProfileIcon.png"]];
     }
 
     [self.receiverNameCell.textLabel setText:[payment.recipient name]];
@@ -202,6 +203,23 @@ static NSUInteger const kSenderSection = 1;
     [self.referenceCell setEditable:YES];
     [self.referenceCell configureWithTitle:NSLocalizedString(@"confirm.payment.reference.label", nil) value:@""];
 	[self.referenceCell.entryField setAutocorrectionType:UITextAutocorrectionTypeDefault];
+}
+
+- (NSString *)getSenderName:(Payment *)payment
+{
+	if ([payment businessProfileUsed])
+	{
+        return payment.user.businessProfile.name;
+    }
+	else
+	{
+        return [payment.user.personalProfile fullName];
+    }
+}
+
+- (NSInteger)getReferenceMaxLength:(Payment *)payment
+{
+	return self.payment.targetCurrency.referenceMaxLengthValue;
 }
 
 - (void)fillDeliveryDetails:(OHAttributedLabel *)label
@@ -241,6 +259,13 @@ static NSUInteger const kSenderSection = 1;
     PendingPayment *input = [self.objectModel pendingPayment];
 
     NSString *reference = [self.referenceCell value];
+	
+	if(reference.length < REF_LENGTH_THRESHOLD)
+	{
+		reference = [NSString stringWithFormat:@"%@ %@", reference, [self getSenderName:self.payment]];
+		reference = [reference substringToIndex:[self getReferenceMaxLength:self.payment]];
+	}
+	
     [input setReference:reference];
 
     NSString *email = self.payment.recipient.email;
@@ -265,10 +290,11 @@ static NSUInteger const kSenderSection = 1;
 	NSMutableString *issues = [NSMutableString string];
 	
     NSString *reference = [self.referenceCell value];
-	NSUInteger referenceLength = (NSUInteger)self.payment.targetCurrency.referenceMaxLengthValue;
+	NSInteger referenceLength = [self getReferenceMaxLength:self.payment];
+	
     if ([reference hasValue] && reference.length > referenceLength)
 	{
-        [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"confirm.payment.validation.error.reference", nil), (unsigned long)referenceLength]];
+        [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"confirm.payment.validation.error.reference", nil), (long)referenceLength]];
     }
 	
     return [NSString stringWithString:issues];
