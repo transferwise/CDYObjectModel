@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AUD</key>
+	<dict>
+		<key>partner</key>
+		<string>Envoyservices Ltd</string>
+		<key>location</key>
+		<string>Australia</string>
+	</dict>
+	<key>CHF</key>
+	<dict>
+		<key>partner</key>
+		<string>WorldPay AP Ltd</string>
+		<key>location</key>
+		<string>Hong Kong</string>
+	</dict>
+	<key>DKK</key>
+	<dict>
+		<key>partner</key>
+		<string>WorldPay AP Ltd</string>
+		<key>location</key>
+		<string>Denmark</string>
+	</dict>
+	<key>HKD</key>
+	<dict>
+		<key>partner</key>
+		<string>WorldPay AP Ltd</string>
+		<key>location</key>
+		<string>Hong Kong</string>
+	</dict>
+	<key>NOK</key>
+	<dict>
+		<key>partner</key>
+		<string>WorldPay AP Ltd</string>
+		<key>location</key>
+		<string>Norway</string>
+	</dict>
+	<key>SEK</key>
+	<dict>
+		<key>partner</key>
+		<string>WorldPay AP Ltd</string>
+		<key>location</key>
+		<string>Sweden</string>
+	</dict>
+</dict>
+</plist>
