@@ -163,8 +163,11 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 		return YES;
 	}
 	
-	NSCharacterSet *alphaSet = [NSCharacterSet alphanumericCharacterSet];
-	return [[value stringByTrimmingCharactersInSet:alphaSet] isEqualToString:@""];
+	NSMutableCharacterSet *alphanumerics = [NSMutableCharacterSet alphanumericCharacterSet];
+	[alphanumerics addCharactersInString:@"."];
+	NSCharacterSet *unwantedCharacters = [alphanumerics invertedSet];
+	
+    return ([value rangeOfCharacterFromSet:unwantedCharacters].location == NSNotFound);
 }
 
 @end
