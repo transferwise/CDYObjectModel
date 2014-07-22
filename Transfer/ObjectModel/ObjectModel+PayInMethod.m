@@ -30,6 +30,7 @@
         //TODO: m@s Remove special cases for SOFORT and SWIFT when supported
         method.disabled = @([payInMethodDictionary[@"disabled"] boolValue] || [method.type caseInsensitiveCompare:@"SOFORT"] == NSOrderedSame || [method.type caseInsensitiveCompare:@"SWIFT"] == NSOrderedSame);
         method.disabledReason = payInMethodDictionary[@"disabledReason"];
+		method.paymentReference = payInMethodDictionary[@"paymentReference"];
         
         [result addObject:method];
     }

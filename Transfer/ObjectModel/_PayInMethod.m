@@ -7,6 +7,7 @@ const struct PayInMethodAttributes PayInMethodAttributes = {
 	.bankName = @"bankName",
 	.disabled = @"disabled",
 	.disabledReason = @"disabledReason",
+	.paymentReference = @"paymentReference",
 	.transferWiseAddress = @"transferWiseAddress",
 	.type = @"type",
 };
@@ -91,6 +92,13 @@ const struct PayInMethodFetchedProperties PayInMethodFetchedProperties = {
 
 
 @dynamic disabledReason;
+
+
+
+
+
+
+@dynamic paymentReference;
 
 
 
