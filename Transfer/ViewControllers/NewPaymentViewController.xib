@@ -145,7 +145,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Et-gt-hPN">
-                    <rect key="frame" x="0.0" y="20" width="44" height="44"/>
+                    <rect key="frame" x="2" y="20" width="44" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="44" id="Wgn-n7-7EB"/>
@@ -192,7 +192,7 @@
                 <constraint firstAttribute="trailing" secondItem="w5b-eJ-Ssl" secondAttribute="trailing" id="wbi-xk-akF"/>
                 <constraint firstItem="Lrw-M9-5jB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="UAL-I7-qIC" secondAttribute="bottom" priority="900" constant="20" id="xB0-6H-oF9"/>
                 <constraint firstAttribute="bottom" secondItem="Lrw-M9-5jB" secondAttribute="bottom" priority="800" constant="187" id="xta-Hy-Llm"/>
-                <constraint firstItem="6Et-gt-hPN" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" id="z9j-bN-uXv"/>
+                <constraint firstItem="6Et-gt-hPN" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" constant="2" id="z9j-bN-uXv"/>
                 <constraint firstItem="WRX-dl-Alg" firstAttribute="top" secondItem="Tkb-LF-80g" secondAttribute="bottom" constant="4" id="zAv-yX-Ls9"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="PSX-uF-FAV" secondAttribute="bottom" constant="55" id="zXd-Xt-lsk"/>
             </constraints>
