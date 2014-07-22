@@ -94,7 +94,7 @@
 
     //TODO jaanus: bank name cell
     TextCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
-    [referenceCell configureWithTitle:NSLocalizedString(@"upload.money.reference.title", nil) text:self.objectModel.currentUser.pReference];
+    [referenceCell configureWithTitle:NSLocalizedString(@"upload.money.reference.title", nil) text:method.paymentReference];
     [presentedCells addObject:referenceCell];
 
     TextCell *addressCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];

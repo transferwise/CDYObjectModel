@@ -57,6 +57,7 @@
         <attribute name="bankName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="disabled" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="disabledReason" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="paymentReference" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="transferWiseAddress" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="payment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Payment" inverseName="payInMethods" inverseEntity="Payment" syncable="YES"/>
@@ -166,7 +167,7 @@
         <element name="Currency" positionX="0" positionY="0" width="128" height="270"/>
         <element name="PairSourceCurrency" positionX="0" positionY="0" width="128" height="120"/>
         <element name="PairTargetCurrency" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="PayInMethod" positionX="36" positionY="180" width="128" height="148"/>
+        <element name="PayInMethod" positionX="36" positionY="180" width="128" height="165"/>
         <element name="Payment" positionX="0" positionY="0" width="128" height="358"/>
         <element name="PendingPayment" positionX="0" positionY="0" width="128" height="148"/>
         <element name="PersonalProfile" positionX="0" positionY="0" width="128" height="195"/>

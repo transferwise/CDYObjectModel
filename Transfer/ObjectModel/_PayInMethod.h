@@ -8,6 +8,7 @@ extern const struct PayInMethodAttributes {
 	__unsafe_unretained NSString *bankName;
 	__unsafe_unretained NSString *disabled;
 	__unsafe_unretained NSString *disabledReason;
+	__unsafe_unretained NSString *paymentReference;
 	__unsafe_unretained NSString *transferWiseAddress;
 	__unsafe_unretained NSString *type;
 } PayInMethodAttributes;
@@ -22,6 +23,7 @@ extern const struct PayInMethodFetchedProperties {
 
 @class Payment;
 @class Recipient;
+
 
 
 
@@ -71,6 +73,16 @@ extern const struct PayInMethodFetchedProperties {
 
 
 //- (BOOL)validateDisabledReason:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* paymentReference;
+
+
+
+//- (BOOL)validatePaymentReference:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -137,6 +149,12 @@ extern const struct PayInMethodFetchedProperties {
 
 - (NSString*)primitiveDisabledReason;
 - (void)setPrimitiveDisabledReason:(NSString*)value;
+
+
+
+
+- (NSString*)primitivePaymentReference;
+- (void)setPrimitivePaymentReference:(NSString*)value;
 
 
 
