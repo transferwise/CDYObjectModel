@@ -33,6 +33,8 @@
     [currency setSymbol:data[@"symbol"]];
     [currency setName:data[@"name"]];
     [currency setDefaultRecipientType:[self recipientTypeWithCode:data[@"defaultRecipientType"]]];
+	[currency setReferenceMaxLength:(NSNumber *)data[@"paymentReferenceMaxLength"]];
+	
     NSArray *allTypes = data[@"recipientTypes"];
     NSArray *typeObjects = [self recipientTypesWithCodes:allTypes];
 

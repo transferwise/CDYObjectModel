@@ -28,6 +28,7 @@
         <attribute name="paymentReferenceAllowed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="recipientBicRequired" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="recipientEmailRequired" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="referenceMaxLength" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="symbol" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="currencyForRecipients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipient" inverseName="currency" inverseEntity="Recipient" syncable="YES"/>
         <relationship name="defaultRecipientType" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientType" inverseName="defaultForCurrencies" inverseEntity="RecipientType" syncable="YES"/>
@@ -162,9 +163,9 @@
         <element name="AllowedTypeFieldValue" positionX="0" positionY="0" width="128" height="90"/>
         <element name="BusinessProfile" positionX="0" positionY="0" width="128" height="180"/>
         <element name="Country" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="Currency" positionX="0" positionY="0" width="128" height="253"/>
+        <element name="Currency" positionX="0" positionY="0" width="128" height="270"/>
         <element name="PairSourceCurrency" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="PairTargetCurrency" positionX="0" positionY="0" width="128" height="133"/>
+        <element name="PairTargetCurrency" positionX="0" positionY="0" width="128" height="135"/>
         <element name="PayInMethod" positionX="36" positionY="180" width="128" height="148"/>
         <element name="Payment" positionX="0" positionY="0" width="128" height="358"/>
         <element name="PendingPayment" positionX="0" positionY="0" width="128" height="148"/>

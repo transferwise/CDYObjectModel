@@ -11,6 +11,7 @@ extern const struct CurrencyAttributes {
 	__unsafe_unretained NSString *paymentReferenceAllowed;
 	__unsafe_unretained NSString *recipientBicRequired;
 	__unsafe_unretained NSString *recipientEmailRequired;
+	__unsafe_unretained NSString *referenceMaxLength;
 	__unsafe_unretained NSString *symbol;
 } CurrencyAttributes;
 
@@ -34,6 +35,7 @@ extern const struct CurrencyFetchedProperties {
 @class PairSourceCurrency;
 @class Payment;
 @class PairTargetCurrency;
+
 
 
 
@@ -127,6 +129,20 @@ extern const struct CurrencyFetchedProperties {
 - (void)setRecipientEmailRequiredValue:(BOOL)value_;
 
 //- (BOOL)validateRecipientEmailRequired:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* referenceMaxLength;
+
+
+
+@property int16_t referenceMaxLengthValue;
+- (int16_t)referenceMaxLengthValue;
+- (void)setReferenceMaxLengthValue:(int16_t)value_;
+
+//- (BOOL)validateReferenceMaxLength:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -275,6 +291,15 @@ extern const struct CurrencyFetchedProperties {
 
 - (BOOL)primitiveRecipientEmailRequiredValue;
 - (void)setPrimitiveRecipientEmailRequiredValue:(BOOL)value_;
+
+
+
+
+- (NSNumber*)primitiveReferenceMaxLength;
+- (void)setPrimitiveReferenceMaxLength:(NSNumber*)value;
+
+- (int16_t)primitiveReferenceMaxLengthValue;
+- (void)setPrimitiveReferenceMaxLengthValue:(int16_t)value_;
 
 
 

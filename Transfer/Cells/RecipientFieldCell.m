@@ -21,40 +21,50 @@ NSString *const TWRecipientFieldCellIdentifier = @"TWRecipientFieldCellIdentifie
 
 @implementation RecipientFieldCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
+    if (self)
+	{
         // Initialization code
     }
     return self;
 }
 
-- (void)setFieldType:(RecipientTypeField *)field {
+- (void)setFieldType:(RecipientTypeField *)field
+{
     [self setType:field];
+	self.maxValueLength = [self.type maxLengthValue];
     [self configureWithTitle:field.title value:nil];
 }
 
-- (BOOL)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+- (BOOL)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
     NSString *pattern = self.type.presentationPattern;
-    NSInteger maxValueLength = [self.type maxLengthValue];
 
-    if (![pattern hasValue] && maxValueLength == 0) {
+    if (![pattern hasValue] && self.maxValueLength == 0)
+	{
         return YES;
     }
 
     NSString *modified = [self.entryField.text stringByReplacingCharactersInRange:range withString:string];
 
-    if ([pattern hasValue] && [modified length] > [pattern length]) {
+    if ([pattern hasValue] && [modified length] > [pattern length])
+	{
         return NO;
     }
 
-    if (maxValueLength > 0 && [modified length] > maxValueLength) {
+    if (self.maxValueLength > 0 && [modified length] > self.maxValueLength)
+	{
         return NO;
     }
 
-    if ([string length] == 0) {
+    if ([string length] == 0)
+	{
         modified = [modified stringByRemovingPatterChar:pattern];
-    } else {
+    }
+	else
+	{
         modified = [modified applyPattern:pattern];
         modified = [modified stringByAddingPatternChar:pattern];
     }

@@ -10,6 +10,7 @@ const struct CurrencyAttributes CurrencyAttributes = {
 	.paymentReferenceAllowed = @"paymentReferenceAllowed",
 	.recipientBicRequired = @"recipientBicRequired",
 	.recipientEmailRequired = @"recipientEmailRequired",
+	.referenceMaxLength = @"referenceMaxLength",
 	.symbol = @"symbol",
 };
 
@@ -69,6 +70,11 @@ const struct CurrencyFetchedProperties CurrencyFetchedProperties = {
 	}
 	if ([key isEqualToString:@"recipientEmailRequiredValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"recipientEmailRequired"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"referenceMaxLengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"referenceMaxLength"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -191,6 +197,32 @@ const struct CurrencyFetchedProperties CurrencyFetchedProperties = {
 
 - (void)setPrimitiveRecipientEmailRequiredValue:(BOOL)value_ {
 	[self setPrimitiveRecipientEmailRequired:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
+@dynamic referenceMaxLength;
+
+
+
+- (int16_t)referenceMaxLengthValue {
+	NSNumber *result = [self referenceMaxLength];
+	return [result shortValue];
+}
+
+- (void)setReferenceMaxLengthValue:(int16_t)value_ {
+	[self setReferenceMaxLength:[NSNumber numberWithShort:value_]];
+}
+
+- (int16_t)primitiveReferenceMaxLengthValue {
+	NSNumber *result = [self primitiveReferenceMaxLength];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveReferenceMaxLengthValue:(int16_t)value_ {
+	[self setPrimitiveReferenceMaxLength:[NSNumber numberWithShort:value_]];
 }
 
 
