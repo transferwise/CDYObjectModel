@@ -30,10 +30,10 @@
 #import "GoogleAnalytics.h"
 #import "NSError+TRWErrors.h"
 #import "AnalyticsCoordinator.h"
+#import "NSMutableString+Issues.h"
+#import "Currency.h"
 
-static NSUInteger const kTransferSection = 0;
 static NSUInteger const kSenderSection = 1;
-static NSUInteger const kReceiverSection = 2;
 
 @interface ConfirmPaymentViewController ()
 
@@ -60,7 +60,8 @@ static NSUInteger const kReceiverSection = 2;
 
 @implementation ConfirmPaymentViewController
 
-- (id)init {
+- (id)init
+{
     self = [super initWithNibName:@"ConfirmPaymentViewController" bundle:nil];
     if (self) {
         // Custom initialization
@@ -68,7 +69,8 @@ static NSUInteger const kReceiverSection = 2;
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     [self.tableView setBackgroundView:nil];
@@ -79,7 +81,8 @@ static NSUInteger const kReceiverSection = 2;
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
 }
 
-- (void)createContent {
+- (void)createContent
+{
     NSMutableArray *transferCells = [NSMutableArray array];
     ConfirmPaymentCell *yourDepositCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
     [self setYourDepositCell:yourDepositCell];
@@ -105,6 +108,7 @@ static NSUInteger const kReceiverSection = 2;
     [receiverCells addObjectsFromArray:fieldCells];
 
     TextEntryCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+	referenceCell.maxValueLength = self.payment.targetCurrency.referenceMaxLengthValue;
     [self setReferenceCell:referenceCell];
     [referenceCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
     [receiverCells addObject:referenceCell];
@@ -138,7 +142,8 @@ static NSUInteger const kReceiverSection = 2;
     [self.footerButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
 }
 
-- (NSArray *)buildFieldCells {
+- (NSArray *)buildFieldCells
+{
     Recipient *recipient = self.payment.recipient;
     NSMutableArray *cells = [NSMutableArray array];
     for (TypeFieldValue *value in recipient.fieldValues) {
@@ -150,12 +155,14 @@ static NSUInteger const kReceiverSection = 2;
     return [NSArray arrayWithArray:cells];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
 
     [self.navigationItem setTitle:NSLocalizedString(@"confirm.payment.controller.title", nil)];
@@ -167,7 +174,8 @@ static NSUInteger const kReceiverSection = 2;
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 }
 
-- (void)fillDataCells {
+- (void)fillDataCells
+{
     Payment *payment = self.payment;
     
     [self.yourDepositCell.textLabel setText:NSLocalizedString(@"confirm.payment.deposit.title.label", nil)];
@@ -196,7 +204,8 @@ static NSUInteger const kReceiverSection = 2;
 	[self.referenceCell.entryField setAutocorrectionType:UITextAutocorrectionTypeDefault];
 }
 
-- (void)fillDeliveryDetails:(OHAttributedLabel *)label {
+- (void)fillDeliveryDetails:(OHAttributedLabel *)label
+{
     NSString *rateString = [self.payment rateString];
     NSString *messageString = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.estimated.exchange.rate.message", nil), rateString];
     NSAttributedString *exchangeRateString = [self attributedStringWithBase:messageString markedString:rateString];
@@ -213,7 +222,19 @@ static NSUInteger const kReceiverSection = 2;
     [label setAttributedText:result];
 }
 
-- (IBAction)footerButtonPressed:(id)sender {
+- (IBAction)footerButtonPressed:(id)sender
+{
+	NSString *issues = [self validateInput];
+    if ([issues hasValue])
+	{
+        [[GoogleAnalytics sharedInstance] sendAlertEvent:@"CreatingPaymentAlert" withLabel:issues];
+		
+        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) message:issues];
+        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+        [alertView show];
+        return;
+    }
+	
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
 
@@ -239,8 +260,22 @@ static NSUInteger const kReceiverSection = 2;
     }];
 }
 
-- (IBAction)contactSupportPressed {
+- (NSString *)validateInput
+{
+	NSMutableString *issues = [NSMutableString string];
+	
+    NSString *reference = [self.referenceCell value];
+	NSUInteger referenceLength = (NSUInteger)self.payment.targetCurrency.referenceMaxLengthValue;
+    if ([reference hasValue] && reference.length > referenceLength)
+	{
+        [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"confirm.payment.validation.error.reference", nil), (unsigned long)referenceLength]];
+    }
+	
+    return [NSString stringWithString:issues];
+}
 
+- (IBAction)contactSupportPressed {
+	
 }
 
 - (NSAttributedString *)attributedStringWithBase:(NSString *)baseString markedString:(NSString *)marked {
@@ -264,15 +299,19 @@ static NSUInteger const kReceiverSection = 2;
 }
 
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if(section == kSenderSection) {
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if(section == kSenderSection)
+	{
         return _headerView;
     }
     return [super tableView:tableView viewForHeaderInSection:section];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if(section == kSenderSection) {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if(section == kSenderSection)
+	{
         return _headerView.frame.size.height;
     }
     return [super tableView:tableView heightForHeaderInSection:section];

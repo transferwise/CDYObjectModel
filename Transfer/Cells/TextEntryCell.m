@@ -109,7 +109,20 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     }
 }
 
-- (BOOL)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+- (BOOL)shouldChangeCharactersInRange:(NSRange)range
+					replacementString:(NSString *)string
+{
+	if (self.maxValueLength == 0)
+	{
+        return YES;
+    }
+	
+	NSString *modified = [self.entryField.text stringByReplacingCharactersInRange:range withString:string];	
+	if (self.maxValueLength > 0 && [modified length] > self.maxValueLength)
+	{
+        return NO;
+    }
+	
     [self setValueModified:YES];
     return YES;
 }

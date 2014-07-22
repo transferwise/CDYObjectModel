@@ -15,6 +15,7 @@ extern NSString *const TWTextEntryCellIdentifier;
 
 @property (nonatomic, strong, readonly) UITextField *entryField;
 @property (nonatomic, copy) NSString *cellTag;
+@property (nonatomic) NSInteger maxValueLength;
 
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value;
 - (NSString *)value;
