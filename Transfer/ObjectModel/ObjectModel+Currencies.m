@@ -51,7 +51,7 @@
 
     currency.recipientBicRequiredValue = [data[@"recipientBicRequired"] boolValue];
     currency.recipientEmailRequiredValue = [data[@"recipientEmailRequired"] boolValue];
-    currency.paymentReferenceAllowedValue = [data[@"paymentEmailRequired"] boolValue];
+    currency.paymentReferenceAllowedValue = data[@"paymentReferenceAllowed"]?[data[@"paymentReferenceAllowed"] boolValue]:YES;
 }
 
 - (NSFetchedResultsController *)fetchedControllerForAllCurrencies {

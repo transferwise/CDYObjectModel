@@ -30,6 +30,7 @@
 #import "GoogleAnalytics.h"
 #import "NSError+TRWErrors.h"
 #import "AnalyticsCoordinator.h"
+#import "Currency.h"
 
 static NSUInteger const kTransferSection = 0;
 static NSUInteger const kSenderSection = 1;
@@ -214,19 +215,50 @@ static NSUInteger const kReceiverSection = 2;
 }
 
 - (IBAction)footerButtonPressed:(id)sender {
+
+    PendingPayment *payment = [self.objectModel pendingPayment];
+    if(payment.targetCurrency.paymentReferenceAllowedValue)
+    {
+        [self sendForValidation];
+    }
+    else
+    {
+        NSString* message;
+        NSDictionary* messageLookup = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"NoRefCurrencyMessages" ofType:@"plist"]][payment.targetCurrency.code];
+        if(messageLookup)
+        {
+            message = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.reference.message", nil),payment.recipient.name,payment.recipient.name,messageLookup[@"partner"],messageLookup[@"location"],payment.recipient.name];
+        
+        }
+        else
+        {
+            message = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.reference.message.default", nil),payment.recipient.name,payment.recipient.name,payment.recipient.name];
+        }
+        
+         TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"",nil) message:message];
+        [alertView setLeftButtonTitle:NSLocalizedString(@"confirm.payment.reference.message.confirm", nil) rightButtonTitle:NSLocalizedString(@"confirm.payment.reference.message.cancel", nil)];
+        [alertView setLeftButtonAction:^{
+            [self sendForValidation];
+        }];
+        [alertView show];
+    }
+}
+
+-(void)sendForValidation
+{
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
-
+    
     PendingPayment *input = [self.objectModel pendingPayment];
-
+    
     NSString *reference = [self.referenceCell value];
     [input setReference:reference];
-
+    
     NSString *email = self.payment.recipient.email;
     if ([email hasValue]) {
         [input setRecipientEmail:email];
     }
-
+    
     [self.paymentFlow validatePayment:input.objectID successBlock:^{
         [hud hide];
     } errorHandler:^(NSError *error) {
@@ -237,6 +269,7 @@ static NSUInteger const kReceiverSection = 2;
             [alertView show];
         }
     }];
+
 }
 
 - (IBAction)contactSupportPressed {

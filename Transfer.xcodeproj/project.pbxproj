@@ -19,6 +19,8 @@
 		38C27941197953E600388C8A /* PayInMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C2793F197953E600388C8A /* PayInMethod.m */; };
 		38C27944197955DB00388C8A /* ObjectModel+PayInMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C27943197955DB00388C8A /* ObjectModel+PayInMethod.m */; };
 		38C27945197955DB00388C8A /* ObjectModel+PayInMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C27943197955DB00388C8A /* ObjectModel+PayInMethod.m */; };
+		38C27947197E95C700388C8A /* NoRefCurrencyMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38C27946197E95C700388C8A /* NoRefCurrencyMessages.plist */; };
+		38C27948197E95C700388C8A /* NoRefCurrencyMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38C27946197E95C700388C8A /* NoRefCurrencyMessages.plist */; };
 		BA6650856E3051C31A982C78 /* GoogleAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = BA66546EEC8C630867200E77 /* GoogleAnalytics.m */; };
 		BA665EA5E58A6DA4DEB8E622 /* GoogleAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = BA66546EEC8C630867200E77 /* GoogleAnalytics.m */; };
 		BB29BD47173CD2FF0016A6E9 /* BankTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29BD46173CD2FF0016A6E9 /* BankTransferViewController.m */; };
@@ -562,6 +564,7 @@
 		38C2793F197953E600388C8A /* PayInMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayInMethod.m; sourceTree = "<group>"; };
 		38C27942197955DB00388C8A /* ObjectModel+PayInMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+PayInMethod.h"; sourceTree = "<group>"; };
 		38C27943197955DB00388C8A /* ObjectModel+PayInMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+PayInMethod.m"; sourceTree = "<group>"; };
+		38C27946197E95C700388C8A /* NoRefCurrencyMessages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NoRefCurrencyMessages.plist; sourceTree = "<group>"; };
 		9C1FBDCF7CCD414999CC7D3D /* libPods-TransferTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TransferTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9D5DEC1F8394C87A604EF4F /* Pods-TransferTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransferTests.xcconfig"; path = "Pods/Pods-TransferTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		BA66546EEC8C630867200E77 /* GoogleAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalytics.m; sourceTree = "<group>"; };
@@ -1563,6 +1566,7 @@
 				EAAA1479171BC911005B9430 /* main.m */,
 				EAAA1475171BC911005B9430 /* Transfer-Info.plist */,
 				EAAA147B171BC911005B9430 /* Transfer-Prefix.pch */,
+				38C27946197E95C700388C8A /* NoRefCurrencyMessages.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1972,6 +1976,7 @@
 				EA31A22117DDB29B00F937F7 /* ProfileSelectionView.xib in Resources */,
 				EA31A22217DDB29B00F937F7 /* TransferTypeSelectionCell.xib in Resources */,
 				EA0450CC17EC3544008921DA /* BusinessProfileIdentificationViewController.xib in Resources */,
+				38C27948197E95C700388C8A /* NoRefCurrencyMessages.plist in Resources */,
 				EA31A22717DDB29B00F937F7 /* TabBarActivityIndicatorView.xib in Resources */,
 				EA31A22817DDB29B00F937F7 /* currencies.json in Resources */,
 				EA31A22917DDB29B00F937F7 /* currency_pairs.json in Resources */,
@@ -2045,6 +2050,7 @@
 				EA92D985176AF1F20078D0C4 /* ProfileSelectionView.xib in Resources */,
 				BB9A2EB9176F495700C5E058 /* TransferTypeSelectionCell.xib in Resources */,
 				EA0450CB17EC3544008921DA /* BusinessProfileIdentificationViewController.xib in Resources */,
+				38C27947197E95C700388C8A /* NoRefCurrencyMessages.plist in Resources */,
 				EA225C76178EA124009D6B83 /* TabBarActivityIndicatorView.xib in Resources */,
 				EA225CBA178EEA8A009D6B83 /* currencies.json in Resources */,
 				EA225CBB178EEA8A009D6B83 /* currency_pairs.json in Resources */,

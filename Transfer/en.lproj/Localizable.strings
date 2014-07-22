@@ -46,6 +46,10 @@
 "confirm.payment.reference.label" = "Message or reference";
 "confirm.payment.sender.marker.label" = "Sender (you)";
 "confirm.payment.sender.section.title" = "Sender";
+"confirm.payment.reference.message" = "Reference will not appear on %@'s bank statement. Instead %@ will see \"%@\", TransferWise's trusted local partner in %@. The reference will still be visible in the email sent to %@.";
+"confirm.payment.reference.message.default" = "Reference will not appear on [Recipient name] bank statement. Instead [Recipient name] will see the name of TransferWise's trusted local partner in his country. The reference will still be visible in the email sent to [Recipient name].";
+"confirm.payment.reference.message.confirm" = "Ok";
+"confirm.payment.reference.message.cancel" = "Cancel";
 
 "contacts.controller.delete.confirmation.message" = "Are you sure you wish to remove %@ from your recipients?";
 "contacts.controller.delete.conformation.title" = "Delete contact";
