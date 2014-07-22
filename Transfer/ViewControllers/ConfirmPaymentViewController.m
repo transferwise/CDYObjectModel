@@ -220,7 +220,12 @@ static NSUInteger const kSenderSection = 1;
 
 - (NSInteger)getReferenceMaxLength:(Payment *)payment
 {
-	return self.payment.targetCurrency.referenceMaxLengthValue;
+	NSInteger maxLength = self.payment.targetCurrency.referenceMaxLengthValue;
+	
+	//15 is the current minimum maxLength
+	//no currency is without maxLength from API
+	//this is for cases when currencies have not been updated.
+	return maxLength == 0 ? 15 : maxLength;
 }
 
 - (void)fillDeliveryDetails:(OHAttributedLabel *)label
@@ -253,7 +258,13 @@ static NSUInteger const kSenderSection = 1;
 	if(reference.length < REF_LENGTH_THRESHOLD)
 	{
 		reference = [NSString stringWithFormat:@"%@ %@", reference, [self getSenderName:self.payment]];
-		reference = [reference substringToIndex:[self getReferenceMaxLength:self.payment]];
+		
+		NSInteger referenceMaxLength = [self getReferenceMaxLength:self.payment];
+		
+		if(reference.length > referenceMaxLength)
+		{
+			reference = [reference substringToIndex:referenceMaxLength];
+		}
 	}
 	
     [input setReference:reference];
