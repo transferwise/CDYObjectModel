@@ -46,7 +46,6 @@
 "confirm.payment.reference.label" = "Message or reference";
 "confirm.payment.sender.marker.label" = "Sender (you)";
 "confirm.payment.sender.section.title" = "Sender";
-"confirm.payment.validation.error.reference" = "Reference can only be %li characters in length.";
 
 "contacts.controller.delete.confirmation.message" = "Are you sure you wish to remove %@ from your recipients?";
 "contacts.controller.delete.conformation.title" = "Delete contact";

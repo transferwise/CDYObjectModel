@@ -112,12 +112,18 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 - (BOOL)shouldChangeCharactersInRange:(NSRange)range
 					replacementString:(NSString *)string
 {
+	NSString *modified = [self.entryField.text stringByReplacingCharactersInRange:range withString:string];
+	
+	if(![self validateAlphaNumeric:modified])
+	{
+		return NO;
+	}
+	
 	if (self.maxValueLength == 0)
 	{
         return YES;
     }
 	
-	NSString *modified = [self.entryField.text stringByReplacingCharactersInRange:range withString:string];	
 	if (self.maxValueLength > 0 && [modified length] > self.maxValueLength)
 	{
         return NO;
@@ -127,13 +133,16 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     return YES;
 }
 
-- (void)markIssue:(NSString *)issueMessage {
+- (void)markIssue:(NSString *)issueMessage
+{
     [self setValidationIssue:issueMessage];
     [self.errorButton setHidden:!self.valueModified || ![issueMessage hasValue] || [self.entryField isFirstResponder]];
 }
 
-- (IBAction)errorButtonTapped {
-    if (![self.validationIssue hasValue]) {
+- (IBAction)errorButtonTapped
+{
+    if (![self.validationIssue hasValue])
+	{
         return;
     }
 
@@ -142,8 +151,20 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     [alertView show];
 }
 
-- (void)markTouched {
+- (void)markTouched
+{
     [self setValueModified:YES];
+}
+
+- (BOOL)validateAlphaNumeric:(NSString *)value
+{
+	if(!self.validateAlphaNumeric)
+	{
+		return YES;
+	}
+	
+	NSCharacterSet *alphaSet = [NSCharacterSet alphanumericCharacterSet];
+	return [[value stringByTrimmingCharactersInSet:alphaSet] isEqualToString:@""];
 }
 
 @end

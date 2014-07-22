@@ -111,7 +111,8 @@ static NSUInteger const kSenderSection = 1;
 
     TextEntryCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
 	referenceCell.maxValueLength = [self getReferenceMaxLength:self.payment];
-    [self setReferenceCell:referenceCell];
+	referenceCell.validateAlphaNumeric = YES;
+	[self setReferenceCell:referenceCell];
     [referenceCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
     [receiverCells addObject:referenceCell];
 
@@ -242,18 +243,7 @@ static NSUInteger const kSenderSection = 1;
 
 - (IBAction)footerButtonPressed:(id)sender
 {
-	NSString *issues = [self validateInput];
-    if ([issues hasValue])
-	{
-        [[GoogleAnalytics sharedInstance] sendAlertEvent:@"CreatingPaymentAlert" withLabel:issues];
-		
-        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) message:issues];
-        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-        [alertView show];
-        return;
-    }
-	
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+	TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
 
     PendingPayment *input = [self.objectModel pendingPayment];
@@ -283,21 +273,6 @@ static NSUInteger const kSenderSection = 1;
             [alertView show];
         }
     }];
-}
-
-- (NSString *)validateInput
-{
-	NSMutableString *issues = [NSMutableString string];
-	
-    NSString *reference = [self.referenceCell value];
-	NSInteger referenceLength = [self getReferenceMaxLength:self.payment];
-	
-    if ([reference hasValue] && reference.length > referenceLength)
-	{
-        [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"confirm.payment.validation.error.reference", nil), (long)referenceLength]];
-    }
-	
-    return [NSString stringWithString:issues];
 }
 
 - (IBAction)contactSupportPressed {
@@ -342,6 +317,4 @@ static NSUInteger const kSenderSection = 1;
     }
     return [super tableView:tableView heightForHeaderInSection:section];
 }
-
-
 @end
