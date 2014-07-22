@@ -444,6 +444,30 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     if (![name hasValue]) {
         [issues appendIssue:NSLocalizedString(@"recipient.controller.validation.error.empty.name", nil)];
     }
+    
+    PendingPayment *payment = self.objectModel.pendingPayment;
+    NSString *email = self.emailCell.value;
+    if([email length] == 0 )
+    {
+        if(payment.targetCurrency.recipientEmailRequiredValue)
+        {
+            [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.empty.email", nil),payment.targetCurrency.code]];
+        }
+    }
+    else
+    {
+        NSError *error = nil;
+        // Sanity check email for the precence of an "@" and a "."
+        // [Anything]@[Anything].[Anything]
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^.+@.+\\..+$" options:NSRegularExpressionCaseInsensitive error:&error];
+        
+        NSAssert(regex, @"Failed to create regular expresison");
+        NSRange match = [regex rangeOfFirstMatchInString:email options:NSMatchingReportCompletion range:NSMakeRange(0, [email length])];
+        if (match.location == NSNotFound)
+        {
+            [issues appendIssue:NSLocalizedString(@"recipient.controller.validation.error.email.format", nil)];
+        }
+    }
 
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
         if ([cell isKindOfClass:[TransferTypeSelectionCell class]]) {

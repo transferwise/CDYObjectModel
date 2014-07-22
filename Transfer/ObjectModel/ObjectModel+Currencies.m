@@ -48,6 +48,10 @@
 
     [currency setRecipientTypes:[[NSOrderedSet alloc] initWithArray:orderedTypes]];
     [currency setIndexValue:(int16_t) index];
+
+    currency.recipientBicRequiredValue = [data[@"recipientBicRequired"] boolValue];
+    currency.recipientEmailRequiredValue = [data[@"recipientEmailRequired"] boolValue];
+    currency.paymentReferenceAllowedValue = [data[@"paymentEmailRequired"] boolValue];
 }
 
 - (NSFetchedResultsController *)fetchedControllerForAllCurrencies {

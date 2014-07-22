@@ -8,6 +8,9 @@ extern const struct CurrencyAttributes {
 	__unsafe_unretained NSString *code;
 	__unsafe_unretained NSString *index;
 	__unsafe_unretained NSString *name;
+	__unsafe_unretained NSString *paymentReferenceAllowed;
+	__unsafe_unretained NSString *recipientBicRequired;
+	__unsafe_unretained NSString *recipientEmailRequired;
 	__unsafe_unretained NSString *symbol;
 } CurrencyAttributes;
 
@@ -31,6 +34,9 @@ extern const struct CurrencyFetchedProperties {
 @class PairSourceCurrency;
 @class Payment;
 @class PairTargetCurrency;
+
+
+
 
 
 
@@ -79,6 +85,48 @@ extern const struct CurrencyFetchedProperties {
 
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* paymentReferenceAllowed;
+
+
+
+@property BOOL paymentReferenceAllowedValue;
+- (BOOL)paymentReferenceAllowedValue;
+- (void)setPaymentReferenceAllowedValue:(BOOL)value_;
+
+//- (BOOL)validatePaymentReferenceAllowed:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* recipientBicRequired;
+
+
+
+@property BOOL recipientBicRequiredValue;
+- (BOOL)recipientBicRequiredValue;
+- (void)setRecipientBicRequiredValue:(BOOL)value_;
+
+//- (BOOL)validateRecipientBicRequired:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* recipientEmailRequired;
+
+
+
+@property BOOL recipientEmailRequiredValue;
+- (BOOL)recipientEmailRequiredValue;
+- (void)setRecipientEmailRequiredValue:(BOOL)value_;
+
+//- (BOOL)validateRecipientEmailRequired:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -200,6 +248,33 @@ extern const struct CurrencyFetchedProperties {
 
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitivePaymentReferenceAllowed;
+- (void)setPrimitivePaymentReferenceAllowed:(NSNumber*)value;
+
+- (BOOL)primitivePaymentReferenceAllowedValue;
+- (void)setPrimitivePaymentReferenceAllowedValue:(BOOL)value_;
+
+
+
+
+- (NSNumber*)primitiveRecipientBicRequired;
+- (void)setPrimitiveRecipientBicRequired:(NSNumber*)value;
+
+- (BOOL)primitiveRecipientBicRequiredValue;
+- (void)setPrimitiveRecipientBicRequiredValue:(BOOL)value_;
+
+
+
+
+- (NSNumber*)primitiveRecipientEmailRequired;
+- (void)setPrimitiveRecipientEmailRequired:(NSNumber*)value;
+
+- (BOOL)primitiveRecipientEmailRequiredValue;
+- (void)setPrimitiveRecipientEmailRequiredValue:(BOOL)value_;
 
 
 
