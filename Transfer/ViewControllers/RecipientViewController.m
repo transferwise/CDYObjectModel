@@ -449,9 +449,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     NSString *email = self.emailCell.value;
     if([email length] == 0 )
     {
-        if(payment.targetCurrency.recipientEmailRequiredValue)
+        if(self.currency.recipientEmailRequiredValue)
         {
-            [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.empty.email", nil),payment.targetCurrency.code]];
+            [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.empty.email", nil),self.currency.code]];
         }
     }
     else
