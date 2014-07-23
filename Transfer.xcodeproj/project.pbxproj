@@ -61,6 +61,8 @@
 		3831AA41194B5A8B00B3EE5C /* WhyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */; };
 		38342BAB196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
 		38342BAC196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
+		38566900198019E600BC4230 /* UIImage+RenderBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 385668FF198019E600BC4230 /* UIImage+RenderBlur.m */; };
+		38566901198019E600BC4230 /* UIImage+RenderBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 385668FF198019E600BC4230 /* UIImage+RenderBlur.m */; };
 		385A66861977C9A200D00D1F /* GrayRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 385A66851977C9A200D00D1F /* GrayRoundedButton.m */; };
 		385A66871977C9A200D00D1F /* GrayRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 385A66851977C9A200D00D1F /* GrayRoundedButton.m */; };
 		385A668A197816AE00D00D1F /* RecipientCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385A6689197816AE00D00D1F /* RecipientCell~ipad.xib */; };
@@ -800,6 +802,8 @@
 		3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WhyViewController~ipad.xib"; sourceTree = "<group>"; };
 		38342BA9196E9362002FF371 /* DataEntryMultiColumnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryMultiColumnViewController.h; sourceTree = "<group>"; };
 		38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryMultiColumnViewController.m; sourceTree = "<group>"; };
+		385668FE198019E600BC4230 /* UIImage+RenderBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RenderBlur.h"; sourceTree = "<group>"; };
+		385668FF198019E600BC4230 /* UIImage+RenderBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RenderBlur.m"; sourceTree = "<group>"; };
 		385A66841977C9A200D00D1F /* GrayRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GrayRoundedButton.h; path = Views/GrayRoundedButton.h; sourceTree = "<group>"; };
 		385A66851977C9A200D00D1F /* GrayRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GrayRoundedButton.m; path = Views/GrayRoundedButton.m; sourceTree = "<group>"; };
 		385A6689197816AE00D00D1F /* RecipientCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecipientCell~ipad.xib"; sourceTree = "<group>"; };
@@ -1782,6 +1786,8 @@
 				38AEB3C61966B8BF00B852E1 /* UIResponder+FirstResponder.m */,
 				47C580A1196AC1A7007771DB /* UIGestureRecognizer+Cancel.h */,
 				47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */,
+				385668FE198019E600BC4230 /* UIImage+RenderBlur.h */,
+				385668FF198019E600BC4230 /* UIImage+RenderBlur.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3093,6 +3099,7 @@
 				EA31A19F17DDB29B00F937F7 /* NSDate+ServerTime.m in Sources */,
 				EA31A1A017DDB29B00F937F7 /* ObjectModel+CurrencyPairs.m in Sources */,
 				EA31A1A117DDB29B00F937F7 /* _PairSourceCurrency.m in Sources */,
+				38566901198019E600BC4230 /* UIImage+RenderBlur.m in Sources */,
 				EA31A1A217DDB29B00F937F7 /* PairSourceCurrency.m in Sources */,
 				4723EA2A1975349C00B4345F /* TransferPayIPadViewController.m in Sources */,
 				EA31A1A317DDB29B00F937F7 /* RecipientsOperation.m in Sources */,
@@ -3357,6 +3364,7 @@
 				EA225CA9178EC3A4009D6B83 /* _PairSourceCurrency.m in Sources */,
 				EA225CAC178EC3B2009D6B83 /* PairSourceCurrency.m in Sources */,
 				EA225CAF178ECD68009D6B83 /* RecipientsOperation.m in Sources */,
+				38566900198019E600BC4230 /* UIImage+RenderBlur.m in Sources */,
 				EA0450DA17EC64BC008921DA /* IntroView.m in Sources */,
 				4723EA291975349C00B4345F /* TransferPayIPadViewController.m in Sources */,
 				47FAF348194B3233004CE986 /* UIImage+Color.m in Sources */,
