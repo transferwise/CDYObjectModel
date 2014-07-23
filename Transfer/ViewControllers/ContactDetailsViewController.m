@@ -7,8 +7,17 @@
 //
 
 #import "ContactDetailsViewController.h"
+#import "PlainPresentationCell.h"
+#import "RecipientTypeField.h"
+#import "TypeFieldValue.h"
 
-@interface ContactDetailsViewController ()
+@interface ContactDetailsViewController ()<UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIImageView *headerBackground;
+@property (weak, nonatomic) IBOutlet UIImageView *userImage;
+@property (weak, nonatomic) IBOutlet UIButton *sendMoneyButton;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @end
 
@@ -26,13 +35,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    UINib * cellNib = [UINib nibWithNibName:@"PlainPresentationCell" bundle:[NSBundle mainBundle]];
+    [self.tableView registerNib:cellNib forCellReuseIdentifier:PlainPresentationCellIdentifier];
+    [self.tableView reloadData];
+    self.nameLabel.text = self.recipient.name;
 }
 
-- (void)didReceiveMemoryWarning
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return [self.recipient.fieldValues count] + 1;
 }
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PlainPresentationCell* cell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
+    if(indexPath.row < [self.recipient.fieldValues count])
+    {
+        TypeFieldValue* value = [self.recipient.fieldValues objectAtIndex:indexPath.row];
+        [cell configureWithTitle:value.valueForField.title text:value.value];
+    }
+    else
+    {
+        [cell configureWithTitle:NSLocalizedString(@"recipient.controller.cell.label.email", nil) text:self.recipient.email?:@"-"];
+    }
+    return cell;
+}
+
 
 @end

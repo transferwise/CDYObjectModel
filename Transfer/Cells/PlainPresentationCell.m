@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-#import "BankTransferDetailCell.h"
+#import "PlainPresentationCell.h"
 
-@implementation BankTransferDetailCell
+@implementation PlainPresentationCell
 
 - (void)configureWithTitle:(NSString *)title text:(NSString *)text {
     [self.headerLabel setText:title];

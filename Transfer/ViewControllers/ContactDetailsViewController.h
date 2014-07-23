@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Recipient.h"
 
 @interface ContactDetailsViewController : UIViewController
+
+@property (nonatomic, strong) Recipient *recipient;
 
 @end

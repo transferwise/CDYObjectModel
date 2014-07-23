@@ -195,6 +195,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 	[self removeCancellingFromCell];
     ContactDetailsViewController* detailController = [[ContactDetailsViewController alloc] init];
+    detailController.recipient = [self.allRecipients objectAtIndexPath:indexPath];
     [self presentDetail:detailController];
 }
 
