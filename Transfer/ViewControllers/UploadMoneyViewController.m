@@ -37,11 +37,10 @@
 - (void)viewDidLoad
 {
 	[self initControllers];
-	[super configureWithFirstController:self.cardViewController
-							 firstTitle:NSLocalizedString(@"payment.method.card", nil)
-					   secondController:self.bankViewController
-							secondTitle:NSLocalizedString(@"payment.method.regular", nil)
-							actionTitle:NSLocalizedString(@"transferdetails.controller.button.support",nil)];
+	[super configureWithControllers:@[self.cardViewController, self.bankViewController]
+							 titles:@[NSLocalizedString(@"payment.method.card", nil), NSLocalizedString(@"payment.method.regular", nil)]
+						actionTitle:NSLocalizedString(@"transferdetails.controller.button.support",nil)];
+					
     [super viewDidLoad];
 
     [self setTitle:NSLocalizedString(@"upload.money.title", @"")];
@@ -82,17 +81,19 @@
     [self setBankViewController:bankController];
 }
 
-- (void)willSelectFirstViewController
+- (void)willSelectViewController:(UIViewController *)controller atIndex:(NSUInteger)index
 {
-	[[GoogleAnalytics sharedInstance] sendScreen:@"Debit card payment"];
-	[self.cardViewController loadCardView];
-}
-
-- (void)willSelectSecondViewController
-{
-	[[GoogleAnalytics sharedInstance] sendScreen:@"Bank transfer payment"];
-	self.bankViewController.tableView.contentInset = IPAD?UIEdgeInsetsMake(55, 0, 0, 0):UIEdgeInsetsMake(20, 0, 50, 0);
-	[self.bankViewController.tableView setContentOffset:CGPointMake(0,-self.bankViewController.tableView.contentInset.top)];
+	if(controller == self.cardViewController)
+	{
+		[[GoogleAnalytics sharedInstance] sendScreen:@"Debit card payment"];
+		[self.cardViewController loadCardView];
+	}
+	else if(controller == self.bankViewController)
+	{
+		[[GoogleAnalytics sharedInstance] sendScreen:@"Bank transfer payment"];
+		self.bankViewController.tableView.contentInset = IPAD?UIEdgeInsetsMake(55, 0, 0, 0):UIEdgeInsetsMake(20, 0, 50, 0);
+		[self.bankViewController.tableView setContentOffset:CGPointMake(0,-self.bankViewController.tableView.contentInset.top)];
+	}
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -9,11 +9,12 @@
 #import "TabbedHeaderViewController.h"
 #import "HeaderTabView.h"
 #import "UINavigationController+StackManipulations.h"
+#import "Constants.h"
 
 @interface TabbedHeaderViewController ()<HeaderTabViewDelegate>
 
-@property (nonatomic, strong) NSString* firstTitle;
-@property (nonatomic, strong) NSString* secondTitle;
+@property (nonatomic, strong) NSArray* titles;
+@property (nonatomic, strong) NSArray* controllers;
 
 @property (nonatomic, weak) IBOutlet UIView *containerView;
 
@@ -34,30 +35,17 @@
     return self;
 }
 
-- (void)configureWithFirstController:(UIViewController *)first
-						  firstTitle:(NSString *)firstTitle
-					secondController:(UIViewController *)second
-						 secondTitle:(NSString *)secondTitle
-						 actionTitle:(NSString *)actionTitle
+- (void)configureWithControllers:(NSArray *)controllers
+						  titles:(NSArray *)titles
+					 actionTitle:(NSString *)actionTitle
 {
-	self.firstViewController = first;
-	self.secondViewController = second;
-	self.firstTitle = firstTitle;
-	self.secondTitle = secondTitle;
+	MCAssert([controllers count] == [titles count]);
+	
+	self.controllers = controllers;
+	self.titles = titles;
 	
 	[self.actionButton setTitle:actionTitle forState:UIControlStateNormal];
-}
-
-- (void)setFirstViewController:(UIViewController *)firstViewController
-{
-	_firstViewController = firstViewController;
-	[self attachChildController:self.firstViewController];
-}
-
-- (void)setSecondViewController:(UIViewController *)secondViewController
-{
-	_secondViewController = secondViewController;
-	[self attachChildController:self.secondViewController];
+	[self attachControllers:self.controllers];
 }
 
 - (void)viewDidLoad
@@ -66,13 +54,13 @@
 	
     [self setTitle:NSLocalizedString(@"upload.money.title", @"")];
 	
-    if (!self.secondViewController)
+    if ([self.controllers count] < 2)
     {
         self.tabViewHeightConstraint.constant = 0;
     }
 	else
 	{
-		[self.tabView setTabTitles:@[self.firstTitle, self.secondTitle]];
+		[self.tabView setTabTitles:self.titles];
 		[self.tabView setSelectedIndex:0];
 	}
 	
@@ -98,25 +86,40 @@
 
 - (void)headerTabView:(HeaderTabView *)tabView tabTappedAtIndex:(NSUInteger)index
 {
-    if (index == 1 && self.secondViewController)
+	if ([self.controllers count] >= index)
 	{
-		[self willSelectSecondViewController];
-        [self addFirst:self.secondViewController removeSecond:self.firstViewController];
-    }
-	else
-	{
-		[self willSelectFirstViewController];
-		[self addFirst:self.firstViewController removeSecond:self.secondViewController];
-    }
-    
+		UIViewController* controller = self.controllers[index];
+		
+		if(controller)
+		{
+			[self willSelectViewController:controller atIndex:index];
+			[self addToSuperview:controller removeOthers:self.controllers];
+		}
+		
+	}
 }
 
-- (void)addFirst:(UIViewController *)first removeSecond:(UIViewController *)second
+- (void)addToSuperview:(UIViewController *)first removeOthers:(NSArray *)others
 {
 	[self.containerView addSubview:first.view];
 	first.view.frame = self.containerView.bounds;
 	first.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-	[second.view removeFromSuperview];
+	
+	for (UIViewController *controller in others)
+	{
+		if(controller != first && controller.view.subviews != nil)
+		{
+			[controller.view removeFromSuperview];
+		}
+	}
+}
+
+- (void)attachControllers:(NSArray *)controllers
+{
+	for (UIViewController *controller in controllers)
+	{
+		[self attachChildController:controller];
+	}
 }
 
 - (void)attachChildController:(UIViewController *)controller
@@ -131,12 +134,8 @@
 	[self actionTapped];
 }
 
-- (void)willSelectFirstViewController
-{
-	//override in an inheriting class to customize
-}
-
-- (void)willSelectSecondViewController
+- (void)willSelectViewController:(UIViewController *)controller
+						 atIndex:(NSUInteger)index
 {
 	//override in an inheriting class to customize
 }

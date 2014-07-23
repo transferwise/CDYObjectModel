@@ -10,17 +10,12 @@
 
 @interface TabbedHeaderViewController : UIViewController
 
-@property (nonatomic, strong) UIViewController* firstViewController;
-@property (nonatomic, strong) UIViewController* secondViewController;
+- (void)configureWithControllers:(NSArray *)controllers
+						  titles:(NSArray *)titles
+					 actionTitle:(NSString *)actionTitle;
 
-- (void)configureWithFirstController:(UIViewController *)first
-						  firstTitle:(NSString *)firstTitle
-					secondController:(UIViewController *)second
-						 secondTitle:(NSString *)secondTitle
-						 actionTitle:(NSString *)actionTitle;
-
-- (void)willSelectFirstViewController;
-- (void)willSelectSecondViewController;
+- (void)willSelectViewController:(UIViewController *)controller
+						 atIndex:(NSUInteger)index;
 - (void)actionTapped;
 
 @end
