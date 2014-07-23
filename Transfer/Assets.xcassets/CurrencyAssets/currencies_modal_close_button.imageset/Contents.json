@@ -11,12 +11,13 @@
     },
     {
       "idiom" : "iphone",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "close_button_iphone_white.png"
     },
     {
       "idiom" : "iphone",
       "scale" : "2x",
-      "filename" : "currencies_modal_close_button@2x~iPhone.png"
+      "filename" : "close_button_iphone_white@2x.png"
     },
     {
       "idiom" : "ipad",

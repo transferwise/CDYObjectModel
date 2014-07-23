@@ -40,8 +40,8 @@
 - (void)commonSetup
 {
     
-	self.fontStyle = @"heavy.@{17,19}.DarkFont";
-    self.placeholderStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@{17,19}.Greygory"];
+	self.fontStyle = @"heavy.@{17,20}.DarkFont";
+    self.placeholderStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@{17,20}.Greygory"];
     
 	MOMBasicStyle* fontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@{14,16}"];
 	self.floatingLabelFont = [fontStyle font];

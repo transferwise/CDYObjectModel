@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RecipientsFooterView">
+        <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" id="iN0-l3-epB" customClass="RecipientsFooterView">
             <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -30,11 +30,24 @@
                         <action selector="inviteTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="dD2-XP-gKW"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aCd-Lp-Wav" userLabel="View - Seaparator">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="KSq-mP-eRA"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGrey"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="aCd-Lp-Wav" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Es9-W9-pni"/>
+                <constraint firstItem="aCd-Lp-Wav" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="MsN-CV-IPP"/>
                 <constraint firstAttribute="centerX" secondItem="2IX-Ec-3I9" secondAttribute="centerX" id="O8a-aZ-TxH"/>
                 <constraint firstItem="NuL-IF-XrX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="R68-qv-hAa"/>
+                <constraint firstAttribute="trailing" secondItem="aCd-Lp-Wav" secondAttribute="trailing" id="XdP-Vi-Lrw"/>
                 <constraint firstAttribute="trailing" secondItem="NuL-IF-XrX" secondAttribute="trailing" constant="20" symbolic="YES" id="oCy-UD-qZu"/>
                 <constraint firstItem="2IX-Ec-3I9" firstAttribute="top" secondItem="NuL-IF-XrX" secondAttribute="bottom" constant="9" id="x4N-Cb-2Yz"/>
                 <constraint firstItem="NuL-IF-XrX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="26" id="y0P-eV-PAe"/>
@@ -44,6 +57,7 @@
             <connections>
                 <outlet property="inviteButton" destination="2IX-Ec-3I9" id="TS3-nl-lYf"/>
                 <outlet property="inviteLabel" destination="NuL-IF-XrX" id="PGb-LZ-1to"/>
+                <outlet property="separatorViewHeight" destination="KSq-mP-eRA" id="rgB-bD-oov"/>
             </connections>
         </view>
     </objects>

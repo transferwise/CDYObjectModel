@@ -14,7 +14,7 @@
 
 @end
 
-@interface RecipientsFooterView : IntrinsicSizeUIView
+@interface RecipientsFooterView : UIView
 
 @property (weak, nonatomic) id<RecipientsFooterViewDelegate> delegate;
 

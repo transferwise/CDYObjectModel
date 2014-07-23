@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "AddButton.png"
+      "filename" : "Add_button_iphone_blue.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "AddButton@2x.png"
+      "filename" : "Add_button_iphone_blue@2x.png"
     }
   ],
   "info" : {

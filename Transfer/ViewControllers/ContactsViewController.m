@@ -49,7 +49,11 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     if (self)
 	{
         [self setTitle:NSLocalizedString(@"contacts.controller.title", nil)];
-        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"AddButton.png"] style:UIBarButtonItemStylePlain target:self action:@selector(addContactPressed)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 88, 44)];
+        [button addTarget:self  action:@selector(addContactPressed) forControlEvents:UIControlEventTouchUpInside];
+        [button setImage:[UIImage imageNamed:@"AddButton"] forState:UIControlStateNormal];
+		[button setImageEdgeInsets:UIEdgeInsetsMake(0, 58, 0, -17)];
+        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithCustomView:button];
         [self.navigationItem setRightBarButtonItem:addButton];
     }
     return self;
@@ -64,6 +68,8 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 	self.footerView = [[[NSBundle mainBundle] loadNibNamed:@"RecipientsFooterView" owner:self options:nil] objectAtIndex:0];
 	[self.footerView commonSetup];
 	self.footerView.delegate = self;
+    self.footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+	self.tableView.tableFooterView = self.footerView;
 }
 
 - (void)didReceiveMemoryWarning
@@ -147,7 +153,6 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     return cell;
 }
 
-
 - (void)sendTapped:(UITapGestureRecognizer *)gestureRecognizer
 {
 	[self removeCancellingFromCell];
@@ -210,7 +215,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
     [operation setResponseHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            MCLog(@"Have %d recipients", [self.allRecipients.fetchedObjects count]);
+            MCLog(@"Have %lu recipients", (unsigned long)[self.allRecipients.fetchedObjects count]);
 
             [hud hide];
 
@@ -275,8 +280,9 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
         [operation setObjectModel:self.objectModel];
         [operation setResponseHandler:^(NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
+				[self setExecutedOperation:nil];
                 [hud hide];
-                [self handleListRefreshWithPossibleError:error];
+                [self refreshRecipients];
             });
         }];
 
