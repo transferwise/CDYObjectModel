@@ -190,6 +190,16 @@ static NSUInteger const kSenderSection = 1;
 
     [self.estimatedExchangeRateLabel setAutomaticallyAddLinksForType:0];
     [self fillDeliveryDetails:self.estimatedExchangeRateLabel];
+   
+    //Resize header to fit text
+    CGRect textFrame = self.estimatedExchangeRateLabel.frame;
+    CGFloat originalHeight = textFrame.size.height;
+    CGRect attributedStringBounds = [self.estimatedExchangeRateLabel.attributedText boundingRectWithSize:CGSizeMake(textFrame.size.width, 10000) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+    textFrame.size.height = MAX(attributedStringBounds.size.height + 8.0f,originalHeight);
+    CGRect headerFrame = self.headerView.frame;
+    headerFrame.size.height += (textFrame.size.height - originalHeight);
+    self.headerView.frame = headerFrame;
+    self.estimatedExchangeRateLabel.frame = textFrame;
 
     [self.senderNameCell.detailTextLabel setText:NSLocalizedString(@"confirm.payment.sender.marker.label", nil)];
 	[self.senderNameCell.textLabel setText:[self getSenderName:payment]];
@@ -332,10 +342,14 @@ static NSUInteger const kSenderSection = 1;
 
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:baseString];
 
-    OHParagraphStyle *paragraphStyle = [OHParagraphStyle defaultParagraphStyle];
-    paragraphStyle.textAlignment = kCTTextAlignmentCenter;
-    paragraphStyle.lineBreakMode = kCTLineBreakByWordWrapping;
-    [attributedString setParagraphStyle:paragraphStyle];
+    NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    [attributedString addAttribute:NSParagraphStyleAttributeName
+                 value:paragraphStyle
+                 range:NSMakeRange(0, baseString.length)];
+    
     [attributedString setFont:[UIFont systemFontOfSize:12]];
     [attributedString setFont:[UIFont boldSystemFontOfSize:12] range:rateRange];
     [attributedString setTextColor:[UIColor blackColor]];
