@@ -13,6 +13,7 @@
 @protocol HeaderTabViewDelegate <NSObject>
 
 @optional
+
 -(void)headerTabView:(HeaderTabView*)tabView tabTappedAtIndex:(NSUInteger)index;
 
 @end
@@ -23,7 +24,6 @@
 @property (nonatomic, strong) NSNumber* fixedTabWidth;
 
 -(void)setSelectedIndex:(NSUInteger)index;
-
 -(void)setTabTitles:(NSArray*)titles;
 
 

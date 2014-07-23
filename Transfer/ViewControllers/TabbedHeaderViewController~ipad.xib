@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="5056"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UploadMoneyViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TabbedHeaderViewController">
             <connections>
-                <outlet property="containerView" destination="mlD-gY-NzT" id="Wcf-hV-dcw"/>
-                <outlet property="tabView" destination="g3b-qz-iWf" id="ytk-qq-KmG"/>
-                <outlet property="tabViewHeightConstraint" destination="aTh-rv-4fz" id="tsJ-y2-qeA"/>
-                <outlet property="view" destination="1" id="3"/>
+                <outlet property="containerView" destination="DOU-yV-ZNg" id="CdU-4g-GnB"/>
+                <outlet property="tabView" destination="IXj-y3-yUN" id="Cl9-OV-GT1"/>
+                <outlet property="tabViewHeightConstraint" destination="pBo-MU-tRu" id="z8P-33-3kg"/>
+                <outlet property="view" destination="Xod-A7-bAq" id="sM4-AQ-KVn"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="1">
+        <view contentMode="scaleToFill" id="Xod-A7-bAq">
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d86-2N-68O">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="34f-Jm-PsZ" userLabel="View - Header">
                     <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3b-qz-iWf" customClass="HeaderTabView">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IXj-y3-yUN" customClass="HeaderTabView">
                             <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="50" id="iig-7l-Uow"/>
+                                <constraint firstAttribute="height" constant="50" id="ZXY-mP-iVF"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="fixedTabWidth">
@@ -34,35 +34,35 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <outlet property="delegate" destination="-1" id="rjy-zF-Gcn"/>
+                                <outlet property="delegate" destination="-1" id="t4E-K8-pEu"/>
                             </connections>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="g3b-qz-iWf" secondAttribute="bottom" id="SR6-J2-Wev"/>
-                        <constraint firstAttribute="height" constant="50" id="aTh-rv-4fz"/>
-                        <constraint firstAttribute="trailing" secondItem="g3b-qz-iWf" secondAttribute="trailing" id="c4h-09-lkx"/>
-                        <constraint firstItem="g3b-qz-iWf" firstAttribute="leading" secondItem="d86-2N-68O" secondAttribute="leading" id="xkt-Iu-FNB"/>
+                        <constraint firstItem="IXj-y3-yUN" firstAttribute="leading" secondItem="34f-Jm-PsZ" secondAttribute="leading" id="4tM-xW-aNN"/>
+                        <constraint firstAttribute="trailing" secondItem="IXj-y3-yUN" secondAttribute="trailing" id="cw1-do-Wuc"/>
+                        <constraint firstAttribute="bottom" secondItem="IXj-y3-yUN" secondAttribute="bottom" id="eYk-E3-rJH"/>
+                        <constraint firstAttribute="height" constant="50" id="pBo-MU-tRu"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlue"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <view contentMode="scaleToFill" placeholderIntrinsicWidth="768" placeholderIntrinsicHeight="1024" translatesAutoresizingMaskIntoConstraints="NO" id="mlD-gY-NzT">
+                <view contentMode="scaleToFill" placeholderIntrinsicWidth="768" placeholderIntrinsicHeight="1024" translatesAutoresizingMaskIntoConstraints="NO" id="DOU-yV-ZNg" userLabel="View - Container">
                     <rect key="frame" x="0.0" y="50" width="768" height="974"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="768" id="l6V-EC-QTi"/>
+                        <constraint firstAttribute="width" constant="768" id="RfB-fx-20n"/>
                     </constraints>
                 </view>
-                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J6G-cJ-NU1" customClass="GradientView">
+                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TbP-Vp-OuH" customClass="GradientView">
                     <rect key="frame" x="0.0" y="50" width="768" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="20" id="JmA-Ee-Jmm"/>
+                        <constraint firstAttribute="height" constant="20" id="6cs-Q7-MBd"/>
                     </constraints>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <userDefinedRuntimeAttributes>
@@ -76,15 +76,15 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="mlD-gY-NzT" firstAttribute="top" secondItem="g3b-qz-iWf" secondAttribute="bottom" id="0v7-4a-sHz"/>
-                <constraint firstAttribute="bottom" secondItem="mlD-gY-NzT" secondAttribute="bottom" id="Bui-Z1-JxF"/>
-                <constraint firstItem="d86-2N-68O" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="GQF-di-Zev"/>
-                <constraint firstItem="J6G-cJ-NU1" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="HVO-8M-DoP"/>
-                <constraint firstAttribute="trailing" secondItem="J6G-cJ-NU1" secondAttribute="trailing" id="NR3-BY-zeq"/>
-                <constraint firstItem="J6G-cJ-NU1" firstAttribute="top" secondItem="1" secondAttribute="top" constant="50" id="SZx-2d-WbZ"/>
-                <constraint firstAttribute="trailing" secondItem="d86-2N-68O" secondAttribute="trailing" id="YXI-8M-fUR"/>
-                <constraint firstAttribute="centerX" secondItem="mlD-gY-NzT" secondAttribute="centerX" id="iJT-ke-1vh"/>
-                <constraint firstItem="d86-2N-68O" firstAttribute="top" secondItem="1" secondAttribute="top" id="vQ6-fm-oeR"/>
+                <constraint firstAttribute="centerX" secondItem="DOU-yV-ZNg" secondAttribute="centerX" id="JB9-tU-uhS"/>
+                <constraint firstAttribute="trailing" secondItem="34f-Jm-PsZ" secondAttribute="trailing" id="K3i-CK-khe"/>
+                <constraint firstItem="34f-Jm-PsZ" firstAttribute="top" secondItem="Xod-A7-bAq" secondAttribute="top" id="Szk-CL-nHN"/>
+                <constraint firstItem="TbP-Vp-OuH" firstAttribute="top" secondItem="Xod-A7-bAq" secondAttribute="top" constant="50" id="UxI-S6-mf3"/>
+                <constraint firstItem="TbP-Vp-OuH" firstAttribute="leading" secondItem="Xod-A7-bAq" secondAttribute="leading" id="aGI-js-V2i"/>
+                <constraint firstAttribute="trailing" secondItem="TbP-Vp-OuH" secondAttribute="trailing" id="q0p-0Q-wYC"/>
+                <constraint firstItem="DOU-yV-ZNg" firstAttribute="top" secondItem="IXj-y3-yUN" secondAttribute="bottom" id="uVu-ek-fG7"/>
+                <constraint firstAttribute="bottom" secondItem="DOU-yV-ZNg" secondAttribute="bottom" id="wwG-UG-WqL"/>
+                <constraint firstItem="34f-Jm-PsZ" firstAttribute="leading" secondItem="Xod-A7-bAq" secondAttribute="leading" id="yCf-v3-fJl"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
