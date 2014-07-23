@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Constants.h"
+#import "FixSeparatorCell.h"
 
-@interface SwipeToCancelCell : UITableViewCell<UIGestureRecognizerDelegate>
+@interface SwipeToCancelCell : FixSeparatorCell<UIGestureRecognizerDelegate>
 
 @property (nonatomic, readonly) BOOL isCancelVisible;
 @property (nonatomic) BOOL canBeCancelled;

@@ -151,6 +151,8 @@
 		470EB6191976BE98001C5D97 /* CancelableCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 470EB6171976BE98001C5D97 /* CancelableCellViewController.m */; };
 		4710499719470AFD00660B2F /* CurrencyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */; };
 		4710499819470B2A00660B2F /* CurrencyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */; };
+		471C9FFB197FB1AA00BCA3B4 /* FixSeparatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 471C9FFA197FB1AA00BCA3B4 /* FixSeparatorCell.m */; };
+		471C9FFC197FB1AA00BCA3B4 /* FixSeparatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 471C9FFA197FB1AA00BCA3B4 /* FixSeparatorCell.m */; };
 		47233CD6196D457300449042 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47233CD4196D457300449042 /* LoginViewController.m */; };
 		47233CD7196D457300449042 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47233CD4196D457300449042 /* LoginViewController.m */; };
 		47233CD8196D457300449042 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47233CD5196D457300449042 /* LoginViewController.xib */; };
@@ -870,6 +872,8 @@
 		470EB6161976BE98001C5D97 /* CancelableCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelableCellViewController.h; sourceTree = "<group>"; };
 		470EB6171976BE98001C5D97 /* CancelableCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelableCellViewController.m; sourceTree = "<group>"; };
 		4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencyCell~ipad.xib"; sourceTree = "<group>"; };
+		471C9FF9197FB1AA00BCA3B4 /* FixSeparatorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixSeparatorCell.h; sourceTree = "<group>"; };
+		471C9FFA197FB1AA00BCA3B4 /* FixSeparatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixSeparatorCell.m; sourceTree = "<group>"; };
 		47233CD3196D457300449042 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		47233CD4196D457300449042 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		47233CD5196D457300449042 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -1729,6 +1733,8 @@
 				38C7B2961974364C004324E8 /* BankTransferDetailCell.m */,
 				38C7B2971974364C004324E8 /* BankTransferDetailCell.xib */,
 				38C7B2A21975749C004324E8 /* BankTransferDetailCell~ipad.xib */,
+				471C9FF9197FB1AA00BCA3B4 /* FixSeparatorCell.h */,
+				471C9FFA197FB1AA00BCA3B4 /* FixSeparatorCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2951,6 +2957,7 @@
 				380021C7192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */,
 				EA31A14617DDB29B00F937F7 /* TSAlertView.m in Sources */,
 				EA333F3D18A4C00000D8A44E /* PageZoom.m in Sources */,
+				471C9FFC197FB1AA00BCA3B4 /* FixSeparatorCell.m in Sources */,
 				EA31A14717DDB29B00F937F7 /* WhyView.m in Sources */,
 				EACD942F18D82C2C00369905 /* NanTracking.m in Sources */,
 				EA31A14817DDB29B00F937F7 /* Credentials.m in Sources */,
@@ -3214,6 +3221,7 @@
 				BBCC6338172169980094EABB /* WhyView.m in Sources */,
 				EACD942E18D82C2C00369905 /* NanTracking.m in Sources */,
 				479B693419489303001FA4FE /* TransferDetialsHeaderView.m in Sources */,
+				471C9FFB197FB1AA00BCA3B4 /* FixSeparatorCell.m in Sources */,
 				EA88E65B172F96490021492C /* Credentials.m in Sources */,
 				479B69371948A2EB001FA4FE /* UIFont+MOMStyle.m in Sources */,
 				EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */,
