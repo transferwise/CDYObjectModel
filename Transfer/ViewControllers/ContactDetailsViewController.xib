@@ -28,7 +28,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="384" height="315"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Beu-qw-m4I">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Beu-qw-m4I">
                                 <rect key="frame" x="0.0" y="0.0" width="384" height="270"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -87,11 +87,15 @@
                             <constraint firstItem="xae-yh-1Qh" firstAttribute="bottom" secondItem="OZg-fL-hYF" secondAttribute="bottom" constant="-20" id="4ee-gx-Yqv"/>
                             <constraint firstAttribute="trailing" secondItem="OZg-fL-hYF" secondAttribute="trailing" id="6Th-50-dT7"/>
                             <constraint firstItem="xae-yh-1Qh" firstAttribute="top" secondItem="5ZR-g8-5Fa" secondAttribute="bottom" constant="20" id="BBL-dC-6da"/>
+                            <constraint firstItem="Beu-qw-m4I" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="FnJ-Wk-MuZ"/>
                             <constraint firstAttribute="centerX" secondItem="cho-a6-Qhj" secondAttribute="centerX" id="V64-Ve-Fym"/>
+                            <constraint firstAttribute="bottom" secondItem="Beu-qw-m4I" secondAttribute="bottom" constant="45" id="aur-KP-bIn"/>
                             <constraint firstAttribute="centerX" secondItem="xae-yh-1Qh" secondAttribute="centerX" id="egR-LC-dMs"/>
+                            <constraint firstItem="Beu-qw-m4I" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gYD-CV-Ltx"/>
                             <constraint firstItem="OZg-fL-hYF" firstAttribute="centerY" secondItem="cho-a6-Qhj" secondAttribute="centerY" constant="10" id="kec-Wg-dtU"/>
                             <constraint firstItem="OZg-fL-hYF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mo7-3D-ttk"/>
                             <constraint firstItem="OZg-fL-hYF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rBX-o5-8Vq"/>
+                            <constraint firstAttribute="trailing" secondItem="Beu-qw-m4I" secondAttribute="trailing" id="zdv-9c-ajK"/>
                         </constraints>
                         <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                         <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
