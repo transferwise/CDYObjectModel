@@ -85,6 +85,7 @@
 - (void)willSelectFirstViewController
 {
 	[[GoogleAnalytics sharedInstance] sendScreen:@"Debit card payment"];
+	[self.cardViewController loadCardView];
 }
 
 - (void)willSelectSecondViewController
