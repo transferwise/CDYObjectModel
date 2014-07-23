@@ -29,6 +29,9 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="UdO-so-iu2"/>
                             </constraints>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="KyV-5d-4Qs"/>
+                            </connections>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -72,6 +75,9 @@
                     <state key="normal" title="Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="actionTapped:" destination="-1" eventType="touchUpInside" id="M7W-fs-MKx"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

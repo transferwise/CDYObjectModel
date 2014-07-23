@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TabbedHeaderViewController.h"
 
 @class Payment;
 @class ObjectModel;
 
-@interface UploadMoneyViewController : UIViewController
+@interface UploadMoneyViewController : TabbedHeaderViewController
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, strong) Payment *payment;
