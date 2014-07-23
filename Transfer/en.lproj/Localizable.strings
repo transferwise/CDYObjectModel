@@ -48,6 +48,7 @@
 "confirm.payment.sender.section.title" = "Sender";
 "confirm.payment.reference.message" = "The reference will not appear on %@'s bank statement. Instead %@ will see \"%@\", TransferWise's trusted local partner in %@. The reference will still be visible in the email sent to %@.";
 "confirm.payment.reference.message.default" = "The reference will not appear on %@'s bank statement. Instead %@ will see the name of TransferWise's trusted local partner in his country. The reference will still be visible in the email sent to %@.";
+"confirm.payment.reference.message.USD" = "The reference will not appear on %@'s bank statement. The reference will still be visible in the email sent to %@.";
 "confirm.payment.reference.message.confirm" = "Ok";
 "confirm.payment.reference.message.cancel" = "Cancel";
 
