@@ -13,19 +13,10 @@
 				<key>radius</key>
 				<integer>20</integer>
 			</dict>
-			<key>circle136</key>
+			<key>circle</key>
 			<dict>
 				<key>class</key>
-				<string>MOMRoundedCornerStyle</string>
-				<key>radius</key>
-				<integer>68</integer>
-			</dict>
-			<key>circle150</key>
-			<dict>
-				<key>class</key>
-				<string>MOMRoundedCornerStyle</string>
-				<key>radius</key>
-				<integer>75</integer>
+				<string>CircleStyle</string>
 			</dict>
 		</dict>
 		<key>color</key>

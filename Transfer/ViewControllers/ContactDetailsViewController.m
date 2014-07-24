@@ -23,6 +23,11 @@
 #import "Currency.h"
 #import "TRWProgressHUD.h"
 #import "DeleteRecipientOperation.h"
+#import "UIColor+MOMStyle.h"
+#import "NavigationBarCustomiser.h"
+#import "MOMStyle.h"
+#import "UIImage+Color.h"
+#import "TransferBackButtonItem.h"
 
 @interface ContactDetailsViewController ()<UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -31,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *sendMoneyButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *flagIcon;
 
 
 @end
@@ -49,24 +55,46 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
     UINib * cellNib = [UINib nibWithNibName:@"PlainPresentationCell" bundle:[NSBundle mainBundle]];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:PlainPresentationCellIdentifier];
     [self.tableView reloadData];
-    self.nameLabel.text = self.recipient.name;
+    
+    
+    NSMutableAttributedString* nameString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ - %@", self.recipient.name, self.recipient.currency.code]];
+    NSRange hyphenRange = NSMakeRange([self.recipient.name length], 3);
+    [nameString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"corefont"] range:hyphenRange];
+    self.nameLabel.attributedText = nameString;
+    
     [self.sendMoneyButton setTitle:NSLocalizedString(@"contact.detail.send",nil) forState:UIControlStateNormal];
+    
+    self.flagIcon.image = [UIImage imageNamed:self.recipient.currency.code]?:[UIImage imageNamed:@"flag_default"];
     
     //TODO: m@s replace with loading user image once API is implemented.
     UIImage *userImage = [UIImage imageNamed:[NSString stringWithFormat:@"User%d",arc4random()%4]];
     self.userImage.image = userImage;
     
     __weak typeof(self) weakSelf = self;
-    [UIImage headerBackgroundFromImage:userImage finalImageSize:self.headerBackground.frame.size completionBlock:^(UIImage *result) {
+    [UIImage headerBackgroundFromImage:userImage finalImageSize:CGSizeMake(473, 270) completionBlock:^(UIImage *result) {
         weakSelf.headerBackground.alpha = 0.0f;
         weakSelf.headerBackground.image = result;
         [UIView animateWithDuration:0.7f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            weakSelf.headerBackground.alpha = 0.2f;
+            weakSelf.headerBackground.alpha = 0.25f;
         } completion:nil];
     }];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -88,6 +116,8 @@
     }
     return cell;
 }
+
+#pragma mark - button actions
 
 -(IBAction)sendTapped:(id)sender
 {
@@ -123,6 +153,10 @@
     {
         [self.deletionDelegate contactDetailsController:self didDeleteContact:self.recipient];
     }
+}
+
+- (IBAction)backTapped:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
