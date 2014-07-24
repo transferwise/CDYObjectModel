@@ -34,7 +34,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlue"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlueHighlighted"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OZg-fL-hYF">
@@ -73,11 +73,11 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flag_default" translatesAutoresizingMaskIntoConstraints="NO" id="auV-qU-Zei">
-                                <rect key="frame" x="172" y="176" width="40" height="40"/>
+                                <rect key="frame" x="177" y="181" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="kXg-eh-hXS"/>
-                                    <constraint firstAttribute="width" constant="40" id="wn8-wa-0Bg"/>
+                                    <constraint firstAttribute="height" constant="30" id="kXg-eh-hXS"/>
+                                    <constraint firstAttribute="width" constant="30" id="wn8-wa-0Bg"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xae-yh-1Qh">
@@ -93,11 +93,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerY" secondItem="auV-qU-Zei" secondAttribute="centerY" constant="-38" id="4GS-Kj-d62"/>
                             <constraint firstItem="xae-yh-1Qh" firstAttribute="bottom" secondItem="OZg-fL-hYF" secondAttribute="bottom" constant="-20" id="4ee-gx-Yqv"/>
                             <constraint firstAttribute="trailing" secondItem="OZg-fL-hYF" secondAttribute="trailing" id="6Th-50-dT7"/>
                             <constraint firstItem="xae-yh-1Qh" firstAttribute="top" secondItem="5ZR-g8-5Fa" secondAttribute="bottom" constant="20" id="BBL-dC-6da"/>
                             <constraint firstItem="Beu-qw-m4I" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="FnJ-Wk-MuZ"/>
-                            <constraint firstItem="auV-qU-Zei" firstAttribute="top" secondItem="cho-a6-Qhj" secondAttribute="bottom" constant="-24" id="R8c-Sw-oCe"/>
                             <constraint firstAttribute="centerX" secondItem="cho-a6-Qhj" secondAttribute="centerX" id="V64-Ve-Fym"/>
                             <constraint firstAttribute="bottom" secondItem="Beu-qw-m4I" secondAttribute="bottom" constant="45" id="aur-KP-bIn"/>
                             <constraint firstAttribute="centerX" secondItem="xae-yh-1Qh" secondAttribute="centerX" id="egR-LC-dMs"/>
