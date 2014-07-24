@@ -1687,6 +1687,9 @@
 				EAAC203917422AB3001DDE7A /* DropdownCell.h */,
 				EAAC203A17422AB3001DDE7A /* DropdownCell.m */,
 				EAAC203C17422ADB001DDE7A /* DropdownCell.xib */,
+				47535CAC1981362600DC39D6 /* DoublePasswordEntryCellTableViewCell.h */,
+				47535CAD1981362600DC39D6 /* DoublePasswordEntryCellTableViewCell.m */,
+				47535CAE1981362600DC39D6 /* DoublePasswordEntryCellTableViewCell.xib */,
 				EA13E034171BE1210019FBF0 /* MoneyEntryCell.h */,
 				EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */,
 				EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */,
@@ -1733,9 +1736,6 @@
 				38C7B2A21975749C004324E8 /* BankTransferDetailCell~ipad.xib */,
 				471C9FF9197FB1AA00BCA3B4 /* FixSeparatorCell.h */,
 				471C9FFA197FB1AA00BCA3B4 /* FixSeparatorCell.m */,
-				47535CAC1981362600DC39D6 /* DoublePasswordEntryCellTableViewCell.h */,
-				47535CAD1981362600DC39D6 /* DoublePasswordEntryCellTableViewCell.m */,
-				47535CAE1981362600DC39D6 /* DoublePasswordEntryCellTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
