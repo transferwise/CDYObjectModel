@@ -20,6 +20,7 @@
 @property (nonatomic, strong) id profileValidation;
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, assign) BOOL analyticsReport;
+@property (nonatomic, assign) BOOL hideFooter;
 
 - (id)initWithSource:(ProfileSource *)source quickValidation:(QuickProfileValidationOperation *)quickValidation;
 

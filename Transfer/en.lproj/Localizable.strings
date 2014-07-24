@@ -238,8 +238,8 @@ It can take up to 2 working days.";
 "profile.controller.title" = "Profile";
 "profile.controller.tabbar.title" = "Profile";
 "profile.selection.text.base" = "Or %@";
-"profile.selection.text.business.profile" = "send from a business";
-"profile.selection.text.personal.profile" = "send as yourself";
+"profile.selection.text.business.profile" = "Send as business";
+"profile.selection.text.personal.profile" = "Send as me";
 
 "recipient.controller.add.button.title" = "Add";
 "recipient.controller.add.mode.title" = "Add recipient";

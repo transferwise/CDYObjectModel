@@ -10,6 +10,7 @@
 #import "PersonalProfileSource.h"
 #import "PersonalProfileViewController.h"
 #import "BusinessProfileViewController.h"
+#import "TransferBackButtonItem.h"
 
 @interface PaymentProfileViewController ()
 
@@ -20,7 +21,8 @@
 
 @implementation PaymentProfileViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
 	[self initControllers];
 	NSArray *controllers, *titles;
 	
@@ -40,12 +42,17 @@
 							 titles:titles
 						actionTitle:self.buttonTitle ? self.buttonTitle :  NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
     [super viewDidLoad];
+	
+	[self setTitle:NSLocalizedString(@"personal.profile.controller.title", nil)];
+	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
+	[self reconfigureActionButton:@"GreenButton"];
 }
 
 - (void)initControllers
 {
 	self.personalProfile = [[PersonalProfileViewController alloc] init];
 	self.personalProfile.objectModel = self.objectModel;
+	self.personalProfile.hideFooter = YES;
 	
 	if(self.profileValidation)
 	{
@@ -56,6 +63,7 @@
 	{
 		self.businessProfile = [[BusinessProfileViewController alloc] init];
 		self.businessProfile.objectModel = self.objectModel;
+		self.businessProfile.hideFooter = YES;
 		
 		if(self.profileValidation)
 		{

@@ -113,8 +113,6 @@ static NSUInteger const kButtonSection = 0;
         return;
     }
 
-    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
-
     [self.navigationItem setTitle:[self.profileSource editViewTitle]];
 
     [self pullDetails];
@@ -168,7 +166,10 @@ static NSUInteger const kButtonSection = 0;
                 }
 
                 [self setPresentedSectionCells:self.presentationCells];
-                [self.tableView setTableFooterView:self.footer];
+				if (!self.hideFooter)
+				{
+					[self.tableView setTableFooterView:self.footer];
+				}                
                 [self.tableView reloadData];
             });
         }];

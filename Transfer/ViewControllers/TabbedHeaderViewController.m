@@ -10,6 +10,7 @@
 #import "HeaderTabView.h"
 #import "UINavigationController+StackManipulations.h"
 #import "Constants.h"
+#import "ColoredButton.h"
 
 @interface TabbedHeaderViewController ()<HeaderTabViewDelegate>
 
@@ -20,7 +21,7 @@
 
 @property (nonatomic,weak) IBOutlet HeaderTabView *tabView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tabViewHeightConstraint;
-@property (nonatomic,weak) IBOutlet UIButton *actionButton;
+@property (nonatomic,weak) IBOutlet ColoredButton *actionButton;
 
 @end
 
@@ -52,8 +53,6 @@
 {
     [super viewDidLoad];
 	
-    [self setTitle:NSLocalizedString(@"upload.money.title", @"")];
-	
     if ([self.controllers count] < 2)
     {
         self.tabViewHeightConstraint.constant = 0;
@@ -82,6 +81,11 @@
 	[super viewDidAppear:animated];
 	
 	[self.navigationController flattenStack];
+}
+
+- (void)reconfigureActionButton:(NSString *)compoundStyle
+{
+	[self.actionButton configureWithCompoundStyle:compoundStyle];
 }
 
 - (void)headerTabView:(HeaderTabView *)tabView tabTappedAtIndex:(NSUInteger)index
