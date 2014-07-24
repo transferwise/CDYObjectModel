@@ -6,10 +6,14 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import "ProfileEditViewController.h"
+#import "TabbedHeaderViewController.h"
+#import "ObjectModel.h"
 
-@interface PaymentProfileViewController : ProfileEditViewController
+@interface PaymentProfileViewController : TabbedHeaderViewController
 
 @property (nonatomic) BOOL allowProfileSwitch;
+@property (nonatomic, strong) ObjectModel* objectModel;
+@property (nonatomic, strong) NSString* buttonTitle;
+@property (nonatomic, strong) id profileValidation;
 
 @end

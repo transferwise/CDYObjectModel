@@ -9,59 +9,60 @@
 #import "PaymentProfileViewController.h"
 #import "PersonalProfileSource.h"
 #import "ProfileSelectionView.h"
-#import "UIView+Loading.h"
+#import "PersonalProfileViewController.h"
+#import "BusinessProfileViewController.h"
 
 @interface PaymentProfileViewController ()
 
-@property (nonatomic, strong) ProfileSelectionView *profileSelectionView;
+@property (nonatomic, strong) PersonalProfileViewController* personalProfile;
+@property (nonatomic, strong) ProfileEditViewController* businessProfile;
 
 @end
 
 @implementation PaymentProfileViewController
 
-- (id)init {
-    self = [super initWithSource:nil quickValidation:nil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
+	[self initControllers];
+	NSArray *controllers, *titles;
+	
+	if (self.allowProfileSwitch)
+	{
+		controllers = @[self.personalProfile, self.businessProfile];
+		titles = @[NSLocalizedString(@"profile.selection.text.personal.profile", nil), NSLocalizedString(@"profile.selection.text.business.profile", nil)];
+	}
+	else
+	{
+		controllers = @[self.personalProfile];
+		titles = @[NSLocalizedString(@"profile.selection.text.personal.profile", nil)];
+
+	}
+	
+	[super configureWithControllers:controllers
+							 titles:titles
+						actionTitle:self.buttonTitle ? self.buttonTitle :  NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
     [super viewDidLoad];
-
-    if (self.allowProfileSwitch) {
-        [self setProfileSelectionView:[ProfileSelectionView loadInstance]];
-        [self setPresentProfileSource:[self.profileSelectionView presentedSource] reloadView:NO];
-    } else {
-        [self setPresentProfileSource:[[PersonalProfileSource alloc] init] reloadView:NO];
-    }
-
-    __block __weak PaymentProfileViewController *weakSelf = self;
-    [self.profileSelectionView setSelectionHandler:^(ProfileSource *selected) {
-        [weakSelf setPresentProfileSource:selected reloadView:YES];
-    }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if (section == 0) {
-        return self.profileSelectionView;
-    }
-
-    return nil;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if (section == 0) {
-        return CGRectGetHeight(self.profileSelectionView.frame);
-    }
-
-    return 0;
+- (void)initControllers
+{
+	self.personalProfile = [[PersonalProfileViewController alloc] init];
+	self.personalProfile.objectModel = self.objectModel;
+	
+	if(self.profileValidation)
+	{
+		self.personalProfile.profileValidation = self.profileValidation;
+	}
+	
+	if (self.allowProfileSwitch)
+	{
+		self.businessProfile = [[BusinessProfileViewController alloc] init];
+		self.businessProfile.objectModel = self.objectModel;
+		
+		if(self.profileValidation)
+		{
+			self.businessProfile.profileValidation = self.profileValidation;
+		}
+	}
 }
 
 @end

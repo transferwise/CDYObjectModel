@@ -42,7 +42,6 @@
 #import "ObjectModel+PendingPayments.h"
 #import "PendingPayment.h"
 #import "ConfirmPaymentCell.h"
-#import "ProfileSelectionView.h"
 #import "UIView+Loading.h"
 #import "ProfileSource.h"
 #import "User.h"
