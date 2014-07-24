@@ -6,24 +6,26 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-#import "DoublePasswordEntryCellTableViewCell.h"
+#import "DoublePasswordEntryCell.h"
 #import "FloatingLabelTextField.h"
 
-@interface DoublePasswordEntryCellTableViewCell ()
+NSString *const TWDoublePasswordEntryCellIdentifier = @"DoublePasswordEntryCell";
+
+@interface DoublePasswordEntryCell ()
 
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *firstPassword;
-@property (strong, nonatomic) IBOutlet FloatingLabelTextField *secondPawword;
+@property (strong, nonatomic) IBOutlet FloatingLabelTextField *secondPassword;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *firstPasswordWidth;
 
 @end
 
-@implementation DoublePasswordEntryCellTableViewCell
+@implementation DoublePasswordEntryCell
 
 - (void)awakeFromNib
 {
 	[super awakeFromNib];
 	[self.firstPassword configureWithTitle:NSLocalizedString(@"personal.profile.password.label", nil) value:@""];
-	[self.firstPassword configureWithTitle:NSLocalizedString(@"personal.profile.password.confirm.label", nil) value:@""];
+	[self.secondPassword configureWithTitle:NSLocalizedString(@"personal.profile.password.confirm.label", nil) value:@""];
 }
 
 - (void)prepareForReuse
@@ -35,7 +37,7 @@
 {
 	if (self.showDouble && !self.useDummyPassword)
 	{
-		return [self.firstPassword.text isEqualToString:self.self.secondPawword.text];
+		return [self.firstPassword.text isEqualToString:self.self.secondPassword.text];
 	}
 	
 	return YES;
@@ -56,7 +58,7 @@
 - (void)setDummyPassword
 {
 	[self.firstPassword setText:@"asdfasdf"];
-	[self.secondPawword setText:@"asdfasdf"];
+	[self.secondPassword setText:@"asdfasdf"];
 	self.useDummyPassword = YES;
 }
 

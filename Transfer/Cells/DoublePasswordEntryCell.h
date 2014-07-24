@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DoublePasswordEntryCellTableViewCell : UITableViewCell
+extern NSString *const TWDoublePasswordEntryCellIdentifier;
+
+@interface DoublePasswordEntryCell : UITableViewCell
 
 @property (nonatomic, readonly) NSString* value;
 @property (nonatomic) BOOL showDouble;

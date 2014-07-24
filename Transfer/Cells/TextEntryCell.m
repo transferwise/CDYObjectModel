@@ -19,7 +19,6 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 @interface TextEntryCell ()
 
 @property (nonatomic, strong) IBOutlet UITextField *entryField;
-@property (nonatomic, copy) TRWActionBlock doneButtonAction;
 @property (nonatomic, assign) BOOL valueModified;
 @property (nonatomic, strong) IBOutlet UIButton *errorButton;
 @property (nonatomic, copy) NSString *validationIssue;
@@ -74,12 +73,6 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     }
 
     [self.entryField setText:value];
-}
-
-- (void)donePressed {
-    if (self.doneButtonAction) {
-        self.doneButtonAction();
-    }
 }
 
 - (BOOL)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {

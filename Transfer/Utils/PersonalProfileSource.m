@@ -20,6 +20,7 @@
 #import "Credentials.h"
 #import "GoogleAnalytics.h"
 #import "UIView+Loading.h"
+#import "DoublePasswordEntryCell.h"
 
 NSUInteger const kUserButtonSection = 0;
 NSUInteger const kUserPersonalSection = 1;
@@ -35,6 +36,7 @@ NSUInteger const kUserPersonalSection = 1;
 @property (nonatomic, strong) TextEntryCell *postCodeCell;
 @property (nonatomic, strong) TextEntryCell *cityCell;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
+@property (nonatomic, strong) DoublePasswordEntryCell *passwordCell;
 
 @end
 
@@ -42,13 +44,15 @@ NSUInteger const kUserPersonalSection = 1;
 
 - (NSArray *)presentedCells
 {
-    if (self.cells) {
+    if (self.cells)
+	{
         return self.cells;
     }
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"DateEntryCell" bundle:nil] forCellReuseIdentifier:TWDateEntryCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
+	[self.tableView registerNib:[UINib nibWithNibName:@"DoublePasswordEntryCell" bundle:nil] forCellReuseIdentifier:TWDoublePasswordEntryCellIdentifier];
 
     NSMutableArray *cells = [NSMutableArray array];
 	
@@ -57,6 +61,10 @@ NSUInteger const kUserPersonalSection = 1;
     [cells addObject:emailCell];
     [emailCell configureWithTitle:NSLocalizedString(@"personal.profile.email.label", nil) value:@""];
     [emailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
+	
+	DoublePasswordEntryCell *passwordCell = [DoublePasswordEntryCell loadInstance];
+    [self setPasswordCell:passwordCell];
+    [cells addObject:passwordCell];
 
     TextEntryCell *firstNameCell = [TextEntryCell loadInstance];
     [self setFirstNameCell:firstNameCell];
