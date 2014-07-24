@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="detailContainer" destination="kfm-xm-i62" id="vTh-lM-THB"/>
                 <outlet property="tableView" destination="9" id="12"/>
+                <outlet property="titleLabel" destination="Z6O-O7-ybS" id="Wen-d2-r4n"/>
                 <outlet property="view" destination="8" id="13"/>
             </connections>
         </placeholder>

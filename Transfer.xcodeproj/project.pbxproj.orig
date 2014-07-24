@@ -2538,8 +2538,11 @@
 				EA31A1D617DDB29B00F937F7 /* NewPaymentViewController.xib in Resources */,
 				EA31A1D717DDB29B00F937F7 /* MoneyEntryCell.xib in Resources */,
 				47233CD9196D457300449042 /* LoginViewController.xib in Resources */,
+<<<<<<< HEAD
 				47535CB21981362600DC39D6 /* DoublePasswordEntryCellTableViewCell.xib in Resources */,
 				38C7B2A41975749C004324E8 /* BankTransferDetailCell~ipad.xib in Resources */,
+=======
+>>>>>>> UIUpdate
 				380021AB192B9506009B1D53 /* TabViewController~ipad.xib in Resources */,
 				EA0450DE17EC64E4008921DA /* IntroView.xib in Resources */,
 				38CACA65196EE4D400BFCF82 /* TextFieldSuggestionTable~ipad.xib in Resources */,
@@ -2650,6 +2653,11 @@
 				EA13E04E171BEF710019FBF0 /* TextEntryCell.xib in Resources */,
 				EAD736A4171E85D100A037B1 /* RecipientCell.xib in Resources */,
 				47233CD8196D457300449042 /* LoginViewController.xib in Resources */,
+<<<<<<< HEAD
+				47535CB11981362600DC39D6 /* DoublePasswordEntryCellTableViewCell.xib in Resources */,
+				38C7B2A31975749C004324E8 /* BankTransferDetailCell~ipad.xib in Resources */,
+=======
+>>>>>>> UIUpdate
 				EAB7215C171FC61B00DE29F5 /* SettingsViewController.xib in Resources */,
 				4710499719470AFD00660B2F /* CurrencyCell~ipad.xib in Resources */,
 				38CACA64196EE4D400BFCF82 /* TextFieldSuggestionTable~ipad.xib in Resources */,
