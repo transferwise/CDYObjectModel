@@ -67,7 +67,7 @@
     [self.contactSupportFooterButton setTitle:NSLocalizedString(@"transferdetails.controller.button.support", @"") forState:UIControlStateNormal];
     [self.cancelButton setTitle:NSLocalizedString(@"upload.money.cancel.button.title", @"") forState:UIControlStateNormal];
 
-    [self.tableView registerNib:[UINib nibWithNibName:@"BankTransferDetailCell" bundle:nil] forCellReuseIdentifier:PlainPresentationCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"PlainPresentationCell" bundle:nil] forCellReuseIdentifier:PlainPresentationCellIdentifier];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

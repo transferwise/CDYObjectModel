@@ -110,6 +110,9 @@
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="sendTapped:" destination="-1" eventType="touchUpInside" id="aqh-VI-Eky"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KS0-eW-Wca">
                                 <rect key="frame" x="167" y="89" width="50" height="50"/>
@@ -121,6 +124,9 @@
                                 <state key="normal" image="SEK">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="deleteTapped:" destination="-1" eventType="touchUpInside" id="TwA-8o-qCF"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>

@@ -33,11 +33,12 @@
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
-@interface ContactsViewController () <NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource, RecipientsFooterViewDelegate>
+@interface ContactsViewController () <NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource, RecipientsFooterViewDelegate, ContactDetailsDeleteDelegate>
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) NSFetchedResultsController *allRecipients;
 @property (nonatomic, strong) RecipientsFooterView *footerView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
@@ -70,6 +71,8 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 	self.footerView.delegate = self;
     self.footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	self.tableView.tableFooterView = self.footerView;
+    
+    self.titleLabel.text = self.title;
 }
 
 - (void)didReceiveMemoryWarning
@@ -195,7 +198,9 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 	[self removeCancellingFromCell];
     ContactDetailsViewController* detailController = [[ContactDetailsViewController alloc] init];
+    detailController.objectModel = self.objectModel;
     detailController.recipient = [self.allRecipients objectAtIndexPath:indexPath];
+    detailController.deletionDelegate = self;
     [self presentDetail:detailController];
 }
 
@@ -340,6 +345,12 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
+}
+
+#pragma mark - Contact Detail Deletion
+-(void)contactDetailsController:(ContactDetailsViewController *)controller didDeleteContact:(Recipient *)deletedRecipient
+{
+    [self confirmRecipientDelete:deletedRecipient indexPath:nil];
 }
 
 @end

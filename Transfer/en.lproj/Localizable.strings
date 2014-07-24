@@ -526,3 +526,5 @@ We'll send you an email in order to let you choose a new password.";
 "refund.controller.existing.recipients.preload.error.title" = "Can't load contacts";
 
 "network.alert" = "No network";
+
+"contact.detail.send" = "Send money";

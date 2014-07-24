@@ -12,6 +12,17 @@
 #import "TypeFieldValue.h"
 #import "UIView+RenderBlur.h"
 #import "UIImage+RenderBlur.h"
+#import "RecipientType.h"
+#import "TRWAlertView.h"
+#import "Recipient.h"
+#import "ObjectModel.h"
+#import "ObjectModel+CurrencyPairs.h"
+#import "GoogleAnalytics.h"
+#import "NewPaymentViewController.h"
+#import "ConnectionAwareViewController.h"
+#import "Currency.h"
+#import "TRWProgressHUD.h"
+#import "DeleteRecipientOperation.h"
 
 @interface ContactDetailsViewController ()<UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -20,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *sendMoneyButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+
 
 @end
 
@@ -41,47 +53,49 @@
     [self.tableView registerNib:cellNib forCellReuseIdentifier:PlainPresentationCellIdentifier];
     [self.tableView reloadData];
     self.nameLabel.text = self.recipient.name;
+    [self.sendMoneyButton setTitle:NSLocalizedString(@"contact.detail.send",nil) forState:UIControlStateNormal];
+    
     //TODO: m@s replace with loading user image once API is implemented.
-    self.userImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"User%d",arc4random()%3]];
-    [self.userImage blurInBackgroundWithCompletionBlock:^(UIImage * blurry) {
-        __weak typeof(self) weakSelf = self;
-        CGSize blurSize = blurry.size;
-        CGSize wantedSize = weakSelf.headerBackground.frame.size;
+    UIImage *userImage = [UIImage imageNamed:[NSString stringWithFormat:@"User%d",arc4random()%4]];
+    self.userImage.image = userImage;
+    
+    __weak typeof(self) weakSelf = self;
+    CGSize blurSize = userImage.size;
+    CGSize wantedSize = weakSelf.headerBackground.frame.size;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-          
-            //Crop blurred image
-            NSUInteger scale = [UIScreen mainScreen].scale;
-            CGRect rect = CGRectMake((blurSize.width/2.0 - wantedSize.width/8)*scale,
-                                     (blurSize.height/2.0 - wantedSize.height/8)*scale,
-                                     wantedSize.width/4*scale,
-                                     wantedSize.height/4*scale);
+        //Crop blurred image
+        NSUInteger scale = userImage.scale;
+        CGRect rect = CGRectMake(blurSize.width/400.0f *(60.0f)*scale,
+                                 blurSize.height/400.0f *(20.0f)*scale,
+                                 blurSize.width/400.0f *199 *scale,
+                                 blurSize.height/400.0f * 140.0f *scale);
             
-            CGImageRef imageRef = CGImageCreateWithImageInRect([blurry CGImage], rect);
-            UIImage *croppedBlur = [UIImage imageWithCGImage:imageRef
-                                                  scale:scale
-                                            orientation:blurry.imageOrientation];
-            CGImageRelease(imageRef);
-            
-            //Scale it up
-            
-            UIGraphicsBeginImageContextWithOptions(wantedSize, NO, 0.0);
-            [croppedBlur drawInRect:CGRectMake(0, 0, wantedSize.width, wantedSize.height)];
-            UIImage *scaledup = UIGraphicsGetImageFromCurrentImageContext();
+        CGImageRef imageRef = CGImageCreateWithImageInRect([userImage CGImage], rect);
+        UIImage *cropped = [UIImage imageWithCGImage:imageRef
+                                                   scale:scale
+                                             orientation:userImage.imageOrientation];
+        CGImageRelease(imageRef);
+        
+        //Scale it up
+        
+        UIGraphicsBeginImageContextWithOptions(wantedSize, NO, 0.0);
+        [cropped drawInRect:CGRectMake(0, 0, wantedSize.width, wantedSize.height)];
+        UIImage *scaledup = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
-
-            
-            //Blur again
-            [UIImage blurImageInBackground:scaledup withRadius:10 iterations:4 tintColor:nil withCompletionBlock:^(UIImage *result) {
-                self.headerBackground.alpha = 0.0f;
-                self.headerBackground.image = result;
-                [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                    self.headerBackground.alpha = 0.2f;
-                } completion:nil];
-            }];
-            
-        });
-    }];
+        
+        
+        //Blur
+        [UIImage blurImageInBackground:scaledup withRadius:20 iterations:8 tintColor:nil withCompletionBlock:^(UIImage *result) {
+            self.headerBackground.alpha = 0.0f;
+            self.headerBackground.image = result;
+            [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                self.headerBackground.alpha = 0.2f;
+            } completion:nil];
+        }];
+        
+    });
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -102,6 +116,42 @@
         [cell configureWithTitle:NSLocalizedString(@"recipient.controller.cell.label.email", nil) text:self.recipient.email?:@"-"];
     }
     return cell;
+}
+
+-(IBAction)sendTapped:(id)sender
+{
+    if ([self.recipient.type hideFromCreationValue])
+    {
+        return;
+    }
+    
+    if (![self.objectModel canMakePaymentToCurrency:self.recipient.currency])
+    {
+        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"payment.controller.currency.payment.error.title", nil)
+                                                           message:[NSString stringWithFormat:NSLocalizedString(@"payment.controller.currency.payment.error.message", nil), self.recipient.currency.code]];
+        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+        [alertView show];
+        return;
+    }
+    
+    [[GoogleAnalytics sharedInstance] sendScreen:@"New payment to"];
+    NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
+    [controller setObjectModel:self.objectModel];
+    [controller setRecipient:self.recipient];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    [navigationController setNavigationBarHidden:YES];
+    ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
+    
+    [self presentViewController:wrapper animated:YES completion:nil];
+    
+}
+
+- (IBAction)deleteTapped:(id)sender
+{
+    if(self.deletionDelegate)
+    {
+        [self.deletionDelegate contactDetailsController:self didDeleteContact:self.recipient];
+    }
 }
 
 
