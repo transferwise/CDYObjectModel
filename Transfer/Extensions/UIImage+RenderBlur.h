@@ -14,4 +14,6 @@
 
 + (UIImage *)blurredImage:(UIImage*)inputImage withRadius:(CGFloat)radius iterations:(NSUInteger)iterations tintColor:(UIColor *)tintColor;
 
++(void)headerBackgroundFromImage:(UIImage*)source finalImageSize:(CGSize)wantedSize completionBlock:(void(^)(UIImage* result))completionBlock;
+
 @end

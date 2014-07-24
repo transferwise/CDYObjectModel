@@ -60,42 +60,13 @@
     self.userImage.image = userImage;
     
     __weak typeof(self) weakSelf = self;
-    CGSize blurSize = userImage.size;
-    CGSize wantedSize = weakSelf.headerBackground.frame.size;
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        //Crop blurred image
-        NSUInteger scale = userImage.scale;
-        CGRect rect = CGRectMake(blurSize.width/400.0f *(60.0f)*scale,
-                                 blurSize.height/400.0f *(20.0f)*scale,
-                                 blurSize.width/400.0f *199 *scale,
-                                 blurSize.height/400.0f * 140.0f *scale);
-            
-        CGImageRef imageRef = CGImageCreateWithImageInRect([userImage CGImage], rect);
-        UIImage *cropped = [UIImage imageWithCGImage:imageRef
-                                                   scale:scale
-                                             orientation:userImage.imageOrientation];
-        CGImageRelease(imageRef);
-        
-        //Scale it up
-        
-        UIGraphicsBeginImageContextWithOptions(wantedSize, NO, 0.0);
-        [cropped drawInRect:CGRectMake(0, 0, wantedSize.width, wantedSize.height)];
-        UIImage *scaledup = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-        
-        
-        //Blur
-        [UIImage blurImageInBackground:scaledup withRadius:20 iterations:8 tintColor:nil withCompletionBlock:^(UIImage *result) {
-            self.headerBackground.alpha = 0.0f;
-            self.headerBackground.image = result;
-            [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                self.headerBackground.alpha = 0.2f;
-            } completion:nil];
-        }];
-        
-    });
+    [UIImage headerBackgroundFromImage:userImage finalImageSize:self.headerBackground.frame.size completionBlock:^(UIImage *result) {
+        weakSelf.headerBackground.alpha = 0.0f;
+        weakSelf.headerBackground.image = result;
+        [UIView animateWithDuration:0.7f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            weakSelf.headerBackground.alpha = 0.2f;
+        } completion:nil];
+    }];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

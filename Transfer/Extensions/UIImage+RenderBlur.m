@@ -100,4 +100,48 @@
 }
 
 
+
++(void)headerBackgroundFromImage:(UIImage*)source finalImageSize:(CGSize)wantedSize completionBlock:(void(^)(UIImage* result))completionBlock
+{
+    if(!completionBlock)
+    {
+        return;
+    }
+    
+    CGSize blurSize = source.size;
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    
+    //Crop blurred image
+    NSUInteger scale = source.scale;
+    CGRect rect = CGRectMake(blurSize.width/400.0f *(60.0f)*scale,
+                             blurSize.height/400.0f *(20.0f)*scale,
+                             blurSize.width/400.0f *199 *scale,
+                             blurSize.height/400.0f * 140.0f *scale);
+    
+    CGImageRef imageRef = CGImageCreateWithImageInRect([source CGImage], rect);
+    UIImage *cropped = [UIImage imageWithCGImage:imageRef
+                                           scale:scale
+                                     orientation:source.imageOrientation];
+    CGImageRelease(imageRef);
+    
+    //Scale it up
+    
+    UIGraphicsBeginImageContextWithOptions(wantedSize, NO, 0.0);
+    [cropped drawInRect:CGRectMake(0, 0, wantedSize.width, wantedSize.height)];
+    UIImage *scaledup = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    
+    //Blur
+    [UIImage blurImageInBackground:scaledup withRadius:20 iterations:8 tintColor:nil withCompletionBlock:^(UIImage *result) {
+        completionBlock(result);
+    }];
+    
+});
+    
+}
+
+
+
 @end
