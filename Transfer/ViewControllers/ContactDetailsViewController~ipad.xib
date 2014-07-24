@@ -56,7 +56,7 @@
                                             <constraint firstAttribute="height" constant="136" id="JpT-x1-Wde"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle136"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlue"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
@@ -69,7 +69,7 @@
                                     <constraint firstAttribute="centerX" secondItem="5ZR-g8-5Fa" secondAttribute="centerX" id="TgJ-Br-gNe"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle150"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flag_default" translatesAutoresizingMaskIntoConstraints="NO" id="auV-qU-Zei">
