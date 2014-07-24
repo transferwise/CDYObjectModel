@@ -12,4 +12,6 @@
 
 -(UIImage*)renderBlurWithTintColor:(UIColor*)tint;
 
+-(void)blurInBackgroundWithCompletionBlock:(void(^)(UIImage*))completionBlock;
+
 @end

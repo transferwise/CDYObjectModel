@@ -24,7 +24,7 @@
 #import "ObjectModel+Users.h"
 #import "User.h"
 #import "UITableView+FooterPositioning.h"
-#import "BankTransferDetailCell.h"
+#import "PlainPresentationCell.h"
 #import "SupportCoordinator.h"
 #import "GoogleAnalytics.h"
 #import "ObjectModel+Payments.h"
@@ -67,7 +67,7 @@
     [self.contactSupportFooterButton setTitle:NSLocalizedString(@"transferdetails.controller.button.support", @"") forState:UIControlStateNormal];
     [self.cancelButton setTitle:NSLocalizedString(@"upload.money.cancel.button.title", @"") forState:UIControlStateNormal];
 
-    [self.tableView registerNib:[UINib nibWithNibName:@"BankTransferDetailCell" bundle:nil] forCellReuseIdentifier:BankTransferDetailCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"PlainPresentationCell" bundle:nil] forCellReuseIdentifier:PlainPresentationCellIdentifier];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -131,7 +131,7 @@
     
     NSMutableArray *presentedCells = [NSMutableArray array];
 
-    BankTransferDetailCell *toCell = [self.tableView dequeueReusableCellWithIdentifier:BankTransferDetailCellIdentifier];
+    PlainPresentationCell *toCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
     [toCell configureWithTitle:[self addColon:NSLocalizedString(@"upload.money.to.title", nil)] text:self.payment.settlementRecipient.name];
     [presentedCells addObject:toCell];
 
@@ -140,14 +140,14 @@
     [presentedCells addObjectsFromArray:accountCells];
 
     //TODO jaanus: bank name cell
-    BankTransferDetailCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:BankTransferDetailCellIdentifier];
+    PlainPresentationCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
     [referenceCell configureWithTitle: [self addColon:NSLocalizedString(@"upload.money.reference.title", nil)] text:self.objectModel.currentUser.pReference];
     [presentedCells addObject:referenceCell];
 
     if ([currencyCode caseInsensitiveCompare:@"EUR"]==NSOrderedSame)
     {
-        BankTransferDetailCell *euroInfoCell = [self.tableView dequeueReusableCellWithIdentifier:
-                                BankTransferDetailCellIdentifier];
+        PlainPresentationCell *euroInfoCell = [self.tableView dequeueReusableCellWithIdentifier:
+                                PlainPresentationCellIdentifier];
         [euroInfoCell configureWithTitle:NSLocalizedString(@"upload.money.info.label.EUR",nil) text:nil];
         CGRect infoFrame = euroInfoCell.frame;
         CGRect headerFrame = euroInfoCell.headerLabel.frame;
@@ -174,7 +174,7 @@
 - (NSArray *)buildAccountCellForType:(RecipientType *)type recipient:(Recipient *)recipient {
     NSMutableArray *result = [NSMutableArray array];
     for (RecipientTypeField *field in type.fields) {
-        BankTransferDetailCell *cell = [self.tableView dequeueReusableCellWithIdentifier:BankTransferDetailCellIdentifier];
+        PlainPresentationCell *cell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
         [cell configureWithTitle:[self addColon:field.title] text:[recipient valueField:field]];
         [result addObject:cell];
     }

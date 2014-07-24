@@ -29,14 +29,16 @@
 #import "AddressBookManager.h"
 #import "ConnectionAwareViewController.h"
 #import "RecipientsFooterView.h"
+#import "ContactDetailsViewController.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
-@interface ContactsViewController () <NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource, RecipientsFooterViewDelegate>
+@interface ContactsViewController () <NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource, RecipientsFooterViewDelegate, ContactDetailsDeleteDelegate>
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) NSFetchedResultsController *allRecipients;
 @property (nonatomic, strong) RecipientsFooterView *footerView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
@@ -69,6 +71,8 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 	self.footerView.delegate = self;
     self.footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	self.tableView.tableFooterView = self.footerView;
+    
+    self.titleLabel.text = self.title;
 }
 
 - (void)didReceiveMemoryWarning
@@ -193,6 +197,11 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 	[self removeCancellingFromCell];
+    ContactDetailsViewController* detailController = [[ContactDetailsViewController alloc] init];
+    detailController.objectModel = self.objectModel;
+    detailController.recipient = [self.allRecipients objectAtIndexPath:indexPath];
+    detailController.deletionDelegate = self;
+    [self presentDetail:detailController];
 }
 
 - (void)refreshRecipients
@@ -212,7 +221,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
     [operation setResponseHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            MCLog(@"Have %d recipients", [self.allRecipients.fetchedObjects count]);
+            MCLog(@"Have %lu recipients", (unsigned long)[self.allRecipients.fetchedObjects count]);
 
             [hud hide];
 
@@ -336,6 +345,12 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
+}
+
+#pragma mark - Contact Detail Deletion
+-(void)contactDetailsController:(ContactDetailsViewController *)controller didDeleteContact:(Recipient *)deletedRecipient
+{
+    [self confirmRecipientDelete:deletedRecipient indexPath:nil];
 }
 
 @end
