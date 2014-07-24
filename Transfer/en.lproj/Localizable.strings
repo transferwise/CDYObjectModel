@@ -219,6 +219,8 @@ It can take up to 2 working days.";
 "personal.profile.last.name.label" = "Last name";
 "personal.profile.personal.section.title" = "Personal details";
 "personal.profile.phone.label" = "Phone";
+"personal.profile.password.label" = "Password";
+"personal.profile.password.confirm.label" = "Confirm password";
 "personal.profile.post.code.label" = "Post code";
 "personal.profile.refresh.error.message" = "Could not load user profile. Please try again later.";
 "personal.profile.refresh.error.title" = "Profile load error";
