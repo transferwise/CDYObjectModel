@@ -21,13 +21,11 @@ typedef void (^ProfileActionBlock)(NSError *error);
 @property (nonatomic, strong) NSArray *cells;
 
 - (NSArray *)presentedCells;
-- (NSString *)editViewTitle;
 - (void)pullDetailsWithHandler:(ProfileActionBlock)handler;
 - (void)loadDataFromProfile:(PhoneBookProfile *)profile;
 - (BOOL)inputValid;
 - (id)enteredProfile;
 - (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion;
-- (NSString *)titleForHeaderInSection:(NSInteger)section;
 - (void)loadDetailsToCells;
 - (void)fillQuickValidation:(QuickProfileValidationOperation *)operation;
 - (void)markCellsWithIssues:(NSArray *)issues;

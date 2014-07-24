@@ -21,11 +21,6 @@
     return @[];
 }
 
-- (NSString *)editViewTitle {
-    ABSTRACT_METHOD;
-    return nil;
-}
-
 - (void)pullDetailsWithHandler:(ProfileActionBlock)handler {
     MCAssert(self.objectModel);
 
@@ -64,10 +59,6 @@
 
 - (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion {
     ABSTRACT_METHOD;
-}
-
-- (NSString *)titleForHeaderInSection:(NSInteger)section {
-    return nil;
 }
 
 - (void)loadDetailsToCells {

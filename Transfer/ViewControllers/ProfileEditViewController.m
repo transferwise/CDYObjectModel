@@ -29,9 +29,6 @@ static NSUInteger const kButtonSection = 0;
 @interface ProfileEditViewController ()
 
 @property (nonatomic, strong) ProfileSource *profileSource;
-@property (nonatomic, strong) ButtonCell *buttonCell;
-@property (nonatomic, strong) IBOutlet UIView *footer;
-@property (nonatomic, strong) IBOutlet UIButton *footerButton;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
 @property (nonatomic, strong) NSArray *presentationCells;
 @property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
@@ -40,13 +37,12 @@ static NSUInteger const kButtonSection = 0;
 @property (nonatomic, strong) QuickProfileValidationOperation *quickProfileValidation;
 @property (nonatomic, assign) BOOL inputCheckRunning;
 
-- (IBAction)footerButtonPressed:(id)sender;
-
 @end
 
 @implementation ProfileEditViewController
 
-- (id)initWithSource:(ProfileSource *)source quickValidation:(QuickProfileValidationOperation *)quickValidation {
+- (id)initWithSource:(ProfileSource *)source quickValidation:(QuickProfileValidationOperation *)quickValidation
+{
     self = [super initWithNibName:@"ProfileEditViewController" bundle:nil];
     if (self) {
         _profileSource = source;
@@ -55,29 +51,21 @@ static NSUInteger const kButtonSection = 0;
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
 
-    [self.tableView registerNib:[UINib nibWithNibName:@"ButtonCell" bundle:nil] forCellReuseIdentifier:TWButtonCellIdentifier];
-
-    self.buttonCell = [self.tableView dequeueReusableCellWithIdentifier:TWButtonCellIdentifier];
-    self.buttonCell.textLabel.text = NSLocalizedString(@"button.title.import.from.phonebook", nil);
-
     [self.profileSource setTableView:self.tableView];
 
     [self createPresentationCells];
-
-    [self.footerButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
 }
 
 - (void)createPresentationCells
 {
-    NSMutableArray *presented = [NSMutableArray array];
-    [presented addObject:@[self.buttonCell]];
-    [presented addObjectsFromArray:[self.profileSource presentedCells]];
+    NSArray *presented = [self.profileSource presentedCells];
 
     UITableViewCell *countryCell = nil;
     for (NSArray *cells in presented) {
@@ -113,13 +101,10 @@ static NSUInteger const kButtonSection = 0;
         return;
     }
 
-    [self.navigationItem setTitle:[self.profileSource editViewTitle]];
-
     [self pullDetails];
-
     [self setShown:YES];
 
-    if ([self.profileSource isKindOfClass:[PersonalProfileSource class]] && self.analyticsReport)
+    if ([self.profileSource isKindOfClass:[PersonalProfileSource class]])
 	{
         [[GoogleAnalytics sharedInstance] sendScreen:@"Enter sender details"];
     }
@@ -165,11 +150,7 @@ static NSUInteger const kButtonSection = 0;
                     return;
                 }
 
-                [self setPresentedSectionCells:self.presentationCells];
-				if (!self.hideFooter)
-				{
-					[self.tableView setTableFooterView:self.footer];
-				}                
+                [self setPresentedSectionCells:self.presentationCells];              
                 [self.tableView reloadData];
             });
         }];
@@ -189,11 +170,6 @@ static NSUInteger const kButtonSection = 0;
     [selector presentOnController:self completionHandler:^(PhoneBookProfile *profile) {
         [self.profileSource loadDataFromProfile:profile];
     }];
-}
-
-- (IBAction)footerButtonPressed:(id)sender
-{
-    [self validateProfile];
 }
 
 - (void)validateProfile
@@ -225,15 +201,8 @@ static NSUInteger const kButtonSection = 0;
     }];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [self.profileSource titleForHeaderInSection:section];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 44;
-}
-
-- (void)textFieldEntryFinished {
+- (void)textFieldEntryFinished
+{
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"textFieldEntryFinished");
         if (self.inputCheckRunning) {

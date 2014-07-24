@@ -15,7 +15,7 @@
 @interface PaymentProfileViewController ()
 
 @property (nonatomic, strong) PersonalProfileViewController* personalProfile;
-@property (nonatomic, strong) ProfileEditViewController* businessProfile;
+@property (nonatomic, strong) BusinessProfileViewController* businessProfile;
 
 @end
 
@@ -52,7 +52,6 @@
 {
 	self.personalProfile = [[PersonalProfileViewController alloc] init];
 	self.personalProfile.objectModel = self.objectModel;
-	self.personalProfile.hideFooter = YES;
 	
 	if(self.profileValidation)
 	{
@@ -63,7 +62,6 @@
 	{
 		self.businessProfile = [[BusinessProfileViewController alloc] init];
 		self.businessProfile.objectModel = self.objectModel;
-		self.businessProfile.hideFooter = YES;
 		
 		if(self.profileValidation)
 		{
