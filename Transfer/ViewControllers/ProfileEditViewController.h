@@ -22,6 +22,5 @@
 @property (nonatomic, assign) BOOL analyticsReport;
 
 - (id)initWithSource:(ProfileSource *)source quickValidation:(QuickProfileValidationOperation *)quickValidation;
-- (void)setPresentProfileSource:(ProfileSource *)source reloadView:(BOOL)reload;
 
 @end
