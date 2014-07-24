@@ -51,6 +51,12 @@ NSUInteger const kUserPersonalSection = 1;
     [self.tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
 
     NSMutableArray *cells = [NSMutableArray array];
+	
+	TextEntryCell *emailCell = [TextEntryCell loadInstance];
+    [self setEmailCell:emailCell];
+    [cells addObject:emailCell];
+    [emailCell configureWithTitle:NSLocalizedString(@"personal.profile.email.label", nil) value:@""];
+    [emailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
 
     TextEntryCell *firstNameCell = [TextEntryCell loadInstance];
     [self setFirstNameCell:firstNameCell];
@@ -65,12 +71,6 @@ NSUInteger const kUserPersonalSection = 1;
     [lastNameCell configureWithTitle:NSLocalizedString(@"personal.profile.last.name.label", nil) value:@""];
     [lastNameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [lastNameCell setCellTag:@"lastName"];
-
-    TextEntryCell *emailCell = [TextEntryCell loadInstance];
-    [self setEmailCell:emailCell];
-    [cells addObject:emailCell];
-    [emailCell configureWithTitle:NSLocalizedString(@"personal.profile.email.label", nil) value:@""];
-    [emailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
 
     TextEntryCell *phoneCell = [TextEntryCell loadInstance];
     [self setPhoneNumberCell:phoneCell];

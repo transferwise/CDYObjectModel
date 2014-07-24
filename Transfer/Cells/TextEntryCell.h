@@ -15,14 +15,12 @@ extern NSString *const TWTextEntryCellIdentifier;
 
 @property (nonatomic, strong, readonly) UITextField *entryField;
 @property (nonatomic, copy) NSString *cellTag;
-@property (nonatomic, weak) IBOutlet UIView *separatorLine;
+@property (nonatomic, strong) IBOutlet UIView *separatorLine;
 
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value;
 - (NSString *)value;
 - (void)setValue:(NSString *)value;
 - (void)setEditable:(BOOL)editable;
-//- (void)addDoneButton;
-//- (void)addDoneButtonToField:(UITextField *)field withAction:(TRWActionBlock)action;
 - (void)setValueWhenEditable:(NSString *)value;
 - (BOOL)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
 - (void)markIssue:(NSString *)issueMessage;

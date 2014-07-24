@@ -12,6 +12,7 @@
 #import "TRWAlertView.h"
 #import "MOMStyle.h"
 #import <JVFloatLabeledTextField.h>
+#import "UIView+SeparatorLine.h"
 
 NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
@@ -35,13 +36,8 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     self.contentView.frame = self.bounds;
     if (!self.separatorLine)
     {
-        CGFloat lineThickness = 1.0f / [[UIScreen mainScreen] scale];
-        UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(10.0f, self.contentView.frame.size.height - lineThickness, self.contentView.frame.size.width - 15.0f, lineThickness)];
-        separatorLine.bgStyle = @"SeparatorGrey";
-        separatorLine.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-
-        [self.contentView addSubview:separatorLine];
-        self.separatorLine = separatorLine;
+        self.separatorLine = [UIView getSeparatorLineWithParentFrame:self.contentView.frame];
+        [self.contentView addSubview:self.separatorLine];
     }
 }
 
@@ -71,26 +67,6 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     [self.entryField setEnabled:editable];
     [self.entryField setTextColor:(editable ? [UIColor colorFromStyle:self.entryField.fontStyle] : [UIColor disabledEntryTextColor])];
 }
-
-//- (void)addDoneButton {
-//    __block __weak TextEntryCell *weakSelf = self;
-//    [self addDoneButtonToField:self.entryField withAction:^{
-//        [weakSelf.entryField.delegate textFieldShouldReturn:weakSelf.entryField];
-//    }];
-//}
-//
-//- (void)addDoneButtonToField:(UITextField *)field withAction:(TRWActionBlock)action {
-//    [self setDoneButtonAction:action];
-//
-//    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 20, 44)];
-//    [toolbar setBarStyle:UIBarStyleBlackTranslucent];
-//
-//    UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-//    //TODO jaanus: button title based on entry return key type
-//    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed)];
-//    [toolbar setItems:@[flexible, done]];
-//    [field setInputAccessoryView:toolbar];
-//}
 
 - (void)setValueWhenEditable:(NSString *)value {
     if (![self.entryField isEnabled]) {
