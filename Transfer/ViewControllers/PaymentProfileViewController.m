@@ -72,16 +72,15 @@
 	}
 }
 
-- (void)willSelectViewController:(UIViewController *)controller atIndex:(NSUInteger)index
+- (void)actionTappedWithController:(UIViewController *)controller atIndex:(NSUInteger)index
 {
-	//set button action dependant on controller.
 	if (controller == self.personalProfile)
 	{
-		
+		[self.personalProfile validateProfile];
 	}
-	else if (controller == self.businessProfile)
+	else if(controller == self.businessProfile)
 	{
-		
+		[self.businessProfile validateProfile];
 	}
 }
 @end

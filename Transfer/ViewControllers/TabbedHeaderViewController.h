@@ -18,6 +18,9 @@
 						 atIndex:(NSUInteger)index;
 
 - (void)reconfigureActionButton:(NSString *)compoundStyle;
-- (void)actionTapped;
+
+- (void)actionTappedWithController:(UIViewController *)controller
+						   atIndex:(NSUInteger)index;
+
 
 @end

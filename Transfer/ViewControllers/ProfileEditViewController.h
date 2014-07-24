@@ -23,5 +23,6 @@
 @property (nonatomic, assign) BOOL hideFooter;
 
 - (id)initWithSource:(ProfileSource *)source quickValidation:(QuickProfileValidationOperation *)quickValidation;
+- (void)validateProfile;
 
 @end

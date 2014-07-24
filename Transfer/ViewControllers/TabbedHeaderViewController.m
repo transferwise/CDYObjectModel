@@ -49,9 +49,16 @@
 	[self attachControllers:self.controllers];
 }
 
+- (void)reconfigureActionButton:(NSString *)compoundStyle
+{
+	[self.actionButton configureWithCompoundStyle:compoundStyle];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+    [self setTitle:NSLocalizedString(@"upload.money.title", @"")];
 	
     if ([self.controllers count] < 2)
     {
@@ -81,11 +88,6 @@
 	[super viewDidAppear:animated];
 	
 	[self.navigationController flattenStack];
-}
-
-- (void)reconfigureActionButton:(NSString *)compoundStyle
-{
-	[self.actionButton configureWithCompoundStyle:compoundStyle];
 }
 
 - (void)headerTabView:(HeaderTabView *)tabView tabTappedAtIndex:(NSUInteger)index
@@ -135,7 +137,10 @@
 
 - (IBAction)actionTapped:(id)sender
 {
-	[self actionTapped];
+	NSUInteger idx = self.tabView.selectedIndex;
+	MCAssert(idx <= [self.controllers count]);
+	[self actionTappedWithController:self.controllers[idx]
+							 atIndex:idx];
 }
 
 - (void)willSelectViewController:(UIViewController *)controller
@@ -144,7 +149,8 @@
 	//override in an inheriting class to customize
 }
 
-- (void)actionTapped
+- (void)actionTappedWithController:(UIViewController *)controller
+						   atIndex:(NSUInteger)index
 {
 	//override in an inheriting class to customize
 }

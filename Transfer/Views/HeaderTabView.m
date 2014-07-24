@@ -123,6 +123,11 @@
     [self setSelectedButton:self.presentedButtons[index]];
 }
 
+-(NSUInteger)selectedIndex
+{
+	return [self.presentedButtons indexOfObject:self.lastSelectedButton];
+}
+
 -(void)setSelectedButton:(UIButton*)button
 {
     self.lastSelectedButton.selected = NO;
