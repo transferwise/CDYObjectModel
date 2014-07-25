@@ -84,14 +84,14 @@ NSUInteger const kUserPersonalSection = 1;
     TextEntryCell *phoneCell = [TextEntryCell loadInstance];
     [self setPhoneNumberCell:phoneCell];
     [cells addObject:phoneCell];
-    [phoneCell.entryField setKeyboardType:UIKeyboardTypePhonePad];
-    //[phoneCell addDoneButton];
+    [phoneCell.entryField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
     [phoneCell configureWithTitle:NSLocalizedString(@"personal.profile.phone.label", nil) value:@""];
     [phoneCell setCellTag:@"phoneNumber"];
 
     DateEntryCell *dateOfBirthCell = [DateEntryCell loadInstance];
     [self setDateOfBirthCell:dateOfBirthCell];
     [cells addObject:dateOfBirthCell];
+	[phoneCell.entryField setKeyboardType:UIKeyboardTypePhonePad];
     [dateOfBirthCell configureWithTitle:NSLocalizedString(@"personal.profile.date.of.birth.label", nil) value:@""];
     [dateOfBirthCell setCellTag:@"dateOfBirth"];
 

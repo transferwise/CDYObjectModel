@@ -212,6 +212,8 @@
 		47535CB51981367C00DC39D6 /* UIView+SeparatorLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 47535CB41981367C00DC39D6 /* UIView+SeparatorLine.m */; };
 		47535CB61981367C00DC39D6 /* UIView+SeparatorLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 47535CB41981367C00DC39D6 /* UIView+SeparatorLine.m */; };
 		47592CC71940C35800ECDAF2 /* NewPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */; };
+		476461E91982859F00F16F05 /* StyledPlaceholderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */; };
+		476461EA1982859F00F16F05 /* StyledPlaceholderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */; };
 		476C6B88196C18BF007002F9 /* SwipeToCancelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */; };
 		476C6B89196C18BF007002F9 /* SwipeToCancelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */; };
 		479B692C19487865001FA4FE /* TransferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B692A19487865001FA4FE /* TransferDetailsViewController.m */; };
@@ -933,6 +935,8 @@
 		47535CAE1981362600DC39D6 /* DoublePasswordEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoublePasswordEntryCell.xib; sourceTree = "<group>"; };
 		47535CB31981367C00DC39D6 /* UIView+SeparatorLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SeparatorLine.h"; sourceTree = "<group>"; };
 		47535CB41981367C00DC39D6 /* UIView+SeparatorLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SeparatorLine.m"; sourceTree = "<group>"; };
+		476461E71982859F00F16F05 /* StyledPlaceholderTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyledPlaceholderTextField.h; sourceTree = "<group>"; };
+		476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyledPlaceholderTextField.m; sourceTree = "<group>"; };
 		476C6B86196C18BF007002F9 /* SwipeToCancelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeToCancelCell.h; sourceTree = "<group>"; };
 		476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeToCancelCell.m; sourceTree = "<group>"; };
 		479B692919487865001FA4FE /* TransferDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferDetailsViewController.h; sourceTree = "<group>"; };
@@ -1685,6 +1689,8 @@
 				47343ACD1977E093009D9C3A /* RecipientsFooterView.m */,
 				47343AD01977E0B1009D9C3A /* RecipientsFooterView.xib */,
 				47343AD31977E0DD009D9C3A /* RecipientsFooterView~ipad.xib */,
+				476461E71982859F00F16F05 /* StyledPlaceholderTextField.h */,
+				476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3016,6 +3022,7 @@
 				38B093101951FA2A00315BE4 /* TransferTypeSelectionHeader.m in Sources */,
 				EA31A15617DDB29B00F937F7 /* PaymentCell.m in Sources */,
 				EA347740180D2CE700104417 /* ObjectModel+Settings.m in Sources */,
+				476461EA1982859F00F16F05 /* StyledPlaceholderTextField.m in Sources */,
 				EA31A15717DDB29B00F937F7 /* CurrencyPairsOperation.m in Sources */,
 				EA31A15817DDB29B00F937F7 /* RecipientViewController.m in Sources */,
 				EA31A15917DDB29B00F937F7 /* CurrenciesOperation.m in Sources */,
@@ -3284,6 +3291,7 @@
 				EA34773F180D2CE700104417 /* ObjectModel+Settings.m in Sources */,
 				EA2B23971721323E001AE9DE /* CurrencyPairsOperation.m in Sources */,
 				EAA54F4B1733DA1400B65BF3 /* RecipientViewController.m in Sources */,
+				476461E91982859F00F16F05 /* StyledPlaceholderTextField.m in Sources */,
 				47FAF357194F0A46004CE986 /* IntrinsicSizeUIView.m in Sources */,
 				EAA54F501733DC3500B65BF3 /* CurrenciesOperation.m in Sources */,
 				EA0450CF17EC3635008921DA /* TextContainerView.m in Sources */,
