@@ -116,7 +116,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sqk-am-rp2" customClass="BlueRoundedButton">
-                                <rect key="frame" x="165" y="0.0" width="55" height="34"/>
+                                <rect key="frame" x="165" y="5" width="55" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -126,13 +126,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KS0-eW-Wca">
-                                <rect key="frame" x="167" y="89" width="50" height="50"/>
+                                <rect key="frame" x="167" y="94" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="DOr-Tl-ajX"/>
                                     <constraint firstAttribute="height" constant="50" id="XYy-GS-HWq"/>
                                 </constraints>
-                                <state key="normal" image="SEK">
+                                <state key="normal" image="DeleteIcon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -143,7 +143,7 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="Sqk-am-rp2" secondAttribute="centerX" id="FBn-XR-wql"/>
                             <constraint firstAttribute="centerX" secondItem="KS0-eW-Wca" secondAttribute="centerX" id="VST-EF-s7V"/>
-                            <constraint firstItem="Sqk-am-rp2" firstAttribute="top" secondItem="MTM-op-IxE" secondAttribute="top" id="oXy-UE-Di4"/>
+                            <constraint firstItem="Sqk-am-rp2" firstAttribute="top" secondItem="MTM-op-IxE" secondAttribute="top" constant="5" id="oXy-UE-Di4"/>
                             <constraint firstItem="KS0-eW-Wca" firstAttribute="top" secondItem="Sqk-am-rp2" secondAttribute="bottom" constant="55" id="rzh-FA-7Du"/>
                         </constraints>
                     </view>
@@ -162,7 +162,7 @@
         </view>
     </objects>
     <resources>
-        <image name="SEK" width="15" height="15"/>
+        <image name="DeleteIcon" width="40" height="40"/>
         <image name="flag_default" width="15" height="15"/>
     </resources>
 </document>
