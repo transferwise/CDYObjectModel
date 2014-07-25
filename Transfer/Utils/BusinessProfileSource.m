@@ -224,22 +224,25 @@ static NSUInteger const kDetailsSection = 1;
     if(shouldInclude && ![addressFields containsObject:self.stateCell])
     {
         [addressFields addObject:self.stateCell];
-        if(2 < self.tableView.numberOfSections)
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:self.countryCell];
+        if (indexPath)
         {
-            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+            indexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
+            [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
         }
-
+        
     }
     else if(!shouldInclude && [addressFields containsObject:self.stateCell])
     {
         [addressFields removeObject:self.stateCell];
-        if(2 < self.tableView.numberOfSections)
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:self.stateCell];
+        if (indexPath)
         {
-            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
         }
-
     }
 }
+
 
 -(void)countrySelectionCell:(CountrySelectionCell *)cell selectedCountry:(Country *)country
 {
