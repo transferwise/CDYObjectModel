@@ -30,6 +30,7 @@ typedef void (^ProfileActionBlock)(NSError *error);
 - (NSString *)titleForHeaderInSection:(NSInteger)section;
 - (void)loadDetailsToCells;
 - (void)fillQuickValidation:(QuickProfileValidationOperation *)operation;
+- (void)includeStateCell:(BOOL)shouldInclude;
 - (void)markCellsWithIssues:(NSArray *)issues;
 
 @end

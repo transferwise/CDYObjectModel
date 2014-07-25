@@ -23,6 +23,7 @@
 #import "PersonalProfileSource.h"
 #import "TransferBackButtonItem.h"
 #import "GoogleAnalytics.h"
+#import "Country.h"
 
 static NSUInteger const kButtonSection = 0;
 

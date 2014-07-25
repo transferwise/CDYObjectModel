@@ -40,6 +40,7 @@
     data[@"postCode"] = self.postCode;
     data[@"city"] = self.city;
     data[@"countryCode"] = self.countryCode;
+    data[@"state"] = [self.countryCode caseInsensitiveCompare:@"usa"]==NSOrderedSame?self.state:@"";
     return [NSDictionary dictionaryWithDictionary:data];
 }
 

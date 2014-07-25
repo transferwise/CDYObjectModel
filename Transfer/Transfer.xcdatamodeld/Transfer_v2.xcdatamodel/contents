@@ -14,6 +14,7 @@
         <attribute name="postCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="readonlyFields" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="registrationNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="businessProfile" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Country" representedClassName="Country" syncable="YES">
@@ -105,6 +106,7 @@
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="readonlyFields" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="personalProfile" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Recipient" representedClassName="Recipient" syncable="YES">
@@ -162,20 +164,20 @@
     </entity>
     <elements>
         <element name="AllowedTypeFieldValue" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="BusinessProfile" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="BusinessProfile" positionX="-396" positionY="-99" width="128" height="193"/>
         <element name="Country" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="Currency" positionX="0" positionY="0" width="128" height="270"/>
+        <element name="Currency" positionX="-92" positionY="-216" width="128" height="270"/>
         <element name="PairSourceCurrency" positionX="0" positionY="0" width="128" height="120"/>
         <element name="PairTargetCurrency" positionX="0" positionY="0" width="128" height="135"/>
         <element name="PayInMethod" positionX="36" positionY="180" width="128" height="165"/>
-        <element name="Payment" positionX="0" positionY="0" width="128" height="358"/>
-        <element name="PendingPayment" positionX="0" positionY="0" width="128" height="148"/>
-        <element name="PersonalProfile" positionX="0" positionY="0" width="128" height="195"/>
-        <element name="Recipient" positionX="0" positionY="0" width="128" height="208"/>
-        <element name="RecipientType" positionX="0" positionY="0" width="128" height="150"/>
-        <element name="RecipientTypeField" positionX="0" positionY="0" width="128" height="210"/>
-        <element name="Setting" positionX="0" positionY="0" width="128" height="75"/>
-        <element name="TypeFieldValue" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="User" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="Payment" positionX="349" positionY="-63" width="128" height="358"/>
+        <element name="PendingPayment" positionX="79" positionY="-189" width="128" height="148"/>
+        <element name="PersonalProfile" positionX="-614" positionY="-42" width="128" height="208"/>
+        <element name="Recipient" positionX="277" positionY="152" width="128" height="208"/>
+        <element name="RecipientType" positionX="205" positionY="-432" width="128" height="150"/>
+        <element name="RecipientTypeField" positionX="277" positionY="69" width="128" height="210"/>
+        <element name="Setting" positionX="376" positionY="-108" width="128" height="75"/>
+        <element name="TypeFieldValue" positionX="54" positionY="72" width="128" height="90"/>
+        <element name="User" positionX="-360" positionY="207" width="128" height="150"/>
     </elements>
 </model>

@@ -78,6 +78,11 @@
     ABSTRACT_METHOD;
 }
 
+-(void)includeStateCell:(BOOL)shouldInclude;
+{
+    ABSTRACT_METHOD;
+}
+
 - (void)markCellsWithIssues:(NSArray *)issues {
     [self removeAllErrorMarkers];
 
