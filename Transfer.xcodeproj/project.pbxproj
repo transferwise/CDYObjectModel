@@ -73,6 +73,10 @@
 		385669141980FB0500BC4230 /* PlainPresentationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3856690F1980FB0500BC4230 /* PlainPresentationCell.xib */; };
 		385669151980FB0500BC4230 /* PlainPresentationCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385669101980FB0500BC4230 /* PlainPresentationCell~ipad.xib */; };
 		385669161980FB0500BC4230 /* PlainPresentationCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385669101980FB0500BC4230 /* PlainPresentationCell~ipad.xib */; };
+		385669181981437900BC4230 /* ContactDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385669171981437900BC4230 /* ContactDetailsViewController~ipad.xib */; };
+		385669191981437900BC4230 /* ContactDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385669171981437900BC4230 /* ContactDetailsViewController~ipad.xib */; };
+		3856691D198157C600BC4230 /* CircleStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3856691C198157C600BC4230 /* CircleStyle.m */; };
+		3856691E198157C600BC4230 /* CircleStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3856691C198157C600BC4230 /* CircleStyle.m */; };
 		385A66861977C9A200D00D1F /* GrayRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 385A66851977C9A200D00D1F /* GrayRoundedButton.m */; };
 		385A66871977C9A200D00D1F /* GrayRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 385A66851977C9A200D00D1F /* GrayRoundedButton.m */; };
 		385A668A197816AE00D00D1F /* RecipientCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385A6689197816AE00D00D1F /* RecipientCell~ipad.xib */; };
@@ -814,6 +818,9 @@
 		3856690E1980FB0500BC4230 /* PlainPresentationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainPresentationCell.m; sourceTree = "<group>"; };
 		3856690F1980FB0500BC4230 /* PlainPresentationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlainPresentationCell.xib; sourceTree = "<group>"; };
 		385669101980FB0500BC4230 /* PlainPresentationCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PlainPresentationCell~ipad.xib"; sourceTree = "<group>"; };
+		385669171981437900BC4230 /* ContactDetailsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ContactDetailsViewController~ipad.xib"; sourceTree = "<group>"; };
+		3856691B198157C600BC4230 /* CircleStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CircleStyle.h; path = CustomStyles/CircleStyle.h; sourceTree = "<group>"; };
+		3856691C198157C600BC4230 /* CircleStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CircleStyle.m; path = CustomStyles/CircleStyle.m; sourceTree = "<group>"; };
 		385A66841977C9A200D00D1F /* GrayRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GrayRoundedButton.h; path = Views/GrayRoundedButton.h; sourceTree = "<group>"; };
 		385A66851977C9A200D00D1F /* GrayRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GrayRoundedButton.m; path = Views/GrayRoundedButton.m; sourceTree = "<group>"; };
 		385A6689197816AE00D00D1F /* RecipientCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecipientCell~ipad.xib"; sourceTree = "<group>"; };
@@ -1465,6 +1472,7 @@
 		380021AF192CC531009B1D53 /* Styling */ = {
 			isa = PBXGroup;
 			children = (
+				3856691A1981579A00BC4230 /* CustomStyles */,
 				380021B0192CC531009B1D53 /* HelperCategories */,
 				380021EB192D0E23009B1D53 /* MOMStyle.h */,
 				380021B7192CC531009B1D53 /* MOMStyleFactory.h */,
@@ -1505,6 +1513,15 @@
 				380021C1192CC531009B1D53 /* MOMRoundedCornerStyle.m */,
 			);
 			path = Styles;
+			sourceTree = "<group>";
+		};
+		3856691A1981579A00BC4230 /* CustomStyles */ = {
+			isa = PBXGroup;
+			children = (
+				3856691B198157C600BC4230 /* CircleStyle.h */,
+				3856691C198157C600BC4230 /* CircleStyle.m */,
+			);
+			name = CustomStyles;
 			sourceTree = "<group>";
 		};
 		385A66881977D19700D00D1F /* Buttons */ = {
@@ -2141,6 +2158,7 @@
 				385669021980F9F200BC4230 /* ContactDetailsViewController.h */,
 				385669031980F9F200BC4230 /* ContactDetailsViewController.m */,
 				385669041980F9F200BC4230 /* ContactDetailsViewController.xib */,
+				385669171981437900BC4230 /* ContactDetailsViewController~ipad.xib */,
 				380021EC192F3DD3009B1D53 /* CurrencySelectorViewController.h */,
 				380021ED192F3DD3009B1D53 /* CurrencySelectorViewController.m */,
 				380021EE192F3DD3009B1D53 /* CurrencySelectorViewController.xib */,
@@ -2604,6 +2622,7 @@
 				EA0450CC17EC3544008921DA /* BusinessProfileIdentificationViewController.xib in Resources */,
 				471CA00A197FCB6700BCA3B4 /* TabbedHeaderViewController~ipad.xib in Resources */,
 				47343AD21977E0B1009D9C3A /* RecipientsFooterView.xib in Resources */,
+				385669191981437900BC4230 /* ContactDetailsViewController~ipad.xib in Resources */,
 				EA31A22717DDB29B00F937F7 /* TabBarActivityIndicatorView.xib in Resources */,
 				471CA007197FCB2200BCA3B4 /* TabbedHeaderViewController.xib in Resources */,
 				EA31A22817DDB29B00F937F7 /* currencies.json in Resources */,
@@ -2714,6 +2733,7 @@
 				EA0450CB17EC3544008921DA /* BusinessProfileIdentificationViewController.xib in Resources */,
 				471CA009197FCB6700BCA3B4 /* TabbedHeaderViewController~ipad.xib in Resources */,
 				47343AD11977E0B1009D9C3A /* RecipientsFooterView.xib in Resources */,
+				385669181981437900BC4230 /* ContactDetailsViewController~ipad.xib in Resources */,
 				EA225C76178EA124009D6B83 /* TabBarActivityIndicatorView.xib in Resources */,
 				471CA006197FCB2200BCA3B4 /* TabbedHeaderViewController.xib in Resources */,
 				EA225CBA178EEA8A009D6B83 /* currencies.json in Resources */,
@@ -2987,6 +3007,7 @@
 				EA31A14F17DDB29B00F937F7 /* NetworkErrorCodes.m in Sources */,
 				EA31A15017DDB29B00F937F7 /* UserDetailsOperation.m in Sources */,
 				3831AA38194B31A200B3EE5C /* TransparentModalViewController.m in Sources */,
+				3856691E198157C600BC4230 /* CircleStyle.m in Sources */,
 				EA31A15117DDB29B00F937F7 /* CountrySelectionCell.m in Sources */,
 				EA31A15217DDB29B00F937F7 /* DateEntryCell.m in Sources */,
 				EA31A15317DDB29B00F937F7 /* Constants.m in Sources */,
@@ -3254,6 +3275,7 @@
 				EA88E687172F97D50021492C /* UserDetailsOperation.m in Sources */,
 				EA88E68E172F97E20021492C /* CountrySelectionCell.m in Sources */,
 				EA88E690172F97E20021492C /* DateEntryCell.m in Sources */,
+				3856691D198157C600BC4230 /* CircleStyle.m in Sources */,
 				EA88E693172F97F50021492C /* Constants.m in Sources */,
 				EA88E697172F980A0021492C /* SignUpViewController.m in Sources */,
 				388D6AB71961AF5700DCFEA6 /* _PaymentMadeIndicator.m in Sources */,
