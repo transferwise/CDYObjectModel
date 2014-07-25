@@ -114,10 +114,10 @@
     
     //Crop blurred image
     NSUInteger scale = source.scale;
-    CGRect rect = CGRectMake(blurSize.width/400.0f *(60.0f)*scale,
-                             blurSize.height/400.0f *(20.0f)*scale,
-                             blurSize.width/400.0f *199 *scale,
-                             blurSize.height/400.0f * 140.0f *scale);
+    CGRect rect = CGRectMake(blurSize.height/500.0f *(60.0f)*scale,
+                             blurSize.height/500.0f *(20.0f)*scale,
+                             blurSize.height/500.0f *wantedSize.width *scale,
+                             blurSize.height/500.0f * wantedSize.height *scale);
     
     CGImageRef imageRef = CGImageCreateWithImageInRect([source CGImage], rect);
     UIImage *cropped = [UIImage imageWithCGImage:imageRef
