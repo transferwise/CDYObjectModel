@@ -13,7 +13,6 @@ NSString *const TWDoublePasswordEntryCellIdentifier = @"DoublePasswordEntryCell"
 
 @interface DoublePasswordEntryCell ()
 
-@property (strong, nonatomic) IBOutlet FloatingLabelTextField *firstPassword;
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *secondPassword;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *firstPasswordWidth;
 
@@ -24,7 +23,7 @@ NSString *const TWDoublePasswordEntryCellIdentifier = @"DoublePasswordEntryCell"
 - (void)awakeFromNib
 {
 	[super awakeFromNib];
-	[self.firstPassword configureWithTitle:NSLocalizedString(@"personal.profile.password.label", nil) value:@""];
+	[self configureWithTitle:NSLocalizedString(@"personal.profile.password.label", nil) value:@""];
 	[self.secondPassword configureWithTitle:NSLocalizedString(@"personal.profile.password.confirm.label", nil) value:@""];
 }
 
@@ -37,7 +36,7 @@ NSString *const TWDoublePasswordEntryCellIdentifier = @"DoublePasswordEntryCell"
 {
 	if (self.showDouble && !self.useDummyPassword)
 	{
-		return [self.firstPassword.text isEqualToString:self.self.secondPassword.text];
+		return [self.entryField.text isEqualToString:self.self.secondPassword.text];
 	}
 	
 	return YES;
@@ -57,7 +56,7 @@ NSString *const TWDoublePasswordEntryCellIdentifier = @"DoublePasswordEntryCell"
 
 - (void)setDummyPassword
 {
-	[self.firstPassword setText:@"asdfasdf"];
+	[self.entryField setText:@"asdfasdf"];
 	[self.secondPassword setText:@"asdfasdf"];
 	self.useDummyPassword = YES;
 }
