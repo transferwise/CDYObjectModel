@@ -8,6 +8,7 @@
 
 #import "DoublePasswordEntryCell.h"
 #import "FloatingLabelTextField.h"
+#import "UIView+SeparatorLine.h"
 
 NSString *const TWDoublePasswordEntryCellIdentifier = @"DoublePasswordEntryCell";
 
@@ -15,6 +16,7 @@ NSString *const TWDoublePasswordEntryCellIdentifier = @"DoublePasswordEntryCell"
 
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *secondPassword;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *firstPasswordWidth;
+@property (strong, nonatomic) UIView* secondSeparator;
 
 @end
 
@@ -47,10 +49,12 @@ NSString *const TWDoublePasswordEntryCellIdentifier = @"DoublePasswordEntryCell"
 	if (showDouble)
 	{
 		self.firstPasswordWidth.constant = 0;
+		[self addDoubleSeparators];
 	}
 	else
 	{
 		self.firstPasswordWidth.constant = 1000;
+		[self removeDoubleSeparators];
 	}
 }
 
@@ -59,6 +63,37 @@ NSString *const TWDoublePasswordEntryCellIdentifier = @"DoublePasswordEntryCell"
 	[self.entryField setText:@"asdfasdf"];
 	[self.secondPassword setText:@"asdfasdf"];
 	self.useDummyPassword = YES;
+}
+
+- (void)addDoubleSeparators
+{
+	self.separatorLine = [UIView getSeparatorLineWithParentFrame:[self getHalfWidthFrame:YES]];
+	[self.contentView addSubview:self.separatorLine];
+	self.secondSeparator = [UIView getSeparatorLineWithParentFrame:[self getHalfWidthFrame:NO]];
+	[self.contentView addSubview:self.secondSeparator];
+}
+
+- (CGRect)getHalfWidthFrame:(BOOL)firstHalf
+{
+	CGRect frame = self.contentView.frame;
+	CGFloat halfWidth = frame.size.width / 2;
+	
+	//Why the hell do I need to subtract -10.f??. Should this account for scale?
+	return CGRectMake(firstHalf ? frame.origin.x : (frame.origin.x + halfWidth), frame.origin.y, firstHalf ? halfWidth - 10.f : halfWidth, frame.size.height);
+}
+
+- (void)removeDoubleSeparators
+{
+	//only remove if there is a second view and it is visible
+	if(self.secondSeparator && self.secondSeparator.superview)
+	{
+		[self.separatorLine removeFromSuperview];
+		[self.secondSeparator removeFromSuperview];
+		self.secondSeparator = nil;
+		
+		self.separatorLine = [UIView getSeparatorLineWithParentFrame:self.contentView.frame];
+		[self.contentView addSubview:self.separatorLine];
+	}
 }
 
 @end

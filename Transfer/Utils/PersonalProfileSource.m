@@ -63,6 +63,7 @@ NSUInteger const kUserPersonalSection = 1;
     [emailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
 	
 	DoublePasswordEntryCell *passwordCell = [DoublePasswordEntryCell loadInstance];
+	passwordCell.showDouble = YES;
     [self setPasswordCell:passwordCell];
     [cells addObject:passwordCell];
 
