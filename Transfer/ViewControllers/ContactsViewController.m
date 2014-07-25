@@ -195,7 +195,6 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 	[self removeCancellingFromCell];
     ContactDetailsViewController* detailController = [[ContactDetailsViewController alloc] init];
     detailController.objectModel = self.objectModel;
@@ -351,6 +350,10 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 -(void)contactDetailsController:(ContactDetailsViewController *)controller didDeleteContact:(Recipient *)deletedRecipient
 {
     [self confirmRecipientDelete:deletedRecipient indexPath:nil];
+    if(IPAD)
+    {
+        [self presentDetail:nil];
+    }
 }
 
 @end

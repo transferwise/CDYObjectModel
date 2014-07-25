@@ -69,7 +69,7 @@
     
     [self.sendMoneyButton setTitle:NSLocalizedString(@"contact.detail.send",nil) forState:UIControlStateNormal];
     
-    self.flagIcon.image = [UIImage imageNamed:self.recipient.currency.code]?:[UIImage imageNamed:@"flag_default"];
+    self.flagIcon.image = [UIImage imageNamed:self.recipient.currency.code?[NSString stringWithFormat:@"%@_flag_30px",self.recipient.currency.code]:@"flag_default_30px"];
     
     //TODO: m@s replace with loading user image once API is implemented.
     UIImage *userImage = [UIImage imageNamed:[NSString stringWithFormat:@"User%d",arc4random()%4]];

@@ -12,6 +12,7 @@
 
 @interface SwipeToCancelCell : FixSeparatorCell<UIGestureRecognizerDelegate>
 
+@property (readonly, nonatomic) IBOutlet UIView *slidingContentView;
 @property (nonatomic, readonly) BOOL isCancelVisible;
 @property (nonatomic) BOOL canBeCancelled;
 @property (nonatomic, strong) NSString* cancelButtonTitle;
