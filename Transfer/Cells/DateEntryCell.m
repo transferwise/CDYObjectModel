@@ -51,8 +51,6 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 
 - (void)configureLabels
 {
-	self.headerLabel.text = NSLocalizedString(@"personal.profile.date.of.birth.label", nil);
-	
 	MOMBasicStyle* placeholderStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@{17,20}.Greygory"];
 	StyledPlaceholderTextField* dayTextField = (StyledPlaceholderTextField *)self.entryField;
 	
@@ -92,8 +90,7 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value
 {
 	[self setDateString:value];
-	
-	//TODO: set title
+	self.headerLabel.text = title;
 }
 
 - (void)setValue:(NSString *)value
@@ -135,13 +132,27 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 		return;
 	}
 	
-	//TODO: get date from string, validate, set to fields
+	NSDate* convertedDate = [[DateEntryCell rawDateFormatter] dateFromString:date];
+	
+	if(convertedDate)
+	{
+		NSDateComponents* components = [DateEntryCell getComponents:convertedDate];
+		
+		self.entryField.text = [NSString stringWithFormat:@"%i", [components day]];
+		self.monthTextField.text = [NSString stringWithFormat:@"%i", [components month]];
+		self.yearTextField.text = [NSString stringWithFormat:@"%i", [components year]];
+	}
 }
 
 - (void)presentDate:(NSDate *)date
 {
 	//TODO: set date parts to text fields
     [self.entryField setText:[[DateEntryCell prettyDateFormatter] stringFromDate:date]];
+}
+
++ (NSDateComponents *)getComponents:(NSDate *)date
+{
+	return [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
 }
 
 static NSDateFormatter *__rawDateFormatter;
