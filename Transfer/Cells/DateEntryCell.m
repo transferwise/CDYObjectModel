@@ -12,6 +12,7 @@
 #import "MOMStyleFactory.h"
 #import "StyledPlaceholderTextField.h"
 #import "UIView+MOMStyle.h"
+#import "UIView+SeparatorLine.h"
 
 NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 
@@ -21,13 +22,35 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 @property (strong, nonatomic) IBOutlet StyledPlaceholderTextField *yearTextField;
 @property (strong, nonatomic) IBOutlet UILabel *headerLabel;
 
+@property (strong, nonatomic) UIView* daySeparator;
+@property (strong, nonatomic) UIView* monthSeparator;
+@property (strong, nonatomic) UIView* yearSeparator;
+
 @end
 
 @implementation DateEntryCell
 
-- (void)configureWithTitle:(NSString *)title value:(NSString *)value
+- (void)awakeFromNib
 {
-	[self setDateString:value];
+	[super awakeFromNib];
+	[self commonSetup];
+}
+
+- (void)layoutSubviews
+{
+	[super layoutSubviews];
+	[self setSeparators];
+}
+
+- (void)commonSetup
+{
+	//remove default separator line
+	self.separatorLine = [[UIView alloc] init];
+	[self configureLabels];
+}
+
+- (void)configureLabels
+{
 	self.headerLabel.text = NSLocalizedString(@"personal.profile.date.of.birth.label", nil);
 	
 	MOMBasicStyle* placeholderStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@{17,20}.Greygory"];
@@ -44,6 +67,32 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 	self.yearTextField.fontStyle = @"heavy.@{17,20}.DarkFont";
 	self.yearTextField.placeholderStyle = placeholderStyle;
 	[self.yearTextField configureWithTitle:NSLocalizedString(@"profile.dob.year", nil) value:@""];
+}
+
+- (void)setSeparators
+{
+	//really loving the random constants here :(
+	self.daySeparator = [UIView getSeparatorLineWithParentFrame:CGRectMake(self.entryField.frame.origin.x - 20,
+																		   self.contentView.frame.origin.y,
+																		   self.entryField.frame.size.width + 10,
+																		   self.contentView.frame.size.height)];
+	[self.contentView addSubview:self.daySeparator];
+	self.monthSeparator = [UIView getSeparatorLineWithParentFrame:CGRectMake(self.monthTextField.frame.origin.x - 20,
+																			 self.contentView.frame.origin.y,
+																			 self.monthTextField.frame.size.width + 10,
+																			 self.contentView.frame.size.height)];
+	[self.contentView addSubview:self.monthSeparator];
+	self.yearSeparator = [UIView getSeparatorLineWithParentFrame:CGRectMake(self.yearTextField.frame.origin.x - 20,
+																			self.contentView.frame.origin.y,
+																			self.contentView.frame.size.width - self.yearTextField.frame.origin.x +20,
+																			self.contentView.frame.size.height)];
+	[self.contentView addSubview:self.yearSeparator];
+}
+
+- (void)configureWithTitle:(NSString *)title value:(NSString *)value
+{
+	[self setDateString:value];
+	
 	//TODO: set title
 }
 
