@@ -26,7 +26,7 @@
 
 static NSUInteger const kButtonSection = 0;
 
-@interface ProfileEditViewController ()
+@interface ProfileEditViewController ()<CountrySelectionCellDelegate>
 
 @property (nonatomic, strong) ProfileSource *profileSource;
 @property (nonatomic, strong) ButtonCell *buttonCell;
@@ -94,6 +94,7 @@ static NSUInteger const kButtonSection = 0;
     }
     [self setCountryCell:(CountrySelectionCell *) countryCell];
     [self.countryCell setAllCountries:[self.objectModel fetchedControllerForAllCountries]];
+    self.countryCell.delegate = self;
 
     [self setPresentationCells:presented];
 }

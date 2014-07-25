@@ -12,6 +12,7 @@ const struct BusinessProfileAttributes BusinessProfileAttributes = {
 	.postCode = @"postCode",
 	.readonlyFields = @"readonlyFields",
 	.registrationNumber = @"registrationNumber",
+	.state = @"state",
 };
 
 const struct BusinessProfileRelationships BusinessProfileRelationships = {
@@ -104,6 +105,13 @@ const struct BusinessProfileFetchedProperties BusinessProfileFetchedProperties =
 
 
 @dynamic registrationNumber;
+
+
+
+
+
+
+@dynamic state;
 
 
 

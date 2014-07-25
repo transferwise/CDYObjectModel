@@ -13,6 +13,7 @@ extern const struct BusinessProfileAttributes {
 	__unsafe_unretained NSString *postCode;
 	__unsafe_unretained NSString *readonlyFields;
 	__unsafe_unretained NSString *registrationNumber;
+	__unsafe_unretained NSString *state;
 } BusinessProfileAttributes;
 
 extern const struct BusinessProfileRelationships {
@@ -23,6 +24,7 @@ extern const struct BusinessProfileFetchedProperties {
 } BusinessProfileFetchedProperties;
 
 @class User;
+
 
 
 
@@ -126,6 +128,16 @@ extern const struct BusinessProfileFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* state;
+
+
+
+//- (BOOL)validateState:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) User *user;
 
 //- (BOOL)validateUser:(id*)value_ error:(NSError**)error_;
@@ -187,6 +199,12 @@ extern const struct BusinessProfileFetchedProperties {
 
 - (NSString*)primitiveRegistrationNumber;
 - (void)setPrimitiveRegistrationNumber:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveState;
+- (void)setPrimitiveState:(NSString*)value;
 
 
 

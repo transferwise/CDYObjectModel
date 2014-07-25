@@ -35,6 +35,8 @@ NSUInteger const kUserPersonalSection = 1;
 @property (nonatomic, strong) TextEntryCell *postCodeCell;
 @property (nonatomic, strong) TextEntryCell *cityCell;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
+@property (nonatomic, strong) TextEntryCell *stateCell;
+
 
 @end
 
@@ -116,6 +118,14 @@ NSUInteger const kUserPersonalSection = 1;
     [addressCells addObject:countryCell];
     [countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
     [countryCell setCellTag:@"countryCode"];
+    
+    TextEntryCell *stateCell = [TextEntryCell loadInstance];
+    [self setStateCell:stateCell];
+    [addressCells addObject:stateCell];
+    [stateCell configureWithTitle:NSLocalizedString(@"personal.profile.state.label", nil) value:@""];
+    [stateCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
+    [stateCell setCellTag:@"city"];
+
 
     [self setCells:@[personalCells, addressCells]];
 
@@ -136,6 +146,7 @@ NSUInteger const kUserPersonalSection = 1;
         [self.postCodeCell setValue:profile.postCode];
         [self.cityCell setValue:profile.city];
         [self.countryCell setValue:profile.countryCode];
+        [self.stateCell setValue:profile.state];
 
         [self.firstNameCell setEditable:![profile isFieldReadonly:@"firstName"]];
         [self.lastNameCell setEditable:![profile isFieldReadonly:@"lastName"]];
@@ -147,6 +158,7 @@ NSUInteger const kUserPersonalSection = 1;
         [self.postCodeCell setEditable:![profile isFieldReadonly:@"postCode"]];
         [self.cityCell setEditable:![profile isFieldReadonly:@"city"]];
         [self.countryCell setEditable:![profile isFieldReadonly:@"countryCode"]];
+        [self.stateCell setEditable:![profile isFieldReadonly:@"state"]];
     });
 }
 
@@ -171,6 +183,7 @@ NSUInteger const kUserPersonalSection = 1;
         if (![personal isFieldReadonly:@"countryCode"]) {
             [self.countryCell setTwoLetterCountryCode:address.countryCode];
         }
+        [self.stateCell setValueWhenEditable:address.state];
     });
 }
 
@@ -236,6 +249,24 @@ NSUInteger const kUserPersonalSection = 1;
     [operation setCity:[self.cityCell value]];
     [operation setCountryCode:[self.countryCell value]];
     [operation setDateOfBirth:[self.dateOfBirthCell value]];
+}
+
+-(void)includeStateCell:(BOOL)shouldInclude
+{
+    if (1 > [self.cells count])
+    {
+        return;
+    }
+    
+    NSMutableArray* addressFields = self.cells[1];
+    if(shouldInclude && ![addressFields containsObject:self.stateCell])
+    {
+        [addressFields addObject:self.stateCell];
+    }
+    else
+    {
+        [addressFields removeObject:self.stateCell];
+    }
 }
 
 @end

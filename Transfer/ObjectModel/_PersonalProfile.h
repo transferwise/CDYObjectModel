@@ -14,6 +14,7 @@ extern const struct PersonalProfileAttributes {
 	__unsafe_unretained NSString *phoneNumber;
 	__unsafe_unretained NSString *postCode;
 	__unsafe_unretained NSString *readonlyFields;
+	__unsafe_unretained NSString *state;
 } PersonalProfileAttributes;
 
 extern const struct PersonalProfileRelationships {
@@ -24,6 +25,7 @@ extern const struct PersonalProfileFetchedProperties {
 } PersonalProfileFetchedProperties;
 
 @class User;
+
 
 
 
@@ -138,6 +140,16 @@ extern const struct PersonalProfileFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* state;
+
+
+
+//- (BOOL)validateState:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) User *user;
 
 //- (BOOL)validateUser:(id*)value_ error:(NSError**)error_;
@@ -205,6 +217,12 @@ extern const struct PersonalProfileFetchedProperties {
 
 - (NSString*)primitiveReadonlyFields;
 - (void)setPrimitiveReadonlyFields:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveState;
+- (void)setPrimitiveState:(NSString*)value;
 
 
 

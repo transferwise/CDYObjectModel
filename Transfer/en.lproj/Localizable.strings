@@ -1,6 +1,7 @@
 "business.profile.address.label" = "Address";
 "business.profile.address.section.title" = "Address";
 "business.profile.city.label" = "City";
+"business.profile.state.label" = "State";
 "business.profile.controller.title" = "Business profile";
 "business.profile.country.label" = "Country";
 "business.profile.description.label" = "Business description";
@@ -156,6 +157,7 @@ A revolution in your pocket.";
 "personal.profile.address.label" = "Address";
 "personal.profile.address.section.title" = "Address";
 "personal.profile.city.label" = "City";
+"personal.profile.state.label" = "State";
 "personal.profile.confirm.payment.button.title" = "Confirm payment";
 "personal.profile.continue.to.recipient.button.title" = "Continue";
 "personal.profile.controller.title" = "Your details";

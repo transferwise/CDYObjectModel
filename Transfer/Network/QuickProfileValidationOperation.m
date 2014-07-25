@@ -97,4 +97,8 @@
     [self.data setNotNilValue:value forKey:@"descriptionOfBusiness"];
 }
 
+- (void)state:(NSString *)value {
+    [self.data setNotNilValue:value forKey:@"state"];
+}
+
 @end

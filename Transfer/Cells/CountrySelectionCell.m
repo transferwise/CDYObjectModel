@@ -102,6 +102,10 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
     Country *selected = [self.allCountries objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
     [self setSelectedCountry:selected];
     [self.entryField setText:selected.name];
+    if([self.delegate respondsToSelector:@selector(countrySelectionCell:selectedCountry:)])
+    {
+        [self.delegate countrySelectionCell:self selectedCountry:selected];
+    }
 }
 
 
