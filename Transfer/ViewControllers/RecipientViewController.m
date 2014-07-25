@@ -445,16 +445,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [issues appendIssue:NSLocalizedString(@"recipient.controller.validation.error.empty.name", nil)];
     }
     
-    PendingPayment *payment = self.objectModel.pendingPayment;
     NSString *email = self.emailCell.value;
-    if([email length] == 0 )
-    {
-        if(self.currency.recipientEmailRequiredValue)
-        {
-            [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.empty.email", nil),self.currency.code]];
-        }
-    }
-    else
+    if ([email length]>0)
     {
         NSError *error = nil;
         // Sanity check email for the precence of an "@" and a "."
