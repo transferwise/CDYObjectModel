@@ -84,7 +84,7 @@ NSUInteger const kUserPersonalSection = 1;
     TextEntryCell *phoneCell = [TextEntryCell loadInstance];
     [self setPhoneNumberCell:phoneCell];
     [cells addObject:phoneCell];
-    [phoneCell.entryField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
+//    [phoneCell.entryField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
     [phoneCell configureWithTitle:NSLocalizedString(@"personal.profile.phone.label", nil) value:@""];
     [phoneCell setCellTag:@"phoneNumber"];
 

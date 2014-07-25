@@ -19,6 +19,7 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 
 @property (strong, nonatomic) IBOutlet StyledPlaceholderTextField *monthTextField;
 @property (strong, nonatomic) IBOutlet StyledPlaceholderTextField *yearTextField;
+@property (strong, nonatomic) IBOutlet UILabel *headerLabel;
 
 @end
 
@@ -27,6 +28,8 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value
 {
 	[self setDateString:value];
+	self.headerLabel.text = NSLocalizedString(@"personal.profile.date.of.birth.label", nil);
+	
 	MOMBasicStyle* placeholderStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@{17,20}.Greygory"];
 	StyledPlaceholderTextField* dayTextField = (StyledPlaceholderTextField *)self.entryField;
 	
