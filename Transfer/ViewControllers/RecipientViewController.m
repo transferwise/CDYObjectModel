@@ -449,7 +449,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     if ([email length]>0)
     {
         NSError *error = nil;
-        // Sanity check email for the precence of an "@" and a "."
+        // Sanity check email for the precence of at least an "@" and a "."
         // [Anything]@[Anything].[Anything]
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^.+@.+\\..+$" options:NSRegularExpressionCaseInsensitive error:&error];
         
@@ -471,6 +471,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
         NSString *valueIssue = [field hasIssueWithValue:value];
         if (![valueIssue hasValue]) {
+            if([value length] < 1 && self.currency.recipientBicRequiredValue && [field.name caseInsensitiveCompare:@"bic"]== NSOrderedSame)
+            {
+                [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.bic.required", nil),self.currency.code]];
+            }
             continue;
         }
 
