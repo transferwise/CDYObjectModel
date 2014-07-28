@@ -55,7 +55,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9">
-                    <rect key="frame" x="0.0" y="72" width="512" height="696"/>
+                    <rect key="frame" x="0.0" y="64" width="512" height="704"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="separatorColor" white="0.85999999999999999" alpha="1" colorSpace="calibratedWhite"/>
@@ -105,7 +105,7 @@
                 <constraint firstItem="kfm-xm-i62" firstAttribute="top" secondItem="8" secondAttribute="top" id="C0l-I2-j2K"/>
                 <constraint firstAttribute="bottom" secondItem="kfm-xm-i62" secondAttribute="bottom" id="Cq2-5v-Dxi"/>
                 <constraint firstItem="kfm-xm-i62" firstAttribute="width" secondItem="7d9-mH-9CL" secondAttribute="width" id="HcC-EQ-Tjc"/>
-                <constraint firstItem="9" firstAttribute="top" secondItem="7d9-mH-9CL" secondAttribute="bottom" constant="8" id="IMx-36-l0j"/>
+                <constraint firstItem="9" firstAttribute="top" secondItem="7d9-mH-9CL" secondAttribute="bottom" id="IMx-36-l0j"/>
                 <constraint firstItem="n5H-do-28I" firstAttribute="top" secondItem="8" secondAttribute="top" id="MU0-N2-5JF"/>
                 <constraint firstItem="7d9-mH-9CL" firstAttribute="top" secondItem="8" secondAttribute="top" id="Mtj-z5-Q8Y"/>
                 <constraint firstAttribute="bottom" secondItem="n5H-do-28I" secondAttribute="bottom" id="PCp-0k-KFU"/>

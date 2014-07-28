@@ -26,11 +26,11 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <view key="tableHeaderView" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" userLabel="Header">
-                        <rect key="frame" x="0.0" y="0.0" width="384" height="315"/>
+                        <rect key="frame" x="0.0" y="0.0" width="384" height="335"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Beu-qw-m4I">
-                                <rect key="frame" x="0.0" y="0.0" width="384" height="270"/>
+                                <rect key="frame" x="0.0" y="0.0" width="384" height="290"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
@@ -38,22 +38,22 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OZg-fL-hYF">
-                                <rect key="frame" x="0.0" y="0.0" width="384" height="270"/>
+                                <rect key="frame" x="0.0" y="0.0" width="384" height="290"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="270" id="o6P-HW-wk8"/>
+                                    <constraint firstAttribute="height" constant="290" id="o6P-HW-wk8"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cho-a6-Qhj">
-                                <rect key="frame" x="117" y="50" width="150" height="150"/>
+                                <rect key="frame" x="117" y="70" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5ZR-g8-5Fa">
-                                        <rect key="frame" x="7" y="7" width="136" height="136"/>
+                                        <rect key="frame" x="10" y="10" width="130" height="130"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="136" id="Dzf-ON-19A"/>
-                                            <constraint firstAttribute="height" constant="136" id="JpT-x1-Wde"/>
+                                            <constraint firstAttribute="width" constant="130" id="Dzf-ON-19A"/>
+                                            <constraint firstAttribute="height" constant="130" id="JpT-x1-Wde"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
@@ -73,7 +73,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flag_default" translatesAutoresizingMaskIntoConstraints="NO" id="auV-qU-Zei">
-                                <rect key="frame" x="177" y="181" width="30" height="30"/>
+                                <rect key="frame" x="177" y="198" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="kXg-eh-hXS"/>
@@ -81,7 +81,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xae-yh-1Qh">
-                                <rect key="frame" x="171" y="213" width="42" height="37"/>
+                                <rect key="frame" x="171" y="230" width="42" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -93,7 +93,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="auV-qU-Zei" secondAttribute="centerY" constant="-38" id="4GS-Kj-d62"/>
+                            <constraint firstAttribute="centerY" secondItem="auV-qU-Zei" secondAttribute="centerY" constant="-45" id="4GS-Kj-d62"/>
                             <constraint firstItem="xae-yh-1Qh" firstAttribute="bottom" secondItem="OZg-fL-hYF" secondAttribute="bottom" constant="-20" id="4ee-gx-Yqv"/>
                             <constraint firstAttribute="trailing" secondItem="OZg-fL-hYF" secondAttribute="trailing" id="6Th-50-dT7"/>
                             <constraint firstItem="xae-yh-1Qh" firstAttribute="top" secondItem="5ZR-g8-5Fa" secondAttribute="bottom" constant="20" id="BBL-dC-6da"/>
@@ -102,7 +102,7 @@
                             <constraint firstAttribute="bottom" secondItem="Beu-qw-m4I" secondAttribute="bottom" constant="45" id="aur-KP-bIn"/>
                             <constraint firstAttribute="centerX" secondItem="xae-yh-1Qh" secondAttribute="centerX" id="egR-LC-dMs"/>
                             <constraint firstItem="Beu-qw-m4I" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gYD-CV-Ltx"/>
-                            <constraint firstItem="OZg-fL-hYF" firstAttribute="centerY" secondItem="cho-a6-Qhj" secondAttribute="centerY" constant="10" id="kec-Wg-dtU"/>
+                            <constraint firstItem="OZg-fL-hYF" firstAttribute="centerY" secondItem="cho-a6-Qhj" secondAttribute="centerY" id="kec-Wg-dtU"/>
                             <constraint firstItem="OZg-fL-hYF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mo7-3D-ttk"/>
                             <constraint firstItem="OZg-fL-hYF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rBX-o5-8Vq"/>
                             <constraint firstAttribute="centerX" secondItem="auV-qU-Zei" secondAttribute="centerX" id="yqB-Kf-YaD"/>
@@ -116,7 +116,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sqk-am-rp2" customClass="BlueRoundedButton">
-                                <rect key="frame" x="165" y="0.0" width="55" height="34"/>
+                                <rect key="frame" x="165" y="5" width="55" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -126,13 +126,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KS0-eW-Wca">
-                                <rect key="frame" x="167" y="89" width="50" height="50"/>
+                                <rect key="frame" x="167" y="94" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="DOr-Tl-ajX"/>
                                     <constraint firstAttribute="height" constant="50" id="XYy-GS-HWq"/>
                                 </constraints>
-                                <state key="normal" image="SEK">
+                                <state key="normal" image="DeleteIcon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -143,7 +143,7 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="Sqk-am-rp2" secondAttribute="centerX" id="FBn-XR-wql"/>
                             <constraint firstAttribute="centerX" secondItem="KS0-eW-Wca" secondAttribute="centerX" id="VST-EF-s7V"/>
-                            <constraint firstItem="Sqk-am-rp2" firstAttribute="top" secondItem="MTM-op-IxE" secondAttribute="top" id="oXy-UE-Di4"/>
+                            <constraint firstItem="Sqk-am-rp2" firstAttribute="top" secondItem="MTM-op-IxE" secondAttribute="top" constant="5" id="oXy-UE-Di4"/>
                             <constraint firstItem="KS0-eW-Wca" firstAttribute="top" secondItem="Sqk-am-rp2" secondAttribute="bottom" constant="55" id="rzh-FA-7Du"/>
                         </constraints>
                     </view>
@@ -162,7 +162,7 @@
         </view>
     </objects>
     <resources>
-        <image name="SEK" width="15" height="15"/>
+        <image name="DeleteIcon" width="40" height="40"/>
         <image name="flag_default" width="15" height="15"/>
     </resources>
 </document>

@@ -148,6 +148,7 @@
     {
         PlainPresentationCell *euroInfoCell = [self.tableView dequeueReusableCellWithIdentifier:
                                 PlainPresentationCellIdentifier];
+        euroInfoCell.headerLabel.numberOfLines=0; // Allow multiline
         [euroInfoCell configureWithTitle:NSLocalizedString(@"upload.money.info.label.EUR",nil) text:nil];
         CGRect infoFrame = euroInfoCell.frame;
         CGRect headerFrame = euroInfoCell.headerLabel.frame;
