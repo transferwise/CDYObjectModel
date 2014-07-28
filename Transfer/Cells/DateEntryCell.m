@@ -117,6 +117,13 @@ NSInteger const kYearField = 3;
 }
 
 #pragma mark - Editable
+- (BOOL)editable
+{
+	return [self.dayTextField isEnabled]
+		&& [self.monthTextField isEnabled]
+		&& [self.yearTextField isEnabled];
+}
+
 - (void)setEditable:(BOOL)editable
 {
 	self.dayTextField.enabled = editable;
@@ -253,6 +260,10 @@ NSInteger const kYearField = 3;
 }
 
 #pragma mark - Moving between cells
+- (void)activate
+{
+	[self.dayTextField becomeFirstResponder];
+}
 
 - (BOOL)shouldNavigateAway
 {

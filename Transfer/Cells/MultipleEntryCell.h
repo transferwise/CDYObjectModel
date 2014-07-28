@@ -20,6 +20,7 @@
 @property (nonatomic, weak) id<MultipleEntryCellDelegate> delegate;
 @property (nonatomic, strong, readonly) UITextField* selectedTextField;
 
+- (void)activate;
 - (BOOL)shouldNavigateAway;
 - (void)navigateAway;
 

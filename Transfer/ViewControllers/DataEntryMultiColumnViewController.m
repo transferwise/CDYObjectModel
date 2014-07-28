@@ -238,7 +238,8 @@
             }
             
             TextEntryCell *entryCell = cell;
-            if (![entryCell.entryField isEnabled]) {
+            if (!entryCell.editable)
+			{
                 continue;
             }
             

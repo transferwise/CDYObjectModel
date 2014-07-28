@@ -123,10 +123,18 @@
     return cell;
 }
 
-- (UITableViewCell *)cellForIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)cellForIndexPath:(NSIndexPath *)indexPath
+{
     NSUInteger section = (NSUInteger) indexPath.section;
     NSUInteger row = (NSUInteger) indexPath.row;
-    return self.presentedSectionCells[section][row];
+    UITableViewCell *cell = self.presentedSectionCells[section][row];
+	
+	if([cell isKindOfClass:[MultipleEntryCell class]])
+	{
+		((MultipleEntryCell *)cell).delegate = self;
+	}
+	
+	return cell;
 }
 
 #pragma mark - Table view delegate
@@ -196,11 +204,22 @@
 	}
     
     NSIndexPath *moveToIndexPath = indexPath;
-    while ((moveToIndexPath = [self nextEditableIndexPathAfter:moveToIndexPath]) != nil) {
+    while ((moveToIndexPath = [self nextEditableIndexPathAfter:moveToIndexPath]) != nil)
+	{
         UITableViewCell *viewCell = [self cellForIndexPath:moveToIndexPath];
-        if ([self isEntryCell:viewCell]) {
+        if ([self isEntryCell:viewCell])
+		{
             TextEntryCell *entryCell = (TextEntryCell *) viewCell;
-            [entryCell.entryField becomeFirstResponder];
+			
+			if([entryCell isKindOfClass:[MultipleEntryCell class]])
+			{
+				[(MultipleEntryCell *)entryCell activate];
+			}
+			else
+			{
+				[entryCell.entryField becomeFirstResponder];
+			}
+			
             if([self.tableView indexPathForCell:entryCell])
             {
                 [self.tableView scrollToRowAtIndexPath:moveToIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -230,7 +249,9 @@
             }
             
             TextEntryCell *entryCell = cell;
-            if (![entryCell.entryField isEnabled]) {
+			
+            if (!entryCell.editable)
+			{
                 continue;
             }
             

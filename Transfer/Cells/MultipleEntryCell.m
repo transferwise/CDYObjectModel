@@ -40,6 +40,12 @@
     ABSTRACT_METHOD;
 }
 
+- (BOOL)editable
+{
+	ABSTRACT_METHOD;
+	return NO;
+}
+
 - (void)setEditable:(BOOL)editable
 {
 	ABSTRACT_METHOD;
@@ -51,6 +57,11 @@
 }
 
 #pragma mark - Navigation between fields
+- (void)activate
+{
+	ABSTRACT_METHOD;
+}
+
 - (BOOL)shouldNavigateAway
 {
 	ABSTRACT_METHOD;

@@ -56,9 +56,15 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     [self.entryField setText:value];
 }
 
-- (void)setEditable:(BOOL)editable {
+- (void)setEditable:(BOOL)editable
+{
     [self.entryField setEnabled:editable];
     [self.entryField setTextColor:(editable ? [UIColor colorFromStyle:self.entryField.fontStyle] : [UIColor disabledEntryTextColor])];
+}
+
+- (BOOL)editable
+{
+	return [self.entryField isEnabled];
 }
 
 - (void)setValueWhenEditable:(NSString *)value {
