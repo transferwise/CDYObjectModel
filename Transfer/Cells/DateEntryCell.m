@@ -140,28 +140,32 @@ NSInteger const kYearField = 3;
 
 - (void)setDateValue:(NSDate *)date
 {
-    [self presentDate:date];
-
     if (!date)
 	{
         return;
     }
+	
+	[self presentDate:date];
 }
 
 - (NSString *)value
 {
-	if (![self.dayTextField.text hasValue])
+	if (![self.dayTextField.text hasValue]
+		&& ![self.monthTextField.text hasValue]
+		&& ![self.yearTextField.text hasValue])
 	{
 		return @"";
 	}
-
-    return [self getDateString];
-}
-
-- (NSString *)getDateString
-{
-	//TODO: get date from fields, validate, that it actually is date
-	return @"";
+	else
+	{
+		NSString* unknownValue = NSLocalizedString(@"unknown.value", nil);
+		
+		NSString* day = [self.dayTextField.text hasValue] ? self.dayTextField.text : unknownValue;
+		NSString* month = [self.monthTextField.text hasValue] ? self.monthTextField.text : unknownValue;
+		NSString* year = [self.yearTextField.text hasValue] ? self.yearTextField.text : unknownValue;
+		
+		return [NSString stringWithFormat:@"%@-%@-%@", year, month, day];
+	}
 }
 
 - (void)setDateString:(NSString *)date
@@ -175,18 +179,17 @@ NSInteger const kYearField = 3;
 	
 	if(convertedDate)
 	{
-		NSDateComponents* components = [DateEntryCell getComponents:convertedDate];
-		
-		self.dayTextField.text = [NSString stringWithFormat:@"%i", [components day]];
-		self.monthTextField.text = [NSString stringWithFormat:@"%i", [components month]];
-		self.yearTextField.text = [NSString stringWithFormat:@"%i", [components year]];
+		[self presentDate:convertedDate];
 	}
 }
 
 - (void)presentDate:(NSDate *)date
 {
-	//TODO: set date parts to text fields
-    [self.dayTextField setText:[[DateEntryCell prettyDateFormatter] stringFromDate:date]];
+	NSDateComponents* components = [DateEntryCell getComponents:date];
+	
+	self.dayTextField.text = [NSString stringWithFormat:@"%i", [components day]];
+	self.monthTextField.text = [NSString stringWithFormat:@"%i", [components month]];
+	self.yearTextField.text = [NSString stringWithFormat:@"%i", [components year]];
 }
 
 #pragma mark - Validation
@@ -313,19 +316,6 @@ static NSDateFormatter *__rawDateFormatter;
     }
 
     return __rawDateFormatter;
-}
-
-static NSDateFormatter *__prettyDateFormatter;
-+ (NSDateFormatter *)prettyDateFormatter
-{
-    if (!__prettyDateFormatter)
-	{
-        __prettyDateFormatter = [[NSDateFormatter alloc] init];
-        [__prettyDateFormatter setTimeStyle:NSDateFormatterNoStyle];
-        [__prettyDateFormatter setDateStyle:NSDateFormatterShortStyle];
-    }
-
-    return __prettyDateFormatter;
 }
 
 @end

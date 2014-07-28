@@ -170,7 +170,8 @@
     return YES;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
     [self textFieldEntryFinished];
 }
 
@@ -182,6 +183,7 @@
 #pragma mark - Moving Between Cells
 - (void)navigateAwayFrom:(UITableViewCell *)cell
 {
+	[self textFieldEntryFinished];
 	[self moveFocusOnNextEntryAfterCell:cell];
 }
 
@@ -280,7 +282,8 @@
     return [cell isKindOfClass:[TextEntryCell class]];
 }
 
-- (void)textFieldEntryFinished {
+- (void)textFieldEntryFinished
+{
     
 }
 

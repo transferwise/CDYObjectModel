@@ -40,19 +40,22 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     }
 }
 
-- (void)configureWithTitle:(NSString *)title value:(NSString *)value {
+- (void)configureWithTitle:(NSString *)title value:(NSString *)value
+{
     [self.entryField setPlaceholder:title];
     [self setValue:value];
 }
 
-- (NSString *)value {
+- (NSString *)value
+{
     if([self.entryField text])
         return [self.entryField text];
     else
         return @"";
 }
 
-- (void)setValue:(NSString *)value { 
+- (void)setValue:(NSString *)value
+{
     [self.entryField setText:value];
 }
 
@@ -67,8 +70,10 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 	return [self.entryField isEnabled];
 }
 
-- (void)setValueWhenEditable:(NSString *)value {
-    if (![self.entryField isEnabled]) {
+- (void)setValueWhenEditable:(NSString *)value
+{
+    if (![self.entryField isEnabled])
+	{
         return;
     }
 
@@ -81,13 +86,16 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     return YES;
 }
 
-- (void)markIssue:(NSString *)issueMessage {
+- (void)markIssue:(NSString *)issueMessage
+{
     [self setValidationIssue:issueMessage];
     [self.errorButton setHidden:!self.valueModified || ![issueMessage hasValue] || [self.entryField isFirstResponder]];
 }
 
-- (IBAction)errorButtonTapped {
-    if (![self.validationIssue hasValue]) {
+- (IBAction)errorButtonTapped
+{
+    if (![self.validationIssue hasValue])
+	{
         return;
     }
 
@@ -96,7 +104,8 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     [alertView show];
 }
 
-- (void)markTouched {
+- (void)markTouched
+{
     [self setValueModified:YES];
 }
 

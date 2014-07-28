@@ -18,7 +18,7 @@
 
 @implementation MultipleEntryCell
 
-#pragma mark - TextEntryCell overridess
+#pragma mark - TextEntryCell overrides
 - (UITextField *)entryField
 {
 	return nil;

@@ -532,4 +532,6 @@ We'll send you an email in order to let you choose a new password.";
 
 "network.alert" = "No network";
 
+"unknown.value" = "??";
+
 "contact.detail.send" = "Send money";
