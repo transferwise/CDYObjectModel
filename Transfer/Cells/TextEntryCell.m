@@ -75,7 +75,7 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     [self.entryField setText:value];
 }
 
-- (BOOL)entryField:(UITextField *)entryField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     [self setValueModified:YES];
     return YES;

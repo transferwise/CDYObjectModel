@@ -174,7 +174,7 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     TextEntryCell *cell = [textField findContainerOfType:[TextEntryCell class]];
-    return [cell entryField:textField shouldChangeCharactersInRange:range replacementString:string];
+    return [cell textField:textField shouldChangeCharactersInRange:range replacementString:string];
 }
 
 - (BOOL)moveFocusOnNextEntryAfterCell:(UITableViewCell *)cell {

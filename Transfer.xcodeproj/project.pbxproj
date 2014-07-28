@@ -230,6 +230,8 @@
 		479B69401949E7BB001FA4FE /* UIFont+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B69361948A2EB001FA4FE /* UIFont+MOMStyle.m */; };
 		479B69411949E7DA001FA4FE /* TransferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B692A19487865001FA4FE /* TransferDetailsViewController.m */; };
 		479B69421949E7ED001FA4FE /* TransferDetialsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693319489303001FA4FE /* TransferDetialsHeaderView.m */; };
+		47B36C7F19863C3B002E66C7 /* UITextField+ModifiedText.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B36C7E19863C3B002E66C7 /* UITextField+ModifiedText.m */; };
+		47B36C8019863C3B002E66C7 /* UITextField+ModifiedText.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B36C7E19863C3B002E66C7 /* UITextField+ModifiedText.m */; };
 		47C580A3196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47C580A4196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47DBE05919703494008915A6 /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
@@ -951,6 +953,8 @@
 		479B693919499F9B001FA4FE /* TransferDetailsAmountsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDetailsAmountsView.m; sourceTree = "<group>"; };
 		479B693C1949C36F001FA4FE /* TransferDetialsRecipientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferDetialsRecipientView.h; sourceTree = "<group>"; };
 		479B693D1949C36F001FA4FE /* TransferDetialsRecipientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDetialsRecipientView.m; sourceTree = "<group>"; };
+		47B36C7D19863C3B002E66C7 /* UITextField+ModifiedText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+ModifiedText.h"; sourceTree = "<group>"; };
+		47B36C7E19863C3B002E66C7 /* UITextField+ModifiedText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+ModifiedText.m"; sourceTree = "<group>"; };
 		47C580A1196AC1A7007771DB /* UIGestureRecognizer+Cancel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Cancel.h"; sourceTree = "<group>"; };
 		47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Cancel.m"; sourceTree = "<group>"; };
 		47FAF342194B2F11004CE986 /* LightBlueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LightBlueButton.h; path = Views/LightBlueButton.h; sourceTree = "<group>"; };
@@ -1820,6 +1824,8 @@
 				47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */,
 				47535CB31981367C00DC39D6 /* UIView+SeparatorLine.h */,
 				47535CB41981367C00DC39D6 /* UIView+SeparatorLine.m */,
+				47B36C7D19863C3B002E66C7 /* UITextField+ModifiedText.h */,
+				47B36C7E19863C3B002E66C7 /* UITextField+ModifiedText.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3013,6 +3019,7 @@
 				EA31A14F17DDB29B00F937F7 /* NetworkErrorCodes.m in Sources */,
 				EA31A15017DDB29B00F937F7 /* UserDetailsOperation.m in Sources */,
 				3831AA38194B31A200B3EE5C /* TransparentModalViewController.m in Sources */,
+				47B36C8019863C3B002E66C7 /* UITextField+ModifiedText.m in Sources */,
 				3856691E198157C600BC4230 /* CircleStyle.m in Sources */,
 				EA31A15117DDB29B00F937F7 /* CountrySelectionCell.m in Sources */,
 				EA31A15217DDB29B00F937F7 /* DateEntryCell.m in Sources */,
@@ -3282,6 +3289,7 @@
 				EA88E687172F97D50021492C /* UserDetailsOperation.m in Sources */,
 				EA88E68E172F97E20021492C /* CountrySelectionCell.m in Sources */,
 				EA88E690172F97E20021492C /* DateEntryCell.m in Sources */,
+				47B36C7F19863C3B002E66C7 /* UITextField+ModifiedText.m in Sources */,
 				3856691D198157C600BC4230 /* CircleStyle.m in Sources */,
 				EA88E693172F97F50021492C /* Constants.m in Sources */,
 				EA88E697172F980A0021492C /* SignUpViewController.m in Sources */,

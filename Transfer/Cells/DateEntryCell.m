@@ -13,8 +13,12 @@
 #import "StyledPlaceholderTextField.h"
 #import "UIView+MOMStyle.h"
 #import "UIView+SeparatorLine.h"
+#import "UITextField+ModifiedText.h"
 
 NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
+
+#define DAY_MONTH_MAX_LENGTH	2
+#define YEAR_MAX_LENGTH			4
 
 @interface DateEntryCell ()
 
@@ -30,6 +34,11 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 
 @implementation DateEntryCell
 
+NSInteger const kDayField = 1;
+NSInteger const kMonthField = 2;
+NSInteger const kYearField = 3;
+
+#pragma mark - Init and Configuration
 - (void)awakeFromNib
 {
 	[super awakeFromNib];
@@ -47,6 +56,10 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 	//remove default separator line
 	self.separatorLine = [[UIView alloc] init];
 	[self configureLabels];
+	
+	self.entryField.delegate = self;
+	self.monthTextField.delegate = self;
+	self.yearTextField.delegate = self;
 }
 
 - (void)configureLabels
@@ -93,6 +106,7 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 	self.headerLabel.text = title;
 }
 
+#pragma mark - Value Getters/Setters
 - (void)setValue:(NSString *)value
 {
     NSDate *date = [[DateEntryCell rawDateFormatter] dateFromString:value];
@@ -150,11 +164,83 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
     [self.entryField setText:[[DateEntryCell prettyDateFormatter] stringFromDate:date]];
 }
 
-- (BOOL)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+#pragma mark - Validation
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+	NSUInteger newLength = [textField.text length] + [string length] - range.length;
+	
+	return [self validateLength:newLength textField:textField]
+		&& [self validateContent:string range:range textField:textField]
+		&& [super textField:textField shouldChangeCharactersInRange:range replacementString:string];
+}
+
+- (BOOL)validateLength:(NSUInteger)newLength textField:(UITextField *)textField
+{
+	if (textField.tag == kDayField || textField.tag == kMonthField)
+	{
+		return newLength <= DAY_MONTH_MAX_LENGTH;
+	}
+	else if (textField.tag == kYearField)
+	{
+		return newLength <= YEAR_MAX_LENGTH;
+	}
+	
+	return NO;
+}
+
+- (BOOL)validateContent:(NSString *)text range:(NSRange)range textField:(UITextField *)textField
+{
+	NSString* modified = [textField modifiedText:range newText:text];
+	
+	//allow to delete everything inserted
+	if (self.valueModified && [modified isEqualToString:@""])
+	{
+		return YES;
+	}
+	
+	//cast to int, if this fails then there is no need to go further
+	NSInteger value = [modified integerValue];
+	
+	if (value < 1)
+	{
+		return NO;
+	}
+	
+	if (textField.tag == kDayField)
+	{
+		return value <= 31;
+	}
+	else if (textField.tag == kMonthField)
+	{
+		return value <= 12;
+	}
+	else if (textField.tag == kMonthField)
+	{
+		NSUInteger year = [[DateEntryCell getComponents:[NSDate date]] year];
+		//arbitrary values, maybe 10-year olds will be using us very soon.
+		//maybe 100-year olds ar already using us on iOS.
+		return value >= year - 100 && value <= year - 10;
+	}
+	
+	return NO;
+}
+
+#pragma mark - UITextField Delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField.tag == kDayField)
+	{
+		[self.monthTextField becomeFirstResponder];
+	}
+	else if(textField.tag == kMonthField)
+	{
+		[self.yearTextField becomeFirstResponder];
+	}
+	
 	return YES;
 }
 
+#pragma mark - Date helpers
 + (NSDateComponents *)getComponents:(NSDate *)date
 {
 	return [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
