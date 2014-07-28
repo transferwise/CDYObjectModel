@@ -12,8 +12,6 @@
 
 NSString *const TWDoublePasswordEntryCellIdentifier = @"DoublePasswordEntryCell";
 
-#define MIN_PASSWORD_LENGTH	8
-
 @interface DoublePasswordEntryCell ()
 
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *firstPassword;
@@ -76,6 +74,11 @@ NSInteger const kSecondPassword = 2;
 #pragma mark - Navigation between fields
 - (void)activate
 {
+	if (self.useDummyPassword)
+	{
+		self.firstPassword.text = @"";
+	}
+	
 	[self.firstPassword becomeFirstResponder];
 }
 
@@ -89,17 +92,17 @@ NSInteger const kSecondPassword = 2;
 	return self.selectedTextField.tag == kFirstPassword;
 }
 
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-{
-	return [textField.text length] >= MIN_PASSWORD_LENGTH;
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
 	if (self.showDouble)
 	{
 		if (textField.tag == kFirstPassword)
 		{
+			if (self.useDummyPassword)
+			{
+				self.secondPassword.text = @"";
+			}
+			
 			[self.secondPassword becomeFirstResponder];
 			return YES;
 		}

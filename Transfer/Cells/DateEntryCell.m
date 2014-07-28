@@ -14,6 +14,7 @@
 #import "UIView+MOMStyle.h"
 #import "UIView+SeparatorLine.h"
 #import "UITextField+ModifiedText.h"
+#import "UIColor+MOMStyle.h"
 
 NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 
@@ -114,6 +115,20 @@ NSInteger const kYearField = 3;
 {
 	[self setDateString:value];
 	self.headerLabel.text = title;
+}
+
+- (void)changeHeaderColor
+{
+	if ([self.dayTextField.text hasValue]
+		|| [self.monthTextField.text hasValue]
+		|| [self.yearTextField.text hasValue])
+	{
+		[self.headerLabel setTextColor:[UIColor colorFromStyle:@"TWElectricBlue"]];
+	}
+	else
+	{
+		[self.headerLabel setTextColor:[UIColor colorFromStyle:@"GreyGory"]];
+	}
 }
 
 #pragma mark - Editable
@@ -275,6 +290,7 @@ NSInteger const kYearField = 3;
 
 - (void)textChanged:(UITextField *)textField
 {
+	[self changeHeaderColor];
 	if (textField.tag == kDayField)
 	{
 		if (textField.text.length == DAY_MONTH_MAX_LENGTH)
