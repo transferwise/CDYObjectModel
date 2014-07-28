@@ -92,9 +92,6 @@ static NSUInteger const kRowYouSend = 0;
     [self setYouSendCell:[[NSBundle mainBundle] loadNibNamed:@"MoneyEntryCell" owner:self options:nil][0]];
     [self.youSendCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:nil];
     [self.youSendCell.moneyField setReturnKeyType:UIReturnKeyDone];
-    if (!IOS_7) {
-        [self.youSendCell setRoundedCorner:UIRectCornerTopRight];
-    }
     self.youSendCell.hostForCurrencySelector = self;
     self.youSendCell.currencyButton.compoundStyle = @"sendButton";
     self.youSendCell.titleLabel.fontStyle = @"medium.@{15,17}.CoreFont";
@@ -105,9 +102,6 @@ static NSUInteger const kRowYouSend = 0;
     [self.theyReceiveCell setAmount:[[MoneyFormatter sharedInstance] formatAmount:@(1000)] currency:nil];
     [self.theyReceiveCell.moneyField setReturnKeyType:UIReturnKeyDone];
     [self.theyReceiveCell setForcedCurrency:self.recipient ? self.recipient.currency : nil];
-    if (!IOS_7) {
-        [self.theyReceiveCell setRoundedCorner:UIRectCornerBottomRight];
-    }
     self.theyReceiveCell.hostForCurrencySelector = self;
     self.theyReceiveCell.currencyButton.compoundStyle = @"getButton";
     self.theyReceiveCell.titleLabel.fontStyle = @"medium.@{15,17}.CoreFont";

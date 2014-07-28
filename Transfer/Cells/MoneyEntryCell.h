@@ -25,12 +25,12 @@ typedef void (^CurrencyChangBlock)(Currency *currency);
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic) BOOL leftSeparatorHidden;
 
+
 - (void)setTitle:(NSString *)title;
 - (void)setAmount:(NSString *)amount currency:(Currency *)currency;
 - (NSString *)amount;
 - (Currency *)currency;
 - (void)setForcedCurrency:(Currency *)currency;
-- (void)setRoundedCorner:(UIRectCorner)corner;
 - (void)setMoneyValue:(NSString *)moneyString;
 - (void)initializeSelectorBackground;
 
