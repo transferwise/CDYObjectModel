@@ -3,22 +3,22 @@
     {
       "idiom" : "iphone",
       "scale" : "1x",
-      "filename" : "close_button_iphone_blue.png"
+      "filename" : "Add_button_iphone_blue.png"
     },
     {
       "idiom" : "iphone",
       "scale" : "2x",
-      "filename" : "close_button_iphone_blue@2x.png"
+      "filename" : "Add_button_iphone_blue@2x.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "1x",
-      "filename" : "close_button_ipad_blue@2x.png"
+      "filename" : "Add_button_ipad_blue.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "2x",
-      "filename" : "close_button_ipad_blue@2x-2.png"
+      "filename" : "Add_button_ipad_blue@2x.png"
     }
   ],
   "info" : {

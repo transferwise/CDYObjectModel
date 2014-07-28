@@ -1,15 +1,6 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "currencies_modal_close_button.png"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
       "idiom" : "iphone",
       "scale" : "1x",
       "filename" : "close_button_iphone_white.png"
@@ -21,12 +12,13 @@
     },
     {
       "idiom" : "ipad",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "close_button_ipad_white.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "2x",
-      "filename" : "currencies_modal_close_button@2x~ipad.png"
+      "filename" : "close_button_ipad_white@2x.png"
     }
   ],
   "info" : {

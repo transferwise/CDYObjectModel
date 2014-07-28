@@ -67,7 +67,7 @@
     [navigationController setNavigationBarHidden:NO];
     ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
     UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,40,40)];
-    [closeButton setImage:[UIImage imageNamed:@"currencies_modal_close_button"] forState:UIControlStateNormal];
+    [closeButton setImage:[UIImage imageNamed:@"ModalClose"] forState:UIControlStateNormal];
     [closeButton addTarget:self action:@selector(dismissPayment:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *dismissButton = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
     [controller.navigationItem setLeftBarButtonItem:dismissButton];

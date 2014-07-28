@@ -97,6 +97,11 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [self refreshRecipients];
 	
 	self.tableView.tableFooterView = self.footerView;
+    
+    if(IPAD)
+    {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -233,7 +238,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [operation execute];
 }
 
-- (void)addContactPressed
+- (IBAction)addContactPressed
 {
 	[[GoogleAnalytics sharedInstance] sendScreen:@"Add recipient"];
 
