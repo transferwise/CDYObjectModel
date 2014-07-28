@@ -44,7 +44,11 @@
     [button setImage:[UIImage imageNamed:isBlue ? @"BackButtonArrowBlue" : @"BackButtonArrow"] forState:UIControlStateNormal];
     CGRect newFrame = button.frame;
     newFrame.size = CGSizeMake(44, 44);
-    button.contentEdgeInsets = UIEdgeInsetsMake(0,0,0,25);
+    if(!IPAD)
+    {
+        button.contentEdgeInsets = UIEdgeInsetsMake(0,0,0,25);
+    }
+    
     button.frame=newFrame;
     TransferBackButtonItem *result = [[TransferBackButtonItem alloc] initWithCustomView:button];
     [button addTarget:result action:@selector(tapped) forControlEvents:UIControlEventTouchUpInside];

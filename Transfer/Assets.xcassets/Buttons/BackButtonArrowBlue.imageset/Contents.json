@@ -13,12 +13,12 @@
     {
       "idiom" : "ipad",
       "scale" : "1x",
-      "filename" : "back_button_blue~ipad.png"
+      "filename" : "back_button_ipad_blue.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "2x",
-      "filename" : "back_button_blue@2x~ipad.png"
+      "filename" : "back_button_ipad_blue@2x-2.png"
     }
   ],
   "info" : {
