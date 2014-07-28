@@ -12,8 +12,11 @@
 
 NSString *const TWDoublePasswordEntryCellIdentifier = @"DoublePasswordEntryCell";
 
+#define MIN_PASSWORD_LENGTH	8
+
 @interface DoublePasswordEntryCell ()
 
+@property (strong, nonatomic) IBOutlet FloatingLabelTextField *firstPassword;
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *secondPassword;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *firstPasswordWidth;
 @property (strong, nonatomic) UIView* secondSeparator;
@@ -22,18 +25,111 @@ NSString *const TWDoublePasswordEntryCellIdentifier = @"DoublePasswordEntryCell"
 
 @implementation DoublePasswordEntryCell
 
+NSInteger const kFirstPassword = 1;
+NSInteger const kSecondPassword = 2;
+
+#pragma mark - Init and Configuration
 - (void)awakeFromNib
 {
 	[super awakeFromNib];
-	[self configureWithTitle:NSLocalizedString(@"personal.profile.password.label", nil) value:@""];
+	[self commonSetup];
+}
+
+- (void)commonSetup
+{
+	self.firstPassword.delegate = self;
+	self.secondPassword.delegate = self;
+}
+
+#pragma mark - Multiple Entry Cell
+
+- (void)configureWithTitle:(NSString *)title value:(NSString *)value
+{
+	[self.firstPassword configureWithTitle:title value:@""];
 	[self.secondPassword configureWithTitle:NSLocalizedString(@"personal.profile.password.confirm.label", nil) value:@""];
 }
 
-- (void)prepareForReuse
+- (NSString *)value
 {
-	self.useDummyPassword = NO;
+	return self.firstPassword.text;
 }
 
+- (BOOL)editable
+{
+	if (self.showDouble)
+	{
+		return [self.firstPassword isEnabled]
+			&& [self.secondPassword isEnabled];
+	}
+	else
+	{
+		return [self.firstPassword isEnabled];
+	}
+}
+
+- (void)setEditable:(BOOL)editable
+{
+	self.firstPassword.enabled = editable;
+	self.secondPassword.enabled = editable;
+}
+
+#pragma mark - Navigation between fields
+- (void)activate
+{
+	[self.firstPassword becomeFirstResponder];
+}
+
+- (BOOL)shouldNavigateAway
+{
+	if (self.showDouble)
+	{
+		return self.selectedTextField.tag == kSecondPassword;
+	}
+	
+	return self.selectedTextField.tag == kFirstPassword;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+	return [textField.text length] >= MIN_PASSWORD_LENGTH;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+	if (self.showDouble)
+	{
+		if (textField.tag == kFirstPassword)
+		{
+			[self.secondPassword becomeFirstResponder];
+			return YES;
+		}
+		else if (textField.tag == kSecondPassword)
+		{
+			if (self.areMatching)
+			{
+				//trigger year validation
+				[textField resignFirstResponder];
+				[self navigateAway];
+				return YES;
+			}
+			else
+			{
+				//add validation error to self.
+				return NO;
+			}
+		}
+		
+		return YES;
+	}
+	else
+	{
+		[self.firstPassword resignFirstResponder];
+		[self navigateAway];
+		return YES;
+	}
+}
+
+#pragma mark - Double Password
 - (BOOL)areMatching
 {
 	if (self.showDouble && !self.useDummyPassword)
@@ -56,6 +152,8 @@ NSString *const TWDoublePasswordEntryCellIdentifier = @"DoublePasswordEntryCell"
 		self.firstPasswordWidth.constant = 1000;
 		[self removeDoubleSeparators];
 	}
+	
+	_showDouble = showDouble;
 }
 
 - (void)setDummyPassword

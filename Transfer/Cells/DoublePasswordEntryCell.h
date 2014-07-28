@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TextEntryCell.h"
+#import "MultipleEntryCell.h"
 
 extern NSString *const TWDoublePasswordEntryCellIdentifier;
 
-@interface DoublePasswordEntryCell : TextEntryCell
+@interface DoublePasswordEntryCell : MultipleEntryCell
 
 @property (nonatomic, readonly) NSString* value;
 @property (nonatomic) BOOL showDouble;

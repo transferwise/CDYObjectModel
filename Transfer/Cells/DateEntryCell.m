@@ -277,21 +277,21 @@ NSInteger const kYearField = 3;
 {
 	if (textField.tag == kDayField)
 	{
-		if (textField.text.length >= DAY_MONTH_MAX_LENGTH)
+		if (textField.text.length == DAY_MONTH_MAX_LENGTH)
 		{
 			[self.monthTextField becomeFirstResponder];
 		}
 	}
 	else if (textField.tag == kMonthField)
 	{
-		if (textField.text.length >= DAY_MONTH_MAX_LENGTH)
+		if (textField.text.length == DAY_MONTH_MAX_LENGTH)
 		{
 			[self.yearTextField becomeFirstResponder];
 		}
 	}
 	else if (textField.tag == kYearField)
 	{
-		if (textField.text.length >= YEAR_MAX_LENGTH)
+		if (textField.text.length == YEAR_MAX_LENGTH)
 		{
 			//trigger year validation
 			[textField resignFirstResponder];

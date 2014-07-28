@@ -64,6 +64,7 @@ NSUInteger const kUserPersonalSection = 1;
 	
 	DoublePasswordEntryCell *passwordCell = [DoublePasswordEntryCell loadInstance];
 	passwordCell.showDouble = YES;
+	[passwordCell configureWithTitle:NSLocalizedString(@"personal.profile.password.label", nil) value:@""];
     [self setPasswordCell:passwordCell];
     [personalCells addObject:passwordCell];
 
