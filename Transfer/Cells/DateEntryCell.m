@@ -150,6 +150,11 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
     [self.entryField setText:[[DateEntryCell prettyDateFormatter] stringFromDate:date]];
 }
 
+- (BOOL)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+	return YES;
+}
+
 + (NSDateComponents *)getComponents:(NSDate *)date
 {
 	return [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];

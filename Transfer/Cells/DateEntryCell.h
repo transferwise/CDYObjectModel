@@ -10,7 +10,7 @@
 
 extern NSString *const TWDateEntryCellIdentifier;
 
-@interface DateEntryCell : TextEntryCell
+@interface DateEntryCell : TextEntryCell<UITextFieldDelegate>
 
 - (void)setDateValue:(NSDate *)date;
 

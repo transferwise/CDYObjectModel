@@ -22,7 +22,7 @@ extern NSString *const TWTextEntryCellIdentifier;
 - (void)setValue:(NSString *)value;
 - (void)setEditable:(BOOL)editable;
 - (void)setValueWhenEditable:(NSString *)value;
-- (BOOL)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
+- (BOOL)entryField:(UITextField *)entryField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
 - (void)markIssue:(NSString *)issueMessage;
 - (void)markTouched;
 
