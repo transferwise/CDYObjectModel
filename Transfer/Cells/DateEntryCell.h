@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import "TextEntryCell.h"
+#import "MultipleEntryCell.h"
 
 extern NSString *const TWDateEntryCellIdentifier;
 
-@interface DateEntryCell : TextEntryCell<UITextFieldDelegate>
+@interface DateEntryCell : MultipleEntryCell<UITextFieldDelegate>
 
 - (void)setDateValue:(NSDate *)date;
 

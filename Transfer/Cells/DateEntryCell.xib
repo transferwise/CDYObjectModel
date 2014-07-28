@@ -86,7 +86,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="entryField" destination="3" id="6"/>
+                <outlet property="dayTextField" destination="3" id="PiK-4O-W6W"/>
                 <outlet property="errorButton" destination="14" id="16"/>
                 <outlet property="headerLabel" destination="xmF-mW-bRo" id="Hrt-2g-fae"/>
                 <outlet property="monthTextField" destination="h5b-DX-IqY" id="sco-35-NK2"/>

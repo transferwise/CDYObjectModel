@@ -22,6 +22,7 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 
 @interface DateEntryCell ()
 
+@property (strong, nonatomic) IBOutlet StyledPlaceholderTextField *dayTextField;
 @property (strong, nonatomic) IBOutlet StyledPlaceholderTextField *monthTextField;
 @property (strong, nonatomic) IBOutlet StyledPlaceholderTextField *yearTextField;
 @property (strong, nonatomic) IBOutlet UILabel *headerLabel;
@@ -56,20 +57,29 @@ NSInteger const kYearField = 3;
 	//remove default separator line
 	self.separatorLine = [[UIView alloc] init];
 	[self configureLabels];
-	
-	self.entryField.delegate = self;
+	[self configureFields];
+}
+
+- (void)configureFields
+{
+	self.dayTextField.delegate = self;
+	self.dayTextField.keyboardType = UIKeyboardTypeNumberPad;
+	[self.dayTextField addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventEditingChanged];
 	self.monthTextField.delegate = self;
+	self.monthTextField.keyboardType = UIKeyboardTypeNumberPad;
+	[self.monthTextField addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventEditingChanged];
 	self.yearTextField.delegate = self;
+	self.yearTextField.keyboardType = UIKeyboardTypeNumberPad;
+	[self.yearTextField addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventEditingChanged];
 }
 
 - (void)configureLabels
 {
 	MOMBasicStyle* placeholderStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@{17,20}.Greygory"];
-	StyledPlaceholderTextField* dayTextField = (StyledPlaceholderTextField *)self.entryField;
 	
-	dayTextField.fontStyle = @"heavy.@{17,20}.DarkFont";
-	dayTextField.placeholderStyle = placeholderStyle;
-	[dayTextField configureWithTitle:NSLocalizedString(@"profile.dob.day", nil) value:@""];
+	self.dayTextField.fontStyle = @"heavy.@{17,20}.DarkFont";
+	self.dayTextField.placeholderStyle = placeholderStyle;
+	[self.dayTextField configureWithTitle:NSLocalizedString(@"profile.dob.day", nil) value:@""];
 	
 	self.monthTextField.fontStyle = @"heavy.@{17,20}.DarkFont";
 	self.monthTextField.placeholderStyle = placeholderStyle;
@@ -83,9 +93,9 @@ NSInteger const kYearField = 3;
 - (void)setSeparators
 {
 	//really loving the random constants here :(
-	self.daySeparator = [UIView getSeparatorLineWithParentFrame:CGRectMake(self.entryField.frame.origin.x - 20,
+	self.daySeparator = [UIView getSeparatorLineWithParentFrame:CGRectMake(self.dayTextField.frame.origin.x - 20,
 																		   self.contentView.frame.origin.y,
-																		   self.entryField.frame.size.width + 10,
+																		   self.dayTextField.frame.size.width + 10,
 																		   self.contentView.frame.size.height)];
 	[self.contentView addSubview:self.daySeparator];
 	self.monthSeparator = [UIView getSeparatorLineWithParentFrame:CGRectMake(self.monthTextField.frame.origin.x - 20,
@@ -104,6 +114,14 @@ NSInteger const kYearField = 3;
 {
 	[self setDateString:value];
 	self.headerLabel.text = title;
+}
+
+#pragma mark - Editable
+- (void)setEditable:(BOOL)editable
+{
+	self.dayTextField.enabled = editable;
+	self.monthTextField.enabled = editable;
+	self.yearTextField.enabled = editable;
 }
 
 #pragma mark - Value Getters/Setters
@@ -125,7 +143,7 @@ NSInteger const kYearField = 3;
 
 - (NSString *)value
 {
-	if (![self.entryField.text hasValue])
+	if (![self.dayTextField.text hasValue])
 	{
 		return @"";
 	}
@@ -152,7 +170,7 @@ NSInteger const kYearField = 3;
 	{
 		NSDateComponents* components = [DateEntryCell getComponents:convertedDate];
 		
-		self.entryField.text = [NSString stringWithFormat:@"%i", [components day]];
+		self.dayTextField.text = [NSString stringWithFormat:@"%i", [components day]];
 		self.monthTextField.text = [NSString stringWithFormat:@"%i", [components month]];
 		self.yearTextField.text = [NSString stringWithFormat:@"%i", [components year]];
 	}
@@ -161,7 +179,7 @@ NSInteger const kYearField = 3;
 - (void)presentDate:(NSDate *)date
 {
 	//TODO: set date parts to text fields
-    [self.entryField setText:[[DateEntryCell prettyDateFormatter] stringFromDate:date]];
+    [self.dayTextField setText:[[DateEntryCell prettyDateFormatter] stringFromDate:date]];
 }
 
 #pragma mark - Validation
@@ -198,13 +216,9 @@ NSInteger const kYearField = 3;
 		return YES;
 	}
 	
-	//cast to int, if this fails then there is no need to go further
+	//cast to int, this will return zero if cast fails
+	//hence fields should only be shown with numeric keyboard
 	NSInteger value = [modified integerValue];
-	
-	if (value < 1)
-	{
-		return NO;
-	}
 	
 	if (textField.tag == kDayField)
 	{
@@ -214,30 +228,62 @@ NSInteger const kYearField = 3;
 	{
 		return value <= 12;
 	}
-	else if (textField.tag == kMonthField)
+	else if (textField.tag == kYearField)
 	{
-		NSUInteger year = [[DateEntryCell getComponents:[NSDate date]] year];
-		//arbitrary values, maybe 10-year olds will be using us very soon.
-		//maybe 100-year olds ar already using us on iOS.
-		return value >= year - 100 && value <= year - 10;
+		//year will be validated post-factum
+		return YES;
 	}
 	
 	return NO;
 }
 
-#pragma mark - UITextField Delegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-    if (textField.tag == kDayField)
+	if (textField.tag == kYearField)
 	{
-		[self.monthTextField becomeFirstResponder];
-	}
-	else if(textField.tag == kMonthField)
-	{
-		[self.yearTextField becomeFirstResponder];
+		NSUInteger year = [[DateEntryCell getComponents:[NSDate date]] year];
+		NSInteger value = [textField.text integerValue];
+		
+		//arbitrary values, maybe 10-year olds will be using us very soon.
+		//maybe 100-year olds ar already using us.
+		return value >= year - 100 && value <= year - 10;
 	}
 	
 	return YES;
+}
+
+#pragma mark - Moving between cells
+
+- (BOOL)shouldNavigateAway
+{
+	return self.selectedTextField.tag == kYearField;
+}
+
+- (void)textChanged:(UITextField *)textField
+{
+	if (textField.tag == kDayField)
+	{
+		if (textField.text.length >= DAY_MONTH_MAX_LENGTH)
+		{
+			[self.monthTextField becomeFirstResponder];
+		}
+	}
+	else if (textField.tag == kMonthField)
+	{
+		if (textField.text.length >= DAY_MONTH_MAX_LENGTH)
+		{
+			[self.yearTextField becomeFirstResponder];
+		}
+	}
+	else if (textField.tag == kYearField)
+	{
+		if (textField.text.length >= YEAR_MAX_LENGTH)
+		{
+			//trigger year validation
+			[textField resignFirstResponder];
+			[self navigateAway];
+		}
+	}
 }
 
 #pragma mark - Date helpers

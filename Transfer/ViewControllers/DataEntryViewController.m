@@ -13,6 +13,7 @@
 #import "DataEntryDefaultHeader.h"
 #import "UIResponder+FirstResponder.h"
 #import "MOMStyle.h"
+#import "MultipleEntryCell.h"
 
 @interface DataEntryViewController() <UITextFieldDelegate>
 @end
@@ -170,16 +171,29 @@
     return [cell textField:textField shouldChangeCharactersInRange:range replacementString:string];
 }
 
-- (BOOL)moveFocusOnNextEntryAfterCell:(UITableViewCell *)cell {
+#pragma mark - Moving Between Cells
+- (void)navigateAwayFrom:(UITableViewCell *)cell
+{
+	[self moveFocusOnNextEntryAfterCell:cell];
+}
+
+- (BOOL)moveFocusOnNextEntryAfterCell:(UITableViewCell *)cell
+{
     NSIndexPath *indexPath = [self indexPathForCell:cell];
     
     if (indexPath == nil) {
         return NO;
     }
     
-    if ([cell isKindOfClass:[TextEntryCell class]]) {
+    if ([cell isKindOfClass:[TextEntryCell class]])
+	{
         [(TextEntryCell *)cell markTouched];
     }
+	
+	if ([cell isKindOfClass:[MultipleEntryCell class]] && ![(MultipleEntryCell *)cell shouldNavigateAway])
+	{
+		return NO;
+	}
     
     NSIndexPath *moveToIndexPath = indexPath;
     while ((moveToIndexPath = [self nextEditableIndexPathAfter:moveToIndexPath]) != nil) {

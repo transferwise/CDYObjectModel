@@ -91,7 +91,6 @@ NSUInteger const kUserPersonalSection = 1;
     DateEntryCell *dateOfBirthCell = [DateEntryCell loadInstance];
     [self setDateOfBirthCell:dateOfBirthCell];
     [personalCells addObject:dateOfBirthCell];
-	[phoneCell.entryField setKeyboardType:UIKeyboardTypePhonePad];
     [dateOfBirthCell configureWithTitle:NSLocalizedString(@"personal.profile.date.of.birth.label", nil) value:@""];
     [dateOfBirthCell setCellTag:@"dateOfBirth"];
 	

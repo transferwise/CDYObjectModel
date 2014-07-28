@@ -40,12 +40,6 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     }
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value {
     [self.entryField setPlaceholder:title];
     [self setValue:value];

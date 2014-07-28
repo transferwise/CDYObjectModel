@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MultipleEntryCell.h"
 
-@interface DataEntryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface DataEntryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MultipleEntryCellDelegate>
 
 @property (nonatomic, strong) NSArray *presentedSectionCells;
 @property (nonatomic, weak) IBOutlet UITableView* tableView;
