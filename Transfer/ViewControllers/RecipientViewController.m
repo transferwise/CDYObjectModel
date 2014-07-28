@@ -162,6 +162,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     UITableView *secondColumn = [self hasMoreThanOneTableView]?self.tableViews[1]:self.tableViews[0];
     CurrencySelectionCell *currencyCell = [secondColumn dequeueReusableCellWithIdentifier:TWCurrencySelectionCellIdentifier];
     [self setCurrencyCell:currencyCell];
+    currencyCell.hostForCurrencySelector = self.navigationController;
     [currencyCell setSelectionHandler:^(Currency *currency) {
         [self handleCurrencySelection:currency];
     }];
@@ -329,7 +330,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     self.nameCell.value = [wrapper presentableString:FirstNameFirst];
     self.emailCell.value = wrapper.email;
     
-    [self updateBankDetailHeaderText];
+    [self updateUserNameText];
     
     PhoneBookProfile* profile = [[PhoneBookProfile alloc] initWithRecordId:wrapper.recordId];
     [profile loadData];
@@ -364,7 +365,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self.nameCell setValue:recipient.name];
         [self.emailCell setValue:recipient.email];
 
-        [self updateBankDetailHeaderText];
+        [self updateUserNameText];
         
         for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
             [fieldCell setEditable:NO];
@@ -442,7 +443,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         self.recipientFieldsHeader = [[NSBundle mainBundle] loadNibNamed:@"DataEntryDefaultHeader" owner:self options:nil][0];
     }
     
-    [self updateBankDetailHeaderText];
+    [self updateUserNameText];
 
     //Generate cells
     
@@ -467,10 +468,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
 
     return [NSArray arrayWithArray:result];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.cellHeight;
 }
 
 - (IBAction)addButtonPressed:(id)sender {
@@ -602,7 +599,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         case kRecipientSection:
             return IPAD?NSLocalizedString(@"recipient.controller.section.title.ipad.recipient", nil):nil;
         case kCurrencySection:
-            return NSLocalizedString(@"recipient.controller.section.title.currency", nil);
+            return nil;
         case kRecipientFieldsSection:
             return nil; //Set directly on headerview.
         default:
@@ -843,7 +840,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         ((UITableView*)self.tableViews[0]).scrollEnabled = YES;
     }
     
-    [self updateBankDetailHeaderText];
+    [self updateUserNameText];
 }
 
 -(void)scrollToCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView
@@ -871,12 +868,13 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 }
 
-#pragma mark - bank detail header text
+#pragma mark - text dependent on user name
 
--(void)updateBankDetailHeaderText
+-(void)updateUserNameText
 {
     NSString *recipientName = [self.nameCell.value length] > 0 ? self.nameCell.value: NSLocalizedString(@"recipient.controller.section.title.recipient.placeholder", nil);
     self.recipientFieldsHeader.titleLabel.text =  [NSString stringWithFormat:NSLocalizedString(@"recipient.controller.section.title.recipient.bank.details", nil),recipientName];
+    self.currencyCell.titleLabel.text =  [NSString stringWithFormat:NSLocalizedString(@"recipient.controller.scell.title.recipient.currency", nil),recipientName];
 }
 
 @end
