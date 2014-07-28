@@ -24,10 +24,10 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 @property (nonatomic, strong) IBOutlet UITextField *moneyField;
 @property (nonatomic, strong) Currency *selectedCurrency;
 @property (nonatomic, strong) Currency *forced;
-@property (nonatomic, strong) IBOutlet RoundedCellBackgroundView *roundedBackground;
 @property (nonatomic, strong) PairSourceCurrency *source;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *leftSeparatorHeight;
 @property (strong, nonatomic) UIColor *selectorBackgroundColor;
+@property (weak, nonatomic) IBOutlet UIImageView *dropdownArrow;
 
 @end
 
@@ -155,11 +155,6 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     self.forced = currency;
 }
 
-- (void)setRoundedCorner:(UIRectCorner)corner {
-    [self.roundedBackground setRoundedCorner:corner];
-    [self.roundedBackground setNeedsDisplay];
-    [self.roundedBackground setFillGradient:YES];
-}
 
 - (void)setCurrencies:(NSFetchedResultsController *)currencies {
     
@@ -187,6 +182,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     
     if (self.forced) {
         selected = self.forced;
+        self.dropdownArrow.hidden = YES;
         self.currencyButton.enabled = NO;
     }
     
