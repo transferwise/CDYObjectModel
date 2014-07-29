@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import "DataEntryViewController.h"
+#import "SuggestionDataEntryViewController.h"
 
 @class ProfileSource;
 @class PhoneBookProfileSelector;
@@ -14,7 +14,7 @@
 @class CountriesOperation;
 @class QuickProfileValidationOperation;
 
-@interface ProfileEditViewController : DataEntryViewController
+@interface ProfileEditViewController : SuggestionDataEntryViewController
 
 @property (nonatomic, strong) id profileValidation;
 @property (nonatomic, strong) ObjectModel *objectModel;

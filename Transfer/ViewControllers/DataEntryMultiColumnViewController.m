@@ -394,4 +394,12 @@
     return [self.tableViews count] > 1;
 }
 
+-(void)reloadTableViews
+{
+	for (UITableView* tableView in self.tableViews)
+	{
+		[tableView reloadData];
+	}
+}
+
 @end

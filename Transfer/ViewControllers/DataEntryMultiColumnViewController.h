@@ -100,4 +100,9 @@
  */
 -(void)scrollToCell:(UITableViewCell*)cell inTableView:(UITableView*)tableView;
 
+/**
+ *	Call to reaload all tableviews when @sectionCellsByTableView has been modified
+ */
+-(void)reloadTableViews;
+
 @end

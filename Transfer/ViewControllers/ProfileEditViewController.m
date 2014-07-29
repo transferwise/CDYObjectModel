@@ -55,10 +55,7 @@ static NSUInteger const kButtonSection = 0;
 {
     [super viewDidLoad];
 
-    [self.tableView setBackgroundView:nil];
-    [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
-
-    [self.profileSource setTableView:self.tableView];
+    [self.profileSource setTableViews:self.tableViews];
 
     [self createPresentationCells];
 }
@@ -150,8 +147,8 @@ static NSUInteger const kButtonSection = 0;
                     return;
                 }
 
-                [self setPresentedSectionCells:self.presentationCells];              
-                [self.tableView reloadData];
+                self.sectionCellsByTableView = self.presentationCells;
+                [self reloadTableViews];
             });
         }];
 

@@ -133,7 +133,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     {
         [self setupTableView:tableView];
     }
-
     
     self.cellHeight = IPAD ? 70.0f : 60.0f;
     

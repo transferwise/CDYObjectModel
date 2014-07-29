@@ -103,4 +103,9 @@
     return nil;
 }
 
+- (void)setUpTableView:(UITableView *)tableView
+{
+	ABSTRACT_METHOD;
+}
+
 @end
