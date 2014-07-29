@@ -37,4 +37,9 @@
     }
 }
 
+-(UIViewController*)currentDetailController
+{
+    return self.presentedDetailController;
+}
+
 @end

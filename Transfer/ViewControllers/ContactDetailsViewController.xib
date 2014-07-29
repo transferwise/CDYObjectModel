@@ -126,7 +126,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KS0-eW-Wca">
-                                <rect key="frame" x="135" y="74" width="50" height="50"/>
+                                <rect key="frame" x="135" y="64" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="DOr-Tl-ajX"/>
@@ -144,7 +144,7 @@
                             <constraint firstAttribute="centerX" secondItem="Sqk-am-rp2" secondAttribute="centerX" id="FBn-XR-wql"/>
                             <constraint firstAttribute="centerX" secondItem="KS0-eW-Wca" secondAttribute="centerX" id="VST-EF-s7V"/>
                             <constraint firstItem="Sqk-am-rp2" firstAttribute="top" secondItem="MTM-op-IxE" secondAttribute="top" id="oXy-UE-Di4"/>
-                            <constraint firstItem="KS0-eW-Wca" firstAttribute="top" secondItem="Sqk-am-rp2" secondAttribute="bottom" constant="40" id="rzh-FA-7Du"/>
+                            <constraint firstItem="KS0-eW-Wca" firstAttribute="top" secondItem="Sqk-am-rp2" secondAttribute="bottom" constant="30" id="rzh-FA-7Du"/>
                         </constraints>
                     </view>
                     <connections>
@@ -180,7 +180,7 @@
     </objects>
     <resources>
         <image name="BackButtonArrow" width="11" height="20"/>
-        <image name="BackButtonArrowBlue" width="11" height="20"/>
+        <image name="BackButtonArrowBlue" width="42" height="42"/>
         <image name="DeleteIcon" width="40" height="40"/>
         <image name="flag_default" width="15" height="15"/>
     </resources>

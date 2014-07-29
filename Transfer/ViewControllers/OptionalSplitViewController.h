@@ -22,4 +22,6 @@
  *  @param controller view controller to show.
  */
 -(void)presentDetail:(UIViewController*)controller;
+
+-(UIViewController*)currentDetailController;
 @end
