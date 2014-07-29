@@ -159,10 +159,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     NSMutableArray *currencyCells = [NSMutableArray array];
     
-    UITableView *secondColumn = [self hasMoreThanOneTableView]?self.tableViews[1]:self.tableViews[0];
-    CurrencySelectionCell *currencyCell = [secondColumn dequeueReusableCellWithIdentifier:TWCurrencySelectionCellIdentifier];
+    CurrencySelectionCell *currencyCell = [self.tableViews[0] dequeueReusableCellWithIdentifier:TWCurrencySelectionCellIdentifier];
     [self setCurrencyCell:currencyCell];
-    currencyCell.hostForCurrencySelector = self.navigationController;
+    currencyCell.hostForCurrencySelector = self;
     [currencyCell setSelectionHandler:^(Currency *currency) {
         [self handleCurrencySelection:currency];
     }];
@@ -250,7 +249,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     if([self hasMoreThanOneTableView])
     {
-        [self setSectionCellsByTableView:@[@[self.recipientCells], @[self.currencyCells, @[]]]];
+        [self setSectionCellsByTableView:@[@[self.recipientCells,self.currencyCells], @[]]];
     }
     else
     {
@@ -403,22 +402,15 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setRecipientTypeFieldCells:cells];
     if([self hasMoreThanOneTableView])
     {
-        [self setSectionCellsByTableView:@[@[self.recipientCells], @[self.currencyCells, cells]]];
+        [self setSectionCellsByTableView:@[@[self.recipientCells,self.currencyCells], @[cells]]];
+        [self.tableViews[1] reloadData];
     }
     else
     {
         [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells, cells]]];
-    }
-
-    
-    if([self hasMoreThanOneTableView])
-    {
-        [self.tableViews[1] reloadSections:[NSIndexSet indexSetWithIndex:[self.presentedSectionsByTableView[1] count] - 1 ] withRowAnimation:UITableViewRowAnimationNone];
-    }
-    else
-    {
         [self.tableViews[0] reloadSections:[NSIndexSet indexSetWithIndex:[self.presentedSectionsByTableView[0] count] - 1 ] withRowAnimation:UITableViewRowAnimationNone];
     }
+
     [self refreshTableViewSizes];
 
 }
@@ -626,10 +618,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     NSMutableArray* finalPresentedSectionsByTableView = [NSMutableArray array];
     if([self hasMoreThanOneTableView])
     {
-        [finalPresentedSectionsByTableView addObject:@[@(kRecipientSection)]];
         
-        NSMutableArray *cells = [sectionCellsByTableView[1] mutableCopy];
+        NSMutableArray *cells = [sectionCellsByTableView[0] mutableCopy];
         NSMutableArray *sectionIndexes = [NSMutableArray array];
+        
+        [sectionIndexes addObject:@(kRecipientSection)];
         
         if (self.preLoadRecipientsWithCurrency) {
             [cells removeObject:self.currencyCells];
@@ -637,11 +630,12 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             [sectionIndexes addObject:@(kCurrencySection)];
         }
         
-        finalSectionCellsByTableView[1] = cells;
-        
-        [sectionIndexes addObject:@(kRecipientFieldsSection)];
-        
+        finalSectionCellsByTableView[0] = cells;
+
         [finalPresentedSectionsByTableView addObject:sectionIndexes];
+        [finalPresentedSectionsByTableView addObject:@[@(kRecipientFieldsSection)]];
+        
+        ;
     }
     else
     {

@@ -14,6 +14,10 @@
 
 NSString *const TWCurrencySelectionCellIdentifier = @"TWCurrencySelectionCellIdentifier";
 
+@interface CurrencySelectionCell ()
+@property (nonatomic,assign) BOOL shouldRestoreNavBar;
+@end
+
 @interface CurrencySelectionCell () <NSFetchedResultsControllerDelegate, CurrencySelectorDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *currencies;
@@ -66,7 +70,11 @@ NSString *const TWCurrencySelectionCellIdentifier = @"TWCurrencySelectionCellIde
 {
     //dismiss keyboard
     [self endEditing:YES];
-    
+    self.shouldRestoreNavBar = ! self.hostForCurrencySelector.navigationController.navigationBarHidden;
+    if(self.shouldRestoreNavBar)
+    {
+        [self.hostForCurrencySelector.navigationController setNavigationBarHidden:YES animated:YES];
+    }
     CurrencySelectorViewController* selector = [[CurrencySelectorViewController alloc] init];
     selector.delegate = self;
     selector.currencyArray = self.currencies.fetchedObjects;
@@ -81,7 +89,15 @@ NSString *const TWCurrencySelectionCellIdentifier = @"TWCurrencySelectionCellIde
     Currency *selected = [self.currencies objectAtIndexPath:[NSIndexPath indexPathForRow:selectedCurrencyIndex inSection:0]];
     [self didSelectCurrency:selected];
     self.selectionHandler(selected);
-    
+}
+
+-(void)currencySelectorwillHide:(CurrencySelectorViewController *)controller
+{
+    if(self.shouldRestoreNavBar)
+    {
+        [self.hostForCurrencySelector.navigationController setNavigationBarHidden:NO animated:YES];
+        self.shouldRestoreNavBar = NO;
+    }
 }
 
 

@@ -217,9 +217,29 @@
 
 - (IBAction)selectTapped:(id)sender {
     [self dismiss];
-    [self.delegate currencySelector:self didSelectCurrencyAtIndex:self.selectedIndex];
+    if([self.delegate respondsToSelector:@selector(currencySelector:didSelectCurrencyAtIndex:)])
+    {
+        [self.delegate currencySelector:self didSelectCurrencyAtIndex:self.selectedIndex];
+    }
 }
 
+-(void)presentOnViewController:(UIViewController *)hostViewcontroller
+{
+    if([self.delegate respondsToSelector:@selector(currencySelectorwillShow:)])
+    {
+        [self.delegate currencySelectorwillShow:self];
+    }
+    [super presentOnViewController:hostViewcontroller];
+}
+
+-(void)dismiss
+{
+    if([self.delegate respondsToSelector:@selector(currencySelectorwillHide:)])
+    {
+        [self.delegate currencySelectorwillHide:self];
+    }
+    [super dismiss];
+}
 
 -(void)setSelectedCurrency:(Currency*)selectedCurrency
 {
