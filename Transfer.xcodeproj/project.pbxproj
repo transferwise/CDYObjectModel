@@ -230,6 +230,8 @@
 		479B69401949E7BB001FA4FE /* UIFont+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B69361948A2EB001FA4FE /* UIFont+MOMStyle.m */; };
 		479B69411949E7DA001FA4FE /* TransferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B692A19487865001FA4FE /* TransferDetailsViewController.m */; };
 		479B69421949E7ED001FA4FE /* TransferDetialsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693319489303001FA4FE /* TransferDetialsHeaderView.m */; };
+		47AC3F8D1987845A005491C6 /* SuggestionDataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AC3F8C1987845A005491C6 /* SuggestionDataEntryViewController.m */; };
+		47AC3F8E1987845A005491C6 /* SuggestionDataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AC3F8C1987845A005491C6 /* SuggestionDataEntryViewController.m */; };
 		47B36C7F19863C3B002E66C7 /* UITextField+ModifiedText.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B36C7E19863C3B002E66C7 /* UITextField+ModifiedText.m */; };
 		47B36C8019863C3B002E66C7 /* UITextField+ModifiedText.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B36C7E19863C3B002E66C7 /* UITextField+ModifiedText.m */; };
 		47B36C831986543B002E66C7 /* MultipleEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B36C821986543B002E66C7 /* MultipleEntryCell.m */; };
@@ -955,6 +957,8 @@
 		479B693919499F9B001FA4FE /* TransferDetailsAmountsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDetailsAmountsView.m; sourceTree = "<group>"; };
 		479B693C1949C36F001FA4FE /* TransferDetialsRecipientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferDetialsRecipientView.h; sourceTree = "<group>"; };
 		479B693D1949C36F001FA4FE /* TransferDetialsRecipientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDetialsRecipientView.m; sourceTree = "<group>"; };
+		47AC3F8B1987845A005491C6 /* SuggestionDataEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestionDataEntryViewController.h; sourceTree = "<group>"; };
+		47AC3F8C1987845A005491C6 /* SuggestionDataEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestionDataEntryViewController.m; sourceTree = "<group>"; };
 		47B36C7D19863C3B002E66C7 /* UITextField+ModifiedText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+ModifiedText.h"; sourceTree = "<group>"; };
 		47B36C7E19863C3B002E66C7 /* UITextField+ModifiedText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+ModifiedText.m"; sourceTree = "<group>"; };
 		47B36C811986543B002E66C7 /* MultipleEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipleEntryCell.h; sourceTree = "<group>"; };
@@ -2273,6 +2277,8 @@
 				471CA002197FCB2200BCA3B4 /* TabbedHeaderViewController.m */,
 				471CA003197FCB2200BCA3B4 /* TabbedHeaderViewController.xib */,
 				471CA008197FCB6700BCA3B4 /* TabbedHeaderViewController~ipad.xib */,
+				47AC3F8B1987845A005491C6 /* SuggestionDataEntryViewController.h */,
+				47AC3F8C1987845A005491C6 /* SuggestionDataEntryViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -2961,6 +2967,7 @@
 				479B69421949E7ED001FA4FE /* TransferDetialsHeaderView.m in Sources */,
 				479B69411949E7DA001FA4FE /* TransferDetailsViewController.m in Sources */,
 				479B69401949E7BB001FA4FE /* UIFont+MOMStyle.m in Sources */,
+				47AC3F8E1987845A005491C6 /* SuggestionDataEntryViewController.m in Sources */,
 				38AA83421949B8DF0065AD2A /* GradientView.m in Sources */,
 				47F1F5921941C87600FC4BEB /* NSString+DeviceSpecificLocalisation.m in Sources */,
 				EA31A12517DDB29B00F937F7 /* main.m in Sources */,
@@ -3232,6 +3239,7 @@
 				EAAA1487171BC911005B9430 /* Transfer.xcdatamodeld in Sources */,
 				3831AA39194B31A200B3EE5C /* WhyViewController.m in Sources */,
 				EAD39672171BD2A300F6D011 /* ObjectModel.m in Sources */,
+				47AC3F8D1987845A005491C6 /* SuggestionDataEntryViewController.m in Sources */,
 				EA0450D417EC5BC1008921DA /* IntroViewController.m in Sources */,
 				EAD39676171BD4EE00F6D011 /* MainViewController.m in Sources */,
 				EAD3967B171BD51400F6D011 /* TransactionsViewController.m in Sources */,

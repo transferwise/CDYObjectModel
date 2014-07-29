@@ -60,6 +60,7 @@ NSUInteger const kUserPersonalSection = 1;
     [self setEmailCell:emailCell];
     [personalCells addObject:emailCell];
     [emailCell configureWithTitle:NSLocalizedString(@"personal.profile.email.label", nil) value:@""];
+    [emailCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [emailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
 	
 	DoublePasswordEntryCell *passwordCell = [DoublePasswordEntryCell loadInstance];
