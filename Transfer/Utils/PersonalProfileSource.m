@@ -97,6 +97,12 @@ NSUInteger const kUserPersonalSection = 1;
     [dateOfBirthCell setCellTag:@"dateOfBirth"];
 	
 	NSMutableArray *addressCells = [NSMutableArray array];
+	
+	CountrySelectionCell *countryCell = [CountrySelectionCell loadInstance];
+    [self setCountryCell:countryCell];
+    [addressCells addObject:countryCell];
+    [countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
+    [countryCell setCellTag:@"countryCode"];
 
     TextEntryCell *addressCell = [TextEntryCell loadInstance];
     [self setAddressCell:addressCell];
@@ -117,12 +123,6 @@ NSUInteger const kUserPersonalSection = 1;
     [cityCell configureWithTitle:NSLocalizedString(@"personal.profile.city.label", nil) value:@""];
     [cityCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
     [cityCell setCellTag:@"city"];
-
-    CountrySelectionCell *countryCell = [CountrySelectionCell loadInstance];
-    [self setCountryCell:countryCell];
-    [addressCells addObject:countryCell];
-    [countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
-    [countryCell setCellTag:@"countryCode"];
 
     [self setCells:@[personalCells, addressCells]];
 
