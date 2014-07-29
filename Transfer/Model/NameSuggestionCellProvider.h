@@ -7,10 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TextFieldSuggestionTable.h"
+#import "SuggestionCellProvider.h"
 
-@interface NameSuggestionCellProvider : NSObject<SuggestionTableCellProvider>
-
-@property (nonatomic, strong) NSFetchedResultsController *autoCompleteRecipients;
+@interface NameSuggestionCellProvider : SuggestionCellProvider
 
 @end

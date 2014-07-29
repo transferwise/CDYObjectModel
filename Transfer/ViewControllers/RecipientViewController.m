@@ -254,7 +254,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
 
     if (self.preLoadRecipientsWithCurrency && [Credentials userLoggedIn]) {
-        [self.cellProvider setAutoCompleteRecipients:[self.objectModel fetchedControllerForRecipientsWithCurrency:self.preLoadRecipientsWithCurrency]];
+        [self.cellProvider setAutoCompleteResults:[self.objectModel fetchedControllerForRecipientsWithCurrency:self.preLoadRecipientsWithCurrency]];
     }
 
     [self.currencyCell setAllCurrencies:[self.objectModel fetchedControllerForAllCurrencies]];

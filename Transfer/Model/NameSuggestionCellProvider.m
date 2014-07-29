@@ -14,13 +14,9 @@
 #import "Recipient.h"
 
 
-@interface NameSuggestionCellProvider ()<NSFetchedResultsControllerDelegate>
+@interface NameSuggestionCellProvider ()
 
 @property (nonatomic, strong) AddressBookManager *addressBookManager;
-@property (nonatomic, strong) NSArray *dataSource;
-@property (copy) NSString *filterString;
-@property (nonatomic, strong) UINib *cellNib;
-@property (nonatomic, strong) NSArray *recipients;
 
 @end
 
@@ -32,7 +28,7 @@
     if(self)
     {
         _addressBookManager = [[AddressBookManager alloc] init];
-        [self refreshNameLookupWithCompletion:nil];
+        self.nibName = @"NameSuggestionCell";
     }
     return self;
 }
@@ -46,10 +42,10 @@
             {
                 NSArray* filteredRecipients = [NSArray array];
                 NSMutableArray *workArray;
-                if (self.recipients)
+                if (self.results)
                 {
                     // Filter and sort existing recipients
-                     filteredRecipients = [self.recipients filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NameLookupWrapper *evaluatedObject, NSDictionary *bindings) {
+                     filteredRecipients = [self.results filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NameLookupWrapper *evaluatedObject, NSDictionary *bindings) {
                         return evaluatedObject.firstName && [[evaluatedObject.firstName lowercaseString] rangeOfString:self.filterString].location == 0;
                     }]];
                     
@@ -111,29 +107,9 @@
 
 #pragma mark - Suggestion table cell provider
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if(section < [self.dataSource count])
-    {
-        return [self.dataSource[section] count];
-    }
-    return 0;
-}
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return [self.dataSource count];
-}
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(!self.cellNib)
-    {
-        self.cellNib = [UINib nibWithNibName:@"NameSuggestionCell" bundle:[NSBundle mainBundle]];
-        [tableView registerNib:self.cellNib forCellReuseIdentifier:@"NameSuggestionCell"];
-    }
-    NameSuggestionCell *cell = (NameSuggestionCell*)[tableView dequeueReusableCellWithIdentifier:@"NameSuggestionCell"];
-    cell.translatesAutoresizingMaskIntoConstraints = NO;
+    NameSuggestionCell *cell = (NameSuggestionCell*)[super getCell:tableView];
     
     NameLookupWrapper *wrapper = self.dataSource[indexPath.section][indexPath.row];
     NSString *text;
@@ -167,38 +143,10 @@
     return cell;
 }
 
--(void)filterForText:(NSString *)text completionBlock:(void (^)(BOOL))completionBlock
-{
-    self.filterString = [text lowercaseString];
-    [self refreshNameLookupWithCompletion:^{
-        completionBlock(YES);
-    }];
-}
-
--(id)objectForIndexPath:(NSIndexPath *)indexPath
-{
-    return self.dataSource[indexPath.section][indexPath.row];
-}
-
--(void)setAutoCompleteRecipients:(NSFetchedResultsController *)autoCompleteRecipients
-{
-    if(_autoCompleteRecipients != autoCompleteRecipients)
-    {
-        _autoCompleteRecipients = autoCompleteRecipients;
-        [self refreshRecipients];
-    }
-    
-}
-
--(void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    [self refreshRecipients];
-}
-
 -(void)refreshRecipients
 {
-    NSMutableArray* result = [NSMutableArray arrayWithCapacity:[self.autoCompleteRecipients.fetchedObjects count]];
-    for(Recipient *recipient in self.autoCompleteRecipients.fetchedObjects)
+    NSMutableArray* result = [NSMutableArray arrayWithCapacity:[self.autoCompleteResults.fetchedObjects count]];
+    for(Recipient *recipient in self.autoCompleteResults.fetchedObjects)
     {
         if(recipient.email)
         {
@@ -206,7 +154,8 @@
             [result addObject:wrapper];
         }
     }
-    self.recipients = result;
+	
+    self.results = result;
 }
 
 @end

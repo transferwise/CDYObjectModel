@@ -7,13 +7,11 @@
 //
 
 #import "SuggestionCellProvider.h"
-#import "SuggestionCell.h"
 #import "UIColor+MOMStyle.h"
 #import "Constants.h"
 
 @interface SuggestionCellProvider()<NSFetchedResultsControllerDelegate>
 
-@property (copy) NSString *filterString;
 @property (nonatomic, strong) UINib *cellNib;
 
 @end
@@ -51,14 +49,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(!self.cellNib)
-    {
-        self.cellNib = [UINib nibWithNibName:self.nibName bundle:[NSBundle mainBundle]];
-        [tableView registerNib:self.cellNib forCellReuseIdentifier:kCellReuseIdentifier];
-    }
-	
-    SuggestionCell *cell = (SuggestionCell*)[tableView dequeueReusableCellWithIdentifier:kCellReuseIdentifier];
-    cell.translatesAutoresizingMaskIntoConstraints = NO;
+    SuggestionCell *cell = [self getCell:tableView];
     
     NSString *text = self.dataSource[indexPath.section][indexPath.row];
     
@@ -70,6 +61,19 @@
     }
     cell.nameLabel.attributedText = attributedText;
     return cell;
+}
+
+- (SuggestionCell *)getCell:(UITableView *)tableView
+{
+	if(!self.cellNib)
+    {
+        self.cellNib = [UINib nibWithNibName:self.nibName bundle:[NSBundle mainBundle]];
+        [tableView registerNib:self.cellNib forCellReuseIdentifier:@"SuggestionCell"];
+    }
+	
+    SuggestionCell *cell = (SuggestionCell*)[tableView dequeueReusableCellWithIdentifier:@"SuggestionCell"];
+    cell.translatesAutoresizingMaskIntoConstraints = NO;
+	return cell;
 }
 
 -(void)filterForText:(NSString *)text completionBlock:(void (^)(BOOL))completionBlock

@@ -8,16 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "TextFieldSuggestionTable.h"
+#import "SuggestionCell.h"
 
-NSString * const kCellReuseIdentifier = @"SuggestCell";
-
-@interface SuggestionCellProvider : NSObject<SuggestionTableCellProvider>
+@interface SuggestionCellProvider : NSObject<SuggestionTableCellProvider, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSString *nibName;
 @property (nonatomic, strong) NSFetchedResultsController *autoCompleteResults;
 @property (nonatomic, strong) NSArray *dataSource;
 @property (nonatomic, strong) NSArray *results;
+@property (copy) NSString *filterString;
 
 - (void)refreshLookupWithCompletion:(void(^)(void))completionBlock;
+
+- (SuggestionCell *)getCell:(UITableView *)tableView;
 
 @end
