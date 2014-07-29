@@ -181,11 +181,6 @@
 }
 
 #pragma mark - Moving Between Cells
-- (void)navigateAwayFrom:(UITableViewCell *)cell
-{
-	[self textFieldEntryFinished];
-	[self moveFocusOnNextEntryAfterCell:cell];
-}
 
 - (BOOL)moveFocusOnNextEntryAfterCell:(UITableViewCell *)cell
 {

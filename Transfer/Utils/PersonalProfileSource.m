@@ -124,7 +124,7 @@ NSUInteger const kUserPersonalSection = 1;
     [cityCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
     [cityCell setCellTag:@"city"];
 
-    [self setCells:@[personalCells, addressCells]];
+    [self setCells:@[@[personalCells, addressCells]]];
 
     return self.cells;
 }
