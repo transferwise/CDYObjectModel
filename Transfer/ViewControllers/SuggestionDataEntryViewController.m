@@ -45,6 +45,7 @@
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
+	[self suggestionTableDidStartEditing:self.suggestionTable];
     self.suggestionTable.alpha = 1.0f;
 }
 

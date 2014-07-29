@@ -174,22 +174,16 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
     
     self.cellProvider = [[NameSuggestionCellProvider alloc] init];
-	
-	[super configureWithDataSource:self.cellProvider
+    
+    [super configureWithDataSource:self.cellProvider
 						 entryCell:nameCell
 							height:self.cellHeight];
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-	[self configureForInterfaceOrientation:toInterfaceOrientation];
 	[super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-}
-
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    self.suggestionTable.alpha = 1.0f;
-	[super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    [self configureForInterfaceOrientation:toInterfaceOrientation];
 }
 
 -(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation
@@ -222,8 +216,12 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
     if (self.reportingType != RecipientReportingNone) {
@@ -312,8 +310,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setShown:YES];
 }
 
-- (void)loadDataFromWrapper:(NameLookupWrapper *)wrapper
-{
+
+- (void)loadDataFromWrapper:(NameLookupWrapper *)wrapper {
     [self didSelectRecipient:nil];
     self.lastSelectedWrapper = wrapper;
     self.nameCell.value = [wrapper presentableString:FirstNameFirst];
@@ -334,8 +332,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     
 }
 
-- (void)didSelectRecipient:(Recipient *)recipient
-{
+- (void)didSelectRecipient:(Recipient *)recipient {
     [self setRecipient:recipient];
     [self handleSelectionChangeToType:recipient ? recipient.type : self.currency.defaultRecipientType allTypes:[self.currency.recipientTypes array]];
 
@@ -369,8 +366,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     });
 }
 
-- (void)handleCurrencySelection:(Currency *)currency
-{
+- (void)handleCurrencySelection:(Currency *)currency {
     dispatch_async(dispatch_get_main_queue(), ^{
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"CurrencyRecipientSelected" withLabel:currency.code];
 
@@ -387,8 +383,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     });
 }
 
-- (void)handleSelectionChangeToType:(RecipientType *)type allTypes:(NSArray *)allTypes
-{
+- (void)handleSelectionChangeToType:(RecipientType *)type allTypes:(NSArray *)allTypes {
     MCLog(@"handleSelectionChangeToType:%@", type.type);
     NSArray *cells = [self buildCellsForType:type allTypes:allTypes];
     [self setRecipientType:type];
@@ -416,8 +411,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 
-- (NSArray *)buildCellsForType:(RecipientType *)type allTypes:(NSArray *)allTypes
-{
+- (NSArray *)buildCellsForType:(RecipientType *)type allTypes:(NSArray *)allTypes {
     MCLog(@"Build cells for type:%@", type.type);
     NSMutableArray *result = [NSMutableArray array];
 
@@ -463,13 +457,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     return [NSArray arrayWithArray:result];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return self.cellHeight;
 }
 
-- (IBAction)addButtonPressed:(id)sender
-{
+- (IBAction)addButtonPressed:(id)sender {
     [UIApplication dismissKeyboard];
 
     NSString *issues = [self validateInput];
@@ -529,8 +521,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }];
 }
 
-- (NSString *)validateInput
-{
+- (NSString *)validateInput {
     NSMutableString *issues = [NSMutableString string];
 
     NSString *name = [self.nameCell value];
@@ -557,6 +548,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     return [NSString stringWithString:issues];
 }
 
+
+
+
+
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [super numberOfSectionsInTableView:tableView];
@@ -571,6 +567,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
     
     return [super tableView:tableView heightForHeaderInSection:section];
+
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -584,8 +581,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     return [super tableView:tableView viewForHeaderInSection:section];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+
     NSUInteger index = [self.tableViews indexOfObject:tableView];
     NSNumber *sectionCode = self.presentedSectionsByTableView[index][(NSUInteger) section];
     switch ([sectionCode integerValue]) {
@@ -697,7 +695,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 -(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
 {
     [super suggestionTable:table selectedObject:object];
-	
     NameLookupWrapper* wrapper = (NameLookupWrapper*)object;
     if(wrapper.recordId)
     {
@@ -711,6 +708,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 #pragma mark - Keyboard show/hide
+
+
+
 
 -(void)keyboardWillShow:(NSNotification*)note
 {
