@@ -549,7 +549,6 @@
 		EA31A1EB17DDB29B00F937F7 /* TSAlertViewButtonBackground_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911F1721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png */; };
 		EA31A1EC17DDB29B00F937F7 /* TSAlertViewBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC691201721416300F0FB1A /* TSAlertViewBackground2.png */; };
 		EA31A1ED17DDB29B00F937F7 /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC691211721416300F0FB1A /* TSAlertViewBackground.png */; };
-		EA31A1EF17DDB29B00F937F7 /* CountrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E68A172F97E20021492C /* CountrySelectionCell.xib */; };
 		EA31A1F017DDB29B00F937F7 /* DateEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E68D172F97E20021492C /* DateEntryCell.xib */; };
 		EA31A1F117DDB29B00F937F7 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E696172F980A0021492C /* SignUpViewController.xib */; };
 		EA31A1F217DDB29B00F937F7 /* PaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA35C77117327981005602F7 /* PaymentCell.xib */; };
@@ -626,7 +625,6 @@
 		EA88E685172F97D50021492C /* NetworkErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E67F172F97D50021492C /* NetworkErrorCodes.m */; };
 		EA88E687172F97D50021492C /* UserDetailsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E683172F97D50021492C /* UserDetailsOperation.m */; };
 		EA88E68E172F97E20021492C /* CountrySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E689172F97E20021492C /* CountrySelectionCell.m */; };
-		EA88E68F172F97E20021492C /* CountrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E68A172F97E20021492C /* CountrySelectionCell.xib */; };
 		EA88E690172F97E20021492C /* DateEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E68C172F97E20021492C /* DateEntryCell.m */; };
 		EA88E691172F97E20021492C /* DateEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E68D172F97E20021492C /* DateEntryCell.xib */; };
 		EA88E693172F97F50021492C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E692172F97F50021492C /* Constants.m */; };
@@ -1229,7 +1227,6 @@
 		EA88E683172F97D50021492C /* UserDetailsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsOperation.m; sourceTree = "<group>"; };
 		EA88E688172F97E20021492C /* CountrySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountrySelectionCell.h; sourceTree = "<group>"; };
 		EA88E689172F97E20021492C /* CountrySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountrySelectionCell.m; sourceTree = "<group>"; };
-		EA88E68A172F97E20021492C /* CountrySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountrySelectionCell.xib; sourceTree = "<group>"; };
 		EA88E68B172F97E20021492C /* DateEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateEntryCell.h; sourceTree = "<group>"; };
 		EA88E68C172F97E20021492C /* DateEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateEntryCell.m; sourceTree = "<group>"; };
 		EA88E68D172F97E20021492C /* DateEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateEntryCell.xib; sourceTree = "<group>"; };
@@ -1718,7 +1715,6 @@
 				EA222E3D173A8A7C00C5D613 /* ConfirmPaymentCell.xib */,
 				EA88E688172F97E20021492C /* CountrySelectionCell.h */,
 				EA88E689172F97E20021492C /* CountrySelectionCell.m */,
-				EA88E68A172F97E20021492C /* CountrySelectionCell.xib */,
 				380021FD192F443E009B1D53 /* CurrencyCell.h */,
 				380021FE192F443E009B1D53 /* CurrencyCell.m */,
 				3800220B192F5774009B1D53 /* CurrencyCell.xib */,
@@ -2613,7 +2609,6 @@
 				38B093121951FA2A00315BE4 /* TransferTypeSelectionHeader.xib in Resources */,
 				473DF976196D637200524C64 /* LoginViewController~ipad.xib in Resources */,
 				EAB61711191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
-				EA31A1EF17DDB29B00F937F7 /* CountrySelectionCell.xib in Resources */,
 				EA31A1F017DDB29B00F937F7 /* DateEntryCell.xib in Resources */,
 				EA31A1F117DDB29B00F937F7 /* SignUpViewController.xib in Resources */,
 				38EFABDA196D7E2400126192 /* RecipientViewController~ipad.xib in Resources */,
@@ -2718,7 +2713,6 @@
 				BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */,
 				BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */,
 				EAB61710191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
-				EA88E68F172F97E20021492C /* CountrySelectionCell.xib in Resources */,
 				EA88E691172F97E20021492C /* DateEntryCell.xib in Resources */,
 				EA88E698172F980A0021492C /* SignUpViewController.xib in Resources */,
 				38B093111951FA2A00315BE4 /* TransferTypeSelectionHeader.xib in Resources */,

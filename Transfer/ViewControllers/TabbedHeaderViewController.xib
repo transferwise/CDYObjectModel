@@ -46,7 +46,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="454" translatesAutoresizingMaskIntoConstraints="NO" id="WE4-IL-T3h" userLabel="View - Container">
-                    <rect key="frame" x="0.0" y="50" width="320" height="518"/>
+                    <rect key="frame" x="0.0" y="50" width="320" height="469"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
@@ -91,8 +91,8 @@
                 <constraint firstAttribute="trailing" secondItem="2Te-nw-lEj" secondAttribute="trailing" id="RYk-GV-jph"/>
                 <constraint firstAttribute="bottom" secondItem="2Te-nw-lEj" secondAttribute="bottom" id="ZOh-he-FYj"/>
                 <constraint firstItem="jg9-Tu-Pay" firstAttribute="top" secondItem="HZy-nt-qaY" secondAttribute="top" id="kTI-yh-MCY"/>
+                <constraint firstItem="2Te-nw-lEj" firstAttribute="top" secondItem="WE4-IL-T3h" secondAttribute="bottom" id="kaz-lH-eWO"/>
                 <constraint firstItem="jg9-Tu-Pay" firstAttribute="leading" secondItem="HZy-nt-qaY" secondAttribute="leading" id="kwn-cP-jST"/>
-                <constraint firstAttribute="bottom" secondItem="WE4-IL-T3h" secondAttribute="bottom" id="sGM-HR-GEg"/>
                 <constraint firstItem="Jjs-hI-QDY" firstAttribute="top" secondItem="HZy-nt-qaY" secondAttribute="top" constant="50" id="sRn-ei-vDK"/>
                 <constraint firstAttribute="trailing" secondItem="WE4-IL-T3h" secondAttribute="trailing" id="wvC-0l-g6b"/>
             </constraints>
