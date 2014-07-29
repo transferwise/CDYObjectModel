@@ -1,24 +1,14 @@
 {
   "images" : [
     {
-      "idiom" : "iphone",
+      "idiom" : "universal",
       "scale" : "1x",
       "filename" : "Add_button_iphone_blue.png"
     },
     {
-      "idiom" : "iphone",
+      "idiom" : "universal",
       "scale" : "2x",
       "filename" : "Add_button_iphone_blue@2x.png"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "1x",
-      "filename" : "Add_button_ipad_blue.png"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "2x",
-      "filename" : "Add_button_ipad_blue@2x.png"
     }
   ],
   "info" : {
