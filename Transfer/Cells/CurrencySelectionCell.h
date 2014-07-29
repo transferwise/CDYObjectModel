@@ -15,8 +15,9 @@ extern NSString *const TWCurrencySelectionCellIdentifier;
 typedef void (^TRWCurrencySelectionBlock)(Currency *currency);
 
 @interface CurrencySelectionCell : TextEntryCell
-
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic, copy) TRWCurrencySelectionBlock selectionHandler;
+@property (nonatomic, weak) UIViewController* hostForCurrencySelector;
 
 - (void)setAllCurrencies:(NSFetchedResultsController *)currencies;
 

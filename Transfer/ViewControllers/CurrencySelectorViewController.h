@@ -14,7 +14,10 @@
 
 @protocol CurrencySelectorDelegate <NSObject>
 
+@optional
+-(void)currencySelectorwillShow:(CurrencySelectorViewController*)controller;
 -(void)currencySelector:(CurrencySelectorViewController*)controller didSelectCurrencyAtIndex:(NSUInteger)selectedCurrencyIndex;
+-(void)currencySelectorwillHide:(CurrencySelectorViewController*)controller;
 
 @end
 
