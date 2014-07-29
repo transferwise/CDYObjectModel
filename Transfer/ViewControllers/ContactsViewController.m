@@ -280,6 +280,8 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
 - (void)deleteRecipient:(Recipient *)recipient
 {
+    ContactDetailsViewController* detailsController = (ContactDetailsViewController*)[self currentDetailController];
+    BOOL clearDetailView = detailsController.recipient == recipient;
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"Delete recipient:%@", recipient.name);
         TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
@@ -293,6 +295,10 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 				[self setExecutedOperation:nil];
                 [hud hide];
                 [self refreshRecipients];
+                if(clearDetailView)
+                {
+                    [self presentDetail:nil];
+                }
             });
         }];
 
@@ -355,10 +361,6 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 -(void)contactDetailsController:(ContactDetailsViewController *)controller didDeleteContact:(Recipient *)deletedRecipient
 {
     [self confirmRecipientDelete:deletedRecipient indexPath:nil];
-    if(IPAD)
-    {
-        [self presentDetail:nil];
-    }
 }
 
 @end
