@@ -99,8 +99,10 @@ static NSUInteger const kRowYouSend = 0;
     MoneyCalculator *calculator = [[MoneyCalculator alloc] init];
     [self setCalculator:calculator];
 
+    __weak typeof(self) weakSelf = self;
+
     [calculator setActivityHandler:^(BOOL calculating) {
-        [self presentActivityIndicator:calculating];
+        [weakSelf presentActivityIndicator:calculating];
     }];
 
     [calculator setSendCell:self.youSendCell];
@@ -115,13 +117,13 @@ static NSUInteger const kRowYouSend = 0;
             return;
         }
 
-        [self setCalculationResult:result];
+        [weakSelf setCalculationResult:result];
 
-        [self showPaymentReceivedOnDate:result.formattedEstimatedDelivery];
-        [self fillDepositFieldsWithResult:result];
+        [weakSelf showPaymentReceivedOnDate:result.formattedEstimatedDelivery];
+        [weakSelf fillDepositFieldsWithResult:result];
 
-        [self.tableView setTableFooterView:self.footerView];
-        [self.tableView adjustFooterViewSize];
+        [weakSelf.tableView setTableFooterView:self.footerView];
+        [weakSelf.tableView adjustFooterViewSize];
 
     }];
 
@@ -189,8 +191,10 @@ static NSUInteger const kRowYouSend = 0;
     CurrencyPairsOperation *operation = [CurrencyPairsOperation pairsOperation];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
+    __weak typeof(self) weakSelf = self;
+
     [operation setCurrenciesHandler:^(NSError *error) {
-        [self setExecutedOperation:nil];
+        [weakSelf setExecutedOperation:nil];
         if (error) {
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"payment.controller.calculation.error.title", nil) error:error];
             [alertView show];
