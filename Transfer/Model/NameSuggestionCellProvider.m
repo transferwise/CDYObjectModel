@@ -33,7 +33,7 @@
     return self;
 }
 
--(void)refreshNameLookupWithCompletion:(void(^)(void))completionBlock
+-(void)refreshLookupWithCompletion:(void(^)(void))completionBlock
 {
     [_addressBookManager getNameLookupWithHandler:^(NSArray *nameLookup) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -143,7 +143,7 @@
     return cell;
 }
 
--(void)refreshRecipients
+-(void)refreshResults
 {
     NSMutableArray* result = [NSMutableArray arrayWithCapacity:[self.autoCompleteResults.fetchedObjects count]];
     for(Recipient *recipient in self.autoCompleteResults.fetchedObjects)

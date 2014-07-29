@@ -25,8 +25,7 @@
     {
         self.nibName = @"SuggestionCell";
 		
-		[self refreshResults];
-        [self refreshLookupWithCompletion:nil];
+		[self refreshLookupWithCompletion:nil];
     }
     return self;
 }
@@ -68,10 +67,10 @@
 	if(!self.cellNib)
     {
         self.cellNib = [UINib nibWithNibName:self.nibName bundle:[NSBundle mainBundle]];
-        [tableView registerNib:self.cellNib forCellReuseIdentifier:@"SuggestionCell"];
+        [tableView registerNib:self.cellNib forCellReuseIdentifier:self.nibName];
     }
 	
-    SuggestionCell *cell = (SuggestionCell*)[tableView dequeueReusableCellWithIdentifier:@"SuggestionCell"];
+    SuggestionCell *cell = (SuggestionCell*)[tableView dequeueReusableCellWithIdentifier:self.nibName];
     cell.translatesAutoresizingMaskIntoConstraints = NO;
 	return cell;
 }
