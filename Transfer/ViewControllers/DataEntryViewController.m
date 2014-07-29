@@ -299,8 +299,7 @@
         CGFloat overlap = self.tableView.frame.origin.y + self.tableView.frame.size.height - newframe.origin.y;
         
         if(overlap >0)
-        {
-            
+        {            
             [UIView beginAnimations:nil context:NULL];
             [UIView setAnimationDuration:duration];
             [UIView setAnimationCurve:curve];
