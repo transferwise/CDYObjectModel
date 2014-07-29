@@ -9,9 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "TextFieldSuggestionTable.h"
 
+NSString * const kCellReuseIdentifier = @"SuggestCell";
+
 @interface SuggestionCellProvider : NSObject<SuggestionTableCellProvider>
 
+@property (nonatomic, strong) NSString *nibName;
 @property (nonatomic, strong) NSFetchedResultsController *autoCompleteResults;
 @property (nonatomic, strong) NSArray *dataSource;
+@property (nonatomic, strong) NSArray *results;
+
+- (void)refreshLookupWithCompletion:(void(^)(void))completionBlock;
 
 @end

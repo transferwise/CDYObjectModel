@@ -7,8 +7,11 @@
 //
 
 #import "SuggestionCellProvider.h"
+#import "SuggestionCell.h"
+#import "UIColor+MOMStyle.h"
+#import "Constants.h"
 
-@interface SuggestionCellProvider()
+@interface SuggestionCellProvider()<NSFetchedResultsControllerDelegate>
 
 @property (copy) NSString *filterString;
 @property (nonatomic, strong) UINib *cellNib;
@@ -16,6 +19,19 @@
 @end
 
 @implementation SuggestionCellProvider
+
+-(id)init
+{
+    self = [super init];
+    if(self)
+    {
+        self.nibName = @"SuggestionCell";
+		
+		[self refreshResults];
+        [self refreshLookupWithCompletion:nil];
+    }
+    return self;
+}
 
 #pragma mark - Suggestion table cell provider
 
@@ -37,24 +53,14 @@
 {
     if(!self.cellNib)
     {
-        self.cellNib = [UINib nibWithNibName:@"NameSuggestionCell" bundle:[NSBundle mainBundle]];
-        [tableView registerNib:self.cellNib forCellReuseIdentifier:@"NameSuggestionCell"];
+        self.cellNib = [UINib nibWithNibName:self.nibName bundle:[NSBundle mainBundle]];
+        [tableView registerNib:self.cellNib forCellReuseIdentifier:kCellReuseIdentifier];
     }
-    NameSuggestionCell *cell = (NameSuggestionCell*)[tableView dequeueReusableCellWithIdentifier:@"NameSuggestionCell"];
+	
+    SuggestionCell *cell = (SuggestionCell*)[tableView dequeueReusableCellWithIdentifier:kCellReuseIdentifier];
     cell.translatesAutoresizingMaskIntoConstraints = NO;
     
-    NameLookupWrapper *wrapper = self.dataSource[indexPath.section][indexPath.row];
-    NSString *text;
-    switch (indexPath.section) {
-        case 2:
-            text = [wrapper presentableString:LastNameFirst];
-            break;
-        case 1:
-        case 0:
-        default:
-            text = [wrapper presentableString:FirstNameFirst];
-            break;
-    }
+    NSString *text = self.dataSource[indexPath.section][indexPath.row];
     
     NSMutableAttributedString  *attributedText= [[NSMutableAttributedString alloc] initWithString:text];
     NSRange range = [[text lowercaseString] rangeOfString:self.filterString];
@@ -63,22 +69,14 @@
         [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"DarkFont"] range:range];
     }
     cell.nameLabel.attributedText = attributedText;
-    
-    cell.emailLabel.text = wrapper.email;
-    cell.tag = wrapper.recordId;
-    [self.addressBookManager getImageForRecordId:wrapper.recordId completion:^(UIImage *image) {
-        if(cell.tag == wrapper.recordId)
-        {
-            cell.thumbnailImage.image = image;
-        }
-    }];
     return cell;
 }
 
 -(void)filterForText:(NSString *)text completionBlock:(void (^)(BOOL))completionBlock
 {
     self.filterString = [text lowercaseString];
-    [self refreshNameLookupWithCompletion:^{
+	
+    [self refreshLookupWithCompletion:^{
         completionBlock(YES);
     }];
 }
@@ -88,33 +86,51 @@
     return self.dataSource[indexPath.section][indexPath.row];
 }
 
--(void)setAutoCompleteRecipients:(NSFetchedResultsController *)autoCompleteRecipients
+-(void)setAutoCompleteResults:(NSFetchedResultsController *)autoCompleteResults
 {
-    if(_autoCompleteRecipients != autoCompleteRecipients)
+    if(_autoCompleteResults != autoCompleteResults)
     {
-        _autoCompleteRecipients = autoCompleteRecipients;
-        [self refreshRecipients];
+        _autoCompleteResults = autoCompleteResults;
+        [self refreshResults];
     }
-    
 }
 
 -(void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    [self refreshRecipients];
+    [self refreshResults];
 }
 
--(void)refreshRecipients
+-(void)refreshLookupWithCompletion:(void(^)(void))completionBlock
 {
-    NSMutableArray* result = [NSMutableArray arrayWithCapacity:[self.autoCompleteRecipients.fetchedObjects count]];
-    for(Recipient *recipient in self.autoCompleteRecipients.fetchedObjects)
-    {
-        if(recipient.email)
-        {
-            NameLookupWrapper* wrapper = [[NameLookupWrapper alloc] initWithManagedObjectId:recipient.objectID firstname:recipient.name lastName:nil email:recipient.email];
-            [result addObject:wrapper];
-        }
-    }
-    self.recipients = result;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		if([self.filterString length] > 0)
+		{
+			NSArray* filteredResults = [self.results filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSString *evaluatedObject, NSDictionary *bindings) {
+				return evaluatedObject && [[evaluatedObject lowercaseString] rangeOfString:self.filterString].location == 0;
+			}]];
+			filteredResults = [filteredResults sortedArrayUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
+				return [obj1 caseInsensitiveCompare:obj2];
+			}];
+			
+			self.dataSource = @[filteredResults];
+		}
+		else
+		{
+			self.dataSource = nil;
+		}
+		
+		dispatch_async(dispatch_get_main_queue(), ^{
+			if(completionBlock)
+			{
+				completionBlock();
+			}
+		});
+	});
+}
+
+-(void)refreshResults
+{
+    ABSTRACT_METHOD;
 }
 
 @end
