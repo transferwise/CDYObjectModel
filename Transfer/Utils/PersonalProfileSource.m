@@ -186,9 +186,17 @@ NSUInteger const kUserPersonalSection = 1;
 - (BOOL)inputValid
 {
     return [[self.firstNameCell value] hasValue] && [[self.lastNameCell value] hasValue] && [[self.emailCell value] hasValue]
+			&& [self isPasswordValid]
             && [[self.phoneNumberCell value] hasValue] && [[self.dateOfBirthCell value] hasValue]
             && [[self.addressCell value] hasValue] && [[self.postCodeCell value] hasValue] && [[self.cityCell value] hasValue]
             && [[self.countryCell value] hasValue];
+}
+
+- (BOOL)isPasswordValid
+{
+	return self.passwordCell.useDummyPassword
+		|| ([self.passwordCell.value hasValue]
+		&& self.passwordCell.areMatching);
 }
 
 - (id)enteredProfile
