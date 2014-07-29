@@ -21,19 +21,23 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
 
 @implementation CountrySelectionCell
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame
+{
     self = [super initWithFrame:frame];
-    if (self) {
+    if (self)
+	{
         // Initialization code
     }
     return self;
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
     [self.allCountries setDelegate:nil];
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 
     UIPickerView *pickerView = [[UIPickerView alloc] init];
@@ -42,21 +46,22 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
     [pickerView setDelegate:self];
     [pickerView setDataSource:self];
     [pickerView setShowsSelectionIndicator:YES];
-
-    //[self addDoneButton];
 }
 
-- (void)setAllCountries:(NSFetchedResultsController *)allCountries {
+- (void)setAllCountries:(NSFetchedResultsController *)allCountries
+{
     [_allCountries setDelegate:nil];
     _allCountries = allCountries;
     [_allCountries setDelegate:self];
 }
 
 
-- (void)setValue:(NSString *)value {
+- (void)setValue:(NSString *)value
+{
     Country *selected = [self countryByCode:value];
     [self setSelectedCountry:selected];
-    if (!selected) {
+    if (!selected)
+	{
         return;
     }
 
@@ -65,19 +70,24 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
     [self.countryPicker selectRow:countryIndex inComponent:0 animated:NO];
 }
 
-- (NSString *)value {
+- (NSString *)value
+{
     return self.selectedCountry ? self.selectedCountry.iso3Code : @"";
 }
 
 
-- (Country *)countryByCode:(NSString *)code {
-    if (![code hasValue]) {
+- (Country *)countryByCode:(NSString *)code
+{
+    if (![code hasValue])
+	{
         //TODO jaanus: use country code from locale?
         return nil;
     }
 
-    for (Country *country in self.allCountries.fetchedObjects) {
-        if ([country.iso3Code isEqualToString:code]) {
+    for (Country *country in self.allCountries.fetchedObjects)
+	{
+        if ([country.iso3Code isEqualToString:code])
+		{
             return country;
         }
     }
@@ -85,20 +95,24 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
     return nil;
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
     return 1;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
     return [self.allCountries.fetchedObjects count];
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
     Country *country = [self.allCountries objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
     return country.name;
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
     Country *selected = [self.allCountries objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
     [self setSelectedCountry:selected];
     [self.entryField setText:selected.name];
@@ -107,8 +121,10 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
 
 - (void)setTwoLetterCountryCode:(NSString *)code {
     Country *country = nil;
-    for (Country *checked in self.allCountries.fetchedObjects) {
-        if (![[checked.iso2Code lowercaseString] isEqualToString:code]) {
+    for (Country *checked in self.allCountries.fetchedObjects)
+	{
+        if (![[checked.iso2Code lowercaseString] isEqualToString:code])
+		{
             continue;
         }
 
@@ -116,7 +132,8 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
         break;
     }
 
-    if (!country) {
+    if (!country)
+	{
         return;
     }
 
@@ -124,7 +141,8 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
     self.entryField.text = country.name;
 }
 
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
     [self.countryPicker reloadAllComponents];
 }
 
