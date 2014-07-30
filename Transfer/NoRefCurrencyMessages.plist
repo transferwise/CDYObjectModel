@@ -37,6 +37,13 @@
 		<key>location</key>
 		<string>Norway</string>
 	</dict>
+	<key>NZD</key>
+	<dict>
+		<key>partner</key>
+		<string>Envoy Services Ltd</string>
+		<key>location</key>
+		<string>New Zealand</string>
+	</dict>
 	<key>SEK</key>
 	<dict>
 		<key>partner</key>
