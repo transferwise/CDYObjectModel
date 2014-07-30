@@ -252,6 +252,8 @@
 		47F1F5921941C87600FC4BEB /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
 		47F84D5F1988D73A00886D41 /* CountrySuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */; };
 		47F84D601988D73A00886D41 /* CountrySuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */; };
+		47F84D621988E83300886D41 /* CountrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47F84D611988E83300886D41 /* CountrySelectionCell.xib */; };
+		47F84D631988E83300886D41 /* CountrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47F84D611988E83300886D41 /* CountrySelectionCell.xib */; };
 		47FAF344194B2F11004CE986 /* LightBlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF343194B2F11004CE986 /* LightBlueButton.m */; };
 		47FAF345194B2F11004CE986 /* LightBlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF343194B2F11004CE986 /* LightBlueButton.m */; };
 		47FAF348194B3233004CE986 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF347194B3233004CE986 /* UIImage+Color.m */; };
@@ -984,6 +986,7 @@
 		47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Cancel.m"; sourceTree = "<group>"; };
 		47F84D5D1988D73A00886D41 /* CountrySuggestionCellProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountrySuggestionCellProvider.h; sourceTree = "<group>"; };
 		47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountrySuggestionCellProvider.m; sourceTree = "<group>"; };
+		47F84D611988E83300886D41 /* CountrySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountrySelectionCell.xib; sourceTree = "<group>"; };
 		47FAF342194B2F11004CE986 /* LightBlueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LightBlueButton.h; path = Views/LightBlueButton.h; sourceTree = "<group>"; };
 		47FAF343194B2F11004CE986 /* LightBlueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LightBlueButton.m; path = Views/LightBlueButton.m; sourceTree = "<group>"; };
 		47FAF346194B3233004CE986 /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
@@ -1736,6 +1739,7 @@
 				EA222E3D173A8A7C00C5D613 /* ConfirmPaymentCell.xib */,
 				EA88E688172F97E20021492C /* CountrySelectionCell.h */,
 				EA88E689172F97E20021492C /* CountrySelectionCell.m */,
+				47F84D611988E83300886D41 /* CountrySelectionCell.xib */,
 				380021FD192F443E009B1D53 /* CurrencyCell.h */,
 				380021FE192F443E009B1D53 /* CurrencyCell.m */,
 				3800220B192F5774009B1D53 /* CurrencyCell.xib */,
@@ -2611,6 +2615,7 @@
 				38CACA65196EE4D400BFCF82 /* TextFieldSuggestionTable~ipad.xib in Resources */,
 				EA31A1D917DDB29B00F937F7 /* TableHeaderView.xib in Resources */,
 				EA31A1DA17DDB29B00F937F7 /* TextEntryCell.xib in Resources */,
+				47F84D631988E83300886D41 /* CountrySelectionCell.xib in Resources */,
 				38EFABE4196D7EAB00126192 /* TextFieldSuggestionTable.xib in Resources */,
 				38C7B2A119756A9C004324E8 /* BankTransferViewController~ipad.xib in Resources */,
 				EA31A1E117DDB29B00F937F7 /* RecipientCell.xib in Resources */,
@@ -2789,6 +2794,7 @@
 				47343AD11977E0B1009D9C3A /* RecipientsFooterView.xib in Resources */,
 				385669181981437900BC4230 /* ContactDetailsViewController~ipad.xib in Resources */,
 				EA225C76178EA124009D6B83 /* TabBarActivityIndicatorView.xib in Resources */,
+				47F84D621988E83300886D41 /* CountrySelectionCell.xib in Resources */,
 				471CA006197FCB2200BCA3B4 /* TabbedHeaderViewController.xib in Resources */,
 				EA225CBA178EEA8A009D6B83 /* currencies.json in Resources */,
 				47343AD41977E0DD009D9C3A /* RecipientsFooterView~ipad.xib in Resources */,

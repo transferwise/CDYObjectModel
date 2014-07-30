@@ -67,18 +67,21 @@ static NSUInteger const kButtonSection = 0;
     NSArray *presented = [self.profileSource presentedCells];
 
     CountrySelectionCell *countryCell = nil;
-    for (NSArray *cells in presented) {
-        for (UITableViewCell *cell in cells) {
-            if ([cell isKindOfClass:[CountrySelectionCell class]]) {
-                countryCell = (CountrySelectionCell *)cell;
-                break;
-            }
-        }
-
-        if (countryCell) {
-            break;
-        }
-    }
+	for (NSArray* table in presented)
+	{
+		for (NSArray *cells in table) {
+			for (UITableViewCell *cell in cells) {
+				if ([cell isKindOfClass:[CountrySelectionCell class]]) {
+					countryCell = (CountrySelectionCell *)cell;
+					break;
+				}
+			}
+			
+			if (countryCell) {
+				break;
+			}
+		}
+	}
     [self setCountryCell:countryCell];
 	
 	self.cellProvider = [[CountrySuggestionCellProvider alloc] init];

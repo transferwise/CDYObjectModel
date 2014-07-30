@@ -9,7 +9,6 @@
 #import "CountrySelectionCell.h"
 #import "Country.h"
 #import "NSString+Validation.h"
-#import "UIView+Loading.h"
 
 NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
 
@@ -20,11 +19,6 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
 @end
 
 @implementation CountrySelectionCell
-
-+ (id)loadInstance
-{
-    return [UIView loadViewFromXib:@"TextEntryCell"];
-}
 
 - (void)setValue:(NSString *)value
 {

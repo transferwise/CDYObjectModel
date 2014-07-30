@@ -101,7 +101,7 @@ static NSUInteger const kDetailsSection = 1;
     [countryCell configureWithTitle:NSLocalizedString(@"business.profile.country.label", nil) value:@""];
     [countryCell setCellTag:@"countryCode"];
 
-    [self setCells:@[businessCells, addressCells]];
+    [self setCells:@[@[businessCells, addressCells]]];
 
     return self.cells;
 }
