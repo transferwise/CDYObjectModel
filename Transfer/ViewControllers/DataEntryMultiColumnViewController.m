@@ -376,27 +376,12 @@
 					
                     if(path)
                     {
-                        [tableView scrollToRowAtIndexPath:path atScrollPosition:[self getScrollPosition:cell] animated:YES];
+						[tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionNone animated:YES];
                     }
                 }
             }
         }
     }
-}
-
-- (NSInteger)getScrollPosition:(UITableViewCell *)cell
-{
-	if(self.keyboardShowScrollPreferences)
-	{
-		NSNumber* pref = [self.keyboardShowScrollPreferences objectForKey:cell.reuseIdentifier];
-		
-		if (pref)
-		{
-			return [pref integerValue];
-		}
-	}
-	
-	return UITableViewScrollPositionNone;
 }
 
 -(void)keyboardWillHide:(NSNotification*)note

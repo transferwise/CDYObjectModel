@@ -53,14 +53,6 @@
 @property (nonatomic, assign) CGFloat heightOffset;
 
 /**
- *	set this property to dictionary containing UITableViewCell descendants as keys 
- *	and UITableViewScrollPositions to add different scrolling behavior to cells when keyboard is shown
- *
- * If this is not set then UITableViewScrollPositionNone will be used.
- */
-@property (nonatomic, strong) NSDictionary* keyboardShowScrollPreferences;
-
-/**
  *  convenience method for quickly checking if the viewcontrller has more than on tableview associated with it.
  *
  *  @return YES if more than one tableview is associated, NO if 1 or 0 tableviews are associated.

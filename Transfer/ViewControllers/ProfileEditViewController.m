@@ -38,6 +38,7 @@ static NSUInteger const kButtonSection = 0;
 @property (nonatomic, strong) QuickProfileValidationOperation *quickProfileValidation;
 @property (nonatomic, assign) BOOL inputCheckRunning;
 @property (nonatomic, strong) CountrySuggestionCellProvider* cellProvider;
+@property (nonatomic) CGFloat bottomInset;
 
 @end
 
@@ -83,7 +84,6 @@ static NSUInteger const kButtonSection = 0;
 		}
 	}
     [self setCountryCell:countryCell];
-	self.keyboardShowScrollPreferences = @{countryCell.reuseIdentifier: [NSNumber numberWithInteger:UITableViewScrollPositionTop]};
 	
 	self.cellProvider = [[CountrySuggestionCellProvider alloc] init];
     
@@ -233,6 +233,61 @@ static NSUInteger const kButtonSection = 0;
 
         [self.quickProfileValidation execute];
     });
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+	//only applicable when there is a single tableview
+	if(self.tableViews.count == 1)
+	{
+		UITableViewCell *cell = [self getParentCell:textField];
+		
+		if(cell)
+		{
+			UITableView *table = self.tableViews[0];
+			
+			if([cell isKindOfClass:[CountrySelectionCell class]])
+			{
+				//Country cell needs to be scrolled to top of screen
+				UIEdgeInsets insets = table.contentInset;
+				
+				CGPoint point = [table convertPoint:cell.frame.origin toView:table];
+				self.bottomInset = point.y - self.heightOffset - cell.frame.size.height;
+				insets.bottom += self.bottomInset;
+				[table setContentInset:insets];
+			}
+			else if (self.bottomInset != 0)
+			{
+				UIEdgeInsets insets = table.contentInset;
+				insets.bottom -= self.bottomInset;
+				
+				[UIView animateWithDuration:0.1f animations:^{
+					[table setContentInset:insets];
+				}];
+				
+				self.bottomInset = 0;
+			}
+		}
+	}
+}
+
+//Copy from DataEntryMultiColumnViewController
+//Objc kung-fu not strong enough to pass Class as an argument to isKindOfClass yet :(
+- (UITableViewCell *)getParentCell:(UIView *)view
+{
+	UIView* superview = view.superview;
+	
+	while (superview && ![superview isKindOfClass:[UITableViewCell class]])
+	{
+		superview = superview.superview;
+	}
+	
+	if ([superview isKindOfClass:[UITableViewCell class]])
+	{
+		return (UITableViewCell*)superview;
+	}
+	
+	return nil;
 }
 
 @end
