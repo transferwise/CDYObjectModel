@@ -40,9 +40,10 @@
     _sendCell = sendCell;
 
     [_sendCell.moneyField addTarget:self action:@selector(sendAmountChanged:) forControlEvents:UIControlEventEditingChanged];
+    __weak typeof(self) weakSelf = self;
     [sendCell setCurrencyChangedHandler:^(Currency *currency) {
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency1Selected" withLabel:currency.code];
-        [self sourceCurrencyChanged:currency];
+        [weakSelf sourceCurrencyChanged:currency];
     }];
 }
 
@@ -50,10 +51,11 @@
     _receiveCell = receiveCell;
 
     [_receiveCell.moneyField addTarget:self action:@selector(receiveAmountChanged:) forControlEvents:UIControlEventEditingChanged];
+    __weak typeof(self) weakSelf = self;
     [receiveCell setCurrencyChangedHandler:^(Currency *currency) {
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency2Selected" withLabel:currency.code];
-        [self setWaitingTargetCurrency:currency];
-        [self performCalculation];
+        [weakSelf setWaitingTargetCurrency:currency];
+        [weakSelf performCalculation];
     }];
 }
 
@@ -112,15 +114,15 @@
         [self setExecutedOperation:operation];
 
         [operation setAmountCurrency:self.amountCurrency];
-
+        __weak typeof(self) weakSelf = self;
         [operation setRemoteCalculationHandler:^(CalculationResult *result, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self setExecutedOperation:nil];
+                [weakSelf setExecutedOperation:nil];
                 if (result) {
                     if (result.amountCurrency == SourceCurrency) {
-                        [self.receiveCell setMoneyValue:result.transferwisePayOutString];
+                        [weakSelf.receiveCell setMoneyValue:result.transferwisePayOutString];
                     } else {
-                        [self.sendCell.moneyField setText:result.transferwisePayInString];
+                        [weakSelf.sendCell.moneyField setText:result.transferwisePayInString];
                     }
                 }
 
@@ -130,7 +132,7 @@
                 if (![amount isEqualToString:self.waitingAmount]
                         || ![sourceCurrency isEqualToString:self.waitingSourceCurrency.code]
                         || ![targetCurrency isEqualToString:self.waitingTargetCurrency.code]) {
-                    [self performCalculation];
+                    [weakSelf performCalculation];
                 }
             });
         }];

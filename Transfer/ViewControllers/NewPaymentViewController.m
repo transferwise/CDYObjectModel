@@ -260,6 +260,8 @@ static NSUInteger const kRowYouSend = 0;
     CurrencyPairsOperation *operation = [CurrencyPairsOperation pairsOperation];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
+    __weak typeof(self) weakSelf = self;
+
     [operation setCurrenciesHandler:^(NSError *error) {
         [self setExecutedOperation:nil];
 
@@ -267,17 +269,17 @@ static NSUInteger const kRowYouSend = 0;
             TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"introduction.currencies.retrieve.error.title", nil)
                                                                message:NSLocalizedString(@"introduction.currencies.retrieve.error.message", nil)];
             [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.retry", nil) action:^{
-                [self retrieveCurrencyPairs];
+                [weakSelf retrieveCurrencyPairs];
             }];
             [alertView show];
             return;
         }
         else
         {
-            if (self.recipient) {
-                [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSourcesContainingTargetCurrency:self.recipient.currency]];
+            if (weakSelf.recipient) {
+                [weakSelf.youSendCell setCurrencies:[self.objectModel fetchedControllerForSourcesContainingTargetCurrency:self.recipient.currency]];
             } else {
-                [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSources]];
+                [weakSelf.youSendCell setCurrencies:[self.objectModel fetchedControllerForSources]];
             }
         }
         

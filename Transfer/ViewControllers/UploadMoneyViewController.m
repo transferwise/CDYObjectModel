@@ -51,6 +51,7 @@
 	CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
     [self setCardViewController:cardController];
     [cardController setPayment:self.payment];
+    __weak typeof(self) weakSelf = self;
     [cardController setResultHandler:^(BOOL success) {
         if (success) {
             [[GoogleAnalytics sharedInstance] sendScreen:@"Success"];
@@ -58,7 +59,7 @@
             TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.card.payment.success.title", nil)
                                                                message:NSLocalizedString(@"upload.money.card.payment.success.message", nil)];
             [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.continue", nil) action:^{
-                [self pushNextScreen];
+                [weakSelf pushNextScreen];
                 [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
                     return YES;
                 }];
@@ -131,10 +132,11 @@
         PullPaymentDetailsOperation *operation = [PullPaymentDetailsOperation operationWithPaymentId:[self.payment remoteId]];
         [self setExecutedOperation:operation];
         [operation setObjectModel:self.objectModel];
+        __weak typeof(self) weakSelf = self;
         [operation setResultHandler:^(NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hud hide];
-                [self setExecutedOperation:nil];
+                [weakSelf setExecutedOperation:nil];
 
                 if (error) {
                     TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.transaction.refresh.error.title", nil) message:NSLocalizedString(@"upload.money.transaction.refresh.error.message", nil)];
@@ -144,11 +146,11 @@
                 }
 
                 PaymentDetailsViewController *controller = [[PaymentDetailsViewController alloc] init];
-                [controller setObjectModel:self.objectModel];
-                [controller setPayment:(Payment *) [self.objectModel.managedObjectContext objectWithID:self.payment.objectID]];
+                [controller setObjectModel:weakSelf.objectModel];
+                [controller setPayment:(Payment *) [weakSelf.objectModel.managedObjectContext objectWithID:weakSelf.payment.objectID]];
                 [controller setShowContactSupportCell:YES];
                 [controller setFlattenStack:YES];
-                [self.navigationController pushViewController:controller animated:YES];
+                [weakSelf.navigationController pushViewController:controller animated:YES];
 
             });
         }];

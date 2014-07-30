@@ -110,13 +110,14 @@
     ResetPasswordOperation *operation = [[ResetPasswordOperation alloc] init];
     [operation setEmail:email];
     [operation setObjectModel:self.objectModel];
+    __weak typeof(self) weakSelf = self;
     [operation setResultHandler:^(NSError *error) {
         [hud hide];
         if (!error) {
             TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"reset.password.success.alert.title", nil) message:NSLocalizedString(@"reset.password.success.alert.message", nil)];
             [alertView setConfirmButtonTitle:NSLocalizedString(@"reset.password.alert.dismiss.button", nil) action:^{
-				[self.delegate resetEmailSent:email];
-                [self.navigationController popViewControllerAnimated:YES];
+				[weakSelf.delegate resetEmailSent:email];
+                [weakSelf.navigationController popViewControllerAnimated:YES];
             }];
             [alertView show];
             return;
