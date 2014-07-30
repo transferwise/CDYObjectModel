@@ -83,6 +83,7 @@ static NSUInteger const kButtonSection = 0;
 		}
 	}
     [self setCountryCell:countryCell];
+	self.keyboardShowScrollPreferences = @{countryCell.reuseIdentifier: [NSNumber numberWithInteger:UITableViewScrollPositionTop]};
 	
 	self.cellProvider = [[CountrySuggestionCellProvider alloc] init];
     
