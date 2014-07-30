@@ -39,18 +39,19 @@
 
 -(void)refreshNameLookupWithCompletion:(void(^)(void))completionBlock
 {
+    __weak typeof(self) weakSelf = self;
     [_addressBookManager getNameLookupWithHandler:^(NSArray *nameLookup) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
-            if([self.filterString length] > 0)
+            if([weakSelf.filterString length] > 0)
             {
                 NSArray* filteredRecipients = [NSArray array];
                 NSMutableArray *workArray;
-                if (self.recipients)
+                if (weakSelf.recipients)
                 {
                     // Filter and sort existing recipients
-                     filteredRecipients = [self.recipients filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NameLookupWrapper *evaluatedObject, NSDictionary *bindings) {
-                        return evaluatedObject.firstName && [[evaluatedObject.firstName lowercaseString] rangeOfString:self.filterString].location == 0;
+                     filteredRecipients = [weakSelf.recipients filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NameLookupWrapper *evaluatedObject, NSDictionary *bindings) {
+                        return evaluatedObject.firstName && [[evaluatedObject.firstName lowercaseString] rangeOfString:weakSelf.filterString].location == 0;
                     }]];
                     
                     filteredRecipients = [filteredRecipients sortedArrayUsingComparator:^NSComparisonResult(NameLookupWrapper *obj1, NameLookupWrapper *obj2) {
@@ -76,7 +77,7 @@
                 }
                 
                 NSArray *firstnameMatches = [workArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NameLookupWrapper *evaluatedObject, NSDictionary *bindings) {
-                    return evaluatedObject.firstName && [[evaluatedObject.firstName lowercaseString] rangeOfString:self.filterString].location == 0;
+                    return evaluatedObject.firstName && [[evaluatedObject.firstName lowercaseString] rangeOfString:weakSelf.filterString].location == 0;
                 }]];
                 firstnameMatches = [firstnameMatches sortedArrayUsingComparator:^NSComparisonResult(NameLookupWrapper *obj1, NameLookupWrapper *obj2) {
                     return [obj1.firstName caseInsensitiveCompare:obj2.firstName];
@@ -84,18 +85,18 @@
                 [workArray removeObjectsInArray:firstnameMatches];
                 
                 NSArray *lastnameMatches = [workArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NameLookupWrapper *evaluatedObject, NSDictionary *bindings) {
-                    return evaluatedObject.lastName && [[evaluatedObject.lastName lowercaseString] rangeOfString:self.filterString].location == 0;
+                    return evaluatedObject.lastName && [[evaluatedObject.lastName lowercaseString] rangeOfString:weakSelf.filterString].location == 0;
                 }]];
                 lastnameMatches = [lastnameMatches sortedArrayUsingComparator:^NSComparisonResult(NameLookupWrapper *obj1, NameLookupWrapper *obj2) {
                     return [obj1.lastName caseInsensitiveCompare:obj2.lastName];
                 }];
                 [workArray removeObjectsInArray:lastnameMatches];
                 
-                self.dataSource = @[filteredRecipients, firstnameMatches, lastnameMatches];
+                weakSelf.dataSource = @[filteredRecipients, firstnameMatches, lastnameMatches];
             }
             else
             {
-                self.dataSource = nil;
+                weakSelf.dataSource = nil;
             }
             
             dispatch_async(dispatch_get_main_queue(), ^{

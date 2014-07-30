@@ -127,7 +127,7 @@ static NSUInteger const kButtonSection = 0;
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.refreshing.message", nil)];
-
+    __weak typeof(self) weakSelf = self;
     [self.profileSource pullDetailsWithHandler:^(NSError *profileError) {
         [hud hide];
 
@@ -140,9 +140,9 @@ static NSUInteger const kButtonSection = 0;
                 return;
             }
 
-            [self setPresentedSectionCells:self.presentationCells];
-            [self.tableView setTableFooterView:self.footer];
-            [self.tableView reloadData];
+            [weakSelf setPresentedSectionCells:self.presentationCells];
+            [weakSelf.tableView setTableFooterView:self.footer];
+            [weakSelf.tableView reloadData];
         });
     }];
 }
@@ -195,6 +195,7 @@ static NSUInteger const kButtonSection = 0;
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.refreshing.message", nil)];
 
+    __weak typeof(self) weakSelf = self;
     [self pullCountriesWithHud:hud completionHandler:^{
         [self.profileSource pullDetailsWithHandler:^(NSError *profileError) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -208,9 +209,9 @@ static NSUInteger const kButtonSection = 0;
                     return;
                 }
 
-                [self setPresentedSectionCells:self.presentationCells];
-                [self.tableView setTableFooterView:self.footer];
-                [self.tableView reloadData];
+                [weakSelf setPresentedSectionCells:self.presentationCells];
+                [weakSelf.tableView setTableFooterView:self.footer];
+                [weakSelf.tableView reloadData];
             });
         }];
 
@@ -224,8 +225,9 @@ static NSUInteger const kButtonSection = 0;
 
     PhoneBookProfileSelector *selector = [[PhoneBookProfileSelector alloc] init];
     [self setProfileSelector:selector];
+    __weak typeof(self) weakSelf = self;
     [selector presentOnController:self completionHandler:^(PhoneBookProfile *profile) {
-        [self.profileSource loadDataFromProfile:profile];
+        [weakSelf.profileSource loadDataFromProfile:profile];
     }];
 }
 

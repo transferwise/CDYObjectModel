@@ -58,6 +58,7 @@
 #import "MOMStyle.h"
 #import "UIView+RenderBlur.h"
 #import "UIResponder+FirstResponder.h"
+#import "ProgressButton.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
@@ -80,7 +81,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 @property (nonatomic, strong) NSArray *recipientTypeFieldCells;
 
-@property (nonatomic, strong) IBOutlet UIButton *addButton;
+@property (nonatomic, strong) IBOutlet ProgressButton *addButton;
 
 @property (nonatomic, strong) Currency *currency;
 @property (nonatomic, strong) RecipientType *recipientType;
@@ -139,13 +140,15 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     
     self.cellHeight = IPAD ? 70.0f : 60.0f;
     
+     __weak typeof(self) weakSelf = self;
+    
     RecipientEntrySelectionCell *nameCell = [self.tableViews[0] dequeueReusableCellWithIdentifier:TRWRecipientEntrySelectionCellIdentifier];
     [self setNameCell:nameCell];
     [nameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [nameCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [nameCell configureWithTitle:NSLocalizedString(@"recipient.controller.cell.label.name", nil) value:@""];
     [nameCell setSelectionHandler:^(Recipient *recipient) {
-        [self didSelectRecipient:recipient];
+        [weakSelf didSelectRecipient:recipient];
     }];
     
     TextEntryCell *emailCell = [self.tableViews[0] dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
@@ -163,7 +166,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setCurrencyCell:currencyCell];
     currencyCell.hostForCurrencySelector = self;
     [currencyCell setSelectionHandler:^(Currency *currency) {
-        [self handleCurrencySelection:currency];
+        [weakSelf handleCurrencySelection:currency];
     }];
     [currencyCells addObject:currencyCell];
 
@@ -245,7 +248,16 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
 
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
+    if(! self.navigationItem.leftBarButtonItem)
+    {
+        [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
+    }
+    else
+    {
+        //presented modally with added close button. set progress 0
+        self.addButton.progress = 0.0f;
+    }
+    
 
     if([self hasMoreThanOneTableView])
     {
@@ -275,10 +287,12 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self handleCurrencySelection:self.preLoadRecipientsWithCurrency];
     }
 
+    __weak typeof(self) weakSelf = self;
+    
     void (^dataLoadCompletionBlock)() = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hide];
-            [self didSelectRecipient:self.recipient];
+            [weakSelf didSelectRecipient:weakSelf.recipient];
         });
     };
 
@@ -310,7 +324,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         }
 
         if (recipientsOperation) {
-            [self setExecutedOperation:recipientsOperation];
+            [weakSelf setExecutedOperation:recipientsOperation];
             [recipientsOperation execute];
         } else {
             dataLoadCompletionBlock();

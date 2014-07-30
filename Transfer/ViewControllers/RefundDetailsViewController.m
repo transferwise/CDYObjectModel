@@ -82,12 +82,14 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     [nameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [nameCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [nameCell configureWithTitle:NSLocalizedString(@"refund.details.holders.name.label", nil) value:@""];
+    __weak typeof(self) weakSelf = self;
     [nameCell setSelectionHandler:^(Recipient *recipient) {
-        [self didSelectRecipient:recipient];
+        [weakSelf didSelectRecipient:recipient];
     }];
 
 
     [presentedSections addObject:@[nameCell]];
+
     [presentedSections addObject:@[]];
 
     [self setSectionCellsByTableView:@[presentedSections]];
@@ -288,8 +290,9 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     RecipientOperation *validate = [RecipientOperation validateOperationWithRecipient:recipient.objectID];
     [self setOperation:validate];
     [validate setObjectModel:self.objectModel];
+    __weak typeof(self) weakSelf = self;
     [validate setResponseHandler:^(NSError *error) {
-        [self setOperation:nil];
+        [weakSelf setOperation:nil];
         [hud hide];
 
         if (error) {
@@ -299,7 +302,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
         }
 
         [[AnalyticsCoordinator sharedInstance] refundRecipientAdded];
-        self.afterValidationBlock();
+        weakSelf.afterValidationBlock();
     }];
     [validate execute];
 }
