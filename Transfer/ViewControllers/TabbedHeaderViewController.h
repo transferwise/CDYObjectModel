@@ -10,6 +10,8 @@
 
 @interface TabbedHeaderViewController : UIViewController
 
+@property (nonatomic, readonly) CGFloat heightOffset;
+
 - (void)configureWithControllers:(NSArray *)controllers
 						  titles:(NSArray *)titles
 					 actionTitle:(NSString *)actionTitle;

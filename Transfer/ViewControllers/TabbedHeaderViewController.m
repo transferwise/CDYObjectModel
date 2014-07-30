@@ -23,6 +23,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tabViewHeightConstraint;
 @property (nonatomic,weak) IBOutlet ColoredButton *actionButton;
 
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonHeight;
+
 @end
 
 @implementation TabbedHeaderViewController
@@ -88,6 +91,17 @@
 	[super viewDidAppear:animated];
 	
 	[self.navigationController flattenStack];
+}
+
+- (CGFloat)heightOffset
+{
+	//these are not set for iPad
+	if (self.headerHeight && self.buttonHeight)
+	{
+		return self.headerHeight.constant + self.buttonHeight.constant;
+	}
+	
+	return 0.f;
 }
 
 - (void)headerTabView:(HeaderTabView *)tabView tabTappedAtIndex:(NSUInteger)index

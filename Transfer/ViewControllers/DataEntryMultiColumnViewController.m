@@ -20,6 +20,21 @@
 
 @implementation DataEntryMultiColumnViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+	if (self)
+	{
+		[self commonSetup];
+	}
+	return self;
+}
+
+- (void)commonSetup
+{
+	self.heightOffset = 0;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -38,11 +53,6 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)setSectionCellsByTableView:(NSArray *)sectionCellsByTableView
@@ -327,11 +337,10 @@
         NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
         UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
         
-        CGFloat overlap = tableView.frame.origin.y + tableView.frame.size.height - newframe.origin.y;
+        CGFloat overlap = tableView.frame.origin.y + tableView.frame.size.height + self.heightOffset - newframe.origin.y;
         
         if(overlap >0)
-        {
-            
+        {            
             [UIView beginAnimations:nil context:NULL];
             [UIView setAnimationDuration:duration];
             [UIView setAnimationCurve:curve];
@@ -363,7 +372,7 @@
                 }
                 if(cell)
                 {
-                    NSIndexPath *path = [tableView indexPathForCell:cell];
+                    NSIndexPath *path = [tableView indexPathForRowAtPoint:cell.center];
                     if(path)
                     {
                         [tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionNone animated:YES];

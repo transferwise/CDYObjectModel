@@ -42,6 +42,8 @@
 							 titles:titles
 						actionTitle:self.buttonTitle ? self.buttonTitle :  NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
     [super viewDidLoad];
+	//do this after supers viewDidLoad because the decision to show header must be made
+	[self setHeightOffsets:self.heightOffset];
 	
 	[self setTitle:NSLocalizedString(@"personal.profile.controller.title", nil)];
 	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
@@ -68,6 +70,13 @@
 			self.businessProfile.profileValidation = self.profileValidation;
 		}
 	}
+}
+
+- (void)setHeightOffsets:(CGFloat)heightOffset
+{
+	//more lovely arbitrary constants.
+	self.personalProfile.heightOffset = heightOffset + 20;
+	self.businessProfile.heightOffset = heightOffset + 20;
 }
 
 - (void)actionTappedWithController:(UIViewController *)controller atIndex:(NSUInteger)index

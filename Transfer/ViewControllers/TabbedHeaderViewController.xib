@@ -7,7 +7,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TabbedHeaderViewController">
             <connections>
                 <outlet property="actionButton" destination="2Te-nw-lEj" id="oFA-7p-NcQ"/>
+                <outlet property="buttonHeight" destination="UtA-zh-WbI" id="JS9-jG-BWC"/>
                 <outlet property="containerView" destination="WE4-IL-T3h" id="9NM-eL-Lkk"/>
+                <outlet property="headerHeight" destination="NtA-7p-75U" id="NTF-BD-4X6"/>
                 <outlet property="tabView" destination="x7i-Zf-rY6" id="GCY-R0-DNl"/>
                 <outlet property="tabViewHeightConstraint" destination="UdO-so-iu2" id="m9K-3H-s0J"/>
                 <outlet property="view" destination="HZy-nt-qaY" id="zed-WI-vUS"/>

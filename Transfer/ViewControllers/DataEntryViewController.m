@@ -332,7 +332,7 @@
                 }
                 if(cell)
                 {
-                    NSIndexPath *path = [self.tableView indexPathForCell:cell];
+                    NSIndexPath *path = [self.tableView indexPathForRowAtPoint:cell.center];
                     if(path)
                     {
                         [self.tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionNone animated:YES];
