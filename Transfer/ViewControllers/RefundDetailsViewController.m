@@ -52,6 +52,18 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 @property (nonatomic, strong) Recipient *recipient;
 @property (weak, nonatomic) IBOutlet UILabel *headerLabel;
 
+// iPad
+@property (weak, nonatomic) IBOutlet UIScrollView *containerScrollView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *firstColumnHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnLeftEdgeConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewLeftMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewRightMargin;
+
+
 @end
 
 @implementation RefundDetailsViewController
@@ -92,7 +104,15 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 
     [presentedSections addObject:@[]];
 
-    [self setSectionCellsByTableView:@[presentedSections]];
+    if([self hasMoreThanOneTableView])
+    {
+        [self setSectionCellsByTableView:@[presentedSections,@[]]];
+    }
+    else
+    {
+        [self setSectionCellsByTableView:@[presentedSections]];
+    }
+    
 
     [self.tableViews[0] reloadData];
     
@@ -109,6 +129,38 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     [self.footerButton setTitle:NSLocalizedString(@"refund.details.footer.button.title", nil) forState:UIControlStateNormal];
     [self.footerButton addTarget:self action:@selector(continuePressed) forControlEvents:UIControlEventTouchUpInside];
 }
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self configureForInterfaceOrientation:toInterfaceOrientation];
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+
+}
+
+-(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation
+{
+    if(UIInterfaceOrientationIsPortrait(orientation))
+    {
+        self.scrollViewLeftMargin.constant = 204.0f;
+        self.scrollViewRightMargin.constant = 204.0f;
+        
+        self.secondColumnLeftEdgeConstraint.constant = -360;
+        self.secondColumnTopConstraint.constant = self.firstColumnHeightConstraint.constant + 60.0f;
+    }
+    else
+    {
+        self.scrollViewLeftMargin.constant = 100.0f;
+        self.scrollViewRightMargin.constant = 100.0f;
+        self.secondColumnLeftEdgeConstraint.constant = 100.0f;
+        self.secondColumnTopConstraint.constant = 0.0f;
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -172,7 +224,14 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     NSArray *cells = [self buildCellsForType:type allTypes:allTypes];
     [self setRecipientType:type];
     [self setRecipientTypeFieldCells:cells];
-    [self setSectionCellsByTableView:@[@[@[self.holderNameCell], cells]]];
+    if([self hasMoreThanOneTableView])
+    {
+        [self setSectionCellsByTableView:@[@[@[self.holderNameCell], cells],@[]]];
+    }
+    else
+    {
+        [self setSectionCellsByTableView:@[@[@[self.holderNameCell], cells]]];
+    }
 
     [self.tableViews[0] reloadSections:[NSIndexSet indexSetWithIndex:[self.sectionCellsByTableView[0] count] - 1] withRowAnimation:UITableViewRowAnimationNone];
     [self performSelector:@selector(updateFooterSize) withObject:nil afterDelay:0.5];

@@ -100,6 +100,8 @@
 		38AA83D01949C7220065AD2A /* PaymentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AA83CE1949C7220065AD2A /* PaymentCell~ipad.xib */; };
 		38AD6EEE19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AD6EED19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib */; };
 		38AD6EEF19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AD6EED19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib */; };
+		38AD6EF4198935C100D0F18F /* RefundDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AD6EF3198935C100D0F18F /* RefundDetailsViewController~ipad.xib */; };
+		38AD6EF5198935C100D0F18F /* RefundDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AD6EF3198935C100D0F18F /* RefundDetailsViewController~ipad.xib */; };
 		38AEB3C31964369F00B852E1 /* libAppsFlyerLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38AEB3C21964369F00B852E1 /* libAppsFlyerLib.a */; };
 		38AEB3C4196436F800B852E1 /* libAppsFlyerLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38AEB3C21964369F00B852E1 /* libAppsFlyerLib.a */; };
 		38AEB3C71966B8BF00B852E1 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AEB3C61966B8BF00B852E1 /* UIResponder+FirstResponder.m */; };
@@ -845,6 +847,7 @@
 		38AA83401949B8DF0065AD2A /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		38AA83CE1949C7220065AD2A /* PaymentCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PaymentCell~ipad.xib"; sourceTree = "<group>"; };
 		38AD6EED19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferTypeSelectionHeaderNoTitle.xib; sourceTree = "<group>"; };
+		38AD6EF3198935C100D0F18F /* RefundDetailsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RefundDetailsViewController~ipad.xib"; sourceTree = "<group>"; };
 		38AEB3C11964369F00B852E1 /* AppsFlyerTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppsFlyerTracker.h; sourceTree = "<group>"; };
 		38AEB3C21964369F00B852E1 /* libAppsFlyerLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppsFlyerLib.a; sourceTree = "<group>"; };
 		38AEB3C51966B8BF00B852E1 /* UIResponder+FirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+FirstResponder.h"; sourceTree = "<group>"; };
@@ -2213,6 +2216,7 @@
 				EA0523F4191B596B00B32899 /* RefundDetailsViewController.h */,
 				EA0523F5191B596B00B32899 /* RefundDetailsViewController.m */,
 				EA0523F8191B5AFC00B32899 /* RefundDetailsViewController.xib */,
+				38AD6EF3198935C100D0F18F /* RefundDetailsViewController~ipad.xib */,
 				EAB6170B191CD61900545C21 /* ResetPasswordViewController.h */,
 				EAB6170C191CD61900545C21 /* ResetPasswordViewController.m */,
 				EAB6170D191CD61900545C21 /* ResetPasswordViewController.xib */,
@@ -2615,6 +2619,7 @@
 				EA31A21017DDB29B00F937F7 /* DropdownCell.xib in Resources */,
 				EAD3648F17E2F6EF001EFE40 /* CardPaymentViewController.xib in Resources */,
 				EA31A21117DDB29B00F937F7 /* BankTransferViewController.xib in Resources */,
+				38AD6EF5198935C100D0F18F /* RefundDetailsViewController~ipad.xib in Resources */,
 				EA31A21217DDB29B00F937F7 /* TextCell.xib in Resources */,
 				EA31A21317DDB29B00F937F7 /* ButtonCell.xib in Resources */,
 				EA31A21A17DDB29B00F937F7 /* OpenIDViewController.xib in Resources */,
@@ -2729,6 +2734,7 @@
 				470DEFAD1945F02300684FEB /* MoneyEntryCell~ipad.xib in Resources */,
 				EAD3648E17E2F6EF001EFE40 /* CardPaymentViewController.xib in Resources */,
 				BB29BD49173CD30D0016A6E9 /* BankTransferViewController.xib in Resources */,
+				38AD6EF4198935C100D0F18F /* RefundDetailsViewController~ipad.xib in Resources */,
 				BB29BD4B173CDF480016A6E9 /* TextCell.xib in Resources */,
 				EAD6675B174A51C700D29BCB /* ButtonCell.xib in Resources */,
 				EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */,
