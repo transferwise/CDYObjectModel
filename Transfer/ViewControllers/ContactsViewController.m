@@ -249,11 +249,26 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     RecipientProfileCommitter *committer = [[RecipientProfileCommitter alloc] init];
     [committer setObjectModel:self.objectModel];
     [controller setRecipientValidation:committer];
+    __weak typeof(self) weakSelf = self;
     [controller setAfterSaveAction:^{
         [[GoogleAnalytics sharedInstance] sendEvent:@"RecipientAdded" category:@"recipient" label:@"AddRecipientScreen"];
-        [self.navigationController popViewControllerAnimated:YES];
+        [weakSelf closeModal];
     }];
-    [self.navigationController pushViewController:controller animated:YES];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
+    
+    UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,40,40)];
+    [closeButton setImage:[UIImage imageNamed:@"CloseButton"] forState:UIControlStateNormal];
+    [closeButton addTarget:self action:@selector(closeModal) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *dismissButton = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
+    [controller.navigationItem setLeftBarButtonItem:dismissButton];
+    
+    [self presentViewController:wrapper animated:YES completion:nil];
+}
+
+-(void)closeModal
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)inviteFriends
