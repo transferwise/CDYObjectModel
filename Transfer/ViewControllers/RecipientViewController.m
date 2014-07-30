@@ -153,6 +153,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     self.emailCell = emailCell;
     [emailCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [emailCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [emailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
     [emailCell configureWithTitle:NSLocalizedString(@"recipient.controller.cell.label.email", nil) value:@""];
   
     [self setRecipientCells:@[nameCell,emailCell]];
