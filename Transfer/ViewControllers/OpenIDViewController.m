@@ -102,12 +102,13 @@
     [[AnalyticsCoordinator sharedInstance] markLoggedIn];
 
     if ([Credentials userLoggedIn]) {
+        __weak typeof(self) weakSelf = self;
         [self.objectModel removeOtherUsers];
         [self.objectModel saveContext:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(NSError *error) {
 #if USE_APPSFLYER_EVENTS
-                    [AppsFlyerTracker sharedTracker].customerUserID = self.objectModel.currentUser.pReference;
+                    [AppsFlyerTracker sharedTracker].customerUserID = weakSelf.objectModel.currentUser.pReference;
                     [[AppsFlyerTracker sharedTracker] trackEvent:@"sign-in" withValue:@""];
 #endif
                 }];
@@ -115,10 +116,10 @@
                 NSString *event = [absoluteString rangeOfString:@"/openId/registered"].location != NSNotFound ? @"UserRegistered" : @"UserLogged";
                 [[GoogleAnalytics sharedInstance] sendAppEvent:event withLabel:self.provider];
 
-                if (self.registerUser) {
+                if (weakSelf.registerUser) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentViewNotification object:nil];
                 } else {
-                    [self dismissViewControllerAnimated:YES completion:nil];
+                    [weakSelf dismissViewControllerAnimated:YES completion:nil];
                 }
             });
         }];

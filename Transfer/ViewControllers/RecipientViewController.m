@@ -136,13 +136,15 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     
     self.cellHeight = IPAD ? 70.0f : 60.0f;
     
+     __weak typeof(self) weakSelf = self;
+    
     RecipientEntrySelectionCell *nameCell = [self.tableViews[0] dequeueReusableCellWithIdentifier:TRWRecipientEntrySelectionCellIdentifier];
     [self setNameCell:nameCell];
     [nameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [nameCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [nameCell configureWithTitle:NSLocalizedString(@"recipient.controller.cell.label.name", nil) value:@""];
     [nameCell setSelectionHandler:^(Recipient *recipient) {
-        [self didSelectRecipient:recipient];
+        [weakSelf didSelectRecipient:recipient];
     }];
     
     TextEntryCell *emailCell = [self.tableViews[0] dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
@@ -160,7 +162,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setCurrencyCell:currencyCell];
     currencyCell.hostForCurrencySelector = self;
     [currencyCell setSelectionHandler:^(Currency *currency) {
-        [self handleCurrencySelection:currency];
+        [weakSelf handleCurrencySelection:currency];
     }];
     [currencyCells addObject:currencyCell];
 
@@ -262,10 +264,12 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self handleCurrencySelection:self.preLoadRecipientsWithCurrency];
     }
 
+    __weak typeof(self) weakSelf = self;
+    
     void (^dataLoadCompletionBlock)() = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hide];
-            [self didSelectRecipient:self.recipient];
+            [weakSelf didSelectRecipient:weakSelf.recipient];
         });
     };
 
@@ -297,7 +301,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         }
 
         if (recipientsOperation) {
-            [self setExecutedOperation:recipientsOperation];
+            [weakSelf setExecutedOperation:recipientsOperation];
             [recipientsOperation execute];
         } else {
             dataLoadCompletionBlock();

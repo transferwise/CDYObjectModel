@@ -30,6 +30,7 @@
         return;
     }
 
+    __weak typeof(self) weakSelf = self;
     [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(NSError *userError) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (userError) {
@@ -37,7 +38,7 @@
                 return;
             }
 
-            [self loadDetailsToCells];
+            [weakSelf loadDetailsToCells];
             handler(nil);
         });
     }];

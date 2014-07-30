@@ -77,12 +77,13 @@
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setThreadPriority:0.1];
     [operation setQueuePriority:NSOperationQueuePriorityLow];
+    __weak typeof(self) weakSelf = self;
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *op, id responseObject) {
         NSInteger statusCode = op.response.statusCode;
         MCLog(@"%@ - Success:%d - %d", op.request.URL.path, statusCode, [responseObject length]);
         if (statusCode != 200 || !responseObject) {
             NSError *error = [NSError errorWithDomain:TRWErrorDomain code:ResponseServerError userInfo:@{}];
-            self.operationErrorHandler(error);
+            weakSelf.operationErrorHandler(error);
             return;
         }
 
@@ -93,7 +94,7 @@
         if (jsonError) {
             MCLog(@"Error:%@", jsonError);
             NSError *error = [NSError errorWithDomain:TRWErrorDomain code:ResponseFormatError userInfo:@{NSUnderlyingErrorKey : jsonError}];
-            self.operationErrorHandler(error);
+            weakSelf.operationErrorHandler(error);
             return;
         }
 
@@ -102,7 +103,7 @@
         MCLog(@"Error:%@", error);
         if (op.response.statusCode == 410) {
             NSError *createdError = [NSError errorWithDomain:TRWErrorDomain code:ResponseCallGoneError userInfo:@{}];
-            self.operationErrorHandler(createdError);
+            weakSelf.operationErrorHandler(createdError);
             return;
         }
 
@@ -110,7 +111,7 @@
 
         if ([responseData length] == 0) {
             MCLog(@"No recovery information");
-            self.operationErrorHandler(error);
+            weakSelf.operationErrorHandler(error);
             return;
         }
 
@@ -118,9 +119,9 @@
         NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonError];
         if (jsonError) {
             NSLog(@"Error JSON read error:%@", jsonError);
-            self.operationErrorHandler(error);
+            weakSelf.operationErrorHandler(error);
         } else {
-            [self handleErrorResponseData:response];
+            [weakSelf handleErrorResponseData:response];
         }
     }];
     [operation start];

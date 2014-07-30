@@ -336,16 +336,17 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 	CheckPersonalProfileVerificationOperation *operation = [CheckPersonalProfileVerificationOperation operation];
 	[self setCheckOperation:operation];
+    __weak typeof(self) weakSelf = self;
 	[operation setResultHandler:^(IdentificationRequired identificationRequired) {
-		[self setCheckOperation:nil];
+		[weakSelf setCheckOperation:nil];
 
-		[self setIdentificationRequired:identificationRequired];
+		[weakSelf setIdentificationRequired:identificationRequired];
 
 		BOOL somethingNeeded = identificationRequired != IdentificationNoneRequired;
 
-		if (somethingNeeded != self.showIdentificationView) {
-			[self setShowIdentificationView:somethingNeeded];
-			[self.tableView reloadData];
+		if (somethingNeeded != weakSelf.showIdentificationView) {
+			[weakSelf setShowIdentificationView:somethingNeeded];
+			[weakSelf.tableView reloadData];
 		}
 	}];
 	[operation execute];
@@ -358,9 +359,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[controller setIdentificationRequired:self.identificationRequired];
 	[controller setProposedFooterButtonTitle:NSLocalizedString(@"transactions.identification.done.button.title", nil)];
     [controller setCompletionMessage:NSLocalizedString(@"transactions.identification.uploading.message", nil)];
+    __weak typeof(self) weakSelf = self;
     [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, VerificationStepSuccessBlock successBlock, PaymentErrorBlock errorBlock) {
-        [self uploadPaymentPurpose:paymentPurpose errorHandler:errorBlock completionHandler:^{
-            [self.navigationController popViewControllerAnimated:YES];
+        [weakSelf uploadPaymentPurpose:paymentPurpose errorHandler:errorBlock completionHandler:^{
+            [weakSelf.navigationController popViewControllerAnimated:YES];
             if(successBlock)
             {
                 successBlock();
@@ -380,7 +382,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     PaymentPurposeOperation *operation = [PaymentPurposeOperation operationWithPurpose:purpose forProfile:@"personal"];
     [self setExecutedUploadOperation:operation];
     [operation setObjectModel:self.objectModel];
-
+    __weak typeof(self) weakSelf = self;
     [operation setResultHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error) {
@@ -390,7 +392,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
             [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"sent"];
             MCLog(@"uploadPaymentPurpose done");
-            [self uploadIdImageWithErrorHandler:errorBlock completionHandler:completion];
+            [weakSelf uploadIdImageWithErrorHandler:errorBlock completionHandler:completion];
         });
     }];
 
@@ -403,12 +405,12 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         [self uploadAddressImageWithErrorHandler:errorBlock completionHandler:completion];
         return;
     }
-
+    __weak typeof(self) weakSelf = self;
     [self uploadImageFromPath:[PendingPayment idPhotoPath] withId:@"id" completion:^(NSError *error) {
         if (error) {
             errorBlock(error);
         } else {
-            [self uploadAddressImageWithErrorHandler:errorBlock completionHandler:completion];
+            [weakSelf uploadAddressImageWithErrorHandler:errorBlock completionHandler:completion];
         }
     }];
 }
