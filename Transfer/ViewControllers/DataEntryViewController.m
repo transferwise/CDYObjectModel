@@ -170,6 +170,12 @@
     return YES;
 }
 
+- (void)navigateAwayFrom:(UITableViewCell *)cell
+{
+	[self textFieldEntryFinished];
+	[self moveFocusOnNextEntryAfterCell:cell];
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     [self textFieldEntryFinished];

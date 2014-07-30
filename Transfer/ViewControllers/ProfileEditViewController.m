@@ -23,6 +23,7 @@
 #import "PersonalProfileSource.h"
 #import "TransferBackButtonItem.h"
 #import "GoogleAnalytics.h"
+#import "CountrySuggestionCellProvider.h"
 
 static NSUInteger const kButtonSection = 0;
 
@@ -36,6 +37,7 @@ static NSUInteger const kButtonSection = 0;
 @property (nonatomic, assign) BOOL shown;
 @property (nonatomic, strong) QuickProfileValidationOperation *quickProfileValidation;
 @property (nonatomic, assign) BOOL inputCheckRunning;
+@property (nonatomic, strong) CountrySuggestionCellProvider* cellProvider;
 
 @end
 
@@ -64,11 +66,11 @@ static NSUInteger const kButtonSection = 0;
 {
     NSArray *presented = [self.profileSource presentedCells];
 
-    UITableViewCell *countryCell = nil;
+    CountrySelectionCell *countryCell = nil;
     for (NSArray *cells in presented) {
         for (UITableViewCell *cell in cells) {
             if ([cell isKindOfClass:[CountrySelectionCell class]]) {
-                countryCell = cell;
+                countryCell = (CountrySelectionCell *)cell;
                 break;
             }
         }
@@ -77,8 +79,13 @@ static NSUInteger const kButtonSection = 0;
             break;
         }
     }
-    [self setCountryCell:(CountrySelectionCell *) countryCell];
-    [self.countryCell setAllCountries:[self.objectModel fetchedControllerForAllCountries]];
+    [self setCountryCell:countryCell];
+	
+	self.cellProvider = [[CountrySuggestionCellProvider alloc] init];
+    
+    [super configureWithDataSource:self.cellProvider
+						 entryCell:countryCell
+							height:countryCell.frame.size.height];
 
     [self setPresentationCells:presented];
 }
@@ -135,6 +142,8 @@ static NSUInteger const kButtonSection = 0;
     [hud setMessage:NSLocalizedString(@"personal.profile.refreshing.message", nil)];
 
     [self pullCountriesWithHud:hud completionHandler:^{
+		[self.cellProvider setAutoCompleteResults:[self.objectModel fetchedControllerForAllCountries]];
+		
         [self.profileSource pullDetailsWithHandler:^(NSError *profileError) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hud hide];
