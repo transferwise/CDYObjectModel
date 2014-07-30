@@ -98,6 +98,8 @@
 		38AA83421949B8DF0065AD2A /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA83401949B8DF0065AD2A /* GradientView.m */; };
 		38AA83CF1949C7220065AD2A /* PaymentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AA83CE1949C7220065AD2A /* PaymentCell~ipad.xib */; };
 		38AA83D01949C7220065AD2A /* PaymentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AA83CE1949C7220065AD2A /* PaymentCell~ipad.xib */; };
+		38AD6EEE19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AD6EED19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib */; };
+		38AD6EEF19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AD6EED19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib */; };
 		38AEB3C31964369F00B852E1 /* libAppsFlyerLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38AEB3C21964369F00B852E1 /* libAppsFlyerLib.a */; };
 		38AEB3C4196436F800B852E1 /* libAppsFlyerLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38AEB3C21964369F00B852E1 /* libAppsFlyerLib.a */; };
 		38AEB3C71966B8BF00B852E1 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AEB3C61966B8BF00B852E1 /* UIResponder+FirstResponder.m */; };
@@ -842,6 +844,7 @@
 		38AA833F1949B8DF0065AD2A /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
 		38AA83401949B8DF0065AD2A /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		38AA83CE1949C7220065AD2A /* PaymentCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PaymentCell~ipad.xib"; sourceTree = "<group>"; };
+		38AD6EED19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferTypeSelectionHeaderNoTitle.xib; sourceTree = "<group>"; };
 		38AEB3C11964369F00B852E1 /* AppsFlyerTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppsFlyerTracker.h; sourceTree = "<group>"; };
 		38AEB3C21964369F00B852E1 /* libAppsFlyerLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppsFlyerLib.a; sourceTree = "<group>"; };
 		38AEB3C51966B8BF00B852E1 /* UIResponder+FirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+FirstResponder.h"; sourceTree = "<group>"; };
@@ -1669,6 +1672,7 @@
 				38B093071951FA2A00315BE4 /* TransferTypeSelectionHeader.m */,
 				38B093081951FA2A00315BE4 /* TransferTypeSelectionHeader.xib */,
 				38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */,
+				38AD6EED19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib */,
 				EA8FF689171D1FA50090A658 /* TRWAlertView.h */,
 				EA8FF68A171D1FA50090A658 /* TRWAlertView.m */,
 				EA8FF6B2171D23B20090A658 /* TRWProgressHUD.h */,
@@ -2543,6 +2547,7 @@
 				47592CC71940C35800ECDAF2 /* NewPaymentViewController~ipad.xib in Resources */,
 				EA31A1D017DDB29B00F937F7 /* InfoPlist.strings in Resources */,
 				EA31A1D117DDB29B00F937F7 /* Localizable.strings in Resources */,
+				38AD6EEF19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib in Resources */,
 				38E57F7B192A51DD00D864A2 /* TabViewController.xib in Resources */,
 				EA31A1D217DDB29B00F937F7 /* MainViewController.xib in Resources */,
 				EA84056A17F0A40B00F44916 /* spinner.html in Resources */,
@@ -2656,6 +2661,7 @@
 				EA84056917F0A40B00F44916 /* spinner.html in Resources */,
 				EAD3967C171BD51400F6D011 /* TransactionsViewController.xib in Resources */,
 				EA0523F9191B5AFC00B32899 /* RefundDetailsViewController.xib in Resources */,
+				38AD6EEE19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib in Resources */,
 				EAD39681171BD57000F6D011 /* ContactsViewController.xib in Resources */,
 				EAD39686171BD5B000F6D011 /* PaymentViewController.xib in Resources */,
 				EAD3968B171BD82300F6D011 /* NewPaymentViewController.xib in Resources */,
