@@ -15,8 +15,8 @@
                 <outlet property="secondColumnLeftEdgeConstraint" destination="9M8-ca-8M9" id="WO7-2A-uFx"/>
                 <outlet property="secondColumnTopConstraint" destination="YnC-cC-hmy" id="yqv-eq-74Z"/>
                 <outlet property="view" destination="fPl-yO-Yh3" id="DJL-eZ-Wik"/>
-                <outletCollection property="tableViews" destination="4" id="lsV-cZ-2Mt"/>
-                <outletCollection property="tableViews" destination="JU1-IW-1ic" id="hfi-Kd-cmK"/>
+                <outletCollection property="tableViews" destination="4" id="bGr-vX-2ed"/>
+                <outletCollection property="tableViews" destination="JU1-IW-1ic" id="0xX-oH-TNH"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
