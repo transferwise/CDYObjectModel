@@ -49,7 +49,25 @@
     self.suggestionTable.alpha = 1.0f;
 }
 
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if(!decelerate)
+    {
+        [self updateSuggestionTablePosition:self.suggestionTable];
+    }
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self updateSuggestionTablePosition:self.suggestionTable];
+}
+
 -(void)suggestionTableDidStartEditing:(TextFieldSuggestionTable *)table
+{
+    [self updateSuggestionTablePosition:table];
+}
+
+-(void)updateSuggestionTablePosition:(TextFieldSuggestionTable *)table
 {
     [table removeFromSuperview];
     UIView* viewToAlignTo = self.entryCell;
@@ -77,12 +95,31 @@
     newFrame.size.width = viewToAlignTo.frame.size.width;
     table.frame = newFrame;
     [self.view addSubview:table];
-    
 }
 
 -(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
 {
     [self.entryCell.entryField resignFirstResponder];
 }
+
+-(void)keyboardWillShow:(NSNotification*)note
+{
+    if(![self hasMoreThanOneTableView])
+    {
+        CGRect newframe = [self.view convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:self.view.window];
+        [super keyboardWillShow:note];
+        self.suggestionTable.contentInset = UIEdgeInsetsMake(0, 0, newframe.size.height, 0);
+    }
+}
+
+-(void)keyboardWillHide:(NSNotification*)note
+{
+    if(![self hasMoreThanOneTableView])
+    {
+        [super keyboardWillHide:note];
+        self.suggestionTable.contentInset = UIEdgeInsetsZero;
+    }
+}
+
 
 @end
