@@ -16,6 +16,7 @@
 #import "NSString+Presentation.h"
 #import "CurrencySelectorViewController.h"
 #import "MOMStyle.h"
+#import "UITextField+ModifiedText.h"
 
 NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
@@ -84,7 +85,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    NSString *modified = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSString *modified = [textField modifiedText:range newText:string];
     if (![string isEqualToString:@","] && ![string isEqualToString:@"."] && [self entryBelowMaxAmount:modified]) {
         [textField setText:[modified moneyFormatting]];
         [textField sendActionsForControlEvents:UIControlEventEditingChanged];

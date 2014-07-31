@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import "DataEntryViewController.h"
+#import "SuggestionDataEntryViewController.h"
 
 @class ProfileSource;
 @class PhoneBookProfileSelector;
@@ -14,14 +14,12 @@
 @class CountriesOperation;
 @class QuickProfileValidationOperation;
 
-@interface ProfileEditViewController : DataEntryViewController
+@interface ProfileEditViewController : SuggestionDataEntryViewController
 
-@property (nonatomic, strong) NSString *footerButtonTitle;
 @property (nonatomic, strong) id profileValidation;
 @property (nonatomic, strong) ObjectModel *objectModel;
-@property (nonatomic, assign) BOOL analyticsReport;
 
 - (id)initWithSource:(ProfileSource *)source quickValidation:(QuickProfileValidationOperation *)quickValidation;
-- (void)setPresentProfileSource:(ProfileSource *)source reloadView:(BOOL)reload;
+- (void)validateProfile;
 
 @end

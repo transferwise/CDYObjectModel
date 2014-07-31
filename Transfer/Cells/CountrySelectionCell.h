@@ -8,11 +8,22 @@
 
 #import "TextEntryCell.h"
 
+@class Country;
+
 extern NSString *const TWCountrySelectionCellIdentifier;
+
+typedef void (^CountrySelectionBlock)(NSString *countryName);
+
+@protocol CountrySelectionCellDelegate <NSObject>
+
+- (Country *)getCountryByCode:(NSString *)code;
+
+@end
 
 @interface CountrySelectionCell : TextEntryCell
 
-@property (nonatomic, strong) NSFetchedResultsController *allCountries;
+@property (nonatomic, weak) id<CountrySelectionCellDelegate> delegate;
+@property (nonatomic, copy) CountrySelectionBlock selectionHandler;
 
 - (void)setTwoLetterCountryCode:(NSString *)code;
 

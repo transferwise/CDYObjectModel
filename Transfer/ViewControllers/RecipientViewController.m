@@ -42,7 +42,6 @@
 #import "ObjectModel+PendingPayments.h"
 #import "PendingPayment.h"
 #import "ConfirmPaymentCell.h"
-#import "ProfileSelectionView.h"
 #import "UIView+Loading.h"
 #import "ProfileSource.h"
 #import "User.h"
@@ -97,7 +96,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, assign) BOOL shown;
 
 
-@property (nonatomic, strong) IBOutlet TextFieldSuggestionTable* suggestionTable;
 @property (nonatomic, strong) NameSuggestionCellProvider *cellProvider;
 @property (nonatomic, strong) NameLookupWrapper *lastSelectedWrapper;
 
@@ -136,7 +134,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     {
         [self setupTableView:tableView];
     }
-
     
     self.cellHeight = IPAD ? 70.0f : 60.0f;
     
@@ -180,25 +177,15 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     
     self.cellProvider = [[NameSuggestionCellProvider alloc] init];
     
-    self.suggestionTable = [[NSBundle mainBundle] loadNibNamed:@"TextFieldSuggestionTable" owner:self options:nil][0];
-    self.suggestionTable.rowHeight = self.cellHeight;
-    self.suggestionTable.hidden = YES;
-    self.suggestionTable.suggestionTableDelegate = self;
-    [self.view addSubview:self.suggestionTable];
-    self.suggestionTable.textField = nameCell.entryField;
-    self.suggestionTable.dataSource = self.cellProvider;
+    [super configureWithDataSource:self.cellProvider
+						 entryCell:nameCell
+							height:self.cellHeight];
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
+	[super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
     [self configureForInterfaceOrientation:toInterfaceOrientation];
-    self.suggestionTable.alpha = 0.0f;
-}
-
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [self suggestionTableDidStartEditing:self.suggestionTable];
-    self.suggestionTable.alpha = 1.0f;
 }
 
 -(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation
@@ -278,7 +265,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
 
     if (self.preLoadRecipientsWithCurrency && [Credentials userLoggedIn]) {
-        [self.cellProvider setAutoCompleteRecipients:[self.objectModel fetchedControllerForRecipientsWithCurrency:self.preLoadRecipientsWithCurrency]];
+        [self.cellProvider setAutoCompleteResults:[self.objectModel fetchedControllerForRecipientsWithCurrency:self.preLoadRecipientsWithCurrency]];
     }
 
     [self.currencyCell setAllCurrencies:[self.objectModel fetchedControllerForAllCurrencies]];
@@ -709,41 +696,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 */
 #pragma mark - Suggestion Table
 
-
-
--(void)suggestionTableDidStartEditing:(TextFieldSuggestionTable *)table
-{
-    [table removeFromSuperview];
-    UIView* viewToAlignTo = self.nameCell;
-    if(!IPAD)
-    {
-        UIImageView* background = [[UIImageView alloc] initWithImage:[self.view renderBlurWithTintColor:nil]];
-        background.contentMode = UIViewContentModeBottom;
-        table.backgroundView = background;
-        
-        UIView *colorOverlay = [[UIView alloc] initWithFrame:background.bounds];
-        colorOverlay.bgStyle = @"DarkFont.alpha4";
-        colorOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        [background addSubview:colorOverlay];
-    }
-    else
-    {
-        viewToAlignTo = self.nameCell.separatorLine;
-    }
-    
-    CGRect newFrame = table.frame;
-    newFrame.origin = [self.view convertPoint:viewToAlignTo.frame.origin fromView:viewToAlignTo.superview];
-    newFrame.origin.y += viewToAlignTo.frame.size.height;
-    newFrame.size.height = self.view.frame.size.height - newFrame.origin.y;
-    newFrame.size.width = viewToAlignTo.frame.size.width;
-    table.frame = newFrame;
-    [self.view addSubview:table];
-    
-}
-
 -(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
 {
-    [self.nameCell.entryField resignFirstResponder];
+    [super suggestionTable:table selectedObject:object];
     NameLookupWrapper* wrapper = (NameLookupWrapper*)object;
     if(wrapper.recordId)
     {

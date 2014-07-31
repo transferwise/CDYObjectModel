@@ -21,11 +21,6 @@
     return @[];
 }
 
-- (NSString *)editViewTitle {
-    ABSTRACT_METHOD;
-    return nil;
-}
-
 - (void)pullDetailsWithHandler:(ProfileActionBlock)handler {
     MCAssert(self.objectModel);
 
@@ -67,10 +62,6 @@
     ABSTRACT_METHOD;
 }
 
-- (NSString *)titleForHeaderInSection:(NSInteger)section {
-    return nil;
-}
-
 - (void)loadDetailsToCells {
     ABSTRACT_METHOD;
 }
@@ -93,24 +84,42 @@
     }
 }
 
-- (void)removeAllErrorMarkers {
-    for (NSArray *sectionCells in self.cells) {
-        for (TextEntryCell *cell in sectionCells) {
-            [cell markIssue:@""];
-        }
-    }
+- (void)removeAllErrorMarkers
+{
+	for (NSArray *table in self.cells)
+	{
+		for (NSArray *sectionCells in table)
+		{
+			for (TextEntryCell *cell in sectionCells)
+			{
+				[cell markIssue:@""];
+			}
+		}
+	}
 }
 
-- (TextEntryCell *)cellWithTag:(NSString *)tag {
-    for (NSArray *sectionCells in self.cells) {
-        for (TextEntryCell *cell in sectionCells) {
-            if ([cell.cellTag isEqualToString:tag]) {
-                return cell;
-            }
-        }
-    }
+- (TextEntryCell *)cellWithTag:(NSString *)tag
+{
+	for (NSArray *table in self.cells)
+	{
+		for (NSArray *sectionCells in table)
+		{
+			for (TextEntryCell *cell in sectionCells)
+			{
+				if ([cell.cellTag isEqualToString:tag])
+				{
+					return cell;
+				}
+			}
+		}
+	}
 
     return nil;
+}
+
+- (void)setUpTableView:(UITableView *)tableView
+{
+	ABSTRACT_METHOD;
 }
 
 @end

@@ -50,7 +50,7 @@
                         <constraint firstAttribute="height" constant="70" placeholder="YES" id="y6u-TV-OlQ"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seY-db-tL6" userLabel="Separator View">
                     <rect key="frame" x="297" y="307" width="430" height="1"/>

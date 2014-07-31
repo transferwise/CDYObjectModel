@@ -72,11 +72,10 @@
     PaymentProfileViewController *controller = [[PaymentProfileViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setAllowProfileSwitch:allowProfileSwitch];
-    [controller setAnalyticsReport:YES];
     if (self.objectModel.pendingPayment.recipient) {
-        [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.confirm.payment.button.title", nil)];
+        [controller setButtonTitle:NSLocalizedString(@"personal.profile.confirm.payment.button.title", nil)];
     } else {
-        [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.continue.to.recipient.button.title", nil)];
+        [controller setButtonTitle:NSLocalizedString(@"personal.profile.continue.to.recipient.button.title", nil)];
     }
     [controller setProfileValidation:self];
     [self.navigationController pushViewController:controller animated:YES];

@@ -45,8 +45,10 @@ static NSUInteger const kDetailsSection = 1;
         return self.cells;
     }
 
-    [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
-    [self.tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
+    for (UITableView* tableView in self.tableViews)
+    {
+        [self setUpTableView:tableView];
+    }
 
     NSMutableArray *businessCells = [NSMutableArray array];
 
@@ -99,7 +101,7 @@ static NSUInteger const kDetailsSection = 1;
     [countryCell configureWithTitle:NSLocalizedString(@"business.profile.country.label", nil) value:@""];
     [countryCell setCellTag:@"countryCode"];
 
-    [self setCells:@[businessCells, addressCells]];
+    [self setCells:@[@[businessCells, addressCells]]];
 
     return self.cells;
 }
@@ -194,6 +196,12 @@ static NSUInteger const kDetailsSection = 1;
     [operation setPostCode:[self.postCodeCell value]];
     [operation setCity:[self.cityCell value]];
     [operation setCountryCode:[self.countryCell value]];
+}
+
+- (void)setUpTableView:(UITableView *)tableView
+{
+	[tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
+    [tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
 }
 
 @end

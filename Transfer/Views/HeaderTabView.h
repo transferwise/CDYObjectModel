@@ -22,8 +22,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *separatorLine;
 @property (nonatomic, strong) NSNumber* fixedTabWidth;
+@property (nonatomic) NSUInteger selectedIndex;
 
--(void)setSelectedIndex:(NSUInteger)index;
 -(void)setTabTitles:(NSArray*)titles;
 
 

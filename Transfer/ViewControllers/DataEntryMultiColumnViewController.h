@@ -46,6 +46,13 @@
 @property (nonatomic, strong) NSArray *sectionCellsByTableView;
 
 /**
+ *	set this property to a CGFloat that is the @see tableVies offset from the bottom of the screen.
+ *
+ * This property defaults to 0
+ */
+@property (nonatomic, assign) CGFloat heightOffset;
+
+/**
  *  convenience method for quickly checking if the viewcontrller has more than on tableview associated with it.
  *
  *  @return YES if more than one tableview is associated, NO if 1 or 0 tableviews are associated.
@@ -99,5 +106,10 @@
  *  @param tableView tableview the cell resides in.
  */
 -(void)scrollToCell:(UITableViewCell*)cell inTableView:(UITableView*)tableView;
+
+/**
+ *	Call to reaload all tableviews when @see sectionCellsByTableView has been modified
+ */
+-(void)reloadTableViews;
 
 @end

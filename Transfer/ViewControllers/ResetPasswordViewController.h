@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-#import "DataEntryViewController.h"
 #import "DismissKeyboardViewController.h"
 
 @protocol ResetPasswordViewControllerDelegate
