@@ -15,6 +15,7 @@
 #import "UIView+SeparatorLine.h"
 #import "UITextField+ModifiedText.h"
 #import "UIColor+MOMStyle.h"
+#import "UIResponder+FirstResponder.h"
 
 NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 
@@ -31,6 +32,8 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 @property (strong, nonatomic) UIView* daySeparator;
 @property (strong, nonatomic) UIView* monthSeparator;
 @property (strong, nonatomic) UIView* yearSeparator;
+
+@property (nonatomic, copy) TRWActionBlock doneButtonAction;
 
 @end
 
@@ -72,6 +75,7 @@ NSInteger const kYearField = 3;
 	self.yearTextField.delegate = self;
 	self.yearTextField.keyboardType = UIKeyboardTypeNumberPad;
 	[self.yearTextField addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventEditingChanged];
+	[self addNextButtons];
 }
 
 - (void)configureLabels
@@ -290,24 +294,44 @@ NSInteger const kYearField = 3;
 
 - (void)textChanged:(UITextField *)textField
 {
+	[self navigateToNext:textField withValidation:YES];
+}
+
+- (void)navigateToNext
+{
+	UIView *firstResponder = [UIResponder currentFirstResponder];
+	
+	if (firstResponder)
+	{
+		UITextField* textField = (UITextField *)firstResponder;
+		
+		if (textField)
+		{
+			[self navigateToNext:textField withValidation:NO];
+		}
+	}
+}
+
+- (void)navigateToNext:(UITextField *)textField withValidation:(BOOL)withValidation
+{
 	[self changeHeaderColor];
 	if (textField.tag == kDayField)
 	{
-		if (textField.text.length == DAY_MONTH_MAX_LENGTH)
+		if (!withValidation || textField.text.length == DAY_MONTH_MAX_LENGTH)
 		{
 			[self.monthTextField becomeFirstResponder];
 		}
 	}
 	else if (textField.tag == kMonthField)
 	{
-		if (textField.text.length == DAY_MONTH_MAX_LENGTH)
+		if (!withValidation || textField.text.length == DAY_MONTH_MAX_LENGTH)
 		{
 			[self.yearTextField becomeFirstResponder];
 		}
 	}
 	else if (textField.tag == kYearField)
 	{
-		if (textField.text.length == YEAR_MAX_LENGTH)
+		if (!withValidation || textField.text.length == YEAR_MAX_LENGTH)
 		{
 			//trigger year validation
 			[textField resignFirstResponder];
@@ -317,24 +341,42 @@ NSInteger const kYearField = 3;
 }
 
 #pragma mark - Next button
-- (void)addDoneButton {
-    __block __weak TextEntryCell *weakSelf = self;
-    [self addDoneButtonToField:self.entryField withAction:^{
-        [weakSelf.entryField.delegate textFieldShouldReturn:weakSelf.entryField];
+- (void)addNextButtons
+{
+    __block __weak DateEntryCell *weakSelf = self;
+	[self addNextButtonToField:self.dayTextField withAction:^{
+		[weakSelf navigateToNext];
+    }];
+    [self addNextButtonToField:self.monthTextField withAction:^{
+        [weakSelf navigateToNext];
+    }];
+	[self addNextButtonToField:self.yearTextField withAction:^{
+        [weakSelf navigateToNext];
     }];
 }
 
-- (void)addDoneButtonToField:(UITextField *)field withAction:(TRWActionBlock)action {
-    [self setDoneButtonAction:action];
+- (void)addNextButtonToField:(UITextField *)field withAction:(TRWActionBlock)action
+{
+    self.doneButtonAction = action;
 	
-    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 20, 44)];
-    [toolbar setBarStyle:UIBarStyleBlackTranslucent];
+    UIToolbar *toolbar = [[UIToolbar alloc] init];
+	[toolbar sizeToFit];
 	
     UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    //TODO jaanus: button title based on entry return key type
-    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed)];
+    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"Next"
+															 style:UIBarButtonItemStylePlain
+															target:self
+															action:@selector(nextPressed)];
     [toolbar setItems:@[flexible, done]];
     [field setInputAccessoryView:toolbar];
+}
+
+- (void)nextPressed
+{
+	if (self.doneButtonAction)
+	{
+		self.doneButtonAction();
+	}
 }
 
 #pragma mark - Date helpers
