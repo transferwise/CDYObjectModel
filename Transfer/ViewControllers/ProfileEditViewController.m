@@ -268,7 +268,7 @@ static NSUInteger const kButtonSection = 0;
 		{
 			UITableView *table = self.tableViews[0];
 			
-			if([cell isKindOfClass:[CountrySelectionCell class]])
+			if([cell isKindOfClass:[CountrySelectionCell class]] && self.bottomInset == 0)
 			{
 				//Country cell needs to be scrolled to top of screen
 				UIEdgeInsets insets = table.contentInset;
