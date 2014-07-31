@@ -8,6 +8,10 @@
 
 #import "SuggestionCellProvider.h"
 
+@class Country;
+
 @interface CountrySuggestionCellProvider : SuggestionCellProvider
+
+- (Country *)getCountryByCode:(NSString *)code;
 
 @end

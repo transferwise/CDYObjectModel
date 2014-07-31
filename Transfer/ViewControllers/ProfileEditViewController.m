@@ -24,10 +24,11 @@
 #import "TransferBackButtonItem.h"
 #import "GoogleAnalytics.h"
 #import "CountrySuggestionCellProvider.h"
+#import "Country.h"
 
 static NSUInteger const kButtonSection = 0;
 
-@interface ProfileEditViewController ()
+@interface ProfileEditViewController ()<CountrySelectionCellDelegate>
 
 @property (nonatomic, strong) ProfileSource *profileSource;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
@@ -47,7 +48,8 @@ static NSUInteger const kButtonSection = 0;
 - (id)initWithSource:(ProfileSource *)source quickValidation:(QuickProfileValidationOperation *)quickValidation
 {
     self = [super initWithNibName:@"ProfileEditViewController" bundle:nil];
-    if (self) {
+    if (self)
+	{
         _profileSource = source;
         _quickProfileValidation = quickValidation;
     }
@@ -95,6 +97,8 @@ static NSUInteger const kButtonSection = 0;
 	[countryCell setSelectionHandler:^(Country *country) {
         [weakSelf didSelectCountry:country];
     }];
+	
+	countryCell.delegate = self;
 
     [self setPresentationCells:presented];
 }
@@ -128,12 +132,12 @@ static NSUInteger const kButtonSection = 0;
 -(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
 {
     [super suggestionTable:table selectedObject:object];
-    [self didSelectCountry:(Country *)object];
+    [self didSelectCountry:(NSString *)object];
 }
 
-- (void)didSelectCountry:(Country *)country
+- (void)didSelectCountry:(NSString *)country
 {
-    
+    self.countryCell.value = country;
 }
 
 - (void)pullCountriesWithHud:(TRWProgressHUD *)hud completionHandler:(TRWActionBlock)completion
@@ -306,6 +310,12 @@ static NSUInteger const kButtonSection = 0;
 	}
 	
 	return nil;
+}
+
+#pragma mark - CountrySelectionCell Delegate
+- (Country *)getCountryByCode:(NSString *)code
+{
+	return [self.cellProvider getCountryByCode:code];
 }
 
 @end

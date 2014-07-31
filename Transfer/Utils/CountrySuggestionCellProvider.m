@@ -25,4 +25,19 @@
     self.results = result;
 }
 
+- (Country *)getCountryByCode:(NSString *)code
+{
+	for(Country *country in self.autoCompleteResults.fetchedObjects)
+    {
+        if([country.iso3Code isEqualToString:code]
+		   || [country.iso2Code isEqualToString:code]
+		   || [country.name isEqualToString:code])
+        {
+            return country;
+        }
+    }
+	
+	return nil;
+}
+
 @end
