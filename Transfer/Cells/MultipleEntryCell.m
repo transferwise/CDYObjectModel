@@ -8,6 +8,7 @@
 
 #import "MultipleEntryCell.h"
 #import "Constants.h"
+#import "UIView+SeparatorLine.h"
 
 @interface MultipleEntryCell ()
 
@@ -17,6 +18,14 @@
 @end
 
 @implementation MultipleEntryCell
+
+#pragma mark - Init
+- (void)awakeFromNib
+{
+	[super awakeFromNib];
+	//remove separator, because multiple fields require multiple separators
+	self.separatorLine = [[UIView alloc] init];
+}
 
 #pragma mark - TextEntryCell overrides
 - (UITextField *)entryField
@@ -81,6 +90,38 @@
 {
 	self.selectedTextField = textField;
 	return YES;
+}
+
+#pragma mark - Helpers for cells containing two equal length entry fields
+- (void)addDoubleSeparators
+{
+	self.separatorLine = [UIView getSeparatorLineWithParentFrame:[self getHalfWidthFrame:YES]];
+	[self.contentView addSubview:self.separatorLine];
+	self.secondSeparator = [UIView getSeparatorLineWithParentFrame:[self getHalfWidthFrame:NO]];
+	[self.contentView addSubview:self.secondSeparator];
+}
+
+- (CGRect)getHalfWidthFrame:(BOOL)firstHalf
+{
+	CGRect frame = self.contentView.frame;
+	CGFloat halfWidth = frame.size.width / 2;
+	
+	//Why the hell do I need to subtract -10.f??. Should this account for scale?
+	return CGRectMake(firstHalf ? frame.origin.x : (frame.origin.x + halfWidth), frame.origin.y, firstHalf ? halfWidth - 10.f : halfWidth, frame.size.height);
+}
+
+- (void)removeDoubleSeparators
+{
+	//only remove if there is a second view and it is visible
+	if(self.secondSeparator && self.secondSeparator.superview)
+	{
+		[self.separatorLine removeFromSuperview];
+		[self.secondSeparator removeFromSuperview];
+		self.secondSeparator = nil;
+		
+		self.separatorLine = [UIView getSeparatorLineWithParentFrame:self.contentView.frame];
+		[self.contentView addSubview:self.separatorLine];
+	}
 }
 
 @end

@@ -21,6 +21,7 @@
 #import "GoogleAnalytics.h"
 #import "UIView+Loading.h"
 #import "DoublePasswordEntryCell.h"
+#import "DoubleEntryCell.h"
 
 NSUInteger const kUserButtonSection = 0;
 NSUInteger const kUserPersonalSection = 1;
@@ -33,8 +34,7 @@ NSUInteger const kUserPersonalSection = 1;
 @property (nonatomic, strong) TextEntryCell *phoneNumberCell;
 @property (nonatomic, strong) DateEntryCell *dateOfBirthCell;
 @property (nonatomic, strong) TextEntryCell *addressCell;
-@property (nonatomic, strong) TextEntryCell *postCodeCell;
-@property (nonatomic, strong) TextEntryCell *cityCell;
+@property (nonatomic, strong) DoubleEntryCell *zipCityCell;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
 @property (nonatomic, strong) DoublePasswordEntryCell *passwordCell;
 
@@ -111,18 +111,14 @@ NSUInteger const kUserPersonalSection = 1;
     [addressCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
     [addressCell setCellTag:@"addressFirstLine"];
 
-    TextEntryCell *postCodeCell = [TextEntryCell loadInstance];
-    [self setPostCodeCell:postCodeCell];
-    [addressCells addObject:postCodeCell];
-    [postCodeCell configureWithTitle:NSLocalizedString(@"personal.profile.post.code.label", nil) value:@""];
-    [postCodeCell setCellTag:@"postCode"];
-
-    TextEntryCell *cityCell = [TextEntryCell loadInstance];
-    [self setCityCell:cityCell];
-    [addressCells addObject:cityCell];
-    [cityCell configureWithTitle:NSLocalizedString(@"personal.profile.city.label", nil) value:@""];
-    [cityCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
-    [cityCell setCellTag:@"city"];
+	DoubleEntryCell *zipCityCell = [DoubleEntryCell loadInstance];
+	[self setZipCityCell:zipCityCell];
+    [addressCells addObject:zipCityCell];
+    [zipCityCell configureWithTitle:NSLocalizedString(@"personal.profile.post.code.label", nil)
+							  value:@""
+						secondTitle:NSLocalizedString(@"personal.profile.city.label", nil)
+						secondValue:@""];
+    [zipCityCell setCellTag:@"zipCity"];
 
     [self setCells:@[@[personalCells, addressCells]]];
 
@@ -142,8 +138,8 @@ NSUInteger const kUserPersonalSection = 1;
         [self.phoneNumberCell setValue:profile.phoneNumber];
         [self.dateOfBirthCell setValue:profile.dateOfBirth];
         [self.addressCell setValue:profile.addressFirstLine];
-        [self.postCodeCell setValue:profile.postCode];
-        [self.cityCell setValue:profile.city];
+        [self.zipCityCell setValue:profile.postCode];
+        [self.zipCityCell setSecondValue:profile.city];
         [self.countryCell setValue:profile.countryCode];
 
         [self.firstNameCell setEditable:![profile isFieldReadonly:@"firstName"]];
@@ -153,8 +149,7 @@ NSUInteger const kUserPersonalSection = 1;
         [self.emailCell setEditable:![Credentials userLoggedIn]];
 
         [self.addressCell setEditable:![profile isFieldReadonly:@"addressFirstLine"]];
-        [self.postCodeCell setEditable:![profile isFieldReadonly:@"postCode"]];
-        [self.cityCell setEditable:![profile isFieldReadonly:@"city"]];
+        [self.zipCityCell setEditable:![profile isFieldReadonly:@"postCode"]];
         [self.countryCell setEditable:![profile isFieldReadonly:@"countryCode"]];
     });
 }
@@ -176,8 +171,14 @@ NSUInteger const kUserPersonalSection = 1;
 
         PhoneBookAddress *address = profile.address;
         [self.addressCell setValueWhenEditable:address.street];
-        [self.postCodeCell setValueWhenEditable:address.zipCode];
-        [self.cityCell setValueWhenEditable:address.city];
+		if (![personal isFieldReadonly:@"city"])
+		{
+			[self.zipCityCell setValue:address.zipCode];
+		}
+		if (![personal isFieldReadonly:@"postCode"])
+		{
+			[self.zipCityCell setSecondValue:address.city];
+		}
         if (![personal isFieldReadonly:@"countryCode"]) {
             [self.countryCell setTwoLetterCountryCode:address.countryCode];
         }
@@ -189,7 +190,7 @@ NSUInteger const kUserPersonalSection = 1;
     return [[self.firstNameCell value] hasValue] && [[self.lastNameCell value] hasValue] && [[self.emailCell value] hasValue]
 			&& [self isPasswordValid]
             && [[self.phoneNumberCell value] hasValue] && [[self.dateOfBirthCell value] hasValue]
-            && [[self.addressCell value] hasValue] && [[self.postCodeCell value] hasValue] && [[self.cityCell value] hasValue]
+            && [[self.addressCell value] hasValue] && [[self.zipCityCell value] hasValue] && [[self.zipCityCell secondValue] hasValue]
             && [[self.countryCell value] hasValue];
 }
 
@@ -210,8 +211,8 @@ NSUInteger const kUserPersonalSection = 1;
     [user setEmail:self.emailCell.value];
     [profile setPhoneNumber:self.phoneNumberCell.value];
     [profile setAddressFirstLine:self.addressCell.value];
-    [profile setPostCode:self.postCodeCell.value];
-    [profile setCity:self.cityCell.value];
+    [profile setPostCode:self.zipCityCell.value];
+    [profile setCity:self.zipCityCell.secondValue];
     [profile setCountryCode:self.countryCell.value];
     [profile setDateOfBirth:[self.dateOfBirthCell value]];
 
@@ -243,8 +244,8 @@ NSUInteger const kUserPersonalSection = 1;
     [operation setLastName:[self.lastNameCell value]];
     [operation setPhoneNumber:[self.phoneNumberCell value]];
     [operation setAddressFirstLine:[self.addressCell value]];
-    [operation setPostCode:[self.postCodeCell value]];
-    [operation setCity:[self.cityCell value]];
+    [operation setPostCode:[self.zipCityCell value]];
+    [operation setCity:[self.zipCityCell secondValue]];
     [operation setCountryCode:[self.countryCell value]];
     [operation setDateOfBirth:[self.dateOfBirthCell value]];
 }
