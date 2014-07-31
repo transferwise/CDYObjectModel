@@ -55,9 +55,7 @@
                     self.hidden = (! field.isFirstResponder || [self.visibleCells count] == 0);
                 }
             }];
-        }
-
-        
+        }        
     }
     else
     {
