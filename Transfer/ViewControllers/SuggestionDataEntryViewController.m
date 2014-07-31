@@ -57,6 +57,11 @@
     }
 }
 
+-(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+    [self updateSuggestionTablePosition:self.suggestionTable];
+}
+
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [self updateSuggestionTablePosition:self.suggestionTable];
