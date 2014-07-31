@@ -33,7 +33,6 @@
 #import "NSMutableString+Issues.h"
 #import "Currency.h"
 
-#define REF_LENGTH_THRESHOLD	5
 
 
 static NSUInteger const kSenderSection = 1;
@@ -313,18 +312,6 @@ static NSUInteger const kSenderSection = 1;
     PendingPayment *input = [self.objectModel pendingPayment];
     
     NSString *reference = [self.referenceCell value];
-	
-	if(reference.length < REF_LENGTH_THRESHOLD)
-	{
-		reference = [NSString stringWithFormat:@"%@ %@", reference, [self getSenderName:self.payment]];
-		
-		NSInteger referenceMaxLength = [self getReferenceMaxLength:self.payment];
-		
-		if(reference.length > referenceMaxLength)
-		{
-			reference = [reference substringToIndex:referenceMaxLength];
-		}
-	}
 	
     [input setReference:reference];
     
