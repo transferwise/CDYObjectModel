@@ -13,6 +13,4 @@ NSString *const TRWRecipientEntrySelectionCellIdentifier = @"TRWRecipientEntrySe
 
 @implementation RecipientEntrySelectionCell
 
-
-
 @end

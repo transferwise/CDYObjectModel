@@ -2272,6 +2272,8 @@
 				EA88E694172F980A0021492C /* SignUpViewController.h */,
 				EA88E695172F980A0021492C /* SignUpViewController.m */,
 				EA88E696172F980A0021492C /* SignUpViewController.xib */,
+				47AC3F8B1987845A005491C6 /* SuggestionDataEntryViewController.h */,
+				47AC3F8C1987845A005491C6 /* SuggestionDataEntryViewController.m */,
 				38E57F75192A51DD00D864A2 /* TabViewController.h */,
 				38E57F76192A51DD00D864A2 /* TabViewController.m */,
 				38E57F77192A51DD00D864A2 /* TabViewController.xib */,
@@ -2307,8 +2309,6 @@
 				471CA002197FCB2200BCA3B4 /* TabbedHeaderViewController.m */,
 				471CA003197FCB2200BCA3B4 /* TabbedHeaderViewController.xib */,
 				471CA008197FCB6700BCA3B4 /* TabbedHeaderViewController~ipad.xib */,
-				47AC3F8B1987845A005491C6 /* SuggestionDataEntryViewController.h */,
-				47AC3F8C1987845A005491C6 /* SuggestionDataEntryViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

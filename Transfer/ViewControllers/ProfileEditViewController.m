@@ -90,6 +90,11 @@ static NSUInteger const kButtonSection = 0;
     [super configureWithDataSource:self.cellProvider
 						 entryCell:countryCell
 							height:countryCell.frame.size.height];
+	
+	__weak typeof(self) weakSelf = self;
+	[countryCell setSelectionHandler:^(Country *country) {
+        [weakSelf didSelectCountry:country];
+    }];
 
     [self setPresentationCells:presented];
 }
@@ -116,6 +121,19 @@ static NSUInteger const kButtonSection = 0;
 	{
         [[GoogleAnalytics sharedInstance] sendScreen:@"Enter sender details"];
     }
+}
+
+#pragma mark - Suggestion Table
+
+-(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
+{
+    [super suggestionTable:table selectedObject:object];
+    [self didSelectCountry:(Country *)object];
+}
+
+- (void)didSelectCountry:(Country *)country
+{
+    
 }
 
 - (void)pullCountriesWithHud:(TRWProgressHUD *)hud completionHandler:(TRWActionBlock)completion
