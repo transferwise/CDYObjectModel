@@ -237,33 +237,35 @@ NSInteger const kYearField = 3;
 
 - (BOOL)validateContent:(NSString *)text range:(NSRange)range textField:(UITextField *)textField
 {
-	NSString* modified = [textField modifiedText:range newText:text];
-	
-	//allow to delete everything inserted
-	if (self.valueModified && [modified isEqualToString:@""])
-	{
-		return YES;
-	}
-	
-	//cast to int, this will return zero if cast fails
-	//hence fields should only be shown with numeric keyboard
-	NSInteger value = [modified integerValue];
-	
-	if (textField.tag == kDayField)
-	{
-		return value <= 31;
-	}
-	else if (textField.tag == kMonthField)
-	{
-		return value <= 12;
-	}
-	else if (textField.tag == kYearField)
-	{
-		//year will be validated post-factum
-		return YES;
-	}
-	
-	return NO;
+	//validation off so that user won't get stuck.
+	return YES;
+//	NSString* modified = [textField modifiedText:range newText:text];
+//	
+//	//allow to delete everything inserted
+//	if (self.valueModified && [modified isEqualToString:@""])
+//	{
+//		return YES;
+//	}
+//	
+//	//cast to int, this will return zero if cast fails
+//	//hence fields should only be shown with numeric keyboard
+//	NSInteger value = [modified integerValue];
+//	
+//	if (textField.tag == kDayField)
+//	{
+//		return value <= 31;
+//	}
+//	else if (textField.tag == kMonthField)
+//	{
+//		return value <= 12;
+//	}
+//	else if (textField.tag == kYearField)
+//	{
+//		//year will be validated post-factum
+//		return YES;
+//	}
+//	
+//	return NO;
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
@@ -285,6 +287,7 @@ NSInteger const kYearField = 3;
 - (void)activate
 {
 	[self.dayTextField becomeFirstResponder];
+	[self changeHeaderColor];
 }
 
 - (BOOL)shouldNavigateAway
@@ -335,6 +338,7 @@ NSInteger const kYearField = 3;
 		{
 			//trigger year validation
 			[textField resignFirstResponder];
+			[self.headerLabel setTextColor:[UIColor colorFromStyle:@"GreyGory"]];
 			[self navigateAway];
 		}
 	}
