@@ -20,4 +20,7 @@ extern NSString *const TWZipCityCellIdentifier;
 				 secondTitle:(NSString *)secondTitle
 				 secondValue:(NSString *)secondValue;
 
+- (void)setSecondEditable:(BOOL)value;
+- (void)setAutoCapitalization:(UITextAutocapitalizationType)capitalizationType;
+
 @end

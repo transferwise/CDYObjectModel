@@ -64,9 +64,9 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="SecondTextField" destination="M4J-j4-bVA" id="vBG-uE-rON"/>
                 <outlet property="errorButton" destination="Mel-gm-mfu" id="pQp-V6-XVT"/>
                 <outlet property="firstTextField" destination="t3a-82-565" id="Wpa-8M-trC"/>
+                <outlet property="secondTextField" destination="M4J-j4-bVA" id="uVY-AN-teu"/>
             </connections>
         </tableViewCell>
     </objects>

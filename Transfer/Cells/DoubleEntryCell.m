@@ -14,7 +14,7 @@ NSString *const TWZipCityCellIdentifier = @"DoubleEntryCell";
 @interface DoubleEntryCell ()
 
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *firstTextField;
-@property (strong, nonatomic) IBOutlet FloatingLabelTextField *SecondTextField;
+@property (strong, nonatomic) IBOutlet FloatingLabelTextField *secondTextField;
 
 @property (strong, nonatomic) UIView* secondSeparator;
 
@@ -35,9 +35,15 @@ NSInteger const kSecondTextField = 2;
 - (void)commonSetup
 {
 	self.firstTextField.delegate = self;
-	self.SecondTextField.delegate = self;
+	self.secondTextField.delegate = self;
 	
 	[self addDoubleSeparators];
+}
+
+- (void)setAutoCapitalization:(UITextAutocapitalizationType)capitalizationType
+{
+	self.firstTextField.autocapitalizationType = capitalizationType;
+	self.secondTextField.autocapitalizationType = capitalizationType;
 }
 
 #pragma mark - Multiple Entry Cell
@@ -48,7 +54,7 @@ NSInteger const kSecondTextField = 2;
 				 secondValue:(NSString *)secondValue
 {
 	[self.firstTextField configureWithTitle:title value:value];
-	[self.SecondTextField configureWithTitle:secondTitle value:secondValue];
+	[self.secondTextField configureWithTitle:secondTitle value:secondValue];
 }
 
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value
@@ -69,24 +75,40 @@ NSInteger const kSecondTextField = 2;
 
 - (NSString *)secondValue
 {
-	return self.SecondTextField.text;
+	return self.secondTextField.text;
 }
 
 - (void)setSecondValue:(NSString *)secondValue
 {
-	self.SecondTextField.text = secondValue;
+	self.secondTextField.text = secondValue;
+}
+
+- (BOOL)editable
+{
+	return self.firstTextField.enabled || self.secondTextField.enabled;
 }
 
 - (void)setEditable:(BOOL)value
 {
 	self.firstTextField.enabled = value;
-	self.SecondTextField.enabled = value;
+}
+
+- (void)setSecondEditable:(BOOL)value
+{
+	self.secondTextField.enabled = value;
 }
 
 #pragma mark - Navigation between fields
 - (void)activate
 {
-	[self.firstTextField becomeFirstResponder];
+	if (self.firstTextField.enabled)
+	{
+		[self.firstTextField becomeFirstResponder];
+	}
+	else if (self.secondTextField.enabled)
+	{
+		[self.secondTextField becomeFirstResponder];
+	}
 }
 
 - (BOOL)shouldNavigateAway
@@ -98,14 +120,26 @@ NSInteger const kSecondTextField = 2;
 {
 	if (textField.tag == kFirstTextField)
 	{
-		[self.SecondTextField becomeFirstResponder];
+		if (self.secondTextField.enabled)
+		{
+			[self.secondTextField becomeFirstResponder];
+		}
+		else
+		{
+			[self navigateAway:textField];
+		}
 	}
 	else if (textField.tag == kSecondTextField)
 	{
-		[textField resignFirstResponder];
-		[self navigateAway];
+		[self navigateAway:textField];
 	}
 	
 	return YES;
+}
+
+- (void)navigateAway:(UITextField *)textField
+{
+	[textField resignFirstResponder];
+	[self navigateAway];
 }
 @end
