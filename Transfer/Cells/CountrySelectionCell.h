@@ -12,7 +12,7 @@
 
 extern NSString *const TWCountrySelectionCellIdentifier;
 
-typedef void (^CountrySelectionBlock)(Country *recipient);
+typedef void (^CountrySelectionBlock)(NSString *countryName);
 
 @protocol CountrySelectionCellDelegate <NSObject>
 

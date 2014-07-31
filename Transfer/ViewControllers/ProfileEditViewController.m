@@ -94,8 +94,8 @@ static NSUInteger const kButtonSection = 0;
 							height:countryCell.frame.size.height];
 	
 	__weak typeof(self) weakSelf = self;
-	[countryCell setSelectionHandler:^(Country *country) {
-        [weakSelf didSelectCountry:country];
+	[countryCell setSelectionHandler:^(NSString *countryName) {
+        [weakSelf didSelectCountry:countryName];
     }];
 	
 	countryCell.delegate = self;

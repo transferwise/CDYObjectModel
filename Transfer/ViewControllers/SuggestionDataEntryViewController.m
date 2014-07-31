@@ -73,7 +73,7 @@
     CGRect newFrame = table.frame;
     newFrame.origin = [self.view convertPoint:viewToAlignTo.frame.origin fromView:viewToAlignTo.superview];
     newFrame.origin.y += viewToAlignTo.frame.size.height;
-    newFrame.size.height = self.view.frame.size.height - newFrame.origin.y;
+    newFrame.size.height = self.view.frame.size.height - newFrame.origin.y + 100;
     newFrame.size.width = viewToAlignTo.frame.size.width;
     table.frame = newFrame;
     [self.view addSubview:table];
