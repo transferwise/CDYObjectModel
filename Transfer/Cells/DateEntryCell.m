@@ -270,17 +270,22 @@ NSInteger const kYearField = 3;
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-	if (textField.tag == kYearField)
-	{
-		NSUInteger year = [[DateEntryCell getComponents:[NSDate date]] year];
-		NSInteger value = [textField.text integerValue];
-		
-		//arbitrary values, maybe 10-year olds will be using us very soon.
-		//maybe 100-year olds ar already using us.
-		return value >= year - 100 && value <= year - 10;
-	}
+//	if (textField.tag == kYearField)
+//	{
+//		NSUInteger year = [[DateEntryCell getComponents:[NSDate date]] year];
+//		NSInteger value = [textField.text integerValue];
+//		
+//		//arbitrary values, maybe 10-year olds will be using us very soon.
+//		//maybe 100-year olds ar already using us.
+//		return value >= year - 100 && value <= year - 10;
+//	}
 	
 	return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+	[self changeHeaderColor];
 }
 
 #pragma mark - Moving between cells
