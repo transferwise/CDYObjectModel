@@ -60,8 +60,8 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnLeftEdgeConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewLeftMargin;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewRightMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *firstColumnLeftMargin;
+
 
 
 @end
@@ -114,7 +114,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     }
     
 
-    [self.tableViews[0] reloadData];
+    [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
     
     RecipientType *type = self.currency.defaultRecipientType;
     MCLog(@"Have %d fields", [type.fields count]);
@@ -128,6 +128,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 
     [self.footerButton setTitle:NSLocalizedString(@"refund.details.footer.button.title", nil) forState:UIControlStateNormal];
     [self.footerButton addTarget:self action:@selector(continuePressed) forControlEvents:UIControlEventTouchUpInside];
+    
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -146,16 +147,14 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 {
     if(UIInterfaceOrientationIsPortrait(orientation))
     {
-        self.scrollViewLeftMargin.constant = 204.0f;
-        self.scrollViewRightMargin.constant = 204.0f;
+        self.firstColumnLeftMargin.constant = 204.0f;
         
         self.secondColumnLeftEdgeConstraint.constant = -360;
         self.secondColumnTopConstraint.constant = self.firstColumnHeightConstraint.constant + 60.0f;
     }
     else
     {
-        self.scrollViewLeftMargin.constant = 100.0f;
-        self.scrollViewRightMargin.constant = 100.0f;
+        self.firstColumnLeftMargin.constant = 100.0f;
         self.secondColumnLeftEdgeConstraint.constant = 100.0f;
         self.secondColumnTopConstraint.constant = 0.0f;
     }
@@ -169,7 +168,9 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
+    
+    [self refreshTableViewSizes];
+    [self configureForInterfaceOrientation:self.interfaceOrientation];
     if (self.shown) {
         return;
     }
@@ -226,21 +227,28 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     [self setRecipientTypeFieldCells:cells];
     if([self hasMoreThanOneTableView])
     {
-        [self setSectionCellsByTableView:@[@[@[self.holderNameCell], cells],@[]]];
+        [self setSectionCellsByTableView:@[@[@[self.holderNameCell]],@[cells]]];
     }
     else
     {
         [self setSectionCellsByTableView:@[@[@[self.holderNameCell], cells]]];
     }
 
-    [self.tableViews[0] reloadSections:[NSIndexSet indexSetWithIndex:[self.sectionCellsByTableView[0] count] - 1] withRowAnimation:UITableViewRowAnimationNone];
-    [self performSelector:@selector(updateFooterSize) withObject:nil afterDelay:0.5];
-
+    [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
+    [self refreshTableViewSizes];
 }
 
-- (void)updateFooterSize {
-    [self.tableViews[0] adjustFooterViewSizeForMinimumHeight:self.minimumFooterHeight];
+-(void)refreshTableViewSizes
+{
+    if([self hasMoreThanOneTableView])
+    {
+        self.firstColumnHeightConstraint.constant= ((UITableView*)self.tableViews[0]).contentSize.height;
+        self.secondColumnHeightConstraint.constant =((UITableView*) self.tableViews[1]).contentSize.height;
+        [self.tableViews[0] layoutIfNeeded];
+        [self.tableViews[1] layoutIfNeeded];
+    }
 }
+
 
 - (NSArray *)buildCellsForType:(RecipientType *)type allTypes:(NSArray *)allTypes {
     MCLog(@"Build cells for type:%@", type.type);
@@ -287,20 +295,45 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 1) {
-        return self.transferTypeSelectionHeader.frame.size.height;
+    if([self hasMoreThanOneTableView])
+    {
+        if(tableView == self.tableViews[1] && section == 0)
+        {
+            return self.transferTypeSelectionHeader.frame.size.height;
+        }
+
     }
     else
     {
-        return [super tableView:tableView heightForHeaderInSection:section];
+        if (section == 1)
+        {
+            return self.transferTypeSelectionHeader.frame.size.height;
+        }
     }
+    
+    return [super tableView:tableView heightForHeaderInSection:section];
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 1) {
-        return self.transferTypeSelectionHeader;
+    if([self hasMoreThanOneTableView])
+    {
+        if(tableView == self.tableViews[1] && section == 0)
+        {
+            return self.transferTypeSelectionHeader;
+
+        }
+        
     }
+    else
+    {
+        if (section == 1)
+        {
+            return self.transferTypeSelectionHeader;
+
+        }
+    }
+    
     return [super tableView:tableView viewForHeaderInSection:section];
 }
 

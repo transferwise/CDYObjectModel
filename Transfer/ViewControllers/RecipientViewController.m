@@ -244,6 +244,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     if (self.reportingType != RecipientReportingNone) {
         [[GoogleAnalytics sharedInstance] sendScreen:(self.reportingType == RecipientReportingNotLoggedIn ? @"Enter recipient details" : @"Enter recipient details 2")];
     }
+    
+    [self refreshTableViewSizes];
+    [self configureForInterfaceOrientation:self.interfaceOrientation];
 
     if (self.shown) {
         return;
@@ -271,8 +274,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
     [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
     [self refreshTableViewSizes];
-    
-    [self configureForInterfaceOrientation:self.interfaceOrientation];
 
     
 
