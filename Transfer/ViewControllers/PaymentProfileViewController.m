@@ -40,7 +40,9 @@
 	
 	[super configureWithControllers:controllers
 							 titles:titles
-						actionTitle:self.buttonTitle ? self.buttonTitle :  NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
+						actionTitle:self.buttonTitle ? self.buttonTitle :  NSLocalizedString(@"confirm.payment.footer.button.title", nil)
+						actionStyle:@"greenButton"
+					 actionProgress:0.3f];
     [super viewDidLoad];
 	
 	[self setTitle:NSLocalizedString(@"personal.profile.controller.title", nil)];

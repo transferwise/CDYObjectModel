@@ -39,7 +39,9 @@
 	[self initControllers];
 	[super configureWithControllers:@[self.cardViewController, self.bankViewController]
 							 titles:@[NSLocalizedString(@"payment.method.card", nil), NSLocalizedString(@"payment.method.regular", nil)]
-						actionTitle:NSLocalizedString(@"transferdetails.controller.button.support",nil)];
+						actionTitle:NSLocalizedString(@"transferdetails.controller.button.support",nil)
+						actionStyle:@"blueButton"
+					 actionProgress:0.f];
 					
     [super viewDidLoad];
 

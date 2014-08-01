@@ -42,6 +42,8 @@
 - (void)configureWithControllers:(NSArray *)controllers
 						  titles:(NSArray *)titles
 					 actionTitle:(NSString *)actionTitle
+					 actionStyle:(NSString *)actionStyle
+				  actionProgress:(CGFloat)actionProgress
 {
 	MCAssert([controllers count] == [titles count]);
 	
@@ -49,6 +51,8 @@
 	self.titles = titles;
 	
 	[self.actionButton setTitle:actionTitle forState:UIControlStateNormal];
+	[self.actionButton configureWithCompoundStyle:actionStyle];
+	self.actionButton.progress = actionProgress;
 	[self attachControllers:self.controllers];
 }
 

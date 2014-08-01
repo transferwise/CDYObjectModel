@@ -14,7 +14,9 @@
 
 - (void)configureWithControllers:(NSArray *)controllers
 						  titles:(NSArray *)titles
-					 actionTitle:(NSString *)actionTitle;
+					 actionTitle:(NSString *)actionTitle
+					 actionStyle:(NSString *)actionStyle
+				  actionProgress:(CGFloat)actionProgress;
 
 - (void)willSelectViewController:(UIViewController *)controller
 						 atIndex:(NSUInteger)index;
