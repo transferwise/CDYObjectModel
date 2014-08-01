@@ -283,8 +283,8 @@ It can take up to 2 working days.";
 "recipient.import.from.phonebook.label" = "Import from phonebook";
 "recipient.save.error.title" = "Can't save";
 
-"refund.details.account.details.section.header" = "Your bank account details";
-"refund.details.controller.title" = "Refund account";
+"refund.details.account.details.section.header" = "Your bank details";
+"refund.details.controller.title" = "Your refund account";
 "refund.details.header.description" = "To guarantee that %@ receives exactly %@, we asked you to send a little extra money.
 
 We'll refund the remaining money to your bank account.";

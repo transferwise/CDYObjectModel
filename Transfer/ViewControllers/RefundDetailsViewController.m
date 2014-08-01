@@ -34,6 +34,7 @@
 #import "UserRecipientsOperation.h"
 #import "Credentials.h"
 #import "RecipientEntrySelectionCell.h"
+#import "UIResponder+FirstResponder.h"
 
 CGFloat const TransferHeaderPaddingTop = 40;
 CGFloat const TransferHeaderPaddingBottom = 0;
@@ -51,6 +52,22 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 @property (nonatomic, strong) TransferwiseOperation *operation;
 @property (nonatomic, strong) Recipient *recipient;
 @property (weak, nonatomic) IBOutlet UILabel *headerLabel;
+
+// iPad
+@property (weak, nonatomic) IBOutlet UIScrollView *containerScrollView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *firstColumnHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnLeftEdgeConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *firstColumnLeftMargin;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerLeftEdgeConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerRightEdgeConstraint;
+
+
+
 
 @end
 
@@ -92,9 +109,17 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 
     [presentedSections addObject:@[]];
 
-    [self setSectionCellsByTableView:@[presentedSections]];
+    if([self hasMoreThanOneTableView])
+    {
+        [self setSectionCellsByTableView:@[presentedSections,@[]]];
+    }
+    else
+    {
+        [self setSectionCellsByTableView:@[presentedSections]];
+    }
+    
 
-    [self.tableViews[0] reloadData];
+    [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
     
     RecipientType *type = self.currency.defaultRecipientType;
     MCLog(@"Have %d fields", [type.fields count]);
@@ -108,7 +133,46 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 
     [self.footerButton setTitle:NSLocalizedString(@"refund.details.footer.button.title", nil) forState:UIControlStateNormal];
     [self.footerButton addTarget:self action:@selector(continuePressed) forControlEvents:UIControlEventTouchUpInside];
+    
 }
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self configureForInterfaceOrientation:toInterfaceOrientation];
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+
+}
+
+-(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation
+{
+    
+    //Lots of magic numbers here to match designs. Not sure what to do...
+    if(UIInterfaceOrientationIsPortrait(orientation))
+    {
+        self.firstColumnLeftMargin.constant = 204.0f;
+        
+        self.secondColumnLeftEdgeConstraint.constant = -360;
+        self.secondColumnTopConstraint.constant = self.firstColumnHeightConstraint.constant + 60.0f;
+        self.headerLeftEdgeConstraint.constant = 104.0f;
+        self.headerRightEdgeConstraint.constant = -104.0f;
+        
+    }
+    else
+    {
+        self.firstColumnLeftMargin.constant = 100.0f;
+        self.secondColumnLeftEdgeConstraint.constant = 100.0f;
+        self.secondColumnTopConstraint.constant = 17.0f;
+        
+        self.headerLeftEdgeConstraint.constant = 0.0f;
+        self.headerRightEdgeConstraint.constant = 0.0f;
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -117,11 +181,19 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
+    
+    [self refreshTableViewSizes];
+    [self configureForInterfaceOrientation:self.interfaceOrientation];
     if (self.shown) {
         return;
     }
 
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    if(! self.navigationItem.leftBarButtonItem)
+    {
+        [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
+    }
+    
     [[AnalyticsCoordinator sharedInstance] refundDetailsScreenShown];
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
@@ -172,16 +244,30 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     NSArray *cells = [self buildCellsForType:type allTypes:allTypes];
     [self setRecipientType:type];
     [self setRecipientTypeFieldCells:cells];
-    [self setSectionCellsByTableView:@[@[@[self.holderNameCell], cells]]];
+    if([self hasMoreThanOneTableView])
+    {
+        [self setSectionCellsByTableView:@[@[@[self.holderNameCell]],@[cells]]];
+    }
+    else
+    {
+        [self setSectionCellsByTableView:@[@[@[self.holderNameCell], cells]]];
+    }
 
-    [self.tableViews[0] reloadSections:[NSIndexSet indexSetWithIndex:[self.sectionCellsByTableView[0] count] - 1] withRowAnimation:UITableViewRowAnimationNone];
-    [self performSelector:@selector(updateFooterSize) withObject:nil afterDelay:0.5];
-
+    [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
+    [self refreshTableViewSizes];
 }
 
-- (void)updateFooterSize {
-    [self.tableViews[0] adjustFooterViewSizeForMinimumHeight:self.minimumFooterHeight];
+-(void)refreshTableViewSizes
+{
+    if([self hasMoreThanOneTableView])
+    {
+        self.firstColumnHeightConstraint.constant= ((UITableView*)self.tableViews[0]).contentSize.height;
+        self.secondColumnHeightConstraint.constant =((UITableView*) self.tableViews[1]).contentSize.height;
+        [self.tableViews[0] layoutIfNeeded];
+        [self.tableViews[1] layoutIfNeeded];
+    }
 }
+
 
 - (NSArray *)buildCellsForType:(RecipientType *)type allTypes:(NSArray *)allTypes {
     MCLog(@"Build cells for type:%@", type.type);
@@ -228,20 +314,45 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 1) {
-        return self.transferTypeSelectionHeader.frame.size.height;
+    if([self hasMoreThanOneTableView])
+    {
+        if(tableView == self.tableViews[1] && section == 0)
+        {
+            return self.transferTypeSelectionHeader.frame.size.height;
+        }
+
     }
     else
     {
-        return [super tableView:tableView heightForHeaderInSection:section];
+        if (section == 1)
+        {
+            return self.transferTypeSelectionHeader.frame.size.height;
+        }
     }
+    
+    return [super tableView:tableView heightForHeaderInSection:section];
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 1) {
-        return self.transferTypeSelectionHeader;
+    if([self hasMoreThanOneTableView])
+    {
+        if(tableView == self.tableViews[1] && section == 0)
+        {
+            return self.transferTypeSelectionHeader;
+
+        }
+        
     }
+    else
+    {
+        if (section == 1)
+        {
+            return self.transferTypeSelectionHeader;
+
+        }
+    }
+    
     return [super tableView:tableView viewForHeaderInSection:section];
 }
 
@@ -364,5 +475,111 @@ CGFloat const TransferHeaderPaddingBottom = 0;
         }
     });
 }
+
+#pragma mark - Keyboard show/hide
+
+
+
+
+-(void)keyboardWillShow:(NSNotification*)note
+{
+    CGRect newframe = [self.view convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:self.view.window];
+    if(IPAD)
+    {
+        NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+        
+        CGFloat overlap = self.containerScrollView.frame.origin.y + self.containerScrollView.frame.size.height - newframe.origin.y;
+        
+        if(overlap >0)
+        {
+            
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:duration];
+            [UIView setAnimationCurve:curve];
+            [UIView setAnimationBeginsFromCurrentState:YES];
+            
+            if(UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, UIEdgeInsetsZero))
+            {
+                self.cachedInsets = self.containerScrollView.contentInset;
+            }
+            
+            UIEdgeInsets newInsets = self.cachedInsets;
+            newInsets.bottom += overlap;
+            self.containerScrollView.contentInset = newInsets;
+            
+            UIView *firstResponder = [UIResponder currentFirstResponder];
+            if(firstResponder)
+            {
+                [self scrollScrollViewToShowView:firstResponder];
+            }
+            
+            
+            [UIView commitAnimations];
+            
+            
+        }
+    }
+    else
+    {
+        [super keyboardWillShow:note];
+    }
+}
+
+-(void)keyboardWillHide:(NSNotification*)note
+{
+    if(IPAD)
+    {
+        NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+        
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:duration];
+        [UIView setAnimationCurve:curve];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        
+        self.containerScrollView.contentInset = self.cachedInsets;
+        
+        [UIView commitAnimations];
+        
+        self.cachedInsets = UIEdgeInsetsZero;
+    }
+    else
+    {
+        [super keyboardWillHide:note];
+    }
+}
+
+-(void)textFieldEntryFinished
+{
+    if (!IPAD)
+    {
+        ((UITableView*)self.tableViews[0]).scrollEnabled = YES;
+    }
+}
+
+-(void)scrollToCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView
+{
+    if(IPAD)
+    {
+        [self scrollScrollViewToShowView:cell];
+    }
+    else
+    {
+        [super scrollToCell:cell inTableView:tableView];
+        tableView.scrollEnabled = NO;
+    }
+}
+
+-(void)scrollScrollViewToShowView:(UIView*)targetView
+{
+    
+    CGRect showRect = CGRectMake(0, self.containerScrollView.contentSize.height - 1, 1, 1);
+    [self.containerScrollView scrollRectToVisible:showRect animated:NO];
+    
+}
+
+
 
 @end

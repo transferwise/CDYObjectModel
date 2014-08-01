@@ -183,9 +183,17 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-	[super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+{ 
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
     [self configureForInterfaceOrientation:toInterfaceOrientation];
+    self.suggestionTable.alpha = 0.0f;
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    [self suggestionTableDidStartEditing:self.suggestionTable];
+    self.suggestionTable.alpha = 1.0f;
 }
 
 -(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation
@@ -229,6 +237,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     if (self.reportingType != RecipientReportingNone) {
         [[GoogleAnalytics sharedInstance] sendScreen:(self.reportingType == RecipientReportingNotLoggedIn ? @"Enter recipient details" : @"Enter recipient details 2")];
     }
+    
+    [self refreshTableViewSizes];
+    [self configureForInterfaceOrientation:self.interfaceOrientation];
 
     if (self.shown) {
         return;
@@ -255,10 +266,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells, @[]]]];
     }
     [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
-    [self refreshTableViewSizes];
     
+    
+    [self refreshTableViewSizes];
     [self configureForInterfaceOrientation:self.interfaceOrientation];
-
     
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
