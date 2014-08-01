@@ -311,7 +311,7 @@
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    if(self.keyboardIsVisible && ! [self hasMoreThanOneTableView])
+    if(self.keyboardIsVisible)
     {
         UITableViewCell *cell = [self getParentCell:textField];
         if(cell)
@@ -324,88 +324,6 @@
 
 - (void)textFieldEntryFinished {
     
-}
-
-#pragma mark - keyboard overlap
--(void)keyboardWillShow:(NSNotification*)note
-{
-    if([self.tableViews count] == 1)
-    {
-        UITableView* tableView = self.tableViews[0];
-        CGRect newframe = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-        newframe = [self.view.window convertRect:newframe toView:self.view];
-        NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-        UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-        
-        
-        CGFloat overlap = tableView.frame.origin.y + tableView.frame.size.height - newframe.origin.y;
-        
-        if(overlap >0)
-        {            
-            [UIView beginAnimations:nil context:NULL];
-            [UIView setAnimationDuration:duration];
-            [UIView setAnimationCurve:curve];
-            [UIView setAnimationBeginsFromCurrentState:YES];
-            
-            if(UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, UIEdgeInsetsZero))
-            {
-                self.cachedInsets = tableView.contentInset;
-            }
-            
-            UIEdgeInsets newInsets = self.cachedInsets;
-            newInsets.bottom += overlap;
-            tableView.contentInset = newInsets;
-            
-            [UIView commitAnimations];
-            
-            UIView *firstResponder = [UIResponder currentFirstResponder];
-            if(firstResponder)
-            {
-                UITableViewCell *cell = [self getParentCell:firstResponder];
-                if(cell)
-                {
-                    //Scroll cell after the keyboard has animated
-                   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                       [self scrollToCell:cell inTableView:tableView];
-                   });
-                    
-                }
-            }
-        }
-    }
-    self.keyboardIsVisible = YES;
-}
-
--(void)keyboardWillHide:(NSNotification*)note
-{
-    if([self.tableViews count] == 1)
-    {
-        UITableView* tableView = self.tableViews[0];
-        NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-        UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-        
-        
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:duration];
-        [UIView setAnimationCurve:curve];
-        [UIView setAnimationBeginsFromCurrentState:YES];
-        
-        tableView.contentInset = self.cachedInsets;
-        
-        [UIView commitAnimations];
-        
-        self.cachedInsets = UIEdgeInsetsZero;
-    }
-    self.keyboardIsVisible = NO;
-}
-
--(void)scrollToCell:(UITableViewCell*)cell inTableView:(UITableView*)tableView
-{
-    NSIndexPath *path = [tableView indexPathForCell:cell];
-    if(path)
-    {
-        [tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    }
 }
 
 -(void)reloadSeparators
@@ -428,6 +346,19 @@
 	{
 		[tableView reloadData];
 	}
+}
+
+//Objc kung-fu not strong enough to pass Class as an argument to isKindOfClass yet :(
+- (UITableViewCell *)getParentCell:(UIView *)view
+{
+	UIView* superview = view.superview;
+	
+	while (superview && ![superview isKindOfClass:[UITableViewCell class]])
+	{
+		superview = superview.superview;
+	}
+    
+    return (UITableViewCell*)superview;
 }
 
 #pragma mark - orientation changes
@@ -460,22 +391,146 @@
     {
         self.firstColumnLeftMargin.constant = 100.0f;
         self.secondColumnLeftEdgeConstraint.constant = 100.0f;
-        self.secondColumnTopConstraint.constant = 17.0f;
+        self.secondColumnTopConstraint.constant = 0.0f;
     }
 }
 
-
-//Objc kung-fu not strong enough to pass Class as an argument to isKindOfClass yet :(
-- (UITableViewCell *)getParentCell:(UIView *)view
+#pragma mark - keyboard overlap
+-(void)keyboardWillShow:(NSNotification*)note
 {
-	UIView* superview = view.superview;
-	
-	while (superview && ![superview isKindOfClass:[UITableViewCell class]])
-	{
-		superview = superview.superview;
-	}
-    
-    return (UITableViewCell*)superview;
+    CGRect newframe = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    newframe = [self.view.window convertRect:newframe toView:self.view];
+    if([self hasMoreThanOneTableView])
+    {
+        NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+        
+        CGFloat overlap = self.containerScrollView.frame.origin.y + self.containerScrollView.frame.size.height - newframe.origin.y;
+        
+        if(overlap >0)
+        {
+            
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:duration];
+            [UIView setAnimationCurve:curve];
+            [UIView setAnimationBeginsFromCurrentState:YES];
+            
+            if(UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, UIEdgeInsetsZero))
+            {
+                self.cachedInsets = self.containerScrollView.contentInset;
+            }
+            
+            UIEdgeInsets newInsets = self.cachedInsets;
+            newInsets.bottom += overlap;
+            self.containerScrollView.contentInset = newInsets;
+            
+            UIView *firstResponder = [UIResponder currentFirstResponder];
+            if(firstResponder)
+            {
+                [self scrollScrollViewToShowView:firstResponder];
+            }
+            
+            
+            [UIView commitAnimations];
+            
+            
+        }
+    }
+    else
+    {
+        UITableView* tableView = self.tableViews[0];
+        
+        NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+        
+        
+        CGFloat overlap = tableView.frame.origin.y + tableView.frame.size.height - newframe.origin.y;
+        
+        if(overlap >0)
+        {
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:duration];
+            [UIView setAnimationCurve:curve];
+            [UIView setAnimationBeginsFromCurrentState:YES];
+            
+            if(UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, UIEdgeInsetsZero))
+            {
+                self.cachedInsets = tableView.contentInset;
+            }
+            
+            UIEdgeInsets newInsets = self.cachedInsets;
+            newInsets.bottom += overlap;
+            tableView.contentInset = newInsets;
+            
+            [UIView commitAnimations];
+            
+            UIView *firstResponder = [UIResponder currentFirstResponder];
+            if(firstResponder)
+            {
+                UITableViewCell *cell = [self getParentCell:firstResponder];
+                if(cell)
+                {
+                    //Scroll cell after the keyboard has animated
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                        [self scrollToCell:cell inTableView:tableView];
+                    });
+                    
+                }
+            }
+        }
+    }
+    self.keyboardIsVisible = YES;
 }
+
+-(void)keyboardWillHide:(NSNotification*)note
+{
+    NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:duration];
+    [UIView setAnimationCurve:curve];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    if([self hasMoreThanOneTableView])
+    {
+        self.containerScrollView.contentInset = self.cachedInsets;
+    }
+    else
+    {
+        UITableView* tableView = self.tableViews[0];
+        tableView.contentInset = self.cachedInsets;
+    }
+    [UIView commitAnimations];
+    
+    self.cachedInsets = UIEdgeInsetsZero;
+    self.keyboardIsVisible = NO;
+}
+
+-(void)scrollToCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView
+{
+    if(IPAD)
+    {
+        [self scrollScrollViewToShowView:cell];
+    }
+    else
+    {
+        NSIndexPath *path = [tableView indexPathForCell:cell];
+        if(path)
+        {
+            [tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        }
+    }
+}
+
+-(void)scrollScrollViewToShowView:(UIView*)targetView
+{
+    
+    CGRect showRect = CGRectMake(0, self.containerScrollView.contentSize.height - 1, 1, 1);
+    [self.containerScrollView scrollRectToVisible:showRect animated:NO];
+    
+}
+
+
 
 @end

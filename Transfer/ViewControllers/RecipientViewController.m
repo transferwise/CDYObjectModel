@@ -101,18 +101,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 @property (nonatomic, assign) CGFloat cellHeight;
 
-
-// iPad
-@property (weak, nonatomic) IBOutlet UIScrollView *containerScrollView;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *firstColumnHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnHeightConstraint;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnTopConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnLeftEdgeConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewLeftMargin;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewRightMargin;
-
 - (IBAction)addButtonPressed:(id)sender;
 
 @end
@@ -196,24 +184,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     self.suggestionTable.alpha = 1.0f;
 }
 
--(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation
-{
-    if(UIInterfaceOrientationIsPortrait(orientation))
-    {
-        self.scrollViewLeftMargin.constant = 204.0f;
-        self.scrollViewRightMargin.constant = 204.0f;
-        
-        self.secondColumnLeftEdgeConstraint.constant = -360;
-        self.secondColumnTopConstraint.constant = self.firstColumnHeightConstraint.constant + 60.0f;
-    }
-    else
-    {
-        self.scrollViewLeftMargin.constant = 100.0f;
-        self.scrollViewRightMargin.constant = 100.0f;
-        self.secondColumnLeftEdgeConstraint.constant = 100.0f;
-        self.secondColumnTopConstraint.constant = 0.0f;
-    }
-}
 
 -(void)setupTableView:(UITableView*)tableView
 {
@@ -725,119 +695,25 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 #pragma mark - Keyboard show/hide
 
 
-
-
 -(void)keyboardWillShow:(NSNotification*)note
 {
-    if(IPAD)
-    {
-        CGRect newframe = [self.view convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:self.view.window];
-        NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-        UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-        
-        CGFloat overlap = self.containerScrollView.frame.origin.y + self.containerScrollView.frame.size.height - newframe.origin.y;
-        
-        if(overlap >0)
-        {
-            
-            [UIView beginAnimations:nil context:NULL];
-            [UIView setAnimationDuration:duration];
-            [UIView setAnimationCurve:curve];
-            [UIView setAnimationBeginsFromCurrentState:YES];
-            
-            if(UIEdgeInsetsEqualToEdgeInsets(self.cachedInsets, UIEdgeInsetsZero))
-            {
-                self.cachedInsets = self.containerScrollView.contentInset;
-            }
-            
-            UIEdgeInsets newInsets = self.cachedInsets;
-            newInsets.bottom += overlap;
-            self.containerScrollView.contentInset = newInsets;
-            
-            UIView *firstResponder = [UIResponder currentFirstResponder];
-            if(firstResponder)
-            {
-                [self scrollScrollViewToShowView:firstResponder];
-            }
-            
-            [self suggestionTableDidStartEditing:self.suggestionTable];
-            
-            [UIView commitAnimations];
-            
-
-        }
-        
-        self.suggestionTable.contentInset = UIEdgeInsetsMake(0, 0, newframe.size.height, 0);
-    }
-    else
-    {
-        [super keyboardWillShow:note];
-    }
+    [super keyboardWillShow:note];
+    CGRect newframe = [self.view convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:self.view.window];
+    self.suggestionTable.contentInset = UIEdgeInsetsMake(0, 0, newframe.size.height, 0);
 }
 
 -(void)keyboardWillHide:(NSNotification*)note
 {
-    if(IPAD)
-    {
-        NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-        UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-        
-        
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:duration];
-        [UIView setAnimationCurve:curve];
-        [UIView setAnimationBeginsFromCurrentState:YES];
-        
-        self.containerScrollView.contentInset = self.cachedInsets;
-        
-        [UIView commitAnimations];
-        
-        self.cachedInsets = UIEdgeInsetsZero;
-        self.suggestionTable.contentInset = UIEdgeInsetsZero;
-    }
-    else
-    {
-        [super keyboardWillHide:note];
-    }
+    
+    [super keyboardWillHide:note];
+
+    self.suggestionTable.contentInset = UIEdgeInsetsZero;
 }
 
 -(void)textFieldEntryFinished
 {
-    if(IPAD)
-    {
-        self.containerScrollView.scrollEnabled = YES;
-    }
-    else
-    {
-        ((UITableView*)self.tableViews[0]).scrollEnabled = YES;
-    }
     
     [self updateUserNameText];
-}
-
--(void)scrollToCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView
-{
-    if(IPAD)
-    {
-        [self scrollScrollViewToShowView:cell];
-    }
-    else
-    {
-         [super scrollToCell:cell inTableView:tableView];
-        tableView.scrollEnabled = NO;
-    }
-}
-
--(void)scrollScrollViewToShowView:(UIView*)targetView
-{
-    
-        if(targetView == self.nameCell || targetView == self.nameCell.entryField)
-        {
-            self.containerScrollView.scrollEnabled = NO;
-        }
-    CGRect showRect = CGRectMake(0, self.containerScrollView.contentSize.height - 1, 1, 1);
-        [self.containerScrollView scrollRectToVisible:showRect animated:NO];
-
 }
 
 #pragma mark - text dependent on user name

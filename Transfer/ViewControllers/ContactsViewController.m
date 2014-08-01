@@ -102,6 +102,10 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     {
         [self.navigationController setNavigationBarHidden:YES animated:YES];
     }
+    else
+    {
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

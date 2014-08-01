@@ -85,6 +85,8 @@
 		385A668E1978178500D00D1F /* ContactsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385A668C1978178500D00D1F /* ContactsViewController~ipad.xib */; };
 		38675454198B977800DEA359 /* RefundDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */; };
 		38675455198B977800DEA359 /* RefundDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */; };
+		38675457198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */; };
+		38675458198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */; };
 		3887CBBA197690FC004DFFFD /* OptionalSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */; };
 		3887CBBB197690FC004DFFFD /* OptionalSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */; };
 		3887CBBE1976AF2B004DFFFD /* CancelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBBD1976AF2B004DFFFD /* CancelHelper.m */; };
@@ -852,6 +854,7 @@
 		385A6689197816AE00D00D1F /* RecipientCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecipientCell~ipad.xib"; sourceTree = "<group>"; };
 		385A668C1978178500D00D1F /* ContactsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ContactsViewController~ipad.xib"; sourceTree = "<group>"; };
 		38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RefundDetailsViewController~ipad.xib"; sourceTree = "<group>"; };
+		38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransferTypeSelectionHeaderNoTitle~ipad.xib"; sourceTree = "<group>"; };
 		3887CBB8197690FC004DFFFD /* OptionalSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionalSplitViewController.h; sourceTree = "<group>"; };
 		3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionalSplitViewController.m; sourceTree = "<group>"; };
 		3887CBBC1976AF2B004DFFFD /* CancelHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelHelper.h; sourceTree = "<group>"; };
@@ -1713,6 +1716,7 @@
 				38B093081951FA2A00315BE4 /* TransferTypeSelectionHeader.xib */,
 				38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */,
 				38AD6EED19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib */,
+				38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */,
 				EA8FF689171D1FA50090A658 /* TRWAlertView.h */,
 				EA8FF68A171D1FA50090A658 /* TRWAlertView.m */,
 				EA8FF6B2171D23B20090A658 /* TRWProgressHUD.h */,
@@ -2685,6 +2689,7 @@
 				EA31A21117DDB29B00F937F7 /* BankTransferViewController.xib in Resources */,
 				EA31A21217DDB29B00F937F7 /* TextCell.xib in Resources */,
 				EA31A21317DDB29B00F937F7 /* ButtonCell.xib in Resources */,
+				38675458198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */,
 				EA31A21A17DDB29B00F937F7 /* OpenIDViewController.xib in Resources */,
 				47FAF351194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */,
 				4723EA211974363000B4345F /* ResetPasswordViewController~ipad.xib in Resources */,
@@ -2761,6 +2766,7 @@
 				385A668D1978178500D00D1F /* ContactsViewController~ipad.xib in Resources */,
 				BBC691271721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
 				EAE7B6AF17E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */,
+				38675457198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */,
 				EA333F3818A4BEDC00D8A44E /* page_zoom.json in Resources */,
 				38BD98A5195C5973009F9B4A /* NameSuggestionCell.xib in Resources */,
 				47AC3F991987B2C3005491C6 /* SuggestionCell.xib in Resources */,
