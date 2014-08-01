@@ -56,11 +56,6 @@
 	[self attachControllers:self.controllers];
 }
 
-- (void)reconfigureActionButton:(NSString *)compoundStyle
-{
-	[self.actionButton configureWithCompoundStyle:compoundStyle];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
