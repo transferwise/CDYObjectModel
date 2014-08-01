@@ -97,17 +97,6 @@
 	[self.navigationController flattenStack];
 }
 
-- (CGFloat)heightOffset
-{
-	//these are not set for iPad
-	if (self.headerHeight && self.buttonHeight)
-	{
-		return self.headerHeight.constant + self.buttonHeight.constant;
-	}
-	
-	return 0.f;
-}
-
 - (void)headerTabView:(HeaderTabView *)tabView tabTappedAtIndex:(NSUInteger)index
 {
 	if ([self.controllers count] >= index)
