@@ -111,8 +111,8 @@
     [button setBackgroundImage:[UIImage imageNamed:@"SelectedTab"] forState:UIControlStateSelected];
     [button setBackgroundImage:[UIImage imageNamed:@"HighlightedTab"] forState:UIControlStateHighlighted];
     [button setBackgroundImage:[UIImage imageNamed:@"HighlightedTab"] forState:(UIControlStateHighlighted|UIControlStateSelected)];
-    button.fontStyle = @"medium.@17.CoreFont";
-    button.selectedFontStyle = @"medium.@17.TWElectricBlue";
+    button.fontStyle = @"medium.@{15,17}.CoreFont";
+    button.selectedFontStyle = @"medium.@{15,17}.TWElectricBlue";
     button.adjustsImageWhenHighlighted = NO;
     [button addTarget:self action:@selector(tabTapped:) forControlEvents:UIControlEventTouchUpInside];
     return button;
