@@ -35,6 +35,9 @@
 #import "Credentials.h"
 #import "RecipientEntrySelectionCell.h"
 #import "UIResponder+FirstResponder.h"
+#import "User.h"
+#import "BusinessProfile.h"
+#import "PersonalProfile.h"
 
 CGFloat const TransferHeaderPaddingTop = 40;
 CGFloat const TransferHeaderPaddingBottom = 0;
@@ -87,7 +90,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     [self setHolderNameCell:nameCell];
     [nameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [nameCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
-    [nameCell configureWithTitle:NSLocalizedString(@"refund.details.holders.name.label", nil) value:@""];
+    [nameCell configureWithTitle:NSLocalizedString(@"refund.details.holders.name.label", nil) value:self.payment.businessProfileUsed?[self.payment.user.businessProfile name]:self.payment.user.personalProfile.fullName];
     __weak typeof(self) weakSelf = self;
     [nameCell setSelectionHandler:^(Recipient *recipient) {
         [weakSelf didSelectRecipient:recipient];
