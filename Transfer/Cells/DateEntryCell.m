@@ -13,7 +13,6 @@
 #import "StyledPlaceholderTextField.h"
 #import "UIView+MOMStyle.h"
 #import "UIView+SeparatorLine.h"
-#import "UITextField+ModifiedText.h"
 #import "UIColor+MOMStyle.h"
 #import "UIResponder+FirstResponder.h"
 

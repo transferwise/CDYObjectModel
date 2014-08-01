@@ -10,7 +10,6 @@
 #import "RecipientTypeField.h"
 #import "NSString+Validation.h"
 #import "NSString+Presentation.h"
-#import "UITextField+ModifiedText.h"
 
 NSString *const TWRecipientFieldCellIdentifier = @"TWRecipientFieldCellIdentifier";
 
@@ -43,7 +42,7 @@ NSString *const TWRecipientFieldCellIdentifier = @"TWRecipientFieldCellIdentifie
         return YES;
     }
 
-    NSString *modified = [self.entryField modifiedText:range newText:string];
+    NSString *modified = [self.entryField.text stringByReplacingCharactersInRange:range withString:string];
 
     if ([pattern hasValue] && [modified length] > [pattern length]) {
         return NO;

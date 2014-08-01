@@ -244,8 +244,6 @@
 		47AC3F9A1987B2C3005491C6 /* SuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47AC3F951987B2C3005491C6 /* SuggestionCell.xib */; };
 		47AC3F9B1987B2C3005491C6 /* SuggestionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47AC3F961987B2C3005491C6 /* SuggestionCell~ipad.xib */; };
 		47AC3F9C1987B2C3005491C6 /* SuggestionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47AC3F961987B2C3005491C6 /* SuggestionCell~ipad.xib */; };
-		47B36C7F19863C3B002E66C7 /* UITextField+ModifiedText.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B36C7E19863C3B002E66C7 /* UITextField+ModifiedText.m */; };
-		47B36C8019863C3B002E66C7 /* UITextField+ModifiedText.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B36C7E19863C3B002E66C7 /* UITextField+ModifiedText.m */; };
 		47B36C831986543B002E66C7 /* MultipleEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B36C821986543B002E66C7 /* MultipleEntryCell.m */; };
 		47B36C841986543B002E66C7 /* MultipleEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B36C821986543B002E66C7 /* MultipleEntryCell.m */; };
 		47C580A3196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
@@ -985,8 +983,6 @@
 		47AC3F941987B2C3005491C6 /* SuggestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestionCell.m; sourceTree = "<group>"; };
 		47AC3F951987B2C3005491C6 /* SuggestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuggestionCell.xib; sourceTree = "<group>"; };
 		47AC3F961987B2C3005491C6 /* SuggestionCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SuggestionCell~ipad.xib"; sourceTree = "<group>"; };
-		47B36C7D19863C3B002E66C7 /* UITextField+ModifiedText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+ModifiedText.h"; sourceTree = "<group>"; };
-		47B36C7E19863C3B002E66C7 /* UITextField+ModifiedText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+ModifiedText.m"; sourceTree = "<group>"; };
 		47B36C811986543B002E66C7 /* MultipleEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipleEntryCell.h; sourceTree = "<group>"; };
 		47B36C821986543B002E66C7 /* MultipleEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleEntryCell.m; sourceTree = "<group>"; };
 		47C580A1196AC1A7007771DB /* UIGestureRecognizer+Cancel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Cancel.h"; sourceTree = "<group>"; };
@@ -1874,8 +1870,6 @@
 				47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */,
 				47535CB31981367C00DC39D6 /* UIView+SeparatorLine.h */,
 				47535CB41981367C00DC39D6 /* UIView+SeparatorLine.m */,
-				47B36C7D19863C3B002E66C7 /* UITextField+ModifiedText.h */,
-				47B36C7E19863C3B002E66C7 /* UITextField+ModifiedText.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3087,7 +3081,6 @@
 				EA31A14F17DDB29B00F937F7 /* NetworkErrorCodes.m in Sources */,
 				EA31A15017DDB29B00F937F7 /* UserDetailsOperation.m in Sources */,
 				3831AA38194B31A200B3EE5C /* TransparentModalViewController.m in Sources */,
-				47B36C8019863C3B002E66C7 /* UITextField+ModifiedText.m in Sources */,
 				3856691E198157C600BC4230 /* CircleStyle.m in Sources */,
 				47F84D601988D73A00886D41 /* CountrySuggestionCellProvider.m in Sources */,
 				EA31A15117DDB29B00F937F7 /* CountrySelectionCell.m in Sources */,
@@ -3363,7 +3356,6 @@
 				EA88E687172F97D50021492C /* UserDetailsOperation.m in Sources */,
 				EA88E68E172F97E20021492C /* CountrySelectionCell.m in Sources */,
 				EA88E690172F97E20021492C /* DateEntryCell.m in Sources */,
-				47B36C7F19863C3B002E66C7 /* UITextField+ModifiedText.m in Sources */,
 				3856691D198157C600BC4230 /* CircleStyle.m in Sources */,
 				47F84D5F1988D73A00886D41 /* CountrySuggestionCellProvider.m in Sources */,
 				EA88E693172F97F50021492C /* Constants.m in Sources */,

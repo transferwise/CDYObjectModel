@@ -304,12 +304,7 @@ static NSUInteger const kButtonSection = 0;
 		superview = superview.superview;
 	}
 	
-	if ([superview isKindOfClass:[UITableViewCell class]])
-	{
-		return (UITableViewCell*)superview;
-	}
-	
-	return nil;
+	return (UITableViewCell*)superview;
 }
 
 #pragma mark - CountrySelectionCell Delegate

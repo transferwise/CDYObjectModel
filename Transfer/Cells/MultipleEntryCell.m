@@ -106,7 +106,6 @@
 	CGRect frame = self.contentView.frame;
 	CGFloat halfWidth = frame.size.width / 2;
 	
-	//Why the hell do I need to subtract -10.f??. Should this account for scale?
 	return CGRectMake(firstHalf ? frame.origin.x : (frame.origin.x + halfWidth), frame.origin.y, firstHalf ? halfWidth - 10.f : halfWidth, frame.size.height);
 }
 
