@@ -45,12 +45,6 @@
  */
 @property (nonatomic, strong) NSArray *sectionCellsByTableView;
 
-/**
- *	set this property to a CGFloat that is the @see tableVies offset from the bottom of the screen.
- *
- * This property defaults to 0
- */
-@property (nonatomic, assign) CGFloat heightOffset;
 
 /**
  *  convenience method for quickly checking if the viewcontrller has more than on tableview associated with it.
@@ -112,4 +106,12 @@
  */
 -(void)reloadTableViews;
 
+/**
+ *  helper method for finding the UITableViewCell a view is the subview of.
+ *
+ *  @param view subview of a UITableViewCell
+ *
+ *  @return The parent UITableViewCell
+ */
+- (UITableViewCell *)getParentCell:(UIView *)view;
 @end

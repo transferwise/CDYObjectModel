@@ -257,56 +257,6 @@ static NSUInteger const kButtonSection = 0;
     });
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-	//only applicable when there is a single tableview
-	if(self.tableViews.count == 1)
-	{
-		UITableViewCell *cell = [self getParentCell:textField];
-		
-		if(cell)
-		{
-			UITableView *table = self.tableViews[0];
-			
-			if([cell isKindOfClass:[CountrySelectionCell class]] && self.bottomInset == 0)
-			{
-				//Country cell needs to be scrolled to top of screen
-				UIEdgeInsets insets = table.contentInset;
-				
-				CGPoint point = [table convertPoint:cell.frame.origin toView:table];
-				self.bottomInset = point.y - self.heightOffset - cell.frame.size.height;
-				insets.bottom += self.bottomInset;
-				[table setContentInset:insets];
-			}
-			else if (self.bottomInset != 0)
-			{
-				UIEdgeInsets insets = table.contentInset;
-				insets.bottom -= self.bottomInset;
-				
-				[UIView animateWithDuration:0.1f animations:^{
-					[table setContentInset:insets];
-				}];
-				
-				self.bottomInset = 0;
-			}
-		}
-	}
-}
-
-//Copy from DataEntryMultiColumnViewController
-//Objc kung-fu not strong enough to pass Class as an argument to isKindOfClass yet :(
-- (UITableViewCell *)getParentCell:(UIView *)view
-{
-	UIView* superview = view.superview;
-	
-	while (superview && ![superview isKindOfClass:[UITableViewCell class]])
-	{
-		superview = superview.superview;
-	}
-	
-	return (UITableViewCell*)superview;
-}
-
 #pragma mark - CountrySelectionCell Delegate
 - (Country *)getCountryByCode:(NSString *)code
 {

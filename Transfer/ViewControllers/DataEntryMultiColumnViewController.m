@@ -16,24 +16,11 @@
 #import "MultipleEntryCell.h"
 
 @interface DataEntryMultiColumnViewController() <UITextFieldDelegate, MultipleEntryCellDelegate>
+@property (nonatomic, assign) BOOL keyboardIsVisible;
 @end
 
 @implementation DataEntryMultiColumnViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-	if (self)
-	{
-		[self commonSetup];
-	}
-	return self;
-}
-
-- (void)commonSetup
-{
-	self.heightOffset = 0;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -235,7 +222,6 @@
 				{
 					[entryCell.entryField becomeFirstResponder];
 				}
-                [self scrollToCell:entryCell inTableView:tableView];
                 return YES;
             }
         }
@@ -323,6 +309,19 @@
     return [cell isKindOfClass:[TextEntryCell class]];
 }
 
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if(self.keyboardIsVisible && ! [self hasMoreThanOneTableView])
+    {
+        UITableViewCell *cell = [self getParentCell:textField];
+        if(cell)
+        {
+            [self scrollToCell:cell inTableView:self.tableViews[0]];
+        }
+    }
+    return YES;
+}
+
 - (void)textFieldEntryFinished {
     
 }
@@ -334,10 +333,12 @@
     {
         UITableView* tableView = self.tableViews[0];
         CGRect newframe = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        newframe = [self.view.window convertRect:newframe toView:self.view];
         NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
         UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
         
-        CGFloat overlap = tableView.frame.origin.y + tableView.frame.size.height + self.heightOffset - newframe.origin.y;
+        
+        CGFloat overlap = tableView.frame.origin.y + tableView.frame.size.height - newframe.origin.y;
         
         if(overlap >0)
         {            
@@ -360,28 +361,19 @@
             UIView *firstResponder = [UIResponder currentFirstResponder];
             if(firstResponder)
             {
-                UIView* superview = firstResponder.superview;
-                UITableViewCell *cell;
-                while (superview && ![superview isKindOfClass:[UITableViewCell class]])
-                {
-                    superview = superview.superview;
-                }
-                if ([superview isKindOfClass:[UITableViewCell class]])
-                {
-                    cell = (UITableViewCell*)superview;
-                }
+                UITableViewCell *cell = [self getParentCell:firstResponder];
                 if(cell)
                 {
-                    NSIndexPath *path = [tableView indexPathForRowAtPoint:cell.center];
-					
-                    if(path)
-                    {
-						[tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionNone animated:YES];
-                    }
+                    //Scroll cell after the keyboard has animated
+                   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                       [self scrollToCell:cell inTableView:tableView];
+                   });
+                    
                 }
             }
         }
     }
+    self.keyboardIsVisible = YES;
 }
 
 -(void)keyboardWillHide:(NSNotification*)note
@@ -404,6 +396,7 @@
         
         self.cachedInsets = UIEdgeInsetsZero;
     }
+    self.keyboardIsVisible = NO;
 }
 
 -(void)scrollToCell:(UITableViewCell*)cell inTableView:(UITableView*)tableView
@@ -437,4 +430,18 @@
 	}
 }
 
+
+//Copy from DataEntryMultiColumnViewController
+//Objc kung-fu not strong enough to pass Class as an argument to isKindOfClass yet :(
+- (UITableViewCell *)getParentCell:(UIView *)view
+{
+	UIView* superview = view.superview;
+	
+	while (superview && ![superview isKindOfClass:[UITableViewCell class]])
+	{
+		superview = superview.superview;
+	}
+    
+    return (UITableViewCell*)superview;
+}
 @end
