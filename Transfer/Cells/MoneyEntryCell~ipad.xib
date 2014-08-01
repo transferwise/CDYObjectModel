@@ -43,7 +43,7 @@
                         </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="center" image="selector_arrow" id="19">
-                        <rect key="frame" x="290" y="31" width="20" height="20"/>
+                        <rect key="frame" x="295" y="37" width="9" height="9"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <view opaque="NO" contentMode="center" id="vqA-Y2-RQw" userLabel="SeparatorLineLeft">
