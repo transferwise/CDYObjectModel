@@ -97,10 +97,6 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    if(!IPAD)
-    {
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
-    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

@@ -46,6 +46,21 @@
 @property (nonatomic, strong) NSArray *sectionCellsByTableView;
 
 
+// iPad
+/**
+ *  scrollview for containing tableviews as columns
+ */
+@property (weak, nonatomic) IBOutlet UIScrollView *containerScrollView;
+
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *firstColumnHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnLeftEdgeConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *firstColumnLeftMargin;
+
+
 /**
  *  convenience method for quickly checking if the viewcontrller has more than on tableview associated with it.
  *
@@ -101,10 +116,20 @@
  */
 -(void)scrollToCell:(UITableViewCell*)cell inTableView:(UITableView*)tableView;
 
+
 /**
  *	Call to reaload all tableviews when @see sectionCellsByTableView has been modified
  */
 -(void)reloadTableViews;
+
+/**
+ *  oveeride to add orientation change customisations.
+ *
+ *  default implementation handles laying out constraints for two columns on iPad.
+ *
+ *  @param orientation target orientation
+ */
+-(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation;
 
 /**
  *  helper method for finding the UITableViewCell a view is the subview of.
@@ -114,4 +139,5 @@
  *  @return The parent UITableViewCell
  */
 - (UITableViewCell *)getParentCell:(UIView *)view;
+
 @end
