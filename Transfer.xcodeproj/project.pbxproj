@@ -1765,6 +1765,9 @@
 				EAAC203917422AB3001DDE7A /* DropdownCell.h */,
 				EAAC203A17422AB3001DDE7A /* DropdownCell.m */,
 				EAAC203C17422ADB001DDE7A /* DropdownCell.xib */,
+				47F84D68198A638B00886D41 /* DoubleEntryCell.h */,
+				47F84D69198A638B00886D41 /* DoubleEntryCell.m */,
+				47F84D6A198A638B00886D41 /* DoubleEntryCell.xib */,
 				47535CAC1981362600DC39D6 /* DoublePasswordEntryCell.h */,
 				47535CAD1981362600DC39D6 /* DoublePasswordEntryCell.m */,
 				47535CAE1981362600DC39D6 /* DoublePasswordEntryCell.xib */,
@@ -1820,9 +1823,6 @@
 				471C9FFA197FB1AA00BCA3B4 /* FixSeparatorCell.m */,
 				47B36C811986543B002E66C7 /* MultipleEntryCell.h */,
 				47B36C821986543B002E66C7 /* MultipleEntryCell.m */,
-				47F84D68198A638B00886D41 /* DoubleEntryCell.h */,
-				47F84D69198A638B00886D41 /* DoubleEntryCell.m */,
-				47F84D6A198A638B00886D41 /* DoubleEntryCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
