@@ -74,7 +74,6 @@ NSInteger const kYearField = 3;
 	self.yearTextField.delegate = self;
 	self.yearTextField.keyboardType = UIKeyboardTypeNumberPad;
 	[self.yearTextField addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventEditingChanged];
-	[self addNextButtons];
 }
 
 - (void)configureLabels
@@ -304,21 +303,6 @@ NSInteger const kYearField = 3;
 	[self navigateToNext:textField withValidation:YES];
 }
 
-- (void)navigateToNext
-{
-	UIView *firstResponder = [UIResponder currentFirstResponder];
-	
-	if (firstResponder)
-	{
-		UITextField* textField = (UITextField *)firstResponder;
-		
-		if (textField)
-		{
-			[self navigateToNext:textField withValidation:NO];
-		}
-	}
-}
-
 - (void)navigateToNext:(UITextField *)textField withValidation:(BOOL)withValidation
 {
 	[self changeHeaderColor];
@@ -345,45 +329,6 @@ NSInteger const kYearField = 3;
 			[self.headerLabel setTextColor:[UIColor colorFromStyle:@"GreyGory"]];
 			[self navigateAway];
 		}
-	}
-}
-
-#pragma mark - Next button
-- (void)addNextButtons
-{
-    __block __weak DateEntryCell *weakSelf = self;
-	[self addNextButtonToField:self.dayTextField withAction:^{
-		[weakSelf navigateToNext];
-    }];
-    [self addNextButtonToField:self.monthTextField withAction:^{
-        [weakSelf navigateToNext];
-    }];
-	[self addNextButtonToField:self.yearTextField withAction:^{
-        [weakSelf navigateToNext];
-    }];
-}
-
-- (void)addNextButtonToField:(UITextField *)field withAction:(TRWActionBlock)action
-{
-    self.doneButtonAction = action;
-	
-    UIToolbar *toolbar = [[UIToolbar alloc] init];
-	[toolbar sizeToFit];
-	
-    UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"Next"
-															 style:UIBarButtonItemStylePlain
-															target:self
-															action:@selector(nextPressed)];
-    [toolbar setItems:@[flexible, done]];
-    [field setInputAccessoryView:toolbar];
-}
-
-- (void)nextPressed
-{
-	if (self.doneButtonAction)
-	{
-		self.doneButtonAction();
 	}
 }
 
