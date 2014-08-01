@@ -122,8 +122,6 @@
 		38B093181951FA8300315BE4 /* NameSuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B093141951FA8300315BE4 /* NameSuggestionCellProvider.m */; };
 		38B093191951FA8300315BE4 /* SettlementRecipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B093161951FA8300315BE4 /* SettlementRecipient.m */; };
 		38B0931A1951FA8300315BE4 /* SettlementRecipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B093161951FA8300315BE4 /* SettlementRecipient.m */; };
-		38B0931D1951FB6000315BE4 /* ProgressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B0931C1951FB6000315BE4 /* ProgressButton.m */; };
-		38B0931E1951FB6000315BE4 /* ProgressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B0931C1951FB6000315BE4 /* ProgressButton.m */; };
 		38B1C5D6195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */; };
 		38B1C5D7195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */; };
 		38BD98A3195C5973009F9B4A /* NameSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */; };
@@ -886,8 +884,6 @@
 		38B093141951FA8300315BE4 /* NameSuggestionCellProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameSuggestionCellProvider.m; sourceTree = "<group>"; };
 		38B093151951FA8300315BE4 /* SettlementRecipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettlementRecipient.h; sourceTree = "<group>"; };
 		38B093161951FA8300315BE4 /* SettlementRecipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettlementRecipient.m; sourceTree = "<group>"; };
-		38B0931B1951FB6000315BE4 /* ProgressButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProgressButton.h; path = Views/ProgressButton.h; sourceTree = "<group>"; };
-		38B0931C1951FB6000315BE4 /* ProgressButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProgressButton.m; path = Views/ProgressButton.m; sourceTree = "<group>"; };
 		38B1C5D4195DBA6400BEE66E /* ConnectionAwareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionAwareViewController.h; sourceTree = "<group>"; };
 		38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionAwareViewController.m; sourceTree = "<group>"; };
 		38BD98A0195C5973009F9B4A /* NameSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSuggestionCell.h; sourceTree = "<group>"; };
@@ -1590,8 +1586,6 @@
 				388F09FE1936434A00DBD93D /* InsetRespectingButton.m */,
 				47FAF342194B2F11004CE986 /* LightBlueButton.h */,
 				47FAF343194B2F11004CE986 /* LightBlueButton.m */,
-				38B0931B1951FB6000315BE4 /* ProgressButton.h */,
-				38B0931C1951FB6000315BE4 /* ProgressButton.m */,
 				4723EA0B1973D8E900B4345F /* RedButton.h */,
 				4723EA0C1973D8E900B4345F /* RedButton.m */,
 				474D1AA41951A500008BC7A7 /* RedGradientButton.h */,
@@ -3182,7 +3176,6 @@
 				EA31A18E17DDB29B00F937F7 /* Payment.m in Sources */,
 				EA31A18F17DDB29B00F937F7 /* ObjectModel+Payments.m in Sources */,
 				38B0930A1951FA2A00315BE4 /* DataEntryDefaultHeader.m in Sources */,
-				38B0931E1951FB6000315BE4 /* ProgressButton.m in Sources */,
 				4723EA1A1973F3CA00B4345F /* GoogleButton.m in Sources */,
 				380021E4192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */,
 				EA31A19017DDB29B00F937F7 /* TabBarActivityIndicatorView.m in Sources */,
@@ -3449,7 +3442,6 @@
 				479B692C19487865001FA4FE /* TransferDetailsViewController.m in Sources */,
 				EA225C67178E9C90009D6B83 /* _Payment.m in Sources */,
 				EA225C6B178E9C93009D6B83 /* Payment.m in Sources */,
-				38B0931D1951FB6000315BE4 /* ProgressButton.m in Sources */,
 				EA225C71178E9F00009D6B83 /* ObjectModel+Payments.m in Sources */,
 				47FAF344194B2F11004CE986 /* LightBlueButton.m in Sources */,
 				380021E3192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */,

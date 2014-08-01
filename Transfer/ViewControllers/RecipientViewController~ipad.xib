@@ -84,7 +84,7 @@
                         <constraint firstItem="bP7-ah-Jiz" firstAttribute="leading" secondItem="XCE-KC-Di1" secondAttribute="leading" id="y4g-S3-dfn"/>
                     </constraints>
                 </scrollView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT4-Xh-GCh" customClass="ProgressButton">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT4-Xh-GCh" customClass="GreenButton">
                     <rect key="frame" x="297" y="599" width="430" height="49"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>

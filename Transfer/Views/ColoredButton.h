@@ -12,6 +12,7 @@
 @interface ColoredButton : InsetRespectingButton
 
 @property (nonatomic, assign) BOOL addShadow;
+@property (nonatomic,assign) CGFloat progress;
 
 - (void)commonSetup;
 

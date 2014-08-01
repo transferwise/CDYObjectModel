@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSString* shadowColor;
 @property (weak, nonatomic) UIImage* normalStateImage;
 @property (weak, nonatomic) UIImage* selectedStateImage;
+@property (nonatomic, assign) CGSize lastDrawnSize;
 
 @end
 
@@ -57,7 +58,7 @@
 	
 	if (self.addShadow)
     {
-        [self setBackgroundImagesWithShadow];
+        [self setBackgroundImages];
     }
 }
 
@@ -80,6 +81,7 @@
 	self.compoundStyleName = compoundStyle;
 	
 	self.exclusiveTouch = YES;
+	self.backgroundColor = [UIColor clearColor];
 }
 
 #pragma mark - Properties
@@ -109,20 +111,48 @@
 	}
 }
 
-#pragma mark - Helpers
-- (void)setBackgroundImagesWithShadow
+-(void)setProgress:(CGFloat)progress
 {
-	// set background images
-	[self setBackgroundImage:[self getBackgroundImage:NO
-											  bgStyle:[self getColorFromStyle:self.compoundStyleContainer.bgStyle]
-								   highlightedBgStyle:[self getColorFromStyle:self.compoundStyleContainer.highlightedBgStyle]
-										   shdowStyle:self.shadowColor]
-					forState:UIControlStateNormal];
-	[self setBackgroundImage:[self getBackgroundImage:YES
-											  bgStyle:[self getColorFromStyle:self.compoundStyleContainer.bgStyle]
-								   highlightedBgStyle:[self getColorFromStyle:self.compoundStyleContainer.highlightedBgStyle]
-										   shdowStyle:self.shadowColor]
-					forState:UIControlStateHighlighted];
+    if(_progress != progress)
+    {
+        _progress = progress;
+        [self setBackgroundImages];
+    }
+}
+
+#pragma mark - Helpers
+-(void)layoutSubviews
+{
+    if(self.bounds.size.width != self.lastDrawnSize.width  || self.bounds.size.height != self.lastDrawnSize.height)
+    {
+        [self setBackgroundImages];
+    }
+    [super layoutSubviews];
+}
+
+- (void)setBackgroundImages
+{
+	UIColor* bgStyle = [self getColorFromStyle:self.compoundStyleContainer.bgStyle];
+	UIColor* highlightedBgStyle = [self getColorFromStyle:self.compoundStyleContainer.highlightedBgStyle];
+	
+	//this gets called from layoutsubviews
+	//colors might noth have been set yet.
+	if(bgStyle && highlightedBgStyle)
+	{
+		// set background images
+		[self setBackgroundImage:[self getBackgroundImage:NO
+												  bgStyle:bgStyle
+									   highlightedBgStyle:highlightedBgStyle
+											   shdowStyle:self.shadowColor]
+						forState:UIControlStateNormal];
+		[self setBackgroundImage:[self getBackgroundImage:YES
+												  bgStyle:bgStyle
+									   highlightedBgStyle:highlightedBgStyle
+											   shdowStyle:self.shadowColor]
+						forState:UIControlStateHighlighted];
+		
+		self.lastDrawnSize = self.bounds.size;
+	}
 }
 
 - (UIImage *)getBackgroundImage:(BOOL)selected
@@ -134,29 +164,79 @@
 	
 	if (!result)
 	{
+		CGSize size = self.bounds.size;
 		CGFloat scale = [[UIScreen mainScreen] scale];
-        CGSize size = CGSizeMake(3.0f, 8.0f);
+		CGRect rect = CGRectMake(0, 0, size.width, size.height);
 		
-		CGRect mainRect = CGRectMake(0.0f, selected ? 2.0f : 0.0f, 3.0f, 4.0f);
-        CGRect shadowRect = CGRectMake(0.0f, selected ? 6.0f : 4.0f, 3.0f, selected ? 2.0f : 4.0f);
+		CGRect progressRect = rect;
+		progressRect.size.width = round(self.progress * size.width);
 		
-		UIColor* bgColor = selected ? highlightedBgStyle : bgStyle;
-        UIColor* shadowColor = [UIColor colorFromStyle:shadowStyle];
+		CGRect remainingRect = rect;
+		remainingRect.size.width = size.width - progressRect.size.width ;
+		remainingRect.origin.x = progressRect.size.width;
+		
+		UIColor* progressColor = highlightedBgStyle;
+		UIColor* remainingColor = bgStyle;
+		UIColor* progressSelected = highlightedBgStyle;
+		UIColor* remainingSelected = highlightedBgStyle;
 		
 		UIGraphicsBeginImageContextWithOptions(size, selected ? NO : YES, 0.0);
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSetFillColorWithColor(context, [bgColor CGColor]);
-        CGContextFillRect(context, mainRect);
-        CGContextSetFillColorWithColor(context, [shadowColor CGColor]);
-        CGContextFillRect(context, shadowRect);
-        
-        CGImageRef cgImage = CGBitmapContextCreateImage(context);
-        UIImage* image = [UIImage imageWithCGImage:cgImage scale:scale orientation:UIImageOrientationUp];
-        CGImageRelease(cgImage);
-        UIGraphicsEndImageContext();
+		CGContextRef context = UIGraphicsGetCurrentContext();
+		CGContextSetFillColorWithColor(context, selected ? [progressSelected CGColor] : [progressColor CGColor]);
+		CGContextFillRect(context, progressRect);
+		CGContextSetFillColorWithColor(context, selected ? [remainingSelected CGColor] : [remainingColor CGColor]);
+		CGContextFillRect(context, remainingRect);
 		
-        image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(3, 1, 4, 1)];
-        result = image;
+		if(self.addShadow)
+		{
+			CGRect progressShadowRect = progressRect;
+			
+			if (selected)
+			{
+				progressRect.origin.y += 2.0f;
+				progressRect.origin.y += 2.0f;
+			}
+			
+			progressShadowRect.origin.y = size.height - (selected ? 2.0f : 4.0f);
+			progressShadowRect.size.height = selected ? 2.0f : 4.0f;
+			
+			CGRect remainingShadowRect = remainingRect;
+			remainingShadowRect.origin.y = size.height - (selected ? 2.0f : 4.0f);
+			remainingShadowRect.size.height = selected ? 2.0f : 4.0f;
+			
+			UIColor* progressShadow = [UIColor colorFromStyle:shadowStyle];
+			UIColor* remainingShadow = [UIColor colorFromStyle:shadowStyle];
+			
+			CGContextSetFillColorWithColor(context, [progressShadow CGColor]);
+			CGContextFillRect(context, progressShadowRect);
+			CGContextSetFillColorWithColor(context, [remainingShadow CGColor]);
+			CGContextFillRect(context, remainingShadowRect);
+			
+			if (selected)
+			{
+				CGRect alphaRect = rect;
+				alphaRect.origin.y =0.0f;
+				alphaRect.size.height = 2.0f;
+				
+				CGContextBeginTransparencyLayer(context, NULL);
+				CGContextSetFillColorWithColor(context, [[UIColor clearColor] CGColor]);
+				CGContextFillRect(context, alphaRect);
+				CGContextEndTransparencyLayer(context);
+			}
+		}
+		else if(selected)
+		{
+			CGContextSetFillColorWithColor(context, [progressSelected CGColor]);
+			CGContextFillRect(context, progressRect);
+			CGContextSetFillColorWithColor(context, [remainingSelected CGColor]);
+			CGContextFillRect(context, remainingRect);
+		}
+		
+		CGImageRef cgImage = CGBitmapContextCreateImage(context);
+		UIImage* image = [UIImage imageWithCGImage:cgImage scale:scale orientation:UIImageOrientationUp];
+		CGImageRelease(cgImage);
+		
+		result = image;
 		
         if (selected)
 		{
@@ -166,6 +246,10 @@
 		{
 			self.normalStateImage = image;
 		}
+		
+		UIGraphicsEndImageContext();
+		
+		self.lastDrawnSize = self.bounds.size;
 	}
 	
 	return result;
