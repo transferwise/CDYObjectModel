@@ -120,6 +120,20 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     
     self.headerLabel.text = [NSString stringWithFormat:NSLocalizedString(@"refund.details.header.description", nil),self.payment.recipient.name, self.payment.payOutStringWithCurrency];
 
+    UIView *tableViewHeader = [self.tableViews[0] tableHeaderView];
+    if(tableViewHeader)
+    {
+        CGRect headerFrame = tableViewHeader.frame;
+        CGRect labelFrame = self.headerLabel.frame;
+        [self.headerLabel sizeToFit];
+        CGFloat heightDiff = self.headerLabel.frame.size.height - labelFrame.size.height;
+        self.headerLabel.frame = labelFrame;
+        headerFrame.size.height += heightDiff;
+        tableViewHeader.frame = headerFrame;
+        [self.tableViews[0] setTableHeaderView:tableViewHeader];
+    }
+    
+    
     [self.footerButton setTitle:NSLocalizedString(@"refund.details.footer.button.title", nil) forState:UIControlStateNormal];
     [self.footerButton addTarget:self action:@selector(continuePressed) forControlEvents:UIControlEventTouchUpInside];
     
