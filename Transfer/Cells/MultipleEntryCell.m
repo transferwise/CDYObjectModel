@@ -106,7 +106,7 @@
 	CGRect frame = self.contentView.frame;
 	CGFloat halfWidth = frame.size.width / 2;
 	
-	return CGRectMake(firstHalf ? frame.origin.x : (frame.origin.x + halfWidth), frame.origin.y, firstHalf ? halfWidth - 10.f : halfWidth, frame.size.height);
+	return CGRectMake(firstHalf ? frame.origin.x : (frame.origin.x + halfWidth), frame.origin.y, firstHalf ? halfWidth - 15.f : halfWidth, frame.size.height);
 }
 
 - (void)removeDoubleSeparators

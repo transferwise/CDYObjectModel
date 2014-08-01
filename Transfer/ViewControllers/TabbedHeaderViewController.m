@@ -42,6 +42,8 @@
 - (void)configureWithControllers:(NSArray *)controllers
 						  titles:(NSArray *)titles
 					 actionTitle:(NSString *)actionTitle
+					 actionStyle:(NSString *)actionStyle
+				  actionProgress:(CGFloat)actionProgress
 {
 	MCAssert([controllers count] == [titles count]);
 	
@@ -49,6 +51,8 @@
 	self.titles = titles;
 	
 	[self.actionButton setTitle:actionTitle forState:UIControlStateNormal];
+	[self.actionButton configureWithCompoundStyle:actionStyle];
+	self.actionButton.progress = actionProgress;
 	[self attachControllers:self.controllers];
 }
 
@@ -89,19 +93,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	
-	[self.navigationController flattenStack];
-}
-
-- (CGFloat)heightOffset
-{
-	//these are not set for iPad
-	if (self.headerHeight && self.buttonHeight)
-	{
-		return self.headerHeight.constant + self.buttonHeight.constant;
-	}
-	
-	return 0.f;
 }
 
 - (void)headerTabView:(HeaderTabView *)tabView tabTappedAtIndex:(NSUInteger)index

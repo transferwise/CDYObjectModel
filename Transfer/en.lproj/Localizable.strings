@@ -206,7 +206,7 @@ It can take up to 2 working days.";
 "personal.profile.address.label" = "Address";
 "personal.profile.address.section.title" = "Address";
 "personal.profile.city.label" = "City";
-"personal.profile.confirm.payment.button.title" = "Confirm payment";
+"personal.profile.confirm.payment.button.title" = "Continue";
 "personal.profile.continue.to.recipient.button.title" = "Continue";
 "personal.profile.controller.title" = "Your details";
 "personal.profile.countries.refresh.error.message" = "Could not retrieve data. Please try again later.";

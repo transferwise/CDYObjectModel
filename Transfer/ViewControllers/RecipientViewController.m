@@ -57,7 +57,7 @@
 #import "MOMStyle.h"
 #import "UIView+RenderBlur.h"
 #import "UIResponder+FirstResponder.h"
-#import "ProgressButton.h"
+#import "GreenButton.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
@@ -80,7 +80,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 @property (nonatomic, strong) NSArray *recipientTypeFieldCells;
 
-@property (nonatomic, strong) IBOutlet ProgressButton *addButton;
+@property (nonatomic, strong) IBOutlet GreenButton *addButton;
 
 @property (nonatomic, strong) Currency *currency;
 @property (nonatomic, strong) RecipientType *recipientType;
