@@ -17,7 +17,7 @@
 
 @interface MultipleEntryCell : TextEntryCell<UITextFieldDelegate>;
 
-@property (weak, nonatomic) UIView* secondSeparator;
+@property (strong, nonatomic) UIView* secondSeparator;
 
 @property (nonatomic, weak) id<MultipleEntryCellDelegate> delegate;
 @property (nonatomic, strong, readonly) UITextField* selectedTextField;
