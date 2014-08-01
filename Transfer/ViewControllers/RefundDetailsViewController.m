@@ -154,6 +154,10 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     {
         self.headerLeftEdgeConstraint.constant = 0.0f;
         self.headerRightEdgeConstraint.constant = 0.0f;
+        if(!self.transferTypeSelectionHeader)
+        {
+            self.secondColumnTopConstraint.constant = 75.0f;
+        }
     }
 }
 
