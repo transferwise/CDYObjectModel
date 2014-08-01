@@ -60,6 +60,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnLeftEdgeConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *firstColumnLeftMargin;
 
+
 /**
  *  convenience method for quickly checking if the viewcontrller has more than on tableview associated with it.
  *
@@ -121,7 +122,7 @@
 -(void)reloadTableViews;
 
 /**
- *  oveeride to add orientation change customisations. 
+ *  oveeride to add orientation change customisations.
  *
  *  default implementation handles laying out constraints for two columns on iPad.
  *
@@ -129,5 +130,13 @@
  */
 -(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation;
 
+/**
+ *  helper method for finding the UITableViewCell a view is the subview of.
+ *
+ *  @param view subview of a UITableViewCell
+ *
+ *  @return The parent UITableViewCell
+ */
+- (UITableViewCell *)getParentCell:(UIView *)view;
 
 @end
