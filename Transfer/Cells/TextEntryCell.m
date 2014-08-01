@@ -12,13 +12,13 @@
 #import "TRWAlertView.h"
 #import "MOMStyle.h"
 #import <JVFloatLabeledTextField.h>
+#import "UIView+SeparatorLine.h"
 
 NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 @interface TextEntryCell ()
 
 @property (nonatomic, strong) IBOutlet UITextField *entryField;
-@property (nonatomic, copy) TRWActionBlock doneButtonAction;
 @property (nonatomic, assign) BOOL valueModified;
 @property (nonatomic, strong) IBOutlet UIButton *errorButton;
 @property (nonatomic, copy) NSString *validationIssue;
@@ -35,89 +35,67 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     self.contentView.frame = self.bounds;
     if (!self.separatorLine)
     {
-        CGFloat lineThickness = 1.0f / [[UIScreen mainScreen] scale];
-        UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(10.0f, self.contentView.frame.size.height - lineThickness, self.contentView.frame.size.width - 15.0f, lineThickness)];
-        separatorLine.bgStyle = @"SeparatorGrey";
-        separatorLine.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-
-        [self.contentView addSubview:separatorLine];
-        self.separatorLine = separatorLine;
+        self.separatorLine = [UIView getSeparatorLineWithParentFrame:self.contentView.frame];
+        [self.contentView addSubview:self.separatorLine];
     }
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
-- (void)configureWithTitle:(NSString *)title value:(NSString *)value {
+- (void)configureWithTitle:(NSString *)title value:(NSString *)value
+{
     [self.entryField setPlaceholder:title];
     [self setValue:value];
 }
 
-- (NSString *)value {
+- (NSString *)value
+{
     if([self.entryField text])
         return [self.entryField text];
     else
         return @"";
 }
 
-- (void)setValue:(NSString *)value { 
+- (void)setValue:(NSString *)value
+{
     [self.entryField setText:value];
 }
 
-- (void)setEditable:(BOOL)editable {
+- (void)setEditable:(BOOL)editable
+{
     [self.entryField setEnabled:editable];
     [self.entryField setTextColor:(editable ? [UIColor colorFromStyle:self.entryField.fontStyle] : [UIColor disabledEntryTextColor])];
 }
 
-//- (void)addDoneButton {
-//    __block __weak TextEntryCell *weakSelf = self;
-//    [self addDoneButtonToField:self.entryField withAction:^{
-//        [weakSelf.entryField.delegate textFieldShouldReturn:weakSelf.entryField];
-//    }];
-//}
-//
-//- (void)addDoneButtonToField:(UITextField *)field withAction:(TRWActionBlock)action {
-//    [self setDoneButtonAction:action];
-//
-//    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 20, 44)];
-//    [toolbar setBarStyle:UIBarStyleBlackTranslucent];
-//
-//    UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-//    //TODO jaanus: button title based on entry return key type
-//    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed)];
-//    [toolbar setItems:@[flexible, done]];
-//    [field setInputAccessoryView:toolbar];
-//}
+- (BOOL)editable
+{
+	return [self.entryField isEnabled];
+}
 
-- (void)setValueWhenEditable:(NSString *)value {
-    if (![self.entryField isEnabled]) {
+- (void)setValueWhenEditable:(NSString *)value
+{
+    if (![self.entryField isEnabled])
+	{
         return;
     }
 
     [self.entryField setText:value];
 }
 
-- (void)donePressed {
-    if (self.doneButtonAction) {
-        self.doneButtonAction();
-    }
-}
-
-- (BOOL)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
     [self setValueModified:YES];
     return YES;
 }
 
-- (void)markIssue:(NSString *)issueMessage {
+- (void)markIssue:(NSString *)issueMessage
+{
     [self setValidationIssue:issueMessage];
     [self.errorButton setHidden:!self.valueModified || ![issueMessage hasValue] || [self.entryField isFirstResponder]];
 }
 
-- (IBAction)errorButtonTapped {
-    if (![self.validationIssue hasValue]) {
+- (IBAction)errorButtonTapped
+{
+    if (![self.validationIssue hasValue])
+	{
         return;
     }
 
@@ -126,7 +104,8 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     [alertView show];
 }
 
-- (void)markTouched {
+- (void)markTouched
+{
     [self setValueModified:YES];
 }
 

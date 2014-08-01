@@ -13,11 +13,27 @@
 #import "DataEntryDefaultHeader.h"
 #import "UIResponder+FirstResponder.h"
 #import "MOMStyle.h"
+#import "MultipleEntryCell.h"
 
-@interface DataEntryMultiColumnViewController() <UITextFieldDelegate>
+@interface DataEntryMultiColumnViewController() <UITextFieldDelegate, MultipleEntryCellDelegate>
 @end
 
 @implementation DataEntryMultiColumnViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+	if (self)
+	{
+		[self commonSetup];
+	}
+	return self;
+}
+
+- (void)commonSetup
+{
+	self.heightOffset = 0;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,11 +53,6 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)setSectionCellsByTableView:(NSArray *)sectionCellsByTableView
@@ -71,7 +82,40 @@
     }
 }
 
+- (void)navigateAwayFrom:(UITableViewCell *)cell
+{
+	[self textFieldEntryFinished];
+	[self moveFocusOnNextEntryAfterCell:cell];
+}
 
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    NSUInteger index = [self.tableViews indexOfObject:tableView];
+    return [self.sectionCellsByTableView[index] count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSUInteger index = [self.tableViews indexOfObject:tableView];
+    NSArray *sectionCells = self.sectionCellsByTableView[index][(NSUInteger) section];
+    return [sectionCells count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSUInteger index = [self.tableViews indexOfObject:tableView];
+    UITableViewCell *cell = self.sectionCellsByTableView[index][indexPath.section][indexPath.row];
+	
+	if([cell isKindOfClass:[MultipleEntryCell class]])
+	{
+		((MultipleEntryCell *)cell).delegate = self;
+	}
+	
+    return cell;
+}
+
+
+#pragma mark - Table view delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSUInteger index = [self.tableViews indexOfObject:tableView];
     UITableViewCell *cell = self.sectionCellsByTableView[index][indexPath.section][indexPath.row];
@@ -114,28 +158,6 @@
     return nil;
 }
 
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    NSUInteger index = [self.tableViews indexOfObject:tableView];
-    return [self.sectionCellsByTableView[index] count];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSUInteger index = [self.tableViews indexOfObject:tableView];
-    NSArray *sectionCells = self.sectionCellsByTableView[index][(NSUInteger) section];
-    return [sectionCells count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSUInteger index = [self.tableViews indexOfObject:tableView];
-    UITableViewCell *cell = self.sectionCellsByTableView[index][indexPath.section][indexPath.row];
-    return cell;
-}
-
-
-#pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
@@ -174,7 +196,7 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     TextEntryCell *cell = [textField findContainerOfType:[TextEntryCell class]];
-    return [cell shouldChangeCharactersInRange:range replacementString:string];
+    return [cell textField:textField shouldChangeCharactersInRange:range replacementString:string];
 }
 
 - (BOOL)moveFocusOnNextEntryAfterCell:(UITableViewCell *)cell {
@@ -183,6 +205,11 @@
     if (indexPath == nil) {
         return NO;
     }
+	
+	if ([cell isKindOfClass:[MultipleEntryCell class]] && ![(MultipleEntryCell *)cell shouldNavigateAway])
+	{
+		return NO;
+	}
     
     if ([cell isKindOfClass:[TextEntryCell class]]) {
         [(TextEntryCell *)cell markTouched];
@@ -199,7 +226,15 @@
             UITableViewCell *viewCell = [self tableView:tableView cellForRowAtIndexPath:moveToIndexPath];
             if ([self isEntryCell:viewCell]) {
                 TextEntryCell *entryCell = (TextEntryCell *) viewCell;
-                [entryCell.entryField becomeFirstResponder];
+				
+				if([entryCell isKindOfClass:[MultipleEntryCell class]])
+				{
+					[(MultipleEntryCell *)entryCell activate];
+				}
+				else
+				{
+					[entryCell.entryField becomeFirstResponder];
+				}
                 [self scrollToCell:entryCell inTableView:tableView];
                 return YES;
             }
@@ -238,7 +273,8 @@
             }
             
             TextEntryCell *entryCell = cell;
-            if (![entryCell.entryField isEnabled]) {
+            if (!entryCell.editable)
+			{
                 continue;
             }
             
@@ -301,11 +337,10 @@
         NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
         UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
         
-        CGFloat overlap = tableView.frame.origin.y + tableView.frame.size.height - newframe.origin.y;
+        CGFloat overlap = tableView.frame.origin.y + tableView.frame.size.height + self.heightOffset - newframe.origin.y;
         
         if(overlap >0)
-        {
-            
+        {            
             [UIView beginAnimations:nil context:NULL];
             [UIView setAnimationDuration:duration];
             [UIView setAnimationCurve:curve];
@@ -337,10 +372,11 @@
                 }
                 if(cell)
                 {
-                    NSIndexPath *path = [tableView indexPathForCell:cell];
+                    NSIndexPath *path = [tableView indexPathForRowAtPoint:cell.center];
+					
                     if(path)
                     {
-                        [tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionNone animated:YES];
+						[tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionNone animated:YES];
                     }
                 }
             }
@@ -391,6 +427,14 @@
 -(BOOL)hasMoreThanOneTableView
 {
     return [self.tableViews count] > 1;
+}
+
+-(void)reloadTableViews
+{
+	for (UITableView* tableView in self.tableViews)
+	{
+		[tableView reloadData];
+	}
 }
 
 @end

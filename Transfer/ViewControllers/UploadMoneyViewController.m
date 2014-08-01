@@ -159,7 +159,7 @@
     });
 }
 
-- (void)actionTapped
+- (void)actionTappedWithController:(UIViewController *)controller atIndex:(NSUInteger)index
 {
     NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
     [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];

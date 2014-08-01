@@ -219,6 +219,8 @@ It can take up to 2 working days.";
 "personal.profile.last.name.label" = "Last name";
 "personal.profile.personal.section.title" = "Personal details";
 "personal.profile.phone.label" = "Phone";
+"personal.profile.password.label" = "Password";
+"personal.profile.password.confirm.label" = "Confirm password";
 "personal.profile.post.code.label" = "Post code";
 "personal.profile.refresh.error.message" = "Could not load user profile. Please try again later.";
 "personal.profile.refresh.error.title" = "Profile load error";
@@ -238,8 +240,11 @@ It can take up to 2 working days.";
 "profile.controller.title" = "Profile";
 "profile.controller.tabbar.title" = "Profile";
 "profile.selection.text.base" = "Or %@";
-"profile.selection.text.business.profile" = "send from a business";
-"profile.selection.text.personal.profile" = "send as yourself";
+"profile.selection.text.business.profile" = "Send as business";
+"profile.selection.text.personal.profile" = "Send as me";
+"profile.dob.day" = "DD";
+"profile.dob.month" = "MM";
+"profile.dob.year" = "YYYY";
 
 "recipient.controller.add.button.title" = "Add";
 "recipient.controller.add.mode.title" = "Add recipient";
@@ -529,5 +534,7 @@ We'll send you an email in order to let you choose a new password.";
 "refund.controller.existing.recipients.preload.error.title" = "Can't load contacts";
 
 "network.alert" = "No network";
+
+"unknown.value" = "??";
 
 "contact.detail.send" = "Send money";

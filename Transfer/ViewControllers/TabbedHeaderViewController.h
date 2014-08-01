@@ -10,12 +10,19 @@
 
 @interface TabbedHeaderViewController : UIViewController
 
+@property (nonatomic, readonly) CGFloat heightOffset;
+
 - (void)configureWithControllers:(NSArray *)controllers
 						  titles:(NSArray *)titles
 					 actionTitle:(NSString *)actionTitle;
 
 - (void)willSelectViewController:(UIViewController *)controller
 						 atIndex:(NSUInteger)index;
-- (void)actionTapped;
+
+- (void)reconfigureActionButton:(NSString *)compoundStyle;
+
+- (void)actionTappedWithController:(UIViewController *)controller
+						   atIndex:(NSUInteger)index;
+
 
 @end

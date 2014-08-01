@@ -202,7 +202,7 @@ typedef NS_ENUM(short, SettingsRow) {
         case PersonalProfileRow: {
             PersonalProfileViewController *controller = [[PersonalProfileViewController alloc] init];
             [controller setObjectModel:self.objectModel];
-            [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.save.button.title", nil)];
+//            [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.save.button.title", nil)];
             PersonalProfileCommitter *validation = [[PersonalProfileCommitter alloc] init];
             [validation setObjectModel:self.objectModel];
             [controller setProfileValidation:validation];
@@ -214,7 +214,7 @@ typedef NS_ENUM(short, SettingsRow) {
         case BusinessProfileRow: {
             BusinessProfileViewController *controller = [[BusinessProfileViewController alloc] init];
             [controller setObjectModel:self.objectModel];
-            [controller setFooterButtonTitle:NSLocalizedString(@"business.profile.save.button.title", nil)];
+//            [controller setFooterButtonTitle:NSLocalizedString(@"business.profile.save.button.title", nil)];
             BusinessProfileCommitter *validation = [[BusinessProfileCommitter alloc] init];
             [validation setObjectModel:self.objectModel];
             [controller setProfileValidation:validation];

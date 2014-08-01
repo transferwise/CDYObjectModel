@@ -13,6 +13,7 @@
 #import "DataEntryDefaultHeader.h"
 #import "UIResponder+FirstResponder.h"
 #import "MOMStyle.h"
+#import "MultipleEntryCell.h"
 
 @interface DataEntryViewController() <UITextFieldDelegate>
 @end
@@ -26,8 +27,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     self.tableView.bgStyle = @"white";
-    self.tableView.tableFooterView = [[UIView alloc] init];
-    
+    self.tableView.tableFooterView = [[UIView alloc] init];    
 }
 
 -(void)dealloc
@@ -123,10 +123,18 @@
     return cell;
 }
 
-- (UITableViewCell *)cellForIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)cellForIndexPath:(NSIndexPath *)indexPath
+{
     NSUInteger section = (NSUInteger) indexPath.section;
     NSUInteger row = (NSUInteger) indexPath.row;
-    return self.presentedSectionCells[section][row];
+    UITableViewCell *cell = self.presentedSectionCells[section][row];
+	
+	if([cell isKindOfClass:[MultipleEntryCell class]])
+	{
+		((MultipleEntryCell *)cell).delegate = self;
+	}
+	
+	return cell;
 }
 
 #pragma mark - Table view delegate
@@ -162,32 +170,59 @@
     return YES;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
+- (void)navigateAwayFrom:(UITableViewCell *)cell
+{
+	[self textFieldEntryFinished];
+	[self moveFocusOnNextEntryAfterCell:cell];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
     [self textFieldEntryFinished];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     TextEntryCell *cell = [textField findContainerOfType:[TextEntryCell class]];
-    return [cell shouldChangeCharactersInRange:range replacementString:string];
+    return [cell textField:textField shouldChangeCharactersInRange:range replacementString:string];
 }
 
-- (BOOL)moveFocusOnNextEntryAfterCell:(UITableViewCell *)cell {
+#pragma mark - Moving Between Cells
+
+- (BOOL)moveFocusOnNextEntryAfterCell:(UITableViewCell *)cell
+{
     NSIndexPath *indexPath = [self indexPathForCell:cell];
     
     if (indexPath == nil) {
         return NO;
     }
     
-    if ([cell isKindOfClass:[TextEntryCell class]]) {
+    if ([cell isKindOfClass:[TextEntryCell class]])
+	{
         [(TextEntryCell *)cell markTouched];
     }
+	
+	if ([cell isKindOfClass:[MultipleEntryCell class]] && ![(MultipleEntryCell *)cell shouldNavigateAway])
+	{
+		return NO;
+	}
     
     NSIndexPath *moveToIndexPath = indexPath;
-    while ((moveToIndexPath = [self nextEditableIndexPathAfter:moveToIndexPath]) != nil) {
+    while ((moveToIndexPath = [self nextEditableIndexPathAfter:moveToIndexPath]) != nil)
+	{
         UITableViewCell *viewCell = [self cellForIndexPath:moveToIndexPath];
-        if ([self isEntryCell:viewCell]) {
+        if ([self isEntryCell:viewCell])
+		{
             TextEntryCell *entryCell = (TextEntryCell *) viewCell;
-            [entryCell.entryField becomeFirstResponder];
+			
+			if([entryCell isKindOfClass:[MultipleEntryCell class]])
+			{
+				[(MultipleEntryCell *)entryCell activate];
+			}
+			else
+			{
+				[entryCell.entryField becomeFirstResponder];
+			}
+			
             if([self.tableView indexPathForCell:entryCell])
             {
                 [self.tableView scrollToRowAtIndexPath:moveToIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -217,7 +252,9 @@
             }
             
             TextEntryCell *entryCell = cell;
-            if (![entryCell.entryField isEnabled]) {
+			
+            if (!entryCell.editable)
+			{
                 continue;
             }
             
@@ -246,7 +283,8 @@
     return [cell isKindOfClass:[TextEntryCell class]];
 }
 
-- (void)textFieldEntryFinished {
+- (void)textFieldEntryFinished
+{
     
 }
 
@@ -262,8 +300,7 @@
         CGFloat overlap = self.tableView.frame.origin.y + self.tableView.frame.size.height - newframe.origin.y;
         
         if(overlap >0)
-        {
-            
+        {            
             [UIView beginAnimations:nil context:NULL];
             [UIView setAnimationDuration:duration];
             [UIView setAnimationCurve:curve];
@@ -295,7 +332,7 @@
                 }
                 if(cell)
                 {
-                    NSIndexPath *path = [self.tableView indexPathForCell:cell];
+                    NSIndexPath *path = [self.tableView indexPathForRowAtPoint:cell.center];
                     if(path)
                     {
                         [self.tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionNone animated:YES];

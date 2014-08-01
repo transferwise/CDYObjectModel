@@ -23,15 +23,14 @@
 #import "PersonalProfileSource.h"
 #import "TransferBackButtonItem.h"
 #import "GoogleAnalytics.h"
+#import "CountrySuggestionCellProvider.h"
+#import "Country.h"
 
 static NSUInteger const kButtonSection = 0;
 
-@interface ProfileEditViewController ()
+@interface ProfileEditViewController ()<CountrySelectionCellDelegate>
 
 @property (nonatomic, strong) ProfileSource *profileSource;
-@property (nonatomic, strong) ButtonCell *buttonCell;
-@property (nonatomic, strong) IBOutlet UIView *footer;
-@property (nonatomic, strong) IBOutlet UIButton *footerButton;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
 @property (nonatomic, strong) NSArray *presentationCells;
 @property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
@@ -39,144 +38,116 @@ static NSUInteger const kButtonSection = 0;
 @property (nonatomic, assign) BOOL shown;
 @property (nonatomic, strong) QuickProfileValidationOperation *quickProfileValidation;
 @property (nonatomic, assign) BOOL inputCheckRunning;
-
-- (IBAction)footerButtonPressed:(id)sender;
+@property (nonatomic, strong) CountrySuggestionCellProvider* cellProvider;
+@property (nonatomic) CGFloat bottomInset;
 
 @end
 
 @implementation ProfileEditViewController
 
-- (id)initWithSource:(ProfileSource *)source quickValidation:(QuickProfileValidationOperation *)quickValidation {
+- (id)initWithSource:(ProfileSource *)source quickValidation:(QuickProfileValidationOperation *)quickValidation
+{
     self = [super initWithNibName:@"ProfileEditViewController" bundle:nil];
-    if (self) {
+    if (self)
+	{
         _profileSource = source;
         _quickProfileValidation = quickValidation;
     }
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
-    [self.tableView setBackgroundView:nil];
-    [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
-
-    [self.tableView registerNib:[UINib nibWithNibName:@"ButtonCell" bundle:nil] forCellReuseIdentifier:TWButtonCellIdentifier];
-
-    self.buttonCell = [self.tableView dequeueReusableCellWithIdentifier:TWButtonCellIdentifier];
-    self.buttonCell.textLabel.text = NSLocalizedString(@"button.title.import.from.phonebook", nil);
-
-    [self.profileSource setTableView:self.tableView];
-
+    [self.profileSource setTableViews:self.tableViews];
 
     [self createPresentationCells];
-
-    [self.footerButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
 }
 
-- (void)createPresentationCells {
-    NSMutableArray *presented = [NSMutableArray array];
-    [presented addObject:@[self.buttonCell]];
-    [presented addObjectsFromArray:[self.profileSource presentedCells]];
+- (void)createPresentationCells
+{
+    NSArray *presented = [self.profileSource presentedCells];
 
-    UITableViewCell *countryCell = nil;
-    for (NSArray *cells in presented) {
-        for (UITableViewCell *cell in cells) {
-            if ([cell isKindOfClass:[CountrySelectionCell class]]) {
-                countryCell = cell;
-                break;
-            }
-        }
-
-        if (countryCell) {
-            break;
-        }
-    }
-    [self setCountryCell:(CountrySelectionCell *) countryCell];
-    [self.countryCell setAllCountries:[self.objectModel fetchedControllerForAllCountries]];
+    CountrySelectionCell *countryCell = nil;
+	for (NSArray* table in presented)
+	{
+		for (NSArray *cells in table) {
+			for (UITableViewCell *cell in cells) {
+				if ([cell isKindOfClass:[CountrySelectionCell class]]) {
+					countryCell = (CountrySelectionCell *)cell;
+					break;
+				}
+			}
+			
+			if (countryCell) {
+				break;
+			}
+		}
+	}
+    [self setCountryCell:countryCell];
+	
+	self.cellProvider = [[CountrySuggestionCellProvider alloc] init];
+    
+    [super configureWithDataSource:self.cellProvider
+						 entryCell:countryCell
+							height:countryCell.frame.size.height];
+	
+	__weak typeof(self) weakSelf = self;
+	[countryCell setSelectionHandler:^(NSString *countryName) {
+        [weakSelf didSelectCountry:countryName];
+    }];
+	
+	countryCell.delegate = self;
 
     [self setPresentationCells:presented];
 }
 
-- (void)setObjectModel:(ObjectModel *)objectModel {
+- (void)setObjectModel:(ObjectModel *)objectModel
+{
     _objectModel = objectModel;
     [self.profileSource setObjectModel:objectModel];
 }
 
-- (void)setPresentProfileSource:(ProfileSource *)source reloadView:(BOOL)reload {
-	//Force profile save
-	[self.profileSource enteredProfile];
-
-    [source setObjectModel:self.objectModel];
-    [self setProfileSource:source];
-    //TODO jaanus: fix this
-    if ([source isKindOfClass:[PersonalProfileSource class]]) {
-        [self setQuickProfileValidation:[QuickProfileValidationOperation personalProfileValidation]];
-    } else {
-        [self setQuickProfileValidation:[QuickProfileValidationOperation businessProfileValidation]];
-    }
-
-    [self.profileSource setTableView:self.tableView];
-    [self.navigationItem setTitle:[self.profileSource editViewTitle]];
-    [self createPresentationCells];
-	[self.tableView reloadData];
-
-    if (!reload) {
-        return;
-    }
-
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-    [hud setMessage:NSLocalizedString(@"personal.profile.refreshing.message", nil)];
-    __weak typeof(self) weakSelf = self;
-    [self.profileSource pullDetailsWithHandler:^(NSError *profileError) {
-        [hud hide];
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (profileError) {
-                TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.refresh.error.title", nil)
-                                                                   message:NSLocalizedString(@"personal.profile.refresh.error.message", nil)];
-                [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-                [alertView show];
-                return;
-            }
-
-            [weakSelf setPresentedSectionCells:self.presentationCells];
-            [weakSelf.tableView setTableFooterView:self.footer];
-            [weakSelf.tableView reloadData];
-        });
-    }];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
 
-    if (self.shown) {
+    if (self.shown)
+	{
         return;
     }
 
-    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
-
-    [self.navigationItem setTitle:[self.profileSource editViewTitle]];
-
     [self pullDetails];
-
     [self setShown:YES];
 
-    if ([self.profileSource isKindOfClass:[PersonalProfileSource class]] && self.analyticsReport) {
+    if ([self.profileSource isKindOfClass:[PersonalProfileSource class]])
+	{
         [[GoogleAnalytics sharedInstance] sendScreen:@"Enter sender details"];
     }
 }
 
-- (void)pullCountriesWithHud:(TRWProgressHUD *)hud completionHandler:(TRWActionBlock)completion {
+#pragma mark - Suggestion Table
+
+-(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
+{
+    [super suggestionTable:table selectedObject:object];
+    [self didSelectCountry:(NSString *)object];
+}
+
+- (void)didSelectCountry:(NSString *)country
+{
+    self.countryCell.value = country;
+}
+
+- (void)pullCountriesWithHud:(TRWProgressHUD *)hud completionHandler:(TRWActionBlock)completion
+{
     CountriesOperation *operation = [CountriesOperation operation];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
     [operation setCompletionHandler:^(NSError *error) {
-        if (error) {
+        if (error)
+		{
             [hud hide];
 
             TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.countries.refresh.error.title", nil)
@@ -191,12 +162,14 @@ static NSUInteger const kButtonSection = 0;
     [operation execute];
 }
 
-- (void)pullDetails {
+- (void)pullDetails
+{
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.refreshing.message", nil)];
 
-    __weak typeof(self) weakSelf = self;
     [self pullCountriesWithHud:hud completionHandler:^{
+		[self.cellProvider setAutoCompleteResults:[self.objectModel fetchedControllerForAllCountries]];
+		
         [self.profileSource pullDetailsWithHandler:^(NSError *profileError) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hud hide];
@@ -209,63 +182,59 @@ static NSUInteger const kButtonSection = 0;
                     return;
                 }
 
-                [weakSelf setPresentedSectionCells:self.presentationCells];
-                [weakSelf.tableView setTableFooterView:self.footer];
-                [weakSelf.tableView reloadData];
+                self.sectionCellsByTableView = self.presentationCells;
+                [self reloadTableViews];
             });
         }];
 
     }];
 }
 
-- (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section != kButtonSection) {
+- (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section != kButtonSection)
+	{
         return;
     }
 
     PhoneBookProfileSelector *selector = [[PhoneBookProfileSelector alloc] init];
     [self setProfileSelector:selector];
-    __weak typeof(self) weakSelf = self;
     [selector presentOnController:self completionHandler:^(PhoneBookProfile *profile) {
-        [weakSelf.profileSource loadDataFromProfile:profile];
+        [self.profileSource loadDataFromProfile:profile];
     }];
 }
 
-- (IBAction)footerButtonPressed:(id)sender {
-    [UIApplication dismissKeyboard];
-
-    if (![self.profileSource inputValid]) {
+- (void)validateProfile
+{
+	[UIApplication dismissKeyboard];
+	
+    if (![self.profileSource inputValid])
+	{
         TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
                                                            message:NSLocalizedString(@"personal.profile.validation.error.message", nil)];
         [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
         [alertView show];
         return;
     }
-
+	
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.verify.message", nil)];
     
     NSManagedObjectID *profile = [self.profileSource enteredProfile];
-
+	
     [self.profileSource validateProfile:profile withValidation:self.profileValidation completion:^(NSError *error) {
         [hud hide];
-
-        if (error) {
+		
+        if (error)
+		{
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"personal.profile.verify.error.title", nil) error:error];
             [alertView show];
         }
     }];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [self.profileSource titleForHeaderInSection:section];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 44;
-}
-
-- (void)textFieldEntryFinished {
+- (void)textFieldEntryFinished
+{
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"textFieldEntryFinished");
         if (self.inputCheckRunning) {
@@ -286,6 +255,62 @@ static NSUInteger const kButtonSection = 0;
 
         [self.quickProfileValidation execute];
     });
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+	//only applicable when there is a single tableview
+	if(self.tableViews.count == 1)
+	{
+		UITableViewCell *cell = [self getParentCell:textField];
+		
+		if(cell)
+		{
+			UITableView *table = self.tableViews[0];
+			
+			if([cell isKindOfClass:[CountrySelectionCell class]] && self.bottomInset == 0)
+			{
+				//Country cell needs to be scrolled to top of screen
+				UIEdgeInsets insets = table.contentInset;
+				
+				CGPoint point = [table convertPoint:cell.frame.origin toView:table];
+				self.bottomInset = point.y - self.heightOffset - cell.frame.size.height;
+				insets.bottom += self.bottomInset;
+				[table setContentInset:insets];
+			}
+			else if (self.bottomInset != 0)
+			{
+				UIEdgeInsets insets = table.contentInset;
+				insets.bottom -= self.bottomInset;
+				
+				[UIView animateWithDuration:0.1f animations:^{
+					[table setContentInset:insets];
+				}];
+				
+				self.bottomInset = 0;
+			}
+		}
+	}
+}
+
+//Copy from DataEntryMultiColumnViewController
+//Objc kung-fu not strong enough to pass Class as an argument to isKindOfClass yet :(
+- (UITableViewCell *)getParentCell:(UIView *)view
+{
+	UIView* superview = view.superview;
+	
+	while (superview && ![superview isKindOfClass:[UITableViewCell class]])
+	{
+		superview = superview.superview;
+	}
+	
+	return (UITableViewCell*)superview;
+}
+
+#pragma mark - CountrySelectionCell Delegate
+- (Country *)getCountryByCode:(NSString *)code
+{
+	return [self.cellProvider getCountryByCode:code];
 }
 
 @end

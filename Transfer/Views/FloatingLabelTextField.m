@@ -48,8 +48,6 @@
 	self.floatingLabelTextColor = [UIColor colorFromStyle:@"CoreFont"];
 	self.floatingLabelActiveTextColor =  [UIColor colorFromStyle:@"TWElectricBlue"];
 	self.floatingLabelYPadding = @(1.0f);
-
-    
 }
 
 

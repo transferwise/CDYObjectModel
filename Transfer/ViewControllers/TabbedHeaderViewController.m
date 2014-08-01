@@ -10,6 +10,7 @@
 #import "HeaderTabView.h"
 #import "UINavigationController+StackManipulations.h"
 #import "Constants.h"
+#import "ColoredButton.h"
 
 @interface TabbedHeaderViewController ()<HeaderTabViewDelegate>
 
@@ -20,7 +21,10 @@
 
 @property (nonatomic,weak) IBOutlet HeaderTabView *tabView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tabViewHeightConstraint;
-@property (nonatomic,weak) IBOutlet UIButton *actionButton;
+@property (nonatomic,weak) IBOutlet ColoredButton *actionButton;
+
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonHeight;
 
 @end
 
@@ -46,6 +50,11 @@
 	
 	[self.actionButton setTitle:actionTitle forState:UIControlStateNormal];
 	[self attachControllers:self.controllers];
+}
+
+- (void)reconfigureActionButton:(NSString *)compoundStyle
+{
+	[self.actionButton configureWithCompoundStyle:compoundStyle];
 }
 
 - (void)viewDidLoad
@@ -82,6 +91,17 @@
 	[super viewDidAppear:animated];
 	
 	[self.navigationController flattenStack];
+}
+
+- (CGFloat)heightOffset
+{
+	//these are not set for iPad
+	if (self.headerHeight && self.buttonHeight)
+	{
+		return self.headerHeight.constant + self.buttonHeight.constant;
+	}
+	
+	return 0.f;
 }
 
 - (void)headerTabView:(HeaderTabView *)tabView tabTappedAtIndex:(NSUInteger)index
@@ -131,7 +151,10 @@
 
 - (IBAction)actionTapped:(id)sender
 {
-	[self actionTapped];
+	NSUInteger idx = self.tabView.selectedIndex;
+	MCAssert(idx <= [self.controllers count]);
+	[self actionTappedWithController:self.controllers[idx]
+							 atIndex:idx];
 }
 
 - (void)willSelectViewController:(UIViewController *)controller
@@ -140,7 +163,8 @@
 	//override in an inheriting class to customize
 }
 
-- (void)actionTapped
+- (void)actionTappedWithController:(UIViewController *)controller
+						   atIndex:(NSUInteger)index
 {
 	//override in an inheriting class to customize
 }

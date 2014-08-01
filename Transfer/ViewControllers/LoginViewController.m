@@ -71,7 +71,6 @@
 	[self.passwordTextField configureWithTitle:NSLocalizedString(@"login.password.field.title", nil) value:@""];
 	self.passwordTextField.delegate = self;
 	[self.passwordTextField setReturnKeyType:UIReturnKeyDone];
-    [self.passwordTextField setSecureTextEntry:YES];
 	
 	[self.loginButton setTitle:NSLocalizedString(@"button.title.log.in", nil) forState:UIControlStateNormal];
 	
