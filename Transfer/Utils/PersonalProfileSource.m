@@ -53,11 +53,11 @@ NSUInteger const kUserPersonalSection = 1;
         [self setUpTableView:tableView];
     }
 
-    NSMutableArray *personalCells = [NSMutableArray array];
+    NSMutableArray *firstColumnCells = [NSMutableArray array];
 	
 	TextEntryCell *emailCell = [TextEntryCell loadInstance];
     [self setEmailCell:emailCell];
-    [personalCells addObject:emailCell];
+    [firstColumnCells addObject:emailCell];
     [emailCell configureWithTitle:NSLocalizedString(@"personal.profile.email.label", nil) value:@""];
     [emailCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [emailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
@@ -67,57 +67,57 @@ NSUInteger const kUserPersonalSection = 1;
 	passwordCell.showDouble = YES;
 	[passwordCell configureWithTitle:NSLocalizedString(@"personal.profile.password.label", nil) value:@""];
     [self setPasswordCell:passwordCell];
-    [personalCells addObject:passwordCell];
+    [firstColumnCells addObject:passwordCell];
 	[passwordCell setCellTag:@"DoublePasswordCell"];
 	
 	DoubleEntryCell *firstLastNameCell = [DoubleEntryCell loadInstance];
 	[self setFirstLastNameCell:firstLastNameCell];
-	[personalCells addObject:firstLastNameCell];
+	[firstColumnCells addObject:firstLastNameCell];
 	[firstLastNameCell configureWithTitle:NSLocalizedString(@"personal.profile.first.name.label", nil)
 									value:@""
 							  secondTitle:NSLocalizedString(@"personal.profile.last.name.label", nil)
 							  secondValue:@""];
 	[firstLastNameCell setCellTag:@"firstLastNameCell"];
 	[firstLastNameCell setAutoCapitalization:UITextAutocapitalizationTypeWords];
-
-    TextEntryCell *phoneCell = [TextEntryCell loadInstance];
-    [self setPhoneNumberCell:phoneCell];
-    [personalCells addObject:phoneCell];
-    [phoneCell.entryField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
-    [phoneCell configureWithTitle:NSLocalizedString(@"personal.profile.phone.label", nil) value:@""];
-    [phoneCell setCellTag:@"phoneNumber"];
-
-    DateEntryCell *dateOfBirthCell = [DateEntryCell loadInstance];
-    [self setDateOfBirthCell:dateOfBirthCell];
-    [personalCells addObject:dateOfBirthCell];
-    [dateOfBirthCell configureWithTitle:NSLocalizedString(@"personal.profile.date.of.birth.label", nil) value:@""];
-    [dateOfBirthCell setCellTag:@"dateOfBirth"];
 	
-	NSMutableArray *addressCells = [NSMutableArray array];
+	NSMutableArray *secondColumnCells = [NSMutableArray array];
 	
 	CountrySelectionCell *countryCell = [CountrySelectionCell loadInstance];
     [self setCountryCell:countryCell];
-    [addressCells addObject:countryCell];
+    [secondColumnCells addObject:countryCell];
     [countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
     [countryCell setCellTag:@"countryCode"];
 
     TextEntryCell *addressCell = [TextEntryCell loadInstance];
     [self setAddressCell:addressCell];
-    [addressCells addObject:addressCell];
+    [secondColumnCells addObject:addressCell];
     [addressCell configureWithTitle:NSLocalizedString(@"personal.profile.address.label", nil) value:@""];
     [addressCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
     [addressCell setCellTag:@"addressFirstLine"];
 
 	DoubleEntryCell *zipCityCell = [DoubleEntryCell loadInstance];
 	[self setZipCityCell:zipCityCell];
-    [addressCells addObject:zipCityCell];
+    [secondColumnCells addObject:zipCityCell];
     [zipCityCell configureWithTitle:NSLocalizedString(@"personal.profile.post.code.label", nil)
 							  value:@""
 						secondTitle:NSLocalizedString(@"personal.profile.city.label", nil)
 						secondValue:@""];
     [zipCityCell setCellTag:@"zipCity"];
+	
+	TextEntryCell *phoneCell = [TextEntryCell loadInstance];
+    [self setPhoneNumberCell:phoneCell];
+    [secondColumnCells addObject:phoneCell];
+    [phoneCell.entryField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
+    [phoneCell configureWithTitle:NSLocalizedString(@"personal.profile.phone.label", nil) value:@""];
+    [phoneCell setCellTag:@"phoneNumber"];
+	
+    DateEntryCell *dateOfBirthCell = [DateEntryCell loadInstance];
+    [self setDateOfBirthCell:dateOfBirthCell];
+    [secondColumnCells addObject:dateOfBirthCell];
+    [dateOfBirthCell configureWithTitle:NSLocalizedString(@"personal.profile.date.of.birth.label", nil) value:@""];
+    [dateOfBirthCell setCellTag:@"dateOfBirth"];
 
-    [self setCells:@[@[personalCells, addressCells]]];
+    [self setCells:@[@[firstColumnCells, secondColumnCells]]];
 
     return self.cells;
 }
