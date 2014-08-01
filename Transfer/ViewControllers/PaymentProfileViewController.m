@@ -47,7 +47,6 @@
 	
 	[self setTitle:NSLocalizedString(@"personal.profile.controller.title", nil)];
 	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
-	[self reconfigureActionButton:@"GreenButton"];
 }
 
 - (void)initControllers

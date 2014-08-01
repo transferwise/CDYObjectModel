@@ -19,8 +19,6 @@
 - (void)willSelectViewController:(UIViewController *)controller
 						 atIndex:(NSUInteger)index;
 
-- (void)reconfigureActionButton:(NSString *)compoundStyle;
-
 - (void)actionTappedWithController:(UIViewController *)controller
 						   atIndex:(NSUInteger)index;
 

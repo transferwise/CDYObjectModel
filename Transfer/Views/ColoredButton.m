@@ -16,7 +16,7 @@
 @property (strong, nonatomic) MOMCompoundStyle* compoundStyleContainer;
 @property (strong, nonatomic) NSString* shadowColor;
 @property (weak, nonatomic) UIImage* normalStateImage;
-@property (weak, nonatomic) UIImage* selectedStateImage;
+@property (weak, nonatomic) UIImage* highlightedStateImage;
 @property (nonatomic, assign) CGSize lastDrawnSize;
 
 @end
@@ -116,6 +116,7 @@
     if(_progress != progress)
     {
         _progress = progress;
+		[self resetBackgroundImages];
         [self setBackgroundImages];
     }
 }
@@ -125,9 +126,16 @@
 {
     if(self.bounds.size.width != self.lastDrawnSize.width  || self.bounds.size.height != self.lastDrawnSize.height)
     {
+		[self resetBackgroundImages];
         [self setBackgroundImages];
     }
     [super layoutSubviews];
+}
+
+- (void)resetBackgroundImages
+{
+	self.normalStateImage = nil;
+	self.highlightedStateImage = nil;
 }
 
 - (void)setBackgroundImages
@@ -160,7 +168,7 @@
 			 highlightedBgStyle:(UIColor *)highlightedBgStyle
 					 shdowStyle:(NSString *)shadowStyle
 {
-	UIImage *result = selected ? self.selectedStateImage : self.normalStateImage;
+	UIImage *result = selected ? self.highlightedStateImage : self.normalStateImage;
 	
 	if (!result)
 	{
@@ -240,7 +248,7 @@
 		
         if (selected)
 		{
-			self.selectedStateImage = image;
+			self.highlightedStateImage = image;
 		}
 		else
 		{
