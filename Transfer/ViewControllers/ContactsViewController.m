@@ -260,6 +260,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,40,40)];
     [closeButton setImage:[UIImage imageNamed:@"CloseButton"] forState:UIControlStateNormal];
     [closeButton addTarget:self action:@selector(closeModal) forControlEvents:UIControlEventTouchUpInside];
+    closeButton.imageEdgeInsets = UIEdgeInsetsMake(0.0, -20, 0, 0);
     UIBarButtonItem *dismissButton = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
     [controller.navigationItem setLeftBarButtonItem:dismissButton];
     
