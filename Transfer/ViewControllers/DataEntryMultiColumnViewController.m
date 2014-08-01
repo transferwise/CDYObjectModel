@@ -441,12 +441,7 @@
 	{
 		superview = superview.superview;
 	}
-	
-	if ([superview isKindOfClass:[UITableViewCell class]])
-	{
-		return (UITableViewCell*)superview;
-	}
-	
-	return nil;
+    
+    return (UITableViewCell*)superview;
 }
 @end

@@ -17,11 +17,16 @@
 
 @interface MultipleEntryCell : TextEntryCell<UITextFieldDelegate>;
 
+@property (strong, nonatomic) UIView* secondSeparator;
+
 @property (nonatomic, weak) id<MultipleEntryCellDelegate> delegate;
 @property (nonatomic, strong, readonly) UITextField* selectedTextField;
 
 - (void)activate;
 - (BOOL)shouldNavigateAway;
 - (void)navigateAway;
+
+- (void)addDoubleSeparators;
+- (void)removeDoubleSeparators;
 
 @end
