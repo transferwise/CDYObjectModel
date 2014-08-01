@@ -45,12 +45,20 @@
  */
 @property (nonatomic, strong) NSArray *sectionCellsByTableView;
 
+
+// iPad
 /**
- *	set this property to a CGFloat that is the @see tableVies offset from the bottom of the screen.
- *
- * This property defaults to 0
+ *  scrollview for containing tableviews as columns
  */
-@property (nonatomic, assign) CGFloat heightOffset;
+@property (weak, nonatomic) IBOutlet UIScrollView *containerScrollView;
+
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *firstColumnHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnLeftEdgeConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *firstColumnLeftMargin;
 
 /**
  *  convenience method for quickly checking if the viewcontrller has more than on tableview associated with it.
@@ -111,5 +119,15 @@
  *	Call to reaload all tableviews when @see sectionCellsByTableView has been modified
  */
 -(void)reloadTableViews;
+
+/**
+ *  oveeride to add orientation change customisations. 
+ *
+ *  default implementation handles laying out constraints for two columns on iPad.
+ *
+ *  @param orientation target orientation
+ */
+-(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation;
+
 
 @end

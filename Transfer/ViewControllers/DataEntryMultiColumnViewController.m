@@ -20,21 +20,6 @@
 
 @implementation DataEntryMultiColumnViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-	if (self)
-	{
-		[self commonSetup];
-	}
-	return self;
-}
-
-- (void)commonSetup
-{
-	self.heightOffset = 0;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -435,6 +420,40 @@
 	{
 		[tableView reloadData];
 	}
+}
+
+#pragma mark - orientation changes
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self configureForInterfaceOrientation:toInterfaceOrientation];
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    
+}
+
+-(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation
+{
+    
+    //Lots of magic numbers here to match designs. Not sure what to do...
+    if(UIInterfaceOrientationIsPortrait(orientation))
+    {
+        self.firstColumnLeftMargin.constant = 204.0f;
+        
+        self.secondColumnLeftEdgeConstraint.constant = -360;
+        self.secondColumnTopConstraint.constant = self.firstColumnHeightConstraint.constant + 60.0f;
+        
+    }
+    else
+    {
+        self.firstColumnLeftMargin.constant = 100.0f;
+        self.secondColumnLeftEdgeConstraint.constant = 100.0f;
+        self.secondColumnTopConstraint.constant = 17.0f;
+    }
 }
 
 @end

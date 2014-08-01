@@ -53,21 +53,10 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 @property (nonatomic, strong) Recipient *recipient;
 @property (weak, nonatomic) IBOutlet UILabel *headerLabel;
 
-// iPad
-@property (weak, nonatomic) IBOutlet UIScrollView *containerScrollView;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *firstColumnHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnHeightConstraint;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnTopConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnLeftEdgeConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *firstColumnLeftMargin;
+//iPad
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerLeftEdgeConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerRightEdgeConstraint;
-
-
-
 
 @end
 
@@ -136,38 +125,19 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     
 }
 
--(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    [self configureForInterfaceOrientation:toInterfaceOrientation];
-}
-
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-
-}
-
 -(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
-    
+    [super configureForInterfaceOrientation:orientation];
     //Lots of magic numbers here to match designs. Not sure what to do...
     if(UIInterfaceOrientationIsPortrait(orientation))
     {
-        self.firstColumnLeftMargin.constant = 204.0f;
         
-        self.secondColumnLeftEdgeConstraint.constant = -360;
-        self.secondColumnTopConstraint.constant = self.firstColumnHeightConstraint.constant + 60.0f;
         self.headerLeftEdgeConstraint.constant = 104.0f;
         self.headerRightEdgeConstraint.constant = -104.0f;
         
     }
     else
     {
-        self.firstColumnLeftMargin.constant = 100.0f;
-        self.secondColumnLeftEdgeConstraint.constant = 100.0f;
-        self.secondColumnTopConstraint.constant = 17.0f;
-        
         self.headerLeftEdgeConstraint.constant = 0.0f;
         self.headerRightEdgeConstraint.constant = 0.0f;
     }
