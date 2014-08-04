@@ -1,6 +1,7 @@
 "business.profile.address.label" = "Address";
 "business.profile.address.section.title" = "Address";
 "business.profile.city.label" = "City";
+"business.profile.state.label" = "State";
 "business.profile.controller.title" = "Business profile";
 "business.profile.country.label" = "Country";
 "business.profile.description.label" = "Business description";
@@ -52,6 +53,12 @@
 "confirm.payment.reference.label" = "Message or reference";
 "confirm.payment.sender.marker.label" = "Sender (you)";
 "confirm.payment.sender.section.title" = "Sender";
+"confirm.payment.reference.message" = "The reference will not appear on %@'s bank statement. Instead %@ will see \"%@\", TransferWise's trusted local partner in %@. The reference will still be visible in the email sent to %@.";
+"confirm.payment.reference.message.default" = "The reference will not appear on %@'s bank statement. Instead %@ will see the name of TransferWise's trusted local partner in his country. The reference will still be visible in the email sent to %@.";
+"confirm.payment.reference.message.USD" = "The reference will not appear on %@'s bank statement. The reference will still be visible in the email sent to %@.";
+"confirm.payment.reference.message.confirm" = "Ok";
+"confirm.payment.reference.message.cancel" = "Cancel";
+
 
 "contacts.controller.delete.button.title" = "Delete";
 "contacts.controller.delete.confirmation.message" = "Are you sure you wish to remove %@ from your recipients?";
@@ -207,6 +214,7 @@ It can take up to 2 working days.";
 "personal.profile.address.section.title" = "Address";
 "personal.profile.city.label" = "City";
 "personal.profile.confirm.payment.button.title" = "Continue";
+"personal.profile.state.label" = "State";
 "personal.profile.continue.to.recipient.button.title" = "Continue";
 "personal.profile.controller.title" = "Your details";
 "personal.profile.countries.refresh.error.message" = "Could not retrieve data. Please try again later.";
@@ -269,6 +277,8 @@ It can take up to 2 working days.";
 "recipient.controller.validation.error.empty.name" = "Name not entered";
 "recipient.controller.validation.error.field.empty" = "%@ not entered";
 "recipient.controller.validation.error.title" = "Validation error";
+"recipient.controller.validation.error.bic.required" = "BIC is required for transfers to %@";
+"recipient.controller.validation.error.email.format" = "Email is invalid";
 
 "recipient.details.ABA.base" = "ACH / ABA: %@, State:%@";
 "recipient.details.BIC.base" = "BIC: %@";
@@ -363,7 +373,7 @@ This can't be undone.";
 "upload.money.data.error.title" = "Data error";
 "upload.money.done.button.title" = "I made this transfer";
 "upload.money.cancel.button.title" = "Cancel";
-"upload.money.our.address.label" = "Our address: 56 Shoreditch High Street, London E1 6JJ, United Kingdom";
+"upload.money.our.address.label" = "Our address: %@";
 "upload.money.header.label.GBP" = "Connect to your online banking & transfer %@ to Transferwise's UK account below.\nIt's free.";
 "upload.money.header.label.EUR" = "Connect to your online banking or call your bank.\nTransfer %@ to Transferwise's European account.";
 "upload.money.header.label" = "Connect to your online banking or call your bank.\nTransfer %@ to Transferwise's account.";
@@ -534,7 +544,9 @@ We'll send you an email in order to let you choose a new password.";
 "refund.controller.existing.recipients.preload.error.title" = "Can't load contacts";
 
 "network.alert" = "No network";
-
 "unknown.value" = "??";
-
 "contact.detail.send" = "Send money";
+
+"usd.coming.soon" = "Coming soon";
+"usd.not.supported" = "Sending USD abroad will soon be supported in our mobile applications.\n\nIn the mean time, please go to transferwise.com to pay for this transfer.";
+

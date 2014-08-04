@@ -7,6 +7,10 @@ const struct CurrencyAttributes CurrencyAttributes = {
 	.code = @"code",
 	.index = @"index",
 	.name = @"name",
+	.paymentReferenceAllowed = @"paymentReferenceAllowed",
+	.recipientBicRequired = @"recipientBicRequired",
+	.recipientEmailRequired = @"recipientEmailRequired",
+	.referenceMaxLength = @"referenceMaxLength",
 	.symbol = @"symbol",
 };
 
@@ -54,6 +58,26 @@ const struct CurrencyFetchedProperties CurrencyFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"paymentReferenceAllowedValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"paymentReferenceAllowed"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"recipientBicRequiredValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"recipientBicRequired"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"recipientEmailRequiredValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"recipientEmailRequired"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"referenceMaxLengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"referenceMaxLength"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -96,6 +120,110 @@ const struct CurrencyFetchedProperties CurrencyFetchedProperties = {
 
 @dynamic name;
 
+
+
+
+
+
+@dynamic paymentReferenceAllowed;
+
+
+
+- (BOOL)paymentReferenceAllowedValue {
+	NSNumber *result = [self paymentReferenceAllowed];
+	return [result boolValue];
+}
+
+- (void)setPaymentReferenceAllowedValue:(BOOL)value_ {
+	[self setPaymentReferenceAllowed:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitivePaymentReferenceAllowedValue {
+	NSNumber *result = [self primitivePaymentReferenceAllowed];
+	return [result boolValue];
+}
+
+- (void)setPrimitivePaymentReferenceAllowedValue:(BOOL)value_ {
+	[self setPrimitivePaymentReferenceAllowed:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
+@dynamic recipientBicRequired;
+
+
+
+- (BOOL)recipientBicRequiredValue {
+	NSNumber *result = [self recipientBicRequired];
+	return [result boolValue];
+}
+
+- (void)setRecipientBicRequiredValue:(BOOL)value_ {
+	[self setRecipientBicRequired:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveRecipientBicRequiredValue {
+	NSNumber *result = [self primitiveRecipientBicRequired];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveRecipientBicRequiredValue:(BOOL)value_ {
+	[self setPrimitiveRecipientBicRequired:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
+@dynamic recipientEmailRequired;
+
+
+
+- (BOOL)recipientEmailRequiredValue {
+	NSNumber *result = [self recipientEmailRequired];
+	return [result boolValue];
+}
+
+- (void)setRecipientEmailRequiredValue:(BOOL)value_ {
+	[self setRecipientEmailRequired:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveRecipientEmailRequiredValue {
+	NSNumber *result = [self primitiveRecipientEmailRequired];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveRecipientEmailRequiredValue:(BOOL)value_ {
+	[self setPrimitiveRecipientEmailRequired:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
+@dynamic referenceMaxLength;
+
+
+
+- (int16_t)referenceMaxLengthValue {
+	NSNumber *result = [self referenceMaxLength];
+	return [result shortValue];
+}
+
+- (void)setReferenceMaxLengthValue:(int16_t)value_ {
+	[self setReferenceMaxLength:[NSNumber numberWithShort:value_]];
+}
+
+- (int16_t)primitiveReferenceMaxLengthValue {
+	NSNumber *result = [self primitiveReferenceMaxLength];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveReferenceMaxLengthValue:(int16_t)value_ {
+	[self setPrimitiveReferenceMaxLength:[NSNumber numberWithShort:value_]];
+}
 
 
 

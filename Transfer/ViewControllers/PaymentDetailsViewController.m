@@ -15,6 +15,8 @@
 #import "SupportCoordinator.h"
 #import "UINavigationController+StackManipulations.h"
 #import "GoogleAnalytics.h"
+#import "Currency.h"
+#import "Recipient.h"
 
 @interface PaymentDetailsViewController ()
 
@@ -69,6 +71,10 @@
         return;
     } else if ([self.payment moneyTransferred]) {
         [self setTransferredDate:label];
+        if(!self.payment.targetCurrency.paymentReferenceAllowedValue)
+        {
+            [self appendReferenceMessageToLabel:label];
+        }
 
         TableHeaderView *headerView = [TableHeaderView loadInstance];
         [headerView setMessage:[NSString stringWithFormat:NSLocalizedString(@"payment.detail.sent.header.message", nil), self.payment.remoteId]];
@@ -76,7 +82,10 @@
         return;
     } else {
         [super fillDeliveryDetails:label];
-
+        if(!self.payment.targetCurrency.paymentReferenceAllowedValue)
+        {
+            [self appendReferenceMessageToLabel:label];
+        }
         TableHeaderView *headerView = [TableHeaderView loadInstance];
         [headerView setMessage:[NSString stringWithFormat:NSLocalizedString(@"payment.detail.converting.header.message", nil), self.payment.remoteId]];
         [self.tableView setTableHeaderView:headerView];
@@ -96,7 +105,32 @@
     [result appendAttributedString:exchangeRateString];
     [result appendAttributedString:[NSAttributedString attributedStringWithString:@"\n"]];
     [result appendAttributedString:paymentDateString];
+    
+    [label setAttributedText:result];
+}
 
+-(void)appendReferenceMessageToLabel:(OHAttributedLabel*)label
+{
+    NSMutableAttributedString *result = [label.attributedText mutableCopy];
+    
+    NSString* referenceMessage;
+    NSDictionary* messageLookup = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"NoRefCurrencyMessages" ofType:@"plist"]][self.payment.targetCurrency.code];
+    if(messageLookup)
+    {
+        referenceMessage = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.reference.message", nil),self.payment.recipient.name,self.payment.recipient.name,messageLookup[@"partner"],messageLookup[@"location"],self.payment.recipient.name];
+        
+    }
+    else if([self.payment.targetCurrency.code caseInsensitiveCompare:@"USD"] == NSOrderedSame)
+    {
+        referenceMessage = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.reference.message.USD", nil),self.payment.recipient.name,self.payment.recipient.name];
+    }
+    else
+    {
+        referenceMessage = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.reference.message.default", nil),self.payment.recipient.name,self.payment.recipient.name,self.payment.recipient.name];
+    }
+    [result appendAttributedString:[NSAttributedString attributedStringWithString:@"\n\n"]];
+    [result appendAttributedString:[self attributedStringWithBase:referenceMessage markedString:referenceMessage]];
+    
     [label setAttributedText:result];
 }
 

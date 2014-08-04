@@ -85,7 +85,7 @@
     return [self fetchEntityNamed:[TypeFieldValue entityName] withPredicate:predicate];
 }
 
-- (Recipient *)createOrUpdateSettlementRecipientWithData:(NSDictionary *)data {
+- (Recipient *)createOrUpdatePayInMethodRecipientWithData:(NSDictionary *)data {
     Recipient *recipient = [self createOrUpdateRecipientWithData:data];
     [recipient setHiddenValue:YES];
     return recipient;

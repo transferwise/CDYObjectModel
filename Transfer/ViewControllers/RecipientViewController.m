@@ -63,13 +63,12 @@ static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
 static NSUInteger const kRecipientFieldsSection = 2;
 
+
 NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 @interface RecipientViewController () <ABPeoplePickerNavigationControllerDelegate, SuggestionTableDelegate>
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
-
-@property (nonatomic, strong) ButtonCell *importCell;
 
 @property (nonatomic, strong) NSArray *recipientCells;
 @property (nonatomic, strong) RecipientEntrySelectionCell *nameCell;
@@ -136,6 +135,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [weakSelf didSelectRecipient:recipient];
     }];
     
+
     TextEntryCell *emailCell = [self.tableViews[0] dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
     self.emailCell = emailCell;
     [emailCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
@@ -226,7 +226,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         self.addButton.progress = 0.0f;
     }
     
-
     if([self hasMoreThanOneTableView])
     {
         [self setSectionCellsByTableView:@[@[self.recipientCells,self.currencyCells], @[]]];
@@ -240,7 +239,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     
     [self refreshTableViewSizes];
     [self configureForInterfaceOrientation:self.interfaceOrientation];
-    
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
@@ -323,7 +321,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             weakSelf.nameCell.thumbnailImage.image = image;
         }
     }];
-    
 }
 
 - (void)didSelectRecipient:(Recipient *)recipient {
@@ -332,6 +329,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     if (!recipient) {
         [self.nameCell setValue:@""];
+           [self.emailCell setValue:@""];
         [self.nameCell setEditable:YES];
 
         for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
@@ -460,6 +458,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     PendingPayment *payment = self.objectModel.pendingPayment;
 
     if (self.recipient) {
+        self.recipient.email = self.emailCell.value;
         [payment setRecipient:self.recipient];
         [self.objectModel saveContext:self.afterSaveAction];
         return;
@@ -511,6 +510,22 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     if (![name hasValue]) {
         [issues appendIssue:NSLocalizedString(@"recipient.controller.validation.error.empty.name", nil)];
     }
+    
+    NSString *email = self.emailCell.value;
+    if ([email length]>0)
+    {
+        NSError *error = nil;
+        // Sanity check email for the precence of at least an "@" and a "."
+        // [Anything]@[Anything].[Anything]
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^.+@.+\\..+$" options:NSRegularExpressionCaseInsensitive error:&error];
+        
+        NSAssert(regex, @"Failed to create regular expresison");
+        NSRange match = [regex rangeOfFirstMatchInString:email options:NSMatchingReportCompletion range:NSMakeRange(0, [email length])];
+        if (match.location == NSNotFound)
+        {
+            [issues appendIssue:NSLocalizedString(@"recipient.controller.validation.error.email.format", nil)];
+        }
+    }
 
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
         if ([cell isKindOfClass:[TransferTypeSelectionHeader class]]) {
@@ -522,6 +537,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
         NSString *valueIssue = [field hasIssueWithValue:value];
         if (![valueIssue hasValue]) {
+            if([value length] < 1 && self.currency.recipientBicRequiredValue && [field.name caseInsensitiveCompare:@"bic"]== NSOrderedSame)
+            {
+                [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.bic.required", nil),self.currency.code]];
+            }
             continue;
         }
 
@@ -570,6 +589,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     NSUInteger index = [self.tableViews indexOfObject:tableView];
     NSNumber *sectionCode = self.presentedSectionsByTableView[index][(NSUInteger) section];
     switch ([sectionCode integerValue]) {
+
         case kRecipientSection:
             return IPAD?NSLocalizedString(@"recipient.controller.section.title.ipad.recipient", nil):nil;
         case kCurrencySection:
@@ -613,7 +633,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         }
         
         finalSectionCellsByTableView[0] = cells;
-
         [finalPresentedSectionsByTableView addObject:sectionIndexes];
         [finalPresentedSectionsByTableView addObject:@[@(kRecipientFieldsSection)]];
         

@@ -155,14 +155,7 @@ static NSDictionary* statusLookupDictionary;
 }
 
 - (BOOL)multiplePaymentMethods {
-    NSUInteger count = 0;
-    if (self.paymentOptionsValue & PaymentRegular) {
-        count++;
-    }
-    if (self.paymentOptionsValue & PaymentCard) {
-        count++;
-    }
-    return count > 1;
+   return [[self enabledPayInMethods] count] > 0;
 }
 
 static NSCalendar *__gregorian;
@@ -194,16 +187,10 @@ static NSDateFormatter *__shortDateFormatter;
     return __shortDateFormatter;
 }
 
-+ (PaymentMethod)methodsWithData:(NSArray *)methods {
-    PaymentMethod result = PaymentNone;
-    for (NSString *method in methods) {
-        if ([@"REGULAR" isEqualToString:method]) {
-            result = result | PaymentRegular;
-        } else if ([@"CARD" isEqualToString:method]) {
-            result = result | PaymentCard;
-        }
-    }
 
+- (NSOrderedSet*)enabledPayInMethods
+{
+    NSOrderedSet *result = [self.payInMethods filteredOrderedSetUsingPredicate:[NSPredicate predicateWithFormat:@"disabled == false"]];
     return result;
 }
 

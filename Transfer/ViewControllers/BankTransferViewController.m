@@ -30,6 +30,8 @@
 #import "ObjectModel+Payments.h"
 #import "MOMStyle.h"
 #import "CancelHelper.h"
+#import "PayInMethod.h"
+
 
 @interface BankTransferViewController ()
 
@@ -72,14 +74,17 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     [self loadData];
-    
 }
 
 - (void)loadData {
     MCLog(@"loadData");
     
+    
+    NSOrderedSet *payInMethodTypes = [self.payment.enabledPayInMethods valueForKey:@"type"];
+    NSUInteger indexOfPaymentType= [payInMethodTypes indexOfObject:@"REGULAR"];
+    
+    PayInMethod* method = self.payment.enabledPayInMethods[indexOfPaymentType];
     
     //Header
     NSString *exactlyString = NSLocalizedString(@"upload.money.header.label.exactly", @"");
@@ -117,7 +122,7 @@
     
     //Footer
     
-    self.addressLabel.text = NSLocalizedString(@"upload.money.our.address.label", @"");
+    self.addressLabel.text = [NSString stringWithFormat:NSLocalizedString(@"upload.money.our.address.label", @""),method.transferWiseAddress];
     [self.footerView setNeedsLayout];
     [self.footerView layoutIfNeeded];
     height = [self.footerView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
@@ -130,18 +135,17 @@
 
     
     NSMutableArray *presentedCells = [NSMutableArray array];
-
+    
     PlainPresentationCell *toCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
-    [toCell configureWithTitle:[self addColon:NSLocalizedString(@"upload.money.to.title", nil)] text:self.payment.settlementRecipient.name];
+    [toCell configureWithTitle:[self addColon:NSLocalizedString(@"upload.money.to.title", nil)] text:method.recipient.name];
     [presentedCells addObject:toCell];
 
-    RecipientType *type = self.payment.settlementRecipient.type;
-    NSArray *accountCells = [self buildAccountCellForType:type recipient:self.payment.settlementRecipient];
+    RecipientType *type = method.recipient.type;
+    NSArray *accountCells = [self buildAccountCellForType:type recipient:method.recipient];
     [presentedCells addObjectsFromArray:accountCells];
 
-    //TODO jaanus: bank name cell
     PlainPresentationCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
-    [referenceCell configureWithTitle: [self addColon:NSLocalizedString(@"upload.money.reference.title", nil)] text:self.objectModel.currentUser.pReference];
+    [referenceCell configureWithTitle: [self addColon:NSLocalizedString(@"upload.money.reference.title", nil)] text:method.paymentReference];
     [presentedCells addObject:referenceCell];
 
     if ([currencyCode caseInsensitiveCompare:@"EUR"]==NSOrderedSame)

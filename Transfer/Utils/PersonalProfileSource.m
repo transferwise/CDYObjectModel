@@ -22,11 +22,12 @@
 #import "UIView+Loading.h"
 #import "DoublePasswordEntryCell.h"
 #import "DoubleEntryCell.h"
+#import "Country.h"
 
 NSUInteger const kUserButtonSection = 0;
 NSUInteger const kUserPersonalSection = 1;
 
-@interface PersonalProfileSource ()
+@interface PersonalProfileSource ()<CountrySelectionCellDelegate>
 
 @property (nonatomic, strong) DoubleEntryCell *firstLastNameCell;
 @property (nonatomic, strong) TextEntryCell *emailCell;
@@ -36,6 +37,8 @@ NSUInteger const kUserPersonalSection = 1;
 @property (nonatomic, strong) DoubleEntryCell *zipCityCell;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
 @property (nonatomic, strong) DoublePasswordEntryCell *passwordCell;
+@property (nonatomic, strong) TextEntryCell *stateCell;
+
 
 @end
 
@@ -87,6 +90,14 @@ NSUInteger const kUserPersonalSection = 1;
     [secondColumnCells addObject:countryCell];
     [countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
     [countryCell setCellTag:@"countryCode"];
+    
+    TextEntryCell *stateCell = [TextEntryCell loadInstance];
+    [self setStateCell:stateCell];
+    [secondColumnCells addObject:stateCell];
+    [stateCell configureWithTitle:NSLocalizedString(@"personal.profile.state.label", nil) value:@""];
+    [stateCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
+    [stateCell setCellTag:@"state"];
+
 
     TextEntryCell *addressCell = [TextEntryCell loadInstance];
     [self setAddressCell:addressCell];
@@ -103,7 +114,7 @@ NSUInteger const kUserPersonalSection = 1;
 						secondTitle:NSLocalizedString(@"personal.profile.city.label", nil)
 						secondValue:@""];
     [zipCityCell setCellTag:@"zipCity"];
-	
+    
 	TextEntryCell *phoneCell = [TextEntryCell loadInstance];
     [self setPhoneNumberCell:phoneCell];
     [secondColumnCells addObject:phoneCell];
@@ -117,8 +128,8 @@ NSUInteger const kUserPersonalSection = 1;
     [dateOfBirthCell configureWithTitle:NSLocalizedString(@"personal.profile.date.of.birth.label", nil) value:@""];
     [dateOfBirthCell setCellTag:@"dateOfBirth"];
 
-    [self setCells:@[@[firstColumnCells, secondColumnCells]]];
 
+    [self setCells:@[@[firstColumnCells, secondColumnCells]]];
     return self.cells;
 }
 
@@ -138,6 +149,7 @@ NSUInteger const kUserPersonalSection = 1;
         [self.zipCityCell setValue:profile.postCode];
         [self.zipCityCell setSecondValue:profile.city];
         [self.countryCell setValue:profile.countryCode];
+        [self.stateCell setValue:profile.state];
 
         [self.firstLastNameCell setEditable:![profile isFieldReadonly:@"firstName"]];
         [self.firstLastNameCell setSecondEditable:![profile isFieldReadonly:@"lastName"]];
@@ -149,6 +161,8 @@ NSUInteger const kUserPersonalSection = 1;
         [self.zipCityCell setEditable:![profile isFieldReadonly:@"postCode"]];
 		[self.zipCityCell setSecondEditable:![profile isFieldReadonly:@"postCode"]];
         [self.countryCell setEditable:![profile isFieldReadonly:@"countryCode"]];
+        [self.stateCell setEditable:![profile isFieldReadonly:@"state"]];
+        [self includeStateCell:[profile.countryCode caseInsensitiveCompare:@"usa"]==NSOrderedSame];
     });
 }
 
@@ -189,6 +203,8 @@ NSUInteger const kUserPersonalSection = 1;
 		{
             [self.countryCell setTwoLetterCountryCode:address.countryCode];
         }
+        [self.stateCell setValueWhenEditable:address.state];
+        [self includeStateCell:[self.countryCell.value caseInsensitiveCompare:@"usa"]==NSOrderedSame];
     });
 }
 
@@ -222,6 +238,7 @@ NSUInteger const kUserPersonalSection = 1;
     [profile setCity:self.zipCityCell.secondValue];
     [profile setCountryCode:self.countryCell.value];
     [profile setDateOfBirth:[self.dateOfBirthCell value]];
+    [profile setState:[self.stateCell value]];
 
     [self.objectModel saveContext];
 
@@ -255,6 +272,52 @@ NSUInteger const kUserPersonalSection = 1;
     [operation setCity:[self.zipCityCell secondValue]];
     [operation setCountryCode:[self.countryCell value]];
     [operation setDateOfBirth:[self.dateOfBirthCell value]];
+    [operation setState:[self.stateCell value]];
+}
+
+-(void)includeStateCell:(BOOL)shouldInclude
+{
+    if (1 > [self.cells count])
+    {
+        return;
+    }
+    
+    UITableView* tableView;
+    for(UITableView *table in self.tableViews)
+    {
+        if ([table indexPathForCell:self.countryCell])
+        {
+            tableView = table;
+            break;
+        }
+    }
+    
+    NSMutableArray* addressFields = self.cells[1];
+    if(shouldInclude && ![addressFields containsObject:self.stateCell])
+    {
+        [addressFields addObject:self.stateCell];
+        NSIndexPath *indexPath = [tableView indexPathForCell:self.countryCell];
+        if (indexPath)
+        {
+            indexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
+            [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+        }
+        
+    }
+    else if(!shouldInclude && [addressFields containsObject:self.stateCell])
+    {
+        [addressFields removeObject:self.stateCell];
+        NSIndexPath *indexPath = [tableView indexPathForCell:self.stateCell];
+        if (indexPath)
+        {
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+        }
+    }
+}
+
+-(void)countrySelectionCell:(CountrySelectionCell *)cell selectedCountry:(Country *)country
+{
+    [self includeStateCell:([country.iso3Code caseInsensitiveCompare:@"usa"]==NSOrderedSame)];
 }
 
 - (void)setUpTableView:(UITableView *)tableView

@@ -30,6 +30,10 @@
 #import "GoogleAnalytics.h"
 #import "NSError+TRWErrors.h"
 #import "AnalyticsCoordinator.h"
+#import "NSMutableString+Issues.h"
+#import "Currency.h"
+
+
 
 static NSUInteger const kSenderSection = 1;
 
@@ -59,7 +63,8 @@ static NSUInteger const kSenderSection = 1;
 
 @implementation ConfirmPaymentViewController
 
-- (id)init {
+- (id)init
+{
     self = [super initWithNibName:@"ConfirmPaymentViewController" bundle:nil];
     if (self) {
         // Custom initialization
@@ -67,7 +72,8 @@ static NSUInteger const kSenderSection = 1;
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     [self.tableView setBackgroundView:nil];
@@ -78,7 +84,8 @@ static NSUInteger const kSenderSection = 1;
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
 }
 
-- (void)createContent {
+- (void)createContent
+{
     NSMutableArray *transferCells = [NSMutableArray array];
     ConfirmPaymentCell *yourDepositCell = [self.tableView dequeueReusableCellWithIdentifier:TWConfirmPaymentCellIdentifier];
     [self setYourDepositCell:yourDepositCell];
@@ -103,19 +110,22 @@ static NSUInteger const kSenderSection = 1;
     [self setReceiverFieldCells:fieldCells];
     [receiverCells addObjectsFromArray:fieldCells];
 
-    TextEntryCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
-    [self setReferenceCell:referenceCell];
-    [referenceCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
-    [receiverCells addObject:referenceCell];
-
     Payment *payment = self.payment;
-    if (![payment.recipient.type isEmailType]) {
+    if (payment.targetCurrency.recipientEmailRequiredValue && [payment.recipient.email length] == 0)
+    {
         TextEntryCell *receiverEmailCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
         [self setReceiverEmailCell:receiverEmailCell];
         [receiverEmailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
         [receiverEmailCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
         [receiverCells addObject:receiverEmailCell];
     }
+    
+    TextEntryCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+	referenceCell.maxValueLength = [self getReferenceMaxLength:self.payment];
+	referenceCell.validateAlphaNumeric = YES;
+	[self setReferenceCell:referenceCell];
+    [referenceCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
+    [receiverCells addObject:referenceCell];
 
     NSMutableArray *presented = [NSMutableArray array];
     [presented addObject:transferCells];
@@ -146,7 +156,8 @@ static NSUInteger const kSenderSection = 1;
     [self.footerButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
 }
 
-- (NSArray *)buildFieldCells {
+- (NSArray *)buildFieldCells
+{
     Recipient *recipient = self.payment.recipient;
     NSMutableArray *cells = [NSMutableArray array];
     for (TypeFieldValue *value in recipient.fieldValues) {
@@ -158,12 +169,14 @@ static NSUInteger const kSenderSection = 1;
     return [NSArray arrayWithArray:cells];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
 
     [self.navigationItem setTitle:NSLocalizedString(@"confirm.payment.controller.title", nil)];
@@ -175,7 +188,8 @@ static NSUInteger const kSenderSection = 1;
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 }
 
-- (void)fillDataCells {
+- (void)fillDataCells
+{
     Payment *payment = self.payment;
     
     [self.yourDepositCell.textLabel setText:NSLocalizedString(@"confirm.payment.deposit.title.label", nil)];
@@ -186,19 +200,28 @@ static NSUInteger const kSenderSection = 1;
 
     [self.estimatedExchangeRateLabel setAutomaticallyAddLinksForType:0];
     [self fillDeliveryDetails:self.estimatedExchangeRateLabel];
+   
+    //Resize header to fit text
+    CGRect textFrame = self.estimatedExchangeRateLabel.frame;
+    CGFloat originalHeight = textFrame.size.height;
+    CGRect attributedStringBounds = [self.estimatedExchangeRateLabel.attributedText boundingRectWithSize:CGSizeMake(textFrame.size.width, 10000) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+    textFrame.size.height = MAX(attributedStringBounds.size.height + 8.0f,originalHeight);
+    CGRect headerFrame = self.headerView.frame;
+    headerFrame.size.height += (textFrame.size.height - originalHeight);
+    self.headerView.frame = headerFrame;
+    self.estimatedExchangeRateLabel.frame = textFrame;
 
     [self.senderNameCell.detailTextLabel setText:NSLocalizedString(@"confirm.payment.sender.marker.label", nil)];
-
-    if ([payment businessProfileUsed]) {
-        [self.senderNameCell.textLabel setText:payment.user.businessProfile.name];
-    } else {
-        [self.senderNameCell.imageView setImage:[UIImage imageNamed:@"ProfileIcon.png"]];
-        [self.senderNameCell.textLabel setText:[payment.user.personalProfile fullName]];
+	[self.senderNameCell.textLabel setText:[self getSenderName:payment]];
+	
+    if (![payment businessProfileUsed])
+	{
+		[self.senderNameCell.imageView setImage:[UIImage imageNamed:@"ProfileIcon.png"]];
     }
 
     [self.receiverNameCell.textLabel setText:[payment.recipient name]];
     [self.receiverNameCell.detailTextLabel setText:NSLocalizedString(@"confirm.payment.recipient.marker.label", nil)];
-
+    
     [self.receiverEmailCell setEditable:YES];
     [self.receiverEmailCell configureWithTitle:NSLocalizedString(@"confirm.payment.email.label", nil) value:[payment.recipient email]];
 
@@ -207,7 +230,30 @@ static NSUInteger const kSenderSection = 1;
 	[self.referenceCell.entryField setAutocorrectionType:UITextAutocorrectionTypeDefault];
 }
 
-- (void)fillDeliveryDetails:(OHAttributedLabel *)label {
+- (NSString *)getSenderName:(Payment *)payment
+{
+	if ([payment businessProfileUsed])
+	{
+        return payment.user.businessProfile.name;
+    }
+	else
+	{
+        return [payment.user.personalProfile fullName];
+    }
+}
+
+- (NSInteger)getReferenceMaxLength:(Payment *)payment
+{
+	NSInteger maxLength = self.payment.targetCurrency.referenceMaxLengthValue;
+	
+	//15 is the current minimum maxLength
+	//no currency is without maxLength from API
+	//this is for cases when currencies have not been updated.
+	return maxLength == 0 ? 15 : maxLength;
+}
+
+- (void)fillDeliveryDetails:(OHAttributedLabel *)label
+{
     NSString *rateString = [self.payment rateString];
     NSString *messageString = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.estimated.exchange.rate.message", nil), rateString];
     NSAttributedString *exchangeRateString = [self attributedStringWithBase:messageString markedString:rateString];
@@ -225,19 +271,55 @@ static NSUInteger const kSenderSection = 1;
 }
 
 - (IBAction)footerButtonPressed:(id)sender {
+
+    PendingPayment *payment = [self.objectModel pendingPayment];
+    if(payment.targetCurrency.paymentReferenceAllowedValue)
+    {
+        [self sendForValidation];
+    }
+    else
+    {
+        NSString* message;
+        NSDictionary* messageLookup = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"NoRefCurrencyMessages" ofType:@"plist"]][payment.targetCurrency.code];
+        if(messageLookup)
+        {
+            message = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.reference.message", nil),payment.recipient.name,payment.recipient.name,messageLookup[@"partner"],messageLookup[@"location"],payment.recipient.name];
+        
+        }
+        else if([payment.targetCurrency.code caseInsensitiveCompare:@"USD"] == NSOrderedSame)
+        {
+            message = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.reference.message.USD", nil),payment.recipient.name,payment.recipient.name];
+        }
+        else
+        {
+            message = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.reference.message.default", nil),payment.recipient.name,payment.recipient.name,payment.recipient.name];
+        }
+        
+         TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"",nil) message:message];
+        [alertView setLeftButtonTitle:NSLocalizedString(@"confirm.payment.reference.message.confirm", nil) rightButtonTitle:NSLocalizedString(@"confirm.payment.reference.message.cancel", nil)];
+        [alertView setLeftButtonAction:^{
+            [self sendForValidation];
+        }];
+        [alertView show];
+    }
+}
+
+-(void)sendForValidation
+{
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"confirm.payment.creating.message", nil)];
-
+    
     PendingPayment *input = [self.objectModel pendingPayment];
-
+    
     NSString *reference = [self.referenceCell value];
+	
     [input setReference:reference];
-
-    NSString *email = [self.receiverEmailCell value];
+    
+    NSString *email = self.receiverEmailCell?[self.receiverEmailCell value]:self.payment.recipient.email;
     if ([email hasValue]) {
         [input setRecipientEmail:email];
     }
-
+    
     [self.paymentFlow validatePayment:input.objectID successBlock:^{
         [hud hide];
     } errorHandler:^(NSError *error) {
@@ -248,10 +330,11 @@ static NSUInteger const kSenderSection = 1;
             [alertView show];
         }
     }];
+
 }
 
 - (IBAction)contactSupportPressed {
-
+	
 }
 
 - (NSAttributedString *)attributedStringWithBase:(NSString *)baseString markedString:(NSString *)marked {
@@ -264,10 +347,14 @@ static NSUInteger const kSenderSection = 1;
 
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:baseString];
 
-    OHParagraphStyle *paragraphStyle = [OHParagraphStyle defaultParagraphStyle];
-    paragraphStyle.textAlignment = kCTTextAlignmentCenter;
-    paragraphStyle.lineBreakMode = kCTLineBreakByWordWrapping;
-    [attributedString setParagraphStyle:paragraphStyle];
+    NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    [attributedString addAttribute:NSParagraphStyleAttributeName
+                 value:paragraphStyle
+                 range:NSMakeRange(0, baseString.length)];
+    
     [attributedString setFont:[UIFont systemFontOfSize:12]];
     [attributedString setFont:[UIFont boldSystemFontOfSize:12] range:rateRange];
     [attributedString setTextColor:[UIColor blackColor]];
@@ -275,19 +362,21 @@ static NSUInteger const kSenderSection = 1;
 }
 
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if(section == kSenderSection) {
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if(section == kSenderSection)
+	{
         return _headerView;
     }
     return [super tableView:tableView viewForHeaderInSection:section];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if(section == kSenderSection) {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if(section == kSenderSection)
+	{
         return _headerView.frame.size.height;
     }
     return [super tableView:tableView heightForHeaderInSection:section];
 }
-
-
 @end
