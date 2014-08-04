@@ -92,7 +92,7 @@
                 <constraint firstItem="jg9-Tu-Pay" firstAttribute="top" secondItem="HZy-nt-qaY" secondAttribute="top" id="kTI-yh-MCY"/>
                 <constraint firstItem="2Te-nw-lEj" firstAttribute="top" secondItem="WE4-IL-T3h" secondAttribute="bottom" id="kaz-lH-eWO"/>
                 <constraint firstItem="jg9-Tu-Pay" firstAttribute="leading" secondItem="HZy-nt-qaY" secondAttribute="leading" id="kwn-cP-jST"/>
-                <constraint firstItem="Jjs-hI-QDY" firstAttribute="top" secondItem="HZy-nt-qaY" secondAttribute="top" constant="50" id="sRn-ei-vDK"/>
+                <constraint firstItem="Jjs-hI-QDY" firstAttribute="top" secondItem="jg9-Tu-Pay" secondAttribute="bottom" id="nQU-Uc-H8L"/>
                 <constraint firstAttribute="trailing" secondItem="WE4-IL-T3h" secondAttribute="trailing" id="wvC-0l-g6b"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

@@ -23,6 +23,7 @@
 #import "DoublePasswordEntryCell.h"
 #import "DoubleEntryCell.h"
 #import "Country.h"
+#import "SwitchCell.h"
 
 NSUInteger const kUserButtonSection = 0;
 NSUInteger const kUserPersonalSection = 1;
@@ -39,7 +40,7 @@ NSUInteger const kUserPersonalSection = 1;
 @property (nonatomic, strong) DoublePasswordEntryCell *passwordCell;
 @property (nonatomic, strong) TextEntryCell *stateCell;
 @property (nonatomic, strong) NSArray *loginCells;
-
+@property (nonatomic, strong) SwitchCell *sendAsBusinessCell;
 
 @end
 
@@ -61,6 +62,12 @@ NSUInteger const kUserPersonalSection = 1;
 
     NSMutableArray *firstColumnCells = [NSMutableArray array];
 	NSMutableArray *passwordFirstColumn = [NSMutableArray array];
+	
+	SwitchCell *sendAsBusinessCell = [SwitchCell loadInstance];
+	[self setSendAsBusinessCell:sendAsBusinessCell];
+	[firstColumnCells addObject:sendAsBusinessCell];
+	[passwordFirstColumn addObject:sendAsBusinessCell];
+	[sendAsBusinessCell.titleLabel setText:NSLocalizedString(@"profile.selection.text.business.profile", nil)];
 	
 	TextEntryCell *emailCell = [TextEntryCell loadInstance];
     [self setEmailCell:emailCell];

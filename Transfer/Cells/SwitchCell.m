@@ -7,25 +7,31 @@
 //
 
 #import "SwitchCell.h"
+#import "UIColor+MOMStyle.h"
+
+@interface SwitchCell ()
+
+@property (strong, nonatomic) IBOutlet UISwitch *toggleSwitch;
+
+@end
 
 @implementation SwitchCell
 
 NSString *const TWSwitchCellIdentifier = @"TWSwitchCell";
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+	[self.toggleSwitch setOnTintColor:[UIColor colorFromStyle:@"TWElectricBlue"]];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+- (BOOL)value
 {
-    [super setSelected:selected animated:animated];
+	return self.toggleSwitch.selected;
+}
 
-    // Configure the view for the selected state
+- (void)setValue:(BOOL)value
+{
+	self.toggleSwitch.selected = value;
 }
 
 @end

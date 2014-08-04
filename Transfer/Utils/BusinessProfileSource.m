@@ -40,11 +40,13 @@ static NSUInteger const kDetailsSection = 1;
 
 @implementation BusinessProfileSource
 
-- (NSString *)editViewTitle {
+- (NSString *)editViewTitle
+{
     return NSLocalizedString(@"business.profile.controller.title", nil);
 }
 
-- (NSArray *)presentedCells {
+- (NSArray *)presentedCells
+{
     if (self.cells)
 	{
         return self.cells;

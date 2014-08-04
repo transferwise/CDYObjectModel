@@ -250,7 +250,7 @@ It can take up to 2 working days.";
 "profile.controller.title" = "Profile";
 "profile.controller.tabbar.title" = "Profile";
 "profile.selection.text.base" = "Or %@";
-"profile.selection.text.business.profile" = "Send as business";
+"profile.selection.text.business.profile" = "Send as a business";
 "profile.selection.text.personal.profile" = "Send as me";
 "profile.dob.day" = "DD";
 "profile.dob.month" = "MM";
