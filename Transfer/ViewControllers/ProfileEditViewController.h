@@ -22,6 +22,5 @@
 - (id)initWithSource:(ProfileSource *)source quickValidation:(QuickProfileValidationOperation *)quickValidation;
 
 - (void)validateProfile;
-- (void)setPresentProfileSource:(ProfileSource *)source reloadView:(BOOL)reload;
 
 @end

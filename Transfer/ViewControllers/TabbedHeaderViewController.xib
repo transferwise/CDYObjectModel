@@ -11,7 +11,6 @@
                 <outlet property="containerView" destination="WE4-IL-T3h" id="9NM-eL-Lkk"/>
                 <outlet property="headerHeight" destination="NtA-7p-75U" id="NTF-BD-4X6"/>
                 <outlet property="tabView" destination="x7i-Zf-rY6" id="GCY-R0-DNl"/>
-                <outlet property="tabViewHeightConstraint" destination="UdO-so-iu2" id="m9K-3H-s0J"/>
                 <outlet property="view" destination="HZy-nt-qaY" id="zed-WI-vUS"/>
             </connections>
         </placeholder>
@@ -28,9 +27,6 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="50" id="UdO-so-iu2"/>
-                            </constraints>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="KyV-5d-4Qs"/>
                             </connections>
@@ -38,6 +34,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="x7i-Zf-rY6" firstAttribute="top" secondItem="jg9-Tu-Pay" secondAttribute="top" id="59D-IJ-UPE"/>
                         <constraint firstAttribute="height" constant="50" id="NtA-7p-75U"/>
                         <constraint firstAttribute="trailing" secondItem="x7i-Zf-rY6" secondAttribute="trailing" id="cpI-Qy-qy4"/>
                         <constraint firstItem="x7i-Zf-rY6" firstAttribute="leading" secondItem="jg9-Tu-Pay" secondAttribute="leading" id="eUD-wc-fg5"/>
@@ -84,9 +81,9 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="WE4-IL-T3h" firstAttribute="top" secondItem="HZy-nt-qaY" secondAttribute="top" constant="50" id="0tX-Bh-Fad"/>
                 <constraint firstItem="Jjs-hI-QDY" firstAttribute="leading" secondItem="HZy-nt-qaY" secondAttribute="leading" id="6yb-as-huh"/>
                 <constraint firstItem="2Te-nw-lEj" firstAttribute="leading" secondItem="HZy-nt-qaY" secondAttribute="leading" id="8KB-8O-noA"/>
+                <constraint firstItem="WE4-IL-T3h" firstAttribute="top" secondItem="jg9-Tu-Pay" secondAttribute="bottom" id="9gz-mn-RPX"/>
                 <constraint firstAttribute="trailing" secondItem="jg9-Tu-Pay" secondAttribute="trailing" id="G27-jI-ZMw"/>
                 <constraint firstItem="WE4-IL-T3h" firstAttribute="leading" secondItem="HZy-nt-qaY" secondAttribute="leading" id="Mje-OS-iip"/>
                 <constraint firstAttribute="trailing" secondItem="Jjs-hI-QDY" secondAttribute="trailing" id="MmI-Sp-6od"/>
