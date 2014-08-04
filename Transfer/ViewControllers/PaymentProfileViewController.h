@@ -12,7 +12,6 @@
 @interface PaymentProfileViewController : TabbedHeaderViewController
 
 @property (nonatomic) BOOL allowProfileSwitch;
-@property (nonatomic) BOOL isLoggedIn;
 @property (nonatomic, strong) ObjectModel* objectModel;
 @property (nonatomic, strong) NSString* buttonTitle;
 @property (nonatomic, strong) id profileValidation;

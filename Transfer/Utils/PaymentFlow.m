@@ -74,7 +74,6 @@
 	
     [controller setObjectModel:self.objectModel];
     [controller setAllowProfileSwitch:allowProfileSwitch];
-	[controller setIsLoggedIn:[Credentials userLoggedIn]];
 	
     if (self.objectModel.pendingPayment.recipient)
 	{
@@ -125,7 +124,8 @@
     [operation execute];
 }
 
-- (BOOL)personalProfileFilled {
+- (BOOL)personalProfileFilled
+{
     return [self.objectModel.currentUser personalProfileFilled];
 }
 
@@ -150,6 +150,13 @@
             }
 
             [weakSelf verifyEmail:self.objectModel.currentUser.email withHandler:handler];
+			
+			PersonalProfile *personalProfile = (PersonalProfile *) [weakSelf.objectModel.managedObjectContext objectWithID:profile];
+			
+			if (personalProfile.sendAsBusinessValue)
+			{
+				
+			}
         });
     }];
 
@@ -208,6 +215,24 @@
             [self presentPersonalProfileEntry:YES];
         }
     }];
+}
+
+- (void)presentBusinessDetailsScreen
+{
+	dispatch_async(dispatch_get_main_queue(), ^{
+        MCLog(@"presentPaymentConfirmation");
+        ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
+        if ([Credentials userLoggedIn]) {
+            [controller setReportingType:ConfirmPaymentReportingLoggedIn];
+        } else {
+            [controller setReportingType:ConfirmPaymentReportingNotLoggedIn];
+        }
+        [controller setObjectModel:self.objectModel];
+        [controller setPayment:[self.objectModel pendingPayment]];
+        [controller setFooterButtonTitle:NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
+        [controller setPaymentFlow:self];
+        [self.navigationController pushViewController:controller animated:YES];
+    });
 }
 
 - (void)presentPaymentConfirmation {

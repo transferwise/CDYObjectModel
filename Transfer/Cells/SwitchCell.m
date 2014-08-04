@@ -26,12 +26,12 @@ NSString *const TWSwitchCellIdentifier = @"TWSwitchCell";
 
 - (BOOL)value
 {
-	return self.toggleSwitch.selected;
+	return self.toggleSwitch.on;
 }
 
 - (void)setValue:(BOOL)value
 {
-	self.toggleSwitch.selected = value;
+	self.toggleSwitch.on = value;
 }
 
 @end

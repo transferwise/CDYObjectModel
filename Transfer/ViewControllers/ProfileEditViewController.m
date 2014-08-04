@@ -25,6 +25,7 @@
 #import "GoogleAnalytics.h"
 #import "CountrySuggestionCellProvider.h"
 #import "Country.h"
+#import "Credentials.h"
 
 static NSUInteger const kButtonSection = 0;
 
@@ -68,7 +69,8 @@ static NSUInteger const kButtonSection = 0;
 
 - (void)createPresentationCells
 {
-    NSArray *presented = [self.profileSource presentedCells];
+    NSArray *presented = [self.profileSource presentedCells:![Credentials userLoggedIn]
+						  && self.allowProfileSwitch];
 
     CountrySelectionCell *countryCell = nil;
 	for (NSArray* table in presented)
@@ -228,16 +230,8 @@ static NSUInteger const kButtonSection = 0;
 		
         if (error)
 		{
-			if (false)
-			{
-				self.isExistingEmail = YES;
-				[self showAsLogin];
-			}
-			else
-			{
-				TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"personal.profile.verify.error.title", nil) error:error];
-				[alertView show];
-			}
+			TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"personal.profile.verify.error.title", nil) error:error];
+			[alertView show];
         }
     }];
 }

@@ -26,7 +26,7 @@
 static NSUInteger const kButtonSection = 0;
 static NSUInteger const kDetailsSection = 1;
 
-@interface BusinessProfileSource ()<CountrySelectionCellDelegate>
+@interface BusinessProfileSource ()
 
 @property (nonatomic, strong) TextEntryCell *businessNameCell;
 @property (nonatomic, strong) TextEntryCell *registrationNumberCell;
@@ -45,7 +45,7 @@ static NSUInteger const kDetailsSection = 1;
     return NSLocalizedString(@"business.profile.controller.title", nil);
 }
 
-- (NSArray *)presentedCells
+- (NSArray *)presentedCells:(BOOL)allowProfileSwitch
 {
     if (self.cells)
 	{

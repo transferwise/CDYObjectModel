@@ -105,9 +105,12 @@
 	{
 		for (NSArray *sectionCells in table)
 		{
-			for (TextEntryCell *cell in sectionCells)
+			for (UITableViewCell *cell in sectionCells)
 			{
-				[cell markIssue:@""];
+				if ([cell isKindOfClass:[TextEntryCell class]])
+				{
+					[(TextEntryCell *)cell markIssue:@""];
+				}
 			}
 		}
 	}
@@ -119,11 +122,16 @@
 	{
 		for (NSArray *sectionCells in table)
 		{
-			for (TextEntryCell *cell in sectionCells)
+			for (UITableViewCell *cell in sectionCells)
 			{
-				if ([cell.cellTag isEqualToString:tag])
+				if ([cell isKindOfClass:[TextEntryCell class]])
 				{
-					return cell;
+					TextEntryCell* entryCell = (TextEntryCell *)cell;
+					
+					if ([entryCell.cellTag isEqualToString:tag])
+					{
+						return entryCell;
+					}
 				}
 			}
 		}

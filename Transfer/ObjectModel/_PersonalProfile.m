@@ -13,6 +13,7 @@ const struct PersonalProfileAttributes PersonalProfileAttributes = {
 	.phoneNumber = @"phoneNumber",
 	.postCode = @"postCode",
 	.readonlyFields = @"readonlyFields",
+	.sendAsBusiness = @"sendAsBusiness",
 	.state = @"state",
 };
 
@@ -49,6 +50,11 @@ const struct PersonalProfileFetchedProperties PersonalProfileFetchedProperties =
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"sendAsBusinessValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"sendAsBusiness"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -114,6 +120,32 @@ const struct PersonalProfileFetchedProperties PersonalProfileFetchedProperties =
 
 @dynamic readonlyFields;
 
+
+
+
+
+
+@dynamic sendAsBusiness;
+
+
+
+- (BOOL)sendAsBusinessValue {
+	NSNumber *result = [self sendAsBusiness];
+	return [result boolValue];
+}
+
+- (void)setSendAsBusinessValue:(BOOL)value_ {
+	[self setSendAsBusiness:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveSendAsBusinessValue {
+	NSNumber *result = [self primitiveSendAsBusiness];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveSendAsBusinessValue:(BOOL)value_ {
+	[self setPrimitiveSendAsBusiness:[NSNumber numberWithBool:value_]];
+}
 
 
 
