@@ -326,14 +326,6 @@
     
 }
 
--(void)reloadSeparators
-{
-    for(UITableView* tableView in self.tableViews)
-    {
-        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    }
-}
 
 -(BOOL)hasMoreThanOneTableView
 {
