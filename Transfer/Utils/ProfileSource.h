@@ -19,7 +19,7 @@ typedef void (^ProfileActionBlock)(NSError *error);
 @property (nonatomic, strong) NSArray *tableViews;
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, strong) NSArray *cells;
-@property (nonatomic, strong) NSArray *loginCells;
+
 
 - (NSArray *)presentedCells;
 - (NSArray *)presentedLoginCells;

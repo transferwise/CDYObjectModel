@@ -36,6 +36,7 @@ NSUInteger const kUserPersonalSection = 1;
 @property (nonatomic, strong) DoubleEntryCell *zipCityCell;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
 @property (nonatomic, strong) DoublePasswordEntryCell *passwordCell;
+@property (nonatomic, strong) NSArray *loginCells;
 
 @end
 
@@ -161,46 +162,6 @@ NSUInteger const kUserPersonalSection = 1;
         [self.zipCityCell setEditable:![profile isFieldReadonly:@"postCode"]];
 		[self.zipCityCell setSecondEditable:![profile isFieldReadonly:@"postCode"]];
         [self.countryCell setEditable:![profile isFieldReadonly:@"countryCode"]];
-    });
-}
-
-- (void)loadDataFromProfile:(PhoneBookProfile *)profile
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        MCLog(@"Did load:%@", profile);
-        PersonalProfile *personal = self.objectModel.currentUser.personalProfile;
-
-		if (![personal isFieldReadonly:@"firstName"])
-		{
-			[self.firstLastNameCell setValue:profile.firstName];
-		}
-		if (![personal isFieldReadonly:@"lastName"])
-		{
-			[self.firstLastNameCell setSecondValue:profile.lastName];
-		}
-		
-        [self.phoneNumberCell setValueWhenEditable:profile.phone];
-        if (![personal isFieldReadonly:@"dateOfBirth"]) {
-            [self.dateOfBirthCell setDateValue:profile.dateOfBirth];
-        }
-
-        [self.emailCell setValueWhenEditable:profile.email];
-
-        PhoneBookAddress *address = profile.address;
-        [self.addressCell setValueWhenEditable:address.street];
-		
-		if (![personal isFieldReadonly:@"city"])
-		{
-			[self.zipCityCell setValue:address.zipCode];
-		}
-		if (![personal isFieldReadonly:@"postCode"])
-		{
-			[self.zipCityCell setSecondValue:address.city];
-		}
-        if (![personal isFieldReadonly:@"countryCode"])
-		{
-            [self.countryCell setTwoLetterCountryCode:address.countryCode];
-        }
     });
 }
 
