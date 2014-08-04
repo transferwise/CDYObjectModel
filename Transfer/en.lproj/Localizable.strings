@@ -20,6 +20,8 @@
 "business.profile.validation.error.message" = "Please check that all the fields are filled in.";
 "business.profile.validation.error.title" = "Check your details";
 "business.profile.password.lable" = "Password";
+"business.profile.confirm.payment.button.title" = "Continue";
+"business.profile.controller.title" = "Business details";
 
 "button.title.back" = "Back";
 "button.title.cancel" = "Cancel";

@@ -287,6 +287,10 @@
 		4723EA341975644A00B4345F /* RedRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA321975644A00B4345F /* RedRoundedButton.m */; };
 		4723EA3719756A9800B4345F /* RoundedButtonWithInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */; };
 		4723EA3819756A9800B4345F /* RoundedButtonWithInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */; };
+		472D5642198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */; };
+		472D5643198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */; };
+		472D5646198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5645198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m */; };
+		472D5647198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5645198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m */; };
 		47343ACE1977E093009D9C3A /* RecipientsFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47343ACD1977E093009D9C3A /* RecipientsFooterView.m */; };
 		47343ACF1977E093009D9C3A /* RecipientsFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47343ACD1977E093009D9C3A /* RecipientsFooterView.m */; };
 		47343AD11977E0B1009D9C3A /* RecipientsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47343AD01977E0B1009D9C3A /* RecipientsFooterView.xib */; };
@@ -1041,6 +1045,10 @@
 		4723EA321975644A00B4345F /* RedRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RedRoundedButton.m; path = Views/RedRoundedButton.m; sourceTree = "<group>"; };
 		4723EA3519756A9800B4345F /* RoundedButtonWithInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundedButtonWithInsets.h; path = Views/RoundedButtonWithInsets.h; sourceTree = "<group>"; };
 		4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoundedButtonWithInsets.m; path = Views/RoundedButtonWithInsets.m; sourceTree = "<group>"; };
+		472D5640198FE98500257BB8 /* PersonalPaymentProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalPaymentProfileViewController.h; sourceTree = "<group>"; };
+		472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalPaymentProfileViewController.m; sourceTree = "<group>"; };
+		472D5644198FEBEE00257BB8 /* BusinessPaymentProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessPaymentProfileViewController.h; sourceTree = "<group>"; };
+		472D5645198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessPaymentProfileViewController.m; sourceTree = "<group>"; };
 		47343ACC1977E093009D9C3A /* RecipientsFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientsFooterView.h; sourceTree = "<group>"; };
 		47343ACD1977E093009D9C3A /* RecipientsFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientsFooterView.m; sourceTree = "<group>"; };
 		47343AD01977E0B1009D9C3A /* RecipientsFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientsFooterView.xib; sourceTree = "<group>"; };
@@ -2318,6 +2326,8 @@
 				BB29BD46173CD2FF0016A6E9 /* BankTransferViewController.m */,
 				BB29BD48173CD30C0016A6E9 /* BankTransferViewController.xib */,
 				38C7B29F19756A9C004324E8 /* BankTransferViewController~ipad.xib */,
+				472D5644198FEBEE00257BB8 /* BusinessPaymentProfileViewController.h */,
+				472D5645198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m */,
 				EA0450C617EC3544008921DA /* BusinessProfileIdentificationViewController.h */,
 				EA0450C717EC3544008921DA /* BusinessProfileIdentificationViewController.m */,
 				EA0450C817EC3544008921DA /* BusinessProfileIdentificationViewController.xib */,
@@ -2373,6 +2383,8 @@
 				EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */,
 				EA92D97D176AF1200078D0C4 /* PaymentProfileViewController.h */,
 				EA92D97E176AF1200078D0C4 /* PaymentProfileViewController.m */,
+				472D5640198FE98500257BB8 /* PersonalPaymentProfileViewController.h */,
+				472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */,
 				EAD39682171BD5B000F6D011 /* PaymentViewController.h */,
 				EAD39683171BD5B000F6D011 /* PaymentViewController.m */,
 				EAD39684171BD5B000F6D011 /* PaymentViewController.xib */,
@@ -3096,6 +3108,7 @@
 				EA31A14217DDB29B00F937F7 /* SettingsTitleCell.m in Sources */,
 				47AC3F921987AFAC005491C6 /* SuggestionCellProvider.m in Sources */,
 				EA31A14317DDB29B00F937F7 /* MoneyCalculator.m in Sources */,
+				472D5647198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */,
 				EA31A14417DDB29B00F937F7 /* TransferCalculationsOperation.m in Sources */,
 				380021C9192CC531009B1D53 /* MOMBaseStyle.m in Sources */,
 				EA31A14517DDB29B00F937F7 /* CalculationResult.m in Sources */,
@@ -3221,6 +3234,7 @@
 				EA31A18417DDB29B00F937F7 /* BusinessProfileSource.m in Sources */,
 				4723EA161973F32400B4345F /* ImageColoredButton.m in Sources */,
 				EA31A18517DDB29B00F937F7 /* BusinessProfileCommitter.m in Sources */,
+				472D5643198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */,
 				EA31A18617DDB29B00F937F7 /* PaymentProfileViewController.m in Sources */,
 				389F683E198FC1C6006CF1F6 /* Payment.m in Sources */,
 				47FAF345194B2F11004CE986 /* LightBlueButton.m in Sources */,
@@ -3373,6 +3387,7 @@
 				EAEA6257172011C500A96770 /* CalculationResult.m in Sources */,
 				47AC3F911987AFAC005491C6 /* SuggestionCellProvider.m in Sources */,
 				380021C6192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */,
+				472D5646198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */,
 				47C580A3196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */,
 				BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */,
 				EA333F3C18A4C00000D8A44E /* PageZoom.m in Sources */,
@@ -3498,6 +3513,7 @@
 				4723EA151973F32400B4345F /* ImageColoredButton.m in Sources */,
 				EA7F8816176F2B44003B0F46 /* RemoveTokenOperation.m in Sources */,
 				473DF972196D5ED600524C64 /* FloatingLabelTextField.m in Sources */,
+				472D5642198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */,
 				BB9A2E83176B711400C5E058 /* UITableView+FooterPositioning.m in Sources */,
 				389F683D198FC1C6006CF1F6 /* Payment.m in Sources */,
 				BB704E7D177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m in Sources */,

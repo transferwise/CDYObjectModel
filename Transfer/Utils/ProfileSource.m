@@ -20,7 +20,7 @@
 
 @implementation ProfileSource
 
-- (NSArray *)presentedCells {
+- (NSArray *)presentedCells:(BOOL)allowProfileSwitch; {
     ABSTRACT_METHOD;
     return @[];
 }

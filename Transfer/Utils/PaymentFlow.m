@@ -46,6 +46,8 @@
 #import "RecipientType.h"
 #import "RefundDetailsViewController.h"
 #import "Mixpanel.h"
+#import "PersonalPaymentProfileViewController.h"
+#import "BusinessPaymentProfileViewController.h"
 
 @interface PaymentFlow ()
 
@@ -70,7 +72,7 @@
 {
     [[AnalyticsCoordinator sharedInstance] paymentPersonalProfileScreenShown];
 
-    PaymentProfileViewController *controller = [[PaymentProfileViewController alloc] init];
+    PersonalPaymentProfileViewController *controller = [[PersonalPaymentProfileViewController alloc] init];
 	
     [controller setObjectModel:self.objectModel];
     [controller setAllowProfileSwitch:allowProfileSwitch];
@@ -149,14 +151,19 @@
                 return;
             }
 
-            [weakSelf verifyEmail:self.objectModel.currentUser.email withHandler:handler];
+			//TODO: move to right after leaving e-mail field
+//            [weakSelf verifyEmail:self.objectModel.currentUser.email withHandler:handler];
 			
 			PersonalProfile *personalProfile = (PersonalProfile *) [weakSelf.objectModel.managedObjectContext objectWithID:profile];
 			
 			if (personalProfile.sendAsBusinessValue)
 			{
-				
+				[weakSelf presentBusinessProfileScreen];
+				return;
 			}
+			
+			handler(nil);
+			[weakSelf presentNextPaymentScreen];
         });
     }];
 
@@ -173,8 +180,9 @@
             handler(error);
         } else if (!available) {
             [[GoogleAnalytics sharedInstance] sendAlertEvent:@"EmailTakenDuringPaymentAlert" withLabel:@""];
-            NSError *emailError = [[NSError alloc] initWithDomain:TRWErrorDomain code:ResponseLocalError userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"personal.profile.email.taken.message", nil)}];
-            handler(emailError);
+			//TODO: Replace with login screen showing
+//            NSError *emailError = [[NSError alloc] initWithDomain:TRWErrorDomain code:ResponseLocalError userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"personal.profile.email.taken.message", nil)}];
+//            handler(emailError);
         } else {
             handler(nil);
             [weakSelf presentNextPaymentScreen];
@@ -217,20 +225,18 @@
     }];
 }
 
-- (void)presentBusinessDetailsScreen
+- (void)presentBusinessProfileScreen
 {
 	dispatch_async(dispatch_get_main_queue(), ^{
-        MCLog(@"presentPaymentConfirmation");
-        ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
-        if ([Credentials userLoggedIn]) {
-            [controller setReportingType:ConfirmPaymentReportingLoggedIn];
-        } else {
-            [controller setReportingType:ConfirmPaymentReportingNotLoggedIn];
-        }
-        [controller setObjectModel:self.objectModel];
-        [controller setPayment:[self.objectModel pendingPayment]];
-        [controller setFooterButtonTitle:NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
-        [controller setPaymentFlow:self];
+        MCLog(@"presentBusinessProfileScreen");
+		
+		BusinessPaymentProfileViewController *controller = [[BusinessPaymentProfileViewController alloc] init];
+		
+		[controller setObjectModel:self.objectModel];
+		[controller setButtonTitle:NSLocalizedString(@"business.profile.confirm.payment.button.title", nil)];
+		[controller setProfileValidation:self];
+
+        
         [self.navigationController pushViewController:controller animated:YES];
     });
 }
