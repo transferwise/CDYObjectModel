@@ -13,6 +13,7 @@ const struct PersonalProfileAttributes PersonalProfileAttributes = {
 	.phoneNumber = @"phoneNumber",
 	.postCode = @"postCode",
 	.readonlyFields = @"readonlyFields",
+	.state = @"state",
 };
 
 const struct PersonalProfileRelationships PersonalProfileRelationships = {
@@ -112,6 +113,13 @@ const struct PersonalProfileFetchedProperties PersonalProfileFetchedProperties =
 
 
 @dynamic readonlyFields;
+
+
+
+
+
+
+@dynamic state;
 
 
 

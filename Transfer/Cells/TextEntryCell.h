@@ -18,6 +18,8 @@ extern NSString *const TWTextEntryCellIdentifier;
 @property (nonatomic, strong) IBOutlet UIView *separatorLine;
 @property (nonatomic, readonly) BOOL valueModified;
 @property (nonatomic) BOOL editable;
+@property (nonatomic) NSInteger maxValueLength;
+@property (nonatomic) BOOL validateAlphaNumeric;
 
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value;
 - (NSString *)value;

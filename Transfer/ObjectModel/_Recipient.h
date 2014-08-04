@@ -14,9 +14,9 @@ extern const struct RecipientAttributes {
 extern const struct RecipientRelationships {
 	__unsafe_unretained NSString *currency;
 	__unsafe_unretained NSString *fieldValues;
+	__unsafe_unretained NSString *payInMethods;
 	__unsafe_unretained NSString *payments;
 	__unsafe_unretained NSString *refundForPayment;
-	__unsafe_unretained NSString *settlementForPayments;
 	__unsafe_unretained NSString *type;
 	__unsafe_unretained NSString *user;
 } RecipientRelationships;
@@ -26,7 +26,7 @@ extern const struct RecipientFetchedProperties {
 
 @class Currency;
 @class TypeFieldValue;
-@class Payment;
+@class PayInMethod;
 @class Payment;
 @class Payment;
 @class RecipientType;
@@ -112,6 +112,13 @@ extern const struct RecipientFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSSet *payInMethods;
+
+- (NSMutableSet*)payInMethodsSet;
+
+
+
+
 @property (nonatomic, strong) NSSet *payments;
 
 - (NSMutableSet*)paymentsSet;
@@ -122,13 +129,6 @@ extern const struct RecipientFetchedProperties {
 @property (nonatomic, strong) Payment *refundForPayment;
 
 //- (BOOL)validateRefundForPayment:(id*)value_ error:(NSError**)error_;
-
-
-
-
-@property (nonatomic, strong) NSSet *settlementForPayments;
-
-- (NSMutableSet*)settlementForPaymentsSet;
 
 
 
@@ -157,15 +157,15 @@ extern const struct RecipientFetchedProperties {
 - (void)addFieldValuesObject:(TypeFieldValue*)value_;
 - (void)removeFieldValuesObject:(TypeFieldValue*)value_;
 
+- (void)addPayInMethods:(NSSet*)value_;
+- (void)removePayInMethods:(NSSet*)value_;
+- (void)addPayInMethodsObject:(PayInMethod*)value_;
+- (void)removePayInMethodsObject:(PayInMethod*)value_;
+
 - (void)addPayments:(NSSet*)value_;
 - (void)removePayments:(NSSet*)value_;
 - (void)addPaymentsObject:(Payment*)value_;
 - (void)removePaymentsObject:(Payment*)value_;
-
-- (void)addSettlementForPayments:(NSSet*)value_;
-- (void)removeSettlementForPayments:(NSSet*)value_;
-- (void)addSettlementForPaymentsObject:(Payment*)value_;
-- (void)removeSettlementForPaymentsObject:(Payment*)value_;
 
 @end
 
@@ -213,6 +213,11 @@ extern const struct RecipientFetchedProperties {
 
 
 
+- (NSMutableSet*)primitivePayInMethods;
+- (void)setPrimitivePayInMethods:(NSMutableSet*)value;
+
+
+
 - (NSMutableSet*)primitivePayments;
 - (void)setPrimitivePayments:(NSMutableSet*)value;
 
@@ -220,11 +225,6 @@ extern const struct RecipientFetchedProperties {
 
 - (Payment*)primitiveRefundForPayment;
 - (void)setPrimitiveRefundForPayment:(Payment*)value;
-
-
-
-- (NSMutableSet*)primitiveSettlementForPayments;
-- (void)setPrimitiveSettlementForPayments:(NSMutableSet*)value;
 
 
 

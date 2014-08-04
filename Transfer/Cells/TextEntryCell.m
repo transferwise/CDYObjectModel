@@ -82,6 +82,22 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+	NSString *modified = [self.entryField.text stringByReplacingCharactersInRange:range withString:string];
+	if(![self validateAlphaNumeric:modified])
+	{
+		return NO;
+	}
+	
+	if (self.maxValueLength == 0)
+	{
+        return YES;
+    }
+	
+	if (self.maxValueLength > 0 && [modified length] > self.maxValueLength)
+	{
+        return NO;
+    }
+	
     [self setValueModified:YES];
     return YES;
 }
@@ -107,6 +123,20 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 - (void)markTouched
 {
     [self setValueModified:YES];
+}
+
+- (BOOL)validateAlphaNumeric:(NSString *)value
+{
+	if(!self.validateAlphaNumeric)
+	{
+		return YES;
+	}
+	
+	NSMutableCharacterSet *alphanumerics = [NSMutableCharacterSet alphanumericCharacterSet];
+	[alphanumerics addCharactersInString:@"."];
+	NSCharacterSet *unwantedCharacters = [alphanumerics invertedSet];
+	
+    return ([value rangeOfCharacterFromSet:unwantedCharacters].location == NSNotFound);
 }
 
 @end

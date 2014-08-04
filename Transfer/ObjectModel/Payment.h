@@ -1,10 +1,5 @@
 #import "_Payment.h"
 
-typedef NS_OPTIONS(short, PaymentMethod) {
-    PaymentNone = 0,
-    PaymentRegular = 1 << 0,
-    PaymentCard = 1 << 1
-};
 
 typedef NS_ENUM(NSUInteger, PaymentStatus) {
     PaymentStatusUnknown = 0,
@@ -22,7 +17,7 @@ typedef NS_ENUM(NSUInteger, PaymentStatus) {
 
 - (PaymentStatus)status;
 - (NSString *)localizedStatus;
-+ (PaymentMethod)methodsWithData:(NSArray *)methods;
+- (NSOrderedSet*)enabledPayInMethods;
 - (NSString *)transferredAmountString;
 - (NSString *)latestChangeTimeString;
 - (NSString *)payInWithCurrency;

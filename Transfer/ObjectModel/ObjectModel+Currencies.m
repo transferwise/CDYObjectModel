@@ -33,6 +33,8 @@
     [currency setSymbol:data[@"symbol"]];
     [currency setName:data[@"name"]];
     [currency setDefaultRecipientType:[self recipientTypeWithCode:data[@"defaultRecipientType"]]];
+	[currency setReferenceMaxLength:(NSNumber *)data[@"paymentReferenceMaxLength"]];
+	
     NSArray *allTypes = data[@"recipientTypes"];
     NSArray *typeObjects = [self recipientTypesWithCodes:allTypes];
 
@@ -48,6 +50,10 @@
 
     [currency setRecipientTypes:[[NSOrderedSet alloc] initWithArray:orderedTypes]];
     [currency setIndexValue:(int16_t) index];
+
+    currency.recipientBicRequiredValue = [data[@"recipientBicRequired"] boolValue];
+    currency.recipientEmailRequiredValue = [data[@"recipientEmailRequired"] boolValue];
+    currency.paymentReferenceAllowedValue = data[@"paymentReferenceAllowed"]?[data[@"paymentReferenceAllowed"] boolValue]:YES;
 }
 
 - (NSFetchedResultsController *)fetchedControllerForAllCurrencies {

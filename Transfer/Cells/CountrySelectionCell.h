@@ -9,14 +9,18 @@
 #import "TextEntryCell.h"
 
 @class Country;
+@class CountrySelectionCell;
 
 extern NSString *const TWCountrySelectionCellIdentifier;
+
 
 typedef void (^CountrySelectionBlock)(NSString *countryName);
 
 @protocol CountrySelectionCellDelegate <NSObject>
 
 - (Country *)getCountryByCode:(NSString *)code;
+@optional
+-(void)countrySelectionCell:(CountrySelectionCell*)cell selectedCountry:(Country*)countryCode;
 
 @end
 
