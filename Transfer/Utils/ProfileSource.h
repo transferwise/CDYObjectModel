@@ -30,6 +30,7 @@ typedef void (^ProfileActionBlock)(NSError *error);
 - (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion;
 - (void)loadDetailsToCells;
 - (void)fillQuickValidation:(QuickProfileValidationOperation *)operation;
+- (void)includeStateCell:(BOOL)shouldInclude;
 - (void)markCellsWithIssues:(NSArray *)issues;
 - (void)setUpTableView:(UITableView *)tableView;
 

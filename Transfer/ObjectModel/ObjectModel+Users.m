@@ -67,6 +67,8 @@
     [profile setCity:data[@"city"]];
     [profile setCountryCode:data[@"countryCode"]];
     [profile setReadonlyFields:[data[@"readonlyFields"] componentsJoinedByString:@"|"]];
+    [profile setCountryCode:data[@"countryCode"]];
+    [profile setState:data[@"state"]];
 
     return profile;
 }
@@ -91,6 +93,7 @@
     [profile setCity:data[@"city"]];
     [profile setCountryCode:data[@"countryCode"]];
     [profile setReadonlyFields:[data[@"readonlyFields"] componentsJoinedByString:@"|"]];
+    [profile setState:data[@"state"]];
 
     return profile;
 }

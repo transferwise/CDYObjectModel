@@ -62,7 +62,6 @@ NSString *const TWCurrencySelectionCellIdentifier = @"TWCurrencySelectionCellIde
         flag = [UIImage imageNamed:@"flag_default"];
     }
     [self.selectCurrencyButton setImage:flag forState:UIControlStateNormal];
-
     self.selectionHandler(currency);
 }
 
