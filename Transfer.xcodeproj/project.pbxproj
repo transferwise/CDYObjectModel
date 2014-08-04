@@ -1772,6 +1772,8 @@
 				EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */,
 				EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */,
 				470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */,
+				47B36C811986543B002E66C7 /* MultipleEntryCell.h */,
+				47B36C821986543B002E66C7 /* MultipleEntryCell.m */,
 				38BD98A0195C5973009F9B4A /* NameSuggestionCell.h */,
 				38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */,
 				38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */,
@@ -1818,8 +1820,6 @@
 				476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */,
 				471C9FF9197FB1AA00BCA3B4 /* FixSeparatorCell.h */,
 				471C9FFA197FB1AA00BCA3B4 /* FixSeparatorCell.m */,
-				47B36C811986543B002E66C7 /* MultipleEntryCell.h */,
-				47B36C821986543B002E66C7 /* MultipleEntryCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";

@@ -19,18 +19,21 @@
 #import "GoogleAnalytics.h"
 #import "UIView+Loading.h"
 #import "DoubleEntryCell.h"
+#import "DoublePasswordEntryCell.h"
 
 static NSUInteger const kButtonSection = 0;
 static NSUInteger const kDetailsSection = 1;
 
 @interface BusinessProfileSource ()
 
+@property (nonatomic, strong) TextEntryCell *emailCell;
 @property (nonatomic, strong) TextEntryCell *businessNameCell;
 @property (nonatomic, strong) TextEntryCell *registrationNumberCell;
 @property (nonatomic, strong) TextEntryCell *descriptionCell;
 @property (nonatomic, strong) TextEntryCell *addressCell;
 @property (nonatomic, strong) DoubleEntryCell *zipCityCell;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
+@property (nonatomic, strong) DoublePasswordEntryCell *passwordCell;
 
 @end
 
@@ -41,7 +44,10 @@ static NSUInteger const kDetailsSection = 1;
 }
 
 - (NSArray *)presentedCells {
-    if (self.cells) {
+    if (self.cells)
+	{
+		//this might have been changed to single
+		self.passwordCell.showDouble = YES;
         return self.cells;
     }
 
@@ -51,6 +57,24 @@ static NSUInteger const kDetailsSection = 1;
     }
 
     NSMutableArray *firstColumnCells = [NSMutableArray array];
+	NSMutableArray *passwordFirstColumn = [NSMutableArray array];
+	
+	TextEntryCell *emailCell = [TextEntryCell loadInstance];
+    [self setEmailCell:emailCell];
+    [emailCell configureWithTitle:NSLocalizedString(@"business.profile.email.label", nil) value:@""];
+    [emailCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+    [emailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
+	[emailCell setCellTag:@"EmailCell"];
+	[firstColumnCells addObject:emailCell];
+	[passwordFirstColumn addObject:emailCell];
+	
+	DoublePasswordEntryCell *passwordCell = [DoublePasswordEntryCell loadInstance];
+	passwordCell.showDouble = YES;
+	[passwordCell configureWithTitle:NSLocalizedString(@"personal.profile.password.label", nil) value:@""];
+    [self setPasswordCell:passwordCell];
+    [firstColumnCells addObject:passwordCell];
+	[passwordCell setCellTag:@"DoublePasswordCell"];
+	[passwordFirstColumn addObject:passwordCell];
 
     TextEntryCell *businessNameCell = [TextEntryCell loadInstance];
     [self setBusinessNameCell:businessNameCell];
@@ -98,8 +122,15 @@ static NSUInteger const kDetailsSection = 1;
     [zipCityCell setCellTag:@"zipCity"];
 
     [self setCells:@[@[firstColumnCells, secondColumnCells]]];
+	[self setLoginCells:@[@[passwordFirstColumn]]];
 
     return self.cells;
+}
+
+- (NSArray *)loginPresentedCells
+{
+	self.passwordCell.showDouble = NO;
+	return self.loginCells;
 }
 
 - (void)loadDetailsToCells {
@@ -198,13 +229,6 @@ static NSUInteger const kDetailsSection = 1;
     [operation setPostCode:[self.zipCityCell value]];
     [operation setCity:[self.zipCityCell secondValue]];
     [operation setCountryCode:[self.countryCell value]];
-}
-
-- (void)setUpTableView:(UITableView *)tableView
-{
-	[tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
-    [tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
-	[tableView registerNib:[UINib nibWithNibName:@"DoubleEntryCell" bundle:nil] forCellReuseIdentifier:TWDoubleEntryCellIdentifier];
 }
 
 @end

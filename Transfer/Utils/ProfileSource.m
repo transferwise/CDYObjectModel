@@ -13,12 +13,22 @@
 #import "Constants.h"
 #import "QuickProfileValidationOperation.h"
 #import "TextEntryCell.h"
+#import "DateEntryCell.h"
+#import "DoubleEntryCell.h"
+#import "DoublePasswordEntryCell.h"
+#import "CountrySelectionCell.h"
 
 @implementation ProfileSource
 
 - (NSArray *)presentedCells {
     ABSTRACT_METHOD;
     return @[];
+}
+
+- (NSArray *)presentedLoginCells
+{
+	ABSTRACT_METHOD;
+	return@[];
 }
 
 - (void)pullDetailsWithHandler:(ProfileActionBlock)handler {
@@ -119,7 +129,13 @@
 
 - (void)setUpTableView:(UITableView *)tableView
 {
-	ABSTRACT_METHOD;
+	[tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
+    [tableView registerNib:[UINib nibWithNibName:@"DateEntryCell" bundle:nil] forCellReuseIdentifier:TWDateEntryCellIdentifier];
+    [tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
+	[tableView registerNib:[UINib nibWithNibName:@"DoublePasswordEntryCell" bundle:nil] forCellReuseIdentifier:TWDoublePasswordEntryCellIdentifier];
+	[tableView registerNib:[UINib nibWithNibName:@"DoubleEntryCell" bundle:nil] forCellReuseIdentifier:TWDoubleEntryCellIdentifier];
+	
+	[tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
 @end

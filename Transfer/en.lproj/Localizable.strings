@@ -1,4 +1,5 @@
 "business.profile.address.label" = "Address";
+"ubsiness.profile.email.label" = "Email";
 "business.profile.address.section.title" = "Address";
 "business.profile.city.label" = "City";
 "business.profile.controller.title" = "Business profile";
@@ -17,6 +18,7 @@
 "business.profile.saving.message" = "Loading your profile...";
 "business.profile.validation.error.message" = "Please check that all the fields are filled in.";
 "business.profile.validation.error.title" = "Check your details";
+"business.profile.password.lable" = "Password";
 
 "button.title.back" = "Back";
 "button.title.cancel" = "Cancel";
