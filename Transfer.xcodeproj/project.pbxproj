@@ -130,8 +130,6 @@
 		388E8C1A198F9BE500386692 /* YahooButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388E8BA4198F9BE500386692 /* YahooButton.m */; };
 		388E8C1E198F9C4300386692 /* libAppsFlyerLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 388E8C1D198F9C4300386692 /* libAppsFlyerLib.a */; };
 		388E8C1F198F9C4300386692 /* libAppsFlyerLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 388E8C1D198F9C4300386692 /* libAppsFlyerLib.a */; };
-		388E8C24198F9D5C00386692 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 388E8C20198F9D5C00386692 /* Transfer.xcdatamodeld */; };
-		388E8C25198F9D5C00386692 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 388E8C20198F9D5C00386692 /* Transfer.xcdatamodeld */; };
 		388E8C43198F9D9100386692 /* CircleStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 388E8C29198F9D9100386692 /* CircleStyle.m */; };
 		388E8C44198F9D9100386692 /* CircleStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 388E8C29198F9D9100386692 /* CircleStyle.m */; };
 		388E8C45198F9D9100386692 /* NSString+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 388E8C2C198F9D9100386692 /* NSString+MOMStyle.m */; };
@@ -518,6 +516,8 @@
 		3890081A198F9A9300CA2B1F /* RecipientProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 389007F5198F9A9300CA2B1F /* RecipientProfileCommitter.m */; };
 		3890081B198F9A9300CA2B1F /* SuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 389007F8198F9A9300CA2B1F /* SuggestionCellProvider.m */; };
 		3890081C198F9A9300CA2B1F /* SuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 389007F8198F9A9300CA2B1F /* SuggestionCellProvider.m */; };
+		389F679A198FBDC9006CF1F6 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 389F6796198FBDC9006CF1F6 /* Transfer.xcdatamodeld */; };
+		389F679B198FBDC9006CF1F6 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 389F6796198FBDC9006CF1F6 /* Transfer.xcdatamodeld */; };
 		38C27947197E95C700388C8A /* NoRefCurrencyMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38C27946197E95C700388C8A /* NoRefCurrencyMessages.plist */; };
 		38C27948197E95C700388C8A /* NoRefCurrencyMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38C27946197E95C700388C8A /* NoRefCurrencyMessages.plist */; };
 		38E0D81F198F9AF50008ED32 /* _AllowedTypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E0D7C6198F9AF50008ED32 /* _AllowedTypeFieldValue.m */; };
@@ -904,9 +904,6 @@
 		388E8BA4198F9BE500386692 /* YahooButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YahooButton.m; sourceTree = "<group>"; };
 		388E8C1C198F9C4300386692 /* AppsFlyerTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppsFlyerTracker.h; sourceTree = "<group>"; };
 		388E8C1D198F9C4300386692 /* libAppsFlyerLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppsFlyerLib.a; sourceTree = "<group>"; };
-		388E8C21198F9D5C00386692 /* Transfer 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Transfer 2.xcdatamodel"; sourceTree = "<group>"; };
-		388E8C22198F9D5C00386692 /* Transfer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer.xcdatamodel; sourceTree = "<group>"; };
-		388E8C23198F9D5C00386692 /* Transfer_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v2.xcdatamodel; sourceTree = "<group>"; };
 		388E8C28198F9D9100386692 /* CircleStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleStyle.h; sourceTree = "<group>"; };
 		388E8C29198F9D9100386692 /* CircleStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleStyle.m; sourceTree = "<group>"; };
 		388E8C2B198F9D9100386692 /* NSString+MOMStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MOMStyle.h"; sourceTree = "<group>"; };
@@ -976,7 +973,6 @@
 		388E8C87198F9DB200386692 /* UIView+RenderBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RenderBlur.m"; sourceTree = "<group>"; };
 		388E8C88198F9DB200386692 /* UIView+SeparatorLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SeparatorLine.h"; sourceTree = "<group>"; };
 		388E8C89198F9DB200386692 /* UIView+SeparatorLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SeparatorLine.m"; sourceTree = "<group>"; };
-		388E8CB6198F9E5B00386692 /* Transfer_v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v3.xcdatamodel; sourceTree = "<group>"; };
 		389005EA198F9A4400CA2B1F /* ButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonCell.h; sourceTree = "<group>"; };
 		389005EB198F9A4400CA2B1F /* ButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonCell.m; sourceTree = "<group>"; };
 		389005EC198F9A4400CA2B1F /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
@@ -1222,6 +1218,9 @@
 		389007F6198F9A9300CA2B1F /* RecipientProfileValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientProfileValidation.h; sourceTree = "<group>"; };
 		389007F7198F9A9300CA2B1F /* SuggestionCellProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestionCellProvider.h; sourceTree = "<group>"; };
 		389007F8198F9A9300CA2B1F /* SuggestionCellProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestionCellProvider.m; sourceTree = "<group>"; };
+		389F6797198FBDC9006CF1F6 /* Transfer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer.xcdatamodel; sourceTree = "<group>"; };
+		389F6798198FBDC9006CF1F6 /* Transfer_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v2.xcdatamodel; sourceTree = "<group>"; };
+		389F6799198FBDC9006CF1F6 /* Transfer_v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v3.xcdatamodel; sourceTree = "<group>"; };
 		38C27946197E95C700388C8A /* NoRefCurrencyMessages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NoRefCurrencyMessages.plist; sourceTree = "<group>"; };
 		38E0D7C5198F9AF50008ED32 /* _AllowedTypeFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AllowedTypeFieldValue.h; sourceTree = "<group>"; };
 		38E0D7C6198F9AF50008ED32 /* _AllowedTypeFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AllowedTypeFieldValue.m; sourceTree = "<group>"; };
@@ -2034,7 +2033,7 @@
 		38E0D7C4198F9AF50008ED32 /* ObjectModel */ = {
 			isa = PBXGroup;
 			children = (
-				388E8C20198F9D5C00386692 /* Transfer.xcdatamodeld */,
+				389F6796198FBDC9006CF1F6 /* Transfer.xcdatamodeld */,
 				38E0D7C5198F9AF50008ED32 /* _AllowedTypeFieldValue.h */,
 				38E0D7C6198F9AF50008ED32 /* _AllowedTypeFieldValue.m */,
 				38E0D7C7198F9AF50008ED32 /* _BusinessProfile.h */,
@@ -3085,7 +3084,6 @@
 				388E8C8F198F9DB200386692 /* NSDictionary+SensibleData.m in Sources */,
 				38E0D846198F9AF50008ED32 /* Country.m in Sources */,
 				EACD942F18D82C2C00369905 /* NanTracking.m in Sources */,
-				388E8C25198F9D5C00386692 /* Transfer.xcdatamodeld in Sources */,
 				EA31A14817DDB29B00F937F7 /* Credentials.m in Sources */,
 				388E8BF6198F9BE500386692 /* TableHeaderView.m in Sources */,
 				EA31A14917DDB29B00F937F7 /* SWRevealViewController.m in Sources */,
@@ -3283,6 +3281,7 @@
 				38E0D88D198F9B0B0008ED32 /* PhoneBookAddress.m in Sources */,
 				BA665EA5E58A6DA4DEB8E622 /* GoogleAnalytics.m in Sources */,
 				38900802198F9A9300CA2B1F /* CountrySuggestionCellProvider.m in Sources */,
+				389F679B198FBDC9006CF1F6 /* Transfer.xcdatamodeld in Sources */,
 				38E0D874198F9AF50008ED32 /* Setting.m in Sources */,
 				3890072A198F9A6F00CA2B1F /* BankTransferViewController.m in Sources */,
 				388E8C4E198F9D9100386692 /* MOMBasicStyle.m in Sources */,
@@ -3361,7 +3360,6 @@
 				388E8C8E198F9DB200386692 /* NSDictionary+SensibleData.m in Sources */,
 				38E0D859198F9AF50008ED32 /* ObjectModel+Settings.m in Sources */,
 				EAD736A7171E87ED00A037B1 /* UserRecipientsOperation.m in Sources */,
-				388E8C24198F9D5C00386692 /* Transfer.xcdatamodeld in Sources */,
 				389007F9198F9A9300CA2B1F /* BusinessProfileCommitter.m in Sources */,
 				388E8BF5198F9BE500386692 /* TableHeaderView.m in Sources */,
 				EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */,
@@ -3559,6 +3557,7 @@
 				38E0D886198F9B0B0008ED32 /* AddressBookManager.m in Sources */,
 				38E0D88C198F9B0B0008ED32 /* PhoneBookAddress.m in Sources */,
 				BA6650856E3051C31A982C78 /* GoogleAnalytics.m in Sources */,
+				389F679A198FBDC9006CF1F6 /* Transfer.xcdatamodeld in Sources */,
 				38900801198F9A9300CA2B1F /* CountrySuggestionCellProvider.m in Sources */,
 				38900729198F9A6F00CA2B1F /* BankTransferViewController.m in Sources */,
 				388E8C4D198F9D9100386692 /* MOMBasicStyle.m in Sources */,
@@ -3889,15 +3888,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		388E8C20198F9D5C00386692 /* Transfer.xcdatamodeld */ = {
+		389F6796198FBDC9006CF1F6 /* Transfer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				388E8CB6198F9E5B00386692 /* Transfer_v3.xcdatamodel */,
-				388E8C21198F9D5C00386692 /* Transfer 2.xcdatamodel */,
-				388E8C22198F9D5C00386692 /* Transfer.xcdatamodel */,
-				388E8C23198F9D5C00386692 /* Transfer_v2.xcdatamodel */,
+				389F6797198FBDC9006CF1F6 /* Transfer.xcdatamodel */,
+				389F6798198FBDC9006CF1F6 /* Transfer_v2.xcdatamodel */,
+				389F6799198FBDC9006CF1F6 /* Transfer_v3.xcdatamodel */,
 			);
-			currentVersion = 388E8CB6198F9E5B00386692 /* Transfer_v3.xcdatamodel */;
+			currentVersion = 389F6799198FBDC9006CF1F6 /* Transfer_v3.xcdatamodel */;
 			name = Transfer.xcdatamodeld;
 			path = ../Transfer.xcdatamodeld;
 			sourceTree = "<group>";
