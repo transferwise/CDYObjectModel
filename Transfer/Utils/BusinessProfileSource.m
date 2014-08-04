@@ -217,7 +217,7 @@ static NSUInteger const kDetailsSection = 1;
 
 -(void)includeStateCell:(BOOL)shouldInclude
 {
-    if (1 > [self.cells count])
+    if (2 > [self.cells[0] count])
     {
         return;
     }
@@ -232,7 +232,7 @@ static NSUInteger const kDetailsSection = 1;
         }
     }
     
-    NSMutableArray* addressFields = self.cells[1];
+    NSMutableArray* addressFields = self.cells[0][1];
     if(shouldInclude && ![addressFields containsObject:self.stateCell])
     {
         [addressFields addObject:self.stateCell];
