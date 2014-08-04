@@ -66,15 +66,21 @@
     return self;
 }
 
-- (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch {
+- (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch
+{
     [[AnalyticsCoordinator sharedInstance] paymentPersonalProfileScreenShown];
 
     PaymentProfileViewController *controller = [[PaymentProfileViewController alloc] init];
+	
     [controller setObjectModel:self.objectModel];
     [controller setAllowProfileSwitch:allowProfileSwitch];
-    if (self.objectModel.pendingPayment.recipient) {
+	[controller setIsLoggedIn:[Credentials userLoggedIn]];
+	
+    if (self.objectModel.pendingPayment.recipient)
+	{
         [controller setButtonTitle:NSLocalizedString(@"personal.profile.confirm.payment.button.title", nil)];
-    } else {
+    } else
+	{
         [controller setButtonTitle:NSLocalizedString(@"personal.profile.continue.to.recipient.button.title", nil)];
     }
     [controller setProfileValidation:self];

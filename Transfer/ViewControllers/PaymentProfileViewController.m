@@ -26,7 +26,7 @@
 	[self initControllers];
 	NSArray *controllers, *titles;
 	
-	if (self.allowProfileSwitch)
+	if (self.allowProfileSwitch && self.isLoggedIn)
 	{
 		controllers = @[self.personalProfile, self.businessProfile];
 		titles = @[NSLocalizedString(@"profile.selection.text.personal.profile", nil), NSLocalizedString(@"profile.selection.text.business.profile", nil)];
