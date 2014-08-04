@@ -17,13 +17,14 @@
 #import "SignUpViewController.h"
 #import "ObjectModel+Settings.h"
 #import "GoogleAnalytics.h"
+#import "MOMStyle.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UIButton *startButton;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) NSArray *introScreens;
-@property (nonatomic, strong) SMPageControl *pageControl;
+@property (nonatomic, strong) IBOutlet SMPageControl *pageControl;
 @property (nonatomic, assign) NSInteger reportedPage;
 
 - (IBAction)startPressed;
@@ -47,30 +48,28 @@
 
     [self.startButton setTitle:NSLocalizedString(@"intro.start.buttont.title", nil) forState:UIControlStateNormal];
 
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     NSMutableArray *screens = [NSMutableArray array];
-    [screens addObject:[IntroView loadInstance]];
-    [(IntroView *) screens[0] setImage:[UIImage imageNamed:@"IntroPageOneImage"] tagline:NSLocalizedString(@"intro.tagline.one", nil) message:[self attributedMessage:NSLocalizedString(@"intro.message.one", nil) bold:@[]]];
-    [screens addObject:[IntroView loadInstance]];
-    [(IntroView *) screens[1] setImage:[UIImage imageNamed:@"IntroPageTwoImage"] tagline:NSLocalizedString(@"intro.tagline.two", nil) message:[self attributedMessage:NSLocalizedString(@"intro.message.two", nil) bold:@[]]];
-    [screens addObject:[IntroView loadInstance]];
-    [(IntroView *) screens[2] setImage:[UIImage imageNamed:@"IntroPageThreeImage"] tagline:NSLocalizedString(@"intro.tagline.three", nil) message:[self attributedMessage:NSLocalizedString(@"intro.message.three", nil) bold:@[@"Skype", @"PayPal"]]];
 
+    NSArray* introData = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"intro" ofType:@"plist"]];
+
+    for(NSDictionary *pageData in introData)
+    {
+        IntroView* page = [IntroView loadInstance];
+        [page setUpWithDictionary:pageData];
+        [screens addObject:page];
+    }
+    
     [self setIntroScreens:screens];
 
-    SMPageControl *pageControl = [[SMPageControl alloc] init];
-    [self setPageControl:pageControl];
-    [pageControl setCurrentPageIndicatorImage:[UIImage imageNamed:@"PageActive"]];
-    [pageControl setPageIndicatorImage:[UIImage imageNamed:@"IntroPageOff"]];
-    [pageControl setNumberOfPages:3];
-    [pageControl sizeToFit];
-    [pageControl setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin];
-    [pageControl addTarget:self action:@selector(pageChanged) forControlEvents:UIControlEventValueChanged];
+    [self.pageControl setNumberOfPages:[screens count]];
+    self.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+    self.pageControl.currentPageIndicatorTintColor = [UIColor colorFromStyle:@"TWElectricBlue"];
+    self.pageControl.indicatorDiameter = 10.0f;
+    self.pageControl.indicatorMargin = 5.0f;
+    [self.pageControl addTarget:self action:@selector(pageChanged) forControlEvents:UIControlEventValueChanged];
 
-    CGRect pageFrame = pageControl.frame;
-    pageFrame.origin.x = (CGRectGetWidth(self.view.frame) - CGRectGetWidth(pageFrame)) / 2;
-    pageFrame.origin.y = self.startButton.center.y - CGRectGetHeight(self.startButton.frame) - 20;
-    [pageControl setFrame:pageFrame];
-    [self.view addSubview:pageControl];
 }
 
 - (void)didReceiveMemoryWarning {
