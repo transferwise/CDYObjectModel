@@ -18,6 +18,7 @@
 #import "QuickProfileValidationOperation.h"
 #import "GoogleAnalytics.h"
 #import "UIView+Loading.h"
+#import "DoubleEntryCell.h"
 
 static NSUInteger const kButtonSection = 0;
 static NSUInteger const kDetailsSection = 1;
@@ -28,8 +29,7 @@ static NSUInteger const kDetailsSection = 1;
 @property (nonatomic, strong) TextEntryCell *registrationNumberCell;
 @property (nonatomic, strong) TextEntryCell *descriptionCell;
 @property (nonatomic, strong) TextEntryCell *addressCell;
-@property (nonatomic, strong) TextEntryCell *postCodeCell;
-@property (nonatomic, strong) TextEntryCell *cityCell;
+@property (nonatomic, strong) DoubleEntryCell *zipCityCell;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
 
 @end
@@ -50,58 +50,54 @@ static NSUInteger const kDetailsSection = 1;
         [self setUpTableView:tableView];
     }
 
-    NSMutableArray *businessCells = [NSMutableArray array];
+    NSMutableArray *firstColumnCells = [NSMutableArray array];
 
     TextEntryCell *businessNameCell = [TextEntryCell loadInstance];
     [self setBusinessNameCell:businessNameCell];
-    [businessCells addObject:businessNameCell];
+    [firstColumnCells addObject:businessNameCell];
     [businessNameCell configureWithTitle:NSLocalizedString(@"business.profile.name.label", nil) value:@""];
     [businessNameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [businessNameCell setCellTag:@"businessName"];
 
     TextEntryCell *registrationNumberCell = [TextEntryCell loadInstance];
     [self setRegistrationNumberCell:registrationNumberCell];
-    [businessCells addObject:registrationNumberCell];
+    [firstColumnCells addObject:registrationNumberCell];
     [registrationNumberCell configureWithTitle:NSLocalizedString(@"business.profile.registration.number.label", nil) value:@""];
     [registrationNumberCell setCellTag:@"registrationNumber"];
 
     TextEntryCell *descriptionCell = [TextEntryCell loadInstance];
     [self setDescriptionCell:descriptionCell];
-    [businessCells addObject:descriptionCell];
+    [firstColumnCells addObject:descriptionCell];
     [descriptionCell configureWithTitle:NSLocalizedString(@"business.profile.description.label", nil) value:@""];
     [descriptionCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [descriptionCell setCellTag:@"descriptionOfBusiness"];
 	[descriptionCell.entryField setAutocorrectionType:UITextAutocorrectionTypeDefault];
 
-    NSMutableArray *addressCells = [NSMutableArray array];
+    NSMutableArray *secondColumnCells = [NSMutableArray array];
+	
+	CountrySelectionCell *countryCell = [CountrySelectionCell loadInstance];
+    [self setCountryCell:countryCell];
+    [secondColumnCells addObject:countryCell];
+    [countryCell configureWithTitle:NSLocalizedString(@"business.profile.country.label", nil) value:@""];
+    [countryCell setCellTag:@"countryCode"];
 
     TextEntryCell *addressCell = [TextEntryCell loadInstance];
     [self setAddressCell:addressCell];
-    [addressCells addObject:addressCell];
+    [secondColumnCells addObject:addressCell];
     [addressCell configureWithTitle:NSLocalizedString(@"business.profile.address.label", nil) value:@""];
     [addressCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [addressCell setCellTag:@"addressFirstLine"];
 
-    TextEntryCell *postCodeCell = [TextEntryCell loadInstance];
-    [self setPostCodeCell:postCodeCell];
-    [addressCells addObject:postCodeCell];
-    [postCodeCell configureWithTitle:NSLocalizedString(@"business.profile.post.code.label", nil) value:@""];
-    [postCodeCell setCellTag:@"postCode"];
+    DoubleEntryCell *zipCityCell = [DoubleEntryCell loadInstance];
+	[self setZipCityCell:zipCityCell];
+    [secondColumnCells addObject:zipCityCell];
+    [zipCityCell configureWithTitle:NSLocalizedString(@"business.profile.post.code.label", nil)
+							  value:@""
+						secondTitle:NSLocalizedString(@"business.profile.city.label", nil)
+						secondValue:@""];
+    [zipCityCell setCellTag:@"zipCity"];
 
-    TextEntryCell *cityCell = [TextEntryCell loadInstance];
-    [self setCityCell:cityCell];
-    [addressCells addObject:cityCell];
-    [cityCell configureWithTitle:NSLocalizedString(@"business.profile.city.label", nil) value:@""];
-    [cityCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
-    [cityCell setCellTag:@"city"];
-
-    CountrySelectionCell *countryCell = [CountrySelectionCell loadInstance];
-    [self setCountryCell:countryCell];
-    [addressCells addObject:countryCell];
-    [countryCell configureWithTitle:NSLocalizedString(@"business.profile.country.label", nil) value:@""];
-    [countryCell setCellTag:@"countryCode"];
-
-    [self setCells:@[@[businessCells, addressCells]]];
+    [self setCells:@[@[firstColumnCells, secondColumnCells]]];
 
     return self.cells;
 }
@@ -113,8 +109,8 @@ static NSUInteger const kDetailsSection = 1;
     [self.registrationNumberCell setValue:profile.registrationNumber];
     [self.descriptionCell setValue:profile.businessDescription];
     [self.addressCell setValue:profile.addressFirstLine];
-    [self.postCodeCell setValue:profile.postCode];
-    [self.cityCell setValue:profile.city];
+    [self.zipCityCell setValue:profile.postCode];
+	[self.zipCityCell setSecondValue:profile.city];
     [self.countryCell setValue:profile.countryCode];
 
     [self.businessNameCell setEditable:![profile isFieldReadonly:@"name"]];
@@ -122,8 +118,8 @@ static NSUInteger const kDetailsSection = 1;
     [self.descriptionCell setEditable:![profile isFieldReadonly:@"description"]];
 
     [self.addressCell setEditable:![profile isFieldReadonly:@"addressFirstLine"]];
-    [self.postCodeCell setEditable:![profile isFieldReadonly:@"postCode"]];
-    [self.cityCell setEditable:![profile isFieldReadonly:@"city"]];
+    [self.zipCityCell setEditable:![profile isFieldReadonly:@"postCode"]];
+	[self.zipCityCell setSecondEditable:![profile isFieldReadonly:@"postCode"]];
     [self.countryCell setEditable:![profile isFieldReadonly:@"countryCode"]];
 }
 
@@ -142,7 +138,7 @@ static NSUInteger const kDetailsSection = 1;
 - (BOOL)inputValid {
     return [[self.businessNameCell value] hasValue] && [[self.registrationNumberCell value] hasValue]
             && [[self.descriptionCell value] hasValue] && [[self.addressCell value] hasValue]
-            && [[self.postCodeCell value] hasValue] && [[self.cityCell value] hasValue]
+            && [[self.zipCityCell value] hasValue] && [[self.zipCityCell secondValue] hasValue]
             && [[self.countryCell value] hasValue];
 }
 
@@ -152,8 +148,8 @@ static NSUInteger const kDetailsSection = 1;
     [profile setRegistrationNumber:[self.registrationNumberCell value]];
     [profile setBusinessDescription:[self.descriptionCell value]];
     [profile setAddressFirstLine:[self.addressCell value]];
-    [profile setPostCode:[self.postCodeCell value]];
-    [profile setCity:[self.cityCell value]];
+    [profile setPostCode:self.zipCityCell.value];
+    [profile setCity:self.zipCityCell.secondValue];
     [profile setCountryCode:[self.countryCell value]];
 
     [self.objectModel saveContext];
@@ -181,8 +177,14 @@ static NSUInteger const kDetailsSection = 1;
 
     PhoneBookAddress *address = profile.address;
     [self.addressCell setValueWhenEditable:address.street];
-    [self.postCodeCell setValueWhenEditable:address.zipCode];
-    [self.cityCell setValueWhenEditable:address.city];
+    if (![self.objectModel.currentUser.businessProfile isFieldReadonly:@"city"])
+	{
+		[self.zipCityCell setValue:address.zipCode];
+	}
+	if (![self.objectModel.currentUser.businessProfile isFieldReadonly:@"postCode"])
+	{
+		[self.zipCityCell setSecondValue:address.city];
+	}
     if (![self.objectModel.currentUser.businessProfile isFieldReadonly:@"countryCode"]) {
         [self.countryCell setTwoLetterCountryCode:address.countryCode];
     }
@@ -193,8 +195,8 @@ static NSUInteger const kDetailsSection = 1;
     [operation setRegistrationNumber:[self.registrationNumberCell value]];
     [operation setBusinessDescription:[self.descriptionCell value]];
     [operation setAddressFirstLine:[self.addressCell value]];
-    [operation setPostCode:[self.postCodeCell value]];
-    [operation setCity:[self.cityCell value]];
+    [operation setPostCode:[self.zipCityCell value]];
+    [operation setCity:[self.zipCityCell secondValue]];
     [operation setCountryCode:[self.countryCell value]];
 }
 
@@ -202,6 +204,7 @@ static NSUInteger const kDetailsSection = 1;
 {
 	[tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
     [tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
+	[tableView registerNib:[UINib nibWithNibName:@"DoubleEntryCell" bundle:nil] forCellReuseIdentifier:TWDoubleEntryCellIdentifier];
 }
 
 @end
