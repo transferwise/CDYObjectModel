@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MultipleEntryCell.h"
 
-extern NSString *const TWZipCityCellIdentifier;
+extern NSString *const TWDoubleEntryCellIdentifier;
 
 @interface DoubleEntryCell : MultipleEntryCell
 

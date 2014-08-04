@@ -38,6 +38,7 @@ NSUInteger const kUserPersonalSection = 1;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
 @property (nonatomic, strong) DoublePasswordEntryCell *passwordCell;
 @property (nonatomic, strong) TextEntryCell *stateCell;
+@property (nonatomic, strong) NSArray *loginCells;
 
 
 @end
@@ -48,6 +49,8 @@ NSUInteger const kUserPersonalSection = 1;
 {
     if (self.cells)
 	{
+		//this might have been changed to single
+		self.passwordCell.showDouble = YES;
         return self.cells;
     }
 
@@ -57,14 +60,16 @@ NSUInteger const kUserPersonalSection = 1;
     }
 
     NSMutableArray *firstColumnCells = [NSMutableArray array];
+	NSMutableArray *passwordFirstColumn = [NSMutableArray array];
 	
 	TextEntryCell *emailCell = [TextEntryCell loadInstance];
     [self setEmailCell:emailCell];
-    [firstColumnCells addObject:emailCell];
     [emailCell configureWithTitle:NSLocalizedString(@"personal.profile.email.label", nil) value:@""];
     [emailCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [emailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
 	[emailCell setCellTag:@"EmailCell"];
+	[firstColumnCells addObject:emailCell];
+	[passwordFirstColumn addObject:emailCell];
 	
 	DoublePasswordEntryCell *passwordCell = [DoublePasswordEntryCell loadInstance];
 	passwordCell.showDouble = YES;
@@ -72,6 +77,7 @@ NSUInteger const kUserPersonalSection = 1;
     [self setPasswordCell:passwordCell];
     [firstColumnCells addObject:passwordCell];
 	[passwordCell setCellTag:@"DoublePasswordCell"];
+	[passwordFirstColumn addObject:passwordCell];
 	
 	DoubleEntryCell *firstLastNameCell = [DoubleEntryCell loadInstance];
 	[self setFirstLastNameCell:firstLastNameCell];
@@ -130,7 +136,14 @@ NSUInteger const kUserPersonalSection = 1;
 
 
     [self setCells:@[@[firstColumnCells, secondColumnCells]]];
+	[self setLoginCells:@[@[passwordFirstColumn]]];
     return self.cells;
+}
+
+- (NSArray *)loginPresentedCells
+{
+	self.passwordCell.showDouble = NO;
+	return self.loginCells;
 }
 
 - (void)loadDetailsToCells
@@ -166,47 +179,6 @@ NSUInteger const kUserPersonalSection = 1;
     });
 }
 
-- (void)loadDataFromProfile:(PhoneBookProfile *)profile
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        MCLog(@"Did load:%@", profile);
-        PersonalProfile *personal = self.objectModel.currentUser.personalProfile;
-
-		if (![personal isFieldReadonly:@"firstName"])
-		{
-			[self.firstLastNameCell setValue:profile.firstName];
-		}
-		if (![personal isFieldReadonly:@"lastName"])
-		{
-			[self.firstLastNameCell setSecondValue:profile.lastName];
-		}
-		
-        [self.phoneNumberCell setValueWhenEditable:profile.phone];
-        if (![personal isFieldReadonly:@"dateOfBirth"]) {
-            [self.dateOfBirthCell setDateValue:profile.dateOfBirth];
-        }
-
-        [self.emailCell setValueWhenEditable:profile.email];
-
-        PhoneBookAddress *address = profile.address;
-        [self.addressCell setValueWhenEditable:address.street];
-		
-		if (![personal isFieldReadonly:@"city"])
-		{
-			[self.zipCityCell setValue:address.zipCode];
-		}
-		if (![personal isFieldReadonly:@"postCode"])
-		{
-			[self.zipCityCell setSecondValue:address.city];
-		}
-        if (![personal isFieldReadonly:@"countryCode"])
-		{
-            [self.countryCell setTwoLetterCountryCode:address.countryCode];
-        }
-        [self.stateCell setValueWhenEditable:address.state];
-        [self includeStateCell:[self.countryCell.value caseInsensitiveCompare:@"usa"]==NSOrderedSame];
-    });
-}
 
 - (BOOL)inputValid
 {
@@ -318,16 +290,6 @@ NSUInteger const kUserPersonalSection = 1;
 -(void)countrySelectionCell:(CountrySelectionCell *)cell selectedCountry:(Country *)country
 {
     [self includeStateCell:([country.iso3Code caseInsensitiveCompare:@"usa"]==NSOrderedSame)];
-}
-
-- (void)setUpTableView:(UITableView *)tableView
-{
-	[tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
-    [tableView registerNib:[UINib nibWithNibName:@"DateEntryCell" bundle:nil] forCellReuseIdentifier:TWDateEntryCellIdentifier];
-    [tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
-	[tableView registerNib:[UINib nibWithNibName:@"DoublePasswordEntryCell" bundle:nil] forCellReuseIdentifier:TWDoublePasswordEntryCellIdentifier];
-	
-	[tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
 @end

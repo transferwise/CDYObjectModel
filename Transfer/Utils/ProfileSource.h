@@ -20,7 +20,9 @@ typedef void (^ProfileActionBlock)(NSError *error);
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, strong) NSArray *cells;
 
+
 - (NSArray *)presentedCells;
+- (NSArray *)presentedLoginCells;
 - (void)pullDetailsWithHandler:(ProfileActionBlock)handler;
 - (void)loadDataFromProfile:(PhoneBookProfile *)profile;
 - (BOOL)inputValid;

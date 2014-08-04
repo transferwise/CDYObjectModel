@@ -135,7 +135,7 @@ NSInteger const kSecondPassword = 2;
 {
 	if (self.showDouble && !self.useDummyPassword)
 	{
-		return [self.entryField.text isEqualToString:self.self.secondPassword.text];
+		return [self.firstPassword.text isEqualToString:self.self.secondPassword.text];
 	}
 	
 	return YES;

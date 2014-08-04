@@ -40,6 +40,7 @@ static NSUInteger const kButtonSection = 0;
 @property (nonatomic, assign) BOOL inputCheckRunning;
 @property (nonatomic, strong) CountrySuggestionCellProvider* cellProvider;
 @property (nonatomic) CGFloat bottomInset;
+@property (nonatomic) BOOL isExistingEmail;
 
 @end
 
@@ -227,8 +228,16 @@ static NSUInteger const kButtonSection = 0;
 		
         if (error)
 		{
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"personal.profile.verify.error.title", nil) error:error];
-            [alertView show];
+			if (false)
+			{
+				self.isExistingEmail = YES;
+				[self showAsLogin];
+			}
+			else
+			{
+				TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"personal.profile.verify.error.title", nil) error:error];
+				[alertView show];
+			}
         }
     }];
 }
@@ -261,6 +270,17 @@ static NSUInteger const kButtonSection = 0;
 - (Country *)getCountryByCode:(NSString *)code
 {
 	return [self.cellProvider getCountryByCode:code];
+}
+
+#pragma mark - Show as Login
+- (void)showAsLogin
+{
+	//remove cells
+	//rebind tables
+	//rename button
+	//switch out button action
+	//implement login
+	//return with filled profile
 }
 
 @end

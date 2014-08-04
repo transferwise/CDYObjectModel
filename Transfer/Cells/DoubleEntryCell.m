@@ -9,7 +9,7 @@
 #import "DoubleEntryCell.h"
 #import "FloatingLabelTextField.h"
 
-NSString *const TWZipCityCellIdentifier = @"DoubleEntryCell";
+NSString *const TWDoubleEntryCellIdentifier = @"DoubleEntryCell";
 
 @interface DoubleEntryCell ()
 
