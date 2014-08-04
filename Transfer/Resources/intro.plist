@@ -1,55 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>AUD</key>
+<array>
 	<dict>
-		<key>partner</key>
-		<string>Envoyservices Ltd</string>
-		<key>location</key>
-		<string>Australia</string>
+		<key>imageName</key>
+		<string>intro_screen_logo</string>
+		<key>titleRef</key>
+		<string>intro.tagline.one</string>
+		<key>textRef</key>
+		<string>intro.message.one</string>
+		<key>bgStyle</key>
+		<string>lightBlue</string>
+		<key>titleFontStyle</key>
+		<string>sharpBold.@35.TWBlue</string>
+		<key>textFontStyle</key>
+		<string>book.@20.corefont</string>
 	</dict>
-	<key>CHF</key>
 	<dict>
-		<key>partner</key>
-		<string>WorldPay AP Ltd</string>
-		<key>location</key>
-		<string>Switzerland</string>
+		<key>imageName</key>
+		<string>intro_screen_logo</string>
+		<key>titleRef</key>
+		<string>intro.tagline.two</string>
+		<key>textRef</key>
+		<string>intro.message.two</string>
+		<key>bgStyle</key>
+		<string>twblue</string>
+		<key>titleFontStyle</key>
+		<string>sharpBold.@35.white</string>
+		<key>textFontStyle</key>
+		<string>book.@20.corefont</string>
 	</dict>
-	<key>DKK</key>
 	<dict>
-		<key>partner</key>
-		<string>WorldPay AP Ltd</string>
-		<key>location</key>
-		<string>Denmark</string>
+		<key>imageName</key>
+		<string>intro_screen_logo_white</string>
+		<key>titleRef</key>
+		<string>intro.tagline.three</string>
+		<key>textRef</key>
+		<string>intro.message.three</string>
+		<key>bgStyle</key>
+		<string>greenshadow</string>
+		<key>titleFontStyle</key>
+		<string>sharpBold.@35.TWBlue</string>
+		<key>textFontStyle</key>
+		<string>book.@20.white</string>
 	</dict>
-	<key>HKD</key>
 	<dict>
-		<key>partner</key>
-		<string>WorldPay AP Ltd</string>
-		<key>location</key>
-		<string>Hong Kong</string>
+		<key>imageName</key>
+		<string>intro_screen_logo</string>
+		<key>titleRef</key>
+		<string>intro.tagline.four</string>
+		<key>textRef</key>
+		<string>intro.message.four</string>
+		<key>bgStyle</key>
+		<string>TWElectricBlueDarker</string>
+		<key>titleFontStyle</key>
+		<string>sharpBold.@35.TWBlue</string>
+		<key>textFontStyle</key>
+		<string>book.@20.white</string>
 	</dict>
-	<key>NOK</key>
-	<dict>
-		<key>partner</key>
-		<string>WorldPay AP Ltd</string>
-		<key>location</key>
-		<string>Norway</string>
-	</dict>
-	<key>NZD</key>
-	<dict>
-		<key>partner</key>
-		<string>Envoy Services Ltd</string>
-		<key>location</key>
-		<string>New Zealand</string>
-	</dict>
-	<key>SEK</key>
-	<dict>
-		<key>partner</key>
-		<string>WorldPay AP Ltd</string>
-		<key>location</key>
-		<string>Sweden</string>
-	</dict>
-</dict>
+</array>
 </plist>
