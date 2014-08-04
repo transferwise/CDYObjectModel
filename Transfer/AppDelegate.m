@@ -113,6 +113,16 @@
     
     ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:frontViewController];
 
+    for (NSString* family in [UIFont familyNames])
+    {
+        NSLog(@"%@", family);
+        
+        for (NSString* name in [UIFont fontNamesForFamilyName: family])
+        {
+            NSLog(@"  %@", name);
+        }
+    }
+    
 	self.window.rootViewController = root;
 	[self.window makeKeyAndVisible];
 	return YES;
