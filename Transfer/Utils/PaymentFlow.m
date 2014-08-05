@@ -161,19 +161,7 @@
                 return;
             }
 
-			//TODO: do this right after leaving email validation
 			[weakSelf verifyEmail:self.objectModel.currentUser.email withHandler:handler];
-			
-			PersonalProfile *personalProfile = (PersonalProfile *) [weakSelf.objectModel.managedObjectContext objectWithID:profile];
-			
-			if (personalProfile.sendAsBusinessValue)
-			{
-				[weakSelf presentBusinessProfileScreen];
-				return;
-			}
-			
-			handler(nil);
-			[weakSelf presentNextPaymentScreen];
         });
     }];
 
@@ -250,7 +238,6 @@
 		[controller setObjectModel:self.objectModel];
 		[controller setButtonTitle:NSLocalizedString(@"business.profile.confirm.payment.button.title", nil)];
 		[controller setProfileValidation:self];
-
         
         [self.navigationController pushViewController:controller animated:YES];
     });
@@ -717,13 +704,26 @@
     MCLog(@"presentNextPaymentScreen");
     [self.objectModel performBlock:^{
         PendingPayment *payment = [self.objectModel pendingPayment];
-        if (!payment.recipient) {
+        if (!payment.recipient)
+		{
             [self presentRecipientDetails:[payment.user personalProfileFilled]];
-        } else if (!payment.user.personalProfileFilled) {
+        }
+		else if (!payment.user.personalProfileFilled)
+		{
             [self presentPersonalProfileEntry:YES];
-        } else if (payment.isFixedAmountValue && !payment.refundRecipient) {
+        }
+		else if (![Credentials userLoggedIn] && payment.user.personalProfile.sendAsBusinessValue)
+		{
+			//reset flag so we won't be coming back here again
+			payment.user.personalProfile.sendAsBusinessValue = NO;
+			[self presentBusinessProfileScreen];
+		}
+		else if (payment.isFixedAmountValue && !payment.refundRecipient)
+		{
             [self presentRefundAccountViewController];
-        } else {
+        }
+		else
+		{
             [self presentPaymentConfirmation];
         }
     }];
