@@ -74,6 +74,7 @@
                 <constraint firstAttribute="bottom" secondItem="vVN-5a-Y2I" secondAttribute="bottom" id="bAG-VB-xGg"/>
                 <constraint firstItem="vVN-5a-Y2I" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="emr-2d-vxL"/>
                 <constraint firstAttribute="bottom" secondItem="szE-h1-o6q" secondAttribute="bottom" priority="984" constant="20" id="rvo-7x-XiO"/>
+                <constraint firstItem="szE-h1-o6q" firstAttribute="top" relation="lessThanOrEqual" secondItem="1" secondAttribute="top" constant="478" id="t7y-zC-6BO"/>
                 <constraint firstItem="szE-h1-o6q" firstAttribute="centerX" secondItem="kNf-5D-V8d" secondAttribute="centerX" id="uhF-3I-WbC"/>
                 <constraint firstAttribute="centerX" secondItem="NiX-z4-79M" secondAttribute="centerX" id="zIP-e7-jol"/>
             </constraints>
