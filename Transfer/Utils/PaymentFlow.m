@@ -48,6 +48,7 @@
 #import "Mixpanel.h"
 #import "PersonalPaymentProfileViewController.h"
 #import "BusinessPaymentProfileViewController.h"
+#import "RegisterOperation.h"
 
 @interface PaymentFlow ()
 
@@ -402,14 +403,15 @@
     MCAssert(NO);
 }
 
-- (void)registerUser {
-	//TODO: add password registration
+- (void)registerUser
+{
     MCLog(@"registerUser");
     User *user = [self.objectModel currentUser];
     MCAssert(user.personalProfile || (user.personalProfile && user.businessProfile));
     MCAssert(user.email);
 
     NSString *email = user.email;
+	NSString *password = user.password;
 
     RegisterWithoutPasswordOperation *operation = [RegisterWithoutPasswordOperation operationWithEmail:email];
     [self setExecutedOperation:operation];
@@ -418,15 +420,31 @@
 
     [operation setCompletionHandler:^(NSError *error) {
         MCLog(@"Register result:%@", error);
-        if (error) {
+        if (error)
+		{
             weakSelf.paymentErrorHandler(error);
             return;
         }
+		
+		RegisterOperation *operation = [RegisterOperation operationWithEmail:email password:password];
+		[self setExecutedOperation:operation];
+		[operation setCompletionHandler:^(NSError *error)
+		{
+			MCLog(@"Set password:result%@", error);
+			if (error)
+			{
+				weakSelf.paymentErrorHandler(error);
+				return;
+			}
+			
+			[weakSelf updateSenderProfile:^{
+				[weakSelf handleNextStepOfPendingPaymentCommit];
+			}];
+		}];
+		
+		[operation execute];
 
-        [weakSelf updateSenderProfile:^{
-            [weakSelf handleNextStepOfPendingPaymentCommit];
-        }];
-    }];
+	}];
 
     [operation execute];
 }
