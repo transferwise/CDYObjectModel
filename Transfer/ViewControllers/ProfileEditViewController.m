@@ -26,16 +26,15 @@
 #import "CountrySuggestionCellProvider.h"
 #import "Country.h"
 #import "Credentials.h"
-#import "EmailEntryCell.h"
 #import "UIColor+MOMStyle.h"
 
 static NSUInteger const kButtonSection = 0;
 
-@interface ProfileEditViewController ()<CountrySelectionCellDelegate, EmailEntryCellDelegate>
+@interface ProfileEditViewController ()<CountrySelectionCellDelegate, TextEntryCellDelegate>
 
 @property (nonatomic, strong) ProfileSource *profileSource;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
-@property (nonatomic, strong) EmailEntryCell *emailCell;
+@property (nonatomic, strong) TextEntryCell *emailCell;
 @property (nonatomic, strong) NSArray *presentationCells;
 @property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
@@ -77,7 +76,7 @@ static NSUInteger const kButtonSection = 0;
     NSArray *presented = [self.profileSource presentedCells:[self createSendAsBusinessCell]];
 
     CountrySelectionCell *countryCell = nil;
-	EmailEntryCell *emailCell = nil;
+	TextEntryCell *emailCell = nil;
 	for (NSArray* table in presented)
 	{
 		for (NSArray *cells in table) {
@@ -87,9 +86,11 @@ static NSUInteger const kButtonSection = 0;
 					countryCell = (CountrySelectionCell *)cell;
 					break;
 				}
-				else if([cell isKindOfClass:[EmailEntryCell class]])
+				else if([cell isKindOfClass:[TextEntryCell class]]
+						&& [((TextEntryCell *)cell).cellTag isEqualToString:@"EmailCell"])
 				{
-					emailCell = (EmailEntryCell *)cell;
+					emailCell = (TextEntryCell *)cell;
+					emailCell.delegate = self;
 				}
 				
 				if(countryCell && emailCell)
@@ -169,6 +170,14 @@ static NSUInteger const kButtonSection = 0;
 - (BOOL)createSendAsBusinessCell
 {
 	return self.allowProfileSwitch && ![Credentials userLoggedIn];
+}
+
+- (void)textEntryFinishedInCell:(UITableViewCell *)cell
+{
+	if(cell == self.emailCell)
+	{
+		//kick of validation
+	}
 }
 
 #pragma mark - Suggestion Table
