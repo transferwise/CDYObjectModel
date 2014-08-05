@@ -24,7 +24,6 @@ typedef void (^ProfileActionBlock)(NSError *error);
 - (NSArray *)presentedCells:(BOOL)allowProfileSwitch;
 - (NSArray *)presentedLoginCells;
 - (void)pullDetailsWithHandler:(ProfileActionBlock)handler;
-- (void)loadDataFromProfile:(PhoneBookProfile *)profile;
 - (BOOL)inputValid;
 - (id)enteredProfile;
 - (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion;

@@ -95,7 +95,7 @@
 	
 	if([cell isKindOfClass:[MultipleEntryCell class]])
 	{
-		((MultipleEntryCell *)cell).delegate = self;
+		((MultipleEntryCell *)cell).multipleEntryDelegate = self;
 	}
 	
     return cell;

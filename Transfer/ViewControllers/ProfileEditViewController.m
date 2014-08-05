@@ -120,8 +120,7 @@ static NSUInteger const kButtonSection = 0;
         [weakSelf didSelectCountry:countryName];
     }];
 	
-	countryCell.delegate = self;
-	emailCell.delegate = self;
+	countryCell.countrySelectionDelegate = self;
 
     [self setPresentationCells:presented];
 }
@@ -240,20 +239,6 @@ static NSUInteger const kButtonSection = 0;
             });
         }];
 
-    }];
-}
-
-- (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section != kButtonSection)
-	{
-        return;
-    }
-
-    PhoneBookProfileSelector *selector = [[PhoneBookProfileSelector alloc] init];
-    [self setProfileSelector:selector];
-    [selector presentOnController:self completionHandler:^(PhoneBookProfile *profile) {
-        [self.profileSource loadDataFromProfile:profile];
     }];
 }
 

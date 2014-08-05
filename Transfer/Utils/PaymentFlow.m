@@ -168,12 +168,10 @@
     [operation execute];
 }
 
-- (void)verifyEmail:(NSString *)email withHandler:(PersonalProfileValidationBlock)handler {
-    MCLog(@"Verify email %@ available", email);
-    EmailCheckOperation *operation = [EmailCheckOperation operationWithEmail:email];
-    [self setExecutedOperation:operation];
+- (void)verifyEmail:(NSString *)email withHandler:(PersonalProfileValidationBlock)handler
+{
     __weak typeof(self) weakSelf = self;
-    [operation setResultHandler:^(BOOL available, NSError *error) {
+    [self verifyEmail:email withResultBlock:^(BOOL available, NSError *error) {
         if (error)
 		{
             handler(error);
@@ -191,7 +189,15 @@
             [weakSelf presentNextPaymentScreen];
         }
     }];
+}
 
+- (void)verifyEmail:(NSString *)email withResultBlock:(EmailValidationResultBlock)resultBlock
+{
+    MCLog(@"Verify email %@ available", email);
+    EmailCheckOperation *operation = [EmailCheckOperation operationWithEmail:email];
+    [self setExecutedOperation:operation];
+    [operation setResultHandler:resultBlock];
+	
     [operation execute];
 }
 
