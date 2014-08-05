@@ -29,6 +29,7 @@
 @property (nonatomic, strong) IBOutlet SMPageControl *pageControl;
 @property (nonatomic, assign) NSInteger reportedPage;
 @property (nonatomic, assign) NSInteger lastLoadedIndex;
+@property (nonatomic, assign) NSInteger pageBeforeRotation;
 
 - (IBAction)startPressed;
 
@@ -75,6 +76,7 @@
     self.pageControl.currentPageIndicatorTintColor = [UIColor colorFromStyle:@"TWElectricBlue"];
     self.pageControl.indicatorDiameter = 10.0f;
     self.pageControl.indicatorMargin = 5.0f;
+    self.pageControl.userInteractionEnabled = NO;
     [self.pageControl addTarget:self action:@selector(pageChanged) forControlEvents:UIControlEventValueChanged];
     
     //Initialise with a invalid value to ensure layout first time around.
@@ -82,33 +84,57 @@
 
 }
 
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    self.pageBeforeRotation = self.pageControl.currentPage;
+}
+
+-(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    self.lastLoadedIndex = -1; //Force re-layout
+    [self layoutScrollView];
+    self.scrollView.contentOffset = CGPointMake(self.pageBeforeRotation*self.scrollView.bounds.size.width, 0);
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+-(void)viewDidLayoutSubviews
+{
+    [self.scrollView setNeedsLayout];
+    [self layoutScrollView];
+    [self.view layoutSubviews];
+    [super viewDidLayoutSubviews];
+}
 
-    [self.scrollView setContentSize:CGSizeMake(CGRectGetWidth(self.scrollView.frame) * [self.introData count], CGRectGetHeight(self.scrollView.frame))];
 
+-(void)layoutScrollView
+{
+    [self.scrollView layoutIfNeeded];
+    [self.scrollView setContentSize:CGSizeMake(CGRectGetWidth(self.scrollView.bounds) * [self.introData count], CGRectGetHeight(self.scrollView.bounds))];
     [self updatePages];
-    
     [self.pageControl updatePageNumberForScrollView:self.scrollView];
+
 }
 
 -(void)updatePages
 {
+    [self.scrollView layoutIfNeeded];
+    
     //Calculate leftmost index
-    NSInteger index = MAX(0,MIN(self.introData.count - 3 ,round(self.scrollView.contentOffset.x/self.scrollView.frame.size.width) - 1));
+    NSInteger index = MAX(0,MIN(self.introData.count - 3 ,round(self.scrollView.contentOffset.x/self.scrollView.bounds.size.width) - 1));
     
     if(index != self.lastLoadedIndex)
     {
         self.lastLoadedIndex = index;
         for (IntroView *intro in self.introScreens) {
             CGRect introFrame = intro.frame;
-            introFrame.size = self.scrollView.frame.size;
-            introFrame.origin.x = index * self.scrollView.frame.size.width;
+            introFrame.size = self.scrollView.bounds.size;
+            introFrame.origin.x = index * self.scrollView.bounds.size.width;
             [intro setFrame:introFrame];
             [intro setUpWithDictionary:self.introData[index]];
             [self.scrollView addSubview:intro];
@@ -121,7 +147,8 @@
 
 -(void)updateButtonAppearance
 {
-    CGFloat relativeOffset = self.scrollView.contentOffset.x/self.scrollView.frame.size.width;
+    [self.scrollView layoutIfNeeded];
+    CGFloat relativeOffset = self.scrollView.contentOffset.x/self.scrollView.bounds.size.width;
     NSInteger index = floor(relativeOffset);
     if(index < 0)
     {

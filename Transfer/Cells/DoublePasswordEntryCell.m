@@ -43,6 +43,8 @@ NSInteger const kSecondPassword = 2;
 {
 	[self.firstPassword configureWithTitle:title value:@""];
 	[self.secondPassword configureWithTitle:NSLocalizedString(@"personal.profile.password.confirm.label", nil) value:@""];
+	[self.firstPassword setReturnKeyType:UIReturnKeyNext];
+	[self.secondPassword setReturnKeyType:UIReturnKeyNext];
 }
 
 - (NSString *)value
