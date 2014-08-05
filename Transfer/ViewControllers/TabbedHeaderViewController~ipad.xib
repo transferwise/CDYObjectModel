@@ -7,8 +7,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TabbedHeaderViewController">
             <connections>
                 <outlet property="containerView" destination="DOU-yV-ZNg" id="CdU-4g-GnB"/>
+                <outlet property="headerHeight" destination="pBo-MU-tRu" id="kQq-4G-Nzg"/>
                 <outlet property="tabView" destination="IXj-y3-yUN" id="Cl9-OV-GT1"/>
-                <outlet property="tabViewHeightConstraint" destination="pBo-MU-tRu" id="z8P-33-3kg"/>
                 <outlet property="view" destination="Xod-A7-bAq" id="sM4-AQ-KVn"/>
             </connections>
         </placeholder>
