@@ -47,6 +47,7 @@
 "confirm.payment.delivery.date.message" = "Money arrives %@";
 "confirm.payment.deposit.title.label" = "Your deposit";
 "confirm.payment.email.label" = "Email";
+"confirm.payment.header.format" = "On %@,\n%@\nis estimated to reach\n%@'s account";
 "confirm.payment.estimated.exchange.rate.message" = "Estimated rate %@";
 "confirm.payment.exchanged.to.title.label" = "Will be exchanged to";
 "confirm.payment.footer.button.title" = "Continue";
