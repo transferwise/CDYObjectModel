@@ -97,6 +97,8 @@
 		3887CBBB197690FC004DFFFD /* OptionalSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */; };
 		3887CBBE1976AF2B004DFFFD /* CancelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBBD1976AF2B004DFFFD /* CancelHelper.m */; };
 		3887CBBF1976AF2B004DFFFD /* CancelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBBD1976AF2B004DFFFD /* CancelHelper.m */; };
+		388B1F751990E04200DF13E8 /* WhiteRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388B1F741990E04200DF13E8 /* WhiteRoundedButton.m */; };
+		388B1F761990E04200DF13E8 /* WhiteRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388B1F741990E04200DF13E8 /* WhiteRoundedButton.m */; };
 		388F09FB1934A1BB00DBD93D /* UIView+RenderBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */; };
 		388F09FC1934A1C000DBD93D /* UIView+RenderBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */; };
 		388F09FF1936434A00DBD93D /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
@@ -872,6 +874,8 @@
 		3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionalSplitViewController.m; sourceTree = "<group>"; };
 		3887CBBC1976AF2B004DFFFD /* CancelHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelHelper.h; sourceTree = "<group>"; };
 		3887CBBD1976AF2B004DFFFD /* CancelHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelHelper.m; sourceTree = "<group>"; };
+		388B1F731990E04200DF13E8 /* WhiteRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteRoundedButton.h; sourceTree = "<group>"; };
+		388B1F741990E04200DF13E8 /* WhiteRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteRoundedButton.m; sourceTree = "<group>"; };
 		388F09F91934A1BB00DBD93D /* UIView+RenderBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RenderBlur.h"; sourceTree = "<group>"; };
 		388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RenderBlur.m"; sourceTree = "<group>"; };
 		388F09FD1936434A00DBD93D /* InsetRespectingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InsetRespectingButton.h; path = Views/InsetRespectingButton.h; sourceTree = "<group>"; };
@@ -1626,6 +1630,8 @@
 				EA677B44189B855200505139 /* StartPaymentButton.m */,
 				EA2296C417E08027001CF541 /* TransferBackButtonItem.h */,
 				EA2296C517E08027001CF541 /* TransferBackButtonItem.m */,
+				388B1F731990E04200DF13E8 /* WhiteRoundedButton.h */,
+				388B1F741990E04200DF13E8 /* WhiteRoundedButton.m */,
 				4723EA0F1973D9B500B4345F /* YahooButton.h */,
 				4723EA101973D9B500B4345F /* YahooButton.m */,
 			);
@@ -3097,6 +3103,7 @@
 				EA31A13B17DDB29B00F937F7 /* NSDictionary+SensibleData.m in Sources */,
 				EA31A13C17DDB29B00F937F7 /* UIButton+Skinning.m in Sources */,
 				EA31A13D17DDB29B00F937F7 /* GreenButton.m in Sources */,
+				388B1F761990E04200DF13E8 /* WhiteRoundedButton.m in Sources */,
 				EA31A13E17DDB29B00F937F7 /* GrayButton.m in Sources */,
 				EA31A13F17DDB29B00F937F7 /* RecipientCell.m in Sources */,
 				47535CB01981362600DC39D6 /* DoublePasswordEntryCell.m in Sources */,
@@ -3374,6 +3381,7 @@
 				3887CBBA197690FC004DFFFD /* OptionalSplitViewController.m in Sources */,
 				47FB7EA91941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m in Sources */,
 				38C8A79D19371DBC00714FB3 /* PullToRefreshView.m in Sources */,
+				388B1F751990E04200DF13E8 /* WhiteRoundedButton.m in Sources */,
 				380021D4192CC531009B1D53 /* UIView+MOMStyle.m in Sources */,
 				EAB7215F171FCAAC00DE29F5 /* SettingsTitleCell.m in Sources */,
 				EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */,

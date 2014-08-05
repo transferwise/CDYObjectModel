@@ -15,6 +15,8 @@
 		<string>sharpBold.@35.TWBlue</string>
 		<key>textFontStyle</key>
 		<string>book.@20.corefont</string>
+		<key>useWhiteButton</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>imageName</key>
@@ -29,6 +31,8 @@
 		<string>sharpBold.@35.white</string>
 		<key>textFontStyle</key>
 		<string>book.@20.corefont</string>
+		<key>useWhiteButton</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>imageName</key>
@@ -43,6 +47,8 @@
 		<string>sharpBold.@35.TWBlue</string>
 		<key>textFontStyle</key>
 		<string>book.@20.white</string>
+		<key>useWhiteButton</key>
+		<true/>
 	</dict>
 	<dict>
 		<key>imageName</key>
@@ -57,6 +63,8 @@
 		<string>sharpBold.@35.TWBlue</string>
 		<key>textFontStyle</key>
 		<string>book.@20.white</string>
+		<key>useWhiteButton</key>
+		<true/>
 	</dict>
 </array>
 </plist>
