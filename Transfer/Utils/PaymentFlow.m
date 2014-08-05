@@ -18,7 +18,6 @@
 #import "PersonalProfileOperation.h"
 #import "EmailCheckOperation.h"
 #import "RecipientOperation.h"
-#import "RegisterWithoutPasswordOperation.h"
 #import "BusinessProfileOperation.h"
 #import "PaymentProfileViewController.h"
 #import "TRWAlertView.h"
@@ -48,6 +47,7 @@
 #import "Mixpanel.h"
 #import "PersonalPaymentProfileViewController.h"
 #import "BusinessPaymentProfileViewController.h"
+#import "RegisterOperation.h"
 
 @interface PaymentFlow ()
 
@@ -408,55 +408,64 @@
     MCAssert(NO);
 }
 
-- (void)registerUser {
-	//TODO: add password registration
+- (void)registerUser
+{
     MCLog(@"registerUser");
     User *user = [self.objectModel currentUser];
     MCAssert(user.personalProfile || (user.personalProfile && user.businessProfile));
     MCAssert(user.email);
 
     NSString *email = user.email;
+	NSString *password = user.password;
 
-    RegisterWithoutPasswordOperation *operation = [RegisterWithoutPasswordOperation operationWithEmail:email];
+    RegisterOperation *operation = [RegisterOperation operationWithEmail:email password:password];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
     __weak typeof(self) weakSelf = self;
 
     [operation setCompletionHandler:^(NSError *error) {
         MCLog(@"Register result:%@", error);
-        if (error) {
+        if (error)
+		{
             weakSelf.paymentErrorHandler(error);
             return;
         }
-
-        [weakSelf updateSenderProfile:^{
-            [weakSelf handleNextStepOfPendingPaymentCommit];
-        }];
-    }];
+		
+		[weakSelf updateSenderProfile:^{
+			[weakSelf handleNextStepOfPendingPaymentCommit];
+		}];
+	}];
 
     [operation execute];
 }
 
-- (void)updateSenderProfile:(TRWActionBlock)completion {
+- (void)updateSenderProfile:(TRWActionBlock)completion
+{
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"updateSenderProfile");
-        if ([self.objectModel.currentUser.businessProfile isFilled]) {
+        if ([self.objectModel.currentUser.businessProfile isFilled])
+		{
             [self updateBusinessProfile:completion];
-        } else {
+        }
+		else
+		{
             [self updatePersonalProfile:completion];
         }
     });
 }
 
-- (void)updateBusinessProfile:(TRWActionBlock)completion {
+- (void)updateBusinessProfile:(TRWActionBlock)completion
+{
     MCLog(@"updateBusinessProfile");
     BusinessProfileOperation *operation = [BusinessProfileOperation commitWithData:self.objectModel.currentUser.businessProfile.objectID];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
     __weak typeof(self) weakSelf = self;
 
-    [operation setSaveResultHandler:^(NSError *error) {
-        if (error) {
+    [operation setSaveResultHandler:^(NSError *error)
+	{
+        if (error)
+		{
             weakSelf.paymentErrorHandler(error);
             return;
         }
@@ -467,7 +476,8 @@
     [operation execute];
 }
 
-- (void)updatePersonalProfile:(TRWActionBlock)completion {
+- (void)updatePersonalProfile:(TRWActionBlock)completion
+{
     MCLog(@"updatePersonalProfile");
     PersonalProfileOperation *operation = [PersonalProfileOperation commitOperationWithProfile:self.objectModel.currentUser.personalProfile.objectID];
     [self setExecutedOperation:operation];
