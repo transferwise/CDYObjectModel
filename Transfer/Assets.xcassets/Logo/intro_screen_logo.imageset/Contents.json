@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "IntroPageThreeImage.png"
+      "filename" : "intro_screen_logo_iphone.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "IntroPageThreeImage@2x.png"
+      "filename" : "intro_screen_logo_iphone@2x.png"
     }
   ],
   "info" : {

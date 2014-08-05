@@ -501,17 +501,27 @@ Please attach your documents to this email and send it our way.<br />
 
 "business.profile.identification.making.payment.message" = "Creating payment...";
 
-"intro.start.buttont.title" = "Get started";
-"intro.tagline.one" = "No more hidden fees";
-"intro.tagline.two" = "Beat the system in minutes";
-"intro.tagline.three" = "A revolution in your pocket";
-"intro.message.one" = "Send money abroad and save up to
-85% compared to your bank.";
-"intro.message.two" = "Create a transfer, upload your money
-and send it to any bank account.";
-"intro.message.three" = "The new way to send money, from the
-people who built Skype and PayPal.";
-
+"intro.start.buttont.title" = "Got it";
+"intro.tagline.one" = "MONEY
+WITHOUT
+BORDERS";
+"intro.tagline.two" = "90\% CHEAPER
+THAN YOUR
+BANK";
+"intro.tagline.three" = "TRUSTED
+AROUND
+THE WORLD";
+"intro.tagline.four" = "EASIER &
+FASTER
+EXPERIENCE";
+"intro.message.one" = "Send money abroad
+cheaper & faster";
+"intro.message.two" = "Banks charge 5% with hidden
+fees. We charge 0.5%";
+"intro.message.three" = "5/5 ratings across 6758
+independent reviews";
+"intro.message.four" = "From the people
+who built Skype";
 "business.profile.identification.header.instructions.text" = "As we follow the anti-money laundering policies of our regulators (HMRC and FCA), we unfortunately need photos (or scanned copies) of a few key documents:
 
 1. A valid business incorporation document

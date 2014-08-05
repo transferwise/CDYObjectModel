@@ -121,6 +121,11 @@
 				<key>color</key>
 				<string>29b2e0</string>
 			</dict>
+			<key>TWElectricblueDarker</key>
+			<dict>
+				<key>color</key>
+				<string>249cc4</string>
+			</dict>
 			<key>TWBlueHighlighted</key>
 			<dict>
 				<key>color</key>
@@ -184,6 +189,15 @@
 				<integer>15</integer>
 				<key>color</key>
 				<string>84a2b0</string>
+			</dict>
+			<key>sharpBold</key>
+			<dict>
+				<key>fontName</key>
+				<string>SharpSansFrontieres-Bold</string>
+				<key>fontSize</key>
+				<integer>35</integer>
+				<key>color</key>
+				<string>232f49</string>
 			</dict>
 		</dict>
 	</dict>
