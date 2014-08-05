@@ -102,6 +102,11 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     return YES;
 }
 
+- (void)textFieldEntryFinished
+{
+	
+}
+
 - (void)markIssue:(NSString *)issueMessage
 {
     [self setValidationIssue:issueMessage];

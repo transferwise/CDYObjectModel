@@ -29,5 +29,6 @@ extern NSString *const TWTextEntryCellIdentifier;
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
 - (void)markIssue:(NSString *)issueMessage;
 - (void)markTouched;
+- (void)textFieldEntryFinished;
 
 @end

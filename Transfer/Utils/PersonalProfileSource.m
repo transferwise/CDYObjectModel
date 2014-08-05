@@ -24,6 +24,7 @@
 #import "DoubleEntryCell.h"
 #import "Country.h"
 #import "SwitchCell.h"
+#import "EmailEntryCell.h"
 
 NSUInteger const kUserButtonSection = 0;
 NSUInteger const kUserPersonalSection = 1;
@@ -31,7 +32,7 @@ NSUInteger const kUserPersonalSection = 1;
 @interface PersonalProfileSource ()
 
 @property (nonatomic, strong) DoubleEntryCell *firstLastNameCell;
-@property (nonatomic, strong) TextEntryCell *emailCell;
+@property (nonatomic, strong) EmailEntryCell *emailCell;
 @property (nonatomic, strong) TextEntryCell *phoneNumberCell;
 @property (nonatomic, strong) DateEntryCell *dateOfBirthCell;
 @property (nonatomic, strong) TextEntryCell *addressCell;
@@ -75,7 +76,7 @@ NSUInteger const kUserPersonalSection = 1;
 		[sendAsBusinessCell.titleLabel setText:NSLocalizedString(@"profile.selection.text.business.profile", nil)];
 	}
 	
-	TextEntryCell *emailCell = [TextEntryCell loadInstance];
+	EmailEntryCell *emailCell = [EmailEntryCell loadInstance];
     [self setEmailCell:emailCell];
     [emailCell configureWithTitle:NSLocalizedString(@"personal.profile.email.label", nil) value:@""];
     [emailCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeNone];

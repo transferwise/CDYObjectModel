@@ -17,6 +17,7 @@
 #import "DoubleEntryCell.h"
 #import "DoublePasswordEntryCell.h"
 #import "CountrySelectionCell.h"
+#import "EmailEntryCell.h"
 
 @implementation ProfileSource
 
@@ -147,6 +148,7 @@
     [tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
 	[tableView registerNib:[UINib nibWithNibName:@"DoublePasswordEntryCell" bundle:nil] forCellReuseIdentifier:TWDoublePasswordEntryCellIdentifier];
 	[tableView registerNib:[UINib nibWithNibName:@"DoubleEntryCell" bundle:nil] forCellReuseIdentifier:TWDoubleEntryCellIdentifier];
+	[tableView registerNib:[UINib nibWithNibName:@"EmailEntryCell" bundle:nil] forCellReuseIdentifier:TWEmailEntryCellIdentifier];
 	
 	[tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }

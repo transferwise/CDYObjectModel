@@ -161,8 +161,8 @@
                 return;
             }
 
-			//TODO: move to right after leaving e-mail field
-//            [weakSelf verifyEmail:self.objectModel.currentUser.email withHandler:handler];
+			//TODO: do this right after leaving email validation
+			[weakSelf verifyEmail:self.objectModel.currentUser.email withHandler:handler];
 			
 			PersonalProfile *personalProfile = (PersonalProfile *) [weakSelf.objectModel.managedObjectContext objectWithID:profile];
 			
@@ -194,8 +194,8 @@
 		{
             [[GoogleAnalytics sharedInstance] sendAlertEvent:@"EmailTakenDuringPaymentAlert" withLabel:@""];
 			//TODO: Replace with login screen showing
-//            NSError *emailError = [[NSError alloc] initWithDomain:TRWErrorDomain code:ResponseLocalError userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"personal.profile.email.taken.message", nil)}];
-//            handler(emailError);
+            NSError *emailError = [[NSError alloc] initWithDomain:TRWErrorDomain code:ResponseLocalError userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"personal.profile.email.taken.message", nil)}];
+            handler(emailError);
         }
 		else
 		{

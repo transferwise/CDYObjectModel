@@ -26,13 +26,15 @@
 #import "CountrySuggestionCellProvider.h"
 #import "Country.h"
 #import "Credentials.h"
+#import "EmailEntryCell.h"
 
 static NSUInteger const kButtonSection = 0;
 
-@interface ProfileEditViewController ()<CountrySelectionCellDelegate>
+@interface ProfileEditViewController ()<CountrySelectionCellDelegate, EmailEntryCellDelegate>
 
 @property (nonatomic, strong) ProfileSource *profileSource;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
+@property (nonatomic, strong) EmailEntryCell *emailCell;
 @property (nonatomic, strong) NSArray *presentationCells;
 @property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
@@ -73,22 +75,36 @@ static NSUInteger const kButtonSection = 0;
 						  && self.allowProfileSwitch];
 
     CountrySelectionCell *countryCell = nil;
+	EmailEntryCell *emailCell = nil;
 	for (NSArray* table in presented)
 	{
 		for (NSArray *cells in table) {
 			for (UITableViewCell *cell in cells) {
-				if ([cell isKindOfClass:[CountrySelectionCell class]]) {
+				if ([cell isKindOfClass:[CountrySelectionCell class]])
+				{
 					countryCell = (CountrySelectionCell *)cell;
+					break;
+				}
+				else if([cell isKindOfClass:[EmailEntryCell class]])
+				{
+					emailCell = (EmailEntryCell *)cell;
+				}
+				
+				if(countryCell && emailCell)
+				{
 					break;
 				}
 			}
 			
-			if (countryCell) {
+			if(countryCell && emailCell)
+			{
 				break;
 			}
 		}
 	}
+	
     [self setCountryCell:countryCell];
+	[self setEmailCell:emailCell];
 	
 	self.cellProvider = [[CountrySuggestionCellProvider alloc] init];
     
@@ -102,6 +118,7 @@ static NSUInteger const kButtonSection = 0;
     }];
 	
 	countryCell.delegate = self;
+	emailCell.delegate = self;
 
     [self setPresentationCells:presented];
 }
