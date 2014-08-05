@@ -23,14 +23,16 @@
 #import "DoublePasswordEntryCell.h"
 #import "DoubleEntryCell.h"
 #import "Country.h"
+#import "SwitchCell.h"
+#import "EmailEntryCell.h"
 
 NSUInteger const kUserButtonSection = 0;
 NSUInteger const kUserPersonalSection = 1;
 
-@interface PersonalProfileSource ()<CountrySelectionCellDelegate>
+@interface PersonalProfileSource ()
 
 @property (nonatomic, strong) DoubleEntryCell *firstLastNameCell;
-@property (nonatomic, strong) TextEntryCell *emailCell;
+@property (nonatomic, strong) EmailEntryCell *emailCell;
 @property (nonatomic, strong) TextEntryCell *phoneNumberCell;
 @property (nonatomic, strong) DateEntryCell *dateOfBirthCell;
 @property (nonatomic, strong) TextEntryCell *addressCell;
@@ -39,14 +41,17 @@ NSUInteger const kUserPersonalSection = 1;
 @property (nonatomic, strong) DoublePasswordEntryCell *passwordCell;
 @property (nonatomic, strong) TextEntryCell *stateCell;
 @property (nonatomic, strong) NSArray *loginCells;
-
+@property (nonatomic, strong) SwitchCell *sendAsBusinessCell;
+@property (nonatomic) BOOL anonymous;
 
 @end
 
 @implementation PersonalProfileSource
 
-- (NSArray *)presentedCells
+- (NSArray *)presentedCells:(BOOL)allowProfileSwitch
 {
+	self.anonymous = allowProfileSwitch;
+	
     if (self.cells)
 	{
 		//this might have been changed to single
@@ -62,7 +67,16 @@ NSUInteger const kUserPersonalSection = 1;
     NSMutableArray *firstColumnCells = [NSMutableArray array];
 	NSMutableArray *passwordFirstColumn = [NSMutableArray array];
 	
-	TextEntryCell *emailCell = [TextEntryCell loadInstance];
+	if (allowProfileSwitch)
+	{
+		SwitchCell *sendAsBusinessCell = [SwitchCell loadInstance];
+		[self setSendAsBusinessCell:sendAsBusinessCell];
+		[firstColumnCells addObject:sendAsBusinessCell];
+		[passwordFirstColumn addObject:sendAsBusinessCell];
+		[sendAsBusinessCell.titleLabel setText:NSLocalizedString(@"profile.selection.text.business.profile", nil)];
+	}
+	
+	EmailEntryCell *emailCell = [EmailEntryCell loadInstance];
     [self setEmailCell:emailCell];
     [emailCell configureWithTitle:NSLocalizedString(@"personal.profile.email.label", nil) value:@""];
     [emailCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
@@ -211,6 +225,11 @@ NSUInteger const kUserPersonalSection = 1;
     [profile setCountryCode:self.countryCell.value];
     [profile setDateOfBirth:[self.dateOfBirthCell value]];
     [profile setState:[self.stateCell value]];
+	
+	if (self.anonymous)
+	{
+		[profile setSendAsBusinessValue:[self.sendAsBusinessCell value]];
+	}
 
     [self.objectModel saveContext];
 

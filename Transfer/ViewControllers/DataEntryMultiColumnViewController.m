@@ -177,7 +177,10 @@
     return YES;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+	TextEntryCell *cell = [textField findContainerOfType:[TextEntryCell class]];
+	[cell textFieldEntryFinished];
     [self textFieldEntryFinished];
 }
 

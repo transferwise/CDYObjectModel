@@ -17,10 +17,11 @@
 #import "DoubleEntryCell.h"
 #import "DoublePasswordEntryCell.h"
 #import "CountrySelectionCell.h"
+#import "EmailEntryCell.h"
 
 @implementation ProfileSource
 
-- (NSArray *)presentedCells {
+- (NSArray *)presentedCells:(BOOL)allowProfileSwitch; {
     ABSTRACT_METHOD;
     return @[];
 }
@@ -105,9 +106,12 @@
 	{
 		for (NSArray *sectionCells in table)
 		{
-			for (TextEntryCell *cell in sectionCells)
+			for (UITableViewCell *cell in sectionCells)
 			{
-				[cell markIssue:@""];
+				if ([cell isKindOfClass:[TextEntryCell class]])
+				{
+					[(TextEntryCell *)cell markIssue:@""];
+				}
 			}
 		}
 	}
@@ -119,11 +123,16 @@
 	{
 		for (NSArray *sectionCells in table)
 		{
-			for (TextEntryCell *cell in sectionCells)
+			for (UITableViewCell *cell in sectionCells)
 			{
-				if ([cell.cellTag isEqualToString:tag])
+				if ([cell isKindOfClass:[TextEntryCell class]])
 				{
-					return cell;
+					TextEntryCell* entryCell = (TextEntryCell *)cell;
+					
+					if ([entryCell.cellTag isEqualToString:tag])
+					{
+						return entryCell;
+					}
 				}
 			}
 		}
@@ -139,6 +148,7 @@
     [tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
 	[tableView registerNib:[UINib nibWithNibName:@"DoublePasswordEntryCell" bundle:nil] forCellReuseIdentifier:TWDoublePasswordEntryCellIdentifier];
 	[tableView registerNib:[UINib nibWithNibName:@"DoubleEntryCell" bundle:nil] forCellReuseIdentifier:TWDoubleEntryCellIdentifier];
+	[tableView registerNib:[UINib nibWithNibName:@"EmailEntryCell" bundle:nil] forCellReuseIdentifier:TWEmailEntryCellIdentifier];
 	
 	[tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
