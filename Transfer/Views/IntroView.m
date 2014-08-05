@@ -8,6 +8,7 @@
 
 #import "IntroView.h"
 #import "MOMStyle.h"
+#import "Constants.h"
 
 
 @interface IntroView ()
@@ -30,7 +31,11 @@
 
 - (void)setUpWithDictionary:(NSDictionary*)dictionary {
     [self.introImage setImage:[UIImage imageNamed:dictionary[@"imageName"]]];
-    [self.taglineLabel setText:NSLocalizedString(dictionary[@"titleRef"],nil)];
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    [style setLineSpacing:IPAD?12:7];
+    [style setAlignment:NSTextAlignmentCenter];
+    NSAttributedString *adjustedLineHeightTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(dictionary[@"titleRef"],nil) attributes:@{NSParagraphStyleAttributeName:style}];
+    [self.taglineLabel setAttributedText:adjustedLineHeightTitle];
     [self.messageLabel setText:NSLocalizedString(dictionary[@"textRef"],nil)];
     self.bgStyle = dictionary[@"bgStyle"];
     self.taglineLabel.fontStyle = dictionary[@"titleFontStyle"];

@@ -37,6 +37,9 @@ NSInteger const kSecondTextField = 2;
 	self.firstTextField.delegate = self;
 	self.secondTextField.delegate = self;
 	
+	[self.firstTextField setReturnKeyType:UIReturnKeyNext];
+    [self.secondTextField setReturnKeyType:UIReturnKeyNext];
+	
 	[self addDoubleSeparators];
 }
 

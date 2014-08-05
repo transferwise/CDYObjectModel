@@ -15,18 +15,18 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVN-5a-Y2I">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="Ka6-mU-Tgc"/>
                     </connections>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NiX-z4-79M" customClass="SMPageControl">
-                    <rect key="frame" x="0.0" y="380" width="320" height="20"/>
+                    <rect key="frame" x="352" y="598" width="320" height="20"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="1" green="0.21002093062598115" blue="0.24231308778297178" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -35,7 +35,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szE-h1-o6q" customClass="BlueRoundedButton">
-                    <rect key="frame" x="121" y="420" width="79" height="40"/>
+                    <rect key="frame" x="473" y="678" width="79" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="TBu-N5-uwX"/>
@@ -49,7 +49,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNf-5D-V8d" customClass="WhiteRoundedButton">
-                    <rect key="frame" x="121" y="420" width="79" height="40"/>
+                    <rect key="frame" x="473" y="678" width="79" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="vwr-8n-VEJ"/>
@@ -65,16 +65,14 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="szE-h1-o6q" secondAttribute="bottom" constant="50" id="6zw-8S-o0r"/>
                 <constraint firstAttribute="centerX" secondItem="szE-h1-o6q" secondAttribute="centerX" id="D5I-It-ZZ2"/>
-                <constraint firstItem="NiX-z4-79M" firstAttribute="top" secondItem="1" secondAttribute="top" constant="380" id="GVT-l4-eQ5"/>
+                <constraint firstItem="kNf-5D-V8d" firstAttribute="top" secondItem="NiX-z4-79M" secondAttribute="bottom" constant="60" id="EIp-6h-Mxa"/>
                 <constraint firstItem="szE-h1-o6q" firstAttribute="centerY" secondItem="kNf-5D-V8d" secondAttribute="centerY" id="IVy-08-Pie"/>
                 <constraint firstAttribute="trailing" secondItem="vVN-5a-Y2I" secondAttribute="trailing" id="Xw8-dJ-LvM"/>
                 <constraint firstItem="vVN-5a-Y2I" firstAttribute="top" secondItem="1" secondAttribute="top" id="YXh-52-aGZ"/>
                 <constraint firstAttribute="bottom" secondItem="vVN-5a-Y2I" secondAttribute="bottom" id="bAG-VB-xGg"/>
+                <constraint firstAttribute="centerY" secondItem="szE-h1-o6q" secondAttribute="centerY" constant="-314" id="bQU-GV-4tC"/>
                 <constraint firstItem="vVN-5a-Y2I" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="emr-2d-vxL"/>
-                <constraint firstAttribute="bottom" secondItem="szE-h1-o6q" secondAttribute="bottom" priority="984" constant="20" id="rvo-7x-XiO"/>
-                <constraint firstItem="szE-h1-o6q" firstAttribute="top" relation="lessThanOrEqual" secondItem="1" secondAttribute="top" constant="478" id="t7y-zC-6BO"/>
                 <constraint firstItem="szE-h1-o6q" firstAttribute="centerX" secondItem="kNf-5D-V8d" secondAttribute="centerX" id="uhF-3I-WbC"/>
                 <constraint firstAttribute="centerX" secondItem="NiX-z4-79M" secondAttribute="centerX" id="zIP-e7-jol"/>
             </constraints>
