@@ -69,15 +69,6 @@ NSUInteger const kUserPersonalSection = 1;
     NSMutableArray *firstColumnCells = [NSMutableArray array];
 	NSMutableArray *passwordFirstColumn = [NSMutableArray array];
 	
-	if (allowProfileSwitch)
-	{
-		SwitchCell *sendAsBusinessCell = [SwitchCell loadInstance];
-		[self setSendAsBusinessCell:sendAsBusinessCell];
-		[firstColumnCells addObject:sendAsBusinessCell];
-		[passwordFirstColumn addObject:sendAsBusinessCell];
-		[sendAsBusinessCell.titleLabel setText:NSLocalizedString(@"profile.selection.text.business.profile", nil)];
-	}
-	
 	EmailEntryCell *emailCell = [EmailEntryCell loadInstance];
     [self setEmailCell:emailCell];
     [emailCell configureWithTitle:NSLocalizedString(@"personal.profile.email.label", nil) value:@""];
@@ -151,6 +142,14 @@ NSUInteger const kUserPersonalSection = 1;
     [dateOfBirthCell configureWithTitle:NSLocalizedString(@"personal.profile.date.of.birth.label", nil) value:@""];
     [dateOfBirthCell setCellTag:@"dateOfBirth"];
 
+	if (allowProfileSwitch)
+	{
+		SwitchCell *sendAsBusinessCell = [SwitchCell loadInstance];
+		[self setSendAsBusinessCell:sendAsBusinessCell];
+		[secondColumnCells addObject:sendAsBusinessCell];
+		[passwordFirstColumn addObject:sendAsBusinessCell];
+		[sendAsBusinessCell.titleLabel setText:NSLocalizedString(@"profile.selection.text.business.profile", nil)];
+	}
 
     [self setCells:@[@[firstColumnCells, secondColumnCells]]];
 	[self setLoginCells:@[@[passwordFirstColumn]]];

@@ -9,9 +9,7 @@
 #import "SuggestionDataEntryViewController.h"
 
 @class ProfileSource;
-@class PhoneBookProfileSelector;
 @class ObjectModel;
-@class CountriesOperation;
 @class QuickProfileValidationOperation;
 
 @interface ProfileEditViewController : SuggestionDataEntryViewController

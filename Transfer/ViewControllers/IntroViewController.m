@@ -24,7 +24,7 @@
 @property (nonatomic, strong) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UIButton *whiteStartButton;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, strong) NSMutableArray *introScreens;
+@property (nonatomic, strong) NSArray *introScreens;
 @property (nonatomic, strong) NSArray *introData;
 @property (nonatomic, strong) IBOutlet SMPageControl *pageControl;
 @property (nonatomic, assign) NSInteger reportedPage;
@@ -66,7 +66,7 @@
         [screens addObject:page];
     }
     
-    [self setIntroScreens:screens];
+    [self setIntroScreens:[NSArray arrayWithArray:screens]];
     
     
 
