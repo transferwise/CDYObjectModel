@@ -87,6 +87,7 @@ NSUInteger const kUserPersonalSection = 1;
 	
 	DoublePasswordEntryCell *passwordCell = [DoublePasswordEntryCell loadInstance];
 	passwordCell.showDouble = YES;
+	passwordCell.useDummyPassword = NO;
 	[passwordCell configureWithTitle:NSLocalizedString(@"personal.profile.password.label", nil) value:@""];
     [self setPasswordCell:passwordCell];
     [firstColumnCells addObject:passwordCell];
@@ -169,7 +170,7 @@ NSUInteger const kUserPersonalSection = 1;
         [self.firstLastNameCell setValue:profile.firstName];
         [self.firstLastNameCell setSecondValue:profile.lastName];
         [self.emailCell setValue:user.email];
-		[self.passwordCell setUseDummyPassword:YES];
+		[self.passwordCell setUseDummyPassword:user && profile];
         [self.phoneNumberCell setValue:profile.phoneNumber];
         [self.dateOfBirthCell setValue:profile.dateOfBirth];
         [self.addressCell setValue:profile.addressFirstLine];
@@ -197,7 +198,6 @@ NSUInteger const kUserPersonalSection = 1;
 - (BOOL)inputValid
 {
     return [[self.firstLastNameCell value] hasValue] && [[self.firstLastNameCell secondValue] hasValue] && [[self.emailCell value] hasValue]
-			&& [self isPasswordValid]
             && [[self.phoneNumberCell value] hasValue] && [[self.dateOfBirthCell value] hasValue]
             && [[self.addressCell value] hasValue] && [[self.zipCityCell value] hasValue] && [[self.zipCityCell secondValue] hasValue]
             && [[self.countryCell value] hasValue];

@@ -10,4 +10,6 @@
 
 @interface PersonalProfileSource : ProfileSource
 
+- (BOOL)isPasswordValid;
+
 @end

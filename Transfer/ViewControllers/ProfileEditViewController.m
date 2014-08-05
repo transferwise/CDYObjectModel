@@ -237,6 +237,16 @@ static NSUInteger const kButtonSection = 0;
         return;
     }
 	
+	if ([self.profileSource isKindOfClass:[PersonalProfileSource class]]
+		&& ![(PersonalProfileSource *)self.profileSource isPasswordValid])
+	{
+		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
+                                                           message:NSLocalizedString(@"personal.profile.validation.password.error.message", nil)];
+        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+        [alertView show];
+        return;
+	}
+	
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.verify.message", nil)];
     

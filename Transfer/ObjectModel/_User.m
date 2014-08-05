@@ -7,6 +7,7 @@ const struct UserAttributes UserAttributes = {
 	.anonymous = @"anonymous",
 	.email = @"email",
 	.pReference = @"pReference",
+	.password = @"password",
 };
 
 const struct UserRelationships UserRelationships = {
@@ -91,6 +92,13 @@ const struct UserFetchedProperties UserFetchedProperties = {
 
 
 @dynamic pReference;
+
+
+
+
+
+
+@dynamic password;
 
 
 
