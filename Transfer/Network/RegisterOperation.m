@@ -8,8 +8,8 @@
 
 #import "RegisterOperation.h"
 #import "TransferwiseOperation+Private.h"
-#import "TransferwiseClient.h"
 #import "Credentials.h"
+#import "ObjectModel+Users.h"
 
 NSString *const kRegisterPath = @"/account/register";
 
@@ -22,38 +22,49 @@ NSString *const kRegisterPath = @"/account/register";
 
 @implementation RegisterOperation
 
-- (id)initWithEmail:(NSString *)email password:(NSString *)password {
+- (id)initWithEmail:(NSString *)email password:(NSString *)password
+{
     self = [super init];
-    if (self) {
+    if (self)
+	{
         _email = email;
         _password = password;
     }
     return self;
 }
 
-- (void)execute {
+- (void)execute
+{
     NSString *path = [self addTokenToPath:kRegisterPath];
 
     __block __weak RegisterOperation *weakSelf = self;
 
-    self.operationErrorHandler = ^(NSError *error) {
+    [self setOperationErrorHandler:^(NSError *error) {
         weakSelf.completionHandler(error);
-    };
-
-    self.operationSuccessHandler = ^(NSDictionary *response) {
-        //TODO jaanus: copy/paste from Login operation
-        NSString *token = response[@"token"];
-        [Credentials setUserToken:token];
-        [Credentials setUserEmail:weakSelf.email];
-        [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:nil];
-
-        weakSelf.completionHandler(nil);
-    };
+    }];
+	
+    [self setOperationSuccessHandler:^(NSDictionary *response) {
+        [weakSelf.workModel performBlock:^{
+            NSString *token = response[@"token"];
+            if ([token isKindOfClass:[NSDictionary class]]) {
+                token = response[@"token"][@"value"];
+            }
+            [Credentials setUserToken:token];
+            [Credentials setUserSecret:response[@"secret"]];
+            [Credentials setUserEmail:weakSelf.email];
+			
+            [weakSelf.workModel markAnonUserWithEmail:weakSelf.email];
+            [weakSelf.workModel saveContext:^{
+                weakSelf.completionHandler(nil);
+            }];
+        }];
+    }];
 
     [self postData:@{@"email" : self.email, @"password" : self.password} toPath:path];
 }
 
-+ (RegisterOperation *)operationWithEmail:(NSString *)email password:(NSString *)password {
++ (RegisterOperation *)operationWithEmail:(NSString *)email password:(NSString *)password
+{
     return [[RegisterOperation alloc] initWithEmail:email password:password];
 }
 
