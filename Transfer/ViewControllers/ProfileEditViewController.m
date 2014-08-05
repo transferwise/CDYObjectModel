@@ -74,7 +74,7 @@ static NSUInteger const kButtonSection = 0;
 
 - (void)createPresentationCells
 {
-    NSArray *presented = [self.profileSource presentedCells:![self createSendAsBusinessCell]];
+    NSArray *presented = [self.profileSource presentedCells:[self createSendAsBusinessCell]];
 
     CountrySelectionCell *countryCell = nil;
 	EmailEntryCell *emailCell = nil;
