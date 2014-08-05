@@ -8,6 +8,7 @@ extern const struct UserAttributes {
 	__unsafe_unretained NSString *anonymous;
 	__unsafe_unretained NSString *email;
 	__unsafe_unretained NSString *pReference;
+	__unsafe_unretained NSString *password;
 } UserAttributes;
 
 extern const struct UserRelationships {
@@ -24,6 +25,7 @@ extern const struct UserFetchedProperties {
 @class Recipient;
 @class Payment;
 @class PersonalProfile;
+
 
 
 
@@ -71,6 +73,16 @@ extern const struct UserFetchedProperties {
 
 
 //- (BOOL)validatePReference:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* password;
+
+
+
+//- (BOOL)validatePassword:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -141,6 +153,12 @@ extern const struct UserFetchedProperties {
 
 - (NSString*)primitivePReference;
 - (void)setPrimitivePReference:(NSString*)value;
+
+
+
+
+- (NSString*)primitivePassword;
+- (void)setPrimitivePassword:(NSString*)value;
 
 
 
