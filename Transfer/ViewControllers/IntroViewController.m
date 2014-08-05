@@ -22,10 +22,13 @@
 @interface IntroViewController () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UIButton *startButton;
+@property (weak, nonatomic) IBOutlet UIButton *whiteStartButton;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, strong) NSArray *introScreens;
+@property (nonatomic, strong) NSMutableArray *introScreens;
+@property (nonatomic, strong) NSArray *introData;
 @property (nonatomic, strong) IBOutlet SMPageControl *pageControl;
 @property (nonatomic, assign) NSInteger reportedPage;
+@property (nonatomic, assign) NSInteger lastLoadedIndex;
 
 - (IBAction)startPressed;
 
@@ -47,28 +50,35 @@
     [self setReportedPage:NSNotFound];
 
     [self.startButton setTitle:NSLocalizedString(@"intro.start.buttont.title", nil) forState:UIControlStateNormal];
+    [self.whiteStartButton setTitle:NSLocalizedString(@"intro.start.buttont.title", nil) forState:UIControlStateNormal];
+
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     NSMutableArray *screens = [NSMutableArray array];
 
-    NSArray* introData = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"intro" ofType:@"plist"]];
+    self.introData = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"intro" ofType:@"plist"]];
 
-    for(NSDictionary *pageData in introData)
+    for(int i=0; i<[self.introData count] && i<3; i++)
     {
         IntroView* page = [IntroView loadInstance];
-        [page setUpWithDictionary:pageData];
+        [page setUpWithDictionary:self.introData[i]];
         [screens addObject:page];
     }
     
     [self setIntroScreens:screens];
+    
+    
 
-    [self.pageControl setNumberOfPages:[screens count]];
+    [self.pageControl setNumberOfPages:[self.introData count]];
     self.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
     self.pageControl.currentPageIndicatorTintColor = [UIColor colorFromStyle:@"TWElectricBlue"];
     self.pageControl.indicatorDiameter = 10.0f;
     self.pageControl.indicatorMargin = 5.0f;
     [self.pageControl addTarget:self action:@selector(pageChanged) forControlEvents:UIControlEventValueChanged];
+    
+    //Initialise with a invalid value to ensure layout first time around.
+    self.lastLoadedIndex = -1;
 
 }
 
@@ -80,19 +90,88 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    [self.scrollView setContentSize:CGSizeMake(CGRectGetWidth(self.scrollView.frame) * [self.introScreens count], CGRectGetHeight(self.scrollView.frame))];
+    [self.scrollView setContentSize:CGSizeMake(CGRectGetWidth(self.scrollView.frame) * [self.introData count], CGRectGetHeight(self.scrollView.frame))];
 
-    CGFloat xOffset = 0;
-    for (IntroView *intro in self.introScreens) {
-        CGRect introFrame = intro.frame;
-        introFrame.size = self.scrollView.frame.size;
-        introFrame.origin.x = xOffset;
-        [intro setFrame:introFrame];
-        [self.scrollView addSubview:intro];
-        xOffset += CGRectGetWidth(introFrame);
-    }
-
+    [self updatePages];
+    
     [self.pageControl updatePageNumberForScrollView:self.scrollView];
+}
+
+-(void)updatePages
+{
+    //Calculate leftmost index
+    NSInteger index = MAX(0,MIN(self.introData.count - 3 ,round(self.scrollView.contentOffset.x/self.scrollView.frame.size.width) - 1));
+    
+    if(index != self.lastLoadedIndex)
+    {
+        self.lastLoadedIndex = index;
+        for (IntroView *intro in self.introScreens) {
+            CGRect introFrame = intro.frame;
+            introFrame.size = self.scrollView.frame.size;
+            introFrame.origin.x = index * self.scrollView.frame.size.width;
+            [intro setFrame:introFrame];
+            [intro setUpWithDictionary:self.introData[index]];
+            [self.scrollView addSubview:intro];
+            index++;
+        }
+    }
+    
+    [self updateButtonAppearance];
+}
+
+-(void)updateButtonAppearance
+{
+    CGFloat relativeOffset = self.scrollView.contentOffset.x/self.scrollView.frame.size.width;
+    NSInteger index = floor(relativeOffset);
+    if(index < 0)
+    {
+        index = 0;
+        relativeOffset = 0;
+    }
+    else if (index >= [self.introData count] - 1)
+    {
+        index = [self.introData count] - 1;
+        relativeOffset = index;
+    }
+    
+    if(relativeOffset - index < 0.05)
+    {
+        //On one specific page
+        BOOL useWhiteButton = [self.introData[index][@"useWhiteButton"] boolValue];
+        self.whiteStartButton.hidden = !useWhiteButton;
+        self.whiteStartButton.alpha = 1.0f;
+        self.startButton.hidden = useWhiteButton;
+        self.startButton.alpha = 1.0f;
+    }
+    else
+    {
+        //in-between pages
+        BOOL leftPageUseWhiteButton =  [self.introData[index][@"useWhiteButton"] boolValue];
+        BOOL rightPageUseWhiteButton =  [self.introData[index+1][@"useWhiteButton"] boolValue];
+        if(leftPageUseWhiteButton != rightPageUseWhiteButton)
+        {
+            self.whiteStartButton.hidden = NO;
+            self.whiteStartButton.alpha = relativeOffset - index;
+            self.startButton.hidden = NO;
+            self.startButton.alpha = 1.0f - self.whiteStartButton.alpha;
+        }
+        else if( leftPageUseWhiteButton && rightPageUseWhiteButton)
+        {
+            self.whiteStartButton.hidden = NO;
+            self.whiteStartButton.alpha = 1.0f;
+            self.startButton.hidden = YES;
+            self.startButton.alpha = 1.0f;
+        }
+        else if (!leftPageUseWhiteButton && !rightPageUseWhiteButton)
+        {
+            self.whiteStartButton.hidden = YES;
+            self.whiteStartButton.alpha = 1.0f;
+            self.startButton.hidden = NO;
+            self.startButton.alpha = 1.0f;
+
+        }
+    }
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -111,14 +190,17 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.pageControl updatePageNumberForScrollView:self.scrollView];
+    [self updatePages];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [self googleReportPage];
+    [self updatePages];
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     [self googleReportPage];
+    [self updatePages];
 }
 
 - (void)googleReportPage {
