@@ -11,6 +11,7 @@
 #import "PersonalProfileViewController.h"
 #import "BusinessProfileViewController.h"
 #import "TransferBackButtonItem.h"
+#import "Credentials.h"
 
 @interface PaymentProfileViewController ()
 
@@ -26,7 +27,7 @@
 	[self initControllers];
 	NSArray *controllers, *titles;
 	
-	if (self.allowProfileSwitch)
+	if (self.allowProfileSwitch && [Credentials userLoggedIn])
 	{
 		controllers = @[self.personalProfile, self.businessProfile];
 		titles = @[NSLocalizedString(@"profile.selection.text.personal.profile", nil), NSLocalizedString(@"profile.selection.text.business.profile", nil)];
@@ -53,6 +54,7 @@
 {
 	self.personalProfile = [[PersonalProfileViewController alloc] init];
 	self.personalProfile.objectModel = self.objectModel;
+	self.personalProfile.allowProfileSwitch = self.allowProfileSwitch;
 	
 	if(self.profileValidation)
 	{

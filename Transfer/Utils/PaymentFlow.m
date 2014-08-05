@@ -46,6 +46,8 @@
 #import "RecipientType.h"
 #import "RefundDetailsViewController.h"
 #import "Mixpanel.h"
+#import "PersonalPaymentProfileViewController.h"
+#import "BusinessPaymentProfileViewController.h"
 
 @interface PaymentFlow ()
 
@@ -56,32 +58,40 @@
 
 @implementation PaymentFlow
 
-- (id)initWithPresentingController:(UINavigationController *)controller {
+- (id)initWithPresentingController:(UINavigationController *)controller
+{
     self = [super init];
 
-    if (self) {
+    if (self)
+	{
         _navigationController = controller;
     }
 
     return self;
 }
 
-- (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch {
+- (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch
+{
     [[AnalyticsCoordinator sharedInstance] paymentPersonalProfileScreenShown];
 
-    PaymentProfileViewController *controller = [[PaymentProfileViewController alloc] init];
+    PersonalPaymentProfileViewController *controller = [[PersonalPaymentProfileViewController alloc] init];
+	
     [controller setObjectModel:self.objectModel];
     [controller setAllowProfileSwitch:allowProfileSwitch];
-    if (self.objectModel.pendingPayment.recipient) {
+	
+    if (self.objectModel.pendingPayment.recipient)
+	{
         [controller setButtonTitle:NSLocalizedString(@"personal.profile.confirm.payment.button.title", nil)];
-    } else {
+    } else
+	{
         [controller setButtonTitle:NSLocalizedString(@"personal.profile.continue.to.recipient.button.title", nil)];
     }
     [controller setProfileValidation:self];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)validateBusinessProfile:(NSManagedObjectID *)profile withHandler:(BusinessProfileValidationBlock)handler {
+- (void)validateBusinessProfile:(NSManagedObjectID *)profile withHandler:(BusinessProfileValidationBlock)handler
+{
     MCLog(@"validateBusinessProfile");
     BusinessProfileOperation *operation = [BusinessProfileOperation validateWithData:profile];
     [self setExecutedOperation:operation];
@@ -89,7 +99,8 @@
     __weak typeof(self) weakSelf = self;
     [operation setSaveResultHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (error) {
+            if (error)
+			{
                 handler(error);
                 return;
             }
@@ -100,9 +111,12 @@
             [payment setProfileUsed:@"business"];
             [self.objectModel saveContext];
 
-            if ([weakSelf personalProfileFilled]) {
+            if ([weakSelf personalProfileFilled])
+			{
                 [weakSelf presentNextPaymentScreen];
-            } else {
+            }
+			else
+			{
                 //TODO jaanus: this class should not show anything on screen
                 TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.needed.popup.title", nil) message:NSLocalizedString(@"personal.profile.needed.popup.message", nil)];
                 [alertView setLeftButtonTitle:NSLocalizedString(@"button.title.fill", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
@@ -119,11 +133,13 @@
     [operation execute];
 }
 
-- (BOOL)personalProfileFilled {
+- (BOOL)personalProfileFilled
+{
     return [self.objectModel.currentUser personalProfileFilled];
 }
 
-- (void)validatePersonalProfile:(NSManagedObjectID *)profile withHandler:(PersonalProfileValidationBlock)handler {
+- (void)validatePersonalProfile:(NSManagedObjectID *)profile withHandler:(PersonalProfileValidationBlock)handler
+{
     MCLog(@"validateProfile");
     PersonalProfileOperation *operation = [PersonalProfileOperation validateOperationWithProfile:profile];
     [self setExecutedOperation:operation];
@@ -132,18 +148,20 @@
     __weak typeof(self) weakSelf = self;
     [operation setSaveResultHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (error) {
+            if (error)
+			{
                 handler(error);
                 return;
             }
 
-            if ([Credentials userLoggedIn]) {
+            if ([Credentials userLoggedIn])
+			{
                 handler(nil);
                 [weakSelf presentNextPaymentScreen];
                 return;
             }
 
-            [weakSelf verifyEmail:self.objectModel.currentUser.email withHandler:handler];
+			[weakSelf verifyEmail:self.objectModel.currentUser.email withHandler:handler];
         });
     }];
 
@@ -156,13 +174,19 @@
     [self setExecutedOperation:operation];
     __weak typeof(self) weakSelf = self;
     [operation setResultHandler:^(BOOL available, NSError *error) {
-        if (error) {
+        if (error)
+		{
             handler(error);
-        } else if (!available) {
+        }
+		else if (!available)
+		{
             [[GoogleAnalytics sharedInstance] sendAlertEvent:@"EmailTakenDuringPaymentAlert" withLabel:@""];
+			//TODO: Replace with login screen showing
             NSError *emailError = [[NSError alloc] initWithDomain:TRWErrorDomain code:ResponseLocalError userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"personal.profile.email.taken.message", nil)}];
             handler(emailError);
-        } else {
+        }
+		else
+		{
             handler(nil);
             [weakSelf presentNextPaymentScreen];
         }
@@ -202,6 +226,21 @@
             [self presentPersonalProfileEntry:YES];
         }
     }];
+}
+
+- (void)presentBusinessProfileScreen
+{
+	dispatch_async(dispatch_get_main_queue(), ^{
+        MCLog(@"presentBusinessProfileScreen");
+		
+		BusinessPaymentProfileViewController *controller = [[BusinessPaymentProfileViewController alloc] init];
+		
+		[controller setObjectModel:self.objectModel];
+		[controller setButtonTitle:NSLocalizedString(@"business.profile.confirm.payment.button.title", nil)];
+		[controller setProfileValidation:self];
+        
+        [self.navigationController pushViewController:controller animated:YES];
+    });
 }
 
 - (void)presentPaymentConfirmation {
@@ -364,6 +403,7 @@
 }
 
 - (void)registerUser {
+	//TODO: add password registration
     MCLog(@"registerUser");
     User *user = [self.objectModel currentUser];
     MCAssert(user.personalProfile || (user.personalProfile && user.businessProfile));
@@ -664,13 +704,26 @@
     MCLog(@"presentNextPaymentScreen");
     [self.objectModel performBlock:^{
         PendingPayment *payment = [self.objectModel pendingPayment];
-        if (!payment.recipient) {
+        if (!payment.recipient)
+		{
             [self presentRecipientDetails:[payment.user personalProfileFilled]];
-        } else if (!payment.user.personalProfileFilled) {
+        }
+		else if (!payment.user.personalProfileFilled)
+		{
             [self presentPersonalProfileEntry:YES];
-        } else if (payment.isFixedAmountValue && !payment.refundRecipient) {
+        }
+		else if (![Credentials userLoggedIn] && payment.user.personalProfile.sendAsBusinessValue)
+		{
+			//reset flag so we won't be coming back here again
+			payment.user.personalProfile.sendAsBusinessValue = NO;
+			[self presentBusinessProfileScreen];
+		}
+		else if (payment.isFixedAmountValue && !payment.refundRecipient)
+		{
             [self presentRefundAccountViewController];
-        } else {
+        }
+		else
+		{
             [self presentPaymentConfirmation];
         }
     }];

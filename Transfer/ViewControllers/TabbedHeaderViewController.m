@@ -20,7 +20,6 @@
 @property (nonatomic, weak) IBOutlet UIView *containerView;
 
 @property (nonatomic,weak) IBOutlet HeaderTabView *tabView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tabViewHeightConstraint;
 @property (nonatomic,weak) IBOutlet ColoredButton *actionButton;
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
@@ -64,7 +63,7 @@
 	
     if ([self.controllers count] < 2)
     {
-        self.tabViewHeightConstraint.constant = 0;
+        self.headerHeight.constant = 0;
     }
 	else
 	{

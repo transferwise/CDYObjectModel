@@ -21,7 +21,7 @@ typedef void (^ProfileActionBlock)(NSError *error);
 @property (nonatomic, strong) NSArray *cells;
 
 
-- (NSArray *)presentedCells;
+- (NSArray *)presentedCells:(BOOL)allowProfileSwitch;
 - (NSArray *)presentedLoginCells;
 - (void)pullDetailsWithHandler:(ProfileActionBlock)handler;
 - (void)loadDataFromProfile:(PhoneBookProfile *)profile;
