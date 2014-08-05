@@ -9,7 +9,6 @@
 #import "RegisterWithoutPasswordOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Credentials.h"
-#import "ObjectModel+RecipientTypes.h"
 #import "ObjectModel+Users.h"
 
 NSString *const kRegisterPasslessPath = @"/account/registerWithNoPassword";
@@ -22,15 +21,18 @@ NSString *const kRegisterPasslessPath = @"/account/registerWithNoPassword";
 
 @implementation RegisterWithoutPasswordOperation
 
-- (id)initWithEmail:(NSString *)email {
+- (id)initWithEmail:(NSString *)email
+{
     self = [super init];
-    if (self) {
+    if (self)
+	{
         _email = email;
     }
     return self;
 }
 
-- (void)execute {
+- (void)execute
+{
     NSString *path = [self addTokenToPath:kRegisterPasslessPath];
 
     __block __weak RegisterWithoutPasswordOperation *weakSelf = self;
@@ -58,7 +60,8 @@ NSString *const kRegisterPasslessPath = @"/account/registerWithNoPassword";
     [self postData:@{@"email":self.email} toPath:path];
 }
 
-+ (RegisterWithoutPasswordOperation *)operationWithEmail:(NSString *)email {
++ (RegisterWithoutPasswordOperation *)operationWithEmail:(NSString *)email
+{
     return [[RegisterWithoutPasswordOperation alloc] initWithEmail:email];
 }
 
