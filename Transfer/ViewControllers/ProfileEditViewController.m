@@ -27,6 +27,7 @@
 #import "Country.h"
 #import "Credentials.h"
 #import "EmailEntryCell.h"
+#import "UIColor+MOMStyle.h"
 
 static NSUInteger const kButtonSection = 0;
 
@@ -44,6 +45,7 @@ static NSUInteger const kButtonSection = 0;
 @property (nonatomic, strong) CountrySuggestionCellProvider* cellProvider;
 @property (nonatomic) CGFloat bottomInset;
 @property (nonatomic) BOOL isExistingEmail;
+@property (nonatomic, strong) UIView* footerView;
 
 @end
 
@@ -67,12 +69,12 @@ static NSUInteger const kButtonSection = 0;
     [self.profileSource setTableViews:self.tableViews];
 
     [self createPresentationCells];
+	[self createFooterView];
 }
 
 - (void)createPresentationCells
 {
-    NSArray *presented = [self.profileSource presentedCells:![Credentials userLoggedIn]
-						  && self.allowProfileSwitch];
+    NSArray *presented = [self.profileSource presentedCells:![self createSendAsBusinessCell]];
 
     CountrySelectionCell *countryCell = nil;
 	EmailEntryCell *emailCell = nil;
@@ -129,6 +131,23 @@ static NSUInteger const kButtonSection = 0;
     [self.profileSource setObjectModel:objectModel];
 }
 
+- (void)createFooterView
+{
+	//ipad does not need the footer views
+	if(!IPAD)
+	{
+		//iPhone only has one table
+		self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
+		if([self createSendAsBusinessCell])
+		{
+			[self.footerView setBackgroundColor:[UIColor colorFromStyle:@"lightBlueHighLighted"]];
+		}
+		
+		self.footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+		[self.tableViews[0] setTableFooterView:self.footerView];
+	}
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -145,6 +164,11 @@ static NSUInteger const kButtonSection = 0;
 	{
         [[GoogleAnalytics sharedInstance] sendScreen:@"Enter sender details"];
     }
+}
+
+- (BOOL)createSendAsBusinessCell
+{
+	return self.allowProfileSwitch && ![Credentials userLoggedIn];
 }
 
 #pragma mark - Suggestion Table
