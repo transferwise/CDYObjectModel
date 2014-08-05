@@ -12,9 +12,9 @@
 		<key>bgStyle</key>
 		<string>lightBlue</string>
 		<key>titleFontStyle</key>
-		<string>sharpBold.@35.TWBlue</string>
+		<string>sharpBold.@{35,60}.TWBlue</string>
 		<key>textFontStyle</key>
-		<string>book.@20.corefont</string>
+		<string>book.@{20,27}.corefont</string>
 		<key>useWhiteButton</key>
 		<false/>
 	</dict>
@@ -28,9 +28,9 @@
 		<key>bgStyle</key>
 		<string>twblue</string>
 		<key>titleFontStyle</key>
-		<string>sharpBold.@35.white</string>
+		<string>sharpBold.@{35,60}.white</string>
 		<key>textFontStyle</key>
-		<string>book.@20.corefont</string>
+		<string>book.@{20,27}.corefont</string>
 		<key>useWhiteButton</key>
 		<false/>
 	</dict>
@@ -44,9 +44,9 @@
 		<key>bgStyle</key>
 		<string>greenshadow</string>
 		<key>titleFontStyle</key>
-		<string>sharpBold.@35.TWBlue</string>
+		<string>sharpBold.@{35,60}.TWBlue</string>
 		<key>textFontStyle</key>
-		<string>book.@20.white</string>
+		<string>book.@{20,27}.white</string>
 		<key>useWhiteButton</key>
 		<true/>
 	</dict>
@@ -60,9 +60,9 @@
 		<key>bgStyle</key>
 		<string>TWElectricBlueDarker</string>
 		<key>titleFontStyle</key>
-		<string>sharpBold.@35.TWBlue</string>
+		<string>sharpBold.@{35,60}.TWBlue</string>
 		<key>textFontStyle</key>
-		<string>book.@20.white</string>
+		<string>book.@{20,27}.white</string>
 		<key>useWhiteButton</key>
 		<true/>
 	</dict>

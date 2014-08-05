@@ -176,7 +176,7 @@
 
 - (void)presentIntroductionController:(BOOL)shownBefore {
     UIViewController *presented;
-    if (shownBefore || [self.objectModel hasIntroBeenShown]) {
+    if (NO){//shownBefore || [self.objectModel hasIntroBeenShown]) {
         if ([self.objectModel shouldShowDirectUserSignup]) {
             SignUpViewController *controller = [[SignUpViewController alloc] init];
             [controller setObjectModel:self.objectModel];
