@@ -28,8 +28,6 @@
 #import "Credentials.h"
 #import "UIColor+MOMStyle.h"
 
-static NSUInteger const kButtonSection = 0;
-
 @interface ProfileEditViewController ()<CountrySelectionCellDelegate, TextEntryCellDelegate>
 
 @property (nonatomic, strong) ProfileSource *profileSource;
@@ -175,7 +173,7 @@ static NSUInteger const kButtonSection = 0;
 {
 	if(cell == self.emailCell)
 	{
-		//kick of validation
+		[self.profileValidation verifyEmail:[self.emailCell value] withResultBlock:nil];
 	}
 }
 
