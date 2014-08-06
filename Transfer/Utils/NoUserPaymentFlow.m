@@ -7,16 +7,26 @@
 //
 
 #import "NoUserPaymentFlow.h"
+#import "Credentials.h"
 
 @implementation NoUserPaymentFlow
 
 
--(void)commitPaymentWithSuccessBlock:(VerificationStepSuccessBlock)successBlock ErrorHandler:(PaymentErrorBlock)errorHandler{
-    MCLog(@"Commit payment");
-    [self setPaymentErrorHandler:errorHandler];
-    [self setVerificationSuccessBlock:successBlock];
-
-    [self registerUser];
+-(void)commitPaymentWithSuccessBlock:(VerificationStepSuccessBlock)successBlock ErrorHandler:(PaymentErrorBlock)errorHandler
+{
+	MCLog(@"Commit payment");
+	[self setPaymentErrorHandler:errorHandler];
+	[self setVerificationSuccessBlock:successBlock];
+	
+	//awesome how a no user flow can become a user flow in the middle
+	if ([Credentials userLoggedIn])
+	{
+		[self handleNextStepOfPendingPaymentCommit];
+	}
+	else
+	{
+		[self registerUser];
+	}
 }
 
 @end

@@ -728,7 +728,7 @@
 		{
             [self presentPersonalProfileEntry:YES];
         }
-		else if (![Credentials userLoggedIn] && payment.user.personalProfile.sendAsBusinessValue)
+		else if (payment.user.personalProfile.sendAsBusinessValue)
 		{
 			//reset flag so we won't be coming back here again
 			payment.user.personalProfile.sendAsBusinessValue = NO;

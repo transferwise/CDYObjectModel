@@ -38,6 +38,7 @@
 #import "ObjectModel+Recipients.h"
 #import "Recipient.h"
 #import "TypeFieldValue.h"
+#import "SwitchCell.h"
 
 @interface ProfileEditViewController ()<CountrySelectionCellDelegate, TextEntryCellDelegate>
 
@@ -45,8 +46,8 @@
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
 @property (nonatomic, strong) TextEntryCell *emailCell;
 @property (nonatomic, strong) DoublePasswordEntryCell *passwordCell;
+@property (nonatomic, strong) SwitchCell *sendAsBusinessCell;
 @property (nonatomic, strong) NSArray *presentationCells;
-@property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, assign) BOOL shown;
 @property (nonatomic, strong) QuickProfileValidationOperation *quickProfileValidation;
@@ -88,9 +89,30 @@
 {
     NSArray *presented = [self.profileSource presentedCells:[self createSendAsBusinessCell]];
 
-    CountrySelectionCell *countryCell = nil;
+    [self setCells:presented];
+	
+	self.cellProvider = [[CountrySuggestionCellProvider alloc] init];
+    
+    [super configureWithDataSource:self.cellProvider
+						 entryCell:self.countryCell
+							height:self.countryCell.frame.size.height];
+	
+	__weak typeof(self) weakSelf = self;
+	[self.countryCell setSelectionHandler:^(NSString *countryName) {
+        [weakSelf didSelectCountry:countryName];
+    }];
+	
+	self.countryCell.countrySelectionDelegate = self;
+
+    [self setPresentationCells:presented];
+}
+
+- (void)setCells:(NSArray *)presented
+{
+	CountrySelectionCell *countryCell = nil;
 	TextEntryCell *emailCell = nil;
 	DoublePasswordEntryCell *passwordCell = nil;
+	SwitchCell *sendAsBusinessCell = nil;
 	
 	for (NSArray* table in presented)
 	{
@@ -101,7 +123,6 @@
 				if ([cell isKindOfClass:[CountrySelectionCell class]])
 				{
 					countryCell = (CountrySelectionCell *)cell;
-					break;
 				}
 				else if([cell isKindOfClass:[TextEntryCell class]]
 						&& [((TextEntryCell *)cell).cellTag isEqualToString:@"EmailCell"])
@@ -113,14 +134,20 @@
 				{
 					passwordCell = (DoublePasswordEntryCell *)cell;
 				}
+				else if([cell isKindOfClass:[SwitchCell class]])
+				{
+					sendAsBusinessCell = (SwitchCell *)cell;
+				}
 				
-				if(countryCell && emailCell && passwordCell)
+				if(countryCell && emailCell
+				   && passwordCell && sendAsBusinessCell)
 				{
 					break;
 				}
 			}
 			
-			if(countryCell && emailCell && passwordCell)
+			if(countryCell && emailCell
+			   && passwordCell && sendAsBusinessCell)
 			{
 				break;
 			}
@@ -130,21 +157,7 @@
     [self setCountryCell:countryCell];
 	[self setEmailCell:emailCell];
 	[self setPasswordCell:passwordCell];
-	
-	self.cellProvider = [[CountrySuggestionCellProvider alloc] init];
-    
-    [super configureWithDataSource:self.cellProvider
-						 entryCell:countryCell
-							height:countryCell.frame.size.height];
-	
-	__weak typeof(self) weakSelf = self;
-	[countryCell setSelectionHandler:^(NSString *countryName) {
-        [weakSelf didSelectCountry:countryName];
-    }];
-	
-	countryCell.countrySelectionDelegate = self;
-
-    [self setPresentationCells:presented];
+	[self setSendAsBusinessCell:sendAsBusinessCell];
 }
 
 - (void)setObjectModel:(ObjectModel *)objectModel
@@ -401,6 +414,7 @@
 - (void)login
 {
 	PendingPayment* pendingPayment = self.objectModel.pendingPayment;
+	BOOL sendAsBusiness = self.sendAsBusinessCell.value;
 	
 	__weak typeof(self) weakSelf = self;
 	[self.loginHelper validateInputAndPerformLoginWithEmail:self.emailCell.value
@@ -408,15 +422,19 @@
 								   navigationControllerView:self.navigationController.view
 												objectModel:self.objectModel
 											   successBlock:^{
-												   [weakSelf reloadDataAfterLoginWithPayment:pendingPayment];
+												   [weakSelf reloadDataAfterLoginWithPayment:pendingPayment
+																			  sendAsBusiness:sendAsBusiness];
 											   }
 								  waitForDetailsCompletions:YES];
 }
 
 - (void)reloadDataAfterLoginWithPayment:(PendingPayment *)payment
+						 sendAsBusiness:(BOOL)sendAsBusiness
 {
 	User *user = [self.objectModel currentUser];
     PersonalProfile *profile = [user personalProfileObject];
+	
+	profile.sendAsBusinessValue = sendAsBusiness;
 	
 	PendingPayment *pendingPayment = [self getPendingPaymentFromPayment:payment];
 	[self setRecipient:payment.recipient forPayment:pendingPayment];
