@@ -24,7 +24,6 @@
 #import "DoubleEntryCell.h"
 #import "Country.h"
 #import "SwitchCell.h"
-#import "EmailEntryCell.h"
 
 #define MIN_PASSWORD_LENGTH	5
 
@@ -34,7 +33,7 @@ NSUInteger const kUserPersonalSection = 1;
 @interface PersonalProfileSource ()
 
 @property (nonatomic, strong) DoubleEntryCell *firstLastNameCell;
-@property (nonatomic, strong) EmailEntryCell *emailCell;
+@property (nonatomic, strong) TextEntryCell *emailCell;
 @property (nonatomic, strong) TextEntryCell *phoneNumberCell;
 @property (nonatomic, strong) DateEntryCell *dateOfBirthCell;
 @property (nonatomic, strong) TextEntryCell *addressCell;
@@ -69,7 +68,7 @@ NSUInteger const kUserPersonalSection = 1;
     NSMutableArray *firstColumnCells = [NSMutableArray array];
 	NSMutableArray *passwordFirstColumn = [NSMutableArray array];
 	
-	EmailEntryCell *emailCell = [EmailEntryCell loadInstance];
+	TextEntryCell *emailCell = [TextEntryCell loadInstance];
     [self setEmailCell:emailCell];
     [emailCell configureWithTitle:NSLocalizedString(@"personal.profile.email.label", nil) value:@""];
     [emailCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
@@ -156,7 +155,7 @@ NSUInteger const kUserPersonalSection = 1;
     return self.cells;
 }
 
-- (NSArray *)loginPresentedCells
+- (NSArray *)presentedLoginCells
 {
 	self.passwordCell.showDouble = NO;
 	return self.loginCells;

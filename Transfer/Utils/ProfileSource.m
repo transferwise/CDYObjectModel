@@ -17,11 +17,11 @@
 #import "DoubleEntryCell.h"
 #import "DoublePasswordEntryCell.h"
 #import "CountrySelectionCell.h"
-#import "EmailEntryCell.h"
 
 @implementation ProfileSource
 
-- (NSArray *)presentedCells:(BOOL)allowProfileSwitch; {
+- (NSArray *)presentedCells:(BOOL)allowProfileSwitch;
+{
     ABSTRACT_METHOD;
     return @[];
 }
@@ -32,10 +32,12 @@
 	return@[];
 }
 
-- (void)pullDetailsWithHandler:(ProfileActionBlock)handler {
+- (void)pullDetailsWithHandler:(ProfileActionBlock)handler
+{
     MCAssert(self.objectModel);
 
-    if (![Credentials userLoggedIn]) {
+    if (![Credentials userLoggedIn])
+	{
         [self loadDetailsToCells];
         handler(nil);
         return;
@@ -44,7 +46,8 @@
     __weak typeof(self) weakSelf = self;
     [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(NSError *userError) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (userError) {
+            if (userError)
+			{
                 handler(userError);
                 return;
             }
@@ -55,29 +58,35 @@
     }];
 }
 
-- (void)loadDataFromProfile:(PhoneBookProfile *)profile {
+- (void)loadDataFromProfile:(PhoneBookProfile *)profile
+{
     ABSTRACT_METHOD;
 }
 
-- (BOOL)inputValid {
+- (BOOL)inputValid
+{
     ABSTRACT_METHOD;
     return NO;
 }
 
-- (id)enteredProfile {
+- (id)enteredProfile
+{
     ABSTRACT_METHOD;
     return nil;
 }
 
-- (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion {
+- (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion
+{
     ABSTRACT_METHOD;
 }
 
-- (void)loadDetailsToCells {
+- (void)loadDetailsToCells
+{
     ABSTRACT_METHOD;
 }
 
-- (void)fillQuickValidation:(QuickProfileValidationOperation *)operation {
+- (void)fillQuickValidation:(QuickProfileValidationOperation *)operation
+{
     ABSTRACT_METHOD;
 }
 
@@ -148,7 +157,6 @@
     [tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
 	[tableView registerNib:[UINib nibWithNibName:@"DoublePasswordEntryCell" bundle:nil] forCellReuseIdentifier:TWDoublePasswordEntryCellIdentifier];
 	[tableView registerNib:[UINib nibWithNibName:@"DoubleEntryCell" bundle:nil] forCellReuseIdentifier:TWDoubleEntryCellIdentifier];
-	[tableView registerNib:[UINib nibWithNibName:@"EmailEntryCell" bundle:nil] forCellReuseIdentifier:TWEmailEntryCellIdentifier];
 	
 	[tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }

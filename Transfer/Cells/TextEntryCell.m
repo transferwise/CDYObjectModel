@@ -44,6 +44,7 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 {
     [self.entryField setPlaceholder:title];
     [self setValue:value];
+	[self.entryField addTarget:self action:@selector(editingEnded) forControlEvents:UIControlEventEditingDidEnd];
 }
 
 - (NSString *)value
@@ -104,7 +105,15 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 - (void)textFieldEntryFinished
 {
-	
+	//used in inheriting classes
+}
+
+- (void)editingEnded
+{
+	if ([self.delegate respondsToSelector:@selector(textEntryFinishedInCell:)])
+	{
+		[self.delegate textEntryFinishedInCell:self];
+	}
 }
 
 - (void)markIssue:(NSString *)issueMessage

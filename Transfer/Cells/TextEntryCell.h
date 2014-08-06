@@ -11,8 +11,16 @@
 
 extern NSString *const TWTextEntryCellIdentifier;
 
+@protocol TextEntryCellDelegate <NSObject>
+
+@optional
+- (void)textEntryFinishedInCell:(UITableViewCell *)cell;
+
+@end
+
 @interface TextEntryCell : UITableViewCell
 
+@property (nonatomic, weak) id<TextEntryCellDelegate> delegate;
 @property (nonatomic, strong, readonly) UITextField *entryField;
 @property (nonatomic, copy) NSString *cellTag;
 @property (nonatomic, strong) IBOutlet UIView *separatorLine;

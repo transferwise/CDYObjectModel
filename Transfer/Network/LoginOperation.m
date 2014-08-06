@@ -62,6 +62,10 @@ NSString *const kLoginPath = @"/token/create";
                 [AppsFlyerTracker sharedTracker].customerUserID = weakSelf.objectModel.currentUser.pReference;
                 [[AppsFlyerTracker sharedTracker] trackEvent:@"sign-in" withValue:@""];
 #endif
+				if (weakSelf.waitForDetailsCompletion)
+				{
+					weakSelf.responseHandler(nil);
+				}
             }];
 
             [weakSelf.workModel removeOtherUsers];
@@ -70,11 +74,13 @@ NSString *const kLoginPath = @"/token/create";
 			[FBAppEvents logEvent:@"loggedIn"];
 #endif
 			[[GoogleAnalytics sharedInstance] markLoggedIn];
-
-
+			
 			[weakSelf.workModel saveContext:^{
-                weakSelf.responseHandler(nil);
-            }];
+				if (!weakSelf.waitForDetailsCompletion)
+				{
+					weakSelf.responseHandler(nil);
+				}
+			}];
         }];
     }];
 

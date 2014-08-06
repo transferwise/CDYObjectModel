@@ -37,7 +37,7 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
 
 - (void)setValueFromCode:(NSString *)value
 {
-	Country *selected = [self.delegate getCountryByCode:value];
+	Country *selected = [self.countrySelectionDelegate getCountryByCode:value];
 	
     self.selectedCountry = selected;
 	
