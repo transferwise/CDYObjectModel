@@ -36,7 +36,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="460" translatesAutoresizingMaskIntoConstraints="NO" id="hCE-EH-Jio">
-                            <rect key="frame" x="20" y="292" width="460" height="22"/>
+                            <rect key="frame" x="20" y="262" width="460" height="22"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -56,7 +56,7 @@
                         <constraint firstAttribute="height" constant="768" id="NAZ-CT-T2k"/>
                         <constraint firstItem="aVj-we-iHX" firstAttribute="top" secondItem="pvd-54-5ce" secondAttribute="top" constant="75" id="Rnk-4n-vFa"/>
                         <constraint firstItem="S2Z-ba-zJQ" firstAttribute="top" secondItem="aVj-we-iHX" secondAttribute="bottom" constant="60" id="UWz-yg-acs"/>
-                        <constraint firstItem="hCE-EH-Jio" firstAttribute="top" secondItem="S2Z-ba-zJQ" secondAttribute="bottom" constant="60" id="xUY-Qs-ZTj"/>
+                        <constraint firstItem="hCE-EH-Jio" firstAttribute="top" secondItem="S2Z-ba-zJQ" secondAttribute="bottom" constant="30" id="xUY-Qs-ZTj"/>
                     </constraints>
                 </view>
             </subviews>
