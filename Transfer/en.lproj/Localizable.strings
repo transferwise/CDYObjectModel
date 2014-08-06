@@ -1,5 +1,5 @@
 "business.profile.address.label" = "Address";
-"ubsiness.profile.email.label" = "Email";
+"business.profile.email.label" = "Your business email";
 "business.profile.address.section.title" = "Address";
 "business.profile.city.label" = "City";
 "business.profile.state.label" = "State";
@@ -7,7 +7,6 @@
 "business.profile.country.label" = "Country";
 "business.profile.description.label" = "Business description";
 "business.profile.details.section.title" = "Business details";
-"business.profile.email.label" = "Email";
 "business.profile.name.label" = "Business name";
 "business.profile.post.code.label" = "Post code";
 "business.profile.refresh.error.message" = "Could not load business profile. Please try again later.";
@@ -17,7 +16,7 @@
 "business.profile.save.button.title" = "Save profile";
 "business.profile.save.error.title" = "Your details couldn't be saved. Please try again.";
 "business.profile.saving.message" = "Loading your profile...";
-"business.profile.validation.error.message" = "Please check that all the fields are filled in.";
+"business.profile.validation.error.message" = "Please make sure all fields are filled.";
 "business.profile.validation.error.title" = "Check your details";
 "business.profile.password.lable" = "Password";
 "business.profile.confirm.payment.button.title" = "Continue";
@@ -225,7 +224,7 @@ It can take up to 2 working days.";
 "personal.profile.countries.refresh.error.title" = "Refresh error";
 "personal.profile.country.label" = "Country";
 "personal.profile.date.of.birth.label" = "Date of birth";
-"personal.profile.email.label" = "Email";
+"personal.profile.email.label" = "Your Email";
 "personal.profile.email.taken.message" = "Email taken, please use another one or log in.";
 "personal.profile.email.validating" = "Validating email.";
 "personal.profile.first.name.label" = "First name";
@@ -233,7 +232,7 @@ It can take up to 2 working days.";
 "personal.profile.personal.section.title" = "Personal details";
 "personal.profile.phone.label" = "Phone";
 "personal.profile.password.label" = "Password";
-"personal.profile.password.confirm.label" = "Confirm password";
+"personal.profile.password.confirm.label" = "Retype password";
 "personal.profile.post.code.label" = "Post code";
 "personal.profile.refresh.error.message" = "Could not load user profile. Please try again later.";
 "personal.profile.refresh.error.title" = "Profile load error";
@@ -264,7 +263,7 @@ It can take up to 2 working days.";
 
 "recipient.controller.add.button.title" = "Add";
 "recipient.controller.add.mode.title" = "Add recipient";
-"recipient.controller.cell.label.email" = "Email";
+"recipient.controller.cell.label.email" = "Email (Optional)";
 "recipient.controller.cell.label.name" = "Name";
 "recipient.controller.scell.title.recipient.currency" = "%@'s currency";
 "recipient.controller.confirm.payment.button.title" = "Confirm payment";
@@ -305,7 +304,7 @@ It can take up to 2 working days.";
 "refund.details.controller.title" = "Your refund account";
 "refund.details.header.description" = "To guarantee that %@ receives exactly %@, we asked you to send a little extra money.
 
-We'll refund the remaining money to your bank account.";
+We'll refund the remaining money to your bank account once the transfer is complete.";
 "refund.details.holders.name.label" = "Your name";
 "refund.details.footer.button.title" = "Continue";
 
@@ -332,7 +331,7 @@ We'll refund the remaining money to your bank account.";
 "sign.up.error.title" = "Can't continue";
 "sign.up.button.title.log.in" = "Sign up now";
 "sign.up.controller.header.message" = "Create a Transferwise account";
-"sign.up.email.field.title" = "Email";
+"sign.up.email.field.title" = "Your email";
 "sign.up.password.again.field.title" = "Password again";
 "sign.up.password.field.title" = "Password";
 "sign.up.controller.existing.user.action" = "Log in";
