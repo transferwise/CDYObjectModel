@@ -30,6 +30,9 @@
 #import "PaymentFlow.h"
 #import "DoublePasswordEntryCell.h"
 #import "LoginHelper.h"
+#import "User.h"
+#import "PersonalProfile.h"
+#import "ObjectModel+Users.h"
 
 @interface ProfileEditViewController ()<CountrySelectionCellDelegate, TextEntryCellDelegate>
 
@@ -372,8 +375,6 @@
 											 [weakSelf login];
 										 }];
 		}
-		
-		//return with filled profile
 	}
 }
 
@@ -406,7 +407,21 @@
 
 - (void)reloadDataAfterLogin
 {
+	User *user = [self.objectModel currentUser];
+    PersonalProfile *profile = [user personalProfileObject];
 	
+	TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    [hud setMessage:NSLocalizedString(@"personal.profile.verify.message", nil)];
+	
+	[self.profileSource validateProfile:profile.objectID withValidation:self.profileValidation completion:^(NSError *error) {
+        [hud hide];
+		
+        if (error)
+		{
+			TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"personal.profile.verify.error.title", nil) error:error];
+			[alertView show];
+        }
+    }];
 }
 
 @end
