@@ -150,8 +150,22 @@ NSUInteger const kUserPersonalSection = 1;
 		[sendAsBusinessCell.titleLabel setText:NSLocalizedString(@"profile.selection.text.business.profile", nil)];
 	}
 
-    [self setCells:@[@[firstColumnCells, secondColumnCells]]];
-	[self setLoginCells:@[@[passwordFirstColumn]]];
+	if (self.tableViews.count > 1)
+	{
+		[self setCells:@[
+						 @[firstColumnCells],
+						 @[secondColumnCells]
+						 ]];
+	}
+	else
+	{
+		[self setCells:@[
+						 @[firstColumnCells, secondColumnCells]
+						 ]];
+		[self setLoginCells:@[
+							  @[passwordFirstColumn]
+							  ]];
+	}
     return self.cells;
 }
 
