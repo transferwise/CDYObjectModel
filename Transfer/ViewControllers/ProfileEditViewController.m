@@ -27,6 +27,7 @@
 #import "Country.h"
 #import "Credentials.h"
 #import "UIColor+MOMStyle.h"
+#import "PaymentFlow.h"
 
 @interface ProfileEditViewController ()<CountrySelectionCellDelegate, TextEntryCellDelegate>
 
@@ -173,7 +174,18 @@
 {
 	if(cell == self.emailCell)
 	{
-		[self.profileValidation verifyEmail:[self.emailCell value] withResultBlock:nil];
+		TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+		[hud setMessage:NSLocalizedString(@"personal.profile.email.validating", nil)];
+		
+		[self.profileValidation verifyEmail:[self.emailCell value] withResultBlock:^(BOOL available, NSError *error)
+		 {
+			 [hud hide];
+			 
+			 if (!available)
+			 {
+				 [self showAsLogin];
+			 }
+		 }];
 	}
 }
 
