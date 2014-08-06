@@ -155,7 +155,7 @@ NSUInteger const kUserPersonalSection = 1;
     return self.cells;
 }
 
-- (NSArray *)loginPresentedCells
+- (NSArray *)presentedLoginCells
 {
 	self.passwordCell.showDouble = NO;
 	return self.loginCells;

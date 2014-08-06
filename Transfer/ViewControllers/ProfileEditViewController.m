@@ -28,12 +28,14 @@
 #import "Credentials.h"
 #import "UIColor+MOMStyle.h"
 #import "PaymentFlow.h"
+#import "DoublePasswordEntryCell.h"
 
 @interface ProfileEditViewController ()<CountrySelectionCellDelegate, TextEntryCellDelegate>
 
 @property (nonatomic, strong) ProfileSource *profileSource;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
 @property (nonatomic, strong) TextEntryCell *emailCell;
+@property (nonatomic, strong) DoublePasswordEntryCell *passwordCell;
 @property (nonatomic, strong) NSArray *presentationCells;
 @property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
@@ -76,10 +78,14 @@
 
     CountrySelectionCell *countryCell = nil;
 	TextEntryCell *emailCell = nil;
+	DoublePasswordEntryCell *passwordCell = nil;
+	
 	for (NSArray* table in presented)
 	{
-		for (NSArray *cells in table) {
-			for (UITableViewCell *cell in cells) {
+		for (NSArray *cells in table)
+		{
+			for (UITableViewCell *cell in cells)
+			{
 				if ([cell isKindOfClass:[CountrySelectionCell class]])
 				{
 					countryCell = (CountrySelectionCell *)cell;
@@ -91,14 +97,18 @@
 					emailCell = (TextEntryCell *)cell;
 					emailCell.delegate = self;
 				}
+				else if([cell isKindOfClass:[DoublePasswordEntryCell class]])
+				{
+					passwordCell = (DoublePasswordEntryCell *)cell;
+				}
 				
-				if(countryCell && emailCell)
+				if(countryCell && emailCell && passwordCell)
 				{
 					break;
 				}
 			}
 			
-			if(countryCell && emailCell)
+			if(countryCell && emailCell && passwordCell)
 			{
 				break;
 			}
@@ -107,6 +117,7 @@
 	
     [self setCountryCell:countryCell];
 	[self setEmailCell:emailCell];
+	[self setPasswordCell:passwordCell];
 	
 	self.cellProvider = [[CountrySuggestionCellProvider alloc] init];
     
@@ -172,7 +183,8 @@
 
 - (void)textEntryFinishedInCell:(UITableViewCell *)cell
 {
-	if(cell == self.emailCell)
+	if(cell == self.emailCell
+	   && [self.profileSource isKindOfClass:[PersonalProfileSource class]])
 	{
 		TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
 		[hud setMessage:NSLocalizedString(@"personal.profile.email.validating", nil)];
@@ -337,11 +349,16 @@
 #pragma mark - Show as Login
 - (void)showAsLogin
 {
-	//remove cells
-	//rebind tables
-	//rename button
-	//switch out button action
-	//implement login
+	self.sectionCellsByTableView = [self.profileSource presentedLoginCells];
+	[self reloadTableViews];
+	if (self.delegate)
+	{
+		[self.delegate changeActionButtonTitle:NSLocalizedString(@"personal.profile.login.title", nil)
+		andAction:^{
+			//implement login
+		}];
+	}
+	
 	//return with filled profile
 }
 
