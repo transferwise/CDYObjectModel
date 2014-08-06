@@ -33,6 +33,11 @@
 #import "User.h"
 #import "PersonalProfile.h"
 #import "ObjectModel+Users.h"
+#import "PendingPayment.h"
+#import "ObjectModel+PendingPayments.h"
+#import "ObjectModel+Recipients.h"
+#import "Recipient.h"
+#import "TypeFieldValue.h"
 
 @interface ProfileEditViewController ()<CountrySelectionCellDelegate, TextEntryCellDelegate>
 
@@ -395,21 +400,28 @@
 
 - (void)login
 {
+	PendingPayment* pendingPayment = self.objectModel.pendingPayment;
+	
 	__weak typeof(self) weakSelf = self;
 	[self.loginHelper validateInputAndPerformLoginWithEmail:self.emailCell.value
 												   password:self.passwordCell.value
 								   navigationControllerView:self.navigationController.view
 												objectModel:self.objectModel
 											   successBlock:^{
-												   [weakSelf reloadDataAfterLogin];
+												   [weakSelf reloadDataAfterLoginWithPayment:pendingPayment];
 											   }
 								  waitForDetailsCompletions:YES];
 }
 
-- (void)reloadDataAfterLogin
+- (void)reloadDataAfterLoginWithPayment:(PendingPayment *)payment
 {
 	User *user = [self.objectModel currentUser];
     PersonalProfile *profile = [user personalProfileObject];
+	
+	PendingPayment *pendingPayment = [self getPendingPaymentFromPayment:payment];
+	[self setRecipient:payment.recipient forPayment:pendingPayment];
+	
+	[self.objectModel saveContext];
 	
 	TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.verify.message", nil)];
@@ -421,8 +433,44 @@
 		{
 			TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"personal.profile.verify.error.title", nil) error:error];
 			[alertView show];
+			return;
         }
+		
+		[self.navigationController popViewControllerAnimated:NO];
     }];
+}
+
+- (PendingPayment *)getPendingPaymentFromPayment:(PendingPayment *)payment
+{
+	PendingPayment *newPayment = [self.objectModel createPendingPayment];
+	
+	[newPayment setSourceCurrency:payment.sourceCurrency];
+	[newPayment setTargetCurrency:payment.targetCurrency];
+	[newPayment setPayIn:payment.payIn];
+	[newPayment setPayOut:payment.payOut];
+	[newPayment setConversionRate:payment.conversionRate];
+	[newPayment setEstimatedDelivery:payment.estimatedDelivery];
+	[newPayment setEstimatedDeliveryStringFromServer:payment.estimatedDeliveryStringFromServer];
+	[newPayment setTransferwiseTransferFee:payment.transferwiseTransferFee];
+	[newPayment setIsFixedAmountValue:payment.isFixedAmountValue];
+	
+	return newPayment;
+}
+
+- (void)setRecipient:(Recipient *)recipient forPayment:(PendingPayment *)payment
+{
+	Recipient *newRecipient = [self.objectModel createRecipient];
+    newRecipient.name = recipient.name;
+    newRecipient.currency = recipient.currency;
+    newRecipient.type = recipient.type;
+    newRecipient.email = recipient.email;
+	
+	for (TypeFieldValue *value in recipient.fieldValues)
+	{
+		[newRecipient setValue:value.value forField:value.valueForField];
+	}
+	
+    [payment setRecipient:newRecipient];
 }
 
 @end
