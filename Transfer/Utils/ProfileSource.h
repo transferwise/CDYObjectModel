@@ -25,6 +25,7 @@ typedef void (^ProfileActionBlock)(NSError *error);
 - (NSArray *)presentedLoginCells;
 - (void)pullDetailsWithHandler:(ProfileActionBlock)handler;
 - (BOOL)inputValid;
+- (BOOL)loginInputValid;
 - (id)enteredProfile;
 - (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion;
 - (void)loadDetailsToCells;

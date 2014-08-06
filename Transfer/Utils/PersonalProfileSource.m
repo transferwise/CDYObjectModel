@@ -203,6 +203,12 @@ NSUInteger const kUserPersonalSection = 1;
             && [[self.countryCell value] hasValue];
 }
 
+- (BOOL)loginInputValid
+{
+	return [[self.emailCell value] hasValue]
+		&& [[self.passwordCell value] hasValue];
+}
+
 //this should be removed when API supports atomic account creation operation
 - (BOOL)isPasswordLengthValid
 {

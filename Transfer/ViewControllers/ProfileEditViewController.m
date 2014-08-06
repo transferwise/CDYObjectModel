@@ -46,6 +46,7 @@
 @property (nonatomic) CGFloat bottomInset;
 @property (nonatomic) BOOL isExistingEmail;
 @property (nonatomic, strong) UIView* footerView;
+@property (nonatomic) BOOL showingLogin;
 
 @end
 
@@ -197,6 +198,12 @@
 			 {
 				 [self showAsLogin];
 			 }
+			 else
+			 {
+				 [self showAsNormal];
+			 }
+			 
+			 [self.passwordCell activate];
 		 }];
 	}
 }
@@ -349,17 +356,51 @@
 #pragma mark - Show as Login
 - (void)showAsLogin
 {
-	self.sectionCellsByTableView = [self.profileSource presentedLoginCells];
-	[self reloadTableViews];
-	if (self.delegate)
+	if (!self.showingLogin)
 	{
-		[self.delegate changeActionButtonTitle:NSLocalizedString(@"personal.profile.login.title", nil)
-		andAction:^{
-			//implement login
-		}];
+		self.showingLogin = YES;
+		self.sectionCellsByTableView = [self.profileSource presentedLoginCells];
+		[self reloadTableViews];
+		if (self.delegate)
+		{
+			[self.delegate changeActionButtonTitle:NSLocalizedString(@"personal.profile.login.title", nil)
+										 andAction:^{
+											 [self login];
+										 }];
+		}
+		
+		//return with filled profile
+	}
+}
+
+- (void)showAsNormal
+{
+	if (self.showingLogin)
+	{
+		self.showingLogin = NO;
+		self.sectionCellsByTableView = [self.profileSource presentedCells:[self createSendAsBusinessCell]];
+		[self reloadTableViews];
+		if (self.delegate)
+		{
+			[self.delegate changeActionButtonTitle:NSLocalizedString(@"personal.profile.confirm.payment.button.title", nil)
+										 andAction:nil];
+		}
+	}
+}
+
+- (void)login
+{
+	//validate
+	if (![self.profileSource loginInputValid])
+	{
+		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
+														   message:NSLocalizedString(@"personal.profile.validation.password.error.invalid.length.message", nil)];
+		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+		[alertView show];
+		return;
 	}
 	
-	//return with filled profile
+	//login
 }
 
 @end
