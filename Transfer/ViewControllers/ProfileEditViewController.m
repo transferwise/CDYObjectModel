@@ -385,7 +385,7 @@
 		self.showingLogin = YES;
 		self.sectionCellsByTableView = [self.profileSource presentedLoginCells];
 		[self reloadTableViews];
-		if (self.delegate)
+		if ([self.delegate respondsToSelector:@selector(changeActionButtonTitle:andAction:)])
 		{
 			__weak typeof(self) weakSelf = self;
 			[self.delegate changeActionButtonTitle:NSLocalizedString(@"personal.profile.login.title", nil)
@@ -403,7 +403,7 @@
 		self.showingLogin = NO;
 		self.sectionCellsByTableView = [self.profileSource presentedCells:[self createSendAsBusinessCell]];
 		[self reloadTableViews];
-		if (self.delegate)
+		if ([self.delegate respondsToSelector:@selector(changeActionButtonTitle:andAction:)])
 		{
 			[self.delegate changeActionButtonTitle:NSLocalizedString(@"personal.profile.confirm.payment.button.title", nil)
 										 andAction:nil];

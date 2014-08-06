@@ -110,7 +110,7 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 - (void)editingEnded
 {
-	if(self.delegate && [self.delegate respondsToSelector:@selector(textEntryFinishedInCell:)])
+	if ([self.delegate respondsToSelector:@selector(textEntryFinishedInCell:)])
 	{
 		[self.delegate textEntryFinishedInCell:self];
 	}
