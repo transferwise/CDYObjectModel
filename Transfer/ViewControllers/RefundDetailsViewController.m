@@ -121,7 +121,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     NSArray *allTypes = [self.currency.recipientTypes array];
     [self handleSelectionChangeToType:type allTypes:allTypes];
     
-    self.headerLabel.text = [NSString stringWithFormat:NSLocalizedString(@"refund.details.header.description", nil),self.payment.recipient.name, self.payment.payOutStringWithCurrency];
+    self.headerLabel.text = [NSString stringWithFormat:NSLocalizedString(IPAD?@"refund.details.header.description.iPad":@"refund.details.header.description", nil),self.payment.recipient.name, self.payment.payOutStringWithCurrency];
 
     UIView *tableViewHeader = [self.tableViews[0] tableHeaderView];
     if(tableViewHeader)
@@ -163,10 +163,6 @@ CGFloat const TransferHeaderPaddingBottom = 0;
             self.secondColumnTopConstraint.constant = 75.0f;
         }
     }
-    
-    [self.containerScrollView setNeedsLayout];
-    [self.containerScrollView layoutIfNeeded];
-    
 }
 
 
