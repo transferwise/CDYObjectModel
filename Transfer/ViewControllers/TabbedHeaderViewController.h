@@ -22,5 +22,7 @@
 - (void)actionTappedWithController:(UIViewController *)controller
 						   atIndex:(NSUInteger)index;
 
+- (void)resetActionButtonTitle:(NSString *)title;
+
 
 @end

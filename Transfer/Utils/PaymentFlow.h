@@ -16,6 +16,7 @@
 
 typedef void (^VerificationStepSuccessBlock)(void);
 typedef void (^PaymentErrorBlock)(NSError *error);
+typedef void (^EmailValidationResultBlock)(BOOL available, NSError *error);
 
 @interface PaymentFlow : NSObject <PersonalProfileValidation, RecipientProfileValidation, BusinessProfileValidation>
 
@@ -25,6 +26,7 @@ typedef void (^PaymentErrorBlock)(NSError *error);
 
 - (id)initWithPresentingController:(UINavigationController *)controller;
 
+- (void)verifyEmail:(NSString *)email withResultBlock:(EmailValidationResultBlock)resultBlock;
 - (void)validatePayment:(NSManagedObjectID *)paymentInput successBlock:(VerificationStepSuccessBlock)successBlock errorHandler:(PaymentErrorBlock)errorHandler;
 - (void)commitPaymentWithSuccessBlock:(VerificationStepSuccessBlock)successBlock ErrorHandler:(PaymentErrorBlock)errorHandler;
 - (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch;

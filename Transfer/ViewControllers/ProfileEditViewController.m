@@ -26,18 +26,28 @@
 #import "CountrySuggestionCellProvider.h"
 #import "Country.h"
 #import "Credentials.h"
-#import "EmailEntryCell.h"
 #import "UIColor+MOMStyle.h"
+#import "PaymentFlow.h"
+#import "DoublePasswordEntryCell.h"
+#import "LoginHelper.h"
+#import "User.h"
+#import "PersonalProfile.h"
+#import "ObjectModel+Users.h"
+#import "PendingPayment.h"
+#import "ObjectModel+PendingPayments.h"
+#import "ObjectModel+Recipients.h"
+#import "Recipient.h"
+#import "TypeFieldValue.h"
+#import "SwitchCell.h"
 
-static NSUInteger const kButtonSection = 0;
-
-@interface ProfileEditViewController ()<CountrySelectionCellDelegate, EmailEntryCellDelegate>
+@interface ProfileEditViewController ()<CountrySelectionCellDelegate, TextEntryCellDelegate>
 
 @property (nonatomic, strong) ProfileSource *profileSource;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
-@property (nonatomic, strong) EmailEntryCell *emailCell;
+@property (nonatomic, strong) TextEntryCell *emailCell;
+@property (nonatomic, strong) DoublePasswordEntryCell *passwordCell;
+@property (nonatomic, strong) SwitchCell *sendAsBusinessCell;
 @property (nonatomic, strong) NSArray *presentationCells;
-@property (nonatomic, strong) PhoneBookProfileSelector *profileSelector;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, assign) BOOL shown;
 @property (nonatomic, strong) QuickProfileValidationOperation *quickProfileValidation;
@@ -46,6 +56,8 @@ static NSUInteger const kButtonSection = 0;
 @property (nonatomic) CGFloat bottomInset;
 @property (nonatomic) BOOL isExistingEmail;
 @property (nonatomic, strong) UIView* footerView;
+@property (nonatomic) BOOL showingLogin;
+@property (nonatomic, strong) LoginHelper* loginHelper;
 
 @end
 
@@ -58,6 +70,7 @@ static NSUInteger const kButtonSection = 0;
 	{
         _profileSource = source;
         _quickProfileValidation = quickValidation;
+		_loginHelper = [[LoginHelper alloc] init];
     }
     return self;
 }
@@ -76,29 +89,65 @@ static NSUInteger const kButtonSection = 0;
 {
     NSArray *presented = [self.profileSource presentedCells:[self createSendAsBusinessCell]];
 
-    CountrySelectionCell *countryCell = nil;
-	EmailEntryCell *emailCell = nil;
+    [self setCells:presented];
+	
+	self.cellProvider = [[CountrySuggestionCellProvider alloc] init];
+    
+    [super configureWithDataSource:self.cellProvider
+						 entryCell:self.countryCell
+							height:self.countryCell.frame.size.height];
+	
+	__weak typeof(self) weakSelf = self;
+	[self.countryCell setSelectionHandler:^(NSString *countryName) {
+        [weakSelf didSelectCountry:countryName];
+    }];
+	
+	self.countryCell.countrySelectionDelegate = self;
+
+    [self setPresentationCells:presented];
+}
+
+- (void)setCells:(NSArray *)presented
+{
+	CountrySelectionCell *countryCell = nil;
+	TextEntryCell *emailCell = nil;
+	DoublePasswordEntryCell *passwordCell = nil;
+	SwitchCell *sendAsBusinessCell = nil;
+	
 	for (NSArray* table in presented)
 	{
-		for (NSArray *cells in table) {
-			for (UITableViewCell *cell in cells) {
+		for (NSArray *cells in table)
+		{
+			for (UITableViewCell *cell in cells)
+			{
 				if ([cell isKindOfClass:[CountrySelectionCell class]])
 				{
 					countryCell = (CountrySelectionCell *)cell;
-					break;
 				}
-				else if([cell isKindOfClass:[EmailEntryCell class]])
+				else if([cell isKindOfClass:[TextEntryCell class]]
+						&& [((TextEntryCell *)cell).cellTag isEqualToString:@"EmailCell"])
 				{
-					emailCell = (EmailEntryCell *)cell;
+					emailCell = (TextEntryCell *)cell;
+					emailCell.delegate = self;
+				}
+				else if([cell isKindOfClass:[DoublePasswordEntryCell class]])
+				{
+					passwordCell = (DoublePasswordEntryCell *)cell;
+				}
+				else if([cell isKindOfClass:[SwitchCell class]])
+				{
+					sendAsBusinessCell = (SwitchCell *)cell;
 				}
 				
-				if(countryCell && emailCell)
+				if(countryCell && emailCell
+				   && passwordCell && sendAsBusinessCell)
 				{
 					break;
 				}
 			}
 			
-			if(countryCell && emailCell)
+			if(countryCell && emailCell
+			   && passwordCell && sendAsBusinessCell)
 			{
 				break;
 			}
@@ -107,22 +156,8 @@ static NSUInteger const kButtonSection = 0;
 	
     [self setCountryCell:countryCell];
 	[self setEmailCell:emailCell];
-	
-	self.cellProvider = [[CountrySuggestionCellProvider alloc] init];
-    
-    [super configureWithDataSource:self.cellProvider
-						 entryCell:countryCell
-							height:countryCell.frame.size.height];
-	
-	__weak typeof(self) weakSelf = self;
-	[countryCell setSelectionHandler:^(NSString *countryName) {
-        [weakSelf didSelectCountry:countryName];
-    }];
-	
-	countryCell.delegate = self;
-	emailCell.delegate = self;
-
-    [self setPresentationCells:presented];
+	[self setPasswordCell:passwordCell];
+	[self setSendAsBusinessCell:sendAsBusinessCell];
 }
 
 - (void)setObjectModel:(ObjectModel *)objectModel
@@ -169,6 +204,32 @@ static NSUInteger const kButtonSection = 0;
 - (BOOL)createSendAsBusinessCell
 {
 	return self.allowProfileSwitch && ![Credentials userLoggedIn];
+}
+
+- (void)textEntryFinishedInCell:(UITableViewCell *)cell
+{
+	if(cell == self.emailCell
+	   && [self.profileSource isKindOfClass:[PersonalProfileSource class]])
+	{
+		TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+		[hud setMessage:NSLocalizedString(@"personal.profile.email.validating", nil)];
+		
+		[self.profileValidation verifyEmail:[self.emailCell value] withResultBlock:^(BOOL available, NSError *error)
+		 {
+			 [hud hide];
+			 
+			 if (!available)
+			 {
+				 [self showAsLogin];
+			 }
+			 else
+			 {
+				 [self showAsNormal];
+			 }
+			 
+			 [self.passwordCell activate];
+		 }];
+	}
 }
 
 #pragma mark - Suggestion Table
@@ -231,20 +292,6 @@ static NSUInteger const kButtonSection = 0;
             });
         }];
 
-    }];
-}
-
-- (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section != kButtonSection)
-	{
-        return;
-    }
-
-    PhoneBookProfileSelector *selector = [[PhoneBookProfileSelector alloc] init];
-    [self setProfileSelector:selector];
-    [selector presentOnController:self completionHandler:^(PhoneBookProfile *profile) {
-        [self.profileSource loadDataFromProfile:profile];
     }];
 }
 
@@ -333,12 +380,115 @@ static NSUInteger const kButtonSection = 0;
 #pragma mark - Show as Login
 - (void)showAsLogin
 {
-	//remove cells
-	//rebind tables
-	//rename button
-	//switch out button action
-	//implement login
-	//return with filled profile
+	if (!self.showingLogin)
+	{
+		self.showingLogin = YES;
+		self.sectionCellsByTableView = [self.profileSource presentedLoginCells];
+		[self reloadTableViews];
+		if ([self.delegate respondsToSelector:@selector(changeActionButtonTitle:andAction:)])
+		{
+			__weak typeof(self) weakSelf = self;
+			[self.delegate changeActionButtonTitle:NSLocalizedString(@"personal.profile.login.title", nil)
+										 andAction:^{
+											 [weakSelf login];
+										 }];
+		}
+	}
+}
+
+- (void)showAsNormal
+{
+	if (self.showingLogin)
+	{
+		self.showingLogin = NO;
+		self.sectionCellsByTableView = [self.profileSource presentedCells:[self createSendAsBusinessCell]];
+		[self reloadTableViews];
+		if ([self.delegate respondsToSelector:@selector(changeActionButtonTitle:andAction:)])
+		{
+			[self.delegate changeActionButtonTitle:NSLocalizedString(@"personal.profile.confirm.payment.button.title", nil)
+										 andAction:nil];
+		}
+	}
+}
+
+- (void)login
+{
+	PendingPayment* pendingPayment = self.objectModel.pendingPayment;
+	BOOL sendAsBusiness = self.sendAsBusinessCell.value;
+	
+	__weak typeof(self) weakSelf = self;
+	[self.loginHelper validateInputAndPerformLoginWithEmail:self.emailCell.value
+												   password:self.passwordCell.value
+								   navigationControllerView:self.navigationController.view
+												objectModel:self.objectModel
+											   successBlock:^{
+												   [weakSelf reloadDataAfterLoginWithPayment:pendingPayment
+																			  sendAsBusiness:sendAsBusiness];
+											   }
+								  waitForDetailsCompletions:YES];
+}
+
+- (void)reloadDataAfterLoginWithPayment:(PendingPayment *)payment
+						 sendAsBusiness:(BOOL)sendAsBusiness
+{
+	User *user = [self.objectModel currentUser];
+    PersonalProfile *profile = [user personalProfileObject];
+	
+	profile.sendAsBusinessValue = sendAsBusiness;
+	
+	PendingPayment *pendingPayment = [self getPendingPaymentFromPayment:payment];
+	[self setRecipient:payment.recipient forPayment:pendingPayment];
+	
+	[self.objectModel saveContext];
+	
+	TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    [hud setMessage:NSLocalizedString(@"personal.profile.verify.message", nil)];
+	
+	[self.profileSource validateProfile:profile.objectID withValidation:self.profileValidation completion:^(NSError *error) {
+        [hud hide];
+		
+        if (error)
+		{
+			TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"personal.profile.verify.error.title", nil) error:error];
+			[alertView show];
+			return;
+        }
+		
+		[self.navigationController popViewControllerAnimated:NO];
+    }];
+}
+
+- (PendingPayment *)getPendingPaymentFromPayment:(PendingPayment *)payment
+{
+	PendingPayment *newPayment = [self.objectModel createPendingPayment];
+	
+	[newPayment setSourceCurrency:payment.sourceCurrency];
+	[newPayment setTargetCurrency:payment.targetCurrency];
+	[newPayment setPayIn:payment.payIn];
+	[newPayment setPayOut:payment.payOut];
+	[newPayment setConversionRate:payment.conversionRate];
+	[newPayment setEstimatedDelivery:payment.estimatedDelivery];
+	[newPayment setEstimatedDeliveryStringFromServer:payment.estimatedDeliveryStringFromServer];
+	[newPayment setTransferwiseTransferFee:payment.transferwiseTransferFee];
+	[newPayment setIsFixedAmountValue:payment.isFixedAmountValue];
+	
+	return newPayment;
+}
+
+- (void)setRecipient:(Recipient *)recipient forPayment:(PendingPayment *)payment
+{
+	Recipient *newRecipient = [self.objectModel createRecipient];
+    newRecipient.name = recipient.name;
+    newRecipient.currency = recipient.currency;
+    newRecipient.type = recipient.type;
+    newRecipient.email = recipient.email;
+	
+	for (TypeFieldValue *value in recipient.fieldValues)
+	{
+		[newRecipient setValue:value.value forField:value.valueForField];
+	}
+	
+    [payment setRecipient:newRecipient];
 }
 
 @end

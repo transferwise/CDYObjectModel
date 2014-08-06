@@ -35,7 +35,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szE-h1-o6q" customClass="BlueRoundedButton">
-                    <rect key="frame" x="463" y="676" width="99" height="44"/>
+                    <rect key="frame" x="463" y="636" width="99" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="TBu-N5-uwX"/>
@@ -50,7 +50,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNf-5D-V8d" customClass="WhiteRoundedButton">
-                    <rect key="frame" x="463" y="676" width="99" height="44"/>
+                    <rect key="frame" x="463" y="636" width="99" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="vwr-8n-VEJ"/>
@@ -68,12 +68,12 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="szE-h1-o6q" secondAttribute="centerX" id="D5I-It-ZZ2"/>
-                <constraint firstItem="kNf-5D-V8d" firstAttribute="top" secondItem="NiX-z4-79M" secondAttribute="bottom" constant="100" id="EIp-6h-Mxa"/>
+                <constraint firstItem="kNf-5D-V8d" firstAttribute="top" secondItem="NiX-z4-79M" secondAttribute="bottom" constant="60" id="EIp-6h-Mxa"/>
                 <constraint firstItem="szE-h1-o6q" firstAttribute="centerY" secondItem="kNf-5D-V8d" secondAttribute="centerY" id="IVy-08-Pie"/>
                 <constraint firstAttribute="trailing" secondItem="vVN-5a-Y2I" secondAttribute="trailing" id="Xw8-dJ-LvM"/>
                 <constraint firstItem="vVN-5a-Y2I" firstAttribute="top" secondItem="1" secondAttribute="top" id="YXh-52-aGZ"/>
                 <constraint firstAttribute="bottom" secondItem="vVN-5a-Y2I" secondAttribute="bottom" id="bAG-VB-xGg"/>
-                <constraint firstAttribute="centerY" secondItem="szE-h1-o6q" secondAttribute="centerY" constant="-314" id="bQU-GV-4tC"/>
+                <constraint firstAttribute="centerY" secondItem="szE-h1-o6q" secondAttribute="centerY" constant="-274" id="bQU-GV-4tC"/>
                 <constraint firstItem="vVN-5a-Y2I" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="emr-2d-vxL"/>
                 <constraint firstItem="szE-h1-o6q" firstAttribute="centerX" secondItem="kNf-5D-V8d" secondAttribute="centerX" id="uhF-3I-WbC"/>
                 <constraint firstAttribute="centerX" secondItem="NiX-z4-79M" secondAttribute="centerX" id="zIP-e7-jol"/>

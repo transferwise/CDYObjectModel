@@ -26,7 +26,7 @@ typedef void (^CountrySelectionBlock)(NSString *countryName);
 
 @interface CountrySelectionCell : TextEntryCell
 
-@property (nonatomic, weak) id<CountrySelectionCellDelegate> delegate;
+@property (nonatomic, weak) id<CountrySelectionCellDelegate> countrySelectionDelegate;
 @property (nonatomic, copy) CountrySelectionBlock selectionHandler;
 
 - (void)setTwoLetterCountryCode:(NSString *)code;
