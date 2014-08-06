@@ -153,4 +153,9 @@
 {
 	//override in an inheriting class to customize
 }
+
+- (void)resetActionButtonTitle:(NSString *)title
+{
+	[self.actionButton setTitle:title forState:UIControlStateNormal];
+}
 @end

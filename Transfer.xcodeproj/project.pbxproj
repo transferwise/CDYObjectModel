@@ -307,10 +307,8 @@
 		47343AD21977E0B1009D9C3A /* RecipientsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47343AD01977E0B1009D9C3A /* RecipientsFooterView.xib */; };
 		47343AD41977E0DD009D9C3A /* RecipientsFooterView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47343AD31977E0DD009D9C3A /* RecipientsFooterView~ipad.xib */; };
 		47343AD51977E0DD009D9C3A /* RecipientsFooterView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47343AD31977E0DD009D9C3A /* RecipientsFooterView~ipad.xib */; };
-		4735E4CE1990D64700F41D1E /* EmailEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4735E4CD1990D64700F41D1E /* EmailEntryCell.m */; };
-		4735E4CF1990D64700F41D1E /* EmailEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4735E4CD1990D64700F41D1E /* EmailEntryCell.m */; };
-		4735E4D11990DCF500F41D1E /* EmailEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4735E4D01990DCF500F41D1E /* EmailEntryCell.xib */; };
-		4735E4D21990DCF500F41D1E /* EmailEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4735E4D01990DCF500F41D1E /* EmailEntryCell.xib */; };
+		4735E4D51992258C00F41D1E /* LoginHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4735E4D41992258C00F41D1E /* LoginHelper.m */; };
+		4735E4D61992258C00F41D1E /* LoginHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4735E4D41992258C00F41D1E /* LoginHelper.m */; };
 		473DF972196D5ED600524C64 /* FloatingLabelTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 473DF971196D5ED600524C64 /* FloatingLabelTextField.m */; };
 		473DF973196D5ED600524C64 /* FloatingLabelTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 473DF971196D5ED600524C64 /* FloatingLabelTextField.m */; };
 		473DF975196D637200524C64 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473DF974196D637200524C64 /* LoginViewController~ipad.xib */; };
@@ -1071,9 +1069,8 @@
 		47343ACD1977E093009D9C3A /* RecipientsFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientsFooterView.m; sourceTree = "<group>"; };
 		47343AD01977E0B1009D9C3A /* RecipientsFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientsFooterView.xib; sourceTree = "<group>"; };
 		47343AD31977E0DD009D9C3A /* RecipientsFooterView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecipientsFooterView~ipad.xib"; sourceTree = "<group>"; };
-		4735E4CC1990D64700F41D1E /* EmailEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailEntryCell.h; sourceTree = "<group>"; };
-		4735E4CD1990D64700F41D1E /* EmailEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailEntryCell.m; sourceTree = "<group>"; };
-		4735E4D01990DCF500F41D1E /* EmailEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmailEntryCell.xib; sourceTree = "<group>"; };
+		4735E4D31992258C00F41D1E /* LoginHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginHelper.h; sourceTree = "<group>"; };
+		4735E4D41992258C00F41D1E /* LoginHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginHelper.m; sourceTree = "<group>"; };
 		473DF970196D5ED600524C64 /* FloatingLabelTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingLabelTextField.h; sourceTree = "<group>"; };
 		473DF971196D5ED600524C64 /* FloatingLabelTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingLabelTextField.m; sourceTree = "<group>"; };
 		473DF974196D637200524C64 /* LoginViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~ipad.xib"; sourceTree = "<group>"; };
@@ -1973,9 +1970,6 @@
 				476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */,
 				471C9FF9197FB1AA00BCA3B4 /* FixSeparatorCell.h */,
 				471C9FFA197FB1AA00BCA3B4 /* FixSeparatorCell.m */,
-				4735E4CC1990D64700F41D1E /* EmailEntryCell.h */,
-				4735E4CD1990D64700F41D1E /* EmailEntryCell.m */,
-				4735E4D01990DCF500F41D1E /* EmailEntryCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2497,6 +2491,8 @@
 				47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */,
 				EAA053D0175DD5DC00ACD3F6 /* LoggedInPaymentFlow.h */,
 				EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */,
+				4735E4D31992258C00F41D1E /* LoginHelper.h */,
+				4735E4D41992258C00F41D1E /* LoginHelper.m */,
 				EAB72163171FDC7F00DE29F5 /* MoneyCalculator.h */,
 				EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */,
 				EAAF8FB61743B3E4008DF9E2 /* MoneyFormatter.h */,
@@ -2763,7 +2759,6 @@
 				EA31A22717DDB29B00F937F7 /* TabBarActivityIndicatorView.xib in Resources */,
 				471CA007197FCB2200BCA3B4 /* TabbedHeaderViewController.xib in Resources */,
 				EA31A22817DDB29B00F937F7 /* currencies.json in Resources */,
-				4735E4D21990DCF500F41D1E /* EmailEntryCell.xib in Resources */,
 				47343AD51977E0DD009D9C3A /* RecipientsFooterView~ipad.xib in Resources */,
 				EA31A22917DDB29B00F937F7 /* currency_pairs.json in Resources */,
 				EA31A22A17DDB29B00F937F7 /* recipient_types.json in Resources */,
@@ -2787,7 +2782,6 @@
 			files = (
 				479B692F194878CA001FA4FE /* TransferDetailsViewController~ipad.xib in Resources */,
 				47F84D6D198A638B00886D41 /* DoubleEntryCell.xib in Resources */,
-				4735E4D11990DCF500F41D1E /* EmailEntryCell.xib in Resources */,
 				EAAA1478171BC911005B9430 /* InfoPlist.strings in Resources */,
 				38062176196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */,
 				EAAA1490171BD07E005B9430 /* Localizable.strings in Resources */,
@@ -3151,6 +3145,7 @@
 				EA31A14517DDB29B00F937F7 /* CalculationResult.m in Sources */,
 				380021C7192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */,
 				EA31A14617DDB29B00F937F7 /* TSAlertView.m in Sources */,
+				4735E4D61992258C00F41D1E /* LoginHelper.m in Sources */,
 				389F682E198FC1C6006CF1F6 /* ObjectModel+Recipients.m in Sources */,
 				389F6840198FC1C6006CF1F6 /* PaymentMadeIndicator.m in Sources */,
 				EA333F3D18A4C00000D8A44E /* PageZoom.m in Sources */,
@@ -3267,7 +3262,6 @@
 				38C7B29419742596004324E8 /* HeaderTabView.m in Sources */,
 				38B1C5D7195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */,
 				EA31A18317DDB29B00F937F7 /* PersonalProfileSource.m in Sources */,
-				4735E4CF1990D64700F41D1E /* EmailEntryCell.m in Sources */,
 				EA31A18417DDB29B00F937F7 /* BusinessProfileSource.m in Sources */,
 				4723EA161973F32400B4345F /* ImageColoredButton.m in Sources */,
 				EA31A18517DDB29B00F937F7 /* BusinessProfileCommitter.m in Sources */,
@@ -3431,6 +3425,7 @@
 				EA333F3C18A4C00000D8A44E /* PageZoom.m in Sources */,
 				BBCC6338172169980094EABB /* WhyView.m in Sources */,
 				EACD942E18D82C2C00369905 /* NanTracking.m in Sources */,
+				4735E4D51992258C00F41D1E /* LoginHelper.m in Sources */,
 				389F682D198FC1C6006CF1F6 /* ObjectModel+Recipients.m in Sources */,
 				389F683F198FC1C6006CF1F6 /* PaymentMadeIndicator.m in Sources */,
 				479B693419489303001FA4FE /* TransferDetialsHeaderView.m in Sources */,
@@ -3547,7 +3542,6 @@
 				38C7B29319742596004324E8 /* HeaderTabView.m in Sources */,
 				EA92D9541769BD9D0078D0C4 /* BusinessProfileCommitter.m in Sources */,
 				EA92D97F176AF1200078D0C4 /* PaymentProfileViewController.m in Sources */,
-				4735E4CE1990D64700F41D1E /* EmailEntryCell.m in Sources */,
 				4723EA151973F32400B4345F /* ImageColoredButton.m in Sources */,
 				EA7F8816176F2B44003B0F46 /* RemoveTokenOperation.m in Sources */,
 				473DF972196D5ED600524C64 /* FloatingLabelTextField.m in Sources */,

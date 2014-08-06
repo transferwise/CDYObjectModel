@@ -7,13 +7,21 @@
 //
 
 #import "SuggestionDataEntryViewController.h"
+#import "Constants.h"
 
 @class ProfileSource;
 @class ObjectModel;
 @class QuickProfileValidationOperation;
 
+@protocol ProfileEditViewControllerDelegate <NSObject>
+
+- (void)changeActionButtonTitle:(NSString *)title andAction:(TRWActionBlock)action;
+
+@end
+
 @interface ProfileEditViewController : SuggestionDataEntryViewController
 
+@property (nonatomic, weak) id<ProfileEditViewControllerDelegate> delegate;
 @property (nonatomic, strong) id profileValidation;
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic) BOOL allowProfileSwitch;

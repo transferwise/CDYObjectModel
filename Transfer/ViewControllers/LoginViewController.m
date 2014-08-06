@@ -11,14 +11,6 @@
 #import "TransferBackButtonItem.h"
 #import "FloatingLabelTextField.h"
 #import "GreenButton.h"
-#import "UIApplication+Keyboard.h"
-#import "TRWAlertView.h"
-#import "TRWProgressHUD.h"
-#import "LoginOperation.h"
-#import "NSString+Validation.h"
-#import "NSError+TRWErrors.h"
-#import "LoginOperation.h"
-#import "NSMutableString+Issues.h"
 #import "OpenIDViewController.h"
 #import "UIFont+MOMStyle.h"
 #import "NSString+DeviceSpecificLocalisation.h"
@@ -26,6 +18,7 @@
 #import "YahooButton.h"
 #import "UIColor+MOMStyle.h"
 #import "NavigationBarCustomiser.h"
+#import "LoginHelper.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -35,10 +28,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *forgotPasswordLabel;
 @property (strong, nonatomic) IBOutlet GoogleButton *googleLoginButton;
 @property (strong, nonatomic) IBOutlet YahooButton *yahooLoginButton;
-@property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (strong, nonatomic) IBOutlet UILabel *orLabel;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *emailSeparatorHeight;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *passwordSeparatorHeight;
+@property (strong, nonatomic) LoginHelper *loginHelper;
 
 @end
 
@@ -48,8 +41,9 @@
 - (id)init
 {
     self = [super initWithNibName:@"LoginViewController" bundle:nil];
-    if (self) {
-        // Custom initialization
+    if (self)
+	{
+        self.loginHelper = [[LoginHelper alloc] init];
     }
     return self;
 }
@@ -132,88 +126,15 @@
 - (IBAction)loginPressed:(id)sender
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self validateInputAndPerformLogin];
+		[self.loginHelper validateInputAndPerformLoginWithEmail:self.emailTextField.text
+													   password:self.passwordTextField.text
+									   navigationControllerView:self.navigationController.view
+													objectModel:self.objectModel
+												   successBlock:^{
+													   [self dismissViewControllerAnimated:YES completion:nil];
+												   }
+									  waitForDetailsCompletions:NO];
     });
-}
-
-- (void)validateInputAndPerformLogin
-{
-    [UIApplication dismissKeyboard];
-	
-    NSString *issues = [self validateInput];
-    if ([issues length] > 0)
-	{
-        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil) message:issues];
-        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-        [alertView show];
-        return;
-    }
-	
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-    [hud setMessage:NSLocalizedString(@"login.controller.logging.in.message", nil)];
-	
-    LoginOperation *loginOperation = [LoginOperation loginOperationWithEmail:[self.emailTextField text]
-																	password:[self.passwordTextField text]];
-    [self setExecutedOperation:loginOperation];
-	
-    [loginOperation setObjectModel:self.objectModel];
-	
-    [loginOperation setResponseHandler:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [hud hide];
-			
-            if (!error)
-			{
-                [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"tw"];
-                [self dismissViewControllerAnimated:YES completion:nil];
-                return;
-            }
-			
-            TRWAlertView *alertView;
-            if ([error isTransferwiseError])
-			{
-                NSString *message = [error localizedTransferwiseMessage];
-                [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials" withLabel:message];
-                alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil) message:message];
-            }
-			else
-			{
-                alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
-                                                     message:NSLocalizedString(@"login.error.generic.message", nil)];
-                [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials" withLabel:error.localizedDescription];
-            }
-			
-            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-			
-            [alertView show];
-        });
-    }];
-	
-    [loginOperation execute];
-}
-
-- (NSString *)validateInput
-{
-    NSMutableString *issues = [NSMutableString string];
-	
-    NSString *email = [self.emailTextField text];
-    NSString *password = [self.passwordTextField text];
-	
-    if (![email hasValue])
-	{
-        [issues appendIssue:NSLocalizedString(@"login.validation.email.missing", nil)];
-    }
-	else if ([email hasValue] && ![email isValidEmail])
-	{
-        [issues appendIssue:NSLocalizedString(@"login.validation.email.not.valid", nil)];
-    }
-	
-    if (![password hasValue])
-	{
-        [issues appendIssue:NSLocalizedString(@"login.validation.password.missing", nil)];
-    }
-	
-    return [NSString stringWithString:issues];
 }
 
 - (IBAction)googleLogInPressed:(id)sender

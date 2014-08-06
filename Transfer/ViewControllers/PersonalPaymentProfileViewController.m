@@ -10,9 +10,10 @@
 #import "PersonalProfileViewController.h"
 #import "TransferBackButtonItem.h"
 
-@interface PersonalPaymentProfileViewController ()
+@interface PersonalPaymentProfileViewController ()<ProfileEditViewControllerDelegate>
 
 @property (nonatomic, strong) PersonalProfileViewController* personalProfile;
+@property (nonatomic, strong) TRWActionBlock alternateAction;
 
 @end
 
@@ -23,6 +24,7 @@
 	self.personalProfile = [[PersonalProfileViewController alloc] init];
 	self.personalProfile.objectModel = self.objectModel;
 	self.personalProfile.allowProfileSwitch = self.allowProfileSwitch;
+	self.personalProfile.delegate = self;
 	
 	if(self.profileValidation)
 	{
@@ -44,8 +46,21 @@
 {
 	if (controller == self.personalProfile)
 	{
-		[self.personalProfile validateProfile];
+		if (self.alternateAction)
+		{
+			self.alternateAction();
+		}
+		else
+		{
+			[self.personalProfile validateProfile];
+		}
 	}
+}
+
+- (void)changeActionButtonTitle:(NSString *)title andAction:(TRWActionBlock)action
+{
+	[self resetActionButtonTitle:title];
+	self.alternateAction = action;
 }
 
 @end

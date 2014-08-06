@@ -79,9 +79,9 @@
 
 - (void)navigateAway
 {
-	if(self.delegate)
+	if(self.multipleEntryDelegate)
 	{
-		[self.delegate navigateAwayFrom:self];
+		[self.multipleEntryDelegate navigateAwayFrom:self];
 	}
 }
 
