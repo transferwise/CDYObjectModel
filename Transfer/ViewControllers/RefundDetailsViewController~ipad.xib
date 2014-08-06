@@ -98,11 +98,11 @@
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="hMq-ed-Vhk" secondAttribute="bottom" constant="60" id="G3q-4a-Oex"/>
                                         <constraint firstAttribute="centerX" secondItem="gyh-QL-86n" secondAttribute="centerX" id="I4B-eK-X8x"/>
-                                        <constraint firstItem="gyh-QL-86n" firstAttribute="height" secondItem="YI2-AU-9ei" secondAttribute="height" id="Jsk-o3-KpA"/>
                                         <constraint firstAttribute="centerY" secondItem="hMq-ed-Vhk" secondAttribute="centerY" id="L55-wf-jgv"/>
                                         <constraint firstAttribute="trailing" secondItem="hMq-ed-Vhk" secondAttribute="trailing" constant="20" id="UAo-l4-5iW"/>
                                         <constraint firstItem="hMq-ed-Vhk" firstAttribute="leading" secondItem="YI2-AU-9ei" secondAttribute="leading" constant="20" id="WjA-rK-7UN"/>
                                         <constraint firstItem="hMq-ed-Vhk" firstAttribute="top" secondItem="YI2-AU-9ei" secondAttribute="top" constant="60" id="fQ7-8v-WaQ"/>
+                                        <constraint firstItem="hMq-ed-Vhk" firstAttribute="height" secondItem="gyh-QL-86n" secondAttribute="height" priority="900" constant="-120" id="sfS-tN-33t"/>
                                         <constraint firstAttribute="centerY" secondItem="gyh-QL-86n" secondAttribute="centerY" id="x0l-IM-jMO"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>

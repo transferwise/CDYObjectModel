@@ -121,7 +121,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     NSArray *allTypes = [self.currency.recipientTypes array];
     [self handleSelectionChangeToType:type allTypes:allTypes];
     
-    self.headerLabel.text = [NSString stringWithFormat:NSLocalizedString(@"refund.details.header.description", nil),self.payment.recipient.name, self.payment.payOutStringWithCurrency];
+    self.headerLabel.text = [NSString stringWithFormat:NSLocalizedString(IPAD?@"refund.details.header.description.iPad":@"refund.details.header.description", nil),self.payment.recipient.name, self.payment.payOutStringWithCurrency];
 
     UIView *tableViewHeader = [self.tableViews[0] tableHeaderView];
     if(tableViewHeader)
@@ -141,6 +141,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     [self.footerButton addTarget:self action:@selector(continuePressed) forControlEvents:UIControlEventTouchUpInside];
     
 }
+
 
 -(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
@@ -246,6 +247,13 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 
     [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
     [self refreshTableViewSizes];
+}
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.headerLabel.preferredMaxLayoutWidth = self.headerLabel.frame.size.width;
+    [self.view layoutIfNeeded];
 }
 
 -(void)refreshTableViewSizes
@@ -358,6 +366,8 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 }
 
 - (void)continuePressed {
+    self.headerLabel.text = @"GROG!!!    GROG!!!    GROG!!! I'm selling these fine leather jackets. Look behind you! a three headed monkey! Fettuchini brothers!";
+    /*
     [UIApplication dismissKeyboard];
 
     NSString *issues = [self validateInput];
@@ -407,6 +417,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
         weakSelf.afterValidationBlock();
     }];
     [validate execute];
+     */
 }
 
 - (NSString *)validateInput {

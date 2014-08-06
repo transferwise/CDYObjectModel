@@ -26,7 +26,7 @@
                     </connections>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NiX-z4-79M" customClass="SMPageControl">
-                    <rect key="frame" x="352" y="588" width="320" height="20"/>
+                    <rect key="frame" x="352" y="556" width="320" height="20"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="1" green="0.21002093062598115" blue="0.24231308778297178" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -35,12 +35,13 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szE-h1-o6q" customClass="BlueRoundedButton">
-                    <rect key="frame" x="473" y="678" width="79" height="40"/>
+                    <rect key="frame" x="463" y="636" width="99" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="TBu-N5-uwX"/>
+                        <constraint firstAttribute="height" constant="44" id="TBu-N5-uwX"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                     <state key="normal" title="Get starteD">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -49,12 +50,13 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNf-5D-V8d" customClass="WhiteRoundedButton">
-                    <rect key="frame" x="473" y="678" width="79" height="40"/>
+                    <rect key="frame" x="463" y="636" width="99" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="vwr-8n-VEJ"/>
+                        <constraint firstAttribute="height" constant="44" id="vwr-8n-VEJ"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                     <state key="normal" title="Get starteD">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -66,12 +68,12 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="szE-h1-o6q" secondAttribute="centerX" id="D5I-It-ZZ2"/>
-                <constraint firstItem="kNf-5D-V8d" firstAttribute="top" secondItem="NiX-z4-79M" secondAttribute="bottom" constant="70" id="EIp-6h-Mxa"/>
+                <constraint firstItem="kNf-5D-V8d" firstAttribute="top" secondItem="NiX-z4-79M" secondAttribute="bottom" constant="60" id="EIp-6h-Mxa"/>
                 <constraint firstItem="szE-h1-o6q" firstAttribute="centerY" secondItem="kNf-5D-V8d" secondAttribute="centerY" id="IVy-08-Pie"/>
                 <constraint firstAttribute="trailing" secondItem="vVN-5a-Y2I" secondAttribute="trailing" id="Xw8-dJ-LvM"/>
                 <constraint firstItem="vVN-5a-Y2I" firstAttribute="top" secondItem="1" secondAttribute="top" id="YXh-52-aGZ"/>
                 <constraint firstAttribute="bottom" secondItem="vVN-5a-Y2I" secondAttribute="bottom" id="bAG-VB-xGg"/>
-                <constraint firstAttribute="centerY" secondItem="szE-h1-o6q" secondAttribute="centerY" constant="-314" id="bQU-GV-4tC"/>
+                <constraint firstAttribute="centerY" secondItem="szE-h1-o6q" secondAttribute="centerY" constant="-274" id="bQU-GV-4tC"/>
                 <constraint firstItem="vVN-5a-Y2I" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="emr-2d-vxL"/>
                 <constraint firstItem="szE-h1-o6q" firstAttribute="centerX" secondItem="kNf-5D-V8d" secondAttribute="centerX" id="uhF-3I-WbC"/>
                 <constraint firstAttribute="centerX" secondItem="NiX-z4-79M" secondAttribute="centerX" id="zIP-e7-jol"/>
