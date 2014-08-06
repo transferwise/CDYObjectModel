@@ -29,6 +29,7 @@
 					 navigationControllerView:(UIView *)navigationControllerView
 								  objectModel:(ObjectModel *)objectModel
 								 successBlock:(TRWActionBlock)successBlock
+					waitForDetailsCompletions:(BOOL)waitForDetailsCompletion
 {
 	[UIApplication dismissKeyboard];
 	
@@ -49,6 +50,7 @@
 																	password:password];
 	self.executedOperation = loginOperation;
     [loginOperation setObjectModel:objectModel];
+	[loginOperation setWaitForDetailsCompletion:waitForDetailsCompletion];
 	
     [loginOperation setResponseHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{

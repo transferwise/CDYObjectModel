@@ -402,7 +402,8 @@
 												objectModel:self.objectModel
 											   successBlock:^{
 												   [weakSelf reloadDataAfterLogin];
-											   }];
+											   }
+								  waitForDetailsCompletions:YES];
 }
 
 - (void)reloadDataAfterLogin

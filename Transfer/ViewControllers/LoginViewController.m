@@ -132,7 +132,8 @@
 													objectModel:self.objectModel
 												   successBlock:^{
 													   [self dismissViewControllerAnimated:YES completion:nil];
-												   }];
+												   }
+									  waitForDetailsCompletions:NO];
     });
 }
 

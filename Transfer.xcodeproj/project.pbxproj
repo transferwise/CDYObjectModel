@@ -2491,6 +2491,8 @@
 				47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */,
 				EAA053D0175DD5DC00ACD3F6 /* LoggedInPaymentFlow.h */,
 				EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */,
+				4735E4D31992258C00F41D1E /* LoginHelper.h */,
+				4735E4D41992258C00F41D1E /* LoginHelper.m */,
 				EAB72163171FDC7F00DE29F5 /* MoneyCalculator.h */,
 				EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */,
 				EAAF8FB61743B3E4008DF9E2 /* MoneyFormatter.h */,
@@ -2517,8 +2519,6 @@
 				EA59296E17589F3A007C0072 /* RecipientProfileValidation.h */,
 				47AC3F8F1987AFAC005491C6 /* SuggestionCellProvider.h */,
 				47AC3F901987AFAC005491C6 /* SuggestionCellProvider.m */,
-				4735E4D31992258C00F41D1E /* LoginHelper.h */,
-				4735E4D41992258C00F41D1E /* LoginHelper.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";

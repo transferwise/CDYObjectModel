@@ -18,6 +18,7 @@
 									 password:(NSString *)password
 					 navigationControllerView:(UIView *)navigationControllerView
 								  objectModel:(ObjectModel *)objectModel
-								 successBlock:(TRWActionBlock)successBlock;
+								 successBlock:(TRWActionBlock)successBlock
+					waitForDetailsCompletions:(BOOL)waitForDetailsCompletion;
 
 @end
