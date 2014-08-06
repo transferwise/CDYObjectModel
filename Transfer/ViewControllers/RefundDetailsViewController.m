@@ -366,8 +366,6 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 }
 
 - (void)continuePressed {
-    self.headerLabel.text = @"GROG!!!    GROG!!!    GROG!!! I'm selling these fine leather jackets. Look behind you! a three headed monkey! Fettuchini brothers!";
-    /*
     [UIApplication dismissKeyboard];
 
     NSString *issues = [self validateInput];
@@ -417,7 +415,6 @@ CGFloat const TransferHeaderPaddingBottom = 0;
         weakSelf.afterValidationBlock();
     }];
     [validate execute];
-     */
 }
 
 - (NSString *)validateInput {
