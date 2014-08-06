@@ -544,7 +544,6 @@
 		EA31A17A17DDB29B00F937F7 /* RecipientProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */; };
 		EA31A17B17DDB29B00F937F7 /* LoggedInPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */; };
 		EA31A17C17DDB29B00F937F7 /* NoUserPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D5175DD5EE00ACD3F6 /* NoUserPaymentFlow.m */; };
-		EA31A17D17DDB29B00F937F7 /* RegisterWithoutPasswordOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053EB175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m */; };
 		EA31A17E17DDB29B00F937F7 /* ClaimAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */; };
 		EA31A17F17DDB29B00F937F7 /* ClaimAccountOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB93B471761C74700A7337C /* ClaimAccountOperation.m */; };
 		EA31A18017DDB29B00F937F7 /* RoundedCellBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */; };
@@ -697,7 +696,6 @@
 		EAA053DA175DD63100ACD3F6 /* PaymentFlowSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D9175DD63100ACD3F6 /* PaymentFlowSpec.m */; };
 		EAA053E0175DD64D00ACD3F6 /* NoUserPaymentFlowSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053DF175DD64D00ACD3F6 /* NoUserPaymentFlowSpec.m */; };
 		EAA053E4175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053E3175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m */; };
-		EAA053EC175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053EB175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m */; };
 		EAA07BF117AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA07BF017AF750A004B97AC /* QuickProfileValidationOperation.m */; };
 		EAA54F4B1733DA1400B65BF3 /* RecipientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F491733DA1400B65BF3 /* RecipientViewController.m */; };
 		EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F4A1733DA1400B65BF3 /* RecipientViewController.xib */; };
@@ -1360,8 +1358,6 @@
 		EAA053D9175DD63100ACD3F6 /* PaymentFlowSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentFlowSpec.m; sourceTree = "<group>"; };
 		EAA053DF175DD64D00ACD3F6 /* NoUserPaymentFlowSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoUserPaymentFlowSpec.m; sourceTree = "<group>"; };
 		EAA053E3175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggedInPaymentFlowSpec.m; sourceTree = "<group>"; };
-		EAA053EA175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterWithoutPasswordOperation.h; sourceTree = "<group>"; };
-		EAA053EB175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterWithoutPasswordOperation.m; sourceTree = "<group>"; };
 		EAA07BEF17AF750A004B97AC /* QuickProfileValidationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickProfileValidationOperation.h; sourceTree = "<group>"; };
 		EAA07BF017AF750A004B97AC /* QuickProfileValidationOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickProfileValidationOperation.m; sourceTree = "<group>"; };
 		EAA54F481733DA1400B65BF3 /* RecipientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientViewController.h; sourceTree = "<group>"; };
@@ -2217,8 +2213,6 @@
 				EAA54F5A1733EF1A00B65BF3 /* RecipientTypesOperation.m */,
 				EA1861E11746442900BD01BB /* RegisterOperation.h */,
 				EA1861E21746442900BD01BB /* RegisterOperation.m */,
-				EAA053EA175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.h */,
-				EAA053EB175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m */,
 				EA7F8814176F2B44003B0F46 /* RemoveTokenOperation.h */,
 				EA7F8815176F2B44003B0F46 /* RemoveTokenOperation.m */,
 				EAB61712191CDD1000545C21 /* ResetPasswordOperation.h */,
@@ -3263,7 +3257,6 @@
 				470EB6191976BE98001C5D97 /* CancelableCellViewController.m in Sources */,
 				EA31A17C17DDB29B00F937F7 /* NoUserPaymentFlow.m in Sources */,
 				388F09FC1934A1C000DBD93D /* UIView+RenderBlur.m in Sources */,
-				EA31A17D17DDB29B00F937F7 /* RegisterWithoutPasswordOperation.m in Sources */,
 				EA31A17E17DDB29B00F937F7 /* ClaimAccountViewController.m in Sources */,
 				EA31A17F17DDB29B00F937F7 /* ClaimAccountOperation.m in Sources */,
 				4723EA301975639E00B4345F /* BlueRoundedButton.m in Sources */,
@@ -3542,7 +3535,6 @@
 				389F6805198FC1C6006CF1F6 /* _Payment.m in Sources */,
 				470EB6181976BE98001C5D97 /* CancelableCellViewController.m in Sources */,
 				479B693E1949C36F001FA4FE /* TransferDetialsRecipientView.m in Sources */,
-				EAA053EC175DFEE800ACD3F6 /* RegisterWithoutPasswordOperation.m in Sources */,
 				EAC1051A17607C4600B3B018 /* ClaimAccountViewController.m in Sources */,
 				EAB93B481761C74700A7337C /* ClaimAccountOperation.m in Sources */,
 				4723EA2F1975639E00B4345F /* BlueRoundedButton.m in Sources */,

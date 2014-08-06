@@ -261,14 +261,27 @@ static NSUInteger const kButtonSection = 0;
         return;
     }
 	
-	if ([self.profileSource isKindOfClass:[PersonalProfileSource class]]
-		&& ![(PersonalProfileSource *)self.profileSource isPasswordValid])
+	if ([self.profileSource isKindOfClass:[PersonalProfileSource class]])
 	{
-		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
-                                                           message:NSLocalizedString(@"personal.profile.validation.password.error.message", nil)];
-        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-        [alertView show];
-        return;
+		PersonalProfileSource* personalProfile = (PersonalProfileSource *)self.profileSource;
+		
+		if (![personalProfile arePasswordsMatching])
+		{
+			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
+															   message:NSLocalizedString(@"personal.profile.validation.password.error.notmatching.message", nil)];
+			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+			[alertView show];
+			return;
+		}
+		
+		if (![personalProfile isPasswordLengthValid])
+		{
+			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
+															   message:NSLocalizedString(@"personal.profile.validation.password.error.invalid.length.message", nil)];
+			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+			[alertView show];
+			return;
+		}
 	}
 	
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];

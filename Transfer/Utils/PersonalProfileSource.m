@@ -26,6 +26,8 @@
 #import "SwitchCell.h"
 #import "EmailEntryCell.h"
 
+#define MIN_PASSWORD_LENGTH	5
+
 NSUInteger const kUserButtonSection = 0;
 NSUInteger const kUserPersonalSection = 1;
 
@@ -202,10 +204,18 @@ NSUInteger const kUserPersonalSection = 1;
             && [[self.countryCell value] hasValue];
 }
 
-- (BOOL)isPasswordValid
+//this should be removed when API supports atomic account creation operation
+- (BOOL)isPasswordLengthValid
 {
 	return self.passwordCell.useDummyPassword
 		|| ([self.passwordCell.value hasValue]
+		&& [self.passwordCell.value length] >= MIN_PASSWORD_LENGTH);
+}
+
+- (BOOL)arePasswordsMatching
+{
+	return self.passwordCell.useDummyPassword
+	|| ([self.passwordCell.value hasValue]
 		&& self.passwordCell.areMatching);
 }
 
@@ -217,6 +227,7 @@ NSUInteger const kUserPersonalSection = 1;
     [profile setFirstName:self.firstLastNameCell.value];
     [profile setLastName:self.firstLastNameCell.secondValue];
     [user setEmail:self.emailCell.value];
+	[user setPassword:self.passwordCell.value];
     [profile setPhoneNumber:self.phoneNumberCell.value];
     [profile setAddressFirstLine:self.addressCell.value];
     [profile setPostCode:self.zipCityCell.value];

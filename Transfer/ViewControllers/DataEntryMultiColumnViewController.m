@@ -17,6 +17,7 @@
 
 @interface DataEntryMultiColumnViewController() <UITextFieldDelegate, MultipleEntryCellDelegate>
 @property (nonatomic, assign) BOOL keyboardIsVisible;
+@property (nonatomic, weak) UITapGestureRecognizer* dismissKeyboardTaprecognizer;
 @end
 
 @implementation DataEntryMultiColumnViewController
@@ -428,7 +429,13 @@
             
             [UIView commitAnimations];
             
-            
+            if(!self.dismissKeyboardTaprecognizer)
+            {
+                UITapGestureRecognizer *dismissKeyboardTapRecogniser = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKeyboard:)];
+                dismissKeyboardTapRecogniser.numberOfTapsRequired = 1;
+                [self.containerScrollView addGestureRecognizer:dismissKeyboardTapRecogniser];
+                self.dismissKeyboardTaprecognizer = dismissKeyboardTapRecogniser;
+            }
         }
     }
     else
@@ -524,6 +531,14 @@
     CGRect showRect = CGRectMake(0, self.containerScrollView.contentSize.height - 1, 1, 1);
     [self.containerScrollView scrollRectToVisible:showRect animated:NO];
     
+}
+
+#pragma mark - dismiss keyboard
+
+-(void)dismissKeyboard:(UITapGestureRecognizer*)recognizer
+{
+    [self.containerScrollView removeGestureRecognizer:recognizer];
+    [self.view endEditing:YES];
 }
 
 
