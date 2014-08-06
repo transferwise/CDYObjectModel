@@ -16,7 +16,7 @@
 "business.profile.save.button.title" = "Save profile";
 "business.profile.save.error.title" = "Your details couldn't be saved. Please try again.";
 "business.profile.saving.message" = "Loading your profile...";
-"business.profile.validation.error.message" = "Please check that all the fields are filled in.";
+"business.profile.validation.error.message" = "Please make sure all fields are filled.";
 "business.profile.validation.error.title" = "Check your details";
 "business.profile.password.lable" = "Password";
 "business.profile.confirm.payment.button.title" = "Continue";
