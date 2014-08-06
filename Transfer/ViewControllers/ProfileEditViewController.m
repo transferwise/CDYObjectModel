@@ -218,7 +218,7 @@
 		 {
 			 [hud hide];
 			 
-			 if (!available)
+			 if (!available && !error)
 			 {
 				 [self showAsLogin];
 			 }
