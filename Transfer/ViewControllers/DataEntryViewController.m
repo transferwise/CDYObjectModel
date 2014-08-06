@@ -26,8 +26,14 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
-    self.tableView.bgStyle = @"white";
-    self.tableView.tableFooterView = [[UIView alloc] init];    
+    if(!self.tableView.bgStyle)
+    {
+        self.tableView.bgStyle = @"white";
+    }
+    if(!self.tableView.tableFooterView)
+    {
+        self.tableView.tableFooterView = [[UIView alloc] init];
+    }
 }
 
 -(void)dealloc

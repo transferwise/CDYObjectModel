@@ -44,8 +44,11 @@
 "confirm.payment.creating.message" = "Creating payment";
 "confirm.payment.data.error.title" = "Error loading data";
 "confirm.payment.delivery.date.message" = "Money arrives %@";
-"confirm.payment.deposit.title.label" = "Your deposit";
+"confirm.payment.deposit.title.label" = "You're sending exactly";
+"confirm.payment.deposit.fixed.title.label" = "You're sending";
 "confirm.payment.email.label" = "Email";
+"confirm.payment.target.sum.format" = "%@";
+"confirm.payment.fixed.target.sum.format" = "exactly %@";
 "confirm.payment.header.format" = "On %@,\n%@\nis estimated to reach\n%@'s account";
 "confirm.payment.estimated.exchange.rate.message" = "Estimated rate %@";
 "confirm.payment.exchanged.to.title.label" = "Will be exchanged to";

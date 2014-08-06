@@ -37,8 +37,6 @@
 
 
 
-static NSUInteger const kSenderSection = 1;
-
 @interface ConfirmPaymentViewController ()
 
 @property (nonatomic, strong) IBOutlet UIButton *footerButton;
@@ -77,8 +75,6 @@ static NSUInteger const kSenderSection = 1;
 {
     [super viewDidLoad];
 
-    [self.tableView setBackgroundView:nil];
-    [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
     [self.tableView setDelegate:self];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"PlainPresentationCell" bundle:nil] forCellReuseIdentifier:PlainPresentationCellIdentifier];
@@ -87,6 +83,13 @@ static NSUInteger const kSenderSection = 1;
 
 - (void)createContent
 {
+    NSMutableArray *receiverCells = [NSMutableArray array];
+    
+    NSArray *fieldCells = [self buildFieldCells];
+    [self setReceiverFieldCells:fieldCells];
+    [receiverCells addObjectsFromArray:fieldCells];
+
+    
     NSMutableArray *transferCells = [NSMutableArray array];
     PlainPresentationCell *yourDepositCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
     [self setYourDepositCell:yourDepositCell];
@@ -95,21 +98,6 @@ static NSUInteger const kSenderSection = 1;
     PlainPresentationCell *exchangedToCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
     [self setExchangedToCell:exchangedToCell];
     [transferCells addObject:exchangedToCell];
-
-    NSMutableArray *senderCells = [NSMutableArray array];
-    PlainPresentationCell *senderNameCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
-    [self setSenderNameCell:senderNameCell];
-    [senderCells addObject:senderNameCell];
-    
-    NSMutableArray *receiverCells = [NSMutableArray array];
-    PlainPresentationCell *receiverNameCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
-    [self setReceiverNameCell:receiverNameCell];
-    [receiverCells addObject:receiverNameCell];
-
-    NSArray *fieldCells = [self buildFieldCells];
-    [self setReceiverFieldCells:fieldCells];
-    [receiverCells addObjectsFromArray:fieldCells];
-
     Payment *payment = self.payment;
     if (payment.targetCurrency.recipientEmailRequiredValue && [payment.recipient.email length] == 0)
     {
@@ -117,7 +105,7 @@ static NSUInteger const kSenderSection = 1;
         [self setReceiverEmailCell:receiverEmailCell];
         [receiverEmailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
         [receiverEmailCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
-        [receiverCells addObject:receiverEmailCell];
+        [transferCells addObject:receiverEmailCell];
     }
     
     TextEntryCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
@@ -125,14 +113,11 @@ static NSUInteger const kSenderSection = 1;
 	referenceCell.validateAlphaNumeric = YES;
 	[self setReferenceCell:referenceCell];
     [referenceCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
-    [receiverCells addObject:referenceCell];
+    [transferCells addObject:referenceCell];
 
     NSMutableArray *presented = [NSMutableArray array];
-    [presented addObject:transferCells];
-
-    
-    [presented addObject:senderCells];
     [presented addObject:receiverCells];
+    [presented addObject:transferCells];
 
     [self setPresentedSectionCells:presented];
 
@@ -175,7 +160,7 @@ static NSUInteger const kSenderSection = 1;
 {
     Payment *payment = self.payment;
     
-    [self.yourDepositCell configureWithTitle:NSLocalizedString(@"confirm.payment.deposit.title.label", nil) text:[payment payInStringWithCurrency]];
+    [self.yourDepositCell configureWithTitle:NSLocalizedString(self.payment.isFixedAmountValue?@"confirm.payment.deposit.fixed.title.label":@"confirm.payment.deposit.title.label", nil) text:[payment payInStringWithCurrency]];
     
     [self.exchangedToCell configureWithTitle:NSLocalizedString(@"confirm.payment.exchanged.to.title.label", nil) text:[payment payOutStringWithCurrency]];
 
@@ -233,10 +218,11 @@ static NSUInteger const kSenderSection = 1;
 {
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"EEEE d MMMM YYYY 'at' hh a z";
-    NSString* dateString = [dateFormatter stringFromDate:self.payment.estimatedDelivery];
-    NSString *headerText = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.header.format",nil),dateString,[self.payment payOutStringWithCurrency],self.payment.recipient.name];
+    NSString *dateString = [dateFormatter stringFromDate:self.payment.estimatedDelivery];
+    NSString *amountString = [NSString stringWithFormat:NSLocalizedString(self.payment.isFixedAmountValue?@"confirm.payment.fixed.target.sum.format":@"confirm.payment.target.sum.format",nil),[self.payment payOutStringWithCurrency]];
+    NSString *headerText = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.header.format",nil),dateString,amountString,self.payment.recipient.name];
     NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:headerText];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"darkfont"] range:[headerText rangeOfString:[self.payment payOutStringWithCurrency]]];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"darkfont"] range:[headerText rangeOfString:amountString]];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"darkfont"] range:[headerText rangeOfString:self.payment.recipient.name]];
     self.headerLabel.attributedText = attributedString;
     }
