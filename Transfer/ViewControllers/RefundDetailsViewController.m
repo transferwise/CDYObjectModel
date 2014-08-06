@@ -142,6 +142,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     
 }
 
+
 -(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
     [super configureForInterfaceOrientation:orientation];
@@ -162,6 +163,10 @@ CGFloat const TransferHeaderPaddingBottom = 0;
             self.secondColumnTopConstraint.constant = 75.0f;
         }
     }
+    
+    [self.containerScrollView setNeedsLayout];
+    [self.containerScrollView layoutIfNeeded];
+    
 }
 
 
@@ -246,6 +251,13 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 
     [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
     [self refreshTableViewSizes];
+}
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.headerLabel.preferredMaxLayoutWidth = self.headerLabel.frame.size.width;
+    [self.view layoutIfNeeded];
 }
 
 -(void)refreshTableViewSizes
@@ -358,6 +370,8 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 }
 
 - (void)continuePressed {
+    self.headerLabel.text = @"GROG!!!    GROG!!!    GROG!!! I'm selling these fine leather jackets. Look behind you! a three headed monkey! Fettuchini brothers!";
+    /*
     [UIApplication dismissKeyboard];
 
     NSString *issues = [self validateInput];
@@ -407,6 +421,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
         weakSelf.afterValidationBlock();
     }];
     [validate execute];
+     */
 }
 
 - (NSString *)validateInput {
