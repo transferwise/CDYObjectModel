@@ -29,6 +29,7 @@
 #import "UIColor+MOMStyle.h"
 #import "PaymentFlow.h"
 #import "DoublePasswordEntryCell.h"
+#import "LoginHelper.h"
 
 @interface ProfileEditViewController ()<CountrySelectionCellDelegate, TextEntryCellDelegate>
 
@@ -47,6 +48,7 @@
 @property (nonatomic) BOOL isExistingEmail;
 @property (nonatomic, strong) UIView* footerView;
 @property (nonatomic) BOOL showingLogin;
+@property (nonatomic, strong) LoginHelper* loginHelper;
 
 @end
 
@@ -59,6 +61,7 @@
 	{
         _profileSource = source;
         _quickProfileValidation = quickValidation;
+		_loginHelper = [[LoginHelper alloc] init];
     }
     return self;
 }
@@ -363,9 +366,10 @@
 		[self reloadTableViews];
 		if (self.delegate)
 		{
+			__weak typeof(self) weakSelf = self;
 			[self.delegate changeActionButtonTitle:NSLocalizedString(@"personal.profile.login.title", nil)
 										 andAction:^{
-											 [self login];
+											 [weakSelf login];
 										 }];
 		}
 		
@@ -390,17 +394,19 @@
 
 - (void)login
 {
-	//validate
-	if (![self.profileSource loginInputValid])
-	{
-		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
-														   message:NSLocalizedString(@"personal.profile.validation.password.error.invalid.length.message", nil)];
-		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-		[alertView show];
-		return;
-	}
+	__weak typeof(self) weakSelf = self;
+	[self.loginHelper validateInputAndPerformLoginWithEmail:self.emailCell.value
+												   password:self.passwordCell.value
+								   navigationControllerView:self.navigationController.view
+												objectModel:self.objectModel
+											   successBlock:^{
+												   [weakSelf reloadDataAfterLogin];
+											   }];
+}
+
+- (void)reloadDataAfterLogin
+{
 	
-	//login
 }
 
 @end

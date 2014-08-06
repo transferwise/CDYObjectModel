@@ -13,7 +13,7 @@
 @interface PersonalPaymentProfileViewController ()<ProfileEditViewControllerDelegate>
 
 @property (nonatomic, strong) PersonalProfileViewController* personalProfile;
-@property (nonatomic, weak) TRWActionBlock alternateAction;
+@property (nonatomic, strong) TRWActionBlock alternateAction;
 
 @end
 

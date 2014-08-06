@@ -69,12 +69,6 @@
     return NO;
 }
 
-- (BOOL)loginInputValid
-{
-    ABSTRACT_METHOD;
-    return NO;
-}
-
 - (id)enteredProfile
 {
     ABSTRACT_METHOD;
