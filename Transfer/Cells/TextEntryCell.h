@@ -13,6 +13,7 @@ extern NSString *const TWTextEntryCellIdentifier;
 
 @protocol TextEntryCellDelegate <NSObject>
 
+@optional
 - (void)textEntryFinishedInCell:(UITableViewCell *)cell;
 
 @end
