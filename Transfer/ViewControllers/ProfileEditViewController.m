@@ -98,7 +98,6 @@
 	
     [self pullDetails];
 	
-	[self refreshTableViewSizes];
 	[self configureForInterfaceOrientation:self.interfaceOrientation];
 	
     [self setShown:YES];
@@ -309,6 +308,7 @@
 
                 self.sectionCellsByTableView = self.presentationCells;
                 [self reloadTableViews];
+				[self refreshTableViewSizes];
             });
         }];
 
@@ -516,10 +516,10 @@
 {
     if([self hasMoreThanOneTableView])
     {
-//		self.firstColumnHeightConstraint.constant= ((UITableView*)self.tableViews[0]).contentSize.height;
-//        self.secondColumnHeightConstraint.constant =((UITableView*) self.tableViews[1]).contentSize.height;
-//        [self.tableViews[0] layoutIfNeeded];
-//        [self.tableViews[1] layoutIfNeeded];
+		self.firstColumnHeightConstraint.constant= ((UITableView*)self.tableViews[0]).contentSize.height;
+        self.secondColumnHeightConstraint.constant =((UITableView*) self.tableViews[1]).contentSize.height;
+        [self.tableViews[0] layoutIfNeeded];
+        [self.tableViews[1] layoutIfNeeded];
     }
 }
 
