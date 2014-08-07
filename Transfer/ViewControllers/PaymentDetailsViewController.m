@@ -65,6 +65,8 @@
     }
 }
 
+
+
 - (void)fillDeliveryDetails:(OHAttributedLabel *)label {
     if ([self.payment isCancelled]) {
         [self setCancelledDate:label];
@@ -81,7 +83,6 @@
         [self.tableView setTableHeaderView:headerView];
         return;
     } else {
-        [super fillDeliveryDetails:label];
         if(!self.payment.targetCurrency.paymentReferenceAllowedValue)
         {
             [self appendReferenceMessageToLabel:label];

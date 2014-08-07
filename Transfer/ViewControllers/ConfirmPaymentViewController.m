@@ -41,6 +41,7 @@
 
 @property (nonatomic, strong) IBOutlet UIButton *actionButton;
 @property (nonatomic, strong) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UIView *footerView;
 
 @property (nonatomic, strong) PlainPresentationCell *yourDepositCell;
 @property (nonatomic, strong) PlainPresentationCell *exchangedToCell;
@@ -170,17 +171,12 @@
     [self fillHeaderText];
    
     //Resize header to fit text
-    CGRect textFrame = self.headerLabel.frame;
-    CGFloat originalHeight = textFrame.size.height;
-    [self.headerLabel sizeToFit];
-    textFrame.size.height = MAX(self.headerLabel.frame.size.height + 8.0f,originalHeight);
-    CGRect headerFrame = self.headerView.frame;
-    headerFrame.size.height += (textFrame.size.height - originalHeight);
-    self.headerView.frame = headerFrame;
-    self.headerLabel.frame = textFrame;
-    self.tableView.tableHeaderView = self.headerView;
+    [self resizeView:self.headerView toFitLabel:self.headerLabel];
 
-    self.footerLabel.text = [NSString stringWithFormat:NSLocalizedString(@"", nil),self.payment.recipient.name];
+    [self fillFooterText];
+    //Resize footer to fit text
+    [self resizeView:self.footerView toFitLabel:self.footerLabel];
+    
     
     [self.senderNameCell configureWithTitle:NSLocalizedString(@"confirm.payment.sender.marker.label", nil) text:[self getSenderName:payment]];
     
@@ -193,6 +189,19 @@
     [self.referenceCell setEditable:YES];
     [self.referenceCell configureWithTitle:NSLocalizedString(@"confirm.payment.reference.label", nil) value:@""];
 	[self.referenceCell.entryField setAutocorrectionType:UITextAutocorrectionTypeDefault];
+}
+
+-(void)resizeView:(UIView*)view toFitLabel:(UILabel*)label
+{
+    //Resize header to fit text
+    CGRect textFrame = label.frame;
+    CGFloat originalHeight = textFrame.size.height;
+    [label sizeToFit];
+    textFrame.size.height = MAX(label.frame.size.height,originalHeight);
+    CGRect viewFrame = view.frame;
+    viewFrame.size.height += (textFrame.size.height - originalHeight);
+    view.frame = viewFrame;
+    label.frame = textFrame;
 }
 
 - (NSString *)getSenderName:(Payment *)payment
@@ -220,7 +229,7 @@
 -(void)fillHeaderText
 {
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"EEEE d MMMM YYYY 'at' ha z";
+    dateFormatter.dateFormat = @"EEEE d MMMM YYYY 'at' ha";
     NSString *dateString = [dateFormatter stringFromDate:self.payment.estimatedDelivery];
     NSString *amountString = [NSString stringWithFormat:NSLocalizedString(self.payment.isFixedAmountValue?@"confirm.payment.fixed.target.sum.format":@"confirm.payment.target.sum.format",nil),[self.payment payOutStringWithCurrency]];
     NSString *headerText = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.header.format",nil),dateString,amountString,self.payment.recipient.name];
@@ -230,22 +239,9 @@
     self.headerLabel.attributedText = attributedString;
 }
 
-- (void)fillDeliveryDetails:(UILabel *)label
+-(void)fillFooterText
 {
-    NSString *rateString = [self.payment rateString];
-    NSString *messageString = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.estimated.exchange.rate.message", nil), rateString];
-    NSAttributedString *exchangeRateString = [self attributedStringWithBase:messageString markedString:rateString];
-
-    NSString *dateString = [self.payment paymentDateString];
-    NSString *dateMessageString = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.delivery.date.message", nil), dateString];
-    NSAttributedString *paymentDateString = ([dateString hasValue] ? [self attributedStringWithBase:dateMessageString markedString:dateString] : [NSAttributedString attributedStringWithString:@""]);
-
-    NSMutableAttributedString *result = [[NSMutableAttributedString alloc] init];
-    [result appendAttributedString:exchangeRateString];
-    [result appendAttributedString:[NSAttributedString attributedStringWithString:@"\n"]];
-    [result appendAttributedString:paymentDateString];
-
-    [label setAttributedText:result];
+    self.footerLabel.text = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.recipient.will.be.informed", nil),self.payment.recipient.name];
 }
 
 - (IBAction)footerButtonPressed:(id)sender {
@@ -282,6 +278,20 @@
     }
 }
 
+- (NSAttributedString *)attributedStringWithBase:(NSString *)baseString markedString:(NSString *)marked {
+	NSRange markedRange;
+	if ([marked hasValue]) {
+		markedRange = [baseString rangeOfString:marked];
+	} else {
+		markedRange = NSMakeRange(0, 0);
+	}
+    
+    NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:baseString];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"darkfont"] range:markedRange];
+    return attributedString;
+}
+
+
 -(void)sendForValidation
 {
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
@@ -311,37 +321,10 @@
 
 }
 
-- (IBAction)contactSupportPressed {
-	
-}
-
-- (NSAttributedString *)attributedStringWithBase:(NSString *)baseString markedString:(NSString *)marked {
-	NSRange rateRange;
-	if ([marked hasValue]) {
-		rateRange = [baseString rangeOfString:marked];
-	} else {
-		rateRange = NSMakeRange(0, 0);
-	}
-
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:baseString];
-
-    NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-    paragraphStyle.alignment = NSTextAlignmentCenter;
-    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
-    
-    [attributedString addAttribute:NSParagraphStyleAttributeName
-                 value:paragraphStyle
-                 range:NSMakeRange(0, baseString.length)];
-    
-    [attributedString setFont:[UIFont systemFontOfSize:12]];
-    [attributedString setFont:[UIFont boldSystemFontOfSize:12] range:rateRange];
-    [attributedString setTextColor:[UIColor blackColor]];
-    return [[NSAttributedString alloc] initWithAttributedString:attributedString];
-}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 60.0f;
 }
 
 @end

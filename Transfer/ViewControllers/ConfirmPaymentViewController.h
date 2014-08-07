@@ -31,8 +31,6 @@ typedef NS_ENUM(short, ConfirmPaymentReportingType) {
 @property (nonatomic, assign) BOOL showContactSupportCell;
 @property (nonatomic, assign) ConfirmPaymentReportingType reportingType;
 
-- (void)fillDeliveryDetails:(OHAttributedLabel *)label;
 - (NSAttributedString *)attributedStringWithBase:(NSString *)baseString markedString:(NSString *)marked;
-- (IBAction)contactSupportPressed;
 
 @end
