@@ -316,6 +316,8 @@
 		473F62931940BDD9001E280B /* NewPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */; };
 		474C451D1992874E001F207C /* ProfileEditViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474C451C1992874E001F207C /* ProfileEditViewController~ipad.xib */; };
 		474C451E1992874E001F207C /* ProfileEditViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474C451C1992874E001F207C /* ProfileEditViewController~ipad.xib */; };
+		474C45211993CD38001F207C /* ProfilesEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 474C45201993CD38001F207C /* ProfilesEditViewController.m */; };
+		474C45221993CD38001F207C /* ProfilesEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 474C45201993CD38001F207C /* ProfilesEditViewController.m */; };
 		474D1A9F19518073008BC7A7 /* ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1A9E19518073008BC7A7 /* ColoredButton.m */; };
 		474D1AA019518073008BC7A7 /* ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1A9E19518073008BC7A7 /* ColoredButton.m */; };
 		474D1AA61951A500008BC7A7 /* RedGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1AA51951A500008BC7A7 /* RedGradientButton.m */; };
@@ -1076,6 +1078,8 @@
 		473DF974196D637200524C64 /* LoginViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~ipad.xib"; sourceTree = "<group>"; };
 		473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NewPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
 		474C451C1992874E001F207C /* ProfileEditViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ProfileEditViewController~ipad.xib"; sourceTree = "<group>"; };
+		474C451F1993CD38001F207C /* ProfilesEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilesEditViewController.h; sourceTree = "<group>"; };
+		474C45201993CD38001F207C /* ProfilesEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilesEditViewController.m; sourceTree = "<group>"; };
 		474D1A9D19518073008BC7A7 /* ColoredButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColoredButton.h; path = Views/ColoredButton.h; sourceTree = "<group>"; };
 		474D1A9E19518073008BC7A7 /* ColoredButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColoredButton.m; path = Views/ColoredButton.m; sourceTree = "<group>"; };
 		474D1AA41951A500008BC7A7 /* RedGradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RedGradientButton.h; path = Views/RedGradientButton.h; sourceTree = "<group>"; };
@@ -2414,6 +2418,8 @@
 				EA416E29176860EA00904D97 /* ProfileEditViewController.m */,
 				EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */,
 				474C451C1992874E001F207C /* ProfileEditViewController~ipad.xib */,
+				474C451F1993CD38001F207C /* ProfilesEditViewController.h */,
+				474C45201993CD38001F207C /* ProfilesEditViewController.m */,
 				EAA54F481733DA1400B65BF3 /* RecipientViewController.h */,
 				EAA54F491733DA1400B65BF3 /* RecipientViewController.m */,
 				EAA54F4A1733DA1400B65BF3 /* RecipientViewController.xib */,
@@ -3136,6 +3142,7 @@
 				EA31A14117DDB29B00F937F7 /* SettingsViewController.m in Sources */,
 				389F6810198FC1C6006CF1F6 /* _RecipientType.m in Sources */,
 				380021D5192CC531009B1D53 /* UIView+MOMStyle.m in Sources */,
+				474C45221993CD38001F207C /* ProfilesEditViewController.m in Sources */,
 				EA31A14217DDB29B00F937F7 /* SettingsTitleCell.m in Sources */,
 				47AC3F921987AFAC005491C6 /* SuggestionCellProvider.m in Sources */,
 				EA31A14317DDB29B00F937F7 /* MoneyCalculator.m in Sources */,
@@ -3415,6 +3422,7 @@
 				EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */,
 				389F680F198FC1C6006CF1F6 /* _RecipientType.m in Sources */,
 				380021C8192CC531009B1D53 /* MOMBaseStyle.m in Sources */,
+				474C45211993CD38001F207C /* ProfilesEditViewController.m in Sources */,
 				EAEA6257172011C500A96770 /* CalculationResult.m in Sources */,
 				47AC3F911987AFAC005491C6 /* SuggestionCellProvider.m in Sources */,
 				380021C6192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */,

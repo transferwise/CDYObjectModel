@@ -12,6 +12,4 @@
 
 @interface DismissKeyboardViewController : UIViewController
 
-@property (nonatomic) ObjectModel *objectModel;
-
 @end

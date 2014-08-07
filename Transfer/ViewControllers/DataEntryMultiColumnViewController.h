@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DismissKeyboardViewController.h"
 
 /**
  *  UIViewController for data entry in the Transferwise app
@@ -31,7 +32,7 @@
  *
  *
  */
-@interface DataEntryMultiColumnViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface DataEntryMultiColumnViewController : DismissKeyboardViewController <UITableViewDelegate, UITableViewDataSource>
 
 /**
  *  use this property to keep track of the tableviews associated with the viewcontroller.

@@ -18,6 +18,7 @@
 
 @interface ResetPasswordViewController : DismissKeyboardViewController<UITextFieldDelegate>
 
+@property (nonatomic, strong) ObjectModel* objectModel;
 @property (weak, nonatomic) id<ResetPasswordViewControllerDelegate> delegate;
 
 @end

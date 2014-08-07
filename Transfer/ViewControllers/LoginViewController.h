@@ -14,4 +14,6 @@
 
 @interface LoginViewController : DismissKeyboardViewController<UITextFieldDelegate, ResetPasswordViewControllerDelegate>
 
+@property (nonatomic, strong) ObjectModel* objectModel;
+
 @end
