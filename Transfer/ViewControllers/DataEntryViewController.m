@@ -26,8 +26,14 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
-    self.tableView.bgStyle = @"white";
-    self.tableView.tableFooterView = [[UIView alloc] init];    
+    if(!self.tableView.bgStyle)
+    {
+        self.tableView.bgStyle = @"white";
+    }
+    if(!self.tableView.tableFooterView)
+    {
+        self.tableView.tableFooterView = [[UIView alloc] init];
+    }
 }
 
 -(void)dealloc
@@ -293,7 +299,7 @@
 {
     if(!IPAD)
     {
-        CGRect newframe = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        CGRect newframe = [self.view.window convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] toView:self.view];
         NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
         UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
         

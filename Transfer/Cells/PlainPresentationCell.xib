@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlainPresentationCell" rowHeight="50" id="KGk-i7-Jjw" customClass="PlainPresentationCell">
+        <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlainPresentationCell" rowHeight="50" id="KGk-i7-Jjw" customClass="PlainPresentationCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -24,7 +24,7 @@
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kih-pu-EgR">
                         <rect key="frame" x="30" y="21" width="260" height="21"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
@@ -32,7 +32,9 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="headerLabel" destination="gNn-pT-PQ1" id="cOa-Co-BdG"/>
                 <outlet property="valueLabel" destination="Kih-pu-EgR" id="Z9q-U2-0Kk"/>
