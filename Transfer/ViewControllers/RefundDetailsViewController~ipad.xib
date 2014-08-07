@@ -8,7 +8,7 @@
             <connections>
                 <outlet property="containerScrollView" destination="XCE-KC-Di1" id="pzl-ap-iqn"/>
                 <outlet property="firstColumnHeightConstraint" destination="WNq-7i-U6Z" id="crc-wm-i6R"/>
-                <outlet property="firstColumnLeftMargin" destination="isk-2m-Ojd" id="AoK-ke-9PA"/>
+                <outlet property="firstColumnLeftMargin" destination="y4g-S3-dfn" id="23N-ng-JR4"/>
                 <outlet property="footerButton" destination="dT4-Xh-GCh" id="Pwu-tv-Gg1"/>
                 <outlet property="headerLabel" destination="hMq-ed-Vhk" id="twK-XT-aMT"/>
                 <outlet property="headerLeftEdgeConstraint" destination="qAM-ZM-2F1" id="CAL-1H-Sr8"/>
@@ -31,11 +31,11 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="1024" placeholderIntrinsicHeight="488" translatesAutoresizingMaskIntoConstraints="NO" id="bP7-ah-Jiz" customClass="IntrinsicSizeUIView">
-                            <rect key="frame" x="0.0" y="0.0" width="1024" height="488"/>
+                            <rect key="frame" x="100" y="0.0" width="1024" height="488"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="1024" placeholderIntrinsicHeight="721" scrollEnabled="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                                    <rect key="frame" x="100" y="171" width="360" height="488"/>
+                                    <rect key="frame" x="0.0" y="171" width="360" height="488"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -52,7 +52,7 @@
                                     </connections>
                                 </tableView>
                                 <tableView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="1024" placeholderIntrinsicHeight="721" scrollEnabled="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JU1-IW-1ic">
-                                    <rect key="frame" x="564" y="171" width="360" height="488"/>
+                                    <rect key="frame" x="464" y="171" width="360" height="488"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -69,7 +69,7 @@
                                     </connections>
                                 </tableView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YI2-AU-9ei">
-                                    <rect key="frame" x="100" y="0.0" width="824" height="141"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="824" height="141"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gyh-QL-86n">
@@ -117,7 +117,7 @@
                                 <constraint firstItem="4" firstAttribute="top" secondItem="gyh-QL-86n" secondAttribute="bottom" constant="30" id="XIr-i8-CLR"/>
                                 <constraint firstItem="YI2-AU-9ei" firstAttribute="top" secondItem="bP7-ah-Jiz" secondAttribute="top" id="Xrl-Ri-EQB"/>
                                 <constraint firstItem="JU1-IW-1ic" firstAttribute="top" secondItem="4" secondAttribute="top" id="YnC-cC-hmy"/>
-                                <constraint firstItem="4" firstAttribute="leading" secondItem="bP7-ah-Jiz" secondAttribute="leading" constant="100" id="isk-2m-Ojd"/>
+                                <constraint firstItem="4" firstAttribute="leading" secondItem="bP7-ah-Jiz" secondAttribute="leading" id="isk-2m-Ojd"/>
                                 <constraint firstItem="4" firstAttribute="leading" secondItem="YI2-AU-9ei" secondAttribute="leading" id="qAM-ZM-2F1"/>
                             </constraints>
                         </view>
@@ -127,7 +127,7 @@
                         <constraint firstAttribute="bottom" secondItem="bP7-ah-Jiz" secondAttribute="bottom" constant="160" id="9sT-JZ-FS3"/>
                         <constraint firstAttribute="trailing" secondItem="bP7-ah-Jiz" secondAttribute="trailing" id="PU1-bP-YZO"/>
                         <constraint firstItem="bP7-ah-Jiz" firstAttribute="top" secondItem="XCE-KC-Di1" secondAttribute="top" id="fwL-dI-WgT"/>
-                        <constraint firstItem="bP7-ah-Jiz" firstAttribute="leading" secondItem="XCE-KC-Di1" secondAttribute="leading" id="y4g-S3-dfn"/>
+                        <constraint firstItem="bP7-ah-Jiz" firstAttribute="leading" secondItem="XCE-KC-Di1" secondAttribute="leading" constant="100" id="y4g-S3-dfn"/>
                     </constraints>
                 </scrollView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT4-Xh-GCh" customClass="GreenButton">
