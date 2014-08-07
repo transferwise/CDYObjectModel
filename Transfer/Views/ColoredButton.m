@@ -105,6 +105,9 @@
 {
 	_addShadow = addShadow;
 	
+	[self resetBackgroundImages];
+	[self setBackgroundImages];
+	
 	if(!addShadow)
 	{
 		self.compoundStyle = self.compoundStyleName;

@@ -46,6 +46,7 @@
 						  titles:(NSArray *)titles
 					 actionTitle:(NSString *)actionTitle
 					 actionStyle:(NSString *)actionStyle
+					actionShadow:(NSString *)actionShadow
 				  actionProgress:(CGFloat)actionProgress
 {
 	MCAssert([controllers count] == [titles count]);
@@ -54,8 +55,23 @@
 	self.titles = titles;
 	
 	[self.actionButton setTitle:actionTitle forState:UIControlStateNormal];
-	[self.actionButton configureWithCompoundStyle:actionStyle];
+	
+	if(actionShadow && IPAD)
+	{
+		[self.actionButton configureWithCompoundStyle:actionStyle
+										  shadowColor:actionShadow];
+	}
+	else
+	{
+		[self.actionButton configureWithCompoundStyle:actionStyle];
+	}
 	self.actionButton.progress = actionProgress;
+	
+	if (IPAD)
+	{
+		self.actionButton.addShadow = YES;
+	}
+	
 	[self attachControllers:self.controllers];
 }
 

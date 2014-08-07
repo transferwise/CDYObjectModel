@@ -17,6 +17,7 @@
 						  titles:(NSArray *)titles
 					 actionTitle:(NSString *)actionTitle
 					 actionStyle:(NSString *)actionStyle
+					actionShadow:(NSString *)actionShadow
 				  actionProgress:(CGFloat)actionProgress;
 
 - (void)willSelectViewController:(UIViewController *)controller

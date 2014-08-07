@@ -35,6 +35,7 @@
 							 titles:@[NSLocalizedString(@"profile.selection.text.personal.profile", nil)]
 						actionTitle:self.buttonTitle ? self.buttonTitle :  NSLocalizedString(@"confirm.payment.footer.button.title", nil)
 						actionStyle:@"greenButton"
+					   actionShadow:@"greenShadow"					
 					 actionProgress:0.3f];
     [super viewDidLoad];
 	

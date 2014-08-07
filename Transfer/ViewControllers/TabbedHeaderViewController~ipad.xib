@@ -69,9 +69,6 @@
                         <constraint firstAttribute="height" constant="49" id="Oaj-Gg-ULN"/>
                     </constraints>
                     <state key="normal" title="Button"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="addShadow" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="actionTapped:" destination="-1" eventType="touchUpInside" id="ufu-WG-dfo"/>
                     </connections>
