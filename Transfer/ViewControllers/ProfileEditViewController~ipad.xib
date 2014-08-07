@@ -8,7 +8,7 @@
             <connections>
                 <outlet property="containerScrollView" destination="XCE-KC-Di1" id="pzl-ap-iqn"/>
                 <outlet property="firstColumnHeightConstraint" destination="WNq-7i-U6Z" id="crc-wm-i6R"/>
-                <outlet property="firstColumnLeftMargin" destination="isk-2m-Ojd" id="GCB-em-cSw"/>
+                <outlet property="firstColumnLeftMargin" destination="y4g-S3-dfn" id="rgg-8W-kBu"/>
                 <outlet property="secondColumnHeightConstraint" destination="Kcl-Pf-3Gx" id="Kcz-Sj-9dy"/>
                 <outlet property="secondColumnLeftEdgeConstraint" destination="9M8-ca-8M9" id="WO7-2A-uFx"/>
                 <outlet property="secondColumnTopConstraint" destination="YnC-cC-hmy" id="yqv-eq-74Z"/>
@@ -26,12 +26,12 @@
                     <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="1024" placeholderIntrinsicHeight="488" translatesAutoresizingMaskIntoConstraints="NO" id="bP7-ah-Jiz" customClass="IntrinsicSizeUIView">
-                            <rect key="frame" x="0.0" y="80" width="1024" height="488"/>
+                        <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="bP7-ah-Jiz" customClass="IntrinsicSizeUIView">
+                            <rect key="frame" x="100" y="80" width="824" height="488"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="1024" placeholderIntrinsicHeight="721" scrollEnabled="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                                    <rect key="frame" x="100" y="0.0" width="360" height="350"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="360" height="350"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -48,7 +48,7 @@
                                     </connections>
                                 </tableView>
                                 <tableView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="1024" placeholderIntrinsicHeight="721" scrollEnabled="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JU1-IW-1ic">
-                                    <rect key="frame" x="564" y="0.0" width="360" height="350"/>
+                                    <rect key="frame" x="464" y="0.0" width="360" height="350"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -65,12 +65,15 @@
                                     </connections>
                                 </tableView>
                             </subviews>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.66666666669999997" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="JU1-IW-1ic" firstAttribute="leading" secondItem="4" secondAttribute="trailing" constant="104" id="9M8-ca-8M9"/>
                                 <constraint firstItem="4" firstAttribute="top" secondItem="bP7-ah-Jiz" secondAttribute="top" id="Gm3-g0-07h"/>
                                 <constraint firstItem="JU1-IW-1ic" firstAttribute="top" secondItem="4" secondAttribute="top" id="YnC-cC-hmy"/>
-                                <constraint firstItem="4" firstAttribute="leading" secondItem="bP7-ah-Jiz" secondAttribute="leading" constant="100" id="isk-2m-Ojd"/>
+                                <constraint firstAttribute="width" constant="824" placeholder="YES" id="b6P-pa-x1v"/>
+                                <constraint firstAttribute="height" constant="488" placeholder="YES" id="fVe-KC-gz3"/>
+                                <constraint firstAttribute="trailing" secondItem="JU1-IW-1ic" secondAttribute="trailing" id="g8Y-zp-1ts"/>
+                                <constraint firstItem="4" firstAttribute="leading" secondItem="bP7-ah-Jiz" secondAttribute="leading" id="isk-2m-Ojd"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -79,7 +82,7 @@
                         <constraint firstAttribute="trailing" secondItem="bP7-ah-Jiz" secondAttribute="trailing" id="PU1-bP-YZO"/>
                         <constraint firstAttribute="bottom" secondItem="bP7-ah-Jiz" secondAttribute="bottom" id="azm-De-a95"/>
                         <constraint firstItem="bP7-ah-Jiz" firstAttribute="top" secondItem="XCE-KC-Di1" secondAttribute="top" constant="80" id="fwL-dI-WgT"/>
-                        <constraint firstItem="bP7-ah-Jiz" firstAttribute="leading" secondItem="XCE-KC-Di1" secondAttribute="leading" id="y4g-S3-dfn"/>
+                        <constraint firstItem="bP7-ah-Jiz" firstAttribute="leading" secondItem="XCE-KC-Di1" secondAttribute="leading" constant="100" id="y4g-S3-dfn"/>
                     </constraints>
                 </scrollView>
             </subviews>
