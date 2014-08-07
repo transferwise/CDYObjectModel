@@ -17,7 +17,7 @@
                         <rect key="frame" x="20" y="8" width="130" height="44"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="130" id="3aU-AY-pX5"/>
+                            <constraint firstAttribute="width" constant="130" placeholder="YES" id="3aU-AY-pX5"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
@@ -26,7 +26,7 @@
                         <rect key="frame" x="170" y="8" width="130" height="44"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="130" id="bEz-31-i9R"/>
+                            <constraint firstAttribute="width" constant="130" placeholder="YES" id="bEz-31-i9R"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>

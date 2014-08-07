@@ -16,6 +16,7 @@ NSString *const TWDoublePasswordEntryCellIdentifier = @"DoublePasswordEntryCell"
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *firstPassword;
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *secondPassword;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *firstPasswordWidth;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *firstPasswordMinWidth;
 
 @end
 
@@ -35,6 +36,24 @@ NSInteger const kSecondPassword = 2;
 {
 	self.firstPassword.delegate = self;
 	self.secondPassword.delegate = self;
+	
+	//love these magic numbers here!
+	self.firstPasswordMinWidth.constant = (self.contentView.frame.size.width / 2) + (IPAD ? 10 : - 20);
+}
+
+- (void)updateConstraints
+{
+	[super updateConstraints];
+	
+	//make textfields half the width of the cell minus separators
+	NSLayoutConstraint *secondWidth = [NSLayoutConstraint constraintWithItem:self.secondPassword
+																   attribute:NSLayoutAttributeWidth
+																   relatedBy:NSLayoutRelationEqual
+																	  toItem:self.contentView
+																   attribute:NSLayoutAttributeWidth
+																  multiplier:.5f
+																	constant:-30];
+	[self.contentView addConstraints:@[secondWidth]];
 }
 
 #pragma mark - Multiple Entry Cell
