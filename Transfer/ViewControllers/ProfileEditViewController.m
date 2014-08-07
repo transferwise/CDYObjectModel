@@ -39,6 +39,7 @@
 #import "Recipient.h"
 #import "TypeFieldValue.h"
 #import "SwitchCell.h"
+#import "PersonalPaymentProfileViewController.h"
 
 @interface ProfileEditViewController ()<CountrySelectionCellDelegate, TextEntryCellDelegate>
 
@@ -208,8 +209,9 @@
 
 - (void)textEntryFinishedInCell:(UITableViewCell *)cell
 {
-	if(cell == self.emailCell
-	   && [self.profileSource isKindOfClass:[PersonalProfileSource class]])
+	if ([[self.navigationController.viewControllers lastObject] isKindOfClass:[PersonalPaymentProfileViewController class]]
+		&& cell == self.emailCell
+		&& [self.profileSource isKindOfClass:[PersonalProfileSource class]])
 	{
 		TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
 		[hud setMessage:NSLocalizedString(@"personal.profile.email.validating", nil)];
@@ -218,7 +220,7 @@
 		 {
 			 [hud hide];
 			 
-			 if (!available)
+			 if (!available && !error)
 			 {
 				 [self showAsLogin];
 			 }
@@ -233,7 +235,6 @@
 }
 
 #pragma mark - Suggestion Table
-
 -(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
 {
     [super suggestionTable:table selectedObject:object];
