@@ -21,6 +21,7 @@
 #import "UIColor+MOMStyle.h"
 #import "TransferwiseClient.h"
 #import "ConnectionAwareViewController.h"
+#import "ProfilesEditViewController.h"
 
 @interface MainViewController () <UINavigationControllerDelegate, UITabBarControllerDelegate>
 
@@ -96,10 +97,12 @@
     
     TabItem *profileItem = [TabItem new];
     [profileItem setActionBlock:^(TabItem* item){
-        [[TransferwiseClient sharedClient] clearCredentials];
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Cleared credentials!" message:nil delegate:nil cancelButtonTitle:@"Aha!" otherButtonTitles:nil];
-        [alert show];
-        [self loggedOut];
+		ProfilesEditViewController *controller = [[ProfilesEditViewController alloc] init];
+		[controller setObjectModel:self.objectModel];
+		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+        [navigationController setNavigationBarHidden:YES];
+        ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
+        [self presentViewController:wrapper animated:YES completion:nil];
         return NO;
     }];
     profileItem.title = NSLocalizedString(@"profile.controller.tabbar.title", nil);
@@ -196,10 +199,6 @@
     [navigationController setNavigationBarHidden:YES];
     ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
     [self presentViewController:wrapper animated:shownBefore completion:nil];
-}
-
-- (void)loggedOut {
-    [self presentIntroductionController:YES];
 }
 
 - (void)revealController:(SWRevealViewController *)revealController didMoveToPosition:(FrontViewPosition)position {

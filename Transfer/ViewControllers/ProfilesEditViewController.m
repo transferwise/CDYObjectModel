@@ -12,6 +12,9 @@
 #import "BusinessProfileViewController.h"
 #import "TransferBackButtonItem.h"
 #import "Credentials.h"
+#import "TransferwiseClient.h"
+#import "NewPaymentViewController.h"
+#import "ConnectionAwareViewController.h"
 
 @interface ProfilesEditViewController ()
 
@@ -84,5 +87,22 @@
 	{
 		[self.businessProfile validateProfile];
 	}
+}
+
+- (void)logOut
+{
+	//moved here from MainViewController
+	//TODO: remove to actual logout action
+	[[TransferwiseClient sharedClient] clearCredentials];
+	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Cleared credentials!" message:nil delegate:nil cancelButtonTitle:@"Aha!" otherButtonTitles:nil];
+	[alert show];
+	
+	NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
+	[controller setObjectModel:self.objectModel];
+			
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+	[navigationController setNavigationBarHidden:YES];
+	ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
+	[self presentViewController:wrapper animated:YES completion:nil];
 }
 @end
