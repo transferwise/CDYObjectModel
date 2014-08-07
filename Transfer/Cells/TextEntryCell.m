@@ -153,4 +153,16 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     return ([value rangeOfCharacterFromSet:unwantedCharacters].location == NSNotFound);
 }
 
+- (void)maskDisabled:(BOOL)disabled
+{
+	if (disabled)
+	{
+		
+	}
+	else
+	{
+		
+	}
+}
+
 @end

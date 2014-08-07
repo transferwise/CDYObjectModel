@@ -137,9 +137,9 @@
 	
 	for (NSArray* table in presented)
 	{
-		for (NSArray *cells in table)
+		for (NSArray *sections in table)
 		{
-			for (UITableViewCell *cell in cells)
+			for (UITableViewCell *cell in sections)
 			{
 				if ([cell isKindOfClass:[CountrySelectionCell class]])
 				{
@@ -402,7 +402,16 @@
 	if (!self.showingLogin)
 	{
 		self.showingLogin = YES;
-		self.sectionCellsByTableView = [self.profileSource presentedLoginCells];
+		
+		if (IPAD)
+		{
+			[self maskNonLoginCells:[self.profileSource presentedLoginCells][0][0]];
+		}
+		else
+		{
+			self.sectionCellsByTableView = [self.profileSource presentedLoginCells];
+		}
+		
 		[self reloadTableViews];
 		if ([self.delegate respondsToSelector:@selector(changeActionButtonTitle:andAction:)])
 		{
@@ -420,7 +429,16 @@
 	if (self.showingLogin)
 	{
 		self.showingLogin = NO;
-		self.sectionCellsByTableView = [self.profileSource presentedCells:[self createSendAsBusinessCell]];
+		
+		if (IPAD)
+		{
+			[self unmaskAllCells];
+		}
+		else
+		{
+			self.sectionCellsByTableView = [self.profileSource presentedCells:[self createSendAsBusinessCell]];
+		}
+		
 		[self reloadTableViews];
 		if ([self.delegate respondsToSelector:@selector(changeActionButtonTitle:andAction:)])
 		{
@@ -511,7 +529,7 @@
     [payment setRecipient:newRecipient];
 }
 
--(void)refreshTableViewSizes
+- (void)refreshTableViewSizes
 {
     if([self hasMoreThanOneTableView])
     {
@@ -522,4 +540,38 @@
     }
 }
 
+- (void)maskNonLoginCells:(NSArray *)loginCells
+{
+	[self doForEachCell:^(UITableViewCell *cell) {
+		if ([loginCells indexOfObject:cell] == NSNotFound
+			&& [cell isKindOfClass:[TextEntryCell class]])
+		{
+			[(TextEntryCell *)cell maskDisabled:YES];
+		}
+	}];
+}
+
+- (void)unmaskAllCells
+{
+	[self doForEachCell:^(UITableViewCell *cell) {
+		if ([cell isKindOfClass:[TextEntryCell class]])
+		{
+			[(TextEntryCell *)cell maskDisabled:NO];
+		}
+	}];
+}
+
+- (void)doForEachCell:(void (^)(UITableViewCell *))action
+{
+	for (NSArray* table in self.presentationCells)
+	{
+		for (NSArray *sections in table)
+		{
+			for (UITableViewCell *cell in sections)
+			{
+				action(cell);
+			}
+		}
+	}
+}
 @end
