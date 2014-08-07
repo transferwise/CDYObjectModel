@@ -17,6 +17,7 @@
 #import "DoubleEntryCell.h"
 #import "DoublePasswordEntryCell.h"
 #import "CountrySelectionCell.h"
+#import "Country.h"
 
 @implementation ProfileSource
 
@@ -90,11 +91,6 @@
     ABSTRACT_METHOD;
 }
 
--(void)includeStateCell:(BOOL)shouldInclude;
-{
-    ABSTRACT_METHOD;
-}
-
 - (void)markCellsWithIssues:(NSArray *)issues {
     [self removeAllErrorMarkers];
 
@@ -159,6 +155,62 @@
 	[tableView registerNib:[UINib nibWithNibName:@"DoubleEntryCell" bundle:nil] forCellReuseIdentifier:TWDoubleEntryCellIdentifier];
 	
 	[tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+}
+
+- (void)includeStateCell:(BOOL)shouldInclude
+{
+    if (2 > [self.cells[0] count])
+    {
+        return;
+    }
+    
+    UITableView* tableView;
+    for(UITableView *table in self.tableViews)
+    {
+        if ([table indexPathForCell:self.countryCell])
+        {
+            tableView = table;
+            break;
+        }
+    }
+    
+    NSMutableArray* addressFields;
+	
+	if(self.tableViews.count > 1)
+	{
+		addressFields = self.cells[1][0];
+	}
+	else
+	{
+		addressFields = self.cells[0][1];
+	}
+	
+    if(shouldInclude && ![addressFields containsObject:self.stateCell])
+    {
+        [addressFields insertObject:self.stateCell atIndex:[addressFields indexOfObject:self.countryCell] + 1];
+		
+        NSIndexPath *indexPath = [tableView indexPathForCell:self.countryCell];
+        if (indexPath)
+        {
+            indexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
+            [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+        }
+        
+    }
+    else if(!shouldInclude && [addressFields containsObject:self.stateCell])
+    {
+        [addressFields removeObject:self.stateCell];
+        NSIndexPath *indexPath = [tableView indexPathForCell:self.stateCell];
+        if (indexPath)
+        {
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+        }
+    }
+}
+
+-(void)countrySelectionCell:(CountrySelectionCell *)cell selectedCountry:(Country *)country
+{
+    [self includeStateCell:([country.iso3Code caseInsensitiveCompare:@"usa"]==NSOrderedSame)];
 }
 
 @end

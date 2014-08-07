@@ -72,6 +72,7 @@
         _profileSource = source;
         _quickProfileValidation = quickValidation;
 		_loginHelper = [[LoginHelper alloc] init];
+		
     }
     return self;
 }
@@ -80,10 +81,29 @@
 {
     [super viewDidLoad];
 
-    [self.profileSource setTableViews:self.tableViews];
+	[self.profileSource setTableViews:self.tableViews];
 
     [self createPresentationCells];
 	[self createFooterView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+	
+	if (self.shown)
+	{
+        return;
+    }
+	
+    [self pullDetails];
+	
+    [self setShown:YES];
+	
+    if ([self.profileSource isKindOfClass:[PersonalProfileSource class]])
+	{
+        [[GoogleAnalytics sharedInstance] sendScreen:@"Enter sender details"];
+    }
 }
 
 - (void)createPresentationCells
@@ -117,9 +137,9 @@
 	
 	for (NSArray* table in presented)
 	{
-		for (NSArray *cells in table)
+		for (NSArray *sections in table)
 		{
-			for (UITableViewCell *cell in cells)
+			for (UITableViewCell *cell in sections)
 			{
 				if ([cell isKindOfClass:[CountrySelectionCell class]])
 				{
@@ -184,22 +204,18 @@
 	}
 }
 
-- (void)viewWillAppear:(BOOL)animated
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    [super viewWillAppear:animated];
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self configureForInterfaceOrientation:toInterfaceOrientation];
+    self.suggestionTable.alpha = 0.0f;
+}
 
-    if (self.shown)
-	{
-        return;
-    }
-
-    [self pullDetails];
-    [self setShown:YES];
-
-    if ([self.profileSource isKindOfClass:[PersonalProfileSource class]])
-	{
-        [[GoogleAnalytics sharedInstance] sendScreen:@"Enter sender details"];
-    }
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    [self suggestionTableDidStartEditing:self.suggestionTable];
+    self.suggestionTable.alpha = 1.0f;
 }
 
 - (BOOL)createSendAsBusinessCell
@@ -290,6 +306,8 @@
 
                 self.sectionCellsByTableView = self.presentationCells;
                 [self reloadTableViews];
+				[self refreshTableViewSizes];
+				[self configureForInterfaceOrientation:self.interfaceOrientation];
             });
         }];
 
@@ -384,7 +402,16 @@
 	if (!self.showingLogin)
 	{
 		self.showingLogin = YES;
-		self.sectionCellsByTableView = [self.profileSource presentedLoginCells];
+		
+		if (IPAD)
+		{
+			[self maskNonLoginCells:[self.profileSource presentedLoginCells][0][0]];
+		}
+		else
+		{
+			self.sectionCellsByTableView = [self.profileSource presentedLoginCells];
+		}
+		
 		[self reloadTableViews];
 		if ([self.delegate respondsToSelector:@selector(changeActionButtonTitle:andAction:)])
 		{
@@ -402,7 +429,17 @@
 	if (self.showingLogin)
 	{
 		self.showingLogin = NO;
-		self.sectionCellsByTableView = [self.profileSource presentedCells:[self createSendAsBusinessCell]];
+		
+		if (IPAD)
+		{
+			self.sectionCellsByTableView = [self.profileSource presentedCells:[self createSendAsBusinessCell]];
+			[self unmaskAllCells];
+		}
+		else
+		{
+			self.sectionCellsByTableView = [self.profileSource presentedCells:[self createSendAsBusinessCell]];
+		}
+		
 		[self reloadTableViews];
 		if ([self.delegate respondsToSelector:@selector(changeActionButtonTitle:andAction:)])
 		{
@@ -459,6 +496,7 @@
     }];
 }
 
+#pragma mark - Helpers
 - (PendingPayment *)getPendingPaymentFromPayment:(PendingPayment *)payment
 {
 	PendingPayment *newPayment = [self.objectModel createPendingPayment];
@@ -492,4 +530,49 @@
     [payment setRecipient:newRecipient];
 }
 
+- (void)refreshTableViewSizes
+{
+    if([self hasMoreThanOneTableView])
+    {
+		self.firstColumnHeightConstraint.constant= ((UITableView*)self.tableViews[0]).contentSize.height;
+        self.secondColumnHeightConstraint.constant =((UITableView*) self.tableViews[1]).contentSize.height;
+        [self.tableViews[0] layoutIfNeeded];
+        [self.tableViews[1] layoutIfNeeded];
+    }
+}
+
+- (void)maskNonLoginCells:(NSArray *)loginCells
+{
+	[self doForEachCell:^(UITableViewCell *cell) {
+		if ([loginCells indexOfObject:cell] == NSNotFound
+			&& [cell isKindOfClass:[TextEntryCell class]])
+		{
+			[(TextEntryCell *)cell maskDisabled:YES];
+		}
+	}];
+}
+
+- (void)unmaskAllCells
+{
+	[self doForEachCell:^(UITableViewCell *cell) {
+		if ([cell isKindOfClass:[TextEntryCell class]])
+		{
+			[(TextEntryCell *)cell maskDisabled:NO];
+		}
+	}];
+}
+
+- (void)doForEachCell:(void (^)(UITableViewCell *))action
+{
+	for (NSArray* table in self.presentationCells)
+	{
+		for (NSArray *sections in table)
+		{
+			for (UITableViewCell *cell in sections)
+			{
+				action(cell);
+			}
+		}
+	}
+}
 @end

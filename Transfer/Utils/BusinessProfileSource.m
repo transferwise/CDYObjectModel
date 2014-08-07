@@ -22,10 +22,6 @@
 #import "DoubleEntryCell.h"
 #import "DoublePasswordEntryCell.h"
 
-
-static NSUInteger const kButtonSection = 0;
-static NSUInteger const kDetailsSection = 1;
-
 @interface BusinessProfileSource ()
 
 @property (nonatomic, strong) TextEntryCell *businessNameCell;
@@ -113,12 +109,25 @@ static NSUInteger const kDetailsSection = 1;
     [zipCityCell setCellTag:@"zipCity"];
 
 
-    [self setCells:@[@[firstColumnCells, secondColumnCells]]];
+	if (self.tableViews.count > 1)
+	{
+		[self setCells:@[
+						 @[firstColumnCells],
+						 @[secondColumnCells]
+						 ]];
+	}
+	else
+	{
+		[self setCells:@[
+						@[firstColumnCells, secondColumnCells]
+						]];
+	}
 
     return self.cells;
 }
 
-- (void)loadDetailsToCells {
+- (void)loadDetailsToCells
+{
     User *user = [self.objectModel currentUser];
     BusinessProfile *profile = user.businessProfile;
     [self.businessNameCell setValue:profile.name];
@@ -142,26 +151,16 @@ static NSUInteger const kDetailsSection = 1;
     [self includeStateCell:[profile.countryCode caseInsensitiveCompare:@"usa"]==NSOrderedSame];
 }
 
-- (NSString *)titleForHeaderInSection:(NSInteger)section {
-    if (section == kButtonSection) {
-        return nil;
-    }
-
-    if (section == kDetailsSection) {
-        return NSLocalizedString(@"business.profile.details.section.title", nil);
-    } else {
-        return NSLocalizedString(@"business.profile.address.section.title", nil);
-    }
-}
-
-- (BOOL)inputValid {
+- (BOOL)inputValid
+{
     return [[self.businessNameCell value] hasValue] && [[self.registrationNumberCell value] hasValue]
             && [[self.descriptionCell value] hasValue] && [[self.addressCell value] hasValue]
             && [[self.zipCityCell value] hasValue] && [[self.zipCityCell secondValue] hasValue]
             && [[self.countryCell value] hasValue];
 }
 
-- (id)enteredProfile {
+- (id)enteredProfile
+{
 	BusinessProfile *profile = [self.objectModel.currentUser businessProfileObject];
     [profile setName:[self.businessNameCell value]];
     [profile setRegistrationNumber:[self.registrationNumberCell value]];
@@ -177,10 +176,12 @@ static NSUInteger const kDetailsSection = 1;
     return profile.objectID;
 }
 
-- (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion {
+- (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion
+{
     [validation validateBusinessProfile:profile withHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (error) {
+            if (error)
+			{
                 completion(error);
                 return;
             }
@@ -192,7 +193,8 @@ static NSUInteger const kDetailsSection = 1;
     }];
 }
 
-- (void)loadDataFromProfile:(PhoneBookProfile *)profile {
+- (void)loadDataFromProfile:(PhoneBookProfile *)profile
+{
     [self.businessNameCell setValueWhenEditable:profile.organisation];
 
     PhoneBookAddress *address = profile.address;
@@ -212,7 +214,8 @@ static NSUInteger const kDetailsSection = 1;
     [self includeStateCell:[self.countryCell.value caseInsensitiveCompare:@"usa"]==NSOrderedSame];
 }
 
-- (void)fillQuickValidation:(QuickProfileValidationOperation *)operation {
+- (void)fillQuickValidation:(QuickProfileValidationOperation *)operation
+{
     [operation setName:[self.businessNameCell value]];
     [operation setRegistrationNumber:[self.registrationNumberCell value]];
     [operation setBusinessDescription:[self.descriptionCell value]];
@@ -221,52 +224,6 @@ static NSUInteger const kDetailsSection = 1;
     [operation setCity:[self.zipCityCell secondValue]];
     [operation setCountryCode:[self.countryCell value]];
     [operation setState:[self.stateCell value]];
-}
-
--(void)includeStateCell:(BOOL)shouldInclude
-{
-    if (2 > [self.cells[0] count])
-    {
-        return;
-    }
-    
-    UITableView* tableView;
-    for(UITableView *table in self.tableViews)
-    {
-        if ([table indexPathForCell:self.countryCell])
-        {
-            tableView = table;
-            break;
-        }
-    }
-    
-    NSMutableArray* addressFields = self.cells[0][1];
-    if(shouldInclude && ![addressFields containsObject:self.stateCell])
-    {
-        [addressFields addObject:self.stateCell];
-        NSIndexPath *indexPath = [tableView indexPathForCell:self.countryCell];
-        if (indexPath)
-        {
-            indexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
-            [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
-        }
-        
-    }
-    else if(!shouldInclude && [addressFields containsObject:self.stateCell])
-    {
-        [addressFields removeObject:self.stateCell];
-        NSIndexPath *indexPath = [tableView indexPathForCell:self.stateCell];
-        if (indexPath)
-        {
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
-        }
-    }
-}
-
-
--(void)countrySelectionCell:(CountrySelectionCell *)cell selectedCountry:(Country *)country
-{
-    [self includeStateCell:([country.iso3Code caseInsensitiveCompare:@"usa"]==NSOrderedSame)];
 }
 
 @end

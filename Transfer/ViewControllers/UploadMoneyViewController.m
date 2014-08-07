@@ -41,6 +41,7 @@
 							 titles:@[NSLocalizedString(@"payment.method.card", nil), NSLocalizedString(@"payment.method.regular", nil)]
 						actionTitle:NSLocalizedString(@"transferdetails.controller.button.support",nil)
 						actionStyle:@"blueButton"
+					   actionShadow:nil
 					 actionProgress:0.f];
 					
     [super viewDidLoad];
