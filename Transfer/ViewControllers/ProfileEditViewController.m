@@ -81,10 +81,32 @@
 {
     [super viewDidLoad];
 
-    [self.profileSource setTableViews:self.tableViews];
+	[self.profileSource setTableViews:self.tableViews];
 
     [self createPresentationCells];
 	[self createFooterView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+	
+	if (self.shown)
+	{
+        return;
+    }
+	
+    [self pullDetails];
+	
+	[self refreshTableViewSizes];
+	[self configureForInterfaceOrientation:self.interfaceOrientation];
+	
+    [self setShown:YES];
+	
+    if ([self.profileSource isKindOfClass:[PersonalProfileSource class]])
+	{
+        [[GoogleAnalytics sharedInstance] sendScreen:@"Enter sender details"];
+    }
 }
 
 - (void)createPresentationCells
@@ -197,26 +219,6 @@
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     [self suggestionTableDidStartEditing:self.suggestionTable];
     self.suggestionTable.alpha = 1.0f;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-
-    if (self.shown)
-	{
-        return;
-    }
-
-    [self pullDetails];
-    [self setShown:YES];
-
-    if ([self.profileSource isKindOfClass:[PersonalProfileSource class]])
-	{
-        [[GoogleAnalytics sharedInstance] sendScreen:@"Enter sender details"];
-    }
-	
-    [self configureForInterfaceOrientation:self.interfaceOrientation];
 }
 
 - (BOOL)createSendAsBusinessCell
@@ -476,6 +478,7 @@
     }];
 }
 
+#pragma mark - Helpers
 - (PendingPayment *)getPendingPaymentFromPayment:(PendingPayment *)payment
 {
 	PendingPayment *newPayment = [self.objectModel createPendingPayment];
@@ -507,6 +510,17 @@
 	}
 	
     [payment setRecipient:newRecipient];
+}
+
+-(void)refreshTableViewSizes
+{
+    if([self hasMoreThanOneTableView])
+    {
+//		self.firstColumnHeightConstraint.constant= ((UITableView*)self.tableViews[0]).contentSize.height;
+//        self.secondColumnHeightConstraint.constant =((UITableView*) self.tableViews[1]).contentSize.height;
+//        [self.tableViews[0] layoutIfNeeded];
+//        [self.tableViews[1] layoutIfNeeded];
+    }
 }
 
 @end
