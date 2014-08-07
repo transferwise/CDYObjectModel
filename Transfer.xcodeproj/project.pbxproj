@@ -552,7 +552,6 @@
 		EA31A18317DDB29B00F937F7 /* PersonalProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E321768674700904D97 /* PersonalProfileSource.m */; };
 		EA31A18417DDB29B00F937F7 /* BusinessProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E351768675400904D97 /* BusinessProfileSource.m */; };
 		EA31A18517DDB29B00F937F7 /* BusinessProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D9531769BD9D0078D0C4 /* BusinessProfileCommitter.m */; };
-		EA31A18617DDB29B00F937F7 /* PaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D97E176AF1200078D0C4 /* PaymentProfileViewController.m */; };
 		EA31A18817DDB29B00F937F7 /* RemoveTokenOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7F8815176F2B44003B0F46 /* RemoveTokenOperation.m */; };
 		EA31A18917DDB29B00F937F7 /* UITableView+FooterPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9A2E82176B711400C5E058 /* UITableView+FooterPositioning.m */; };
 		EA31A18B17DDB29B00F937F7 /* RoundedCellWhiteBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB704E7C177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m */; };
@@ -690,7 +689,6 @@
 		EA8FF6B8171D25C20090A658 /* TransferwiseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */; };
 		EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6BA171D26A00090A658 /* LoginOperation.m */; };
 		EA92D9541769BD9D0078D0C4 /* BusinessProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D9531769BD9D0078D0C4 /* BusinessProfileCommitter.m */; };
-		EA92D97F176AF1200078D0C4 /* PaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D97E176AF1200078D0C4 /* PaymentProfileViewController.m */; };
 		EAA053D2175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */; };
 		EAA053D6175DD5EE00ACD3F6 /* NoUserPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D5175DD5EE00ACD3F6 /* NoUserPaymentFlow.m */; };
 		EAA053DA175DD63100ACD3F6 /* PaymentFlowSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D9175DD63100ACD3F6 /* PaymentFlowSpec.m */; };
@@ -1347,8 +1345,6 @@
 		EA92D9511769BD870078D0C4 /* BusinessProfileValidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessProfileValidation.h; sourceTree = "<group>"; };
 		EA92D9521769BD9D0078D0C4 /* BusinessProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileCommitter.h; sourceTree = "<group>"; };
 		EA92D9531769BD9D0078D0C4 /* BusinessProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileCommitter.m; sourceTree = "<group>"; };
-		EA92D97D176AF1200078D0C4 /* PaymentProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentProfileViewController.h; sourceTree = "<group>"; };
-		EA92D97E176AF1200078D0C4 /* PaymentProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentProfileViewController.m; sourceTree = "<group>"; };
 		EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonEditTextField.h; sourceTree = "<group>"; };
 		EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonEditTextField.m; sourceTree = "<group>"; };
 		EAA053D0175DD5DC00ACD3F6 /* LoggedInPaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggedInPaymentFlow.h; sourceTree = "<group>"; };
@@ -2404,8 +2400,6 @@
 				3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */,
 				EAE1E3A117B2519000A45623 /* PaymentDetailsViewController.h */,
 				EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */,
-				EA92D97D176AF1200078D0C4 /* PaymentProfileViewController.h */,
-				EA92D97E176AF1200078D0C4 /* PaymentProfileViewController.m */,
 				472D5640198FE98500257BB8 /* PersonalPaymentProfileViewController.h */,
 				472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */,
 				EAD39682171BD5B000F6D011 /* PaymentViewController.h */,
@@ -3272,7 +3266,6 @@
 				4723EA161973F32400B4345F /* ImageColoredButton.m in Sources */,
 				EA31A18517DDB29B00F937F7 /* BusinessProfileCommitter.m in Sources */,
 				472D5643198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */,
-				EA31A18617DDB29B00F937F7 /* PaymentProfileViewController.m in Sources */,
 				389F683E198FC1C6006CF1F6 /* Payment.m in Sources */,
 				47FAF345194B2F11004CE986 /* LightBlueButton.m in Sources */,
 				EA31A18817DDB29B00F937F7 /* RemoveTokenOperation.m in Sources */,
@@ -3547,7 +3540,6 @@
 				47B36C831986543B002E66C7 /* MultipleEntryCell.m in Sources */,
 				38C7B29319742596004324E8 /* HeaderTabView.m in Sources */,
 				EA92D9541769BD9D0078D0C4 /* BusinessProfileCommitter.m in Sources */,
-				EA92D97F176AF1200078D0C4 /* PaymentProfileViewController.m in Sources */,
 				4723EA151973F32400B4345F /* ImageColoredButton.m in Sources */,
 				EA7F8816176F2B44003B0F46 /* RemoveTokenOperation.m in Sources */,
 				473DF972196D5ED600524C64 /* FloatingLabelTextField.m in Sources */,
