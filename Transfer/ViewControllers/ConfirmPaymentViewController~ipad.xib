@@ -11,6 +11,7 @@
                 <outlet property="footerView" destination="y2R-Ww-IVZ" id="5GA-9O-HhX"/>
                 <outlet property="headerView" destination="fLO-8z-QUV" id="YAV-Eu-ah0"/>
                 <outlet property="referenceField" destination="28e-54-Me7" id="DSb-Ei-lbZ"/>
+                <outlet property="separatorLine" destination="8na-Lo-3qJ" id="qb7-bg-ywn"/>
                 <outlet property="tableView" destination="4" id="s9X-pC-vHy"/>
                 <outlet property="view" destination="8" id="TqL-Wy-YWu"/>
             </connections>
@@ -55,6 +56,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <view contentMode="scaleToFill" id="8na-Lo-3qJ" userLabel="SeparatorLine">
+                                <rect key="frame" x="336" y="141" width="352" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <userDefinedRuntimeAttributes>

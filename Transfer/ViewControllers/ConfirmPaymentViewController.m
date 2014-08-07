@@ -61,6 +61,7 @@
 //iPad
 @property (nonatomic,weak) IBOutlet UITextField *referenceField;
 @property (nonatomic,weak) IBOutlet UITextField *emailField;
+@property (weak, nonatomic) IBOutlet UIView *separatorLine;
 
 - (IBAction)footerButtonPressed:(id)sender;
 
@@ -156,6 +157,15 @@
             cell.backgroundColor = [UIColor clearColor];
         }
         
+        if (payment.targetCurrency.recipientEmailRequiredValue && [payment.recipient.email length] == 0)
+        {
+            self.emailField.hidden = NO;
+        }
+        
+        CGRect newFrame = self.separatorLine.frame;
+        newFrame.size.height = 1.0/[[UIScreen mainScreen] scale];
+        self.separatorLine.frame = newFrame;
+        self.separatorLine.bgStyle = @"SeparatorGrey";
     }
     
 
@@ -373,7 +383,6 @@
     return attributedString;
 }
 
-
 -(void)sendForValidation
 {
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
@@ -407,6 +416,50 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return IPAD?70.0f:60.0f;
+}
+
+-(void)keyboardWillShow:(NSNotification *)note
+{
+    if(IPAD)
+    {
+        CGRect newframe = [self.view.window convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] toView:self.view];
+        NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:duration];
+        [UIView setAnimationCurve:curve];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, newframe.size.height, 0);
+        self.tableView.contentOffset = CGPointMake(0, self.tableView.contentSize.height + newframe.size.height - self.tableView.frame.size.height);
+        
+        [UIView commitAnimations];
+    }
+    else
+    {
+        [super keyboardWillHide:note];
+    }
+}
+
+-(void)keyboardWillHide:(NSNotification *)note
+{
+    if(IPAD)
+    {
+        NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:duration];
+        [UIView setAnimationCurve:curve];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        self.tableView.contentInset = UIEdgeInsetsZero;
+         [UIView commitAnimations];
+    }
+    else
+    {
+        [super keyboardWillHide:note];
+    }
 }
 
 @end
