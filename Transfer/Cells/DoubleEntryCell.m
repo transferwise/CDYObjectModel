@@ -88,7 +88,7 @@ NSInteger const kSecondTextField = 2;
 
 - (BOOL)editable
 {
-	return self.firstTextField.enabled || self.secondTextField.enabled;
+	return self.firstTextField.enabled && self.secondTextField.enabled;
 }
 
 - (void)setEditable:(BOOL)value
@@ -104,6 +104,11 @@ NSInteger const kSecondTextField = 2;
 #pragma mark - Navigation between fields
 - (void)activate
 {
+	if (!self.editable)
+	{
+		return;
+	}
+	
 	if (self.firstTextField.enabled)
 	{
 		[self.firstTextField becomeFirstResponder];

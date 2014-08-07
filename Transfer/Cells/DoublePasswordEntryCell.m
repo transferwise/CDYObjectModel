@@ -74,6 +74,11 @@ NSInteger const kSecondPassword = 2;
 #pragma mark - Navigation between fields
 - (void)activate
 {
+	if (!self.editable)
+	{
+		return;
+	}
+	
 	if (self.useDummyPassword)
 	{
 		self.firstPassword.text = @"";

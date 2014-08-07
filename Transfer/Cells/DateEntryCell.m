@@ -215,7 +215,6 @@ NSInteger const kYearField = 3;
 	NSUInteger newLength = [textField.text length] + [string length] - range.length;
 	
 	return [self validateLength:newLength textField:textField]
-		&& [self validateContent:string range:range textField:textField]
 		&& [super textField:textField shouldChangeCharactersInRange:range replacementString:string];
 }
 
@@ -233,54 +232,6 @@ NSInteger const kYearField = 3;
 	return NO;
 }
 
-- (BOOL)validateContent:(NSString *)text range:(NSRange)range textField:(UITextField *)textField
-{
-	//validation off so that user won't get stuck.
-	return YES;
-//	NSString* modified = [textField modifiedText:range newText:text];
-//	
-//	//allow to delete everything inserted
-//	if (self.valueModified && [modified isEqualToString:@""])
-//	{
-//		return YES;
-//	}
-//	
-//	//cast to int, this will return zero if cast fails
-//	//hence fields should only be shown with numeric keyboard
-//	NSInteger value = [modified integerValue];
-//	
-//	if (textField.tag == kDayField)
-//	{
-//		return value <= 31;
-//	}
-//	else if (textField.tag == kMonthField)
-//	{
-//		return value <= 12;
-//	}
-//	else if (textField.tag == kYearField)
-//	{
-//		//year will be validated post-factum
-//		return YES;
-//	}
-//	
-//	return NO;
-}
-
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-{
-//	if (textField.tag == kYearField)
-//	{
-//		NSUInteger year = [[DateEntryCell getComponents:[NSDate date]] year];
-//		NSInteger value = [textField.text integerValue];
-//		
-//		//arbitrary values, maybe 10-year olds will be using us very soon.
-//		//maybe 100-year olds ar already using us.
-//		return value >= year - 100 && value <= year - 10;
-//	}
-	
-	return YES;
-}
-
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
 	[self changeHeaderColor];
@@ -289,6 +240,11 @@ NSInteger const kYearField = 3;
 #pragma mark - Moving between cells
 - (void)activate
 {
+	if (!self.editable)
+	{
+		return;
+	}
+	
 	[self.dayTextField becomeFirstResponder];
 	[self changeHeaderColor];
 }

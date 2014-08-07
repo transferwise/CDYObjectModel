@@ -432,6 +432,7 @@
 		
 		if (IPAD)
 		{
+			self.sectionCellsByTableView = [self.profileSource presentedCells:[self createSendAsBusinessCell]];
 			[self unmaskAllCells];
 		}
 		else
