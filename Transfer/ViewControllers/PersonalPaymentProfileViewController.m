@@ -21,6 +21,8 @@
 
 - (void)viewDidLoad
 {
+	self.showFullWidth = YES;
+	
 	self.personalProfile = [[PersonalProfileViewController alloc] init];
 	self.personalProfile.objectModel = self.objectModel;
 	self.personalProfile.allowProfileSwitch = self.allowProfileSwitch;

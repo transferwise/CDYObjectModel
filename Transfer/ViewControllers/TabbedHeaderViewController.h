@@ -10,6 +10,8 @@
 
 @interface TabbedHeaderViewController : UIViewController
 
+@property (nonatomic) BOOL showFullWidth;
+
 - (void)configureWithControllers:(NSArray *)controllers
 						  titles:(NSArray *)titles
 					 actionTitle:(NSString *)actionTitle

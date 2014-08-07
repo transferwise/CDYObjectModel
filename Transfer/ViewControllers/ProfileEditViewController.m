@@ -71,6 +71,7 @@
         _profileSource = source;
         _quickProfileValidation = quickValidation;
 		_loginHelper = [[LoginHelper alloc] init];
+		
     }
     return self;
 }

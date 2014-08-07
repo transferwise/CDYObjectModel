@@ -20,6 +20,8 @@
 
 - (void)viewDidLoad
 {
+	self.showFullWidth = YES;
+	
 	self.businessProfile = [[BusinessProfileViewController alloc] init];
 	self.businessProfile.objectModel = self.objectModel;
 	
