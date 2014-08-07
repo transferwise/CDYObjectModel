@@ -23,7 +23,9 @@
 @property (nonatomic,weak) IBOutlet ColoredButton *actionButton;
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
+
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonHeight;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonBottom;
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *contentWidth;
 
@@ -73,10 +75,19 @@
 		[self.tabView setSelectedIndex:0];
 	}
 	
-	if (IPAD && self.showFullWidth)
+	if (IPAD)
 	{
-		//arbitrary large value, other constraints will catch it
-		self.contentWidth.constant = 2000;
+		if (self.showFullWidth)
+		{
+			//arbitrary large value, other constraints will catch it
+			self.contentWidth.constant = 2000;
+		}
+		
+		if (!self.showButtonForIpad)
+		{
+			self.buttonBottom.constant = 0;
+			self.buttonHeight.constant = 0;
+		}
 	}
 	
     self.containerView.translatesAutoresizingMaskIntoConstraints = NO;

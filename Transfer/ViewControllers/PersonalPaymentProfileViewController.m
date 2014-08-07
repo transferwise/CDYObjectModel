@@ -22,6 +22,7 @@
 - (void)viewDidLoad
 {
 	self.showFullWidth = YES;
+	self.showButtonForIpad = YES;
 	
 	self.personalProfile = [[PersonalProfileViewController alloc] init];
 	self.personalProfile.objectModel = self.objectModel;

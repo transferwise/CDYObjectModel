@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="5056"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TabbedHeaderViewController">
             <connections>
+                <outlet property="actionButton" destination="AWz-ON-2PA" id="BQh-fn-75R"/>
+                <outlet property="buttonBottom" destination="Hgm-Tv-q3P" id="SE5-d5-I0B"/>
+                <outlet property="buttonHeight" destination="Oaj-Gg-ULN" id="9iP-r8-MUB"/>
                 <outlet property="containerView" destination="DOU-yV-ZNg" id="CdU-4g-GnB"/>
                 <outlet property="contentWidth" destination="RfB-fx-20n" id="86w-YM-CLx"/>
                 <outlet property="headerHeight" destination="pBo-MU-tRu" id="kQq-4G-Nzg"/>
@@ -51,13 +54,28 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="768" placeholderIntrinsicHeight="1024" translatesAutoresizingMaskIntoConstraints="NO" id="DOU-yV-ZNg" userLabel="View - Container">
-                    <rect key="frame" x="0.0" y="50" width="768" height="974"/>
+                    <rect key="frame" x="0.0" y="50" width="768" height="805"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" priority="999" constant="768" id="RfB-fx-20n"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWz-ON-2PA" customClass="ColoredButton">
+                    <rect key="frame" x="169" y="855" width="430" height="49"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="430" id="HeN-YX-zya"/>
+                        <constraint firstAttribute="height" constant="49" id="Oaj-Gg-ULN"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="addShadow" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="actionTapped:" destination="-1" eventType="touchUpInside" id="ufu-WG-dfo"/>
+                    </connections>
+                </button>
                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TbP-Vp-OuH" customClass="GradientView">
                     <rect key="frame" x="0.0" y="50" width="768" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -77,16 +95,18 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="AWz-ON-2PA" secondAttribute="bottom" constant="120" id="Hgm-Tv-q3P"/>
                 <constraint firstItem="TbP-Vp-OuH" firstAttribute="top" secondItem="34f-Jm-PsZ" secondAttribute="bottom" id="IoB-O4-Tg6"/>
                 <constraint firstAttribute="centerX" secondItem="DOU-yV-ZNg" secondAttribute="centerX" id="JB9-tU-uhS"/>
                 <constraint firstAttribute="trailing" secondItem="34f-Jm-PsZ" secondAttribute="trailing" id="K3i-CK-khe"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DOU-yV-ZNg" secondAttribute="trailing" id="S6J-TQ-jwN"/>
                 <constraint firstItem="34f-Jm-PsZ" firstAttribute="top" secondItem="Xod-A7-bAq" secondAttribute="top" id="Szk-CL-nHN"/>
+                <constraint firstItem="AWz-ON-2PA" firstAttribute="top" secondItem="DOU-yV-ZNg" secondAttribute="bottom" id="a14-5u-Zg0"/>
                 <constraint firstItem="TbP-Vp-OuH" firstAttribute="leading" secondItem="Xod-A7-bAq" secondAttribute="leading" id="aGI-js-V2i"/>
                 <constraint firstItem="DOU-yV-ZNg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Xod-A7-bAq" secondAttribute="leading" id="fqQ-vy-o1H"/>
+                <constraint firstAttribute="centerX" secondItem="AWz-ON-2PA" secondAttribute="centerX" id="iuW-42-WGi"/>
                 <constraint firstAttribute="trailing" secondItem="TbP-Vp-OuH" secondAttribute="trailing" id="q0p-0Q-wYC"/>
                 <constraint firstItem="DOU-yV-ZNg" firstAttribute="top" secondItem="IXj-y3-yUN" secondAttribute="bottom" id="uVu-ek-fG7"/>
-                <constraint firstAttribute="bottom" secondItem="DOU-yV-ZNg" secondAttribute="bottom" id="wwG-UG-WqL"/>
                 <constraint firstItem="34f-Jm-PsZ" firstAttribute="leading" secondItem="Xod-A7-bAq" secondAttribute="leading" id="yCf-v3-fJl"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
