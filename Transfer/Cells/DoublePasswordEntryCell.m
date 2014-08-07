@@ -52,7 +52,7 @@ NSInteger const kSecondPassword = 2;
 																	  toItem:self.contentView
 																   attribute:NSLayoutAttributeWidth
 																  multiplier:.5f
-																	constant:-30];
+																	constant:0];
 	[self.contentView addConstraints:@[secondWidth]];
 }
 
