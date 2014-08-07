@@ -547,7 +547,7 @@
 		if ([loginCells indexOfObject:cell] == NSNotFound
 			&& [cell isKindOfClass:[TextEntryCell class]])
 		{
-			[(TextEntryCell *)cell maskDisabled:YES];
+			[(TextEntryCell *)cell setGrayedOut:YES];
 		}
 	}];
 }
@@ -557,7 +557,7 @@
 	[self doForEachCell:^(UITableViewCell *cell) {
 		if ([cell isKindOfClass:[TextEntryCell class]])
 		{
-			[(TextEntryCell *)cell maskDisabled:NO];
+			[(TextEntryCell *)cell setGrayedOut:NO];
 		}
 	}];
 }

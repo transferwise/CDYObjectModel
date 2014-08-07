@@ -154,9 +154,9 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     return ([value rangeOfCharacterFromSet:unwantedCharacters].location == NSNotFound);
 }
 
-- (void)maskDisabled:(BOOL)disabled
+- (void)setGrayedOut:(BOOL)isGrayedOut
 {
-	if (disabled)
+	if (isGrayedOut)
 	{
 		if (!self.maskView)
 		{
@@ -176,8 +176,8 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 		}
 	}
 	
-	self.editable = !disabled;
-	self.userInteractionEnabled = !disabled;
+	self.editable = !isGrayedOut;
+	self.userInteractionEnabled = !isGrayedOut;
 }
 
 @end

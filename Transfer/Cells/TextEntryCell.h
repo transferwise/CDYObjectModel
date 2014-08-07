@@ -38,6 +38,6 @@ extern NSString *const TWTextEntryCellIdentifier;
 - (void)markIssue:(NSString *)issueMessage;
 - (void)markTouched;
 - (void)textFieldEntryFinished;
-- (void)maskDisabled:(BOOL)disabled;
+- (void)setGrayedOut:(BOOL)isGrayedOut;
 
 @end
