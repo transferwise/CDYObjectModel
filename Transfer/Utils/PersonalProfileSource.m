@@ -38,9 +38,7 @@ NSUInteger const kUserPersonalSection = 1;
 @property (nonatomic, strong) DateEntryCell *dateOfBirthCell;
 @property (nonatomic, strong) TextEntryCell *addressCell;
 @property (nonatomic, strong) DoubleEntryCell *zipCityCell;
-@property (nonatomic, strong) CountrySelectionCell *countryCell;
 @property (nonatomic, strong) DoublePasswordEntryCell *passwordCell;
-@property (nonatomic, strong) TextEntryCell *stateCell;
 @property (nonatomic, strong) NSArray *loginCells;
 @property (nonatomic, strong) SwitchCell *sendAsBusinessCell;
 @property (nonatomic) BOOL anonymous;
@@ -295,62 +293,6 @@ NSUInteger const kUserPersonalSection = 1;
     [operation setCountryCode:[self.countryCell value]];
     [operation setDateOfBirth:[self.dateOfBirthCell value]];
     [operation setState:[self.stateCell value]];
-}
-
--(void)includeStateCell:(BOOL)shouldInclude
-{
-    if (2 > [self.cells[0] count])
-    {
-        return;
-    }
-    
-    UITableView* tableView;
-    for(UITableView *table in self.tableViews)
-    {
-        if ([table indexPathForCell:self.countryCell])
-        {
-            tableView = table;
-            break;
-        }
-    }
-    
-    NSMutableArray* addressFields;
-	
-	if(self.tableViews.count > 1)
-	{
-		addressFields = self.cells[1][0];
-	}
-	else
-	{
-		addressFields = self.cells[0][1];
-	}
-	
-    if(shouldInclude && ![addressFields containsObject:self.stateCell])
-    {
-        [addressFields insertObject:self.stateCell atIndex:[addressFields indexOfObject:self.countryCell] + 1];
-		
-        NSIndexPath *indexPath = [tableView indexPathForCell:self.countryCell];
-        if (indexPath)
-        {
-            indexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
-            [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
-        }
-        
-    }
-    else if(!shouldInclude && [addressFields containsObject:self.stateCell])
-    {
-        [addressFields removeObject:self.stateCell];
-        NSIndexPath *indexPath = [tableView indexPathForCell:self.stateCell];
-        if (indexPath)
-        {
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
-        }
-    }
-}
-
--(void)countrySelectionCell:(CountrySelectionCell *)cell selectedCountry:(Country *)country
-{
-    [self includeStateCell:([country.iso3Code caseInsensitiveCompare:@"usa"]==NSOrderedSame)];
 }
 
 @end

@@ -11,6 +11,8 @@
 @class PhoneBookProfile;
 @class ObjectModel;
 @class QuickProfileValidationOperation;
+@class TextEntryCell;
+@class CountrySelectionCell;
 
 typedef void (^ProfileActionBlock)(NSError *error);
 
@@ -19,6 +21,9 @@ typedef void (^ProfileActionBlock)(NSError *error);
 @property (nonatomic, strong) NSArray *tableViews;
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, strong) NSArray *cells;
+
+@property (nonatomic, strong) TextEntryCell *stateCell;
+@property (nonatomic, strong) CountrySelectionCell *countryCell;
 
 
 - (NSArray *)presentedCells:(BOOL)allowProfileSwitch;

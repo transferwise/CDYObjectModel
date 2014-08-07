@@ -98,8 +98,6 @@
 	
     [self pullDetails];
 	
-	[self configureForInterfaceOrientation:self.interfaceOrientation];
-	
     [self setShown:YES];
 	
     if ([self.profileSource isKindOfClass:[PersonalProfileSource class]])
@@ -309,6 +307,7 @@
                 self.sectionCellsByTableView = self.presentationCells;
                 [self reloadTableViews];
 				[self refreshTableViewSizes];
+				[self configureForInterfaceOrientation:self.interfaceOrientation];
             });
         }];
 
