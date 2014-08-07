@@ -53,6 +53,8 @@
 		3800220D192F5774009B1D53 /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3800220B192F5774009B1D53 /* CurrencyCell.xib */; };
 		38062176196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */; };
 		38062177196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */; };
+		3813791D1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */; };
+		3813791E1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */; };
 		3831AA37194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
 		3831AA38194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
 		3831AA39194B31A200B3EE5C /* WhyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA35194B31A200B3EE5C /* WhyViewController.m */; };
@@ -849,6 +851,7 @@
 		380021FE192F443E009B1D53 /* CurrencyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyCell.m; sourceTree = "<group>"; };
 		3800220B192F5774009B1D53 /* CurrencyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencyCell.xib; sourceTree = "<group>"; };
 		38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransferTypeSelectionHeader~ipad.xib"; sourceTree = "<group>"; };
+		3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ConfirmPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
 		3831AA32194B31A200B3EE5C /* TransparentModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentModalViewController.h; sourceTree = "<group>"; };
 		3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentModalViewController.m; sourceTree = "<group>"; };
 		3831AA34194B31A200B3EE5C /* WhyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhyViewController.h; sourceTree = "<group>"; };
@@ -2361,6 +2364,7 @@
 				EA222E35173A861000C5D613 /* ConfirmPaymentViewController.h */,
 				EA222E36173A861000C5D613 /* ConfirmPaymentViewController.m */,
 				EA222E37173A861000C5D613 /* ConfirmPaymentViewController.xib */,
+				3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */,
 				EAD3967D171BD57000F6D011 /* ContactsViewController.h */,
 				EAD3967E171BD57000F6D011 /* ContactsViewController.m */,
 				EAD3967F171BD57000F6D011 /* ContactsViewController.xib */,
@@ -2669,6 +2673,7 @@
 				EA31A1D117DDB29B00F937F7 /* Localizable.strings in Resources */,
 				38675455198B977800DEA359 /* RefundDetailsViewController~ipad.xib in Resources */,
 				38AD6EEF19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib in Resources */,
+				3813791E1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib in Resources */,
 				38E57F7B192A51DD00D864A2 /* TabViewController.xib in Resources */,
 				EA31A1D217DDB29B00F937F7 /* MainViewController.xib in Resources */,
 				EA84056A17F0A40B00F44916 /* spinner.html in Resources */,
@@ -2847,6 +2852,7 @@
 				EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */,
 				38EFABD9196D7E1D00126192 /* RecipientViewController~ipad.xib in Resources */,
 				380021E6192CEB66009B1D53 /* TransactionsViewController~ipad.xib in Resources */,
+				3813791D1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib in Resources */,
 				385669151980FB0500BC4230 /* PlainPresentationCell~ipad.xib in Resources */,
 				18D47903173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib in Resources */,
 				4723EA2B1975349C00B4345F /* TransferPayIPadViewController~ipad.xib in Resources */,

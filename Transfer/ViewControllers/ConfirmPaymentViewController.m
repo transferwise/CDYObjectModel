@@ -45,9 +45,9 @@
 
 @property (nonatomic, strong) PlainPresentationCell *yourDepositCell;
 @property (nonatomic, strong) PlainPresentationCell *exchangedToCell;
-@property (nonatomic, strong) PlainPresentationCell *senderNameCell;
 @property (nonatomic, strong) PlainPresentationCell *senderEmailCell;
-@property (nonatomic, strong) PlainPresentationCell *receiverNameCell;
+@property (nonatomic, strong) PlainPresentationCell *receiverAmountCell;
+@property (nonatomic, strong) PlainPresentationCell *estimatedDeliveryCell;
 @property (nonatomic, strong) NSArray *receiverFieldCells;
 @property (nonatomic, strong) TextEntryCell *referenceCell;
 @property (nonatomic, strong) TextEntryCell *receiverEmailCell;
@@ -57,6 +57,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *footerLabel;
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
+
+//iPad
+@property (nonatomic,weak) IBOutlet UITextField *referenceField;
+@property (nonatomic,weak) IBOutlet UITextField *emailField;
 
 - (IBAction)footerButtonPressed:(id)sender;
 
@@ -85,44 +89,81 @@
 
 - (void)createContent
 {
-    NSMutableArray *receiverCells = [NSMutableArray array];
     
-    NSArray *fieldCells = [self buildFieldCells];
-    [self setReceiverFieldCells:fieldCells];
-    [receiverCells addObjectsFromArray:fieldCells];
-
     
-    NSMutableArray *transferCells = [NSMutableArray array];
-    PlainPresentationCell *yourDepositCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
-    [self setYourDepositCell:yourDepositCell];
-    [transferCells addObject:yourDepositCell];
-    
-    PlainPresentationCell *exchangedToCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
-    [self setExchangedToCell:exchangedToCell];
-    [transferCells addObject:exchangedToCell];
     Payment *payment = self.payment;
-    if (payment.targetCurrency.recipientEmailRequiredValue && [payment.recipient.email length] == 0)
+    
+    NSMutableArray *cells = [NSMutableArray array];
+
+    if(!IPAD)
     {
-        TextEntryCell *receiverEmailCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
-        [self setReceiverEmailCell:receiverEmailCell];
-        [receiverEmailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
-        [receiverEmailCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
-        [transferCells addObject:receiverEmailCell];
+        NSArray *fieldCells = [self buildFieldCells];
+        [self setReceiverFieldCells:fieldCells];
+        [cells addObjectsFromArray:fieldCells];
+        
+
+        PlainPresentationCell *yourDepositCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
+        [self setYourDepositCell:yourDepositCell];
+        yourDepositCell.backgroundColor = [UIColor clearColor];
+        [cells addObject:yourDepositCell];
+        
+        PlainPresentationCell *exchangedToCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
+        [self setExchangedToCell:exchangedToCell];
+        exchangedToCell.backgroundColor = [UIColor clearColor];
+        [cells addObject:exchangedToCell];
+        
+        TextEntryCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+        referenceCell.maxValueLength = [self getReferenceMaxLength:self.payment];
+        referenceCell.validateAlphaNumeric = YES;
+        [self setReferenceCell:referenceCell];
+        [referenceCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
+        [cells addObject:referenceCell];
+        
+        if (payment.targetCurrency.recipientEmailRequiredValue && [payment.recipient.email length] == 0)
+        {
+            TextEntryCell *receiverEmailCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+            [self setReceiverEmailCell:receiverEmailCell];
+            [receiverEmailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
+            [receiverEmailCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
+            [cells addObject:receiverEmailCell];
+        }
+    }
+    else
+    {
+      
+        PlainPresentationCell *yourDepositCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
+        [self setYourDepositCell:yourDepositCell];
+        [cells addObject:yourDepositCell];
+
+        PlainPresentationCell *receiverAmountCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
+        [self setReceiverAmountCell:receiverAmountCell];
+        [cells addObject:receiverAmountCell];
+        
+        PlainPresentationCell *deliveryDateCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
+        [self setEstimatedDeliveryCell:deliveryDateCell];
+        [cells addObject:deliveryDateCell];
+        
+        NSArray *fieldCells = [self buildFieldCells];
+        [self setReceiverFieldCells:fieldCells];
+        [cells addObjectsFromArray:fieldCells];
+      
+        PlainPresentationCell *exchangedToCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
+        [self setExchangedToCell:exchangedToCell];
+        [cells addObject:exchangedToCell];
+        
+        for(UITableView* cell in cells)
+        {
+            cell.backgroundColor = [UIColor clearColor];
+        }
+        
     }
     
-    TextEntryCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
-	referenceCell.maxValueLength = [self getReferenceMaxLength:self.payment];
-	referenceCell.validateAlphaNumeric = YES;
-	[self setReferenceCell:referenceCell];
-    [referenceCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
-    [transferCells addObject:referenceCell];
 
     NSMutableArray *presented = [NSMutableArray array];
-    [presented addObject:receiverCells];
-    [presented addObject:transferCells];
-
+    [presented addObject:cells];
+    
     [self setPresentedSectionCells:presented];
-
+    
     [self.actionButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
 }
 
@@ -133,6 +174,7 @@
     for (TypeFieldValue *value in recipient.fieldValues) {
         PlainPresentationCell *cell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
         [cell configureWithTitle:value.valueForField.title text:[value presentedValue]];
+        cell.backgroundColor = [UIColor clearColor];
         [cells addObject:cell];
     }
     return [NSArray arrayWithArray:cells];
@@ -156,6 +198,36 @@
 
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    [self setupForOrientation:self.interfaceOrientation];
+}
+
+-(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+        [self setupForOrientation:toInterfaceOrientation];
+}
+
+-(void)setupForOrientation:(UIInterfaceOrientation)orientation
+{
+    if(IPAD)
+    {
+    CGRect newHeaderFrame = self.headerView.frame;
+    CGRect newFooterFrame = self.footerView.frame;
+    if UIInterfaceOrientationIsLandscape(orientation)
+    {
+        newHeaderFrame.size.height = 60.0f;
+        newFooterFrame.size.height = 224.0f;
+    }
+    else
+    {
+        newHeaderFrame.size.height = 188.0f;
+        newFooterFrame.size.height = 352.0f;
+    }
+    self.headerView.frame = newHeaderFrame;
+    self.footerView.frame = newFooterFrame;
+    self.tableView.tableHeaderView = self.headerView;
+    self.tableView.tableFooterView = self.footerView;
+    }
 }
 
 - (void)fillDataCells
@@ -166,29 +238,39 @@
     
     [self.exchangedToCell configureWithTitle:NSLocalizedString(@"confirm.payment.exchangerate.title.label", nil) text:[NSString stringWithFormat:@"%f",payment.conversionRateValue]];
 
-
     
-    [self fillHeaderText];
-   
-    //Resize header to fit text
-    [self resizeView:self.headerView toFitLabel:self.headerLabel];
-
-    [self fillFooterText];
-    //Resize footer to fit text
-    [self resizeView:self.footerView toFitLabel:self.footerLabel];
+    if(!IPAD)
+    {
+        [self fillHeaderText];
+        
+        //Resize header to fit text
+        [self resizeView:self.headerView toFitLabel:self.headerLabel];
+        self.tableView.tableHeaderView = self.headerView;
+        
+        [self fillFooterText];
+        //Resize footer to fit text
+        [self resizeView:self.footerView toFitLabel:self.footerLabel];
+        self.tableView.tableFooterView = self.footerView;
     
-    
-    [self.senderNameCell configureWithTitle:NSLocalizedString(@"confirm.payment.sender.marker.label", nil) text:[self getSenderName:payment]];
-    
-    [self.receiverNameCell configureWithTitle:NSLocalizedString(@"confirm.payment.recipient.marker.label", nil) text:[payment.recipient name]];
-
-    
-    [self.receiverEmailCell setEditable:YES];
-    [self.receiverEmailCell configureWithTitle:NSLocalizedString(@"confirm.payment.email.label", nil) value:[payment.recipient email]];
-
-    [self.referenceCell setEditable:YES];
-    [self.referenceCell configureWithTitle:NSLocalizedString(@"confirm.payment.reference.label", nil) value:@""];
-	[self.referenceCell.entryField setAutocorrectionType:UITextAutocorrectionTypeDefault];
+        [self.receiverEmailCell setEditable:YES];
+        [self.receiverEmailCell configureWithTitle:NSLocalizedString(@"confirm.payment.email.label", nil) value:[payment.recipient email]];
+        
+        [self.referenceCell setEditable:YES];
+        [self.referenceCell configureWithTitle:NSLocalizedString(@"confirm.payment.reference.label", nil) value:@""];
+        [self.referenceCell.entryField setAutocorrectionType:UITextAutocorrectionTypeDefault];
+    }
+    else
+    {
+        [self.receiverAmountCell configureWithTitle:[NSString stringWithFormat:NSLocalizedString(self.payment.isFixedAmountValue?@"confirm.payment.recipient.fixed.title.label":@"confirm.payment.recipient.title.label", nil),self.payment.recipient.name] text:[self.payment payOutStringWithCurrency]];
+        
+        NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"EEEE d MMMM YYYY 'at' ha";
+        NSString *dateString = [dateFormatter stringFromDate:self.payment.estimatedDelivery];
+        [self.estimatedDeliveryCell configureWithTitle:NSLocalizedString(@"confirm.payment.delivery.date.message",nil) text:dateString];
+        
+        self.referenceField.placeholder = NSLocalizedString(@"confirm.payment.reference.label", nil);
+        self.emailField.placeholder = NSLocalizedString(@"confirm.payment.email.label", nil);
+    }
 }
 
 -(void)resizeView:(UIView*)view toFitLabel:(UILabel*)label
@@ -324,7 +406,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60.0f;
+    return IPAD?70.0f:60.0f;
 }
 
 @end
