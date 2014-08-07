@@ -39,7 +39,7 @@
 
 @interface ConfirmPaymentViewController ()
 
-@property (nonatomic, strong) IBOutlet UIButton *footerButton;
+@property (nonatomic, strong) IBOutlet UIButton *actionButton;
 @property (nonatomic, strong) IBOutlet UIView *headerView;
 
 @property (nonatomic, strong) PlainPresentationCell *yourDepositCell;
@@ -53,6 +53,7 @@
 @property (nonatomic, strong) IBOutlet UIButton *contactSupportButton;
 
 @property (nonatomic, strong) IBOutlet UILabel *headerLabel;
+@property (weak, nonatomic) IBOutlet UILabel *footerLabel;
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
@@ -121,7 +122,7 @@
 
     [self setPresentedSectionCells:presented];
 
-    [self.footerButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
+    [self.actionButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
 }
 
 - (NSArray *)buildFieldCells
@@ -162,7 +163,7 @@
     
     [self.yourDepositCell configureWithTitle:NSLocalizedString(self.payment.isFixedAmountValue?@"confirm.payment.deposit.fixed.title.label":@"confirm.payment.deposit.title.label", nil) text:[payment payInStringWithCurrency]];
     
-    [self.exchangedToCell configureWithTitle:NSLocalizedString(@"confirm.payment.exchanged.to.title.label", nil) text:[payment payOutStringWithCurrency]];
+    [self.exchangedToCell configureWithTitle:NSLocalizedString(@"confirm.payment.exchangerate.title.label", nil) text:[NSString stringWithFormat:@"%f",payment.conversionRateValue]];
 
 
     
@@ -179,6 +180,8 @@
     self.headerLabel.frame = textFrame;
     self.tableView.tableHeaderView = self.headerView;
 
+    self.footerLabel.text = [NSString stringWithFormat:NSLocalizedString(@"", nil),self.payment.recipient.name];
+    
     [self.senderNameCell configureWithTitle:NSLocalizedString(@"confirm.payment.sender.marker.label", nil) text:[self getSenderName:payment]];
     
     [self.receiverNameCell configureWithTitle:NSLocalizedString(@"confirm.payment.recipient.marker.label", nil) text:[payment.recipient name]];
@@ -217,7 +220,7 @@
 -(void)fillHeaderText
 {
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"EEEE d MMMM YYYY 'at' hh a z";
+    dateFormatter.dateFormat = @"EEEE d MMMM YYYY 'at' ha z";
     NSString *dateString = [dateFormatter stringFromDate:self.payment.estimatedDelivery];
     NSString *amountString = [NSString stringWithFormat:NSLocalizedString(self.payment.isFixedAmountValue?@"confirm.payment.fixed.target.sum.format":@"confirm.payment.target.sum.format",nil),[self.payment payOutStringWithCurrency]];
     NSString *headerText = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.header.format",nil),dateString,amountString,self.payment.recipient.name];
@@ -225,7 +228,7 @@
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"darkfont"] range:[headerText rangeOfString:amountString]];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"darkfont"] range:[headerText rangeOfString:self.payment.recipient.name]];
     self.headerLabel.attributedText = attributedString;
-    }
+}
 
 - (void)fillDeliveryDetails:(UILabel *)label
 {

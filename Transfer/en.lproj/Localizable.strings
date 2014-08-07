@@ -50,19 +50,19 @@
 "confirm.payment.target.sum.format" = "%@";
 "confirm.payment.fixed.target.sum.format" = "exactly %@";
 "confirm.payment.header.format" = "On %@,\n%@\nis estimated to reach\n%@'s account";
-"confirm.payment.estimated.exchange.rate.message" = "Estimated rate %@";
-"confirm.payment.exchanged.to.title.label" = "Will be exchanged to";
+"confirm.payment.exchangerate.title.label" = "Estimated rate";
 "confirm.payment.footer.button.title" = "Continue";
 "confirm.payment.payment.error.title" = "Couldn't create payment. Please try again.";
 "confirm.payment.pulling.data" = "Refreshing data...";
 "confirm.payment.receiver.section.title" = "Receiver";
 "confirm.payment.recipient.marker.label" = "Receiver";
-"confirm.payment.reference.label" = "Message or reference";
+"confirm.payment.reference.label" = "Type a reference";
 "confirm.payment.sender.marker.label" = "Sender (you)";
 "confirm.payment.sender.section.title" = "Sender";
 "confirm.payment.reference.message" = "The reference will not appear on %@'s bank statement. Instead %@ will see \"%@\", TransferWise's trusted local partner in %@. The reference will still be visible in the email sent to %@.";
 "confirm.payment.reference.message.default" = "The reference will not appear on %@'s bank statement. Instead %@ will see the name of TransferWise's trusted local partner in his country. The reference will still be visible in the email sent to %@.";
 "confirm.payment.reference.message.USD" = "The reference will not appear on %@'s bank statement. The reference will still be visible in the email sent to %@.";
+"confirm.payment.recipient.will.be.informed" = "%@ will be informed via email.";
 "confirm.payment.reference.message.confirm" = "Ok";
 "confirm.payment.reference.message.cancel" = "Cancel";
 

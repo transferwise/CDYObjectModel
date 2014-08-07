@@ -6,9 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConfirmPaymentViewController">
             <connections>
-                <outlet property="footerButton" destination="9" id="12"/>
-                <outlet property="headerLabel" destination="20" id="tq8-do-aNO"/>
-                <outlet property="headerView" destination="14" id="rmI-bY-sxD"/>
+                <outlet property="actionButton" destination="9" id="RSO-k8-RdP"/>
+                <outlet property="footerLabel" destination="GCt-k6-Qdm" id="Ors-OX-rsu"/>
+                <outlet property="headerLabel" destination="SMt-BP-CVw" id="rcM-yJ-8g4"/>
                 <outlet property="tableView" destination="4" id="s9X-pC-vHy"/>
                 <outlet property="view" destination="8" id="TqL-Wy-YWu"/>
             </connections>
@@ -24,11 +24,11 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <view key="tableHeaderView" contentMode="scaleToFill" id="14">
+                    <view key="tableHeaderView" contentMode="scaleToFill" id="fLO-8z-QUV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Estimated exchange ratE: 0.89595" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="20">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Estimated exchange ratE: 0.89595" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SMt-BP-CVw">
                                 <rect key="frame" x="10" y="25" width="300" height="20"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -39,6 +39,22 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view key="tableFooterView" contentMode="scaleToFill" id="y2R-Ww-IVZ">
+                        <rect key="frame" x="0.0" y="365" width="320" height="70"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Estimated exchange ratE: 0.89595" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GCt-k6-Qdm">
+                                <rect key="frame" x="10" y="25" width="300" height="20"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@13.corefont"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="LightBluehighlighted"/>
