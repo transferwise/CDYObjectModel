@@ -149,7 +149,7 @@
         [referenceCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
         [cells addObject:referenceCell];
         
-        if (payment.targetCurrency.recipientEmailRequiredValue && [payment.recipient.email length] == 0)
+        if ([payment.recipient.email length] == 0)
         {
             TextEntryCell *receiverEmailCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
             [self setReceiverEmailCell:receiverEmailCell];
@@ -191,7 +191,7 @@
         self.nonCellTextfieldDelegate.emailField = self.emailField;
         self.referenceField.delegate = self.nonCellTextfieldDelegate;
         self.emailField.delegate = self.nonCellTextfieldDelegate;
-        if (payment.targetCurrency.recipientEmailRequiredValue && [payment.recipient.email length] == 0)
+        if ([payment.recipient.email length] == 0)
         {
             self.emailField.hidden = NO;
             self.emailField.returnKeyType = UIReturnKeyDone;
@@ -314,7 +314,7 @@
         [self.receiverAmountCell configureWithTitle:[NSString stringWithFormat:NSLocalizedString(self.payment.isFixedAmountValue?@"confirm.payment.recipient.fixed.title.label":@"confirm.payment.recipient.title.label", nil),self.payment.recipient.name] text:[self.payment payOutStringWithCurrency]];
         
         NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"EEEE d MMMM YYYY 'at' ha";
+        dateFormatter.dateFormat = @"EEEE dd/MM/YYYY 'at' ha";
         NSString *dateString = [dateFormatter stringFromDate:self.payment.estimatedDelivery];
         [self.estimatedDeliveryCell configureWithTitle:NSLocalizedString(@"confirm.payment.delivery.date.message",nil) text:dateString];
         
@@ -361,13 +361,16 @@
 -(void)fillHeaderText
 {
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"EEEE d MMMM YYYY 'at' ha";
+    dateFormatter.dateFormat = @"EEEE dd/MM/YYYY 'at' ha";
     NSString *dateString = [dateFormatter stringFromDate:self.payment.estimatedDelivery];
     NSString *amountString = [NSString stringWithFormat:NSLocalizedString(self.payment.isFixedAmountValue?@"confirm.payment.fixed.target.sum.format":@"confirm.payment.target.sum.format",nil),[self.payment payOutStringWithCurrency]];
     NSString *headerText = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.header.format",nil),dateString,amountString,self.payment.recipient.name];
     NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:headerText];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"darkfont"] range:[headerText rangeOfString:amountString]];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"darkfont"] range:[headerText rangeOfString:self.payment.recipient.name]];
+    UIFont* boldText = [((MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"heavy.@17"]) font];
+    [attributedString addAttribute:NSFontAttributeName value:boldText range:[headerText rangeOfString:amountString]];
+    [attributedString addAttribute:NSFontAttributeName value:boldText range:[headerText rangeOfString:self.payment.recipient.name]];
     self.headerLabel.attributedText = attributedString;
 }
 
