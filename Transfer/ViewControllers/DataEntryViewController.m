@@ -341,7 +341,11 @@
                     NSIndexPath *path = [self.tableView indexPathForRowAtPoint:cell.center];
                     if(path)
                     {
-                        [self.tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionNone animated:YES];
+                        //Scroll cell after the keyboard has animated
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                            [self.tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                        });
+                        
                     }
                 }
             }
