@@ -10,10 +10,14 @@
 
 @interface TabbedHeaderViewController : UIViewController
 
+@property (nonatomic) BOOL showFullWidth;
+@property (nonatomic) BOOL showButtonForIpad;
+
 - (void)configureWithControllers:(NSArray *)controllers
 						  titles:(NSArray *)titles
 					 actionTitle:(NSString *)actionTitle
 					 actionStyle:(NSString *)actionStyle
+					actionShadow:(NSString *)actionShadow
 				  actionProgress:(CGFloat)actionProgress;
 
 - (void)willSelectViewController:(UIViewController *)controller

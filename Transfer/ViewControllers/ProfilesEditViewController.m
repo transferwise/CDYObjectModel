@@ -6,24 +6,27 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import "PaymentProfileViewController.h"
+#import "ProfilesEditViewController.h"
 #import "PersonalProfileSource.h"
 #import "PersonalProfileViewController.h"
 #import "BusinessProfileViewController.h"
 #import "TransferBackButtonItem.h"
 #import "Credentials.h"
 
-@interface PaymentProfileViewController ()
+@interface ProfilesEditViewController ()
 
 @property (nonatomic, strong) PersonalProfileViewController* personalProfile;
 @property (nonatomic, strong) BusinessProfileViewController* businessProfile;
 
 @end
 
-@implementation PaymentProfileViewController
+@implementation ProfilesEditViewController
 
 - (void)viewDidLoad
 {
+	self.showButtonForIpad = YES;
+	self.showFullWidth = YES;
+	
 	[self initControllers];
 	NSArray *controllers, *titles;
 	
@@ -43,6 +46,7 @@
 							 titles:titles
 						actionTitle:self.buttonTitle ? self.buttonTitle :  NSLocalizedString(@"confirm.payment.footer.button.title", nil)
 						actionStyle:@"greenButton"
+					   actionShadow:@"greenShadow"
 					 actionProgress:0.3f];
     [super viewDidLoad];
 	
@@ -72,7 +76,6 @@
 		}
 	}
 }
-
 
 - (void)actionTappedWithController:(UIViewController *)controller atIndex:(NSUInteger)index
 {

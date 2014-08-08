@@ -21,6 +21,9 @@
 
 - (void)viewDidLoad
 {
+	self.showFullWidth = YES;
+	self.showButtonForIpad = YES;
+	
 	self.personalProfile = [[PersonalProfileViewController alloc] init];
 	self.personalProfile.objectModel = self.objectModel;
 	self.personalProfile.allowProfileSwitch = self.allowProfileSwitch;
@@ -35,6 +38,7 @@
 							 titles:@[NSLocalizedString(@"profile.selection.text.personal.profile", nil)]
 						actionTitle:self.buttonTitle ? self.buttonTitle :  NSLocalizedString(@"confirm.payment.footer.button.title", nil)
 						actionStyle:@"greenButton"
+					   actionShadow:@"greenShadow"
 					 actionProgress:0.3f];
     [super viewDidLoad];
 	

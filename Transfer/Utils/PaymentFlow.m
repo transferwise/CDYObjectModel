@@ -19,7 +19,6 @@
 #import "EmailCheckOperation.h"
 #import "RecipientOperation.h"
 #import "BusinessProfileOperation.h"
-#import "PaymentProfileViewController.h"
 #import "TRWAlertView.h"
 #import "ObjectModel.h"
 #import "User.h"

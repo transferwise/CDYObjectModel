@@ -4,12 +4,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecipientViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileEditViewController">
             <connections>
-                <outlet property="addButton" destination="dT4-Xh-GCh" id="kic-Pf-fRX"/>
                 <outlet property="containerScrollView" destination="XCE-KC-Di1" id="pzl-ap-iqn"/>
                 <outlet property="firstColumnHeightConstraint" destination="WNq-7i-U6Z" id="crc-wm-i6R"/>
-                <outlet property="firstColumnLeftMargin" destination="y4g-S3-dfn" id="0gP-kb-Dup"/>
+                <outlet property="firstColumnLeftMargin" destination="y4g-S3-dfn" id="rgg-8W-kBu"/>
                 <outlet property="secondColumnHeightConstraint" destination="Kcl-Pf-3Gx" id="Kcz-Sj-9dy"/>
                 <outlet property="secondColumnLeftEdgeConstraint" destination="9M8-ca-8M9" id="WO7-2A-uFx"/>
                 <outlet property="secondColumnTopConstraint" destination="YnC-cC-hmy" id="yqv-eq-74Z"/>
@@ -27,16 +26,16 @@
                     <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="1024" placeholderIntrinsicHeight="488" translatesAutoresizingMaskIntoConstraints="NO" id="bP7-ah-Jiz" customClass="IntrinsicSizeUIView">
-                            <rect key="frame" x="80" y="120" width="1024" height="488"/>
+                        <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="bP7-ah-Jiz" customClass="IntrinsicSizeUIView">
+                            <rect key="frame" x="80" y="80" width="844" height="488"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="1024" placeholderIntrinsicHeight="721" scrollEnabled="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                                    <rect key="frame" x="0.0" y="0.0" width="380" height="488"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="380" height="350"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="488" id="WNq-7i-U6Z"/>
+                                        <constraint firstAttribute="height" constant="350" id="WNq-7i-U6Z"/>
                                         <constraint firstAttribute="width" constant="380" id="qZw-aU-9D1"/>
                                     </constraints>
                                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -49,12 +48,12 @@
                                     </connections>
                                 </tableView>
                                 <tableView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="1024" placeholderIntrinsicHeight="721" scrollEnabled="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JU1-IW-1ic">
-                                    <rect key="frame" x="464" y="0.0" width="380" height="488"/>
+                                    <rect key="frame" x="464" y="0.0" width="380" height="350"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="380" id="KN3-uB-efK"/>
-                                        <constraint firstAttribute="height" constant="488" id="Kcl-Pf-3Gx"/>
+                                        <constraint firstAttribute="height" constant="350" id="Kcl-Pf-3Gx"/>
                                     </constraints>
                                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -66,41 +65,26 @@
                                     </connections>
                                 </tableView>
                             </subviews>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.66666666669999997" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="JU1-IW-1ic" firstAttribute="leading" secondItem="4" secondAttribute="trailing" constant="84" id="9M8-ca-8M9"/>
                                 <constraint firstItem="4" firstAttribute="top" secondItem="bP7-ah-Jiz" secondAttribute="top" id="Gm3-g0-07h"/>
                                 <constraint firstItem="JU1-IW-1ic" firstAttribute="top" secondItem="4" secondAttribute="top" id="YnC-cC-hmy"/>
+                                <constraint firstAttribute="width" constant="844" placeholder="YES" id="b6P-pa-x1v"/>
+                                <constraint firstAttribute="height" constant="488" placeholder="YES" id="fVe-KC-gz3"/>
+                                <constraint firstAttribute="trailing" secondItem="JU1-IW-1ic" secondAttribute="trailing" id="g8Y-zp-1ts"/>
                                 <constraint firstItem="4" firstAttribute="leading" secondItem="bP7-ah-Jiz" secondAttribute="leading" id="isk-2m-Ojd"/>
                             </constraints>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="bP7-ah-Jiz" secondAttribute="bottom" constant="160" id="9sT-JZ-FS3"/>
                         <constraint firstAttribute="trailing" secondItem="bP7-ah-Jiz" secondAttribute="trailing" id="PU1-bP-YZO"/>
-                        <constraint firstItem="bP7-ah-Jiz" firstAttribute="top" secondItem="XCE-KC-Di1" secondAttribute="top" constant="120" id="fwL-dI-WgT"/>
+                        <constraint firstAttribute="bottom" secondItem="bP7-ah-Jiz" secondAttribute="bottom" id="azm-De-a95"/>
+                        <constraint firstItem="bP7-ah-Jiz" firstAttribute="top" secondItem="XCE-KC-Di1" secondAttribute="top" constant="80" id="fwL-dI-WgT"/>
                         <constraint firstItem="bP7-ah-Jiz" firstAttribute="leading" secondItem="XCE-KC-Di1" secondAttribute="leading" constant="80" id="y4g-S3-dfn"/>
                     </constraints>
                 </scrollView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT4-Xh-GCh" customClass="GreenButton">
-                    <rect key="frame" x="297" y="599" width="430" height="49"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="49" id="YCP-7W-WcA"/>
-                        <constraint firstAttribute="width" constant="430" id="pga-Ud-nMY"/>
-                    </constraints>
-                    <state key="normal" title="Button"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="progress">
-                            <real key="value" value="0.29999999999999999"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="addShadow" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="addButtonPressed:" destination="-1" eventType="touchUpInside" id="icT-jK-9V9"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -108,8 +92,6 @@
                 <constraint firstItem="XCE-KC-Di1" firstAttribute="leading" secondItem="fPl-yO-Yh3" secondAttribute="leading" id="Ggt-4Q-DOr"/>
                 <constraint firstItem="XCE-KC-Di1" firstAttribute="top" secondItem="fPl-yO-Yh3" secondAttribute="top" id="TIz-rc-Hx3"/>
                 <constraint firstAttribute="trailing" secondItem="XCE-KC-Di1" secondAttribute="trailing" id="ZGe-vY-sC7"/>
-                <constraint firstAttribute="centerX" secondItem="dT4-Xh-GCh" secondAttribute="centerX" id="bCk-b4-Pc5"/>
-                <constraint firstAttribute="bottom" secondItem="dT4-Xh-GCh" secondAttribute="bottom" constant="120" id="ykB-zY-Em7"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>

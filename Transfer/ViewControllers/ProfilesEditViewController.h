@@ -1,5 +1,5 @@
 //
-//  PaymentProfileViewController.h
+//  ProfilesEditViewController.h
 //  Transfer
 //
 //  Created by Jaanus Siim on 6/14/13.
@@ -9,7 +9,7 @@
 #import "TabbedHeaderViewController.h"
 #import "ObjectModel.h"
 
-@interface PaymentProfileViewController : TabbedHeaderViewController
+@interface ProfilesEditViewController : TabbedHeaderViewController
 
 @property (nonatomic) BOOL allowProfileSwitch;
 @property (nonatomic, strong) ObjectModel* objectModel;

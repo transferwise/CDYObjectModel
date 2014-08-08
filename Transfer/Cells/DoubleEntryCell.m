@@ -49,8 +49,29 @@ NSInteger const kSecondTextField = 2;
 	self.secondTextField.autocapitalizationType = capitalizationType;
 }
 
-#pragma mark - Multiple Entry Cell
+- (void)updateConstraints
+{
+	[super updateConstraints];
+	
+	//make textfields half the width of the cell minus separators
+	NSLayoutConstraint *firstWidth = [NSLayoutConstraint constraintWithItem:self.firstTextField
+																 attribute:NSLayoutAttributeWidth
+																 relatedBy:NSLayoutRelationEqual
+																	toItem:self.contentView
+																 attribute:NSLayoutAttributeWidth
+																multiplier:.5f
+																  constant:-30];
+	NSLayoutConstraint *secondWidth = [NSLayoutConstraint constraintWithItem:self.secondTextField
+																 attribute:NSLayoutAttributeWidth
+																 relatedBy:NSLayoutRelationEqual
+																	toItem:self.contentView
+																 attribute:NSLayoutAttributeWidth
+																multiplier:.5f
+																  constant:-30];
+	[self.contentView addConstraints:@[firstWidth, secondWidth]];
+}
 
+#pragma mark - Multiple Entry Cell
 - (void)configureWithTitle:(NSString *)title
 					 value:(NSString *)value
 				 secondTitle:(NSString *)secondTitle
@@ -88,7 +109,7 @@ NSInteger const kSecondTextField = 2;
 
 - (BOOL)editable
 {
-	return self.firstTextField.enabled || self.secondTextField.enabled;
+	return self.firstTextField.enabled && self.secondTextField.enabled;
 }
 
 - (void)setEditable:(BOOL)value
@@ -104,6 +125,11 @@ NSInteger const kSecondTextField = 2;
 #pragma mark - Navigation between fields
 - (void)activate
 {
+	if (!self.editable)
+	{
+		return;
+	}
+	
 	if (self.firstTextField.enabled)
 	{
 		[self.firstTextField becomeFirstResponder];

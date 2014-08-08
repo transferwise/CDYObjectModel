@@ -22,6 +22,7 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 @property (nonatomic, assign) BOOL valueModified;
 @property (nonatomic, strong) IBOutlet UIButton *errorButton;
 @property (nonatomic, copy) NSString *validationIssue;
+@property (nonatomic, strong) UIView* maskView;
 
 - (IBAction)errorButtonTapped;
 
@@ -151,6 +152,32 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 	NSCharacterSet *unwantedCharacters = [alphanumerics invertedSet];
 	
     return ([value rangeOfCharacterFromSet:unwantedCharacters].location == NSNotFound);
+}
+
+- (void)setGrayedOut:(BOOL)isGrayedOut
+{
+	if (isGrayedOut)
+	{
+		if (!self.maskView)
+		{
+			self.maskView = [[UIView alloc] initWithFrame:self.contentView.frame];
+			self.maskView.backgroundColor = [UIColor colorFromStyle:@"white"];
+			self.maskView.alpha = 0.5f;
+		}
+		
+		[self.contentView addSubview:self.maskView];
+		[self.contentView bringSubviewToFront:self.maskView];
+	}
+	else
+	{
+		if (self.maskView && self.maskView.superview)
+		{
+			[self.maskView removeFromSuperview];
+		}
+	}
+	
+	self.editable = !isGrayedOut;
+	self.userInteractionEnabled = !isGrayedOut;
 }
 
 @end
