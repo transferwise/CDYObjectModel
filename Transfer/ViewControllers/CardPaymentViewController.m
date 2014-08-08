@@ -29,6 +29,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if(IPAD)
+    {
+        self.webView.scrollView.contentInset = UIEdgeInsetsMake(30,0,0,0);
+    }
     // Do any additional setup after loading the view from its nib.
 }
 

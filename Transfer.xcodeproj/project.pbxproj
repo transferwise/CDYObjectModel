@@ -55,6 +55,8 @@
 		38062177196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */; };
 		3813791D1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */; };
 		3813791E1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */; };
+		3827407F199529F0009FAB97 /* CardPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3827407E199529F0009FAB97 /* CardPaymentViewController~ipad.xib */; };
+		38274080199529F0009FAB97 /* CardPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3827407E199529F0009FAB97 /* CardPaymentViewController~ipad.xib */; };
 		3831AA37194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
 		3831AA38194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
 		3831AA39194B31A200B3EE5C /* WhyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA35194B31A200B3EE5C /* WhyViewController.m */; };
@@ -854,6 +856,7 @@
 		3800220B192F5774009B1D53 /* CurrencyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencyCell.xib; sourceTree = "<group>"; };
 		38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransferTypeSelectionHeader~ipad.xib"; sourceTree = "<group>"; };
 		3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ConfirmPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
+		3827407E199529F0009FAB97 /* CardPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CardPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
 		3831AA32194B31A200B3EE5C /* TransparentModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentModalViewController.h; sourceTree = "<group>"; };
 		3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentModalViewController.m; sourceTree = "<group>"; };
 		3831AA34194B31A200B3EE5C /* WhyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhyViewController.h; sourceTree = "<group>"; };
@@ -2361,6 +2364,7 @@
 				EAD3648917E2F6EF001EFE40 /* CardPaymentViewController.h */,
 				EAD3648A17E2F6EF001EFE40 /* CardPaymentViewController.m */,
 				EAD3648B17E2F6EF001EFE40 /* CardPaymentViewController.xib */,
+				3827407E199529F0009FAB97 /* CardPaymentViewController~ipad.xib */,
 				EAC1051717607C4600B3B018 /* ClaimAccountViewController.h */,
 				EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */,
 				EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */,
@@ -2710,6 +2714,7 @@
 				385669141980FB0500BC4230 /* PlainPresentationCell.xib in Resources */,
 				380021FA192F43EA009B1D53 /* TabCell.xib in Resources */,
 				38B0930C1951FA2A00315BE4 /* DataEntryDefaultHeader.xib in Resources */,
+				38274080199529F0009FAB97 /* CardPaymentViewController~ipad.xib in Resources */,
 				EA31A1E817DDB29B00F937F7 /* TSAlertViewMessageListViewShadow.png in Resources */,
 				385AC114198FE52E0088DCD6 /* NoRefCurrencyMessages.plist in Resources */,
 				385A668E1978178500D00D1F /* ContactsViewController~ipad.xib in Resources */,
@@ -2800,6 +2805,7 @@
 				EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */,
 				EA84056917F0A40B00F44916 /* spinner.html in Resources */,
 				EAD3967C171BD51400F6D011 /* TransactionsViewController.xib in Resources */,
+				3827407F199529F0009FAB97 /* CardPaymentViewController~ipad.xib in Resources */,
 				EA0523F9191B5AFC00B32899 /* RefundDetailsViewController.xib in Resources */,
 				38AD6EEE19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib in Resources */,
 				EAD39681171BD57000F6D011 /* ContactsViewController.xib in Resources */,
@@ -3869,7 +3875,7 @@
 					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = "Transfer/Transfer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
@@ -3878,8 +3884,8 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F4827BFF-6C5A-4B47-8051-4EE276CCD33B";
-				TARGETED_DEVICE_FAMILY = 1;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AFCB2A82-4827-48B4-86F2-F07BC6282CC4";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3904,7 +3910,7 @@
 					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = "Transfer/Transfer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
@@ -3914,7 +3920,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E8AFB171-D169-45C7-9517-B5FE6005D2DA";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
