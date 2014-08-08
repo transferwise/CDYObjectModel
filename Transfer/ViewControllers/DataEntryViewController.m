@@ -15,7 +15,7 @@
 #import "MOMStyle.h"
 #import "MultipleEntryCell.h"
 
-@interface DataEntryViewController() <UITextFieldDelegate>
+@interface DataEntryViewController()
 @end
 
 @implementation DataEntryViewController

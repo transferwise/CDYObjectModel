@@ -35,6 +35,34 @@
 #import "PlainPresentationCell.h"
 #import "MOMStyle.h"
 
+@interface ExtraTextfieldDelegate : NSObject<UITextFieldDelegate>
+
+@property (nonatomic,weak) UITextField *referenceField;
+@property (nonatomic,weak) UITextField *emailField;
+
+@end
+
+@implementation ExtraTextfieldDelegate
+
+#pragma mark - textfield delegate
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(self.referenceField == textField)
+    {
+        if(!self.emailField.hidden)
+        {
+            [self.emailField becomeFirstResponder];
+            return YES;
+        }
+    }
+    
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
+@end
 
 
 @interface ConfirmPaymentViewController ()
@@ -61,6 +89,7 @@
 //iPad
 @property (nonatomic,weak) IBOutlet UITextField *referenceField;
 @property (nonatomic,weak) IBOutlet UITextField *emailField;
+@property (nonatomic,strong) ExtraTextfieldDelegate *nonCellTextfieldDelegate;
 @property (weak, nonatomic) IBOutlet UIView *separatorLine;
 
 - (IBAction)footerButtonPressed:(id)sender;
@@ -157,9 +186,20 @@
             cell.backgroundColor = [UIColor clearColor];
         }
         
+        self.nonCellTextfieldDelegate = [[ExtraTextfieldDelegate alloc] init];
+        self.nonCellTextfieldDelegate.referenceField = self.referenceField;
+        self.nonCellTextfieldDelegate.emailField = self.emailField;
+        self.referenceField.delegate = self.nonCellTextfieldDelegate;
+        self.emailField.delegate = self.nonCellTextfieldDelegate;
         if (payment.targetCurrency.recipientEmailRequiredValue && [payment.recipient.email length] == 0)
         {
             self.emailField.hidden = NO;
+            self.emailField.returnKeyType = UIReturnKeyDone;
+            self.referenceField.returnKeyType = UIReturnKeyNext;
+        }
+        else
+        {
+            self.referenceField.returnKeyType = UIReturnKeyDone;
         }
         
         CGRect newFrame = self.separatorLine.frame;
@@ -390,11 +430,20 @@
     
     PendingPayment *input = [self.objectModel pendingPayment];
     
-    NSString *reference = [self.referenceCell value];
+    NSString *reference = IPAD?self.referenceField.text:[self.referenceCell value];
 	
     [input setReference:reference];
     
-    NSString *email = self.receiverEmailCell?[self.receiverEmailCell value]:self.payment.recipient.email;
+    NSString *email;
+    if(IPAD)
+    {
+        email =  (!self.emailField.hidden)?self.emailField.text:self.payment.recipient.email;
+    }
+    else
+    {
+        email = self.receiverEmailCell?[self.receiverEmailCell value]:self.payment.recipient.email;
+    }
+    
     if ([email hasValue]) {
         [input setRecipientEmail:email];
     }
