@@ -490,7 +490,7 @@
     }
     else
     {
-        [super keyboardWillHide:note];
+        [super keyboardWillShow:note];
     }
 }
 
