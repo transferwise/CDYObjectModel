@@ -11,9 +11,6 @@
 
 @interface ProfilesEditViewController : TabbedHeaderViewController
 
-@property (nonatomic) BOOL allowProfileSwitch;
 @property (nonatomic, strong) ObjectModel* objectModel;
-@property (nonatomic, strong) NSString* buttonTitle;
-@property (nonatomic, strong) id profileValidation;
 
 @end

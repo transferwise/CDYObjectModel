@@ -15,6 +15,9 @@
 #import "TransferwiseClient.h"
 #import "NewPaymentViewController.h"
 #import "ConnectionAwareViewController.h"
+#import "PersonalProfileCommitter.h"
+#import "BusinessProfileCommitter.h"
+#import "GoogleAnalytics.h"
 
 @interface ProfilesEditViewController ()
 
@@ -31,53 +34,36 @@
 	self.showFullWidth = YES;
 	
 	[self initControllers];
-	NSArray *controllers, *titles;
 	
-	if (self.allowProfileSwitch && [Credentials userLoggedIn])
-	{
-		controllers = @[self.personalProfile, self.businessProfile];
-		titles = @[NSLocalizedString(@"profile.selection.text.personal.profile", nil), NSLocalizedString(@"profile.selection.text.business.profile", nil)];
-	}
-	else
-	{
-		controllers = @[self.personalProfile];
-		titles = @[NSLocalizedString(@"profile.selection.text.personal.profile", nil)];
-
-	}
+	NSArray *controllers = @[self.personalProfile, self.businessProfile];
+	NSArray *titles = @[NSLocalizedString(@"profile.edit.personal", nil), NSLocalizedString(@"profile.edit.business", nil)];
 	
 	[super configureWithControllers:controllers
 							 titles:titles
-						actionTitle:self.buttonTitle ? self.buttonTitle :  NSLocalizedString(@"confirm.payment.footer.button.title", nil)
+						actionTitle:NSLocalizedString(@"profile.edit.save", nil)
 						actionStyle:@"greenButton"
 					   actionShadow:@"greenShadow"
 					 actionProgress:0.3f];
     [super viewDidLoad];
 	
-	[self setTitle:NSLocalizedString(@"personal.profile.controller.title", nil)];
-	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
+	[self setTitle:NSLocalizedString(@"profile.edit.title", nil)];
+	[self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(logOut)]];
 }
 
 - (void)initControllers
 {
 	self.personalProfile = [[PersonalProfileViewController alloc] init];
 	self.personalProfile.objectModel = self.objectModel;
-	self.personalProfile.allowProfileSwitch = self.allowProfileSwitch;
+	self.personalProfile.allowProfileSwitch = NO;
+	PersonalProfileCommitter *personalValidation = [[PersonalProfileCommitter alloc] init];
+	personalValidation.objectModel = self.objectModel;
+	self.personalProfile.profileValidation = personalValidation;
 	
-	if(self.profileValidation)
-	{
-		self.personalProfile.profileValidation = self.profileValidation;
-	}
-	
-	if (self.allowProfileSwitch)
-	{
-		self.businessProfile = [[BusinessProfileViewController alloc] init];
-		self.businessProfile.objectModel = self.objectModel;
-		
-		if(self.profileValidation)
-		{
-			self.businessProfile.profileValidation = self.profileValidation;
-		}
-	}
+	self.businessProfile = [[BusinessProfileViewController alloc] init];
+	self.businessProfile.objectModel = self.objectModel;
+	BusinessProfileCommitter *businessValidation = [[BusinessProfileCommitter alloc] init];
+	businessValidation.objectModel = self.objectModel;
+	self.businessProfile.profileValidation = businessValidation;
 }
 
 - (void)actionTappedWithController:(UIViewController *)controller atIndex:(NSUInteger)index
@@ -89,6 +75,18 @@
 	else if(controller == self.businessProfile)
 	{
 		[self.businessProfile validateProfile];
+	}
+}
+
+- (void)willSelectViewController:(UIViewController *)controller atIndex:(NSUInteger)index
+{
+	if (controller == self.personalProfile)
+	{
+		[[GoogleAnalytics sharedInstance] sendScreen:@"Personal profile"];
+	}
+	else if(controller == self.businessProfile)
+	{
+		//Not tracked
 	}
 }
 

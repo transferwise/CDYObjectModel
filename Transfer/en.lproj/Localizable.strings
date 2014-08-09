@@ -266,6 +266,10 @@ It can take up to 2 working days.";
 "profile.dob.day" = "DD";
 "profile.dob.month" = "MM";
 "profile.dob.year" = "YYYY";
+"profile.edit.title" = "You";
+"profile.edit.business" = "Business profile";
+"profile.edit.personal" = "Personal profile";
+"profile.edit.save" = "Save";
 
 "recipient.controller.add.button.title" = "Add";
 "recipient.controller.add.mode.title" = "Add recipient";
