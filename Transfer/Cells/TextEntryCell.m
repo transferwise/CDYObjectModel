@@ -64,7 +64,7 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 - (void)setEditable:(BOOL)editable
 {
     [self.entryField setEnabled:editable];
-    [self.entryField setTextColor:(editable ? [UIColor colorFromStyle:self.entryField.fontStyle] : [UIColor disabledEntryTextColor])];
+    [TextEntryCell setTextColor:self.entryField editable:editable];
 }
 
 - (BOOL)editable
@@ -178,6 +178,11 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 	
 	self.editable = !isGrayedOut;
 	self.userInteractionEnabled = !isGrayedOut;
+}
+
++ (void)setTextColor:(UITextField *)textField editable:(BOOL)editable
+{
+	[textField setTextColor:(editable ? [UIColor colorFromStyle:textField.fontStyle] : [UIColor colorFromStyle:@"Greygory"])];
 }
 
 @end

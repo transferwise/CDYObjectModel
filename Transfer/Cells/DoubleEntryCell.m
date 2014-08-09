@@ -115,11 +115,13 @@ NSInteger const kSecondTextField = 2;
 - (void)setEditable:(BOOL)value
 {
 	self.firstTextField.enabled = value;
+	[TextEntryCell setTextColor:self.firstTextField editable:value];
 }
 
 - (void)setSecondEditable:(BOOL)value
 {
 	self.secondTextField.enabled = value;
+	[TextEntryCell setTextColor:self.secondTextField editable:value];
 }
 
 #pragma mark - Navigation between fields
