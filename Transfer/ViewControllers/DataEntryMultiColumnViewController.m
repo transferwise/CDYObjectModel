@@ -377,14 +377,14 @@
     //Lots of magic numbers here to match designs. Not sure what to do...
     if(UIInterfaceOrientationIsPortrait(orientation))
     {
-        self.firstColumnLeftMargin.constant = 204.0f;        
-        self.secondColumnLeftEdgeConstraint.constant = -360;
+        self.firstColumnLeftMargin.constant = 194.0f;
+        self.secondColumnLeftEdgeConstraint.constant = -380;
         self.secondColumnTopConstraint.constant = self.firstColumnHeightConstraint.constant + 60.0f;
         
     }
     else
     {
-        self.firstColumnLeftMargin.constant = 100.0f;
+        self.firstColumnLeftMargin.constant = 80.0f;
         self.secondColumnLeftEdgeConstraint.constant = 100.0f;
         self.secondColumnTopConstraint.constant = 0.0f;
     }

@@ -162,7 +162,7 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 		{
 			self.maskView = [[UIView alloc] initWithFrame:self.contentView.frame];
 			self.maskView.backgroundColor = [UIColor colorFromStyle:@"white"];
-			self.maskView.alpha = 0.6f;
+			self.maskView.alpha = 0.5f;
 		}
 		
 		[self.contentView addSubview:self.maskView];

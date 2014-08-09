@@ -35,6 +35,34 @@
 #import "PlainPresentationCell.h"
 #import "MOMStyle.h"
 
+@interface ExtraTextfieldDelegate : NSObject<UITextFieldDelegate>
+
+@property (nonatomic,weak) UITextField *referenceField;
+@property (nonatomic,weak) UITextField *emailField;
+
+@end
+
+@implementation ExtraTextfieldDelegate
+
+#pragma mark - textfield delegate
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(self.referenceField == textField)
+    {
+        if(!self.emailField.hidden)
+        {
+            [self.emailField becomeFirstResponder];
+            return YES;
+        }
+    }
+    
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
+@end
 
 
 @interface ConfirmPaymentViewController ()
@@ -45,9 +73,9 @@
 
 @property (nonatomic, strong) PlainPresentationCell *yourDepositCell;
 @property (nonatomic, strong) PlainPresentationCell *exchangedToCell;
-@property (nonatomic, strong) PlainPresentationCell *senderNameCell;
 @property (nonatomic, strong) PlainPresentationCell *senderEmailCell;
-@property (nonatomic, strong) PlainPresentationCell *receiverNameCell;
+@property (nonatomic, strong) PlainPresentationCell *receiverAmountCell;
+@property (nonatomic, strong) PlainPresentationCell *estimatedDeliveryCell;
 @property (nonatomic, strong) NSArray *receiverFieldCells;
 @property (nonatomic, strong) TextEntryCell *referenceCell;
 @property (nonatomic, strong) TextEntryCell *receiverEmailCell;
@@ -57,6 +85,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *footerLabel;
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
+
+//iPad
+@property (nonatomic,weak) IBOutlet UITextField *referenceField;
+@property (nonatomic,weak) IBOutlet UITextField *emailField;
+@property (nonatomic,strong) ExtraTextfieldDelegate *nonCellTextfieldDelegate;
+@property (weak, nonatomic) IBOutlet UIView *separatorLine;
 
 - (IBAction)footerButtonPressed:(id)sender;
 
@@ -85,44 +119,101 @@
 
 - (void)createContent
 {
-    NSMutableArray *receiverCells = [NSMutableArray array];
     
-    NSArray *fieldCells = [self buildFieldCells];
-    [self setReceiverFieldCells:fieldCells];
-    [receiverCells addObjectsFromArray:fieldCells];
-
     
-    NSMutableArray *transferCells = [NSMutableArray array];
-    PlainPresentationCell *yourDepositCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
-    [self setYourDepositCell:yourDepositCell];
-    [transferCells addObject:yourDepositCell];
-    
-    PlainPresentationCell *exchangedToCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
-    [self setExchangedToCell:exchangedToCell];
-    [transferCells addObject:exchangedToCell];
     Payment *payment = self.payment;
-    if (payment.targetCurrency.recipientEmailRequiredValue && [payment.recipient.email length] == 0)
+    
+    NSMutableArray *cells = [NSMutableArray array];
+
+    if(!IPAD)
     {
-        TextEntryCell *receiverEmailCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
-        [self setReceiverEmailCell:receiverEmailCell];
-        [receiverEmailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
-        [receiverEmailCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
-        [transferCells addObject:receiverEmailCell];
+        NSArray *fieldCells = [self buildFieldCells];
+        [self setReceiverFieldCells:fieldCells];
+        [cells addObjectsFromArray:fieldCells];
+        
+
+        PlainPresentationCell *yourDepositCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
+        [self setYourDepositCell:yourDepositCell];
+        yourDepositCell.backgroundColor = [UIColor clearColor];
+        [cells addObject:yourDepositCell];
+        
+        PlainPresentationCell *exchangedToCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
+        [self setExchangedToCell:exchangedToCell];
+        exchangedToCell.backgroundColor = [UIColor clearColor];
+        [cells addObject:exchangedToCell];
+        
+        TextEntryCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+        referenceCell.maxValueLength = [self getReferenceMaxLength:self.payment];
+        referenceCell.validateAlphaNumeric = YES;
+        [self setReferenceCell:referenceCell];
+        [referenceCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
+        [cells addObject:referenceCell];
+        
+        if ([payment.recipient.email length] == 0)
+        {
+            TextEntryCell *receiverEmailCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+            [self setReceiverEmailCell:receiverEmailCell];
+            [receiverEmailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
+            [receiverEmailCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
+            [cells addObject:receiverEmailCell];
+        }
+    }
+    else
+    {
+      
+        PlainPresentationCell *yourDepositCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
+        [self setYourDepositCell:yourDepositCell];
+        [cells addObject:yourDepositCell];
+
+        PlainPresentationCell *receiverAmountCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
+        [self setReceiverAmountCell:receiverAmountCell];
+        [cells addObject:receiverAmountCell];
+        
+        PlainPresentationCell *deliveryDateCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
+        [self setEstimatedDeliveryCell:deliveryDateCell];
+        [cells addObject:deliveryDateCell];
+        
+        NSArray *fieldCells = [self buildFieldCells];
+        [self setReceiverFieldCells:fieldCells];
+        [cells addObjectsFromArray:fieldCells];
+      
+        PlainPresentationCell *exchangedToCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
+        [self setExchangedToCell:exchangedToCell];
+        [cells addObject:exchangedToCell];
+        
+        for(UITableView* cell in cells)
+        {
+            cell.backgroundColor = [UIColor clearColor];
+        }
+        
+        self.nonCellTextfieldDelegate = [[ExtraTextfieldDelegate alloc] init];
+        self.nonCellTextfieldDelegate.referenceField = self.referenceField;
+        self.nonCellTextfieldDelegate.emailField = self.emailField;
+        self.referenceField.delegate = self.nonCellTextfieldDelegate;
+        self.emailField.delegate = self.nonCellTextfieldDelegate;
+        if ([payment.recipient.email length] == 0)
+        {
+            self.emailField.hidden = NO;
+            self.emailField.returnKeyType = UIReturnKeyDone;
+            self.referenceField.returnKeyType = UIReturnKeyNext;
+        }
+        else
+        {
+            self.referenceField.returnKeyType = UIReturnKeyDone;
+        }
+        
+        CGRect newFrame = self.separatorLine.frame;
+        newFrame.size.height = 1.0/[[UIScreen mainScreen] scale];
+        self.separatorLine.frame = newFrame;
+        self.separatorLine.bgStyle = @"SeparatorGrey";
     }
     
-    TextEntryCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
-	referenceCell.maxValueLength = [self getReferenceMaxLength:self.payment];
-	referenceCell.validateAlphaNumeric = YES;
-	[self setReferenceCell:referenceCell];
-    [referenceCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
-    [transferCells addObject:referenceCell];
 
     NSMutableArray *presented = [NSMutableArray array];
-    [presented addObject:receiverCells];
-    [presented addObject:transferCells];
-
+    [presented addObject:cells];
+    
     [self setPresentedSectionCells:presented];
-
+    
     [self.actionButton setTitle:self.footerButtonTitle forState:UIControlStateNormal];
 }
 
@@ -133,6 +224,7 @@
     for (TypeFieldValue *value in recipient.fieldValues) {
         PlainPresentationCell *cell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
         [cell configureWithTitle:value.valueForField.title text:[value presentedValue]];
+        cell.backgroundColor = [UIColor clearColor];
         [cells addObject:cell];
     }
     return [NSArray arrayWithArray:cells];
@@ -156,6 +248,36 @@
 
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    [self setupForOrientation:self.interfaceOrientation];
+}
+
+-(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+        [self setupForOrientation:toInterfaceOrientation];
+}
+
+-(void)setupForOrientation:(UIInterfaceOrientation)orientation
+{
+    if(IPAD)
+    {
+    CGRect newHeaderFrame = self.headerView.frame;
+    CGRect newFooterFrame = self.footerView.frame;
+    if UIInterfaceOrientationIsLandscape(orientation)
+    {
+        newHeaderFrame.size.height = 60.0f;
+        newFooterFrame.size.height = 224.0f;
+    }
+    else
+    {
+        newHeaderFrame.size.height = 188.0f;
+        newFooterFrame.size.height = 352.0f;
+    }
+    self.headerView.frame = newHeaderFrame;
+    self.footerView.frame = newFooterFrame;
+    self.tableView.tableHeaderView = self.headerView;
+    self.tableView.tableFooterView = self.footerView;
+    }
 }
 
 - (void)fillDataCells
@@ -166,29 +288,39 @@
     
     [self.exchangedToCell configureWithTitle:NSLocalizedString(@"confirm.payment.exchangerate.title.label", nil) text:[NSString stringWithFormat:@"%f",payment.conversionRateValue]];
 
-
     
-    [self fillHeaderText];
-   
-    //Resize header to fit text
-    [self resizeView:self.headerView toFitLabel:self.headerLabel];
-
-    [self fillFooterText];
-    //Resize footer to fit text
-    [self resizeView:self.footerView toFitLabel:self.footerLabel];
+    if(!IPAD)
+    {
+        [self fillHeaderText];
+        
+        //Resize header to fit text
+        [self resizeView:self.headerView toFitLabel:self.headerLabel];
+        self.tableView.tableHeaderView = self.headerView;
+        
+        [self fillFooterText];
+        //Resize footer to fit text
+        [self resizeView:self.footerView toFitLabel:self.footerLabel];
+        self.tableView.tableFooterView = self.footerView;
     
-    
-    [self.senderNameCell configureWithTitle:NSLocalizedString(@"confirm.payment.sender.marker.label", nil) text:[self getSenderName:payment]];
-    
-    [self.receiverNameCell configureWithTitle:NSLocalizedString(@"confirm.payment.recipient.marker.label", nil) text:[payment.recipient name]];
-
-    
-    [self.receiverEmailCell setEditable:YES];
-    [self.receiverEmailCell configureWithTitle:NSLocalizedString(@"confirm.payment.email.label", nil) value:[payment.recipient email]];
-
-    [self.referenceCell setEditable:YES];
-    [self.referenceCell configureWithTitle:NSLocalizedString(@"confirm.payment.reference.label", nil) value:@""];
-	[self.referenceCell.entryField setAutocorrectionType:UITextAutocorrectionTypeDefault];
+        [self.receiverEmailCell setEditable:YES];
+        [self.receiverEmailCell configureWithTitle:NSLocalizedString(@"confirm.payment.email.label", nil) value:[payment.recipient email]];
+        
+        [self.referenceCell setEditable:YES];
+        [self.referenceCell configureWithTitle:NSLocalizedString(@"confirm.payment.reference.label", nil) value:@""];
+        [self.referenceCell.entryField setAutocorrectionType:UITextAutocorrectionTypeDefault];
+    }
+    else
+    {
+        [self.receiverAmountCell configureWithTitle:[NSString stringWithFormat:NSLocalizedString(self.payment.isFixedAmountValue?@"confirm.payment.recipient.fixed.title.label":@"confirm.payment.recipient.title.label", nil),self.payment.recipient.name] text:[self.payment payOutStringWithCurrency]];
+        
+        NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"EEEE dd/MM/YYYY 'at' ha";
+        NSString *dateString = [dateFormatter stringFromDate:self.payment.estimatedDelivery];
+        [self.estimatedDeliveryCell configureWithTitle:NSLocalizedString(@"confirm.payment.delivery.date.message",nil) text:dateString];
+        
+        self.referenceField.placeholder = NSLocalizedString(@"confirm.payment.reference.label", nil);
+        self.emailField.placeholder = NSLocalizedString(@"confirm.payment.email.label", nil);
+    }
 }
 
 -(void)resizeView:(UIView*)view toFitLabel:(UILabel*)label
@@ -229,13 +361,16 @@
 -(void)fillHeaderText
 {
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"EEEE d MMMM YYYY 'at' ha";
+    dateFormatter.dateFormat = @"EEEE dd/MM/YYYY 'at' ha";
     NSString *dateString = [dateFormatter stringFromDate:self.payment.estimatedDelivery];
     NSString *amountString = [NSString stringWithFormat:NSLocalizedString(self.payment.isFixedAmountValue?@"confirm.payment.fixed.target.sum.format":@"confirm.payment.target.sum.format",nil),[self.payment payOutStringWithCurrency]];
     NSString *headerText = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.header.format",nil),dateString,amountString,self.payment.recipient.name];
     NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:headerText];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"darkfont"] range:[headerText rangeOfString:amountString]];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"darkfont"] range:[headerText rangeOfString:self.payment.recipient.name]];
+    UIFont* boldText = [((MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"heavy.@17"]) font];
+    [attributedString addAttribute:NSFontAttributeName value:boldText range:[headerText rangeOfString:amountString]];
+    [attributedString addAttribute:NSFontAttributeName value:boldText range:[headerText rangeOfString:self.payment.recipient.name]];
     self.headerLabel.attributedText = attributedString;
 }
 
@@ -291,7 +426,6 @@
     return attributedString;
 }
 
-
 -(void)sendForValidation
 {
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
@@ -299,11 +433,20 @@
     
     PendingPayment *input = [self.objectModel pendingPayment];
     
-    NSString *reference = [self.referenceCell value];
+    NSString *reference = IPAD?self.referenceField.text:[self.referenceCell value];
 	
     [input setReference:reference];
     
-    NSString *email = self.receiverEmailCell?[self.receiverEmailCell value]:self.payment.recipient.email;
+    NSString *email;
+    if(IPAD)
+    {
+        email =  (!self.emailField.hidden)?self.emailField.text:self.payment.recipient.email;
+    }
+    else
+    {
+        email = self.receiverEmailCell?[self.receiverEmailCell value]:self.payment.recipient.email;
+    }
+    
     if ([email hasValue]) {
         [input setRecipientEmail:email];
     }
@@ -324,7 +467,51 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60.0f;
+    return IPAD?70.0f:60.0f;
+}
+
+-(void)keyboardWillShow:(NSNotification *)note
+{
+    if(IPAD)
+    {
+        CGRect newframe = [self.view.window convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] toView:self.view];
+        NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:duration];
+        [UIView setAnimationCurve:curve];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, newframe.size.height, 0);
+        self.tableView.contentOffset = CGPointMake(0, self.tableView.contentSize.height + newframe.size.height - self.tableView.frame.size.height);
+        
+        [UIView commitAnimations];
+    }
+    else
+    {
+        [super keyboardWillShow:note];
+    }
+}
+
+-(void)keyboardWillHide:(NSNotification *)note
+{
+    if(IPAD)
+    {
+        NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:duration];
+        [UIView setAnimationCurve:curve];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        self.tableView.contentInset = UIEdgeInsetsZero;
+         [UIView commitAnimations];
+    }
+    else
+    {
+        [super keyboardWillHide:note];
+    }
 }
 
 @end

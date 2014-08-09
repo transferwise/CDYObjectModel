@@ -7,56 +7,65 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConfirmPaymentViewController">
             <connections>
                 <outlet property="actionButton" destination="9" id="RSO-k8-RdP"/>
-                <outlet property="footerLabel" destination="GCt-k6-Qdm" id="Ors-OX-rsu"/>
+                <outlet property="emailField" destination="zIQ-iI-qWr" id="HLM-C6-a2J"/>
                 <outlet property="footerView" destination="y2R-Ww-IVZ" id="5GA-9O-HhX"/>
-                <outlet property="headerLabel" destination="SMt-BP-CVw" id="rcM-yJ-8g4"/>
                 <outlet property="headerView" destination="fLO-8z-QUV" id="YAV-Eu-ah0"/>
+                <outlet property="referenceField" destination="28e-54-Me7" id="DSb-Ei-lbZ"/>
+                <outlet property="separatorLine" destination="8na-Lo-3qJ" id="qb7-bg-ywn"/>
                 <outlet property="tableView" destination="4" id="s9X-pC-vHy"/>
                 <outlet property="view" destination="8" id="TqL-Wy-YWu"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="8">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bouncesZoom="NO" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="4" customClass="DismissKeyboardTableView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="435"/>
+                <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bouncesZoom="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="4" customClass="DismissKeyboardTableView">
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <view key="tableHeaderView" contentMode="scaleToFill" id="fLO-8z-QUV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="60"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Estimated exchange ratE: 0.89595" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SMt-BP-CVw">
-                                <rect key="frame" x="10" y="20" width="300" height="20"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@17.corefont"/>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="LightBluehighlighted"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <view key="tableFooterView" contentMode="scaleToFill" id="y2R-Ww-IVZ">
-                        <rect key="frame" x="0.0" y="375" width="320" height="60"/>
+                        <rect key="frame" x="0.0" y="544" width="1024" height="224"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Estimated exchange ratE: 0.89595" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GCt-k6-Qdm">
-                                <rect key="frame" x="10" y="20" width="300" height="20"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@16.corefont"/>
-                                </userDefinedRuntimeAttributes>
-                            </label>
+                            <view contentMode="scaleToFill" id="Xib-Cd-d5y">
+                                <rect key="frame" x="0.0" y="56" width="1024" height="168"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="28e-54-Me7" customClass="FloatingLabelTextField">
+                                <rect key="frame" x="336" y="80" width="352" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="zIQ-iI-qWr" customClass="FloatingLabelTextField">
+                                <rect key="frame" x="336" y="150" width="352" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" id="8na-Lo-3qJ" userLabel="SeparatorLine">
+                                <rect key="frame" x="336" y="141" width="352" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="LightBluehighlighted"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="LightBluehighlighted"/>
@@ -66,9 +75,9 @@
                         <outlet property="delegate" destination="-1" id="7"/>
                     </connections>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9" customClass="GreenButton">
-                    <rect key="frame" x="0.0" y="435" width="320" height="45"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9" customClass="BlueRoundedButton">
+                    <rect key="frame" x="800" y="673" width="175" height="45"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="Button">

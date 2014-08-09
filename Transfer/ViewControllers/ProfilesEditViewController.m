@@ -26,7 +26,10 @@
 @implementation ProfilesEditViewController
 
 - (void)viewDidLoad
-{	
+{
+	self.showButtonForIpad = YES;
+	self.showFullWidth = YES;
+	
 	[self initControllers];
 	NSArray *controllers, *titles;
 	
