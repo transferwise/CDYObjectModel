@@ -56,15 +56,18 @@
 @property (nonatomic, strong) CountrySuggestionCellProvider* cellProvider;
 @property (nonatomic) CGFloat bottomInset;
 @property (nonatomic) BOOL isExistingEmail;
-@property (nonatomic, strong) UIView* footerView;
+@property (nonatomic, strong) IBOutlet UIView* footerView;
 @property (nonatomic) BOOL showingLogin;
 @property (nonatomic, strong) LoginHelper* loginHelper;
+@property (strong, nonatomic) IBOutlet UIButton *actionButton;
+@property (nonatomic, strong) NSString* actionButtonTitle;
 
 @end
 
 @implementation ProfileEditViewController
 
-- (id)initWithSource:(ProfileSource *)source quickValidation:(QuickProfileValidationOperation *)quickValidation
+- (id)initWithSource:(ProfileSource *)source
+	 quickValidation:(QuickProfileValidationOperation *)quickValidation
 {
     self = [super initWithNibName:@"ProfileEditViewController" bundle:nil];
     if (self)
@@ -75,6 +78,18 @@
 		
     }
     return self;
+}
+
+- (id)initWithSource:(ProfileSource *)source
+	 quickValidation:(QuickProfileValidationOperation *)quickValidation
+		 buttonTitle:(NSString *)buttonTitle
+{
+	self = [self initWithSource:source
+				quickValidation:quickValidation];
+	
+	self.actionButtonTitle = buttonTitle;
+	
+	return self;
 }
 
 - (void)viewDidLoad
@@ -192,14 +207,21 @@
 	//ipad does not need the footer views
 	if(!IPAD)
 	{
-		//iPhone only has one table
-		self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
-		if([self createSendAsBusinessCell])
+		if (self.actionButtonTitle)
 		{
-			[self.footerView setBackgroundColor:[UIColor colorFromStyle:@"lightBlueHighLighted"]];
+			[self.actionButton setTitle:self.actionButtonTitle forState:UIControlStateNormal];
+		}
+		else
+		{
+			self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
+			if([self createSendAsBusinessCell])
+			{
+				[self.footerView setBackgroundColor:[UIColor colorFromStyle:@"lightBlueHighLighted"]];
+			}
 		}
 		
 		self.footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+		//iPhone only has one table
 		[self.tableViews[0] setTableFooterView:self.footerView];
 	}
 }
@@ -216,6 +238,17 @@
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     [self suggestionTableDidStartEditing:self.suggestionTable];
     self.suggestionTable.alpha = 1.0f;
+}
+
+- (IBAction)actionTapped:(id)sender
+{
+	[self validateProfile];
+	//show sucess message
+	TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"profile.edit.save.success.header", nil)
+													   message:NSLocalizedString(@"profile.edit.save.success.message", nil)];
+	[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+	[alertView show];
+	return;
 }
 
 - (BOOL)createSendAsBusinessCell

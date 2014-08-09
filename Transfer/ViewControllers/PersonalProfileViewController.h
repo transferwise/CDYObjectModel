@@ -12,4 +12,6 @@
 
 @interface PersonalProfileViewController : ProfileEditViewController
 
+- (id)initWithActionButtonTitle:(NSString *)title;
+
 @end

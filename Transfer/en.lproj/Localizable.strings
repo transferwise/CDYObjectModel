@@ -270,6 +270,8 @@ It can take up to 2 working days.";
 "profile.edit.business" = "Business profile";
 "profile.edit.personal" = "Personal profile";
 "profile.edit.save" = "Save";
+"profile.edit.save.success.header" = "Success";
+"profile.edit.save.success.message" = "Your profile has been saved";
 
 "recipient.controller.add.button.title" = "Add";
 "recipient.controller.add.mode.title" = "Add recipient";

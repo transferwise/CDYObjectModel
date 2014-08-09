@@ -30,7 +30,6 @@
 
 - (void)viewDidLoad
 {
-	self.showButtonForIpad = YES;
 	self.showFullWidth = YES;
 	
 	[self initControllers];
@@ -39,11 +38,7 @@
 	NSArray *titles = @[NSLocalizedString(@"profile.edit.personal", nil), NSLocalizedString(@"profile.edit.business", nil)];
 	
 	[super configureWithControllers:controllers
-							 titles:titles
-						actionTitle:NSLocalizedString(@"profile.edit.save", nil)
-						actionStyle:@"greenButton"
-					   actionShadow:@"greenShadow"
-					 actionProgress:0.3f];
+							 titles:titles];
     [super viewDidLoad];
 	
 	[self setTitle:NSLocalizedString(@"profile.edit.title", nil)];
@@ -52,14 +47,14 @@
 
 - (void)initControllers
 {
-	self.personalProfile = [[PersonalProfileViewController alloc] init];
+	self.personalProfile = [[PersonalProfileViewController alloc] initWithActionButtonTitle:NSLocalizedString(@"profile.edit.save", nil)];
 	self.personalProfile.objectModel = self.objectModel;
 	self.personalProfile.allowProfileSwitch = NO;
 	PersonalProfileCommitter *personalValidation = [[PersonalProfileCommitter alloc] init];
 	personalValidation.objectModel = self.objectModel;
 	self.personalProfile.profileValidation = personalValidation;
 	
-	self.businessProfile = [[BusinessProfileViewController alloc] init];
+	self.businessProfile = [[BusinessProfileViewController alloc] initWithActionButtonTitle:NSLocalizedString(@"profile.edit.save", nil)];
 	self.businessProfile.objectModel = self.objectModel;
 	BusinessProfileCommitter *businessValidation = [[BusinessProfileCommitter alloc] init];
 	businessValidation.objectModel = self.objectModel;

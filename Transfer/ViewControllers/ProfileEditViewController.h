@@ -26,7 +26,11 @@
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic) BOOL allowProfileSwitch;
 
-- (id)initWithSource:(ProfileSource *)source quickValidation:(QuickProfileValidationOperation *)quickValidation;
+- (id)initWithSource:(ProfileSource *)source
+	 quickValidation:(QuickProfileValidationOperation *)quickValidation;
+- (id)initWithSource:(ProfileSource *)source
+	 quickValidation:(QuickProfileValidationOperation *)quickValidation
+		 buttonTitle:(NSString *)buttonTitle;
 
 - (void)validateProfile;
 

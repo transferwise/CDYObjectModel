@@ -43,6 +43,16 @@
     return self;
 }
 
+- (void)configureWithControllers:(NSArray *)controllers titles:(NSArray *)titles
+{
+	[self configureWithControllers:controllers
+							titles:titles
+					   actionTitle:nil
+					   actionStyle:nil
+					  actionShadow:nil
+					actionProgress:CGFLOAT_MIN];
+}
+
 - (void)configureWithControllers:(NSArray *)controllers
 						  titles:(NSArray *)titles
 					 actionTitle:(NSString *)actionTitle
@@ -55,22 +65,37 @@
 	self.controllers = controllers;
 	self.titles = titles;
 	
-	[self.actionButton setTitle:actionTitle forState:UIControlStateNormal];
-	
-	if(actionShadow && IPAD)
+	if(actionTitle)
 	{
-		[self.actionButton configureWithCompoundStyle:actionStyle
-										  shadowColor:actionShadow];
+		[self.actionButton setTitle:actionTitle forState:UIControlStateNormal];
+		
+		if (actionStyle)
+		{
+			if(actionShadow && IPAD)
+			{
+				[self.actionButton configureWithCompoundStyle:actionStyle
+												  shadowColor:actionShadow];
+			}
+			else
+			{
+				[self.actionButton configureWithCompoundStyle:actionStyle];
+			}
+		}
+		
+		if (actionProgress > CGFLOAT_MIN)
+		{
+			self.actionButton.progress = actionProgress;
+		}
+		
+		if (IPAD)
+		{
+			self.actionButton.addShadow = YES;
+		}
 	}
 	else
 	{
-		[self.actionButton configureWithCompoundStyle:actionStyle];
-	}
-	self.actionButton.progress = actionProgress;
-	
-	if (IPAD)
-	{
-		self.actionButton.addShadow = YES;
+		self.showButtonForIphone = NO;
+		self.showButtonForIpad = NO;
 	}
 	
 	[self attachControllers:self.controllers];
@@ -108,6 +133,7 @@
 	if (!IPAD && !self.showButtonForIphone)
 	{
 		self.buttonHeight.constant = 0;
+		[self.actionButton setHidden:YES];
 	}
 	
     self.containerView.translatesAutoresizingMaskIntoConstraints = NO;
