@@ -36,7 +36,8 @@
 - (id)init
 {
     self = [super initWithNibName:@"TabbedHeaderViewController" bundle:nil];
-    if (self) {
+    if (self)
+	{
         // Custom initialization
     }
     return self;
@@ -91,19 +92,22 @@
 		[self.tabView setSelectedIndex:0];
 	}
 	
-	if (IPAD)
+	//UI configuration
+	if (IPAD && self.showFullWidth)
 	{
-		if (self.showFullWidth)
-		{
-			//arbitrary large value, other constraints will catch it
-			self.contentWidth.constant = 2000;
-		}
-		
-		if (!self.showButtonForIpad)
-		{
-			self.buttonBottom.constant = 0;
-			self.buttonHeight.constant = 0;
-		}
+		//arbitrary large value, other constraints will catch it
+		self.contentWidth.constant = 2000;
+	}
+	
+	if (IPAD && !self.showButtonForIpad)
+	{
+		self.buttonBottom.constant = 0;
+		self.buttonHeight.constant = 0;
+	}
+	
+	if (!IPAD && !self.showButtonForIphone)
+	{
+		self.buttonHeight.constant = 0;
 	}
 	
     self.containerView.translatesAutoresizingMaskIntoConstraints = NO;
