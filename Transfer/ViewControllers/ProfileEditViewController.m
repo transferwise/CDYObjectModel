@@ -123,7 +123,8 @@
 
 - (void)createPresentationCells
 {
-    NSArray *presented = [self.profileSource presentedCells:[self createSendAsBusinessCell]];
+    NSArray *presented = [self.profileSource presentedCells:[self createSendAsBusinessCell]
+												 isExisting:self.isExisting];
 
     [self setCells:presented];
 	
@@ -465,12 +466,14 @@
 		
 		if (IPAD)
 		{
-			self.sectionCellsByTableView = [self.profileSource presentedCells:[self createSendAsBusinessCell]];
+			self.sectionCellsByTableView = [self.profileSource presentedCells:[self createSendAsBusinessCell]
+																   isExisting:self.isExisting];
 			[self unmaskAllCells];
 		}
 		else
 		{
-			self.sectionCellsByTableView = [self.profileSource presentedCells:[self createSendAsBusinessCell]];
+			self.sectionCellsByTableView = [self.profileSource presentedCells:[self createSendAsBusinessCell]
+																   isExisting:self.isExisting];
 		}
 		
 		[self reloadTableViews];

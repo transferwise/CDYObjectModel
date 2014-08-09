@@ -25,6 +25,7 @@
 @property (nonatomic, strong) id profileValidation;
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic) BOOL allowProfileSwitch;
+@property (nonatomic) BOOL isExisting;
 
 - (id)initWithSource:(ProfileSource *)source
 	 quickValidation:(QuickProfileValidationOperation *)quickValidation;
