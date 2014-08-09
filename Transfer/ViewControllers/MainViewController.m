@@ -201,6 +201,10 @@
     [self presentViewController:wrapper animated:shownBefore completion:nil];
 }
 
+- (void)loggedOut {
+    [self presentIntroductionController:YES];
+}
+
 - (void)revealController:(SWRevealViewController *)revealController didMoveToPosition:(FrontViewPosition)position {
     if (position != FrontViewPositionRight) {
         [self.revealTapView removeFromSuperview];
