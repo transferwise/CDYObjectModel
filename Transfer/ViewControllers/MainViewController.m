@@ -95,18 +95,12 @@
     contactsItem.icon = [UIImage imageNamed:@"ContactsIcon.png"];
     contactsItem.viewController = contactsController;
     
+	ProfilesEditViewController *profileController = [[ProfilesEditViewController alloc] init];
+	[profileController setObjectModel:self.objectModel];
     TabItem *profileItem = [TabItem new];
-    [profileItem setActionBlock:^(TabItem* item){
-		ProfilesEditViewController *controller = [[ProfilesEditViewController alloc] init];
-		[controller setObjectModel:self.objectModel];
-		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-        [navigationController setNavigationBarHidden:YES];
-        ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
-        [self presentViewController:wrapper animated:YES completion:nil];
-        return NO;
-    }];
     profileItem.title = NSLocalizedString(@"profile.controller.tabbar.title", nil);
     profileItem.icon = [UIImage imageNamed:@"tab_icon_profile"];
+	profileItem.viewController = profileController;
     
     TabViewController *tabController = [[TabViewController alloc] init];
     tabController.defaultSelectedColor = [UIColor colorFromStyle:@"TWBlue"];
