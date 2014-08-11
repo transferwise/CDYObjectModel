@@ -13,6 +13,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="300" height="59"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="by8-pz-jBI" userLabel="Background View">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="59"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlueHighlighted"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12">
                         <rect key="frame" x="20" y="19" width="44" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -29,16 +37,19 @@
                     </switch>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="by8-pz-jBI" firstAttribute="leading" secondItem="4c7-dF-p4O" secondAttribute="leading" id="KgB-qb-zCk"/>
                     <constraint firstAttribute="trailing" secondItem="4" secondAttribute="trailing" constant="20" symbolic="YES" id="MFa-zO-6NU"/>
                     <constraint firstItem="12" firstAttribute="leading" secondItem="4c7-dF-p4O" secondAttribute="leading" constant="20" symbolic="YES" id="ThO-d0-v9k"/>
+                    <constraint firstAttribute="bottom" secondItem="by8-pz-jBI" secondAttribute="bottom" id="dpb-kW-uFI"/>
+                    <constraint firstItem="by8-pz-jBI" firstAttribute="top" secondItem="4c7-dF-p4O" secondAttribute="top" id="h2G-9m-RHd"/>
                     <constraint firstAttribute="centerY" secondItem="4" secondAttribute="centerY" id="h6O-IC-eQf"/>
                     <constraint firstAttribute="centerY" secondItem="12" secondAttribute="centerY" id="oqN-UH-6Dh"/>
+                    <constraint firstAttribute="trailing" secondItem="by8-pz-jBI" secondAttribute="trailing" id="xUg-O8-4y7"/>
                 </constraints>
-                <userDefinedRuntimeAttributes>
-                    <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlueHighlighted"/>
-                </userDefinedRuntimeAttributes>
             </tableViewCellContentView>
             <connections>
+                <outlet property="backgroundLeading" destination="KgB-qb-zCk" id="4uO-k4-Wx6"/>
+                <outlet property="backgroundTrailing" destination="xUg-O8-4y7" id="Ch7-t7-YrA"/>
                 <outlet property="titleLabel" destination="12" id="hfH-K1-3r6"/>
                 <outlet property="toggleSwitch" destination="4" id="14"/>
             </connections>
