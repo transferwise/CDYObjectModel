@@ -61,6 +61,7 @@
 @property (nonatomic, strong) LoginHelper* loginHelper;
 @property (strong, nonatomic) IBOutlet UIButton *actionButton;
 @property (nonatomic, strong) NSString* actionButtonTitle;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *ipadFooterHeight;
 
 @end
 
@@ -225,6 +226,10 @@
 		self.footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		//iPhone only has one table
 		[self.tableViews[0] setTableFooterView:self.footerView];
+	}
+	else if(!self.showFooterViewForIpad)
+	{
+		self.ipadFooterHeight.constant = 0;
 	}
 }
 

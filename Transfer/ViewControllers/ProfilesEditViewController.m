@@ -61,6 +61,7 @@
 	self.personalProfile.profileValidation = personalValidation;
 	self.personalProfile.isExisting = YES;
 	self.personalProfile.showInsideTabControllerForIpad = YES;
+	self.personalProfile.showFooterViewForIpad = YES;
 	
 	self.businessProfile = [[BusinessProfileViewController alloc] initWithActionButtonTitle:NSLocalizedString(@"profile.edit.save", nil)];
 	self.businessProfile.objectModel = self.objectModel;
@@ -69,6 +70,7 @@
 	self.businessProfile.profileValidation = businessValidation;
 	self.businessProfile.isExisting = YES;
 	self.businessProfile.showInsideTabControllerForIpad = YES;
+	self.businessProfile.showFooterViewForIpad = YES;
 }
 
 - (void)actionTappedWithController:(UIViewController *)controller atIndex:(NSUInteger)index

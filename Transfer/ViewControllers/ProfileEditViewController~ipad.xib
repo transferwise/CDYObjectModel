@@ -6,9 +6,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileEditViewController">
             <connections>
+                <outlet property="actionButton" destination="ydp-CX-wn3" id="0lj-LG-gX9"/>
                 <outlet property="containerScrollView" destination="XCE-KC-Di1" id="pzl-ap-iqn"/>
                 <outlet property="firstColumnHeightConstraint" destination="WNq-7i-U6Z" id="crc-wm-i6R"/>
                 <outlet property="firstColumnLeftMargin" destination="y4g-S3-dfn" id="rgg-8W-kBu"/>
+                <outlet property="ipadFooterHeight" destination="yWF-mT-F2N" id="5aS-TT-nts"/>
                 <outlet property="secondColumnHeightConstraint" destination="Kcl-Pf-3Gx" id="Kcz-Sj-9dy"/>
                 <outlet property="secondColumnLeftEdgeConstraint" destination="9M8-ca-8M9" id="WO7-2A-uFx"/>
                 <outlet property="secondColumnTopConstraint" destination="YnC-cC-hmy" id="yqv-eq-74Z"/>
@@ -23,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCE-KC-Di1">
-                    <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="618"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="bP7-ah-Jiz" customClass="IntrinsicSizeUIView">
@@ -85,11 +87,36 @@
                         <constraint firstItem="bP7-ah-Jiz" firstAttribute="leading" secondItem="XCE-KC-Di1" secondAttribute="leading" constant="80" id="y4g-S3-dfn"/>
                     </constraints>
                 </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sf2-FG-nj3" userLabel="Footer View" customClass="IntrinsicSizeUIView">
+                    <rect key="frame" x="0.0" y="618" width="1024" height="150"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ydp-CX-wn3" customClass="BlueRoundedButton">
+                            <rect key="frame" x="919" y="66" width="55" height="34"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="actionTapped:" destination="-1" eventType="touchUpInside" id="NPZ-bw-hPV"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="ydp-CX-wn3" secondAttribute="bottom" constant="50" id="69x-f9-f1c"/>
+                        <constraint firstAttribute="trailing" secondItem="ydp-CX-wn3" secondAttribute="trailing" constant="50" id="CWD-mt-HUi"/>
+                        <constraint firstAttribute="height" constant="150" id="yWF-mT-F2N"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="XCE-KC-Di1" secondAttribute="bottom" id="4O5-fv-CLc"/>
+                <constraint firstItem="Sf2-FG-nj3" firstAttribute="leading" secondItem="fPl-yO-Yh3" secondAttribute="leading" id="Es2-tW-PRD"/>
                 <constraint firstItem="XCE-KC-Di1" firstAttribute="leading" secondItem="fPl-yO-Yh3" secondAttribute="leading" id="Ggt-4Q-DOr"/>
+                <constraint firstItem="XCE-KC-Di1" firstAttribute="bottom" secondItem="Sf2-FG-nj3" secondAttribute="top" id="Gsu-Md-9fs"/>
+                <constraint firstAttribute="bottom" secondItem="Sf2-FG-nj3" secondAttribute="bottom" id="O81-tg-xGz"/>
+                <constraint firstAttribute="trailing" secondItem="Sf2-FG-nj3" secondAttribute="trailing" id="TFq-Rb-Uyw"/>
                 <constraint firstItem="XCE-KC-Di1" firstAttribute="top" secondItem="fPl-yO-Yh3" secondAttribute="top" id="TIz-rc-Hx3"/>
                 <constraint firstAttribute="trailing" secondItem="XCE-KC-Di1" secondAttribute="trailing" id="ZGe-vY-sC7"/>
             </constraints>
