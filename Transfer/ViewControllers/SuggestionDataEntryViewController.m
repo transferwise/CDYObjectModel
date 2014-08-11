@@ -26,6 +26,7 @@
     self.suggestionTable.hidden = YES;
     self.suggestionTable.suggestionTableDelegate = self;
     [self.view addSubview:self.suggestionTable];
+    self.containerScrollView.delegate = self;
 }
 
 - (void)configureWithDataSource:(id<SuggestionTableCellProvider>)dataSource
@@ -109,21 +110,17 @@
 
 -(void)keyboardWillShow:(NSNotification*)note
 {
-    if(![self hasMoreThanOneTableView])
-    {
-        CGRect newframe = [self.view convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:self.view.window];
-        [super keyboardWillShow:note];
-        self.suggestionTable.contentInset = UIEdgeInsetsMake(0, 0, newframe.size.height, 0);
-    }
+    [super keyboardWillShow:note];
+    [self updateSuggestionTablePosition:self.suggestionTable];
+    CGRect newframe = [self.view convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:self.view.window];
+    self.suggestionTable.contentInset = UIEdgeInsetsMake(0, 0, newframe.size.height, 0);
 }
 
 -(void)keyboardWillHide:(NSNotification*)note
 {
-    if(![self hasMoreThanOneTableView])
-    {
-        [super keyboardWillHide:note];
-        self.suggestionTable.contentInset = UIEdgeInsetsZero;
-    }
+    
+    [super keyboardWillHide:note];
+    self.suggestionTable.contentInset = UIEdgeInsetsZero;
 }
 
 
