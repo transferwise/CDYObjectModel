@@ -206,14 +206,14 @@
 
 - (void)createFooterView
 {
-	//ipad does not need the footer views
+	if (self.actionButtonTitle)
+	{
+		[self.actionButton setTitle:self.actionButtonTitle forState:UIControlStateNormal];
+	}
+	
 	if(!IPAD)
 	{
-		if (self.actionButtonTitle)
-		{
-			[self.actionButton setTitle:self.actionButtonTitle forState:UIControlStateNormal];
-		}
-		else
+		if (!self.actionButtonTitle)
 		{
 			self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
 			if([self createSendAsBusinessCell])

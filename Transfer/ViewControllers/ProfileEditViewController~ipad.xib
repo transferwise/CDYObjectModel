@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileEditViewController">
             <connections>
-                <outlet property="actionButton" destination="ydp-CX-wn3" id="0lj-LG-gX9"/>
+                <outlet property="actionButton" destination="ydp-CX-wn3" id="chq-oT-Op6"/>
                 <outlet property="containerScrollView" destination="XCE-KC-Di1" id="pzl-ap-iqn"/>
                 <outlet property="firstColumnHeightConstraint" destination="WNq-7i-U6Z" id="crc-wm-i6R"/>
                 <outlet property="firstColumnLeftMargin" destination="y4g-S3-dfn" id="rgg-8W-kBu"/>
@@ -87,7 +87,7 @@
                         <constraint firstItem="bP7-ah-Jiz" firstAttribute="leading" secondItem="XCE-KC-Di1" secondAttribute="leading" constant="80" id="y4g-S3-dfn"/>
                     </constraints>
                 </scrollView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sf2-FG-nj3" userLabel="Footer View" customClass="IntrinsicSizeUIView">
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sf2-FG-nj3" userLabel="Footer View">
                     <rect key="frame" x="0.0" y="618" width="1024" height="150"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
