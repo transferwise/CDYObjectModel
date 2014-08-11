@@ -355,8 +355,8 @@ static NSUInteger const kSenderSection = 1;
                  value:paragraphStyle
                  range:NSMakeRange(0, baseString.length)];
     
-    [attributedString setFont:[UIFont systemFontOfSize:12]];
-    [attributedString setFont:[UIFont boldSystemFontOfSize:12] range:rateRange];
+    [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(0, baseString.length)];
+    [attributedString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12] range:rateRange];
     [attributedString setTextColor:[UIColor blackColor]];
     return [[NSAttributedString alloc] initWithAttributedString:attributedString];
 }
