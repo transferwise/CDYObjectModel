@@ -97,11 +97,11 @@
     
 	ProfilesEditViewController *profileController = [[ProfilesEditViewController alloc] init];
 	[profileController setObjectModel:self.objectModel];
-    TabItem *profileItem = [TabItem new];
+	
+	TabItem *profileItem = [TabItem new];
     profileItem.title = NSLocalizedString(@"profile.controller.tabbar.title", nil);
     profileItem.icon = [UIImage imageNamed:@"tab_icon_profile"];
-	profileItem.viewController = profileController;
-    
+	profileItem.viewController = IPAD ? [[UINavigationController alloc] initWithRootViewController:profileController] : profileController;
     TabViewController *tabController = [[TabViewController alloc] init];
     tabController.defaultSelectedColor = [UIColor colorFromStyle:@"TWBlue"];
     tabController.defaultDeSelectedColor = [UIColor colorFromStyle:@"TWBlue"];

@@ -38,11 +38,11 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
         <view contentMode="scaleToFill" id="HbM-7p-WgE" userLabel="Button View">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="94"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2bw-4Y-BdF" userLabel="Action Button" customClass="BlueRoundedButton">
-                    <rect key="frame" x="133" y="35" width="55" height="34"/>
+                    <rect key="frame" x="133" y="40" width="55" height="34"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <state key="normal" title="Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -55,7 +55,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="2bw-4Y-BdF" secondAttribute="centerX" id="Coe-rX-U6t"/>
-                <constraint firstAttribute="bottom" secondItem="2bw-4Y-BdF" secondAttribute="bottom" constant="4" id="ME9-iH-8SH"/>
+                <constraint firstAttribute="bottom" secondItem="2bw-4Y-BdF" secondAttribute="bottom" constant="20" id="ME9-iH-8SH"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
