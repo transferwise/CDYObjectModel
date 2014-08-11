@@ -61,6 +61,10 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondColumnLeftEdgeConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *firstColumnLeftMargin;
 
+/**
+ * signifies that constraints should be tightened to fit on screen with tab bar
+ */
+@property (nonatomic) BOOL showInsideTabControllerForIpad;
 
 /**
  *  convenience method for quickly checking if the viewcontrller has more than on tableview associated with it.

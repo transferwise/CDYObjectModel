@@ -31,6 +31,9 @@
 - (void)viewDidLoad
 {
 	self.showFullWidth = YES;
+	self.showButtonForIpad = YES;
+	self.showNavigationBar = NO;
+	self.showNonNavigationHeader = YES;
 	
 	[self initControllers];
 	
@@ -41,8 +44,11 @@
 							 titles:titles];
     [super viewDidLoad];
 	
-	[self setTitle:NSLocalizedString(@"profile.edit.title", nil)];
-	[self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(logOut)]];
+	if(!IPAD)
+	{
+		[self setTitle:NSLocalizedString(@"profile.edit.title", nil)];
+		[self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(logOut)]];
+	}
 }
 
 - (void)initControllers
@@ -54,6 +60,7 @@
 	personalValidation.objectModel = self.objectModel;
 	self.personalProfile.profileValidation = personalValidation;
 	self.personalProfile.isExisting = YES;
+	self.personalProfile.showInsideTabControllerForIpad = YES;
 	
 	self.businessProfile = [[BusinessProfileViewController alloc] initWithActionButtonTitle:NSLocalizedString(@"profile.edit.save", nil)];
 	self.businessProfile.objectModel = self.objectModel;
@@ -61,6 +68,7 @@
 	businessValidation.objectModel = self.objectModel;
 	self.businessProfile.profileValidation = businessValidation;
 	self.businessProfile.isExisting = YES;
+	self.businessProfile.showInsideTabControllerForIpad = YES;
 }
 
 - (void)actionTappedWithController:(UIViewController *)controller atIndex:(NSUInteger)index

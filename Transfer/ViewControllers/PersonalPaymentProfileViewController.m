@@ -24,6 +24,7 @@
 	self.showFullWidth = YES;
 	self.showButtonForIpad = YES;
 	self.showButtonForIphone = YES;
+	self.showNavigationBar = YES;
 	
 	self.personalProfile = [[PersonalProfileViewController alloc] init];
 	self.personalProfile.objectModel = self.objectModel;

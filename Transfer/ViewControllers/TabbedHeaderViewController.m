@@ -105,8 +105,6 @@
 {
     [super viewDidLoad];
 	
-    [self setTitle:NSLocalizedString(@"upload.money.title", @"")];
-	
     if ([self.controllers count] < 2)
     {
         self.headerHeight.constant = 0;
@@ -144,7 +142,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:!self.showNavigationBar animated:YES];
     [self.containerView setNeedsLayout];
     [self.containerView layoutIfNeeded];
 }
