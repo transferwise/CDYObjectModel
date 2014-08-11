@@ -110,17 +110,22 @@
 
 -(void)keyboardWillShow:(NSNotification*)note
 {
-    [super keyboardWillShow:note];
-    [self updateSuggestionTablePosition:self.suggestionTable];
-    CGRect newframe = [self.view convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:self.view.window];
-    self.suggestionTable.contentInset = UIEdgeInsetsMake(0, 0, newframe.size.height, 0);
+    if(self.parentViewController)
+    {
+        [super keyboardWillShow:note];
+        [self updateSuggestionTablePosition:self.suggestionTable];
+        CGRect newframe = [self.view convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:self.view.window];
+        self.suggestionTable.contentInset = UIEdgeInsetsMake(0, 0, newframe.size.height, 0);
+    }
 }
 
 -(void)keyboardWillHide:(NSNotification*)note
 {
-    
-    [super keyboardWillHide:note];
-    self.suggestionTable.contentInset = UIEdgeInsetsZero;
+    if(self.parentViewController)
+    {
+        [super keyboardWillHide:note];
+        self.suggestionTable.contentInset = UIEdgeInsetsZero;
+    }
 }
 
 

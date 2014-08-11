@@ -97,8 +97,6 @@
 		self.showButtonForIphone = NO;
 		self.showButtonForIpad = NO;
 	}
-	
-	[self attachControllers:self.controllers];
 }
 
 - (void)viewDidLoad
@@ -169,6 +167,7 @@
 
 - (void)addToSuperview:(UIViewController *)first removeOthers:(NSArray *)others
 {
+    [self addChildViewController:first];
 	[self.containerView addSubview:first.view];
 	first.view.frame = self.containerView.bounds;
 	first.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -177,24 +176,10 @@
 	{
 		if(controller != first && controller.view.subviews != nil)
 		{
+            [controller removeFromParentViewController];
 			[controller.view removeFromSuperview];
 		}
 	}
-}
-
-- (void)attachControllers:(NSArray *)controllers
-{
-	for (UIViewController *controller in controllers)
-	{
-		[self attachChildController:controller];
-	}
-}
-
-- (void)attachChildController:(UIViewController *)controller
-{
-    [self addChildViewController:controller];
-    [controller.view setFrame:self.containerView.bounds];
-    [self.containerView addSubview:controller.view];
 }
 
 - (IBAction)actionTapped:(id)sender
