@@ -267,6 +267,7 @@ It can take up to 2 working days.";
 "profile.dob.month" = "MM";
 "profile.dob.year" = "YYYY";
 "profile.edit.title" = "You";
+"profile.edit.title.ipad" = "Your profile";
 "profile.edit.business" = "Business profile";
 "profile.edit.personal" = "Personal profile";
 "profile.edit.save" = "Save";

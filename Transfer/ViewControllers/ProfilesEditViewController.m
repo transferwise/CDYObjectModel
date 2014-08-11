@@ -18,6 +18,7 @@
 #import "PersonalProfileCommitter.h"
 #import "BusinessProfileCommitter.h"
 #import "GoogleAnalytics.h"
+#import "NSString+DeviceSpecificLocalisation.h"
 
 @interface ProfilesEditViewController ()
 
@@ -42,7 +43,7 @@
 							 titles:titles];
     [super viewDidLoad];
 	
-	[self setTitle:NSLocalizedString(@"profile.edit.title", nil)];
+	[self setTitle:NSLocalizedString([@"profile.edit.title" deviceSpecificLocalization], nil)];
 	[self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(logOut)]];
 }
 
