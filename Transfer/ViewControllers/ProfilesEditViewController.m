@@ -94,7 +94,7 @@
 	}
 	else if(controller == self.businessProfile)
 	{
-		//Not tracked
+		[[GoogleAnalytics sharedInstance] sendScreen:@"Business profile"];
 	}
 }
 
