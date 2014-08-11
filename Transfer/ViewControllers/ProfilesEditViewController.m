@@ -44,7 +44,12 @@
     [super viewDidLoad];
 	
 	[self setTitle:NSLocalizedString([@"profile.edit.title" deviceSpecificLocalization], nil)];
-	[self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(logOut)]];
+	UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 98, 44)];
+	[button addTarget:self action:@selector(logOut) forControlEvents:UIControlEventTouchUpInside];
+	[button setImage:[UIImage imageNamed:@"SettingsButton"] forState:UIControlStateNormal];
+	[button setImageEdgeInsets:UIEdgeInsetsMake(0, 58, 0, -17)];
+	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+	[self.navigationItem setRightBarButtonItem:settingsButton];
 }
 
 - (void)initControllers
@@ -89,7 +94,7 @@
 	}
 	else if(controller == self.businessProfile)
 	{
-		//Not tracked
+		[[GoogleAnalytics sharedInstance] sendScreen:@"Business profile"];
 	}
 }
 
