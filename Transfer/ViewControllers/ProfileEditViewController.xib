@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4" customClass="DismissKeyboardTableView">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4" customClass="DismissKeyboardTableView">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -29,6 +29,12 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="4" firstAttribute="leading" secondItem="eMR-Ys-UPy" secondAttribute="leading" id="1tt-N7-XXP"/>
+                <constraint firstAttribute="bottom" secondItem="4" secondAttribute="bottom" id="4ui-ZM-mbd"/>
+                <constraint firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="IuC-4P-VNn"/>
+                <constraint firstItem="4" firstAttribute="top" secondItem="eMR-Ys-UPy" secondAttribute="top" id="cfi-eI-rMh"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
         <view contentMode="scaleToFill" id="HbM-7p-WgE" userLabel="Button View">
