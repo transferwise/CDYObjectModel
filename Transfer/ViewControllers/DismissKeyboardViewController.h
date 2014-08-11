@@ -10,6 +10,6 @@
 
 @class ObjectModel;
 
-@interface DismissKeyboardViewController : UIViewController
+@interface DismissKeyboardViewController : UIViewController<UIGestureRecognizerDelegate>
 
 @end

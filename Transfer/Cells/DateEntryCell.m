@@ -283,9 +283,8 @@ NSInteger const kYearField = 3;
 	{
 		if (!withValidation || textField.text.length == YEAR_MAX_LENGTH)
 		{
-			//trigger year validation
 			[textField resignFirstResponder];
-			[self.headerLabel setTextColor:[UIColor colorFromStyle:@"GreyGory"]];
+			[self.headerLabel setTextColor:[UIColor colorFromStyle:@"CoreFont"]];
 			[self navigateAway];
 		}
 	}

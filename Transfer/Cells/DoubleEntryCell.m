@@ -39,14 +39,18 @@ NSInteger const kSecondTextField = 2;
 	
 	[self.firstTextField setReturnKeyType:UIReturnKeyNext];
     [self.secondTextField setReturnKeyType:UIReturnKeyNext];
-	
-	[self addDoubleSeparators];
 }
 
 - (void)setAutoCapitalization:(UITextAutocapitalizationType)capitalizationType
 {
 	self.firstTextField.autocapitalizationType = capitalizationType;
 	self.secondTextField.autocapitalizationType = capitalizationType;
+}
+
+- (void)layoutSubviews
+{
+	[super layoutSubviews];
+	[self addDoubleSeparators];
 }
 
 - (void)updateConstraints
