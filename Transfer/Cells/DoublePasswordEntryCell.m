@@ -56,6 +56,20 @@ NSInteger const kSecondPassword = 2;
 	[self.contentView addConstraints:@[secondWidth]];
 }
 
+- (void)layoutSubviews
+{
+	[super layoutSubviews];
+	
+	if (self.showDouble)
+	{
+		[self addDoubleSeparators];
+	}
+	else
+	{
+		[self removeDoubleSeparators];
+	}
+}
+
 #pragma mark - Multiple Entry Cell
 
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value
@@ -172,12 +186,10 @@ NSInteger const kSecondPassword = 2;
 	if (showDouble)
 	{
 		self.firstPasswordWidth.constant = 0;
-		[self addDoubleSeparators];
 	}
 	else
 	{
 		self.firstPasswordWidth.constant = 1000;
-		[self removeDoubleSeparators];
 	}
 	
 	_showDouble = showDouble;

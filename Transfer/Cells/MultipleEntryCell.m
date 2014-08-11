@@ -106,7 +106,7 @@
 	CGRect frame = self.contentView.frame;
 	CGFloat halfWidth = frame.size.width / 2;
 	
-	return CGRectMake(firstHalf ? frame.origin.x : (frame.origin.x + halfWidth), frame.origin.y, firstHalf ? halfWidth - 15.f : halfWidth, frame.size.height);
+	return CGRectMake(firstHalf ? frame.origin.x : (frame.origin.x + halfWidth - 10.f), frame.origin.y, firstHalf ? halfWidth - 5.f : halfWidth + 10.f, frame.size.height);
 }
 
 - (void)removeDoubleSeparators
@@ -117,6 +117,7 @@
 		[self.separatorLine removeFromSuperview];
 		[self.secondSeparator removeFromSuperview];
 		self.secondSeparator = nil;
+		self.separatorLine = nil;
 		
 		self.separatorLine = [UIView getSeparatorLineWithParentFrame:self.contentView.frame];
 		[self.contentView addSubview:self.separatorLine];
