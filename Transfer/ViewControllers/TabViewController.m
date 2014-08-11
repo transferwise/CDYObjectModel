@@ -159,9 +159,12 @@
 -(void)setCellSelectedState:(BOOL)selected forItem:(TabItem*)item
 {
     NSUInteger index = [self.tabItems indexOfObject:item];
+	
     if(index!=NSNotFound)
     {
-        TabCell *cell = (TabCell*) [self.tabBarCollectionView cellForItemAtIndexPath:[self indexPathForIndex:index]];
+		NSIndexPath *indexPath = [self indexPathForIndex:index];
+		
+        TabCell *cell = (TabCell*) [self.tabBarCollectionView cellForItemAtIndexPath:indexPath];
         [cell configureForSelectedState:selected];
     }
 }
@@ -350,7 +353,7 @@
 {
 	if (self.centerVertically)
 	{
-		if([self useFixedSizeTabs] && index > self.insertFlexibleSpaceAtIndex)
+		if([self useFixedSizeTabs] && index >= self.insertFlexibleSpaceAtIndex - 1)
 		{
 			return [NSIndexPath indexPathForRow:index + 2 inSection:0];
 		}
@@ -361,7 +364,7 @@
 	}
 	else
 	{
-		if([self useFixedSizeTabs] && index > self.insertFlexibleSpaceAtIndex)
+		if([self useFixedSizeTabs] && index >= self.insertFlexibleSpaceAtIndex - 1)
 		{
 			return [NSIndexPath indexPathForRow:index + 1 inSection:0];
 		}
