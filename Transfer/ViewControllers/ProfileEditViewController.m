@@ -244,13 +244,7 @@
 
 - (IBAction)actionTapped:(id)sender
 {
-	[self validateProfile];
-	//show sucess message
-	TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"profile.edit.save.success.header", nil)
-													   message:NSLocalizedString(@"profile.edit.save.success.message", nil)];
-	[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-	[alertView show];
-	return;
+	[self validateProfile:YES];
 }
 
 - (BOOL)createSendAsBusinessCell
@@ -351,6 +345,11 @@
 
 - (void)validateProfile
 {
+	[self validateProfile:NO];
+}
+
+- (void)validateProfile:(BOOL)isExisting
+{
 	[UIApplication dismissKeyboard];
 	
     if (![self.profileSource inputValid])
@@ -362,7 +361,7 @@
         return;
     }
 	
-	if ([self.profileSource isKindOfClass:[PersonalProfileSource class]])
+	if (!isExisting && [self.profileSource isKindOfClass:[PersonalProfileSource class]])
 	{
 		PersonalProfileSource* personalProfile = (PersonalProfileSource *)self.profileSource;
 		
@@ -398,6 +397,15 @@
 			TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"personal.profile.verify.error.title", nil) error:error];
 			[alertView show];
         }
+		
+		if (isExisting)
+		{
+			//show sucess message
+			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"profile.edit.save.success.header", nil)
+															   message:NSLocalizedString(@"profile.edit.save.success.message", nil)];
+			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+			[alertView show];
+		}
     }];
 }
 
