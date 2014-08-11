@@ -11,6 +11,8 @@
 
 @interface DismissKeyboardViewController ()
 
+@property (nonatomic, strong) UIGestureRecognizer *recognizer;
+
 @end
 
 @implementation DismissKeyboardViewController
@@ -27,8 +29,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-	[self.view addGestureRecognizer:recognizer];
+	self.recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+	self.recognizer.delegate = self;
+	[self.view addGestureRecognizer:self.recognizer];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if ([gestureRecognizer isEqual:self.recognizer])
+	{
+        // for ios 7 , need to compare with UITableViewCellContentView
+        if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"] || [touch.view.superview isKindOfClass:[UITableViewCell class]])
+		{
+            return FALSE;
+        }
+    }
+    return TRUE;
 }
 
 - (void)dismissKeyboard
