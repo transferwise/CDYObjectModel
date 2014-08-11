@@ -142,7 +142,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:!self.showNavigationBar animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.containerView setNeedsLayout];
     [self.containerView layoutIfNeeded];
 }

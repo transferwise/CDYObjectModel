@@ -13,8 +13,6 @@
 @property (nonatomic) BOOL showFullWidth;
 @property (nonatomic) BOOL showButtonForIpad;
 @property (nonatomic) BOOL showButtonForIphone;
-@property (nonatomic) BOOL showNavigationBar;
-@property (nonatomic) BOOL showNonNavigationHeader;
 
 - (void)configureWithControllers:(NSArray *)controllers
 						  titles:(NSArray *)titles;

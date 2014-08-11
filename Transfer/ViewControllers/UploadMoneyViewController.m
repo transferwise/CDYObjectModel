@@ -37,7 +37,6 @@
 - (void)viewDidLoad
 {
 	self.showButtonForIphone = YES;
-	self.showNavigationBar = YES;
 	
 	[self initControllers];
 	[super configureWithControllers:@[self.cardViewController, self.bankViewController]

@@ -32,8 +32,6 @@
 {
 	self.showFullWidth = YES;
 	self.showButtonForIpad = YES;
-	self.showNavigationBar = NO;
-	self.showNonNavigationHeader = YES;
 	
 	[self initControllers];
 	
@@ -44,11 +42,8 @@
 							 titles:titles];
     [super viewDidLoad];
 	
-	if(!IPAD)
-	{
-		[self setTitle:NSLocalizedString(@"profile.edit.title", nil)];
-		[self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(logOut)]];
-	}
+	[self setTitle:NSLocalizedString(@"profile.edit.title", nil)];
+	[self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(logOut)]];
 }
 
 - (void)initControllers

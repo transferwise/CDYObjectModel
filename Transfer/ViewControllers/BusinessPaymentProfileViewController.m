@@ -23,7 +23,6 @@
 	self.showFullWidth = YES;
 	self.showButtonForIpad = YES;
 	self.showButtonForIphone = YES;
-	self.showNavigationBar = YES;
 	
 	self.businessProfile = [[BusinessProfileViewController alloc] init];
 	self.businessProfile.objectModel = self.objectModel;
