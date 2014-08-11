@@ -39,5 +39,6 @@ extern NSString *const TWTextEntryCellIdentifier;
 - (void)markTouched;
 - (void)textFieldEntryFinished;
 - (void)setGrayedOut:(BOOL)isGrayedOut;
++ (void)setTextColor:(UITextField *)textField editable:(BOOL)editable;
 
 @end

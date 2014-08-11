@@ -22,23 +22,27 @@
 
 @implementation DataEntryMultiColumnViewController
 
-
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     for(UITableView* tableView in self.tableViews)
     {
         tableView.bgStyle = @"white";
         tableView.tableFooterView = [[UIView alloc] init];
     }
-    
 }
 
--(void)dealloc
+-(void)viewDidAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
@@ -79,18 +83,21 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     NSUInteger index = [self.tableViews indexOfObject:tableView];
     return [self.sectionCellsByTableView[index] count];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     NSUInteger index = [self.tableViews indexOfObject:tableView];
     NSArray *sectionCells = self.sectionCellsByTableView[index][(NSUInteger) section];
     return [sectionCells count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     NSUInteger index = [self.tableViews indexOfObject:tableView];
     UITableViewCell *cell = self.sectionCellsByTableView[index][indexPath.section][indexPath.row];
 	
@@ -104,13 +111,15 @@
 
 
 #pragma mark - Table view delegate
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     NSUInteger index = [self.tableViews indexOfObject:tableView];
     UITableViewCell *cell = self.sectionCellsByTableView[index][indexPath.section][indexPath.row];
     return CGRectGetHeight(cell.frame);
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
     NSString* title = [self tableView:tableView titleForHeaderInSection:section];
     if(title)
     {
@@ -120,7 +129,8 @@
     return UITableViewAutomaticDimension;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
     return UITableViewAutomaticDimension;
 }
 
@@ -146,29 +156,36 @@
     return nil;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     id cell = [tableView cellForRowAtIndexPath:indexPath];
-    if ([self isEntryCell:cell]) {
+    if ([self isEntryCell:cell])
+	{
         TextEntryCell *entryCell = cell;
         [entryCell.entryField becomeFirstResponder];
-    } else {
+    }
+	else
+	{
         [self tappedCellAtIndexPath:indexPath inTableView:tableView];
     }
 }
 
-- (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView*)tableView {
+- (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView*)tableView
+{
     MCLog(@"tappedCellAtIndexPath:%@", indexPath);
 }
 
 #pragma mark - Text field delegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
     UITableViewCell *containingCell = [textField findContainerOfType:[UITableViewCell class]];
     
     BOOL moved = [self moveFocusOnNextEntryAfterCell:containingCell];
     
-    if (!moved && [containingCell isKindOfClass:[TextEntryCell class]]) {
+    if (!moved && [containingCell isKindOfClass:[TextEntryCell class]])
+	{
         TextEntryCell *entryCell = (TextEntryCell *) containingCell;
         [entryCell.entryField resignFirstResponder];
     }
@@ -185,15 +202,18 @@
     [self textFieldEntryFinished];
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
     TextEntryCell *cell = [textField findContainerOfType:[TextEntryCell class]];
     return [cell textField:textField shouldChangeCharactersInRange:range replacementString:string];
 }
 
-- (BOOL)moveFocusOnNextEntryAfterCell:(UITableViewCell *)cell {
+- (BOOL)moveFocusOnNextEntryAfterCell:(UITableViewCell *)cell
+{
     NSIndexPath *indexPath = [self indexPathForCell:cell];
     
-    if (indexPath == nil) {
+    if (indexPath == nil)
+	{
         return NO;
     }
 	
@@ -202,7 +222,8 @@
 		return NO;
 	}
     
-    if ([cell isKindOfClass:[TextEntryCell class]]) {
+    if ([cell isKindOfClass:[TextEntryCell class]])
+	{
         [(TextEntryCell *)cell markTouched];
     }
     
@@ -213,9 +234,11 @@
     while (tableViewIndex != NSNotFound)
     {
         UITableView* tableView = self.tableViews[tableViewIndex];
-        while ((moveToIndexPath = [self nextEditableIndexPathAfter:moveToIndexPath inTableViewWithIndex:tableViewIndex]) != nil) {
+        while ((moveToIndexPath = [self nextEditableIndexPathAfter:moveToIndexPath inTableViewWithIndex:tableViewIndex]) != nil)
+		{
             UITableViewCell *viewCell = [self tableView:tableView cellForRowAtIndexPath:moveToIndexPath];
-            if ([self isEntryCell:viewCell]) {
+            if ([self isEntryCell:viewCell])
+			{
                 TextEntryCell *entryCell = (TextEntryCell *) viewCell;
 				
 				if([entryCell isKindOfClass:[MultipleEntryCell class]])
@@ -240,25 +263,29 @@
     }
     
     return NO;
-    
 }
 
-- (NSIndexPath *)nextEditableIndexPathAfter:(NSIndexPath *)indexPath inTableViewWithIndex:(NSUInteger)tableViewIndex {
+- (NSIndexPath *)nextEditableIndexPathAfter:(NSIndexPath *)indexPath inTableViewWithIndex:(NSUInteger)tableViewIndex
+{
     NSUInteger section = (NSUInteger) indexPath.section;
     NSUInteger row = (NSUInteger) MAX(0,indexPath.row);
     
     NSUInteger count = [self.sectionCellsByTableView[tableViewIndex] count];
     
-    for (; section < count ; section++) {
+    for (; section < count ; section++)
+	{
         NSArray *sectionCells = self.sectionCellsByTableView[tableViewIndex][section];
-        for (; row < [sectionCells count]; row++) {
+        for (; row < [sectionCells count]; row++)
+		{
             id cell = sectionCells[row];
-            if (![self isEntryCell:cell]) {
+            if (![self isEntryCell:cell])
+			{
                 continue;
             }
             
             NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:section];
-            if ([path isEqual:indexPath]) {
+            if ([path isEqual:indexPath])
+			{
                 continue;
             }
             
@@ -309,7 +336,8 @@
     return nil;
 }
 
-- (BOOL)isEntryCell:(UITableViewCell *)cell {
+- (BOOL)isEntryCell:(UITableViewCell *)cell
+{
     return [cell isKindOfClass:[TextEntryCell class]];
 }
 
@@ -326,7 +354,8 @@
     return YES;
 }
 
-- (void)textFieldEntryFinished {
+- (void)textFieldEntryFinished
+{
     
 }
 
@@ -373,20 +402,19 @@
 
 -(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
-    
     //Lots of magic numbers here to match designs. Not sure what to do...
     if(UIInterfaceOrientationIsPortrait(orientation))
     {
-        self.firstColumnLeftMargin.constant = 194.0f;
-        self.secondColumnLeftEdgeConstraint.constant = -380;
-        self.secondColumnTopConstraint.constant = self.firstColumnHeightConstraint.constant + 60.0f;
+        self.firstColumnLeftMargin.constant = self.showInsideTabControllerForIpad ? 148.f : 194.f;
+        self.secondColumnLeftEdgeConstraint.constant = -380.f;
+        self.secondColumnTopConstraint.constant = self.firstColumnHeightConstraint.constant + 60.f;
         
     }
     else
     {
-        self.firstColumnLeftMargin.constant = 80.0f;
-        self.secondColumnLeftEdgeConstraint.constant = 100.0f;
-        self.secondColumnTopConstraint.constant = 0.0f;
+        self.firstColumnLeftMargin.constant = self.showInsideTabControllerForIpad ? 60.f : 80.f;
+        self.secondColumnLeftEdgeConstraint.constant = self.showInsideTabControllerForIpad ? 60.f : 100.f;
+        self.secondColumnTopConstraint.constant = 0.f;
     }
 }
 

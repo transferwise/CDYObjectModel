@@ -11,4 +11,6 @@
 
 @interface BusinessProfileViewController : ProfileEditViewController
 
+- (id)initWithActionButtonTitle:(NSString *)title;
+
 @end

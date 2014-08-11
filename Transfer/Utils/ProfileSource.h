@@ -26,12 +26,15 @@ typedef void (^ProfileActionBlock)(NSError *error);
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
 
 
-- (NSArray *)presentedCells:(BOOL)allowProfileSwitch;
+- (NSArray *)presentedCells:(BOOL)allowProfileSwitch
+				 isExisting:(BOOL)isExisting;
 - (NSArray *)presentedLoginCells;
 - (void)pullDetailsWithHandler:(ProfileActionBlock)handler;
 - (BOOL)inputValid;
 - (id)enteredProfile;
-- (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion;
+- (void)validateProfile:(id)profile
+		 withValidation:(id)validation
+			 completion:(ProfileActionBlock)completion;
 - (void)loadDetailsToCells;
 - (void)fillQuickValidation:(QuickProfileValidationOperation *)operation;
 - (void)includeStateCell:(BOOL)shouldInclude;

@@ -48,6 +48,7 @@ NSUInteger const kUserPersonalSection = 1;
 @implementation PersonalProfileSource
 
 - (NSArray *)presentedCells:(BOOL)allowProfileSwitch
+				 isExisting:(BOOL)isExisting
 {
 	self.anonymous = allowProfileSwitch;
 	
@@ -75,14 +76,17 @@ NSUInteger const kUserPersonalSection = 1;
 	[personalDetailsCells addObject:emailCell];
 	[loginCells addObject:emailCell];
 	
-	DoublePasswordEntryCell *passwordCell = [DoublePasswordEntryCell loadInstance];
-	passwordCell.showDouble = YES;
-	passwordCell.useDummyPassword = NO;
-	[passwordCell configureWithTitle:NSLocalizedString(@"personal.profile.password.label", nil) value:@""];
-    [self setPasswordCell:passwordCell];
-    [personalDetailsCells addObject:passwordCell];
-	[passwordCell setCellTag:@"DoublePasswordCell"];
-	[loginCells addObject:passwordCell];
+	if (!isExisting)
+	{
+		DoublePasswordEntryCell *passwordCell = [DoublePasswordEntryCell loadInstance];
+		passwordCell.showDouble = YES;
+		passwordCell.useDummyPassword = NO;
+		[passwordCell configureWithTitle:NSLocalizedString(@"personal.profile.password.label", nil) value:@""];
+		[self setPasswordCell:passwordCell];
+		[personalDetailsCells addObject:passwordCell];
+		[passwordCell setCellTag:@"DoublePasswordCell"];
+		[loginCells addObject:passwordCell];
+	}
 	
 	DoubleEntryCell *firstLastNameCell = [DoubleEntryCell loadInstance];
 	[self setFirstLastNameCell:firstLastNameCell];

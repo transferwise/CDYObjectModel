@@ -36,6 +36,8 @@
 
 - (void)viewDidLoad
 {
+	self.showButtonForIphone = YES;
+	
 	[self initControllers];
 	[super configureWithControllers:@[self.cardViewController, self.bankViewController]
 							 titles:@[NSLocalizedString(@"payment.method.card", nil), NSLocalizedString(@"payment.method.regular", nil)]

@@ -25,8 +25,14 @@
 @property (nonatomic, strong) id profileValidation;
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic) BOOL allowProfileSwitch;
+@property (nonatomic) BOOL isExisting;
+@property (nonatomic) BOOL showFooterViewForIpad;
 
-- (id)initWithSource:(ProfileSource *)source quickValidation:(QuickProfileValidationOperation *)quickValidation;
+- (id)initWithSource:(ProfileSource *)source
+	 quickValidation:(QuickProfileValidationOperation *)quickValidation;
+- (id)initWithSource:(ProfileSource *)source
+	 quickValidation:(QuickProfileValidationOperation *)quickValidation
+		 buttonTitle:(NSString *)buttonTitle;
 
 - (void)validateProfile;
 

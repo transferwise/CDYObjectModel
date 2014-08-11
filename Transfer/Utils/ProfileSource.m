@@ -21,7 +21,8 @@
 
 @implementation ProfileSource
 
-- (NSArray *)presentedCells:(BOOL)allowProfileSwitch;
+- (NSArray *)presentedCells:(BOOL)allowProfileSwitch
+				 isExisting:(BOOL)isExisting
 {
     ABSTRACT_METHOD;
     return @[];

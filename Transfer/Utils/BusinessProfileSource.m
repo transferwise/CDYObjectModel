@@ -42,6 +42,7 @@
 }
 
 - (NSArray *)presentedCells:(BOOL)allowProfileSwitch
+				 isExisting:(BOOL)isExisting
 {
     if (self.cells)
 	{

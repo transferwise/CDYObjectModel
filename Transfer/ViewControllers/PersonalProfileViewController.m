@@ -27,4 +27,14 @@
     return self;
 }
 
+- (id)initWithActionButtonTitle:(NSString *)title
+{
+	self = [super initWithSource:[[PersonalProfileSource alloc] init] quickValidation:[QuickProfileValidationOperation personalProfileValidation] buttonTitle:title];	
+	if (self)
+	{
+		// Custom init
+	}
+	return self;
+}
+
 @end

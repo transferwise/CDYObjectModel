@@ -36,10 +36,21 @@
 - (id)init
 {
     self = [super initWithNibName:@"TabbedHeaderViewController" bundle:nil];
-    if (self) {
+    if (self)
+	{
         // Custom initialization
     }
     return self;
+}
+
+- (void)configureWithControllers:(NSArray *)controllers titles:(NSArray *)titles
+{
+	[self configureWithControllers:controllers
+							titles:titles
+					   actionTitle:nil
+					   actionStyle:nil
+					  actionShadow:nil
+					actionProgress:CGFLOAT_MIN];
 }
 
 - (void)configureWithControllers:(NSArray *)controllers
@@ -54,32 +65,43 @@
 	self.controllers = controllers;
 	self.titles = titles;
 	
-	[self.actionButton setTitle:actionTitle forState:UIControlStateNormal];
-	
-	if(actionShadow && IPAD)
+	if(actionTitle)
 	{
-		[self.actionButton configureWithCompoundStyle:actionStyle
-										  shadowColor:actionShadow];
+		[self.actionButton setTitle:actionTitle forState:UIControlStateNormal];
+		
+		if (actionStyle)
+		{
+			if(actionShadow && IPAD)
+			{
+				[self.actionButton configureWithCompoundStyle:actionStyle
+												  shadowColor:actionShadow];
+			}
+			else
+			{
+				[self.actionButton configureWithCompoundStyle:actionStyle];
+			}
+		}
+		
+		if (actionProgress > CGFLOAT_MIN)
+		{
+			self.actionButton.progress = actionProgress;
+		}
+		
+		if (IPAD)
+		{
+			self.actionButton.addShadow = YES;
+		}
 	}
 	else
 	{
-		[self.actionButton configureWithCompoundStyle:actionStyle];
+		self.showButtonForIphone = NO;
+		self.showButtonForIpad = NO;
 	}
-	self.actionButton.progress = actionProgress;
-	
-	if (IPAD)
-	{
-		self.actionButton.addShadow = YES;
-	}
-	
-	[self attachControllers:self.controllers];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-    [self setTitle:NSLocalizedString(@"upload.money.title", @"")];
 	
     if ([self.controllers count] < 2)
     {
@@ -91,19 +113,23 @@
 		[self.tabView setSelectedIndex:0];
 	}
 	
-	if (IPAD)
+	//UI configuration
+	if (IPAD && self.showFullWidth)
 	{
-		if (self.showFullWidth)
-		{
-			//arbitrary large value, other constraints will catch it
-			self.contentWidth.constant = 2000;
-		}
-		
-		if (!self.showButtonForIpad)
-		{
-			self.buttonBottom.constant = 0;
-			self.buttonHeight.constant = 0;
-		}
+		//arbitrary large value, other constraints will catch it
+		self.contentWidth.constant = 2000;
+	}
+	
+	if (IPAD && !self.showButtonForIpad)
+	{
+		self.buttonBottom.constant = 0;
+		self.buttonHeight.constant = 0;
+	}
+	
+	if (!IPAD && !self.showButtonForIphone)
+	{
+		self.buttonHeight.constant = 0;
+		[self.actionButton setHidden:YES];
 	}
 	
     self.containerView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -141,6 +167,7 @@
 
 - (void)addToSuperview:(UIViewController *)first removeOthers:(NSArray *)others
 {
+    [self addChildViewController:first];
 	[self.containerView addSubview:first.view];
 	first.view.frame = self.containerView.bounds;
 	first.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -149,24 +176,10 @@
 	{
 		if(controller != first && controller.view.subviews != nil)
 		{
+            [controller removeFromParentViewController];
 			[controller.view removeFromSuperview];
 		}
 	}
-}
-
-- (void)attachControllers:(NSArray *)controllers
-{
-	for (UIViewController *controller in controllers)
-	{
-		[self attachChildController:controller];
-	}
-}
-
-- (void)attachChildController:(UIViewController *)controller
-{
-    [self addChildViewController:controller];
-    [controller.view setFrame:self.containerView.bounds];
-    [self.containerView addSubview:controller.view];
 }
 
 - (IBAction)actionTapped:(id)sender

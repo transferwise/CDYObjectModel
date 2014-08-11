@@ -144,8 +144,11 @@ NSInteger const kYearField = 3;
 - (void)setEditable:(BOOL)editable
 {
 	self.dayTextField.enabled = editable;
+	[TextEntryCell setTextColor:self.dayTextField editable:editable];
 	self.monthTextField.enabled = editable;
+	[TextEntryCell setTextColor:self.monthTextField editable:editable];
 	self.yearTextField.enabled = editable;
+	[TextEntryCell setTextColor:self.yearTextField editable:editable];
 }
 
 #pragma mark - Value Getters/Setters

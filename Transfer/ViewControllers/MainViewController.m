@@ -21,6 +21,7 @@
 #import "UIColor+MOMStyle.h"
 #import "TransferwiseClient.h"
 #import "ConnectionAwareViewController.h"
+#import "ProfilesEditViewController.h"
 
 @interface MainViewController () <UINavigationControllerDelegate, UITabBarControllerDelegate>
 
@@ -94,17 +95,13 @@
     contactsItem.icon = [UIImage imageNamed:@"ContactsIcon.png"];
     contactsItem.viewController = contactsController;
     
-    TabItem *profileItem = [TabItem new];
-    [profileItem setActionBlock:^(TabItem* item){
-        [[TransferwiseClient sharedClient] clearCredentials];
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Cleared credentials!" message:nil delegate:nil cancelButtonTitle:@"Aha!" otherButtonTitles:nil];
-        [alert show];
-        [self loggedOut];
-        return NO;
-    }];
+	ProfilesEditViewController *profileController = [[ProfilesEditViewController alloc] init];
+	[profileController setObjectModel:self.objectModel];
+	
+	TabItem *profileItem = [TabItem new];
     profileItem.title = NSLocalizedString(@"profile.controller.tabbar.title", nil);
     profileItem.icon = [UIImage imageNamed:@"tab_icon_profile"];
-    
+	profileItem.viewController = IPAD ? [[UINavigationController alloc] initWithRootViewController:profileController] : profileController;
     TabViewController *tabController = [[TabViewController alloc] init];
     tabController.defaultSelectedColor = [UIColor colorFromStyle:@"TWBlue"];
     tabController.defaultDeSelectedColor = [UIColor colorFromStyle:@"TWBlue"];

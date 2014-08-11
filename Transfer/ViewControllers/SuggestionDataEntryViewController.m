@@ -118,7 +118,6 @@
 
 -(void)keyboardWillHide:(NSNotification*)note
 {
-    
     [super keyboardWillHide:note];
     self.suggestionTable.contentInset = UIEdgeInsetsZero;
 }
