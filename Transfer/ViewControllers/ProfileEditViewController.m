@@ -220,7 +220,8 @@
 				[self.footerView setBackgroundColor:[UIColor colorFromStyle:@"lightBlueHighLighted"]];
 			}
 		}
-		
+	
+		[self.footerView layoutSubviews];
 		self.footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		//iPhone only has one table
 		[self.tableViews[0] setTableFooterView:self.footerView];
