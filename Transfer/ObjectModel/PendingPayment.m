@@ -100,6 +100,16 @@ NSString *kAddressVerificationImageName = @"~/Documents/addressVerification.jpg"
     [[NSFileManager defaultManager] removeItemAtPath:[kAddressVerificationImageName stringByExpandingTildeInPath] error:nil];
 }
 
++ (void)removeIdImage {
+    MCLog(@"removeIdImages");
+    [[NSFileManager defaultManager] removeItemAtPath:[kIdVerificationImageName stringByExpandingTildeInPath] error:nil];
+}
+
++ (void)removeAddressImage {
+    MCLog(@"removeAddressImages");
+    [[NSFileManager defaultManager] removeItemAtPath:[kAddressVerificationImageName stringByExpandingTildeInPath] error:nil];
+}
+
 + (void)setIdPhoto:(UIImage *)image {
     [self saveImage:image toPath:kIdVerificationImageName];
 }

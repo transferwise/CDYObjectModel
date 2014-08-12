@@ -8,8 +8,7 @@
 
 #import "PersonalProfileIdentificationViewController.h"
 #import "UIColor+Theme.h"
-#import "TextCell.h"
-#import "GreenButton.h"
+#import "ValidationCell.h"
 #import "NSMutableString+Issues.h"
 #import "NSString+Validation.h"
 #import "TRWAlertView.h"
@@ -19,19 +18,23 @@
 #import "TransferBackButtonItem.h"
 #import "UITableView+FooterPositioning.h"
 #import "GoogleAnalytics.h"
+#import "ObjectModel+Users.h"
+#import "User.h"
+#import "PersonalProfile.h"
 
-@interface PersonalProfileIdentificationViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface PersonalProfileIdentificationViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, ValidationCellDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
-@property (strong, nonatomic) IBOutlet UIView *footerView;
-@property (strong, nonatomic) TextCell *idDocumentCell;
-@property (strong, nonatomic) TextCell *proofOfAddressCell;
+@property (weak, nonatomic) IBOutlet UIView *headerSeparator;
 @property (strong, nonatomic) IBOutlet UILabel *reasonTitle;
-@property (strong, nonatomic) IBOutlet UILabel *excuseLabel;
-@property (strong, nonatomic) IBOutlet UILabel *explanationLabel;
-@property (strong, nonatomic) IBOutlet UILabel *skipLabel;
-@property (strong, nonatomic) IBOutlet GreenButton *continueButton;
-@property (strong, nonatomic) IBOutlet UISwitch *skipSwitch;
+@property (weak, nonatomic) IBOutlet UIImageView *reasonIcon;
+
+@property (strong, nonatomic) ValidationCell *idDocumentCell;
+@property (strong, nonatomic) ValidationCell *proofOfAddressCell;
+
+@property (strong, nonatomic) IBOutlet UIButton *continueButton;
+@property (weak, nonatomic) IBOutlet UIButton* skipButton;
+
 @property (nonatomic, assign) NSInteger selectedRow;
 @property (nonatomic, assign) NSInteger idVerificationRowIndex;
 @property (nonatomic, assign) NSInteger addressVerificationRowIndex;
@@ -55,27 +58,19 @@
     self.idVerificationRowIndex = NSNotFound;
     self.addressVerificationRowIndex = NSNotFound;
 
-    [self.tableView setBackgroundView:nil];
-    [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
     self.tableView.tableHeaderView = self.headerView;
-    self.tableView.tableFooterView = self.footerView;
+    CGRect newFrame = self.headerSeparator.frame;
+    newFrame.size.height = 1.0f/[[UIScreen mainScreen] scale];
+    self.headerSeparator.frame=newFrame;
 
     [self.reasonTitle setText:NSLocalizedString(@"identification.reason.title", @"")];
-    [self.excuseLabel setText:NSLocalizedString(@"identification.excuse", @"")];
-    [self.explanationLabel setText:NSLocalizedString(@"identification.explanation", @"")];
-    [self.skipLabel setText:NSLocalizedString(@"identification.skip.send", @"")];
-    if (self.proposedFooterButtonTitle) {
-        [self.continueButton setTitle:self.proposedFooterButtonTitle forState:UIControlStateNormal];
-    } else {
-        [self.continueButton setTitle:NSLocalizedString(@"identification.upload.and.continue.button", @"") forState:UIControlStateNormal];
-    }
+    
+     [self.skipButton setTitle:NSLocalizedString(@"identification.skip.button", @"") forState:UIControlStateNormal];
+    [self.continueButton setTitle:NSLocalizedString(@"identification.upload.button", @"") forState:UIControlStateNormal];
 
-    [self.tableView registerNib:[UINib nibWithNibName:@"TextCell" bundle:nil] forCellReuseIdentifier:TWTextCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ValidationCell" bundle:nil] forCellReuseIdentifier:ValidationCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
-    [PendingPayment removePossibleImages];
 
-    [self.skipSwitch setHidden:self.hideSkipOption];
-    [self.skipLabel setHidden:self.hideSkipOption];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,6 +83,8 @@
 
     [self.navigationItem setTitle:NSLocalizedString(@"identification.controller.title", nil)];
 
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
     [self buildCells];
 
     [self.tableView adjustFooterViewSize];
@@ -108,19 +105,23 @@
     NSMutableArray *photoCells = [NSMutableArray array];
 
     if ([self idVerificationRequired]) {
-        TextCell *idDocumentCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
+        ValidationCell *idDocumentCell = [self.tableView dequeueReusableCellWithIdentifier:ValidationCellIdentifier];
         [self setIdDocumentCell:idDocumentCell];
         [photoCells addObject:idDocumentCell];
-        [idDocumentCell configureWithTitle:NSLocalizedString(@"identification.id.document", @"") text:NSLocalizedString(@"identification.take.photo", @"")];
+        [idDocumentCell configureWithButtonTitle:NSLocalizedString(@"identification.id.document", @"") buttonImage:nil andCaption:NSLocalizedString(@"identification.id.description", @"")];
+        [idDocumentCell documentSelected:[PendingPayment isIdVerificationImagePresent]];
+        idDocumentCell.delegate = self;
         self.idVerificationRowIndex = [photoCells count] - 1;
     }
 
 
     if ([self addressVerificationRequired]) {
-        TextCell *proofOfAddressCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextCellIdentifier];
+        ValidationCell *proofOfAddressCell = [self.tableView dequeueReusableCellWithIdentifier:ValidationCellIdentifier];
         [self setProofOfAddressCell:proofOfAddressCell];
         [photoCells addObject:proofOfAddressCell];
-        [proofOfAddressCell configureWithTitle:NSLocalizedString(@"identification.proof.of.address", @"") text:NSLocalizedString(@"identification.take.photo", @"")];
+        [proofOfAddressCell configureWithButtonTitle:NSLocalizedString(@"identification.proof.of.address", @"") buttonImage:nil andCaption:NSLocalizedString(@"identification.proof.of.address.description", @"")];
+        [proofOfAddressCell documentSelected:[PendingPayment isAddressVerificationImagePresent]];
+        proofOfAddressCell.delegate = self;
         self.addressVerificationRowIndex = [photoCells count] - 1;
     }
 
@@ -129,7 +130,8 @@
         [self setPaymentPurposeCell:entryCell];
         [entryCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
         [photoCells addObject:entryCell];
-        [entryCell configureWithTitle:NSLocalizedString(@"identification.payment.puprose", nil) value:self.proposedPaymentPurpose];
+        [entryCell.entryField addTarget:self action:@selector(validateInput) forControlEvents:UIControlEventAllEditingEvents];
+        [entryCell configureWithTitle:NSLocalizedString(@"identification.payment.purpose", nil) value:self.proposedPaymentPurpose];
     }
 
     [self setPresentedSectionCells:@[photoCells]];
@@ -148,15 +150,29 @@
     return (self.identificationRequired & IdentificationIdRequired) == IdentificationIdRequired;
 }
 
-#pragma mark - UITableView delegate
+#pragma mark - ValidationCell delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+-(void)actionTappedOnValidationCell:(ValidationCell *)cell
+{
+    NSUInteger row = [self.presentedSectionCells[0] indexOfObject:cell];
+    self.selectedRow = row;
+    [self presentCameraController];
+}
 
-    if (indexPath.section == 0 && (indexPath.row == self.idVerificationRowIndex || indexPath.row == self.addressVerificationRowIndex)) {
-        [self presentCameraController];
-        self.selectedRow = indexPath.row;
+-(void)deleteTappedOnValidationCell:(ValidationCell *)cell
+{
+    NSUInteger row = [self.presentedSectionCells[0] indexOfObject:cell];
+    if(row == self.idVerificationRowIndex)
+    {
+        [PendingPayment removeIdImage];
+        [self.idDocumentCell documentSelected:NO];
     }
+    else if (row == self.addressVerificationRowIndex)
+    {
+        [PendingPayment removeAddressImage];
+        [self.proofOfAddressCell documentSelected:NO];
+    }
+    [self validateInput];
 }
 
 #pragma mark - Take photo
@@ -185,49 +201,48 @@
 
 // For responding to the user accepting a newly-captured picture or movie
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    __weak typeof(self) weakSelf =self;
     dispatch_async(dispatch_get_main_queue(), ^{
         UIImage *originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
 
-        if (self.selectedRow == self.idVerificationRowIndex) {
+        if (weakSelf.selectedRow == weakSelf.idVerificationRowIndex) {
             [PendingPayment setIdPhoto:originalImage];
-            self.idDocumentCell.detailTextLabel.text = @"";
-            self.idDocumentCell.accessoryType = UITableViewCellAccessoryCheckmark;
-        } else if (self.selectedRow == self.addressVerificationRowIndex) {
+            [weakSelf.idDocumentCell documentSelected:YES];
+        } else if (weakSelf.selectedRow == weakSelf.addressVerificationRowIndex) {
             [PendingPayment setAddressPhoto:originalImage];
-            self.proofOfAddressCell.accessoryType = UITableViewCellAccessoryCheckmark;
-            self.proofOfAddressCell.detailTextLabel.text = @"";
+            [weakSelf.proofOfAddressCell documentSelected:YES];
         }
 
-        [self.tableView reloadData];
+        [weakSelf.tableView reloadData];
 
         [picker dismissViewControllerAnimated:YES completion:nil];
+        [weakSelf validateInput];
     });
 }
 
 
 #pragma mark - Continue
+- (IBAction)skipTapped:(id)sender {
+    [self complete:YES];
+}
 
 - (IBAction)continueClicked:(id)sender {
-    NSString *issues = [self validateInput];
-    if ([issues hasValue]) {
-        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"identification.input.error.title", nil) message:issues];
-        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-        [alertView show];
-        return;
-    }
+    [self complete:NO];
+}
 
+-(void)complete:(BOOL)skip
+{
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:self.completionMessage];
-
-    BOOL skipIdentification = self.skipSwitch.isOn;
-
-    if (skipIdentification) {
+    
+    
+    if (skip) {
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"skipped"];
     } else {
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"sent"];
     }
-
-    self.completionHandler(skipIdentification, [self.paymentPurposeCell.entryField text], ^(void){
+    
+    self.completionHandler(skip, [self.paymentPurposeCell.entryField text], ^(void){
         [hud hide];
     }, ^(NSError *error) {
         [hud hide];
@@ -236,28 +251,62 @@
             [alertView show];
         }
     });
+
+    
 }
 
-- (NSString *)validateInput {
-    if (self.skipSwitch.isOn) {
-        return @"";
-    }
+- (BOOL)validateInput {
 
-    NSMutableString *issues = [NSMutableString string];
+    int numberOfMissingFields = 0;
+    int numberOfMissingDocuments = 0;
+    int numberOfMissingReasons = 0;
 
     if ([self idVerificationRequired] && ![PendingPayment isIdVerificationImagePresent]) {
-        [issues appendIssue:NSLocalizedString(@"identification.id.image.missing.message", nil)];
+        numberOfMissingFields++;
+        numberOfMissingDocuments++;
     }
 
     if ([self addressVerificationRequired] && ![PendingPayment isAddressVerificationImagePresent]) {
-        [issues appendIssue:NSLocalizedString(@"identification.address.image.missing.message", nil)];
+        numberOfMissingFields++;
+        numberOfMissingDocuments++;
     }
 
     if ([self paymentPurposeRequired] && ![self.paymentPurposeCell.entryField.text hasValue]) {
-        [issues appendIssue:NSLocalizedString(@"identification.payment.purpose.missing.message", nil)];
+        numberOfMissingFields++;
+        numberOfMissingReasons++;
+    }
+    
+    self.reasonIcon.image = nil;
+    
+    if (numberOfMissingFields <= 0)
+    {
+        self.skipButton.hidden = YES;
+        self.continueButton.hidden = NO;
+        User* user = [self.objectModel currentUser];
+        [self.reasonTitle setText:[NSString stringWithFormat:NSLocalizedString(@"identification.well.done.format", @""),user.personalProfile.firstName]];
+
+    }
+    else
+    {
+        self.skipButton.hidden = NO;
+        self.continueButton.hidden = YES;
+        if(numberOfMissingFields == [self.presentedSectionCells[0] count])
+        {
+            self.reasonIcon.image = [UIImage imageNamed:@"icon_status_documents_needed"];
+            [self.reasonTitle setText:NSLocalizedString(@"identification.reason.title", @"")];
+        }
+        else
+        {
+//            "identification.good.format" = "Good! %d documents left.";
+//            "identification.good.single.format" = "Good! %d document left.";
+            
+            [self.reasonTitle setText:NSLocalizedString(@"identification.reason.title", @"")];
+
+        }
+
     }
 
-    return [NSString stringWithString:issues];
+    return numberOfMissingFields<=0;
 }
 
 @end

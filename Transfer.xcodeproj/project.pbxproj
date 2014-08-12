@@ -93,6 +93,10 @@
 		385AC114198FE52E0088DCD6 /* NoRefCurrencyMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 385AC112198FE52E0088DCD6 /* NoRefCurrencyMessages.plist */; };
 		385AC116198FE5500088DCD6 /* intro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 385AC115198FE5500088DCD6 /* intro.plist */; };
 		385AC117198FE5500088DCD6 /* intro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 385AC115198FE5500088DCD6 /* intro.plist */; };
+		38621520199A32C3009A653F /* ValidationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3862151E199A32C3009A653F /* ValidationCell.m */; };
+		38621521199A32C3009A653F /* ValidationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3862151E199A32C3009A653F /* ValidationCell.m */; };
+		38621522199A32C3009A653F /* ValidationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3862151F199A32C3009A653F /* ValidationCell.xib */; };
+		38621523199A32C3009A653F /* ValidationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3862151F199A32C3009A653F /* ValidationCell.xib */; };
 		38675454198B977800DEA359 /* RefundDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */; };
 		38675455198B977800DEA359 /* RefundDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */; };
 		38675457198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */; };
@@ -886,6 +890,9 @@
 		385AC10F198FE2190088DCD6 /* SharpSansFrontieres-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SharpSansFrontieres-Bold.otf"; sourceTree = "<group>"; };
 		385AC112198FE52E0088DCD6 /* NoRefCurrencyMessages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NoRefCurrencyMessages.plist; sourceTree = "<group>"; };
 		385AC115198FE5500088DCD6 /* intro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = intro.plist; sourceTree = "<group>"; };
+		3862151D199A32C3009A653F /* ValidationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationCell.h; sourceTree = "<group>"; };
+		3862151E199A32C3009A653F /* ValidationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidationCell.m; sourceTree = "<group>"; };
+		3862151F199A32C3009A653F /* ValidationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ValidationCell.xib; sourceTree = "<group>"; };
 		38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RefundDetailsViewController~ipad.xib"; sourceTree = "<group>"; };
 		38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransferTypeSelectionHeaderNoTitle~ipad.xib"; sourceTree = "<group>"; };
 		3887CBB8197690FC004DFFFD /* OptionalSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionalSplitViewController.h; sourceTree = "<group>"; };
@@ -1983,6 +1990,9 @@
 				476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */,
 				471C9FF9197FB1AA00BCA3B4 /* FixSeparatorCell.h */,
 				471C9FFA197FB1AA00BCA3B4 /* FixSeparatorCell.m */,
+				3862151D199A32C3009A653F /* ValidationCell.h */,
+				3862151E199A32C3009A653F /* ValidationCell.m */,
+				3862151F199A32C3009A653F /* ValidationCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2748,6 +2758,7 @@
 				EA31A20117DDB29B00F937F7 /* RecipientViewController.xib in Resources */,
 				4723EA2C1975349C00B4345F /* TransferPayIPadViewController~ipad.xib in Resources */,
 				38EFABE0196D7EAB00126192 /* DataEntryDefaultHeader~ipad.xib in Resources */,
+				38621523199A32C3009A653F /* ValidationCell.xib in Resources */,
 				EA31A20217DDB29B00F937F7 /* CurrencySelectionCell.xib in Resources */,
 				EA31A20317DDB29B00F937F7 /* RecipientFieldCell.xib in Resources */,
 				380021E7192CEB66009B1D53 /* TransactionsViewController~ipad.xib in Resources */,
@@ -2839,6 +2850,7 @@
 				EA0450D617EC5BC1008921DA /* IntroViewController.xib in Resources */,
 				47FAF353194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */,
 				385AC110198FE2190088DCD6 /* SharpSansFrontieres-Bold.otf in Resources */,
+				38621522199A32C3009A653F /* ValidationCell.xib in Resources */,
 				38CACA61196EE21600BFCF82 /* NameSuggestionCell~ipad.xib in Resources */,
 				385669131980FB0500BC4230 /* PlainPresentationCell.xib in Resources */,
 				3800220C192F5774009B1D53 /* CurrencyCell.xib in Resources */,
@@ -3205,6 +3217,7 @@
 				EA31A15717DDB29B00F937F7 /* CurrencyPairsOperation.m in Sources */,
 				EA31A15817DDB29B00F937F7 /* RecipientViewController.m in Sources */,
 				EA31A15917DDB29B00F937F7 /* CurrenciesOperation.m in Sources */,
+				38621521199A32C3009A653F /* ValidationCell.m in Sources */,
 				389F6822198FC1C6006CF1F6 /* ObjectModel+Countries.m in Sources */,
 				EA0450D017EC3635008921DA /* TextContainerView.m in Sources */,
 				EA31A15A17DDB29B00F937F7 /* TransferwiseClient.m in Sources */,
@@ -3485,6 +3498,7 @@
 				EAA54F501733DC3500B65BF3 /* CurrenciesOperation.m in Sources */,
 				EA0450CF17EC3635008921DA /* TextContainerView.m in Sources */,
 				EAA54F581733E8F700B65BF3 /* TransferwiseClient.m in Sources */,
+				38621520199A32C3009A653F /* ValidationCell.m in Sources */,
 				389F6821198FC1C6006CF1F6 /* ObjectModel+Countries.m in Sources */,
 				EAA54F5B1733EF1A00B65BF3 /* RecipientTypesOperation.m in Sources */,
 				EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */,
