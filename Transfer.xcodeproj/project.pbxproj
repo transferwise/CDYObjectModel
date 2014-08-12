@@ -346,6 +346,8 @@
 		47971C65199A3F1F0018FDA8 /* DoublePasswordEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C63199A3F1F0018FDA8 /* DoublePasswordEntryCell~ipad.xib */; };
 		47971C67199A3FB60018FDA8 /* CountrySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C66199A3FB60018FDA8 /* CountrySelectionCell~ipad.xib */; };
 		47971C68199A3FB60018FDA8 /* CountrySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C66199A3FB60018FDA8 /* CountrySelectionCell~ipad.xib */; };
+		47971C6A199A4E830018FDA8 /* DoubleEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C69199A4E830018FDA8 /* DoubleEntryCell~ipad.xib */; };
+		47971C6B199A4E830018FDA8 /* DoubleEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C69199A4E830018FDA8 /* DoubleEntryCell~ipad.xib */; };
 		479B692C19487865001FA4FE /* TransferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B692A19487865001FA4FE /* TransferDetailsViewController.m */; };
 		479B692D19487865001FA4FE /* TransferDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479B692B19487865001FA4FE /* TransferDetailsViewController.xib */; };
 		479B692F194878CA001FA4FE /* TransferDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479B692E194878CA001FA4FE /* TransferDetailsViewController~ipad.xib */; };
@@ -1114,6 +1116,7 @@
 		47971C60199A3C1C0018FDA8 /* DateEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DateEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C63199A3F1F0018FDA8 /* DoublePasswordEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DoublePasswordEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C66199A3FB60018FDA8 /* CountrySelectionCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CountrySelectionCell~ipad.xib"; sourceTree = "<group>"; };
+		47971C69199A4E830018FDA8 /* DoubleEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DoubleEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		479B692919487865001FA4FE /* TransferDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferDetailsViewController.h; sourceTree = "<group>"; };
 		479B692A19487865001FA4FE /* TransferDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDetailsViewController.m; sourceTree = "<group>"; };
 		479B692B19487865001FA4FE /* TransferDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferDetailsViewController.xib; sourceTree = "<group>"; };
@@ -1941,6 +1944,7 @@
 				47F84D68198A638B00886D41 /* DoubleEntryCell.h */,
 				47F84D69198A638B00886D41 /* DoubleEntryCell.m */,
 				47F84D6A198A638B00886D41 /* DoubleEntryCell.xib */,
+				47971C69199A4E830018FDA8 /* DoubleEntryCell~ipad.xib */,
 				47535CAC1981362600DC39D6 /* DoublePasswordEntryCell.h */,
 				47535CAD1981362600DC39D6 /* DoublePasswordEntryCell.m */,
 				47535CAE1981362600DC39D6 /* DoublePasswordEntryCell.xib */,
@@ -2782,6 +2786,7 @@
 				EA31A21117DDB29B00F937F7 /* BankTransferViewController.xib in Resources */,
 				EA31A21217DDB29B00F937F7 /* TextCell.xib in Resources */,
 				EA31A21317DDB29B00F937F7 /* ButtonCell.xib in Resources */,
+				47971C6B199A4E830018FDA8 /* DoubleEntryCell~ipad.xib in Resources */,
 				38675458198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */,
 				EA31A21A17DDB29B00F937F7 /* OpenIDViewController.xib in Resources */,
 				47FAF351194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */,
@@ -2867,6 +2872,7 @@
 				47971C5E199A3A560018FDA8 /* TextEntryCell~ipad.xib in Resources */,
 				38B0930B1951FA2A00315BE4 /* DataEntryDefaultHeader.xib in Resources */,
 				BBC691261721416300F0FB1A /* TSAlertViewButtonBackground.png in Resources */,
+				47971C6A199A4E830018FDA8 /* DoubleEntryCell~ipad.xib in Resources */,
 				385A668D1978178500D00D1F /* ContactsViewController~ipad.xib in Resources */,
 				BBC691271721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
 				EAE7B6AF17E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */,

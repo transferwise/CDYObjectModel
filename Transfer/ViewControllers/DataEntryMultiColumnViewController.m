@@ -407,7 +407,7 @@
     {
         self.firstColumnLeftMargin.constant = self.showInsideTabControllerForIpad ? 148.f : 194.f;
         self.secondColumnLeftEdgeConstraint.constant = -380.f;
-        self.secondColumnTopConstraint.constant = self.firstColumnHeightConstraint.constant + 60.f;
+        self.secondColumnTopConstraint.constant = self.firstColumnHeightConstraint.constant + 50.f;
         
     }
     else
