@@ -25,7 +25,6 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonHeight;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonBottom;
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *contentWidth;
 
@@ -95,7 +94,6 @@
 	else
 	{
 		self.showButtonForIphone = NO;
-		self.showButtonForIpad = NO;
 	}
 }
 
@@ -118,12 +116,6 @@
 	{
 		//arbitrary large value, other constraints will catch it
 		self.contentWidth.constant = 2000;
-	}
-	
-	if (IPAD && !self.showButtonForIpad)
-	{
-		self.buttonBottom.constant = 0;
-		self.buttonHeight.constant = 0;
 	}
 	
 	if (!IPAD && !self.showButtonForIphone)

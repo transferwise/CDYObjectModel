@@ -128,7 +128,7 @@
 -(void)reloadTableViews;
 
 /**
- *  oveeride to add orientation change customisations.
+ *  override to add orientation change customisations.
  *
  *  default implementation handles laying out constraints for two columns on iPad.
  *
@@ -144,5 +144,14 @@
  *  @return The parent UITableViewCell
  */
 - (UITableViewCell *)getParentCell:(UIView *)view;
+
+/**
+ *	can be used to trigger movement to next editable cell
+ *
+ *	@param cell cell to move away from
+ *
+ *  @return BOOL to signal that the move should happen
+ */
+- (BOOL)moveFocusOnNextEntryAfterCell:(UITableViewCell *)cell;
 
 @end

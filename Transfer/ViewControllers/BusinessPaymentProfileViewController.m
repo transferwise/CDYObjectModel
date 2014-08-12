@@ -21,11 +21,11 @@
 - (void)viewDidLoad
 {
 	self.showFullWidth = YES;
-	self.showButtonForIpad = YES;
 	self.showButtonForIphone = YES;
 	
-	self.businessProfile = [[BusinessProfileViewController alloc] init];
+	self.businessProfile = [[BusinessProfileViewController alloc] initWithActionButtonTitle:self.buttonTitle ? self.buttonTitle :  NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
 	self.businessProfile.objectModel = self.objectModel;
+	self.businessProfile.showFooterViewForIpad = YES;
 	
 	if(self.profileValidation)
 	{

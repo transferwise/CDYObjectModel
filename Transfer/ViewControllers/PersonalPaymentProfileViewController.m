@@ -22,13 +22,14 @@
 - (void)viewDidLoad
 {
 	self.showFullWidth = YES;
-	self.showButtonForIpad = YES;
 	self.showButtonForIphone = YES;
 	
-	self.personalProfile = [[PersonalProfileViewController alloc] init];
+	self.personalProfile = [[PersonalProfileViewController alloc] initWithActionButtonTitle:
+							self.buttonTitle ? self.buttonTitle : NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
 	self.personalProfile.objectModel = self.objectModel;
 	self.personalProfile.allowProfileSwitch = self.allowProfileSwitch;
 	self.personalProfile.delegate = self;
+	self.personalProfile.showFooterViewForIpad = YES;
 	
 	if(self.profileValidation)
 	{
@@ -37,7 +38,7 @@
 	
 	[super configureWithControllers:@[self.personalProfile]
 							 titles:@[NSLocalizedString(@"profile.selection.text.personal.profile", nil)]
-						actionTitle:self.buttonTitle ? self.buttonTitle :  NSLocalizedString(@"confirm.payment.footer.button.title", nil)
+						actionTitle:self.buttonTitle ? self.buttonTitle : NSLocalizedString(@"confirm.payment.footer.button.title", nil)
 						actionStyle:@"greenButton"
 					   actionShadow:@"greenShadow"
 					 actionProgress:0.3f];

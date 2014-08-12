@@ -213,7 +213,7 @@
 	
 	if(!IPAD)
 	{
-		if (!self.actionButtonTitle)
+		if (!self.isExisting)
 		{
 			self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
 			if([self createSendAsBusinessCell])
@@ -249,7 +249,14 @@
 
 - (IBAction)actionTapped:(id)sender
 {
-	[self validateProfile:YES];
+	if (self.showingLogin)
+	{
+		[self login];
+	}
+	else
+	{
+		[self validateProfile:self.isExisting];
+	}
 }
 
 - (BOOL)createSendAsBusinessCell

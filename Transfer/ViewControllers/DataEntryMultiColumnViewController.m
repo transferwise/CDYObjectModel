@@ -229,7 +229,7 @@
     
     NSUInteger tableViewIndex = [self indexOfTableViewContainingCell:cell];
 
-     NSIndexPath *moveToIndexPath = indexPath;
+	NSIndexPath *moveToIndexPath = indexPath;
     
     while (tableViewIndex != NSNotFound)
     {
