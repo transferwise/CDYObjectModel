@@ -106,6 +106,7 @@
 -(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
 {
     [self.entryCell.entryField resignFirstResponder];
+	[self moveFocusOnNextEntryAfterCell:self.entryCell];
 }
 
 -(void)keyboardWillShow:(NSNotification*)note
