@@ -59,7 +59,8 @@
     TabItem *transactionsItem = [TabItem new];
     transactionsItem.viewController = transactionsController;
     transactionsItem.title = NSLocalizedString(@"transactions.controller.tabbar.title", nil);
-    transactionsItem.icon = [UIImage imageNamed:@"TransactionsTabIcon.png"];
+    transactionsItem.icon = [UIImage imageNamed:@"Transfers"];
+    transactionsItem.selectedIcon = [UIImage imageNamed:@"Transfers_selected"];
 
     
     TabItem *inviteItem = [TabItem new];
@@ -69,12 +70,14 @@
         return NO;
     }];
     inviteItem.title = NSLocalizedString(@"invite.controller.tabbar.title", nil);
-    inviteItem.icon = [UIImage imageNamed:@"tab_icon_invite"];
+    inviteItem.icon = [UIImage imageNamed:@"Invite"];
+    inviteItem.selectedIcon = [UIImage imageNamed:@"Invite_selected"];
 
     
     TabItem *paymentItem = [TabItem new];
     paymentItem.title = NSLocalizedString(@"payment.controller.tabbar.title", nil);
-    paymentItem.icon = [UIImage imageNamed:@"NewPaymentTabIcon.png"];
+    paymentItem.icon = [UIImage imageNamed:@"Payment"];
+    paymentItem.selectedIcon = [UIImage imageNamed:@"Payment_selected"];
     paymentItem.deSelectedColor = [UIColor colorFromStyle:@"TWBlueHighlighted"];
     paymentItem.textColor = [UIColor whiteColor];
     [paymentItem setActionBlock:^(TabItem* item){
@@ -92,7 +95,8 @@
     [contactsController setObjectModel:self.objectModel];
     TabItem *contactsItem = [TabItem new];
     contactsItem.title = NSLocalizedString(@"contacts.controller.tabbar.title", nil);
-    contactsItem.icon = [UIImage imageNamed:@"ContactsIcon.png"];
+    contactsItem.icon = [UIImage imageNamed:@"Contacts"];
+    contactsItem.selectedIcon = [UIImage imageNamed:@"Contacts_selected"];
     contactsItem.viewController = contactsController;
     
 	ProfilesEditViewController *profileController = [[ProfilesEditViewController alloc] init];
@@ -100,7 +104,8 @@
 	
 	TabItem *profileItem = [TabItem new];
     profileItem.title = NSLocalizedString(@"profile.controller.tabbar.title", nil);
-    profileItem.icon = [UIImage imageNamed:@"tab_icon_profile"];
+    profileItem.icon = [UIImage imageNamed:@"Profile"];
+    profileItem.selectedIcon = [UIImage imageNamed:@"Profile_selected"];
 	profileItem.viewController = IPAD ? [[UINavigationController alloc] initWithRootViewController:profileController] : profileController;
     TabViewController *tabController = [[TabViewController alloc] init];
     tabController.defaultSelectedColor = [UIColor colorFromStyle:@"TWBlue"];

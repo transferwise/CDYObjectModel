@@ -88,7 +88,7 @@
         <relationship name="targetCurrency" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="targetForPayments" inverseEntity="Currency" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="payments" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="PaymentMadeIndicator" syncable="YES">
+    <entity name="PaymentMadeIndicator" representedClassName="PaymentMadeIndicator" syncable="YES">
         <attribute name="paymentRemoteId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="payment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Payment" inverseName="paymentMadeIndicator" inverseEntity="Payment" syncable="YES"/>
     </entity>
@@ -178,7 +178,7 @@
         <element name="PairTargetCurrency" positionX="0" positionY="0" width="128" height="135"/>
         <element name="PayInMethod" positionX="36" positionY="180" width="128" height="165"/>
         <element name="Payment" positionX="349" positionY="-63" width="128" height="375"/>
-        <element name="PaymentMadeIndicator" positionX="-405" positionY="-279" width="128" height="73"/>
+        <element name="PaymentMadeIndicator" positionX="-405" positionY="-279" width="128" height="75"/>
         <element name="PendingPayment" positionX="79" positionY="-189" width="128" height="148"/>
         <element name="PersonalProfile" positionX="-614" positionY="-42" width="128" height="225"/>
         <element name="Recipient" positionX="277" positionY="152" width="128" height="208"/>

@@ -36,7 +36,7 @@ extern const struct PaymentFetchedProperties {
 } PaymentFetchedProperties;
 
 @class PayInMethod;
-@class NSManagedObject;
+@class PaymentMadeIndicator;
 @class Recipient;
 @class Recipient;
 @class Currency;
@@ -245,7 +245,7 @@ extern const struct PaymentFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSManagedObject *paymentMadeIndicator;
+@property (nonatomic, strong) PaymentMadeIndicator *paymentMadeIndicator;
 
 //- (BOOL)validatePaymentMadeIndicator:(id*)value_ error:(NSError**)error_;
 
@@ -410,8 +410,8 @@ extern const struct PaymentFetchedProperties {
 
 
 
-- (NSManagedObject*)primitivePaymentMadeIndicator;
-- (void)setPrimitivePaymentMadeIndicator:(NSManagedObject*)value;
+- (PaymentMadeIndicator*)primitivePaymentMadeIndicator;
+- (void)setPrimitivePaymentMadeIndicator:(PaymentMadeIndicator*)value;
 
 
 
