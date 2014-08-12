@@ -267,6 +267,12 @@ NSInteger const kYearField = 3;
 	[self navigateToNext:textField withValidation:YES];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+	[self navigateToNext:textField withValidation:NO];
+	return YES;
+}
+
 - (void)navigateToNext:(UITextField *)textField withValidation:(BOOL)withValidation
 {
 	[self changeHeaderColor];
