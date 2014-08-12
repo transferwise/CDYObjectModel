@@ -16,6 +16,7 @@ typedef BOOL(^TabItemActionBlock)(TabItem*);
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) UIImage *icon;
+@property (nonatomic, strong) UIImage *selectedIcon;
 @property (nonatomic, strong) UIViewController *viewController;
 @property (nonatomic, strong) TabItemActionBlock actionBlock;
 

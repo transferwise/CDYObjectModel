@@ -41,7 +41,7 @@ NSUInteger const kUserPersonalSection = 1;
 @property (nonatomic, strong) DoublePasswordEntryCell *passwordCell;
 @property (nonatomic, strong) NSArray *loginCells;
 @property (nonatomic, strong) SwitchCell *sendAsBusinessCell;
-@property (nonatomic) BOOL anonymous;
+@property (nonatomic) BOOL allowProfileSwitch;
 
 @end
 
@@ -50,7 +50,7 @@ NSUInteger const kUserPersonalSection = 1;
 - (NSArray *)presentedCells:(BOOL)allowProfileSwitch
 				 isExisting:(BOOL)isExisting
 {
-	self.anonymous = allowProfileSwitch;
+	self.allowProfileSwitch = allowProfileSwitch;
 	
     if (self.cells)
 	{
@@ -68,16 +68,18 @@ NSUInteger const kUserPersonalSection = 1;
 	NSMutableArray *loginCells = [NSMutableArray array];
 	
 	TextEntryCell *emailCell = [TextEntryCell loadInstance];
-    [self setEmailCell:emailCell];
-    [emailCell configureWithTitle:NSLocalizedString(@"personal.profile.email.label", nil) value:@""];
-    [emailCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
-    [emailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
+	[self setEmailCell:emailCell];
+	[emailCell configureWithTitle:NSLocalizedString(@"personal.profile.email.label", nil) value:@""];
+	[emailCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+	[emailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
 	[emailCell setCellTag:@"EmailCell"];
-	[personalDetailsCells addObject:emailCell];
-	[loginCells addObject:emailCell];
 	
 	if (!isExisting)
 	{
+		//we only need to show the email cell for new profiles
+		[personalDetailsCells addObject:emailCell];
+		[loginCells addObject:emailCell];
+		
 		DoublePasswordEntryCell *passwordCell = [DoublePasswordEntryCell loadInstance];
 		passwordCell.showDouble = YES;
 		passwordCell.useDummyPassword = NO;
@@ -193,7 +195,7 @@ NSUInteger const kUserPersonalSection = 1;
         PersonalProfile *profile = user.personalProfile;
         [self.firstLastNameCell setValue:profile.firstName];
         [self.firstLastNameCell setSecondValue:profile.lastName];
-        [self.emailCell setValue:user.email];
+		[self.emailCell setValue:user.email];
 		[self.passwordCell setUseDummyPassword:user && profile];
         [self.phoneNumberCell setValue:profile.phoneNumber];
         [self.dateOfBirthCell setValue:profile.dateOfBirth];
@@ -221,9 +223,10 @@ NSUInteger const kUserPersonalSection = 1;
 
 - (BOOL)inputValid
 {
-    return [[self.firstLastNameCell value] hasValue] && [[self.firstLastNameCell secondValue] hasValue] && [[self.emailCell value] hasValue]
-            && [[self.phoneNumberCell value] hasValue] && [[self.dateOfBirthCell value] hasValue]
-            && [[self.addressCell value] hasValue] && [[self.zipCityCell value] hasValue] && [[self.zipCityCell secondValue] hasValue]
+    return [[self.firstLastNameCell value] hasValue] && [[self.firstLastNameCell secondValue] hasValue]
+			&& [[self.emailCell value] hasValue] && [[self.phoneNumberCell value] hasValue]
+			&& [[self.dateOfBirthCell value] hasValue] && [[self.addressCell value] hasValue]
+			&& [[self.zipCityCell value] hasValue] && [[self.zipCityCell secondValue] hasValue]
             && [[self.countryCell value] hasValue];
 }
 
@@ -259,7 +262,7 @@ NSUInteger const kUserPersonalSection = 1;
     [profile setDateOfBirth:[self.dateOfBirthCell value]];
     [profile setState:[self.stateCell value]];
 	
-	if (self.anonymous)
+	if (self.allowProfileSwitch)
 	{
 		[profile setSendAsBusinessValue:[self.sendAsBusinessCell value]];
 	}

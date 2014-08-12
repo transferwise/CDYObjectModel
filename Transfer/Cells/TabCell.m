@@ -49,17 +49,21 @@
     {
         self.backgroundColor = self.currentItem.selectedColor;
         self.titleLabel.textColor = self.currentItem.textSelectedColor;
+        self.iconImage.image = self.currentItem.selectedIcon?:self.currentItem.icon;
     }
     else
     {
         self.backgroundColor = self.currentItem.deSelectedColor;
         self.titleLabel.textColor = self.currentItem.textColor;
+        self.iconImage.image = self.currentItem.icon;
     }
 }
 
 -(void)configureForHighlightedState
 {
     self.backgroundColor = self.currentItem.highlightedColor;
+    self.iconImage.image = self.currentItem.selectedIcon?:self.currentItem.icon;
+      self.titleLabel.textColor = self.currentItem.textSelectedColor;
 }
 
 
