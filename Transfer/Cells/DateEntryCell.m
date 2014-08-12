@@ -34,6 +34,8 @@ NSString *const TWDateEntryCellIdentifier = @"DateEntryCell";
 
 @property (nonatomic, copy) TRWActionBlock doneButtonAction;
 
+@property (nonatomic) BOOL separatorsAdded;
+
 @end
 
 @implementation DateEntryCell
@@ -95,22 +97,27 @@ NSInteger const kYearField = 3;
 
 - (void)setSeparators
 {
-	//really loving the random constants here :(
-	self.daySeparator = [UIView getSeparatorLineWithParentFrame:CGRectMake(self.dayTextField.frame.origin.x - 20,
-																		   self.contentView.frame.origin.y,
-																		   self.dayTextField.frame.size.width + 10,
-																		   self.contentView.frame.size.height)];
-	[self.contentView addSubview:self.daySeparator];
-	self.monthSeparator = [UIView getSeparatorLineWithParentFrame:CGRectMake(self.monthTextField.frame.origin.x - 20,
-																			 self.contentView.frame.origin.y,
-																			 self.monthTextField.frame.size.width + 10,
-																			 self.contentView.frame.size.height)];
-	[self.contentView addSubview:self.monthSeparator];
-	self.yearSeparator = [UIView getSeparatorLineWithParentFrame:CGRectMake(self.yearTextField.frame.origin.x - 20,
-																			self.contentView.frame.origin.y,
-																			self.contentView.frame.size.width - self.yearTextField.frame.origin.x +20,
-																			self.contentView.frame.size.height)];
-	[self.contentView addSubview:self.yearSeparator];
+	if (!self.separatorsAdded)
+	{
+		//really loving the random constants here :(
+		self.daySeparator = [UIView getSeparatorLineWithParentFrame:CGRectMake(self.dayTextField.frame.origin.x - 20,
+																			   self.contentView.frame.origin.y,
+																			   self.dayTextField.frame.size.width + 10,
+																			   self.contentView.frame.size.height)];
+		[self.contentView addSubview:self.daySeparator];
+		self.monthSeparator = [UIView getSeparatorLineWithParentFrame:CGRectMake(self.monthTextField.frame.origin.x - 20,
+																				 self.contentView.frame.origin.y,
+																				 self.monthTextField.frame.size.width + 10,
+																				 self.contentView.frame.size.height)];
+		[self.contentView addSubview:self.monthSeparator];
+		self.yearSeparator = [UIView getSeparatorLineWithParentFrame:CGRectMake(self.yearTextField.frame.origin.x - 20,
+																				self.contentView.frame.origin.y,
+																				self.contentView.frame.size.width - self.yearTextField.frame.origin.x +20,
+																				self.contentView.frame.size.height)];
+		[self.contentView addSubview:self.yearSeparator];
+		
+		self.separatorsAdded = YES;
+	}
 }
 
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value
