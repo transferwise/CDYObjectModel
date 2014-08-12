@@ -11,7 +11,6 @@
 @interface TabbedHeaderViewController : UIViewController
 
 @property (nonatomic) BOOL showFullWidth;
-@property (nonatomic) BOOL showButtonForIpad;
 @property (nonatomic) BOOL showButtonForIphone;
 
 - (void)configureWithControllers:(NSArray *)controllers

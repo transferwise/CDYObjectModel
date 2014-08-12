@@ -32,7 +32,6 @@
 - (void)viewDidLoad
 {
 	self.showFullWidth = YES;
-	self.showButtonForIpad = YES;
 	
 	[self initControllers];
 	
