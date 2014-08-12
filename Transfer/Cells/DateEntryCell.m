@@ -207,9 +207,14 @@ NSInteger const kYearField = 3;
 {
 	NSDateComponents* components = [DateEntryCell getComponents:date];
 	
-	self.dayTextField.text = [NSString stringWithFormat:@"%i", [components day]];
-	self.monthTextField.text = [NSString stringWithFormat:@"%i", [components month]];
+	self.dayTextField.text = [DateEntryCell paddedString:[components day]];
+	self.monthTextField.text = [DateEntryCell paddedString:[components month]];
 	self.yearTextField.text = [NSString stringWithFormat:@"%i", [components year]];
+}
+
++ (NSString *)paddedString:(NSInteger)component
+{
+	return [NSString stringWithFormat:(component < 10 ? @"0%i" : @"%i"), component];
 }
 
 #pragma mark - Validation
