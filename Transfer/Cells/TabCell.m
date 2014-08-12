@@ -62,6 +62,8 @@
 -(void)configureForHighlightedState
 {
     self.backgroundColor = self.currentItem.highlightedColor;
+    self.iconImage.image = self.currentItem.selectedIcon?:self.currentItem.icon;
+      self.titleLabel.textColor = self.currentItem.textSelectedColor;
 }
 
 
