@@ -13,17 +13,20 @@
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIImageView *selectedImage;
+@property (weak, nonatomic) NSString *caption;
+@property (weak, nonatomic) NSString *selectedCaption;
 
 
 @end
 
 @implementation ValidationCell
 
--(void)configureWithButtonTitle:(NSString*)buttonTitle buttonImage:(UIImage*)image andCaption:(NSString*)caption
+-(void)configureWithButtonTitle:(NSString*)buttonTitle buttonImage:(UIImage*)image caption:(NSString*)caption selectedCaption:(NSString*)selectedCaption
 {
     [self.button setTitle:buttonTitle forState:UIControlStateNormal];
     [self.button setImage:image forState:UIControlStateNormal];
-    self.captionLabel.text = caption;
+    self.caption = caption;
+    self.selectedCaption = selectedCaption;
     
     [self.deleteButton setTitle:NSLocalizedString(@"identification.delete.button", nil) forState:UIControlStateNormal];
 }
@@ -45,7 +48,7 @@
 -(void)documentSelected:(BOOL)documentSelectedState{
     
     self.button.hidden = documentSelectedState;
-    self.captionLabel.hidden = documentSelectedState;
+    self.captionLabel.text = documentSelectedState?self.selectedCaption:self.caption;
     self.selectedImage.hidden = !documentSelectedState;
     self.deleteButton.hidden = !documentSelectedState;
 }

@@ -24,7 +24,7 @@
 
 @property (nonatomic,weak) id<ValidationCellDelegate>delegate;
 
--(void)configureWithButtonTitle:(NSString*)buttonTitle buttonImage:(UIImage*)image andCaption:(NSString*)caption;
+-(void)configureWithButtonTitle:(NSString*)buttonTitle buttonImage:(UIImage*)image caption:(NSString*)caption selectedCaption:(NSString*)selectedCaption;
 
 -(void)documentSelected:(BOOL)documentSelectedState;
 

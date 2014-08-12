@@ -81,11 +81,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    [self.navigationItem setTitle:NSLocalizedString(@"identification.controller.title", nil)];
-
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     [self buildCells];
+
+    [self.navigationItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"identification.controller.title", nil),[self.presentedSectionCells[0] count]]];
 
     [self.tableView adjustFooterViewSize];
 
@@ -108,7 +108,7 @@
         ValidationCell *idDocumentCell = [self.tableView dequeueReusableCellWithIdentifier:ValidationCellIdentifier];
         [self setIdDocumentCell:idDocumentCell];
         [photoCells addObject:idDocumentCell];
-        [idDocumentCell configureWithButtonTitle:NSLocalizedString(@"identification.id.document", @"") buttonImage:nil andCaption:NSLocalizedString(@"identification.id.description", @"")];
+        [idDocumentCell configureWithButtonTitle:NSLocalizedString(@"identification.id.document", @"") buttonImage:nil caption:NSLocalizedString(@"identification.id.description", @"") selectedCaption:NSLocalizedString(@"identification.id.selected.description", @"")];
         [idDocumentCell documentSelected:[PendingPayment isIdVerificationImagePresent]];
         idDocumentCell.delegate = self;
         self.idVerificationRowIndex = [photoCells count] - 1;
@@ -119,7 +119,7 @@
         ValidationCell *proofOfAddressCell = [self.tableView dequeueReusableCellWithIdentifier:ValidationCellIdentifier];
         [self setProofOfAddressCell:proofOfAddressCell];
         [photoCells addObject:proofOfAddressCell];
-        [proofOfAddressCell configureWithButtonTitle:NSLocalizedString(@"identification.proof.of.address", @"") buttonImage:nil andCaption:NSLocalizedString(@"identification.proof.of.address.description", @"")];
+        [proofOfAddressCell configureWithButtonTitle:NSLocalizedString(@"identification.proof.of.address", @"") buttonImage:nil caption:NSLocalizedString(@"identification.proof.of.address.description", @"") selectedCaption:NSLocalizedString(@"identification.proof.of.address.selected.description", @"")];
         [proofOfAddressCell documentSelected:[PendingPayment isAddressVerificationImagePresent]];
         proofOfAddressCell.delegate = self;
         self.addressVerificationRowIndex = [photoCells count] - 1;
@@ -297,10 +297,14 @@
         }
         else
         {
-//            "identification.good.format" = "Good! %d documents left.";
-//            "identification.good.single.format" = "Good! %d document left.";
-            
-            [self.reasonTitle setText:NSLocalizedString(@"identification.reason.title", @"")];
+            if(numberOfMissingFields == 1)
+            {
+                [self.reasonTitle setText:[NSString stringWithFormat:NSLocalizedString(@"identification.good.single.format", @""),numberOfMissingFields]];
+            }
+            else
+            {
+                [self.reasonTitle setText:[NSString stringWithFormat:NSLocalizedString(@"identification.good.format", @""),numberOfMissingFields]];
+            }
 
         }
 

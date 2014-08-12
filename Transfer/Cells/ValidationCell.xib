@@ -27,8 +27,8 @@
                             <action selector="buttonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Crt-bp-ehg"/>
                         </connections>
                     </button>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="qFM-TQ-Zg3">
-                        <rect key="frame" x="20" y="57" width="280" height="21"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="qFM-TQ-Zg3">
+                        <rect key="frame" x="20" y="70" width="280" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="280" id="HHg-3E-0ng"/>
@@ -48,8 +48,8 @@
                             <constraint firstAttribute="height" constant="40" id="m8r-5m-uzN"/>
                         </constraints>
                     </imageView>
-                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fez-Jn-rXM">
-                        <rect key="frame" x="137" y="86" width="46" height="30"/>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fez-Jn-rXM">
+                        <rect key="frame" x="133" y="95" width="55" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" title="Button">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -64,13 +64,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="qFM-TQ-Zg3" firstAttribute="centerX" secondItem="bPD-df-tcL" secondAttribute="centerX" constant="-0.5" id="9vd-8u-Db8"/>
-                    <constraint firstItem="qFM-TQ-Zg3" firstAttribute="top" secondItem="bPD-df-tcL" secondAttribute="bottom" constant="15" id="Bn6-W5-Tdv"/>
+                    <constraint firstItem="qFM-TQ-Zg3" firstAttribute="top" secondItem="bPD-df-tcL" secondAttribute="bottom" constant="10" id="Bn6-W5-Tdv"/>
                     <constraint firstAttribute="centerX" secondItem="fez-Jn-rXM" secondAttribute="centerX" id="FUs-vY-KCU"/>
                     <constraint firstAttribute="centerX" secondItem="bPD-df-tcL" secondAttribute="centerX" id="jwt-mV-uJ8"/>
                     <constraint firstItem="bFy-01-1o9" firstAttribute="centerX" secondItem="bPD-df-tcL" secondAttribute="centerX" constant="-0.5" id="kf5-fB-MNB"/>
                     <constraint firstItem="bPD-df-tcL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="l9q-4G-ZSj"/>
                     <constraint firstItem="bFy-01-1o9" firstAttribute="centerY" secondItem="bPD-df-tcL" secondAttribute="centerY" id="xsl-DB-kzk"/>
-                    <constraint firstAttribute="centerY" secondItem="fez-Jn-rXM" secondAttribute="centerY" constant="-29" id="zCY-MG-nKR"/>
+                    <constraint firstAttribute="centerY" secondItem="fez-Jn-rXM" secondAttribute="centerY" constant="-40" id="zCY-MG-nKR"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
