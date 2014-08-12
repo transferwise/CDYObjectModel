@@ -390,7 +390,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[controller setProposedFooterButtonTitle:NSLocalizedString(@"transactions.identification.done.button.title", nil)];
     [controller setCompletionMessage:NSLocalizedString(@"transactions.identification.uploading.message", nil)];
     __weak typeof(self) weakSelf = self;
-    [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, VerificationStepSuccessBlock successBlock, PaymentErrorBlock errorBlock, UploadProgressBlock progressBlock) {
+    [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, VerificationStepSuccessBlock successBlock, PaymentErrorBlock errorBlock) {
         [weakSelf uploadPaymentPurpose:paymentPurpose errorHandler:errorBlock completionHandler:^{
             [weakSelf.navigationController popViewControllerAnimated:YES];
             if(successBlock)

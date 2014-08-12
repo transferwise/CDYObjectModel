@@ -10,12 +10,10 @@
 #import "TransferwiseOperation.h"
 
 typedef void (^FileUploadBlock)(NSError *error);
-typedef void (^FileProgressBlock)(float progress);
 
 @interface UploadVerificationFileOperation : TransferwiseOperation
 
 @property (nonatomic, copy) FileUploadBlock completionHandler;
-@property (nonatomic, copy) FileProgressBlock progressHandler;
 
 + (id)verifyOperationFor:(NSString *)verification profile:(NSString *)profile filePath:(NSString *)filePath;
 

@@ -162,7 +162,7 @@
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) error:error];
             [alertView show];
         }
-    },^(float progress){});
+    });
 }
 
 @end

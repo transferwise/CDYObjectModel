@@ -14,9 +14,7 @@
 @class PaymentFlow;
 @class ObjectModel;
 
-typedef void (^UploadProgressBlock)(float progress);
-
-typedef void (^IdentificationCompleteBlock)(BOOL skipIdentification, NSString *paymentPurpose, VerificationStepSuccessBlock successBlock, PaymentErrorBlock errorBlock, UploadProgressBlock progressBlock);
+typedef void (^IdentificationCompleteBlock)(BOOL skipIdentification, NSString *paymentPurpose, VerificationStepSuccessBlock successBlock, PaymentErrorBlock errorBlock);
 
 @interface PersonalProfileIdentificationViewController : DataEntryViewController
 

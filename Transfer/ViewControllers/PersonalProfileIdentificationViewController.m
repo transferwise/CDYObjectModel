@@ -41,6 +41,8 @@
 @property (nonatomic, assign) NSInteger addressVerificationRowIndex;
 @property (nonatomic, strong) TextEntryCell *paymentPurposeCell;
 
+@property (nonatomic, assign) float uploadProgressId,uploadProgressAddress;
+
 @end
 
 @implementation PersonalProfileIdentificationViewController
@@ -72,6 +74,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"ValidationCell" bundle:nil] forCellReuseIdentifier:ValidationCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
 
+    [self validateInput];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -233,27 +236,28 @@
 
 -(void)complete:(BOOL)skip
 {
-    __weak typeof(self) weakSelf = self;
+    
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:self.completionMessage];
-    
-    
     if (skip) {
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"skipped"];
     } else {
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"sent"];
     }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProgress:) name:TRWUploadProgressNotification object:nil];
+    
     self.completionHandler(skip, [self.paymentPurposeCell.entryField text], ^(void){
         [hud hide];
+         [[NSNotificationCenter defaultCenter] removeObserver:self name:TRWUploadProgressNotification object:nil];
     }, ^(NSError *error) {
         [hud hide];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:TRWUploadProgressNotification object:nil];
         if (error) {
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) error:error];
             [alertView show];
+            self.continueButton.progress = 0.0f;
         }
-    },^(float progress){
-        weakSelf.continueButton.progress = progress;
     });
 
     
@@ -315,6 +319,31 @@
     }
 
     return numberOfMissingFields<=0;
+}
+
+-(void)updateProgress:(NSNotification*)note{
+    NSDictionary* userInfo = note.userInfo;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString *file = userInfo[TRWUploadFileKey];
+        if([file caseInsensitiveCompare:@"id"] == NSOrderedSame)
+        {
+            self.uploadProgressId = [userInfo[TRWUploadProgressKey] floatValue];
+        }
+        else if ([file caseInsensitiveCompare:@"address"] == NSOrderedSame)
+        {
+            self.uploadProgressAddress = [userInfo[TRWUploadProgressKey] floatValue];
+        }
+        
+        float progress = self.uploadProgressAddress + self.uploadProgressId;
+        
+        if(self.identificationRequired && self.addressVerificationRowIndex)
+        {
+            progress /= 2;
+        }
+        
+        self.continueButton.progress = progress;
+    });
+    
 }
 
 @end
