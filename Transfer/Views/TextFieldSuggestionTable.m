@@ -9,7 +9,7 @@
 #import "TextFieldSuggestionTable.h"
 
 @interface TextFieldSuggestionTable ()<UITableViewDelegate>
-
+@property (nonatomic, strong) NSDate *startedEditing;
 @end
 
 @implementation TextFieldSuggestionTable
@@ -26,6 +26,7 @@
 
 -(void)didStartEditing:(UITextField*)field
 {
+    self.startedEditing = [NSDate date];
     self.delegate = self;
     if ([self.suggestionTableDelegate respondsToSelector:@selector(suggestionTableDidStartEditing:)])
     {
@@ -35,9 +36,22 @@
 
 -(void)didEndEditing:(UITextField*)field
 {
-    if ([self.suggestionTableDelegate respondsToSelector:@selector(suggestionTableDidEndEditing:)])
+    NSTimeInterval timeSinceBecomingActive = [self.startedEditing timeIntervalSinceNow];
+    if(timeSinceBecomingActive > -0.1f)
     {
-        [self.suggestionTableDelegate suggestionTableDidEndEditing:self];
+        //TODO: m@s Find out why the textfield is getting resigned (potentially removed??) when the "next" key is used
+        // and remove this HORRIBLE hack!
+        [self.textField becomeFirstResponder];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.textField becomeFirstResponder];
+        });
+    }
+    else
+    {
+        if ([self.suggestionTableDelegate respondsToSelector:@selector(suggestionTableDidEndEditing:)])
+        {
+            [self.suggestionTableDelegate suggestionTableDidEndEditing:self];
+        }
     }
 }
 
