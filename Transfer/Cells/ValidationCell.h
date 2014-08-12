@@ -8,6 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
+#define ValidationCellIdentifier @"ValidationCell"
+
+@class ValidationCell;
+
+@protocol ValidationCellDelegate <NSObject>
+
+@optional
+-(void)actionTappedOnValidationCell:(ValidationCell*)cell;
+-(void)deleteTappedOnValidationCell:(ValidationCell*)cell;
+
+@end
+
 @interface ValidationCell : UITableViewCell
+
+@property (nonatomic,weak) id<ValidationCellDelegate>delegate;
+
+-(void)configureWithButtonTitle:(NSString*)buttonTitle buttonImage:(UIImage*)image andCaption:(NSString*)caption;
+
+-(void)documentSelected:(BOOL)documentSelectedState;
 
 @end

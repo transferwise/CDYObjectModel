@@ -8,18 +8,46 @@
 
 #import "ValidationCell.h"
 
+@interface ValidationCell ()
+@property (weak, nonatomic) IBOutlet UIButton *button;
+@property (weak, nonatomic) IBOutlet UILabel *captionLabel;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet UIImageView *selectedImage;
+
+
+@end
+
 @implementation ValidationCell
 
-- (void)awakeFromNib
+-(void)configureWithButtonTitle:(NSString*)buttonTitle buttonImage:(UIImage*)image andCaption:(NSString*)caption
 {
-    // Initialization code
+    [self.button setTitle:buttonTitle forState:UIControlStateNormal];
+    [self.button setImage:image forState:UIControlStateNormal];
+    self.captionLabel.text = caption;
+    
+    [self.deleteButton setTitle:NSLocalizedString(@"identification.delete.button", nil) forState:UIControlStateNormal];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
+- (IBAction)buttonTapped:(id)sender {
+    if([self.delegate respondsToSelector:@selector(actionTappedOnValidationCell:)])
+    {
+        [self.delegate actionTappedOnValidationCell:self];
+    }
+}
 
-    // Configure the view for the selected state
+- (IBAction)deleteTapped:(id)sender {
+    if([self.delegate respondsToSelector:@selector(deleteTappedOnValidationCell:)])
+    {
+        [self.delegate deleteTappedOnValidationCell:self];
+    }
+}
+
+-(void)documentSelected:(BOOL)documentSelectedState{
+    
+    self.button.hidden = documentSelectedState;
+    self.captionLabel.hidden = documentSelectedState;
+    self.selectedImage.hidden = !documentSelectedState;
+    self.deleteButton.hidden = !documentSelectedState;
 }
 
 @end
