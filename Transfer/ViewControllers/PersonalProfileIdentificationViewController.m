@@ -21,6 +21,7 @@
 #import "ObjectModel+Users.h"
 #import "User.h"
 #import "PersonalProfile.h"
+#import "ColoredButton.h"
 
 @interface PersonalProfileIdentificationViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, ValidationCellDelegate>
 
@@ -32,7 +33,7 @@
 @property (strong, nonatomic) ValidationCell *idDocumentCell;
 @property (strong, nonatomic) ValidationCell *proofOfAddressCell;
 
-@property (strong, nonatomic) IBOutlet UIButton *continueButton;
+@property (strong, nonatomic) IBOutlet ColoredButton *continueButton;
 @property (weak, nonatomic) IBOutlet UIButton* skipButton;
 
 @property (nonatomic, assign) NSInteger selectedRow;
@@ -232,6 +233,7 @@
 
 -(void)complete:(BOOL)skip
 {
+    __weak typeof(self) weakSelf = self;
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:self.completionMessage];
     
@@ -250,6 +252,8 @@
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) error:error];
             [alertView show];
         }
+    },^(float progress){
+        weakSelf.continueButton.progress = progress;
     });
 
     

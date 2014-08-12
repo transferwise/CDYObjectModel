@@ -38,6 +38,12 @@ NSString *const kUploadPath = @"/verification/uploadFile";
     [self setOperationErrorHandler:^(NSError *error) {
         weakSelf.completionHandler(error);
     }];
+    if(self.progressHandler)
+    {
+        [self setUploadProgressHandler:^(NSUInteger bytes, long long totalBytes, long long totalBytesExpected) {
+            weakSelf.progressHandler(1.0f * totalBytes/totalBytesExpected);
+        }];
+    }
 
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"FileUploaded"];

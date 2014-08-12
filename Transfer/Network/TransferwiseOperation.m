@@ -27,6 +27,7 @@
 
 @property (nonatomic, copy) TRWOperationSuccessBlock operationSuccessHandler;
 @property (nonatomic, copy) TRWOperationErrorBlock operationErrorHandler;
+@property (nonatomic, copy) TRWUploadOperationProgressBlock uploadHandler;
 @property (nonatomic, strong) ObjectModel *workModel;
 
 @end
@@ -124,6 +125,10 @@
             [weakSelf handleErrorResponseData:response];
         }
     }];
+    if(self.uploadHandler)
+    {
+        [operation setUploadProgressBlock:self.uploadHandler];
+    }
     [operation start];
 }
 
