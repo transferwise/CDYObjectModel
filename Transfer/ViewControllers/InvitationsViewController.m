@@ -7,14 +7,21 @@
 //
 
 #import "InvitationsViewController.h"
+#import "InvitationProgressIndicatorView.h"
 
 @interface InvitationsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *profilePictureContainer;
 @property (weak, nonatomic) IBOutlet UIView *indicatorContainer;
-
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *profilePictures;
 @property (weak, nonatomic) IBOutlet UIButton *inviteButton;
 @property (weak, nonatomic) IBOutlet UILabel *headerLabel;
+@property (weak, nonatomic) IBOutlet UILabel *numberLabel;
+
+@property (nonatomic,assign) NSUInteger numberOfFriends;
+
+@property (weak, nonatomic) IBOutlet InvitationProgressIndicatorView *progressIndicator;
+
+//Constraints
 @property (weak, nonatomic) IBOutlet UILabel *indicatorContextLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonTopSpaceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *profileImagesContainerHeightConstraint;
@@ -45,6 +52,7 @@
     [super viewWillAppear:animated];
     self.title = NSLocalizedString(@"invite.controller.title", nil);
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.numberLabel.text = [NSString stringWithFormat:@"%d",self.numberOfFriends];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,7 +61,13 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)inviteButtonTapped:(id)sender {
-    
+    self.numberOfFriends ++;
+    self.numberOfFriends = self.numberOfFriends%5;
+    self.numberLabel.text = [NSString stringWithFormat:@"%d",self.numberOfFriends];
+    if(self.numberOfFriends >0)
+    {
+        [self.progressIndicator setProgress:self.numberOfFriends animated:YES];
+    }
 }
 
 @end

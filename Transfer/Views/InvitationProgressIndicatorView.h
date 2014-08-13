@@ -10,4 +10,6 @@
 
 @interface InvitationProgressIndicatorView : UIView
 
+-(void)setProgress:(NSUInteger)progress animated:(BOOL)animated;
+
 @end

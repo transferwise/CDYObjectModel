@@ -7,6 +7,7 @@
 //
 
 #import "InvitationProgressIndicatorView.h"
+#import "MOMStyle.h"
 
 @interface ProgressSegment : UIView
 
@@ -16,6 +17,7 @@
 @property (nonatomic, strong) UIColor *startColor;
 
 @property (nonatomic, strong) UIColor *endColor;
+
 @end
 
 @implementation ProgressSegment
@@ -90,6 +92,8 @@
 @interface InvitationProgressIndicatorView ()
 
 @property (nonatomic,strong) NSArray* segments;
+@property (nonatomic,strong) NSArray* startColors;
+@property (nonatomic,strong) NSArray* endColors;
 
 @end
 
@@ -121,6 +125,9 @@
     }
     
     _segments = segments;
+    
+    _startColors = @[[UIColor colorFromStyle:@"LightBlue"],[UIColor colorFromStyle:@"LightBlue"],[UIColor colorFromStyle:@"LightBlue"]];
+    _endColors = @[[UIColor colorFromStyle:@"LightBlueHighlighted"],[UIColor colorFromStyle:@"LightBlueHighlighted"],[UIColor colorFromStyle:@"LightBlueHighlighted"]];
 }
 
 -(void)awakeFromNib
@@ -128,6 +135,32 @@
     [self commonSetup];
 }
 
+
+-(void)setProgress:(NSUInteger)progress animated:(BOOL)animated
+{
+    NSUInteger truncatedProgress = progress % self.segments.count -1 ;
+    for(int i = 0 ; i<self.segments.count - 1 ; i++)
+    {
+        ProgressSegment* segment = self.segments[i];
+        if (truncatedProgress - 1 > i)
+        {
+            segment.startColor = [UIColor colorFromStyle:@"separatorGrey"];
+            segment.endColor = segment.startColor;
+        }
+        else
+        {
+            segment.startColor = self.startColors[i];
+            segment.endColor = self.endColors[i];
+        }
+    }
+    
+    
+    ProgressSegment* lastSegment = self.segments[self.segments.count - 1];
+    lastSegment.startColor = self.startColors[truncatedProgress];
+    lastSegment.endColor = self.endColors[truncatedProgress];
+    lastSegment.transform = [(ProgressSegment*)self.segments[truncatedProgress] transform];
+    
+}
 
 
 

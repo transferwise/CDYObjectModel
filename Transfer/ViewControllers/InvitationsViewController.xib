@@ -11,9 +11,11 @@
                 <outlet property="indicatorContainer" destination="JlX-8u-9xq" id="mgv-dQ-eSP"/>
                 <outlet property="indicatorContextLabel" destination="i9E-mc-ETr" id="dNS-CJ-qQi"/>
                 <outlet property="inviteButton" destination="FLN-1I-8B4" id="ZUh-gg-ydr"/>
+                <outlet property="numberLabel" destination="E4w-3t-YBd" id="cFm-fj-0h9"/>
                 <outlet property="profileImagesContainerHeightConstraint" destination="asy-bf-yfm" id="77R-eA-ZRl"/>
                 <outlet property="profileImagesOntainerTopSpaceConstraint" destination="eNv-Xt-2VQ" id="VLA-NW-6Ur"/>
                 <outlet property="profilePictureContainer" destination="3AO-Gr-zBc" id="jyo-Yx-Io0"/>
+                <outlet property="progressIndicator" destination="HJX-4X-iH2" id="CKo-Rx-b3J"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="profilePictures" destination="MfW-mD-cm9" id="90E-Fn-2ui"/>
                 <outletCollection property="profilePictures" destination="P4R-HH-GKW" id="Xzr-J6-GAJ"/>
@@ -153,11 +155,11 @@
                         <constraint firstItem="V9U-C2-S5z" firstAttribute="centerY" secondItem="FWX-vT-8Ml" secondAttribute="centerY" id="lLN-Yl-GTX"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JlX-8u-9xq" userLabel="indicatorContainer">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JlX-8u-9xq" userLabel="indicatorContainer" customClass="IntrinsicSizeUIView">
                     <rect key="frame" x="0.0" y="37" width="320" height="294"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="262" translatesAutoresizingMaskIntoConstraints="NO" id="i9E-mc-ETr">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="262" translatesAutoresizingMaskIntoConstraints="NO" id="i9E-mc-ETr" userLabel="FriendStatus">
                             <rect key="frame" x="29" y="273" width="262" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
@@ -178,13 +180,31 @@
                                 <constraint firstAttribute="width" constant="250" id="Vva-CZ-sex"/>
                             </constraints>
                         </view>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E4w-3t-YBd" userLabel="NumberLabel">
+                            <rect key="frame" x="120" y="85" width="80" height="80"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="67u-PU-2e4"/>
+                                <constraint firstAttribute="height" constant="80" id="8NE-hA-9MD"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@40.darkfont"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="E4w-3t-YBd" firstAttribute="centerY" secondItem="HJX-4X-iH2" secondAttribute="centerY" id="Nta-5Z-cDp"/>
                         <constraint firstAttribute="width" constant="320" id="QTH-UB-6qv"/>
                         <constraint firstAttribute="bottom" secondItem="i9E-mc-ETr" secondAttribute="bottom" id="W3F-Dm-Dyq"/>
                         <constraint firstItem="HJX-4X-iH2" firstAttribute="top" secondItem="JlX-8u-9xq" secondAttribute="top" id="bY6-gN-hda"/>
                         <constraint firstAttribute="centerX" secondItem="HJX-4X-iH2" secondAttribute="centerX" id="boe-sJ-CXX"/>
+                        <constraint firstItem="E4w-3t-YBd" firstAttribute="centerX" secondItem="HJX-4X-iH2" secondAttribute="centerX" id="hMl-yN-ZAs"/>
                         <constraint firstAttribute="centerX" secondItem="i9E-mc-ETr" secondAttribute="centerX" id="hwP-Ip-kCy"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="294" id="jz8-R6-BYQ"/>
                         <constraint firstAttribute="height" constant="294" id="r6n-nW-bvN"/>
