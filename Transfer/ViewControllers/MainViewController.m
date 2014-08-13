@@ -22,6 +22,7 @@
 #import "TransferwiseClient.h"
 #import "ConnectionAwareViewController.h"
 #import "ProfilesEditViewController.h"
+#import "InvitationsViewController.h"
 
 @interface MainViewController () <UINavigationControllerDelegate, UITabBarControllerDelegate>
 
@@ -63,15 +64,12 @@
     transactionsItem.selectedIcon = [UIImage imageNamed:@"Transfers_selected"];
 
     
+    InvitationsViewController* invitationController = [[InvitationsViewController alloc] init];
     TabItem *inviteItem = [TabItem new];
-    [inviteItem setActionBlock:^(TabItem* item){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Not implemented yet!" message:nil delegate:nil cancelButtonTitle:@"Aha!" otherButtonTitles:nil];
-        [alert show];
-        return NO;
-    }];
     inviteItem.title = NSLocalizedString(@"invite.controller.tabbar.title", nil);
     inviteItem.icon = [UIImage imageNamed:@"Invite"];
     inviteItem.selectedIcon = [UIImage imageNamed:@"Invite_selected"];
+    inviteItem.viewController = invitationController;
 
     
     TabItem *paymentItem = [TabItem new];

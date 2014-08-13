@@ -81,6 +81,46 @@
 				<key>color</key>
 				<string>2d960c</string>
 			</dict>
+			<key>invite0_1</key>
+			<dict>
+				<key>color</key>
+				<string>cce3ec</string>
+			</dict>
+			<key>invite0_2</key>
+			<dict>
+				<key>color</key>
+				<string>a4d7e9</string>
+			</dict>
+			<key>invite1_1</key>
+			<dict>
+				<key>color</key>
+				<string>95d3e8</string>
+			</dict>
+			<key>invite1_2</key>
+			<dict>
+				<key>color</key>
+				<string>6ac6e5</string>
+			</dict>
+			<key>invite2_1</key>
+			<dict>
+				<key>color</key>
+				<string>5ac1e4</string>
+			</dict>
+			<key>invite2_2</key>
+			<dict>
+				<key>color</key>
+				<string>2fb4e0</string>
+			</dict>
+			<key>GreenShadow - 4</key>
+			<dict>
+				<key>color</key>
+				<string>2d960c</string>
+			</dict>
+			<key>GreenShadow - 5</key>
+			<dict>
+				<key>color</key>
+				<string>2d960c</string>
+			</dict>
 			<key>LightBlue</key>
 			<dict>
 				<key>color</key>

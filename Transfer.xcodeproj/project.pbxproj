@@ -232,6 +232,12 @@
 		38B52F98199B622D00B6AEBD /* ValidationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52F95199B622D00B6AEBD /* ValidationCell.m */; };
 		38B52F99199B622D00B6AEBD /* ValidationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B52F96199B622D00B6AEBD /* ValidationCell.xib */; };
 		38B52F9A199B622D00B6AEBD /* ValidationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B52F96199B622D00B6AEBD /* ValidationCell.xib */; };
+		38B52F9E199B63B600B6AEBD /* InvitationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52F9C199B63B600B6AEBD /* InvitationsViewController.m */; };
+		38B52F9F199B63B600B6AEBD /* InvitationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52F9C199B63B600B6AEBD /* InvitationsViewController.m */; };
+		38B52FA0199B63B600B6AEBD /* InvitationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B52F9D199B63B600B6AEBD /* InvitationsViewController.xib */; };
+		38B52FA1199B63B600B6AEBD /* InvitationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B52F9D199B63B600B6AEBD /* InvitationsViewController.xib */; };
+		38B52FA4199B69C800B6AEBD /* InvitationProgressIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */; };
+		38B52FA5199B69C800B6AEBD /* InvitationProgressIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */; };
 		38BBE4631990F2B900A14B9F /* IntroViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4621990F2B900A14B9F /* IntroViewController~ipad.xib */; };
 		38BBE4641990F2B900A14B9F /* IntroViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4621990F2B900A14B9F /* IntroViewController~ipad.xib */; };
 		38BBE4661990F43500A14B9F /* IntroView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4651990F43500A14B9F /* IntroView~ipad.xib */; };
@@ -1034,6 +1040,11 @@
 		38B52F94199B622D00B6AEBD /* ValidationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationCell.h; sourceTree = "<group>"; };
 		38B52F95199B622D00B6AEBD /* ValidationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidationCell.m; sourceTree = "<group>"; };
 		38B52F96199B622D00B6AEBD /* ValidationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ValidationCell.xib; sourceTree = "<group>"; };
+		38B52F9B199B63B600B6AEBD /* InvitationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationsViewController.h; sourceTree = "<group>"; };
+		38B52F9C199B63B600B6AEBD /* InvitationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationsViewController.m; sourceTree = "<group>"; };
+		38B52F9D199B63B600B6AEBD /* InvitationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvitationsViewController.xib; sourceTree = "<group>"; };
+		38B52FA2199B69C800B6AEBD /* InvitationProgressIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationProgressIndicatorView.h; sourceTree = "<group>"; };
+		38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationProgressIndicatorView.m; sourceTree = "<group>"; };
 		38BBE4621990F2B900A14B9F /* IntroViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "IntroViewController~ipad.xib"; sourceTree = "<group>"; };
 		38BBE4651990F43500A14B9F /* IntroView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "IntroView~ipad.xib"; sourceTree = "<group>"; };
 		38BD98A0195C5973009F9B4A /* NameSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSuggestionCell.h; sourceTree = "<group>"; };
@@ -1860,6 +1871,8 @@
 				EA0450D917EC64BC008921DA /* IntroView.m */,
 				EA0450DC17EC64E4008921DA /* IntroView.xib */,
 				38BBE4651990F43500A14B9F /* IntroView~ipad.xib */,
+				38B52FA2199B69C800B6AEBD /* InvitationProgressIndicatorView.h */,
+				38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */,
 				EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */,
 				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
 				EAD3647717E2EBF2001EFE40 /* PaymentMethodSelectionView.h */,
@@ -2428,6 +2441,9 @@
 				EA0450D217EC5BC1008921DA /* IntroViewController.m */,
 				EA0450D317EC5BC1008921DA /* IntroViewController.xib */,
 				38BBE4621990F2B900A14B9F /* IntroViewController~ipad.xib */,
+				38B52F9B199B63B600B6AEBD /* InvitationsViewController.h */,
+				38B52F9C199B63B600B6AEBD /* InvitationsViewController.m */,
+				38B52F9D199B63B600B6AEBD /* InvitationsViewController.xib */,
 				47233CD3196D457300449042 /* LoginViewController.h */,
 				47233CD4196D457300449042 /* LoginViewController.m */,
 				47233CD5196D457300449042 /* LoginViewController.xib */,
@@ -2771,6 +2787,7 @@
 				EA31A1ED17DDB29B00F937F7 /* TSAlertViewBackground.png in Resources */,
 				38B093121951FA2A00315BE4 /* TransferTypeSelectionHeader.xib in Resources */,
 				473DF976196D637200524C64 /* LoginViewController~ipad.xib in Resources */,
+				38B52FA1199B63B600B6AEBD /* InvitationsViewController.xib in Resources */,
 				EAB61711191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
 				EA31A1F017DDB29B00F937F7 /* DateEntryCell.xib in Resources */,
 				EA31A1F117DDB29B00F937F7 /* SignUpViewController.xib in Resources */,
@@ -2934,6 +2951,7 @@
 				BB29BD49173CD30D0016A6E9 /* BankTransferViewController.xib in Resources */,
 				47AC3F9B1987B2C3005491C6 /* SuggestionCell~ipad.xib in Resources */,
 				BB29BD4B173CDF480016A6E9 /* TextCell.xib in Resources */,
+				38B52FA0199B63B600B6AEBD /* InvitationsViewController.xib in Resources */,
 				EAD6675B174A51C700D29BCB /* ButtonCell.xib in Resources */,
 				EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */,
 				47FAF350194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */,
@@ -3184,6 +3202,7 @@
 				EA31A13517DDB29B00F937F7 /* NSMutableString+Issues.m in Sources */,
 				EA31A13617DDB29B00F937F7 /* UIApplication+Keyboard.m in Sources */,
 				EA31A13717DDB29B00F937F7 /* TRWAlertView.m in Sources */,
+				38B52FA5199B69C800B6AEBD /* InvitationProgressIndicatorView.m in Sources */,
 				EA31A13817DDB29B00F937F7 /* TRWProgressHUD.m in Sources */,
 				EA31A13917DDB29B00F937F7 /* TransferwiseOperation.m in Sources */,
 				EA31A13A17DDB29B00F937F7 /* LoginOperation.m in Sources */,
@@ -3195,6 +3214,7 @@
 				EA31A13D17DDB29B00F937F7 /* GreenButton.m in Sources */,
 				388B1F761990E04200DF13E8 /* WhiteRoundedButton.m in Sources */,
 				EA31A13E17DDB29B00F937F7 /* GrayButton.m in Sources */,
+				38B52F9F199B63B600B6AEBD /* InvitationsViewController.m in Sources */,
 				EA31A13F17DDB29B00F937F7 /* RecipientCell.m in Sources */,
 				47535CB01981362600DC39D6 /* DoublePasswordEntryCell.m in Sources */,
 				389F6808198FC1C6006CF1F6 /* _PaymentMadeIndicator.m in Sources */,
@@ -3465,6 +3485,7 @@
 				4723EA0D1973D8E900B4345F /* RedButton.m in Sources */,
 				479B693A19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */,
 				EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */,
+				38B52FA4199B69C800B6AEBD /* InvitationProgressIndicatorView.m in Sources */,
 				EAD7D4D1171D4BB20099063F /* GreenButton.m in Sources */,
 				EAD7368A171E6CB100A037B1 /* GrayButton.m in Sources */,
 				EAD736A2171E85C300A037B1 /* RecipientCell.m in Sources */,
@@ -3476,6 +3497,7 @@
 				38C8A79D19371DBC00714FB3 /* PullToRefreshView.m in Sources */,
 				388B1F751990E04200DF13E8 /* WhiteRoundedButton.m in Sources */,
 				380021D4192CC531009B1D53 /* UIView+MOMStyle.m in Sources */,
+				38B52F9E199B63B600B6AEBD /* InvitationsViewController.m in Sources */,
 				EAB7215F171FCAAC00DE29F5 /* SettingsTitleCell.m in Sources */,
 				EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */,
 				389F6807198FC1C6006CF1F6 /* _PaymentMadeIndicator.m in Sources */,
