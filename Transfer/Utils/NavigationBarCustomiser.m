@@ -16,7 +16,7 @@
 
 + (void)setDefault
 {
-	MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@{18,19}.CoreFont"];
+	MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"heavy.@{17,19}.DarkFont"];
 	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [navFontStyle color], NSFontAttributeName : [navFontStyle font]}];
 	[[UINavigationBar appearance] setBackgroundImage:[UIImage imageFromColor:[UIColor colorFromStyle:@"LightBlue"]] forBarMetrics:UIBarMetricsDefault];
 	[[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
@@ -25,7 +25,7 @@
 
 + (void)setWhite
 {
-	MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"medium.@{18,19}.CoreFont"];
+	MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"heavy.@{17,19}.DarkFont"];
 	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [navFontStyle color], NSFontAttributeName : [navFontStyle font]}];
 	[[UINavigationBar appearance] setBarTintColor:[UIColor colorFromStyle:@"white"]];
 	[[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
