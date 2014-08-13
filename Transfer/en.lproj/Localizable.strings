@@ -583,3 +583,7 @@ We'll send you an email in order to let you choose a new password.";
 "usd.coming.soon" = "Coming soon";
 "usd.not.supported" = "Sending USD abroad will soon be supported in our mobile applications.\n\nIn the mean time, please go to transferwise.com to pay for this transfer.";
 
+"invite.button.title" = "Invite friends";
+"invite.controller.title" = "Help your friends";
+"invite.header" = "For every 3 friends who start using Transferwise, you earn £50";
+"invite.progress.format" = "%d friends started using transferwise. %d to go and you get £50.";

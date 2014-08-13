@@ -228,6 +228,10 @@
 		38B0931A1951FA8300315BE4 /* SettlementRecipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B093161951FA8300315BE4 /* SettlementRecipient.m */; };
 		38B1C5D6195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */; };
 		38B1C5D7195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */; };
+		38B52F90199B500400B6AEBD /* InvitationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52F8E199B500400B6AEBD /* InvitationsViewController.m */; };
+		38B52F91199B500400B6AEBD /* InvitationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52F8E199B500400B6AEBD /* InvitationsViewController.m */; };
+		38B52F92199B500400B6AEBD /* InvitationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B52F8F199B500400B6AEBD /* InvitationsViewController.xib */; };
+		38B52F93199B500400B6AEBD /* InvitationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B52F8F199B500400B6AEBD /* InvitationsViewController.xib */; };
 		38BBE4631990F2B900A14B9F /* IntroViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4621990F2B900A14B9F /* IntroViewController~ipad.xib */; };
 		38BBE4641990F2B900A14B9F /* IntroViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4621990F2B900A14B9F /* IntroViewController~ipad.xib */; };
 		38BBE4661990F43500A14B9F /* IntroView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4651990F43500A14B9F /* IntroView~ipad.xib */; };
@@ -1027,6 +1031,9 @@
 		38B093161951FA8300315BE4 /* SettlementRecipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettlementRecipient.m; sourceTree = "<group>"; };
 		38B1C5D4195DBA6400BEE66E /* ConnectionAwareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionAwareViewController.h; sourceTree = "<group>"; };
 		38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionAwareViewController.m; sourceTree = "<group>"; };
+		38B52F8D199B500400B6AEBD /* InvitationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationsViewController.h; sourceTree = "<group>"; };
+		38B52F8E199B500400B6AEBD /* InvitationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationsViewController.m; sourceTree = "<group>"; };
+		38B52F8F199B500400B6AEBD /* InvitationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvitationsViewController.xib; sourceTree = "<group>"; };
 		38BBE4621990F2B900A14B9F /* IntroViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "IntroViewController~ipad.xib"; sourceTree = "<group>"; };
 		38BBE4651990F43500A14B9F /* IntroView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "IntroView~ipad.xib"; sourceTree = "<group>"; };
 		38BD98A0195C5973009F9B4A /* NameSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSuggestionCell.h; sourceTree = "<group>"; };
@@ -2507,6 +2514,9 @@
 				471CA002197FCB2200BCA3B4 /* TabbedHeaderViewController.m */,
 				471CA003197FCB2200BCA3B4 /* TabbedHeaderViewController.xib */,
 				471CA008197FCB6700BCA3B4 /* TabbedHeaderViewController~ipad.xib */,
+				38B52F8D199B500400B6AEBD /* InvitationsViewController.h */,
+				38B52F8E199B500400B6AEBD /* InvitationsViewController.m */,
+				38B52F8F199B500400B6AEBD /* InvitationsViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -2790,6 +2800,7 @@
 				38675458198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */,
 				EA31A21A17DDB29B00F937F7 /* OpenIDViewController.xib in Resources */,
 				47FAF351194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */,
+				38B52F93199B500400B6AEBD /* InvitationsViewController.xib in Resources */,
 				385AC117198FE5500088DCD6 /* intro.plist in Resources */,
 				47971C62199A3C1C0018FDA8 /* DateEntryCell~ipad.xib in Resources */,
 				4723EA211974363000B4345F /* ResetPasswordViewController~ipad.xib in Resources */,
@@ -2898,6 +2909,7 @@
 				EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */,
 				EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */,
 				38EFABD9196D7E1D00126192 /* RecipientViewController~ipad.xib in Resources */,
+				38B52F92199B500400B6AEBD /* InvitationsViewController.xib in Resources */,
 				380021E6192CEB66009B1D53 /* TransactionsViewController~ipad.xib in Resources */,
 				3813791D1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib in Resources */,
 				385669151980FB0500BC4230 /* PlainPresentationCell~ipad.xib in Resources */,
@@ -3355,6 +3367,7 @@
 				389F6818198FC1C6006CF1F6 /* _User.m in Sources */,
 				380021E0192CC980009B1D53 /* MOMBasicStyle.m in Sources */,
 				38E57F79192A51DD00D864A2 /* TabViewController.m in Sources */,
+				38B52F91199B500400B6AEBD /* InvitationsViewController.m in Sources */,
 				3856690C1980FA1200BC4230 /* UIImage+RenderBlur.m in Sources */,
 				38BD98A4195C5973009F9B4A /* NameSuggestionCell.m in Sources */,
 				476C6B89196C18BF007002F9 /* SwipeToCancelCell.m in Sources */,
@@ -3635,6 +3648,7 @@
 				389F6817198FC1C6006CF1F6 /* _User.m in Sources */,
 				38B093191951FA8300315BE4 /* SettlementRecipient.m in Sources */,
 				38B0930D1951FA2A00315BE4 /* TextFieldSuggestionTable.m in Sources */,
+				38B52F90199B500400B6AEBD /* InvitationsViewController.m in Sources */,
 				3856690B1980FA1200BC4230 /* UIImage+RenderBlur.m in Sources */,
 				38E57F78192A51DD00D864A2 /* TabViewController.m in Sources */,
 				380021D2192CC531009B1D53 /* MOMRoundedCornerStyle.m in Sources */,
