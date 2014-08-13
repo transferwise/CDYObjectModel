@@ -10,10 +10,12 @@
 
 @interface InvitationsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *profilePictureContainer;
+@property (weak, nonatomic) IBOutlet UIView *indicatorContainer;
 
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *profilePictures;
 @property (weak, nonatomic) IBOutlet UIButton *inviteButton;
 @property (weak, nonatomic) IBOutlet UILabel *headerLabel;
+@property (weak, nonatomic) IBOutlet UILabel *indicatorContextLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonTopSpaceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *profileImagesContainerHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *profileImagesOntainerTopSpaceConstraint;
@@ -51,6 +53,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)inviteButtonTapped:(id)sender {
+    
 }
 
 @end

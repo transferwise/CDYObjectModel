@@ -8,6 +8,8 @@
             <connections>
                 <outlet property="buttonTopSpaceConstraint" destination="UF3-IE-Fac" id="qvZ-DF-m5x"/>
                 <outlet property="headerLabel" destination="khm-LQ-dnq" id="Ay5-cY-EfY"/>
+                <outlet property="indicatorContainer" destination="JlX-8u-9xq" id="mgv-dQ-eSP"/>
+                <outlet property="indicatorContextLabel" destination="i9E-mc-ETr" id="dNS-CJ-qQi"/>
                 <outlet property="inviteButton" destination="FLN-1I-8B4" id="ZUh-gg-ydr"/>
                 <outlet property="profileImagesContainerHeightConstraint" destination="asy-bf-yfm" id="77R-eA-ZRl"/>
                 <outlet property="profileImagesOntainerTopSpaceConstraint" destination="eNv-Xt-2VQ" id="VLA-NW-6Ur"/>
@@ -96,15 +98,15 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9U-C2-S5z" userLabel="CenterProfile">
-                            <rect key="frame" x="99.5" y="4.5" width="121" height="121"/>
+                            <rect key="frame" x="100" y="5" width="120" height="120"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User1" translatesAutoresizingMaskIntoConstraints="NO" id="P4R-HH-GKW">
-                                    <rect key="frame" x="10" y="10" width="100" height="100"/>
+                                    <rect key="frame" x="10" y="10" width="99" height="99"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="100" id="SJF-l7-7Fd"/>
-                                        <constraint firstAttribute="width" constant="100" id="nFB-SV-mdn"/>
+                                        <constraint firstAttribute="height" constant="99" id="SJF-l7-7Fd"/>
+                                        <constraint firstAttribute="width" constant="99" id="nFB-SV-mdn"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
@@ -116,8 +118,8 @@
                             <constraints>
                                 <constraint firstAttribute="centerY" secondItem="P4R-HH-GKW" secondAttribute="centerY" id="5c7-LO-M3i"/>
                                 <constraint firstAttribute="centerX" secondItem="P4R-HH-GKW" secondAttribute="centerX" id="8rr-SM-8Gu"/>
-                                <constraint firstAttribute="width" constant="121" id="A0K-TM-fQk"/>
-                                <constraint firstAttribute="height" constant="121" id="sUr-Tg-QvS"/>
+                                <constraint firstAttribute="width" constant="120" id="A0K-TM-fQk"/>
+                                <constraint firstAttribute="height" constant="120" id="sUr-Tg-QvS"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="circle"/>
@@ -151,12 +153,54 @@
                         <constraint firstItem="V9U-C2-S5z" firstAttribute="centerY" secondItem="FWX-vT-8Ml" secondAttribute="centerY" id="lLN-Yl-GTX"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JlX-8u-9xq" userLabel="indicatorContainer">
+                    <rect key="frame" x="0.0" y="37" width="320" height="294"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="262" translatesAutoresizingMaskIntoConstraints="NO" id="i9E-mc-ETr">
+                            <rect key="frame" x="29" y="273" width="262" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="262" id="l7O-iX-ZAq"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@17.coreFont"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HJX-4X-iH2" customClass="InvitationProgressIndicatorView">
+                            <rect key="frame" x="35" y="0.0" width="250" height="250"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="250" id="Vva-CZ-sex"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="320" id="QTH-UB-6qv"/>
+                        <constraint firstAttribute="bottom" secondItem="i9E-mc-ETr" secondAttribute="bottom" id="W3F-Dm-Dyq"/>
+                        <constraint firstItem="HJX-4X-iH2" firstAttribute="top" secondItem="JlX-8u-9xq" secondAttribute="top" id="bY6-gN-hda"/>
+                        <constraint firstAttribute="centerX" secondItem="HJX-4X-iH2" secondAttribute="centerX" id="boe-sJ-CXX"/>
+                        <constraint firstAttribute="centerX" secondItem="i9E-mc-ETr" secondAttribute="centerX" id="hwP-Ip-kCy"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="294" id="jz8-R6-BYQ"/>
+                        <constraint firstAttribute="height" constant="294" id="r6n-nW-bvN"/>
+                        <constraint firstItem="i9E-mc-ETr" firstAttribute="top" secondItem="HJX-4X-iH2" secondAttribute="bottom" constant="23" id="sGa-Xe-ZqZ"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="JlX-8u-9xq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="37" id="HUM-Jc-JBd"/>
+                <constraint firstAttribute="centerX" secondItem="JlX-8u-9xq" secondAttribute="centerX" id="JBw-yM-S6t"/>
                 <constraint firstItem="FLN-1I-8B4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="309" id="UF3-IE-Fac"/>
+                <constraint firstItem="JlX-8u-9xq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Z7K-RC-zMq"/>
                 <constraint firstItem="3AO-Gr-zBc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="e10-J7-pDv"/>
                 <constraint firstItem="3AO-Gr-zBc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="eNv-Xt-2VQ"/>
+                <constraint firstAttribute="trailing" secondItem="JlX-8u-9xq" secondAttribute="trailing" id="lFF-IP-59v"/>
                 <constraint firstAttribute="centerX" secondItem="FLN-1I-8B4" secondAttribute="centerX" id="lrR-Hu-rEO"/>
                 <constraint firstAttribute="trailing" secondItem="3AO-Gr-zBc" secondAttribute="trailing" id="nDi-f6-3V0"/>
             </constraints>
