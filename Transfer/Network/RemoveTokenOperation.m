@@ -14,6 +14,7 @@
 #import "Credentials.h"
 #import "ObjectModel+Users.h"
 #import "User.h"
+#import "PendingPayment.h"
 
 NSString *const kReleaseTokenPath = @"/token/release";
 
@@ -47,6 +48,7 @@ NSString *const kReleaseTokenPath = @"/token/release";
     [self postData:@{@"token" : self.token} toPath:path];
 
     [self.objectModel deleteObject:self.objectModel.currentUser];
+    [PendingPayment removePossibleImages];
     [Credentials clearCredentials];
     [[GoogleAnalytics sharedInstance] markLoggedIn];
     [TransferwiseClient clearCookies];

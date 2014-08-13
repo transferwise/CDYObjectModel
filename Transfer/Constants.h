@@ -55,6 +55,11 @@ extern NSString *const TRWSupportEmail;
 extern NSString *const TRWFeedbackEmail;
 extern NSString *const TRWIdentificationEmail;
 
+extern NSString *const TRWUploadProgressNotification;
+extern NSString *const TRWUploadProgressKey;
+extern NSString *const TRWUploadFileKey;
+
+
 void delayedExecution(CGFloat seconds, TRWActionBlock action);
 
 static NSUInteger const TransferwiseAppID = 612261027;

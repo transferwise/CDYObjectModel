@@ -384,6 +384,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)pushIdentificationScreen {
 	MCLog(@"pushIdentificationScreen");
 	PersonalProfileIdentificationViewController *controller = [[PersonalProfileIdentificationViewController alloc] init];
+    controller.objectModel = self.objectModel;
 	[controller setHideSkipOption:YES];
 	[controller setIdentificationRequired:self.identificationRequired];
 	[controller setProposedFooterButtonTitle:NSLocalizedString(@"transactions.identification.done.button.title", nil)];
