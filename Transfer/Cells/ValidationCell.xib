@@ -19,7 +19,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="hw3-1l-50F"/>
                         </constraints>
-                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                         <state key="normal" title="Button" image="camera_icon_button">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
@@ -37,7 +37,7 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@17.CoreFont"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.CoreFont"/>
                         </userDefinedRuntimeAttributes>
                     </label>
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_document_selected" translatesAutoresizingMaskIntoConstraints="NO" id="bFy-01-1o9">
@@ -55,7 +55,7 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@{16,17}.TWElectricBlue"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.TWElectricBlue"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="deleteTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="I89-bc-OlO"/>

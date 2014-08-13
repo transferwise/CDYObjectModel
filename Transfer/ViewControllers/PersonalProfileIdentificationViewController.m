@@ -73,8 +73,6 @@
 
     [self.tableView registerNib:[UINib nibWithNibName:@"ValidationCell" bundle:nil] forCellReuseIdentifier:ValidationCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
-
-    [self validateInput];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,11 +87,25 @@
     
     [self buildCells];
 
-    [self.navigationItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"identification.controller.title", nil),[self.presentedSectionCells[0] count]]];
+    NSInteger numberOfDocuments = [self numberOfDocumentsNeeded];
+    if(numberOfDocuments > 1)
+    {
+        [self.navigationItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"identification.controller.title", nil), numberOfDocuments]];
+    }
+    else if(numberOfDocuments == 1)
+    {
+        [self.navigationItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"identification.controller.single.title", nil), numberOfDocuments]];
+    }
+    else
+    {
+        [self.navigationItem setTitle:NSLocalizedString(@"identification.only.purpose", nil)];
+    }
 
     [self.tableView adjustFooterViewSize];
 
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
+    
+    [self validateInput];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -112,7 +124,7 @@
         ValidationCell *idDocumentCell = [self.tableView dequeueReusableCellWithIdentifier:ValidationCellIdentifier];
         [self setIdDocumentCell:idDocumentCell];
         [photoCells addObject:idDocumentCell];
-        [idDocumentCell configureWithButtonTitle:NSLocalizedString(@"identification.id.document", @"") buttonImage:nil caption:NSLocalizedString(@"identification.id.description", @"") selectedCaption:NSLocalizedString(@"identification.id.selected.description", @"")];
+        [idDocumentCell configureWithButtonTitle:NSLocalizedString(@"identification.id.document", @"") buttonImage:[UIImage imageNamed:@"camera_icon_button"] caption:NSLocalizedString(@"identification.id.description", @"") selectedCaption:NSLocalizedString(@"identification.id.selected.description", @"")];
         [idDocumentCell documentSelected:[PendingPayment isIdVerificationImagePresent]];
         idDocumentCell.delegate = self;
         self.idVerificationRowIndex = [photoCells count] - 1;
@@ -123,7 +135,7 @@
         ValidationCell *proofOfAddressCell = [self.tableView dequeueReusableCellWithIdentifier:ValidationCellIdentifier];
         [self setProofOfAddressCell:proofOfAddressCell];
         [photoCells addObject:proofOfAddressCell];
-        [proofOfAddressCell configureWithButtonTitle:NSLocalizedString(@"identification.proof.of.address", @"") buttonImage:nil caption:NSLocalizedString(@"identification.proof.of.address.description", @"") selectedCaption:NSLocalizedString(@"identification.proof.of.address.selected.description", @"")];
+        [proofOfAddressCell configureWithButtonTitle:NSLocalizedString(@"identification.proof.of.address", @"") buttonImage:[UIImage imageNamed:@"camera_icon_button"] caption:NSLocalizedString(@"identification.proof.of.address.description", @"") selectedCaption:NSLocalizedString(@"identification.proof.of.address.selected.description", @"")];
         [proofOfAddressCell documentSelected:[PendingPayment isAddressVerificationImagePresent]];
         proofOfAddressCell.delegate = self;
         self.addressVerificationRowIndex = [photoCells count] - 1;
@@ -305,13 +317,17 @@
         }
         else
         {
-            if(numberOfMissingFields == 1)
+            if(numberOfMissingDocuments == 1)
             {
-                [self.reasonTitle setText:[NSString stringWithFormat:NSLocalizedString(@"identification.good.single.format", @""),numberOfMissingFields]];
+                [self.reasonTitle setText:[NSString stringWithFormat:NSLocalizedString(@"identification.good.single.format", @""),numberOfMissingDocuments]];
+            }
+            else if(numberOfMissingDocuments > 0)
+            {
+                [self.reasonTitle setText:[NSString stringWithFormat:NSLocalizedString(@"identification.good.format", @""),numberOfMissingDocuments]];
             }
             else
             {
-                [self.reasonTitle setText:[NSString stringWithFormat:NSLocalizedString(@"identification.good.format", @""),numberOfMissingFields]];
+                [self.reasonTitle setText:NSLocalizedString(@"identification.only.purpose", nil)];
             }
 
         }
@@ -320,6 +336,22 @@
 
     return numberOfMissingFields<=0;
 }
+
+#pragma mark - number helpers
+-(NSInteger)numberOfDocumentsNeeded
+{
+    if([self addressVerificationRequired] && [self idVerificationRequired])
+    {
+        return 2;
+    }
+    else if ([self addressVerificationRequired] || [self idVerificationRequired])
+    {
+        return 1;
+    }
+    return 0;
+}
+
+#pragma mark - upload progress
 
 -(void)updateProgress:(NSNotification*)note{
     NSDictionary* userInfo = note.userInfo;
