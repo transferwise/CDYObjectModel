@@ -15,7 +15,7 @@
 "business.profile.registration.number.label" = "Registration number";
 "business.profile.save.button.title" = "Save profile";
 "business.profile.save.error.title" = "Your details couldn't be saved. Please try again.";
-"business.profile.saving.message" = "Loading your profile...";
+"business.profile.saving.message" = "Saving...";
 "business.profile.validation.error.message" = "Please make sure all fields are filled.";
 "business.profile.validation.error.title" = "Check your details";
 "business.profile.password.lable" = "Password";
@@ -41,21 +41,21 @@
 "button.title.yes" = "Yes";
 
 "confirm.payment.controller.title" = "Review details";
-"confirm.payment.creating.message" = "Creating payment";
+"confirm.payment.creating.message" = "Creating transfer";
 "confirm.payment.data.error.title" = "Error loading data";
 "confirm.payment.delivery.date.message" = "estimated to arrive on";
 "confirm.payment.deposit.title.label" = "You're sending exactly";
 "confirm.payment.deposit.fixed.title.label" = "You're sending";
 "confirm.payment.recipient.title.label" = "%@ will receive";
 "confirm.payment.recipient.fixed.title.label" = "Y%@ will receive exactly";
-"confirm.payment.email.label" = "Email";
+"confirm.payment.email.label" = "Recipient's Email";
 "confirm.payment.target.sum.format" = "%@";
 "confirm.payment.fixed.target.sum.format" = "exactly %@";
 "confirm.payment.header.format" = "On %@,\n%@\nis estimated to reach\n%@'s account";
 "confirm.payment.exchangerate.title.label" = "Estimated rate";
 "confirm.payment.footer.button.title" = "Confirm";
-"confirm.payment.payment.error.title" = "Couldn't create payment. Please try again.";
-"confirm.payment.pulling.data" = "Refreshing data...";
+"confirm.payment.payment.error.title" = "Couldn't create transfer. Please try again.";
+"confirm.payment.pulling.data" = "Refreshing...";
 "confirm.payment.receiver.section.title" = "Receiver";
 "confirm.payment.recipient.marker.label" = "Receiver";
 "confirm.payment.reference.label" = "Type a reference";
@@ -70,13 +70,13 @@
 
 
 "contacts.controller.delete.button.title" = "Delete";
-"contacts.controller.delete.confirmation.message" = "Are you sure you wish to remove %@ from your recipients?";
+"contacts.controller.delete.confirmation.message" = "Are you sure you wish to delete %@ from your recipients?";
 "contacts.controller.delete.conformation.title" = "Delete contact";
-"contacts.controller.deleting.message" = "Removing...";
-"contacts.controller.refreshing.message" = "Refreshing recipients";
+"contacts.controller.deleting.message" = "Deleting...";
+"contacts.controller.refreshing.message" = "Refreshing recipients list";
 "contacts.controller.title" = "Recipients";
 "contacts.controller.tabbar.title" = "Contacts";
-"contacts.refresh.error.message" = "Could not refresh your recipients";
+"contacts.refresh.error.message" = "Could not refresh your recipients list";
 "contacts.refresh.error.title" = "Refresh error";
 "contacts.controller.send.button.title" = "Send %@";
 "contacts.controller.footer.invite" = "Earn 50£ by inviting
@@ -86,18 +86,18 @@ your friends to TransferWise";
 "claim.account.controller.title" = "Choose a password";
 "claim.account.error.title" = "Error";
 "claim.account.footer.message.text" = "Please set a password to be able to login and check the status of your transfers.";
-"claim.account.password.not.entered" = "Password not entered";
+"claim.account.password.not.entered" = "Password is missing";
 "claim.account.setting.password.message" = "Working...";
 
 "currency.selector.title" = "Select currency";
 "currency.selector.select.button.title" = "Select";
 
-"generic.error.message" = "We're currently updating TransferWise. Sorry for the hassle, but please try again in a few minutes.";
-"generic.error.title" = "Things are getting better";
+"generic.error.message" = "We are working on the issue. Please try again later.";
+"generic.error.title" = "Oops. Something went wrong.";
 
 "identification.controller.title" = "%d documents required";
 "identification.reason.title" = "For security reasons we need:";
-"identification.creating.payment.message" = "Creating payment...";
+"identification.creating.payment.message" = "Creating transfer...";
 "identification.id.document" = "Photo of your ID";
 "identification.id.description" = "A good quality photo of a valid passport or ID card or driving licence. Not a picture of yourself.";
 "identification.id.selected.description" = "ID document selected";
@@ -108,9 +108,9 @@ your friends to TransferWise";
 "identification.skip.send" = "Skip and send later";
 "identification.take.photo" = "Take Photo";
 "identification.upload.button" = "Upload";
-"identification.skip.button" = "Skip";
+"identification.skip.button" = "Skip. I'll do it later.";
 "identification.delete.button" = "Delete";
-"identification.payment.purpose" = "Payment of this transfer";
+"identification.payment.purpose" = "Purpose of this transfer";
 "identification.good.format" = "Good! %d documents left.";
 "identification.good.single.format" = "Good! %d document left.";
 "identification.well.done.format" = "Well done %@!";
@@ -146,7 +146,7 @@ A revolution in your pocket.";
 "login.password.field.title" = "Password";
 "login.validation.email.missing" = "You haven't entered an email";
 "login.validation.email.not.valid" = "The entered email is not correct";
-"login.validation.password.missing" = "Password not entered";
+"login.validation.password.missing" = "Passwordis missing";
 
 "money.entry.priority.payment.title" = "Priority Payment";
 "money.entry.receive.fixed.amount.title" = "Receive fixed amount";
@@ -295,8 +295,8 @@ It can take up to 2 working days.";
 "recipient.controller.section.title.recipient.bank.details" = "%@'s Bank Details";
 "recipient.controller.section.title.ipad.recipient" = "Who are you sending to?";
 "recipient.controller.validating.message" = "Validating...";
-"recipient.controller.validation.error.empty.name" = "Name not entered";
-"recipient.controller.validation.error.field.empty" = "%@ not entered";
+"recipient.controller.validation.error.empty.name" = "Name is missing";
+"recipient.controller.validation.error.field.empty" = "%@ is missing";
 "recipient.controller.validation.error.title" = "Validation error";
 "recipient.controller.validation.error.bic.required" = "BIC is required for transfers to %@";
 "recipient.controller.validation.error.email.format" = "Email is invalid";
@@ -339,9 +339,9 @@ We'll refund the remaining money to your bank account once the transfer is compl
 "sign.up.controller.creating.message" = "Creating account...";
 "sign.up.controller.signup.error.message" = "Sign up error";
 "sign.up.controller.title" = "Sign up";
-"sign.up.controller.validation.email.invalid" = "Email not valid";
-"sign.up.controller.validation.email.missing" = "Email not entered";
-"sign.up.controller.validation.password.missing" = "Password not entered";
+"sign.up.controller.validation.email.invalid" = "Email is not valid";
+"sign.up.controller.validation.email.missing" = "Email is missing";
+"sign.up.controller.validation.password.missing" = "Password is missing";
 "sign.up.controller.validation.passwords.dont.match" = "Passwords don't match";
 "sign.up.controller.google.signup.message" = "Sign up via Google";
 "sign.up.controller.set.password.message" = "OR SET A PASSWORD";
@@ -444,7 +444,7 @@ This can't be undone.";
 "recipient.type.IBAN.name" = "IBAN";
 "recipient.type.SORT_CODE.name" = "UK SORT";
 
-"recipient.type.field.value.not.entered" = "Value for %@ not entered.";
+"recipient.type.field.value.not.entered" = "Value for %@ is missing.";
 "recipient.type.field.value.too.short" = "Value for %@ too short. Min length is %d.";
 "recipient.type.field.value.too.long" = "Value for %@ too long. Max length is %d.";
 "recipient.type.field.value.invalid" = "Value for %@ invalid.";
@@ -549,7 +549,7 @@ who built Skype";
 3. Photo ID and proof of address for all of the above stakeholders";
 "business.profile.identification.footer.instructions.text" = "Our apologies for the inconvenience. Rest assured that we will never share your documents with 3rd parties.";
 
-"refund.controller.validation.error.empty.name" = "Holder's name not entered";
+"refund.controller.validation.error.empty.name" = "Holder's name is missing";
 "refund.details.save.error.title" = "Could not save";
 "refund.controller.validating.message" = "Validating...";
 "refund.controller.validation.error.title" = "Validation failed";
@@ -567,7 +567,7 @@ choose a new password.";
 "reset.password.header.description.ipad" = "Enter the email address you registered with.
 We'll send you an email in order to let you choose a new password.";
 "reset.controller.footer.button.title" = "Reset password";
-"reset.password.email.not.entered" = "Email not entered.";
+"reset.password.email.not.entered" = "Email is missing.";
 "reset.password.invaild.email.error" = "Please provide a valid email.";
 "reset.password.error.title" = "Oops!";
 "reset.password.success.alert.title" = "Good!";
