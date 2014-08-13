@@ -12,7 +12,7 @@
 @interface ProgressSegment : UIView
 
 @property (nonatomic, assign) CGFloat radius;
-@property (nonatomic, weak)  CAGradientLayer *gradient;
+@property (nonatomic, strong) CAGradientLayer *gradient;
 
 @property (nonatomic, strong) UIColor *startColor;
 
@@ -34,7 +34,7 @@
         _startColor = startColor;
         _endColor = endColor;
         
-        self.backgroundColor = [UIColor greenColor];
+        self.backgroundColor = [UIColor colorFromStyle:@"separatorGrey"];
         CAGradientLayer *gradient = [[CAGradientLayer alloc] init];
         gradient.frame = self.bounds;
         gradient.startPoint = CGPointMake(0.0f, 0.0f);
@@ -86,12 +86,27 @@
     self.gradient.colors = @[(id)self.startColor.CGColor,(id)self.endColor.CGColor];
 }
 
+
+-(void)showGradient:(BOOL)showGradient
+{
+    if (showGradient)
+    {
+        [self.layer addSublayer:self.gradient];
+    }
+    else
+    {
+        [self.gradient removeFromSuperlayer];
+    }
+}
+
+
 @end
 
 
 @interface InvitationProgressIndicatorView ()
 
-@property (nonatomic,strong) NSArray* segments;
+@property (nonatomic,strong) NSArray* staticSegments;
+@property (nonatomic,strong) ProgressSegment *dynamicSegment;
 @property (nonatomic,strong) NSArray* startColors;
 @property (nonatomic,strong) NSArray* endColors;
 
@@ -100,65 +115,91 @@
 @implementation InvitationProgressIndicatorView
 
 
--(instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if(self)
-    {
-        [self commonSetup];
-    }
-    
-    return self;
-}
-
--(void)commonSetup
+-(void)setupSegments
 {
     NSMutableArray* segments = [NSMutableArray arrayWithCapacity:4];
     CGFloat radius = (roundf(self.bounds.size.width/2.0f));
-    for( int i=0 ; i<4 ; i++)
+    
+    _startColors = @[[UIColor colorFromStyle:@"invite0_1"],[UIColor colorFromStyle:@"invite1_1"],[UIColor colorFromStyle:@"invite2_1"]];
+    _endColors = @[[UIColor colorFromStyle:@"invite0_2"],[UIColor colorFromStyle:@"invite1_2"],[UIColor colorFromStyle:@"invite2_2"]];
+
+    
+    for( int i=0 ; i<3 ; i++)
     {
-        ProgressSegment *segment = [[ProgressSegment alloc] initWithRadius:radius startColor:[UIColor blueColor] endColor:[UIColor redColor]];
+        ProgressSegment *segment = [[ProgressSegment alloc] initWithRadius:radius startColor:_startColors[i] endColor:_endColors[i]];
         [segments addObject:segment];
         segment.center = CGPointMake(self.bounds.size.width/2.0f,self.bounds.size.height/2.0f);
         segment.transform = CGAffineTransformMakeRotation((i*120.0f/180) * M_PI);
         [self addSubview:segment];
     }
     
-    _segments = segments;
+    _staticSegments = segments;
     
-    _startColors = @[[UIColor colorFromStyle:@"LightBlue"],[UIColor colorFromStyle:@"LightBlue"],[UIColor colorFromStyle:@"LightBlue"]];
-    _endColors = @[[UIColor colorFromStyle:@"LightBlueHighlighted"],[UIColor colorFromStyle:@"LightBlueHighlighted"],[UIColor colorFromStyle:@"LightBlueHighlighted"]];
-}
+    ProgressSegment *segment = [[ProgressSegment alloc] initWithRadius:radius startColor:[UIColor blueColor] endColor:[UIColor redColor]];
+    segment.center = CGPointMake(self.bounds.size.width/2.0f,self.bounds.size.height/2.0f);
+    segment.transform = CGAffineTransformIdentity;
+    [self addSubview:segment];
+    
+    self.dynamicSegment = segment;
+    
 
--(void)awakeFromNib
-{
-    [self commonSetup];
 }
 
 
 -(void)setProgress:(NSUInteger)progress animated:(BOOL)animated
 {
-    NSUInteger truncatedProgress = progress % self.segments.count -1 ;
-    for(int i = 0 ; i<self.segments.count - 1 ; i++)
+    if(!self.staticSegments)
     {
-        ProgressSegment* segment = self.segments[i];
-        if (truncatedProgress - 1 > i)
-        {
-            segment.startColor = [UIColor colorFromStyle:@"separatorGrey"];
-            segment.endColor = segment.startColor;
-        }
-        else
-        {
-            segment.startColor = self.startColors[i];
-            segment.endColor = self.endColors[i];
-        }
+        [self setupSegments];
+    }
+    
+    if(progress==0)
+    {
+        return;
     }
     
     
-    ProgressSegment* lastSegment = self.segments[self.segments.count - 1];
-    lastSegment.startColor = self.startColors[truncatedProgress];
-    lastSegment.endColor = self.endColors[truncatedProgress];
-    lastSegment.transform = [(ProgressSegment*)self.segments[truncatedProgress] transform];
+    //setup static segments
+    NSUInteger truncatedProgress = (progress - 1 ) % ([self.staticSegments count]);
+    [self.staticSegments enumerateObjectsUsingBlock:^(ProgressSegment* segment, NSUInteger i, BOOL *stop) {
+        [self bringSubviewToFront:segment];
+        if (i >= truncatedProgress )
+        {
+            [segment showGradient:NO];
+            if(i == truncatedProgress)
+            {
+                [self sendSubviewToBack:segment];
+            }
+        }
+        else
+        {
+            [segment showGradient:YES];
+        }
+    }];
+
+    //Setup dynamic segment
+    
+    self.dynamicSegment.startColor = self.startColors[truncatedProgress];
+    self.dynamicSegment.endColor = self.endColors[truncatedProgress];
+    if(animated)
+    {   NSInteger previousSegmentIndex = truncatedProgress - 1;
+        if(previousSegmentIndex<0)
+        {
+            previousSegmentIndex = [self.staticSegments count] - 1;
+        }
+        self.dynamicSegment.transform = [(ProgressSegment*)self.staticSegments[previousSegmentIndex] transform];
+        [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            self.dynamicSegment.transform = [(ProgressSegment*)self.staticSegments[truncatedProgress] transform];
+        } completion:nil];
+        
+        
+    }
+    else
+    {
+        self.dynamicSegment.transform = [(ProgressSegment*)self.staticSegments[truncatedProgress] transform];
+    }
+    
+    
     
 }
 
