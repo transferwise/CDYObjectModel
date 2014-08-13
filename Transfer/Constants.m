@@ -28,6 +28,10 @@ NSString *const TRWSupportEmail = @"support@transferwise.com";
 NSString *const TRWFeedbackEmail = @"feedback@transferwise.com";
 NSString *const TRWIdentificationEmail = @"id@transferwise.com";
 
+NSString *const TRWUploadProgressNotification = @"TRWUploadProgressNotification";
+NSString *const TRWUploadProgressKey = @"TRWUploadProgressKey";
+NSString *const TRWUploadFileKey = @"TRWUploadFileKey";
+
 NSString *const TRWGoogleAnalyticsTrackingId = @"UA-16492313-2";
 NSString *const TRWGoogleAnalyticsDevTrackingId = @"UA-24270670-3";
 

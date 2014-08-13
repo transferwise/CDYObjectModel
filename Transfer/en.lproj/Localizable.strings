@@ -95,25 +95,26 @@ your friends to TransferWise";
 "generic.error.message" = "We're currently updating TransferWise. Sorry for the hassle, but please try again in a few minutes.";
 "generic.error.title" = "Things are getting better";
 
-"identification.address.image.missing.message" = "Address verification image missing";
-"identification.controller.title" = "Identification";
+"identification.controller.title" = "%d documents required";
+"identification.reason.title" = "For security reasons we need:";
 "identification.creating.payment.message" = "Creating payment...";
-"identification.input.error.title" = "Input missing";
-"identification.excuse" = "Don't worry. This is slightly upleasant, but normal procedure";
-"identification.explanation" = "To proceed with your payment we have to identify you. Similar to any bank or other financial institution we follow anti-money laundering guidelines from HMRC and FSA which require us to verify of our customers";
-"identification.id.document" = "ID document";
-"identification.id.image.missing.message" = "ID verification image missing";
+"identification.id.document" = "Photo of your ID";
+"identification.id.description" = "A good quality photo of a valid passport or ID card or driving licence. Not a picture of yourself.";
+"identification.id.selected.description" = "ID document selected";
 "identification.payment.error.title" = "Payment error";
-"identification.proof.of.address" = "Proof of address";
-"identification.reason" = "The reason for your transfer";
-"identification.reason.title" = "We need your proof of
-identity and address";
+"identification.proof.of.address" = "Photo of proof of address";
+"identification.proof.of.address.description" = "A utility bill or credit card statement from the last 3 months sent to your current address.";
+"identification.proof.of.address.selected.description" = "Proof of address selected";
 "identification.skip.send" = "Skip and send later";
 "identification.take.photo" = "Take Photo";
-"identification.title" = "Identification";
-"identification.upload.and.continue.button" = "Upload and continue";
-"identification.payment.puprose" = "Payment purpose:";
-"identification.payment.purpose.missing.message" = "Payment purpose not entered";
+"identification.upload.button" = "Upload";
+"identification.skip.button" = "Skip";
+"identification.delete.button" = "Delete";
+"identification.payment.purpose" = "Payment of this transfer";
+"identification.good.format" = "Good! %d documents left.";
+"identification.good.single.format" = "Good! %d document left.";
+"identification.well.done.format" = "Well done %@!";
+
 
 
 "introduction.currencies.retrieve.error.message" = "Could not retrieve currencies from server";
