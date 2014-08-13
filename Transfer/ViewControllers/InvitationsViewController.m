@@ -64,7 +64,7 @@
     if(truncatedProgress > 0)
     {
         self.indicatorContainer.hidden = YES;
-        self.indicatorContextLabel.text = [NSString stringWithFormat:NSLocalizedString(truncatedProgress==2?@"invite.progress.format2":@"invite.progress.format1",nil),progress, 3 - truncatedProgress];
+        self.indicatorContextLabel.text = [NSString stringWithFormat:NSLocalizedString(progress==1?@"invite.progress.format1":@"invite.progress.format2",nil),progress, 3 - truncatedProgress];
     }
     else
     {
