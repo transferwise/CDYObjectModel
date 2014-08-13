@@ -182,7 +182,7 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 + (void)setTextColor:(UITextField *)textField editable:(BOOL)editable
 {
-	[textField setTextColor:(editable ? [UIColor colorFromStyle:textField.fontStyle] : [UIColor colorFromStyle:@"Greygory"])];
+	[textField setTextColor:(editable ? [UIColor colorFromStyle:textField.fontStyle] : [UIColor colorFromStyle:@"CoreFont"])];
 }
 
 @end
