@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong, readonly) UITextField *entryField;
 @property (nonatomic, strong) UITextField* selectedTextField;
+@property (nonatomic) BOOL multipleSeparatorsAdded;
 
 @end
 
@@ -95,10 +96,15 @@
 #pragma mark - Helpers for cells containing two equal length entry fields
 - (void)addDoubleSeparators
 {
-	self.separatorLine = [UIView getSeparatorLineWithParentFrame:[self getHalfWidthFrame:YES]];
-	[self.contentView addSubview:self.separatorLine];
-	self.secondSeparator = [UIView getSeparatorLineWithParentFrame:[self getHalfWidthFrame:NO]];
-	[self.contentView addSubview:self.secondSeparator];
+	if (!self.multipleSeparatorsAdded)
+	{
+		self.separatorLine = [UIView getSeparatorLineWithParentFrame:[self getHalfWidthFrame:YES]];
+		[self.contentView addSubview:self.separatorLine];
+		self.secondSeparator = [UIView getSeparatorLineWithParentFrame:[self getHalfWidthFrame:NO]];
+		[self.contentView addSubview:self.secondSeparator];
+		
+		self.multipleSeparatorsAdded = YES;
+	}
 }
 
 - (CGRect)getHalfWidthFrame:(BOOL)firstHalf
@@ -121,6 +127,8 @@
 		
 		self.separatorLine = [UIView getSeparatorLineWithParentFrame:self.contentView.frame];
 		[self.contentView addSubview:self.separatorLine];
+		
+		self.multipleSeparatorsAdded = NO;
 	}
 }
 
