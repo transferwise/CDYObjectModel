@@ -32,6 +32,7 @@
 #import "UIFont+MOMStyle.h"
 #import "UIImage+Color.h"
 #import "NavigationBarCustomiser.h"
+#import <FBAppCall.h>
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -152,6 +153,20 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Saves changes in the application's managed object context before the application terminates.
     [self.objectModel saveContext];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    BOOL urlWasHandled = [FBAppCall handleOpenURL:url
+                                sourceApplication:sourceApplication
+                                  fallbackHandler:^(FBAppCall *call) {
+                                      NSLog(@"Unhandled deep link: %@", url);
+                                  }];
+    
+    return urlWasHandled;
 }
 
 @end

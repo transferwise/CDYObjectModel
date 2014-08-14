@@ -9,6 +9,7 @@
 #import "InvitationsViewController.h"
 #import "InvitationProgressIndicatorView.h"
 #import "MOMStyle.h"
+#import "InviteViewController.h"
 
 @interface InvitationsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *profilePictureContainer;
@@ -121,6 +122,10 @@
 
 
 - (IBAction)inviteButtonTapped:(id)sender {
+    InviteViewController *controller = [[InviteViewController alloc] init];
+    controller.objectModel = self.objectModel;
+    [controller presentOnViewController:self.view.window.rootViewController];
+    
     self.numberOfFriends ++;
     self.numberOfFriends = self.numberOfFriends%10;
     [self setProgress:self.numberOfFriends];

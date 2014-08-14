@@ -66,6 +66,7 @@
     
     InvitationsViewController* invitationController = [[InvitationsViewController alloc] init];
     TabItem *inviteItem = [TabItem new];
+    invitationController.objectModel = self.objectModel;
     inviteItem.title = NSLocalizedString(@"invite.controller.tabbar.title", nil);
     inviteItem.icon = [UIImage imageNamed:@"Invite"];
     inviteItem.selectedIcon = [UIImage imageNamed:@"Invite_selected"];
