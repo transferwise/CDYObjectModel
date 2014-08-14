@@ -11,6 +11,7 @@
 #import "MOMStyleFactory.h"
 #import "UIColor+MOMStyle.h"
 #import "UIImage+Color.h"
+#import <MessageUI/MessageUI.h>
 
 @implementation NavigationBarCustomiser
 
@@ -19,6 +20,7 @@
 	MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"heavy.@{17,19}.DarkFont"];
 	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [navFontStyle color], NSFontAttributeName : [navFontStyle font]}];
 	[[UINavigationBar appearance] setBackgroundImage:[UIImage imageFromColor:[UIColor colorFromStyle:@"LightBlue"]] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setTintColor:[UIColor colorFromStyle:@"TWElectricBlue"]];
 	[[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
 	[[UINavigationBar appearance] setTitleVerticalPositionAdjustment:-2 forBarMetrics:UIBarMetricsDefault];
 }
@@ -28,8 +30,19 @@
 	MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"heavy.@{17,19}.DarkFont"];
 	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [navFontStyle color], NSFontAttributeName : [navFontStyle font]}];
 	[[UINavigationBar appearance] setBarTintColor:[UIColor colorFromStyle:@"white"]];
+    [[UINavigationBar appearance] setTintColor:[UIColor colorFromStyle:@"TWElectricBlue"]];
 	[[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
 	[[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+}
+
++ (void)setBlack
+{
+	MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"light.@{17,19}.LightBlue"];
+	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [navFontStyle color], NSFontAttributeName : [navFontStyle font]}];
+	[[UINavigationBar appearance] setBackgroundImage:[UIImage imageFromColor:[UIColor blackColor]] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setTintColor:[UIColor colorFromStyle:@"TWElectricBlue"]];
+	[[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+	[[UINavigationBar appearance] setTitleVerticalPositionAdjustment:-2 forBarMetrics:UIBarMetricsDefault];
 }
 
 @end

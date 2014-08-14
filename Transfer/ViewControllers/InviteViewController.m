@@ -15,6 +15,8 @@
 #import "PersonalProfile.h"
 #import <Social/Social.h>
 #import <FBErrorUtility+Internal.h>
+#import "NavigationBarCustomiser.h"
+#import "UIImage+Color.h"
 
 #define _TEMPORARY_URL @"http://www.transferwise.com"
 
@@ -109,11 +111,13 @@
     else
     {
         NSURL* url = [NSURL URLWithString:_TEMPORARY_URL];
+        [NavigationBarCustomiser setBlack];
         MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
         [controller setMailComposeDelegate:self];
         [controller setSubject:NSLocalizedString(@"invite.email.subject", nil)];
         NSString *messageBody = [NSString stringWithFormat:NSLocalizedString(@"invite.email.message", nil), [url absoluteString], [self.objectModel currentUser].personalProfile.firstName];
         [controller setMessageBody:messageBody isHTML:YES];
+        
         [self  presentViewController:controller animated:YES completion:^{
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         }];
@@ -156,6 +160,7 @@
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
+    [NavigationBarCustomiser setDefault];
     [self dismissViewControllerAnimated:YES completion:^{
         if (result == MFMailComposeResultSaved || result == MFMailComposeResultSent)
         {
