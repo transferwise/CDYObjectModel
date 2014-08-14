@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *smsButton;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contextLabel;
+@property (weak, nonatomic) IBOutlet UIButton *urlCopyButton;
 
 @end
 
@@ -44,8 +45,10 @@
     [self.facebookButton setTitle:NSLocalizedString(@"invite.fb.button.title", @"") forState:UIControlStateNormal];
     [self.emailButton setTitle:NSLocalizedString(@"invite.email.button.title", @"") forState:UIControlStateNormal];
     [self.smsButton setTitle:NSLocalizedString(@"invite.sms.button.title", @"") forState:UIControlStateNormal];
+    [self.urlCopyButton setTitle:NSLocalizedString(@"invite.copy.button.title", @"") forState:UIControlStateNormal];
     self.titleLabel.text = NSLocalizedString(@"invite.modal.title", nil);
     self.contextLabel.text = NSLocalizedString(@"invite.context", nil);
+    
     
     self.smsButton.hidden = ![MFMessageComposeViewController canSendText];
 }
@@ -129,6 +132,13 @@
     }];
 
 
+}
+
+- (IBAction)urlCopyTapped:(id)sender {
+    [self.urlCopyButton setTitle:NSLocalizedString(@"invite.copied.button.title", @"") forState:UIControlStateNormal];
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = _TEMPORARY_URL;
+    
 }
 
 #pragma mark mail and sms delegate

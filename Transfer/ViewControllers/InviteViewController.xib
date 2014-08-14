@@ -11,6 +11,7 @@
                 <outlet property="facebookButton" destination="JOS-XU-Ncc" id="Ard-9y-hyo"/>
                 <outlet property="smsButton" destination="Tdp-xG-KTm" id="pgM-ug-ZPF"/>
                 <outlet property="titleLabel" destination="wSR-ns-7AU" id="quI-Xl-YBj"/>
+                <outlet property="urlCopyButton" destination="ZbM-yQ-nVs" id="vmA-hh-nvI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -44,7 +45,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="light.@18.lightBlue"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="light.@18.coreFont"/>
                     </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JOS-XU-Ncc" userLabel="FacebookButton">
@@ -87,6 +88,16 @@
                         <action selector="smsTapped:" destination="-1" eventType="touchUpInside" id="p0Q-CO-HCG"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZbM-yQ-nVs" userLabel="CopyButton" customClass="BlueRoundedButton">
+                    <rect key="frame" x="51" y="374" width="221" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="urlCopyTapped:" destination="-1" eventType="touchUpInside" id="72T-Ks-0ea"/>
+                    </connections>
+                </button>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="250" translatesAutoresizingMaskIntoConstraints="NO" id="gOr-BK-Bjb" userLabel="Context">
                     <rect key="frame" x="36" y="158" width="250" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -97,7 +108,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@16.lightBlue"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@16.coreFont"/>
                     </userDefinedRuntimeAttributes>
                 </label>
             </subviews>
@@ -105,6 +116,7 @@
             <constraints>
                 <constraint firstItem="GCT-Rm-NS4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="3" id="0sh-ch-ENZ"/>
                 <constraint firstItem="JOS-XU-Ncc" firstAttribute="width" secondItem="Tdp-xG-KTm" secondAttribute="width" id="6Ll-gf-OLP"/>
+                <constraint firstItem="ZbM-yQ-nVs" firstAttribute="centerX" secondItem="aFd-eX-qvc" secondAttribute="centerX" constant="1.5" id="7pC-px-S3p"/>
                 <constraint firstItem="JOS-XU-Ncc" firstAttribute="width" secondItem="aFd-eX-qvc" secondAttribute="width" id="81b-bC-5uk"/>
                 <constraint firstItem="Tdp-xG-KTm" firstAttribute="height" secondItem="aFd-eX-qvc" secondAttribute="height" id="G3W-ve-zOi"/>
                 <constraint firstAttribute="centerX" secondItem="wSR-ns-7AU" secondAttribute="centerX" id="L4I-HT-Kop"/>
@@ -112,11 +124,14 @@
                 <constraint firstAttribute="centerX" secondItem="aFd-eX-qvc" secondAttribute="centerX" id="S8N-5e-gAt"/>
                 <constraint firstItem="GCT-Rm-NS4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="Uo4-uf-dfR"/>
                 <constraint firstItem="JOS-XU-Ncc" firstAttribute="height" secondItem="aFd-eX-qvc" secondAttribute="height" id="XWZ-yN-KOp"/>
+                <constraint firstItem="ZbM-yQ-nVs" firstAttribute="top" secondItem="Tdp-xG-KTm" secondAttribute="bottom" constant="15" id="ciY-rx-fIW"/>
                 <constraint firstItem="wSR-ns-7AU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="32" id="dx4-6C-95S"/>
                 <constraint firstItem="JOS-XU-Ncc" firstAttribute="centerX" secondItem="gOr-BK-Bjb" secondAttribute="centerX" id="eqk-wF-gUd"/>
+                <constraint firstItem="ZbM-yQ-nVs" firstAttribute="height" secondItem="aFd-eX-qvc" secondAttribute="height" id="j5f-sn-TUQ"/>
                 <constraint firstItem="JOS-XU-Ncc" firstAttribute="centerX" secondItem="aFd-eX-qvc" secondAttribute="centerX" id="jMP-LN-eKZ"/>
                 <constraint firstItem="aFd-eX-qvc" firstAttribute="top" secondItem="JOS-XU-Ncc" secondAttribute="bottom" constant="15" id="kIH-4S-DF1"/>
                 <constraint firstAttribute="centerY" secondItem="aFd-eX-qvc" secondAttribute="centerY" id="phZ-QF-egr"/>
+                <constraint firstItem="ZbM-yQ-nVs" firstAttribute="width" secondItem="aFd-eX-qvc" secondAttribute="width" id="sbJ-nx-sni"/>
                 <constraint firstItem="Tdp-xG-KTm" firstAttribute="centerX" secondItem="aFd-eX-qvc" secondAttribute="centerX" id="xxf-nn-Cbc"/>
                 <constraint firstItem="JOS-XU-Ncc" firstAttribute="top" secondItem="gOr-BK-Bjb" secondAttribute="bottom" constant="30" id="zZT-1d-9SZ"/>
             </constraints>
