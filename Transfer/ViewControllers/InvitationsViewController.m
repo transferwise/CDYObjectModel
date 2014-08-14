@@ -8,6 +8,7 @@
 
 #import "InvitationsViewController.h"
 #import "InvitationProgressIndicatorView.h"
+#import "MOMStyle.h"
 
 @interface InvitationsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *profilePictureContainer;
@@ -59,7 +60,7 @@
 
 -(void)setProgress:(NSUInteger)progress
 {
-    self.numberLabel.text = [NSString stringWithFormat:@"%d",self.numberOfFriends];
+    self.numberLabel.text = [NSString stringWithFormat:@"%d",progress];
     NSUInteger truncatedProgress = progress % 3;
     if(truncatedProgress > 0)
     {
@@ -70,14 +71,46 @@
     {
         self.indicatorContextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"invite.complete.format",nil),progress];
     }
-    if(self.numberOfFriends >0)
+    if(progress >0)
     {
-        [self.progressIndicator setProgress:self.numberOfFriends animated:YES];
+        [self.progressIndicator setProgress:progress animated:YES];
     }
 
     self.profilePictureContainer.hidden = progress > 0;
     self.indicatorContainer.hidden = ! self.profilePictureContainer.hidden;
 
+    int numberOfRewards = progress/3;
+    if(numberOfRewards == 0 && progress == 0)
+    {
+        self.navigationController.navigationBar.topItem.title = NSLocalizedString(@"invite.controller.title", nil);
+        self.navigationController.navigationBar.topItem.titleView = nil;
+    }
+    else if(numberOfRewards <1)
+    {
+        self.navigationController.navigationBar.topItem.title= NSLocalizedString(@"invite.controller.title.short", nil);
+        self.navigationController.navigationBar.topItem.titleView = nil;
+    }
+    else
+    {
+        NSString * boom = NSLocalizedString(@"invite.controller.title.boom", nil);
+        NSString *earned = [NSString stringWithFormat:NSLocalizedString(@"invite.controller.title.reward.format", nil),50*numberOfRewards,boom];
+        UILabel *titleLabel = [[UILabel alloc]init];
+        titleLabel.numberOfLines = 1;
+        titleLabel.backgroundColor = [UIColor clearColor];
+        titleLabel.fontStyle = @"heavy.@{17,19}.DarkFont";
+        NSMutableAttributedString *finalText= [[NSMutableAttributedString alloc] initWithString:earned];
+        [finalText addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"twelectricblue"] range:[earned rangeOfString:boom]];
+        titleLabel.attributedText = finalText;
+        [titleLabel sizeToFit];
+        CGRect newFrame = titleLabel.frame;
+        newFrame.origin.y = 2;
+        titleLabel.frame = newFrame;
+        UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, newFrame.size.width, newFrame.size.height+2)];
+        [container addSubview:titleLabel];
+        
+        self.navigationController.navigationBar.topItem.titleView = container;
+    }
+    
 }
 
 

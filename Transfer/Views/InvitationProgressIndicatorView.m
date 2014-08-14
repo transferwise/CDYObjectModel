@@ -34,7 +34,7 @@
         _startColor = startColor;
         _endColor = endColor;
         
-        self.backgroundColor = [UIColor colorFromStyle:@"separatorGrey"];
+        self.backgroundColor = [UIColor colorFromStyle:@"lightBlue"];
         CAGradientLayer *gradient = [[CAGradientLayer alloc] init];
         gradient.frame = self.bounds;
         gradient.startPoint = CGPointMake(0.0f, 0.0f);
