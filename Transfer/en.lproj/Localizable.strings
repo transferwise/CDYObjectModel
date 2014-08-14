@@ -594,3 +594,9 @@ We'll send you an email in order to let you choose a new password.";
 "invite.progress.format1" = "%d friend started using Transferwise. %d to go & you get £50.";
 "invite.progress.format2" = "%d friends started using Transferwise. %d to go!";
 "invite.complete.format" = "%d friends joined! Do it again to earn £50 extra!";
+
+"invite.fb.button.title" = "Share on Facebook";
+"invite.email.button.title" = "Invite via email";
+"invite.sms.button.title" = "Invite via sms";
+"invite.context" = "When 3 friends start using Transferwise, you'll get 50 GBP.";
+"invite.modal.title" = "Share your invite url";

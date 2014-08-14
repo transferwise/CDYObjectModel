@@ -246,6 +246,10 @@
 		38BD98A4195C5973009F9B4A /* NameSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */; };
 		38BD98A5195C5973009F9B4A /* NameSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */; };
 		38BD98A6195C5973009F9B4A /* NameSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */; };
+		38C1A89B199CC5A0000BF59C /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C1A899199CC5A0000BF59C /* InviteViewController.m */; };
+		38C1A89C199CC5A0000BF59C /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C1A899199CC5A0000BF59C /* InviteViewController.m */; };
+		38C1A89D199CC5A0000BF59C /* InviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C1A89A199CC5A0000BF59C /* InviteViewController.xib */; };
+		38C1A89E199CC5A0000BF59C /* InviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C1A89A199CC5A0000BF59C /* InviteViewController.xib */; };
 		38C632F2194EEBBC008C9E46 /* WhyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */; };
 		38C7B29319742596004324E8 /* HeaderTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C7B29219742596004324E8 /* HeaderTabView.m */; };
 		38C7B29419742596004324E8 /* HeaderTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C7B29219742596004324E8 /* HeaderTabView.m */; };
@@ -1050,6 +1054,9 @@
 		38BD98A0195C5973009F9B4A /* NameSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSuggestionCell.h; sourceTree = "<group>"; };
 		38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameSuggestionCell.m; sourceTree = "<group>"; };
 		38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NameSuggestionCell.xib; sourceTree = "<group>"; };
+		38C1A898199CC5A0000BF59C /* InviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteViewController.h; sourceTree = "<group>"; };
+		38C1A899199CC5A0000BF59C /* InviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteViewController.m; sourceTree = "<group>"; };
+		38C1A89A199CC5A0000BF59C /* InviteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteViewController.xib; sourceTree = "<group>"; };
 		38C7B29119742596004324E8 /* HeaderTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderTabView.h; sourceTree = "<group>"; };
 		38C7B29219742596004324E8 /* HeaderTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderTabView.m; sourceTree = "<group>"; };
 		38C7B29F19756A9C004324E8 /* BankTransferViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BankTransferViewController~ipad.xib"; sourceTree = "<group>"; };
@@ -2444,6 +2451,9 @@
 				38B52F9B199B63B600B6AEBD /* InvitationsViewController.h */,
 				38B52F9C199B63B600B6AEBD /* InvitationsViewController.m */,
 				38B52F9D199B63B600B6AEBD /* InvitationsViewController.xib */,
+				38C1A898199CC5A0000BF59C /* InviteViewController.h */,
+				38C1A899199CC5A0000BF59C /* InviteViewController.m */,
+				38C1A89A199CC5A0000BF59C /* InviteViewController.xib */,
 				47233CD3196D457300449042 /* LoginViewController.h */,
 				47233CD4196D457300449042 /* LoginViewController.m */,
 				47233CD5196D457300449042 /* LoginViewController.xib */,
@@ -2812,6 +2822,7 @@
 				EA31A21017DDB29B00F937F7 /* DropdownCell.xib in Resources */,
 				EAD3648F17E2F6EF001EFE40 /* CardPaymentViewController.xib in Resources */,
 				EA31A21117DDB29B00F937F7 /* BankTransferViewController.xib in Resources */,
+				38C1A89E199CC5A0000BF59C /* InviteViewController.xib in Resources */,
 				EA31A21217DDB29B00F937F7 /* TextCell.xib in Resources */,
 				EA31A21317DDB29B00F937F7 /* ButtonCell.xib in Resources */,
 				47971C6B199A4E830018FDA8 /* DoubleEntryCell~ipad.xib in Resources */,
@@ -2932,6 +2943,7 @@
 				385669151980FB0500BC4230 /* PlainPresentationCell~ipad.xib in Resources */,
 				18D47903173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib in Resources */,
 				4723EA2B1975349C00B4345F /* TransferPayIPadViewController~ipad.xib in Resources */,
+				38C1A89D199CC5A0000BF59C /* InviteViewController.xib in Resources */,
 				38EFABDF196D7EAB00126192 /* DataEntryDefaultHeader~ipad.xib in Resources */,
 				474C451D1992874E001F207C /* ProfileEditViewController~ipad.xib in Resources */,
 				380021FB192F43EA009B1D53 /* TabCell~ipad.xib in Resources */,
@@ -3367,6 +3379,7 @@
 				474D1AA71951A500008BC7A7 /* RedGradientButton.m in Sources */,
 				47FAF349194B3233004CE986 /* UIImage+Color.m in Sources */,
 				38B0930A1951FA2A00315BE4 /* DataEntryDefaultHeader.m in Sources */,
+				38C1A89C199CC5A0000BF59C /* InviteViewController.m in Sources */,
 				4723EA1A1973F3CA00B4345F /* GoogleButton.m in Sources */,
 				380021E4192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */,
 				EA31A19017DDB29B00F937F7 /* TabBarActivityIndicatorView.m in Sources */,
@@ -3650,6 +3663,7 @@
 				4723EA191973F3CA00B4345F /* GoogleButton.m in Sources */,
 				EA225C85178EB21C009D6B83 /* NSDictionary+Cleanup.m in Sources */,
 				476C6B88196C18BF007002F9 /* SwipeToCancelCell.m in Sources */,
+				38C1A89B199CC5A0000BF59C /* InviteViewController.m in Sources */,
 				38B1C5D6195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */,
 				38342BAB196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */,
 				380021CE192CC531009B1D53 /* MOMCompoundStyle.m in Sources */,
