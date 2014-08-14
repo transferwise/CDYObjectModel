@@ -14,8 +14,9 @@
 #import "User.h"
 #import "PersonalProfile.h"
 #import <Social/Social.h>
+#import <FBErrorUtility+Internal.h>
 
-#define _TEMPORARY_URL @"www.transferwise.com"
+#define _TEMPORARY_URL @"http://www.transferwise.com"
 
 @interface InviteViewController () <MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *facebookButton;
@@ -65,9 +66,12 @@
         [FBDialogs presentShareDialogWithLink:url
                                       handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
                                           if(error) {
-                                             TRWAlertView* alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"invite.error.facebook.title",nil) message:[error localizedDescription]];
-                                              [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-                                              [alertView show];
+                                              if([FBErrorUtility shouldNotifyUserForError:error])
+                                              {
+                                                  TRWAlertView* alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"invite.error.facebook.title",nil) message:[FBErrorUtility userMessageForError:error]];
+                                                  [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                                                  [alertView show];
+                                              }
                                           } else {
                                               [self dismiss];
                                           }
