@@ -71,6 +71,11 @@
 				<key>color</key>
 				<string>363d4e</string>
 			</dict>
+			<key>FBBlue</key>
+			<dict>
+				<key>color</key>
+				<string>3b5998</string>
+			</dict>
 			<key>Green</key>
 			<dict>
 				<key>color</key>
