@@ -15,6 +15,8 @@
 #import "PersonalProfile.h"
 #import <Social/Social.h>
 #import <FBErrorUtility+Internal.h>
+#import "NavigationBarCustomiser.h"
+#import "UIImage+Color.h"
 
 #define _TEMPORARY_URL @"http://www.transferwise.com"
 
@@ -24,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *smsButton;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contextLabel;
+@property (weak, nonatomic) IBOutlet UIButton *urlCopyButton;
 
 @end
 
@@ -44,10 +47,12 @@
     [self.facebookButton setTitle:NSLocalizedString(@"invite.fb.button.title", @"") forState:UIControlStateNormal];
     [self.emailButton setTitle:NSLocalizedString(@"invite.email.button.title", @"") forState:UIControlStateNormal];
     [self.smsButton setTitle:NSLocalizedString(@"invite.sms.button.title", @"") forState:UIControlStateNormal];
+    [self.urlCopyButton setTitle:NSLocalizedString(@"invite.copy.button.title", @"") forState:UIControlStateNormal];
     self.titleLabel.text = NSLocalizedString(@"invite.modal.title", nil);
     self.contextLabel.text = NSLocalizedString(@"invite.context", nil);
     
-    self.smsButton.hidden = [MFMessageComposeViewController canSendText];
+    
+    self.smsButton.hidden = ![MFMessageComposeViewController canSendText];
 }
 
 - (void)didReceiveMemoryWarning
@@ -106,11 +111,13 @@
     else
     {
         NSURL* url = [NSURL URLWithString:_TEMPORARY_URL];
+        [NavigationBarCustomiser setBlack];
         MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
         [controller setMailComposeDelegate:self];
         [controller setSubject:NSLocalizedString(@"invite.email.subject", nil)];
         NSString *messageBody = [NSString stringWithFormat:NSLocalizedString(@"invite.email.message", nil), [url absoluteString], [self.objectModel currentUser].personalProfile.firstName];
         [controller setMessageBody:messageBody isHTML:YES];
+        
         [self  presentViewController:controller animated:YES completion:^{
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         }];
@@ -131,6 +138,13 @@
 
 }
 
+- (IBAction)urlCopyTapped:(id)sender {
+    [self.urlCopyButton setTitle:NSLocalizedString(@"invite.copied.button.title", @"") forState:UIControlStateNormal];
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = _TEMPORARY_URL;
+    
+}
+
 #pragma mark mail and sms delegate
 
 -(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
@@ -146,6 +160,7 @@
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
+    [NavigationBarCustomiser setDefault];
     [self dismissViewControllerAnimated:YES completion:^{
         if (result == MFMailComposeResultSaved || result == MFMailComposeResultSent)
         {

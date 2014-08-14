@@ -125,10 +125,6 @@
     InviteViewController *controller = [[InviteViewController alloc] init];
     controller.objectModel = self.objectModel;
     [controller presentOnViewController:self.view.window.rootViewController];
-    
-    self.numberOfFriends ++;
-    self.numberOfFriends = self.numberOfFriends%10;
-    [self setProgress:self.numberOfFriends];
 }
 
 @end

@@ -12,5 +12,6 @@
 
 + (void)setDefault;
 + (void)setWhite;
++(void)setBlack;
 
 @end

@@ -598,6 +598,8 @@ We'll send you an email in order to let you choose a new password.";
 "invite.fb.button.title" = "Share on Facebook";
 "invite.email.button.title" = "Invite via email";
 "invite.sms.button.title" = "Invite via sms";
+"invite.copy.button.title" = "Copy my invite link";
+"invite.copied.button.title" = "Copied";
 "invite.context" = "When 3 friends start using Transferwise, you'll get 50 GBP.";
 "invite.modal.title" = "Share your invite url";
 "invite.error.facebook.title" = "Facebook error";
