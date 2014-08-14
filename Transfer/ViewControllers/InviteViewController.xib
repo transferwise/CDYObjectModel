@@ -59,6 +59,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="FBBlue"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="rounded"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@{16,17}.white"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="highlightedBgStyle" value="FBBlue.alpha7"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="facebookTapped:" destination="-1" eventType="touchUpInside" id="PQ2-3e-dhM"/>
