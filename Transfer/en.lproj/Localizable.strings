@@ -600,3 +600,13 @@ We'll send you an email in order to let you choose a new password.";
 "invite.sms.button.title" = "Invite via sms";
 "invite.context" = "When 3 friends start using Transferwise, you'll get 50 GBP.";
 "invite.modal.title" = "Share your invite url";
+"invite.error.facebook.title" = "Facebook error";
+"invite.error.facebook.message" = "Please enable Facebook in your device settings and try again.";
+"invite.facebook.default.message" = "%@ invites you to try Transferwise. It lets you transfer money abroad cheaper than with your bank.";
+"invite.email.subject" = "Try Transferwise";
+"invite.email.message" = "Hi,<br><br>
+Here's a link to try <a href=\"%@\">Transferwise</a> <br><br>
+It has already saved me money on international money transfers.<br><br>
+Regards,<br>
+%@";
+"invite.sms.message" = "Save money with Transferwise: %@";

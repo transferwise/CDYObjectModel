@@ -7,7 +7,10 @@
 //
 
 #import "TransparentModalViewController.h"
+@class ObjectModel;
 
 @interface InviteViewController : TransparentModalViewController
+
+@property (nonatomic, strong) ObjectModel* objectModel;
 
 @end

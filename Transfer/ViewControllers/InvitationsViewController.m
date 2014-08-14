@@ -123,6 +123,7 @@
 
 - (IBAction)inviteButtonTapped:(id)sender {
     InviteViewController *controller = [[InviteViewController alloc] init];
+    controller.objectModel = self.objectModel;
     [controller presentOnViewController:self.view.window.rootViewController];
     
     self.numberOfFriends ++;
