@@ -22,6 +22,7 @@
 #import "User.h"
 #import "PersonalProfile.h"
 #import "ColoredButton.h"
+#import "MOMStyle.h"
 
 @interface PersonalProfileIdentificationViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, ValidationCellDelegate>
 
@@ -127,6 +128,7 @@
         [idDocumentCell configureWithButtonTitle:NSLocalizedString(@"identification.id.document", @"") buttonImage:[UIImage imageNamed:@"camera_icon_button"] caption:NSLocalizedString(@"identification.id.description", @"") selectedCaption:NSLocalizedString(@"identification.id.selected.description", @"")];
         [idDocumentCell documentSelected:[PendingPayment isIdVerificationImagePresent]];
         idDocumentCell.delegate = self;
+        idDocumentCell.contentView.bgStyle = @"lightblueHighlighted.alpha4";
         self.idVerificationRowIndex = [photoCells count] - 1;
     }
 
@@ -138,6 +140,7 @@
         [proofOfAddressCell configureWithButtonTitle:NSLocalizedString(@"identification.proof.of.address", @"") buttonImage:[UIImage imageNamed:@"camera_icon_button"] caption:NSLocalizedString(@"identification.proof.of.address.description", @"") selectedCaption:NSLocalizedString(@"identification.proof.of.address.selected.description", @"")];
         [proofOfAddressCell documentSelected:[PendingPayment isAddressVerificationImagePresent]];
         proofOfAddressCell.delegate = self;
+        proofOfAddressCell.contentView.bgStyle = @"lightblueHighlighted";
         self.addressVerificationRowIndex = [photoCells count] - 1;
     }
 

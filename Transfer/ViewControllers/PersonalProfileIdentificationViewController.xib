@@ -18,13 +18,13 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="center" id="7">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="104"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="We need your proof of identity and address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="25">
-                    <rect key="frame" x="0.0" y="59" width="320" height="46"/>
+                    <rect key="frame" x="0.0" y="60" width="320" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
@@ -32,11 +32,11 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_status_documents_needed" id="iHM-Sf-tbU">
-                    <rect key="frame" x="140" y="18" width="40" height="40"/>
+                    <rect key="frame" x="152" y="30" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <view contentMode="scaleToFill" id="Pa1-dy-YUF" userLabel="separatorLine">
-                    <rect key="frame" x="0.0" y="103" width="320" height="1"/>
+                    <rect key="frame" x="0.0" y="99" width="320" height="1"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <userDefinedRuntimeAttributes>
