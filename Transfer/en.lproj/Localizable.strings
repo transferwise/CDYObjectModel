@@ -587,7 +587,7 @@ We'll send you an email in order to let you choose a new password.";
 
 "invite.button.title" = "Invite friends";
 "invite.controller.title" = "Save your friends from banks";
-"invite.header" = "For every 3 friends who start using Transferwise, you earn £50";
+"invite.header" = "Every 3 friends who start using Transferwise, you earn £50";
 "invite.progress.format1" = "%d friend started using Transferwise. %d to go & you get £50.";
 "invite.progress.format2" = "%d friends started using Transferwise. %d to go!";
 "invite.complete.format" = "%d friends joined! Do it again to earn £50 extra!";
