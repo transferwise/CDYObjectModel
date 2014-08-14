@@ -47,7 +47,7 @@
     self.titleLabel.text = NSLocalizedString(@"invite.modal.title", nil);
     self.contextLabel.text = NSLocalizedString(@"invite.context", nil);
     
-    self.smsButton.hidden = [MFMessageComposeViewController canSendText];
+    self.smsButton.hidden = ![MFMessageComposeViewController canSendText];
 }
 
 - (void)didReceiveMemoryWarning
