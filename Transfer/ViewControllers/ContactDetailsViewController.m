@@ -28,6 +28,7 @@
 #import "MOMStyle.h"
 #import "UIImage+Color.h"
 #import "TransferBackButtonItem.h"
+#import "AddressBookManager.h"
 
 @interface ContactDetailsViewController ()<UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -72,17 +73,21 @@
     self.flagIcon.image = [UIImage imageNamed:self.recipient.currency.code?[NSString stringWithFormat:@"%@_flag_30px",self.recipient.currency.code]:@"flag_default_30px"];
     
     //TODO: m@s replace with loading user image once API is implemented.
-    UIImage *userImage = [UIImage imageNamed:[NSString stringWithFormat:@"User%d",arc4random()%4]];
-    self.userImage.image = userImage;
-    
-    __weak typeof(self) weakSelf = self;
-    [UIImage headerBackgroundFromImage:userImage finalImageSize:CGSizeMake(473, 270) completionBlock:^(UIImage *result) {
-        weakSelf.headerBackground.alpha = 0.0f;
-        weakSelf.headerBackground.image = result;
-        [UIView animateWithDuration:0.7f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            weakSelf.headerBackground.alpha = 0.25f;
-        } completion:nil];
-    }];
+    if (self.recipient.email)
+    {
+        [[AddressBookManager sharedInstance] getImageForEmail:self.recipient.email completion:^(UIImage *image) {
+            self.userImage.image = image;
+            
+            __weak typeof(self) weakSelf = self;
+            [UIImage headerBackgroundFromImage:image finalImageSize:CGSizeMake(473, 270) completionBlock:^(UIImage *result) {
+                weakSelf.headerBackground.alpha = 0.0f;
+                weakSelf.headerBackground.image = result;
+                [UIView animateWithDuration:0.7f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    weakSelf.headerBackground.alpha = 0.25f;
+                } completion:nil];
+            }];
+        }];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
