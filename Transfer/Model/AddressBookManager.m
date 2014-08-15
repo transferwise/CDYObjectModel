@@ -238,6 +238,9 @@ void addressBookExternalChangeCallback (ABAddressBookRef notificationaddressbook
     ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
     
     if(addressBook) {
+        //Use a semaphore to ensure the dispatch queue is blocked until the addressbook has been set up.
+        //otherwise mutiple calls can happen, leading to self.addressbook being re-assigned, leading to deallocated instances being called -> crash.
+        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
         ABAddressBookRequestAccessWithCompletion(self.addressBook, ^(bool granted, CFErrorRef error) {
                 if (granted) {
                     self.addressBook = addressBook;
@@ -251,8 +254,13 @@ void addressBookExternalChangeCallback (ABAddressBookRef notificationaddressbook
                     });
                     self.addressBook = NULL;
                 }
+            dispatch_async(self.dispatchQueue, ^{
                 handler(granted,error);
+            });
+            dispatch_semaphore_signal(sema);
         });
+        //This should block the local dispatch queue until the address boook has been set up.
+        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
     }
 }
 
