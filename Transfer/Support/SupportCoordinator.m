@@ -67,7 +67,7 @@
                                                     otherButtonTitles:nil];
 
     [self setWriteButtonIndex:[actionSheet addButtonWithTitle:NSLocalizedString(@"support.sheet.write.message", nil)]];
-	if(!IPAD)
+	if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel://"]])
 	{
 		[self setCallButtonIndex:[actionSheet addButtonWithTitle:NSLocalizedString(@"support.sheet.call", nil)]];
 	}

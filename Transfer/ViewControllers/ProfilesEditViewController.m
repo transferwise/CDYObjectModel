@@ -19,6 +19,7 @@
 #import "BusinessProfileCommitter.h"
 #import "GoogleAnalytics.h"
 #import "NSString+DeviceSpecificLocalisation.h"
+#import "SettingsViewController.h"
 
 @interface ProfilesEditViewController ()
 
@@ -44,7 +45,7 @@
 	
 	[self setTitle:NSLocalizedString([@"profile.edit.title" deviceSpecificLocalization], nil)];
 	UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 98, 44)];
-	[button addTarget:self action:@selector(logOut) forControlEvents:UIControlEventTouchUpInside];
+	[button addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
 	[button setImage:[UIImage imageNamed:@"SettingsButton"] forState:UIControlStateNormal];
 	[button setImageEdgeInsets:UIEdgeInsetsMake(0, 58, 0, -17)];
 	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithCustomView:button];
@@ -97,20 +98,10 @@
 	}
 }
 
-- (void)logOut
+- (void)showSettings
 {
-	//moved here from MainViewController
-	//TODO: remove to actual logout action
-	[[TransferwiseClient sharedClient] clearCredentials];
-	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Cleared credentials!" message:nil delegate:nil cancelButtonTitle:@"Aha!" otherButtonTitles:nil];
-	[alert show];
-	
-	NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
-	[controller setObjectModel:self.objectModel];
-			
-	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-	[navigationController setNavigationBarHidden:YES];
-	ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
-	[self presentViewController:wrapper animated:YES completion:nil];
+    SettingsViewController* controller = [[SettingsViewController alloc] init];
+    controller.objectModel = self.objectModel;
+    [controller presentOnViewController:self.view.window.rootViewController];
 }
 @end
