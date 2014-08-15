@@ -111,15 +111,14 @@
     else
     {
         NSURL* url = [NSURL URLWithString:_TEMPORARY_URL];
-        [NavigationBarCustomiser setBlack];
+        [NavigationBarCustomiser NoStyling];
         MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
         [controller setMailComposeDelegate:self];
         [controller setSubject:NSLocalizedString(@"invite.email.subject", nil)];
         NSString *messageBody = [NSString stringWithFormat:NSLocalizedString(@"invite.email.message", nil), [url absoluteString], [self.objectModel currentUser].personalProfile.firstName];
         [controller setMessageBody:messageBody isHTML:YES];
-        
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
         [self  presentViewController:controller animated:YES completion:^{
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         }];
     }
 }
@@ -127,12 +126,13 @@
 - (IBAction)smsTapped:(id)sender {
  
     NSURL* url = [NSURL URLWithString:_TEMPORARY_URL];
+    [NavigationBarCustomiser NoStyling];
     MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
     [controller setMessageComposeDelegate:self];
     NSString *messageBody = [NSString stringWithFormat:NSLocalizedString(@"invite.sms.message", nil), [url absoluteString]];
     [controller setBody:messageBody];
     [self  presentViewController:controller animated:YES completion:^{
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     }];
 
 
@@ -141,6 +141,7 @@
 - (IBAction)urlCopyTapped:(id)sender {
     [self.urlCopyButton setTitle:NSLocalizedString(@"invite.copied.button.title", @"") forState:UIControlStateNormal];
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    self.urlCopyButton.alpha = 0.5f;
     pasteboard.string = _TEMPORARY_URL;
     
 }
@@ -149,6 +150,8 @@
 
 -(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    [NavigationBarCustomiser setDefault];
     [self dismissViewControllerAnimated:YES completion:^{
         if (result == MessageComposeResultSent)
         {
@@ -160,6 +163,7 @@
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     [NavigationBarCustomiser setDefault];
     [self dismissViewControllerAnimated:YES completion:^{
         if (result == MFMailComposeResultSaved || result == MFMailComposeResultSent)

@@ -35,14 +35,14 @@
 	[[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
 }
 
-+ (void)setBlack
++ (void)NoStyling
 {
-	MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"light.@{17,19}.LightBlue"];
-	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [navFontStyle color], NSFontAttributeName : [navFontStyle font]}];
-	[[UINavigationBar appearance] setBackgroundImage:[UIImage imageFromColor:[UIColor blackColor]] forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance] setTintColor:[UIColor colorFromStyle:@"TWElectricBlue"]];
-	[[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
-	[[UINavigationBar appearance] setTitleVerticalPositionAdjustment:-2 forBarMetrics:UIBarMetricsDefault];
+	
+	[[UINavigationBar appearance] setTitleTextAttributes:@{}];
+	[[UINavigationBar appearance] setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setTintColor:nil];
+	[[UINavigationBar appearance] setShadowImage:nil];
+	[[UINavigationBar appearance] setTitleVerticalPositionAdjustment:0 forBarMetrics:UIBarMetricsDefault];
 }
 
 @end
