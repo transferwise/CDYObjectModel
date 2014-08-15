@@ -102,6 +102,6 @@
 {
     SettingsViewController* controller = [[SettingsViewController alloc] init];
     controller.objectModel = self.objectModel;
-    [controller presentOnViewController:self];
+    [controller presentOnViewController:self.view.window.rootViewController];
 }
 @end

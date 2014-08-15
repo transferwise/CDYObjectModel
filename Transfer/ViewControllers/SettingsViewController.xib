@@ -47,32 +47,28 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="light.@18.coreFont"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JOS-XU-Ncc" userLabel="infoButton">
-                    <rect key="frame" x="140" y="95" width="40" height="40"/>
+                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JOS-XU-Ncc" userLabel="infoButton">
+                    <rect key="frame" x="125" y="95" width="70" height="75"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="40" id="RZJ-eH-swX"/>
+                        <constraint firstAttribute="width" constant="70" id="RZJ-eH-swX"/>
                     </constraints>
-                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="30" maxY="0.0"/>
-                    <state key="normal" title="i">
+                    <state key="normal" title="About" image="infoButton">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="FBBlue"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="appearanceStyle" value="rounded"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@{16,17}.white"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="highlightedBgStyle" value="FBBlue.alpha7"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.corefont"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="infoTapped:" destination="-1" eventType="touchUpInside" id="tI8-eQ-bJT"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFd-eX-qvc" userLabel="CustomerServicebutton" customClass="BlueRoundedButton">
-                    <rect key="frame" x="50" y="220" width="220" height="40"/>
+                    <rect key="frame" x="45" y="220" width="230" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="95j-0P-dkZ"/>
-                        <constraint firstAttribute="width" constant="220" id="VJB-2N-Q3g"/>
+                        <constraint firstAttribute="width" constant="230" id="VJB-2N-Q3g"/>
                     </constraints>
                     <state key="normal" title="Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -82,7 +78,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tdp-xG-KTm" userLabel="feedbackButton" customClass="BlueRoundedButton">
-                    <rect key="frame" x="50" y="275" width="221" height="40"/>
+                    <rect key="frame" x="45" y="275" width="231" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -115,7 +111,7 @@
                 <constraint firstItem="JOS-XU-Ncc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="95" id="QJJ-ot-b2k"/>
                 <constraint firstAttribute="centerX" secondItem="aFd-eX-qvc" secondAttribute="centerX" id="S8N-5e-gAt"/>
                 <constraint firstItem="GCT-Rm-NS4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="Uo4-uf-dfR"/>
-                <constraint firstItem="JOS-XU-Ncc" firstAttribute="height" secondItem="aFd-eX-qvc" secondAttribute="height" id="XWZ-yN-KOp"/>
+                <constraint firstItem="JOS-XU-Ncc" firstAttribute="height" secondItem="aFd-eX-qvc" secondAttribute="height" constant="35" id="XWZ-yN-KOp"/>
                 <constraint firstItem="wSR-ns-7AU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="32" id="dx4-6C-95S"/>
                 <constraint firstItem="ZbM-yQ-nVs" firstAttribute="height" secondItem="aFd-eX-qvc" secondAttribute="height" id="j5f-sn-TUQ"/>
                 <constraint firstItem="JOS-XU-Ncc" firstAttribute="centerX" secondItem="aFd-eX-qvc" secondAttribute="centerX" id="jMP-LN-eKZ"/>
@@ -130,5 +126,6 @@
     </objects>
     <resources>
         <image name="ModalClose" width="42" height="42"/>
+        <image name="infoButton" width="51" height="53"/>
     </resources>
 </document>
