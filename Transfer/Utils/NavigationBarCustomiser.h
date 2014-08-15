@@ -12,6 +12,6 @@
 
 + (void)setDefault;
 + (void)setWhite;
-+(void)setBlack;
++(void)NoStyling;
 
 @end
