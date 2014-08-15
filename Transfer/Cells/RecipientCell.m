@@ -13,6 +13,7 @@
 #import "Currency.h"
 #import "UIColor+MOMStyle.h"
 #import "UIImage+Color.h"
+#import "AddressBookManager.h"
 
 #define UK_SORT	@"UK Sort code"
 #define IBAN	@"IBAN"
@@ -69,19 +70,18 @@
 
 - (UIImage *)getRecipientImage:(Recipient *)recipient
 {
-	//if recipient has an image
-	if(false)
-	{
-		//recipient image is not available yet
-		[self.initialsLabel setHidden:YES];
-	}
-	//generate image
-	else
-	{
-		[self.initialsLabel setHidden:NO];
-		[self.initialsLabel setText:[self getInitials:[recipient name]]];
-		return [UIImage imageFromColor:[UIColor colorFromStyle:@"LightBlue"]];
-	}
+
+    [[AddressBookManager sharedInstance] getImageForEmail:recipient.email completion:^(UIImage *image) {
+        if(image)
+        {
+            self.recipientImage.image = image;
+            self.initialsLabel.hidden = YES;
+        }
+    }];
+    [self.initialsLabel setHidden:NO];
+    [self.initialsLabel setText:[self getInitials:[recipient name]]];
+    return [UIImage imageFromColor:[UIColor colorFromStyle:@"LightBlue"]];
+	
 }
 
 - (NSString *)getInitials:(NSString *)name

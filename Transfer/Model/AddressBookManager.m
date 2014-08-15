@@ -10,6 +10,7 @@
 #import <AddressBook/AddressBook.h>
 #import "GoogleAnalytics.h"
 #import "NameLookupWrapper.h"
+#import "Constants.h"
 
 #define cachedNameLookup @"nameLookup"
 
@@ -25,6 +26,13 @@
 @end
 
 @implementation AddressBookManager
+
++ (AddressBookManager *)sharedInstance {
+    DEFINE_SHARED_INSTANCE_USING_BLOCK(^{
+        AddressBookManager *manager = [[self alloc] init];
+        return manager;
+    });
+}
 
 -(id)init
 {
@@ -55,11 +63,39 @@
         {
             if(handler)
             {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    handler(nil);
-                });
+                [self performBlockOnMainThread:^{
+                   handler(nil); 
+                }];
             }
         }
+    }];
+}
+
+-(void)getImageForEmail:(NSString*)email completion:(void(^)(UIImage* image))completionBlock
+{
+    
+    NSNumber *recordIdNumber = [[AddressBookManager sharedDataCache] objectForKey:email];
+    if(recordIdNumber)
+    {
+        [self getImageForRecordId:(ABRecordID)[recordIdNumber integerValue] completion:completionBlock];
+        return;
+    }
+    
+    [self getAddressBookAndExecuteInBackground:^(BOOL hasAddressBook) {
+        
+        NSArray* nameLookup = [self getImmutableNameLookup];
+        NSArray* filteredResult = [nameLookup filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"email = %@",email]];
+        if([filteredResult count])
+        {
+            NameLookupWrapper *wrapper = filteredResult[0];
+            ABRecordID recordId = wrapper.recordId;
+            [[AddressBookManager sharedDataCache] setObject:@(recordId) forKey:email];
+            [self getImageForRecordId:recordId completion:completionBlock];
+            return;
+        }
+        [self performBlockOnMainThread:^{
+            completionBlock(nil);
+        }];
     }];
 }
 
@@ -69,11 +105,22 @@
         return;
     }
     
+    if(recordId == kABRecordInvalidID)
+    {
+        [self performBlockOnMainThread:^{
+            completionBlock(nil);
+            return;
+        }];
+    }
+    
     UIImage *cachedResult = [[AddressBookManager sharedDataCache] objectForKey:[self thumbnailKeyForRecord:recordId]];
     if(cachedResult)
     {
-        completionBlock(cachedResult);
-        return;
+        [self performBlockOnMainThread:^{
+            completionBlock(cachedResult);
+            return;
+        }];
+        
     }
     [self getAddressBookAndExecuteInBackground:^(BOOL hasAddressBook) {
         UIImage *result;
@@ -94,9 +141,9 @@
                 }
             }
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
+        [self performBlockOnMainThread:^{
             completionBlock(result);
-        });
+        }];
     }];
 }
 
@@ -122,7 +169,18 @@
 
 -(void)retrieveNames:(NameLookupHandler)handler
 {
-    
+    if(handler)
+    {
+        NSArray *lookup = [self getImmutableNameLookup];
+        [self performBlockOnMainThread:^{
+            handler(lookup);
+        }];
+        
+    }
+}
+
+-(NSArray*)getImmutableNameLookup
+{
     NSArray *immutableResult = [[AddressBookManager sharedDataCache] objectForKey:cachedNameLookup];
     if(!immutableResult)
     {
@@ -135,11 +193,11 @@
             
             NSString *firstname = (__bridge_transfer NSString *)ABRecordCopyValue(record, kABPersonFirstNameProperty);
             NSString *lastName =(__bridge_transfer NSString *) ABRecordCopyValue(record, kABPersonLastNameProperty);
-
+            
             
             CFTypeRef theProperty = ABRecordCopyValue(record, kABPersonEmailProperty);
             NSArray *items = (__bridge_transfer NSArray *) ABMultiValueCopyArrayOfAllValues(theProperty);
-                        CFRelease(theProperty);
+            CFRelease(theProperty);
             for(NSString *email in items)
             {
                 NameLookupWrapper *wrapper = [[NameLookupWrapper alloc] initWithRecordId:ABRecordGetRecordID(record) firstname:firstname lastName:lastName email:email];
@@ -156,13 +214,7 @@
         [[AddressBookManager sharedDataCache] setObject:immutableResult forKey:cachedNameLookup];
         
     }
-    
-    if(handler)
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            handler(immutableResult);
-        });
-    }
+    return immutableResult;
 }
 
 
@@ -253,6 +305,21 @@ static ABAddressBookRef mainThreadAddressBook;
         return mainThreadAddressBook;
     }
     return NULL;
+}
+
+#pragma mark - completion helper
+-(void)performBlockOnMainThread:(void(^)(void)) block
+{
+    if([NSThread isMainThread])
+    {
+        block();
+    }
+    else
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+             block();
+        });
+    }
 }
 
 
