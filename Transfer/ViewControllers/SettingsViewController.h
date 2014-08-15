@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TransparentModalViewController.h"
 
 @class ObjectModel;
 
-@interface SettingsViewController : UITableViewController
+@interface SettingsViewController : TransparentModalViewController
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 

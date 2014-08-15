@@ -12,7 +12,7 @@
 @interface TransparentModalViewController ()
 
 @property (nonatomic, weak) UIImageView* blurView;
-@property (nonatomic, weak) UIViewController* hostViewController;
+@property (nonatomic, strong) UIViewController* hostViewController;
 
 @end
 

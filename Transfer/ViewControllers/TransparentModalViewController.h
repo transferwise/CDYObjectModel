@@ -10,6 +10,8 @@
 
 @interface TransparentModalViewController : UIViewController
 
+@property (nonatomic, readonly) UIViewController* hostViewController;
+
 -(void)presentOnViewController:(UIViewController*)hostViewcontroller;
 -(IBAction)dismiss;
 
