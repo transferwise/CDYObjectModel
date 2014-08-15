@@ -83,6 +83,10 @@
     data[@"name"] = self.name;
     data[@"currency"] = self.currency.code;
     data[@"type"] = self.type.type;
+    if(self.email)
+    {
+        data[@"email"] = self.email;
+    }
     for (TypeFieldValue *value in self.fieldValues) {
         data[value.valueForField.name] = value.value;
     }
