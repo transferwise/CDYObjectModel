@@ -326,16 +326,13 @@ We'll refund the remaining money to your bank account once the transfer is compl
 "refund.details.holders.name.label" = "Your name";
 "refund.details.footer.button.title" = "Continue";
 
-"settings.row.business.profile" = "Your business profile";
-"settings.row.claim.account" = "Register account";
-"settings.row.contact.support" = "Contact support";
-"settings.row.log.in" = "Log in";
-"settings.row.logout" = "Sign out";
-"settings.row.logout" = "Sign out";
-"settings.row.personal.profile" = "Your personal profile";
-"settings.row.personal.profile" = "Your personal profile";
-"settings.row.signup" = "Create an account";
-"settings.row.signup" = "Create an account";
+
+"settings.title" = "Settings";
+"settings.row.contact.support" = "Contact customer service";
+"settings.row.logout" = "Log out";
+"settings.row.send.feedback" = "Send feedback";
+"settings.row.about" = "About";
+
 
 "sign.up.controller.creating.message" = "Creating account...";
 "sign.up.controller.signup.error.message" = "Sign up error";
@@ -486,7 +483,7 @@ Payment #%@";
 
 "support.contact.cell.label" = "Contact support";
 "support.email.payment.subject.base" = "About payment #%@";
-"settings.row.send.feedback" = "Send feedback";
+
 
 "feedback.alert.message" = "If you like TransferWise as much as we do, please leave your rating to help spread the revolution.";
 "feedback.alert.title" = "Enjoy using TransferWise?";
