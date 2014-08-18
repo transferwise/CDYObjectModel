@@ -11,10 +11,14 @@
 #import "Payment.h"
 #import "TRWAlertView.h"
 
+@class ObjectModel;
+
+typedef void(^CancelPaymentResultBlock)(NSError* error);
+
 @interface CancelHelper : NSObject
 
-+ (void)cancelPayment:(Payment *)payment
-		  cancelBlock:(TRWActionBlock)cancelBlock
++ (void)cancelPayment:(Payment *)payment host:(id)host objectModel:(ObjectModel*)model
+		  cancelBlock:(CancelPaymentResultBlock)cancelBlock
 	  dontCancelBlock:(TRWActionBlock)dontCancelBlock;
 
 @end
