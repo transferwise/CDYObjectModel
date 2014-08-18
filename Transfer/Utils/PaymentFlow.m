@@ -388,7 +388,6 @@
     [[GoogleAnalytics sharedInstance] sendScreen:@"Business verification"];
 
     BusinessProfileIdentificationViewController *controller = [[BusinessProfileIdentificationViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
     __weak typeof(self) weakSelf = self;
 
     [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, VerificationStepSuccessBlock successBlock,PaymentErrorBlock errorBlock) {
