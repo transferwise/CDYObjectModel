@@ -65,6 +65,8 @@
 		3831AA41194B5A8B00B3EE5C /* WhyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */; };
 		38342BAB196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
 		38342BAC196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
+		3840862719A20D9900C837C2 /* InvitationsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840862619A20D9900C837C2 /* InvitationsViewController~ipad.xib */; };
+		3840862819A20D9900C837C2 /* InvitationsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840862619A20D9900C837C2 /* InvitationsViewController~ipad.xib */; };
 		385669051980F9F200BC4230 /* ContactDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 385669031980F9F200BC4230 /* ContactDetailsViewController.m */; };
 		385669061980F9F200BC4230 /* ContactDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 385669031980F9F200BC4230 /* ContactDetailsViewController.m */; };
 		385669071980F9F200BC4230 /* ContactDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385669041980F9F200BC4230 /* ContactDetailsViewController.xib */; };
@@ -891,6 +893,7 @@
 		3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WhyViewController~ipad.xib"; sourceTree = "<group>"; };
 		38342BA9196E9362002FF371 /* DataEntryMultiColumnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryMultiColumnViewController.h; sourceTree = "<group>"; };
 		38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryMultiColumnViewController.m; sourceTree = "<group>"; };
+		3840862619A20D9900C837C2 /* InvitationsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "InvitationsViewController~ipad.xib"; sourceTree = "<group>"; };
 		385669021980F9F200BC4230 /* ContactDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailsViewController.h; sourceTree = "<group>"; };
 		385669031980F9F200BC4230 /* ContactDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsViewController.m; sourceTree = "<group>"; };
 		385669041980F9F200BC4230 /* ContactDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactDetailsViewController.xib; sourceTree = "<group>"; };
@@ -2451,6 +2454,7 @@
 				38B52F9B199B63B600B6AEBD /* InvitationsViewController.h */,
 				38B52F9C199B63B600B6AEBD /* InvitationsViewController.m */,
 				38B52F9D199B63B600B6AEBD /* InvitationsViewController.xib */,
+				3840862619A20D9900C837C2 /* InvitationsViewController~ipad.xib */,
 				38C1A898199CC5A0000BF59C /* InviteViewController.h */,
 				38C1A899199CC5A0000BF59C /* InviteViewController.m */,
 				38C1A89A199CC5A0000BF59C /* InviteViewController.xib */,
@@ -2786,6 +2790,7 @@
 				38BD98A6195C5973009F9B4A /* NameSuggestionCell.xib in Resources */,
 				EA31A1EA17DDB29B00F937F7 /* TSAlertViewButtonBackground.png in Resources */,
 				38C632F2194EEBBC008C9E46 /* WhyViewController~ipad.xib in Resources */,
+				3840862819A20D9900C837C2 /* InvitationsViewController~ipad.xib in Resources */,
 				EA31A1EB17DDB29B00F937F7 /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
 				47AC3F9C1987B2C3005491C6 /* SuggestionCell~ipad.xib in Resources */,
 				EAE7B6B017E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */,
@@ -2867,6 +2872,7 @@
 				479B692F194878CA001FA4FE /* TransferDetailsViewController~ipad.xib in Resources */,
 				47F84D6D198A638B00886D41 /* DoubleEntryCell.xib in Resources */,
 				EAAA1478171BC911005B9430 /* InfoPlist.strings in Resources */,
+				3840862719A20D9900C837C2 /* InvitationsViewController~ipad.xib in Resources */,
 				38062176196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */,
 				EAAA1490171BD07E005B9430 /* Localizable.strings in Resources */,
 				38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */,
