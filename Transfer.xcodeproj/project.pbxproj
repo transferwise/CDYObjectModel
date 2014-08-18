@@ -71,6 +71,8 @@
 		3840862B19A2391D00C837C2 /* SettingsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840862919A2391D00C837C2 /* SettingsViewController~ipad.xib */; };
 		3840862D19A23F5A00C837C2 /* InviteViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840862C19A23F5A00C837C2 /* InviteViewController~ipad.xib */; };
 		3840862E19A23F5A00C837C2 /* InviteViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840862C19A23F5A00C837C2 /* InviteViewController~ipad.xib */; };
+		3840863119A2444000C837C2 /* PaymentcancelOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3840863019A2444000C837C2 /* PaymentcancelOperation.m */; };
+		3840863219A2444000C837C2 /* PaymentcancelOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3840863019A2444000C837C2 /* PaymentcancelOperation.m */; };
 		385669051980F9F200BC4230 /* ContactDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 385669031980F9F200BC4230 /* ContactDetailsViewController.m */; };
 		385669061980F9F200BC4230 /* ContactDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 385669031980F9F200BC4230 /* ContactDetailsViewController.m */; };
 		385669071980F9F200BC4230 /* ContactDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385669041980F9F200BC4230 /* ContactDetailsViewController.xib */; };
@@ -900,6 +902,8 @@
 		3840862619A20D9900C837C2 /* InvitationsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "InvitationsViewController~ipad.xib"; sourceTree = "<group>"; };
 		3840862919A2391D00C837C2 /* SettingsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SettingsViewController~ipad.xib"; sourceTree = "<group>"; };
 		3840862C19A23F5A00C837C2 /* InviteViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "InviteViewController~ipad.xib"; sourceTree = "<group>"; };
+		3840862F19A2444000C837C2 /* PaymentcancelOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentcancelOperation.h; sourceTree = "<group>"; };
+		3840863019A2444000C837C2 /* PaymentcancelOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentcancelOperation.m; sourceTree = "<group>"; };
 		385669021980F9F200BC4230 /* ContactDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailsViewController.h; sourceTree = "<group>"; };
 		385669031980F9F200BC4230 /* ContactDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsViewController.m; sourceTree = "<group>"; };
 		385669041980F9F200BC4230 /* ContactDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactDetailsViewController.xib; sourceTree = "<group>"; };
@@ -2298,6 +2302,8 @@
 				EAD736A6171E87ED00A037B1 /* UserRecipientsOperation.m */,
 				EA59292A175621D0007C0072 /* VerificationRequiredOperation.h */,
 				EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */,
+				3840862F19A2444000C837C2 /* PaymentcancelOperation.h */,
+				3840863019A2444000C837C2 /* PaymentcancelOperation.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -3337,6 +3343,7 @@
 				385669121980FB0500BC4230 /* PlainPresentationCell.m in Sources */,
 				EA31A16C17DDB29B00F937F7 /* CreatePaymentOperation.m in Sources */,
 				EA31A16D17DDB29B00F937F7 /* MoneyFormatter.m in Sources */,
+				3840863219A2444000C837C2 /* PaymentcancelOperation.m in Sources */,
 				EA31A16E17DDB29B00F937F7 /* UINavigationController+StackManipulations.m in Sources */,
 				EA31A16F17DDB29B00F937F7 /* RegisterOperation.m in Sources */,
 				389F684C198FC1C6006CF1F6 /* Setting.m in Sources */,
@@ -3621,6 +3628,7 @@
 				38B0930F1951FA2A00315BE4 /* TransferTypeSelectionHeader.m in Sources */,
 				EA1861E017463F8D00BD01BB /* UINavigationController+StackManipulations.m in Sources */,
 				EA1861E31746442900BD01BB /* RegisterOperation.m in Sources */,
+				3840863119A2444000C837C2 /* PaymentcancelOperation.m in Sources */,
 				47FAF34E194B4E5D004CE986 /* TransferWaitingViewController.m in Sources */,
 				471CA004197FCB2200BCA3B4 /* TabbedHeaderViewController.m in Sources */,
 				389F684B198FC1C6006CF1F6 /* Setting.m in Sources */,
