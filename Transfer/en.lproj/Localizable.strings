@@ -118,6 +118,7 @@ your friends to TransferWise";
 
 
 
+
 "introduction.currencies.retrieve.error.message" = "Could not retrieve currencies from server";
 "introduction.currencies.retrieve.error.title" = "Currencies error";
 "introduction.calculation.error.title" = "Calculation failed";
@@ -502,10 +503,9 @@ Payment #%@";
 | Application: v%@ |<br />
 </body>";
 
-"business.profile.identification.controller.title" = "Your business details";
-"business.profile.identification.sent.button.title" = "I have sent the documents";
-"business.profile.identification.sent.documents.cell.title" = "Email documents now";
-"business.profile.identification.skip.button.title" = "I will send them later";
+"business.profile.identification.controller.title" = "A few documents needed";
+"business.profile.identification.button.title" = "Continue";
+"business.profile.identification.instruction.text" = "For security reasons our team will send you an email in the next 24 hours to request a few documents regarding your company.";
 
 "identification.email.subject" = "Our business details";
 "identification.email.message.body.base" = "<body>

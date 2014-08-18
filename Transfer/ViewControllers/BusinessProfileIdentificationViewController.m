@@ -33,8 +33,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.actionButton setTitle:NSLocalizedString(@"",nil) forState:UIControlStateNormal];
-    self.textLabel.text = NSLocalizedString(@"",nil);
+    [self.actionButton setTitle:NSLocalizedString(@"business.profile.identification.button.title",nil) forState:UIControlStateNormal];
+    self.textLabel.text = NSLocalizedString(@"business.profile.identification.instruction.text",nil);
     
 }
 
@@ -43,7 +43,6 @@
     [super viewWillAppear:animated];
 
     [self.navigationItem setTitle:NSLocalizedString(@"business.profile.identification.controller.title", nil)];
-
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 }
 

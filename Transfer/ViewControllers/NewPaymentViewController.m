@@ -359,6 +359,9 @@ static NSUInteger const kRowYouSend = 0;
         [payment setIsFixedAmountValue:self.result.isFixedTargetPayment];
         [payment setRecipient:self.recipient];
         
+        //TODO: remove TEST CODE!!
+        [payment setProfileUsed:@"business"];
+        
 		PaymentFlow *paymentFlow = [Credentials userLoggedIn]?[[LoggedInPaymentFlow alloc] initWithPresentingController:self.navigationController]:[[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
         [self setPaymentFlow:paymentFlow];
 
