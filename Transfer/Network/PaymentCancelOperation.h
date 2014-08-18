@@ -7,7 +7,15 @@
 //
 
 #import "TransferwiseOperation.h"
+@class Payment;
 
-@interface PaymentcancelOperation : TransferwiseOperation
+typedef void (^PaymentCancelBlock)(NSError *error);
+
+@interface PaymentCancelOperation : TransferwiseOperation
+
+@property (nonatomic, copy) PaymentCancelBlock responseHandler;
+
++ (instancetype)operationWithPayment:(Payment *)payment;
+- (instancetype)initWithPaymentId:(NSNumber *)paymentId;
 
 @end
