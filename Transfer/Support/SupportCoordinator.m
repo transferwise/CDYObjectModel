@@ -15,6 +15,7 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import "UIDevice-Hardware.h"
 #import "GoogleAnalytics.h"
+#import "NavigationBarCustomiser.h"
 
 @interface SupportCoordinator () <UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
@@ -103,6 +104,8 @@
         return;
     }
 
+    [NavigationBarCustomiser NoStyling];
+    
     MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
     [controller setMailComposeDelegate:self];
     [controller setToRecipients:@[[NSString stringWithFormat:@"%@ <%@>", NSLocalizedString(@"support.email.to.name", nil), TRWSupportEmail]]];
@@ -130,7 +133,8 @@
         [alertView show];
         return;
     }
-
+    
+    [NavigationBarCustomiser setDefault];
     [self.presentedOnController dismissViewControllerAnimated:YES completion:nil];
 }
 

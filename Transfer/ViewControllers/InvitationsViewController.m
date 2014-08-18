@@ -155,12 +155,9 @@
 
 
 - (IBAction)inviteButtonTapped:(id)sender {
-    [self setProgress:(self.numberOfFriends + 1)%10];
-    /*
     InviteViewController *controller = [[InviteViewController alloc] init];
     controller.objectModel = self.objectModel;
     [controller presentOnViewController:self.view.window.rootViewController];
-     */
 }
 
 @end
