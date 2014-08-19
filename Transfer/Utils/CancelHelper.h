@@ -17,7 +17,7 @@ typedef void(^CancelPaymentResultBlock)(NSError* error);
 
 @interface CancelHelper : NSObject
 
-+ (void)cancelPayment:(Payment *)payment host:(id)host objectModel:(ObjectModel*)model
++ (void)cancelPayment:(Payment *)payment host:(UIViewController*)host objectModel:(ObjectModel*)model
 		  cancelBlock:(CancelPaymentResultBlock)cancelBlock
 	  dontCancelBlock:(TRWActionBlock)dontCancelBlock;
 

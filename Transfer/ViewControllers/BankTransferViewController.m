@@ -209,12 +209,9 @@
 - (IBAction)cancel:(UIButton*)sender
 {
     [CancelHelper cancelPayment:self.payment host:self objectModel:self.objectModel cancelBlock:^(NSError *error) {
-        if(error)
+        if(!error)
         {
-            NSLog(@"ERROR!");
-        }
-        else{
-            NSLog(@"SUCCESS!!");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"TRWMoveToPaymentsListNotification" object:nil];
         }
     } dontCancelBlock:nil];
 }
