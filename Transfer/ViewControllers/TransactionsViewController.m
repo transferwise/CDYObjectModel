@@ -471,9 +471,15 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 #pragma mark - TransferPayIPadViewController delegate
 - (void)cancelPaymentWithConfirmation:(Payment *)payment
 {
-	[CancelHelper cancelPayment:payment
-			cancelBlock:nil
-		dontCancelBlock:nil];
+	[CancelHelper cancelPayment:payment host:self objectModel:self.objectModel cancelBlock:^(NSError *error) {
+        if(error)
+        {
+            NSLog(@"ERROR!");
+        }
+        else{
+            NSLog(@"SUCCESS!!");
+        }
+    } dontCancelBlock:nil];
 }
 
 #pragma mark - SwipeToCancel
@@ -494,13 +500,19 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 - (void)confirmPaymentCancel:(Payment *)payment cellIndex:(NSIndexPath *)cellIndex
 {
-	[CancelHelper cancelPayment:payment
-			cancelBlock:^{
-				[self removeCancellingFromCell];
-			}
-		dontCancelBlock:^{
-			[self removeCancellingFromCell];
-		}];
+	[CancelHelper cancelPayment:payment host:self objectModel:self.objectModel cancelBlock:^(NSError *error) {
+        if(error)
+        {
+            NSLog(@"ERROR!");
+        }
+        else{
+            [self removeCancellingFromCell];
+            NSLog(@"SUCCESS!!");
+        }
+        [self removeCancellingFromCell];
+    } dontCancelBlock:^{
+        [self removeCancellingFromCell];
+    }];
 }
 
 #pragma mark - PullToRefresh

@@ -268,7 +268,8 @@ static NSUInteger const kRowYouSend = 0;
         if (error) {
             TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"introduction.currencies.retrieve.error.title", nil)
                                                                message:NSLocalizedString(@"introduction.currencies.retrieve.error.message", nil)];
-            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.retry", nil) action:^{
+            [alertView setLeftButtonTitle:NSLocalizedString(@"button.title.retry", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel",nil)];
+            [alertView setLeftButtonAction:^{
                 [weakSelf retrieveCurrencyPairs];
             }];
             [alertView show];

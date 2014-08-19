@@ -208,7 +208,15 @@
 
 - (IBAction)cancel:(UIButton*)sender
 {
-    [CancelHelper cancelPayment:self.payment cancelBlock:nil dontCancelBlock:nil];
+    [CancelHelper cancelPayment:self.payment host:self objectModel:self.objectModel cancelBlock:^(NSError *error) {
+        if(error)
+        {
+            NSLog(@"ERROR!");
+        }
+        else{
+            NSLog(@"SUCCESS!!");
+        }
+    } dontCancelBlock:nil];
 }
 
 -(NSString*)addColon:(NSString*)original

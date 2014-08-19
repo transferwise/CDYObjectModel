@@ -84,7 +84,10 @@
         MCLog(@"%@ - Success:%d - %d", op.request.URL.path, statusCode, [responseObject length]);
         if (statusCode != 200 || !responseObject) {
             NSError *error = [NSError errorWithDomain:TRWErrorDomain code:ResponseServerError userInfo:@{}];
-            weakSelf.operationErrorHandler(error);
+            if (weakSelf.operationErrorHandler)
+            {
+                weakSelf.operationErrorHandler(error);
+            }
             return;
         }
 
@@ -95,16 +98,24 @@
         if (jsonError) {
             MCLog(@"Error:%@", jsonError);
             NSError *error = [NSError errorWithDomain:TRWErrorDomain code:ResponseFormatError userInfo:@{NSUnderlyingErrorKey : jsonError}];
-            weakSelf.operationErrorHandler(error);
+            if (weakSelf.operationErrorHandler)
+            {
+                weakSelf.operationErrorHandler(error);
+            }
             return;
         }
-
-        self.operationSuccessHandler(response);
+        if(weakSelf.operationSuccessHandler)
+        {
+            weakSelf.operationSuccessHandler(response);
+        }
     } failure:^(AFHTTPRequestOperation *op, NSError *error) {
         MCLog(@"Error:%@", error);
         if (op.response.statusCode == 410) {
             NSError *createdError = [NSError errorWithDomain:TRWErrorDomain code:ResponseCallGoneError userInfo:@{}];
-            weakSelf.operationErrorHandler(createdError);
+            if (weakSelf.operationErrorHandler)
+            {
+                weakSelf.operationErrorHandler(createdError);
+            }
             return;
         }
 
@@ -112,7 +123,10 @@
 
         if ([responseData length] == 0) {
             MCLog(@"No recovery information");
-            weakSelf.operationErrorHandler(error);
+            if (weakSelf.operationErrorHandler)
+            {
+                weakSelf.operationErrorHandler(error);
+            }
             return;
         }
 
@@ -120,7 +134,10 @@
         NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonError];
         if (jsonError) {
             NSLog(@"Error JSON read error:%@", jsonError);
-            weakSelf.operationErrorHandler(error);
+            if (weakSelf.operationErrorHandler)
+            {
+                weakSelf.operationErrorHandler(error);
+            }
         } else {
             [weakSelf handleErrorResponseData:response];
         }
