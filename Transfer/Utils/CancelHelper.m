@@ -69,10 +69,6 @@
             [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok",nil)];
             [alertView show];
         }
-        else
-        {
-            payment = PaymentStatusCancelled;
-        }
         if(weakSelf.cancelBlock)
         {
             weakSelf.cancelBlock(error);
