@@ -4,9 +4,6 @@
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="valueForField" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientTypeField" inverseName="allowedValues" inverseEntity="RecipientTypeField" syncable="YES"/>
-        <fetchedProperty name="fetchedProperty" optional="YES" syncable="YES">
-            <fetchRequest name="fetchedPropertyFetchRequest" entity="AllowedTypeFieldValue"/>
-        </fetchedProperty>
     </entity>
     <entity name="BusinessProfile" representedClassName="BusinessProfile" syncable="YES">
         <attribute name="addressFirstLine" optional="YES" attributeType="String" syncable="YES"/>
@@ -173,7 +170,7 @@
         <relationship name="personalProfile" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PersonalProfile" inverseName="user" inverseEntity="PersonalProfile" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AllowedTypeFieldValue" positionX="0" positionY="0" width="128" height="119"/>
+        <element name="AllowedTypeFieldValue" positionX="0" positionY="0" width="128" height="88"/>
         <element name="BusinessProfile" positionX="-396" positionY="-99" width="128" height="193"/>
         <element name="Country" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Currency" positionX="-92" positionY="-216" width="128" height="270"/>
