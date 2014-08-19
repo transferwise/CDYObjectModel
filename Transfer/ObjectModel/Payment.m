@@ -122,7 +122,7 @@
 }
 
 - (BOOL)multiplePaymentMethods {
-   return [[self enabledPayInMethods] count] > 0;
+   return [[self enabledPayInMethods] count] > 1;
 }
 
 static NSCalendar *__gregorian;
