@@ -98,6 +98,8 @@ your friends to TransferWise";
 
 "identification.controller.title" = "%d documents required";
 "identification.controller.single.title" = "%d document required";
+"identification.controller.title.ipad" = "%d documents required for security reasons";
+"identification.controller.single.title.ipad" = "%d document required for security reasons";
 "identification.reason.title" = "For security reasons we need:";
 "identification.creating.payment.message" = "Creating transfer...";
 "identification.id.document" = "Photo of your ID";
@@ -114,6 +116,7 @@ your friends to TransferWise";
 "identification.payment.purpose" = "Purpose of this transfer";
 "identification.good.format" = "Good! %d documents left.";
 "identification.good.single.format" = "Good! %d document left.";
+"identification.good.single.ipad" = "1 more document needed for security reasons.";
 "identification.only.purpose" = "You're almost done";
 "identification.well.done.format" = "Well done %@!";
 

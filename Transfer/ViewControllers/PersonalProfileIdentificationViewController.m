@@ -73,7 +73,7 @@
     [self.continueButton setTitle:NSLocalizedString(@"identification.upload.button", @"") forState:UIControlStateNormal];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"ValidationCell" bundle:nil] forCellReuseIdentifier:ValidationCellIdentifier];
-    [self.tableView registerNib:[UINib nibWithNibName:IPAD?@"TextEntryValidationCell":@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:IPAD?@"TextEntryCellValidation":@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,11 +91,11 @@
     NSInteger numberOfDocuments = [self numberOfDocumentsNeeded];
     if(numberOfDocuments > 1)
     {
-        [self.navigationItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"identification.controller.title", nil), numberOfDocuments]];
+        [self.navigationItem setTitle:[NSString stringWithFormat:NSLocalizedString(IPAD?@"identification.controller.title.ipad":@"identification.controller.title", nil), numberOfDocuments]];
     }
     else if(numberOfDocuments == 1)
     {
-        [self.navigationItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"identification.controller.single.title", nil), numberOfDocuments]];
+        [self.navigationItem setTitle:[NSString stringWithFormat:NSLocalizedString(IPAD?@"identification.controller.single.title.ipad":@"identification.controller.single.title", nil), numberOfDocuments]];
     }
     else
     {
@@ -312,7 +312,14 @@
         self.skipButton.hidden = YES;
         self.continueButton.hidden = NO;
         User* user = [self.objectModel currentUser];
-        [self.reasonTitle setText:[NSString stringWithFormat:NSLocalizedString(@"identification.well.done.format", @""),user.personalProfile.firstName]];
+        if(IPAD)
+        {
+            [self.navigationItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"identification.well.done.format", @""),user.personalProfile.firstName]];
+        }
+        else
+        {
+            [self.reasonTitle setText:[NSString stringWithFormat:NSLocalizedString(@"identification.well.done.format", @""),user.personalProfile.firstName]];
+        }
 
     }
     else
@@ -321,22 +328,62 @@
         self.continueButton.hidden = YES;
         if(numberOfMissingFields == [self.presentedSectionCells[0] count])
         {
-            self.reasonIcon.image = [UIImage imageNamed:@"icon_status_documents_needed"];
-            [self.reasonTitle setText:NSLocalizedString(@"identification.reason.title", @"")];
+            if(IPAD)
+            {
+                NSInteger numberOfDocuments = [self numberOfDocumentsNeeded];
+                if(numberOfDocuments > 1)
+                {
+                    [self.navigationItem setTitle:[NSString stringWithFormat:NSLocalizedString(IPAD?@"identification.controller.title.ipad":@"identification.controller.title", nil), numberOfDocuments]];
+                }
+                else if(numberOfDocuments == 1)
+                {
+                    [self.navigationItem setTitle:[NSString stringWithFormat:NSLocalizedString(IPAD?@"identification.controller.single.title.ipad":@"identification.controller.single.title", nil), numberOfDocuments]];
+                }
+                else
+                {
+                    [self.navigationItem setTitle:NSLocalizedString(@"identification.only.purpose", nil)];
+                }
+            }
+            else
+            {
+                self.reasonIcon.image = [UIImage imageNamed:@"icon_status_documents_needed"];
+                [self.reasonTitle setText:NSLocalizedString(@"identification.reason.title", @"")];
+            }
         }
         else
         {
             if(numberOfMissingDocuments == 1)
             {
-                [self.reasonTitle setText:[NSString stringWithFormat:NSLocalizedString(@"identification.good.single.format", @""),numberOfMissingDocuments]];
+                if(IPAD)
+                {
+                    [self.navigationItem setTitle:NSLocalizedString(@"identification.good.single.ipad", nil)];
+                }
+                else
+                {
+                    [self.reasonTitle setText:[NSString stringWithFormat:NSLocalizedString(@"identification.good.single.format", @""),numberOfMissingDocuments]];
+                }
             }
             else if(numberOfMissingDocuments > 0)
             {
-                [self.reasonTitle setText:[NSString stringWithFormat:NSLocalizedString(@"identification.good.format", @""),numberOfMissingDocuments]];
+                if(IPAD)
+                {
+                    [self.navigationItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"identification.controller.title.ipad", nil),numberOfMissingDocuments]];
+                }
+                else
+                {
+                    [self.reasonTitle setText:[NSString stringWithFormat:NSLocalizedString(@"identification.good.format", @""),numberOfMissingDocuments]];
+                }
             }
             else
             {
-                [self.reasonTitle setText:NSLocalizedString(@"identification.only.purpose", nil)];
+                if(IPAD)
+                {
+                    [self.navigationItem setTitle:NSLocalizedString(@"identification.only.purpose", nil)];
+                }
+                else
+                {
+                    [self.reasonTitle setText:NSLocalizedString(@"identification.only.purpose", nil)];
+                }
             }
 
         }
