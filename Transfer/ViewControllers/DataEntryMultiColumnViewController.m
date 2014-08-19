@@ -555,7 +555,7 @@
 -(void)scrollScrollViewToShowView:(UIView*)targetView
 {
     
-    CGRect showRect = CGRectMake(0, self.containerScrollView.contentSize.height - 1, 1, 1);
+    CGRect showRect = [self.containerScrollView convertRect:targetView.frame fromView:targetView.superview];
     [self.containerScrollView scrollRectToVisible:showRect animated:NO];
     
 }

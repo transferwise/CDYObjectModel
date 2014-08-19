@@ -73,7 +73,7 @@
     [self.continueButton setTitle:NSLocalizedString(@"identification.upload.button", @"") forState:UIControlStateNormal];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"ValidationCell" bundle:nil] forCellReuseIdentifier:ValidationCellIdentifier];
-    [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:IPAD?@"TextEntryValidationCell":@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -151,6 +151,12 @@
         [photoCells addObject:entryCell];
         [entryCell.entryField addTarget:self action:@selector(validateInput) forControlEvents:UIControlEventAllEditingEvents];
         [entryCell configureWithTitle:NSLocalizedString(@"identification.payment.purpose", nil) value:self.proposedPaymentPurpose];
+        if(IPAD)
+        {
+            CGRect newFrame = entryCell.separatorLine.frame;
+            newFrame.size.height = 1.0f/[[UIScreen mainScreen] scale];
+            entryCell.separatorLine.frame=newFrame;
+        }
     }
 
     [self setPresentedSectionCells:@[photoCells]];
