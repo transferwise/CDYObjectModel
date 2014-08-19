@@ -464,7 +464,6 @@
 
 }
 
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return IPAD?70.0f:60.0f;
