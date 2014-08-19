@@ -39,6 +39,7 @@
 "button.title.ok" = "OK";
 "button.title.retry" = "Retry";
 "button.title.yes" = "Yes";
+"button.title.no" = "No";
 
 "confirm.payment.controller.title" = "Review details";
 "confirm.payment.creating.message" = "Creating transfer";
@@ -363,6 +364,10 @@ We'll refund the remaining money to your bank account once the transfer is compl
 "transactions.cancel.confirmation.title" = "Cancel this transfer?";
 "transactions.cancel.confirmation.message" = "Please confirm you want to cancel this transfer.
 This can't be undone.";
+"transactions.cancel.progress.title" = "Cancelling transfer...";
+"transactions.cancel.fail.title" = "Cancel failed";
+"transactions.cancel.fail.message" = "Reload your transfer feed and try again.";
+
 
 "transfer.pay.in.too.low.message.base" = "The entered amount is too small to convert, please change it under 'You send'. Current minimum is %@ %@";
 "transfer.pay.in.too.low.title" = "Amount too small";

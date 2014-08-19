@@ -472,12 +472,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)cancelPaymentWithConfirmation:(Payment *)payment
 {
 	[CancelHelper cancelPayment:payment host:self objectModel:self.objectModel cancelBlock:^(NSError *error) {
-        if(error)
+        if(!error)
         {
-            NSLog(@"ERROR!");
-        }
-        else{
-            NSLog(@"SUCCESS!!");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"TRWMoveToPaymentsListNotification" object:nil];
         }
     } dontCancelBlock:nil];
 }
@@ -501,13 +498,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)confirmPaymentCancel:(Payment *)payment cellIndex:(NSIndexPath *)cellIndex
 {
 	[CancelHelper cancelPayment:payment host:self objectModel:self.objectModel cancelBlock:^(NSError *error) {
-        if(error)
+        if(!error)
         {
-            NSLog(@"ERROR!");
-        }
-        else{
-            [self removeCancellingFromCell];
-            NSLog(@"SUCCESS!!");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"TRWMoveToPaymentsListNotification" object:nil];
         }
         [self removeCancellingFromCell];
     } dontCancelBlock:^{

@@ -10,19 +10,20 @@
 #import "Recipient.h"
 #import "PaymentCancelOperation.h"
 #import <objc/runtime.h>
+#import "TRWProgressHUD.h"
 
 @interface CancelHelper ()
 
 @property (nonatomic,copy)TRWActionBlock dontCancelBlock;
 @property (nonatomic,copy)CancelPaymentResultBlock cancelBlock;
 @property (nonatomic, strong)PaymentCancelOperation *cancelOperation;
-@property (nonatomic, weak) id host;
+@property (nonatomic, weak) UIViewController* host;
 
 @end
 
 @implementation CancelHelper
 
-+ (void)cancelPayment:(Payment *)payment host:(id)host objectModel:(ObjectModel*)model
++ (void)cancelPayment:(Payment *)payment host:(UIViewController*)host objectModel:(ObjectModel*)model
 		  cancelBlock:(CancelPaymentResultBlock)cancelBlock
 	  dontCancelBlock:(TRWActionBlock)dontCancelBlock
 {
@@ -32,15 +33,15 @@
     [cancelHelper attachToHost:host];
 	TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"transactions.cancel.confirmation.title", nil)
 													   message:[NSString stringWithFormat:NSLocalizedString(@"transactions.cancel.confirmation.message", nil), [payment.recipient name]]];
-	[alertView setLeftButtonTitle:NSLocalizedString(@"button.title.yes", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
+	[alertView setLeftButtonTitle:NSLocalizedString(@"button.title.no", nil) rightButtonTitle:NSLocalizedString(@"button.title.yes", nil)];
 	
-	[alertView setLeftButtonAction:^{
+	[alertView setRightButtonAction:^{
 		if(cancelHelper.cancelBlock)
 		{
 			[cancelHelper cancelPayment:payment objectModel:model];
 		}
 	}];
-	[alertView setRightButtonAction:^{
+	[alertView setLeftButtonAction:^{
 		if (cancelHelper.dontCancelBlock)
 		{
 			cancelHelper.dontCancelBlock();
@@ -53,10 +54,25 @@
 
 -(void)cancelPayment:(Payment *)payment objectModel:(ObjectModel*)model
 {
+    UIViewController* hudHost = self.host.navigationController?:self.host;
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:hudHost.view];
+    [hud setMessage:NSLocalizedString(@"transactions.cancel.progress.title", nil)];
 	PaymentCancelOperation* cancelOperation = [PaymentCancelOperation operationWithPayment:payment];
     cancelOperation.objectModel = model;\
     __weak typeof(self) weakSelf = self;
     cancelOperation.responseHandler = ^(NSError* error){
+        [hud hide];
+        if(error)
+        {
+            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"transactions.cancel.fail.title", nil)
+                                                               message:[NSString stringWithFormat:NSLocalizedString(@"transactions.cancel.fail.message", nil), [payment.recipient name]]];
+            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok",nil)];
+            [alertView show];
+        }
+        else
+        {
+            payment = PaymentStatusCancelled;
+        }
         if(weakSelf.cancelBlock)
         {
             weakSelf.cancelBlock(error);
