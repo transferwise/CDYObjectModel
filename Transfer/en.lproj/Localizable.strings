@@ -337,6 +337,7 @@ We'll refund the remaining money to your bank account once the transfer is compl
 "settings.row.logout" = "Log out";
 "settings.row.send.feedback" = "Send feedback";
 "settings.row.about" = "About";
+"settings.row.send.as.business" = "Send as business";
 
 
 "sign.up.controller.creating.message" = "Creating account...";

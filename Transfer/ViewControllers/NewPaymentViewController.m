@@ -37,6 +37,7 @@
 #import "WhyViewController.h"
 #import "WhyView.h"
 #import "Recipient.h"
+#import "User.h"
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -359,6 +360,7 @@ static NSUInteger const kRowYouSend = 0;
 		[payment setTransferwiseTransferFee:[self.result transferwiseTransferFee]];
         [payment setIsFixedAmountValue:self.result.isFixedTargetPayment];
         [payment setRecipient:self.recipient];
+        [payment setProfileUsed:payment.user.sendAsBusinessDefaultSettingValue?@"business":@"profile"];
         
 		PaymentFlow *paymentFlow = [Credentials userLoggedIn]?[[LoggedInPaymentFlow alloc] initWithPresentingController:self.navigationController]:[[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
         [self setPaymentFlow:paymentFlow];

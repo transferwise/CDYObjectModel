@@ -8,6 +8,7 @@ const struct UserAttributes UserAttributes = {
 	.email = @"email",
 	.pReference = @"pReference",
 	.password = @"password",
+	.sendAsBusinessDefaultSetting = @"sendAsBusinessDefaultSetting",
 };
 
 const struct UserRelationships UserRelationships = {
@@ -48,6 +49,11 @@ const struct UserFetchedProperties UserFetchedProperties = {
 	
 	if ([key isEqualToString:@"anonymousValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"anonymous"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"sendAsBusinessDefaultSettingValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"sendAsBusinessDefaultSetting"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -100,6 +106,32 @@ const struct UserFetchedProperties UserFetchedProperties = {
 
 @dynamic password;
 
+
+
+
+
+
+@dynamic sendAsBusinessDefaultSetting;
+
+
+
+- (BOOL)sendAsBusinessDefaultSettingValue {
+	NSNumber *result = [self sendAsBusinessDefaultSetting];
+	return [result boolValue];
+}
+
+- (void)setSendAsBusinessDefaultSettingValue:(BOOL)value_ {
+	[self setSendAsBusinessDefaultSetting:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveSendAsBusinessDefaultSettingValue {
+	NSNumber *result = [self primitiveSendAsBusinessDefaultSetting];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveSendAsBusinessDefaultSettingValue:(BOOL)value_ {
+	[self setPrimitiveSendAsBusinessDefaultSetting:[NSNumber numberWithBool:value_]];
+}
 
 
 

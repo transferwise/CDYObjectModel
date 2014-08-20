@@ -671,29 +671,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
 }
 
-/* TODO: move this to the "select profile screen"
-- (void)presentProfileForSource:(ProfileSource *)source {
-    User *user = [self.objectModel currentUser];
-    NSString *name;
-    UIImage *shownImage;
-    PendingPayment *payment = [self.objectModel pendingPayment];
-    if ([source isKindOfClass:[PersonalProfileSource class]]) {
-        name = [user.personalProfile fullName];
-        shownImage = [UIImage imageNamed:@"ProfileIcon.png"];
-        [payment setProfileUsed:@"personal"];
-    } else {
-        name = [user.businessProfile name];
-        shownImage = nil;
-        [payment setProfileUsed:@"business"];
-    }
-
-    [self.objectModel saveContext];
-    [self.senderNameCell.imageView setImage:shownImage];
-    [self.senderNameCell.textLabel setText:name];
-    [self.senderNameCell.detailTextLabel setText:@""];
-    [self.tableView reloadData];
-}
-*/
 #pragma mark - Suggestion Table
 
 -(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object

@@ -36,8 +36,11 @@
 			[details appendString:@"\n"];
 		}
     }
-	
-	return [details substringToIndex:details.length - 1];
+	if(details.length > 1)
+    {
+        return [details substringToIndex:details.length - 1];
+    }
+    return @"";
 }
 
 - (NSString *)presentationStringFromValue:(TypeFieldValue *)value {

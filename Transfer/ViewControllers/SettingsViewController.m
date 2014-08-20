@@ -26,6 +26,7 @@
 #import "GoogleAnalytics.h"
 #import "NewPaymentViewController.h"
 #import"ConnectionAwareViewController.h"
+#import "MOMStyle.h"
 
 NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
@@ -37,6 +38,8 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 @property (weak, nonatomic) IBOutlet UIButton *customerServiceButton;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sendAsBusinessLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *sendAsBusinessSwitch;
 
 @end
 
@@ -69,6 +72,11 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
     [self.logOutButton setTitle:NSLocalizedString(@"settings.row.logout",nil) forState:UIControlStateNormal];
     [self.infoButton setTitle:NSLocalizedString(@"settings.row.about",nil) forState:UIControlStateNormal];
     [self verticallyAlignTextAndImageOfButton:self.infoButton];
+    
+    self.sendAsBusinessLabel.text = NSLocalizedString(@"settings.row.send.as.business",nil);
+    User *user = [self.objectModel currentUser];
+    [self.sendAsBusinessSwitch setOnTintColor:[UIColor colorFromStyle:@"TWElectricBlue"]];
+    self.sendAsBusinessSwitch.on = user.sendAsBusinessDefaultSettingValue;
 }
 
 
@@ -120,6 +128,12 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
     button.imageEdgeInsets = UIEdgeInsetsMake(- (titleSize.height + spacing), 0.0, 0.0, -     titleSize.width);
 }
 
+- (IBAction)profileUseSwitched:(id)sender {
+    
+    User *user = [self.objectModel currentUser];
+    user.sendAsBusinessDefaultSettingValue = self.sendAsBusinessSwitch.on;
+    [self.objectModel saveContext];
+}
 
 
 

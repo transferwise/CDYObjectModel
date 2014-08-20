@@ -9,6 +9,7 @@ extern const struct UserAttributes {
 	__unsafe_unretained NSString *email;
 	__unsafe_unretained NSString *pReference;
 	__unsafe_unretained NSString *password;
+	__unsafe_unretained NSString *sendAsBusinessDefaultSetting;
 } UserAttributes;
 
 extern const struct UserRelationships {
@@ -25,6 +26,7 @@ extern const struct UserFetchedProperties {
 @class Recipient;
 @class Payment;
 @class PersonalProfile;
+
 
 
 
@@ -83,6 +85,20 @@ extern const struct UserFetchedProperties {
 
 
 //- (BOOL)validatePassword:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* sendAsBusinessDefaultSetting;
+
+
+
+@property BOOL sendAsBusinessDefaultSettingValue;
+- (BOOL)sendAsBusinessDefaultSettingValue;
+- (void)setSendAsBusinessDefaultSettingValue:(BOOL)value_;
+
+//- (BOOL)validateSendAsBusinessDefaultSetting:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -159,6 +175,15 @@ extern const struct UserFetchedProperties {
 
 - (NSString*)primitivePassword;
 - (void)setPrimitivePassword:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveSendAsBusinessDefaultSetting;
+- (void)setPrimitiveSendAsBusinessDefaultSetting:(NSNumber*)value;
+
+- (BOOL)primitiveSendAsBusinessDefaultSettingValue;
+- (void)setPrimitiveSendAsBusinessDefaultSettingValue:(BOOL)value_;
 
 
 
