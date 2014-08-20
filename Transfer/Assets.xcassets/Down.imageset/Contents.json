@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "Down.png"
+      "filename" : "selector_arrow_blue.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "Down@2x.png"
+      "filename" : "selector_arrow_blue@2x.png"
     }
   ],
   "info" : {
