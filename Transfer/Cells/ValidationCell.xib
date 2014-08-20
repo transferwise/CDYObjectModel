@@ -61,14 +61,28 @@
                             <action selector="deleteTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="I89-bc-OlO"/>
                         </connections>
                     </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CnV-m4-gM7">
+                        <rect key="frame" x="0.0" y="143" width="320" height="1"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="YZ7-Oh-NB6"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGrey"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="qFM-TQ-Zg3" firstAttribute="centerX" secondItem="bPD-df-tcL" secondAttribute="centerX" constant="-0.5" id="9vd-8u-Db8"/>
                     <constraint firstItem="qFM-TQ-Zg3" firstAttribute="top" secondItem="bPD-df-tcL" secondAttribute="bottom" constant="10" id="Bn6-W5-Tdv"/>
                     <constraint firstAttribute="centerX" secondItem="fez-Jn-rXM" secondAttribute="centerX" id="FUs-vY-KCU"/>
+                    <constraint firstAttribute="bottom" secondItem="CnV-m4-gM7" secondAttribute="bottom" id="XLo-dg-lzQ"/>
+                    <constraint firstItem="CnV-m4-gM7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="jvA-PI-m8z"/>
                     <constraint firstAttribute="centerX" secondItem="bPD-df-tcL" secondAttribute="centerX" id="jwt-mV-uJ8"/>
                     <constraint firstItem="bFy-01-1o9" firstAttribute="centerX" secondItem="bPD-df-tcL" secondAttribute="centerX" constant="-0.5" id="kf5-fB-MNB"/>
                     <constraint firstItem="bPD-df-tcL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="l9q-4G-ZSj"/>
+                    <constraint firstAttribute="trailing" secondItem="CnV-m4-gM7" secondAttribute="trailing" id="xEp-5s-2eT"/>
                     <constraint firstItem="bFy-01-1o9" firstAttribute="centerY" secondItem="bPD-df-tcL" secondAttribute="centerY" id="xsl-DB-kzk"/>
                     <constraint firstAttribute="centerY" secondItem="fez-Jn-rXM" secondAttribute="centerY" constant="-40" id="zCY-MG-nKR"/>
                 </constraints>

@@ -15,11 +15,24 @@
 @property (weak, nonatomic) IBOutlet UIImageView *selectedImage;
 @property (weak, nonatomic) NSString *caption;
 @property (weak, nonatomic) NSString *selectedCaption;
+@property (weak, nonatomic) IBOutlet UIView *separatorLine;
 
 
 @end
 
 @implementation ValidationCell
+
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.contentView.frame = self.bounds;
+    if (self.separatorLine)
+    {
+        CGRect newFrame = self.separatorLine.frame;
+        newFrame.size.height = 1.0f/[[UIScreen mainScreen] scale];
+        self.separatorLine.frame = newFrame;
+    }
+}
 
 -(void)configureWithButtonTitle:(NSString*)buttonTitle buttonImage:(UIImage*)image caption:(NSString*)caption selectedCaption:(NSString*)selectedCaption
 {

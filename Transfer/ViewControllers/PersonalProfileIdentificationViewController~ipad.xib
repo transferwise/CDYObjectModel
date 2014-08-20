@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="768"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="210" sectionHeaderHeight="22" sectionFooterHeight="22" id="3" customClass="DismissKeyboardTableView">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="210" sectionHeaderHeight="22" sectionFooterHeight="22" id="3" customClass="DismissKeyboardTableView">
                     <rect key="frame" x="0.0" y="0.0" width="768" height="719"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

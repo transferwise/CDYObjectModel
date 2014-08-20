@@ -31,7 +31,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.CoreFont"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="6613A27B-E8C2-4E47-A79D-9B064FCF1255" id="iHM-Sf-tbU">
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="20C08E63-9FD5-4F1B-9BB8-E1B1ED2BC5FA" id="iHM-Sf-tbU">
                     <rect key="frame" x="152" y="30" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -71,7 +71,7 @@
                         <action selector="continueClicked:" destination="-1" eventType="touchUpInside" id="9V3-M6-di7"/>
                     </connections>
                 </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="145" sectionHeaderHeight="22" sectionFooterHeight="22" id="3" customClass="DismissKeyboardTableView">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="145" sectionHeaderHeight="22" sectionFooterHeight="22" id="3" customClass="DismissKeyboardTableView">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -88,7 +88,7 @@
         </view>
     </objects>
     <resources>
-        <image name="6613A27B-E8C2-4E47-A79D-9B064FCF1255" width="16" height="16">
+        <image name="20C08E63-9FD5-4F1B-9BB8-E1B1ED2BC5FA" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
