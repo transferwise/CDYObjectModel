@@ -81,6 +81,10 @@
 		3840863B19A38A5E00C837C2 /* TextEntryCellValidation~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840863919A38A5E00C837C2 /* TextEntryCellValidation~ipad.xib */; };
 		3840D34319A49E1E00D1485A /* BusinessProfileIdentificationViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840D34219A49E1E00D1485A /* BusinessProfileIdentificationViewController~ipad.xib */; };
 		3840D34419A49E1F00D1485A /* BusinessProfileIdentificationViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840D34219A49E1E00D1485A /* BusinessProfileIdentificationViewController~ipad.xib */; };
+		3840D34619A4D6AD00D1485A /* DropdownCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840D34519A4D6AD00D1485A /* DropdownCell~ipad.xib */; };
+		3840D34719A4D6AD00D1485A /* DropdownCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840D34519A4D6AD00D1485A /* DropdownCell~ipad.xib */; };
+		3840D34919A4D90F00D1485A /* RecipientFieldCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840D34819A4D90F00D1485A /* RecipientFieldCell~ipad.xib */; };
+		3840D34A19A4D90F00D1485A /* RecipientFieldCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840D34819A4D90F00D1485A /* RecipientFieldCell~ipad.xib */; };
 		385669051980F9F200BC4230 /* ContactDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 385669031980F9F200BC4230 /* ContactDetailsViewController.m */; };
 		385669061980F9F200BC4230 /* ContactDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 385669031980F9F200BC4230 /* ContactDetailsViewController.m */; };
 		385669071980F9F200BC4230 /* ContactDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385669041980F9F200BC4230 /* ContactDetailsViewController.xib */; };
@@ -916,6 +920,8 @@
 		3840863619A370A400C837C2 /* ValidationCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ValidationCell~ipad.xib"; sourceTree = "<group>"; };
 		3840863919A38A5E00C837C2 /* TextEntryCellValidation~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TextEntryCellValidation~ipad.xib"; sourceTree = "<group>"; };
 		3840D34219A49E1E00D1485A /* BusinessProfileIdentificationViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BusinessProfileIdentificationViewController~ipad.xib"; sourceTree = "<group>"; };
+		3840D34519A4D6AD00D1485A /* DropdownCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DropdownCell~ipad.xib"; sourceTree = "<group>"; };
+		3840D34819A4D90F00D1485A /* RecipientFieldCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecipientFieldCell~ipad.xib"; sourceTree = "<group>"; };
 		385669021980F9F200BC4230 /* ContactDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailsViewController.h; sourceTree = "<group>"; };
 		385669031980F9F200BC4230 /* ContactDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsViewController.m; sourceTree = "<group>"; };
 		385669041980F9F200BC4230 /* ContactDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactDetailsViewController.xib; sourceTree = "<group>"; };
@@ -1993,6 +1999,7 @@
 				EAAC203917422AB3001DDE7A /* DropdownCell.h */,
 				EAAC203A17422AB3001DDE7A /* DropdownCell.m */,
 				EAAC203C17422ADB001DDE7A /* DropdownCell.xib */,
+				3840D34519A4D6AD00D1485A /* DropdownCell~ipad.xib */,
 				47F84D68198A638B00886D41 /* DoubleEntryCell.h */,
 				47F84D69198A638B00886D41 /* DoubleEntryCell.m */,
 				47F84D6A198A638B00886D41 /* DoubleEntryCell.xib */,
@@ -2029,6 +2036,7 @@
 				EAD069021737B8AE007C8DEE /* RecipientFieldCell.h */,
 				EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */,
 				EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */,
+				3840D34819A4D90F00D1485A /* RecipientFieldCell~ipad.xib */,
 				EAB7215D171FCAAC00DE29F5 /* SettingsTitleCell.h */,
 				EAB7215E171FCAAC00DE29F5 /* SettingsTitleCell.m */,
 				EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */,
@@ -2831,11 +2839,13 @@
 				EA333F3918A4BEDC00D8A44E /* page_zoom.json in Resources */,
 				380021F2192F3DD3009B1D53 /* CurrencySelectorViewController.xib in Resources */,
 				474C451E1992874E001F207C /* ProfileEditViewController~ipad.xib in Resources */,
+				3840D34719A4D6AD00D1485A /* DropdownCell~ipad.xib in Resources */,
 				EA31A1EC17DDB29B00F937F7 /* TSAlertViewBackground2.png in Resources */,
 				EA31A1ED17DDB29B00F937F7 /* TSAlertViewBackground.png in Resources */,
 				3840D34419A49E1F00D1485A /* BusinessProfileIdentificationViewController~ipad.xib in Resources */,
 				38B093121951FA2A00315BE4 /* TransferTypeSelectionHeader.xib in Resources */,
 				473DF976196D637200524C64 /* LoginViewController~ipad.xib in Resources */,
+				3840D34A19A4D90F00D1485A /* RecipientFieldCell~ipad.xib in Resources */,
 				38B52FA1199B63B600B6AEBD /* InvitationsViewController.xib in Resources */,
 				EAB61711191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
 				EA31A1F017DDB29B00F937F7 /* DateEntryCell.xib in Resources */,
@@ -2999,6 +3009,7 @@
 				EA222E39173A861000C5D613 /* ConfirmPaymentViewController.xib in Resources */,
 				EA222E3E173A8A7C00C5D613 /* ConfirmPaymentCell.xib in Resources */,
 				EA042603173CF5E20048BFBD /* RecipientEntrySelectionCell.xib in Resources */,
+				3840D34919A4D90F00D1485A /* RecipientFieldCell~ipad.xib in Resources */,
 				385669071980F9F200BC4230 /* ContactDetailsViewController.xib in Resources */,
 				3840862A19A2391D00C837C2 /* SettingsViewController~ipad.xib in Resources */,
 				473F62931940BDD9001E280B /* NewPaymentViewController~ipad.xib in Resources */,
@@ -3016,6 +3027,7 @@
 				EA59298F1758CD6C007C0072 /* OpenIDViewController.xib in Resources */,
 				47FAF350194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */,
 				4723EA201974363000B4345F /* ResetPasswordViewController~ipad.xib in Resources */,
+				3840D34619A4D6AD00D1485A /* DropdownCell~ipad.xib in Resources */,
 				EAC1051B17607C4600B3B018 /* ClaimAccountViewController.xib in Resources */,
 				380021D7192CC570009B1D53 /* Styles.plist in Resources */,
 				EA416E2C176860EA00904D97 /* ProfileEditViewController.xib in Resources */,
