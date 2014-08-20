@@ -35,12 +35,12 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="1024" placeholderIntrinsicHeight="721" scrollEnabled="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                                    <rect key="frame" x="0.0" y="171" width="360" height="488"/>
+                                    <rect key="frame" x="0.0" y="171" width="380" height="488"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="488" id="WNq-7i-U6Z"/>
-                                        <constraint firstAttribute="width" constant="360" id="qZw-aU-9D1"/>
+                                        <constraint firstAttribute="width" constant="380" id="qZw-aU-9D1"/>
                                     </constraints>
                                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -52,11 +52,11 @@
                                     </connections>
                                 </tableView>
                                 <tableView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="1024" placeholderIntrinsicHeight="721" scrollEnabled="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JU1-IW-1ic">
-                                    <rect key="frame" x="464" y="171" width="360" height="488"/>
+                                    <rect key="frame" x="464" y="171" width="380" height="488"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="360" id="KN3-uB-efK"/>
+                                        <constraint firstAttribute="width" constant="380" id="KN3-uB-efK"/>
                                         <constraint firstAttribute="height" constant="488" id="Kcl-Pf-3Gx"/>
                                     </constraints>
                                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -69,11 +69,11 @@
                                     </connections>
                                 </tableView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YI2-AU-9ei">
-                                    <rect key="frame" x="0.0" y="0.0" width="824" height="141"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="844" height="141"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gyh-QL-86n">
-                                            <rect key="frame" x="-100" y="0.0" width="1024" height="141"/>
+                                            <rect key="frame" x="-90" y="0.0" width="1024" height="141"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             <constraints>
@@ -83,8 +83,8 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlueHighlighted"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="784" translatesAutoresizingMaskIntoConstraints="NO" id="hMq-ed-Vhk">
-                                            <rect key="frame" x="20" y="60" width="784" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="804" translatesAutoresizingMaskIntoConstraints="NO" id="hMq-ed-Vhk">
+                                            <rect key="frame" x="20" y="60" width="804" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -112,7 +112,7 @@
                             </subviews>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="JU1-IW-1ic" firstAttribute="leading" secondItem="4" secondAttribute="trailing" constant="104" id="9M8-ca-8M9"/>
+                                <constraint firstItem="JU1-IW-1ic" firstAttribute="leading" secondItem="4" secondAttribute="trailing" constant="84" id="9M8-ca-8M9"/>
                                 <constraint firstItem="JU1-IW-1ic" firstAttribute="trailing" secondItem="YI2-AU-9ei" secondAttribute="trailing" id="FYM-Ju-dRI"/>
                                 <constraint firstItem="4" firstAttribute="top" secondItem="gyh-QL-86n" secondAttribute="bottom" constant="30" id="XIr-i8-CLR"/>
                                 <constraint firstItem="YI2-AU-9ei" firstAttribute="top" secondItem="bP7-ah-Jiz" secondAttribute="top" id="Xrl-Ri-EQB"/>
@@ -130,12 +130,12 @@
                         <constraint firstItem="bP7-ah-Jiz" firstAttribute="leading" secondItem="XCE-KC-Di1" secondAttribute="leading" constant="100" id="y4g-S3-dfn"/>
                     </constraints>
                 </scrollView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT4-Xh-GCh" customClass="GreenButton">
-                    <rect key="frame" x="297" y="599" width="430" height="49"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT4-Xh-GCh" customClass="BlueRoundedButton">
+                    <rect key="frame" x="784" y="669" width="190" height="49"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="49" id="YCP-7W-WcA"/>
-                        <constraint firstAttribute="width" constant="430" id="pga-Ud-nMY"/>
+                        <constraint firstAttribute="width" constant="190" id="pga-Ud-nMY"/>
                     </constraints>
                     <state key="normal" title="Button"/>
                     <userDefinedRuntimeAttributes>
@@ -150,10 +150,10 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="XCE-KC-Di1" secondAttribute="bottom" id="4O5-fv-CLc"/>
                 <constraint firstItem="XCE-KC-Di1" firstAttribute="leading" secondItem="fPl-yO-Yh3" secondAttribute="leading" id="Ggt-4Q-DOr"/>
+                <constraint firstAttribute="trailing" secondItem="dT4-Xh-GCh" secondAttribute="trailing" constant="50" id="KbT-Zt-giH"/>
                 <constraint firstItem="XCE-KC-Di1" firstAttribute="top" secondItem="fPl-yO-Yh3" secondAttribute="top" id="TIz-rc-Hx3"/>
                 <constraint firstAttribute="trailing" secondItem="XCE-KC-Di1" secondAttribute="trailing" id="ZGe-vY-sC7"/>
-                <constraint firstAttribute="centerX" secondItem="dT4-Xh-GCh" secondAttribute="centerX" id="bCk-b4-Pc5"/>
-                <constraint firstAttribute="bottom" secondItem="dT4-Xh-GCh" secondAttribute="bottom" constant="120" id="ykB-zY-Em7"/>
+                <constraint firstAttribute="bottom" secondItem="dT4-Xh-GCh" secondAttribute="bottom" constant="50" id="ykB-zY-Em7"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>

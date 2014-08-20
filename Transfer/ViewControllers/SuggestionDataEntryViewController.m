@@ -41,11 +41,13 @@
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
     self.suggestionTable.alpha = 0.0f;
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 	[self suggestionTableDidStartEditing:self.suggestionTable];
     self.suggestionTable.alpha = 1.0f;
 }

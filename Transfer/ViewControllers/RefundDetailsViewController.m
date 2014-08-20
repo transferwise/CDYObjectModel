@@ -38,6 +38,8 @@
 #import "User.h"
 #import "BusinessProfile.h"
 #import "PersonalProfile.h"
+#import "NameSuggestionCellProvider.h"
+#import "NameLookupWrapper.h"
 
 CGFloat const TransferHeaderPaddingTop = 40;
 CGFloat const TransferHeaderPaddingBottom = 0;
@@ -55,7 +57,8 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 @property (nonatomic, strong) TransferwiseOperation *operation;
 @property (nonatomic, strong) Recipient *recipient;
 @property (weak, nonatomic) IBOutlet UILabel *headerLabel;
-
+@property (nonatomic, strong) NameSuggestionCellProvider* cellProvider;
+@property (nonatomic, strong) UserRecipientsOperation *recipientsOperation;
 //iPad
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerLeftEdgeConstraint;
@@ -140,6 +143,18 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     [self.footerButton setTitle:NSLocalizedString(@"refund.details.footer.button.title", nil) forState:UIControlStateNormal];
     [self.footerButton addTarget:self action:@selector(continuePressed) forControlEvents:UIControlEventTouchUpInside];
     
+    self.cellProvider = [[NameSuggestionCellProvider alloc] init];
+    
+    [super configureWithDataSource:self.cellProvider
+						 entryCell:nameCell
+							height:IPAD?70.0f:60.0f];
+    
+    if([Credentials userLoggedIn]) {
+        [self.cellProvider setAutoCompleteResults:[self.objectModel fetchedControllerForRecipientsWithCurrency:self.currency]];
+    }
+    self.cellProvider.onlyShowRecipients = YES;
+
+    
 }
 
 
@@ -191,16 +206,10 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
 
-//TODO: Rework with autoSuggestions instead
-    /*
-    if ([Credentials userLoggedIn]) {
-        [self.holderNameCell setAutoCompleteRecipients:[self.objectModel fetchedControllerForRecipientsWithCurrency:self.currency]];
-    } else {
-        [self.holderNameCell setAutoCompleteRecipients:nil];
-    }
-*/
+
     void (^dataLoadCompletionBlock)() = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
+            self.recipientsOperation = nil;
             [hud hide];
         });
     };
@@ -212,10 +221,8 @@ CGFloat const TransferHeaderPaddingBottom = 0;
         [recipientsOperation setObjectModel:self.objectModel];
         [recipientsOperation setResponseHandler:^(NSError *error) {
             if (error) {
-                [hud hide];
                 TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"refund.controller.existing.recipients.preload.error.title", nil) error:error];
                 [alertView show];
-                return;
             }
 
             dataLoadCompletionBlock();
@@ -223,6 +230,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     }
 
     if (recipientsOperation) {
+        self.recipientsOperation = recipientsOperation;
         [recipientsOperation execute];
     } else {
         dataLoadCompletionBlock();
@@ -451,7 +459,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     if (!recipient) {
         [self.holderNameCell setValue:@""];
         [self.holderNameCell setEditable:YES];
-
+        
         for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
             [fieldCell setValue:@""];
             [fieldCell setEditable:YES];
@@ -475,7 +483,27 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     });
 }
 
+-(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
+{
+    [super suggestionTable:table selectedObject:object];
+    NameLookupWrapper* wrapper = (NameLookupWrapper*)object;
+    if(wrapper.recordId)
+    {
+       
+        [self.holderNameCell setValue:[wrapper presentableString:FirstNameFirst]];
+        [self.holderNameCell setEditable:YES];
+            
+        for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
+                [fieldCell setEditable:YES];
+        }
 
+    }
+    else if (wrapper.managedObjectId)
+    {
+        [self didSelectRecipient:(Recipient*)[self.objectModel.managedObjectContext objectWithID:wrapper.managedObjectId]];
+    }
+
+}
 
 
 

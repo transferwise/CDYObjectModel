@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-#import "DataEntryMultiColumnViewController.h"
+#import "SuggestionDataEntryViewController.h"
 #import "RecipientViewController.h"
 
 @class ObjectModel;
@@ -15,7 +15,7 @@
 @class CurrenciesOperation;
 @class PendingPayment;
 
-@interface RefundDetailsViewController : DataEntryMultiColumnViewController
+@interface RefundDetailsViewController : SuggestionDataEntryViewController
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, strong) Currency *currency;

@@ -11,4 +11,6 @@
 
 @interface NameSuggestionCellProvider : SuggestionCellProvider
 
+@property (nonatomic, assign) BOOL onlyShowRecipients;
+
 @end

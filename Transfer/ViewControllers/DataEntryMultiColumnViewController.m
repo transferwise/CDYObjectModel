@@ -394,12 +394,6 @@
     [self configureForInterfaceOrientation:toInterfaceOrientation];
 }
 
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    
-}
-
 -(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
     //Lots of magic numbers here to match designs. Not sure what to do...

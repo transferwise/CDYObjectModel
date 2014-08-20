@@ -58,7 +58,10 @@
                     NSMutableArray* alreadyUsedEmails = [NSMutableArray arrayWithCapacity:[emails count]];
                     for(NSString *email in emails)
                     {
-                        [alreadyUsedEmails addObject:[email lowercaseString]];
+                        if(![email isEqual:[NSNull null]])
+                        {
+                            [alreadyUsedEmails addObject:[email lowercaseString]];
+                        }
                     }
                 
                     //filter out addresss book entries with emails already in recipients
@@ -71,23 +74,31 @@
                     workArray = [nameLookup mutableCopy];
                 }
                 
-                NSArray *firstnameMatches = [workArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NameLookupWrapper *evaluatedObject, NSDictionary *bindings) {
-                    return evaluatedObject.firstName && [[evaluatedObject.firstName lowercaseString] rangeOfString:self.filterString].location == 0;
-                }]];
-                firstnameMatches = [firstnameMatches sortedArrayUsingComparator:^NSComparisonResult(NameLookupWrapper *obj1, NameLookupWrapper *obj2) {
-                    return [obj1.firstName caseInsensitiveCompare:obj2.firstName];
-                }];
-                [workArray removeObjectsInArray:firstnameMatches];
+                if(self.onlyShowRecipients)
+                {
+                    self.dataSource = @[filteredRecipients];
+                }
+                else
+                {
                 
-                NSArray *lastnameMatches = [workArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NameLookupWrapper *evaluatedObject, NSDictionary *bindings) {
-                    return evaluatedObject.lastName && [[evaluatedObject.lastName lowercaseString] rangeOfString:self.filterString].location == 0;
-                }]];
-                lastnameMatches = [lastnameMatches sortedArrayUsingComparator:^NSComparisonResult(NameLookupWrapper *obj1, NameLookupWrapper *obj2) {
-                    return [obj1.lastName caseInsensitiveCompare:obj2.lastName];
-                }];
-                [workArray removeObjectsInArray:lastnameMatches];
-                
-                self.dataSource = @[filteredRecipients, firstnameMatches, lastnameMatches];
+                    NSArray *firstnameMatches = [workArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NameLookupWrapper *evaluatedObject, NSDictionary *bindings) {
+                        return evaluatedObject.firstName && [[evaluatedObject.firstName lowercaseString] rangeOfString:self.filterString].location == 0;
+                    }]];
+                    firstnameMatches = [firstnameMatches sortedArrayUsingComparator:^NSComparisonResult(NameLookupWrapper *obj1, NameLookupWrapper *obj2) {
+                        return [obj1.firstName caseInsensitiveCompare:obj2.firstName];
+                    }];
+                    [workArray removeObjectsInArray:firstnameMatches];
+                    
+                    NSArray *lastnameMatches = [workArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NameLookupWrapper *evaluatedObject, NSDictionary *bindings) {
+                        return evaluatedObject.lastName && [[evaluatedObject.lastName lowercaseString] rangeOfString:self.filterString].location == 0;
+                    }]];
+                    lastnameMatches = [lastnameMatches sortedArrayUsingComparator:^NSComparisonResult(NameLookupWrapper *obj1, NameLookupWrapper *obj2) {
+                        return [obj1.lastName caseInsensitiveCompare:obj2.lastName];
+                    }];
+                    [workArray removeObjectsInArray:lastnameMatches];
+                    
+                    self.dataSource = @[filteredRecipients, firstnameMatches, lastnameMatches];
+                }
             }
             else
             {
@@ -148,11 +159,9 @@
     NSMutableArray* result = [NSMutableArray arrayWithCapacity:[self.autoCompleteResults.fetchedObjects count]];
     for(Recipient *recipient in self.autoCompleteResults.fetchedObjects)
     {
-        if(recipient.email)
-        {
-            NameLookupWrapper* wrapper = [[NameLookupWrapper alloc] initWithManagedObjectId:recipient.objectID firstname:recipient.name lastName:nil email:recipient.email];
-            [result addObject:wrapper];
-        }
+        NSString *email = [recipient.email isEqual:[NSNull null]]?nil:recipient.email;
+        NameLookupWrapper* wrapper = [[NameLookupWrapper alloc] initWithManagedObjectId:recipient.objectID firstname:recipient.name lastName:nil email:email];
+        [result addObject:wrapper];
     }
 	
     self.results = result;

@@ -83,12 +83,12 @@
                         <constraint firstItem="bP7-ah-Jiz" firstAttribute="leading" secondItem="XCE-KC-Di1" secondAttribute="leading" constant="80" id="y4g-S3-dfn"/>
                     </constraints>
                 </scrollView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT4-Xh-GCh" customClass="GreenButton">
-                    <rect key="frame" x="297" y="599" width="430" height="49"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT4-Xh-GCh" customClass="BlueRoundedButton">
+                    <rect key="frame" x="784" y="674" width="190" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="49" id="YCP-7W-WcA"/>
-                        <constraint firstAttribute="width" constant="430" id="pga-Ud-nMY"/>
+                        <constraint firstAttribute="height" constant="44" id="SEa-xR-1wN"/>
+                        <constraint firstAttribute="width" constant="190" id="sra-le-R6H"/>
                     </constraints>
                     <state key="normal" title="Button"/>
                     <userDefinedRuntimeAttributes>
@@ -108,8 +108,8 @@
                 <constraint firstItem="XCE-KC-Di1" firstAttribute="leading" secondItem="fPl-yO-Yh3" secondAttribute="leading" id="Ggt-4Q-DOr"/>
                 <constraint firstItem="XCE-KC-Di1" firstAttribute="top" secondItem="fPl-yO-Yh3" secondAttribute="top" id="TIz-rc-Hx3"/>
                 <constraint firstAttribute="trailing" secondItem="XCE-KC-Di1" secondAttribute="trailing" id="ZGe-vY-sC7"/>
-                <constraint firstAttribute="centerX" secondItem="dT4-Xh-GCh" secondAttribute="centerX" id="bCk-b4-Pc5"/>
-                <constraint firstAttribute="bottom" secondItem="dT4-Xh-GCh" secondAttribute="bottom" constant="120" id="ykB-zY-Em7"/>
+                <constraint firstAttribute="trailing" secondItem="dT4-Xh-GCh" secondAttribute="trailing" constant="50" id="nJT-de-MZo"/>
+                <constraint firstAttribute="bottom" secondItem="dT4-Xh-GCh" secondAttribute="bottom" constant="50" id="xGN-LV-u1u"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
