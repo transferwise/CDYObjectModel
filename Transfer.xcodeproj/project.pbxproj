@@ -79,6 +79,8 @@
 		3840863819A370A400C837C2 /* ValidationCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840863619A370A400C837C2 /* ValidationCell~ipad.xib */; };
 		3840863A19A38A5E00C837C2 /* TextEntryCellValidation~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840863919A38A5E00C837C2 /* TextEntryCellValidation~ipad.xib */; };
 		3840863B19A38A5E00C837C2 /* TextEntryCellValidation~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840863919A38A5E00C837C2 /* TextEntryCellValidation~ipad.xib */; };
+		3840D34319A49E1E00D1485A /* BusinessProfileIdentificationViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840D34219A49E1E00D1485A /* BusinessProfileIdentificationViewController~ipad.xib */; };
+		3840D34419A49E1F00D1485A /* BusinessProfileIdentificationViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840D34219A49E1E00D1485A /* BusinessProfileIdentificationViewController~ipad.xib */; };
 		385669051980F9F200BC4230 /* ContactDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 385669031980F9F200BC4230 /* ContactDetailsViewController.m */; };
 		385669061980F9F200BC4230 /* ContactDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 385669031980F9F200BC4230 /* ContactDetailsViewController.m */; };
 		385669071980F9F200BC4230 /* ContactDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385669041980F9F200BC4230 /* ContactDetailsViewController.xib */; };
@@ -913,6 +915,7 @@
 		3840863319A368DD00C837C2 /* PersonalProfileIdentificationViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PersonalProfileIdentificationViewController~ipad.xib"; sourceTree = "<group>"; };
 		3840863619A370A400C837C2 /* ValidationCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ValidationCell~ipad.xib"; sourceTree = "<group>"; };
 		3840863919A38A5E00C837C2 /* TextEntryCellValidation~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TextEntryCellValidation~ipad.xib"; sourceTree = "<group>"; };
+		3840D34219A49E1E00D1485A /* BusinessProfileIdentificationViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BusinessProfileIdentificationViewController~ipad.xib"; sourceTree = "<group>"; };
 		385669021980F9F200BC4230 /* ContactDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailsViewController.h; sourceTree = "<group>"; };
 		385669031980F9F200BC4230 /* ContactDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsViewController.m; sourceTree = "<group>"; };
 		385669041980F9F200BC4230 /* ContactDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactDetailsViewController.xib; sourceTree = "<group>"; };
@@ -2439,6 +2442,7 @@
 				EA0450C617EC3544008921DA /* BusinessProfileIdentificationViewController.h */,
 				EA0450C717EC3544008921DA /* BusinessProfileIdentificationViewController.m */,
 				EA0450C817EC3544008921DA /* BusinessProfileIdentificationViewController.xib */,
+				3840D34219A49E1E00D1485A /* BusinessProfileIdentificationViewController~ipad.xib */,
 				1864AC91173B7C28008773FC /* BusinessProfileViewController.h */,
 				1864AC92173B7C28008773FC /* BusinessProfileViewController.m */,
 				EAD3648917E2F6EF001EFE40 /* CardPaymentViewController.h */,
@@ -2829,6 +2833,7 @@
 				474C451E1992874E001F207C /* ProfileEditViewController~ipad.xib in Resources */,
 				EA31A1EC17DDB29B00F937F7 /* TSAlertViewBackground2.png in Resources */,
 				EA31A1ED17DDB29B00F937F7 /* TSAlertViewBackground.png in Resources */,
+				3840D34419A49E1F00D1485A /* BusinessProfileIdentificationViewController~ipad.xib in Resources */,
 				38B093121951FA2A00315BE4 /* TransferTypeSelectionHeader.xib in Resources */,
 				473DF976196D637200524C64 /* LoginViewController~ipad.xib in Resources */,
 				38B52FA1199B63B600B6AEBD /* InvitationsViewController.xib in Resources */,
@@ -2935,6 +2940,7 @@
 				EAD3646617E1E19A001EFE40 /* Assets.xcassets in Resources */,
 				EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */,
 				38EFABE3196D7EAB00126192 /* TextFieldSuggestionTable.xib in Resources */,
+				3840D34319A49E1E00D1485A /* BusinessProfileIdentificationViewController~ipad.xib in Resources */,
 				38C7B2A019756A9C004324E8 /* BankTransferViewController~ipad.xib in Resources */,
 				380021F9192F43EA009B1D53 /* TabCell.xib in Resources */,
 				38BBE4631990F2B900A14B9F /* IntroViewController~ipad.xib in Resources */,

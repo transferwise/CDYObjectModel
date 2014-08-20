@@ -2,7 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "icon_status_documents_needed-1.png"
     },
     {
       "idiom" : "universal",
