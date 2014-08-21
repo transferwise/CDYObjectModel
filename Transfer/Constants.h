@@ -58,6 +58,7 @@ extern NSString *const TRWIdentificationEmail;
 extern NSString *const TRWUploadProgressNotification;
 extern NSString *const TRWUploadProgressKey;
 extern NSString *const TRWUploadFileKey;
+extern NSString *const TRWAppType;
 
 
 void delayedExecution(CGFloat seconds, TRWActionBlock action);

@@ -11,6 +11,9 @@
 #import "MOMStyle.h"
 #import "InviteViewController.h"
 #import "Constants.h"
+#import "ReferralLinkOperation.h"
+#import "TRWAlertView.h"
+#import "TRWProgressHUD.h"
 
 @interface InvitationsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *profilePictureContainer;
@@ -24,6 +27,7 @@
 @property (nonatomic,assign) NSUInteger numberOfFriends;
 @property (weak, nonatomic) IBOutlet InvitationProgressIndicatorView *progressIndicator;
 @property (weak, nonatomic) IBOutlet UILabel *indicatorContextLabel;
+@property (strong, nonatomic) TransferwiseOperation *currentOperation;
 
 //iPad
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -154,10 +158,35 @@
 }
 
 
-- (IBAction)inviteButtonTapped:(id)sender {
-    InviteViewController *controller = [[InviteViewController alloc] init];
-    controller.objectModel = self.objectModel;
-    [controller presentOnViewController:self.view.window.rootViewController];
+- (IBAction)inviteButtonTapped:(id)sender
+{
+	TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+	[hud setMessage:NSLocalizedString(@"invite.link.querying", nil)];
+	ReferralLinkOperation *referralLinkOperation = [ReferralLinkOperation operation];
+	self.currentOperation = referralLinkOperation;
+	
+    [referralLinkOperation setResultHandler:^(NSError *error, NSString *referralLink)
+	{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [hud hide];
+			
+            if (!error && referralLink)
+			{
+                InviteViewController *controller = [[InviteViewController alloc] init];
+				controller.inviteUrl = referralLink;
+				controller.objectModel = self.objectModel;
+				[controller presentOnViewController:self.view.window.rootViewController];
+                return;
+            }
+			
+            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"invite.link.error.title", nil)
+															   message:NSLocalizedString(@"invite.link.error.message", nil)];
+            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+            [alertView show];
+        });
+    }];
+	
+    [referralLinkOperation execute];
 }
 
 @end

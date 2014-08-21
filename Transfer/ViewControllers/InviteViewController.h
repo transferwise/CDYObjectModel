@@ -12,5 +12,6 @@
 @interface InviteViewController : TransparentModalViewController
 
 @property (nonatomic, strong) ObjectModel* objectModel;
+@property (nonatomic, strong) NSString* inviteUrl;
 
 @end
