@@ -18,8 +18,6 @@
 #import "NavigationBarCustomiser.h"
 #import "UIImage+Color.h"
 
-#define _TEMPORARY_URL @"http://www.transferwise.com"
-
 @interface InviteViewController () <MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *facebookButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
@@ -63,7 +61,7 @@
 
 - (IBAction)facebookTapped:(id)sender {
     FBShareDialogParams *params = [[FBShareDialogParams alloc] init];
-    NSURL* url = [NSURL URLWithString:_TEMPORARY_URL];
+    NSURL* url = [NSURL URLWithString:self.inviteUrl];
     params.link = url;
     BOOL canShare = [FBDialogs canPresentShareDialogWithParams:params];
     if (canShare) {
@@ -110,7 +108,8 @@
     }
     else
     {
-        NSURL* url = [NSURL URLWithString:_TEMPORARY_URL];
+
+        NSURL* url = [NSURL URLWithString:self.inviteUrl];
         [NavigationBarCustomiser noStyling];
         MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
         [controller setMailComposeDelegate:self];
@@ -125,8 +124,9 @@
 
 - (IBAction)smsTapped:(id)sender {
  
-    NSURL* url = [NSURL URLWithString:_TEMPORARY_URL];
+    NSURL* url = [NSURL URLWithString:self.inviteUrl];
     [NavigationBarCustomiser noStyling];
+
     MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
     [controller setMessageComposeDelegate:self];
     NSString *messageBody = [NSString stringWithFormat:NSLocalizedString(@"invite.sms.message", nil), [url absoluteString]];
@@ -142,7 +142,7 @@
     [self.urlCopyButton setTitle:NSLocalizedString(@"invite.copied.button.title", @"") forState:UIControlStateNormal];
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     self.urlCopyButton.alpha = 0.5f;
-    pasteboard.string = _TEMPORARY_URL;
+    pasteboard.string = self.inviteUrl;
     
 }
 
