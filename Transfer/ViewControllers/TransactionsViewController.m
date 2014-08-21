@@ -28,6 +28,7 @@
 #import "PersonalProfileIdentificationViewController.h"
 #import "PendingPayment.h"
 #import "PaymentPurposeOperation.h"
+#import "MOMStyle.h"
 
 #import "PullToRefreshView.h"
 #import "TransferDetailsViewController.h"
@@ -37,6 +38,7 @@
 #import "UIGestureRecognizer+Cancel.h"
 #import "CancelHelper.h"
 #import "Currency.h"
+#import "NavigationBarCustomiser.h"
 
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
@@ -46,7 +48,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (nonatomic, strong) PaymentsOperation *executedOperation;
 @property (nonatomic, strong) IBOutlet UIView *loadingFooterView;
 @property (nonatomic, strong) NSFetchedResultsController *payments;
-@property (nonatomic, strong) IdentificationNotificationView *identificationView;
 @property (nonatomic, assign) BOOL showIdentificationView;
 @property (nonatomic, strong) CheckPersonalProfileVerificationOperation *checkOperation;
 @property (nonatomic, assign) IdentificationRequired identificationRequired;
@@ -54,6 +55,12 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (nonatomic, weak) PullToRefreshView* refreshView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic) CGPoint touchStart;
+
+//iPad
+@property (weak, nonatomic) IBOutlet UIView *verificationBar;
+@property (weak, nonatomic) IBOutlet UILabel *verificationBartitle;
+@property (weak, nonatomic) IBOutlet UIButton *viewButton;
+
 
 @end
 
@@ -78,12 +85,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
     UIView *footer = [[UIView alloc] initWithFrame:CGRectZero];
     [self.tableView setTableFooterView:footer];
-
-	IdentificationNotificationView *notificationView = [IdentificationNotificationView loadInstance];
-	[self setIdentificationView:notificationView];
-	[notificationView setTapHandler:^{
-		[self pushIdentificationScreen];
-	}];
+    
+    self.verificationBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"verificationBackground"]];
+    self.verificationBartitle.text = NSLocalizedString(@"validation.documents.needed",nil);
+    [self.viewButton setTitle:NSLocalizedString(@"validation.view",nil) forState:UIControlStateNormal];
     
     self.titleLabel.text = self.title;
 }
@@ -109,6 +114,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
     [self.navigationController setNavigationBarHidden:IPAD animated:YES];
 
+    [self configureForVerificationNeeded:self.showIdentificationView];
 	[self checkPersonalVerificationNeeded];
 }
 
@@ -123,6 +129,16 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 	[[GoogleAnalytics sharedInstance] sendScreen:@"View transfers"];
 }
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if(!IPAD)
+    {
+        [NavigationBarCustomiser applyDefault:self.navigationController.navigationBar];
+    }
+}
+
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [[self.payments sections] count];
@@ -242,21 +258,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [self presentDetail:resultController];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-	if (section == 0 && self.showIdentificationView) {
-		return CGRectGetHeight(self.identificationView.frame);
-	}
-
-	return 0;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	if (section == 0 && self.showIdentificationView) {
-		return self.identificationView;
-	}
-
-	return nil;
-}
 
 - (void)refreshPaymentsList {
     if (self.executedOperation) {
@@ -374,14 +375,14 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 		BOOL somethingNeeded = identificationRequired != IdentificationNoneRequired;
 
 		if (somethingNeeded != weakSelf.showIdentificationView) {
+            [self configureForVerificationNeeded:somethingNeeded];
 			[weakSelf setShowIdentificationView:somethingNeeded];
-			[weakSelf.tableView reloadData];
 		}
 	}];
 	[operation execute];
 }
 
-- (void)pushIdentificationScreen {
+- (IBAction)pushIdentificationScreen {
 	MCLog(@"pushIdentificationScreen");
 	PersonalProfileIdentificationViewController *controller = [[PersonalProfileIdentificationViewController alloc] init];
     controller.objectModel = self.objectModel;
@@ -506,6 +507,31 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     } dontCancelBlock:^{
         [self removeCancellingFromCell];
     }];
+}
+
+-(void)configureForVerificationNeeded:(BOOL)verificationNeeded
+{
+    if(IPAD)
+    {
+        self.verificationBar.hidden = !verificationNeeded;
+    }
+    else
+    {
+        NSString* title = verificationNeeded?NSLocalizedString(@"validation.documents.needed",nil) : NSLocalizedString(@"transactions.controller.title", nil);
+        if(verificationNeeded)
+        {
+            [NavigationBarCustomiser applyVerificationNeededStyle:self.navigationController.navigationBar];
+        }
+        else
+        {
+            [NavigationBarCustomiser applyDefault:self.navigationController.navigationBar];
+        }
+        self.title = title;
+        ((UIViewController*)self.navigationController.viewControllers[0]).navigationItem.title = self.title;
+        UIBarButtonItem* button =verificationNeeded? [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"validation.view",nil) style:UIBarButtonItemStylePlain target:self action:@selector(pushIdentificationScreen)]:nil;
+        [button setTitleTextAttributes:@{NSFontAttributeName : self.navigationController.navigationBar.titleTextAttributes} forState:UIControlStateNormal];
+        ((UIViewController*)self.navigationController.viewControllers[0]).navigationItem.rightBarButtonItem = button;
+    }
 }
 
 #pragma mark - PullToRefresh

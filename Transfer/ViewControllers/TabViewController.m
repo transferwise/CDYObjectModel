@@ -130,15 +130,15 @@
             [self.selectedItem.viewController.view removeFromSuperview];
             [self.selectedItem.viewController removeFromParentViewController];
             
+            self.navigationItem.title = newSelectedItem.viewController.title;
+            self.navigationItem.rightBarButtonItems = newSelectedItem.viewController.navigationItem.rightBarButtonItems;
+            
             [newSelectedItem.viewController willMoveToParentViewController:self];
             [self addChildViewController:newSelectedItem.viewController];
             [newSelectedItem.viewController didMoveToParentViewController:self];
             [self.containerView addSubview:newSelectedItem.viewController.view];
             newSelectedItem.viewController.view.frame = self.containerView.bounds;
             newSelectedItem.viewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-            
-            self.navigationItem.title = newSelectedItem.viewController.title;
-            self.navigationItem.rightBarButtonItems = newSelectedItem.viewController.navigationItem.rightBarButtonItems;
         }
         
         [self setCellSelectedState:NO forItem:self.selectedItem];

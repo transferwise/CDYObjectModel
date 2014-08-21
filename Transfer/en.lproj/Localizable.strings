@@ -371,6 +371,8 @@ This can't be undone.";
 "transactions.cancel.progress.title" = "Cancelling transfer...";
 "transactions.cancel.fail.title" = "Cancel failed";
 "transactions.cancel.fail.message" = "Reload your transfer feed and try again.";
+"validation.documents.needed" ="Documents needed";
+"validation.view" = "View";
 
 
 "transfer.pay.in.too.low.message.base" = "The entered amount is too small to convert, please change it under 'You send'. Current minimum is %@ %@";
