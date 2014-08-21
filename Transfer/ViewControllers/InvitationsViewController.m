@@ -164,27 +164,28 @@
 	[hud setMessage:NSLocalizedString(@"invite.link.querying", nil)];
 	ReferralLinkOperation *referralLinkOperation = [ReferralLinkOperation operation];
 	self.currentOperation = referralLinkOperation;
+	__weak InvitationsViewController *weakSelf = self;
 	
     [referralLinkOperation setResultHandler:^(NSError *error, NSString *referralLink)
-	{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [hud hide];
-			
-            if (!error && referralLink)
-			{
-                InviteViewController *controller = [[InviteViewController alloc] init];
-				controller.inviteUrl = referralLink;
-				controller.objectModel = self.objectModel;
-				[controller presentOnViewController:self.view.window.rootViewController];
-                return;
-            }
-			
-            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"invite.link.error.title", nil)
-															   message:NSLocalizedString(@"invite.link.error.message", nil)];
-            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-            [alertView show];
-        });
-    }];
+	 {
+		 dispatch_async(dispatch_get_main_queue(), ^{
+			 [hud hide];
+			 
+			 if (!error && referralLink)
+			 {
+				 InviteViewController *controller = [[InviteViewController alloc] init];
+				 controller.inviteUrl = referralLink;
+				 controller.objectModel = weakSelf.objectModel;
+				 [controller presentOnViewController:weakSelf.view.window.rootViewController];
+				 return;
+			 }
+			 
+			 TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"invite.link.error.title", nil)
+																message:NSLocalizedString(@"invite.link.error.message", nil)];
+			 [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+			 [alertView show];
+		 });
+	 }];
 	
     [referralLinkOperation execute];
 }
