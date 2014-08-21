@@ -133,7 +133,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [NavigationBarCustomiser applyDefault:self.navigationController.navigationBar];
+    if(!IPAD)
+    {
+        [NavigationBarCustomiser applyDefault:self.navigationController.navigationBar];
+    }
 }
 
 #pragma mark - Table view data source
