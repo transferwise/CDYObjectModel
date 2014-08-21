@@ -108,7 +108,7 @@
         return;
     }
 
-    [NavigationBarCustomiser NoStyling];
+    [NavigationBarCustomiser noStyling];
     
     MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
     [controller setMailComposeDelegate:self];

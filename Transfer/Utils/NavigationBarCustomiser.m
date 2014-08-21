@@ -17,32 +17,61 @@
 
 + (void)setDefault
 {
-	MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"heavy.@{17,19}.DarkFont"];
-	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [navFontStyle color], NSFontAttributeName : [navFontStyle font]}];
-	[[UINavigationBar appearance] setBackgroundImage:[UIImage imageFromColor:[UIColor colorFromStyle:@"LightBlue"]] forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance] setTintColor:[UIColor colorFromStyle:@"TWElectricBlue"]];
-	[[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
-	[[UINavigationBar appearance] setTitleVerticalPositionAdjustment:-2 forBarMetrics:UIBarMetricsDefault];
+	[self applyDefault:[UINavigationBar appearance]];
+}
+
++(void)applyDefault:(UINavigationBar*)navBar
+{
+    MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"heavy.@{17,19}.DarkFont"];
+	[navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [navFontStyle color], NSFontAttributeName : [navFontStyle font]}];
+	[navBar setBackgroundImage:[UIImage imageFromColor:[UIColor colorFromStyle:@"LightBlue"]] forBarMetrics:UIBarMetricsDefault];
+    [navBar setTintColor:[UIColor colorFromStyle:@"TWElectricBlue"]];
+	[navBar setShadowImage:[[UIImage alloc] init]];
+	[navBar setTitleVerticalPositionAdjustment:-2 forBarMetrics:UIBarMetricsDefault];
 }
 
 + (void)setWhite
 {
-	MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"heavy.@{17,19}.DarkFont"];
-	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [navFontStyle color], NSFontAttributeName : [navFontStyle font]}];
-	[[UINavigationBar appearance] setBarTintColor:[UIColor colorFromStyle:@"white"]];
-    [[UINavigationBar appearance] setTintColor:[UIColor colorFromStyle:@"TWElectricBlue"]];
-	[[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-	[[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+	[self applyWhite:[UINavigationBar appearance]];
 }
 
-+ (void)NoStyling
++(void)applyWhite:(UINavigationBar*)navBar
 {
-	
-	[[UINavigationBar appearance] setTitleTextAttributes:@{}];
-	[[UINavigationBar appearance] setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance] setTintColor:nil];
-	[[UINavigationBar appearance] setShadowImage:nil];
-	[[UINavigationBar appearance] setTitleVerticalPositionAdjustment:0 forBarMetrics:UIBarMetricsDefault];
+    MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"heavy.@{17,19}.DarkFont"];
+	[navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [navFontStyle color], NSFontAttributeName : [navFontStyle font]}];
+	[navBar setBarTintColor:[UIColor colorFromStyle:@"white"]];
+    [navBar setTintColor:[UIColor colorFromStyle:@"TWElectricBlue"]];
+	[navBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+	[navBar setShadowImage:[[UIImage alloc] init]];
 }
 
+
++ (void)setVerificationNeededStyle
+{
+	[self applyVerificationNeededStyle:[UINavigationBar appearance]];
+}
+
++(void)applyVerificationNeededStyle:(UINavigationBar*)navBar
+{
+    MOMBasicStyle* navFontStyle = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"heavy.@{17,19}.white"];
+	[navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [navFontStyle color], NSFontAttributeName : [navFontStyle font]}];
+	[navBar setBarTintColor:[UIColor colorFromStyle:@"white"]];
+    [navBar setTintColor:[UIColor colorFromStyle:@"white"]];
+	[navBar setBackgroundImage:[UIImage imageNamed:@"verificationBackground"] forBarMetrics:UIBarMetricsDefault];
+	[navBar setShadowImage:[[UIImage alloc] init]];
+}
+
++ (void)noStyling
+{
+    [self removeStyling:[UINavigationBar appearance]];
+}
+
++(void)removeStyling:(UINavigationBar*)navBar
+{
+    [navBar setTitleTextAttributes:@{}];
+	[navBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [navBar setTintColor:nil];
+	[navBar setShadowImage:nil];
+	[navBar setTitleVerticalPositionAdjustment:0 forBarMetrics:UIBarMetricsDefault];
+}
 @end

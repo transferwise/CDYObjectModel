@@ -360,7 +360,7 @@ static NSUInteger const kRowYouSend = 0;
 		[payment setTransferwiseTransferFee:[self.result transferwiseTransferFee]];
         [payment setIsFixedAmountValue:self.result.isFixedTargetPayment];
         [payment setRecipient:self.recipient];
-        [payment setProfileUsed:payment.user.sendAsBusinessDefaultSettingValue?@"business":@"profile"];
+        [payment setProfileUsed:payment.user.sendAsBusinessDefaultSettingValue?@"business":@"personal"];
         
 		PaymentFlow *paymentFlow = [Credentials userLoggedIn]?[[LoggedInPaymentFlow alloc] initWithPresentingController:self.navigationController]:[[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
         [self setPaymentFlow:paymentFlow];

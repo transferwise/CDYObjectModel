@@ -111,7 +111,7 @@
     else
     {
         NSURL* url = [NSURL URLWithString:_TEMPORARY_URL];
-        [NavigationBarCustomiser NoStyling];
+        [NavigationBarCustomiser noStyling];
         MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
         [controller setMailComposeDelegate:self];
         [controller setSubject:NSLocalizedString(@"invite.email.subject", nil)];
@@ -126,7 +126,7 @@
 - (IBAction)smsTapped:(id)sender {
  
     NSURL* url = [NSURL URLWithString:_TEMPORARY_URL];
-    [NavigationBarCustomiser NoStyling];
+    [NavigationBarCustomiser noStyling];
     MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
     [controller setMessageComposeDelegate:self];
     NSString *messageBody = [NSString stringWithFormat:NSLocalizedString(@"invite.sms.message", nil), [url absoluteString]];

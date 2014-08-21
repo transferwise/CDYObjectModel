@@ -11,7 +11,17 @@
 @interface NavigationBarCustomiser : NSObject
 
 + (void)setDefault;
++ (void)applyDefault:(UINavigationBar*)navBar;
+
 + (void)setWhite;
-+(void)NoStyling;
++ (void)applyWhite:(UINavigationBar*)navBar;
+
+
++ (void)setVerificationNeededStyle;
++ (void)applyVerificationNeededStyle:(UINavigationBar*)navBar;
+
++ (void)noStyling;
++ (void)removeStyling:(UINavigationBar*)navBar;
+
 
 @end
