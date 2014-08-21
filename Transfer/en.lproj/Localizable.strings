@@ -618,3 +618,6 @@ It has already saved me money on international money transfers.<br><br>
 Regards,<br>
 %@";
 "invite.sms.message" = "Save money with Transferwise: %@";
+"invite.link.querying" = "Getting invite link";
+"invite.link.error.title" = "Unable to get invite link";
+"invite.link.error.message" = "Something went wrong while getting invite link";
