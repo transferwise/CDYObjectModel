@@ -125,6 +125,7 @@
     </entity>
     <entity name="RecipientType" representedClassName="RecipientType" syncable="YES">
         <attribute name="hideFromCreation" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="recipientAddressRequired" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="currencies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Currency" inverseName="recipientTypes" inverseEntity="Currency" syncable="YES"/>
@@ -176,7 +177,7 @@
         <element name="PendingPayment" positionX="79" positionY="-189" width="128" height="165"/>
         <element name="PersonalProfile" positionX="-614" positionY="-42" width="128" height="208"/>
         <element name="Recipient" positionX="277" positionY="152" width="128" height="208"/>
-        <element name="RecipientType" positionX="205" positionY="-432" width="128" height="165"/>
+        <element name="RecipientType" positionX="205" positionY="-432" width="128" height="178"/>
         <element name="RecipientTypeField" positionX="277" positionY="69" width="128" height="210"/>
         <element name="Setting" positionX="376" positionY="-108" width="128" height="75"/>
         <element name="TypeFieldValue" positionX="54" positionY="72" width="128" height="90"/>

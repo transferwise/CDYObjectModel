@@ -5,6 +5,7 @@
 
 const struct RecipientTypeAttributes RecipientTypeAttributes = {
 	.hideFromCreation = @"hideFromCreation",
+	.recipientAddressRequired = @"recipientAddressRequired",
 	.title = @"title",
 	.type = @"type",
 };
@@ -51,6 +52,11 @@ const struct RecipientTypeFetchedProperties RecipientTypeFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"recipientAddressRequiredValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"recipientAddressRequired"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -78,6 +84,32 @@ const struct RecipientTypeFetchedProperties RecipientTypeFetchedProperties = {
 
 - (void)setPrimitiveHideFromCreationValue:(BOOL)value_ {
 	[self setPrimitiveHideFromCreation:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
+@dynamic recipientAddressRequired;
+
+
+
+- (BOOL)recipientAddressRequiredValue {
+	NSNumber *result = [self recipientAddressRequired];
+	return [result boolValue];
+}
+
+- (void)setRecipientAddressRequiredValue:(BOOL)value_ {
+	[self setRecipientAddressRequired:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveRecipientAddressRequiredValue {
+	NSNumber *result = [self primitiveRecipientAddressRequired];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveRecipientAddressRequiredValue:(BOOL)value_ {
+	[self setPrimitiveRecipientAddressRequired:[NSNumber numberWithBool:value_]];
 }
 
 

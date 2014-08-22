@@ -28,7 +28,15 @@ NSString *const kRecipientTypesPath = @"/recipient/listTypes";
             NSArray *recipients = response[@"recipients"];
             MCLog(@"Pulled %d receipient types", [recipients count]);
             for (NSDictionary *data in recipients) {
-                [weakSelf.workModel createOrUpdateRecipientTypeWithData:data];
+                NSDictionary *dataToUse = data;
+                if(weakSelf.sourceCurrency)
+                {
+                    NSMutableDictionary* mutableData = [NSMutableDictionary dictionaryWithDictionary:data];
+                    BOOL addressRequired = [response[@"recipientAddressRequired"] boolValue];
+                    mutableData[@"recipientAddressRequired"] = @(addressRequired);
+                    dataToUse = mutableData;
+                }
+                [weakSelf.workModel createOrUpdateRecipientTypeWithData:dataToUse];
             }
 
             [weakSelf.workModel saveContext:^{

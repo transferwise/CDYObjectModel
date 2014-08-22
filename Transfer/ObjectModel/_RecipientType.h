@@ -6,6 +6,7 @@
 
 extern const struct RecipientTypeAttributes {
 	__unsafe_unretained NSString *hideFromCreation;
+	__unsafe_unretained NSString *recipientAddressRequired;
 	__unsafe_unretained NSString *title;
 	__unsafe_unretained NSString *type;
 } RecipientTypeAttributes;
@@ -26,6 +27,7 @@ extern const struct RecipientTypeFetchedProperties {
 @class RecipientTypeField;
 @class PendingPayment;
 @class Recipient;
+
 
 
 
@@ -53,6 +55,20 @@ extern const struct RecipientTypeFetchedProperties {
 - (void)setHideFromCreationValue:(BOOL)value_;
 
 //- (BOOL)validateHideFromCreation:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* recipientAddressRequired;
+
+
+
+@property BOOL recipientAddressRequiredValue;
+- (BOOL)recipientAddressRequiredValue;
+- (void)setRecipientAddressRequiredValue:(BOOL)value_;
+
+//- (BOOL)validateRecipientAddressRequired:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -148,6 +164,15 @@ extern const struct RecipientTypeFetchedProperties {
 
 - (BOOL)primitiveHideFromCreationValue;
 - (void)setPrimitiveHideFromCreationValue:(BOOL)value_;
+
+
+
+
+- (NSNumber*)primitiveRecipientAddressRequired;
+- (void)setPrimitiveRecipientAddressRequired:(NSNumber*)value;
+
+- (BOOL)primitiveRecipientAddressRequiredValue;
+- (void)setPrimitiveRecipientAddressRequiredValue:(BOOL)value_;
 
 
 
