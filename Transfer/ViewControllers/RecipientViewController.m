@@ -207,9 +207,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setPresentedSectionCells:@[self.senderCells, self.recipientCells, self.currencyCells, @[]]];
     [self.tableView reloadData];
 
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-    [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
-
     if (self.preLoadRecipientsWithCurrency && [Credentials userLoggedIn]) {
         [self.nameCell setAutoCompleteRecipients:[self.objectModel fetchedControllerForRecipientsWithCurrency:self.preLoadRecipientsWithCurrency]];
     } else {
@@ -222,51 +219,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self handleCurrencySelection:self.preLoadRecipientsWithCurrency];
     }
 
-    void (^dataLoadCompletionBlock)() = ^() {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [hud hide];
-            [self didSelectRecipient:self.recipient];
-            [self.tableView setTableFooterView:self.footer];
-        });
-    };
-
-    UserRecipientsOperation *recipientsOperation = nil;
-    if (self.preLoadRecipientsWithCurrency && [Credentials userLoggedIn]) {
-        recipientsOperation = [UserRecipientsOperation recipientsOperationWithCurrency:self.preLoadRecipientsWithCurrency];
-        [recipientsOperation setObjectModel:self.objectModel];
-        [recipientsOperation setResponseHandler:^(NSError *error) {
-            if (error) {
-                [hud hide];
-                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipients.preload.error.title", nil) error:error];
-                [alertView show];
-                return;
-            }
-
-            dataLoadCompletionBlock();
-        }];
-    }
-
-    CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
-    [self setExecutedOperation:currenciesOperation];
-    [currenciesOperation setObjectModel:self.objectModel];
-    [currenciesOperation setResultHandler:^(NSError *error) {
-        if (error) {
-            [hud hide];
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipient.types.load.error.title", nil) error:error];
-            [alertView show];
-            return;
-        }
-
-        if (recipientsOperation) {
-            [self setExecutedOperation:recipientsOperation];
-            [recipientsOperation execute];
-        } else {
-            dataLoadCompletionBlock();
-        }
-    }];
-
-    [currenciesOperation execute];
-
+   
+    [self didSelectRecipient:self.recipient];
+    [self.tableView setTableFooterView:self.footer];
+    
     [self setShown:YES];
 }
 
