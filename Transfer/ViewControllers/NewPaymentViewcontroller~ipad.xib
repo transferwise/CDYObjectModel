@@ -40,8 +40,8 @@
                         <action selector="startPaymentPressed:" destination="-1" eventType="touchUpInside" id="Tx5-vS-0V4"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="KVn-N5-EGf" customClass="BlueRoundedButton">
-                    <rect key="frame" x="681" y="955" width="57" height="44"/>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="KVn-N5-EGf" customClass="BlueRoundedButton">
+                    <rect key="frame" x="661" y="930" width="57" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="QBl-IE-FK0"/>
@@ -150,13 +150,13 @@
                 <constraint firstItem="Tkb-LF-80g" firstAttribute="centerX" secondItem="eTr-o2-8Xr" secondAttribute="centerX" id="Cen-RH-wCk"/>
                 <constraint firstAttribute="centerY" secondItem="jOH-gc-1dO" secondAttribute="centerY" constant="95" id="CrD-N2-mMA"/>
                 <constraint firstAttribute="centerX" secondItem="jOH-gc-1dO" secondAttribute="centerX" id="DHS-AZ-UVI"/>
-                <constraint firstAttribute="trailing" secondItem="KVn-N5-EGf" secondAttribute="trailing" constant="30" id="EV6-pj-97j"/>
+                <constraint firstAttribute="trailing" secondItem="KVn-N5-EGf" secondAttribute="trailing" constant="50" id="EV6-pj-97j"/>
                 <constraint firstItem="eTr-o2-8Xr" firstAttribute="centerX" secondItem="Lrw-M9-5jB" secondAttribute="centerX" id="O1S-JK-2eW"/>
                 <constraint firstItem="Lrw-M9-5jB" firstAttribute="top" secondItem="UAL-I7-qIC" secondAttribute="bottom" constant="43" id="Psx-Cb-GIV"/>
                 <constraint firstItem="Tkb-LF-80g" firstAttribute="top" secondItem="eTr-o2-8Xr" secondAttribute="bottom" constant="-2" id="WQU-WJ-YUM"/>
                 <constraint firstAttribute="centerX" secondItem="NJU-Hs-h7h" secondAttribute="centerX" id="Yg2-4x-uQf"/>
                 <constraint firstAttribute="centerX" secondItem="Lrw-M9-5jB" secondAttribute="centerX" id="eZc-54-oSx"/>
-                <constraint firstAttribute="bottom" secondItem="KVn-N5-EGf" secondAttribute="bottom" constant="25" id="gHH-Ia-1NT"/>
+                <constraint firstAttribute="bottom" secondItem="KVn-N5-EGf" secondAttribute="bottom" constant="50" id="gHH-Ia-1NT"/>
                 <constraint firstItem="NJU-Hs-h7h" firstAttribute="top" secondItem="o2g-cv-K3K" secondAttribute="top" constant="30" id="iTs-0d-6wV"/>
                 <constraint firstItem="UAL-I7-qIC" firstAttribute="top" secondItem="jOH-gc-1dO" secondAttribute="bottom" constant="29" id="igO-95-wk9"/>
                 <constraint firstAttribute="centerX" secondItem="UAL-I7-qIC" secondAttribute="centerX" id="t4U-c0-teW"/>
