@@ -623,3 +623,6 @@ Regards,<br>
 "invite.link.querying" = "Getting invite link";
 "invite.link.error.title" = "Unable to get invite link";
 "invite.link.error.message" = "Something went wrong while getting invite link";
+"invite.status.querying" = "Getting invite's status";
+"invite.status.error.title" = "Unable to get status";
+"invite.status.error.message" = "Something went wrong while getting invite's status";

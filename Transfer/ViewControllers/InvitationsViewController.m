@@ -14,6 +14,7 @@
 #import "ReferralLinkOperation.h"
 #import "TRWAlertView.h"
 #import "TRWProgressHUD.h"
+#import "ReferralListOperation.h"
 
 @interface InvitationsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *profilePictureContainer;
@@ -40,7 +41,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -57,8 +57,10 @@
     [self.inviteButtons[0] setTitle:NSLocalizedString(@"invite.button.title", nil) forState:UIControlStateNormal];
     [self.inviteButtons[1] setTitle:NSLocalizedString(@"invite.button.title", nil) forState:UIControlStateNormal];
     
-    self.numberLabel.text = [NSString stringWithFormat:@"%d",self.numberOfFriends];
-    [self setProgress:self.numberOfFriends];
+	//init with 0 and load actual data
+    [self setProgress:0];
+	
+	[self loadInviteStatus];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -157,7 +159,6 @@
     
 }
 
-
 - (IBAction)inviteButtonTapped:(id)sender
 {
 	TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
@@ -182,6 +183,35 @@
 			 
 			 TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"invite.link.error.title", nil)
 																message:NSLocalizedString(@"invite.link.error.message", nil)];
+			 [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+			 [alertView show];
+		 });
+	 }];
+	
+    [referralLinkOperation execute];
+}
+
+- (void)loadInviteStatus
+{
+	TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+	[hud setMessage:NSLocalizedString(@"invite.status.querying", nil)];
+	ReferralListOperation *referralLinkOperation = [ReferralListOperation operation];
+	self.currentOperation = referralLinkOperation;
+	__weak InvitationsViewController *weakSelf = self;
+	
+    [referralLinkOperation setResultHandler:^(NSError *error, NSInteger successCount)
+	 {
+		 dispatch_async(dispatch_get_main_queue(), ^{
+			 [hud hide];
+			 
+			 if (!error && successCount > 0)
+			 {
+				 [weakSelf setProgress:successCount];
+				 return;
+			 }
+			 
+			 TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"invite.status.error.title", nil)
+																message:NSLocalizedString(@"invite.status.error.message", nil)];
 			 [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
 			 [alertView show];
 		 });
