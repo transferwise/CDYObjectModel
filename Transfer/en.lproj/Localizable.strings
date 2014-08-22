@@ -298,7 +298,7 @@ It can take up to 2 working days.";
 "recipient.controller.section.title.recipient" = "Who are you sending money to?";
 "recipient.controller.section.title.sender" = "Sender";
 "recipient.controller.section.title.recipient.placeholder" = "Recipient";
-"recipient.controller.section.title.recipient.bank.details" = "%@'s Bank Details";
+"recipient.controller.section.title.recipient.bank.details" = "%@'s Bank Details:";
 "recipient.controller.section.title.ipad.recipient" = "Who are you sending to?";
 "recipient.controller.validating.message" = "Validating...";
 "recipient.controller.validation.error.empty.name" = "Name is missing";
