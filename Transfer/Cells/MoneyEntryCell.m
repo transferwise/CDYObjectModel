@@ -129,7 +129,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 - (IBAction)selectCurrencyTapped:(id)sender
 {
     //dismiss keyboard
-    [self endEditing:YES];
+    [self.window endEditing:YES];
     
     CurrencySelectorViewController* selector = [[CurrencySelectorViewController alloc] init];
     selector.delegate = self;
