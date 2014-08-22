@@ -32,6 +32,8 @@
 #import "StartPaymentButton.h"
 #import "AnalyticsCoordinator.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
+#import "RecipientTypesOperation.h"
+#import "TRWProgressHUD.h"
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -49,6 +51,7 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) WhyView *whyView;
 @property (nonatomic, strong) PaymentFlow *paymentFlow;
 @property (nonatomic, strong) CurrencyPairsOperation *executedOperation;
+@property (nonatomic, strong) RecipientTypesOperation *recipientsOperation;
 @property (nonatomic, strong) IBOutlet UIView *headerView;
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *subTitleLabel;
@@ -288,24 +291,55 @@ static NSUInteger const kRowYouSend = 0;
         return;
     }
 
-    [self.objectModel performBlock:^{
-        PendingPayment *payment = [self.objectModel createPendingPayment];
-        [payment setSourceCurrency:[self.youSendCell currency]];
-        [payment setTargetCurrency:[self.theyReceiveCell currency]];
-        [payment setPayIn:(NSDecimalNumber *) [self.result transferwisePayIn]];
-        [payment setPayOut:(NSDecimalNumber *) [self.result transferwisePayOut]];
-        [payment setConversionRate:[self.result transferwiseRate]];
-        [payment setEstimatedDelivery:[self.result estimatedDelivery]];
-        [payment setEstimatedDeliveryStringFromServer:[self.result formattedEstimatedDelivery]];
-		[payment setTransferwiseTransferFee:[self.result transferwiseTransferFee]];
-        [payment setIsFixedAmountValue:self.result.isFixedTargetPayment];
-
-		PaymentFlow *paymentFlow = [[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
-        [self setPaymentFlow:paymentFlow];
-
-        [paymentFlow setObjectModel:self.objectModel];
-        [paymentFlow presentNextPaymentScreen];
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
+    
+    RecipientTypesOperation *operation = [RecipientTypesOperation operation];
+    self.recipientsOperation = operation;
+    [operation setObjectModel:self.objectModel];
+    operation.sourceCurrency = self.youSendCell.currency.code;
+    operation.targetCurrency = self.theyReceiveCell.currency.code;
+    operation.amount = [self.result transferwisePayIn];
+    
+    
+    __weak typeof(self) weakSelf = self;
+    [operation setResultHandler:^(NSError *error, NSArray* listOfRecipientTypeCodes) {
+        
+        [hud hide];
+        if (error) {
+            
+            //TODO:Change alert!
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipients.preload.error.title", nil) error:error];
+            [alertView show];
+            return;
+        }
+        
+        [weakSelf.objectModel performBlock:^{
+            PendingPayment *payment = [weakSelf.objectModel createPendingPayment];
+            [payment setSourceCurrency:[weakSelf.youSendCell currency]];
+            [payment setTargetCurrency:[weakSelf.theyReceiveCell currency]];
+            [payment setPayIn:(NSDecimalNumber *) [weakSelf.result transferwisePayIn]];
+            [payment setPayOut:(NSDecimalNumber *) [weakSelf.result transferwisePayOut]];
+            [payment setConversionRate:[weakSelf.result transferwiseRate]];
+            [payment setEstimatedDelivery:[weakSelf.result estimatedDelivery]];
+            [payment setEstimatedDeliveryStringFromServer:[weakSelf.result formattedEstimatedDelivery]];
+            [payment setTransferwiseTransferFee:[weakSelf.result transferwiseTransferFee]];
+            [payment setIsFixedAmountValue:weakSelf.result.isFixedTargetPayment];
+             payment.allowedRecipientTypes = [NSOrderedSet orderedSetWithArray:[weakSelf.objectModel recipientTypesWithCodes:listOfRecipientTypeCodes]];
+            
+            PaymentFlow *paymentFlow = [[NoUserPaymentFlow alloc] initWithPresentingController:weakSelf.navigationController];
+            [weakSelf setPaymentFlow:paymentFlow];
+            
+            [paymentFlow setObjectModel:weakSelf.objectModel];
+            [paymentFlow presentNextPaymentScreen];
+            
+        }];
+        
+        
     }];
+    
+    [operation execute];
+    
 }
 
 /////////////////////////////////////////////////////////////////////////////

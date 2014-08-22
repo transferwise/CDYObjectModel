@@ -126,9 +126,9 @@ extern const struct PendingPaymentFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSSet *allowedRecipientTypes;
+@property (nonatomic, strong) NSOrderedSet *allowedRecipientTypes;
 
-- (NSMutableSet*)allowedRecipientTypesSet;
+- (NSMutableOrderedSet*)allowedRecipientTypesSet;
 
 
 
@@ -138,8 +138,8 @@ extern const struct PendingPaymentFetchedProperties {
 
 @interface _PendingPayment (CoreDataGeneratedAccessors)
 
-- (void)addAllowedRecipientTypes:(NSSet*)value_;
-- (void)removeAllowedRecipientTypes:(NSSet*)value_;
+- (void)addAllowedRecipientTypes:(NSOrderedSet*)value_;
+- (void)removeAllowedRecipientTypes:(NSOrderedSet*)value_;
 - (void)addAllowedRecipientTypesObject:(RecipientType*)value_;
 - (void)removeAllowedRecipientTypesObject:(RecipientType*)value_;
 
@@ -200,8 +200,8 @@ extern const struct PendingPaymentFetchedProperties {
 
 
 
-- (NSMutableSet*)primitiveAllowedRecipientTypes;
-- (void)setPrimitiveAllowedRecipientTypes:(NSMutableSet*)value;
+- (NSMutableOrderedSet*)primitiveAllowedRecipientTypes;
+- (void)setPrimitiveAllowedRecipientTypes:(NSMutableOrderedSet*)value;
 
 
 @end

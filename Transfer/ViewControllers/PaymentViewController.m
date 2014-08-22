@@ -31,6 +31,9 @@
 #import "GoogleAnalytics.h"
 #import "NSString+Validation.h"
 #import "StartPaymentButton.h"
+#import "RecipientTypesOperation.h"
+#import "TRWProgressHUD.h"
+#import "ObjectModel+RecipientTypes.h"
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -55,6 +58,7 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) CalculationResult *calculationResult;
 @property (nonatomic, strong) PaymentFlow *paymentFlow;
 @property (nonatomic, strong) CurrencyPairsOperation *executedOperation;
+@property (nonatomic, strong) RecipientTypesOperation *recipientsOperation;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 
 - (IBAction)continuePressed:(id)sender;
@@ -297,28 +301,59 @@ static NSUInteger const kRowYouSend = 0;
         return;
     }
 
-    [self.objectModel performBlock:^{
-        PendingPayment *payment = [self.objectModel createPendingPayment];
-        [payment setSourceCurrency:sourceCurrency];
-        [payment setTargetCurrency:targetCurrency];
-        [payment setRecipient:self.recipient];
-        [payment setPayIn:(NSDecimalNumber *) payIn];
-        [payment setPayOut:(NSDecimalNumber *) [self.calculationResult transferwisePayOut]];
-        [payment setConversionRate:[self.calculationResult transferwiseRate]];
-        [payment setEstimatedDelivery:[self.calculationResult estimatedDelivery]];
-        [payment setEstimatedDeliveryStringFromServer:[self.calculationResult formattedEstimatedDelivery]];
-		[payment setTransferwiseTransferFee:[self.calculationResult transferwiseTransferFee]];
-        [payment setIsFixedAmountValue:self.calculationResult.isFixedTargetPayment];
-
-        PaymentFlow *paymentFlow = [[LoggedInPaymentFlow alloc] initWithPresentingController:self.navigationController];
-        [self setPaymentFlow:paymentFlow];
-
-        [paymentFlow setObjectModel:self.objectModel];
-
-        [self.objectModel performBlock:^{
-            [paymentFlow presentNextPaymentScreen];
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
+    
+    RecipientTypesOperation *operation = [RecipientTypesOperation operation];
+    self.recipientsOperation = operation;
+    [operation setObjectModel:self.objectModel];
+    operation.sourceCurrency = self.youSendCell.currency.code;
+    operation.targetCurrency = self.theyReceiveCell.currency.code;
+    operation.amount = [self.calculationResult transferwisePayIn];
+    
+    
+    __weak typeof(self) weakSelf = self;
+    [operation setResultHandler:^(NSError *error, NSArray* listOfRecipientTypeCodes) {
+        
+        [hud hide];
+        if (error) {
+            
+            //TODO:Change alert!
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipients.preload.error.title", nil) error:error];
+            [alertView show];
+            return;
+        }
+        
+        [weakSelf.objectModel performBlock:^{
+            PendingPayment *payment = [weakSelf.objectModel createPendingPayment];
+            [payment setSourceCurrency:sourceCurrency];
+            [payment setTargetCurrency:targetCurrency];
+            [payment setRecipient:weakSelf.recipient];
+            [payment setPayIn:(NSDecimalNumber *) payIn];
+            [payment setPayOut:(NSDecimalNumber *) [weakSelf.calculationResult transferwisePayOut]];
+            [payment setConversionRate:[weakSelf.calculationResult transferwiseRate]];
+            [payment setEstimatedDelivery:[weakSelf.calculationResult estimatedDelivery]];
+            [payment setEstimatedDeliveryStringFromServer:[weakSelf.calculationResult formattedEstimatedDelivery]];
+            [payment setTransferwiseTransferFee:[weakSelf.calculationResult transferwiseTransferFee]];
+            [payment setIsFixedAmountValue:weakSelf.calculationResult.isFixedTargetPayment];
+            payment.allowedRecipientTypes = [NSOrderedSet orderedSetWithArray:[weakSelf.objectModel recipientTypesWithCodes:listOfRecipientTypeCodes]];
+            
+            PaymentFlow *paymentFlow = [[LoggedInPaymentFlow alloc] initWithPresentingController:weakSelf.navigationController];
+            [weakSelf setPaymentFlow:paymentFlow];
+            
+            [paymentFlow setObjectModel:weakSelf.objectModel];
+            
+            [weakSelf.objectModel performBlock:^{
+                [paymentFlow presentNextPaymentScreen];
+            }];
+            
+            
         }];
+        
+        
     }];
+    
+    [operation execute];
 }
 
 - (void)presentActivityIndicator:(BOOL)calculating {

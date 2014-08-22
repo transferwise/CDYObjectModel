@@ -95,7 +95,7 @@
         <attribute name="sendVerificationLater" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="transferwiseTransferFee" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="verificiationNeeded" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="allowedRecipientTypes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecipientType" inverseName="pendingPayment" inverseEntity="RecipientType" syncable="YES"/>
+        <relationship name="allowedRecipientTypes" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="RecipientType" inverseName="pendingPayment" inverseEntity="RecipientType" syncable="YES"/>
     </entity>
     <entity name="PersonalProfile" representedClassName="PersonalProfile" syncable="YES">
         <attribute name="addressFirstLine" optional="YES" attributeType="String" syncable="YES"/>
@@ -173,7 +173,7 @@
         <element name="PairTargetCurrency" positionX="0" positionY="0" width="128" height="135"/>
         <element name="PayInMethod" positionX="36" positionY="180" width="128" height="165"/>
         <element name="Payment" positionX="349" positionY="-63" width="128" height="358"/>
-        <element name="PendingPayment" positionX="79" positionY="-189" width="128" height="163"/>
+        <element name="PendingPayment" positionX="79" positionY="-189" width="128" height="165"/>
         <element name="PersonalProfile" positionX="-614" positionY="-42" width="128" height="208"/>
         <element name="Recipient" positionX="277" positionY="152" width="128" height="208"/>
         <element name="RecipientType" positionX="205" positionY="-432" width="128" height="165"/>
