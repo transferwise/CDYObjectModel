@@ -529,7 +529,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         self.title = title;
         ((UIViewController*)self.navigationController.viewControllers[0]).navigationItem.title = self.title;
         UIBarButtonItem* button =verificationNeeded? [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"validation.view",nil) style:UIBarButtonItemStylePlain target:self action:@selector(pushIdentificationScreen)]:nil;
-        [button setTitleTextAttributes:@{NSFontAttributeName : self.navigationController.navigationBar.titleTextAttributes} forState:UIControlStateNormal];
+        [button setTitleTextAttributes: self.navigationController.navigationBar.titleTextAttributes forState:UIControlStateNormal];
         ((UIViewController*)self.navigationController.viewControllers[0]).navigationItem.rightBarButtonItem = button;
     }
 }
