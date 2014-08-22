@@ -557,6 +557,7 @@
 		18D47902173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalProfileIdentificationViewController.xib; sourceTree = "<group>"; };
 		2C541BABB70E4B6195F5BC1A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		2F2D1DE7BECC4078BB45E6AD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		38553DE219A7739800E64491 /* Transfer_v2.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v2.1.xcdatamodel; sourceTree = "<group>"; };
 		38C2793919794D6100388C8A /* Transfer_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v2.xcdatamodel; sourceTree = "<group>"; };
 		38C2793A197953CC00388C8A /* _PayInMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _PayInMethod.h; sourceTree = "<group>"; };
 		38C2793B197953CC00388C8A /* _PayInMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PayInMethod.m; sourceTree = "<group>"; };
@@ -2956,10 +2957,11 @@
 		EAAA1485171BC911005B9430 /* Transfer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				38553DE219A7739800E64491 /* Transfer_v2.1.xcdatamodel */,
 				38C2793919794D6100388C8A /* Transfer_v2.xcdatamodel */,
 				EAAA1486171BC911005B9430 /* Transfer.xcdatamodel */,
 			);
-			currentVersion = 38C2793919794D6100388C8A /* Transfer_v2.xcdatamodel */;
+			currentVersion = 38553DE219A7739800E64491 /* Transfer_v2.1.xcdatamodel */;
 			name = Transfer.xcdatamodeld;
 			path = ../Transfer.xcdatamodeld;
 			sourceTree = "<group>";

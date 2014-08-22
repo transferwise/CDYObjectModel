@@ -14,6 +14,7 @@ extern const struct RecipientTypeRelationships {
 	__unsafe_unretained NSString *currencies;
 	__unsafe_unretained NSString *defaultForCurrencies;
 	__unsafe_unretained NSString *fields;
+	__unsafe_unretained NSString *pendingPayment;
 	__unsafe_unretained NSString *recipients;
 } RecipientTypeRelationships;
 
@@ -23,6 +24,7 @@ extern const struct RecipientTypeFetchedProperties {
 @class Currency;
 @class Currency;
 @class RecipientTypeField;
+@class PendingPayment;
 @class Recipient;
 
 
@@ -93,6 +95,13 @@ extern const struct RecipientTypeFetchedProperties {
 @property (nonatomic, strong) NSOrderedSet *fields;
 
 - (NSMutableOrderedSet*)fieldsSet;
+
+
+
+
+@property (nonatomic, strong) PendingPayment *pendingPayment;
+
+//- (BOOL)validatePendingPayment:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -168,6 +177,11 @@ extern const struct RecipientTypeFetchedProperties {
 
 - (NSMutableOrderedSet*)primitiveFields;
 - (void)setPrimitiveFields:(NSMutableOrderedSet*)value;
+
+
+
+- (PendingPayment*)primitivePendingPayment;
+- (void)setPrimitivePendingPayment:(PendingPayment*)value;
 
 
 

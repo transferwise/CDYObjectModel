@@ -13,6 +13,7 @@ const struct RecipientTypeRelationships RecipientTypeRelationships = {
 	.currencies = @"currencies",
 	.defaultForCurrencies = @"defaultForCurrencies",
 	.fields = @"fields",
+	.pendingPayment = @"pendingPayment",
 	.recipients = @"recipients",
 };
 
@@ -134,6 +135,10 @@ const struct RecipientTypeFetchedProperties RecipientTypeFetchedProperties = {
 	[self didAccessValueForKey:@"fields"];
 	return result;
 }
+	
+
+@dynamic pendingPayment;
+
 	
 
 @dynamic recipients;
