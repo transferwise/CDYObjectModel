@@ -354,6 +354,8 @@
 		473F62931940BDD9001E280B /* NewPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */; };
 		4746EAF819A603BB00D03557 /* ReferralLinkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4746EAF719A603BB00D03557 /* ReferralLinkOperation.m */; };
 		4746EAF919A603BB00D03557 /* ReferralLinkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4746EAF719A603BB00D03557 /* ReferralLinkOperation.m */; };
+		4746EAFC19A7267B00D03557 /* ReferralListOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4746EAFB19A7267B00D03557 /* ReferralListOperation.m */; };
+		4746EAFD19A7267B00D03557 /* ReferralListOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4746EAFB19A7267B00D03557 /* ReferralListOperation.m */; };
 		474C451D1992874E001F207C /* ProfileEditViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474C451C1992874E001F207C /* ProfileEditViewController~ipad.xib */; };
 		474C451E1992874E001F207C /* ProfileEditViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474C451C1992874E001F207C /* ProfileEditViewController~ipad.xib */; };
 		474C45211993CD38001F207C /* ProfilesEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 474C45201993CD38001F207C /* ProfilesEditViewController.m */; };
@@ -1155,6 +1157,8 @@
 		473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NewPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
 		4746EAF619A603BB00D03557 /* ReferralLinkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralLinkOperation.h; sourceTree = "<group>"; };
 		4746EAF719A603BB00D03557 /* ReferralLinkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralLinkOperation.m; sourceTree = "<group>"; };
+		4746EAFA19A7267B00D03557 /* ReferralListOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralListOperation.h; sourceTree = "<group>"; };
+		4746EAFB19A7267B00D03557 /* ReferralListOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralListOperation.m; sourceTree = "<group>"; };
 		474C451C1992874E001F207C /* ProfileEditViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ProfileEditViewController~ipad.xib"; sourceTree = "<group>"; };
 		474C451F1993CD38001F207C /* ProfilesEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilesEditViewController.h; sourceTree = "<group>"; };
 		474C45201993CD38001F207C /* ProfilesEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilesEditViewController.m; sourceTree = "<group>"; };
@@ -2309,6 +2313,8 @@
 				EAA54F5A1733EF1A00B65BF3 /* RecipientTypesOperation.m */,
 				4746EAF619A603BB00D03557 /* ReferralLinkOperation.h */,
 				4746EAF719A603BB00D03557 /* ReferralLinkOperation.m */,
+				4746EAFA19A7267B00D03557 /* ReferralListOperation.h */,
+				4746EAFB19A7267B00D03557 /* ReferralListOperation.m */,
 				EA1861E11746442900BD01BB /* RegisterOperation.h */,
 				EA1861E21746442900BD01BB /* RegisterOperation.m */,
 				EA7F8814176F2B44003B0F46 /* RemoveTokenOperation.h */,
@@ -3273,6 +3279,7 @@
 				EA31A13117DDB29B00F937F7 /* UIColor+Theme.m in Sources */,
 				389F6820198FC1C6006CF1F6 /* Currency.m in Sources */,
 				380021DC192CC89B009B1D53 /* UIColor+MOMStyle.m in Sources */,
+				4746EAFD19A7267B00D03557 /* ReferralListOperation.m in Sources */,
 				EA31A13217DDB29B00F937F7 /* UIView+Loading.m in Sources */,
 				EA31A13317DDB29B00F937F7 /* TextEntryCell.m in Sources */,
 				EA31A13417DDB29B00F937F7 /* NSString+Validation.m in Sources */,
@@ -3559,6 +3566,7 @@
 				474D1A9F19518073008BC7A7 /* ColoredButton.m in Sources */,
 				389F681F198FC1C6006CF1F6 /* Currency.m in Sources */,
 				EA8FF6B4171D23B20090A658 /* TRWProgressHUD.m in Sources */,
+				4746EAFC19A7267B00D03557 /* ReferralListOperation.m in Sources */,
 				EA8FF6B8171D25C20090A658 /* TransferwiseOperation.m in Sources */,
 				EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */,
 				380021F7192F43EA009B1D53 /* TabCell.m in Sources */,
