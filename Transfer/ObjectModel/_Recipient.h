@@ -5,6 +5,11 @@
 
 
 extern const struct RecipientAttributes {
+	__unsafe_unretained NSString *addressCity;
+	__unsafe_unretained NSString *addressCountryCode;
+	__unsafe_unretained NSString *addressFirstLine;
+	__unsafe_unretained NSString *addressPostCode;
+	__unsafe_unretained NSString *addressState;
 	__unsafe_unretained NSString *email;
 	__unsafe_unretained NSString *hidden;
 	__unsafe_unretained NSString *name;
@@ -37,6 +42,11 @@ extern const struct RecipientFetchedProperties {
 
 
 
+
+
+
+
+
 @interface RecipientID : NSManagedObjectID {}
 @end
 
@@ -45,6 +55,56 @@ extern const struct RecipientFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (RecipientID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSString* addressCity;
+
+
+
+//- (BOOL)validateAddressCity:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* addressCountryCode;
+
+
+
+//- (BOOL)validateAddressCountryCode:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* addressFirstLine;
+
+
+
+//- (BOOL)validateAddressFirstLine:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* addressPostCode;
+
+
+
+//- (BOOL)validateAddressPostCode:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* addressState;
+
+
+
+//- (BOOL)validateAddressState:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -170,6 +230,36 @@ extern const struct RecipientFetchedProperties {
 @end
 
 @interface _Recipient (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSString*)primitiveAddressCity;
+- (void)setPrimitiveAddressCity:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveAddressCountryCode;
+- (void)setPrimitiveAddressCountryCode:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveAddressFirstLine;
+- (void)setPrimitiveAddressFirstLine:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveAddressPostCode;
+- (void)setPrimitiveAddressPostCode:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveAddressState;
+- (void)setPrimitiveAddressState:(NSString*)value;
+
+
 
 
 - (NSString*)primitiveEmail;
