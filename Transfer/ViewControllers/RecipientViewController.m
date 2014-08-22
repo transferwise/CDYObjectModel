@@ -233,7 +233,16 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (void)didSelectRecipient:(Recipient *)recipient {
     [self setRecipient:recipient];
-    [self handleSelectionChangeToType:recipient ? recipient.type : self.currency.defaultRecipientType allTypes:[self.currency.recipientTypes array]];
+    RecipientType* type = recipient ? recipient.type : self.currency.defaultRecipientType;
+
+    NSArray* allowedTypes = [self allTypes];
+    
+    if(![allowedTypes containsObject:type])
+    {
+        type = [allowedTypes firstObject];
+    }
+    
+    [self handleSelectionChangeToType:type allTypes:allowedTypes];
 
     if (!recipient) {
         [self.nameCell setValue:@""];
@@ -254,13 +263,17 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self.nameCell setEditable:NO];
 
         for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
-            [fieldCell setEditable:NO];
             if ([fieldCell isKindOfClass:[TransferTypeSelectionCell class]]) {
+                [fieldCell setEditable:NO];
                 continue;
             }
 
             RecipientTypeField *field = fieldCell.type;
             [fieldCell setValue:[recipient valueField:field]];
+            if([fieldCell.value length]>0)
+            {
+                [fieldCell setEditable:NO];
+            }
         }
     });
 }
@@ -277,7 +290,12 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self setCurrency:currency];
         [self setRecipientType:type];
 
-        NSArray *allTypes = [currency.recipientTypes array];
+        NSArray *allTypes = [self allTypes];
+        if(![allTypes containsObject:type])
+        {
+            type = [allTypes firstObject];
+        }
+        
         [self handleSelectionChangeToType:type allTypes:allTypes];
     });
 }
@@ -539,6 +557,20 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self.senderNameCell.textLabel setText:name];
     [self.senderNameCell.detailTextLabel setText:@""];
     [self.tableView reloadData];
+}
+
+#pragma mark - recipient type helpers
+
+-(NSArray*)allTypes
+{
+    if (self.objectModel.pendingPayment)
+    {
+        return [self.objectModel.pendingPayment.allowedRecipientTypes array];
+    }
+    else
+    {
+        return [self.currency.recipientTypes array];
+    }
 }
 
 @end
