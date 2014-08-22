@@ -204,7 +204,7 @@
 		 dispatch_async(dispatch_get_main_queue(), ^{
 			 [hud hide];
 			 
-			 if (!error && successCount > 0)
+			 if (!error && successCount > -1)
 			 {
 				 [weakSelf setProgress:successCount];
 				 return;
