@@ -7,6 +7,7 @@
 //
 
 #import "PullToRefreshView.h"
+#import "MOMStyle.h"
 
 @interface PullToRefreshView ()
 @property (nonatomic, weak)UIScrollView *scrollView;
@@ -71,7 +72,7 @@
 
 -(void)configureForRefresh
 {
-    self.backgroundColor = [UIColor redColor];
+    self.backgroundColor = [UIColor colorFromStyle:@"TWElectricBlue"];
 }
 
 -(void)configureForRefreshComplete

@@ -220,8 +220,8 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
         return;
     }
 
-    TabBarActivityIndicatorView *hud = [TabBarActivityIndicatorView showHUDOnController:self];
-    [hud setMessage:NSLocalizedString(@"contacts.controller.refreshing.message", nil)];
+    //TabBarActivityIndicatorView *hud = [TabBarActivityIndicatorView showHUDOnController:self];
+    //[hud setMessage:NSLocalizedString(@"contacts.controller.refreshing.message", nil)];
 
     UserRecipientsOperation *operation = [UserRecipientsOperation recipientsOperation];
     [self setExecutedOperation:operation];
@@ -231,7 +231,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
         dispatch_async(dispatch_get_main_queue(), ^{
             MCLog(@"Have %lu recipients", (unsigned long)[self.allRecipients.fetchedObjects count]);
 
-            [hud hide];
+            //[hud hide];
 
             [self setExecutedOperation:nil];
 

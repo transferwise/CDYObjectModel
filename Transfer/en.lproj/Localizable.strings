@@ -283,8 +283,8 @@ It can take up to 2 working days.";
 
 "recipient.controller.add.button.title" = "Add";
 "recipient.controller.add.mode.title" = "Add recipient";
-"recipient.controller.cell.label.email" = "Email (Optional)";
-"recipient.controller.cell.label.name" = "Name";
+"recipient.controller.cell.label.email" = "Recipient's Email (Optional)";
+"recipient.controller.cell.label.name" = "Recipient's Name";
 "recipient.controller.scell.title.recipient.currency" = "%@'s currency";
 "recipient.controller.confirm.payment.button.title" = "Confirm payment";
 "recipient.controller.creating.message" = "Creating...";
