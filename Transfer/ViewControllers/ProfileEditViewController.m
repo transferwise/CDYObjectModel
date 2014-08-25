@@ -301,11 +301,17 @@
 - (void)didSelectCountry:(NSString *)country
 {
     self.countryCell.value = country;
-	[self.profileSource countrySelectionCell:self.countryCell
-							didSelectCountry:[self getCountryByCode:self.countryCell.value]
-							  withCompletion:^{
-								  [self refreshTableViewSizes];
-							  }];
+	TextEntryCell *stateCell = [self.profileSource countrySelectionCell:self.countryCell
+													   didSelectCountry:[self getCountryByCode:self.countryCell.value]
+														 withCompletion:^{
+															 [self refreshTableViewSizes];
+														 }];
+	
+	if (stateCell)
+	{
+		[stateCell.entryField setDelegate:self];
+	}
+	
 	[self moveFocusOnNextEntryAfterCell:self.countryCell];
 }
 

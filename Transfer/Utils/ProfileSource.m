@@ -158,8 +158,8 @@
 	[tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
-- (void)includeStateCell:(BOOL)shouldInclude
-		  withCompletion:(CountrySelectionCompletion)completion
+- (TextEntryCell *)includeStateCell:(BOOL)shouldInclude
+					 withCompletion:(CountrySelectionCompletion)completion
 {
     UITableView* tableView;
     for(UITableView *table in self.tableViews)
@@ -196,8 +196,8 @@
 							   [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
 						   }
 					   completion:completion];
+			return self.stateCell;
         }
-        
     }
     else if(!shouldInclude && [addressFields containsObject:self.stateCell])
     {
@@ -212,6 +212,8 @@
 					   completion:completion];			
         }
     }
+	
+	return nil;
 }
 
 - (void)updateTableView:(UITableView *)tableView
@@ -230,12 +232,12 @@
 	} completion:nil];
 }
 
-- (void)countrySelectionCell:(CountrySelectionCell *)cell
-			didSelectCountry:(Country *)country
-			  withCompletion:(CountrySelectionCompletion)completion
+- (TextEntryCell *)countrySelectionCell:(CountrySelectionCell *)cell
+					   didSelectCountry:(Country *)country
+						 withCompletion:(CountrySelectionCompletion)completion
 {
-    [self includeStateCell:[ProfileSource showStateCell:country.iso3Code]
-			withCompletion:completion];
+	return [self includeStateCell:[ProfileSource showStateCell:country.iso3Code]
+				   withCompletion:completion];
 }
 
 + (BOOL)showStateCell:(NSString *)countryCode

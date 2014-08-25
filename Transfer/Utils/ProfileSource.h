@@ -39,13 +39,13 @@ typedef void (^CountrySelectionCompletion)();
 			 completion:(ProfileActionBlock)completion;
 - (void)loadDetailsToCells;
 - (void)fillQuickValidation:(QuickProfileValidationOperation *)operation;
-- (void)includeStateCell:(BOOL)shouldInclude
-		  withCompletion:(CountrySelectionCompletion)completion;
+- (TextEntryCell *)includeStateCell:(BOOL)shouldInclude
+					 withCompletion:(CountrySelectionCompletion)completion;
 - (void)markCellsWithIssues:(NSArray *)issues;
 - (void)setUpTableView:(UITableView *)tableView;
-- (void)countrySelectionCell:(CountrySelectionCell *)cell
-			didSelectCountry:(Country *)country
-			  withCompletion:(CountrySelectionCompletion)completion;
+- (TextEntryCell *)countrySelectionCell:(CountrySelectionCell *)cell
+					   didSelectCountry:(Country *)country
+						 withCompletion:(CountrySelectionCompletion)completion;
 
 + (BOOL)showStateCell:(NSString *)countryCode;
 

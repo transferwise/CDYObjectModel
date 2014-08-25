@@ -32,7 +32,7 @@
  *
  *
  */
-@interface DataEntryMultiColumnViewController : DismissKeyboardViewController <UITableViewDelegate, UITableViewDataSource>
+@interface DataEntryMultiColumnViewController : DismissKeyboardViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 /**
  *  use this property to keep track of the tableviews associated with the viewcontroller.

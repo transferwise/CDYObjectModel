@@ -15,7 +15,7 @@
 #import "MOMStyle.h"
 #import "MultipleEntryCell.h"
 
-@interface DataEntryMultiColumnViewController() <UITextFieldDelegate, MultipleEntryCellDelegate>
+@interface DataEntryMultiColumnViewController() <MultipleEntryCellDelegate>
 @property (nonatomic, assign) BOOL keyboardIsVisible;
 @property (nonatomic, weak) UITapGestureRecognizer* dismissKeyboardTaprecognizer;
 @end
