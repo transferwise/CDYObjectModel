@@ -216,8 +216,6 @@
 		389F684E198FC1C6006CF1F6 /* TypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67F4198FC1C6006CF1F6 /* TypeFieldValue.m */; };
 		389F684F198FC1C6006CF1F6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67F6198FC1C6006CF1F6 /* User.m */; };
 		389F6850198FC1C6006CF1F6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67F6198FC1C6006CF1F6 /* User.m */; };
-		389F6856198FC1E9006CF1F6 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 389F6852198FC1E9006CF1F6 /* Transfer.xcdatamodeld */; };
-		389F6857198FC1E9006CF1F6 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 389F6852198FC1E9006CF1F6 /* Transfer.xcdatamodeld */; };
 		38AA83411949B8DF0065AD2A /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA83401949B8DF0065AD2A /* GradientView.m */; };
 		38AA83421949B8DF0065AD2A /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA83401949B8DF0065AD2A /* GradientView.m */; };
 		38AA83CF1949C7220065AD2A /* PaymentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AA83CE1949C7220065AD2A /* PaymentCell~ipad.xib */; };
@@ -283,6 +281,8 @@
 		38CACA65196EE4D400BFCF82 /* TextFieldSuggestionTable~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CACA63196EE4D400BFCF82 /* TextFieldSuggestionTable~ipad.xib */; };
 		38CACD691987C43E0085C254 /* CurrencySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CACD681987C43E0085C254 /* CurrencySelectionCell~ipad.xib */; };
 		38CACD6A1987C43E0085C254 /* CurrencySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CACD681987C43E0085C254 /* CurrencySelectionCell~ipad.xib */; };
+		38CB1F7719ABB47000CD0953 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */; };
+		38CB1F7819ABB47000CD0953 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */; };
 		38E57F78192A51DD00D864A2 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
 		38E57F79192A51DD00D864A2 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
 		38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E57F77192A51DD00D864A2 /* TabViewController.xib */; };
@@ -1049,9 +1049,6 @@
 		389F67F4198FC1C6006CF1F6 /* TypeFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeFieldValue.m; sourceTree = "<group>"; };
 		389F67F5198FC1C6006CF1F6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		389F67F6198FC1C6006CF1F6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		389F6853198FC1E9006CF1F6 /* Transfer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer.xcdatamodel; sourceTree = "<group>"; };
-		389F6854198FC1E9006CF1F6 /* Transfer_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v2.xcdatamodel; sourceTree = "<group>"; };
-		389F6855198FC1E9006CF1F6 /* Transfer_v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v3.xcdatamodel; sourceTree = "<group>"; };
 		38AA833F1949B8DF0065AD2A /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
 		38AA83401949B8DF0065AD2A /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		38AA83CE1949C7220065AD2A /* PaymentCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PaymentCell~ipad.xib"; sourceTree = "<group>"; };
@@ -1102,6 +1099,11 @@
 		38CACA60196EE21600BFCF82 /* NameSuggestionCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NameSuggestionCell~ipad.xib"; sourceTree = "<group>"; };
 		38CACA63196EE4D400BFCF82 /* TextFieldSuggestionTable~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TextFieldSuggestionTable~ipad.xib"; sourceTree = "<group>"; };
 		38CACD681987C43E0085C254 /* CurrencySelectionCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencySelectionCell~ipad.xib"; sourceTree = "<group>"; };
+		38CB1F7319ABB47000CD0953 /* Transfer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer.xcdatamodel; sourceTree = "<group>"; };
+		38CB1F7419ABB47000CD0953 /* Transfer_v2.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v2.1.xcdatamodel; sourceTree = "<group>"; };
+		38CB1F7519ABB47000CD0953 /* Transfer_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v2.xcdatamodel; sourceTree = "<group>"; };
+		38CB1F7619ABB47000CD0953 /* Transfer_v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v3.xcdatamodel; sourceTree = "<group>"; };
+		38CB1F7919ABBB6200CD0953 /* Transfer_v3.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v3.1.xcdatamodel; sourceTree = "<group>"; };
 		38E57F75192A51DD00D864A2 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
 		38E57F76192A51DD00D864A2 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
 		38E57F77192A51DD00D864A2 /* TabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabViewController.xib; sourceTree = "<group>"; };
@@ -1749,7 +1751,7 @@
 		389F679C198FC1C5006CF1F6 /* ObjectModel */ = {
 			isa = PBXGroup;
 			children = (
-				389F6852198FC1E9006CF1F6 /* Transfer.xcdatamodeld */,
+				38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */,
 				389F6851198FC1D0006CF1F6 /* generated */,
 				389F67BF198FC1C5006CF1F6 /* AllowedTypeFieldValue.h */,
 				389F67C0198FC1C5006CF1F6 /* AllowedTypeFieldValue.m */,
@@ -3394,6 +3396,7 @@
 				EA31A16A17DDB29B00F937F7 /* BankTransferViewController.m in Sources */,
 				474D1AA019518073008BC7A7 /* ColoredButton.m in Sources */,
 				EA31A16B17DDB29B00F937F7 /* TextCell.m in Sources */,
+				38CB1F7819ABB47000CD0953 /* Transfer.xcdatamodeld in Sources */,
 				EAD3647A17E2EBF2001EFE40 /* PaymentMethodSelectionView.m in Sources */,
 				385669121980FB0500BC4230 /* PlainPresentationCell.m in Sources */,
 				EA31A16C17DDB29B00F937F7 /* CreatePaymentOperation.m in Sources */,
@@ -3521,7 +3524,6 @@
 				38002200192F443E009B1D53 /* CurrencyCell.m in Sources */,
 				EAB61715191CDD1000545C21 /* ResetPasswordOperation.m in Sources */,
 				47FAF358194F0A47004CE986 /* IntrinsicSizeUIView.m in Sources */,
-				389F6857198FC1E9006CF1F6 /* Transfer.xcdatamodeld in Sources */,
 				EA2296C717E08027001CF541 /* TransferBackButtonItem.m in Sources */,
 				BA665EA5E58A6DA4DEB8E622 /* GoogleAnalytics.m in Sources */,
 				47535CB61981367C00DC39D6 /* UIView+SeparatorLine.m in Sources */,
@@ -3681,6 +3683,7 @@
 				EAD3647917E2EBF2001EFE40 /* PaymentMethodSelectionView.m in Sources */,
 				EAAF8FB017436730008DF9E2 /* CreatePaymentOperation.m in Sources */,
 				EAAF8FB81743B3E4008DF9E2 /* MoneyFormatter.m in Sources */,
+				38CB1F7719ABB47000CD0953 /* Transfer.xcdatamodeld in Sources */,
 				385669111980FB0500BC4230 /* PlainPresentationCell.m in Sources */,
 				38B0930F1951FA2A00315BE4 /* TransferTypeSelectionHeader.m in Sources */,
 				EA1861E017463F8D00BD01BB /* UINavigationController+StackManipulations.m in Sources */,
@@ -3808,7 +3811,6 @@
 				47233CD6196D457300449042 /* LoginViewController.m in Sources */,
 				EAB61714191CDD1000545C21 /* ResetPasswordOperation.m in Sources */,
 				EA2296C617E08027001CF541 /* TransferBackButtonItem.m in Sources */,
-				389F6856198FC1E9006CF1F6 /* Transfer.xcdatamodeld in Sources */,
 				BA6650856E3051C31A982C78 /* GoogleAnalytics.m in Sources */,
 				38AEB3C71966B8BF00B852E1 /* UIResponder+FirstResponder.m in Sources */,
 				47535CB51981367C00DC39D6 /* UIView+SeparatorLine.m in Sources */,
@@ -4137,14 +4139,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		389F6852198FC1E9006CF1F6 /* Transfer.xcdatamodeld */ = {
+		38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				389F6853198FC1E9006CF1F6 /* Transfer.xcdatamodel */,
-				389F6854198FC1E9006CF1F6 /* Transfer_v2.xcdatamodel */,
-				389F6855198FC1E9006CF1F6 /* Transfer_v3.xcdatamodel */,
+				38CB1F7919ABBB6200CD0953 /* Transfer_v3.1.xcdatamodel */,
+				38CB1F7319ABB47000CD0953 /* Transfer.xcdatamodel */,
+				38CB1F7419ABB47000CD0953 /* Transfer_v2.1.xcdatamodel */,
+				38CB1F7519ABB47000CD0953 /* Transfer_v2.xcdatamodel */,
+				38CB1F7619ABB47000CD0953 /* Transfer_v3.xcdatamodel */,
 			);
-			currentVersion = 389F6855198FC1E9006CF1F6 /* Transfer_v3.xcdatamodel */;
+			currentVersion = 38CB1F7919ABBB6200CD0953 /* Transfer_v3.1.xcdatamodel */;
 			name = Transfer.xcdatamodeld;
 			path = ../Transfer.xcdatamodeld;
 			sourceTree = "<group>";

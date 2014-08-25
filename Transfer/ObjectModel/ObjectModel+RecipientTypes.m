@@ -42,6 +42,10 @@
     NSDictionary *cleanedData = [data dictionaryByRemovingNullObjects];
     [type setTitle:cleanedData[@"title"]];
     [type setHideFromCreation:cleanedData[@"specialCreateTreatment"]];
+    if(cleanedData[@"recipientAddressRequired"])
+    {
+        type.recipientAddressRequired = cleanedData[@"recipientAddressRequired"];
+    }
 
     NSArray *fieldsData = cleanedData[@"fields"];
     for (NSDictionary *fData in fieldsData) {

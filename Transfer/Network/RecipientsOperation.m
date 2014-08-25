@@ -72,7 +72,7 @@
     RecipientTypesOperation *operation = [RecipientTypesOperation operation];
     [self setOperation:operation];
     [operation setObjectModel:self.objectModel];
-    [operation setResultHandler:^(NSError *error) {
+    [operation setResultHandler:^(NSError *error, NSArray* returnedRecipientTypeIdentifiers) {
         if (error) {
             self.responseHandler(error);
             return;

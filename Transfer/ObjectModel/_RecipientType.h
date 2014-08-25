@@ -6,6 +6,7 @@
 
 extern const struct RecipientTypeAttributes {
 	__unsafe_unretained NSString *hideFromCreation;
+	__unsafe_unretained NSString *recipientAddressRequired;
 	__unsafe_unretained NSString *title;
 	__unsafe_unretained NSString *type;
 } RecipientTypeAttributes;
@@ -14,6 +15,7 @@ extern const struct RecipientTypeRelationships {
 	__unsafe_unretained NSString *currencies;
 	__unsafe_unretained NSString *defaultForCurrencies;
 	__unsafe_unretained NSString *fields;
+	__unsafe_unretained NSString *pendingPayment;
 	__unsafe_unretained NSString *recipients;
 } RecipientTypeRelationships;
 
@@ -23,7 +25,9 @@ extern const struct RecipientTypeFetchedProperties {
 @class Currency;
 @class Currency;
 @class RecipientTypeField;
+@class PendingPayment;
 @class Recipient;
+
 
 
 
@@ -51,6 +55,20 @@ extern const struct RecipientTypeFetchedProperties {
 - (void)setHideFromCreationValue:(BOOL)value_;
 
 //- (BOOL)validateHideFromCreation:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* recipientAddressRequired;
+
+
+
+@property BOOL recipientAddressRequiredValue;
+- (BOOL)recipientAddressRequiredValue;
+- (void)setRecipientAddressRequiredValue:(BOOL)value_;
+
+//- (BOOL)validateRecipientAddressRequired:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -93,6 +111,13 @@ extern const struct RecipientTypeFetchedProperties {
 @property (nonatomic, strong) NSOrderedSet *fields;
 
 - (NSMutableOrderedSet*)fieldsSet;
+
+
+
+
+@property (nonatomic, strong) PendingPayment *pendingPayment;
+
+//- (BOOL)validatePendingPayment:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -143,6 +168,15 @@ extern const struct RecipientTypeFetchedProperties {
 
 
 
+- (NSNumber*)primitiveRecipientAddressRequired;
+- (void)setPrimitiveRecipientAddressRequired:(NSNumber*)value;
+
+- (BOOL)primitiveRecipientAddressRequiredValue;
+- (void)setPrimitiveRecipientAddressRequiredValue:(BOOL)value_;
+
+
+
+
 - (NSString*)primitiveTitle;
 - (void)setPrimitiveTitle:(NSString*)value;
 
@@ -168,6 +202,11 @@ extern const struct RecipientTypeFetchedProperties {
 
 - (NSMutableOrderedSet*)primitiveFields;
 - (void)setPrimitiveFields:(NSMutableOrderedSet*)value;
+
+
+
+- (PendingPayment*)primitivePendingPayment;
+- (void)setPrimitivePendingPayment:(PendingPayment*)value;
 
 
 

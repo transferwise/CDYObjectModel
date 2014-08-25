@@ -32,12 +32,17 @@
 #import "StartPaymentButton.h"
 #import "AnalyticsCoordinator.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
+
 #import "MOMStyle.h"
 #import "NSString+DeviceSpecificLocalisation.h"
 #import "WhyViewController.h"
 #import "WhyView.h"
 #import "Recipient.h"
 #import "User.h"
+#import "RecipientTypesOperation.h"
+#import "TRWProgressHUD.h"
+#import "CurrenciesOperation.h"
+
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -54,6 +59,7 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) CalculationResult *result;
 @property (nonatomic, strong) PaymentFlow *paymentFlow;
 @property (nonatomic, strong) CurrencyPairsOperation *executedOperation;
+
 @property (weak, nonatomic) IBOutlet UILabel *saveLabel;
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *vsLabel;
@@ -63,6 +69,10 @@ static NSUInteger const kRowYouSend = 0;
 @property (weak, nonatomic) IBOutlet UIButton *modalCloseButton;
 
 
+@property (nonatomic, strong) TransferwiseOperation *continueOperation;
+@property (nonatomic, strong) IBOutlet UIView *headerView;
+@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *subTitleLabel;
 
 - (IBAction)loginPressed:(id)sender;
 - (IBAction)startPaymentPressed:(id)sender;
@@ -348,27 +358,81 @@ static NSUInteger const kRowYouSend = 0;
         return;
     }
 
-    [self.objectModel performBlock:^{
-        PendingPayment *payment = [self.objectModel createPendingPayment];
-        [payment setSourceCurrency:[self.youSendCell currency]];
-        [payment setTargetCurrency:[self.theyReceiveCell currency]];
-        [payment setPayIn:(NSDecimalNumber *) [self.result transferwisePayIn]];
-        [payment setPayOut:(NSDecimalNumber *) [self.result transferwisePayOut]];
-        [payment setConversionRate:[self.result transferwiseRate]];
-        [payment setEstimatedDelivery:[self.result estimatedDelivery]];
-        [payment setEstimatedDeliveryStringFromServer:[self.result formattedEstimatedDelivery]];
-		[payment setTransferwiseTransferFee:[self.result transferwiseTransferFee]];
-        [payment setIsFixedAmountValue:self.result.isFixedTargetPayment];
-        [payment setRecipient:self.recipient];
-        [payment setProfileUsed:payment.user.sendAsBusinessDefaultSettingValue?@"business":@"personal"];
+    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
+    
+    RecipientTypesOperation *operation = [RecipientTypesOperation operation];
+    self.continueOperation = operation;
+    [operation setObjectModel:self.objectModel];
+    operation.sourceCurrency = self.youSendCell.currency.code;
+    operation.targetCurrency = self.theyReceiveCell.currency.code;
+    operation.amount = [self.result transferwisePayIn];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [operation setResultHandler:^(NSError *error, NSArray* listOfRecipientTypeCodes) {
+        if (error) {
+            self.continueOperation = nil;
+            [hud hide];
+            //TODO:Change alert!
+            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipients.preload.error.title", nil) error:error];
+            [alertView show];
+            return;
+        }
         
-		PaymentFlow *paymentFlow = [Credentials userLoggedIn]?[[LoggedInPaymentFlow alloc] initWithPresentingController:self.navigationController]:[[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
-        [self setPaymentFlow:paymentFlow];
+        void (^dataLoadCompletionBlock)() = ^() {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hide];
+                [weakSelf.objectModel performBlock:^{
+                    PendingPayment *payment = [self.objectModel createPendingPayment];
+                    [payment setSourceCurrency:[self.youSendCell currency]];
+                    [payment setTargetCurrency:[self.theyReceiveCell currency]];
+                    [payment setPayIn:(NSDecimalNumber *) [self.result transferwisePayIn]];
+                    [payment setPayOut:(NSDecimalNumber *) [self.result transferwisePayOut]];
+                    [payment setConversionRate:[self.result transferwiseRate]];
+                    [payment setEstimatedDelivery:[self.result estimatedDelivery]];
+                    [payment setEstimatedDeliveryStringFromServer:[self.result formattedEstimatedDelivery]];
+                    [payment setTransferwiseTransferFee:[self.result transferwiseTransferFee]];
+                    [payment setIsFixedAmountValue:self.result.isFixedTargetPayment];
+                    [payment setRecipient:self.recipient];
+                    [payment setProfileUsed:payment.user.sendAsBusinessDefaultSettingValue?@"business":@"personal"];
+                    payment.allowedRecipientTypes = [NSOrderedSet orderedSetWithArray:[weakSelf.objectModel recipientTypesWithCodes:listOfRecipientTypeCodes]];
+                    PaymentFlow *paymentFlow = [Credentials userLoggedIn]?[[LoggedInPaymentFlow alloc] initWithPresentingController:self.navigationController]:[[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
+                    [self setPaymentFlow:paymentFlow];
+                    
+                    [paymentFlow setObjectModel:self.objectModel];
+                    [paymentFlow presentNextPaymentScreen];
+                    
+                }];
 
-        [paymentFlow setObjectModel:self.objectModel];
-        [paymentFlow presentNextPaymentScreen];
+                    
+            });
+        };
+        
+        
+        CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
+        weakSelf.continueOperation = currenciesOperation;
+        [currenciesOperation setObjectModel:weakSelf.objectModel];
+        [currenciesOperation setResultHandler:^(NSError *error) {
+            if (error) {
+                [hud hide];
+                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipient.types.load.error.title", nil) error:error];
+                [alertView show];
+                return;
+            }
+            
+            dataLoadCompletionBlock();
+
+        }];
+        [currenciesOperation execute];
     }];
+    
+    [operation execute];
+    
 }
+
+
+
 - (IBAction)howButtonTapped:(id)sender {
     WhyViewController * whyController = [[WhyViewController alloc] init];
     [whyController.whyView setupWithResult:self.result];

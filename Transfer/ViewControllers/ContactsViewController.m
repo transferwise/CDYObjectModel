@@ -258,6 +258,8 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
         [[GoogleAnalytics sharedInstance] sendEvent:@"RecipientAdded" category:@"recipient" label:@"AddRecipientScreen"];
         [weakSelf closeModal];
     }];
+    controller.noPendingPayment = YES;
+    
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
     
@@ -272,6 +274,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [controller.navigationItem setLeftBarButtonItem:dismissButton];
     
     [self presentViewController:wrapper animated:YES completion:nil];
+
 }
 
 -(void)closeModal

@@ -11,7 +11,6 @@
 #import "UIColor+Theme.h"
 #import "TRWProgressHUD.h"
 #import "TransferwiseOperation.h"
-#import "CurrenciesOperation.h"
 #import "TextEntryCell.h"
 #import "CurrencySelectionCell.h"
 #import "RecipientFieldCell.h"
@@ -58,15 +57,21 @@
 #import "UIView+RenderBlur.h"
 #import "UIResponder+FirstResponder.h"
 #import "GreenButton.h"
+#import "CountrySelectionCell.h"
+#import "Country.h"
+#import "ObjectModel+Countries.h"
+#import "CurrenciesOperation.h"
+#import "CountriesOperation.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
 static NSUInteger const kRecipientFieldsSection = 2;
+static NSUInteger const kAddressSection = 3;
 
 
 NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
-@interface RecipientViewController () <ABPeoplePickerNavigationControllerDelegate, SuggestionTableDelegate>
+@interface RecipientViewController () <ABPeoplePickerNavigationControllerDelegate, SuggestionTableDelegate, CountrySelectionCellDelegate>
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
@@ -79,7 +84,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 @property (nonatomic, strong) NSArray *recipientTypeFieldCells;
 
+
 @property (nonatomic, strong) IBOutlet GreenButton *addButton;
+
+
+@property (nonatomic, strong) NSMutableArray *addressCells;
 
 @property (nonatomic, strong) Currency *currency;
 @property (nonatomic, strong) RecipientType *recipientType;
@@ -99,6 +108,17 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, strong) NameLookupWrapper *lastSelectedWrapper;
 
 @property (nonatomic, assign) CGFloat cellHeight;
+
+@property (nonatomic, strong) TransferwiseOperation *retrieveCurrenciesOperation;
+
+//Address cells
+
+@property (nonatomic,strong)TextEntryCell *addressCell;
+@property (nonatomic,strong)TextEntryCell *postCodeCell;
+@property (nonatomic,strong)TextEntryCell *cityCell;
+@property (nonatomic,strong)CountrySelectionCell *countryCell;
+@property (nonatomic,strong)TextEntryCell *stateCell;
+
 
 - (IBAction)addButtonPressed:(id)sender;
 
@@ -121,12 +141,14 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     {
         [self setupTableView:tableView];
     }
+
     
     self.cellHeight = IPAD ? 70.0f : 60.0f;
     
      __weak typeof(self) weakSelf = self;
     
     RecipientEntrySelectionCell *nameCell = [self.tableViews[0] dequeueReusableCellWithIdentifier:TRWRecipientEntrySelectionCellIdentifier];
+
     [self setNameCell:nameCell];
     [nameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [nameCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
@@ -168,6 +190,66 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [super configureWithDataSource:self.cellProvider
 						 entryCell:nameCell
 							height:self.cellHeight];
+    
+    NSMutableArray *addressCells = [NSMutableArray array];
+    
+    TextEntryCell *addressCell = [TextEntryCell loadInstance];
+    [self setAddressCell:addressCell];
+    [addressCells addObject:addressCell];
+    [addressCell configureWithTitle:NSLocalizedString(@"personal.profile.address.label", nil) value:@""];
+    [addressCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
+    [addressCell setCellTag:@"addressFirstLine"];
+    
+    TextEntryCell *postCodeCell = [TextEntryCell loadInstance];
+    [self setPostCodeCell:postCodeCell];
+    [addressCells addObject:postCodeCell];
+    [postCodeCell configureWithTitle:NSLocalizedString(@"personal.profile.post.code.label", nil) value:@""];
+    [postCodeCell setCellTag:@"postCode"];
+    
+    TextEntryCell *cityCell = [TextEntryCell loadInstance];
+    [self setCityCell:cityCell];
+    [addressCells addObject:cityCell];
+    [cityCell configureWithTitle:NSLocalizedString(@"personal.profile.city.label", nil) value:@""];
+    [cityCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
+    [cityCell setCellTag:@"city"];
+    
+    CountrySelectionCell *countryCell = [CountrySelectionCell loadInstance];
+    [self setCountryCell:countryCell];
+    [addressCells addObject:countryCell];
+    [countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
+    [countryCell setCellTag:@"countryCode"];
+    NSFetchedResultsController* countriesFetcher = [self.objectModel fetchedControllerForAllCountries];
+    
+    TRWProgressHUD * hud = nil;
+    if([countriesFetcher.fetchedObjects count]<=0)
+    {
+        hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    }
+    CountriesOperation *operation = [CountriesOperation operation];
+    [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
+    [operation setCompletionHandler:^(NSError *error) {
+        [hud hide];
+        if (error) {
+            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.countries.refresh.error.title", nil)
+                                                               message:NSLocalizedString(@"personal.profile.countries.refresh.error.message", nil)];
+            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+            [alertView show];
+            return;
+        }
+    }];
+    [operation execute];
+    countryCell.delegate = self;
+    
+    TextEntryCell *stateCell = [TextEntryCell loadInstance];
+    [self setStateCell:stateCell];
+    [stateCell configureWithTitle:NSLocalizedString(@"personal.profile.state.label", nil) value:@""];
+    [stateCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
+    [stateCell setCellTag:@"state"];
+    
+    self.addressCells = addressCells;
+    
+    
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -184,7 +266,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     self.suggestionTable.alpha = 1.0f;
 }
 
-
 -(void)setupTableView:(UITableView*)tableView
 {
     [tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
@@ -192,6 +273,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [tableView registerNib:[UINib nibWithNibName:@"RecipientFieldCell" bundle:nil] forCellReuseIdentifier:TWRecipientFieldCellIdentifier];
     [tableView registerNib:[UINib nibWithNibName:@"RecipientEntrySelectionCell" bundle:nil] forCellReuseIdentifier:TRWRecipientEntrySelectionCellIdentifier];
     [tableView registerNib:[UINib nibWithNibName:@"DropdownCell" bundle:nil] forCellReuseIdentifier:TWDropdownCellIdentifier];
+    [tableView registerNib:[UINib nibWithNibName:@"CountrySelectCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
     
     [tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
@@ -240,64 +322,68 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self refreshTableViewSizes];
     [self configureForInterfaceOrientation:self.interfaceOrientation];
 
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-    [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
 
     if (self.preLoadRecipientsWithCurrency && [Credentials userLoggedIn]) {
         [self.cellProvider setAutoCompleteResults:[self.objectModel fetchedControllerForRecipientsWithCurrency:self.preLoadRecipientsWithCurrency]];
     }
 
     [self.currencyCell setAllCurrencies:[self.objectModel fetchedControllerForAllCurrencies]];
-
+    
     if (self.preLoadRecipientsWithCurrency) {
         [self handleCurrencySelection:self.preLoadRecipientsWithCurrency];
     }
-
-    __weak typeof(self) weakSelf = self;
     
-    void (^dataLoadCompletionBlock)() = ^() {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [hud hide];
-            [weakSelf didSelectRecipient:weakSelf.recipient];
-        });
-    };
-
-    UserRecipientsOperation *recipientsOperation = nil;
-    if (self.preLoadRecipientsWithCurrency && [Credentials userLoggedIn]) {
-        recipientsOperation = [UserRecipientsOperation recipientsOperationWithCurrency:self.preLoadRecipientsWithCurrency];
-        [recipientsOperation setObjectModel:self.objectModel];
-        [recipientsOperation setResponseHandler:^(NSError *error) {
+    if(self.noPendingPayment)
+    {
+        TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+        [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
+        
+        void (^dataLoadCompletionBlock)() = ^() {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hide];
+                [self didSelectRecipient:self.recipient];
+            });
+        };
+        
+        UserRecipientsOperation *recipientsOperation = nil;
+        if (self.preLoadRecipientsWithCurrency && [Credentials userLoggedIn]) {
+            recipientsOperation = [UserRecipientsOperation recipientsOperationWithCurrency:self.preLoadRecipientsWithCurrency];
+            [recipientsOperation setObjectModel:self.objectModel];
+            [recipientsOperation setResponseHandler:^(NSError *error) {
+                if (error) {
+                    [hud hide];
+                    TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipients.preload.error.title", nil) error:error];
+                    [alertView show];
+                    return;
+                }
+                
+                dataLoadCompletionBlock();
+            }];
+        }
+        
+        CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
+        [self setRetrieveCurrenciesOperation:currenciesOperation];
+        [currenciesOperation setObjectModel:self.objectModel];
+        [currenciesOperation setResultHandler:^(NSError *error) {
             if (error) {
                 [hud hide];
-                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipients.preload.error.title", nil) error:error];
+                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipient.types.load.error.title", nil) error:error];
                 [alertView show];
                 return;
             }
-
-            dataLoadCompletionBlock();
+            
+            if (recipientsOperation) {
+                [self setRetrieveCurrenciesOperation:recipientsOperation];
+                [recipientsOperation execute];
+            } else {
+                dataLoadCompletionBlock();
+            }
         }];
+        
+        [currenciesOperation execute];
     }
-
-    CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
-    [self setExecutedOperation:currenciesOperation];
-    [currenciesOperation setObjectModel:self.objectModel];
-    [currenciesOperation setResultHandler:^(NSError *error) {
-        if (error) {
-            [hud hide];
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipient.types.load.error.title", nil) error:error];
-            [alertView show];
-            return;
-        }
-
-        if (recipientsOperation) {
-            [weakSelf setExecutedOperation:recipientsOperation];
-            [recipientsOperation execute];
-        } else {
-            dataLoadCompletionBlock();
-        }
-    }];
-
-    [currenciesOperation execute];
+   
+    [self didSelectRecipient:self.recipient];
 
     [self setShown:YES];
 }
@@ -325,17 +411,48 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (void)didSelectRecipient:(Recipient *)recipient {
     [self setRecipient:recipient];
-    [self handleSelectionChangeToType:recipient ? recipient.type : self.currency.defaultRecipientType allTypes:[self.currency.recipientTypes array]];
+    RecipientType* type = recipient ? recipient.type : self.currency.defaultRecipientType;
+
+    NSArray* allowedTypes = [self allTypes];
+    
+    if(![allowedTypes containsObject:type])
+    {
+        type = [allowedTypes firstObject];
+    }
+    
+    [self handleSelectionChangeToType:type allTypes:allowedTypes];
 
     if (!recipient) {
-        [self.nameCell setValue:@""];
-           [self.emailCell setValue:@""];
-        [self.nameCell setEditable:YES];
+        if(self.templateRecipient)
+        {
+            [self.nameCell setValue:self.templateRecipient.name];
+            [self.emailCell setValue:self.templateRecipient.email];
+            
+            
+            for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
 
-        for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
-            [fieldCell setValue:@""];
-            [fieldCell setEditable:YES];
+                
+                RecipientTypeField *field = fieldCell.type;
+                [fieldCell setValue:[self.templateRecipient valueField:field]];
+                if([fieldCell.value length]>0)
+                {
+                    [fieldCell setEditable:NO];
+                }
+            }
+
+
         }
+        else
+        {
+            [self.nameCell setValue:@""];
+            [self.emailCell setValue:@""];
+            [self.nameCell setEditable:YES];
+            for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
+                [fieldCell setValue:@""];
+                [fieldCell setEditable:YES];
+            }
+        }
+        
         return;
     }
 
@@ -347,32 +464,46 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self updateUserNameText];
         
         for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
-            [fieldCell setEditable:NO];
-            if ([fieldCell isKindOfClass:[TransferTypeSelectionHeader class]]) {
-                continue;
-            }
 
             RecipientTypeField *field = fieldCell.type;
             [fieldCell setValue:[recipient valueField:field]];
+            if([fieldCell.value length]>0)
+            {
+                [fieldCell setEditable:NO];
+            }
         }
     });
 }
 
 - (void)handleCurrencySelection:(Currency *)currency {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    void(^selectBlock)(void) = ^{
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"CurrencyRecipientSelected" withLabel:currency.code];
-
+        
         MCLog(@"Did select currency:%@. Default type:%@", currency.code, currency.defaultRecipientType.type);
-
+        
         RecipientType *type = currency.defaultRecipientType;
         MCLog(@"Have %d fields", [type.fields count]);
-
+        
         [self setCurrency:currency];
         [self setRecipientType:type];
-
-        NSArray *allTypes = [currency.recipientTypes array];
+        
+        NSArray *allTypes = [self allTypes];
+        if(![allTypes containsObject:type])
+        {
+            type = [allTypes firstObject];
+        }
+        
         [self handleSelectionChangeToType:type allTypes:allTypes];
-    });
+    };
+    if(![NSThread isMainThread])
+    {
+        dispatch_async(dispatch_get_main_queue(), selectBlock);
+    }
+    else
+    {
+        selectBlock();
+    }
+        
 }
 
 - (void)handleSelectionChangeToType:(RecipientType *)type allTypes:(NSArray *)allTypes {
@@ -382,13 +513,29 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setRecipientTypeFieldCells:cells];
     if([self hasMoreThanOneTableView])
     {
-        [self setSectionCellsByTableView:@[@[self.recipientCells,self.currencyCells], @[cells]]];
+        if(type.recipientAddressRequiredValue)
+        {
+            [self setSectionCellsByTableView:@[@[self.recipientCells,self.currencyCells], @[cells,self.addressCells]]];
+        }
+        else
+        {
+            [self setSectionCellsByTableView:@[@[self.recipientCells,self.currencyCells], @[cells]]];
+        }
+        
         [self.tableViews[1] reloadData];
     }
     else
     {
-        [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells, cells]]];
-        [self.tableViews[0] reloadSections:[NSIndexSet indexSetWithIndex:[self.presentedSectionsByTableView[0] count] - 1 ] withRowAnimation:UITableViewRowAnimationNone];
+        if(type.recipientAddressRequiredValue)
+        {
+            [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells, cells,self.addressCells]]];
+        }
+        else
+        {
+            [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells, cells]]];
+        }
+        
+        [self.tableViews[0] reloadData];
     }
 
     [self refreshTableViewSizes];
@@ -472,6 +619,14 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     recipientInput.currency = self.currency;
     recipientInput.type = self.recipientType;
     recipientInput.email = self.emailCell.value;
+    recipientInput.addressFirstLine = [self.addressCell value];
+    recipientInput.addressPostCode = [self.postCodeCell value];
+    recipientInput.addressCity = [self.cityCell value];
+    recipientInput.addressCountryCode = [self.cityCell value];
+    if ([self.cityCell.value caseInsensitiveCompare:@"usa"]== NSOrderedSame)
+    {
+        recipientInput.addressState = [self.stateCell value];
+    }
 
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
         if ([cell isKindOfClass:[TransferTypeSelectionHeader class]]) {
@@ -546,7 +701,24 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
         [issues appendIssue:valueIssue];
     }
-
+    
+    if(self.recipientType.recipientAddressRequiredValue)
+    {
+        BOOL addressValidationFailed = NO;
+        for(TextEntryCell* cell in self.addressCells)
+        {
+            if (![[cell value] hasValue])
+            {
+                addressValidationFailed = YES;
+                break;
+            }
+        }
+        if(addressValidationFailed)
+        {
+            [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.address", nil),self.currency.code]];
+        }
+    }
+    
     return [NSString stringWithString:issues];
 }
 
@@ -596,6 +768,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             return nil;
         case kRecipientFieldsSection:
             return nil; //Set directly on headerview.
+        case kAddressSection:
+            return NSLocalizedString(@"recipient.controller.section.title.address", nil);
         default:
             MCLog(@"Unhandled section:%d", section);
             return nil;
@@ -634,7 +808,15 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         
         finalSectionCellsByTableView[0] = cells;
         [finalPresentedSectionsByTableView addObject:sectionIndexes];
-        [finalPresentedSectionsByTableView addObject:@[@(kRecipientFieldsSection)]];
+        if (self.recipientType.recipientAddressRequired)
+        {
+             [finalPresentedSectionsByTableView addObject:@[@(kRecipientFieldsSection),@(kAddressSection)]];
+        }
+        else
+        {
+             [finalPresentedSectionsByTableView addObject:@[@(kRecipientFieldsSection)]];
+        }
+       
         
         ;
     }
@@ -653,6 +835,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         finalSectionCellsByTableView[0] = cells;
         
         [sectionIndexes addObject:@(kRecipientFieldsSection)];
+        if (self.recipientType.recipientAddressRequired)
+        {
+            [sectionIndexes addObject:@(kAddressSection)];
+        }
         
         [finalPresentedSectionsByTableView addObject:sectionIndexes];
     }
@@ -670,6 +856,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self.tableViews[1] layoutIfNeeded];
     }
 }
+
 
 #pragma mark - Suggestion Table
 
@@ -719,6 +906,50 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     NSString *recipientName = [self.nameCell.value length] > 0 ? self.nameCell.value: NSLocalizedString(@"recipient.controller.section.title.recipient.placeholder", nil);
     self.recipientFieldsHeader.titleLabel.text =  [NSString stringWithFormat:NSLocalizedString(@"recipient.controller.section.title.recipient.bank.details", nil),recipientName];
     self.currencyCell.titleLabel.text =  [NSString stringWithFormat:NSLocalizedString(@"recipient.controller.scell.title.recipient.currency", nil),recipientName];
+}
+
+#pragma mark - recipient type helpers
+
+-(NSArray*)allTypes
+{
+    if (self.objectModel.pendingPayment)
+    {
+        return [self.objectModel.pendingPayment.allowedRecipientTypes array];
+    }
+    else
+    {
+        return [self.currency.recipientTypes array];
+    }
+}
+
+-(void)countrySelectionCell:(CountrySelectionCell *)cell selectedCountry:(Country *)country
+{
+    [self includeStateCell:([country.iso3Code caseInsensitiveCompare:@"usa"]==NSOrderedSame)];
+}
+
+-(void)includeStateCell:(BOOL)includeState
+{
+    if(includeState)
+    {
+        if ([self.addressCells indexOfObject:self.stateCell]==NSNotFound)
+        {
+            [self.addressCells addObject:self.stateCell];
+        }
+    }
+    else
+    {
+        [self.addressCells removeObject:self.stateCell];
+    }
+    
+    if(IPAD)
+    {
+        [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells],@[self.recipientTypeFieldCells, self.addressCells]]];
+    }
+    else
+    {
+        [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells,self.recipientTypeFieldCells, self.addressCells]]];
+    }
+    [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
 }
 
 @end

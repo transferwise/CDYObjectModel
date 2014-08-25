@@ -14,6 +14,7 @@ const struct PendingPaymentAttributes PendingPaymentAttributes = {
 };
 
 const struct PendingPaymentRelationships PendingPaymentRelationships = {
+	.allowedRecipientTypes = @"allowedRecipientTypes",
 };
 
 const struct PendingPaymentFetchedProperties PendingPaymentFetchedProperties = {
@@ -172,6 +173,19 @@ const struct PendingPaymentFetchedProperties PendingPaymentFetchedProperties = {
 
 
 
+
+@dynamic allowedRecipientTypes;
+
+	
+- (NSMutableOrderedSet*)allowedRecipientTypesSet {
+	[self willAccessValueForKey:@"allowedRecipientTypes"];
+  
+	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"allowedRecipientTypes"];
+  
+	[self didAccessValueForKey:@"allowedRecipientTypes"];
+	return result;
+}
+	
 
 
 

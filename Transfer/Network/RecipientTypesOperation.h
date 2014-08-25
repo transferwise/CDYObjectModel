@@ -8,11 +8,15 @@
 
 #import "TransferwiseOperation.h"
 
-typedef void (^RecipientTypesBlock)(NSError *error);
+typedef void (^RecipientTypesBlock)(NSError *error, NSArray* listOfRecipientTypeCodes);
 
 @interface RecipientTypesOperation : TransferwiseOperation
 
 @property (nonatomic, copy) RecipientTypesBlock resultHandler;
+@property (nonatomic, copy) NSString* sourceCurrency;
+@property (nonatomic, copy) NSString* targetCurrency;
+@property (nonatomic, copy) NSNumber* amount;
+
 
 + (RecipientTypesOperation *)operation;
 
