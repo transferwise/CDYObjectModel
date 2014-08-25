@@ -193,8 +193,6 @@
 
 - (void)loadInviteStatus
 {
-	//TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-	//[hud setMessage:NSLocalizedString(@"invite.status.querying", nil)];
 	ReferralListOperation *referralLinkOperation = [ReferralListOperation operation];
 	self.currentOperation = referralLinkOperation;
 	__weak InvitationsViewController *weakSelf = self;
@@ -202,8 +200,6 @@
     [referralLinkOperation setResultHandler:^(NSError *error, NSInteger successCount)
 	 {
 		 dispatch_async(dispatch_get_main_queue(), ^{
-			 //[hud hide];
-			 
 			 if (!error && successCount > -1)
 			 {
 				 [weakSelf setProgress:successCount];
