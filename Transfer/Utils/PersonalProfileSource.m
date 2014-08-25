@@ -216,7 +216,9 @@ NSUInteger const kUserPersonalSection = 1;
 		[self.zipCityCell setSecondEditable:![profile isFieldReadonly:@"postCode"]];
         [self.countryCell setEditable:![profile isFieldReadonly:@"countryCode"]];
         [self.stateCell setEditable:![profile isFieldReadonly:@"state"]];
-        [self includeStateCell:[profile.countryCode caseInsensitiveCompare:@"usa"]==NSOrderedSame];
+		
+		[self includeStateCell:[ProfileSource showStateCell:profile.countryCode]
+				withCompletion:nil];
     });
 }
 
@@ -227,7 +229,7 @@ NSUInteger const kUserPersonalSection = 1;
 			&& [[self.emailCell value] hasValue] && [[self.phoneNumberCell value] hasValue]
 			&& [[self.dateOfBirthCell value] hasValue] && [[self.addressCell value] hasValue]
 			&& [[self.zipCityCell value] hasValue] && [[self.zipCityCell secondValue] hasValue]
-            && [[self.countryCell value] hasValue];
+            && [[self.countryCell value] hasValue] && (![ProfileSource showStateCell:self.countryCell.value] || [[self.stateCell value] hasValue]);
 }
 
 //this should be removed when API supports atomic account creation operation

@@ -301,6 +301,12 @@
 - (void)didSelectCountry:(NSString *)country
 {
     self.countryCell.value = country;
+	[self.profileSource countrySelectionCell:self.countryCell
+							didSelectCountry:[self getCountryByCode:self.countryCell.value]
+							  withCompletion:^{
+								  [self refreshTableViewSizes];
+							  }];
+	[self moveFocusOnNextEntryAfterCell:self.countryCell];
 }
 
 - (void)pullCountriesWithHud:(TRWProgressHUD *)hud completionHandler:(TRWActionBlock)completion
@@ -408,6 +414,7 @@
 		{
 			TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"personal.profile.verify.error.title", nil) error:error];
 			[alertView show];
+			return;
         }
 		
 		if (isExisting)

@@ -30,6 +30,23 @@
 
 @implementation ProfilesEditViewController
 
+- (id)init
+{
+	self = [super init];
+	if (self)
+	{
+		[self setTitle:NSLocalizedString([@"profile.edit.title" deviceSpecificLocalization], nil)];
+		UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 98, 44)];
+		[button addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
+		[button setImage:[UIImage imageNamed:@"SettingsButton"] forState:UIControlStateNormal];
+		[button setImageEdgeInsets:UIEdgeInsetsMake(0, 58, 0, -17)];
+		UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+		[self.navigationItem setRightBarButtonItem:settingsButton];
+	}
+	
+	return self;
+}
+
 - (void)viewDidLoad
 {
 	self.showFullWidth = YES;
@@ -41,15 +58,8 @@
 	
 	[super configureWithControllers:controllers
 							 titles:titles];
-    [super viewDidLoad];
 	
-	[self setTitle:NSLocalizedString([@"profile.edit.title" deviceSpecificLocalization], nil)];
-	UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 98, 44)];
-	[button addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
-	[button setImage:[UIImage imageNamed:@"SettingsButton"] forState:UIControlStateNormal];
-	[button setImageEdgeInsets:UIEdgeInsetsMake(0, 58, 0, -17)];
-	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-	[self.navigationItem setRightBarButtonItem:settingsButton];
+	[super viewDidLoad];
 }
 
 - (void)initControllers

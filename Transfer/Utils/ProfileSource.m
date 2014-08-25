@@ -159,12 +159,8 @@
 }
 
 - (void)includeStateCell:(BOOL)shouldInclude
+		  withCompletion:(CountrySelectionCompletion)completion
 {
-    if (2 > [self.cells[0] count])
-    {
-        return;
-    }
-    
     UITableView* tableView;
     for(UITableView *table in self.tableViews)
     {
@@ -194,7 +190,12 @@
         if (indexPath)
         {
             indexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
-            [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+			
+			[self updateTableView:tableView
+						   update:^{
+							   [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+						   }
+					   completion:completion];
         }
         
     }
@@ -204,14 +205,42 @@
         NSIndexPath *indexPath = [tableView indexPathForCell:self.stateCell];
         if (indexPath)
         {
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+			[self updateTableView:tableView
+						   update:^{
+							   [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+						   }
+					   completion:completion];			
         }
     }
 }
 
--(void)countrySelectionCell:(CountrySelectionCell *)cell selectedCountry:(Country *)country
+- (void)updateTableView:(UITableView *)tableView
+				 update:(void (^)())update
+			 completion:(CountrySelectionCompletion)completion
 {
-    [self includeStateCell:([country.iso3Code caseInsensitiveCompare:@"usa"]==NSOrderedSame)];
+	[UIView animateWithDuration:0.5 animations:^{
+		[tableView beginUpdates];
+		update();
+		[tableView reloadData];
+		[tableView endUpdates];
+		if (completion)
+		{
+			completion();
+		}
+	} completion:nil];
+}
+
+- (void)countrySelectionCell:(CountrySelectionCell *)cell
+			didSelectCountry:(Country *)country
+			  withCompletion:(CountrySelectionCompletion)completion
+{
+    [self includeStateCell:[ProfileSource showStateCell:country.iso3Code]
+			withCompletion:completion];
+}
+
++ (BOOL)showStateCell:(NSString *)countryCode
+{
+	return countryCode && [countryCode caseInsensitiveCompare:@"usa"] == NSOrderedSame;
 }
 
 @end
