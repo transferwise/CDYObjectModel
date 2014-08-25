@@ -94,8 +94,8 @@
     
     GradientView* gradientView = [[GradientView alloc] initWithFrame:CGRectMake(0,0,IPAD?1024:320,74)];
     gradientView.orientation = OrientationVertical;
-    gradientView.fromColor = [UIColor colorWithRed:91.0f/255.0f green:130.0f/255.0f blue:156.0f/255.0f alpha:1.0f];
-    gradientView.toColor = [UIColor colorWithRed:83.0f/255.0f green:124.0f/255.0f blue:155.0f/255.0f alpha:1.0f];
+    gradientView.fromColor = [UIColor colorWithRed:174.0f/255.0f green:46.0f/255.0f blue:70.0f/255.0f alpha:1.0f];
+    gradientView.toColor = [UIColor colorWithRed:221.0f/255.0f green:73.0f/255.0f blue:51.0f/255.0f alpha:1.0f];
     gradientView.clipsToBounds = YES;
     gradientView.autoresizingMask =  UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin;
     [self.view addSubview:gradientView];
@@ -114,11 +114,11 @@
             CGRect newFrame = cloud.frame;
             newFrame.size = CGSizeMake(newFrame.size.width/2.0f, newFrame.size.height/2.0f);
             cloud.frame = newFrame;
-            cloud.alpha = 0.15;
+            cloud.alpha = 0.07;
         }
         else
         {
-            cloud.alpha = 0.10;
+            cloud.alpha = 0.09;
         }
         [gradientView addSubview:cloud];
         [clouds addObject:cloud];
@@ -128,7 +128,7 @@
     
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(gradientView.bounds.size.width/2.0f - 150, 30, 300, 44)];
     title.textAlignment = NSTextAlignmentCenter;
-    title.fontStyle = @"light.@{18,19}.CoreFont";
+    title.fontStyle = @"medium.@{18,19}.White";
     title.text = NSLocalizedString(@"network.alert",nil);
     [gradientView addSubview:title];
 
