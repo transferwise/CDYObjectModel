@@ -171,7 +171,12 @@
     [operation execute];
 }
 
-- (void)presentRecipientDetails:(BOOL)showMiniProfile {
+- (void)presentRecipientDetails:(BOOL)showMiniProfile
+{
+    [self presentRecipientDetails:showMiniProfile templateRecipient:nil];
+}
+
+- (void)presentRecipientDetails:(BOOL)showMiniProfile templateRecipient:(Recipient*)template {
     [[AnalyticsCoordinator sharedInstance] paymentRecipientProfileScreenShown];
 
     RecipientViewController *controller = [[RecipientViewController alloc] init];
@@ -188,6 +193,10 @@
     [controller setAfterSaveAction:^{
         [self presentNextPaymentScreen];
     }];
+    if(template)
+    {
+        controller.templateRecipient = template;
+    }
     [controller setPreLoadRecipientsWithCurrency:self.objectModel.pendingPayment.targetCurrency];
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -650,11 +659,29 @@
         PendingPayment *payment = [self.objectModel pendingPayment];
         if (!payment.recipient) {
             [self presentRecipientDetails:[payment.user personalProfileFilled]];
-        } else if (!payment.user.personalProfileFilled) {
+        }
+        else if ([payment.allowedRecipientTypes indexOfObject:payment.recipient.type] == NSNotFound)
+        {
+            Recipient *template = payment.recipient;
+            payment.recipient = nil;
+            [self presentRecipientDetails:[payment.user personalProfileFilled] templateRecipient:template];
+        }
+        else if ([payment.recipient.type recipientAddressRequiredValue] && ! [payment.recipient hasAddress])
+        {
+            Recipient *template = payment.recipient;
+            payment.recipient = nil;
+            [self presentRecipientDetails:[payment.user personalProfileFilled] templateRecipient:template];
+        }
+        else if (!payment.user.personalProfileFilled)
+        {
             [self presentPersonalProfileEntry:YES];
-        } else if (payment.isFixedAmountValue && !payment.refundRecipient) {
+        }
+        else if (payment.isFixedAmountValue && !payment.refundRecipient)
+        {
             [self presentRefundAccountViewController];
-        } else {
+        }
+        else
+        {
             [self presentPaymentConfirmation];
         }
     }];

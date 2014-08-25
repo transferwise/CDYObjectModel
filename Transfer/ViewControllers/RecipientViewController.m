@@ -54,6 +54,7 @@
 #import "CountrySelectionCell.h"
 #import "Country.h"
 #import "ObjectModel+Countries.h"
+#import "CurrenciesOperation.h"
 #import "CountriesOperation.h"
 
 static NSUInteger const kSenderSection = 0;
@@ -107,19 +108,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic,strong)TextEntryCell *cityCell;
 @property (nonatomic,strong)CountrySelectionCell *countryCell;
 @property (nonatomic,strong)TextEntryCell *stateCell;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 - (IBAction)addButtonPressed:(id)sender;
@@ -294,7 +282,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     [self setPresentedSectionCells:@[self.senderCells, self.recipientCells, self.currencyCells, @[]]];
     [self.tableView reloadData];
-
+    
     if (self.preLoadRecipientsWithCurrency && [Credentials userLoggedIn]) {
         [self.nameCell setAutoCompleteRecipients:[self.objectModel fetchedControllerForRecipientsWithCurrency:self.preLoadRecipientsWithCurrency]];
     } else {
@@ -302,11 +290,61 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
 
     [self.currencyCell setAllCurrencies:[self.objectModel fetchedControllerForAllCurrencies]];
-
+    
     if (self.preLoadRecipientsWithCurrency) {
         [self handleCurrencySelection:self.preLoadRecipientsWithCurrency];
     }
-
+    
+    if(self.noPendingPayment)
+    {
+        TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+        [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
+        
+        void (^dataLoadCompletionBlock)() = ^() {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hide];
+                [self didSelectRecipient:self.recipient];
+                [self.tableView setTableFooterView:self.footer];
+            });
+        };
+        
+        UserRecipientsOperation *recipientsOperation = nil;
+        if (self.preLoadRecipientsWithCurrency && [Credentials userLoggedIn]) {
+            recipientsOperation = [UserRecipientsOperation recipientsOperationWithCurrency:self.preLoadRecipientsWithCurrency];
+            [recipientsOperation setObjectModel:self.objectModel];
+            [recipientsOperation setResponseHandler:^(NSError *error) {
+                if (error) {
+                    [hud hide];
+                    TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipients.preload.error.title", nil) error:error];
+                    [alertView show];
+                    return;
+                }
+                
+                dataLoadCompletionBlock();
+            }];
+        }
+        
+        CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
+        [self setExecutedOperation:currenciesOperation];
+        [currenciesOperation setObjectModel:self.objectModel];
+        [currenciesOperation setResultHandler:^(NSError *error) {
+            if (error) {
+                [hud hide];
+                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipient.types.load.error.title", nil) error:error];
+                [alertView show];
+                return;
+            }
+            
+            if (recipientsOperation) {
+                [self setExecutedOperation:recipientsOperation];
+                [recipientsOperation execute];
+            } else {
+                dataLoadCompletionBlock();
+            }
+        }];
+        
+        [currenciesOperation execute];
+    }
    
     [self didSelectRecipient:self.recipient];
     [self.tableView setTableFooterView:self.footer];
@@ -333,14 +371,39 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self handleSelectionChangeToType:type allTypes:allowedTypes];
 
     if (!recipient) {
-        [self.nameCell setValue:@""];
-           [self.emailCell setValue:@""];
-        [self.nameCell setEditable:YES];
+        if(self.templateRecipient)
+        {
+            [self.nameCell setValue:self.templateRecipient.name];
+            [self.emailCell setValue:self.templateRecipient.email];
+            
+            
+            for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
+                if ([fieldCell isKindOfClass:[TransferTypeSelectionCell class]]) {
+                    [fieldCell setEditable:NO];
+                    continue;
+                }
+                
+                RecipientTypeField *field = fieldCell.type;
+                [fieldCell setValue:[self.templateRecipient valueField:field]];
+                if([fieldCell.value length]>0)
+                {
+                    [fieldCell setEditable:NO];
+                }
+            }
 
-        for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
-            [fieldCell setValue:@""];
-            [fieldCell setEditable:YES];
+
         }
+        else
+        {
+            [self.nameCell setValue:@""];
+            [self.emailCell setValue:@""];
+            [self.nameCell setEditable:YES];
+            for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
+                [fieldCell setValue:@""];
+                [fieldCell setEditable:YES];
+            }
+        }
+        
         return;
     }
 
@@ -367,17 +430,17 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 - (void)handleCurrencySelection:(Currency *)currency {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    void(^selectBlock)(void) = ^{
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"CurrencyRecipientSelected" withLabel:currency.code];
-
+        
         MCLog(@"Did select currency:%@. Default type:%@", currency.code, currency.defaultRecipientType.type);
-
+        
         RecipientType *type = currency.defaultRecipientType;
         MCLog(@"Have %d fields", [type.fields count]);
-
+        
         [self setCurrency:currency];
         [self setRecipientType:type];
-
+        
         NSArray *allTypes = [self allTypes];
         if(![allTypes containsObject:type])
         {
@@ -385,7 +448,16 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         }
         
         [self handleSelectionChangeToType:type allTypes:allTypes];
-    });
+    };
+    if(![NSThread isMainThread])
+    {
+        dispatch_async(dispatch_get_main_queue(), selectBlock);
+    }
+    else
+    {
+        selectBlock();
+    }
+        
 }
 
 - (void)handleSelectionChangeToType:(RecipientType *)type allTypes:(NSArray *)allTypes {
@@ -476,6 +548,14 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     recipientInput.currency = self.currency;
     recipientInput.type = self.recipientType;
     recipientInput.email = self.emailCell.value;
+    recipientInput.addressFirstLine = [self.addressCell value];
+    recipientInput.addressPostCode = [self.postCodeCell value];
+    recipientInput.addressCity = [self.cityCell value];
+    recipientInput.addressCountryCode = [self.cityCell value];
+    if ([self.cityCell.value caseInsensitiveCompare:@"usa"]== NSOrderedSame)
+    {
+        recipientInput.addressState = [self.stateCell value];
+    }
 
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
         if ([cell isKindOfClass:[TransferTypeSelectionCell class]]) {
