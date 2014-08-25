@@ -10,8 +10,6 @@
 #import "CountrySelectionCell.h"
 #import "NSString+Validation.h"
 #import "BusinessProfileValidation.h"
-#import "PhoneBookProfile.h"
-#import "PhoneBookAddress.h"
 #import "User.h"
 #import "ObjectModel+Users.h"
 #import "BusinessProfile.h"
@@ -193,28 +191,6 @@
             completion(nil);
         });
     }];
-}
-
-- (void)loadDataFromProfile:(PhoneBookProfile *)profile
-{
-    [self.businessNameCell setValueWhenEditable:profile.organisation];
-
-    PhoneBookAddress *address = profile.address;
-    [self.addressCell setValueWhenEditable:address.street];
-    if (![self.objectModel.currentUser.businessProfile isFieldReadonly:@"city"])
-	{
-		[self.zipCityCell setValue:address.zipCode];
-	}
-	if (![self.objectModel.currentUser.businessProfile isFieldReadonly:@"postCode"])
-	{
-		[self.zipCityCell setSecondValue:address.city];
-	}
-    if (![self.objectModel.currentUser.businessProfile isFieldReadonly:@"countryCode"]) {
-        [self.countryCell setTwoLetterCountryCode:address.countryCode];
-    }
-    [self.stateCell setValueWhenEditable:address.state];
-    [self includeStateCell:[ProfileSource showStateCell:self.countryCell.value]
-			withCompletion:nil];
 }
 
 - (void)fillQuickValidation:(QuickProfileValidationOperation *)operation

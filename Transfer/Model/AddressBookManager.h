@@ -17,7 +17,7 @@ typedef void(^NameLookupHandler)(NSArray* nameLookup);
 /**
  *  Get an array of NameLookupWrapper objects for all entries in the address book.
  *
- *  Executes asychronously and completeson the main thread.
+ *  Executes asychronously and completes on the main thread.
  *
  *  @param handler calls back with an array with 0 or more entries, or nil if no access granted by user, on the main thread.
  */

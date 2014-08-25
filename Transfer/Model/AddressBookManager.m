@@ -9,10 +9,11 @@
 #import "AddressBookManager.h"
 #import <AddressBook/AddressBook.h>
 #import "GoogleAnalytics.h"
-#import "NameLookupWrapper.h"
+#import "EmailLookupWrapper.h"
 #import "Constants.h"
 
 #define cachedNameLookup @"nameLookup"
+#define cachedImageLookup @"imageLookup"
 
 #define addressBookChangeNotification @"addressBookChangeNotification"
 
@@ -75,7 +76,6 @@
 
 -(void)getImageForEmail:(NSString*)email completion:(void(^)(UIImage* image))completionBlock
 {
-    
     NSNumber *recordIdNumber = [[AddressBookManager sharedDataCache] objectForKey:email];
     if(recordIdNumber)
     {
@@ -89,7 +89,7 @@
         NSArray* filteredResult = [nameLookup filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"email = %@",email]];
         if([filteredResult count])
         {
-            NameLookupWrapper *wrapper = filteredResult[0];
+            EmailLookupWrapper *wrapper = filteredResult[0];
             ABRecordID recordId = wrapper.recordId;
             [[AddressBookManager sharedDataCache] setObject:@(recordId) forKey:email];
             [self getImageForRecordId:recordId completion:completionBlock];
@@ -168,7 +168,6 @@
     }
 }
 
-
 -(void)retrieveNames:(NameLookupHandler)handler
 {
     if(handler)
@@ -177,48 +176,68 @@
         [self performBlockOnMainThread:^{
             handler(lookup);
         }];
-        
     }
 }
 
 - (NSArray*)getImmutableNameLookup
 {
-    NSArray *immutableResult = [[AddressBookManager sharedDataCache] objectForKey:cachedNameLookup];
-    if(!immutableResult)
-    {
-        CFArrayRef people = ABAddressBookCopyArrayOfAllPeople(self.addressBook);
-        NSInteger count = CFArrayGetCount(people);
-        NSMutableArray *result = [NSMutableArray arrayWithCapacity:count];
-        for(NSInteger i = 0; i < count; i++)
-        {
-            ABRecordRef record = CFArrayGetValueAtIndex(people, i);
-            
-            NSString *firstname = (__bridge_transfer NSString *)ABRecordCopyValue(record, kABPersonFirstNameProperty);
-            NSString *lastName =(__bridge_transfer NSString *) ABRecordCopyValue(record, kABPersonLastNameProperty);
-            
-            CFTypeRef theProperty = ABRecordCopyValue(record, kABPersonEmailProperty);
-            NSArray *items = (__bridge_transfer NSArray *) ABMultiValueCopyArrayOfAllValues(theProperty);
-            CFRelease(theProperty);
-            for(NSString *email in items)
-            {
-				//ignore @facebook.com addresses
-				if ([email hasSuffix:facebookAddresSuffix]) continue;
-				
-                NameLookupWrapper *wrapper = [[NameLookupWrapper alloc] initWithRecordId:ABRecordGetRecordID(record) firstname:firstname lastName:lastName email:email];
-                if(wrapper)
-                {
-                    [result addObject:wrapper];
-                }
-            }
-        }
-        
-        immutableResult = [NSArray arrayWithArray:result];
-        CFRelease(people);
-        
-        [[AddressBookManager sharedDataCache] setObject:immutableResult forKey:cachedNameLookup];
-        
-    }
-    return immutableResult;
+	return [self getImmutableLookup:cachedNameLookup
+					  handlingBlock:^(NSMutableArray *result, ABRecordRef entry) {
+						  NSString *firstname = (__bridge_transfer NSString *)ABRecordCopyValue(entry, kABPersonFirstNameProperty);
+						  NSString *lastName =(__bridge_transfer NSString *) ABRecordCopyValue(entry, kABPersonLastNameProperty);
+						  
+						  CFTypeRef theProperty = ABRecordCopyValue(entry, kABPersonEmailProperty);
+						  NSArray *items = (__bridge_transfer NSArray *) ABMultiValueCopyArrayOfAllValues(theProperty);
+						  CFRelease(theProperty);
+						  for(NSString *email in items)
+						  {
+							  //ignore @facebook.com addresses
+							  if ([email hasSuffix:facebookAddresSuffix]) continue;
+							  
+							  EmailLookupWrapper *wrapper = [[EmailLookupWrapper alloc] initWithRecordId:ABRecordGetRecordID(entry) firstname:firstname lastName:lastName email:email];
+							  if(wrapper)
+							  {
+								  [result addObject:wrapper];
+							  }
+						  }
+					  }];
+}
+
+- (NSArray *)getImmutableImageLookup
+{
+	return [self getImmutableLookup:cachedImageLookup
+					  handlingBlock:^(NSMutableArray *result, ABRecordRef entry) {
+						  if (ABPersonHasImageData(entry))
+						  {
+							  
+						  }
+					  }];
+}
+
+- (NSArray *)getImmutableLookup:(id)key
+				  handlingBlock:(void (^)(NSMutableArray* result, ABRecordRef entry))handlingBlock
+{
+	NSArray *immutableResult = [[AddressBookManager sharedDataCache] objectForKey:key];
+	if(!immutableResult)
+	{
+		CFArrayRef people = ABAddressBookCopyArrayOfAllPeople(self.addressBook);
+		NSInteger count = CFArrayGetCount(people);
+		NSMutableArray *result = [NSMutableArray arrayWithCapacity:count];
+		
+		for(NSInteger i = 0; i < count; i++)
+		{
+			ABRecordRef record = CFArrayGetValueAtIndex(people, i);
+			
+			handlingBlock(result, record);
+		}
+		
+		immutableResult = [NSArray arrayWithArray:result];
+		CFRelease(people);
+		
+		[[AddressBookManager sharedDataCache] setObject:immutableResult forKey:cachedNameLookup];
+		
+	}
+	return immutableResult;
 }
 
 #pragma mark - Address book access

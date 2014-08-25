@@ -39,7 +39,7 @@
 #import "BusinessProfile.h"
 #import "PersonalProfile.h"
 #import "NameSuggestionCellProvider.h"
-#import "NameLookupWrapper.h"
+#import "EmailLookupWrapper.h"
 
 CGFloat const TransferHeaderPaddingTop = 40;
 CGFloat const TransferHeaderPaddingBottom = 0;
@@ -486,7 +486,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 -(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
 {
     [super suggestionTable:table selectedObject:object];
-    NameLookupWrapper* wrapper = (NameLookupWrapper*)object;
+    EmailLookupWrapper* wrapper = (EmailLookupWrapper*)object;
     if(wrapper.recordId)
     {
        
