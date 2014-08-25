@@ -16,6 +16,8 @@
 
 #define addressBookChangeNotification @"addressBookChangeNotification"
 
+#define facebookAddresSuffix @"@facebook.com"
+
 
 @interface AddressBookManager ()
 @property (nonatomic,assign) ABAddressBookRef addressBook;
@@ -179,12 +181,12 @@
     }
 }
 
--(NSArray*)getImmutableNameLookup
+- (NSArray*)getImmutableNameLookup
 {
     NSArray *immutableResult = [[AddressBookManager sharedDataCache] objectForKey:cachedNameLookup];
     if(!immutableResult)
     {
-        CFArrayRef people =ABAddressBookCopyArrayOfAllPeople(self.addressBook);
+        CFArrayRef people = ABAddressBookCopyArrayOfAllPeople(self.addressBook);
         NSInteger count = CFArrayGetCount(people);
         NSMutableArray *result = [NSMutableArray arrayWithCapacity:count];
         for(NSInteger i = 0; i < count; i++)
@@ -194,12 +196,14 @@
             NSString *firstname = (__bridge_transfer NSString *)ABRecordCopyValue(record, kABPersonFirstNameProperty);
             NSString *lastName =(__bridge_transfer NSString *) ABRecordCopyValue(record, kABPersonLastNameProperty);
             
-            
             CFTypeRef theProperty = ABRecordCopyValue(record, kABPersonEmailProperty);
             NSArray *items = (__bridge_transfer NSArray *) ABMultiValueCopyArrayOfAllValues(theProperty);
             CFRelease(theProperty);
             for(NSString *email in items)
             {
+				//ignore @facebook.com addresses
+				if ([email hasSuffix:facebookAddresSuffix]) continue;
+				
                 NameLookupWrapper *wrapper = [[NameLookupWrapper alloc] initWithRecordId:ABRecordGetRecordID(record) firstname:firstname lastName:lastName email:email];
                 if(wrapper)
                 {
@@ -216,7 +220,6 @@
     }
     return immutableResult;
 }
-
 
 #pragma mark - Address book access
 
