@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AddressBook/AddressBook.h>
 
-typedef void(^NameLookupHandler)(NSArray* nameLookup);
+typedef void(^LookupHandler)(NSArray* nameLookup);
 
 
 @interface AddressBookManager : NSObject
@@ -21,7 +21,16 @@ typedef void(^NameLookupHandler)(NSArray* nameLookup);
  *
  *  @param handler calls back with an array with 0 or more entries, or nil if no access granted by user, on the main thread.
  */
--(void)getNameLookupWithHandler:(NameLookupHandler)handler;
+-(void)getNameLookupWithHandler:(LookupHandler)handler;
+
+/**
+ *  Get an array of PhoneLookupWrapper objects for all entries in the address book that have an image.
+ *
+ *  Executes asychronously and completes on the main thread.
+ *
+ *  @param handler calls back with an array with 0 or more entries, or nil if no access granted by user, on the main thread.
+ */
+-(void)getPhoneLookupWithHandler:(LookupHandler)handler;
 
 /**
  *  Retrieves the profile image for an ABRecord ID and renders it to a UI image

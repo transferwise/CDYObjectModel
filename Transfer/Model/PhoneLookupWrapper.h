@@ -12,6 +12,15 @@
 
 @property (nonatomic, readonly) NSArray* phones;
 
+- (instancetype)initWithRecordId:(ABRecordID)recordId
+					   firstname:(NSString *)first
+						lastName:(NSString *)last
+						  phones:(NSArray *)phones;
+- (instancetype)initWithManagedObjectId:(NSManagedObjectID *)objectId
+							  firstname:(NSString *)first
+							   lastName:(NSString *)last
+								 phones:(NSArray *)phones;
+
 - (BOOL)hasMatchingCountryPhone:(NSString *)sourcePhone;
 
 @end

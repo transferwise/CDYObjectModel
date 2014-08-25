@@ -13,7 +13,13 @@
 
 @property (nonatomic, readonly) NSString* email;
 
--(instancetype)initWithRecordId:(ABRecordID)recordId firstname:(NSString*)first lastName:(NSString*)last email:(NSString*)email;
--(instancetype)initWithManagedObjectId:(NSManagedObjectID*)objectId firstname:(NSString*)first lastName:(NSString*)last email:(NSString*)email;
+-(instancetype)initWithRecordId:(ABRecordID)recordId
+					  firstname:(NSString*)first
+					   lastName:(NSString*)last
+						  email:(NSString*)email;
+-(instancetype)initWithManagedObjectId:(NSManagedObjectID*)objectId
+							 firstname:(NSString*)first
+							  lastName:(NSString*)last
+								 email:(NSString*)email;
 
 @end
