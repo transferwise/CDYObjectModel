@@ -87,7 +87,6 @@
 
     TextEntryCell *stateCell = [TextEntryCell loadInstance];
     [self setStateCell:stateCell];
-    [secondColumnCells addObject:stateCell];
     [stateCell configureWithTitle:NSLocalizedString(@"business.profile.state.label", nil) value:@""];
     [stateCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
     [stateCell setCellTag:@"state"];
@@ -149,7 +148,9 @@
 	[self.zipCityCell setSecondEditable:![profile isFieldReadonly:@"postCode"]];
     [self.countryCell setEditable:![profile isFieldReadonly:@"countryCode"]];
     [self.stateCell setEditable:![profile isFieldReadonly:@"state"]];
-    [self includeStateCell:[profile.countryCode caseInsensitiveCompare:@"usa"]==NSOrderedSame];
+	
+    [self includeStateCell:[ProfileSource showStateCell:profile.countryCode]
+			withCompletion:nil];
 }
 
 - (BOOL)inputValid
@@ -157,7 +158,7 @@
     return [[self.businessNameCell value] hasValue] && [[self.registrationNumberCell value] hasValue]
             && [[self.descriptionCell value] hasValue] && [[self.addressCell value] hasValue]
             && [[self.zipCityCell value] hasValue] && [[self.zipCityCell secondValue] hasValue]
-            && [[self.countryCell value] hasValue];
+            && [[self.countryCell value] hasValue] && (![ProfileSource showStateCell:self.countryCell.value] || [[self.stateCell value] hasValue]);
 }
 
 - (id)enteredProfile
@@ -212,7 +213,8 @@
         [self.countryCell setTwoLetterCountryCode:address.countryCode];
     }
     [self.stateCell setValueWhenEditable:address.state];
-    [self includeStateCell:[self.countryCell.value caseInsensitiveCompare:@"usa"]==NSOrderedSame];
+    [self includeStateCell:[ProfileSource showStateCell:self.countryCell.value]
+			withCompletion:nil];
 }
 
 - (void)fillQuickValidation:(QuickProfileValidationOperation *)operation

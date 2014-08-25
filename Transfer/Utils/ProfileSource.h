@@ -13,8 +13,10 @@
 @class QuickProfileValidationOperation;
 @class TextEntryCell;
 @class CountrySelectionCell;
+@class Country;
 
 typedef void (^ProfileActionBlock)(NSError *error);
+typedef void (^CountrySelectionCompletion)();
 
 @interface ProfileSource : NSObject
 
@@ -37,8 +39,14 @@ typedef void (^ProfileActionBlock)(NSError *error);
 			 completion:(ProfileActionBlock)completion;
 - (void)loadDetailsToCells;
 - (void)fillQuickValidation:(QuickProfileValidationOperation *)operation;
-- (void)includeStateCell:(BOOL)shouldInclude;
+- (TextEntryCell *)includeStateCell:(BOOL)shouldInclude
+					 withCompletion:(CountrySelectionCompletion)completion;
 - (void)markCellsWithIssues:(NSArray *)issues;
 - (void)setUpTableView:(UITableView *)tableView;
+- (TextEntryCell *)countrySelectionCell:(CountrySelectionCell *)cell
+					   didSelectCountry:(Country *)country
+						 withCompletion:(CountrySelectionCompletion)completion;
+
++ (BOOL)showStateCell:(NSString *)countryCode;
 
 @end

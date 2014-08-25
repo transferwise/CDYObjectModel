@@ -21,6 +21,9 @@
 
 - (void)viewDidLoad
 {
+	[self setTitle:NSLocalizedString(@"personal.profile.controller.title", nil)];
+	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
+	
 	self.showFullWidth = YES;
 	self.showButtonForIphone = YES;
 	
@@ -43,9 +46,6 @@
 					   actionShadow:@"greenShadow"
 					 actionProgress:0.3f];
     [super viewDidLoad];
-	
-	[self setTitle:NSLocalizedString(@"personal.profile.controller.title", nil)];
-	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 }
 
 - (void)actionTappedWithController:(UIViewController *)controller atIndex:(NSUInteger)index

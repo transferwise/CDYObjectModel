@@ -15,7 +15,7 @@
 #import "MOMStyle.h"
 #import "MultipleEntryCell.h"
 
-@interface DataEntryMultiColumnViewController() <UITextFieldDelegate, MultipleEntryCellDelegate>
+@interface DataEntryMultiColumnViewController() <MultipleEntryCellDelegate>
 @property (nonatomic, assign) BOOL keyboardIsVisible;
 @property (nonatomic, weak) UITapGestureRecognizer* dismissKeyboardTaprecognizer;
 @end
@@ -548,10 +548,8 @@
 
 -(void)scrollScrollViewToShowView:(UIView*)targetView
 {
-    
     CGRect showRect = [self.containerScrollView convertRect:targetView.frame fromView:targetView.superview];
     [self.containerScrollView scrollRectToVisible:showRect animated:NO];
-    
 }
 
 #pragma mark - dismiss keyboard
@@ -561,7 +559,5 @@
     [self.containerScrollView removeGestureRecognizer:recognizer];
     [self.view endEditing:YES];
 }
-
-
 
 @end
