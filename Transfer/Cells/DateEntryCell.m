@@ -103,17 +103,20 @@ NSInteger const kYearField = 3;
 		self.daySeparator = [UIView getSeparatorLineWithParentFrame:CGRectMake(self.dayTextField.frame.origin.x - 20,
 																			   self.contentView.frame.origin.y,
 																			   self.dayTextField.frame.size.width + 10,
-																			   self.contentView.frame.size.height)];
+																			   self.contentView.frame.size.height)
+													  showFullWidth:NO];
 		[self.contentView addSubview:self.daySeparator];
 		self.monthSeparator = [UIView getSeparatorLineWithParentFrame:CGRectMake(self.monthTextField.frame.origin.x - 20,
 																				 self.contentView.frame.origin.y,
 																				 self.monthTextField.frame.size.width + 10,
-																				 self.contentView.frame.size.height)];
+																				 self.contentView.frame.size.height)
+														showFullWidth:NO];
 		[self.contentView addSubview:self.monthSeparator];
 		self.yearSeparator = [UIView getSeparatorLineWithParentFrame:CGRectMake(self.yearTextField.frame.origin.x - 20,
 																				self.contentView.frame.origin.y,
 																				self.contentView.frame.size.width - self.yearTextField.frame.origin.x +20,
-																				self.contentView.frame.size.height)];
+																				self.contentView.frame.size.height)
+													   showFullWidth:NO];
 		[self.contentView addSubview:self.yearSeparator];
 		
 		self.separatorsAdded = YES;

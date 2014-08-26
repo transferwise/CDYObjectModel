@@ -12,7 +12,6 @@
 #import "TRWAlertView.h"
 #import "MOMStyle.h"
 #import <JVFloatLabeledTextField.h>
-#import "UIView+SeparatorLine.h"
 
 NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
@@ -29,17 +28,6 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 @end
 
 @implementation TextEntryCell
-
--(void)layoutSubviews
-{
-    [super layoutSubviews];
-    self.contentView.frame = self.bounds;
-    if (!self.separatorLine)
-    {
-        self.separatorLine = [UIView getSeparatorLineWithParentFrame:self.contentView.frame];
-        [self.contentView addSubview:self.separatorLine];
-    }
-}
 
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value
 {

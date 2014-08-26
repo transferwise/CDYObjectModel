@@ -98,9 +98,11 @@
 {
 	if (!self.multipleSeparatorsAdded)
 	{
-		self.separatorLine = [UIView getSeparatorLineWithParentFrame:[self getHalfWidthFrame:YES]];
+		self.separatorLine = [UIView getSeparatorLineWithParentFrame:[self getHalfWidthFrame:YES]
+													   showFullWidth:NO];
 		[self.contentView addSubview:self.separatorLine];
-		self.secondSeparator = [UIView getSeparatorLineWithParentFrame:[self getHalfWidthFrame:NO]];
+		self.secondSeparator = [UIView getSeparatorLineWithParentFrame:[self getHalfWidthFrame:NO]
+														 showFullWidth:NO];
 		[self.contentView addSubview:self.secondSeparator];
 		
 		self.multipleSeparatorsAdded = YES;
@@ -125,7 +127,8 @@
 		self.secondSeparator = nil;
 		self.separatorLine = nil;
 		
-		self.separatorLine = [UIView getSeparatorLineWithParentFrame:self.contentView.frame];
+		self.separatorLine = [UIView getSeparatorLineWithParentFrame:self.contentView.frame
+													   showFullWidth:NO];
 		[self.contentView addSubview:self.separatorLine];
 		
 		self.multipleSeparatorsAdded = NO;
