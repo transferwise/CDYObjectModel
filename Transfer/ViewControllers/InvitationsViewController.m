@@ -70,9 +70,28 @@
 					break;
 				}
 				
-				if ([wrapper hasMatchingPhones:ownNumber])
+				if ([wrapper hasPhonesWithDifferentCountryCodes]
+					&& [wrapper hasPhoneWithMatchingCountryCode:ownNumber])
 				{
 					[matchingLookups addObject:wrapper];
+				}
+			}
+			
+			//if we didn't get the necessary amount, try to get more ignoring the "same country code" rule
+			if (matchingLookups.count < self.profilePictures.count)
+			{
+				for (PhoneLookupWrapper *wrapper in phoneLookup)
+				{
+					if ([wrapper hasPhonesWithDifferentCountryCodes]
+						&& [matchingLookups indexOfObject:wrapper] == NSNotFound)
+					{
+						[matchingLookups addObject:wrapper];
+						
+						if (matchingLookups.count >= self.profilePictures.count)
+						{
+							break;
+						}
+					}
 				}
 			}
 			
