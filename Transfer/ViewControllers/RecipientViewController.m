@@ -602,7 +602,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         return;
     }
 
-    PendingPayment *payment = self.objectModel.pendingPayment;
+    PendingPayment *payment = [self pendingPayment];
 
     if (self.recipient) {
         self.recipient.email = self.emailCell.value;
@@ -901,6 +901,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 #pragma mark - text dependent on user name
 
+
 -(void)updateUserNameText
 {
     NSString *recipientName = [self.nameCell.value length] > 0 ? self.nameCell.value: NSLocalizedString(@"recipient.controller.section.title.recipient.placeholder", nil);
@@ -912,7 +913,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 -(NSArray*)allTypes
 {
-    if (self.objectModel.pendingPayment)
+    if ([self pendingPayment])
     {
         return [self.objectModel.pendingPayment.allowedRecipientTypes array];
     }
@@ -950,6 +951,15 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells,self.recipientTypeFieldCells, self.addressCells]]];
     }
     [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
+}
+
+-(PendingPayment*)pendingPayment
+{
+    if(!self.noPendingPayment)
+    {
+        return [self.objectModel pendingPayment];
+    }
+    return nil;
 }
 
 @end
