@@ -13,6 +13,7 @@
 @interface PhoneLookupWrapper ()
 
 @property (nonatomic, strong) NSArray *phones;
+@property (nonatomic, strong) NSRegularExpression *regex;
 
 @end
 
@@ -50,7 +51,19 @@
 	return self;
 }
 
-- (BOOL)hasMatchingPhones:(NSString *)sourcePhone
+- (NSRegularExpression *)regex
+{
+	if (!_regex)
+	{
+		_regex = [NSRegularExpression regularExpressionWithPattern:COUNTRY_PREFIX_PATTERN
+														   options:NSRegularExpressionCaseInsensitive
+															 error:nil];
+	}
+	
+	return _regex;
+}
+
+- (BOOL)hasPhonesWithDifferentCountryCodes
 {
 	//need to have at least two phone numbers
 	if ([self.phones count] < 2)
@@ -58,12 +71,32 @@
 		return NO;
 	}
 	
-	NSError *error = nil;
-	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:COUNTRY_PREFIX_PATTERN
-																		   options:NSRegularExpressionCaseInsensitive
-																			 error:&error];
+	NSString* existingPrefix = nil;
 	
-	NSString *sourcePrefix = [self getCountryCode:sourcePhone withRegex:regex];
+	for (NSString* phone in self.phones)
+	{
+		NSString* prefix = [self getCountryCode:phone];
+		
+		if (!prefix || existingPrefix == prefix)
+		{
+			continue;
+		}
+		else if (!existingPrefix)
+		{
+			existingPrefix = prefix;
+		}
+		else
+		{
+			return YES;
+		}
+	}
+	
+	return NO;
+}
+
+- (BOOL)hasPhoneWithMatchingCountryCode:(NSString *)sourcePhone
+{
+	NSString *sourcePrefix = [self getCountryCode:sourcePhone];
 	
 	//no point in continuing, if source phone has no country prefix
 	if (!sourcePrefix)
@@ -71,41 +104,24 @@
 		return NO;
 	}
 	
-	BOOL hasOwnPrefix = NO, hasOtherPrefix = NO;
-	
 	for (NSString* phone in self.phones)
 	{
-		NSString* prefix = [self getCountryCode:phone withRegex:regex];
+		NSString* prefix = [self getCountryCode:phone];
 		
-		if (!prefix)
+		if ([prefix isEqualToString:sourcePrefix])
 		{
-			continue;
-		}
-		
-		if (!hasOwnPrefix)
-		{
-			hasOwnPrefix = [sourcePrefix isEqualToString:prefix];
-		}
-		
-		if (!hasOtherPrefix)
-		{
-			hasOtherPrefix = ![sourcePrefix isEqualToString:prefix];
-		}
-		
-		if (hasOwnPrefix && hasOtherPrefix)
-		{
-			break;
+			return YES;
 		}
 	}
 	
-	return hasOwnPrefix && hasOtherPrefix;
+	return NO;
 }
 
-- (NSString *)getCountryCode:(NSString *)source withRegex:(NSRegularExpression *)regex
+- (NSString *)getCountryCode:(NSString *)source
 {
-	NSRange range = [regex rangeOfFirstMatchInString:source
-											 options:NSMatchingWithoutAnchoringBounds
-											   range:NSMakeRange(0, source.length)];
+	NSRange range = [self.regex rangeOfFirstMatchInString:source
+												  options:NSMatchingWithoutAnchoringBounds
+													range:NSMakeRange(0, source.length)];
 	if (range.location == NSNotFound)
 	{
 		return nil;
