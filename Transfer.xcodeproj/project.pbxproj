@@ -230,8 +230,8 @@
 		38AEB3C81966B8BF00B852E1 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AEB3C61966B8BF00B852E1 /* UIResponder+FirstResponder.m */; };
 		38B092E5194F2EB700315BE4 /* AddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092E4194F2EB700315BE4 /* AddressBookManager.m */; };
 		38B092E6194F325B00315BE4 /* AddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092E4194F2EB700315BE4 /* AddressBookManager.m */; };
-		38B092E9194F449600315BE4 /* NameLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092E8194F449600315BE4 /* NameLookupWrapper.m */; };
-		38B092EA194F46D700315BE4 /* NameLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092E8194F449600315BE4 /* NameLookupWrapper.m */; };
+		38B092E9194F449600315BE4 /* EmailLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092E8194F449600315BE4 /* EmailLookupWrapper.m */; };
+		38B092EA194F46D700315BE4 /* EmailLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092E8194F449600315BE4 /* EmailLookupWrapper.m */; };
 		38B093091951FA2A00315BE4 /* DataEntryDefaultHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B093021951FA2A00315BE4 /* DataEntryDefaultHeader.m */; };
 		38B0930A1951FA2A00315BE4 /* DataEntryDefaultHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B093021951FA2A00315BE4 /* DataEntryDefaultHeader.m */; };
 		38B0930B1951FA2A00315BE4 /* DataEntryDefaultHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B093031951FA2A00315BE4 /* DataEntryDefaultHeader.xib */; };
@@ -415,6 +415,10 @@
 		47C580A3196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47C580A4196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47DBE05919703494008915A6 /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
+		47E92B2B19AB551300ADAB8C /* PersonLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E92B2A19AB551300ADAB8C /* PersonLookupWrapper.m */; };
+		47E92B2C19AB551300ADAB8C /* PersonLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E92B2A19AB551300ADAB8C /* PersonLookupWrapper.m */; };
+		47E92B2F19AB5D1400ADAB8C /* PhoneLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E92B2E19AB5D1400ADAB8C /* PhoneLookupWrapper.m */; };
+		47E92B3019AB5D1400ADAB8C /* PhoneLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E92B2E19AB5D1400ADAB8C /* PhoneLookupWrapper.m */; };
 		47F1F5921941C87600FC4BEB /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
 		47F84D5F1988D73A00886D41 /* CountrySuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */; };
 		47F84D601988D73A00886D41 /* CountrySuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */; };
@@ -1062,8 +1066,8 @@
 		38AEB3C61966B8BF00B852E1 /* UIResponder+FirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+FirstResponder.m"; sourceTree = "<group>"; };
 		38B092E3194F2EB700315BE4 /* AddressBookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookManager.h; sourceTree = "<group>"; };
 		38B092E4194F2EB700315BE4 /* AddressBookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookManager.m; sourceTree = "<group>"; };
-		38B092E7194F449600315BE4 /* NameLookupWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameLookupWrapper.h; sourceTree = "<group>"; };
-		38B092E8194F449600315BE4 /* NameLookupWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameLookupWrapper.m; sourceTree = "<group>"; };
+		38B092E7194F449600315BE4 /* EmailLookupWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailLookupWrapper.h; sourceTree = "<group>"; };
+		38B092E8194F449600315BE4 /* EmailLookupWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailLookupWrapper.m; sourceTree = "<group>"; };
 		38B093011951FA2A00315BE4 /* DataEntryDefaultHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryDefaultHeader.h; sourceTree = "<group>"; };
 		38B093021951FA2A00315BE4 /* DataEntryDefaultHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryDefaultHeader.m; sourceTree = "<group>"; };
 		38B093031951FA2A00315BE4 /* DataEntryDefaultHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DataEntryDefaultHeader.xib; sourceTree = "<group>"; };
@@ -1207,6 +1211,10 @@
 		47B36C821986543B002E66C7 /* MultipleEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleEntryCell.m; sourceTree = "<group>"; };
 		47C580A1196AC1A7007771DB /* UIGestureRecognizer+Cancel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Cancel.h"; sourceTree = "<group>"; };
 		47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Cancel.m"; sourceTree = "<group>"; };
+		47E92B2919AB551300ADAB8C /* PersonLookupWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonLookupWrapper.h; sourceTree = "<group>"; };
+		47E92B2A19AB551300ADAB8C /* PersonLookupWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonLookupWrapper.m; sourceTree = "<group>"; };
+		47E92B2D19AB5D1400ADAB8C /* PhoneLookupWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneLookupWrapper.h; sourceTree = "<group>"; };
+		47E92B2E19AB5D1400ADAB8C /* PhoneLookupWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneLookupWrapper.m; sourceTree = "<group>"; };
 		47F84D5D1988D73A00886D41 /* CountrySuggestionCellProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountrySuggestionCellProvider.h; sourceTree = "<group>"; };
 		47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountrySuggestionCellProvider.m; sourceTree = "<group>"; };
 		47F84D611988E83300886D41 /* CountrySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountrySelectionCell.xib; sourceTree = "<group>"; };
@@ -1923,7 +1931,6 @@
 				38B52FA2199B69C800B6AEBD /* InvitationProgressIndicatorView.h */,
 				38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */,
 				EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */,
-				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
 				EAD3647717E2EBF2001EFE40 /* PaymentMethodSelectionView.h */,
 				EAD3647817E2EBF2001EFE40 /* PaymentMethodSelectionView.m */,
 				EAD3649017E2F971001EFE40 /* PaymentMethodSelectionView.xib */,
@@ -2209,8 +2216,12 @@
 				EAD66780174CB34600D29BCB /* PhoneBookProfile.m */,
 				38B092E3194F2EB700315BE4 /* AddressBookManager.h */,
 				38B092E4194F2EB700315BE4 /* AddressBookManager.m */,
-				38B092E7194F449600315BE4 /* NameLookupWrapper.h */,
-				38B092E8194F449600315BE4 /* NameLookupWrapper.m */,
+				38B092E7194F449600315BE4 /* EmailLookupWrapper.h */,
+				38B092E8194F449600315BE4 /* EmailLookupWrapper.m */,
+				47E92B2919AB551300ADAB8C /* PersonLookupWrapper.h */,
+				47E92B2A19AB551300ADAB8C /* PersonLookupWrapper.m */,
+				47E92B2D19AB5D1400ADAB8C /* PhoneLookupWrapper.h */,
+				47E92B2E19AB5D1400ADAB8C /* PhoneLookupWrapper.m */,
 			);
 			name = AddressBookInteraction;
 			path = Model;
@@ -2720,7 +2731,7 @@
 			name = TransferTests;
 			productName = TransferTests;
 			productReference = EA76D90C175CF80100AE3F86 /* TransferTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		EAAA1467171BC911005B9430 /* TransferWise */ = {
 			isa = PBXNativeTarget;
@@ -3372,7 +3383,7 @@
 				385A66871977C9A200D00D1F /* GrayRoundedButton.m in Sources */,
 				EA31A15E17DDB29B00F937F7 /* RecipientOperation.m in Sources */,
 				389F682C198FC1C6006CF1F6 /* ObjectModel+PendingPayments.m in Sources */,
-				38B092EA194F46D700315BE4 /* NameLookupWrapper.m in Sources */,
+				38B092EA194F46D700315BE4 /* EmailLookupWrapper.m in Sources */,
 				EA31A15F17DDB29B00F937F7 /* NonEditTextField.m in Sources */,
 				EA31A16017DDB29B00F937F7 /* PersonalProfileOperation.m in Sources */,
 				EA31A16117DDB29B00F937F7 /* PersonalProfileIdentificationViewController.m in Sources */,
@@ -3412,6 +3423,7 @@
 				EA31A17317DDB29B00F937F7 /* PhoneBookAddress.m in Sources */,
 				EA31A17417DDB29B00F937F7 /* DismissKeyboardTableView.m in Sources */,
 				EA31A17517DDB29B00F937F7 /* VerificationRequiredOperation.m in Sources */,
+				47E92B2C19AB551300ADAB8C /* PersonLookupWrapper.m in Sources */,
 				47C580A4196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */,
 				EA31A17617DDB29B00F937F7 /* UploadVerificationFileOperation.m in Sources */,
 				389F6832198FC1C6006CF1F6 /* ObjectModel+Settings.m in Sources */,
@@ -3420,6 +3432,7 @@
 				47233CD7196D457300449042 /* LoginViewController.m in Sources */,
 				389F6816198FC1C6006CF1F6 /* _TypeFieldValue.m in Sources */,
 				380021F0192F3DD3009B1D53 /* CurrencySelectorViewController.m in Sources */,
+				47E92B3019AB5D1400ADAB8C /* PhoneLookupWrapper.m in Sources */,
 				EA31A17717DDB29B00F937F7 /* OpenIDViewController.m in Sources */,
 				38B093181951FA8300315BE4 /* NameSuggestionCellProvider.m in Sources */,
 				EA31A17817DDB29B00F937F7 /* PersonalProfileCommitter.m in Sources */,
@@ -3670,7 +3683,7 @@
 				EA222E38173A861000C5D613 /* ConfirmPaymentViewController.m in Sources */,
 				EA222E3C173A8A7100C5D613 /* ConfirmPaymentCell.m in Sources */,
 				EA042600173CF5C50048BFBD /* RecipientEntrySelectionCell.m in Sources */,
-				38B092E9194F449600315BE4 /* NameLookupWrapper.m in Sources */,
+				38B092E9194F449600315BE4 /* EmailLookupWrapper.m in Sources */,
 				389F67FF198FC1C6006CF1F6 /* _PairSourceCurrency.m in Sources */,
 				EAAC203B17422AB3001DDE7A /* DropdownCell.m in Sources */,
 				EAB6170E191CD61900545C21 /* ResetPasswordViewController.m in Sources */,
@@ -3699,6 +3712,7 @@
 				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,
 				EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */,
 				EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */,
+				47E92B2B19AB551300ADAB8C /* PersonLookupWrapper.m in Sources */,
 				380021EF192F3DD3009B1D53 /* CurrencySelectorViewController.m in Sources */,
 				EA59298E1758CD6C007C0072 /* OpenIDViewController.m in Sources */,
 				389F6831198FC1C6006CF1F6 /* ObjectModel+Settings.m in Sources */,
@@ -3707,6 +3721,7 @@
 				EA59297117589F5C007C0072 /* PersonalProfileCommitter.m in Sources */,
 				389F6815198FC1C6006CF1F6 /* _TypeFieldValue.m in Sources */,
 				EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */,
+				47E92B2F19AB5D1400ADAB8C /* PhoneLookupWrapper.m in Sources */,
 				EACF7640175C71B4008F2A03 /* RecipientProfileCommitter.m in Sources */,
 				EAA053D2175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m in Sources */,
 				EAA053D6175DD5EE00ACD3F6 /* NoUserPaymentFlow.m in Sources */,

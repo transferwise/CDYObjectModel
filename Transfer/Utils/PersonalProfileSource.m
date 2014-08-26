@@ -9,8 +9,6 @@
 #import "PersonalProfileSource.h"
 #import "CountrySelectionCell.h"
 #import "DateEntryCell.h"
-#import "PhoneBookProfile.h"
-#import "PhoneBookAddress.h"
 #import "NSString+Validation.h"
 #import "PersonalProfileValidation.h"
 #import "User.h"

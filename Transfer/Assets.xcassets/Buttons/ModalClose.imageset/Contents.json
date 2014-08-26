@@ -11,6 +11,11 @@
       "filename" : "close_button_iphone_white@2x.png"
     },
     {
+      "idiom" : "iphone",
+      "subtype" : "retina4",
+      "scale" : "2x"
+    },
+    {
       "idiom" : "ipad",
       "scale" : "1x",
       "filename" : "close_button_ipad_white.png"

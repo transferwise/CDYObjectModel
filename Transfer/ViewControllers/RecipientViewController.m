@@ -53,7 +53,7 @@
 #import "NSError+TRWErrors.h"
 #import "TextFieldSuggestionTable.h"
 #import "NameSuggestionCellProvider.h"
-#import "NameLookupWrapper.h"
+#import "EmailLookupWrapper.h"
 #import "MOMStyle.h"
 #import "UIView+RenderBlur.h"
 #import "UIResponder+FirstResponder.h"
@@ -96,7 +96,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 
 @property (nonatomic, strong) NameSuggestionCellProvider *cellProvider;
-@property (nonatomic, strong) NameLookupWrapper *lastSelectedWrapper;
+@property (nonatomic, strong) EmailLookupWrapper *lastSelectedWrapper;
 
 @property (nonatomic, assign) CGFloat cellHeight;
 
@@ -303,7 +303,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 
-- (void)loadDataFromWrapper:(NameLookupWrapper *)wrapper {
+- (void)loadDataFromWrapper:(EmailLookupWrapper *)wrapper {
     [self didSelectRecipient:nil];
     self.lastSelectedWrapper = wrapper;
     self.nameCell.value = [wrapper presentableString:FirstNameFirst];
@@ -676,7 +676,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 -(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
 {
     [super suggestionTable:table selectedObject:object];
-    NameLookupWrapper* wrapper = (NameLookupWrapper*)object;
+    EmailLookupWrapper* wrapper = (EmailLookupWrapper*)object;
     if(wrapper.recordId)
     {
         [self loadDataFromWrapper:wrapper];
