@@ -178,6 +178,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
         [[GoogleAnalytics sharedInstance] sendEvent:@"RecipientAdded" category:@"recipient" label:@"AddRecipientScreen"];
         [self.navigationController popViewControllerAnimated:YES];
     }];
+    controller.noPendingPayment = YES;
     [self.navigationController pushViewController:controller animated:YES];
 }
 

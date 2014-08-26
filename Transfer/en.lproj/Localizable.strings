@@ -213,6 +213,8 @@ A revolution in your pocket.";
 "recipient.controller.validation.error.title" = "Validation error";
 "recipient.controller.validation.error.bic.required" = "BIC is required for transfers to %@";
 "recipient.controller.validation.error.email.format" = "Email is invalid";
+"recipient.controller.validation.error.address" = "Address has empty fields";
+"recipient.controller.section.title.address" = "Address";
 
 "recipient.details.ABA.base" = "ACH / ABA: %@, State:%@";
 "recipient.details.BIC.base" = "BIC: %@";

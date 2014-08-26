@@ -12,6 +12,7 @@
 
 @class ObjectModel;
 @class Currency;
+@class Recipient;
 @protocol RecipientProfileValidation;
 
 typedef NS_ENUM(short, RecipientReportingType) {
@@ -29,5 +30,10 @@ typedef NS_ENUM(short, RecipientReportingType) {
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, assign) BOOL showMiniProfile;
 @property (nonatomic, assign) RecipientReportingType reportingType;
+
+@property (nonatomic, strong) Recipient* templateRecipient;
+
+//Set YES if adding recipient without payment flow.
+@property (nonatomic, assign) BOOL noPendingPayment;
 
 @end
