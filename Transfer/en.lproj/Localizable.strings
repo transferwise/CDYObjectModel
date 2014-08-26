@@ -76,7 +76,7 @@
 "contacts.controller.deleting.message" = "Deleting...";
 "contacts.controller.refreshing.message" = "Refreshing recipients list";
 "contacts.controller.title" = "Recipients";
-"contacts.controller.tabbar.title" = "Contacts";
+"contacts.controller.tabbar.title" = "Recipients";
 "contacts.refresh.error.message" = "Could not refresh your recipients list";
 "contacts.refresh.error.title" = "Refresh error";
 "contacts.controller.send.button.title" = "Send %@";
