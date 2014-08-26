@@ -17,6 +17,9 @@
 #import "ReferralListOperation.h"
 #import "AddressBookManager.h"
 #import "PhoneLookupWrapper.h"
+#import "User.h"
+#import "ObjectModel+Users.h"
+#import "PersonalProfile.h"
 
 @interface InvitationsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *profilePictureContainer;
@@ -48,57 +51,61 @@
 }
 - (void)viewDidLoad
 {
-	//TODO: need profile phone number here
-	NSString* ownNumber = @"+1asdfasdf";
+	User *user = [self.objectModel currentUser];
 	
-	AddressBookManager *manager = [[AddressBookManager alloc] init];
+	NSString* ownNumber = user.personalProfile.phoneNumber;
 	
-	[manager getPhoneLookupWithHandler:^(NSArray *phoneLookup) {
-		NSMutableArray* matchingLookups = [[NSMutableArray alloc] initWithCapacity:self.profilePictures.count];
+	if (ownNumber)
+	{
+		AddressBookManager *manager = [[AddressBookManager alloc] init];
 		
-		//get profiles having pics, at least 2 numbers and of those 1 has the same country code
-		for (PhoneLookupWrapper *wrapper in phoneLookup)
-		{
-			if(matchingLookups.count >= self.profilePictures.count)
+		[manager getPhoneLookupWithHandler:^(NSArray *phoneLookup) {
+			NSMutableArray* matchingLookups = [[NSMutableArray alloc] initWithCapacity:self.profilePictures.count];
+			
+			//get profiles having pics, at least 2 numbers and of those 1 has the same country code
+			for (PhoneLookupWrapper *wrapper in phoneLookup)
 			{
-				break;
+				if(matchingLookups.count >= self.profilePictures.count)
+				{
+					break;
+				}
+				
+				if ([wrapper hasMatchingPhones:ownNumber])
+				{
+					[matchingLookups addObject:wrapper];
+				}
 			}
 			
-			if ([wrapper hasMatchingPhones:ownNumber])
+			//if we couldn't fill with constraints add random contacts until filled
+			while (matchingLookups.count < phoneLookup.count
+				   && matchingLookups.count < self.profilePictures.count)
 			{
-				[matchingLookups addObject:wrapper];
+				NSInteger idx = 0 + arc4random() % (phoneLookup.count);
+				
+				if ([matchingLookups indexOfObject:phoneLookup[idx]] == NSNotFound)
+				{
+					[matchingLookups addObject:phoneLookup[idx]];
+				}
 			}
-		}
-		
-		//if we couldn't fill with constraints add random contacts until filled
-		while (matchingLookups.count < phoneLookup.count
-			   && matchingLookups.count < self.profilePictures.count)
-		{
-			NSInteger idx = 0 + arc4random() % (phoneLookup.count);
 			
-			if ([matchingLookups indexOfObject:phoneLookup[idx]] == NSNotFound)
+			//get images for chosen wrappers
+			int limit = (matchingLookups.count < self.profilePictures.count) ? matchingLookups.count : self.profilePictures.count;
+			for (int i = 0; i < limit; i++)
 			{
-				[matchingLookups addObject:phoneLookup[idx]];
+				[manager getImageForRecordId:((PhoneLookupWrapper *)matchingLookups[i]).recordId
+								  completion:^(UIImage *image) {
+									  UIImageView *viewToChange = ((UIImageView *)self.profilePictures[i]);
+									  [UIView transitionWithView:viewToChange
+														duration:0.5f
+														 options:UIViewAnimationOptionTransitionCrossDissolve
+													  animations:^{
+														  viewToChange.image = image;
+													  }
+													  completion:nil];
+								  }];
 			}
-		}
-		
-		//get images for chosen wrappers
-		int limit = (matchingLookups.count < self.profilePictures.count) ? matchingLookups.count : self.profilePictures.count;
-		for (int i = 0; i < limit; i++)
-		{
-			[manager getImageForRecordId:((PhoneLookupWrapper *)matchingLookups[i]).recordId
-							  completion:^(UIImage *image) {
-								  UIImageView *viewToChange = ((UIImageView *)self.profilePictures[i]);
-								  [UIView transitionWithView:viewToChange
-													duration:0.5f
-													 options:UIViewAnimationOptionTransitionCrossDissolve
-												  animations:^{
-													  viewToChange.image = image;
-												  }
-												  completion:nil];
-							  }];
-		}
-	}];
+		}];
+	}
 }
 
 -(void)viewWillAppear:(BOOL)animated
