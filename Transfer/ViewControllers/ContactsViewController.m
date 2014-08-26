@@ -33,10 +33,10 @@
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
-@interface ContactsViewController () <NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource, RecipientsFooterViewDelegate, ContactDetailsDeleteDelegate>
+@interface ContactsViewController () <UITableViewDelegate, UITableViewDataSource, RecipientsFooterViewDelegate, ContactDetailsDeleteDelegate>
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
-@property (nonatomic, strong) NSFetchedResultsController *allRecipients;
+@property (nonatomic, strong) NSArray *allRecipients;
 @property (nonatomic, strong) RecipientsFooterView *footerView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
@@ -87,10 +87,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
     if (!self.allRecipients)
 	{
-        NSFetchedResultsController *controller = [self.objectModel fetchedControllerForAllUserRecipients];
-        [self setAllRecipients:controller];
-        [controller setDelegate:self];
-
+        [self setAllRecipients:[self.objectModel allUserRecipientsForDisplay]];
         [self.tableView reloadData];
     }
 
@@ -120,20 +117,19 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.allRecipients sections] count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.allRecipients sections] objectAtIndex:(NSUInteger) section];
-	//last row will be invite cell
-    return [sectionInfo numberOfObjects];
+    //last row will be invite cell
+    return self.allRecipients.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RecipientCell *cell = [tableView dequeueReusableCellWithIdentifier:kRecipientCellIdentifier];
-    Recipient *recipient = [self.allRecipients objectAtIndexPath:indexPath];
+    Recipient *recipient = [self.allRecipients objectAtIndex:indexPath.row];
 	
     [cell configureWithRecipient:recipient
 		   willShowCancelBlock:^{
@@ -173,7 +169,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 	
 	if (indexPath)
 	{
-		Recipient *recipient = [self.allRecipients objectAtIndexPath:indexPath];
+		Recipient *recipient = [self.allRecipients objectAtIndex:indexPath.row];
 		
 		if ([recipient.type hideFromCreationValue])
 		{
@@ -207,7 +203,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 	[self removeCancellingFromCell];
     ContactDetailsViewController* detailController = [[ContactDetailsViewController alloc] init];
     detailController.objectModel = self.objectModel;
-    detailController.recipient = [self.allRecipients objectAtIndexPath:indexPath];
+    detailController.recipient = [self.allRecipients objectAtIndex:indexPath.row];
     detailController.deletionDelegate = self;
     [self presentDetail:detailController];
 }
@@ -220,18 +216,14 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
         return;
     }
 
-    //TabBarActivityIndicatorView *hud = [TabBarActivityIndicatorView showHUDOnController:self];
-    //[hud setMessage:NSLocalizedString(@"contacts.controller.refreshing.message", nil)];
-
     UserRecipientsOperation *operation = [UserRecipientsOperation recipientsOperation];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
 
     [operation setResponseHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            MCLog(@"Have %lu recipients", (unsigned long)[self.allRecipients.fetchedObjects count]);
-
-            //[hud hide];
+			self.allRecipients = [self.objectModel allUserRecipientsForDisplay];
+            MCLog(@"Have %lu recipients", (unsigned long)self.allRecipients.count);
 
             [self setExecutedOperation:nil];
 
@@ -344,40 +336,6 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
         [self.tableView reloadData];
     });
-}
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView beginUpdates];
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath
-{
-    UITableView *tableView = self.tableView;
-
-    switch (type)
-	{
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-        case NSFetchedResultsChangeUpdate:
-            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-            break;
-        case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView endUpdates];
 }
 
 #pragma mark - Contact Detail Deletion
