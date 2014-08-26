@@ -533,7 +533,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         return;
     }
 
-    PendingPayment *payment = self.objectModel.pendingPayment;
+    PendingPayment *payment = [self pendingPayment];
 
     if (self.recipient) {
         self.recipient.email = self.emailCell.value;
@@ -742,7 +742,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     User *user = [self.objectModel currentUser];
     NSString *name;
     UIImage *shownImage;
-    PendingPayment *payment = [self.objectModel pendingPayment];
+    PendingPayment *payment = [self pendingPayment];
     if ([source isKindOfClass:[PersonalProfileSource class]]) {
         name = [user.personalProfile fullName];
         shownImage = [UIImage imageNamed:@"ProfileIcon.png"];
@@ -764,7 +764,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 -(NSArray*)allTypes
 {
-    if (self.objectModel.pendingPayment)
+    if ([self pendingPayment])
     {
         return [self.objectModel.pendingPayment.allowedRecipientTypes array];
     }
@@ -795,6 +795,15 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     
     [self setPresentedSectionCells:@[self.senderCells, self.recipientCells, self.currencyCells, self.recipientTypeFieldCells, self.addressCells]];
     [self.tableView reloadData];
+}
+
+-(PendingPayment*)pendingPayment
+{
+    if(!self.noPendingPayment)
+    {
+        return [self.objectModel pendingPayment];
+    }
+    return nil;
 }
 
 @end
