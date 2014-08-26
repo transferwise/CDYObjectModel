@@ -284,7 +284,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [operation setCompletion:^(NSInteger totalCount, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hide];
+			NSInteger currentCount = self.payments.count;
 			self.payments = [self.objectModel allPayments];
+			NSInteger delta = self.payments.count - currentCount;
+			
             [self.refreshView refreshComplete];
 
             [self setExecutedOperation:nil];
@@ -296,11 +299,30 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 			{
                 [self.tableView setTableFooterView:nil];
             }
-            [self.tableView reloadData];
+			
+			[self.tableView reloadData];
+			if (delta > 0)
+			{
+				[self.tableView reloadRowsAtIndexPaths:[TransactionsViewController generateIndexPaths:currentCount
+																				withCount:delta]
+									  withRowAnimation:UITableViewRowAnimationFade];
+			}
         });
     }];
 
     [operation execute];
+}
+
++ (NSArray *)generateIndexPaths:(NSInteger)start withCount:(NSInteger)count
+{
+	NSMutableArray* results = [[NSMutableArray alloc] initWithCapacity:count];
+	
+	for (int i = 0; i < count; i++)
+	{
+		[results addObject:[NSIndexPath indexPathForRow:start + i inSection:0]];
+	}
+	
+	return results;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
