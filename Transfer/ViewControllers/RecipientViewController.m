@@ -101,6 +101,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 @property (nonatomic, strong) ProfileSelectionView *profileSelectionView;
 
+@property (nonatomic, strong) TransferwiseOperation *retrieveCurrenciesOperation;
+
 //Address cells
 
 @property (nonatomic,strong)TextEntryCell *addressCell;
@@ -325,7 +327,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         }
         
         CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
-        [self setExecutedOperation:currenciesOperation];
+        [self setRetrieveCurrenciesOperation:currenciesOperation];
         [currenciesOperation setObjectModel:self.objectModel];
         [currenciesOperation setResultHandler:^(NSError *error) {
             if (error) {
@@ -336,7 +338,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             }
             
             if (recipientsOperation) {
-                [self setExecutedOperation:recipientsOperation];
+                [self setRetrieveCurrenciesOperation:recipientsOperation];
                 [recipientsOperation execute];
             } else {
                 dataLoadCompletionBlock();
