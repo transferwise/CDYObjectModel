@@ -71,7 +71,8 @@
 		}
 		
 		//if we couldn't fill with constraints add random contacts until filled
-		while (matchingLookups.count < self.profilePictures.count)
+		while (matchingLookups.count < self.profilePictures.count
+			   || matchingLookups.count < phoneLookup.count)
 		{
 			NSInteger idx = 0 + arc4random() % (phoneLookup.count);
 			
@@ -86,7 +87,14 @@
 		{
 			[manager getImageForRecordId:((PhoneLookupWrapper *)matchingLookups[i]).recordId
 							  completion:^(UIImage *image) {
-								  ((UIImageView *)self.profilePictures[i]).image = image;
+								  UIImageView *viewToChange = ((UIImageView *)self.profilePictures[i]);
+								  [UIView transitionWithView:viewToChange
+													duration:0.5f
+													 options:UIViewAnimationOptionTransitionCrossDissolve
+												  animations:^{
+													  viewToChange.image = image;
+												  }
+												  completion:nil];
 							  }];
 		}
 	}];
