@@ -15,6 +15,8 @@
 #import "TRWAlertView.h"
 #import "TRWProgressHUD.h"
 #import "ReferralListOperation.h"
+#import "AddressBookManager.h"
+#import "PhoneLookupWrapper.h"
 
 @interface InvitationsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *profilePictureContainer;
@@ -43,6 +45,51 @@
     if (self) {
     }
     return self;
+}
+- (void)viewDidLoad
+{
+	//TODO: need profile phone number here
+	NSString* ownNumber = @"+1asdfasdf";
+	
+	AddressBookManager *manager = [[AddressBookManager alloc] init];
+	
+	[manager getPhoneLookupWithHandler:^(NSArray *phoneLookup) {
+		NSMutableArray* matchingLookups = [[NSMutableArray alloc] initWithCapacity:self.profilePictures.count];
+		
+		//get profiles having pics, at least 2 numbers and of those 1 has the same country code
+		for (PhoneLookupWrapper *wrapper in phoneLookup)
+		{
+			if(matchingLookups.count >= self.profilePictures.count)
+			{
+				break;
+			}
+			
+			if ([wrapper hasMatchingPhones:ownNumber])
+			{
+				[matchingLookups addObject:wrapper];
+			}
+		}
+		
+		//if we couldn't fill with constraints add random contacts until filled
+		while (matchingLookups.count < self.profilePictures.count)
+		{
+			NSInteger idx = 0 + arc4random() % (phoneLookup.count);
+			
+			if ([matchingLookups indexOfObject:phoneLookup[idx]] == NSNotFound)
+			{
+				[matchingLookups addObject:phoneLookup[idx]];
+			}
+		}
+		
+		//get images for chosen wrappers
+		for (int i = 0; i < self.profilePictures.count; i++)
+		{
+			[manager getImageForRecordId:((PhoneLookupWrapper *)matchingLookups[i]).recordId
+							  completion:^(UIImage *image) {
+								  ((UIImageView *)self.profilePictures[i]).image = image;
+							  }];
+		}
+	}];
 }
 
 -(void)viewWillAppear:(BOOL)animated

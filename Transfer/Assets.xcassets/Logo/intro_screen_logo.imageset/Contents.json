@@ -11,6 +11,11 @@
       "filename" : "intro_screen_logo_iphone@2x.png"
     },
     {
+      "idiom" : "iphone",
+      "subtype" : "retina4",
+      "scale" : "2x"
+    },
+    {
       "idiom" : "ipad",
       "scale" : "1x",
       "filename" : "intro_screen_logo_ipad.png"

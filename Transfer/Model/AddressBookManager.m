@@ -272,7 +272,7 @@
 		immutableResult = [NSArray arrayWithArray:result];
 		CFRelease(people);
 		
-		[[AddressBookManager sharedDataCache] setObject:immutableResult forKey:cachedNameLookup];
+		[[AddressBookManager sharedDataCache] setObject:immutableResult forKey:key];
 		
 	}
 	return immutableResult;

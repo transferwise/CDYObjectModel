@@ -51,7 +51,7 @@
 	return self;
 }
 
-- (BOOL)hasMatchingCountryPhone:(NSString *)sourcePhone
+- (BOOL)hasMatchingPhones:(NSString *)sourcePhone
 {
 	//need to have at least two phone numbers
 	if ([self.phones count] < 2)
