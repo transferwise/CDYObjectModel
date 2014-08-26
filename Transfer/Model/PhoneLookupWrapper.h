@@ -21,6 +21,7 @@
 							   lastName:(NSString *)last
 								 phones:(NSArray *)phones;
 
-- (BOOL)hasMatchingPhones:(NSString *)sourcePhone;
+- (BOOL)hasPhonesWithDifferentCountryCodes;
+- (BOOL)hasPhoneWithMatchingCountryCode:(NSString *)sourcePhone;
 
 @end
