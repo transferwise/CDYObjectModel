@@ -76,18 +76,6 @@
 				}
 			}
 			
-			//if we couldn't fill with constraints add random contacts until filled
-			while (matchingLookups.count < phoneLookup.count
-				   && matchingLookups.count < self.profilePictures.count)
-			{
-				NSInteger idx = 0 + arc4random() % (phoneLookup.count);
-				
-				if ([matchingLookups indexOfObject:phoneLookup[idx]] == NSNotFound)
-				{
-					[matchingLookups addObject:phoneLookup[idx]];
-				}
-			}
-			
 			//get images for chosen wrappers
 			int limit = (matchingLookups.count < self.profilePictures.count) ? matchingLookups.count : self.profilePictures.count;
 			for (int i = 0; i < limit; i++)
