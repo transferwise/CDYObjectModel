@@ -170,19 +170,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 							height:self.cellHeight];
 }
 
--(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{ 
-    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    [self configureForInterfaceOrientation:toInterfaceOrientation];
-    self.suggestionTable.alpha = 0.0f;
-}
-
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    [self suggestionTableDidStartEditing:self.suggestionTable];
-    self.suggestionTable.alpha = 1.0f;
-}
 
 
 -(void)setupTableView:(UITableView*)tableView
@@ -686,24 +673,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [self didSelectRecipient:(Recipient*)[self.objectModel.managedObjectContext objectWithID:wrapper.managedObjectId]];
     }
     
-}
-
-#pragma mark - Keyboard show/hide
-
-
--(void)keyboardWillShow:(NSNotification*)note
-{
-    [super keyboardWillShow:note];
-    CGRect newframe = [self.view convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:self.view.window];
-    self.suggestionTable.contentInset = UIEdgeInsetsMake(0, 0, newframe.size.height, 0);
-}
-
--(void)keyboardWillHide:(NSNotification*)note
-{
-    
-    [super keyboardWillHide:note];
-
-    self.suggestionTable.contentInset = UIEdgeInsetsZero;
 }
 
 -(void)textFieldEntryFinished

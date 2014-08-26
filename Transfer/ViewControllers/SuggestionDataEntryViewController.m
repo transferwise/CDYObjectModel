@@ -12,7 +12,6 @@
 
 @interface SuggestionDataEntryViewController ()
 
-@property (nonatomic, weak) TextEntryCell *entryCell;
 
 @end
 
@@ -21,11 +20,6 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-	self.suggestionTable = [[NSBundle mainBundle] loadNibNamed:@"TextFieldSuggestionTable" owner:self options:nil][0];
-    
-    self.suggestionTable.hidden = YES;
-    self.suggestionTable.suggestionTableDelegate = self;
-    [self.view addSubview:self.suggestionTable];
     self.containerScrollView.delegate = self;
 }
 
@@ -33,97 +27,121 @@
 					  entryCell:(TextEntryCell *)entryCell
 						 height:(CGFloat)height
 {
-	self.entryCell = entryCell;
-	self.suggestionTable.textField = self.entryCell.entryField;
-	self.suggestionTable.dataSource = dataSource;
-	self.suggestionTable.rowHeight = height;
+    TextFieldSuggestionTable *suggestionTable = [[NSBundle mainBundle] loadNibNamed:@"TextFieldSuggestionTable" owner:self options:nil][0];
+    
+    suggestionTable.hidden = YES;
+    suggestionTable.suggestionTableDelegate = self;
+    [self.view addSubview:suggestionTable];
+	suggestionTable.textField = entryCell.entryField;
+    suggestionTable.associatedView = entryCell;
+	suggestionTable.dataSource = dataSource;
+    suggestionTable.rowHeight = height;
+    [self.view addSubview:suggestionTable];
+    if(!self.suggestionTables)
+    {
+        self.suggestionTables = [NSMutableArray array];
+    }
+    [self.suggestionTables addObject:suggestionTable];
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    self.suggestionTable.alpha = 0.0f;
+    for(TextFieldSuggestionTable* table in self.suggestionTables)
+    {
+        table.alpha = 0.0f;
+    }
+    
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-	[self suggestionTableDidStartEditing:self.suggestionTable];
-    self.suggestionTable.alpha = 1.0f;
+    for(TextFieldSuggestionTable* table in self.suggestionTables)
+    {
+        table.alpha = 1.0f;
+    }
+    [self updateSuggestionTablePositions];
 }
 
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     if(!decelerate)
     {
-        [self updateSuggestionTablePosition:self.suggestionTable];
+        [self updateSuggestionTablePositions];
     }
 }
 
 -(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
-    [self updateSuggestionTablePosition:self.suggestionTable];
+    [self updateSuggestionTablePositions];
 }
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    [self updateSuggestionTablePosition:self.suggestionTable];
+    [self updateSuggestionTablePositions];
 }
 
 -(void)suggestionTableDidStartEditing:(TextFieldSuggestionTable *)table
 {
-    [self updateSuggestionTablePosition:table];
+   [self updateSuggestionTablePositions];
 }
 
--(void)updateSuggestionTablePosition:(TextFieldSuggestionTable *)table
+-(void)updateSuggestionTablePositions
 {
-    [table removeFromSuperview];
-    UIView* viewToAlignTo = self.entryCell;
-	
-    if(!IPAD)
+    for (TextFieldSuggestionTable* table in self.suggestionTables)
     {
-        UIImageView* background = [[UIImageView alloc] initWithImage:[self.view renderBlurWithTintColor:nil]];
-        background.contentMode = UIViewContentModeBottom;
-        table.backgroundView = background;
+        [table removeFromSuperview];
+        UIView* viewToAlignTo = table.associatedView;
         
-        UIView *colorOverlay = [[UIView alloc] initWithFrame:background.bounds];
-        colorOverlay.bgStyle = @"DarkFont.alpha4";
-        colorOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        [background addSubview:colorOverlay];
+        if(!IPAD)
+        {
+            UIImageView* background = [[UIImageView alloc] initWithImage:[self.view renderBlurWithTintColor:nil]];
+            background.contentMode = UIViewContentModeBottom;
+            table.backgroundView = background;
+            
+            UIView *colorOverlay = [[UIView alloc] initWithFrame:background.bounds];
+            colorOverlay.bgStyle = @"DarkFont.alpha4";
+            colorOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+            [background addSubview:colorOverlay];
+        }
+        else
+        {
+            viewToAlignTo = ((TextEntryCell*)table.associatedView).separatorLine;
+        }
+        
+        if([viewToAlignTo superview])
+        {
+            CGRect newFrame = table.frame;
+            newFrame.origin = [self.view convertPoint:viewToAlignTo.frame.origin fromView:viewToAlignTo.superview];
+            newFrame.origin.y += viewToAlignTo.frame.size.height;
+            newFrame.size.height = self.view.frame.size.height - newFrame.origin.y;
+            newFrame.size.width = viewToAlignTo.frame.size.width;
+            table.frame = newFrame;
+            [self.view addSubview:table];
+        }
     }
-    else
-    {
-        viewToAlignTo = self.entryCell.separatorLine;
-    }
-    
-    CGRect newFrame = table.frame;
-    newFrame.origin = [self.view convertPoint:viewToAlignTo.frame.origin fromView:viewToAlignTo.superview];
-    newFrame.origin.y += viewToAlignTo.frame.size.height;
-    newFrame.size.height = self.view.frame.size.height - newFrame.origin.y;
-    newFrame.size.width = viewToAlignTo.frame.size.width;
-    table.frame = newFrame;
-    [self.view addSubview:table];
 }
 
 -(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
 {
-    [self.entryCell.entryField resignFirstResponder];
-	[self moveFocusOnNextEntryAfterCell:self.entryCell];
+    [((TextEntryCell*)table.associatedView).entryField resignFirstResponder];
+	[self moveFocusOnNextEntryAfterCell:((TextEntryCell*)table.associatedView)];
 }
 
 -(void)keyboardWillShow:(NSNotification*)note
 {
     [super keyboardWillShow:note];
-    [self updateSuggestionTablePosition:self.suggestionTable];
+    [self updateSuggestionTablePositions];
     CGRect newframe = [self.view convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:self.view.window];
-    self.suggestionTable.contentInset = UIEdgeInsetsMake(0, 0, newframe.size.height, 0);
+    for (TextFieldSuggestionTable* table in self.suggestionTables)
+    {
+        table.contentInset = UIEdgeInsetsMake(0, 0, newframe.size.height, 0);
+    }
+    
 }
 
--(void)keyboardWillHide:(NSNotification*)note
-{
-    [super keyboardWillHide:note];
-    self.suggestionTable.contentInset = UIEdgeInsetsZero;
-}
+
 
 
 @end
