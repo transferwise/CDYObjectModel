@@ -76,7 +76,7 @@
 "contacts.controller.deleting.message" = "Deleting...";
 "contacts.controller.refreshing.message" = "Refreshing recipients list";
 "contacts.controller.title" = "Recipients";
-"contacts.controller.tabbar.title" = "Contacts";
+"contacts.controller.tabbar.title" = "Recipients";
 "contacts.refresh.error.message" = "Could not refresh your recipients list";
 "contacts.refresh.error.title" = "Refresh error";
 "contacts.controller.send.button.title" = "Send %@";
@@ -410,7 +410,7 @@ This can't be undone.";
 "upload.money.our.address.label" = "Our address: %@";
 "upload.money.header.label.GBP" = "Connect to your online banking & transfer %@ to Transferwise's UK account below.\nIt's free.";
 "upload.money.header.label.EUR" = "Connect to your online banking or call your bank. Transfer %@ to Transferwise's European account.";
-"upload.money.header.label" = "Connect to your online banking or call your bank.\nTransfer %@ to Transferwise's account.";
+"upload.money.header.label" = "Connect to your online banking or call your bank. Transfer %@ to Transferwise's account.";
 "upload.money.header.label.exactly" = "exactly %@";
 "upload.money.info.label.EUR" = "SEPA transfers within Europe cost the same as a local transfer.";
 "upload.money.iban.title" = "IBAN";
@@ -473,7 +473,7 @@ Payment #%@";
 "payment.method.regular" = "Bank transfer";
 
 "support.sheet.title" = "If you have questions, please don't hesitate to contact our support team.";
-"support.sheet.write.message" = "Write a message";
+"support.sheet.write.message" = "Send an email";
 "support.sheet.call" = "Give us a call";
 
 "support.cant.send.email.message" = "Please check email settings. Sending emails is not enabled on your device.";
