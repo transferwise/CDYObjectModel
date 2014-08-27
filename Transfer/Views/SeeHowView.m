@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import "WhyView.h"
+#import "SeeHowView.h"
 #import "TransferCalculationsOperation.h"
 #import "CalculationResult.h"
 
-@interface WhyView ()
+@interface SeeHowView ()
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, assign) CalculationAmountCurrency amountCurrency;
@@ -41,7 +41,7 @@
 
 @end
 
-@implementation WhyView
+@implementation SeeHowView
 
 
 - (void)awakeFromNib {

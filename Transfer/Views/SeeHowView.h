@@ -10,7 +10,7 @@
 
 @class CalculationResult;
 
-@interface WhyView : UIView
+@interface SeeHowView : UIView
 
 @property (nonatomic, strong) NSString *title;
 
