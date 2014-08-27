@@ -612,14 +612,10 @@ We'll send you an email in order to let you choose a new password.";
 "invite.modal.title" = "Share your invite url";
 "invite.error.facebook.title" = "Facebook error";
 "invite.error.facebook.message" = "Please enable Facebook in your device settings and try again.";
-"invite.facebook.default.message" = "%@ invites you to try Transferwise. It lets you transfer money abroad cheaper than with your bank.";
-"invite.email.subject" = "Try Transferwise";
-"invite.email.message" = "Hi,<br><br>
-Here's a link to try <a href=\"%@\">Transferwise</a> <br><br>
-It has already saved me money on international money transfers.<br><br>
-Regards,<br>
-%@";
-"invite.sms.message" = "Save money with Transferwise: %@";
+"invite.facebook.default.message" = "";
+"invite.email.subject" = "%@ has invited you to TransferWise";
+"invite.email.message" = "Hi,<br><br>I’ve been using TransferWise to send money abroad. Really easy and a lot cheaper than the bank! I got you a free transfer for free using my invite link: <br><a href=\"%@\">Accept %@'s invitation</a> <br><br>Cheers,<br>%@";
+"invite.sms.message" = "I’ve been using TransferWise to send money abroad. Really easy and a lot cheaper than the bank! I got you a free transfer using my invite link: %@. Cheers. %@";
 "invite.link.querying" = "Getting invite link";
 "invite.link.error.title" = "Unable to get invite link";
 "invite.link.error.message" = "Something went wrong while getting invite link";
