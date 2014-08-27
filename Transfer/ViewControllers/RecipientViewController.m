@@ -360,19 +360,33 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 - (void)didSelectRecipient:(Recipient *)recipient {
-    [self setRecipient:recipient];
     RecipientType* type = recipient ? recipient.type : self.currency.defaultRecipientType;
 
-    NSArray* allowedTypes = [self allTypes];
     
+    
+    NSArray* allowedTypes = [self allTypes];
+    RecipientType *allowedType = type;
     if(![allowedTypes containsObject:type])
     {
-        type = [allowedTypes firstObject];
+        allowedType = [allowedTypes firstObject];
     }
+    
+    if(type != allowedType || (type.recipientAddressRequired && ![recipient hasAddress]))
+    {
+        self.recipient = nil;
+        self.templateRecipient = recipient;
+    }
+    else
+    {
+        [self setRecipient:recipient];
+    }
+    type = allowedType;
     
     [self handleSelectionChangeToType:type allTypes:allowedTypes];
 
-    if (!recipient) {
+    [self setAddressFieldsFromRecipient:recipient];
+    
+    if (!self.recipient) {
         if(self.templateRecipient)
         {
             [self.nameCell setValue:self.templateRecipient.name];
@@ -392,6 +406,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
                     [fieldCell setEditable:NO];
                 }
             }
+            
 
 
         }
@@ -429,6 +444,17 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             }
         }
     });
+}
+
+-(void)setAddressFieldsFromRecipient:(Recipient*)recipient
+{
+
+    self.addressCell.value = recipient.addressFirstLine;
+    self.postCodeCell.value = recipient.addressPostCode;
+    self.cityCell.value = recipient.addressCity;
+    self.countryCell.value = recipient.addressCountryCode;
+    self.stateCell.value = recipient.addressState;
+    
 }
 
 - (void)handleCurrencySelection:(Currency *)currency {
@@ -553,7 +579,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     recipientInput.addressFirstLine = [self.addressCell value];
     recipientInput.addressPostCode = [self.postCodeCell value];
     recipientInput.addressCity = [self.cityCell value];
-    recipientInput.addressCountryCode = [self.cityCell value];
+    recipientInput.addressCountryCode = [self.countryCell value];
     if ([self.cityCell.value caseInsensitiveCompare:@"usa"]== NSOrderedSame)
     {
         recipientInput.addressState = [self.stateCell value];
