@@ -681,7 +681,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     recipientInput.addressCountryCode = [self.countryCell value];
     if ([self.countryCell.value caseInsensitiveCompare:@"usa"]== NSOrderedSame)
     {
-        recipientInput.addressState = [self.stateCell value];
+        NSString* stateCode = [StateSuggestionProvider stateCodeFromTitle:self.stateCell.value];
+        if(stateCode)
+        {
+            recipientInput.addressState = stateCode;
+        }
     }
 
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
@@ -953,16 +957,23 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 -(void)includeStateCell:(BOOL)includeState
 {
+    BOOL didIncludeState = NO;
+    BOOL didRemoveState = NO;
     if(includeState)
     {
         if ([self.addressCells indexOfObject:self.stateCell]==NSNotFound)
         {
             [self.addressCells insertObject:self.stateCell atIndex:1];
+            didIncludeState = YES;
         }
     }
     else
     {
-        [self.addressCells removeObject:self.stateCell];
+        if ([self.addressCells indexOfObject:self.stateCell]!=NSNotFound)
+        {
+            [self.addressCells removeObject:self.stateCell];
+            didRemoveState = YES;
+        }
     }
  
     if(self.recipientType.recipientAddressRequired)
@@ -970,12 +981,27 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         if(IPAD)
         {
             [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells],@[self.recipientTypeFieldCells, self.addressCells]]];
+            if(didIncludeState)
+            {
+                [self.tableViews[1] insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
+            }
+            else if(didRemoveState)
+            {
+                [self.tableViews[1] deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
+            }
         }
         else
         {
             [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells,self.recipientTypeFieldCells, self.addressCells]]];
+            if(didIncludeState)
+            {
+                [self.tableViews[0] insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:3]] withRowAnimation:UITableViewRowAnimationNone];
+            }
+            else if(didRemoveState)
+            {
+                [self.tableViews[0] deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:3]] withRowAnimation:UITableViewRowAnimationNone];
+            }
         }
-        [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
     }
 
 }
@@ -993,7 +1019,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 -(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
 {
-    [super suggestionTable:table selectedObject:object];
     if(table.associatedView == self.nameCell)
     {
         //Name suggestion
@@ -1006,6 +1031,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         {
             [self didSelectRecipient:(Recipient*)[self.objectModel.managedObjectContext objectWithID:wrapper.managedObjectId]];
         }
+        [self moveFocusOnNextEntryAfterCell:self.nameCell];
     }
     else if(table.associatedView == self.countryCell)
     {
@@ -1023,8 +1049,17 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 - (void)didSelectCountry:(NSString *)country
 {
     self.countryCell.value = country;
-    [self includeStateCell:[[self.countryCell.value lowercaseString] caseInsensitiveCompare:@"usa"]==NSOrderedSame];
-	[self moveFocusOnNextEntryAfterCell:self.countryCell];
+    BOOL shouldIncludeStateCell = [@"usa" caseInsensitiveCompare:[self.countryCell.value lowercaseString]] == NSOrderedSame;
+    [self includeStateCell: shouldIncludeStateCell];
+    if(shouldIncludeStateCell)
+    {
+        [self.stateCell.entryField becomeFirstResponder];
+    }
+    else
+    {
+        [self.addressCell.entryField becomeFirstResponder];
+    }
+    
 }
 
 #pragma mark - CountrySelectionCell Delegate
