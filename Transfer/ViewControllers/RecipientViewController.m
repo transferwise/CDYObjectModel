@@ -592,7 +592,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     recipientInput.addressPostCode = [self.postCodeCell value];
     recipientInput.addressCity = [self.cityCell value];
     recipientInput.addressCountryCode = [self.countryCell value];
-    if ([self.cityCell.value caseInsensitiveCompare:@"usa"]== NSOrderedSame)
+    if ([self.countryCell.value caseInsensitiveCompare:@"usa"]== NSOrderedSame)
     {
         recipientInput.addressState = [self.stateCell value];
     }
