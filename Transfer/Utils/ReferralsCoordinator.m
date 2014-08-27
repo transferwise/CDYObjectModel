@@ -56,6 +56,8 @@
 	ReferralLinkOperation *referralLinkOperation = [ReferralLinkOperation operation];
 	self.currentOperation = referralLinkOperation;
 	
+	__weak UIViewController* weakController = controller;
+	
 	[referralLinkOperation setResultHandler:^(NSError *error, NSString *referralLink) {
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[hud hide];
@@ -65,7 +67,7 @@
 				InviteViewController *inviteController = [[InviteViewController alloc] init];
 				inviteController.inviteUrl = referralLink;
 				inviteController.objectModel = self.objectModel;
-				[inviteController presentOnViewController:controller.view.window.rootViewController];
+				[inviteController presentOnViewController:weakController.view.window.rootViewController];
 				return;
 			}
 			

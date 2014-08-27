@@ -2662,12 +2662,12 @@
 				EACF763E175C71B4008F2A03 /* RecipientProfileCommitter.h */,
 				EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */,
 				EA59296E17589F3A007C0072 /* RecipientProfileValidation.h */,
+				479B54A719AE1B2500970E4F /* ReferralsCoordinator.h */,
+				479B54A819AE1B2500970E4F /* ReferralsCoordinator.m */,
 				47AC3F8F1987AFAC005491C6 /* SuggestionCellProvider.h */,
 				47AC3F901987AFAC005491C6 /* SuggestionCellProvider.m */,
 				38CB1F7A19AC9C2B00CD0953 /* StateSuggestionProvider.h */,
 				38CB1F7B19AC9C2B00CD0953 /* StateSuggestionProvider.m */,
-				479B54A719AE1B2500970E4F /* ReferralsCoordinator.h */,
-				479B54A819AE1B2500970E4F /* ReferralsCoordinator.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
