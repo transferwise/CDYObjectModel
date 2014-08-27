@@ -334,7 +334,10 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
             return;
         }
 
-        [self.tableView reloadData];
+		[self.tableView reloadData];
+		[self.tableView reloadRowsAtIndexPaths:[ContactsViewController generateIndexPathsFrom:0
+																						withCount:self.allRecipients.count]
+							  withRowAnimation:UITableViewRowAnimationFade];
     });
 }
 

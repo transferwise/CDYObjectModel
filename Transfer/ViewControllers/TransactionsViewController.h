@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Constants.h"
 #import "TransferPayIPadViewController.h"
-#import "CancelableCellViewController.h"
+#import "CancellableCellViewController.h"
 
 @class ObjectModel;
 
-@interface TransactionsViewController : CancelableCellViewController<TransferPayIpadViewControllerDelegate>
+@interface TransactionsViewController : CancellableCellViewController<TransferPayIpadViewControllerDelegate>
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 

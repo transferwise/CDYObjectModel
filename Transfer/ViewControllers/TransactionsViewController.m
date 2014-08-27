@@ -331,18 +331,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [operation execute];
 }
 
-+ (NSArray *)generateIndexPathsFrom:(NSInteger)start withCount:(NSInteger)count
-{
-	NSMutableArray* results = [[NSMutableArray alloc] initWithCapacity:count];
-	
-	for (int i = 0; i < count; i++)
-	{
-		[results addObject:[NSIndexPath indexPathForRow:start + i inSection:0]];
-	}
-	
-	return results;
-}
-
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [self checkReloadNeeded];
