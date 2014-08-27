@@ -721,4 +721,23 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     self.currencyCell.titleLabel.text =  [NSString stringWithFormat:NSLocalizedString(@"recipient.controller.scell.title.recipient.currency", nil),recipientName];
 }
 
+#pragma mark - Configure for interface orientation
+-(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation
+{
+    //Lots of magic numbers here to match designs. Not sure what to do...
+    if(UIInterfaceOrientationIsPortrait(orientation))
+    {
+        self.firstColumnLeftMargin.constant = 176.f;
+        self.secondColumnLeftEdgeConstraint.constant = -409.f;
+        self.secondColumnTopConstraint.constant = self.firstColumnHeightConstraint.constant + 50.f;
+        
+    }
+    else
+    {
+        self.firstColumnLeftMargin.constant = 60.f;
+        self.secondColumnLeftEdgeConstraint.constant = 79.f;
+        self.secondColumnTopConstraint.constant = 0.f;
+    }
+}
+
 @end
