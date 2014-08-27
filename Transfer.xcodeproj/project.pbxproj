@@ -341,8 +341,6 @@
 		47343ACF1977E093009D9C3A /* RecipientsFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47343ACD1977E093009D9C3A /* RecipientsFooterView.m */; };
 		47343AD11977E0B1009D9C3A /* RecipientsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47343AD01977E0B1009D9C3A /* RecipientsFooterView.xib */; };
 		47343AD21977E0B1009D9C3A /* RecipientsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47343AD01977E0B1009D9C3A /* RecipientsFooterView.xib */; };
-		47343AD41977E0DD009D9C3A /* RecipientsFooterView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47343AD31977E0DD009D9C3A /* RecipientsFooterView~ipad.xib */; };
-		47343AD51977E0DD009D9C3A /* RecipientsFooterView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47343AD31977E0DD009D9C3A /* RecipientsFooterView~ipad.xib */; };
 		4735E4D51992258C00F41D1E /* LoginHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4735E4D41992258C00F41D1E /* LoginHelper.m */; };
 		4735E4D61992258C00F41D1E /* LoginHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4735E4D41992258C00F41D1E /* LoginHelper.m */; };
 		473DF972196D5ED600524C64 /* FloatingLabelTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 473DF971196D5ED600524C64 /* FloatingLabelTextField.m */; };
@@ -1152,7 +1150,6 @@
 		47343ACC1977E093009D9C3A /* RecipientsFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientsFooterView.h; sourceTree = "<group>"; };
 		47343ACD1977E093009D9C3A /* RecipientsFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientsFooterView.m; sourceTree = "<group>"; };
 		47343AD01977E0B1009D9C3A /* RecipientsFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientsFooterView.xib; sourceTree = "<group>"; };
-		47343AD31977E0DD009D9C3A /* RecipientsFooterView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecipientsFooterView~ipad.xib"; sourceTree = "<group>"; };
 		4735E4D31992258C00F41D1E /* LoginHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginHelper.h; sourceTree = "<group>"; };
 		4735E4D41992258C00F41D1E /* LoginHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginHelper.m; sourceTree = "<group>"; };
 		473DF970196D5ED600524C64 /* FloatingLabelTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingLabelTextField.h; sourceTree = "<group>"; };
@@ -1982,7 +1979,6 @@
 				47343ACC1977E093009D9C3A /* RecipientsFooterView.h */,
 				47343ACD1977E093009D9C3A /* RecipientsFooterView.m */,
 				47343AD01977E0B1009D9C3A /* RecipientsFooterView.xib */,
-				47343AD31977E0DD009D9C3A /* RecipientsFooterView~ipad.xib */,
 				476461E71982859F00F16F05 /* StyledPlaceholderTextField.h */,
 				476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */,
 			);
@@ -2920,7 +2916,6 @@
 				EA31A22717DDB29B00F937F7 /* TabBarActivityIndicatorView.xib in Resources */,
 				471CA007197FCB2200BCA3B4 /* TabbedHeaderViewController.xib in Resources */,
 				EA31A22817DDB29B00F937F7 /* currencies.json in Resources */,
-				47343AD51977E0DD009D9C3A /* RecipientsFooterView~ipad.xib in Resources */,
 				47971C65199A3F1F0018FDA8 /* DoublePasswordEntryCell~ipad.xib in Resources */,
 				EA31A22917DDB29B00F937F7 /* currency_pairs.json in Resources */,
 				EA31A22A17DDB29B00F937F7 /* recipient_types.json in Resources */,
@@ -3068,7 +3063,6 @@
 				47F84D621988E83300886D41 /* CountrySelectionCell.xib in Resources */,
 				471CA006197FCB2200BCA3B4 /* TabbedHeaderViewController.xib in Resources */,
 				EA225CBA178EEA8A009D6B83 /* currencies.json in Resources */,
-				47343AD41977E0DD009D9C3A /* RecipientsFooterView~ipad.xib in Resources */,
 				EA225CBB178EEA8A009D6B83 /* currency_pairs.json in Resources */,
 				EA225CBC178EEA8A009D6B83 /* recipient_types.json in Resources */,
 				BB7EAE8A17AFE037006A7182 /* SwitchCell.xib in Resources */,

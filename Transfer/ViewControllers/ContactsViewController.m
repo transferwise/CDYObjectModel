@@ -66,11 +66,14 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
     [self.tableView registerNib:[UINib nibWithNibName:@"RecipientCell" bundle:nil] forCellReuseIdentifier:kRecipientCellIdentifier];
 	
-	self.footerView = [[[NSBundle mainBundle] loadNibNamed:@"RecipientsFooterView" owner:self options:nil] objectAtIndex:0];
-	[self.footerView commonSetup];
-	self.footerView.delegate = self;
-    self.footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-	self.tableView.tableFooterView = self.footerView;
+	if (!IPAD)
+	{
+		self.footerView = [[[NSBundle mainBundle] loadNibNamed:@"RecipientsFooterView" owner:self options:nil] objectAtIndex:0];
+		[self.footerView commonSetup];
+		self.footerView.delegate = self;
+		self.footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+		self.tableView.tableFooterView = self.footerView;
+	}
     
     self.titleLabel.text = self.title;
 }
