@@ -113,8 +113,8 @@
         [NavigationBarCustomiser noStyling];
         MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
         [controller setMailComposeDelegate:self];
-        [controller setSubject:NSLocalizedString(@"invite.email.subject", nil)];
-        NSString *messageBody = [NSString stringWithFormat:NSLocalizedString(@"invite.email.message", nil), [url absoluteString], [self.objectModel currentUser].personalProfile.firstName];
+        [controller setSubject:[NSString stringWithFormat:NSLocalizedString(@"invite.email.subject", nil), [self.objectModel currentUser].personalProfile.firstName]];
+        NSString *messageBody = [NSString stringWithFormat:NSLocalizedString(@"invite.email.message", nil), [url absoluteString], [self.objectModel currentUser].personalProfile.firstName, [self.objectModel currentUser].personalProfile.firstName];
         [controller setMessageBody:messageBody isHTML:YES];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
         [self  presentViewController:controller animated:YES completion:^{
@@ -129,7 +129,7 @@
 
     MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
     [controller setMessageComposeDelegate:self];
-    NSString *messageBody = [NSString stringWithFormat:NSLocalizedString(@"invite.sms.message", nil), [url absoluteString]];
+    NSString *messageBody = [NSString stringWithFormat:NSLocalizedString(@"invite.sms.message", nil), [url absoluteString], [self.objectModel currentUser].personalProfile.firstName];
     [controller setBody:messageBody];
     [self  presentViewController:controller animated:YES completion:^{
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];

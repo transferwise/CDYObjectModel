@@ -12,9 +12,12 @@
 @implementation UIView (SeparatorLine)
 
 + (UIView *)getSeparatorLineWithParentFrame:(CGRect)parentFrame
+							  showFullWidth:(BOOL)showFullWidth
 {
 	CGFloat lineThickness = 1.0f / [[UIScreen mainScreen] scale];
-	UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(parentFrame.origin.x + 10.0f, parentFrame.size.height - lineThickness, parentFrame.size.width - 15.0f, lineThickness)];
+	
+	UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(parentFrame.origin.x + (showFullWidth ? 0.f : 10.0f), parentFrame.size.height - lineThickness, parentFrame.size.width - (showFullWidth ? 0 : 15.0f), lineThickness)];
+	
 	separatorLine.bgStyle = @"SeparatorGrey";
 	separatorLine.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	

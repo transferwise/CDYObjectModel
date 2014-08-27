@@ -15,6 +15,11 @@
 #import "TRWAlertView.h"
 #import "TRWProgressHUD.h"
 #import "ReferralListOperation.h"
+#import "AddressBookManager.h"
+#import "PhoneLookupWrapper.h"
+#import "User.h"
+#import "ObjectModel+Users.h"
+#import "PersonalProfile.h"
 
 @interface InvitationsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *profilePictureContainer;
@@ -43,6 +48,71 @@
     if (self) {
     }
     return self;
+}
+- (void)viewDidLoad
+{
+	User *user = [self.objectModel currentUser];
+	
+	NSString* ownNumber = user.personalProfile.phoneNumber;
+	
+	if (ownNumber)
+	{
+		AddressBookManager *manager = [[AddressBookManager alloc] init];
+		
+		[manager getPhoneLookupWithHandler:^(NSArray *phoneLookup) {
+			NSMutableArray* matchingLookups = [[NSMutableArray alloc] initWithCapacity:self.profilePictures.count];
+			
+			//get profiles having pics, at least 2 numbers and of those 1 has the same country code
+			for (PhoneLookupWrapper *wrapper in phoneLookup)
+			{
+				if(matchingLookups.count >= self.profilePictures.count)
+				{
+					break;
+				}
+				
+				if ([wrapper hasPhonesWithDifferentCountryCodes]
+					&& [wrapper hasPhoneWithMatchingCountryCode:ownNumber])
+				{
+					[matchingLookups addObject:wrapper];
+				}
+			}
+			
+			//if we didn't get the necessary amount, try to get more ignoring the "same country code" rule
+			if (matchingLookups.count < self.profilePictures.count)
+			{
+				for (PhoneLookupWrapper *wrapper in phoneLookup)
+				{
+					if ([wrapper hasPhonesWithDifferentCountryCodes]
+						&& [matchingLookups indexOfObject:wrapper] == NSNotFound)
+					{
+						[matchingLookups addObject:wrapper];
+						
+						if (matchingLookups.count >= self.profilePictures.count)
+						{
+							break;
+						}
+					}
+				}
+			}
+			
+			//get images for chosen wrappers
+			int limit = (matchingLookups.count < self.profilePictures.count) ? matchingLookups.count : self.profilePictures.count;
+			for (int i = 0; i < limit; i++)
+			{
+				[manager getImageForRecordId:((PhoneLookupWrapper *)matchingLookups[i]).recordId
+								  completion:^(UIImage *image) {
+									  UIImageView *viewToChange = ((UIImageView *)self.profilePictures[i]);
+									  [UIView transitionWithView:viewToChange
+														duration:0.5f
+														 options:UIViewAnimationOptionTransitionCrossDissolve
+													  animations:^{
+														  viewToChange.image = image;
+													  }
+													  completion:nil];
+								  }];
+			}
+		}];
+	}
 }
 
 -(void)viewWillAppear:(BOOL)animated

@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Constants.h"
-#import "FixSeparatorCell.h"
+#import "SeparatorViewCell.h"
 
-@interface SwipeToCancelCell : FixSeparatorCell<UIGestureRecognizerDelegate>
+@interface SwipeToCancelCell : SeparatorViewCell<UIGestureRecognizerDelegate>
 
 @property (readonly, nonatomic) UIView *slidingContentView;
 @property (nonatomic, readonly) BOOL isCancelVisible;
