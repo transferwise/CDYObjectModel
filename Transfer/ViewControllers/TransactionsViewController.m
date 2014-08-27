@@ -80,6 +80,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 {
     [super viewDidLoad];
 
+	self.loadingFooterView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.tableView registerNib:[UINib nibWithNibName:@"PaymentCell" bundle:nil] forCellReuseIdentifier:kPaymentCellIdentifier];
     PullToRefreshView* refreshView = [PullToRefreshView addInstanceToScrollView:self.tableView];
     refreshView.targetHeight = 60.0f;
