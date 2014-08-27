@@ -103,6 +103,12 @@
 	[self.profileSource setTableViews:self.tableViews];
 
     [self createPresentationCells];
+    self.stateCell = self.profileSource.stateCell;
+    self.stateCellProvider = [[StateSuggestionProvider alloc] init];
+    [super configureWithDataSource:self.stateCellProvider
+                             entryCell:self.stateCell
+                                height:self.stateCell.frame.size.height];
+    
 	[self createFooterView];
 }
 
@@ -154,7 +160,6 @@
 	TextEntryCell *emailCell = nil;
 	DoublePasswordEntryCell *passwordCell = nil;
 	SwitchCell *sendAsBusinessCell = nil;
-    TextEntryCell *stateCell = nil;
 	
 	for (NSArray* table in presented)
 	{
@@ -189,7 +194,7 @@
 			}
 			
 			if(countryCell && emailCell
-			   && passwordCell && sendAsBusinessCell && stateCell)
+			   && passwordCell && sendAsBusinessCell)
 			{
 				break;
 			}
@@ -200,6 +205,7 @@
 	[self setEmailCell:emailCell];
 	[self setPasswordCell:passwordCell];
 	[self setSendAsBusinessCell:sendAsBusinessCell];
+
 }
 
 - (void)setObjectModel:(ObjectModel *)objectModel
@@ -307,15 +313,6 @@
 	
 	if (stateCell)
 	{
-        if(!self.stateCell) {
-            self.stateCell = stateCell;
-            self.stateCellProvider = [[StateSuggestionProvider alloc] init];
-            
-            [super configureWithDataSource:self.stateCellProvider
-                                 entryCell:self.stateCell
-                                    height:self.stateCell.frame.size.height];
-            
-        }
 		[stateCell.entryField setDelegate:self];
 	}
 	
