@@ -89,6 +89,7 @@
 
 -(void)updateSuggestionTablePositions
 {
+    UIImage* backgroundImage;
     for (TextFieldSuggestionTable* table in self.suggestionTables)
     {
         [table removeFromSuperview];
@@ -96,7 +97,11 @@
         
         if(!IPAD)
         {
-            UIImageView* background = [[UIImageView alloc] initWithImage:[self.view renderBlurWithTintColor:nil]];
+            if(!backgroundImage)
+            {
+                backgroundImage = [self.view renderBlurWithTintColor:nil];
+            }
+            UIImageView* background = [[UIImageView alloc] initWithImage:backgroundImage];
             background.contentMode = UIViewContentModeBottom;
             table.backgroundView = background;
             
