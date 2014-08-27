@@ -328,7 +328,7 @@ We'll refund the remaining money to your bank account once the transfer is compl
 "refund.details.header.description.iPad" = "To guarantee that %@ receives exactly %@, we asked you to send a little extra money.
 
 We'll refund the remaining money to your bank account once the transfer is complete.";
-"refund.details.holders.name.label" = "Your name";
+"refund.details.holders.name.label" = "Your account holder name";
 "refund.details.footer.button.title" = "Continue";
 
 

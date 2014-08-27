@@ -93,7 +93,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     [self setHolderNameCell:nameCell];
     [nameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [nameCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
-    [nameCell configureWithTitle:NSLocalizedString(@"refund.details.holders.name.label", nil) value:self.payment.businessProfileUsed?[self.payment.user.businessProfile name]:self.payment.user.personalProfile.fullName];
+    [nameCell configureWithTitle:NSLocalizedString(@"refund.details.holders.name.label", nil) value:@""];
     __weak typeof(self) weakSelf = self;
     [nameCell setSelectionHandler:^(Recipient *recipient) {
         [weakSelf didSelectRecipient:recipient];
