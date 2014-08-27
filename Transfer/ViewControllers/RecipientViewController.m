@@ -62,6 +62,8 @@
 #import "ObjectModel+Countries.h"
 #import "CurrenciesOperation.h"
 #import "CountriesOperation.h"
+#import "CountrySuggestionCellProvider.h"
+#import "StateSuggestionProvider.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
@@ -118,6 +120,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic,strong)TextEntryCell *cityCell;
 @property (nonatomic,strong)CountrySelectionCell *countryCell;
 @property (nonatomic,strong)TextEntryCell *stateCell;
+
+@property (nonatomic, strong) CountrySuggestionCellProvider *countryCellProvider;
+@property (nonatomic, strong) StateSuggestionProvider *stateCellProvider;
+
 
 
 - (IBAction)addButtonPressed:(id)sender;
@@ -191,7 +197,63 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 						 entryCell:nameCell
 							height:self.cellHeight];
     
-    NSMutableArray *addressCells = [NSMutableArray array];
+    
+     NSMutableArray *addressCells = [NSMutableArray array];
+    
+    CountrySelectionCell *countryCell = [CountrySelectionCell loadInstance];
+    [self setCountryCell:countryCell];
+    [addressCells addObject:countryCell];
+    [countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
+    [countryCell setCellTag:@"countryCode"];
+    NSFetchedResultsController* countriesFetcher = [self.objectModel fetchedControllerForAllCountries];
+    
+    self.countryCellProvider = [[CountrySuggestionCellProvider alloc] init];
+    
+    [self.countryCellProvider setAutoCompleteResults:[self.objectModel fetchedControllerForAllCountries]];
+    
+    [super configureWithDataSource:self.countryCellProvider
+						 entryCell:self.countryCell
+							height:self.countryCell.frame.size.height];
+	
+	[self.countryCell setSelectionHandler:^(NSString *countryName) {
+        [weakSelf didSelectCountry:countryName];
+    }];
+    
+	self.countryCell.countrySelectionDelegate = self;
+    
+    TRWProgressHUD * hud = nil;
+    if([countriesFetcher.fetchedObjects count]<=0)
+    {
+        hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+    }
+    CountriesOperation *operation = [CountriesOperation operation];
+    [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
+    [operation setCompletionHandler:^(NSError *error) {
+        [hud hide];
+        if (error) {
+            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.countries.refresh.error.title", nil)
+                                                               message:NSLocalizedString(@"personal.profile.countries.refresh.error.message", nil)];
+            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+            [alertView show];
+            return;
+        }
+        
+    }];
+    [operation execute];
+    
+    TextEntryCell *stateCell = [TextEntryCell loadInstance];
+    [self setStateCell:stateCell];
+    [stateCell configureWithTitle:NSLocalizedString(@"personal.profile.state.label", nil) value:@""];
+    [stateCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
+    [stateCell setCellTag:@"state"];
+    
+    self.stateCellProvider = [[StateSuggestionProvider alloc] init];
+    [super configureWithDataSource:self.stateCellProvider
+                         entryCell:self.stateCell
+                            height:self.stateCell.frame.size.height];
+    
+
     
     TextEntryCell *addressCell = [TextEntryCell loadInstance];
     [self setAddressCell:addressCell];
@@ -212,40 +274,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [cityCell configureWithTitle:NSLocalizedString(@"personal.profile.city.label", nil) value:@""];
     [cityCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
     [cityCell setCellTag:@"city"];
-    
-    CountrySelectionCell *countryCell = [CountrySelectionCell loadInstance];
-    [self setCountryCell:countryCell];
-    [addressCells addObject:countryCell];
-    [countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
-    [countryCell setCellTag:@"countryCode"];
-    NSFetchedResultsController* countriesFetcher = [self.objectModel fetchedControllerForAllCountries];
-    
-    TRWProgressHUD * hud = nil;
-    if([countriesFetcher.fetchedObjects count]<=0)
-    {
-        hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-    }
-    CountriesOperation *operation = [CountriesOperation operation];
-    [self setExecutedOperation:operation];
-    [operation setObjectModel:self.objectModel];
-    [operation setCompletionHandler:^(NSError *error) {
-        [hud hide];
-        if (error) {
-            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.countries.refresh.error.title", nil)
-                                                               message:NSLocalizedString(@"personal.profile.countries.refresh.error.message", nil)];
-            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-            [alertView show];
-            return;
-        }
-    }];
-    [operation execute];
-    countryCell.delegate = self;
-    
-    TextEntryCell *stateCell = [TextEntryCell loadInstance];
-    [self setStateCell:stateCell];
-    [stateCell configureWithTitle:NSLocalizedString(@"personal.profile.state.label", nil) value:@""];
-    [stateCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
-    [stateCell setCellTag:@"state"];
     
     self.addressCells = addressCells;
     
@@ -491,7 +519,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     self.countryCell.value = recipient.addressCountryCode;
     self.stateCell.value = recipient.addressState;
     
-    [self includeStateCell:([recipient.addressCountryCode caseInsensitiveCompare:@"usa"]==NSOrderedSame)];
+    [self includeStateCell:([@"usa" caseInsensitiveCompare:recipient.addressCountryCode]==NSOrderedSame)];
     
 }
 
@@ -886,22 +914,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 
-#pragma mark - Suggestion Table
-
--(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
-{
-    [super suggestionTable:table selectedObject:object];
-    EmailLookupWrapper* wrapper = (EmailLookupWrapper*)object;
-    if(wrapper.recordId)
-    {
-        [self loadDataFromWrapper:wrapper];
-    }
-    else if (wrapper.managedObjectId)
-    {
-        [self didSelectRecipient:(Recipient*)[self.objectModel.managedObjectContext objectWithID:wrapper.managedObjectId]];
-    }
-    
-}
+#pragma mark - Text entry finisehd
 
 -(void)textFieldEntryFinished
 {
@@ -944,23 +957,27 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     {
         if ([self.addressCells indexOfObject:self.stateCell]==NSNotFound)
         {
-            [self.addressCells addObject:self.stateCell];
+            [self.addressCells insertObject:self.stateCell atIndex:1];
         }
     }
     else
     {
         [self.addressCells removeObject:self.stateCell];
     }
-    
-    if(IPAD)
+ 
+    if(self.recipientType.recipientAddressRequired)
     {
-        [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells],@[self.recipientTypeFieldCells, self.addressCells]]];
+        if(IPAD)
+        {
+            [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells],@[self.recipientTypeFieldCells, self.addressCells]]];
+        }
+        else
+        {
+            [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells,self.recipientTypeFieldCells, self.addressCells]]];
+        }
+        [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
     }
-    else
-    {
-        [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells,self.recipientTypeFieldCells, self.addressCells]]];
-    }
-    [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
+
 }
 
 -(PendingPayment*)pendingPayment
@@ -970,6 +987,50 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         return [self.objectModel pendingPayment];
     }
     return nil;
+}
+
+#pragma mark - suggestions tables
+
+-(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
+{
+    [super suggestionTable:table selectedObject:object];
+    if(table.associatedView == self.nameCell)
+    {
+        //Name suggestion
+        EmailLookupWrapper* wrapper = (EmailLookupWrapper*)object;
+        if(wrapper.recordId)
+        {
+            [self loadDataFromWrapper:wrapper];
+        }
+        else if (wrapper.managedObjectId)
+        {
+            [self didSelectRecipient:(Recipient*)[self.objectModel.managedObjectContext objectWithID:wrapper.managedObjectId]];
+        }
+    }
+    else if(table.associatedView == self.countryCell)
+    {
+        //Country suggestion
+        [self didSelectCountry:(NSString *)object];
+    }
+    else
+    {
+        //state suggestion
+        self.stateCell.value = (NSString*)object;
+        [self moveFocusOnNextEntryAfterCell:self.stateCell];
+    }
+}
+
+- (void)didSelectCountry:(NSString *)country
+{
+    self.countryCell.value = country;
+    [self includeStateCell:[[self.countryCell.value lowercaseString] caseInsensitiveCompare:@"usa"]==NSOrderedSame];
+	[self moveFocusOnNextEntryAfterCell:self.countryCell];
+}
+
+#pragma mark - CountrySelectionCell Delegate
+- (Country *)getCountryByCode:(NSString *)code
+{
+	return [self.countryCellProvider getCountryByCode:code];
 }
 
 #pragma mark - Configure for interface orientation

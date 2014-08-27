@@ -40,12 +40,6 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
 	Country *selected = [self.countrySelectionDelegate getCountryByCode:value];
 	
     self.selectedCountry = selected;
-	
-    if (!selected)
-	{
-        return;
-    }
-	
     [self.entryField setText:selected.name];
 }
 
