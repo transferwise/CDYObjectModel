@@ -384,6 +384,8 @@
 		47971C68199A3FB60018FDA8 /* CountrySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C66199A3FB60018FDA8 /* CountrySelectionCell~ipad.xib */; };
 		47971C6A199A4E830018FDA8 /* DoubleEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C69199A4E830018FDA8 /* DoubleEntryCell~ipad.xib */; };
 		47971C6B199A4E830018FDA8 /* DoubleEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C69199A4E830018FDA8 /* DoubleEntryCell~ipad.xib */; };
+		479B54A919AE1B2500970E4F /* ReferralsCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B54A819AE1B2500970E4F /* ReferralsCoordinator.m */; };
+		479B54AA19AE1B2500970E4F /* ReferralsCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B54A819AE1B2500970E4F /* ReferralsCoordinator.m */; };
 		479B692C19487865001FA4FE /* TransferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B692A19487865001FA4FE /* TransferDetailsViewController.m */; };
 		479B692D19487865001FA4FE /* TransferDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479B692B19487865001FA4FE /* TransferDetailsViewController.xib */; };
 		479B692F194878CA001FA4FE /* TransferDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479B692E194878CA001FA4FE /* TransferDetailsViewController~ipad.xib */; };
@@ -1186,6 +1188,8 @@
 		47971C63199A3F1F0018FDA8 /* DoublePasswordEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DoublePasswordEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C66199A3FB60018FDA8 /* CountrySelectionCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CountrySelectionCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C69199A4E830018FDA8 /* DoubleEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DoubleEntryCell~ipad.xib"; sourceTree = "<group>"; };
+		479B54A719AE1B2500970E4F /* ReferralsCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralsCoordinator.h; sourceTree = "<group>"; };
+		479B54A819AE1B2500970E4F /* ReferralsCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralsCoordinator.m; sourceTree = "<group>"; };
 		479B692919487865001FA4FE /* TransferDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferDetailsViewController.h; sourceTree = "<group>"; };
 		479B692A19487865001FA4FE /* TransferDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDetailsViewController.m; sourceTree = "<group>"; };
 		479B692B19487865001FA4FE /* TransferDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferDetailsViewController.xib; sourceTree = "<group>"; };
@@ -2662,6 +2666,8 @@
 				47AC3F901987AFAC005491C6 /* SuggestionCellProvider.m */,
 				38CB1F7A19AC9C2B00CD0953 /* StateSuggestionProvider.h */,
 				38CB1F7B19AC9C2B00CD0953 /* StateSuggestionProvider.m */,
+				479B54A719AE1B2500970E4F /* ReferralsCoordinator.h */,
+				479B54A819AE1B2500970E4F /* ReferralsCoordinator.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -3338,7 +3344,6 @@
 				389F682E198FC1C6006CF1F6 /* ObjectModel+Recipients.m in Sources */,
 				389F6840198FC1C6006CF1F6 /* PaymentMadeIndicator.m in Sources */,
 				EA333F3D18A4C00000D8A44E /* PageZoom.m in Sources */,
-				471C9FFC197FB1AA00BCA3B4 /* FixSeparatorCell.m in Sources */,
 				EA31A14717DDB29B00F937F7 /* SeeHowView.m in Sources */,
 				389F6850198FC1C6006CF1F6 /* User.m in Sources */,
 				389F6814198FC1C6006CF1F6 /* _Setting.m in Sources */,
@@ -3527,6 +3532,7 @@
 				EA31A1BC17DDB29B00F937F7 /* UIDevice-Hardware.m in Sources */,
 				389F6834198FC1C6006CF1F6 /* ObjectModel+Users.m in Sources */,
 				389F6836198FC1C6006CF1F6 /* ObjectModel.m in Sources */,
+				479B54AA19AE1B2500970E4F /* ReferralsCoordinator.m in Sources */,
 				4746EAF919A603BB00D03557 /* ReferralLinkOperation.m in Sources */,
 				EA31A1BD17DDB29B00F937F7 /* FeedbackCoordinator.m in Sources */,
 				EABD864618E2B65D004A5A57 /* TransferMixpanel.m in Sources */,
@@ -3817,6 +3823,7 @@
 				EA8FC93E17D864F100E13969 /* FeedbackCoordinator.m in Sources */,
 				389F6833198FC1C6006CF1F6 /* ObjectModel+Users.m in Sources */,
 				389F6835198FC1C6006CF1F6 /* ObjectModel.m in Sources */,
+				479B54A919AE1B2500970E4F /* ReferralsCoordinator.m in Sources */,
 				4746EAF819A603BB00D03557 /* ReferralLinkOperation.m in Sources */,
 				EABD864518E2B65D004A5A57 /* TransferMixpanel.m in Sources */,
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,

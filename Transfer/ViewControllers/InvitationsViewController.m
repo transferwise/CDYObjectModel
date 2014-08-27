@@ -11,15 +11,14 @@
 #import "MOMStyle.h"
 #import "InviteViewController.h"
 #import "Constants.h"
-#import "ReferralLinkOperation.h"
 #import "TRWAlertView.h"
-#import "TRWProgressHUD.h"
 #import "ReferralListOperation.h"
 #import "AddressBookManager.h"
 #import "PhoneLookupWrapper.h"
 #import "User.h"
 #import "ObjectModel+Users.h"
 #import "PersonalProfile.h"
+#import "ReferralsCoordinator.h"
 
 @interface InvitationsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *profilePictureContainer;
@@ -148,7 +147,7 @@
 -(void)setProgress:(NSUInteger)progress
 {
     self.numberOfFriends = progress;
-    self.numberLabel.text = [NSString stringWithFormat:@"%d",progress];
+    self.numberLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)progress];
     NSUInteger truncatedProgress = progress % 3;
     if(truncatedProgress > 0)
     {
@@ -159,13 +158,36 @@
     {
         self.indicatorContextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"invite.complete.format",nil),progress];
     }
+	
+	if (progress > 0)
+	{
+		//indicator view is always hidden
+		self.indicatorContainer.opaque = NO;
+		self.indicatorContainer.alpha = 0.f;
+		self.indicatorContainer.hidden = NO;
+		self.profilePictureContainer.opaque = NO;
+		self.profilePictureContainer.alpha = 1.f;
+		
+		[UIView animateWithDuration:0.5f
+						 animations:^{
+							 self.profilePictureContainer.alpha = 0.f;
+							 self.indicatorContainer.alpha = 1.f;
+						 }
+						 completion:^(BOOL finished){
+							 self.profilePictureContainer.hidden = YES;
+							 self.profilePictureContainer.opaque = YES;
+							 self.profilePictureContainer.alpha = 1.f;
+							 self.indicatorContainer.opaque = YES;
+						 }];
+	}
+	
+	self.profilePictureContainer.hidden = progress > 0;
+	self.indicatorContainer.hidden = ! self.profilePictureContainer.hidden;
+	
     if(progress >0)
     {
         [self.progressIndicator setProgress:progress animated:YES];
     }
-
-    self.profilePictureContainer.hidden = progress > 0;
-    self.indicatorContainer.hidden = ! self.profilePictureContainer.hidden;
 
     int numberOfRewards = progress/3;
     if(numberOfRewards == 0 && progress == 0)
@@ -231,34 +253,9 @@
 
 - (IBAction)inviteButtonTapped:(id)sender
 {
-	TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-	[hud setMessage:NSLocalizedString(@"invite.link.querying", nil)];
-	ReferralLinkOperation *referralLinkOperation = [ReferralLinkOperation operation];
-	self.currentOperation = referralLinkOperation;
-	__weak InvitationsViewController *weakSelf = self;
-	
-    [referralLinkOperation setResultHandler:^(NSError *error, NSString *referralLink)
-	 {
-		 dispatch_async(dispatch_get_main_queue(), ^{
-			 [hud hide];
-			 
-			 if (!error && referralLink)
-			 {
-				 InviteViewController *controller = [[InviteViewController alloc] init];
-				 controller.inviteUrl = referralLink;
-				 controller.objectModel = weakSelf.objectModel;
-				 [controller presentOnViewController:weakSelf.view.window.rootViewController];
-				 return;
-			 }
-			 
-			 TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"invite.link.error.title", nil)
-																message:NSLocalizedString(@"invite.link.error.message", nil)];
-			 [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-			 [alertView show];
-		 });
-	 }];
-	
-    [referralLinkOperation execute];
+	ReferralsCoordinator* coordinator = [ReferralsCoordinator sharedInstance];
+	coordinator.objectModel = self.objectModel;
+	[coordinator presentOnController:self];
 }
 
 - (void)loadInviteStatus

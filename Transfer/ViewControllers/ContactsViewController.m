@@ -30,6 +30,7 @@
 #import "ConnectionAwareViewController.h"
 #import "RecipientsFooterView.h"
 #import "ContactDetailsViewController.h"
+#import "ReferralsCoordinator.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
@@ -276,7 +277,9 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
 - (void)inviteFriends
 {
-	//implement friends invitation
+	ReferralsCoordinator* coordinator = [ReferralsCoordinator sharedInstance];
+	coordinator.objectModel = self.objectModel;
+	[coordinator presentOnController:self];
 }
 
 - (void)confirmRecipientDelete:(Recipient *)recipient indexPath:(NSIndexPath *)indexPath

@@ -676,8 +676,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 -(void)textFieldEntryFinished
-{
-    
+{    
     [self updateUserNameText];
 }
 
