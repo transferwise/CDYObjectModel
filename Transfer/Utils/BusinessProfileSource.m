@@ -135,7 +135,7 @@ static NSUInteger const kDetailsSection = 1;
     [self.cityCell setEditable:![profile isFieldReadonly:@"city"]];
     [self.countryCell setEditable:![profile isFieldReadonly:@"countryCode"]];
     [self.stateCell setEditable:![profile isFieldReadonly:@"state"]];
-    [self includeStateCell:[profile.countryCode caseInsensitiveCompare:@"usa"]==NSOrderedSame];
+    [self includeStateCell:[@"usa" caseInsensitiveCompare:profile.countryCode]==NSOrderedSame];
 }
 
 - (NSString *)titleForHeaderInSection:(NSInteger)section {
@@ -199,7 +199,7 @@ static NSUInteger const kDetailsSection = 1;
         [self.countryCell setTwoLetterCountryCode:address.countryCode];
     }
     [self.stateCell setValueWhenEditable:address.state];
-    [self includeStateCell:[self.countryCell.value caseInsensitiveCompare:@"usa"]==NSOrderedSame];
+    [self includeStateCell:[@"usa" caseInsensitiveCompare:self.countryCell.value]==NSOrderedSame];
 }
 
 - (void)fillQuickValidation:(QuickProfileValidationOperation *)operation {
@@ -246,7 +246,7 @@ static NSUInteger const kDetailsSection = 1;
 
 -(void)countrySelectionCell:(CountrySelectionCell *)cell selectedCountry:(Country *)country
 {
-    [self includeStateCell:([country.iso3Code caseInsensitiveCompare:@"usa"]==NSOrderedSame)];
+    [self includeStateCell:([@"usa" caseInsensitiveCompare:country.iso3Code]==NSOrderedSame)];
 }
 
 @end

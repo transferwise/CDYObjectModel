@@ -460,7 +460,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     self.countryCell.value = recipient.addressCountryCode;
     self.stateCell.value = recipient.addressState;
     
-    [self includeStateCell:([recipient.addressCountryCode caseInsensitiveCompare:@"usa"]==NSOrderedSame)];
+    [self includeStateCell:([@"usa"caseInsensitiveCompare:recipient.addressCountryCode]==NSOrderedSame)];
     
 }
 
@@ -595,7 +595,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     recipientInput.addressPostCode = [self.postCodeCell value];
     recipientInput.addressCity = [self.cityCell value];
     recipientInput.addressCountryCode = [self.countryCell value];
-    if ([self.countryCell.value caseInsensitiveCompare:@"usa"]== NSOrderedSame)
+    if ([@"usa" caseInsensitiveCompare:self.countryCell.value]== NSOrderedSame)
     {
         recipientInput.addressState = [self.stateCell value];
     }
@@ -817,7 +817,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 -(void)countrySelectionCell:(CountrySelectionCell *)cell selectedCountry:(Country *)country
 {
-    [self includeStateCell:([country.iso3Code caseInsensitiveCompare:@"usa"]==NSOrderedSame)];
+    [self includeStateCell:([@"usa" caseInsensitiveCompare:country.iso3Code]==NSOrderedSame)];
 }
 
 -(void)includeStateCell:(BOOL)includeState
