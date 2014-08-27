@@ -10,6 +10,7 @@
 
 @interface UIView (SeparatorLine)
 
-+ (UIView *)getSeparatorLineWithParentFrame:(CGRect)parentFrame;
++ (UIView *)getSeparatorLineWithParentFrame:(CGRect)parentFrame
+							  showFullWidth:(BOOL)showFullWidth;
 
 @end

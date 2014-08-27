@@ -20,10 +20,11 @@
 
 @implementation ObjectModel (Payments)
 
-- (NSFetchedResultsController *)fetchedControllerForAllPayments {
+- (NSArray *)allPayments
+{
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"remoteId" ascending:NO];
     NSPredicate *presentablePredicate = [NSPredicate predicateWithFormat:@"presentable = YES"];
-    return [self fetchedControllerForEntity:[Payment entityName] predicate:presentablePredicate sortDescriptors:@[sortDescriptor]];
+	return [self fetchEntitiesNamed:[Payment entityName] usingPredicate:presentablePredicate withSortDescriptors:@[sortDescriptor]];
 }
 
 - (Payment *)paymentWithId:(NSNumber *)paymentId {

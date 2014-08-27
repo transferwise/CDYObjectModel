@@ -6,17 +6,17 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-#import "WhyViewController.h"
+#import "SeeHowViewController.h"
 
-@interface WhyViewController ()
+@interface SeeHowViewController ()
 
 @end
 
-@implementation WhyViewController
+@implementation SeeHowViewController
 
--(WhyView *)whyView
+-(SeeHowView *)whyView
 {
-    return (WhyView*)self.view;
+    return (SeeHowView*)self.view;
 }
 
 @end

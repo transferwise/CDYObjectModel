@@ -13,7 +13,7 @@
 
 @interface ObjectModel (Recipients)
 
-- (NSFetchedResultsController *)fetchedControllerForAllUserRecipients;
+- (NSArray *)allUserRecipientsForDisplay;
 - (Recipient *)createOrUpdateRecipientWithData:(NSDictionary *)data;
 - (Recipient *)createOrUpdateRecipientWithData:(NSDictionary *)data hideCreted:(BOOL)hideCreated;
 - (Recipient *)createOrUpdatePayInMethodRecipientWithData:(NSDictionary *)data;

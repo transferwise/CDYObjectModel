@@ -9,7 +9,7 @@
 #import "OptionalSplitViewController.h"
 #import "SwipeToCancelCell.h"
 
-@interface CancelableCellViewController : OptionalSplitViewController
+@interface CancellableCellViewController : OptionalSplitViewController
 
 @property (strong, nonatomic) NSIndexPath* cancellingCellIndex;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
@@ -18,5 +18,7 @@
 - (void)removeCancellingFromCell;
 - (void)setCancellingVisibleForScrolling:(SwipeToCancelCell *)cell
 							   indexPath:(NSIndexPath *)indexPath;
++ (NSArray *)generateIndexPathsFrom:(NSInteger)start
+						  withCount:(NSInteger)count;
 
 @end
