@@ -10,4 +10,6 @@
 
 @interface StateSuggestionProvider : SuggestionCellProvider
 
++(NSString*)stateCodeFromTitle:(NSString*)title;
++(NSString*)titleFromStateCode:(NSString*)code;
 @end
