@@ -374,7 +374,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     if(type != allowedType || (type.recipientAddressRequired && ![recipient hasAddress]))
     {
         self.recipient = nil;
-        self.templateRecipient = recipient;
+        if(recipient)
+        {
+            self.templateRecipient = recipient;
+        }
     }
     else
     {
@@ -383,10 +386,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     type = allowedType;
     
     [self handleSelectionChangeToType:type allTypes:allowedTypes];
-
-    [self setAddressFieldsFromRecipient:recipient];
     
     if (!self.recipient) {
+        //We're creating a new recipient
         if(self.templateRecipient)
         {
             [self.nameCell setValue:self.templateRecipient.name];
@@ -407,7 +409,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
                 }
             }
             
-
+            [self setAddressFieldsFromRecipient:self.templateRecipient];
 
         }
         else
@@ -419,12 +421,16 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
                 [fieldCell setValue:@""];
                 [fieldCell setEditable:YES];
             }
+            [self setAddressFieldsFromRecipient:nil];
         }
+        
+        [self setAddressFieldsEditable:YES];
         
         return;
     }
 
     dispatch_async(dispatch_get_main_queue(), ^{
+        //We're using an existing recipient.
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"ExistingRecipientSelected"];
         [self.nameCell setValue:recipient.name];
         [self.emailCell setValue:recipient.email];
@@ -438,11 +444,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
             RecipientTypeField *field = fieldCell.type;
             [fieldCell setValue:[recipient valueField:field]];
-            if([fieldCell.value length]>0)
-            {
-                [fieldCell setEditable:NO];
-            }
+            [fieldCell setEditable:NO];
         }
+        [self setAddressFieldsFromRecipient:recipient];
+        [self setAddressFieldsEditable:NO];
     });
 }
 
@@ -454,7 +459,14 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     self.cityCell.value = recipient.addressCity;
     self.countryCell.value = recipient.addressCountryCode;
     self.stateCell.value = recipient.addressState;
-    
+}
+
+-(void)setAddressFieldsEditable:(BOOL)editable
+{
+    for(TextEntryCell* cell in self.addressCells)
+    {
+        [cell setEditable:editable];
+    }
 }
 
 - (void)handleCurrencySelection:(Currency *)currency {
