@@ -25,7 +25,8 @@
 
 - (IBAction)inviteTapped:(id)sender
 {
-	[self.delegate inviteFriends];
+
+    [self.delegate inviteFriends];
 }
 
 @end
