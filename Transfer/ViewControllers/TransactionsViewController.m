@@ -266,8 +266,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 }
 
 
-- (void)refreshPaymentsList {
-    if (self.executedOperation) {
+- (void)refreshPaymentsList
+{
+    if (self.executedOperation)
+	{
         return;
     }
 
@@ -301,19 +303,35 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
             }
 			
 			[self.tableView reloadData];
-			if (delta > 0)
+			
+			NSInteger start = 0, count = 0;
+			
+			//data may already be locally stored, this will be overwritten
+			if (delta < 0)
 			{
-				[self.tableView reloadRowsAtIndexPaths:[TransactionsViewController generateIndexPaths:currentCount
-																				withCount:delta]
-									  withRowAnimation:UITableViewRowAnimationFade];
+				return;
 			}
+			else if (delta > 0)
+			{
+				start = currentCount;
+				count = delta;
+			}
+			else if (delta == 0)
+			{
+				start = 0;
+				count = currentCount;
+			}
+			
+			[self.tableView reloadRowsAtIndexPaths:[TransactionsViewController generateIndexPathsFrom:start
+																							withCount:count]
+								  withRowAnimation:UITableViewRowAnimationFade];
         });
     }];
 
     [operation execute];
 }
 
-+ (NSArray *)generateIndexPaths:(NSInteger)start withCount:(NSInteger)count
++ (NSArray *)generateIndexPathsFrom:(NSInteger)start withCount:(NSInteger)count
 {
 	NSMutableArray* results = [[NSMutableArray alloc] initWithCapacity:count];
 	
