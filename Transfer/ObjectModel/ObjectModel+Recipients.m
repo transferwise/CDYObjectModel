@@ -19,12 +19,13 @@
 
 @implementation ObjectModel (Recipients)
 
-- (NSFetchedResultsController *)fetchedControllerForAllUserRecipients {
+- (NSArray *)allUserRecipientsForDisplay
+{
     NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
     NSPredicate *notHiddenPredicate = [NSPredicate predicateWithFormat:@"hidden = NO"];
 	NSPredicate *notHiddenTypePredicate = [NSPredicate predicateWithFormat:@"type.hideFromCreation = NO"];
     NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notHiddenPredicate, notHiddenTypePredicate]];
-    return [self fetchedControllerForEntity:[Recipient entityName] predicate:predicate sortDescriptors:@[nameDescriptor]];
+	return [self fetchEntitiesNamed:[Recipient entityName] usingPredicate:predicate withSortDescriptors:@[nameDescriptor]];
 }
 
 - (Recipient *)recipientWithRemoteId:(NSNumber *)recipientId {

@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-#import "CancelableCellViewController.h"
+#import "CancellableCellViewController.h"
 
-@interface CancelableCellViewController ()
+@interface CancellableCellViewController ()
 
 @end
 
-@implementation CancelableCellViewController
+@implementation CancellableCellViewController
 
 - (SwipeToCancelCell *)getPaymentCell:(NSIndexPath *)index
 {
@@ -39,6 +39,18 @@
 	{
 		[cell setIsCancelVisible:NO animated:NO];
 	}
+}
+
++ (NSArray *)generateIndexPathsFrom:(NSInteger)start withCount:(NSInteger)count
+{
+	NSMutableArray* results = [[NSMutableArray alloc] initWithCapacity:count];
+	
+	for (int i = 0; i < count; i++)
+	{
+		[results addObject:[NSIndexPath indexPathForRow:start + i inSection:0]];
+	}
+	
+	return results;
 }
 
 @end
