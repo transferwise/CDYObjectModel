@@ -7,10 +7,10 @@
 //
 
 #import "TransparentModalViewController.h"
-@class WhyView;
+@class SeeHowView;
 
-@interface WhyViewController : TransparentModalViewController
+@interface SeeHowViewController : TransparentModalViewController
 
-@property (nonatomic,readonly)WhyView* whyView;
+@property (nonatomic,readonly)SeeHowView* whyView;
 
 @end

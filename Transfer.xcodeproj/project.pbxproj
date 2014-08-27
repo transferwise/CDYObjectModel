@@ -59,10 +59,10 @@
 		38274080199529F0009FAB97 /* CardPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3827407E199529F0009FAB97 /* CardPaymentViewController~ipad.xib */; };
 		3831AA37194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
 		3831AA38194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
-		3831AA39194B31A200B3EE5C /* WhyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA35194B31A200B3EE5C /* WhyViewController.m */; };
-		3831AA3B194B31A200B3EE5C /* WhyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA36194B31A200B3EE5C /* WhyViewController.xib */; };
-		3831AA3C194B31A200B3EE5C /* WhyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA36194B31A200B3EE5C /* WhyViewController.xib */; };
-		3831AA41194B5A8B00B3EE5C /* WhyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */; };
+		3831AA39194B31A200B3EE5C /* SeeHowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA35194B31A200B3EE5C /* SeeHowViewController.m */; };
+		3831AA3B194B31A200B3EE5C /* SeeHowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA36194B31A200B3EE5C /* SeeHowViewController.xib */; };
+		3831AA3C194B31A200B3EE5C /* SeeHowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA36194B31A200B3EE5C /* SeeHowViewController.xib */; };
+		3831AA41194B5A8B00B3EE5C /* SeeHowViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA40194B5A8B00B3EE5C /* SeeHowViewController~ipad.xib */; };
 		38342BAB196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
 		38342BAC196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
 		3840862719A20D9900C837C2 /* InvitationsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840862619A20D9900C837C2 /* InvitationsViewController~ipad.xib */; };
@@ -270,7 +270,7 @@
 		38C1A89C199CC5A0000BF59C /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C1A899199CC5A0000BF59C /* InviteViewController.m */; };
 		38C1A89D199CC5A0000BF59C /* InviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C1A89A199CC5A0000BF59C /* InviteViewController.xib */; };
 		38C1A89E199CC5A0000BF59C /* InviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C1A89A199CC5A0000BF59C /* InviteViewController.xib */; };
-		38C632F2194EEBBC008C9E46 /* WhyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */; };
+		38C632F2194EEBBC008C9E46 /* SeeHowViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831AA40194B5A8B00B3EE5C /* SeeHowViewController~ipad.xib */; };
 		38C7B29319742596004324E8 /* HeaderTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C7B29219742596004324E8 /* HeaderTabView.m */; };
 		38C7B29419742596004324E8 /* HeaderTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C7B29219742596004324E8 /* HeaderTabView.m */; };
 		38C7B2A019756A9C004324E8 /* BankTransferViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C7B29F19756A9C004324E8 /* BankTransferViewController~ipad.xib */; };
@@ -432,7 +432,7 @@
 		47FAF345194B2F11004CE986 /* LightBlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF343194B2F11004CE986 /* LightBlueButton.m */; };
 		47FAF348194B3233004CE986 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF347194B3233004CE986 /* UIImage+Color.m */; };
 		47FAF349194B3233004CE986 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF347194B3233004CE986 /* UIImage+Color.m */; };
-		47FAF34A194B371B004CE986 /* WhyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA35194B31A200B3EE5C /* WhyViewController.m */; };
+		47FAF34A194B371B004CE986 /* SeeHowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA35194B31A200B3EE5C /* SeeHowViewController.m */; };
 		47FAF34E194B4E5D004CE986 /* TransferWaitingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF34C194B4E5D004CE986 /* TransferWaitingViewController.m */; };
 		47FAF34F194B4E5D004CE986 /* TransferWaitingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF34C194B4E5D004CE986 /* TransferWaitingViewController.m */; };
 		47FAF350194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FAF34D194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib */; };
@@ -466,7 +466,7 @@
 		BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC691201721416300F0FB1A /* TSAlertViewBackground2.png */; };
 		BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC691211721416300F0FB1A /* TSAlertViewBackground.png */; };
 		BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC691221721416300F0FB1A /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -Wno-deprecated-declarations"; }; };
-		BBCC6338172169980094EABB /* WhyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC6337172169980094EABB /* WhyView.m */; };
+		BBCC6338172169980094EABB /* SeeHowView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC6337172169980094EABB /* SeeHowView.m */; };
 		BC92EA001E7D4BE89CF454A0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F2D1DE7BECC4078BB45E6AD /* libPods.a */; };
 		EA01331E1765FC7700D63C82 /* RoundedCellBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */; };
 		EA0253B617D5C89500F54C18 /* SupportCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0253B517D5C89500F54C18 /* SupportCoordinator.m */; };
@@ -552,7 +552,7 @@
 		EA31A14417DDB29B00F937F7 /* TransferCalculationsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */; };
 		EA31A14517DDB29B00F937F7 /* CalculationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6256172011C500A96770 /* CalculationResult.m */; };
 		EA31A14617DDB29B00F937F7 /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC691221721416300F0FB1A /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -Wno-deprecated-declarations"; }; };
-		EA31A14717DDB29B00F937F7 /* WhyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC6337172169980094EABB /* WhyView.m */; };
+		EA31A14717DDB29B00F937F7 /* SeeHowView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCC6337172169980094EABB /* SeeHowView.m */; };
 		EA31A14817DDB29B00F937F7 /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
 		EA31A14917DDB29B00F937F7 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
 		EA31A14A17DDB29B00F937F7 /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
@@ -915,10 +915,10 @@
 		3827407E199529F0009FAB97 /* CardPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CardPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
 		3831AA32194B31A200B3EE5C /* TransparentModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentModalViewController.h; sourceTree = "<group>"; };
 		3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentModalViewController.m; sourceTree = "<group>"; };
-		3831AA34194B31A200B3EE5C /* WhyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhyViewController.h; sourceTree = "<group>"; };
-		3831AA35194B31A200B3EE5C /* WhyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhyViewController.m; sourceTree = "<group>"; };
-		3831AA36194B31A200B3EE5C /* WhyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhyViewController.xib; sourceTree = "<group>"; };
-		3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WhyViewController~ipad.xib"; sourceTree = "<group>"; };
+		3831AA34194B31A200B3EE5C /* SeeHowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeeHowViewController.h; sourceTree = "<group>"; };
+		3831AA35194B31A200B3EE5C /* SeeHowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeeHowViewController.m; sourceTree = "<group>"; };
+		3831AA36194B31A200B3EE5C /* SeeHowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeeHowViewController.xib; sourceTree = "<group>"; };
+		3831AA40194B5A8B00B3EE5C /* SeeHowViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SeeHowViewController~ipad.xib"; sourceTree = "<group>"; };
 		38342BA9196E9362002FF371 /* DataEntryMultiColumnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryMultiColumnViewController.h; sourceTree = "<group>"; };
 		38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryMultiColumnViewController.m; sourceTree = "<group>"; };
 		3840862619A20D9900C837C2 /* InvitationsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "InvitationsViewController~ipad.xib"; sourceTree = "<group>"; };
@@ -1264,8 +1264,8 @@
 		BBC691211721416300F0FB1A /* TSAlertViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewBackground.png; path = TSAlertView/TSAlertViewBackground.png; sourceTree = "<group>"; };
 		BBC691221721416300F0FB1A /* TSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSAlertView.m; path = TSAlertView/TSAlertView.m; sourceTree = "<group>"; };
 		BBC691231721416300F0FB1A /* TSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSAlertView.h; path = TSAlertView/TSAlertView.h; sourceTree = "<group>"; };
-		BBCC6336172169980094EABB /* WhyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhyView.h; sourceTree = "<group>"; };
-		BBCC6337172169980094EABB /* WhyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhyView.m; sourceTree = "<group>"; };
+		BBCC6336172169980094EABB /* SeeHowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeeHowView.h; sourceTree = "<group>"; };
+		BBCC6337172169980094EABB /* SeeHowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeeHowView.m; sourceTree = "<group>"; };
 		EA01331C1765FC7700D63C82 /* RoundedCellBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedCellBackgroundView.h; sourceTree = "<group>"; };
 		EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedCellBackgroundView.m; sourceTree = "<group>"; };
 		EA0253B417D5C89500F54C18 /* SupportCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportCoordinator.h; sourceTree = "<group>"; };
@@ -1968,8 +1968,8 @@
 				EA8FF68A171D1FA50090A658 /* TRWAlertView.m */,
 				EA8FF6B2171D23B20090A658 /* TRWProgressHUD.h */,
 				EA8FF6B3171D23B20090A658 /* TRWProgressHUD.m */,
-				BBCC6336172169980094EABB /* WhyView.h */,
-				BBCC6337172169980094EABB /* WhyView.m */,
+				BBCC6336172169980094EABB /* SeeHowView.h */,
+				BBCC6337172169980094EABB /* SeeHowView.m */,
 				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
 				38C8A79B19371DBC00714FB3 /* PullToRefreshView.h */,
 				38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */,
@@ -2600,10 +2600,10 @@
 				3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */,
 				EAD3648217E2F394001EFE40 /* UploadMoneyViewController.h */,
 				EAD3648317E2F394001EFE40 /* UploadMoneyViewController.m */,
-				3831AA34194B31A200B3EE5C /* WhyViewController.h */,
-				3831AA35194B31A200B3EE5C /* WhyViewController.m */,
-				3831AA36194B31A200B3EE5C /* WhyViewController.xib */,
-				3831AA40194B5A8B00B3EE5C /* WhyViewController~ipad.xib */,
+				3831AA34194B31A200B3EE5C /* SeeHowViewController.h */,
+				3831AA35194B31A200B3EE5C /* SeeHowViewController.m */,
+				3831AA36194B31A200B3EE5C /* SeeHowViewController.xib */,
+				3831AA40194B5A8B00B3EE5C /* SeeHowViewController~ipad.xib */,
 				38B1C5D4195DBA6400BEE66E /* ConnectionAwareViewController.h */,
 				38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */,
 				470EB6161976BE98001C5D97 /* CancelableCellViewController.h */,
@@ -2815,7 +2815,7 @@
 				38E57F7B192A51DD00D864A2 /* TabViewController.xib in Resources */,
 				EA31A1D217DDB29B00F937F7 /* MainViewController.xib in Resources */,
 				EA84056A17F0A40B00F44916 /* spinner.html in Resources */,
-				3831AA3C194B31A200B3EE5C /* WhyViewController.xib in Resources */,
+				3831AA3C194B31A200B3EE5C /* SeeHowViewController.xib in Resources */,
 				3840862B19A2391D00C837C2 /* SettingsViewController~ipad.xib in Resources */,
 				EA31A1D317DDB29B00F937F7 /* TransactionsViewController.xib in Resources */,
 				EA0523FA191B5AFC00B32899 /* RefundDetailsViewController.xib in Resources */,
@@ -2857,7 +2857,7 @@
 				3800220D192F5774009B1D53 /* CurrencyCell.xib in Resources */,
 				38BD98A6195C5973009F9B4A /* NameSuggestionCell.xib in Resources */,
 				EA31A1EA17DDB29B00F937F7 /* TSAlertViewButtonBackground.png in Resources */,
-				38C632F2194EEBBC008C9E46 /* WhyViewController~ipad.xib in Resources */,
+				38C632F2194EEBBC008C9E46 /* SeeHowViewController~ipad.xib in Resources */,
 				3840862819A20D9900C837C2 /* InvitationsViewController~ipad.xib in Resources */,
 				EA31A1EB17DDB29B00F937F7 /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
 				47AC3F9C1987B2C3005491C6 /* SuggestionCell~ipad.xib in Resources */,
@@ -2961,7 +2961,7 @@
 				EAD39681171BD57000F6D011 /* ContactsViewController.xib in Resources */,
 				EAD39686171BD5B000F6D011 /* PaymentViewController.xib in Resources */,
 				EAD3968B171BD82300F6D011 /* NewPaymentViewController.xib in Resources */,
-				3831AA3B194B31A200B3EE5C /* WhyViewController.xib in Resources */,
+				3831AA3B194B31A200B3EE5C /* SeeHowViewController.xib in Resources */,
 				3840862D19A23F5A00C837C2 /* InviteViewController~ipad.xib in Resources */,
 				EA13E038171BE12E0019FBF0 /* MoneyEntryCell.xib in Resources */,
 				380021AA192B91A9009B1D53 /* TabViewController~ipad.xib in Resources */,
@@ -3010,7 +3010,7 @@
 				47971C64199A3F1F0018FDA8 /* DoublePasswordEntryCell~ipad.xib in Resources */,
 				380021F1192F3DD3009B1D53 /* CurrencySelectorViewController.xib in Resources */,
 				3840863719A370A400C837C2 /* ValidationCell~ipad.xib in Resources */,
-				3831AA41194B5A8B00B3EE5C /* WhyViewController~ipad.xib in Resources */,
+				3831AA41194B5A8B00B3EE5C /* SeeHowViewController~ipad.xib in Resources */,
 				BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */,
 				BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */,
 				EAB61710191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
@@ -3270,7 +3270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47DBE05919703494008915A6 /* InsetRespectingButton.m in Sources */,
-				47FAF34A194B371B004CE986 /* WhyViewController.m in Sources */,
+				47FAF34A194B371B004CE986 /* SeeHowViewController.m in Sources */,
 				479B69421949E7ED001FA4FE /* TransferDetialsHeaderView.m in Sources */,
 				479B69411949E7DA001FA4FE /* TransferDetailsViewController.m in Sources */,
 				479B69401949E7BB001FA4FE /* UIFont+MOMStyle.m in Sources */,
@@ -3339,7 +3339,7 @@
 				389F6840198FC1C6006CF1F6 /* PaymentMadeIndicator.m in Sources */,
 				EA333F3D18A4C00000D8A44E /* PageZoom.m in Sources */,
 				471C9FFC197FB1AA00BCA3B4 /* FixSeparatorCell.m in Sources */,
-				EA31A14717DDB29B00F937F7 /* WhyView.m in Sources */,
+				EA31A14717DDB29B00F937F7 /* SeeHowView.m in Sources */,
 				389F6850198FC1C6006CF1F6 /* User.m in Sources */,
 				389F6814198FC1C6006CF1F6 /* _Setting.m in Sources */,
 				EACD942F18D82C2C00369905 /* NanTracking.m in Sources */,
@@ -3560,7 +3560,7 @@
 			files = (
 				EAAA147A171BC911005B9430 /* main.m in Sources */,
 				EAAA147E171BC911005B9430 /* AppDelegate.m in Sources */,
-				3831AA39194B31A200B3EE5C /* WhyViewController.m in Sources */,
+				3831AA39194B31A200B3EE5C /* SeeHowViewController.m in Sources */,
 				47AC3F8D1987845A005491C6 /* SuggestionDataEntryViewController.m in Sources */,
 				EA0450D417EC5BC1008921DA /* IntroViewController.m in Sources */,
 				EAD39676171BD4EE00F6D011 /* MainViewController.m in Sources */,
@@ -3621,7 +3621,7 @@
 				47C580A3196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */,
 				BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */,
 				EA333F3C18A4C00000D8A44E /* PageZoom.m in Sources */,
-				BBCC6338172169980094EABB /* WhyView.m in Sources */,
+				BBCC6338172169980094EABB /* SeeHowView.m in Sources */,
 				EACD942E18D82C2C00369905 /* NanTracking.m in Sources */,
 				4735E4D51992258C00F41D1E /* LoginHelper.m in Sources */,
 				389F682D198FC1C6006CF1F6 /* ObjectModel+Recipients.m in Sources */,
