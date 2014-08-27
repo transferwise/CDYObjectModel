@@ -410,19 +410,35 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 - (void)didSelectRecipient:(Recipient *)recipient {
-    [self setRecipient:recipient];
     RecipientType* type = recipient ? recipient.type : self.currency.defaultRecipientType;
 
-    NSArray* allowedTypes = [self allTypes];
     
+    
+    NSArray* allowedTypes = [self allTypes];
+    RecipientType *allowedType = type;
     if(![allowedTypes containsObject:type])
     {
-        type = [allowedTypes firstObject];
+        allowedType = [allowedTypes firstObject];
     }
     
+    if(type != allowedType || (type.recipientAddressRequired && ![recipient hasAddress]))
+    {
+        self.recipient = nil;
+        if(recipient)
+        {
+            self.templateRecipient = recipient;
+        }
+    }
+    else
+    {
+        [self setRecipient:recipient];
+    }
+    type = allowedType;
+    
     [self handleSelectionChangeToType:type allTypes:allowedTypes];
-
-    if (!recipient) {
+    
+    if (!self.recipient) {
+        //We're creating a new recipient
         if(self.templateRecipient)
         {
             [self.nameCell setValue:self.templateRecipient.name];
@@ -439,7 +455,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
                     [fieldCell setEditable:NO];
                 }
             }
-
+            
+            [self setAddressFieldsFromRecipient:self.templateRecipient];
 
         }
         else
@@ -451,12 +468,16 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
                 [fieldCell setValue:@""];
                 [fieldCell setEditable:YES];
             }
+            [self setAddressFieldsFromRecipient:nil];
         }
+        
+        [self setAddressFieldsEditable:YES];
         
         return;
     }
 
     dispatch_async(dispatch_get_main_queue(), ^{
+        //We're using an existing recipient.
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"ExistingRecipientSelected"];
         [self.nameCell setValue:recipient.name];
         [self.emailCell setValue:recipient.email];
@@ -467,12 +488,29 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
             RecipientTypeField *field = fieldCell.type;
             [fieldCell setValue:[recipient valueField:field]];
-            if([fieldCell.value length]>0)
-            {
-                [fieldCell setEditable:NO];
-            }
+            [fieldCell setEditable:NO];
         }
+        [self setAddressFieldsFromRecipient:recipient];
+        [self setAddressFieldsEditable:NO];
     });
+}
+
+-(void)setAddressFieldsFromRecipient:(Recipient*)recipient
+{
+
+    self.addressCell.value = recipient.addressFirstLine;
+    self.postCodeCell.value = recipient.addressPostCode;
+    self.cityCell.value = recipient.addressCity;
+    self.countryCell.value = recipient.addressCountryCode;
+    self.stateCell.value = recipient.addressState;
+}
+
+-(void)setAddressFieldsEditable:(BOOL)editable
+{
+    for(TextEntryCell* cell in self.addressCells)
+    {
+        [cell setEditable:editable];
+    }
 }
 
 - (void)handleCurrencySelection:(Currency *)currency {
@@ -622,7 +660,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     recipientInput.addressFirstLine = [self.addressCell value];
     recipientInput.addressPostCode = [self.postCodeCell value];
     recipientInput.addressCity = [self.cityCell value];
-    recipientInput.addressCountryCode = [self.cityCell value];
+    recipientInput.addressCountryCode = [self.countryCell value];
     if ([self.cityCell.value caseInsensitiveCompare:@"usa"]== NSOrderedSame)
     {
         recipientInput.addressState = [self.stateCell value];
