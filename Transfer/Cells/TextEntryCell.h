@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Constants.h"
+#import "SeparatorViewCell.h"
 
 extern NSString *const TWTextEntryCellIdentifier;
 
@@ -18,12 +19,12 @@ extern NSString *const TWTextEntryCellIdentifier;
 
 @end
 
-@interface TextEntryCell : UITableViewCell
+@interface TextEntryCell : SeparatorViewCell
 
 @property (nonatomic, weak) id<TextEntryCellDelegate> delegate;
 @property (nonatomic, strong, readonly) UITextField *entryField;
 @property (nonatomic, copy) NSString *cellTag;
-@property (nonatomic, strong) IBOutlet UIView *separatorLine;
+
 @property (nonatomic, readonly) BOOL valueModified;
 @property (nonatomic) BOOL editable;
 @property (nonatomic) NSInteger maxValueLength;

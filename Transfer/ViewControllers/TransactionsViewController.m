@@ -47,7 +47,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 @property (nonatomic, strong) PaymentsOperation *executedOperation;
 @property (nonatomic, strong) IBOutlet UIView *loadingFooterView;
-@property (nonatomic, strong) NSFetchedResultsController *payments;
+@property (nonatomic, strong) NSArray *payments;
 @property (nonatomic, assign) BOOL showIdentificationView;
 @property (nonatomic, strong) CheckPersonalProfileVerificationOperation *checkOperation;
 @property (nonatomic, assign) IdentificationRequired identificationRequired;
@@ -66,17 +66,21 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 @implementation TransactionsViewController
 
-- (id)init {
+- (id)init
+{
     self = [super initWithNibName:@"TransactionsViewController" bundle:nil];
-    if (self) {
+    if (self)
+	{
         [self setTitle:NSLocalizedString(@"transactions.controller.title", nil)];
     }
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
+	self.loadingFooterView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.tableView registerNib:[UINib nibWithNibName:@"PaymentCell" bundle:nil] forCellReuseIdentifier:kPaymentCellIdentifier];
     PullToRefreshView* refreshView = [PullToRefreshView addInstanceToScrollView:self.tableView];
     refreshView.targetHeight = 60.0f;
@@ -93,20 +97,21 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     self.titleLabel.text = self.title;
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
 
     [self.tableView setContentOffset:CGPointMake(0,- self.tableView.contentInset.top)];
 
-    if (!self.payments) {
-        NSFetchedResultsController *controller = [self.objectModel fetchedControllerForAllPayments];
-        [self setPayments:controller];
-        [controller setDelegate:self];
+    if (!self.payments)
+	{
+		self.payments = [[NSArray alloc] initWithArray:[self.objectModel allPayments]];
         [self.tableView reloadData];
     }
 
@@ -118,11 +123,12 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[self checkPersonalVerificationNeeded];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
 	[super viewDidAppear:animated];
 	
 	//select first row for ipad
-	if(IPAD && [self.payments.fetchedObjects count] > 0)
+	if(IPAD && self.payments.count > 0)
 	{
 		[self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 	}
@@ -140,19 +146,20 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 }
 
 #pragma mark - Table view data source
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[self.payments sections] count];
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.payments sections] objectAtIndex:(NSUInteger) section];
-    return [sectionInfo numberOfObjects];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.payments.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PaymentCell *cell = [tableView dequeueReusableCellWithIdentifier:kPaymentCellIdentifier];
-    Payment *payment = [self.payments objectAtIndexPath:indexPath];
+    Payment *payment = [self.payments objectAtIndex:indexPath.row];
 	
 	[cell configureWithPayment:payment
 		   willShowCancelBlock:^{
@@ -183,8 +190,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Payment *payment = [self.payments objectAtIndexPath:indexPath];
-    if ([payment.recipient.type hideFromCreationValue]) {
+    Payment *payment = [self.payments objectAtIndex:indexPath.row];
+    if ([payment.recipient.type hideFromCreationValue])
+	{
         return;
     }
 
@@ -259,17 +267,19 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 }
 
 
-- (void)refreshPaymentsList {
-    if (self.executedOperation) {
+- (void)refreshPaymentsList
+{
+    if (self.executedOperation)
+	{
         return;
     }
 
     [self.tableView setTableFooterView:nil];
-
     [self refreshPaymentsWithOffset:0 hud:nil];
 }
 
-- (void)refreshPaymentsWithOffset:(NSInteger)offset hud:(TabBarActivityIndicatorView *)hud {
+- (void)refreshPaymentsWithOffset:(NSInteger)offset hud:(TabBarActivityIndicatorView *)hud
+{
     PaymentsOperation *operation = [PaymentsOperation operationWithOffset:offset];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
@@ -277,27 +287,60 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [operation setCompletion:^(NSInteger totalCount, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hide];
+			NSInteger currentCount = self.payments.count;
+			self.payments = [self.objectModel allPayments];
+			NSInteger delta = self.payments.count - currentCount;
+			
             [self.refreshView refreshComplete];
 
             [self setExecutedOperation:nil];
-            if (totalCount > [self.payments.fetchedObjects count]) {
+            if (totalCount > self.payments.count)
+			{
                 [self.tableView setTableFooterView:self.loadingFooterView];
-            } else {
+            }
+			else
+			{
                 [self.tableView setTableFooterView:nil];
             }
-            [self.tableView reloadData];
+			
+			[self.tableView reloadData];
+			
+			NSInteger start = 0, count = 0;
+			
+			//data may already be locally stored, this will be overwritten
+			if (delta < 0)
+			{
+				return;
+			}
+			else if (delta > 0)
+			{
+				start = currentCount;
+				count = delta;
+			}
+			else if (delta == 0)
+			{
+				start = 0;
+				count = currentCount;
+			}
+			
+			[self.tableView reloadRowsAtIndexPaths:[TransactionsViewController generateIndexPathsFrom:start
+																							withCount:count]
+								  withRowAnimation:UITableViewRowAnimationFade];
         });
     }];
 
     [operation execute];
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
     [self checkReloadNeeded];
 }
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    if (!decelerate) {
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate)
+	{
         [self checkReloadNeeded];
     }
     [self.refreshView scrollViewDidEndDragging];
@@ -308,58 +351,32 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [self.refreshView scrollViewDidScroll];
 }
 
-
-- (void)checkReloadNeeded {
-    if (!self.tableView.tableFooterView) {
+- (void)checkReloadNeeded
+{
+    if (!self.tableView.tableFooterView)
+	{
         return;
     }
 
-    if (self.executedOperation) {
+    if (self.executedOperation)
+	{
         return;
     }
 
     BOOL footerVisible = CGRectIntersectsRect(self.tableView.bounds, self.loadingFooterView.frame);
-    if (!footerVisible) {
+    if (!footerVisible)
+	{
         return;
     }
 
-    [self refreshPaymentsWithOffset:[self.payments.fetchedObjects count] hud:nil];
+    [self refreshPaymentsWithOffset:self.payments.count hud:nil];
 }
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView beginUpdates];
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath {
-    UITableView *tableView = self.tableView;
-
-    switch (type) {
-
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-        case NSFetchedResultsChangeUpdate:
-            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-            break;
-        case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView endUpdates];
-}
-
-- (void)checkPersonalVerificationNeeded {
+- (void)checkPersonalVerificationNeeded
+{
 	MCLog(@"checkPersonalVerificationNeeded", nil);
-	if (self.checkOperation) {
+	if (self.checkOperation)
+	{
 		MCLog(@"Check in progress");
 		return;
 	}
@@ -374,7 +391,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 		BOOL somethingNeeded = identificationRequired != IdentificationNoneRequired;
 
-		if (somethingNeeded != weakSelf.showIdentificationView) {
+		if (somethingNeeded != weakSelf.showIdentificationView)
+		{
             [self configureForVerificationNeeded:somethingNeeded];
 			[weakSelf setShowIdentificationView:somethingNeeded];
 		}
@@ -382,7 +400,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[operation execute];
 }
 
-- (IBAction)pushIdentificationScreen {
+- (IBAction)pushIdentificationScreen
+{
 	MCLog(@"pushIdentificationScreen");
 	PersonalProfileIdentificationViewController *controller = [[PersonalProfileIdentificationViewController alloc] init];
     controller.objectModel = self.objectModel;
@@ -403,7 +422,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)uploadPaymentPurpose:(NSString *)purpose errorHandler:(PaymentErrorBlock)errorBlock completionHandler:(TRWActionBlock)completion {
+- (void)uploadPaymentPurpose:(NSString *)purpose errorHandler:(PaymentErrorBlock)errorBlock completionHandler:(TRWActionBlock)completion
+{
     if ((self.identificationRequired & IdentificationPaymentPurposeRequired) != IdentificationPaymentPurposeRequired) {
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"sent"];
         [self uploadIdImageWithErrorHandler:errorBlock completionHandler:completion];
@@ -416,7 +436,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     __weak typeof(self) weakSelf = self;
     [operation setResultHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (error) {
+            if (error)
+			{
                 errorBlock(error);
                 return;
             }
@@ -432,15 +453,19 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 - (void)uploadIdImageWithErrorHandler:(PaymentErrorBlock)errorBlock completionHandler:(TRWActionBlock)completion {
     MCLog(@"uploadIdImageWithErrorHandler");
-    if ((self.identificationRequired & IdentificationIdRequired) != IdentificationIdRequired) {
+    if ((self.identificationRequired & IdentificationIdRequired) != IdentificationIdRequired)
+	{
         [self uploadAddressImageWithErrorHandler:errorBlock completionHandler:completion];
         return;
     }
     __weak typeof(self) weakSelf = self;
     [self uploadImageFromPath:[PendingPayment idPhotoPath] withId:@"id" completion:^(NSError *error) {
-        if (error) {
+        if (error)
+		{
             errorBlock(error);
-        } else {
+        }
+		else
+		{
             [weakSelf uploadAddressImageWithErrorHandler:errorBlock completionHandler:completion];
         }
     }];
@@ -448,20 +473,27 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 - (void)uploadAddressImageWithErrorHandler:(PaymentErrorBlock)errorBlock completionHandler:(TRWActionBlock)completion {
     MCLog(@"uploadAddressImageWithErrorHandler");
-    if ((self.identificationRequired & IdentificationAddressRequired) != IdentificationAddressRequired) {
+    if ((self.identificationRequired & IdentificationAddressRequired) != IdentificationAddressRequired)
+	{
         completion();
-    } else {
+    }
+	else
+	{
         [self uploadImageFromPath:[PendingPayment addressPhotoPath] withId:@"address" completion:^(NSError *error) {
-            if (error) {
+            if (error)
+			{
                 errorBlock(error);
-            } else {
+            }
+			else
+			{
                 completion();
             }
         }];
     }
 }
 
-- (void)uploadImageFromPath:(NSString *)path withId:(NSString *)verified completion:(FileUploadBlock)completion {
+- (void)uploadImageFromPath:(NSString *)path withId:(NSString *)verified completion:(FileUploadBlock)completion
+{
     UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:verified profile:@"personal" filePath:path];
     [self setExecutedUploadOperation:operation];
 

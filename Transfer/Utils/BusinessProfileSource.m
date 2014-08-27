@@ -10,8 +10,6 @@
 #import "CountrySelectionCell.h"
 #import "NSString+Validation.h"
 #import "BusinessProfileValidation.h"
-#import "PhoneBookProfile.h"
-#import "PhoneBookAddress.h"
 #import "User.h"
 #import "ObjectModel+Users.h"
 #import "BusinessProfile.h"
@@ -21,6 +19,7 @@
 #import "Country.h"
 #import "DoubleEntryCell.h"
 #import "DoublePasswordEntryCell.h"
+#import "StateSuggestionProvider.h"
 
 @interface BusinessProfileSource ()
 
@@ -88,7 +87,7 @@
     TextEntryCell *stateCell = [TextEntryCell loadInstance];
     [self setStateCell:stateCell];
     [stateCell configureWithTitle:NSLocalizedString(@"business.profile.state.label", nil) value:@""];
-    [stateCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
+    [stateCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [stateCell setCellTag:@"state"];
     
     TextEntryCell *addressCell = [TextEntryCell loadInstance];
@@ -137,7 +136,8 @@
     [self.zipCityCell setValue:profile.postCode];
 	[self.zipCityCell setSecondValue:profile.city];
     [self.countryCell setValue:profile.countryCode];
-    [self.stateCell setValue:profile.state];
+    NSString* stateTitle = [StateSuggestionProvider titleFromStateCode:profile.state];
+    [self.stateCell setValue:stateTitle];
 
     [self.businessNameCell setEditable:![profile isFieldReadonly:@"name"]];
     [self.registrationNumberCell setEditable:![profile isFieldReadonly:@"registrationNumber"]];
@@ -171,7 +171,11 @@
     [profile setPostCode:self.zipCityCell.value];
     [profile setCity:self.zipCityCell.secondValue];
     [profile setCountryCode:[self.countryCell value]];
-    [profile setState:[self.stateCell value]];
+    NSString* stateCode = [StateSuggestionProvider stateCodeFromTitle:self.stateCell.value];
+    if(stateCode)
+    {
+        [profile setState:stateCode];
+    }
 
     [self.objectModel saveContext];
 
@@ -195,28 +199,6 @@
     }];
 }
 
-- (void)loadDataFromProfile:(PhoneBookProfile *)profile
-{
-    [self.businessNameCell setValueWhenEditable:profile.organisation];
-
-    PhoneBookAddress *address = profile.address;
-    [self.addressCell setValueWhenEditable:address.street];
-    if (![self.objectModel.currentUser.businessProfile isFieldReadonly:@"city"])
-	{
-		[self.zipCityCell setValue:address.zipCode];
-	}
-	if (![self.objectModel.currentUser.businessProfile isFieldReadonly:@"postCode"])
-	{
-		[self.zipCityCell setSecondValue:address.city];
-	}
-    if (![self.objectModel.currentUser.businessProfile isFieldReadonly:@"countryCode"]) {
-        [self.countryCell setTwoLetterCountryCode:address.countryCode];
-    }
-    [self.stateCell setValueWhenEditable:address.state];
-    [self includeStateCell:[ProfileSource showStateCell:self.countryCell.value]
-			withCompletion:nil];
-}
-
 - (void)fillQuickValidation:(QuickProfileValidationOperation *)operation
 {
     [operation setName:[self.businessNameCell value]];
@@ -226,7 +208,12 @@
     [operation setPostCode:[self.zipCityCell value]];
     [operation setCity:[self.zipCityCell secondValue]];
     [operation setCountryCode:[self.countryCell value]];
-    [operation setState:[self.stateCell value]];
+    NSString* stateCode = [StateSuggestionProvider stateCodeFromTitle:self.stateCell.value];
+    if(stateCode)
+    {
+        [operation setState:stateCode];
+    }
+
 }
 
 @end

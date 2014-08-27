@@ -43,7 +43,7 @@
 						  cancelTappedBlock:cancelTappedBlock];
 	
     [self.nameLabel setText:[recipient name]];
-    [self.bankLabel setText:[self getSortCodeOrIban:recipient]];
+    [self.bankLabel setText:[NSString stringWithFormat:@"%@ account",[recipient.currency code]]];
 	[self.sendLabel setText:[NSString stringWithFormat:NSLocalizedString(@"contacts.controller.send.button.title", nil), recipient.currency.code]];
 	[self.recipientImage setImage:[self getRecipientImage:recipient]];
 	[self maskRecipientImage];
@@ -52,21 +52,6 @@
 	self.cancelButtonTitle = NSLocalizedString(@"contacts.controller.delete.button.title", nil);
 }
 
-//this is a temporary solution before bank info becomes available
-- (NSString *)getSortCodeOrIban:(Recipient *)recipient
-{
-	NSString* details = [recipient presentationStringFromAllValues];
-	
-	if([details rangeOfString:UK_SORT].location != NSNotFound)
-	{
-		return @"UK Sort Code";
-	}
-	else if([details rangeOfString:IBAN].location != NSNotFound)
-	{
-		return @"IBAN";
-	}
-	return @"";
-}
 
 - (UIImage *)getRecipientImage:(Recipient *)recipient
 {

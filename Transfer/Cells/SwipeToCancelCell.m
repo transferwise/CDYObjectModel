@@ -32,6 +32,11 @@
 @implementation SwipeToCancelCell
 
 #pragma mark - Init
+- (void)awakeFromNib
+{
+	self.showFullWidth = YES;
+}
+
 - (void)prepareForReuse
 {
 	//reset for reuse

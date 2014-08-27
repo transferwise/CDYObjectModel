@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CancelableCellViewController.h"
+#import "CancellableCellViewController.h"
 
 @class ObjectModel;
 
-@interface ContactsViewController : CancelableCellViewController
+@interface ContactsViewController : CancellableCellViewController
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 

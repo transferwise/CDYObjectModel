@@ -14,11 +14,11 @@
                 <outlet property="progressIndicator" destination="HJX-4X-iH2" id="CKo-Rx-b3J"/>
                 <outlet property="titleLabel" destination="4qE-0W-9mm" id="Wqe-VD-VV0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outletCollection property="profilePictures" destination="MfW-mD-cm9" id="90E-Fn-2ui"/>
-                <outletCollection property="profilePictures" destination="P4R-HH-GKW" id="Xzr-J6-GAJ"/>
-                <outletCollection property="profilePictures" destination="X3Q-zd-dep" id="CoR-CL-hZM"/>
                 <outletCollection property="inviteButtons" destination="FKt-v3-ttW" id="1j5-Yd-C4I"/>
                 <outletCollection property="inviteButtons" destination="cJH-J1-88a" id="OwX-Lk-BqN"/>
+                <outletCollection property="profilePictures" destination="P4R-HH-GKW" id="osj-bQ-3XQ"/>
+                <outletCollection property="profilePictures" destination="MfW-mD-cm9" id="Txj-Mq-Fpy"/>
+                <outletCollection property="profilePictures" destination="X3Q-zd-dep" id="Cx2-Nv-lfU"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

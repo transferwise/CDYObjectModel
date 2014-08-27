@@ -35,8 +35,8 @@
 
 #import "MOMStyle.h"
 #import "NSString+DeviceSpecificLocalisation.h"
-#import "WhyViewController.h"
-#import "WhyView.h"
+#import "SeeHowViewController.h"
+#import "SeeHowView.h"
 #import "Recipient.h"
 #import "User.h"
 #import "RecipientTypesOperation.h"
@@ -434,7 +434,7 @@ static NSUInteger const kRowYouSend = 0;
 
 
 - (IBAction)howButtonTapped:(id)sender {
-    WhyViewController * whyController = [[WhyViewController alloc] init];
+    SeeHowViewController * whyController = [[SeeHowViewController alloc] init];
     [whyController.whyView setupWithResult:self.result];
     [whyController presentOnViewController:self];
 }

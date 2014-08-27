@@ -39,7 +39,7 @@
 #import "BusinessProfile.h"
 #import "PersonalProfile.h"
 #import "NameSuggestionCellProvider.h"
-#import "NameLookupWrapper.h"
+#import "EmailLookupWrapper.h"
 
 CGFloat const TransferHeaderPaddingTop = 40;
 CGFloat const TransferHeaderPaddingBottom = 0;
@@ -93,7 +93,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     [self setHolderNameCell:nameCell];
     [nameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [nameCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
-    [nameCell configureWithTitle:NSLocalizedString(@"refund.details.holders.name.label", nil) value:self.payment.businessProfileUsed?[self.payment.user.businessProfile name]:self.payment.user.personalProfile.fullName];
+    [nameCell configureWithTitle:NSLocalizedString(@"refund.details.holders.name.label", nil) value:@""];
     __weak typeof(self) weakSelf = self;
     [nameCell setSelectionHandler:^(Recipient *recipient) {
         [weakSelf didSelectRecipient:recipient];
@@ -486,7 +486,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 -(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
 {
     [super suggestionTable:table selectedObject:object];
-    NameLookupWrapper* wrapper = (NameLookupWrapper*)object;
+    EmailLookupWrapper* wrapper = (EmailLookupWrapper*)object;
     if(wrapper.recordId)
     {
        

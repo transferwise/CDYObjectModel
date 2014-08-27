@@ -9,10 +9,12 @@
 #import "AddressBookManager.h"
 #import <AddressBook/AddressBook.h>
 #import "GoogleAnalytics.h"
-#import "NameLookupWrapper.h"
+#import "EmailLookupWrapper.h"
+#import "PhoneLookupWrapper.h"
 #import "Constants.h"
 
 #define cachedNameLookup @"nameLookup"
+#define cachedImageLookup @"imageLookup"
 
 #define addressBookChangeNotification @"addressBookChangeNotification"
 
@@ -54,28 +56,46 @@
     }
 }
 
--(void)getNameLookupWithHandler:(NameLookupHandler)handler
+- (void)getNameLookupWithHandler:(LookupHandler)handler
 {
-    [self getAddressBookAndExecuteInBackground:^(BOOL hasAddressBook) {
-        if(hasAddressBook)
-        {
-            [self retrieveNames:handler];
-        }
-        else
-        {
-            if(handler)
-            {
-                [self performBlockOnMainThread:^{
-                   handler(nil); 
-                }];
-            }
-        }
-    }];
+	[self getLookupWithBlock:^NSArray *{
+		return [self getImmutableNameLookup];
+	}
+					handler:handler];
 }
 
--(void)getImageForEmail:(NSString*)email completion:(void(^)(UIImage* image))completionBlock
+- (void)getPhoneLookupWithHandler:(LookupHandler)handler
 {
-    
+	[self getLookupWithBlock:^NSArray *{
+		return [self getImmutableImageLookup];
+	}
+					 handler:handler];
+}
+
+- (void)getLookupWithBlock:(NSArray *(^)())lookup handler:(LookupHandler)handler
+{
+	[self getAddressBookAndExecuteInBackground:^(BOOL hasAddressBook) {
+		if (handler)
+		{
+			if(hasAddressBook)
+			{
+				NSArray *result = lookup();
+				[self performBlockOnMainThread:^{
+					handler(result);
+				}];
+			}
+			else
+			{
+				[self performBlockOnMainThread:^{
+					handler(nil);
+				}];
+			}
+		}
+	}];
+}
+
+- (void)getImageForEmail:(NSString*)email completion:(void(^)(UIImage* image))completionBlock
+{
     NSNumber *recordIdNumber = [[AddressBookManager sharedDataCache] objectForKey:email];
     if(recordIdNumber)
     {
@@ -89,7 +109,7 @@
         NSArray* filteredResult = [nameLookup filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"email = %@",email]];
         if([filteredResult count])
         {
-            NameLookupWrapper *wrapper = filteredResult[0];
+            EmailLookupWrapper *wrapper = filteredResult[0];
             ABRecordID recordId = wrapper.recordId;
             [[AddressBookManager sharedDataCache] setObject:@(recordId) forKey:email];
             [self getImageForRecordId:recordId completion:completionBlock];
@@ -168,8 +188,7 @@
     }
 }
 
-
--(void)retrieveNames:(NameLookupHandler)handler
+-(void)retrieveNames:(LookupHandler)handler
 {
     if(handler)
     {
@@ -177,48 +196,86 @@
         [self performBlockOnMainThread:^{
             handler(lookup);
         }];
-        
     }
 }
 
 - (NSArray*)getImmutableNameLookup
 {
-    NSArray *immutableResult = [[AddressBookManager sharedDataCache] objectForKey:cachedNameLookup];
-    if(!immutableResult)
-    {
-        CFArrayRef people = ABAddressBookCopyArrayOfAllPeople(self.addressBook);
-        NSInteger count = CFArrayGetCount(people);
-        NSMutableArray *result = [NSMutableArray arrayWithCapacity:count];
-        for(NSInteger i = 0; i < count; i++)
-        {
-            ABRecordRef record = CFArrayGetValueAtIndex(people, i);
-            
-            NSString *firstname = (__bridge_transfer NSString *)ABRecordCopyValue(record, kABPersonFirstNameProperty);
-            NSString *lastName =(__bridge_transfer NSString *) ABRecordCopyValue(record, kABPersonLastNameProperty);
-            
-            CFTypeRef theProperty = ABRecordCopyValue(record, kABPersonEmailProperty);
-            NSArray *items = (__bridge_transfer NSArray *) ABMultiValueCopyArrayOfAllValues(theProperty);
-            CFRelease(theProperty);
-            for(NSString *email in items)
-            {
-				//ignore @facebook.com addresses
-				if ([email hasSuffix:facebookAddresSuffix]) continue;
-				
-                NameLookupWrapper *wrapper = [[NameLookupWrapper alloc] initWithRecordId:ABRecordGetRecordID(record) firstname:firstname lastName:lastName email:email];
-                if(wrapper)
-                {
-                    [result addObject:wrapper];
-                }
-            }
-        }
-        
-        immutableResult = [NSArray arrayWithArray:result];
-        CFRelease(people);
-        
-        [[AddressBookManager sharedDataCache] setObject:immutableResult forKey:cachedNameLookup];
-        
-    }
-    return immutableResult;
+	return [self getImmutableLookup:cachedNameLookup
+					  handlingBlock:^(NSMutableArray *result, ABRecordRef entry) {
+						  NSString *firstname = (__bridge_transfer NSString *)ABRecordCopyValue(entry, kABPersonFirstNameProperty);
+						  NSString *lastName =(__bridge_transfer NSString *) ABRecordCopyValue(entry, kABPersonLastNameProperty);
+						  NSArray *items = [self getABMultivalueProperty:entry property:kABPersonEmailProperty];
+						  
+						  for (NSString *email in items)
+						  {
+							  //ignore @facebook.com addresses
+							  if ([email hasSuffix:facebookAddresSuffix]) continue;
+							  
+							  EmailLookupWrapper *wrapper = [[EmailLookupWrapper alloc] initWithRecordId:ABRecordGetRecordID(entry) firstname:firstname lastName:lastName email:email];
+							  if(wrapper)
+							  {
+								  [result addObject:wrapper];
+							  }
+						  }
+					  }];
+}
+
+- (NSArray *)getImmutableImageLookup
+{
+	return [self getImmutableLookup:cachedImageLookup
+					  handlingBlock:^(NSMutableArray *result, ABRecordRef entry) {
+						  if (ABPersonHasImageData(entry))
+						  {
+							  NSString *firstname = (__bridge_transfer NSString *)ABRecordCopyValue(entry, kABPersonFirstNameProperty);
+							  NSString *lastName =(__bridge_transfer NSString *) ABRecordCopyValue(entry, kABPersonLastNameProperty);
+							  NSArray *phones = [self getABMultivalueProperty:entry property:kABPersonPhoneProperty];
+							  
+							  PhoneLookupWrapper *wrapper = [[PhoneLookupWrapper alloc] initWithRecordId:ABRecordGetRecordID(entry)
+																							   firstname:firstname
+																								lastName:lastName
+																								  phones:phones];
+							  if(wrapper)
+							  {
+								  [result addObject:wrapper];
+							  }
+						  }
+					  }];
+}
+
+- (NSArray *)getABMultivalueProperty:(ABRecordRef)entry property:(NSInteger)field
+{
+	CFTypeRef theProperty = ABRecordCopyValue(entry, field);
+	NSArray *items = (__bridge_transfer NSArray *) ABMultiValueCopyArrayOfAllValues(theProperty);
+	CFRelease(theProperty);
+	
+	return items;
+}
+
+- (NSArray *)getImmutableLookup:(id)key
+				  handlingBlock:(void (^)(NSMutableArray* result, ABRecordRef entry))handlingBlock
+{
+	NSArray *immutableResult = [[AddressBookManager sharedDataCache] objectForKey:key];
+	if(!immutableResult)
+	{
+		CFArrayRef people = ABAddressBookCopyArrayOfAllPeople(self.addressBook);
+		NSInteger count = CFArrayGetCount(people);
+		NSMutableArray *result = [NSMutableArray arrayWithCapacity:count];
+		
+		for(NSInteger i = 0; i < count; i++)
+		{
+			ABRecordRef record = CFArrayGetValueAtIndex(people, i);
+			
+			handlingBlock(result, record);
+		}
+		
+		immutableResult = [NSArray arrayWithArray:result];
+		CFRelease(people);
+		
+		[[AddressBookManager sharedDataCache] setObject:immutableResult forKey:key];
+		
+	}
+	return immutableResult;
 }
 
 #pragma mark - Address book access
@@ -236,11 +293,12 @@ void addressBookExternalChangeCallback (ABAddressBookRef notificationaddressbook
   });
 }
 
-- (void)requestAddressBookWithHandler:(ABAddressBookRequestAccessCompletionHandler)handler {
-    
+- (void)requestAddressBookWithHandler:(ABAddressBookRequestAccessCompletionHandler)handler
+{
     ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
     
-    if(addressBook) {
+    if(addressBook)
+	{
         //Use a semaphore to ensure the dispatch queue is blocked until the addressbook has been set up.
         //otherwise mutiple calls can happen, leading to self.addressbook being re-assigned, leading to deallocated instances being called -> crash.
         dispatch_semaphore_t sema = dispatch_semaphore_create(0);

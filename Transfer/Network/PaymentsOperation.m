@@ -54,7 +54,8 @@ NSUInteger kPaymentsListLimit = 20;
                 [existingPaymentIds removeObject:payment.remoteId];
             }
 
-            if (weakSelf.offset == 0) {
+            if (weakSelf.offset == 0)
+			{
                 MCLog(@"Have %d remote id's after zero pull", [existingPaymentIds count]);
                 [oModel removePaymentsWithIds:existingPaymentIds];
             }
