@@ -22,6 +22,7 @@
 #import "DoubleEntryCell.h"
 #import "Country.h"
 #import "SwitchCell.h"
+#import "StateSuggestionProvider.h"
 
 #define MIN_PASSWORD_LENGTH	5
 
@@ -201,7 +202,9 @@ NSUInteger const kUserPersonalSection = 1;
         [self.zipCityCell setValue:profile.postCode];
         [self.zipCityCell setSecondValue:profile.city];
         [self.countryCell setValue:profile.countryCode];
-        [self.stateCell setValue:profile.state];
+        NSString* stateTitle = [StateSuggestionProvider titleFromStateCode:profile.state];
+        [self.stateCell setValue:stateTitle];
+
 
         [self.firstLastNameCell setEditable:![profile isFieldReadonly:@"firstName"]];
         [self.firstLastNameCell setSecondEditable:![profile isFieldReadonly:@"lastName"]];
@@ -260,7 +263,12 @@ NSUInteger const kUserPersonalSection = 1;
     [profile setCity:self.zipCityCell.secondValue];
     [profile setCountryCode:self.countryCell.value];
     [profile setDateOfBirth:[self.dateOfBirthCell value]];
-    [profile setState:[self.stateCell value]];
+    NSString* stateCode = [StateSuggestionProvider stateCodeFromTitle:self.stateCell.value];
+    if(stateCode)
+    {
+        [profile setState:stateCode];
+    }
+
 	
 	if (self.allowProfileSwitch)
 	{
@@ -299,7 +307,12 @@ NSUInteger const kUserPersonalSection = 1;
     [operation setCity:[self.zipCityCell secondValue]];
     [operation setCountryCode:[self.countryCell value]];
     [operation setDateOfBirth:[self.dateOfBirthCell value]];
-    [operation setState:[self.stateCell value]];
+    NSString* stateCode = [StateSuggestionProvider stateCodeFromTitle:self.stateCell.value];
+    if(stateCode)
+    {
+        [operation setState:stateCode];
+    }
+
 }
 
 @end

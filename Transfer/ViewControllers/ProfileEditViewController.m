@@ -40,12 +40,14 @@
 #import "TypeFieldValue.h"
 #import "SwitchCell.h"
 #import "PersonalPaymentProfileViewController.h"
+#import "StateSuggestionProvider.h"
 
 @interface ProfileEditViewController ()<CountrySelectionCellDelegate, TextEntryCellDelegate>
 
 @property (nonatomic, strong) ProfileSource *profileSource;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
 @property (nonatomic, strong) TextEntryCell *emailCell;
+@property (nonatomic, strong) TextEntryCell *stateCell;
 @property (nonatomic, strong) DoublePasswordEntryCell *passwordCell;
 @property (nonatomic, strong) SwitchCell *sendAsBusinessCell;
 @property (nonatomic, strong) NSArray *presentationCells;
@@ -53,7 +55,8 @@
 @property (nonatomic, assign) BOOL shown;
 @property (nonatomic, strong) QuickProfileValidationOperation *quickProfileValidation;
 @property (nonatomic, assign) BOOL inputCheckRunning;
-@property (nonatomic, strong) CountrySuggestionCellProvider* cellProvider;
+@property (nonatomic, strong) CountrySuggestionCellProvider* countryCellProvider;
+@property (nonatomic, strong) StateSuggestionProvider* stateCellProvider;
 @property (nonatomic) CGFloat bottomInset;
 @property (nonatomic) BOOL isExistingEmail;
 @property (nonatomic, strong) IBOutlet UIView* footerView;
@@ -100,6 +103,12 @@
 	[self.profileSource setTableViews:self.tableViews];
 
     [self createPresentationCells];
+    self.stateCell = self.profileSource.stateCell;
+    self.stateCellProvider = [[StateSuggestionProvider alloc] init];
+    [super configureWithDataSource:self.stateCellProvider
+                             entryCell:self.stateCell
+                                height:self.stateCell.frame.size.height];
+    
 	[self createFooterView];
 }
 
@@ -129,9 +138,9 @@
 
     [self setCells:presented];
 	
-	self.cellProvider = [[CountrySuggestionCellProvider alloc] init];
+	self.countryCellProvider = [[CountrySuggestionCellProvider alloc] init];
     
-    [super configureWithDataSource:self.cellProvider
+    [super configureWithDataSource:self.countryCellProvider
 						 entryCell:self.countryCell
 							height:self.countryCell.frame.size.height];
 	
@@ -139,7 +148,7 @@
 	[self.countryCell setSelectionHandler:^(NSString *countryName) {
         [weakSelf didSelectCountry:countryName];
     }];
-	
+    
 	self.countryCell.countrySelectionDelegate = self;
 
     [self setPresentationCells:presented];
@@ -196,6 +205,7 @@
 	[self setEmailCell:emailCell];
 	[self setPasswordCell:passwordCell];
 	[self setSendAsBusinessCell:sendAsBusinessCell];
+
 }
 
 - (void)setObjectModel:(ObjectModel *)objectModel
@@ -233,19 +243,6 @@
 	}
 }
 
--(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    [self configureForInterfaceOrientation:toInterfaceOrientation];
-    self.suggestionTable.alpha = 0.0f;
-}
-
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    [self suggestionTableDidStartEditing:self.suggestionTable];
-    self.suggestionTable.alpha = 1.0f;
-}
 
 - (IBAction)actionTapped:(id)sender
 {
@@ -295,7 +292,14 @@
 -(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
 {
     [super suggestionTable:table selectedObject:object];
-    [self didSelectCountry:(NSString *)object];
+    if(table.associatedView == self.countryCell)
+    {
+        [self didSelectCountry:(NSString *)object];
+    }
+    else
+    {
+        self.stateCell.value = (NSString*)object;
+    }
 }
 
 - (void)didSelectCountry:(NSString *)country
@@ -343,7 +347,7 @@
     [hud setMessage:NSLocalizedString(@"personal.profile.refreshing.message", nil)];
 
     [self pullCountriesWithHud:hud completionHandler:^{
-		[self.cellProvider setAutoCompleteResults:[self.objectModel fetchedControllerForAllCountries]];
+		[self.countryCellProvider setAutoCompleteResults:[self.objectModel fetchedControllerForAllCountries]];
 		
         [self.profileSource pullDetailsWithHandler:^(NSError *profileError) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -461,7 +465,7 @@
 #pragma mark - CountrySelectionCell Delegate
 - (Country *)getCountryByCode:(NSString *)code
 {
-	return [self.cellProvider getCountryByCode:code];
+	return [self.countryCellProvider getCountryByCode:code];
 }
 
 #pragma mark - Show as Login

@@ -12,7 +12,7 @@
 
 @interface SuggestionDataEntryViewController : DataEntryMultiColumnViewController<SuggestionTableDelegate>
 
-@property (nonatomic, strong) IBOutlet TextFieldSuggestionTable* suggestionTable;
+@property (nonatomic, strong) IBOutletCollection(TextFieldSuggestionTable) NSMutableArray* suggestionTables;
 
 - (void)configureWithDataSource:(id<SuggestionTableCellProvider>)dataSource
 					  entryCell:(TextEntryCell *)entryCell

@@ -283,6 +283,8 @@
 		38CACA65196EE4D400BFCF82 /* TextFieldSuggestionTable~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CACA63196EE4D400BFCF82 /* TextFieldSuggestionTable~ipad.xib */; };
 		38CACD691987C43E0085C254 /* CurrencySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CACD681987C43E0085C254 /* CurrencySelectionCell~ipad.xib */; };
 		38CACD6A1987C43E0085C254 /* CurrencySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CACD681987C43E0085C254 /* CurrencySelectionCell~ipad.xib */; };
+		38CB1F7C19AC9C2B00CD0953 /* StateSuggestionProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CB1F7B19AC9C2B00CD0953 /* StateSuggestionProvider.m */; };
+		38CB1F7D19AC9C2B00CD0953 /* StateSuggestionProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CB1F7B19AC9C2B00CD0953 /* StateSuggestionProvider.m */; };
 		38E57F78192A51DD00D864A2 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
 		38E57F79192A51DD00D864A2 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
 		38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E57F77192A51DD00D864A2 /* TabViewController.xib */; };
@@ -1104,6 +1106,8 @@
 		38CACA60196EE21600BFCF82 /* NameSuggestionCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NameSuggestionCell~ipad.xib"; sourceTree = "<group>"; };
 		38CACA63196EE4D400BFCF82 /* TextFieldSuggestionTable~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TextFieldSuggestionTable~ipad.xib"; sourceTree = "<group>"; };
 		38CACD681987C43E0085C254 /* CurrencySelectionCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencySelectionCell~ipad.xib"; sourceTree = "<group>"; };
+		38CB1F7A19AC9C2B00CD0953 /* StateSuggestionProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateSuggestionProvider.h; sourceTree = "<group>"; };
+		38CB1F7B19AC9C2B00CD0953 /* StateSuggestionProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateSuggestionProvider.m; sourceTree = "<group>"; };
 		38E57F75192A51DD00D864A2 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
 		38E57F76192A51DD00D864A2 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
 		38E57F77192A51DD00D864A2 /* TabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabViewController.xib; sourceTree = "<group>"; };
@@ -2656,6 +2660,8 @@
 				EA59296E17589F3A007C0072 /* RecipientProfileValidation.h */,
 				47AC3F8F1987AFAC005491C6 /* SuggestionCellProvider.h */,
 				47AC3F901987AFAC005491C6 /* SuggestionCellProvider.m */,
+				38CB1F7A19AC9C2B00CD0953 /* StateSuggestionProvider.h */,
+				38CB1F7B19AC9C2B00CD0953 /* StateSuggestionProvider.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -3526,6 +3532,7 @@
 				EABD864618E2B65D004A5A57 /* TransferMixpanel.m in Sources */,
 				EA2296C317E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
 				EA0523F7191B596B00B32899 /* RefundDetailsViewController.m in Sources */,
+				38CB1F7D19AC9C2B00CD0953 /* StateSuggestionProvider.m in Sources */,
 				38002200192F443E009B1D53 /* CurrencyCell.m in Sources */,
 				EAB61715191CDD1000545C21 /* ResetPasswordOperation.m in Sources */,
 				47FAF358194F0A47004CE986 /* IntrinsicSizeUIView.m in Sources */,
@@ -3815,6 +3822,7 @@
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
 				EA0523F6191B596B00B32899 /* RefundDetailsViewController.m in Sources */,
 				380021FF192F443E009B1D53 /* CurrencyCell.m in Sources */,
+				38CB1F7C19AC9C2B00CD0953 /* StateSuggestionProvider.m in Sources */,
 				47233CD6196D457300449042 /* LoginViewController.m in Sources */,
 				EAB61714191CDD1000545C21 /* ResetPasswordOperation.m in Sources */,
 				EA2296C617E08027001CF541 /* TransferBackButtonItem.m in Sources */,

@@ -33,4 +33,5 @@
 @property (nonatomic,weak) IBOutlet id<SuggestionTableDelegate> suggestionTableDelegate;
 @property (nonatomic, weak) IBOutlet id<SuggestionTableCellProvider> dataSource;
 @property (nonatomic, strong) IBOutlet UITextField *textField;
+@property (nonatomic, strong) UIView *associatedView;
 @end
