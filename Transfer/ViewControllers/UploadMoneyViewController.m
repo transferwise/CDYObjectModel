@@ -111,6 +111,7 @@
 			[[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
 		}]];
     }
+	[self willSelectViewController:self.cardViewController atIndex:0];
 }
 
 - (void)pushNextScreen {
