@@ -833,7 +833,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     {
         [self.addressCells removeObject:self.stateCell];
     }
-    if(self.recipientType.recipientAddressRequired)
+    if(self.recipientType.recipientAddressRequiredValue)
     {
         [self setPresentedSectionCells:@[self.senderCells, self.recipientCells, self.currencyCells, self.recipientTypeFieldCells, self.addressCells]];
     }
