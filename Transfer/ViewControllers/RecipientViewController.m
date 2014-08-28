@@ -679,7 +679,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     recipientInput.addressPostCode = [self.postCodeCell value];
     recipientInput.addressCity = [self.cityCell value];
     recipientInput.addressCountryCode = [self.countryCell value];
-    if ([self.countryCell.value caseInsensitiveCompare:@"usa"]== NSOrderedSame)
+    if ([@"usa" caseInsensitiveCompare:self.countryCell.value]== NSOrderedSame)
     {
         NSString* stateCode = [StateSuggestionProvider stateCodeFromTitle:self.stateCell.value];
         if(stateCode)
@@ -952,7 +952,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 -(void)countrySelectionCell:(CountrySelectionCell *)cell selectedCountry:(Country *)country
 {
-    [self includeStateCell:([country.iso3Code caseInsensitiveCompare:@"usa"]==NSOrderedSame)];
+    [self includeStateCell:([@"usa" caseInsensitiveCompare:country.iso3Code]==NSOrderedSame)];
 }
 
 -(void)includeStateCell:(BOOL)includeState
