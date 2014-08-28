@@ -342,11 +342,15 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
             return;
         }
-
+        NSInteger currentCount = [self.tableView numberOfRowsInSection:0];
 		[self.tableView reloadData];
-		[self.tableView reloadRowsAtIndexPaths:[ContactsViewController generateIndexPathsFrom:0
-																						withCount:self.allRecipients.count]
+        NSInteger delta = [self.tableView numberOfRowsInSection:0]-currentCount;
+        if(delta >0)
+        {
+            [self.tableView reloadRowsAtIndexPaths:[ContactsViewController generateIndexPathsFrom:currentCount
+																						withCount:delta]
 							  withRowAnimation:UITableViewRowAnimationFade];
+        }
     });
 }
 
