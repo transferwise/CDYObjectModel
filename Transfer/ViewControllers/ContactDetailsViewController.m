@@ -76,16 +76,19 @@
     if (self.recipient.email)
     {
         [[AddressBookManager sharedInstance] getImageForEmail:self.recipient.email completion:^(UIImage *image) {
-            self.userImage.image = image;
-            
-            __weak typeof(self) weakSelf = self;
-            [UIImage headerBackgroundFromImage:image finalImageSize:CGSizeMake(473, 270) completionBlock:^(UIImage *result) {
-                weakSelf.headerBackground.alpha = 0.0f;
-                weakSelf.headerBackground.image = result;
-                [UIView animateWithDuration:0.8f delay:0.2f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                    weakSelf.headerBackground.alpha = 0.6f;
-                } completion:nil];
-            }];
+            if(image)
+            {
+                self.userImage.image = image;
+                
+                __weak typeof(self) weakSelf = self;
+                [UIImage headerBackgroundFromImage:image finalImageSize:CGSizeMake(473, 270) completionBlock:^(UIImage *result) {
+                    weakSelf.headerBackground.alpha = 0.0f;
+                    weakSelf.headerBackground.image = result;
+                    [UIView animateWithDuration:0.8f delay:0.2f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                        weakSelf.headerBackground.alpha = 0.6f;
+                    } completion:nil];
+                }];
+            }
         }];
     }
 }
