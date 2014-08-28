@@ -571,20 +571,20 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     {
         if(type.recipientAddressRequiredValue)
         {
-            [self setSectionCellsByTableView:@[@[self.recipientCells,self.currencyCells], @[cells,self.addressCells]]];
+            [self setSectionCellsByTableView:@[@[self.recipientCells,self.addressCells,self.currencyCells], @[cells]]];
         }
         else
         {
             [self setSectionCellsByTableView:@[@[self.recipientCells,self.currencyCells], @[cells]]];
         }
         
-        [self.tableViews[1] reloadData];
+        [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
     }
     else
     {
         if(type.recipientAddressRequiredValue)
         {
-            [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells, cells,self.addressCells]]];
+            [self setSectionCellsByTableView:@[@[self.recipientCells, self.addressCells, self.currencyCells, cells]]];
         }
         else
         {
@@ -859,6 +859,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         NSMutableArray *sectionIndexes = [NSMutableArray array];
         
         [sectionIndexes addObject:@(kRecipientSection)];
+        if(self.recipientType.recipientAddressRequired)
+        {
+            [sectionIndexes addObject:@(kAddressSection)];
+        }
+            
         
         if (self.preLoadRecipientsWithCurrency) {
             [cells removeObject:self.currencyCells];
@@ -868,14 +873,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         
         finalSectionCellsByTableView[0] = cells;
         [finalPresentedSectionsByTableView addObject:sectionIndexes];
-        if (self.recipientType.recipientAddressRequired)
-        {
-             [finalPresentedSectionsByTableView addObject:@[@(kRecipientFieldsSection),@(kAddressSection)]];
-        }
-        else
-        {
-             [finalPresentedSectionsByTableView addObject:@[@(kRecipientFieldsSection)]];
-        }
+        [finalPresentedSectionsByTableView addObject:@[@(kRecipientFieldsSection)]];
+
        
         
         ;
@@ -886,6 +885,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         NSMutableArray *sectionIndexes = [NSMutableArray array];
         [sectionIndexes addObject:@(kRecipientSection)];
         
+        if (self.recipientType.recipientAddressRequired)
+        {
+            [sectionIndexes addObject:@(kAddressSection)];
+        }
+        
         if (self.preLoadRecipientsWithCurrency) {
             [cells removeObject:self.currencyCells];
         } else {
@@ -895,10 +899,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         finalSectionCellsByTableView[0] = cells;
         
         [sectionIndexes addObject:@(kRecipientFieldsSection)];
-        if (self.recipientType.recipientAddressRequired)
-        {
-            [sectionIndexes addObject:@(kAddressSection)];
-        }
         
         [finalPresentedSectionsByTableView addObject:sectionIndexes];
     }
@@ -979,26 +979,26 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     {
         if(IPAD)
         {
-            [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells],@[self.recipientTypeFieldCells, self.addressCells]]];
+            [self setSectionCellsByTableView:@[@[self.recipientCells,self.addressCells, self.currencyCells],@[self.recipientTypeFieldCells]]];
             if(didIncludeState)
             {
-                [self.tableViews[1] insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableViews[0] insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
             }
             else if(didRemoveState)
             {
-                [self.tableViews[1] deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableViews[0] deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
             }
         }
         else
         {
-            [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells,self.recipientTypeFieldCells, self.addressCells]]];
+            [self setSectionCellsByTableView:@[@[self.recipientCells,self.addressCells, self.currencyCells,self.recipientTypeFieldCells]]];
             if(didIncludeState)
             {
-                [self.tableViews[0] insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:3]] withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableViews[0] insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
             }
             else if(didRemoveState)
             {
-                [self.tableViews[0] deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:3]] withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableViews[0] deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
             }
         }
     }
