@@ -441,14 +441,31 @@
             newInsets.bottom += overlap;
             self.containerScrollView.contentInset = newInsets;
             
+            [UIView commitAnimations];
+            
             UIView *firstResponder = [UIResponder currentFirstResponder];
             if(firstResponder)
             {
-                [self scrollScrollViewToShowView:firstResponder];
+                UITableViewCell *cell = [self getParentCell:firstResponder];
+                if(cell)
+                {
+                    UITableView* tableView;
+                    for(UITableView* table in self.tableViews)
+                    {
+                        if([table indexPathForCell:cell])
+                        {
+                            tableView = table;
+                            break;
+                        }
+                        
+                    }
+                    //Scroll cell after the keyboard has animated
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                        [self scrollToCell:cell inTableView:tableView];
+                    });
+                }
+                
             }
-            
-            
-            [UIView commitAnimations];
             
             if(!self.dismissKeyboardTaprecognizer)
             {
@@ -549,7 +566,8 @@
 -(void)scrollScrollViewToShowView:(UIView*)targetView
 {
     CGRect showRect = [self.containerScrollView convertRect:targetView.frame fromView:targetView.superview];
-    [self.containerScrollView scrollRectToVisible:showRect animated:NO];
+    showRect.size.height *= 4;
+    [self.containerScrollView scrollRectToVisible:showRect animated:YES];
 }
 
 #pragma mark - dismiss keyboard

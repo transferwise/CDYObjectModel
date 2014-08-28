@@ -124,6 +124,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, strong) CountrySuggestionCellProvider *countryCellProvider;
 @property (nonatomic, strong) StateSuggestionProvider *stateCellProvider;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewTopContentOffset;
 
 
 - (IBAction)addButtonPressed:(id)sender;
@@ -1086,6 +1087,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     //Lots of magic numbers here to match designs. Not sure what to do...
     if(UIInterfaceOrientationIsPortrait(orientation))
     {
+        self.scrollViewTopContentOffset.constant = 120.0f;
         self.firstColumnLeftMargin.constant = 176.f;
         self.secondColumnLeftEdgeConstraint.constant = -409.f;
         self.secondColumnTopConstraint.constant = self.firstColumnHeightConstraint.constant + 50.f;
@@ -1093,6 +1095,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
     else
     {
+        self.scrollViewTopContentOffset.constant = self.recipientType.recipientAddressRequired?30.0f:120.0f;
         self.firstColumnLeftMargin.constant = 60.f;
         self.secondColumnLeftEdgeConstraint.constant = 79.f;
         self.secondColumnTopConstraint.constant = 0.f;
