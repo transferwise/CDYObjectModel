@@ -7,6 +7,7 @@
 //
 
 #import "TextFieldSuggestionTable.h"
+#import "Constants.h"
 
 @interface TextFieldSuggestionTable ()<UITableViewDelegate>
 @property (nonatomic, strong) NSDate *startedEditing;
@@ -95,6 +96,11 @@
 }
 
 #pragma mark - Table view delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return IPAD?70.0f:60.0f;
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

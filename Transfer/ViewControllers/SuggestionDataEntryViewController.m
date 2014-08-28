@@ -86,7 +86,7 @@
 -(void)suggestionTableDidStartEditing:(TextFieldSuggestionTable *)table
 {
     self.currentSuggestionTable = table;
-    [self.tableViews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.suggestionTables makeObjectsPerformSelector:@selector(removeFromSuperview)];
    [self updateSuggestionTablePositions];
 }
 
