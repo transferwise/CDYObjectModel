@@ -305,27 +305,14 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 			
 			[self.tableView reloadData];
 			
-			NSInteger start = 0, count = 0;
 			
 			//data may already be locally stored, this will be overwritten
-			if (delta < 0)
+			if (delta > 0)
 			{
-				return;
-			}
-			else if (delta > 0)
-			{
-				start = currentCount;
-				count = delta;
-			}
-			else if (delta == 0)
-			{
-				start = 0;
-				count = currentCount;
-			}
-			
-			[self.tableView reloadRowsAtIndexPaths:[TransactionsViewController generateIndexPathsFrom:start
-																							withCount:count]
-								  withRowAnimation:UITableViewRowAnimationFade];
+                [self.tableView reloadRowsAtIndexPaths:[TransactionsViewController generateIndexPathsFrom:currentCount
+                                                                                                withCount:delta]
+                                      withRowAnimation:UITableViewRowAnimationFade];
+            }
         });
     }];
 
