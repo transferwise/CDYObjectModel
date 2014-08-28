@@ -64,6 +64,8 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerLeftEdgeConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerRightEdgeConstraint;
 
+@property (nonatomic, assign) BOOL settingRecipient;
+
 @end
 
 @implementation RefundDetailsViewController
@@ -247,13 +249,14 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     if([self hasMoreThanOneTableView])
     {
         [self setSectionCellsByTableView:@[@[@[self.holderNameCell]],@[cells]]];
+        [self.tableViews[1] reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
     }
     else
     {
         [self setSectionCellsByTableView:@[@[@[self.holderNameCell], cells]]];
+        [self.tableViews[0] reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     }
 
-    [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
     [self refreshTableViewSizes];
 }
 
@@ -373,6 +376,24 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     return nil;
 }
 
+-(void)textFieldEntryFinished
+{
+    if(self.settingRecipient)
+    {
+        self.settingRecipient = NO;
+        return;
+    }
+    if (self.recipient)
+    {
+        if(![[self.holderNameCell value] isEqualToString:self.recipient.name])
+        {
+            NSString* value = self.holderNameCell.value;
+            [self didSelectRecipient:nil];
+            self.holderNameCell.value = value;
+        }
+    }
+}
+
 - (void)continuePressed {
     [UIApplication dismissKeyboard];
 
@@ -453,9 +474,14 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 }
 
 - (void)didSelectRecipient:(Recipient *)recipient {
+
+    if(recipient)
+    {
+        self.settingRecipient = YES;
+    }
     [self setRecipient:recipient];
     [self handleSelectionChangeToType:recipient ? recipient.type : self.currency.defaultRecipientType allTypes:[self.currency.recipientTypes array]];
-
+    
     if (!recipient) {
         [self.holderNameCell setValue:@""];
         [self.holderNameCell setEditable:YES];
@@ -467,9 +493,8 @@ CGFloat const TransferHeaderPaddingBottom = 0;
         return;
     }
 
-    dispatch_async(dispatch_get_main_queue(), ^{
+    
         [self.holderNameCell setValue:recipient.name];
-        [self.holderNameCell setEditable:NO];
 
         for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
             [fieldCell setEditable:NO];
@@ -480,7 +505,6 @@ CGFloat const TransferHeaderPaddingBottom = 0;
             RecipientTypeField *field = fieldCell.type;
             [fieldCell setValue:[recipient valueField:field]];
         }
-    });
 }
 
 -(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
