@@ -242,7 +242,7 @@
 
 + (BOOL)showStateCell:(NSString *)countryCode
 {
-	return countryCode && [countryCode caseInsensitiveCompare:@"usa"] == NSOrderedSame;
+	return countryCode && [@"usa" caseInsensitiveCompare:countryCode] == NSOrderedSame;
 }
 
 @end

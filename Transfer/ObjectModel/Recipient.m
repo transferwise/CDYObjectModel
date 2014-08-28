@@ -3,6 +3,7 @@
 #import "RecipientTypeField.h"
 #import "Currency.h"
 #import "RecipientType.h"
+#import "NSString+Validation.h"
 
 
 @interface Recipient ()
@@ -93,7 +94,36 @@
     for (TypeFieldValue *value in self.fieldValues) {
         data[value.valueForField.name] = value.value;
     }
+    if(self.hasAddress)
+    {
+        data[@"addressFirstLine"]=self.addressFirstLine;
+        data[@"addressPostCode"]=self.addressPostCode;
+        data[@"addressCity"]=self.addressCity;
+        data[@"addressCountryCode"]=self.addressCountryCode;
+        if(self.addressState)
+        {
+            data[@"addressState"]=self.addressState;
+        }
+        
+    }
     return [NSDictionary dictionaryWithDictionary:data];
+}
+
+-(BOOL)hasAddress
+{
+    BOOL result = YES;
+    if(![self.addressFirstLine hasValue] || ![self.addressPostCode hasValue] || ! [self.addressCity hasValue] || ![self.addressCountryCode hasValue])
+    {
+        result = NO;
+    }
+    if([@"usa" caseInsensitiveCompare:self.addressCountryCode]==NSOrderedSame)
+    {
+        if(![self.addressState hasValue])
+        {
+            result = NO;
+        }
+    }
+    return result;
 }
 
 @end

@@ -64,6 +64,12 @@
         NSString *fieldValue = data[field.name];
         [self addOrUpdateValue:fieldValue forField:field toRecipient:recipient];
     }
+    
+    recipient.addressFirstLine = data[@"addressFirstLine"];
+    recipient.addressPostCode = data[@"addressPostCode"];
+    recipient.addressCity = data[@"addressCity"];
+    recipient.addressCountryCode = data[@"addressCountryCode"];
+    recipient.addressState = data[@"addressState"];
 
     return recipient;
 }

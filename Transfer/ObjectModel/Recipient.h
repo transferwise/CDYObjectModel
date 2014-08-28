@@ -10,5 +10,5 @@
 - (NSString *)presentationStringFromAllValues;
 - (void)setValue:(NSString *)value forField:(RecipientTypeField *)field;
 - (NSDictionary *)data;
-
+- (BOOL)hasAddress;
 @end

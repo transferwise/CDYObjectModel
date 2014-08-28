@@ -4,6 +4,11 @@
 #import "_Recipient.h"
 
 const struct RecipientAttributes RecipientAttributes = {
+	.addressCity = @"addressCity",
+	.addressCountryCode = @"addressCountryCode",
+	.addressFirstLine = @"addressFirstLine",
+	.addressPostCode = @"addressPostCode",
+	.addressState = @"addressState",
 	.email = @"email",
 	.hidden = @"hidden",
 	.name = @"name",
@@ -62,6 +67,41 @@ const struct RecipientFetchedProperties RecipientFetchedProperties = {
 
 	return keyPaths;
 }
+
+
+
+
+@dynamic addressCity;
+
+
+
+
+
+
+@dynamic addressCountryCode;
+
+
+
+
+
+
+@dynamic addressFirstLine;
+
+
+
+
+
+
+@dynamic addressPostCode;
+
+
+
+
+
+
+@dynamic addressState;
+
+
 
 
 

@@ -188,6 +188,7 @@ A revolution in your pocket.";
 "payment.controller.payment.date.message" = "Money arrives %@";
 "payment.controller.title" = "Send";
 "payment.controller.tabbar.title" = "Send";
+
 "payment.controller.title.with.contact.name" = "Payment to %@";
 "payment.controller.transfer.fee.label" = "Total fee";
 "payment.controller.you.get.label" = "Receiver gets (estimated)";
@@ -307,6 +308,8 @@ It can take up to 2 working days.";
 "recipient.controller.validation.error.title" = "Validation error";
 "recipient.controller.validation.error.bic.required" = "BIC is required for transfers to %@";
 "recipient.controller.validation.error.email.format" = "Email is invalid";
+"recipient.controller.validation.error.address" = "Address has empty fields";
+"recipient.controller.section.title.address" = "Address";
 
 "recipient.details.ABA.base" = "ACH / ABA: %@, State:%@";
 "recipient.details.BIC.base" = "BIC: %@";
