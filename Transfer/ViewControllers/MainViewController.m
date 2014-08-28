@@ -8,7 +8,6 @@
 
 #import "MainViewController.h"
 #import "TransactionsViewController.h"
-#import "PaymentViewController.h"
 #import "ContactsViewController.h"
 #import "NewPaymentViewController.h"
 #import "Credentials.h"
@@ -24,14 +23,14 @@
 #import "ProfilesEditViewController.h"
 #import "InvitationsViewController.h"
 
-@interface MainViewController () <UINavigationControllerDelegate, UITabBarControllerDelegate>
+@interface MainViewController () <UINavigationControllerDelegate>
 
 @property (nonatomic, strong) TabViewController *tabController;
 @property (nonatomic, strong) UIView *revealTapView;
 @property (nonatomic, strong) UIViewController *transactionsController;
 @property (nonatomic, assign) BOOL launchTableViewGamAdjustmentDone;
 @property (nonatomic, assign) BOOL shown;
-@property (nonatomic, strong) PaymentViewController *paymentController;
+
 
 @end
 
@@ -248,20 +247,6 @@
     [self.tabController selectIndex:IPAD?0:2];
     [self popToRootViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-    if (viewController == self.paymentController && tabBarController.selectedViewController != self.paymentController) {
-        [self.paymentController resetAmountsToDefault];
-    }
-
-    return YES;
-}
-
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-    if (viewController == self.paymentController) {
-        [[GoogleAnalytics sharedInstance] sendScreen:@"New payment"];
-    }
 }
 
 @end
