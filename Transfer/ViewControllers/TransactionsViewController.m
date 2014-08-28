@@ -261,7 +261,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         resultController = controller;
     }
 
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     [self presentDetail:resultController];
 }

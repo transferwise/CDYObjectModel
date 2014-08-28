@@ -107,7 +107,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    self.slidingContentView.bgStyle = selected ? @"LightBlue" : @"white";
+    self.slidingContentView.bgStyle = selected ? @"LightBlueHighlighted" : @"white";
 }
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
