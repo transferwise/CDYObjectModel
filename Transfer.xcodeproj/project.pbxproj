@@ -296,6 +296,8 @@
 		38CACD6A1987C43E0085C254 /* CurrencySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CACD681987C43E0085C254 /* CurrencySelectionCell~ipad.xib */; };
 		38CB1F7719ABB47000CD0953 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */; };
 		38CB1F7819ABB47000CD0953 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */; };
+		38D8FBD519AF21B4007C73DF /* ReferralsCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */; };
+		38D8FBD619AF21B4007C73DF /* ReferralsCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */; };
 		38E57F78192A51DD00D864A2 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
 		38E57F79192A51DD00D864A2 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
 		38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E57F77192A51DD00D864A2 /* TabViewController.xib */; };
@@ -1120,6 +1122,8 @@
 		38CB1F7519ABB47000CD0953 /* Transfer_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v2.xcdatamodel; sourceTree = "<group>"; };
 		38CB1F7619ABB47000CD0953 /* Transfer_v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v3.xcdatamodel; sourceTree = "<group>"; };
 		38CB1F7919ABBB6200CD0953 /* Transfer_v3.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v3.1.xcdatamodel; sourceTree = "<group>"; };
+		38D8FBD319AF21B4007C73DF /* ReferralsCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralsCoordinator.h; sourceTree = "<group>"; };
+		38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralsCoordinator.m; sourceTree = "<group>"; };
 		38E57F75192A51DD00D864A2 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
 		38E57F76192A51DD00D864A2 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
 		38E57F77192A51DD00D864A2 /* TabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabViewController.xib; sourceTree = "<group>"; };
@@ -2661,6 +2665,8 @@
 				EACF763E175C71B4008F2A03 /* RecipientProfileCommitter.h */,
 				EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */,
 				EA59296E17589F3A007C0072 /* RecipientProfileValidation.h */,
+				38D8FBD319AF21B4007C73DF /* ReferralsCoordinator.h */,
+				38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */,
 				383FC0EE19AE1A1A00465FCA /* StateSuggestionProvider.h */,
 				383FC0EF19AE1A1A00465FCA /* StateSuggestionProvider.m */,
 				47AC3F8F1987AFAC005491C6 /* SuggestionCellProvider.h */,
@@ -3529,6 +3535,7 @@
 				389F6834198FC1C6006CF1F6 /* ObjectModel+Users.m in Sources */,
 				389F6836198FC1C6006CF1F6 /* ObjectModel.m in Sources */,
 				4746EAF919A603BB00D03557 /* ReferralLinkOperation.m in Sources */,
+				38D8FBD619AF21B4007C73DF /* ReferralsCoordinator.m in Sources */,
 				EA31A1BD17DDB29B00F937F7 /* FeedbackCoordinator.m in Sources */,
 				383FC10B19AE1B8400465FCA /* SeeHowViewController.m in Sources */,
 				EABD864618E2B65D004A5A57 /* TransferMixpanel.m in Sources */,
@@ -3819,6 +3826,7 @@
 				389F6833198FC1C6006CF1F6 /* ObjectModel+Users.m in Sources */,
 				389F6835198FC1C6006CF1F6 /* ObjectModel.m in Sources */,
 				4746EAF819A603BB00D03557 /* ReferralLinkOperation.m in Sources */,
+				38D8FBD519AF21B4007C73DF /* ReferralsCoordinator.m in Sources */,
 				EABD864518E2B65D004A5A57 /* TransferMixpanel.m in Sources */,
 				383FC10A19AE1B8400465FCA /* SeeHowViewController.m in Sources */,
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,

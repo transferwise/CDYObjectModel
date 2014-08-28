@@ -921,8 +921,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 #pragma mark - Text entry finisehd
 
 -(void)textFieldEntryFinished
-{
-    
+{    
     [self updateUserNameText];
 }
 
