@@ -124,6 +124,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, strong) CountrySuggestionCellProvider *countryCellProvider;
 @property (nonatomic, strong) StateSuggestionProvider *stateCellProvider;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewTopContentOffset;
 
 
 - (IBAction)addButtonPressed:(id)sender;
@@ -571,20 +572,22 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     {
         if(type.recipientAddressRequiredValue)
         {
-            [self setSectionCellsByTableView:@[@[self.recipientCells,self.currencyCells], @[cells,self.addressCells]]];
+            [self setSectionCellsByTableView:@[@[self.recipientCells,self.addressCells,self.currencyCells], @[cells]]];
         }
         else
         {
             [self setSectionCellsByTableView:@[@[self.recipientCells,self.currencyCells], @[cells]]];
         }
         
-        [self.tableViews[1] reloadData];
+        [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
+        [self refreshTableViewSizes];
+        [self configureForInterfaceOrientation:self.interfaceOrientation];
     }
     else
     {
         if(type.recipientAddressRequiredValue)
         {
-            [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells, cells,self.addressCells]]];
+            [self setSectionCellsByTableView:@[@[self.recipientCells, self.addressCells, self.currencyCells, cells]]];
         }
         else
         {
@@ -799,7 +802,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     {
         return self.recipientFieldsHeader.frame.size.height;
     }
-    
+    else if ([self.presentedSectionsByTableView[index][section] integerValue] == kAddressSection)
+    {
+        return 0;
+    }
     return [super tableView:tableView heightForHeaderInSection:section];
 
 }
@@ -810,6 +816,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     if ([self.presentedSectionsByTableView[index][section] integerValue] == kRecipientFieldsSection)
     {
         return self.recipientFieldsHeader;
+    }
+    else if ([self.presentedSectionsByTableView[index][section] integerValue] == kAddressSection)
+    {
+        return nil;
     }
     
     return [super tableView:tableView viewForHeaderInSection:section];
@@ -859,6 +869,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         NSMutableArray *sectionIndexes = [NSMutableArray array];
         
         [sectionIndexes addObject:@(kRecipientSection)];
+        if(self.recipientType.recipientAddressRequired)
+        {
+            [sectionIndexes addObject:@(kAddressSection)];
+        }
+            
         
         if (self.preLoadRecipientsWithCurrency) {
             [cells removeObject:self.currencyCells];
@@ -868,14 +883,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         
         finalSectionCellsByTableView[0] = cells;
         [finalPresentedSectionsByTableView addObject:sectionIndexes];
-        if (self.recipientType.recipientAddressRequired)
-        {
-             [finalPresentedSectionsByTableView addObject:@[@(kRecipientFieldsSection),@(kAddressSection)]];
-        }
-        else
-        {
-             [finalPresentedSectionsByTableView addObject:@[@(kRecipientFieldsSection)]];
-        }
+        [finalPresentedSectionsByTableView addObject:@[@(kRecipientFieldsSection)]];
+
        
         
         ;
@@ -886,6 +895,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         NSMutableArray *sectionIndexes = [NSMutableArray array];
         [sectionIndexes addObject:@(kRecipientSection)];
         
+        if (self.recipientType.recipientAddressRequired)
+        {
+            [sectionIndexes addObject:@(kAddressSection)];
+        }
+        
         if (self.preLoadRecipientsWithCurrency) {
             [cells removeObject:self.currencyCells];
         } else {
@@ -895,10 +909,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         finalSectionCellsByTableView[0] = cells;
         
         [sectionIndexes addObject:@(kRecipientFieldsSection)];
-        if (self.recipientType.recipientAddressRequired)
-        {
-            [sectionIndexes addObject:@(kAddressSection)];
-        }
         
         [finalPresentedSectionsByTableView addObject:sectionIndexes];
     }
@@ -979,26 +989,30 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     {
         if(IPAD)
         {
-            [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells],@[self.recipientTypeFieldCells, self.addressCells]]];
+            [self setSectionCellsByTableView:@[@[self.recipientCells,self.addressCells, self.currencyCells],@[self.recipientTypeFieldCells]]];
             if(didIncludeState)
             {
-                [self.tableViews[1] insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableViews[0] reloadData];
+                [self refreshTableViewSizes];
+                [self configureForInterfaceOrientation:self.interfaceOrientation];
             }
             else if(didRemoveState)
             {
-                [self.tableViews[1] deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableViews[0] reloadData];
+                [self refreshTableViewSizes];
+                [self configureForInterfaceOrientation:self.interfaceOrientation];
             }
         }
         else
         {
-            [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells,self.recipientTypeFieldCells, self.addressCells]]];
+            [self setSectionCellsByTableView:@[@[self.recipientCells,self.addressCells, self.currencyCells,self.recipientTypeFieldCells]]];
             if(didIncludeState)
             {
-                [self.tableViews[0] insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:3]] withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableViews[0] insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
             }
             else if(didRemoveState)
             {
-                [self.tableViews[0] deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:3]] withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableViews[0] deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
             }
         }
     }
@@ -1073,6 +1087,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     //Lots of magic numbers here to match designs. Not sure what to do...
     if(UIInterfaceOrientationIsPortrait(orientation))
     {
+        self.scrollViewTopContentOffset.constant = 120.0f;
         self.firstColumnLeftMargin.constant = 176.f;
         self.secondColumnLeftEdgeConstraint.constant = -409.f;
         self.secondColumnTopConstraint.constant = self.firstColumnHeightConstraint.constant + 50.f;
@@ -1080,6 +1095,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
     else
     {
+        self.scrollViewTopContentOffset.constant = self.recipientType.recipientAddressRequired?30.0f:120.0f;
         self.firstColumnLeftMargin.constant = 60.f;
         self.secondColumnLeftEdgeConstraint.constant = 79.f;
         self.secondColumnTopConstraint.constant = 0.f;
