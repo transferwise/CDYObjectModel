@@ -53,6 +53,7 @@
 "confirm.payment.target.sum.format" = "%@";
 "confirm.payment.fixed.target.sum.format" = "exactly %@";
 "confirm.payment.header.format" = "On %@,\n%@\nis estimated to reach\n%@'s account";
+"confirm.payment.header.format.nodate" = "%@\n will reach\n%@'s account";
 "confirm.payment.exchangerate.title.label" = "Estimated rate";
 "confirm.payment.footer.button.title" = "Confirm";
 "confirm.payment.payment.error.title" = "Couldn't create transfer. Please try again.";
