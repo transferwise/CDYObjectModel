@@ -12,6 +12,7 @@
 
 @interface SuggestionDataEntryViewController ()
 
+@property (nonatomic, weak) TextFieldSuggestionTable* currentSuggestionTable;
 
 @end
 
@@ -84,47 +85,48 @@
 
 -(void)suggestionTableDidStartEditing:(TextFieldSuggestionTable *)table
 {
+    self.currentSuggestionTable = table;
+    [self.suggestionTables makeObjectsPerformSelector:@selector(removeFromSuperview)];
    [self updateSuggestionTablePositions];
 }
 
 -(void)updateSuggestionTablePositions
 {
     UIImage* backgroundImage;
-    for (TextFieldSuggestionTable* table in self.suggestionTables)
+
+    TextFieldSuggestionTable* table = self.currentSuggestionTable;
+    [table removeFromSuperview];
+    UIView* viewToAlignTo = table.associatedView;
+    
+    if(!IPAD)
     {
-        [table removeFromSuperview];
-        UIView* viewToAlignTo = table.associatedView;
-        
-        if(!IPAD)
-        {
-            if(!backgroundImage)
+        if(!backgroundImage)
             {
                 backgroundImage = [self.view renderBlurWithTintColor:nil];
             }
-            UIImageView* background = [[UIImageView alloc] initWithImage:backgroundImage];
-            background.contentMode = UIViewContentModeBottom;
-            table.backgroundView = background;
-            
-            UIView *colorOverlay = [[UIView alloc] initWithFrame:background.bounds];
-            colorOverlay.bgStyle = @"DarkFont.alpha4";
-            colorOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-            [background addSubview:colorOverlay];
-        }
-        else
-        {
-            viewToAlignTo = ((TextEntryCell*)table.associatedView).separatorLine;
-        }
+        UIImageView* background = [[UIImageView alloc] initWithImage:backgroundImage];
+        background.contentMode = UIViewContentModeBottom;
+        table.backgroundView = background;
         
-        if([viewToAlignTo superview])
-        {
-            CGRect newFrame = table.frame;
-            newFrame.origin = [self.view convertPoint:viewToAlignTo.frame.origin fromView:viewToAlignTo.superview];
-            newFrame.origin.y += viewToAlignTo.frame.size.height;
-            newFrame.size.height = self.view.frame.size.height - newFrame.origin.y;
-            newFrame.size.width = viewToAlignTo.frame.size.width;
-            table.frame = newFrame;
-            [self.view addSubview:table];
-        }
+        UIView *colorOverlay = [[UIView alloc] initWithFrame:background.bounds];
+        colorOverlay.bgStyle = @"DarkFont.alpha4";
+        colorOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        [background addSubview:colorOverlay];
+    }
+    else
+    {
+        viewToAlignTo = ((TextEntryCell*)table.associatedView).separatorLine;
+    }
+    
+    if([viewToAlignTo superview])
+    {
+        CGRect newFrame = table.frame;
+        newFrame.origin = [self.view convertPoint:viewToAlignTo.frame.origin fromView:viewToAlignTo.superview];
+        newFrame.origin.y += viewToAlignTo.frame.size.height;
+        newFrame.size.height = self.view.frame.size.height - newFrame.origin.y;
+        newFrame.size.width = viewToAlignTo.frame.size.width;
+        table.frame = newFrame;
+        [self.view addSubview:table];
     }
 }
 
