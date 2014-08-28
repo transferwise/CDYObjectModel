@@ -51,6 +51,34 @@
     for (NSDictionary *fData in fieldsData) {
         [self createOrUpdateFieldOnType:type withData:fData];
     }
+    
+    NSMutableArray *removedFields = [NSMutableArray array];
+    NSArray* retrievedFieldNames = [fieldsData valueForKey:@"name"];
+    for (RecipientTypeField *field in type.fields)
+    {
+        if([retrievedFieldNames indexOfObject:field.name] == NSNotFound)
+        {
+            [removedFields addObject:field];
+        }
+    }
+    
+    if([removedFields count] >0)
+    {
+        NSMutableOrderedSet *adjustedSet = [type.fields mutableCopy];
+        [adjustedSet removeObjectsInArray:removedFields];
+        type.fields = adjustedSet;
+        
+        for (RecipientTypeField *field in removedFields)
+        {
+            for(NSManagedObject *value in field.values)
+            {
+                [self.managedObjectContext deleteObject:value];
+            }
+            [self.managedObjectContext deleteObject:field];
+        }
+    }
+    
+    
 }
 
 - (void)createOrUpdateFieldOnType:(RecipientType *)type withData:(NSDictionary *)data {
