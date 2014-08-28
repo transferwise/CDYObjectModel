@@ -437,7 +437,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         allowedType = [allowedTypes firstObject];
     }
     
-    if(type != allowedType || (type.recipientAddressRequired && ![recipient hasAddress]))
+    if(type != allowedType || (type.recipientAddressRequiredValue && ![recipient hasAddress]))
     {
         self.recipient = nil;
         if(recipient)
@@ -869,7 +869,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         NSMutableArray *sectionIndexes = [NSMutableArray array];
         
         [sectionIndexes addObject:@(kRecipientSection)];
-        if(self.recipientType.recipientAddressRequired)
+        if(self.recipientType.recipientAddressRequiredValue)
         {
             [sectionIndexes addObject:@(kAddressSection)];
         }
@@ -895,7 +895,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         NSMutableArray *sectionIndexes = [NSMutableArray array];
         [sectionIndexes addObject:@(kRecipientSection)];
         
-        if (self.recipientType.recipientAddressRequired)
+        if (self.recipientType.recipientAddressRequiredValue)
         {
             [sectionIndexes addObject:@(kAddressSection)];
         }
@@ -985,7 +985,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         }
     }
  
-    if(self.recipientType.recipientAddressRequired)
+    if(self.recipientType.recipientAddressRequiredValue)
     {
         if(IPAD)
         {
@@ -1095,7 +1095,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
     else
     {
-        self.scrollViewTopContentOffset.constant = self.recipientType.recipientAddressRequired?30.0f:120.0f;
+        self.scrollViewTopContentOffset.constant = self.recipientType.recipientAddressRequiredValue?30.0f:120.0f;
         self.firstColumnLeftMargin.constant = 60.f;
         self.secondColumnLeftEdgeConstraint.constant = 79.f;
         self.secondColumnTopConstraint.constant = 0.f;
