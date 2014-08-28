@@ -579,6 +579,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         }
         
         [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
+        [self refreshTableViewSizes];
+        [self configureForInterfaceOrientation:self.interfaceOrientation];
     }
     else
     {
@@ -799,7 +801,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     {
         return self.recipientFieldsHeader.frame.size.height;
     }
-    
+    else if ([self.presentedSectionsByTableView[index][section] integerValue] == kAddressSection)
+    {
+        return 0;
+    }
     return [super tableView:tableView heightForHeaderInSection:section];
 
 }
@@ -810,6 +815,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     if ([self.presentedSectionsByTableView[index][section] integerValue] == kRecipientFieldsSection)
     {
         return self.recipientFieldsHeader;
+    }
+    else if ([self.presentedSectionsByTableView[index][section] integerValue] == kAddressSection)
+    {
+        return nil;
     }
     
     return [super tableView:tableView viewForHeaderInSection:section];
@@ -982,11 +991,15 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             [self setSectionCellsByTableView:@[@[self.recipientCells,self.addressCells, self.currencyCells],@[self.recipientTypeFieldCells]]];
             if(didIncludeState)
             {
-                [self.tableViews[0] insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableViews[0] reloadData];
+                [self refreshTableViewSizes];
+                [self configureForInterfaceOrientation:self.interfaceOrientation];
             }
             else if(didRemoveState)
             {
-                [self.tableViews[0] deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableViews[0] reloadData];
+                [self refreshTableViewSizes];
+                [self configureForInterfaceOrientation:self.interfaceOrientation];
             }
         }
         else
