@@ -116,7 +116,7 @@
     {
         result = NO;
     }
-    if([self.addressCountryCode caseInsensitiveCompare:@"usa"]==NSOrderedSame)
+    if([@"usa" caseInsensitiveCompare:self.addressCountryCode]==NSOrderedSame)
     {
         if(![self.addressState hasValue])
         {
