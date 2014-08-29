@@ -26,6 +26,7 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *separatorViewHeight;
 @property (strong, nonatomic) IBOutlet GreenButton *continueButton;
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel;
+@property (strong, nonatomic) TransferwiseOperation *currentOperation;
 
 @end
 
@@ -108,11 +109,13 @@
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     ResetPasswordOperation *operation = [[ResetPasswordOperation alloc] init];
+	self.currentOperation = operation;
     [operation setEmail:email];
     [operation setObjectModel:self.objectModel];
     __weak typeof(self) weakSelf = self;
     [operation setResultHandler:^(NSError *error) {
         [hud hide];
+		self.currentOperation = nil;
         if (!error) {
             TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"reset.password.success.alert.title", nil) message:NSLocalizedString(@"reset.password.success.alert.message", nil)];
             [alertView setConfirmButtonTitle:NSLocalizedString(@"reset.password.alert.dismiss.button", nil) action:^{
