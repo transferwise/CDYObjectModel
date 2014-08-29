@@ -28,6 +28,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *leftSeparatorHeight;
 @property (strong, nonatomic) UIColor *selectorBackgroundColor;
 @property (weak, nonatomic) IBOutlet UIImageView *dropdownArrow;
+@property (nonatomic) BOOL currenciesLoaded;
 
 @end
 
@@ -128,15 +129,17 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
 - (IBAction)selectCurrencyTapped:(id)sender
 {
-    //dismiss keyboard
-    [self.window endEditing:YES];
-    
-    CurrencySelectorViewController* selector = [[CurrencySelectorViewController alloc] init];
-    selector.delegate = self;
-    selector.currencyArray = [self.currencies.fetchedObjects valueForKey:@"currency"];
-    [selector setSelectedCurrency:self.selectedCurrency];
-    selector.view.backgroundColor = self.selectorBackgroundColor;
-    [selector presentOnViewController:self.hostForCurrencySelector];
+	if (self.currenciesLoaded)
+	{
+		[self.window endEditing:YES];
+		
+		CurrencySelectorViewController* selector = [[CurrencySelectorViewController alloc] init];
+		selector.delegate = self;
+		selector.currencyArray = [self.currencies.fetchedObjects valueForKey:@"currency"];
+		[selector setSelectedCurrency:self.selectedCurrency];
+		selector.view.backgroundColor = self.selectorBackgroundColor;
+		[selector presentOnViewController:self.hostForCurrencySelector];
+	}
 }
 
 
@@ -188,6 +191,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     
     [self setSelectedCurrency:selected];
     [self.currencyButton setTitle:selected.code forState:UIControlStateNormal];
+	self.currenciesLoaded = YES;
     self.currencyChangedHandler(selected);
 }
 
