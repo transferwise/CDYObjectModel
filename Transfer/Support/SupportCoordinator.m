@@ -61,25 +61,21 @@
     [self setPresentedOnController:controller];
     [self setEmailSubject:emailSubject];
 
-    if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel://"]])
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"support.sheet.title", nil)
+															 delegate:self
+													cancelButtonTitle:nil
+											   destructiveButtonTitle:nil
+													otherButtonTitles:nil];
+	
+	[self setWriteButtonIndex:[actionSheet addButtonWithTitle:NSLocalizedString(@"support.sheet.write.message", nil)]];
+	if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel://"]])
 	{
-    
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"support.sheet.title", nil)
-                                                             delegate:self
-                                                    cancelButtonTitle:nil
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:nil];
-
-        [self setWriteButtonIndex:[actionSheet addButtonWithTitle:NSLocalizedString(@"support.sheet.write.message", nil)]];
-        [self setCallButtonIndex:[actionSheet addButtonWithTitle:NSLocalizedString(@"support.sheet.call", nil)]];
-        NSInteger cancelButtonIndex = [actionSheet addButtonWithTitle:NSLocalizedString(@"button.title.cancel", nil)];
-        [actionSheet setCancelButtonIndex:cancelButtonIndex];
-        [actionSheet showInView:controller.view];
-    }
-    else
-    {
-        [self actionSheet:nil clickedButtonAtIndex:self.writeButtonIndex];
-    }
+		[self setCallButtonIndex:[actionSheet addButtonWithTitle:NSLocalizedString(@"support.sheet.call", nil)]];
+	}
+	NSInteger cancelButtonIndex = [actionSheet addButtonWithTitle:NSLocalizedString(@"button.title.cancel", nil)];
+	[actionSheet setCancelButtonIndex:cancelButtonIndex];
+	
+	[actionSheet showInView:controller.view];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
