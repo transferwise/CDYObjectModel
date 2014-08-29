@@ -584,6 +584,7 @@
 	[newPayment setEstimatedDeliveryStringFromServer:payment.estimatedDeliveryStringFromServer];
 	[newPayment setTransferwiseTransferFee:payment.transferwiseTransferFee];
 	[newPayment setIsFixedAmountValue:payment.isFixedAmountValue];
+    newPayment.allowedRecipientTypes = payment.allowedRecipientTypes;
 	
 	return newPayment;
 }

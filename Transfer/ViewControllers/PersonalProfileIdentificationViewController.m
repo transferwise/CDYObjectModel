@@ -256,21 +256,26 @@
 }
 
 -(void)complete:(BOOL)skip
-{
-    
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-    [hud setMessage:self.completionMessage];
-    if (skip) {
+{    
+	TRWProgressHUD *hud;
+    if (skip)
+	{
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"skipped"];
-    } else {
+    }
+	else
+	{
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"sent"];
+		hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+		[hud setMessage:self.completionMessage];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProgress:) name:TRWUploadProgressNotification object:nil];
     }
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProgress:) name:TRWUploadProgressNotification object:nil];
-    
     self.completionHandler(skip, [self.paymentPurposeCell.entryField text], ^(void){
-        [hud hide];
-         [[NSNotificationCenter defaultCenter] removeObserver:self name:TRWUploadProgressNotification object:nil];
+		if (!skip)
+		{
+			[hud hide];
+			[[NSNotificationCenter defaultCenter] removeObserver:self name:TRWUploadProgressNotification object:nil];
+		}
     }, ^(NSError *error) {
         [hud hide];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:TRWUploadProgressNotification object:nil];

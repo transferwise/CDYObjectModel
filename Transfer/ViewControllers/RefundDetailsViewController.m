@@ -249,14 +249,13 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     if([self hasMoreThanOneTableView])
     {
         [self setSectionCellsByTableView:@[@[@[self.holderNameCell]],@[cells]]];
-        [self.tableViews[1] reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
     }
     else
     {
         [self setSectionCellsByTableView:@[@[@[self.holderNameCell], cells]]];
-        [self.tableViews[0] reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     }
 
+    [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
     [self refreshTableViewSizes];
 }
 
