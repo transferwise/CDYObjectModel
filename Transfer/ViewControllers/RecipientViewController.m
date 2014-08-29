@@ -24,7 +24,6 @@
 #import "RecipientEntrySelectionCell.h"
 #import "DropdownCell.h"
 #import "ButtonCell.h"
-#import "AddressBookUI/ABPeoplePickerNavigationController.h"
 #import "ObjectModel.h"
 #import "PhoneBookProfileSelector.h"
 #import "PhoneBookProfile.h"
@@ -73,7 +72,7 @@ static NSUInteger const kAddressSection = 3;
 
 NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
-@interface RecipientViewController () <ABPeoplePickerNavigationControllerDelegate, SuggestionTableDelegate, CountrySelectionCellDelegate>
+@interface RecipientViewController () <SuggestionTableDelegate, CountrySelectionCellDelegate>
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
@@ -113,6 +112,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 @property (nonatomic, strong) TransferwiseOperation *retrieveCurrenciesOperation;
 
+@property (nonatomic, assign) BOOL settingRecipient;
+
 //Address cells
 
 @property (nonatomic,strong)TextEntryCell *addressCell;
@@ -125,7 +126,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic, strong) StateSuggestionProvider *stateCellProvider;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewTopContentOffset;
-
 
 - (IBAction)addButtonPressed:(id)sender;
 
@@ -477,7 +477,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         }
         else
         {
-            [self.nameCell setValue:@""];
             [self.emailCell setValue:@""];
             [self.nameCell setEditable:YES];
             for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
@@ -492,7 +491,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         return;
     }
 
-    dispatch_async(dispatch_get_main_queue(), ^{
         //We're using an existing recipient.
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"ExistingRecipientSelected"];
         [self.nameCell setValue:recipient.name];
@@ -508,7 +506,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         }
         [self setAddressFieldsFromRecipient:recipient];
         [self setAddressFieldsEditable:NO];
-    });
+        self.settingRecipient = NO;
 }
 
 -(void)setAddressFieldsFromRecipient:(Recipient*)recipient
@@ -846,18 +844,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
 }
 
-- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
-    return YES;
-}
-
-- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
-    return YES;
-}
-
 - (void)setSectionCellsByTableView:(NSArray*)sectionCellsByTableView
 {
     NSMutableArray* finalSectionCellsByTableView = [sectionCellsByTableView mutableCopy];
@@ -931,7 +917,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 #pragma mark - Text entry finisehd
 
 -(void)textFieldEntryFinished
-{    
+{
     [self updateUserNameText];
 }
 
@@ -940,7 +926,17 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 -(void)updateUserNameText
 {
-    NSString *recipientName = [self.nameCell.value length] > 0 ? self.nameCell.value: NSLocalizedString(@"recipient.controller.section.title.recipient.placeholder", nil);
+    NSString *nameCellValue = self.nameCell.value;
+ 
+    if(self.recipient && ![self.recipient.name isEqualToString:nameCellValue])
+    {
+        if(!self.settingRecipient)
+        {
+            [self didSelectRecipient:nil];
+        }
+    }
+    
+    NSString *recipientName = [nameCellValue length] > 0 ? nameCellValue: NSLocalizedString(@"recipient.controller.section.title.recipient.placeholder", nil);
     self.recipientFieldsHeader.titleLabel.text =  [NSString stringWithFormat:NSLocalizedString(@"recipient.controller.section.title.recipient.bank.details", nil),recipientName];
     self.currencyCell.titleLabel.text =  [NSString stringWithFormat:NSLocalizedString(@"recipient.controller.scell.title.recipient.currency", nil),recipientName];
 }
@@ -1042,6 +1038,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         }
         else if (wrapper.managedObjectId)
         {
+            self.settingRecipient = YES;
             [self didSelectRecipient:(Recipient*)[self.objectModel.managedObjectContext objectWithID:wrapper.managedObjectId]];
         }
         [self moveFocusOnNextEntryAfterCell:self.nameCell];
