@@ -439,4 +439,51 @@
     
 }
 
+#pragma mark - keyboard show/hide
+
+-(void)keyboardWillShow:(NSNotification *)note
+{
+    if(!IPAD)
+    {
+        [super keyboardWillShow:note];
+    }
+    else
+    {
+        
+        CGRect newframe = [self.view.window convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] toView:self.view];
+        NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:duration];
+        [UIView setAnimationCurve:curve];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, newframe.size.height, 0);
+        [self.tableView scrollToRowAtIndexPath:[self.tableView indexPathForCell:self.paymentPurposeCell] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        [UIView commitAnimations];
+    }
+}
+
+-(void)keyboardWillHide:(NSNotification *)note
+{
+    if (!IPAD)
+    {
+        [super keyboardWillHide:note];
+    }
+    else
+    {
+        
+        NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:duration];
+        [UIView setAnimationCurve:curve];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        self.tableView.contentInset = UIEdgeInsetsZero;
+        self.tableView.contentOffset = CGPointZero;
+        [UIView commitAnimations];
+    }
+}
+
 @end
