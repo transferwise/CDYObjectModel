@@ -29,12 +29,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="384" height="335"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Beu-qw-m4I">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Beu-qw-m4I" customClass="GradientView">
                                 <rect key="frame" x="0.0" y="0.0" width="384" height="290"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightBlueHighlighted"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fromColorStyle" value="LightBlueHighlighted"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="toColorStyle" value="LightBlue"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="orientation">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OZg-fL-hYF">
@@ -86,8 +90,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.21176470589999999" green="0.23921568630000001" blue="0.30588235289999999" alpha="0.11" colorSpace="calibratedRGB"/>
+                                <size key="shadowOffset" width="0.0" height="1"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@26.darkfont"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@26.White"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>

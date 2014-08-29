@@ -386,7 +386,7 @@ This can't be undone.";
 "transferdetails.controller.refunded.header" = "Transfer refunded";
 "transferdetails.controller.cancelled.header" = "Transfer cancelled";
 "transferdetails.controller.matched.header" = "Transfer on its way";
-"transferdetails.controller.received.header" = "Transfer converting";
+"transferdetails.controller.received.header" = "Thanks! Transferwise received your money.";
 "transferdetails.controller.submitted.header" = "Transfer waiting for money";
 "transferdetails.controller.transferred.header" = "Transfer completed";
 "transferdetails.controller.transfer.header" = "Your transfer";
