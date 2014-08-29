@@ -10,6 +10,7 @@
                 <outlet property="containerScrollView" destination="XCE-KC-Di1" id="pzl-ap-iqn"/>
                 <outlet property="firstColumnHeightConstraint" destination="WNq-7i-U6Z" id="crc-wm-i6R"/>
                 <outlet property="firstColumnLeftMargin" destination="y4g-S3-dfn" id="0gP-kb-Dup"/>
+                <outlet property="scrollViewTopContentOffset" destination="fwL-dI-WgT" id="Wwo-Ih-1MC"/>
                 <outlet property="secondColumnHeightConstraint" destination="Kcl-Pf-3Gx" id="Kcz-Sj-9dy"/>
                 <outlet property="secondColumnLeftEdgeConstraint" destination="9M8-ca-8M9" id="WO7-2A-uFx"/>
                 <outlet property="secondColumnTopConstraint" destination="YnC-cC-hmy" id="yqv-eq-74Z"/>

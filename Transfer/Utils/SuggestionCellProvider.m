@@ -46,6 +46,7 @@
     return [self.dataSource count];
 }
 
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SuggestionCell *cell = [self getCell:tableView];
@@ -72,6 +73,7 @@
 	
     SuggestionCell *cell = (SuggestionCell*)[tableView dequeueReusableCellWithIdentifier:self.nibName];
     cell.translatesAutoresizingMaskIntoConstraints = NO;
+    cell.clipsToBounds = YES;
 	return cell;
 }
 
