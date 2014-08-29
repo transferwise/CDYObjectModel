@@ -14,6 +14,7 @@
 
 @interface TransferDetailsViewController : UIViewController
 
+@property (nonatomic) BOOL showClose;
 @property (weak, nonatomic) Payment *payment;
 
 - (void)setUpHeader;

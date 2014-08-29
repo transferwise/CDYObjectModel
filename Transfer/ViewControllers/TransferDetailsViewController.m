@@ -29,15 +29,6 @@
 
 @implementation TransferDetailsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)setPayment:(Payment *)payment
 {
 	_payment = payment;
@@ -48,14 +39,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
+	
+	if (self.showClose)
+	{
+		UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+		[button addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+		[button setImage:[UIImage imageNamed:@"CloseButton"] forState:UIControlStateNormal];
+		[button setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)];
+		UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+		[self.navigationItem setLeftBarButtonItem:settingsButton];
+	}
+	else
+	{
+		[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
+	}
 	[self setData];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)dismiss
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)setData

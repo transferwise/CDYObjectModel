@@ -24,6 +24,7 @@
 #import "Credentials.h"
 #import "FeedbackCoordinator.h"
 #import "SupportCoordinator.h"
+#import "TransferDetailsViewController.h"
 
 @interface UploadMoneyViewController ()
 
@@ -61,22 +62,15 @@
         if (success) {
             [[GoogleAnalytics sharedInstance] sendScreen:@"Success"];
             [[GoogleAnalytics sharedInstance] sendAppEvent:@"PaymentMade" withLabel:@"debitcard"];
-            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.card.payment.success.title", nil)
-                                                               message:NSLocalizedString(@"upload.money.card.payment.success.message", nil)];
-            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.continue", nil) action:^{
-                [weakSelf pushNextScreen];
-                [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
-                    return YES;
-                }];
-            }];
-			
-            [alertView show];
+			[[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
+				return YES;
+			}];
+			[weakSelf pushNextScreen];
         } else {
             [[GoogleAnalytics sharedInstance] sendEvent:@"ErrorDebitCardPayment" category:@"Error" label:@""];
             TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.card.no.payment.title", nil)
                                                                message:NSLocalizedString(@"upload.money.card.no.payment.message", nil)];
             [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-			
             [alertView show];
         }
     }];
@@ -150,14 +144,12 @@
                     [alertView show];
                     return;
                 }
-
-                PaymentDetailsViewController *controller = [[PaymentDetailsViewController alloc] init];
-                [controller setObjectModel:weakSelf.objectModel];
-                [controller setPayment:(Payment *) [weakSelf.objectModel.managedObjectContext objectWithID:weakSelf.payment.objectID]];
-                [controller setShowContactSupportCell:YES];
-                [controller setFlattenStack:YES];
-                [weakSelf.navigationController pushViewController:controller animated:YES];
-
+				
+				TransferDetailsViewController *details = [[TransferDetailsViewController alloc] init];
+				details.payment = weakSelf.payment;
+				details.showClose = YES;
+				
+				[self.navigationController pushViewController:details animated:YES];
             });
         }];
 
