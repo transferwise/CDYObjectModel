@@ -93,12 +93,6 @@
 	[NavigationBarCustomiser setDefault];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)updateViewConstraints
 {
 	self.passwordSeparatorHeight.constant = 1.0f / [[UIScreen mainScreen] scale];
