@@ -84,8 +84,8 @@
                 [UIImage headerBackgroundFromImage:image finalImageSize:CGSizeMake(473, 270) completionBlock:^(UIImage *result) {
                     weakSelf.headerBackground.alpha = 0.0f;
                     weakSelf.headerBackground.image = result;
-                    [UIView animateWithDuration:0.8f delay:0.2f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                        weakSelf.headerBackground.alpha = 0.9f;
+                    [UIView animateWithDuration:0.8f delay:0.1f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                        weakSelf.headerBackground.alpha = 1.0f;
                     } completion:nil];
                 }];
             }

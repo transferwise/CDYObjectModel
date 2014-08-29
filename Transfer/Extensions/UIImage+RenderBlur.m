@@ -134,7 +134,7 @@
     
     
     //Blur
-    [UIImage blurImageInBackground:scaledup withRadius:20 iterations:8 tintColor:nil withCompletionBlock:^(UIImage *result) {
+    [UIImage blurImageInBackground:scaledup withRadius:80 iterations:8 tintColor:nil withCompletionBlock:^(UIImage *result) {
         completionBlock(result);
     }];
     
