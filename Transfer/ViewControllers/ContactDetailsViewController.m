@@ -85,7 +85,7 @@
                     weakSelf.headerBackground.alpha = 0.0f;
                     weakSelf.headerBackground.image = result;
                     [UIView animateWithDuration:0.8f delay:0.2f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                        weakSelf.headerBackground.alpha = 0.6f;
+                        weakSelf.headerBackground.alpha = 0.9f;
                     } completion:nil];
                 }];
             }
