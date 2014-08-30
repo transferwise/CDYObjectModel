@@ -195,11 +195,11 @@ A revolution in your pocket.";
 "payment.controller.you.get.label" = "Receiver gets (estimated)";
 "payment.currencies.format" = "%@ to %@";
 
-"payment.status.cancelled.description" = "Cancelled %@";
+"payment.status.cancelled.description" = "Cancelled - %@";
 "payment.status.cancelled.description.long" = "has now been cancelled.";
 "payment.status.cancelled.description.conversion" = "was not converted to";
 "payment.status.cancelled.description.eta" = "";
-"payment.status.refunded.description" = "Refunded %@";
+"payment.status.refunded.description" = "Refunded - %@";
 "payment.status.refunded.description.long" = "has now been cancelled.";
 "payment.status.refunded.description.conversion" = "has been refunded";
 "payment.status.refunded.description.eta" = "";
@@ -222,7 +222,7 @@ A revolution in your pocket.";
 bank transfer to reach our account.
 It can take up to 2 working days.";
 "payment.status.payed.description.eta" = "";
-"payment.status.transferred.description" = "Received %@";
+"payment.status.transferred.description" = "Completed - %@";
 "payment.status.transferred.description.long" = "has been transfered.";
 "payment.status.transferred.description.conversion" = "have been converted to";
 "payment.status.transferred.description.eta" = "& should arrive on";
