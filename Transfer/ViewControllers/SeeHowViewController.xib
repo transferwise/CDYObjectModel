@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13A3028" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -19,7 +19,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="see_why_transferwise_logo" translatesAutoresizingMaskIntoConstraints="NO" id="5nc-A1-Mof">
-                            <rect key="frame" x="17" y="110" width="113" height="66"/>
+                            <rect key="frame" x="17" y="80" width="113" height="66"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="66" id="JF4-vY-BRT"/>
@@ -27,7 +27,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rG1-Fu-9Ba" userLabel="rateValue">
-                            <rect key="frame" x="13" y="226" width="113" height="21"/>
+                            <rect key="frame" x="13" y="196" width="113" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="3BK-S6-amF"/>
@@ -41,7 +41,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="113" translatesAutoresizingMaskIntoConstraints="NO" id="Zxg-VP-9Ez" userLabel="description1">
-                            <rect key="frame" x="13" y="252" width="113" height="21"/>
+                            <rect key="frame" x="13" y="222" width="113" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -51,7 +51,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdS-U1-huq" userLabel="feeValue">
-                            <rect key="frame" x="13" y="336" width="113" height="21"/>
+                            <rect key="frame" x="13" y="306" width="113" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="uEp-Tr-GOK"/>
@@ -64,7 +64,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="113" translatesAutoresizingMaskIntoConstraints="NO" id="zJf-cr-8c5" userLabel="description2">
-                            <rect key="frame" x="13" y="362" width="113" height="21"/>
+                            <rect key="frame" x="13" y="332" width="113" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -74,7 +74,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="TransferWise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eH-Dv-hmh" userLabel="rateValue">
-                            <rect key="frame" x="22" y="150" width="100" height="21"/>
+                            <rect key="frame" x="22" y="124" width="100" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="MPy-4E-aLT"/>
@@ -91,7 +91,7 @@
                     <constraints>
                         <constraint firstItem="rG1-Fu-9Ba" firstAttribute="width" secondItem="gdS-U1-huq" secondAttribute="width" id="3aw-fV-6CC"/>
                         <constraint firstItem="gdS-U1-huq" firstAttribute="top" secondItem="rG1-Fu-9Ba" secondAttribute="bottom" constant="89" id="6bj-Lw-epo"/>
-                        <constraint firstItem="5nc-A1-Mof" firstAttribute="top" secondItem="juB-fg-Pju" secondAttribute="top" constant="110" id="ABH-Zo-T7T"/>
+                        <constraint firstItem="5nc-A1-Mof" firstAttribute="top" secondItem="juB-fg-Pju" secondAttribute="top" constant="80" id="ABH-Zo-T7T"/>
                         <constraint firstItem="rG1-Fu-9Ba" firstAttribute="width" secondItem="zJf-cr-8c5" secondAttribute="width" id="AZo-Ld-TJ8"/>
                         <constraint firstItem="Zxg-VP-9Ez" firstAttribute="width" secondItem="rG1-Fu-9Ba" secondAttribute="width" id="Fn9-sE-i6T"/>
                         <constraint firstAttribute="trailing" secondItem="5nc-A1-Mof" secondAttribute="trailing" constant="30" id="Gxr-k1-R5z"/>
@@ -112,7 +112,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="see_why_bank_icon" translatesAutoresizingMaskIntoConstraints="NO" id="tCS-mO-f5I">
-                            <rect key="frame" x="30" y="110" width="113" height="40"/>
+                            <rect key="frame" x="30" y="84" width="113" height="40"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="DzC-1g-S85"/>
@@ -120,7 +120,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBC-PJ-eVv" userLabel="rateValue">
-                            <rect key="frame" x="34" y="226" width="113" height="21"/>
+                            <rect key="frame" x="34" y="196" width="113" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="113" id="HLw-M5-1l6"/>
@@ -134,7 +134,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="113" translatesAutoresizingMaskIntoConstraints="NO" id="jeu-hO-XCw" userLabel="description1">
-                            <rect key="frame" x="34" y="252" width="113" height="21"/>
+                            <rect key="frame" x="34" y="222" width="113" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -144,7 +144,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEy-fq-pFN" userLabel="feeValue">
-                            <rect key="frame" x="34" y="336" width="113" height="21"/>
+                            <rect key="frame" x="34" y="306" width="113" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="Hlg-GL-5qn"/>
@@ -157,7 +157,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="113" translatesAutoresizingMaskIntoConstraints="NO" id="3fK-2q-olA" userLabel="description2">
-                            <rect key="frame" x="34" y="362" width="113" height="21"/>
+                            <rect key="frame" x="34" y="332" width="113" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -167,7 +167,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zkw-H0-hXr" userLabel="rateValue">
-                            <rect key="frame" x="66" y="150" width="42" height="21"/>
+                            <rect key="frame" x="66" y="124" width="42" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="wFJ-dX-vxW"/>
@@ -194,7 +194,7 @@
                         <constraint firstItem="Zkw-H0-hXr" firstAttribute="top" secondItem="tCS-mO-f5I" secondAttribute="bottom" id="qWb-5V-FuH"/>
                         <constraint firstItem="bBC-PJ-eVv" firstAttribute="centerX" secondItem="3fK-2q-olA" secondAttribute="centerX" id="qo8-5M-XJc"/>
                         <constraint firstItem="jeu-hO-XCw" firstAttribute="width" secondItem="bBC-PJ-eVv" secondAttribute="width" id="rCj-AA-5hr"/>
-                        <constraint firstItem="tCS-mO-f5I" firstAttribute="top" secondItem="aGZ-IH-zOS" secondAttribute="top" constant="110" id="sUP-bR-HCE"/>
+                        <constraint firstItem="tCS-mO-f5I" firstAttribute="top" secondItem="aGZ-IH-zOS" secondAttribute="top" constant="84" id="sUP-bR-HCE"/>
                         <constraint firstItem="bBC-PJ-eVv" firstAttribute="centerX" secondItem="oEy-fq-pFN" secondAttribute="centerX" id="sXn-DL-0nh"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
@@ -242,7 +242,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="fee" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rn5-xO-UfR">
-                    <rect key="frame" x="148" y="337" width="24" height="21"/>
+                    <rect key="frame" x="148" y="307" width="24" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
