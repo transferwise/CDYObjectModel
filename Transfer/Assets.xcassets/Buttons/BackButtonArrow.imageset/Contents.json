@@ -3,12 +3,12 @@
     {
       "idiom" : "iphone",
       "scale" : "1x",
-      "filename" : "back_button_iphone.png"
+      "filename" : "back_button_iphone_white.png"
     },
     {
       "idiom" : "iphone",
       "scale" : "2x",
-      "filename" : "back_button_iphone@2x.png"
+      "filename" : "back_button_iphone_white@2x.png"
     },
     {
       "idiom" : "iphone",
