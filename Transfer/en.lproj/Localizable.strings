@@ -29,7 +29,9 @@
 "button.title.done" = "Done";
 "button.title.fill" = "Fill it";
 "button.title.get.started" = "Get started";
+"button.title.send.money" = "Send Money";
 "button.title.get.started.ipad" = "Get Started";
+"button.title.send.money.ipad" = "Send Money";
 "button.title.import.from.phonebook" = "Import from phonebook";
 "button.title.log.in" = "Login";
 "button.title.log.in.google" = "Google";
