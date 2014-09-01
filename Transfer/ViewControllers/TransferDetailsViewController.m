@@ -129,17 +129,30 @@
     {
          self.amountsView.toAmount = @"";
     }
-	NSString* eta = NSLocalizedString([self getStatusBasedLocalization:@"payment.status.%@.description.eta"
-																 status:self.payment.paymentStatus], nil);
-	if(eta.length > 0 && self.payment.paymentDateString != nil)
+	
+	//transferred needs special handling
+	//delivery estimator returns dates in the future or today FOREVER, hence this nice comparison
+	if (self.payment.status == PaymentStatusTransferred
+		&& [[[self class] getDateWithoutTime:self.payment.estimatedDelivery] compare:[[self class] getDateWithoutTime:[NSDate date]]] == NSOrderedSame)
 	{
-		self.amountsView.shouldArrive = eta;
-		self.amountsView.eta = self.payment.paymentDateString;
+		self.amountsView.shouldArrive = NSLocalizedString(@"payment.status.transferred.description.eta.past", nil);
+		self.amountsView.eta = [self.payment latestChangeTimeString];
 	}
 	else
 	{
-		self.amountsView.shouldArrive = nil;
-		self.amountsView.eta = nil;
+		NSString* eta = NSLocalizedString([self getStatusBasedLocalization:@"payment.status.%@.description.eta"
+																	status:self.payment.paymentStatus], nil);
+		
+		if(eta.length > 0 && self.payment.paymentDateString != nil)
+		{
+			self.amountsView.shouldArrive = eta;
+			self.amountsView.eta = self.payment.estimatedDeliveryStringFromServer;
+		}
+		else
+		{
+			self.amountsView.shouldArrive = nil;
+			self.amountsView.eta = nil;
+		}
 	}
 }
 
@@ -160,4 +173,15 @@
 	NSString *key = [NSString stringWithFormat:localizationKey, status];
 	return NSLocalizedString(key, nil);
 }
+
++ (NSDate *)getDateWithoutTime:(NSDate *)date
+{
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	
+	NSDateComponents *components = [calendar components:(NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit)
+													fromDate:date];
+	
+	return [calendar dateFromComponents:components];
+}
+
 @end

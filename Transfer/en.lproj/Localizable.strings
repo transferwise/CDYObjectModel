@@ -226,6 +226,7 @@ It can take up to 2 working days.";
 "payment.status.transferred.description.long" = "has been transfered.";
 "payment.status.transferred.description.conversion" = "have been converted to";
 "payment.status.transferred.description.eta" = "& should arrive on";
+"payment.status.transferred.description.eta.past" = "& should have arrived on";
 "payment.status.receivedWaitingRecipient.description" = "Waiting for recipient";
 "payment.status.unknown.description" = "Unknown";
 
