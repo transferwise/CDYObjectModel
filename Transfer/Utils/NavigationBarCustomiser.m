@@ -27,7 +27,7 @@
 	[navBar setBackgroundImage:[UIImage imageFromColor:[UIColor colorFromStyle:@"LightBlue"]] forBarMetrics:UIBarMetricsDefault];
     [navBar setTintColor:[UIColor colorFromStyle:@"TWElectricBlue"]];
 	[navBar setShadowImage:[[UIImage alloc] init]];
-	[navBar setTitleVerticalPositionAdjustment:-2 forBarMetrics:UIBarMetricsDefault];
+	[navBar setTitleVerticalPositionAdjustment:0 forBarMetrics:UIBarMetricsDefault];
 }
 
 + (void)setWhite
