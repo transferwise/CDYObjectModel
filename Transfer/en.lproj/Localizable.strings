@@ -29,7 +29,9 @@
 "button.title.done" = "Done";
 "button.title.fill" = "Fill it";
 "button.title.get.started" = "Get started";
+"button.title.send.money" = "Send Money";
 "button.title.get.started.ipad" = "Get Started";
+"button.title.send.money.ipad" = "Send Money";
 "button.title.import.from.phonebook" = "Import from phonebook";
 "button.title.log.in" = "Login";
 "button.title.log.in.google" = "Google";
@@ -387,7 +389,7 @@ This can't be undone.";
 "transferdetails.controller.refunded.header" = "Transfer refunded";
 "transferdetails.controller.cancelled.header" = "Transfer cancelled";
 "transferdetails.controller.matched.header" = "Transfer on its way";
-"transferdetails.controller.received.header" = "Thanks! Transferwise received your money.";
+"transferdetails.controller.received.header" = "TransferWise received your money";
 "transferdetails.controller.submitted.header" = "Transfer waiting for money";
 "transferdetails.controller.transferred.header" = "Transfer completed";
 "transferdetails.controller.transfer.header" = "Your transfer";

@@ -50,6 +50,7 @@ static NSUInteger const kRowYouSend = 0;
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *logo;
 
 @property (nonatomic, strong) IBOutlet StartPaymentButton *startedButton;
 @property (nonatomic, strong) IBOutlet UIButton *loginButton;
@@ -133,7 +134,7 @@ static NSUInteger const kRowYouSend = 0;
     [self.howButton setAttributedTitle:underlinedHowString forState:UIControlStateNormal];
     
 
-    [self.startedButton setTitle:NSLocalizedString([@"button.title.get.started" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
+    [self.startedButton setTitle:NSLocalizedString([(![Credentials userLoggedIn] ? @"button.title.get.started" : @"button.title.send.money") deviceSpecificLocalization], nil) forState:UIControlStateNormal];
     [self.loginButton setTitle:NSLocalizedString(@"button.title.log.in", nil) forState:UIControlStateNormal];
 
     MoneyCalculator *calculator = [[MoneyCalculator alloc] init];
@@ -238,6 +239,7 @@ static NSUInteger const kRowYouSend = 0;
     
     self.loginButton.hidden = [Credentials userLoggedIn];
     self.modalCloseButton.hidden = ![Credentials userLoggedIn];
+    self.logo.hidden = [Credentials userLoggedIn];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

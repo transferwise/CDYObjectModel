@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "logo2.png"
+      "filename" : "transferwise_mini_logo_iphone.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "logo.png"
+      "filename" : "transferwise_mini_logo_iphone@2x.png"
     }
   ],
   "info" : {
