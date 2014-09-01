@@ -146,7 +146,7 @@
     OpenIDViewController *controller = [[OpenIDViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setProvider:provider];
-    [controller setEmail:[self.emailTextField text]];
+    //FYI: this is a concious decision not to add email to open id any more
     [controller setProviderName:providerName];
     [self.navigationController pushViewController:controller animated:YES];
 }
