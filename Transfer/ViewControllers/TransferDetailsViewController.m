@@ -58,7 +58,7 @@
 
 - (void)dismiss
 {
-	[self dismissViewControllerAnimated:YES completion:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
 }
 
 - (void)setData
