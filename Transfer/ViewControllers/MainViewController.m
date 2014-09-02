@@ -53,6 +53,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationBar.translucent = NO;
+    
     TransactionsViewController *transactionsController = [[TransactionsViewController alloc] init];
     [self setTransactionsController:transactionsController];
     [transactionsController setObjectModel:self.objectModel];
@@ -81,9 +83,7 @@
     [paymentItem setActionBlock:^(TabItem* item){
         NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
         [controller setObjectModel:self.objectModel];
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-        [navigationController setNavigationBarHidden:YES];
-        ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
+       ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:YES];
         [self presentViewController:wrapper animated:YES completion:nil];
         return NO;
     }];
@@ -192,9 +192,7 @@
         presented = controller;
     }
 
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:presented];
-    [navigationController setNavigationBarHidden:YES];
-    ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
+    ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:presented navBarHidden:YES];
     [self presentViewController:wrapper animated:shownBefore completion:nil];
 }
 

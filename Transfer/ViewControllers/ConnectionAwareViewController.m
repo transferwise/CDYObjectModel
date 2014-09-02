@@ -24,6 +24,16 @@
 
 @implementation ConnectionAwareViewController
 
++(instancetype)createWrappedNavigationControllerWithRoot:(UIViewController*)rootController navBarHidden:(BOOL)hidden
+{
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:rootController];
+    [navigationController setNavigationBarHidden:hidden];
+    navigationController.navigationBar.translucent = NO;
+    ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
+    return wrapper;
+
+}
+
 - (id)initWithWrappedViewController:(UIViewController*)wrappedViewController
 {
     self = [super initWithNibName:nil bundle:nil];

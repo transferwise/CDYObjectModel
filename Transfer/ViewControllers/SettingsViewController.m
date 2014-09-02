@@ -98,9 +98,7 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 	NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
 	[controller setObjectModel:self.objectModel];
     
-	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-	[navigationController setNavigationBarHidden:YES];
-	ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
+	ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:YES];
 	[self.hostViewController presentViewController:wrapper animated:YES completion:^{
         [self dismiss];
     }];
