@@ -47,6 +47,14 @@
 @property (nonatomic, strong) NSArray *sectionCellsByTableView;
 
 
+/**
+ *  suppress animation and code that changes insets temporarily. 
+ *
+ *  Use only when UI glitches require so, and ensure to set and reset within the scope of your method to avoid leaving the
+ *  view controller in a non-animating state.
+ */
+@property (nonatomic, assign) BOOL suppressAnimation;
+
 // iPad
 /**
  *  scrollview for containing tableviews as columns
@@ -126,6 +134,11 @@
  *	Call to reaload all tableviews when @see sectionCellsByTableView has been modified
  */
 -(void)reloadTableViews;
+
+/**
+ *  call to make tableViews resize to their content.
+ */
+- (void)refreshTableViewSizes;
 
 /**
  *  override to add orientation change customisations.

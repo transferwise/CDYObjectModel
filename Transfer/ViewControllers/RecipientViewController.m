@@ -524,10 +524,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 -(void)setAddressFieldsEditable:(BOOL)editable
 {
-    for(TextEntryCell* cell in self.addressCells)
-    {
-        [cell setEditable:editable];
-    }
+    self.addressCell.editable = editable;
+    self.postCodeCell.editable = editable;
+    self.cityCell.editable = editable;
+    self.countryCell.editable = editable;
+    self.stateCell.editable = editable;
 }
 
 - (void)handleCurrencySelection:(Currency *)currency {
@@ -902,17 +903,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self setPresentedSectionsByTableView:finalPresentedSectionsByTableView];
 }
 
--(void)refreshTableViewSizes
-{
-    if([self hasMoreThanOneTableView])
-    {
-        self.firstColumnHeightConstraint.constant= ((UITableView*)self.tableViews[0]).contentSize.height;
-        self.secondColumnHeightConstraint.constant =((UITableView*) self.tableViews[1]).contentSize.height;
-        [self.tableViews[0] layoutIfNeeded];
-        [self.tableViews[1] layoutIfNeeded];
-    }
-}
-
 
 #pragma mark - Text entry finisehd
 
@@ -1030,6 +1020,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 {
     if(table.associatedView == self.nameCell)
     {
+        self.suppressAnimation = YES;
         //Name suggestion
         EmailLookupWrapper* wrapper = (EmailLookupWrapper*)object;
         if(wrapper.recordId)
@@ -1042,11 +1033,14 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             [self didSelectRecipient:(Recipient*)[self.objectModel.managedObjectContext objectWithID:wrapper.managedObjectId]];
         }
         [self moveFocusOnNextEntryAfterCell:self.nameCell];
+        self.suppressAnimation = NO;
     }
     else if(table.associatedView == self.countryCell)
     {
+        self.suppressAnimation = YES;
         //Country suggestion
         [self didSelectCountry:(NSString *)object];
+        self.suppressAnimation = NO;
     }
     else
     {
