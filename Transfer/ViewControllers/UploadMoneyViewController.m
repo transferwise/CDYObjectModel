@@ -40,9 +40,22 @@
 	self.showButtonForIphone = YES;
 	
 	[self initControllers];
-	[super configureWithControllers:@[self.cardViewController, self.bankViewController]
-							 titles:@[NSLocalizedString(@"payment.method.card", nil), NSLocalizedString(@"payment.method.regular", nil)]
-						actionTitle:NSLocalizedString(@"transferdetails.controller.button.support",nil)
+    NSArray *viewControllers;
+    NSArray *titles;
+    if([self.payment multiplePaymentMethods])
+    {
+        viewControllers = @[self.cardViewController, self.bankViewController];
+        titles = @[NSLocalizedString(@"payment.method.card", nil), NSLocalizedString(@"payment.method.regular", nil)];
+    }
+    else
+    {
+        viewControllers = @[self.bankViewController];
+        titles = @[NSLocalizedString(@"payment.method.regular", nil)];
+    }
+    
+    [super configureWithControllers:viewControllers
+                             titles:titles
+                        actionTitle:NSLocalizedString(@"transferdetails.controller.button.support",nil)
 						actionStyle:@"blueButton"
 					   actionShadow:nil
 					 actionProgress:0.f];
@@ -105,7 +118,6 @@
 			[[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
 		}]];
     }
-	[self willSelectViewController:self.cardViewController atIndex:0];
 }
 
 - (void)pushNextScreen {

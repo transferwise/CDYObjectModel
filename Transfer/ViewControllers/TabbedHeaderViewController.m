@@ -135,6 +135,11 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.containerView setNeedsLayout];
     [self.containerView layoutIfNeeded];
+    UIViewController *currentController = [self.childViewControllers firstObject];
+    if(currentController)
+    {
+        [self willSelectViewController:currentController atIndex:[self.controllers indexOfObject:currentController]];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
