@@ -33,27 +33,17 @@
     {
         [self.suggestionTableDelegate suggestionTableDidStartEditing:self];
     }
+
 }
 
 -(void)didEndEditing:(UITextField*)field
 {
-    NSTimeInterval timeSinceBecomingActive = [self.startedEditing timeIntervalSinceNow];
-    if(timeSinceBecomingActive > -0.1f)
+    self.hidden = YES;
+    if ([self.suggestionTableDelegate respondsToSelector:@selector(suggestionTableDidEndEditing:)])
     {
-        //TODO: m@s Find out why the textfield is getting resigned (potentially removed??) when the "next" key is used
-        // and remove this HORRIBLE hack!
-        [self.textField becomeFirstResponder];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.textField becomeFirstResponder];
-        });
+        [self.suggestionTableDelegate suggestionTableDidEndEditing:self];
     }
-    else
-    {
-        if ([self.suggestionTableDelegate respondsToSelector:@selector(suggestionTableDidEndEditing:)])
-        {
-            [self.suggestionTableDelegate suggestionTableDidEndEditing:self];
-        }
-    }
+
 }
 
 -(void)textFieldChanged:(UITextField*)field
@@ -84,13 +74,13 @@
 {
     if (_textField)
     {
-        [_textField removeTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventAllEditingEvents];
+        [_textField removeTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
         [_textField removeTarget:self action:@selector(didStartEditing:) forControlEvents:UIControlEventEditingDidBegin];
         [_textField removeTarget:self action:@selector(didEndEditing:) forControlEvents:UIControlEventEditingDidEnd];
     }
     
     _textField = textField;
-    [textField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventAllEditingEvents];
+    [textField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
     [textField addTarget:self action:@selector(didStartEditing:) forControlEvents:UIControlEventEditingDidBegin];
     [textField addTarget:self action:@selector(didEndEditing:) forControlEvents:UIControlEventEditingDidEnd];
 }
