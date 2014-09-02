@@ -99,6 +99,7 @@
 			for (int i = 0; i < limit; i++)
 			{
 				[manager getImageForRecordId:((PhoneLookupWrapper *)matchingLookups[i]).recordId
+							   requestAccess:NO
 								  completion:^(UIImage *image) {
 									  UIImageView *viewToChange = ((UIImageView *)self.profilePictures[i]);
 									  [UIView transitionWithView:viewToChange
@@ -110,7 +111,8 @@
 													  completion:nil];
 								  }];
 			}
-		}];
+		}
+							 requestAccess:NO];
 	}
 }
 

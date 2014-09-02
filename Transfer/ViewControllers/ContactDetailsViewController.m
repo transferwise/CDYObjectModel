@@ -75,7 +75,9 @@
     //TODO: m@s replace with loading user image once API is implemented.
     if (self.recipient.email)
     {
-        [[AddressBookManager sharedInstance] getImageForEmail:self.recipient.email completion:^(UIImage *image) {
+        [[AddressBookManager sharedInstance] getImageForEmail:self.recipient.email
+												requestAccess:NO
+												   completion:^(UIImage *image) {
             if(image)
             {
                 self.userImage.image = image;

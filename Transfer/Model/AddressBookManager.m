@@ -57,24 +57,31 @@
 }
 
 - (void)getNameLookupWithHandler:(LookupHandler)handler
+				   requestAccess:(BOOL)requestAccess
 {
 	[self getLookupWithBlock:^NSArray *{
 		return [self getImmutableNameLookup];
 	}
-					handler:handler];
+					handler:handler
+			   requestAccess:requestAccess];
 }
 
 - (void)getPhoneLookupWithHandler:(LookupHandler)handler
+					requestAccess:(BOOL)requestAccess
 {
 	[self getLookupWithBlock:^NSArray *{
 		return [self getImmutableImageLookup];
 	}
-					 handler:handler];
+					 handler:handler
+			   requestAccess:requestAccess];
 }
 
-- (void)getLookupWithBlock:(NSArray *(^)())lookup handler:(LookupHandler)handler
+- (void)getLookupWithBlock:(NSArray *(^)())lookup
+				   handler:(LookupHandler)handler
+			 requestAccess:(BOOL)requestAccess
 {
-	[self getAddressBookAndExecuteInBackground:^(BOOL hasAddressBook) {
+	[self getAddressBookAndExecuteInBackground:requestAccess
+								executionBlock:^(BOOL hasAddressBook) {
 		if (handler)
 		{
 			if(hasAddressBook)
@@ -94,34 +101,49 @@
 	}];
 }
 
-- (void)getImageForEmail:(NSString*)email completion:(void(^)(UIImage* image))completionBlock
+- (void)getImageForEmail:(NSString*)email
+		   requestAccess:(BOOL)requestAccess
+			  completion:(void (^)(UIImage *))completionBlock
 {
     NSNumber *recordIdNumber = [[AddressBookManager sharedDataCache] objectForKey:email];
     if(recordIdNumber)
     {
-        [self getImageForRecordId:(ABRecordID)[recordIdNumber integerValue] completion:completionBlock];
+        [self getImageForRecordId:(ABRecordID)[recordIdNumber integerValue]
+					requestAccess:requestAccess
+					   completion:completionBlock];
         return;
     }
     
-    [self getAddressBookAndExecuteInBackground:^(BOOL hasAddressBook) {
-        
-        NSArray* nameLookup = [self getImmutableNameLookup];
-        NSArray* filteredResult = [nameLookup filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"email = %@",email]];
-        if([filteredResult count])
-        {
-            EmailLookupWrapper *wrapper = filteredResult[0];
-            ABRecordID recordId = wrapper.recordId;
-            [[AddressBookManager sharedDataCache] setObject:@(recordId) forKey:email];
-            [self getImageForRecordId:recordId completion:completionBlock];
-            return;
-        }
-        [self performBlockOnMainThread:^{
-            completionBlock(nil);
-        }];
+    [self getAddressBookAndExecuteInBackground:requestAccess
+								executionBlock:^(BOOL hasAddressBook) {
+									if (hasAddressBook)
+									{
+										NSArray* nameLookup = [self getImmutableNameLookup];
+										NSArray* filteredResult = [nameLookup filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"email = %@",email]];
+										
+										if([filteredResult count])
+										{
+											EmailLookupWrapper *wrapper = filteredResult[0];
+											ABRecordID recordId = wrapper.recordId;
+											
+											[[AddressBookManager sharedDataCache] setObject:@(recordId) forKey:email];
+											
+											[self getImageForRecordId:recordId
+														requestAccess:requestAccess
+														   completion:completionBlock];
+											return;
+										}
+									}
+									[self performBlockOnMainThread:^{
+										completionBlock(nil);
+									}];
     }];
 }
 
--(void)getImageForRecordId:(ABRecordID)recordId completion:(void(^)(UIImage* image))completionBlock{
+-(void)getImageForRecordId:(ABRecordID)recordId
+			 requestAccess:(BOOL)requestAccess
+				completion:(void(^)(UIImage* image))completionBlock
+{
     if(!completionBlock)
     {
         return;
@@ -144,41 +166,50 @@
         }];
         
     }
-    [self getAddressBookAndExecuteInBackground:^(BOOL hasAddressBook) {
-        UIImage *result;
-        if (hasAddressBook)
-        {
-            ABRecordRef person = ABAddressBookGetPersonWithRecordID(self.addressBook, recordId);
-            if(ABPersonHasImageData(person))
-            {
-                CFDataRef imageData = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail);
-                if(imageData != NULL)
-                {
-                    result = [UIImage imageWithData:(__bridge NSData *)(imageData)];
-                    CFRelease(imageData);
-                    if(result)
-                    {
-                        [[AddressBookManager sharedDataCache] setObject:result forKey:[self thumbnailKeyForRecord:recordId]];
-                    }
-                }
-            }
-        }
-        [self performBlockOnMainThread:^{
-            completionBlock(result);
-        }];
+    [self getAddressBookAndExecuteInBackground:requestAccess
+								executionBlock:^(BOOL hasAddressBook) {
+									UIImage *result;
+									if (hasAddressBook)
+									{
+										ABRecordRef person = ABAddressBookGetPersonWithRecordID(self.addressBook, recordId);
+										if(ABPersonHasImageData(person))
+										{
+											CFDataRef imageData = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail);
+											if(imageData != NULL)
+											{
+												result = [UIImage imageWithData:(__bridge NSData *)(imageData)];
+												CFRelease(imageData);
+												if(result)
+												{
+													[[AddressBookManager sharedDataCache] setObject:result forKey:[self thumbnailKeyForRecord:recordId]];
+												}
+											}
+										}
+									}
+									[self performBlockOnMainThread:^{
+										completionBlock(result);
+									}];
     }];
 }
 
--(void)getAddressBookAndExecuteInBackground:(void(^)(BOOL hasAddressBook))excecutionBlock
+-(void)getAddressBookAndExecuteInBackground:(BOOL)requestAcces
+							 executionBlock:(void(^)(BOOL hasAddressBook))excecutionBlock
 {
     if(excecutionBlock)
     {
         dispatch_async(self.dispatchQueue, ^{
             if (self.addressBook == NULL)
             {
-                [self requestAddressBookWithHandler:^(bool granted, CFErrorRef error) {
-                    excecutionBlock(self.addressBook != nil);
-                }];
+				if (requestAcces)
+				{
+					[self requestAddressBookWithHandler:^(bool granted, CFErrorRef error) {
+						excecutionBlock(self.addressBook != nil);
+					}];
+				}
+                else
+				{
+					excecutionBlock(NO);
+				}
             }
             else
             {

@@ -113,7 +113,8 @@
             });
         });
 
-    }];
+    }
+									requestAccess:YES];
 }
 
 #pragma mark - Suggestion table cell provider
@@ -145,7 +146,9 @@
     
     cell.emailLabel.text = wrapper.email;
     cell.tag = wrapper.recordId;
-    [self.addressBookManager getImageForRecordId:wrapper.recordId completion:^(UIImage *image) {
+    [self.addressBookManager getImageForRecordId:wrapper.recordId
+								   requestAccess:YES
+									  completion:^(UIImage *image) {
         if(cell.tag == wrapper.recordId)
         {
             cell.thumbnailImage.image = image;

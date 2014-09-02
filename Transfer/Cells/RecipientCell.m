@@ -55,8 +55,9 @@
 
 - (UIImage *)getRecipientImage:(Recipient *)recipient
 {
-
-    [[AddressBookManager sharedInstance] getImageForEmail:recipient.email completion:^(UIImage *image) {
+    [[AddressBookManager sharedInstance] getImageForEmail:recipient.email
+											requestAccess:NO
+											   completion:^(UIImage *image) {
         if(image)
         {
             self.recipientImage.image = image;

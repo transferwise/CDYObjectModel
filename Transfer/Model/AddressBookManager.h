@@ -19,28 +19,35 @@ typedef void(^LookupHandler)(NSArray* nameLookup);
  *
  *  Executes asychronously and completes on the main thread.
  *
- *  @param handler calls back with an array with 0 or more entries, or nil if no access granted by user, on the main thread.
+ *  @param handler			calls back with an array with 0 or more entries, or nil if no access granted by user, on the main thread.
+ *	@param requestAccess	if set to true permission to access address book is asked, when not given previously
  */
--(void)getNameLookupWithHandler:(LookupHandler)handler;
+-(void)getNameLookupWithHandler:(LookupHandler)handler
+				  requestAccess:(BOOL)requestAccess;
 
 /**
  *  Get an array of PhoneLookupWrapper objects for all entries in the address book that have an image.
  *
  *  Executes asychronously and completes on the main thread.
  *
- *  @param handler calls back with an array with 0 or more entries, or nil if no access granted by user, on the main thread.
+ *  @param					handler calls back with an array with 0 or more entries, or nil if no access granted by user, on the main thread.
+ *	@param requestAccess	if set to true permission to access address book is asked, when not given previously
  */
--(void)getPhoneLookupWithHandler:(LookupHandler)handler;
+-(void)getPhoneLookupWithHandler:(LookupHandler)handler
+				   requestAccess:(BOOL)requestAccess;
 
 /**
  *  Retrieves the profile image for an ABRecord ID and renders it to a UI image
  *
  *  Excecutes asynchronously and completes on the main thread.
  *
- *  @param recordId        recod to retrieve image for
- *  @param completionBlock calls back with a rendered image or nil on the main thread.
+ *  @param recordId			recod to retrieve image for
+ *	@param requestAccess	if set to true permission to access address book is asked, when not given previously
+ *  @param completionBlock	calls back with a rendered image or nil on the main thread.
  */
--(void)getImageForRecordId:(ABRecordID)recordId completion:(void(^)(UIImage* image))completionBlock;
+-(void)getImageForRecordId:(ABRecordID)recordId
+			 requestAccess:(BOOL)requestAccess
+				completion:(void(^)(UIImage* image))completionBlock;
 
 /**
  *  Retrieves the profile image matching the provided email based on addressbook records
@@ -48,9 +55,12 @@ typedef void(^LookupHandler)(NSArray* nameLookup);
  *  Executes asynchronously and completes on a the main thread.
  *
  *  @param email           email adress to look for.
+ *	@param requestAccess	if set to true permission to access address book is asked, when not given previously
  *  @param completionBlock calls back on a background thread with an ABRecordID or 0 if none found.
  */
--(void)getImageForEmail:(NSString*)email completion:(void(^)(UIImage* image))completionBlock;
+-(void)getImageForEmail:(NSString*)email
+		  requestAccess:(BOOL)requestAccess
+			 completion:(void(^)(UIImage* image))completionBlock;
 
 
 /**

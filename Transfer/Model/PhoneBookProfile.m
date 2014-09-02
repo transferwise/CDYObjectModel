@@ -90,7 +90,9 @@
     }
     ABRecordID recordId = ABRecordGetRecordID(_record);
     __weak typeof(self) weakSelf = self;
-    [self.addressBookManager getImageForRecordId:recordId completion:^(UIImage *image)
+    [self.addressBookManager getImageForRecordId:recordId
+								   requestAccess:YES
+									  completion:^(UIImage *image)
     {
         if(completionBlock)
         {
