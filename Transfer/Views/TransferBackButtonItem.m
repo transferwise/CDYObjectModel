@@ -46,7 +46,7 @@
     newFrame.size = CGSizeMake(44, 44);
     if(!IPAD)
     {
-        button.contentEdgeInsets = UIEdgeInsetsMake(0,0,0,25);
+        button.contentEdgeInsets = UIEdgeInsetsMake(0,-16,0,16);
     }
     
     button.frame=newFrame;
