@@ -57,7 +57,9 @@
     } else if ([absoluteString rangeOfString:@"/card/notPaidIn"].location != NSNotFound) {
         self.resultHandler(NO);
         return NO;
-    }
+    } else if ([absoluteString rangeOfString:@"/payment/"].location != NSNotFound) {
+		return NO;
+	}
 
     return YES;
 }

@@ -43,6 +43,12 @@
     self.titleLabel.text = NSLocalizedString(@"currency.selector.title", nil);
     [self.selectButton setTitle:NSLocalizedString(@"currency.selector.select.button.title",nil) forState:UIControlStateNormal];
 	[self.selectButton setTitleColor:[UIColor colorFromStyle:@"highlightblue"] forState:UIControlStateHighlighted];
+	
+	UITapGestureRecognizer *recognizer =
+	[[UITapGestureRecognizer alloc] initWithTarget:self
+											action:@selector(highlightViewTapped)];
+	recognizer.numberOfTapsRequired = 1;
+	[self.view addGestureRecognizer:recognizer];
 }
 
 -(void)viewDidLayoutSubviews
@@ -205,6 +211,12 @@
     self.selectedIndex = [self.collectionView indexPathForItemAtPoint:[self.view convertPoint:self.highlightView.center toView:self.collectionView]].row;
 }
 
+-(void)highlightViewTapped
+{
+	[self calculateSelectedIndex];
+	[self select];
+}
+
 -(CGPoint)calculateOffsetForCellAtIndex:(NSUInteger)index
 {
     CGFloat cellHeight =((UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout).itemSize.height;
@@ -215,12 +227,17 @@
     [self dismiss];
 }
 
-- (IBAction)selectTapped:(id)sender {
-    [self dismiss];
+- (void)select
+{
+	[self dismiss];
     if([self.delegate respondsToSelector:@selector(currencySelector:didSelectCurrencyAtIndex:)])
     {
         [self.delegate currencySelector:self didSelectCurrencyAtIndex:self.selectedIndex];
     }
+}
+
+- (IBAction)selectTapped:(id)sender {
+    [self select];
 }
 
 -(void)presentOnViewController:(UIViewController *)hostViewcontroller

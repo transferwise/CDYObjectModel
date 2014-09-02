@@ -109,7 +109,8 @@
 	self.headerView.status = [self getStatusBasedLocalization:@"payment.status.%@.description.long"
 													   status:self.payment.paymentStatus];
 	//waiting has a two-line status
-	if (self.payment.status == PaymentStatusUserHasPaid)
+	if (self.payment.status == PaymentStatusSubmitted
+		|| self.payment.status == PaymentStatusUserHasPaid)
 	{
 		self.headerView.statusWaiting = NSLocalizedString(@"payment.status.submitted.description.long2", nil);
 	}
