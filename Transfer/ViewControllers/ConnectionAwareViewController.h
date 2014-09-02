@@ -10,6 +10,8 @@
 
 @interface ConnectionAwareViewController : UIViewController
 
++(instancetype)createWrappedNavigationControllerWithRoot:(UIViewController*)rootController navBarHidden:(BOOL)hidden;
+
 - (id)initWithWrappedViewController:(UIViewController*)wrappedViewController;
 
 @end

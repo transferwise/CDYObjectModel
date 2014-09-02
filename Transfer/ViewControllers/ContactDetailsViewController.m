@@ -151,9 +151,7 @@
     NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setRecipient:self.recipient];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-    [navigationController setNavigationBarHidden:YES];
-    ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
+    ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:YES];
     
     [self presentViewController:wrapper animated:YES completion:nil];
     

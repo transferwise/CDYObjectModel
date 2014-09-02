@@ -291,6 +291,7 @@
 #pragma mark - Suggestion Table
 -(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
 {
+    self.suppressAnimation = YES;
     [super suggestionTable:table selectedObject:object];
     if(table.associatedView == self.countryCell)
     {
@@ -300,6 +301,7 @@
     {
         self.stateCell.value = (NSString*)object;
     }
+    self.suppressAnimation = NO;
 }
 
 - (void)didSelectCountry:(NSString *)country
@@ -603,17 +605,6 @@
 	}
 	
     [payment setRecipient:newRecipient];
-}
-
-- (void)refreshTableViewSizes
-{
-    if([self hasMoreThanOneTableView])
-    {
-		self.firstColumnHeightConstraint.constant= ((UITableView*)self.tableViews[0]).contentSize.height;
-        self.secondColumnHeightConstraint.constant =((UITableView*) self.tableViews[1]).contentSize.height;
-        [self.tableViews[0] layoutIfNeeded];
-        [self.tableViews[1] layoutIfNeeded];
-    }
 }
 
 - (void)maskNonLoginCells:(NSArray *)loginCells

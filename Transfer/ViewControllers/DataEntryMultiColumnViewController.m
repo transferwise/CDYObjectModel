@@ -391,6 +391,7 @@
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self refreshTableViewSizes];
     [self configureForInterfaceOrientation:toInterfaceOrientation];
 }
 
@@ -412,9 +413,24 @@
     }
 }
 
+- (void)refreshTableViewSizes
+{
+    if([self hasMoreThanOneTableView])
+    {
+		self.firstColumnHeightConstraint.constant= ((UITableView*)self.tableViews[0]).contentSize.height;
+        self.secondColumnHeightConstraint.constant =((UITableView*) self.tableViews[1]).contentSize.height;
+        [self.tableViews[0] layoutIfNeeded];
+        [self.tableViews[1] layoutIfNeeded];
+    }
+}
+
 #pragma mark - keyboard overlap
 -(void)keyboardWillShow:(NSNotification*)note
 {
+    if(self.suppressAnimation)
+    {
+        return;
+    }
     CGRect newframe = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     newframe = [self.view.window convertRect:newframe toView:self.view];
     if([self hasMoreThanOneTableView])
@@ -524,6 +540,12 @@
 
 -(void)keyboardWillHide:(NSNotification*)note
 {
+    
+    if(self.suppressAnimation)
+    {
+        return;
+    }
+
     NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
     
@@ -549,6 +571,10 @@
 
 -(void)scrollToCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView
 {
+    if(self.suppressAnimation)
+    {
+        return;
+    }
     if(IPAD)
     {
         [self scrollScrollViewToShowView:cell];
@@ -566,7 +592,7 @@
 -(void)scrollScrollViewToShowView:(UIView*)targetView
 {
     CGRect showRect = [self.containerScrollView convertRect:targetView.frame fromView:targetView.superview];
-    showRect.size.height *= 4;
+    showRect.size.height *= 2;
     [self.containerScrollView scrollRectToVisible:showRect animated:YES];
 }
 

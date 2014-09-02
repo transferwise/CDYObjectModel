@@ -193,10 +193,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 		NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
 		[controller setObjectModel:self.objectModel];
 		[controller setRecipient:recipient];
-		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-		[navigationController setNavigationBarHidden:YES];
-		ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
-		
+		ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:YES];
 		[self presentViewController:wrapper animated:YES completion:nil];
 	}
 }
@@ -256,8 +253,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     }];
     controller.noPendingPayment = YES;
     
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-    ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
+    ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:NO];
     
     UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,40,40)];
     [closeButton setImage:[UIImage imageNamed:@"CloseButton"] forState:UIControlStateNormal];

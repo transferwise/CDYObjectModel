@@ -63,9 +63,7 @@
     [controller setHideBottomButton:YES];
     [controller setShowContactSupportCell:YES];
     
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-    [navigationController setNavigationBarHidden:NO];
-    ConnectionAwareViewController *wrapper = [[ConnectionAwareViewController alloc] initWithWrappedViewController:navigationController];
+    ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:NO];
     UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,40,40)];
     [closeButton setImage:[UIImage imageNamed:@"CloseButton"] forState:UIControlStateNormal];
     [closeButton addTarget:self action:@selector(dismissPayment:) forControlEvents:UIControlEventTouchUpInside];

@@ -167,8 +167,8 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     if(UIInterfaceOrientationIsPortrait(orientation))
     {
         
-        self.headerLeftEdgeConstraint.constant = 104.0f;
-        self.headerRightEdgeConstraint.constant = -104.0f;
+        self.headerLeftEdgeConstraint.constant = 95.0f;
+        self.headerRightEdgeConstraint.constant = -95.0f;
         
     }
     else
@@ -264,17 +264,6 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     [super viewDidLayoutSubviews];
     self.headerLabel.preferredMaxLayoutWidth = self.headerLabel.frame.size.width;
     [self.view layoutIfNeeded];
-}
-
--(void)refreshTableViewSizes
-{
-    if([self hasMoreThanOneTableView])
-    {
-        self.firstColumnHeightConstraint.constant= ((UITableView*)self.tableViews[0]).contentSize.height;
-        self.secondColumnHeightConstraint.constant =((UITableView*) self.tableViews[1]).contentSize.height;
-        [self.tableViews[0] layoutIfNeeded];
-        [self.tableViews[1] layoutIfNeeded];
-    }
 }
 
 

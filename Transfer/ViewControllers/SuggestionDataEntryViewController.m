@@ -136,6 +136,33 @@
 	[self moveFocusOnNextEntryAfterCell:((TextEntryCell*)table.associatedView)];
 }
 
+-(void)scrollToCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView
+{
+    if(IPAD)
+    {
+        [self scrollScrollViewToShowViewWithSuggestions:cell];
+    }
+    else
+    {
+        [super scrollToCell:cell inTableView:tableView];
+    }
+}
+
+-(void)scrollScrollViewToShowViewWithSuggestions:(UIView*)targetView
+{
+    CGRect showRect = [self.containerScrollView convertRect:targetView.frame fromView:targetView.superview];
+    if([[self.suggestionTables valueForKey:@"associatedView"] indexOfObject:targetView]!=NSNotFound)
+    {
+        //Suggestion cell. Scroll more space.
+        showRect.size.height *= 4;
+    }
+    else
+    {
+        showRect.size.height *= 2;
+    }
+    [self.containerScrollView scrollRectToVisible:showRect animated:YES];
+}
+
 -(void)keyboardWillShow:(NSNotification*)note
 {
     [super keyboardWillShow:note];
