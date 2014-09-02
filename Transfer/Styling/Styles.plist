@@ -21,6 +21,11 @@
 		</dict>
 		<key>color</key>
 		<dict>
+			<key>LightBlueDarker</key>
+			<dict>
+				<key>color</key>
+				<string>c3e5ed</string>
+			</dict>
 			<key>alpha1</key>
 			<dict>
 				<key>alpha</key>
