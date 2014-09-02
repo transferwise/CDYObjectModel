@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13A3028" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -26,7 +26,7 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="768"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wgz-Qn-mRj">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wgz-Qn-mRj" customClass="GradientView">
                     <rect key="frame" x="0.0" y="0.0" width="768" height="384"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -50,9 +50,21 @@
                         <constraint firstAttribute="centerX" secondItem="4qE-0W-9mm" secondAttribute="centerX" id="zte-Yc-r3a"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="lightbluehighlighted"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="FromColorStyle" value="LightBlueDarker"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="ToColorStyle" value="LightBlue"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="orientation">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Illustration_invite" translatesAutoresizingMaskIntoConstraints="NO" id="SEJ-FK-YS9">
+                    <rect key="frame" x="-66" y="-5" width="900" height="390"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="390" id="Vw6-F3-XpM"/>
+                        <constraint firstAttribute="width" constant="900" id="iWE-J9-gRt"/>
+                    </constraints>
+                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O3k-Eh-dGI">
                     <rect key="frame" x="0.0" y="384" width="768" height="384"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -269,12 +281,14 @@
                 <constraint firstItem="O3k-Eh-dGI" firstAttribute="top" secondItem="Wgz-Qn-mRj" secondAttribute="bottom" id="4dk-37-CPc"/>
                 <constraint firstAttribute="trailing" secondItem="Wgz-Qn-mRj" secondAttribute="trailing" id="HeX-CY-aLi"/>
                 <constraint firstAttribute="centerX" secondItem="3AO-Gr-zBc" secondAttribute="centerX" id="K2a-uW-NjL"/>
+                <constraint firstAttribute="centerY" secondItem="SEJ-FK-YS9" secondAttribute="centerY" constant="194" id="NIR-oR-EG5"/>
                 <constraint firstAttribute="trailing" secondItem="O3k-Eh-dGI" secondAttribute="trailing" id="YT8-BC-GQb"/>
                 <constraint firstItem="i9E-mc-ETr" firstAttribute="top" secondItem="Wgz-Qn-mRj" secondAttribute="bottom" constant="50" id="cSH-r7-ky1"/>
                 <constraint firstAttribute="bottom" secondItem="O3k-Eh-dGI" secondAttribute="bottom" id="euw-pc-qHj"/>
                 <constraint firstAttribute="centerY" secondItem="JlX-8u-9xq" secondAttribute="centerY" constant="67" id="fg7-X0-O6Z"/>
                 <constraint firstItem="Wgz-Qn-mRj" firstAttribute="height" secondItem="O3k-Eh-dGI" secondAttribute="height" id="iHi-6s-TNe"/>
                 <constraint firstItem="Wgz-Qn-mRj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="jSa-Ex-Js7"/>
+                <constraint firstAttribute="centerX" secondItem="SEJ-FK-YS9" secondAttribute="centerX" id="n5v-ue-gbY"/>
                 <constraint firstItem="khm-LQ-dnq" firstAttribute="top" secondItem="Wgz-Qn-mRj" secondAttribute="bottom" constant="50" id="rkb-U0-Cab"/>
                 <constraint firstItem="O3k-Eh-dGI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="s18-Ws-dVh"/>
                 <constraint firstAttribute="centerX" secondItem="JlX-8u-9xq" secondAttribute="centerX" id="ssA-yT-kaV"/>
@@ -286,6 +300,7 @@
         </view>
     </objects>
     <resources>
+        <image name="Illustration_invite" width="65" height="65"/>
         <image name="User0" width="136" height="136"/>
         <image name="User1" width="136" height="136"/>
         <image name="User2" width="136" height="136"/>
