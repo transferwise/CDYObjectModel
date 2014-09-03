@@ -48,7 +48,7 @@
 	[[UITapGestureRecognizer alloc] initWithTarget:self
 											action:@selector(highlightViewTapped)];
 	recognizer.numberOfTapsRequired = 1;
-	[self.view addGestureRecognizer:recognizer];
+	[self.highlightView addGestureRecognizer:recognizer];
 }
 
 -(void)viewDidLayoutSubviews
