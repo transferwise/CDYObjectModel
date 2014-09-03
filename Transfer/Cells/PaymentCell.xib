@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="800" text="Name label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                                <rect key="frame" x="39" y="14" width="179" height="18"/>
+                                <rect key="frame" x="39" y="14" width="164" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="250" constant="21" id="jqK-s3-cE2"/>
@@ -82,7 +82,7 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="6" firstAttribute="leading" secondItem="4" secondAttribute="leading" id="4pH-9x-sYc"/>
-                            <constraint firstItem="5" firstAttribute="leading" secondItem="4" secondAttribute="trailing" id="5jv-HY-umk"/>
+                            <constraint firstItem="5" firstAttribute="leading" secondItem="4" secondAttribute="trailing" constant="15" id="5jv-HY-umk"/>
                             <constraint firstAttribute="bottom" secondItem="6" secondAttribute="bottom" constant="15" id="B2V-HZ-ZOB"/>
                             <constraint firstAttribute="centerY" secondItem="n2z-dX-IdV" secondAttribute="centerY" id="DK5-MJ-qsW"/>
                             <constraint firstItem="4" firstAttribute="leading" secondItem="12" secondAttribute="leading" constant="39" id="Dmj-6O-205"/>

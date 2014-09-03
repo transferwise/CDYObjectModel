@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13A3028" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="800" text="Name label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yjj-Z6-Np6">
-                                <rect key="frame" x="65" y="14" width="79" height="18"/>
+                                <rect key="frame" x="65" y="14" width="152" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -28,7 +28,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Bank label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OX-sm-jjG" userLabel="Label - Bank label">
-                                <rect key="frame" x="65" y="33" width="68" height="27"/>
+                                <rect key="frame" x="65" y="33" width="152" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -66,6 +66,7 @@
                             </label>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="yjj-Z6-Np6" firstAttribute="width" secondItem="2OX-sm-jjG" secondAttribute="width" id="4kK-XS-zXf"/>
                             <constraint firstItem="AXX-0g-i5g" firstAttribute="leading" secondItem="Mc7-YO-T8n" secondAttribute="leading" constant="15" id="87M-G2-igF"/>
                             <constraint firstItem="2OX-sm-jjG" firstAttribute="top" secondItem="yjj-Z6-Np6" secondAttribute="bottom" constant="1" id="B8j-sM-f5Q"/>
                             <constraint firstAttribute="trailing" secondItem="vv1-Dr-5rv" secondAttribute="trailing" constant="21" id="BOl-DA-vpS"/>
@@ -76,6 +77,7 @@
                             <constraint firstItem="2OX-sm-jjG" firstAttribute="leading" secondItem="yjj-Z6-Np6" secondAttribute="leading" id="fLo-MY-Zyf"/>
                             <constraint firstAttribute="centerY" secondItem="yjj-Z6-Np6" secondAttribute="centerY" constant="12" id="fki-Cy-vLV"/>
                             <constraint firstItem="2OX-sm-jjG" firstAttribute="leading" secondItem="AXX-0g-i5g" secondAttribute="trailing" constant="10" id="g17-Qg-s3g"/>
+                            <constraint firstItem="vv1-Dr-5rv" firstAttribute="leading" secondItem="yjj-Z6-Np6" secondAttribute="trailing" constant="1" id="hXD-gs-yhD"/>
                             <constraint firstItem="AXX-0g-i5g" firstAttribute="trailing" secondItem="DOM-Zk-EFF" secondAttribute="trailing" id="mPK-i5-YtW"/>
                             <constraint firstItem="AXX-0g-i5g" firstAttribute="bottom" secondItem="DOM-Zk-EFF" secondAttribute="bottom" constant="10" id="uFI-jR-GlJ"/>
                             <constraint firstItem="AXX-0g-i5g" firstAttribute="top" secondItem="DOM-Zk-EFF" secondAttribute="top" constant="-10" id="zma-wj-01d"/>

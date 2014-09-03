@@ -55,7 +55,7 @@
 	
     OHParagraphStyle *paragraphStyle = [OHParagraphStyle defaultParagraphStyle];
     paragraphStyle.textAlignment = kCTTextAlignmentCenter;
-    paragraphStyle.lineBreakMode = kCTLineBreakByWordWrapping;
+    paragraphStyle.lineBreakMode = kCTLineBreakByTruncatingMiddle;
     [attributedString setParagraphStyle:paragraphStyle];
 	if(IPAD)
 	{
