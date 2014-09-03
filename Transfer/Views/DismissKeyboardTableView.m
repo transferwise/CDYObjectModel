@@ -11,32 +11,38 @@
 
 @implementation DismissKeyboardTableView
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame
+{
     self = [super initWithFrame:frame];
-    if (self) {
+    if (self)
+	{
         [self createTapGestureRecognizer];
     }
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)coder {
+- (id)initWithCoder:(NSCoder *)coder
+{
     self = [super initWithCoder:coder];
-    if (self) {
+    if (self)
+	{
         [self createTapGestureRecognizer];
     }
 
     return self;
 }
 
-- (void)createTapGestureRecognizer {
-    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped)];
+- (void)createTapGestureRecognizer
+{
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
     [recognizer setNumberOfTapsRequired:1];
     [recognizer setNumberOfTouchesRequired:1];
-    [recognizer setCancelsTouchesInView:NO];
+    [recognizer setCancelsTouchesInView:YES];
     [self addGestureRecognizer:recognizer];
 }
 
-- (void)tapped {
+- (void)tapped:(UITapGestureRecognizer *)sender
+{
     [UIApplication dismissKeyboard];
 }
 
