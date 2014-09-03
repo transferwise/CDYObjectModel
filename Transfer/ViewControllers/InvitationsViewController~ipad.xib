@@ -162,7 +162,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="khm-LQ-dnq">
-                            <rect key="frame" x="184" y="294" width="400" height="21"/>
+                            <rect key="frame" x="184" y="434" width="400" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="400" id="xms-rr-Zgl"/>
@@ -175,7 +175,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJH-J1-88a" customClass="BlueRoundedButton">
-                            <rect key="frame" x="357" y="355" width="55" height="44"/>
+                            <rect key="frame" x="357" y="495" width="55" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="OEN-JC-380"/>
@@ -286,7 +286,7 @@
                 <constraint firstAttribute="centerY" secondItem="JlX-8u-9xq" secondAttribute="centerY" constant="67" id="fg7-X0-O6Z"/>
                 <constraint firstItem="Wgz-Qn-mRj" firstAttribute="height" secondItem="O3k-Eh-dGI" secondAttribute="height" id="iHi-6s-TNe"/>
                 <constraint firstItem="Wgz-Qn-mRj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="jSa-Ex-Js7"/>
-                <constraint firstItem="khm-LQ-dnq" firstAttribute="top" secondItem="Wgz-Qn-mRj" secondAttribute="bottom" constant="-90" id="rkb-U0-Cab"/>
+                <constraint firstItem="khm-LQ-dnq" firstAttribute="top" secondItem="Wgz-Qn-mRj" secondAttribute="bottom" constant="50" id="rkb-U0-Cab"/>
                 <constraint firstItem="O3k-Eh-dGI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="s18-Ws-dVh"/>
                 <constraint firstAttribute="centerX" secondItem="JlX-8u-9xq" secondAttribute="centerX" id="ssA-yT-kaV"/>
                 <constraint firstAttribute="centerY" secondItem="3AO-Gr-zBc" secondAttribute="centerY" constant="38.5" id="tqf-gm-VmJ"/>
