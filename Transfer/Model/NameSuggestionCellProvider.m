@@ -146,11 +146,13 @@
     
     cell.emailLabel.text = wrapper.email;
     cell.tag = wrapper.recordId;
+    cell.thumbnailImage.hidden = YES;
     [self.addressBookManager getImageForRecordId:wrapper.recordId
 								   requestAccess:YES
 									  completion:^(UIImage *image) {
-        if(cell.tag == wrapper.recordId)
+        if(image && cell.tag == wrapper.recordId)
         {
+            cell.thumbnailImage.hidden = NO;
             cell.thumbnailImage.image = image;
         }
     }];

@@ -240,10 +240,25 @@
 						  
 						  for (NSString *email in items)
 						  {
+                              NSString* processedEmail = [email lowercaseString];
 							  //ignore @facebook.com addresses
-							  if ([email hasSuffix:facebookAddresSuffix]) continue;
+							  if ([processedEmail hasSuffix:facebookAddresSuffix]) continue;
+                              NSArray* usedEmails = [result valueForKey:@"email"];
+                              if([usedEmails containsObject:processedEmail])
+                              {
+                                  //Only one entry/email address please! Replace is the new entry is more complete.
+                                  EmailLookupWrapper *wrapper = [result objectAtIndex:[usedEmails indexOfObject:processedEmail]];
+                                  if (([firstname length] > 0 && [lastName length] > 0) && ([wrapper.firstName length] == 0 || [wrapper.lastName length] ==0))
+                                  {
+                                      [result removeObject:wrapper];
+                                  }
+                                  else
+                                  {
+                                      continue;
+                                  }
+                              }
 							  
-							  EmailLookupWrapper *wrapper = [[EmailLookupWrapper alloc] initWithRecordId:ABRecordGetRecordID(entry) firstname:firstname lastName:lastName email:email];
+							  EmailLookupWrapper *wrapper = [[EmailLookupWrapper alloc] initWithRecordId:ABRecordGetRecordID(entry) firstname:firstname lastName:lastName email:processedEmail];
 							  if(wrapper)
 							  {
 								  [result addObject:wrapper];
