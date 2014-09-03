@@ -60,6 +60,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (weak, nonatomic) IBOutlet UIView *verificationBar;
 @property (weak, nonatomic) IBOutlet UILabel *verificationBartitle;
 @property (weak, nonatomic) IBOutlet UIButton *viewButton;
+@property (nonatomic) BOOL isViewAppearing;
 
 
 @end
@@ -115,24 +116,19 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
         [self.tableView reloadData];
     }
 
+	self.isViewAppearing = YES;
     [self refreshPaymentsList];
     [self.tabBarController.navigationItem setRightBarButtonItem:nil];
     [self.navigationController setNavigationBarHidden:IPAD animated:YES];
 
     [self configureForVerificationNeeded:self.showIdentificationView];
 	[self checkPersonalVerificationNeeded];
+	[self presentDetail:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	
-	//select first row for ipad
-	if(IPAD && self.payments.count > 0)
-	{
-		[self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-	}
-
 	[[GoogleAnalytics sharedInstance] sendScreen:@"View transfers"];
 }
 
@@ -293,6 +289,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
             [self.refreshView refreshComplete];
 
             [self setExecutedOperation:nil];
+			
             if (totalCount > self.payments.count)
 			{
                 [self.tableView setTableFooterView:self.loadingFooterView];
@@ -312,6 +309,17 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
                                                                                                 withCount:delta]
                                       withRowAnimation:UITableViewRowAnimationFade];
             }
+			
+			if(self.isViewAppearing)
+			{
+				self.isViewAppearing = NO;
+				
+				if (IPAD)
+				{
+					[self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0
+																							  inSection:0]];
+				}
+			}
         });
     }];
 

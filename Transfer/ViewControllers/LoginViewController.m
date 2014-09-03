@@ -125,7 +125,7 @@
 									   navigationControllerView:self.navigationController.view
 													objectModel:self.objectModel
 												   successBlock:^{
-													   [self dismissViewControllerAnimated:YES completion:nil];
+													   [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
 												   }
 									  waitForDetailsCompletions:NO];
     });
