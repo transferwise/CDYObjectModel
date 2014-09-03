@@ -200,7 +200,8 @@
         dispatch_async(self.dispatchQueue, ^{
             if (self.addressBook == NULL)
             {
-				if (requestAcces)
+				if (requestAcces
+					|| ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized)
 				{
 					[self requestAddressBookWithHandler:^(bool granted, CFErrorRef error) {
 						excecutionBlock(self.addressBook != nil);
