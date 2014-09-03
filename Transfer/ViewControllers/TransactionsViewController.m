@@ -316,8 +316,12 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 				
 				if (IPAD)
 				{
-					[self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0
-																							  inSection:0]];
+					NSIndexPath *firstRow = [NSIndexPath indexPathForRow:0
+															   inSection:0];
+					[self tableView:self.tableView didSelectRowAtIndexPath:firstRow];
+					[self.tableView selectRowAtIndexPath:firstRow
+												animated:NO
+										  scrollPosition:UITableViewScrollPositionMiddle];
 				}
 			}
         });
