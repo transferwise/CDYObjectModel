@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>imageName</key>
+		<string>intro_screen_logo</string>
+		<key>titleRef</key>
+		<string>intro.existing.tagline.one</string>
+		<key>textRef</key>
+		<string>intro.existing.message.one</string>
+		<key>bgStyle</key>
+		<string>lightBlue</string>
+		<key>titleFontStyle</key>
+		<string>sharpBold.@{35,60}.TWBlue</string>
+		<key>textFontStyle</key>
+		<string>book.@{20,27}.corefont</string>
+		<key>useWhiteButton</key>
+		<false/>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>intro_screen_logo</string>
+		<key>titleRef</key>
+		<string>intro.existing.tagline.two</string>
+		<key>textRef</key>
+		<string>intro.existing.message.two</string>
+		<key>bgStyle</key>
+		<string>twblue</string>
+		<key>titleFontStyle</key>
+		<string>sharpBold.@{35,60}.white</string>
+		<key>textFontStyle</key>
+		<string>book.@{20,27}.corefont</string>
+		<key>useWhiteButton</key>
+		<false/>
+	</dict>
+</array>
+</plist>
