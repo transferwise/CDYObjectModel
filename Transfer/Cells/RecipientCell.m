@@ -45,7 +45,16 @@
     [self.nameLabel setText:[recipient name]];
     [self.bankLabel setText:[NSString stringWithFormat:@"%@ account",[recipient.currency code]]];
 	[self.sendLabel setText:[NSString stringWithFormat:NSLocalizedString(@"contacts.controller.send.button.title", nil), recipient.currency.code]];
-	[self.recipientImage setImage:[self getRecipientImage:recipient]];
+	
+	if (recipient.image)
+	{
+		self.recipientImage.image = recipient.image;
+	}
+	else
+	{
+		[self.recipientImage setImage:[self getRecipientImage:recipient]];
+	}
+	
 	[self maskRecipientImage];
 	
 	self.canBeCancelled = YES;
@@ -60,12 +69,13 @@
 											   completion:^(UIImage *image) {
         if(image)
         {
+			recipient.image = image;
             self.recipientImage.image = image;
-            self.initialsLabel.hidden = YES;
+			self.initialsLabel.hidden = YES;
         }
     }];
-    [self.initialsLabel setHidden:NO];
-    [self.initialsLabel setText:[self getInitials:[recipient name]]];
+    self.initialsLabel.hidden = NO;
+    self.initialsLabel.text = [self getInitials:[recipient name]];
     return [UIImage imageFromColor:[UIColor colorFromStyle:@"LightBlue"]];
 	
 }

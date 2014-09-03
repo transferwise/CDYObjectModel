@@ -13,6 +13,8 @@
 
 @implementation Recipient
 
+@synthesize image;
+
 - (NSString *)detailsRowOne {
     TypeFieldValue *value = [self.fieldValues firstObject];
     return [self presentationStringFromValue:value];
