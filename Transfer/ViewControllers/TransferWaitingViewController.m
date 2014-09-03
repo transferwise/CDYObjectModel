@@ -10,6 +10,8 @@
 #import "LightBlueButton.h"
 #import "ObjectModel+Payments.h"
 #import "Constants.h"
+#import "UploadMoneyViewController.h"
+#import "UIViewController+SwitchToViewController.h"
 
 @interface TransferWaitingViewController ()
 
@@ -62,6 +64,20 @@
     [self.objectModel performBlock:^{
         [weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment];
     }];
-    [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+	
+	if (IPAD)
+	{
+		[[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+	}
+	else
+	{
+		UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+		[controller setPayment:self.payment];
+		[controller setObjectModel:self.objectModel];
+		[controller setHideBottomButton:YES];
+		[controller setShowContactSupportCell:YES];
+		
+		[self switchToViewController:controller];
+	}
 }
 @end
