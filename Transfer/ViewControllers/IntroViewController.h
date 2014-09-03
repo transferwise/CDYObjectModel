@@ -13,5 +13,6 @@
 @interface IntroViewController : UIViewController
 
 @property (nonatomic, strong) ObjectModel *objectModel;
+@property (nonatomic, copy) NSString *plistFilenameOverride;
 
 @end

@@ -559,6 +559,20 @@ fees. We charge 0.5%";
 independent reviews";
 "intro.message.four" = "From the people
 who built Skype";
+
+"intro.existing.tagline.one" = "MONEY
+WITHOUT
+BORDERS";
+"intro.existing.tagline.two" = "90\% CHEAPER
+THAN YOUR
+BANK";
+
+"intro.existing.message.one" = "Send money abroad
+cheaper & faster";
+"intro.existing.message.two" = "Banks charge 5% with hidden
+fees. We charge 0.5%";
+
+
 "business.profile.identification.header.instructions.text" = "As we follow the anti-money laundering policies of our regulators (HMRC and FCA), we unfortunately need photos (or scanned copies) of a few key documents:
 
 1. A valid business incorporation document

@@ -17,5 +17,7 @@
 - (void)markDirectSignupEnabled:(BOOL)enabled;
 - (BOOL)hasIntroBeenShown;
 - (void)markIntroShown;
+- (BOOL)hasExistingUserIntroBeenShown;
+- (void)markExistingUserIntroShown;
 
 @end
