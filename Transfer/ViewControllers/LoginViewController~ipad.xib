@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13A3028" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jNz-Kj-TyF" userLabel="Email TextField" customClass="FloatingLabelTextField">
-                    <rect key="frame" x="297" y="136" width="430" height="70"/>
+                    <rect key="frame" x="297" y="72" width="430" height="70"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" placeholder="YES" id="DtY-sO-eIm"/>
@@ -34,7 +34,7 @@
                     <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="71E-0J-nDm" userLabel="Separator View">
-                    <rect key="frame" x="297" y="216" width="430" height="1"/>
+                    <rect key="frame" x="297" y="152" width="430" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="vHM-sh-uTK"/>
@@ -44,7 +44,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RCm-Tg-pZv" userLabel="Password TextField" customClass="FloatingLabelTextField">
-                    <rect key="frame" x="297" y="227" width="430" height="70"/>
+                    <rect key="frame" x="297" y="163" width="430" height="70"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" placeholder="YES" id="y6u-TV-OlQ"/>
@@ -53,7 +53,7 @@
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seY-db-tL6" userLabel="Separator View">
-                    <rect key="frame" x="297" y="307" width="430" height="1"/>
+                    <rect key="frame" x="297" y="243" width="430" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="aIc-s5-uLA"/>
@@ -63,7 +63,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1z-HI-x7D" userLabel="Login Button" customClass="GreenButton">
-                    <rect key="frame" x="297" y="338" width="430" height="55"/>
+                    <rect key="frame" x="297" y="274" width="430" height="55"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="55" id="XQM-j6-8CV"/>
@@ -79,7 +79,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5AO-Ch-ke6" customClass="IntrinsicSizeUIView">
-                    <rect key="frame" x="0.0" y="483" width="1024" height="285"/>
+                    <rect key="frame" x="0.0" y="419" width="1024" height="349"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2S-88-Izr" userLabel="Or Label">
@@ -139,7 +139,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVw-3E-NCJ" userLabel="Forgot Password Label">
-                    <rect key="frame" x="683" y="423" width="42" height="21"/>
+                    <rect key="frame" x="683" y="359" width="42" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -165,7 +165,7 @@
                 <constraint firstItem="71E-0J-nDm" firstAttribute="width" secondItem="jNz-Kj-TyF" secondAttribute="width" id="alY-vK-ymg"/>
                 <constraint firstItem="A1z-HI-x7D" firstAttribute="top" secondItem="seY-db-tL6" secondAttribute="bottom" constant="30" id="c9M-eF-Bjr"/>
                 <constraint firstItem="ZQJ-ts-mwH" firstAttribute="width" secondItem="A1z-HI-x7D" secondAttribute="width" id="f6v-sU-UcS"/>
-                <constraint firstItem="jNz-Kj-TyF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="136" id="hpb-RC-0d1"/>
+                <constraint firstItem="jNz-Kj-TyF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="72" id="hpb-RC-0d1"/>
                 <constraint firstAttribute="bottom" secondItem="5AO-Ch-ke6" secondAttribute="bottom" id="kIl-X3-hS4"/>
                 <constraint firstItem="RCm-Tg-pZv" firstAttribute="top" secondItem="71E-0J-nDm" secondAttribute="bottom" constant="10" id="kXr-8o-Sdd"/>
                 <constraint firstItem="71E-0J-nDm" firstAttribute="centerX" secondItem="jNz-Kj-TyF" secondAttribute="centerX" id="kgH-N3-qx4"/>
