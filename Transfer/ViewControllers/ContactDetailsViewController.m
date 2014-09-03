@@ -38,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *flagIcon;
+@property (weak, nonatomic) IBOutlet UIView *headerView;
 
 
 @end
@@ -61,8 +62,7 @@
     UINib * cellNib = [UINib nibWithNibName:@"PlainPresentationCell" bundle:[NSBundle mainBundle]];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:PlainPresentationCellIdentifier];
     [self.tableView reloadData];
-    
-    
+	
     NSMutableAttributedString* nameString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ - %@", self.recipient.name, self.recipient.currency.code]];
     NSRange hyphenRange = NSMakeRange([self.recipient.name length], 3);
     [nameString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"corefont"] range:hyphenRange];

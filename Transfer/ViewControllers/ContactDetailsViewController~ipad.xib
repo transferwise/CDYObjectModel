@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13A3028" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -84,7 +84,7 @@
                                     <constraint firstAttribute="width" constant="30" id="wn8-wa-0Bg"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xae-yh-1Qh">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xae-yh-1Qh">
                                 <rect key="frame" x="171" y="230" width="42" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -104,9 +104,11 @@
                             <constraint firstAttribute="trailing" secondItem="OZg-fL-hYF" secondAttribute="trailing" id="6Th-50-dT7"/>
                             <constraint firstItem="xae-yh-1Qh" firstAttribute="top" secondItem="5ZR-g8-5Fa" secondAttribute="bottom" constant="20" id="BBL-dC-6da"/>
                             <constraint firstItem="Beu-qw-m4I" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="FnJ-Wk-MuZ"/>
+                            <constraint firstItem="xae-yh-1Qh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="LdX-xs-mhC"/>
                             <constraint firstAttribute="centerX" secondItem="cho-a6-Qhj" secondAttribute="centerX" id="V64-Ve-Fym"/>
                             <constraint firstAttribute="bottom" secondItem="Beu-qw-m4I" secondAttribute="bottom" constant="45" id="aur-KP-bIn"/>
                             <constraint firstAttribute="centerX" secondItem="xae-yh-1Qh" secondAttribute="centerX" id="egR-LC-dMs"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xae-yh-1Qh" secondAttribute="trailing" constant="5" id="gTs-MA-8Y7"/>
                             <constraint firstItem="Beu-qw-m4I" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gYD-CV-Ltx"/>
                             <constraint firstItem="OZg-fL-hYF" firstAttribute="centerY" secondItem="cho-a6-Qhj" secondAttribute="centerY" id="kec-Wg-dtU"/>
                             <constraint firstItem="OZg-fL-hYF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mo7-3D-ttk"/>

@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="800" text="Name label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yjj-Z6-Np6">
-                                <rect key="frame" x="61" y="14" width="79" height="18"/>
+                                <rect key="frame" x="61" y="14" width="164" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -28,7 +28,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Bank label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OX-sm-jjG" userLabel="Label - Bank label">
-                                <rect key="frame" x="61" y="33" width="68" height="27"/>
+                                <rect key="frame" x="61" y="33" width="164" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -70,6 +70,7 @@
                             <constraint firstItem="2OX-sm-jjG" firstAttribute="top" secondItem="yjj-Z6-Np6" secondAttribute="bottom" constant="1" id="B8j-sM-f5Q"/>
                             <constraint firstAttribute="trailing" secondItem="vv1-Dr-5rv" secondAttribute="trailing" constant="13" id="BOl-DA-vpS"/>
                             <constraint firstAttribute="centerY" secondItem="vv1-Dr-5rv" secondAttribute="centerY" id="I7r-P2-Ax1"/>
+                            <constraint firstItem="vv1-Dr-5rv" firstAttribute="leading" secondItem="yjj-Z6-Np6" secondAttribute="trailing" constant="1" id="JBo-dh-9hc"/>
                             <constraint firstItem="AXX-0g-i5g" firstAttribute="leading" secondItem="DOM-Zk-EFF" secondAttribute="leading" id="OWO-AM-gs4"/>
                             <constraint firstAttribute="centerY" secondItem="AXX-0g-i5g" secondAttribute="centerY" id="Pkd-PE-Bbh"/>
                             <constraint firstAttribute="centerY" secondItem="2OX-sm-jjG" secondAttribute="centerY" constant="-12" id="dTu-Bp-IQZ"/>
@@ -78,6 +79,7 @@
                             <constraint firstItem="2OX-sm-jjG" firstAttribute="leading" secondItem="AXX-0g-i5g" secondAttribute="trailing" constant="11" id="g17-Qg-s3g"/>
                             <constraint firstItem="AXX-0g-i5g" firstAttribute="trailing" secondItem="DOM-Zk-EFF" secondAttribute="trailing" id="mPK-i5-YtW"/>
                             <constraint firstItem="AXX-0g-i5g" firstAttribute="bottom" secondItem="DOM-Zk-EFF" secondAttribute="bottom" constant="10" id="uFI-jR-GlJ"/>
+                            <constraint firstItem="2OX-sm-jjG" firstAttribute="width" secondItem="yjj-Z6-Np6" secondAttribute="width" id="wu8-gF-RL1"/>
                             <constraint firstItem="AXX-0g-i5g" firstAttribute="top" secondItem="DOM-Zk-EFF" secondAttribute="top" constant="-12" id="zma-wj-01d"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
