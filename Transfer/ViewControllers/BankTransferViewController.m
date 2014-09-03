@@ -31,7 +31,8 @@
 #import "MOMStyle.h"
 #import "CancelHelper.h"
 #import "PayInMethod.h"
-
+#import "TransferWaitingViewController.h"
+#import "UIViewController+SwitchToViewController.h"
 
 @interface BankTransferViewController ()
 
@@ -186,18 +187,33 @@
     return result;
 }
 
-- (IBAction)doneBtnClicked:(id)sender {
+- (IBAction)doneBtnClicked:(id)sender
+{
     __weak typeof(self) weakSelf = self;
     [self.objectModel performBlock:^{
         [weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment];
     }];
     [[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"BankTransfer"];
-    if ([Credentials temporaryAccount]) {
+    if ([Credentials temporaryAccount])
+	{
         ClaimAccountViewController *controller = [[ClaimAccountViewController alloc] init];
         [controller setObjectModel:self.objectModel];
         [self.navigationController pushViewController:controller animated:YES];
-    } else {
-        [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+    }
+	else
+	{
+		if (IPAD)
+		{
+			[[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+		}
+		else
+		{
+			TransferWaitingViewController *controller = [[TransferWaitingViewController alloc] init];
+			controller.payment = self.payment;
+			controller.objectModel = self.objectModel;
+			
+			[self switchToViewController:controller];
+		}
     }
 }
 
