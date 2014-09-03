@@ -389,7 +389,7 @@ This can't be undone.";
 "transferdetails.controller.refunded.header" = "Transfer refunded";
 "transferdetails.controller.cancelled.header" = "Transfer cancelled";
 "transferdetails.controller.matched.header" = "Transfer on its way";
-"transferdetails.controller.received.header" = "TransferWise received your money";
+"transferdetails.controller.received.header" = "We received your money";
 "transferdetails.controller.submitted.header" = "Transfer waiting for money";
 "transferdetails.controller.transferred.header" = "Transfer completed";
 "transferdetails.controller.transfer.header" = "Your transfer";
@@ -403,7 +403,7 @@ This can't be undone.";
 "transferdetails.controller.transfer.account.sent" = "%@\nWe've sent email to %@ at\n%@";
 "transferdetails.controller.button.support.ipad" = "Contact support";
 "transferdetails.controller.button.support" = "Contact customer support";
-"transferdetails.controller.button.notransfer" = "Bank transfer not done yet";
+"transferdetails.controller.button.notransfer" = "Bank transfer not done";
 "transferdetails.controller.button.pay" = "Pay %@ now";
 "transferdetails.controller.button.cancel" = "Cancel transfer";
 
