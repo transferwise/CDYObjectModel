@@ -115,13 +115,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-	
+    [self pullDetails];
+    
 	if (self.shown)
 	{
         return;
     }
-	
-    [self pullDetails];
 	
     [self setShown:YES];
 	
