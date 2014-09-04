@@ -58,6 +58,10 @@
 
 -(void)scrollViewDidScroll
 {
+    if(self.displayLink)
+    {
+        return;
+    }
     [self.scrollView bringSubviewToFront:self];
     if(!self.isRefreshing)
     {
@@ -169,7 +173,7 @@
 
 -(void)animateFlag
 {
-    [UIView transitionWithView:self.image duration:0.1 options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView transitionWithView:self.image duration:0.05 options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionCurveEaseInOut animations:^{
         self.image.tag = ++self.image.tag%3;
         self.image.image = [UIImage imageNamed:[NSString stringWithFormat:@"refreshFlag%d",self.image.tag]];
     } completion:^(BOOL finished) {

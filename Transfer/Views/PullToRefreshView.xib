@@ -29,14 +29,14 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MoM-Qh-L1y">
-                                    <rect key="frame" x="139" y="4" width="42" height="18"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MoM-Qh-L1y">
+                                    <rect key="frame" x="139" y="6" width="42" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="light.@10.corefont"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="light.@12.corefont"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_screen_logo" translatesAutoresizingMaskIntoConstraints="NO" id="rPn-8u-KGM">
@@ -59,7 +59,7 @@
                                 <constraint firstItem="f0G-jX-3bF" firstAttribute="top" secondItem="ytH-Ct-QYC" secondAttribute="top" constant="-1" id="7yW-ma-Rjz"/>
                                 <constraint firstAttribute="bottom" secondItem="f0G-jX-3bF" secondAttribute="bottom" id="Nh2-f2-8cF"/>
                                 <constraint firstAttribute="bottom" secondItem="rPn-8u-KGM" secondAttribute="bottom" constant="7" id="fYB-8W-ZRL"/>
-                                <constraint firstItem="MoM-Qh-L1y" firstAttribute="top" secondItem="ytH-Ct-QYC" secondAttribute="top" constant="4" id="g2k-1t-dLF"/>
+                                <constraint firstItem="MoM-Qh-L1y" firstAttribute="top" secondItem="ytH-Ct-QYC" secondAttribute="top" constant="6" id="g2k-1t-dLF"/>
                                 <constraint firstAttribute="height" constant="55" id="g7X-Yp-uX6"/>
                                 <constraint firstAttribute="centerX" secondItem="rPn-8u-KGM" secondAttribute="centerX" id="hSv-EN-3F2"/>
                                 <constraint firstItem="f0G-jX-3bF" firstAttribute="leading" secondItem="ytH-Ct-QYC" secondAttribute="leading" id="mh0-K7-xrO"/>
