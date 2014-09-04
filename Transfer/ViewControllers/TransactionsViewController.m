@@ -284,8 +284,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 			NSInteger currentCount = self.payments.count;
 			self.payments = [self.objectModel allPayments];
 			NSInteger delta = self.payments.count - currentCount;
-			
-            [self.refreshView refreshComplete];
 
             [self setExecutedOperation:nil];
 			
@@ -323,6 +321,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 										  scrollPosition:UITableViewScrollPositionMiddle];
 				}
 			}
+            
+            [self.refreshView refreshComplete];
+            
         });
     }];
 
@@ -332,6 +333,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [self checkReloadNeeded];
+    [self.refreshView scrollViewDidEndDecelerating:scrollView];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
@@ -340,12 +342,12 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	{
         [self checkReloadNeeded];
     }
-    [self.refreshView scrollViewDidEndDragging];
+    [self.refreshView scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self.refreshView scrollViewDidScroll];
+    [self.refreshView scrollViewDidScroll:scrollView];
 }
 
 - (void)checkReloadNeeded
