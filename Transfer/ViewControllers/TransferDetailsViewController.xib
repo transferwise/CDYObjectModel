@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13A3028" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -110,21 +110,21 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ds-Oe-207" userLabel="Label - From Amount">
-                                            <rect key="frame" x="147" y="3" width="26" height="12"/>
+                                            <rect key="frame" x="147" y="4" width="26" height="12"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.DarkFont"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="Heavy.@15.DarkFont"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctn-3w-Ikq" userLabel="Label - To Amount">
-                                            <rect key="frame" x="147" y="25" width="26" height="12"/>
+                                            <rect key="frame" x="147" y="26" width="26" height="12"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.DarkFont"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="Heavy.@15.DarkFont"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KaH-1y-EDd" userLabel="Label - Should Arrive">
@@ -150,13 +150,13 @@
                                         <constraint firstAttribute="centerX" secondItem="7ds-Oe-207" secondAttribute="centerX" id="8bo-sr-kaK"/>
                                         <constraint firstAttribute="centerX" secondItem="0jG-a7-WpV" secondAttribute="centerX" id="Ajd-V7-nCc"/>
                                         <constraint firstAttribute="centerX" secondItem="ctn-3w-Ikq" secondAttribute="centerX" id="Tl3-fj-4Bp"/>
-                                        <constraint firstItem="KaH-1y-EDd" firstAttribute="top" secondItem="ctn-3w-Ikq" secondAttribute="bottom" constant="-1" id="d8g-6r-vMk"/>
+                                        <constraint firstItem="KaH-1y-EDd" firstAttribute="top" secondItem="ctn-3w-Ikq" secondAttribute="bottom" constant="-2" id="d8g-6r-vMk"/>
                                         <constraint firstAttribute="centerX" secondItem="KaH-1y-EDd" secondAttribute="centerX" id="eSV-YB-pZh"/>
                                         <constraint firstAttribute="centerX" secondItem="0Is-L2-5Q3" secondAttribute="centerX" id="fn4-dN-mo8"/>
-                                        <constraint firstItem="7ds-Oe-207" firstAttribute="top" secondItem="gxD-Ss-q8P" secondAttribute="top" constant="3" id="kNy-rU-aSt"/>
-                                        <constraint firstItem="0jG-a7-WpV" firstAttribute="top" secondItem="7ds-Oe-207" secondAttribute="bottom" constant="-1" id="mbM-0C-JD3"/>
+                                        <constraint firstItem="7ds-Oe-207" firstAttribute="top" secondItem="gxD-Ss-q8P" secondAttribute="top" constant="4" id="kNy-rU-aSt"/>
+                                        <constraint firstItem="0jG-a7-WpV" firstAttribute="top" secondItem="7ds-Oe-207" secondAttribute="bottom" constant="-2" id="mbM-0C-JD3"/>
                                         <constraint firstItem="0Is-L2-5Q3" firstAttribute="top" secondItem="KaH-1y-EDd" secondAttribute="bottom" constant="-1" id="waz-UA-a66"/>
-                                        <constraint firstItem="ctn-3w-Ikq" firstAttribute="top" secondItem="0jG-a7-WpV" secondAttribute="bottom" constant="-1" id="x1W-cx-ITj"/>
+                                        <constraint firstItem="ctn-3w-Ikq" firstAttribute="top" secondItem="0jG-a7-WpV" secondAttribute="bottom" id="x1W-cx-ITj"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="amountFromLabel" destination="7ds-Oe-207" id="HDh-U3-eaD"/>
