@@ -18,6 +18,7 @@
 #import "ObjectModel+Settings.h"
 #import "GoogleAnalytics.h"
 #import "MOMStyle.h"
+#import "Credentials.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
 
@@ -58,7 +59,7 @@
     
     NSMutableArray *screens = [NSMutableArray array];
 
-    self.introData = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"intro" ofType:@"plist"]];
+    self.introData = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.plistFilenameOverride?:@"intro" ofType:@"plist"]];
 
     for(int i=0; i<[self.introData count] && i<3; i++)
     {
@@ -205,8 +206,6 @@
     [super viewDidAppear:animated];
 
     [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Intro screen"]];
-
-    [self.objectModel markIntroShown];
 }
 
 
@@ -259,18 +258,28 @@
 }
 
 - (IBAction)startPressed {
+    
+    [self.objectModel markIntroShown];
+    [self.objectModel markExistingUserIntroShown];
+    
     UIViewController *presented;
-    if ([self.objectModel shouldShowDirectUserSignup]) {
-        SignUpViewController *controller = [[SignUpViewController alloc] init];
-        [controller setObjectModel:self.objectModel];
-        presented = controller;
-    } else {
-        NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
-        [controller setObjectModel:self.objectModel];
-        presented = controller;
+    if(![Credentials userLoggedIn])
+    {
+        if ([self.objectModel shouldShowDirectUserSignup]) {
+            SignUpViewController *controller = [[SignUpViewController alloc] init];
+            [controller setObjectModel:self.objectModel];
+            presented = controller;
+        } else {
+            NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
+            [controller setObjectModel:self.objectModel];
+            presented = controller;
+        }
+            [self.navigationController pushViewController:presented animated:YES];
     }
-
-    [self.navigationController pushViewController:presented animated:YES];
+    else
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 @end

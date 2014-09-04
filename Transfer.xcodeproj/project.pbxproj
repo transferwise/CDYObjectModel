@@ -59,6 +59,8 @@
 		38274080199529F0009FAB97 /* CardPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3827407E199529F0009FAB97 /* CardPaymentViewController~ipad.xib */; };
 		3831AA37194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
 		3831AA38194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
+		3831DCC419B764B900151A3D /* existingUserIntro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3831DCC319B764B900151A3D /* existingUserIntro.plist */; };
+		3831DCC519B764B900151A3D /* existingUserIntro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3831DCC319B764B900151A3D /* existingUserIntro.plist */; };
 		38342BAB196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
 		38342BAC196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
 		383FC0F019AE1A1A00465FCA /* StateSuggestionProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0EF19AE1A1A00465FCA /* StateSuggestionProvider.m */; };
@@ -916,6 +918,7 @@
 		3827407E199529F0009FAB97 /* CardPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CardPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
 		3831AA32194B31A200B3EE5C /* TransparentModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentModalViewController.h; sourceTree = "<group>"; };
 		3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentModalViewController.m; sourceTree = "<group>"; };
+		3831DCC319B764B900151A3D /* existingUserIntro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = existingUserIntro.plist; sourceTree = "<group>"; };
 		38342BA9196E9362002FF371 /* DataEntryMultiColumnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryMultiColumnViewController.h; sourceTree = "<group>"; };
 		38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryMultiColumnViewController.m; sourceTree = "<group>"; };
 		383FC0EE19AE1A1A00465FCA /* StateSuggestionProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateSuggestionProvider.h; sourceTree = "<group>"; };
@@ -2184,6 +2187,7 @@
 		EA84056717F0A3FD00F44916 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3831DCC319B764B900151A3D /* existingUserIntro.plist */,
 				385AC115198FE5500088DCD6 /* intro.plist */,
 				385AC112198FE52E0088DCD6 /* NoRefCurrencyMessages.plist */,
 				385AC10F198FE2190088DCD6 /* SharpSansFrontieres-Bold.otf */,
@@ -2910,6 +2914,7 @@
 				EA31A21217DDB29B00F937F7 /* TextCell.xib in Resources */,
 				EA31A21317DDB29B00F937F7 /* ButtonCell.xib in Resources */,
 				47971C6B199A4E830018FDA8 /* DoubleEntryCell~ipad.xib in Resources */,
+				3831DCC519B764B900151A3D /* existingUserIntro.plist in Resources */,
 				38675458198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */,
 				EA31A21A17DDB29B00F937F7 /* OpenIDViewController.xib in Resources */,
 				47FAF351194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib in Resources */,
@@ -3054,6 +3059,7 @@
 				EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */,
 				470DEFAD1945F02300684FEB /* MoneyEntryCell~ipad.xib in Resources */,
 				EAD3648E17E2F6EF001EFE40 /* CardPaymentViewController.xib in Resources */,
+				3831DCC419B764B900151A3D /* existingUserIntro.plist in Resources */,
 				BB29BD49173CD30D0016A6E9 /* BankTransferViewController.xib in Resources */,
 				47AC3F9B1987B2C3005491C6 /* SuggestionCell~ipad.xib in Resources */,
 				BB29BD4B173CDF480016A6E9 /* TextCell.xib in Resources */,
