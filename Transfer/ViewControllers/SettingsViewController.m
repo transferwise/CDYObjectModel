@@ -92,16 +92,10 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
     [[FeedbackCoordinator sharedInstance] presentFeedbackEmail];
 }
 
-- (IBAction)logOutTapped:(id)sender {
-    [[TransferwiseClient sharedClient] clearCredentials];
-	
-	NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
-	[controller setObjectModel:self.objectModel];
-    
-	ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:YES];
-	[self.hostViewController presentViewController:wrapper animated:YES completion:^{
-        [self dismiss];
-    }];
+- (IBAction)logOutTapped:(id)sender
+{
+	[self dismiss];
+	[[NSNotificationCenter defaultCenter] postNotificationName:TRWLoggedOutNotification object:nil];
 }
 
 -(void) verticallyAlignTextAndImageOfButton:(UIButton *)button

@@ -27,10 +27,9 @@
 
 @property (nonatomic, strong) TabViewController *tabController;
 @property (nonatomic, strong) UIView *revealTapView;
-@property (nonatomic, strong) UIViewController *transactionsController;
+@property (nonatomic, strong) TransactionsViewController *transactionsController;
 @property (nonatomic, assign) BOOL launchTableViewGamAdjustmentDone;
 @property (nonatomic, assign) BOOL shown;
-
 
 @end
 
@@ -230,8 +229,16 @@
     [self presentViewController:wrapper animated:shownBefore completion:nil];
 }
 
-- (void)loggedOut {
+- (void)loggedOut
+{
+	[self clearData];
     [self presentIntroductionController:YES];
+}
+
+- (void)clearData
+{
+	[[TransferwiseClient sharedClient] clearCredentials];
+	[self.transactionsController clearData];
 }
 
 - (void)revealController:(SWRevealViewController *)revealController didMoveToPosition:(FrontViewPosition)position {
