@@ -313,7 +313,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 			{
 				self.isViewAppearing = NO;
 				
-				if (IPAD)
+				if (IPAD && self.payments.count > 0)
 				{
 					NSIndexPath *firstRow = [NSIndexPath indexPathForRow:0
 															   inSection:0];

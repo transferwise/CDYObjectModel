@@ -66,15 +66,6 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [super viewDidLoad];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"RecipientCell" bundle:nil] forCellReuseIdentifier:kRecipientCellIdentifier];
-	
-	if (!IPAD)
-	{
-		self.footerView = [[[NSBundle mainBundle] loadNibNamed:@"RecipientsFooterView" owner:self options:nil] objectAtIndex:0];
-		[self.footerView commonSetup];
-		self.footerView.delegate = self;
-		self.footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-		self.tableView.tableFooterView = self.footerView;
-	}
     
     self.titleLabel.text = self.title;
 }
@@ -334,24 +325,38 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self setExecutedOperation:nil];
-        if (error) {
-            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"contacts.refresh.error.title", nil)
-                                                               message:NSLocalizedString(@"contacts.refresh.error.message", nil)];
-            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-            [alertView show];
-
+        if (error)
+		{
             return;
         }
-        NSInteger currentCount = [self.tableView numberOfRowsInSection:0];
+		
+        NSInteger currentCount = self.allRecipients.count;
 		[self.tableView reloadData];
-        NSInteger delta = [self.tableView numberOfRowsInSection:0]-currentCount;
-        if(delta >0)
+        NSInteger delta = [self.tableView numberOfRowsInSection:0] - currentCount;
+		
+        if (delta >0)
         {
             [self.tableView reloadRowsAtIndexPaths:[ContactsViewController generateIndexPathsFrom:currentCount
 																						withCount:delta]
 							  withRowAnimation:UITableViewRowAnimationFade];
         }
+		if (currentCount > 0)
+		{
+			[self setFooter];
+		}
     });
+}
+
+- (void)setFooter
+{
+	if (!IPAD)
+	{
+		self.footerView = [[[NSBundle mainBundle] loadNibNamed:@"RecipientsFooterView" owner:self options:nil] objectAtIndex:0];
+		[self.footerView commonSetup];
+		self.footerView.delegate = self;
+		self.footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+		self.tableView.tableFooterView = self.footerView;
+	}
 }
 
 #pragma mark - Contact Detail Deletion
