@@ -77,7 +77,7 @@
 	{
 		NSString* prefix = [self getCountryCode:phone];
 		
-		if (!prefix || existingPrefix == prefix)
+		if (!prefix || [existingPrefix isEqualToString:prefix])
 		{
 			continue;
 		}
