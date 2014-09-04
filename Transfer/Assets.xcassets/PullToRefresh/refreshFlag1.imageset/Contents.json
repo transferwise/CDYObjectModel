@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "refreshFlag1.png"
+      "filename" : "mini_flag_red.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "refreshFlag1@2x.png"
+      "filename" : "mini_flag_red@2x.png"
     }
   ],
   "info" : {

@@ -169,8 +169,8 @@
 
 -(void)animateFlag
 {
-    [UIView transitionWithView:self.image duration:0.1 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-        self.image.tag = ++self.image.tag%2;
+    [UIView transitionWithView:self.image duration:0.1 options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.image.tag = ++self.image.tag%3;
         self.image.image = [UIImage imageNamed:[NSString stringWithFormat:@"refreshFlag%d",self.image.tag]];
     } completion:^(BOOL finished) {
         if (self.isRefreshing)
