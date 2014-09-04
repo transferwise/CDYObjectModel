@@ -85,7 +85,11 @@
     NSOrderedSet *payInMethodTypes = [self.payment.enabledPayInMethods valueForKey:@"type"];
     NSUInteger indexOfPaymentType= [payInMethodTypes indexOfObject:@"REGULAR"];
     
-    PayInMethod* method = self.payment.enabledPayInMethods[indexOfPaymentType];
+    PayInMethod* method;
+    if(indexOfPaymentType < [self.payment.enabledPayInMethods count])
+    {
+       method = self.payment.enabledPayInMethods[indexOfPaymentType];
+    }
     
     //Header
     NSString *exactlyString = NSLocalizedString(@"upload.money.header.label.exactly", @"");
