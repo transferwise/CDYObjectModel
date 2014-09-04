@@ -570,6 +570,10 @@ who built Skype";
 "intro.existing.message.three" = "Clearer instructions & design for your peace of mind.";
 "intro.existing.message.four" = "Set exactly how much the receiver gets, cancel transfers, invite friends...";
 
+"refresh.pull" = "Pull down to refresh";
+"refresh.release" = "Release to refresh";
+"refresh.refreshing" = "Updating...";
+
 
 "business.profile.identification.header.instructions.text" = "As we follow the anti-money laundering policies of our regulators (HMRC and FCA), we unfortunately need photos (or scanned copies) of a few key documents:
 

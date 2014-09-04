@@ -12,6 +12,11 @@
 @interface PullToRefreshView ()
 @property (nonatomic, weak)UIScrollView *scrollView;
 @property (nonatomic, assign)BOOL isRefreshing;
+@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UIView *fadeInCover;
+
+@property (nonatomic, strong) CADisplayLink *displayLink;
 
 @end
 
@@ -19,7 +24,7 @@
 
 +(PullToRefreshView*)addInstanceToScrollView:(UIScrollView*)scrollView
 {
-    PullToRefreshView *result = [[self alloc] init];
+    PullToRefreshView *result = [[NSBundle mainBundle] loadNibNamed:@"PullToRefreshView" owner:self options:nil][0];
     [result addToScrollView:scrollView];
     return result;
 }
@@ -29,7 +34,7 @@
     self.frame = CGRectMake(0.0f, 0.0f, scrollView.bounds.size.width, 0.0f);
     [scrollView addSubview:self];
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    self.clipsToBounds = YES;
+    self.image.image = [UIImage imageNamed:@"refreshFlag0"];
     self.scrollView = scrollView;
 }
 
@@ -56,28 +61,40 @@
     [self.scrollView bringSubviewToFront:self];
     if(!self.isRefreshing)
     {
-    CGRect newFrame = self.frame;
-    newFrame.origin.y = MIN(MAX([self verticalOffset],-self.targetHeight),0.0f);
-    newFrame.size.height = -newFrame.origin.y;
+        CGRect newFrame = self.frame;
+        newFrame.origin.y = MIN(MAX([self verticalOffset],-self.targetHeight),0.0f);
+        newFrame.size.height = -newFrame.origin.y;
         self.frame = newFrame;
-    [self configureForOffset:MAX(-[self verticalOffset],0.0f)];
+        
+        if(-[self verticalOffset] >= self.targetHeight)
+        {
+            self.label.text = NSLocalizedString(@"refresh.release",nil);
+        }
+        else
+        {
+            self.label.text = NSLocalizedString(@"refresh.pull",nil);
+        }
+        
+           
+           [self configureForOffset:MAX(-[self verticalOffset],0.0f)];
     }
 }
 
 -(void)configureForOffset:(CGFloat)offset
 {
     offset = MIN(offset,self.targetHeight);
-    self.backgroundColor = [UIColor colorWithWhite:offset/self.targetHeight alpha:1.0f];
+    self.fadeInCover. alpha = MAX(1.0f - offset/self.targetHeight, 0.0f);
 }
 
 -(void)configureForRefresh
 {
-    self.backgroundColor = [UIColor colorFromStyle:@"TWElectricBlue"];
+    self.label.text = NSLocalizedString(@"refresh.refreshing",nil);
+    [self animateFlag];
 }
 
 -(void)configureForRefreshComplete
 {
-
+    self.label.text = @"";
 }
 
 -(void)beginRefresh
@@ -104,18 +121,67 @@
     if(self.isRefreshing)
     {
         self.isRefreshing = NO;
-        [self configureForRefreshComplete];
         UIEdgeInsets insets = self.scrollView.contentInset;
         insets.top -= self.targetHeight;
-        [UIView animateWithDuration:0.2f animations:^(void) {
+        CGFloat offset = [self verticalOffset];
+        if (offset < self.targetHeight)
+        {
+            self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(displayLinkTick)];
+            [self.displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+
+            
+            [UIView animateWithDuration:(0.2f * ABS(self.scrollView.contentOffset.y / self.targetHeight)) animations:^{
+                self.scrollView.contentOffset = CGPointZero;
+            } completion:^(BOOL finished) {
+                // Cleanup the display link
+                [self.displayLink removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+                self.displayLink = nil;
+                [self.scrollView setContentInset:insets];
+            }];
+        }
+        else
+        {
             [self.scrollView setContentInset:insets];
-        }];
+        }
+        [self configureForRefreshComplete];
+
     }
+}
+
+- (void)displayLinkTick {
+    CALayer *presentationLayer = (CALayer *)self.scrollView.layer.presentationLayer;
+    CGPoint contentOffset = presentationLayer.bounds.origin;
+    
+    CGFloat verticalOffset = contentOffset.y + (self.scrollView.contentInset.top - self.targetHeight);
+    CGRect newFrame = self.frame;
+    newFrame.origin.y = MIN(MAX(verticalOffset,-self.targetHeight),0.0f);
+    newFrame.size.height = -newFrame.origin.y;
+    self.frame = newFrame;
+    [self configureForOffset:MAX(-verticalOffset,0.0f)];
+
+    
 }
 
 -(CGFloat)verticalOffset
 {
     return self.scrollView.contentOffset.y+self.scrollView.contentInset.top;
+}
+
+-(void)animateFlag
+{
+    [UIView transitionWithView:self.image duration:0.1 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        self.image.tag = ++self.image.tag%2;
+        self.image.image = [UIImage imageNamed:[NSString stringWithFormat:@"refreshFlag%d",self.image.tag]];
+    } completion:^(BOOL finished) {
+        if (self.isRefreshing)
+        {
+            [self animateFlag];
+        }
+        else
+        {
+            self.image.image = [UIImage imageNamed:@"refreshFlag0"];
+        }
+    }];
 }
 
 @end

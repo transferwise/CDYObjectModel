@@ -61,6 +61,8 @@
 		3831AA38194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
 		3831DCC419B764B900151A3D /* existingUserIntro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3831DCC319B764B900151A3D /* existingUserIntro.plist */; };
 		3831DCC519B764B900151A3D /* existingUserIntro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3831DCC319B764B900151A3D /* existingUserIntro.plist */; };
+		3831DCC719B8646000151A3D /* PullToRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831DCC619B8646000151A3D /* PullToRefreshView.xib */; };
+		3831DCC819B8646000151A3D /* PullToRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831DCC619B8646000151A3D /* PullToRefreshView.xib */; };
 		38342BAB196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
 		38342BAC196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
 		383FC0F019AE1A1A00465FCA /* StateSuggestionProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0EF19AE1A1A00465FCA /* StateSuggestionProvider.m */; };
@@ -919,6 +921,7 @@
 		3831AA32194B31A200B3EE5C /* TransparentModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentModalViewController.h; sourceTree = "<group>"; };
 		3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentModalViewController.m; sourceTree = "<group>"; };
 		3831DCC319B764B900151A3D /* existingUserIntro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = existingUserIntro.plist; sourceTree = "<group>"; };
+		3831DCC619B8646000151A3D /* PullToRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PullToRefreshView.xib; sourceTree = "<group>"; };
 		38342BA9196E9362002FF371 /* DataEntryMultiColumnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryMultiColumnViewController.h; sourceTree = "<group>"; };
 		38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryMultiColumnViewController.m; sourceTree = "<group>"; };
 		383FC0EE19AE1A1A00465FCA /* StateSuggestionProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateSuggestionProvider.h; sourceTree = "<group>"; };
@@ -1993,6 +1996,7 @@
 				47343AD01977E0B1009D9C3A /* RecipientsFooterView.xib */,
 				476461E71982859F00F16F05 /* StyledPlaceholderTextField.h */,
 				476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */,
+				3831DCC619B8646000151A3D /* PullToRefreshView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2898,6 +2902,7 @@
 				EA31A20317DDB29B00F937F7 /* RecipientFieldCell.xib in Resources */,
 				380021E7192CEB66009B1D53 /* TransactionsViewController~ipad.xib in Resources */,
 				EA31A20A17DDB29B00F937F7 /* PersonalProfileIdentificationViewController.xib in Resources */,
+				3831DCC819B8646000151A3D /* PullToRefreshView.xib in Resources */,
 				380021FC192F43EA009B1D53 /* TabCell~ipad.xib in Resources */,
 				385669081980F9F200BC4230 /* ContactDetailsViewController.xib in Resources */,
 				EAD3649217E2F971001EFE40 /* PaymentMethodSelectionView.xib in Resources */,
@@ -3043,6 +3048,7 @@
 				4716EE9F19B4D0DB00564A48 /* DoublePasswordEntryCell.xib in Resources */,
 				474C451D1992874E001F207C /* ProfileEditViewController~ipad.xib in Resources */,
 				380021FB192F43EA009B1D53 /* TabCell~ipad.xib in Resources */,
+				3831DCC719B8646000151A3D /* PullToRefreshView.xib in Resources */,
 				EAD3649117E2F971001EFE40 /* PaymentMethodSelectionView.xib in Resources */,
 				3840863A19A38A5E00C837C2 /* TextEntryCellValidation~ipad.xib in Resources */,
 				38BBE4661990F43500A14B9F /* IntroView~ipad.xib in Resources */,
