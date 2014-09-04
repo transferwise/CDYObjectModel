@@ -578,4 +578,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [self refreshPaymentsList];
 }
 
+#pragma mark - Clear Data
+- (void)clearData
+{
+	self.payments = nil;
+}
+
 @end
