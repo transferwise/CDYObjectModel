@@ -83,7 +83,7 @@
     }
 
     NSString *absoluteString = [request.URL absoluteString];
-    NSLog(@"absoluteString:%@", absoluteString);
+    MCLog(@"absoluteString:%@", absoluteString);
 
     if (![self isLoginPath:absoluteString]) {
         return YES;

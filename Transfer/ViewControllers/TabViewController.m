@@ -269,7 +269,6 @@
     }
 	
     TabCell *cell = (TabCell*) [collectionView dequeueReusableCellWithReuseIdentifier:@"TabCell" forIndexPath:indexPath];
-	NSLog(@"%li", (long)indexPath.row);
     TabItem* item = self.tabItems[[self indexForIndexPath:indexPath]];
     [cell configureWithTabItem:item];
     if(item == self.selectedItem)

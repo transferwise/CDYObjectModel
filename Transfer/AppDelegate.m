@@ -163,7 +163,7 @@
     BOOL urlWasHandled = [FBAppCall handleOpenURL:url
                                 sourceApplication:sourceApplication
                                   fallbackHandler:^(FBAppCall *call) {
-                                      NSLog(@"Unhandled deep link: %@", url);
+                                      MCLog(@"Unhandled deep link: %@", url);
                                   }];
     
     return urlWasHandled;

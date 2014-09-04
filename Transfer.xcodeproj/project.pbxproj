@@ -278,6 +278,7 @@
 		38BBE4641990F2B900A14B9F /* IntroViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4621990F2B900A14B9F /* IntroViewController~ipad.xib */; };
 		38BBE4661990F43500A14B9F /* IntroView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4651990F43500A14B9F /* IntroView~ipad.xib */; };
 		38BBE4671990F43500A14B9F /* IntroView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4651990F43500A14B9F /* IntroView~ipad.xib */; };
+		38BCE11719B8C8EF0003D0EE /* TransferDev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38BCE11619B8C8EF0003D0EE /* TransferDev.plist */; };
 		38BD98A3195C5973009F9B4A /* NameSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */; };
 		38BD98A4195C5973009F9B4A /* NameSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */; };
 		38BD98A5195C5973009F9B4A /* NameSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */; };
@@ -1108,6 +1109,7 @@
 		38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationProgressIndicatorView.m; sourceTree = "<group>"; };
 		38BBE4621990F2B900A14B9F /* IntroViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "IntroViewController~ipad.xib"; sourceTree = "<group>"; };
 		38BBE4651990F43500A14B9F /* IntroView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "IntroView~ipad.xib"; sourceTree = "<group>"; };
+		38BCE11619B8C8EF0003D0EE /* TransferDev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TransferDev.plist; sourceTree = SOURCE_ROOT; };
 		38BD98A0195C5973009F9B4A /* NameSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSuggestionCell.h; sourceTree = "<group>"; };
 		38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameSuggestionCell.m; sourceTree = "<group>"; };
 		38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NameSuggestionCell.xib; sourceTree = "<group>"; };
@@ -1304,7 +1306,6 @@
 		EA0523F4191B596B00B32899 /* RefundDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefundDetailsViewController.h; sourceTree = "<group>"; };
 		EA0523F5191B596B00B32899 /* RefundDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefundDetailsViewController.m; sourceTree = "<group>"; };
 		EA0523F8191B5AFC00B32899 /* RefundDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefundDetailsViewController.xib; sourceTree = "<group>"; };
-		EA12413E17AA88EC00C9B02B /* TransferDev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = TransferDev.plist; path = "/Users/jaanus/projects/mc-transfer-ios/TransferDev.plist"; sourceTree = "<absolute>"; };
 		EA13E030171BDF1A0019FBF0 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
 		EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
 		EA13E034171BE1210019FBF0 /* MoneyEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyEntryCell.h; sourceTree = "<group>"; };
@@ -2399,7 +2400,6 @@
 				EAAA1469171BC911005B9430 /* Products */,
 				EA8FF68C171D22080090A658 /* Thirdparty */,
 				B9D5DEC1F8394C87A604EF4F /* Pods-TransferTests.xcconfig */,
-				EA12413E17AA88EC00C9B02B /* TransferDev.plist */,
 				2C541BABB70E4B6195F5BC1A /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
@@ -2471,6 +2471,7 @@
 		EAAA1474171BC911005B9430 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				38BCE11619B8C8EF0003D0EE /* TransferDev.plist */,
 				EAAA1476171BC911005B9430 /* InfoPlist.strings */,
 				EAAA148E171BD07E005B9430 /* Localizable.strings */,
 				EAAA1479171BC911005B9430 /* main.m */,
@@ -2844,6 +2845,7 @@
 				380021AB192B9506009B1D53 /* TabViewController~ipad.xib in Resources */,
 				EA0450DE17EC64E4008921DA /* IntroView.xib in Resources */,
 				38CACA65196EE4D400BFCF82 /* TextFieldSuggestionTable~ipad.xib in Resources */,
+				38BCE11719B8C8EF0003D0EE /* TransferDev.plist in Resources */,
 				EA31A1D917DDB29B00F937F7 /* TableHeaderView.xib in Resources */,
 				EA31A1DA17DDB29B00F937F7 /* TextEntryCell.xib in Resources */,
 				47F84D631988E83300886D41 /* CountrySelectionCell.xib in Resources */,
@@ -4123,9 +4125,47 @@
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/CDYAnalyticsCoordinator\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/CDYObjectModel\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/CXAlertView\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Facebook-iOS-SDK\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Facebook-iOS-SDK/FacebookSDK\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/JVFloatLabeledTextField\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Kiwi\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Lockbox\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/MBProgressHUD\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Mixpanel\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/OCMock\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/OHAttributedLabel\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Reachability\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/SMPageControl\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/TestFlightSDK\"",
+					"-DNDEBUG",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7686c3b6-4ba9-4ecf-a520-ab7c975a7464";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "b1267d3e-2ad9-4db9-9b99-fed449542e39";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

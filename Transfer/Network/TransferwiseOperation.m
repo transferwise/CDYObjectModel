@@ -133,7 +133,7 @@
         NSError *jsonError = nil;
         NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonError];
         if (jsonError) {
-            NSLog(@"Error JSON read error:%@", jsonError);
+            MCLog(@"Error JSON read error:%@", jsonError);
             if (weakSelf.operationErrorHandler)
             {
                 weakSelf.operationErrorHandler(error);
