@@ -24,9 +24,5 @@
 
 -(void)addToScrollView:(UIScrollView*)scrollView;
 
--(void)scrollViewDidEndDragging;
-
--(void)scrollViewDidScroll;
-
 -(void)refreshComplete;
 @end

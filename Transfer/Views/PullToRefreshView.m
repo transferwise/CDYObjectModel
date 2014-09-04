@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UIView *fadeInCover;
+@property (nonatomic, assign) BOOL endRefreshRequestedDuringDeceleration;
+@property (nonatomic, assign) BOOL willDecelerate;
 
 @property (nonatomic, strong) CADisplayLink *displayLink;
 
@@ -40,12 +42,26 @@
 
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
+    self.willDecelerate = decelerate;
+    if(self.endRefreshRequestedDuringDeceleration && !decelerate)
+    {
+        [self refreshComplete];
+    }
     [self scrollViewDidEndDragging];
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self scrollViewDidScroll];
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    self.willDecelerate = NO;
+    if (self.endRefreshRequestedDuringDeceleration)
+    {
+        [self refreshComplete];
+    }
 }
 
 -(void)scrollViewDidEndDragging
@@ -122,8 +138,15 @@
 
 -(void)refreshComplete
 {
+    if(self.willDecelerate)
+    {
+        self.endRefreshRequestedDuringDeceleration = YES;
+        return;
+    }
+    
     if(self.isRefreshing)
     {
+        self.endRefreshRequestedDuringDeceleration = NO;
         self.isRefreshing = NO;
         UIEdgeInsets insets = self.scrollView.contentInset;
         insets.top -= self.targetHeight;
@@ -173,7 +196,7 @@
 
 -(void)animateFlag
 {
-    [UIView transitionWithView:self.image duration:0.05 options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView transitionWithView:self.image duration:0.3f options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionCurveEaseInOut animations:^{
         self.image.tag = ++self.image.tag%3;
         self.image.image = [UIImage imageNamed:[NSString stringWithFormat:@"refreshFlag%d",self.image.tag]];
     } completion:^(BOOL finished) {
