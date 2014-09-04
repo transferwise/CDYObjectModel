@@ -48,7 +48,37 @@
     }
     return self;
 }
+
 - (void)viewDidLoad
+{
+	[self loadProfileImages];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.title = NSLocalizedString(@"invite.controller.title", nil);
+    if(!IPAD)
+    {
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
+    self.headerLabel.text = NSLocalizedString(@"invite.header", nil);
+    [self.inviteButtons[0] setTitle:NSLocalizedString(@"invite.button.title", nil) forState:UIControlStateNormal];
+    [self.inviteButtons[1] setTitle:NSLocalizedString(@"invite.button.title", nil) forState:UIControlStateNormal];
+    
+	//init with 0 and load actual data
+    [self setProgress:0];
+	
+	[self loadInviteStatus];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.topItem.titleView = nil;
+}
+
+- (void)loadProfileImages
 {
 	User *user = [self.objectModel currentUser];
 	
@@ -114,36 +144,6 @@
 		}
 							 requestAccess:NO];
 	}
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    self.title = NSLocalizedString(@"invite.controller.title", nil);
-    if(!IPAD)
-    {
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
-    }
-    self.headerLabel.text = NSLocalizedString(@"invite.header", nil);
-    [self.inviteButtons[0] setTitle:NSLocalizedString(@"invite.button.title", nil) forState:UIControlStateNormal];
-    [self.inviteButtons[1] setTitle:NSLocalizedString(@"invite.button.title", nil) forState:UIControlStateNormal];
-    
-	//init with 0 and load actual data
-    [self setProgress:0];
-	
-	[self loadInviteStatus];
-}
-
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.topItem.titleView = nil;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)setProgress:(NSUInteger)progress
@@ -274,11 +274,6 @@
 				 [weakSelf setProgress:successCount];
 				 return;
 			 }
-			 
-			 TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"invite.status.error.title", nil)
-																message:NSLocalizedString(@"invite.status.error.message", nil)];
-			 [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-			 [alertView show];
 		 });
 	 }];
 	
