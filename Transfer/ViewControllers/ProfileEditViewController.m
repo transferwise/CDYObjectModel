@@ -350,11 +350,9 @@
                 [hud hide];
                 if (profileError)
 				{
-					self.actionButton.hidden = YES;
                     return;
                 }
-
-				self.actionButton.hidden = NO;
+				
                 self.sectionCellsByTableView = self.presentationCells;
                 [self reloadTableViews];
 				[self refreshTableViewSizes];
