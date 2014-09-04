@@ -319,6 +319,10 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
                 {
                     [self presentDetail:nil];
                 }
+				else if(!IPAD)
+				{
+					[self.navigationController popViewControllerAnimated:YES];
+				}
             });
         }];
 
