@@ -329,11 +329,6 @@
         if (error)
 		{
             [hud hide];
-
-            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.countries.refresh.error.title", nil)
-                                                               message:NSLocalizedString(@"personal.profile.countries.refresh.error.message", nil)];
-            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-            [alertView show];
             return;
         }
 
@@ -353,15 +348,13 @@
         [self.profileSource pullDetailsWithHandler:^(NSError *profileError) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hud hide];
-
-                if (profileError) {
-                    TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.refresh.error.title", nil)
-                                                                       message:NSLocalizedString(@"personal.profile.refresh.error.message", nil)];
-                    [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-                    [alertView show];
+                if (profileError)
+				{
+					self.actionButton.hidden = YES;
                     return;
                 }
 
+				self.actionButton.hidden = NO;
                 self.sectionCellsByTableView = self.presentationCells;
                 [self reloadTableViews];
 				[self refreshTableViewSizes];

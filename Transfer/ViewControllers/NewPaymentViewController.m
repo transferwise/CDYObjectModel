@@ -159,8 +159,6 @@ static NSUInteger const kRowYouSend = 0;
 
     [calculator setCalculationHandler:^(CalculationResult *result, NSError *error) {
         if (error) {
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"introduction.calculation.error.title", nil) error:error];
-            [alertView show];
             return;
         }
 
@@ -278,14 +276,8 @@ static NSUInteger const kRowYouSend = 0;
     [operation setCurrenciesHandler:^(NSError *error) {
         [self setExecutedOperation:nil];
 
-        if (error) {
-            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"introduction.currencies.retrieve.error.title", nil)
-                                                               message:NSLocalizedString(@"introduction.currencies.retrieve.error.message", nil)];
-            [alertView setLeftButtonTitle:NSLocalizedString(@"button.title.retry", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel",nil)];
-            [alertView setLeftButtonAction:^{
-                [weakSelf retrieveCurrencyPairs];
-            }];
-            [alertView show];
+        if (error)
+		{
             return;
         }
         else
