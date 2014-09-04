@@ -368,9 +368,6 @@ static NSUInteger const kRowYouSend = 0;
         if (error) {
             self.continueOperation = nil;
             [hud hide];
-            //TODO:Change alert!
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipients.preload.error.title", nil) error:error];
-            [alertView show];
             return;
         }
         
@@ -396,13 +393,9 @@ static NSUInteger const kRowYouSend = 0;
                     
                     [paymentFlow setObjectModel:self.objectModel];
                     [paymentFlow presentNextPaymentScreen];
-                    
                 }];
-
-                    
             });
         };
-        
         
         CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
         weakSelf.continueOperation = currenciesOperation;
