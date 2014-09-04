@@ -163,6 +163,7 @@
 	
 	if (progress > 0)
 	{
+		//TODO: remove, when invitation status is saved
 		//indicator view is always hidden
 		self.indicatorContainer.opaque = NO;
 		self.indicatorContainer.alpha = 0.f;
