@@ -552,7 +552,7 @@ THE WORLD";
 FASTER
 EXPERIENCE";
 "intro.message.one" = "Send money abroad
-cheaper & faster";
+cheaper & faster with TransferWise";
 "intro.message.two" = "Banks charge 5% with hidden
 fees. We charge 0.5%";
 "intro.message.three" = "5/5 ratings across 6758
@@ -594,7 +594,7 @@ We'll send you an email in order to let you choose a new password.";
 "reset.password.not.found.alert.message" = "There is no account registered with that email. Please provide a valid email.";
 "refund.controller.existing.recipients.preload.error.title" = "Can't load contacts";
 
-"network.alert" = "No network";
+"network.alert" = "No Internet Connection";
 "unknown.value" = "??";
 "contact.detail.send" = "Send money";
 
@@ -606,7 +606,7 @@ We'll send you an email in order to let you choose a new password.";
 "invite.controller.title.short" = "Help your friends";
 "invite.controller.title.reward.format" = "£%d earned! %@";
 "invite.controller.title.boom" = "Boom!";
-"invite.header" = "Every 3 friends who start using Transferwise, you earn £50";
+"invite.header" = "You earn £50 for every 3 friends who start using Transferwise.";
 "invite.progress.format1" = "%d friend started using Transferwise. %d to go & you get £50.";
 "invite.progress.format2" = "%d friends started using Transferwise. %d to go!";
 "invite.complete.format" = "%d friends joined! Do it again to earn £50 extra!";
