@@ -120,7 +120,7 @@ your friends to TransferWise";
 "identification.good.format" = "Good! %d documents left.";
 "identification.good.single.format" = "Good! %d document left.";
 "identification.good.single.ipad" = "1 more document needed for security reasons.";
-"identification.only.purpose" = "You're almost done";
+"identification.only.purpose" = "You're almost done. Fill the field : Purpose of transfer";
 "identification.well.done.format" = "Well done %@!";
 
 
@@ -222,7 +222,7 @@ A revolution in your pocket.";
 "payment.status.payed.description.long2" = "received the money.";
 "payment.status.payed.description.conversion" = "We're now waiting for your
 bank transfer to reach our account.
-It can take up to 2 working days.";
+It generally taks 1 business day.";
 "payment.status.payed.description.eta" = "";
 "payment.status.transferred.description" = "Completed - %@";
 "payment.status.transferred.description.long" = "has been transfered.";
@@ -396,7 +396,7 @@ This can't be undone.";
 "transferdetails.controller.transfer.thankyou" = "Thank you!";
 "transferdetails.controller.transfer.message1" = "We're now waiting for your";
 "transferdetails.controller.transfer.message2" = "bank transfer to reach our account.";
-"transferdetails.controller.transfer.message3" = "It can take up to 2 working days.";
+"transferdetails.controller.transfer.message3" = "It generally takes 1 business day.";
 "transferdetails.controller.transfer.number" = "#%@";
 "transferdetails.controller.transfer.recipient" = "to %@";
 "transferdetails.controller.transfer.account.to" = "%@'s account details";
