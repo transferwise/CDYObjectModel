@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13A3028" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -50,7 +50,7 @@
                         <constraint firstAttribute="centerX" secondItem="4qE-0W-9mm" secondAttribute="centerX" id="zte-Yc-r3a"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="FromColorStyle" value="LightBlueDarker"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="FromColorStyle" value="LightBlueHighlighted"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="ToColorStyle" value="LightBlue"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="orientation">
                             <integer key="value" value="1"/>
