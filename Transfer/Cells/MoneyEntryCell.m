@@ -29,6 +29,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 @property (strong, nonatomic) UIColor *selectorBackgroundColor;
 @property (weak, nonatomic) IBOutlet UIImageView *dropdownArrow;
 @property (nonatomic) BOOL currenciesLoaded;
+@property (nonatomic) BOOL isSelecting;
 
 @end
 
@@ -131,6 +132,13 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 {
 	if (self.currenciesLoaded)
 	{
+		if (self.isSelecting)
+		{
+			return;
+		}
+		
+		self.isSelecting = YES;
+		
 		[self.window endEditing:YES];
 		
 		CurrencySelectorViewController* selector = [[CurrencySelectorViewController alloc] init];
@@ -151,6 +159,11 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     [self setSelectedCurrency:selected];
     self.currencyChangedHandler(selected);
 
+}
+
+- (void)currencySelectorwillHide:(CurrencySelectorViewController *)controller
+{
+	self.isSelecting = NO;
 }
 
 - (void)setForcedCurrency:(Currency *)currency {
