@@ -75,6 +75,11 @@ NSInteger const kSecondTextField = 2;
 	[self.contentView addConstraints:@[firstWidth, secondWidth]];
 }
 
+- (void)setFirstTitle:(NSString *)title
+{
+	[self.firstTextField setTitle:title];
+}
+
 #pragma mark - Multiple Entry Cell
 - (void)configureWithTitle:(NSString *)title
 					 value:(NSString *)value

@@ -27,7 +27,6 @@
 @property (nonatomic, strong) TextEntryCell *registrationNumberCell;
 @property (nonatomic, strong) TextEntryCell *descriptionCell;
 @property (nonatomic, strong) TextEntryCell *addressCell;
-@property (nonatomic, strong) DoubleEntryCell *zipCityCell;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
 @property (nonatomic, strong) TextEntryCell *stateCell;
 
@@ -101,7 +100,7 @@
     DoubleEntryCell *zipCityCell = [DoubleEntryCell loadInstance];
 	[self setZipCityCell:zipCityCell];
     [secondColumnCells addObject:zipCityCell];
-    [zipCityCell configureWithTitle:NSLocalizedString(@"business.profile.post.code.label", nil)
+    [zipCityCell configureWithTitle:NSLocalizedString(@"profile.post.code.label", nil)
 							  value:@""
 						secondTitle:NSLocalizedString(@"business.profile.city.label", nil)
 						secondValue:@""];
