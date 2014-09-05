@@ -164,7 +164,7 @@
 
 - (IBAction)contactSupportPressed
 {
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"view transfer"];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"Transfer details"];
     NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
     [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 }

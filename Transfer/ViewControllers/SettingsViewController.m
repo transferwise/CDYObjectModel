@@ -84,7 +84,7 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 }
 
 - (IBAction)customerServiceTapped:(id)sender {
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"menu"];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"Settings"];
     [[SupportCoordinator sharedInstance] presentOnController:self.hostViewController];
 }
 
