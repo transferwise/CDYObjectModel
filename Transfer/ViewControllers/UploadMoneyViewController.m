@@ -46,11 +46,13 @@
     {
         viewControllers = @[self.cardViewController, self.bankViewController];
         titles = @[NSLocalizedString(@"payment.method.card", nil), NSLocalizedString(@"payment.method.regular", nil)];
+        [self setTitle:NSLocalizedString(@"upload.money.title", @"")];
     }
     else
     {
         viewControllers = @[self.bankViewController];
         titles = @[NSLocalizedString(@"payment.method.regular", nil)];
+        [self setTitle:NSLocalizedString(@"upload.money.title.single.method", @"")];
     }
     
     [super configureWithControllers:viewControllers
@@ -62,7 +64,7 @@
 					
     [super viewDidLoad];
 
-    [self setTitle:NSLocalizedString(@"upload.money.title", @"")];
+    
 }
 
 - (void)initControllers
