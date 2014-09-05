@@ -84,6 +84,7 @@
         [controller setObjectModel:self.objectModel];
        ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:YES];
         [self presentViewController:wrapper animated:YES completion:nil];
+        [[GoogleAnalytics sharedInstance] sendScreen:@"New payment"];
         return NO;
     }];
 
@@ -173,6 +174,7 @@
         controller.plistFilenameOverride = @"existingUserIntro";
         [self setNavigationBarHidden:YES];
         [self pushViewController:controller animated:NO];
+        [[GoogleAnalytics sharedInstance] sendScreen:@"Whats new screen"];
     }
     else if (![Credentials userLoggedIn] && !self.shown) {
         NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
@@ -221,6 +223,7 @@
         {
            controller.plistFilenameOverride = @"existingUserIntro";
         }
+        [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:controller.plistFilenameOverride?@"Whats new screen":@"Intro screen"]];
         [controller setObjectModel:self.objectModel];
         presented = controller;
     }

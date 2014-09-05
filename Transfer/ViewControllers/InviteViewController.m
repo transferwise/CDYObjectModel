@@ -81,6 +81,7 @@
                                                   
                                               }
                                           } else {
+                                              [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaFBSent"];
                                               [self dismiss];
                                           }
                                       }];
@@ -93,6 +94,14 @@
             
             [controller setInitialText:[NSString stringWithFormat:NSLocalizedString(@"invite.facebook.default.message",nil),[self.objectModel currentUser].personalProfile.firstName]];
             [controller addURL:url];
+            [controller setCompletionHandler:^(SLComposeViewControllerResult result)
+             {
+                if(result ==SLComposeViewControllerResultDone)
+                {
+                    [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaFBSent"];
+                    [self dismiss];
+                }
+             }];
             [self presentViewController:controller animated:YES completion:nil];
         }
         else

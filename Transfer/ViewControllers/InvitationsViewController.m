@@ -53,7 +53,7 @@
 - (void)viewDidLoad
 {
 	[self loadProfileImages];
-    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Invite"]];
+    [super viewDidLoad];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -72,6 +72,8 @@
     [self setProgress:0];
 	
 	[self loadInviteStatus];
+    
+     [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Invite"]];
 }
 
 -(void)viewWillDisappear:(BOOL)animated

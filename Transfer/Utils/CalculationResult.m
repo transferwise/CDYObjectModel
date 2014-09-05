@@ -123,6 +123,12 @@ NSNumberFormatter *__formatter;
     return [[CalculationResult paymentDateFormatter] stringFromDate:self.estimatedDelivery];
 }
 
+- (NSString *)calculatedPayWinAmountWithCurrency
+{
+    NSNumber *win = @([self.bankTotalFee floatValue] - [self.transferwiseTransferFee floatValue]);
+    return [[MoneyFormatter sharedInstance] formatAmount:win withCurrency:self.sourceCurrency];
+}
+
 - (NSString *)payWinAmountWithCurrency {
     NSNumber *win = [NSNumber numberWithFloat:([self.bankPayIn floatValue] - [self.transferwisePayIn floatValue] + [self.transferwiseRefund floatValue])];
     return [[MoneyFormatter sharedInstance] formatAmount:win withCurrency:self.sourceCurrency];

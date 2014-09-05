@@ -423,6 +423,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             weakSelf.nameCell.thumbnailImage.image = image;
         }
     }];
+    
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ABRecipientSelected"];
 }
 
 - (void)didSelectRecipient:(Recipient *)recipient {
