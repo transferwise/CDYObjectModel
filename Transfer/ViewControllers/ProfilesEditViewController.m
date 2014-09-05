@@ -110,6 +110,7 @@
 
 - (void)showSettings
 {
+	[self.view endEditing:YES];
     SettingsViewController* controller = [[SettingsViewController alloc] init];
     controller.objectModel = self.objectModel;
     [controller presentOnViewController:self.view.window.rootViewController];
