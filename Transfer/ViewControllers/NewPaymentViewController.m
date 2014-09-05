@@ -335,8 +335,10 @@ static NSUInteger const kRowYouSend = 0;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (IBAction)startPaymentPressed:(id)sender {
-    if (!self.result) {
+- (IBAction)startPaymentPressed:(id)sender
+{
+    if (!self.result)
+	{
         return;
     }
 
@@ -344,13 +346,22 @@ static NSUInteger const kRowYouSend = 0;
     Currency *targetCurrency = [self.theyReceiveCell currency];
     NSNumber *payIn = [self.result transferwisePayIn];
 
-    PairTargetCurrency *target = [self.objectModel pairWithSource:sourceCurrency target:targetCurrency];
-    if (![target acceptablePayIn:payIn]) {
+	PairSourceCurrency *source = [self.objectModel pairSourceWithCurrency:sourceCurrency];
+    PairTargetCurrency *target = [self.objectModel pairTargetWithSource:sourceCurrency target:targetCurrency];
+    if (![target acceptablePayIn:payIn])
+	{
         TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"transfer.pay.in.too.low.title", nil) message:[NSString stringWithFormat:NSLocalizedString(@"transfer.pay.in.too.low.message.base", nil), target.minInvoiceAmount, target.source.currency.code]];
         [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
         [alertView show];
         return;
     }
+	else if (![source acceptablePayIn:payIn])
+	{
+		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"transfer.pay.in.too.high.title", nil) message:[NSString stringWithFormat:NSLocalizedString(@"transfer.pay.in.too.high.message.base", nil), source.maxInvoiceAmount, source.currency.code]];
+		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+		[alertView show];
+		return;
+	}
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];

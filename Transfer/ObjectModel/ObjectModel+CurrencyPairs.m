@@ -20,7 +20,7 @@
     return [self countInstancesOfEntity:[PairSourceCurrency entityName] withPredicate:predicate] > 0;
 }
 
-- (PairSourceCurrency *)sourceWithCurrency:(Currency *)currency {
+- (PairSourceCurrency *)pairSourceWithCurrency:(Currency *)currency {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"currency = %@", currency];
     return [self fetchEntityNamed:[PairSourceCurrency entityName] withPredicate:predicate];
 }
@@ -28,7 +28,7 @@
 - (void)createOrUpdatePairWithData:(NSDictionary *)data index:(NSUInteger)index {
     NSString *currencyCode = data[@"currencyCode"];
     Currency *currency = [self currencyWithCode:currencyCode];
-    PairSourceCurrency *source = [self sourceWithCurrency:currency];
+    PairSourceCurrency *source = [self pairSourceWithCurrency:currency];
     if (!source) {
         source = [PairSourceCurrency insertInManagedObjectContext:self.managedObjectContext];
         [source setCurrency:currency];
@@ -88,7 +88,7 @@
     return [self fetchedControllerForEntity:[PairTargetCurrency entityName] predicate:predicate sortDescriptors:@[indexSortDescriptor]];
 }
 
-- (PairTargetCurrency *)pairWithSource:(Currency *)source target:(Currency *)target {
+- (PairTargetCurrency *)pairTargetWithSource:(Currency *)source target:(Currency *)target {
     NSPredicate *sourcePredicate = [NSPredicate predicateWithFormat:@"source.currency = %@", source];
     NSPredicate *targetPredicate = [NSPredicate predicateWithFormat:@"currency = %@", target];
     NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[sourcePredicate, targetPredicate]];

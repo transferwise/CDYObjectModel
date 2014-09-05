@@ -10,6 +10,7 @@
 
 @class Currency;
 @class PairTargetCurrency;
+@class PairSourceCurrency;
 
 @interface ObjectModel (CurrencyPairs)
 
@@ -18,7 +19,8 @@
 - (NSFetchedResultsController *)fetchedControllerForSources;
 - (NSFetchedResultsController *)fetchedControllerForSourcesContainingTargetCurrency:(Currency *)currency;
 - (NSFetchedResultsController *)fetchedControllerForTargetsWithSourceCurrency:(Currency *)currency;
-- (PairTargetCurrency *)pairWithSource:(Currency *)source target:(Currency *)target;
+- (PairTargetCurrency *)pairTargetWithSource:(Currency *)source target:(Currency *)target;
+- (PairSourceCurrency *)pairSourceWithCurrency:(Currency *)currency;
 - (void)hideExistingPairSources;
 
 @end
