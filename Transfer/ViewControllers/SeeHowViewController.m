@@ -7,6 +7,7 @@
 //
 
 #import "SeeHowViewController.h"
+#import "GoogleAnalytics.h"
 
 @interface SeeHowViewController ()
 
@@ -16,7 +17,10 @@
 
 -(SeeHowView *)whyView
 {
+    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"See how modal"]];
     return (SeeHowView*)self.view;
+    
+    
 }
 
 @end

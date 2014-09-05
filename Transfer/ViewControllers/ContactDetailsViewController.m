@@ -72,6 +72,8 @@
     
     self.flagIcon.image = [UIImage imageNamed:self.recipient.currency.code?[NSString stringWithFormat:@"%@_flag_30px",self.recipient.currency.code]:@"flag_default_30px"];
     
+    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Contact details"]];
+    
     //TODO: m@s replace with loading user image once API is implemented.
     if (self.recipient.email)
     {
