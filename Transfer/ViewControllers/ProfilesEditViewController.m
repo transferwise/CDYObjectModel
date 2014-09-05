@@ -21,10 +21,11 @@
 #import "NSString+DeviceSpecificLocalisation.h"
 #import "SettingsViewController.h"
 
-@interface ProfilesEditViewController ()
+@interface ProfilesEditViewController()
 
 @property (nonatomic, strong) PersonalProfileViewController* personalProfile;
 @property (nonatomic, strong) BusinessProfileViewController* businessProfile;
+@property (nonatomic) BOOL isShowingSettings;
 
 @end
 
@@ -110,9 +111,21 @@
 
 - (void)showSettings
 {
+	if (self.isShowingSettings)
+	{
+		return;
+	}
+	
+	self.isShowingSettings = YES;
 	[self.view endEditing:YES];
     SettingsViewController* controller = [[SettingsViewController alloc] init];
+	controller.delegate = self;
     controller.objectModel = self.objectModel;
     [controller presentOnViewController:self.view.window.rootViewController];
+}
+
+- (void)modalClosed
+{
+	self.isShowingSettings = NO;
 }
 @end

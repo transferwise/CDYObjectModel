@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol TransparentModalViewControllerDelegate <NSObject>
+
+@optional
+- (void)modalClosed;
+
+@end
+
 @interface TransparentModalViewController : UIViewController
 
+@property (nonatomic, weak) id<TransparentModalViewControllerDelegate> delegate;
 @property (nonatomic, readonly) UIViewController* hostViewController;
 
 -(void)presentOnViewController:(UIViewController*)hostViewcontroller;
