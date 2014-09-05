@@ -9,6 +9,7 @@
 #import "ReferralLinkOperation.h"
 #import "Constants.h"
 #import "TransferwiseOperation+Private.h"
+#import "ObjectModel+Users.h"
 
 NSString *const kReferralLinkPath = @"/referral/link";
 
@@ -29,8 +30,15 @@ NSString *const kReferralLinkPath = @"/referral/link";
 		if (response[@"referralLink"])
 		{
 			referralLink = response[@"referralLink"];
+			[weakSelf.workModel saveInviteUrl:referralLink];
+			[weakSelf.workModel saveContext:^{
+				weakSelf.resultHandler(nil, referralLink);
+			}];
 		}
-		weakSelf.resultHandler(nil, referralLink);
+		else
+		{
+			weakSelf.resultHandler(nil, referralLink);
+		}
 	}];
 	
 	[self getDataFromPath:path params:@{@"inviteSource" : TRWAppType}];

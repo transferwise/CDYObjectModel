@@ -6,6 +6,8 @@
 const struct UserAttributes UserAttributes = {
 	.anonymous = @"anonymous",
 	.email = @"email",
+	.hasSuccessfulInvites = @"hasSuccessfulInvites",
+	.inviteUrl = @"inviteUrl",
 	.pReference = @"pReference",
 	.password = @"password",
 	.sendAsBusinessDefaultSetting = @"sendAsBusinessDefaultSetting",
@@ -52,6 +54,11 @@ const struct UserFetchedProperties UserFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"hasSuccessfulInvitesValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"hasSuccessfulInvites"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"sendAsBusinessDefaultSettingValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"sendAsBusinessDefaultSetting"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -91,6 +98,39 @@ const struct UserFetchedProperties UserFetchedProperties = {
 
 
 @dynamic email;
+
+
+
+
+
+
+@dynamic hasSuccessfulInvites;
+
+
+
+- (BOOL)hasSuccessfulInvitesValue {
+	NSNumber *result = [self hasSuccessfulInvites];
+	return [result boolValue];
+}
+
+- (void)setHasSuccessfulInvitesValue:(BOOL)value_ {
+	[self setHasSuccessfulInvites:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveHasSuccessfulInvitesValue {
+	NSNumber *result = [self primitiveHasSuccessfulInvites];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveHasSuccessfulInvitesValue:(BOOL)value_ {
+	[self setPrimitiveHasSuccessfulInvites:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
+@dynamic inviteUrl;
 
 
 

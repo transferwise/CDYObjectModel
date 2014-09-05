@@ -20,6 +20,8 @@
 #import "PersonalProfile.h"
 #import "ReferralsCoordinator.h"
 #import "GoogleAnalytics.h"
+#import "ObjectModel+Users.h"
+#import "User.h"
 
 @interface InvitationsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *profilePictureContainer;
@@ -52,7 +54,17 @@
 
 - (void)viewDidLoad
 {
-	[self loadProfileImages];
+	User *user = [self.objectModel currentUser];
+	
+	if (user && user.hasSuccessfulInvites)
+	{
+		self.profilePictureContainer.hidden = YES;
+		self.indicatorContainer.hidden = NO;
+	}
+	else
+	{
+		[self loadProfileImagesWithUser:user];
+	}
     [super viewDidLoad];
 }
 
@@ -68,12 +80,22 @@
     [self.inviteButtons[0] setTitle:NSLocalizedString(@"invite.button.title", nil) forState:UIControlStateNormal];
     [self.inviteButtons[1] setTitle:NSLocalizedString(@"invite.button.title", nil) forState:UIControlStateNormal];
     
-	//init with 0 and load actual data
-    [self setProgress:0];
+	User *user = [self.objectModel currentUser];
+	
+	if (user && !user.hasSuccessfulInvites)
+	{
+		//init with 0 and load actual data
+		[self setProgress:0];
+	}
+	
+	//indicator view is always hidden
+	self.indicatorContainer.opaque = NO;
+	self.indicatorContainer.alpha = 0.f;
+	self.indicatorContainer.hidden = NO;
 	
 	[self loadInviteStatus];
     
-     [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Invite"]];
+	[[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Invite"]];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -82,10 +104,8 @@
     self.navigationController.navigationBar.topItem.titleView = nil;
 }
 
-- (void)loadProfileImages
+- (void)loadProfileImagesWithUser:(User *)user
 {
-	User *user = [self.objectModel currentUser];
-	
 	NSString* ownNumber = user.personalProfile.phoneNumber;
 	
 	if (ownNumber)
@@ -167,11 +187,6 @@
 	
 	if (progress > 0)
 	{
-		//TODO: remove, when invitation status is saved
-		//indicator view is always hidden
-		self.indicatorContainer.opaque = NO;
-		self.indicatorContainer.alpha = 0.f;
-		self.indicatorContainer.hidden = NO;
 		self.profilePictureContainer.opaque = NO;
 		self.profilePictureContainer.alpha = 1.f;
 		
@@ -269,6 +284,7 @@
 {
 	ReferralListOperation *referralLinkOperation = [ReferralListOperation operation];
 	self.currentOperation = referralLinkOperation;
+	[referralLinkOperation setObjectModel:self.objectModel];
 	__weak InvitationsViewController *weakSelf = self;
 	
     [referralLinkOperation setResultHandler:^(NSError *error, NSInteger successCount)

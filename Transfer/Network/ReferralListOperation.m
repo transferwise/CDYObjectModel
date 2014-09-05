@@ -9,6 +9,7 @@
 #import "ReferralListOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "constants.h"
+#import "ObjectModel+Users.h"
 
 NSString *const kReferralListPath = @"/referral/list";
 
@@ -30,7 +31,16 @@ NSString *const kReferralListPath = @"/referral/list";
 			&& response[@"successfulReferrals"]
 			&& (NSDictionary *)response[@"successfulReferrals"])
 		{
-			weakSelf.resultHandler(nil, [response[@"successfulReferrals"] count]);
+			NSInteger count = [response[@"successfulReferrals"] count];
+			
+			if (count > 0) {
+				[weakSelf.workModel markHasSuccesfulInvites];
+				[weakSelf.workModel saveContext:^{
+					weakSelf.resultHandler(nil, count);
+				}];
+			}
+			
+			weakSelf.resultHandler(nil, count);
 		}
 		else
 		{

@@ -7,6 +7,8 @@
 extern const struct UserAttributes {
 	__unsafe_unretained NSString *anonymous;
 	__unsafe_unretained NSString *email;
+	__unsafe_unretained NSString *hasSuccessfulInvites;
+	__unsafe_unretained NSString *inviteUrl;
 	__unsafe_unretained NSString *pReference;
 	__unsafe_unretained NSString *password;
 	__unsafe_unretained NSString *sendAsBusinessDefaultSetting;
@@ -26,6 +28,8 @@ extern const struct UserFetchedProperties {
 @class Recipient;
 @class Payment;
 @class PersonalProfile;
+
+
 
 
 
@@ -65,6 +69,30 @@ extern const struct UserFetchedProperties {
 
 
 //- (BOOL)validateEmail:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* hasSuccessfulInvites;
+
+
+
+@property BOOL hasSuccessfulInvitesValue;
+- (BOOL)hasSuccessfulInvitesValue;
+- (void)setHasSuccessfulInvitesValue:(BOOL)value_;
+
+//- (BOOL)validateHasSuccessfulInvites:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* inviteUrl;
+
+
+
+//- (BOOL)validateInviteUrl:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -163,6 +191,21 @@ extern const struct UserFetchedProperties {
 
 - (NSString*)primitiveEmail;
 - (void)setPrimitiveEmail:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveHasSuccessfulInvites;
+- (void)setPrimitiveHasSuccessfulInvites:(NSNumber*)value;
+
+- (BOOL)primitiveHasSuccessfulInvitesValue;
+- (void)setPrimitiveHasSuccessfulInvitesValue:(BOOL)value_;
+
+
+
+
+- (NSString*)primitiveInviteUrl;
+- (void)setPrimitiveInviteUrl:(NSString*)value;
 
 
 
