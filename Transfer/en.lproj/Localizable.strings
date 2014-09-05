@@ -82,7 +82,7 @@
 "contacts.refresh.error.message" = "Could not refresh your recipients list";
 "contacts.refresh.error.title" = "Refresh error";
 "contacts.controller.send.button.title" = "Send %@";
-"contacts.controller.footer.invite" = "Earn 50£ by inviting
+"contacts.controller.footer.invite" = "Earn £50 by inviting
 your friends to TransferWise";
 "contacts.controller.footer.invite.button.title" = "Invite friends";
 
@@ -135,8 +135,8 @@ your friends to TransferWise";
 "introduction.savings.pay.message.base" = "You'll pay %@ less vs your bank";
 "introduction.savings.message.part1" = "You'll save";
 "introduction.savings.message.part1.ipad" = "You'll save";
-"introduction.savings.message.part2" = "vs Your bank";
-"introduction.savings.message.part2.ipad" = "vs Your bank";
+"introduction.savings.message.part2" = "vs your bank";
+"introduction.savings.message.part2.ipad" = "vs your bank";
 "introduction.savings.message.how" = "SEE HOW";
 "introduction.savings.message.how.ipad" = "SEE HOW";
 "introduction.header.sub.title.text" = "No hidden fees. No headache.
@@ -445,8 +445,8 @@ This can't be undone.";
 "upload.money.card.payment.success.title" = "Success";
 
 "why.popup.bank.column.label" = "Average bank";
-"why.popup.tw.rate.title" = "We use the real exchange rate";
-"why.popup.bank.rate.title" = "Banks set their \nown rate";
+"why.popup.tw.rate.title" = "We use the real exchange rate.";
+"why.popup.bank.rate.title" = "Banks set their \nown rate.";
 "why.popup.tw.fee.title" = "We charge as little as possible.";
 "why.popup.bank.fee.title" = "Banks hide profit in the exchange rate + fee. ";
 "why.popup.tw.you.get.title" = "You get";
