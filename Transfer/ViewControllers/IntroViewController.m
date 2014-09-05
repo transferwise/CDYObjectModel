@@ -205,7 +205,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Intro screen"]];
+    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:self.plistFilenameOverride?@"Whats new screen":@"Intro screen"]];
 }
 
 
