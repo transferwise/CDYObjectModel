@@ -64,7 +64,7 @@
     [self.bankTransferFeeLabel setText:result.bankTotalFeeStringWithCurrency];
 
     if (result.amountCurrency == SourceCurrency) {
-        [self.actionButton setTitle:[NSString stringWithFormat:NSLocalizedString(@"why.popup.button",nil),result.receiveWinAmountWithCurrency] forState:UIControlStateNormal];
+        [self.actionButton setTitle:[NSString stringWithFormat:NSLocalizedString(@"why.popup.button",nil),result.calculatedPayWinAmountWithCurrency] forState:UIControlStateNormal];
     } else {
         [self.actionButton setTitle:[NSString stringWithFormat:NSLocalizedString(@"why.popup.button",nil),result.payWinAmountWithCurrency] forState:UIControlStateNormal];
     }

@@ -35,6 +35,7 @@
 - (NSString *)bankPayInStringWithCurrency;
 - (NSString *)receiveWinAmountWithCurrency;
 - (NSString *)paymentDateString;
+- (NSString *)calculatedPayWinAmountWithCurrency;
 - (NSString *)payWinAmountWithCurrency;
 - (BOOL)isFixedTargetPayment;
 

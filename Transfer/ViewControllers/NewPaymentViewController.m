@@ -205,7 +205,7 @@ static NSUInteger const kRowYouSend = 0;
     
     if(result.amountCurrency == SourceCurrency)
     {
-        self.amountLabel.text = [result receiveWinAmountWithCurrency];
+        self.amountLabel.text = [result calculatedPayWinAmountWithCurrency];
     }
     else
     {
