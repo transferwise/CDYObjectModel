@@ -202,13 +202,6 @@
     
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-
-    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:self.plistFilenameOverride?@"Whats new screen":@"Intro screen"]];
-}
-
-
 - (void)pageChanged {
     MCLog(@"Page changed");
     [self.pageControl setScrollViewContentOffsetForCurrentPage:self.scrollView animated:YES];

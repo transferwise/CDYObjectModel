@@ -253,6 +253,15 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     [self setupForOrientation:self.interfaceOrientation];
+    
+    if(self.reportingType == ConfirmPaymentReportingLoggedIn)
+    {
+        [[GoogleAnalytics sharedInstance] sendScreen:@"Confirm payment 2"];
+    }
+    else if (self.reportingType == ConfirmPaymentReportingNotLoggedIn)
+    {
+        [[GoogleAnalytics sharedInstance] sendScreen:@"Confirm payment"];
+    }
 }
 
 -(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
