@@ -167,10 +167,9 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0K-st-6YG" userLabel="Button - Contact Support" customClass="BlueRoundedButton">
-                    <rect key="frame" x="50" y="530" width="924" height="45"/>
+                    <rect key="frame" x="485" y="530" width="55" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" priority="2" constant="354" id="4oG-tt-5So"/>
                         <constraint firstAttribute="height" constant="45" id="Q9Q-tK-AjY"/>
                     </constraints>
                     <state key="normal" title="Button">
@@ -181,10 +180,9 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECd-cI-GOp" userLabel="Button - No Transfer" customClass="BlueRoundedButton">
-                    <rect key="frame" x="50" y="590" width="924" height="45"/>
+                    <rect key="frame" x="485" y="590" width="55" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" priority="2" constant="354" id="5Oe-CH-6N5"/>
                         <constraint firstAttribute="height" constant="45" id="EOp-g5-EHI"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="WCq-FT-pHZ"/>
                     </constraints>
@@ -199,14 +197,13 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="g0K-st-6YG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="1iB-EB-NVL"/>
+                <constraint firstItem="g0K-st-6YG" firstAttribute="width" secondItem="ECd-cI-GOp" secondAttribute="width" id="15G-sX-vrP"/>
                 <constraint firstAttribute="trailing" secondItem="jJD-by-0Jd" secondAttribute="trailing" id="8Ae-SM-pfN"/>
+                <constraint firstAttribute="centerX" secondItem="ECd-cI-GOp" secondAttribute="centerX" id="8ZG-GP-1dd"/>
                 <constraint firstItem="jJD-by-0Jd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8c2-nS-QMY"/>
                 <constraint firstItem="8dh-F6-i1O" firstAttribute="top" secondItem="2fe-OX-nDn" secondAttribute="bottom" constant="21" id="Dd9-dt-Ufx"/>
                 <constraint firstAttribute="centerX" secondItem="8dh-F6-i1O" secondAttribute="centerX" id="Emq-JO-aeE"/>
-                <constraint firstItem="ECd-cI-GOp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="FG5-PF-1pF"/>
-                <constraint firstAttribute="trailing" secondItem="ECd-cI-GOp" secondAttribute="trailing" constant="50" id="H12-7f-LVe"/>
-                <constraint firstAttribute="trailing" secondItem="g0K-st-6YG" secondAttribute="trailing" constant="50" id="J9C-KG-aGd"/>
+                <constraint firstAttribute="centerX" secondItem="g0K-st-6YG" secondAttribute="centerX" id="Qbh-LH-yaH"/>
                 <constraint firstAttribute="trailing" secondItem="ZSJ-R1-tNS" secondAttribute="trailing" id="USt-Mb-OWH"/>
                 <constraint firstItem="ECd-cI-GOp" firstAttribute="top" secondItem="g0K-st-6YG" secondAttribute="bottom" constant="15" id="Xbr-dj-A9a"/>
                 <constraint firstItem="ZSJ-R1-tNS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Y3W-L0-BjH"/>

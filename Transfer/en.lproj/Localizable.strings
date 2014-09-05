@@ -406,6 +406,7 @@ This can't be undone.";
 "transferdetails.controller.button.support.ipad" = "Contact support";
 "transferdetails.controller.button.support" = "Contact customer support";
 "transferdetails.controller.button.notransfer" = "Bank transfer not done";
+"transferdetails.controller.button.gotit" = "Got it!";
 "transferdetails.controller.button.pay" = "Pay %@ now";
 "transferdetails.controller.button.cancel" = "Cancel transfer";
 
