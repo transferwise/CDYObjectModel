@@ -281,6 +281,7 @@
 		{
 			[[NSNotificationCenter defaultCenter] removeObserver:self name:TRWUploadProgressNotification object:nil];
 		}
+		[PendingPayment removePossibleImages];
     }, ^(NSError *error) {
         [hud hide];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:TRWUploadProgressNotification object:nil];
@@ -290,8 +291,6 @@
             self.continueButton.progress = 0.0f;
         }
     });
-
-    
 }
 
 - (BOOL)validateInput {
