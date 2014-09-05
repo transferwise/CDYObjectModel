@@ -19,6 +19,8 @@ typedef void (^CountrySelectionBlock)(NSString *countryName);
 @protocol CountrySelectionCellDelegate <NSObject>
 
 - (Country *)getCountryByCode:(NSString *)code;
+- (Country *)getCountryByName:(NSString *)name;
+
 @optional
 -(void)countrySelectionCell:(CountrySelectionCell*)cell selectedCountry:(Country*)countryCode;
 

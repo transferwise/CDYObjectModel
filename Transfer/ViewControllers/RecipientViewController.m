@@ -1072,6 +1072,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 	return [self.countryCellProvider getCountryByCode:code];
 }
 
+- (Country *)getCountryByName:(NSString *)name
+{
+	return [self.countryCellProvider getCountryByCode:name];
+}
+
 #pragma mark - Configure for interface orientation
 -(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
