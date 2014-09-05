@@ -74,6 +74,10 @@
 
     [self.tableView registerNib:[UINib nibWithNibName:@"ValidationCell" bundle:nil] forCellReuseIdentifier:ValidationCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:IPAD?@"TextEntryCellValidation":@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
+    
+    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Personal verification"]];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -19,6 +19,7 @@
 #import "ObjectModel+Users.h"
 #import "PersonalProfile.h"
 #import "ReferralsCoordinator.h"
+#import "GoogleAnalytics.h"
 
 @interface InvitationsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *profilePictureContainer;
@@ -52,6 +53,7 @@
 - (void)viewDidLoad
 {
 	[self loadProfileImages];
+    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Invite"]];
 }
 
 -(void)viewWillAppear:(BOOL)animated

@@ -17,6 +17,8 @@
 #import <FBErrorUtility+Internal.h>
 #import "NavigationBarCustomiser.h"
 #import "UIImage+Color.h"
+#import "GoogleAnalytics.h"
+
 
 @interface InviteViewController () <MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *facebookButton;
@@ -51,6 +53,7 @@
     
     
     self.smsButton.hidden = ![MFMessageComposeViewController canSendText];
+    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Invite friends modal"]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,6 +68,7 @@
     params.link = url;
     BOOL canShare = [FBDialogs canPresentShareDialogWithParams:params];
     if (canShare) {
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaFBInitiated"];
         // FBDialogs call to open Share dialog
         [FBDialogs presentShareDialogWithLink:url
                                       handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
@@ -74,6 +78,7 @@
                                                   TRWAlertView* alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"invite.error.facebook.title",nil) message:[FBErrorUtility userMessageForError:error]];
                                                   [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
                                                   [alertView show];
+                                                  
                                               }
                                           } else {
                                               [self dismiss];
@@ -109,6 +114,7 @@
     else
     {
 
+        [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaEmailInitiated"];
         NSURL* url = [NSURL URLWithString:self.inviteUrl];
         [NavigationBarCustomiser noStyling];
         MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
@@ -124,6 +130,7 @@
 
 - (IBAction)smsTapped:(id)sender {
  
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaSMSInitiated"];
     NSURL* url = [NSURL URLWithString:self.inviteUrl];
     [NavigationBarCustomiser noStyling];
 
@@ -143,6 +150,8 @@
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     self.urlCopyButton.alpha = 0.5f;
     pasteboard.string = self.inviteUrl;
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"CopyInviteLink"];
+
     
 }
 
@@ -155,6 +164,7 @@
     [self dismissViewControllerAnimated:YES completion:^{
         if (result == MessageComposeResultSent)
         {
+            [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaSMSSent"];
             [self dismiss];
         }
     }];
@@ -168,6 +178,7 @@
     [self dismissViewControllerAnimated:YES completion:^{
         if (result == MFMailComposeResultSaved || result == MFMailComposeResultSent)
         {
+            [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaEmailSent"];
             [self dismiss];
         }
     }];

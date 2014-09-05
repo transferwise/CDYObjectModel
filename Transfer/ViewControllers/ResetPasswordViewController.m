@@ -19,6 +19,7 @@
 #import "GreenButton.h"
 #import "NavigationBarCustomiser.h"
 #import "NSString+DeviceSpecificLocalisation.h"
+#import "GoogleAnalytics.h"
 
 @interface ResetPasswordViewController ()
 
@@ -63,8 +64,10 @@
 {
 	[super viewWillAppear:animated];
 	
+    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationItem setTitle:NSLocalizedString(@"reset.password.controller.title", nil)];
+    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Reset password"]];
 }
 
 - (void)viewDidDisappear:(BOOL)animated

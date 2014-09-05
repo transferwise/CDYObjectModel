@@ -55,6 +55,7 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Settings"]];
 
 }
 - (void)didReceiveMemoryWarning {
