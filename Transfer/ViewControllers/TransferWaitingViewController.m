@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel2;
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel3;
 @property (strong, nonatomic) IBOutlet ColoredButton *noTransferButton;
+@property (weak, nonatomic) IBOutlet ColoredButton *gotItButton;
 
 @end
 
@@ -38,6 +39,7 @@
 {
 	[super viewDidLoad];
 	[self.noTransferButton setTitle:NSLocalizedString(@"transferdetails.controller.button.notransfer", nil) forState:UIControlStateNormal];
+    [self.gotItButton setTitle:NSLocalizedString(@"transferdetails.controller.button.gotit", nil) forState:UIControlStateNormal];
 }
 
 - (void)setUpAccounts
@@ -79,5 +81,9 @@
 		
 		[self switchToViewController:controller];
 	}
+}
+
+- (IBAction)gotItTapped:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
 }
 @end
