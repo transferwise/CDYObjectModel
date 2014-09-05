@@ -10,6 +10,9 @@
 
 @implementation PairSourceCurrency
 
-// Custom logic goes here.
+- (BOOL)acceptablePayIn:(NSNumber *)amount {
+	NSComparisonResult result = [self.maxInvoiceAmount compare:amount];
+	return result == NSOrderedDescending || result == NSOrderedSame;
+}
 
 @end
