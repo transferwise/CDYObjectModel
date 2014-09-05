@@ -460,6 +460,11 @@
 	return [self.countryCellProvider getCountryByCode:code];
 }
 
+- (Country *)getCountryByName:(NSString *)name
+{
+	return [self.countryCellProvider getCountryByCode:name];
+}
+
 #pragma mark - Show as Login
 - (void)showAsLogin
 {

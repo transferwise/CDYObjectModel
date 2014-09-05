@@ -31,7 +31,7 @@
     {
         if([country.iso3Code isEqualToString:code]
 		   || [country.iso2Code isEqualToString:code]
-		   || [country.name isEqualToString:code])
+		   || [[country.name lowercaseString] isEqualToString:[code lowercaseString]])
         {
             return country;
         }
