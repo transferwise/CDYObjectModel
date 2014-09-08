@@ -32,7 +32,6 @@
 #import "StartPaymentButton.h"
 #import "AnalyticsCoordinator.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
-
 #import "MOMStyle.h"
 #import "NSString+DeviceSpecificLocalisation.h"
 #import "SeeHowViewController.h"
@@ -43,6 +42,8 @@
 #import "TRWProgressHUD.h"
 #import "CurrenciesOperation.h"
 
+#define	PERSONAL_PROFILE	@"personal"
+#define BUSINESS_PROFILE	@"business"
 
 static NSUInteger const kRowYouSend = 0;
 
@@ -397,7 +398,7 @@ static NSUInteger const kRowYouSend = 0;
                     [payment setTransferwiseTransferFee:[self.result transferwiseTransferFee]];
                     [payment setIsFixedAmountValue:self.result.isFixedTargetPayment];
                     [payment setRecipient:self.recipient];
-                    [payment setProfileUsed:payment.user.sendAsBusinessDefaultSettingValue?@"business":@"personal"];
+                    [payment setProfileUsed:payment.user.sendAsBusinessDefaultSettingValue? BUSINESS_PROFILE :PERSONAL_PROFILE];
                     payment.allowedRecipientTypes = [NSOrderedSet orderedSetWithArray:[weakSelf.objectModel recipientTypesWithCodes:listOfRecipientTypeCodes]];
                     PaymentFlow *paymentFlow = [Credentials userLoggedIn]?[[LoggedInPaymentFlow alloc] initWithPresentingController:self.navigationController]:[[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
                     [self setPaymentFlow:paymentFlow];

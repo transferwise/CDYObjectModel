@@ -48,6 +48,9 @@
 #import "BusinessPaymentProfileViewController.h"
 #import "RegisterOperation.h"
 
+#define	PERSONAL_PROFILE	@"personal"
+#define BUSINESS_PROFILE	@"business"
+
 @interface PaymentFlow ()
 
 @property (nonatomic, strong) UINavigationController *navigationController;
@@ -747,7 +750,8 @@
 		{
             [self presentPersonalProfileEntry:YES];
         }
-		else if (payment.user.personalProfile.sendAsBusinessValue)
+		else if (payment.user.personalProfile.sendAsBusinessValue
+				 || ([payment.profileUsed isEqualToString:BUSINESS_PROFILE] && !payment.user.businessProfileFilled))
 		{
 			//reset flag so we won't be coming back here again
 			payment.user.personalProfile.sendAsBusinessValue = NO;
