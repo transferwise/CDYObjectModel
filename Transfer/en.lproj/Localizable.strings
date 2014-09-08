@@ -651,3 +651,6 @@ We'll send you an email in order to let you choose a new password.";
 "invite.status.querying" = "Getting invite's status";
 "invite.status.error.title" = "Unable to get status";
 "invite.status.error.message" = "Something went wrong while getting invite's status";
+
+"touchid.reason" = "I cAn HaZ tOuChId PlZ??";
+"touchid.reason" = "Login associated with TouchID has been removed. Login again to re-associate.";

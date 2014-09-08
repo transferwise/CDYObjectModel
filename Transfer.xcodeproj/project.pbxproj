@@ -146,6 +146,12 @@
 		388F09FB1934A1BB00DBD93D /* UIView+RenderBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */; };
 		388F09FC1934A1C000DBD93D /* UIView+RenderBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */; };
 		388F09FF1936434A00DBD93D /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
+		389D14D519BDC9540060CD52 /* TouchIDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D14D419BDC9540060CD52 /* TouchIDHelper.m */; };
+		389D14D619BDC9540060CD52 /* TouchIDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D14D419BDC9540060CD52 /* TouchIDHelper.m */; };
+		389D14DA19BDE0FB0060CD52 /* TouchIdPromptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D14D819BDE0FB0060CD52 /* TouchIdPromptViewController.m */; };
+		389D14DB19BDE0FB0060CD52 /* TouchIdPromptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D14D819BDE0FB0060CD52 /* TouchIdPromptViewController.m */; };
+		389D14DC19BDE0FB0060CD52 /* TouchIdPromptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 389D14D919BDE0FB0060CD52 /* TouchIdPromptViewController.xib */; };
+		389D14DD19BDE0FB0060CD52 /* TouchIdPromptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 389D14D919BDE0FB0060CD52 /* TouchIdPromptViewController.xib */; };
 		389F67F7198FC1C6006CF1F6 /* _AllowedTypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F679E198FC1C5006CF1F6 /* _AllowedTypeFieldValue.m */; };
 		389F67F8198FC1C6006CF1F6 /* _AllowedTypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F679E198FC1C5006CF1F6 /* _AllowedTypeFieldValue.m */; };
 		389F67F9198FC1C6006CF1F6 /* _BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67A0198FC1C5006CF1F6 /* _BusinessProfile.m */; };
@@ -984,6 +990,11 @@
 		388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RenderBlur.m"; sourceTree = "<group>"; };
 		388F09FD1936434A00DBD93D /* InsetRespectingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InsetRespectingButton.h; path = Views/InsetRespectingButton.h; sourceTree = "<group>"; };
 		388F09FE1936434A00DBD93D /* InsetRespectingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InsetRespectingButton.m; path = Views/InsetRespectingButton.m; sourceTree = "<group>"; };
+		389D14D319BDC9540060CD52 /* TouchIDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchIDHelper.h; sourceTree = "<group>"; };
+		389D14D419BDC9540060CD52 /* TouchIDHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchIDHelper.m; sourceTree = "<group>"; };
+		389D14D719BDE0FB0060CD52 /* TouchIdPromptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchIdPromptViewController.h; sourceTree = "<group>"; };
+		389D14D819BDE0FB0060CD52 /* TouchIdPromptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchIdPromptViewController.m; sourceTree = "<group>"; };
+		389D14D919BDE0FB0060CD52 /* TouchIdPromptViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TouchIdPromptViewController.xib; sourceTree = "<group>"; };
 		389F679D198FC1C5006CF1F6 /* _AllowedTypeFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AllowedTypeFieldValue.h; sourceTree = "<group>"; };
 		389F679E198FC1C5006CF1F6 /* _AllowedTypeFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AllowedTypeFieldValue.m; sourceTree = "<group>"; };
 		389F679F198FC1C5006CF1F6 /* _BusinessProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BusinessProfile.h; sourceTree = "<group>"; };
@@ -1944,7 +1955,6 @@
 				38B52FA2199B69C800B6AEBD /* InvitationProgressIndicatorView.h */,
 				38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */,
 				EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */,
-				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
 				EAD3647717E2EBF2001EFE40 /* PaymentMethodSelectionView.h */,
 				EAD3647817E2EBF2001EFE40 /* PaymentMethodSelectionView.m */,
 				EAD3649017E2F971001EFE40 /* PaymentMethodSelectionView.xib */,
@@ -2624,6 +2634,9 @@
 				471CA002197FCB2200BCA3B4 /* TabbedHeaderViewController.m */,
 				471CA003197FCB2200BCA3B4 /* TabbedHeaderViewController.xib */,
 				471CA008197FCB6700BCA3B4 /* TabbedHeaderViewController~ipad.xib */,
+				389D14D719BDE0FB0060CD52 /* TouchIdPromptViewController.h */,
+				389D14D819BDE0FB0060CD52 /* TouchIdPromptViewController.m */,
+				389D14D919BDE0FB0060CD52 /* TouchIdPromptViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -2676,6 +2689,8 @@
 				383FC0EF19AE1A1A00465FCA /* StateSuggestionProvider.m */,
 				47AC3F8F1987AFAC005491C6 /* SuggestionCellProvider.h */,
 				47AC3F901987AFAC005491C6 /* SuggestionCellProvider.m */,
+				389D14D319BDC9540060CD52 /* TouchIDHelper.h */,
+				389D14D419BDC9540060CD52 /* TouchIDHelper.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2747,7 +2762,7 @@
 			name = TransferTests;
 			productName = TransferTests;
 			productReference = EA76D90C175CF80100AE3F86 /* TransferTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		EAAA1467171BC911005B9430 /* TransferWise */ = {
 			isa = PBXNativeTarget;
@@ -2846,6 +2861,7 @@
 				38CACA65196EE4D400BFCF82 /* TextFieldSuggestionTable~ipad.xib in Resources */,
 				EA31A1D917DDB29B00F937F7 /* TableHeaderView.xib in Resources */,
 				EA31A1DA17DDB29B00F937F7 /* TextEntryCell.xib in Resources */,
+				389D14DD19BDE0FB0060CD52 /* TouchIdPromptViewController.xib in Resources */,
 				47F84D631988E83300886D41 /* CountrySelectionCell.xib in Resources */,
 				38EFABE4196D7EAB00126192 /* TextFieldSuggestionTable.xib in Resources */,
 				3840863B19A38A5E00C837C2 /* TextEntryCellValidation~ipad.xib in Resources */,
@@ -2992,6 +3008,7 @@
 				38CACA64196EE4D400BFCF82 /* TextFieldSuggestionTable~ipad.xib in Resources */,
 				B4C9172D19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib in Resources */,
 				EAD3646617E1E19A001EFE40 /* Assets.xcassets in Resources */,
+				389D14DC19BDE0FB0060CD52 /* TouchIdPromptViewController.xib in Resources */,
 				EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */,
 				38EFABE3196D7EAB00126192 /* TextFieldSuggestionTable.xib in Resources */,
 				3840D34319A49E1E00D1485A /* BusinessProfileIdentificationViewController~ipad.xib in Resources */,
@@ -3344,6 +3361,7 @@
 				474C45221993CD38001F207C /* ProfilesEditViewController.m in Sources */,
 				EA31A14217DDB29B00F937F7 /* SettingsTitleCell.m in Sources */,
 				47AC3F921987AFAC005491C6 /* SuggestionCellProvider.m in Sources */,
+				389D14D619BDC9540060CD52 /* TouchIDHelper.m in Sources */,
 				EA31A14317DDB29B00F937F7 /* MoneyCalculator.m in Sources */,
 				472D5647198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */,
 				EA31A14417DDB29B00F937F7 /* TransferCalculationsOperation.m in Sources */,
@@ -3391,6 +3409,7 @@
 				EA31A15A17DDB29B00F937F7 /* TransferwiseClient.m in Sources */,
 				EA31A15B17DDB29B00F937F7 /* RecipientTypesOperation.m in Sources */,
 				389F6844198FC1C6006CF1F6 /* PersonalProfile.m in Sources */,
+				389D14DB19BDE0FB0060CD52 /* TouchIdPromptViewController.m in Sources */,
 				38AEB3C81966B8BF00B852E1 /* UIResponder+FirstResponder.m in Sources */,
 				EA31A15C17DDB29B00F937F7 /* CurrencySelectionCell.m in Sources */,
 				EA31A15D17DDB29B00F937F7 /* RecipientFieldCell.m in Sources */,
@@ -3635,6 +3654,7 @@
 				474C45211993CD38001F207C /* ProfilesEditViewController.m in Sources */,
 				EAEA6257172011C500A96770 /* CalculationResult.m in Sources */,
 				47AC3F911987AFAC005491C6 /* SuggestionCellProvider.m in Sources */,
+				389D14D519BDC9540060CD52 /* TouchIDHelper.m in Sources */,
 				380021C6192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */,
 				472D5646198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */,
 				47C580A3196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */,
@@ -3682,6 +3702,7 @@
 				EA4AA60D17379C9D00E99150 /* CurrencySelectionCell.m in Sources */,
 				EAD069041737B8AE007C8DEE /* RecipientFieldCell.m in Sources */,
 				389F6843198FC1C6006CF1F6 /* PersonalProfile.m in Sources */,
+				389D14DA19BDE0FB0060CD52 /* TouchIdPromptViewController.m in Sources */,
 				EA347748180D694F00104417 /* ConfigurationOptionsOperation.m in Sources */,
 				EAD0690A1737CF57007C8DEE /* RecipientOperation.m in Sources */,
 				388F09FF1936434A00DBD93D /* InsetRespectingButton.m in Sources */,

@@ -19,6 +19,12 @@
 #import "UIColor+MOMStyle.h"
 #import "NavigationBarCustomiser.h"
 #import "LoginHelper.h"
+#import "TouchIDHelper.h"
+#import "TouchIdPromptViewController.h"
+#import "TRWAlertView.h"
+#import "NSError+TRWErrors.h"
+#import "NetworkErrorCodes.h"
+#import "TransferwiseOperation.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -32,6 +38,7 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *emailSeparatorHeight;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *passwordSeparatorHeight;
 @property (strong, nonatomic) LoginHelper *loginHelper;
+@property (weak, nonatomic) IBOutlet UIButton *touchIdButton;
 
 @end
 
@@ -76,6 +83,7 @@
 	[self.yahooLoginButton setTitle:NSLocalizedString([@"button.title.log.in.yahoo" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
 	
 	[self.orLabel setText:NSLocalizedString([@"login.controller.or" deviceSpecificLocalization], nil)];
+    self.touchIdButton.hidden = ![TouchIDHelper isTouchIdSlotTaken];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -120,15 +128,29 @@
 - (IBAction)loginPressed:(id)sender
 {
     dispatch_async(dispatch_get_main_queue(), ^{
+            __weak typeof(self) weakSelf = self;
 		[self.loginHelper validateInputAndPerformLoginWithEmail:self.emailTextField.text
 													   password:self.passwordTextField.text
 									   navigationControllerView:self.navigationController.view
 													objectModel:self.objectModel
 												   successBlock:^{
-													   [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+                                                       [weakSelf processSuccessfulLogin];
 												   }
 									  waitForDetailsCompletions:NO];
     });
+}
+
+-(void)processSuccessfulLogin
+{
+    if([TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:self.emailTextField.text])
+    {
+        TouchIdPromptViewController* prompt = [[TouchIdPromptViewController alloc] init];
+        [prompt presentOnViewController:self withUsername:self.emailTextField.text password:self.passwordTextField.text];
+    }
+    else
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+    }
 }
 
 - (IBAction)googleLogInPressed:(id)sender
@@ -163,5 +185,73 @@
 - (void)resetEmailSent:(NSString *)email
 {
 	self.emailTextField.text = email;
+}
+
+- (IBAction)touchIdTapped:(id)sender {
+    [TouchIDHelper retrieveStoredCredentials:^(BOOL success, NSString *username, NSString *password) {
+        if(success)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                __weak typeof(self) weakSelf = self;
+                [self.loginHelper validateInputAndPerformLoginWithEmail:username
+                                                               password:password
+                                               navigationControllerView:self.navigationController.view
+                                                            objectModel:self.objectModel
+                                                           successBlock:^{
+                                                               [weakSelf processSuccessfulLogin];
+                                                           }
+                                                             errorBlock:^(NSError *error) {
+                                                                 //Error logging in with stored credentials
+                                                                 TRWAlertView *alertView;
+                                                                 if ([error isTransferwiseError])
+                                                                 {
+                                                                     BOOL isIncorrectCredentials = NO;
+                                                                     if (error.code == ResponseCumulativeError) {
+                                                                         NSArray *errors = error.userInfo[TRWErrors];
+                                                                         for (NSDictionary *error in errors) {
+                                                                             NSString *message = error[@"message"];
+                                                                             
+                                                                             if (!message) {
+                                                                                 NSString *code = error[@"code"];
+                                                                                 if ([code caseInsensitiveCompare:@"CRD_NOT_VALID"])
+                                                                                 {
+                                                                                     isIncorrectCredentials = YES;
+                                                                                     break;
+                                                                                 }
+                                                                             }
+                                                                         }
+                                                                         
+                                                                         NSString *message = [error localizedTransferwiseMessage];
+                                                                         if(isIncorrectCredentials)
+                                                                         {
+                                                                             //The stored credentials are no longer valid. Clear!
+                                                                             [TouchIDHelper clearCredentials];
+                                                                             message = [message stringByAppendingString:@"\n"];
+                                                                             message = [message stringByAppendingString:NSLocalizedString(@"touchid.cleared", nil)];
+                                                                             [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentialsTouchID" withLabel:message];
+                                                                         }
+                                                                         else
+                                                                         {
+                                                                              [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginErrorTouchID" withLabel:error.localizedDescription];
+                                                                         }
+                                                                         alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil) message:message];
+                                                                     }
+                                                                     else
+                                                                     {
+                                                                         alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
+                                                                                                              message:NSLocalizedString(@"login.error.generic.message", nil)];
+                                                                         [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginErrorTouchID" withLabel:error.localizedDescription];
+                                                                     }
+                                                                     
+                                                                     [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                                                                     
+                                                                     [alertView show];
+                                                                 }
+                                                             }
+                                                             waitForDetailsCompletions:NO];
+            });
+        }
+    }];
+    
 }
 @end
