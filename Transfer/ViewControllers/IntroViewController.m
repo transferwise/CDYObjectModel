@@ -13,18 +13,24 @@
 #import "ObjectModel.h"
 #import "Constants.h"
 #import "NSAttributedString+Attributes.h"
-#import "IntroductionViewController.h"
+#import "NewPaymentViewController.h"
 #import "SignUpViewController.h"
 #import "ObjectModel+Settings.h"
 #import "GoogleAnalytics.h"
+#import "MOMStyle.h"
+#import "Credentials.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UIButton *startButton;
+@property (weak, nonatomic) IBOutlet UIButton *whiteStartButton;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) NSArray *introScreens;
-@property (nonatomic, strong) SMPageControl *pageControl;
+@property (nonatomic, strong) NSArray *introData;
+@property (nonatomic, strong) IBOutlet SMPageControl *pageControl;
 @property (nonatomic, assign) NSInteger reportedPage;
+@property (nonatomic, assign) NSInteger lastLoadedIndex;
+@property (nonatomic, assign) NSInteger pageBeforeRotation;
 
 - (IBAction)startPressed;
 
@@ -46,31 +52,51 @@
     [self setReportedPage:NSNotFound];
 
     [self.startButton setTitle:NSLocalizedString(@"intro.start.buttont.title", nil) forState:UIControlStateNormal];
+    [self.whiteStartButton setTitle:NSLocalizedString(@"intro.start.buttont.title", nil) forState:UIControlStateNormal];
 
+
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     NSMutableArray *screens = [NSMutableArray array];
-    [screens addObject:[IntroView loadInstance]];
-    [(IntroView *) screens[0] setImage:[UIImage imageNamed:@"IntroPageOneImage"] tagline:NSLocalizedString(@"intro.tagline.one", nil) message:[self attributedMessage:NSLocalizedString(@"intro.message.one", nil) bold:@[]]];
-    [screens addObject:[IntroView loadInstance]];
-    [(IntroView *) screens[1] setImage:[UIImage imageNamed:@"IntroPageTwoImage"] tagline:NSLocalizedString(@"intro.tagline.two", nil) message:[self attributedMessage:NSLocalizedString(@"intro.message.two", nil) bold:@[]]];
-    [screens addObject:[IntroView loadInstance]];
-    [(IntroView *) screens[2] setImage:[UIImage imageNamed:@"IntroPageThreeImage"] tagline:NSLocalizedString(@"intro.tagline.three", nil) message:[self attributedMessage:NSLocalizedString(@"intro.message.three", nil) bold:@[@"Skype", @"PayPal"]]];
 
-    [self setIntroScreens:screens];
+    self.introData = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.plistFilenameOverride?:@"intro" ofType:@"plist"]];
 
-    SMPageControl *pageControl = [[SMPageControl alloc] init];
-    [self setPageControl:pageControl];
-    [pageControl setCurrentPageIndicatorImage:[UIImage imageNamed:@"PageActive"]];
-    [pageControl setPageIndicatorImage:[UIImage imageNamed:@"IntroPageOff"]];
-    [pageControl setNumberOfPages:3];
-    [pageControl sizeToFit];
-    [pageControl setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin];
-    [pageControl addTarget:self action:@selector(pageChanged) forControlEvents:UIControlEventValueChanged];
+    for(int i=0; i<[self.introData count] && i<3; i++)
+    {
+        IntroView* page = [IntroView loadInstance];
+        [page setUpWithDictionary:self.introData[i]];
+        [screens addObject:page];
+    }
+    
+    [self setIntroScreens:[NSArray arrayWithArray:screens]];
+    
+    
 
-    CGRect pageFrame = pageControl.frame;
-    pageFrame.origin.x = (CGRectGetWidth(self.view.frame) - CGRectGetWidth(pageFrame)) / 2;
-    pageFrame.origin.y = self.startButton.center.y - CGRectGetHeight(self.startButton.frame) - 20;
-    [pageControl setFrame:pageFrame];
-    [self.view addSubview:pageControl];
+    [self.pageControl setNumberOfPages:[self.introData count]];
+    self.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+    self.pageControl.currentPageIndicatorTintColor = [UIColor colorFromStyle:@"TWElectricBlue"];
+    self.pageControl.indicatorDiameter = 10.0f;
+    self.pageControl.indicatorMargin = 5.0f;
+    self.pageControl.userInteractionEnabled = NO;
+    [self.pageControl addTarget:self action:@selector(pageChanged) forControlEvents:UIControlEventValueChanged];
+    
+    //Initialise with a invalid value to ensure layout first time around.
+    self.lastLoadedIndex = -1;
+
+}
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    self.pageBeforeRotation = self.pageControl.currentPage;
+}
+
+-(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    self.lastLoadedIndex = -1; //Force re-layout
+    [self layoutScrollView];
+    self.scrollView.contentOffset = CGPointMake(self.pageBeforeRotation*self.scrollView.bounds.size.width, 0);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -78,32 +104,103 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+-(void)viewDidLayoutSubviews
+{
+    [self.scrollView setNeedsLayout];
+    [self layoutScrollView];
+    [self.view layoutSubviews];
+    [super viewDidLayoutSubviews];
+}
 
-    [self.scrollView setContentSize:CGSizeMake(CGRectGetWidth(self.scrollView.frame) * [self.introScreens count], CGRectGetHeight(self.scrollView.frame))];
 
-    CGFloat xOffset = 0;
-    for (IntroView *intro in self.introScreens) {
-        CGRect introFrame = intro.frame;
-        introFrame.size = self.scrollView.frame.size;
-        introFrame.origin.x = xOffset;
-        [intro setFrame:introFrame];
-        [self.scrollView addSubview:intro];
-        xOffset += CGRectGetWidth(introFrame);
-    }
-
+-(void)layoutScrollView
+{
+    [self.scrollView layoutIfNeeded];
+    [self.scrollView setContentSize:CGSizeMake(CGRectGetWidth(self.scrollView.bounds) * [self.introData count], CGRectGetHeight(self.scrollView.bounds))];
+    [self updatePages];
     [self.pageControl updatePageNumberForScrollView:self.scrollView];
+
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-
-    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Intro screen"]];
-
-    [self.objectModel markIntroShown];
+-(void)updatePages
+{
+    [self.scrollView layoutIfNeeded];
+    
+    //Calculate leftmost index
+    NSInteger index = MAX(0,MIN(self.introData.count - 3 ,round(self.scrollView.contentOffset.x/self.scrollView.bounds.size.width) - 1));
+    
+    if(index != self.lastLoadedIndex)
+    {
+        self.lastLoadedIndex = index;
+        for (IntroView *intro in self.introScreens) {
+            CGRect introFrame = intro.frame;
+            introFrame.size = self.scrollView.bounds.size;
+            introFrame.origin.x = index * self.scrollView.bounds.size.width;
+            [intro setFrame:introFrame];
+            [intro setUpWithDictionary:self.introData[index]];
+            [self.scrollView addSubview:intro];
+            index++;
+        }
+    }
+    
+    [self updateButtonAppearance];
 }
 
+-(void)updateButtonAppearance
+{
+    [self.scrollView layoutIfNeeded];
+    CGFloat relativeOffset = self.scrollView.contentOffset.x/self.scrollView.bounds.size.width;
+    NSInteger index = floor(relativeOffset);
+    if(index < 0)
+    {
+        index = 0;
+        relativeOffset = 0;
+    }
+    else if (index >= [self.introData count] - 1)
+    {
+        index = [self.introData count] - 1;
+        relativeOffset = index;
+    }
+    
+    if(relativeOffset - index < 0.05)
+    {
+        //On one specific page
+        BOOL useWhiteButton = [self.introData[index][@"useWhiteButton"] boolValue];
+        self.whiteStartButton.hidden = !useWhiteButton;
+        self.whiteStartButton.alpha = 1.0f;
+        self.startButton.hidden = useWhiteButton;
+        self.startButton.alpha = 1.0f;
+    }
+    else
+    {
+        //in-between pages
+        BOOL leftPageUseWhiteButton =  [self.introData[index][@"useWhiteButton"] boolValue];
+        BOOL rightPageUseWhiteButton =  [self.introData[index+1][@"useWhiteButton"] boolValue];
+        if(leftPageUseWhiteButton != rightPageUseWhiteButton)
+        {
+            self.whiteStartButton.hidden = NO;
+            self.whiteStartButton.alpha = relativeOffset - index;
+            self.startButton.hidden = NO;
+            self.startButton.alpha = 1.0f - self.whiteStartButton.alpha;
+        }
+        else if( leftPageUseWhiteButton && rightPageUseWhiteButton)
+        {
+            self.whiteStartButton.hidden = NO;
+            self.whiteStartButton.alpha = 1.0f;
+            self.startButton.hidden = YES;
+            self.startButton.alpha = 1.0f;
+        }
+        else if (!leftPageUseWhiteButton && !rightPageUseWhiteButton)
+        {
+            self.whiteStartButton.hidden = YES;
+            self.whiteStartButton.alpha = 1.0f;
+            self.startButton.hidden = NO;
+            self.startButton.alpha = 1.0f;
+
+        }
+    }
+    
+}
 
 - (void)pageChanged {
     MCLog(@"Page changed");
@@ -112,14 +209,17 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.pageControl updatePageNumberForScrollView:self.scrollView];
+    [self updatePages];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [self googleReportPage];
+    [self updatePages];
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     [self googleReportPage];
+    [self updatePages];
 }
 
 - (void)googleReportPage {
@@ -151,18 +251,28 @@
 }
 
 - (IBAction)startPressed {
+    
+    [self.objectModel markIntroShown];
+    [self.objectModel markExistingUserIntroShown];
+    
     UIViewController *presented;
-    if ([self.objectModel shouldShowDirectUserSignup]) {
-        SignUpViewController *controller = [[SignUpViewController alloc] init];
-        [controller setObjectModel:self.objectModel];
-        presented = controller;
-    } else {
-        IntroductionViewController *controller = [[IntroductionViewController alloc] init];
-        [controller setObjectModel:self.objectModel];
-        presented = controller;
+    if(![Credentials userLoggedIn])
+    {
+        if ([self.objectModel shouldShowDirectUserSignup]) {
+            SignUpViewController *controller = [[SignUpViewController alloc] init];
+            [controller setObjectModel:self.objectModel];
+            presented = controller;
+        } else {
+            NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
+            [controller setObjectModel:self.objectModel];
+            presented = controller;
+        }
+            [self.navigationController pushViewController:presented animated:YES];
     }
-
-    [self.navigationController pushViewController:presented animated:YES];
+    else
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 @end

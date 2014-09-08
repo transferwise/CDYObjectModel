@@ -2,256 +2,166 @@
 //  LoginViewController.m
 //  Transfer
 //
-//  Created by Jaanus Siim on 4/15/13.
-//  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
+//  Created by Juhan Hion on 09.07.14.
+//  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-#import <CoreText/CoreText.h>
 #import "LoginViewController.h"
-#import "UIColor+Theme.h"
-#import "TableHeaderView.h"
-#import "UIView+Loading.h"
-#import "TextEntryCell.h"
-#import "NSString+Validation.h"
-#import "NSMutableString+Issues.h"
-#import "UIApplication+Keyboard.h"
-#import "TRWAlertView.h"
-#import "TRWProgressHUD.h"
-#import "LoginOperation.h"
-#import "NSError+TRWErrors.h"
-#import "OpenIDViewController.h"
-#import "TransferBackButtonItem.h"
 #import "GoogleAnalytics.h"
-#import "ResetPasswordViewController.h"
-
-static NSUInteger const kTableRowEmail = 0;
+#import "TransferBackButtonItem.h"
+#import "FloatingLabelTextField.h"
+#import "GreenButton.h"
+#import "OpenIDViewController.h"
+#import "UIFont+MOMStyle.h"
+#import "NSString+DeviceSpecificLocalisation.h"
+#import "GoogleButton.h"
+#import "YahooButton.h"
+#import "UIColor+MOMStyle.h"
+#import "NavigationBarCustomiser.h"
+#import "LoginHelper.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
-@property (nonatomic, strong) IBOutlet UIView *footerView;
-@property (nonatomic, strong) IBOutlet UIButton *loginButton;
-@property (nonatomic, strong) IBOutlet TextEntryCell *emailCell;
-@property (nonatomic, strong) IBOutlet TextEntryCell *passwordCell;
-@property (nonatomic, strong) TransferwiseOperation *executedOperation;
-@property (nonatomic, strong) IBOutlet UILabel *footerMessageLabel;
-
-- (IBAction)loginPressed:(id)sender;
-- (IBAction)googleLogInPressed:(id)sender;
-- (IBAction)yahooLogInPressed:(id)sender;
+@property (strong, nonatomic) IBOutlet FloatingLabelTextField *emailTextField;
+@property (strong, nonatomic) IBOutlet FloatingLabelTextField *passwordTextField;
+@property (strong, nonatomic) IBOutlet GreenButton *loginButton;
+@property (strong, nonatomic) IBOutlet UILabel *forgotPasswordLabel;
+@property (strong, nonatomic) IBOutlet GoogleButton *googleLoginButton;
+@property (strong, nonatomic) IBOutlet YahooButton *yahooLoginButton;
+@property (strong, nonatomic) IBOutlet UILabel *orLabel;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *emailSeparatorHeight;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *passwordSeparatorHeight;
+@property (strong, nonatomic) LoginHelper *loginHelper;
 
 @end
 
 @implementation LoginViewController
 
-- (id)init {
+#pragma mark - Init
+- (id)init
+{
     self = [super initWithNibName:@"LoginViewController" bundle:nil];
-    if (self) {
-        // Custom initialization
+    if (self)
+	{
+        self.loginHelper = [[LoginHelper alloc] init];
     }
     return self;
 }
 
-- (void)viewDidLoad {
+#pragma mark - View Life-cycle
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-
-    [self.tableView setBackgroundView:nil];
-    [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
-
-    TableHeaderView *header = [TableHeaderView loadInstance];
-    [header setMessage:NSLocalizedString(@"login.controller.header.message", nil)];
-    [self.tableView setTableHeaderView:header];
-
-    [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
-
-    TextEntryCell *email = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
-    [self setEmailCell:email];
-    [email configureWithTitle:NSLocalizedString(@"login.email.field.title", nil) value:@""];
-    [email.entryField setDelegate:self];
-    [email.entryField setReturnKeyType:UIReturnKeyNext];
-    [email.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
-
-    TextEntryCell *password = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
-    [self setPasswordCell:password];
-    [password configureWithTitle:NSLocalizedString(@"login.password.field.title", nil) value:@""];
-    [password.entryField setDelegate:self];
-    [password.entryField setReturnKeyType:UIReturnKeyDone];
-    [password.entryField setSecureTextEntry:YES];
-
-    [self.loginButton setTitle:NSLocalizedString(@"button.title.log.in", nil) forState:UIControlStateNormal];
-
-    NSMutableAttributedString *forgotMessage = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"login.controller.forgot.password.link", nil)];
-    NSRange fullLengthRange = NSMakeRange(0, forgotMessage.length);
-    [forgotMessage setAttributes:@{NSForegroundColorAttributeName : [UIColor mainTextColor]} range:fullLengthRange];
-    [forgotMessage addAttribute:(NSString *) kCTUnderlineStyleAttributeName
-                          value:[NSNumber numberWithInt:kCTUnderlineStyleSingle]
-                          range:fullLengthRange];
-    [self.footerMessageLabel setAttributedText:forgotMessage];
-
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(forgotPasswordTapped)];
-    [self.footerMessageLabel addGestureRecognizer:tapGestureRecognizer];
+	
+	[NavigationBarCustomiser setWhite];
+	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController
+																									   isBlue:YES]];
+	
+	[self.emailTextField configureWithTitle:NSLocalizedString(@"login.email.field.title", nil) value:@""];
+	self.emailTextField.delegate = self;
+	[self.emailTextField setReturnKeyType:UIReturnKeyNext];
+    [self.emailTextField setKeyboardType:UIKeyboardTypeEmailAddress];
+	
+	[self.passwordTextField configureWithTitle:NSLocalizedString(@"login.password.field.title", nil) value:@""];
+	self.passwordTextField.delegate = self;
+	[self.passwordTextField setReturnKeyType:UIReturnKeyDone];
+	
+	[self.loginButton setTitle:NSLocalizedString(@"button.title.log.in", nil) forState:UIControlStateNormal];
+	
+	[self.forgotPasswordLabel setText:NSLocalizedString(@"login.controller.forgot.password.link", nil)];
+	UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(forgotPasswordTapped)];
+    [self.forgotPasswordLabel addGestureRecognizer:tapGestureRecognizer];
+	
+	[self.googleLoginButton setTitle:NSLocalizedString([@"button.title.log.in.google" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
+	[self.yahooLoginButton setTitle:NSLocalizedString([@"button.title.log.in.yahoo" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
+	
+	[self.orLabel setText:NSLocalizedString([@"login.controller.or" deviceSpecificLocalization], nil)];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-
     [self.navigationItem setTitle:NSLocalizedString(@"login.controller.title", nil)];
-
-    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
-
+	
     [[GoogleAnalytics sharedInstance] sendScreen:@"Login"];
 }
 
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[NavigationBarCustomiser setDefault];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+- (void)updateViewConstraints
+{
+	self.passwordSeparatorHeight.constant = 1.0f / [[UIScreen mainScreen] scale];
+	self.emailSeparatorHeight.constant = 1.0f / [[UIScreen mainScreen] scale];
+	
+	[super updateViewConstraints];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == kTableRowEmail) {
-        return self.emailCell;
-    } else {
-        return self.passwordCell;
+#pragma mark - TextField delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == self.emailTextField)
+	{
+        [self.passwordTextField becomeFirstResponder];
     }
-}
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
-    if (indexPath.row == kTableRowEmail) {
-        [self.emailCell.entryField becomeFirstResponder];
-    } else {
-        [self.passwordCell.entryField becomeFirstResponder];
-    }
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return self.footerView;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return CGRectGetHeight(self.footerView.frame);
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if (textField == self.emailCell.entryField) {
-        [self.passwordCell.entryField becomeFirstResponder];
-    } else {
+	else
+	{
         [textField resignFirstResponder];
     }
-
+	
     return YES;
 }
 
-- (IBAction)loginPressed:(id)sender {
+#pragma mark - Login
+- (IBAction)loginPressed:(id)sender
+{
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self validateInputAndPerformLogin];
+		[self.loginHelper validateInputAndPerformLoginWithEmail:self.emailTextField.text
+													   password:self.passwordTextField.text
+									   navigationControllerView:self.navigationController.view
+													objectModel:self.objectModel
+												   successBlock:^{
+													   [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+												   }
+									  waitForDetailsCompletions:NO];
     });
 }
 
-- (void)validateInputAndPerformLogin {
-    [UIApplication dismissKeyboard];
-
-    NSString *issues = [self validateInput];
-    if ([issues length] > 0) {
-        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil) message:issues];
-        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-        [alertView show];
-        return;
-    }
-
-    TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-    [hud setMessage:NSLocalizedString(@"login.controller.logging.in.message", nil)];
-
-    LoginOperation *loginOperation = [LoginOperation loginOperationWithEmail:[self.emailCell value] password:[self.passwordCell value]];
-    [self setExecutedOperation:loginOperation];
-
-    [loginOperation setObjectModel:self.objectModel];
-
-    [loginOperation setResponseHandler:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [hud hide];
-
-            if (!error) {
-                [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"tw"];
-                [self dismissViewControllerAnimated:YES completion:nil];
-                return;
-            }
-
-            TRWAlertView *alertView;
-            if ([error isTransferwiseError]) {
-                NSString *message = [error localizedTransferwiseMessage];
-                [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials" withLabel:message];
-                alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil) message:message];
-            } else {
-                alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
-                                                     message:NSLocalizedString(@"login.error.generic.message", nil)];
-                [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials" withLabel:error.localizedDescription];
-            }
-
-            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-
-            [alertView show];
-        });
-    }];
-
-    [loginOperation execute];
-}
-
-- (NSString *)validateInput {
-    NSMutableString *issues = [NSMutableString string];
-
-    NSString *email = [self.emailCell value];
-    NSString *password = [self.passwordCell value];
-
-    if (![email hasValue]) {
-        [issues appendIssue:NSLocalizedString(@"login.validation.email.missing", nil)];
-    } else if ([email hasValue] && ![email isValidEmail]) {
-        [issues appendIssue:NSLocalizedString(@"login.validation.email.not.valid", nil)];
-    }
-
-    if (![password hasValue]) {
-        [issues appendIssue:NSLocalizedString(@"login.validation.password.missing", nil)];
-    }
-
-    return [NSString stringWithString:issues];
-}
-
-- (IBAction)googleLogInPressed:(id)sender {
+- (IBAction)googleLogInPressed:(id)sender
+{
     [self presentOpenIDLogInWithProvider:@"google" name:@"Google"];
 }
 
-- (IBAction)yahooLogInPressed:(id)sender {
+- (IBAction)yahooLogInPressed:(id)sender
+{
     [self presentOpenIDLogInWithProvider:@"yahoo" name:@"Yahoo"];
 }
 
-- (void)presentOpenIDLogInWithProvider:(NSString *)provider name:(NSString *)providerName {
+- (void)presentOpenIDLogInWithProvider:(NSString *)provider name:(NSString *)providerName
+{
     OpenIDViewController *controller = [[OpenIDViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setProvider:provider];
-    [controller setEmail:self.emailCell.value];
+    //FYI: this is a concious decision not to add email to open id any more
     [controller setProviderName:providerName];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)forgotPasswordTapped {
+#pragma mark - Password reset
+- (void)forgotPasswordTapped
+{
     ResetPasswordViewController *controller = [[ResetPasswordViewController alloc] init];
     [controller setObjectModel:self.objectModel];
+	controller.delegate = self;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+- (void)resetEmailSent:(NSString *)email
+{
+	self.emailTextField.text = email;
+}
 @end

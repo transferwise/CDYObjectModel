@@ -11,9 +11,8 @@
 
 @class ObjectModel;
 
-@interface BusinessProfileIdentificationViewController : UITableViewController
+@interface BusinessProfileIdentificationViewController : UIViewController
 
-@property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, copy) IdentificationCompleteBlock completionHandler;
 
 @end

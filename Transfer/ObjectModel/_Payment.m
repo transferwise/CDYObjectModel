@@ -23,6 +23,7 @@ const struct PaymentAttributes PaymentAttributes = {
 
 const struct PaymentRelationships PaymentRelationships = {
 	.payInMethods = @"payInMethods",
+	.paymentMadeIndicator = @"paymentMadeIndicator",
 	.recipient = @"recipient",
 	.refundRecipient = @"refundRecipient",
 	.sourceCurrency = @"sourceCurrency",
@@ -278,6 +279,10 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 	[self didAccessValueForKey:@"payInMethods"];
 	return result;
 }
+	
+
+@dynamic paymentMadeIndicator;
+
 	
 
 @dynamic recipient;

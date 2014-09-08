@@ -15,7 +15,7 @@
 #import "TRWProgressHUD.h"
 #import "RecipientViewController.h"
 #import "DeleteRecipientOperation.h"
-#import "PaymentViewController.h"
+#import "NewPaymentViewController.h"
 #import "RecipientProfileCommitter.h"
 #import "ObjectModel+Currencies.h"
 #import "ObjectModel+Recipients.h"
@@ -26,65 +26,82 @@
 #import "_RecipientType.h"
 #import "RecipientType.h"
 #import "GoogleAnalytics.h"
+#import "AddressBookManager.h"
+#import "ConnectionAwareViewController.h"
+#import "RecipientsFooterView.h"
+#import "ContactDetailsViewController.h"
+#import "ReferralsCoordinator.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
-@interface ContactsViewController () <NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface ContactsViewController () <UITableViewDelegate, UITableViewDataSource, RecipientsFooterViewDelegate, ContactDetailsDeleteDelegate>
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
-@property (nonatomic, strong) NSFetchedResultsController *allRecipients;
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSArray *allRecipients;
+@property (nonatomic, strong) RecipientsFooterView *footerView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
 @implementation ContactsViewController
 
-- (id)init {
+- (id)init
+{
     self = [super initWithNibName:@"ContactsViewController" bundle:nil];
-    if (self) {
-        UITabBarItem *barItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"contacts.controller.title", nil) image:[UIImage imageNamed:@"ContactsIcon.png"] tag:0];
-        [self setTabBarItem:barItem];
+    if (self)
+	{
+        [self setTitle:NSLocalizedString(@"contacts.controller.title", nil)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 88, 44)];
+        [button addTarget:self  action:@selector(addContactPressed) forControlEvents:UIControlEventTouchUpInside];
+        [button setImage:[UIImage imageNamed:@"AddButton"] forState:UIControlStateNormal];
+		[button setImageEdgeInsets:UIEdgeInsetsMake(0, 58, 0, -17)];
+        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+        [self.navigationItem setRightBarButtonItem:addButton];
     }
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"RecipientCell" bundle:nil] forCellReuseIdentifier:kRecipientCellIdentifier];
-    [self.tableView setBackgroundView:nil];
-    [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
-
-    if (IOS_7) {
-        [self setEdgesForExtendedLayout:UIRectEdgeNone];
-    }
+    
+    self.titleLabel.text = self.title;
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
 
-    [self.navigationController setNavigationBarHidden:NO];
-
-    if (!self.allRecipients) {
-        NSFetchedResultsController *controller = [self.objectModel fetchedControllerForAllUserRecipients];
-        [self setAllRecipients:controller];
-        [controller setDelegate:self];
-
+    if (!self.allRecipients)
+	{
+        [self setAllRecipients:[self.objectModel allUserRecipientsForDisplay]];
         [self.tableView reloadData];
     }
 
     [self refreshRecipients];
-
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"AddButton.png"] style:UIBarButtonItemStylePlain target:self action:@selector(addContactPressed)];
-    [self.tabBarController.navigationItem setRightBarButtonItem:addButton];
+	
+	self.tableView.tableFooterView = self.footerView;
+    
+    if(IPAD)
+    {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+    }
+    else
+    {
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
 	[super viewDidAppear:animated];
 
 	[[GoogleAnalytics sharedInstance] sendScreen:@"Recipients"];
@@ -93,57 +110,103 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[self.allRecipients sections] count];
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.allRecipients sections] objectAtIndex:(NSUInteger) section];
-    return [sectionInfo numberOfObjects];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    //last row will be invite cell
+    return self.allRecipients.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     RecipientCell *cell = [tableView dequeueReusableCellWithIdentifier:kRecipientCellIdentifier];
-
-    Recipient *recipient = [self.allRecipients objectAtIndexPath:indexPath];
-    [cell configureWithRecipient:recipient];
+    Recipient *recipient = [self.allRecipients objectAtIndex:indexPath.row];
+	
+    [cell configureWithRecipient:recipient
+		   willShowCancelBlock:^{
+			   //this will be called each time a touch starts
+			   //including the touch that hides the button
+			   //so not cancelling if the same cell is receiving touches
+			   if(self.cancellingCellIndex && self.cancellingCellIndex.row != indexPath.row)
+			   {
+				   [self removeCancellingFromCell];
+			   }
+		   }
+			didShowCancelBlock:^{
+				self.cancellingCellIndex = indexPath;
+			}
+			didHideCancelBlock:^{
+				self.cancellingCellIndex = nil;
+			}
+			 cancelTappedBlock:^{
+				 [self confirmRecipientDelete:recipient indexPath:indexPath];
+			 }];
+	
+	UITapGestureRecognizer* recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sendTapped:)];
+	[recognizer setNumberOfTapsRequired:1];
+	[cell.sendLabel addGestureRecognizer:recognizer];
+	
+	//set cancelling visible when scrolling
+	[self setCancellingVisibleForScrolling:cell indexPath:indexPath];
 
     return cell;
 }
 
-#pragma mark - Table view delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
-    Recipient *recipient = [self.allRecipients objectAtIndexPath:indexPath];
-
-    if ([recipient.type hideFromCreationValue]) {
-        return;
-    }
-
-    if (![self.objectModel canMakePaymentToCurrency:recipient.currency]) {
-        TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"payment.controller.currency.payment.error.title", nil)
-                                                           message:[NSString stringWithFormat:NSLocalizedString(@"payment.controller.currency.payment.error.message", nil), recipient.currency.code]];
-        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-        [alertView show];
-        return;
-    }
-
-    [[GoogleAnalytics sharedInstance] sendScreen:@"New payment to"];
-    PaymentViewController *controller = [[PaymentViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
-    [controller setRecipient:recipient];
-    [self.navigationController pushViewController:controller animated:YES];
+- (void)sendTapped:(UITapGestureRecognizer *)gestureRecognizer
+{
+	[self removeCancellingFromCell];
+	CGPoint point = [gestureRecognizer locationInView:self.tableView];
+	NSIndexPath* indexPath = [self.tableView indexPathForRowAtPoint:point];
+	
+	if (indexPath)
+	{
+		Recipient *recipient = [self.allRecipients objectAtIndex:indexPath.row];
+		
+		if ([recipient.type hideFromCreationValue])
+		{
+			return;
+		}
+		
+		if (![self.objectModel canMakePaymentToCurrency:recipient.currency])
+		{
+			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"payment.controller.currency.payment.error.title", nil)
+															   message:[NSString stringWithFormat:NSLocalizedString(@"payment.controller.currency.payment.error.message", nil), recipient.currency.code]];
+			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+			[alertView show];
+			return;
+		}
+		
+		[[GoogleAnalytics sharedInstance] sendScreen:@"New payment to"];
+		NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
+		[controller setObjectModel:self.objectModel];
+		[controller setRecipient:recipient];
+		ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:YES];
+		[self presentViewController:wrapper animated:YES completion:nil];
+	}
 }
 
-- (void)refreshRecipients {
+#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	[self removeCancellingFromCell];
+    ContactDetailsViewController* detailController = [[ContactDetailsViewController alloc] init];
+    detailController.objectModel = self.objectModel;
+    detailController.recipient = [self.allRecipients objectAtIndex:indexPath.row];
+    detailController.deletionDelegate = self;
+    [self presentDetail:detailController];
+}
+
+- (void)refreshRecipients
+{
     MCLog(@"refreshRecipients");
-    if (self.executedOperation) {
+    if (self.executedOperation)
+	{
         return;
     }
-
-    TabBarActivityIndicatorView *hud = [TabBarActivityIndicatorView showHUDOnController:self];
-    [hud setMessage:NSLocalizedString(@"contacts.controller.refreshing.message", nil)];
 
     UserRecipientsOperation *operation = [UserRecipientsOperation recipientsOperation];
     [self setExecutedOperation:operation];
@@ -151,9 +214,8 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
     [operation setResponseHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            MCLog(@"Have %d recipients", [self.allRecipients.fetchedObjects count]);
-
-            [hud hide];
+			self.allRecipients = [self.objectModel allUserRecipientsForDisplay];
+            MCLog(@"Have %lu recipients", (unsigned long)self.allRecipients.count);
 
             [self setExecutedOperation:nil];
 
@@ -164,7 +226,8 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [operation execute];
 }
 
-- (void)addContactPressed {
+- (IBAction)addContactPressed
+{
 	[[GoogleAnalytics sharedInstance] sendScreen:@"Add recipient"];
 
     RecipientViewController *controller = [[RecipientViewController alloc] init];
@@ -174,32 +237,62 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     RecipientProfileCommitter *committer = [[RecipientProfileCommitter alloc] init];
     [committer setObjectModel:self.objectModel];
     [controller setRecipientValidation:committer];
+    __weak typeof(self) weakSelf = self;
     [controller setAfterSaveAction:^{
         [[GoogleAnalytics sharedInstance] sendEvent:@"RecipientAdded" category:@"recipient" label:@"AddRecipientScreen"];
-        [self.navigationController popViewControllerAnimated:YES];
+        [weakSelf closeModal];
     }];
     controller.noPendingPayment = YES;
-    [self.navigationController pushViewController:controller animated:YES];
+    
+    ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:NO];
+    
+    UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,40,40)];
+    [closeButton setImage:[UIImage imageNamed:@"CloseButton"] forState:UIControlStateNormal];
+    [closeButton addTarget:self action:@selector(closeModal) forControlEvents:UIControlEventTouchUpInside];
+    if(!IPAD)
+    {
+        closeButton.imageEdgeInsets = UIEdgeInsetsMake(0.0, -20, 0, 0);
+    }
+    UIBarButtonItem *dismissButton = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
+    [controller.navigationItem setLeftBarButtonItem:dismissButton];
+    
+    [self presentViewController:wrapper animated:YES completion:nil];
+
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle != UITableViewCellEditingStyleDelete) {
-        return;
-    }
+-(void)closeModal
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
-    Recipient *recipient = [self.allRecipients objectAtIndexPath:indexPath];
-    TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"contacts.controller.delete.conformation.title", nil)
+- (void)inviteFriends
+{
+	ReferralsCoordinator* coordinator = [ReferralsCoordinator sharedInstance];
+	coordinator.objectModel = self.objectModel;
+	[coordinator presentOnController:self];
+}
+
+- (void)confirmRecipientDelete:(Recipient *)recipient indexPath:(NSIndexPath *)indexPath
+{
+	TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"contacts.controller.delete.conformation.title", nil)
                                                        message:[NSString stringWithFormat:NSLocalizedString(@"contacts.controller.delete.confirmation.message", nil), recipient.name]];
     [alertView setLeftButtonTitle:NSLocalizedString(@"button.title.delete", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
 
     [alertView setLeftButtonAction:^{
         [self deleteRecipient:recipient];
+		[self removeCancellingFromCell];
+    }];
+	[alertView setRightButtonAction:^{
+		[self removeCancellingFromCell];
     }];
 
     [alertView show];
 }
 
-- (void)deleteRecipient:(Recipient *)recipient {
+- (void)deleteRecipient:(Recipient *)recipient
+{
+    ContactDetailsViewController* detailsController = (ContactDetailsViewController*)[self currentDetailController];
+    BOOL clearDetailView = detailsController.recipient == recipient;
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"Delete recipient:%@", recipient.name);
         TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
@@ -210,8 +303,17 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
         [operation setObjectModel:self.objectModel];
         [operation setResponseHandler:^(NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
+				[self setExecutedOperation:nil];
                 [hud hide];
-                [self handleListRefreshWithPossibleError:error];
+                [self refreshRecipients];
+                if(clearDetailView)
+                {
+                    [self presentDetail:nil];
+                }
+				else if(!IPAD)
+				{
+					[self.navigationController popViewControllerAnimated:YES];
+				}
             });
         }];
 
@@ -219,51 +321,48 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     });
 }
 
-- (void)handleListRefreshWithPossibleError:(NSError *)error {
+- (void)handleListRefreshWithPossibleError:(NSError *)error
+{
     dispatch_async(dispatch_get_main_queue(), ^{
         [self setExecutedOperation:nil];
-        if (error) {
-            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"contacts.refresh.error.title", nil)
-                                                               message:NSLocalizedString(@"contacts.refresh.error.message", nil)];
-            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-            [alertView show];
-
+        if (error)
+		{
             return;
         }
-
-        [self.tableView reloadData];
+		
+        NSInteger currentCount = self.allRecipients.count;
+		[self.tableView reloadData];
+        NSInteger delta = [self.tableView numberOfRowsInSection:0] - currentCount;
+		
+        if (delta >0)
+        {
+            [self.tableView reloadRowsAtIndexPaths:[ContactsViewController generateIndexPathsFrom:currentCount
+																						withCount:delta]
+							  withRowAnimation:UITableViewRowAnimationFade];
+        }
+		if (currentCount > 0)
+		{
+			[self setFooter];
+		}
     });
 }
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView beginUpdates];
+- (void)setFooter
+{
+	if (!IPAD)
+	{
+		self.footerView = [[[NSBundle mainBundle] loadNibNamed:@"RecipientsFooterView" owner:self options:nil] objectAtIndex:0];
+		[self.footerView commonSetup];
+		self.footerView.delegate = self;
+		self.footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+		self.tableView.tableFooterView = self.footerView;
+	}
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath {
-    UITableView *tableView = self.tableView;
-
-    switch (type) {
-
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-        case NSFetchedResultsChangeUpdate:
-            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-            break;
-        case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView endUpdates];
+#pragma mark - Contact Detail Deletion
+-(void)contactDetailsController:(ContactDetailsViewController *)controller didDeleteContact:(Recipient *)deletedRecipient
+{
+    [self confirmRecipientDelete:deletedRecipient indexPath:nil];
 }
 
 @end

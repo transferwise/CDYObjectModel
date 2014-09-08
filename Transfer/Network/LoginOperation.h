@@ -14,6 +14,7 @@ typedef void (^LoginResponseBlock)(NSError *error);
 @interface LoginOperation : TransferwiseOperation
 
 @property (nonatomic, copy) LoginResponseBlock responseHandler;
+@property (nonatomic) BOOL waitForDetailsCompletion;
 
 + (LoginOperation *)loginOperationWithEmail:(NSString *)email password:(NSString *)password;
 

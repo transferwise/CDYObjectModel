@@ -22,7 +22,6 @@
 #import "LoginViewController.h"
 #import "GoogleAnalytics.h"
 
-static NSUInteger const kTableRowEmail = 0;
 
 @interface SignUpViewController () <UITextFieldDelegate>
 
@@ -97,10 +96,10 @@ static NSUInteger const kTableRowEmail = 0;
     NSString *baseMessage = [NSString stringWithFormat:@"%@ %@", existingUserMessage, existingUserAction];
     NSMutableAttributedString *result = [[NSMutableAttributedString alloc] initWithString:baseMessage];
 
-    [result setAttributes:@{UITextAttributeFont : [UIFont systemFontOfSize:14], UITextAttributeTextColor : [UIColor whiteColor]} range:NSMakeRange(0, [baseMessage length])];
+    [result setAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14], NSForegroundColorAttributeName : [UIColor whiteColor]} range:NSMakeRange(0, [baseMessage length])];
 
     NSRange actionRange = [baseMessage rangeOfString:existingUserAction];
-    [result setAttributes:@{UITextAttributeFont : [UIFont systemFontOfSize:14], UITextAttributeTextColor: HEXCOLOR(0x157EFBFF)} range:actionRange];
+    [result setAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14], NSForegroundColorAttributeName: HEXCOLOR(0x157EFBFF)} range:actionRange];
 
     return [NSAttributedString attributedStringWithAttributedString:result];
 }

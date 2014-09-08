@@ -15,7 +15,7 @@
 #import "ObjectModel.h"
 #import "ObjectModel+RecipientTypes.h"
 #import "TransferBackButtonItem.h"
-#import "AppsFlyer.h"
+#import "AppsFlyerTracker.h"
 #import "ObjectModel+Users.h"
 #import "User.h"
 #import "GoogleAnalytics.h"
@@ -83,7 +83,7 @@
     }
 
     NSString *absoluteString = [request.URL absoluteString];
-    NSLog(@"absoluteString:%@", absoluteString);
+    MCLog(@"absoluteString:%@", absoluteString);
 
     if (![self isLoginPath:absoluteString]) {
         return YES;
@@ -102,23 +102,24 @@
     [[AnalyticsCoordinator sharedInstance] markLoggedIn];
 
     if ([Credentials userLoggedIn]) {
+        __weak typeof(self) weakSelf = self;
         [self.objectModel removeOtherUsers];
         [self.objectModel saveContext:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(NSError *error) {
 #if USE_APPSFLYER_EVENTS
-                    [AppsFlyer setAppUID:self.objectModel.currentUser.pReference];
-                    [AppsFlyer notifyAppID:AppsFlyerIdentifier event:@"sign-in" eventValue:@""];
+                    [AppsFlyerTracker sharedTracker].customerUserID = weakSelf.objectModel.currentUser.pReference;
+                    [[AppsFlyerTracker sharedTracker] trackEvent:@"sign-in" withValue:@""];
 #endif
                 }];
 
                 NSString *event = [absoluteString rangeOfString:@"/openId/registered"].location != NSNotFound ? @"UserRegistered" : @"UserLogged";
                 [[GoogleAnalytics sharedInstance] sendAppEvent:event withLabel:self.provider];
 
-                if (self.registerUser) {
+                if (weakSelf.registerUser) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentViewNotification object:nil];
                 } else {
-                    [self dismissViewControllerAnimated:YES completion:nil];
+                    [weakSelf dismissViewControllerAnimated:YES completion:nil];
                 }
             });
         }];

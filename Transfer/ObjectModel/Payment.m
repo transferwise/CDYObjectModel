@@ -2,6 +2,7 @@
 #import "PendingPayment.h"
 #import "MoneyFormatter.h"
 #import "Currency.h"
+#import "NSString+DeviceSpecificLocalisation.h"
 
 
 @interface Payment ()
@@ -28,44 +29,76 @@
     return result;
 }
 
+static NSDictionary* statusLookupDictionary;
+-(NSDictionary*)statusLookup
+{
+    if(!statusLookupDictionary)
+    {
+        statusLookupDictionary = @{@"unknown":@(PaymentStatusUnknown),
+                                   @"cancelled":@(PaymentStatusCancelled),
+                                   @"matched":@(PaymentStatusMatched),
+                                   @"received":@(PaymentStatusReceived),
+                                   @"refunded":@(PaymentStatusRefunded),
+                                   @"submitted":@(PaymentStatusSubmitted),
+                                   @"transferred":@(PaymentStatusTransferred),
+                                   @"receivedwaitingrecipient":@(PaymentStatusReceivedWaitingRecipient)
+                                   };
+    }
+    return statusLookupDictionary;
+}
+
+-(PaymentStatus)status
+{
+    NSString* key = [self.paymentStatus lowercaseString];
+    NSNumber *statusNumber =[self statusLookup][key];
+    if(self.paymentMadeIndicator && [statusNumber unsignedIntegerValue] == PaymentStatusSubmitted)
+    {
+        statusNumber = @(PaymentStatusUserHasPaid);
+    }
+    return statusNumber?[statusNumber unsignedIntegerValue]:PaymentStatusUnknown;
+}
+
 - (NSString *)localizedStatus {
     NSString *statusKey = [NSString stringWithFormat:@"payment.status.%@.description", self.paymentStatus];
-    return NSLocalizedString(statusKey, nil);
+    NSString *statusString = NSLocalizedString(statusKey, nil);
+    if([statusString rangeOfString:@"%@"].location != NSNotFound)
+    {
+        statusString = [NSString stringWithFormat:statusString, [self latestChangeTimeString]];
+    }
+    
+    return statusString;
 }
 
 - (NSString *)transferredAmountString {
-    return [NSString stringWithFormat:@"%@ %@ > %@", [[MoneyFormatter sharedInstance] formatAmount:self.payIn], self.sourceCurrency.code, self.targetCurrency.code];
+    return [NSString stringWithFormat:@"%@", [[MoneyFormatter sharedInstance] formatAmount:self.payIn]];
+}
+
+- (NSString *)transferredCurrenciesString
+{
+    NSString* currenciesFormat = NSLocalizedString(@"payment.currencies.format",nil);
+    return [NSString stringWithFormat:currenciesFormat, self.sourceCurrency.code, self.targetCurrency.code];
 }
 
 - (NSString *)latestChangeTimeString {
-    NSDate *latestChangeDate = self.submittedDate;
+    NSDate *latestChangeDate = [self latestChangeDate];
     if (!latestChangeDate) {
         return @"";
     }
 
-    NSDateComponents *components = [[Payment gregorian] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:latestChangeDate toDate:[NSDate date] options:0];
+    NSDateComponents *latestChangeComponents = [[Payment gregorian] components:NSYearCalendarUnit  fromDate:latestChangeDate];
+    
+    NSDateComponents *nowComponents = [[Payment gregorian] components:NSYearCalendarUnit fromDate:[NSDate date]];
 
-    if (components.year > 1) {
-        return [NSString stringWithFormat:NSLocalizedString(@"payment.change.time.years.ago", nil), components.year];
-    } else if (components.year == 1) {
-        return NSLocalizedString(@"payment.change.time.one.year.ago", nil);
-    } else if (components.month > 1) {
-        return [NSString stringWithFormat:NSLocalizedString(@"payment.change.time.months.ago", nil), components.month];
-    } else if (components.month == 1) {
-        return NSLocalizedString(@"payment.change.time.one.month.ago", nil);
-    } else if (components.day > 1) {
-        return [NSString stringWithFormat:NSLocalizedString(@"payment.change.time.days.ago", nil), components.day];
-    } else if (components.day == 1) {
-        return NSLocalizedString(@"payment.change.time.one.day.ago", nil);
-    } else if (components.hour > 1) {
-        return [NSString stringWithFormat:NSLocalizedString(@"payment.change.time.hours.ago", nil), components.hour];
-    } else if (components.hour == 1) {
-        return NSLocalizedString(@"payment.change.time.one.hour.ago", nil);
-    } else if (components.minute > 1) {
-        return [NSString stringWithFormat:NSLocalizedString(@"payment.change.time.minutes.ago", nil), components.minute];
-    } else {
-        return NSLocalizedString(@"payment.change.time.one.minute.ago", nil);
+    NSDateFormatter* formatter;
+    if(latestChangeComponents.year != nowComponents.year)
+    {
+        formatter = [Payment longDateFormatter];
     }
+    else
+    {
+        formatter = [Payment shortDateFormatter];
+    }
+    return [formatter stringFromDate:latestChangeDate];
 }
 
 - (NSString *)payInWithCurrency {
@@ -73,7 +106,7 @@
 }
 
 - (BOOL)isSubmitted {
-    return [self.paymentStatus isEqualToString:@"submitted"];
+    return self.status == PaymentStatusSubmitted;
 }
 
 - (NSString *)payInStringWithCurrency {
@@ -106,15 +139,15 @@
 
 
 - (BOOL)isCancelled {
-    return [self.paymentStatus isEqualToString:@"cancelled"] || [self.paymentStatus isEqualToString:@"refunded"];
+    return self.status == PaymentStatusCancelled || self.status == PaymentStatusRefunded;
 }
 
 - (BOOL)moneyReceived {
-    return [self.paymentStatus isEqualToString:@"matched"] || [self.paymentStatus isEqualToString:@"received"];
+    return self.status == PaymentStatusMatched || self.status == PaymentStatusReceived;
 }
 
 - (BOOL)moneyTransferred {
-    return [self.paymentStatus isEqualToString:@"transferred"];
+    return self.status == PaymentStatusTransferred;
 }
 
 - (NSString *)transferredDateString {
@@ -133,6 +166,27 @@ static NSCalendar *__gregorian;
 
     return __gregorian;
 }
+
+static NSDateFormatter *__longDateFormatter;
++ (NSDateFormatter *)longDateFormatter {
+    if (!__longDateFormatter) {
+        __longDateFormatter = [[NSDateFormatter alloc] init];
+        __longDateFormatter.dateFormat = NSLocalizedString(@"payment.date.format.long", nil);
+    }
+    
+    return __longDateFormatter;
+}
+
+static NSDateFormatter *__shortDateFormatter;
++ (NSDateFormatter *)shortDateFormatter {
+    if (!__shortDateFormatter) {
+        __shortDateFormatter = [[NSDateFormatter alloc] init];
+        __shortDateFormatter.dateFormat = NSLocalizedString(@"payment.date.format.short", nil);
+    }
+    
+    return __shortDateFormatter;
+}
+
 
 - (NSOrderedSet*)enabledPayInMethods
 {

@@ -10,7 +10,7 @@
 #import "TransferBackButtonItem.h"
 #import "TextEntryCell.h"
 #import "UIView+Loading.h"
-#import "TransferTypeSelectionCell.h"
+#import "TransferTypeSelectionHeader.h"
 #import "RecipientTypeField.h"
 #import "RecipientType.h"
 #import "DropdownCell.h"
@@ -34,6 +34,12 @@
 #import "UserRecipientsOperation.h"
 #import "Credentials.h"
 #import "RecipientEntrySelectionCell.h"
+#import "UIResponder+FirstResponder.h"
+#import "User.h"
+#import "BusinessProfile.h"
+#import "PersonalProfile.h"
+#import "NameSuggestionCellProvider.h"
+#import "EmailLookupWrapper.h"
 
 CGFloat const TransferHeaderPaddingTop = 40;
 CGFloat const TransferHeaderPaddingBottom = 0;
@@ -41,16 +47,24 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 @interface RefundDetailsViewController ()
 
 @property (nonatomic, strong) RecipientEntrySelectionCell *holderNameCell;
-@property (nonatomic, strong) TransferTypeSelectionCell *transferTypeSelectionCell;
+@property (nonatomic, strong) TransferTypeSelectionHeader *transferTypeSelectionHeader;
 @property (nonatomic, strong) RecipientType *recipientType;
 @property (nonatomic, strong) NSArray *recipientTypeFieldCells;
 @property (nonatomic, assign) BOOL shown;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
-@property (nonatomic, strong) IBOutlet UIView *footer;
 @property (nonatomic, assign) CGFloat minimumFooterHeight;
 @property (nonatomic, strong) IBOutlet UIButton *footerButton;
 @property (nonatomic, strong) TransferwiseOperation *operation;
 @property (nonatomic, strong) Recipient *recipient;
+@property (weak, nonatomic) IBOutlet UILabel *headerLabel;
+@property (nonatomic, strong) NameSuggestionCellProvider* cellProvider;
+@property (nonatomic, strong) UserRecipientsOperation *recipientsOperation;
+//iPad
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerLeftEdgeConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerRightEdgeConstraint;
+
+@property (nonatomic, assign) BOOL settingRecipient;
 
 @end
 
@@ -67,46 +81,43 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.tableView setBackgroundView:nil];
-    [self.tableView setBackgroundColor:[UIColor controllerBackgroundColor]];
-    if (IOS_7) {
-        [self.tableView setSeparatorColor:[UIColor clearColor]];
-    }
-
     [self.navigationItem setTitle:NSLocalizedString(@"refund.details.controller.title", nil)];
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 
-    [self.tableView registerNib:[RecipientEntrySelectionCell viewNib] forCellReuseIdentifier:TRWRecipientEntrySelectionCellIdentifier];
-    [self.tableView registerNib:[TransferTypeSelectionCell viewNib] forCellReuseIdentifier:TWTypeSelectionCellIdentifier];
-    [self.tableView registerNib:[DropdownCell viewNib] forCellReuseIdentifier:TWDropdownCellIdentifier];
-    [self.tableView registerNib:[RecipientFieldCell viewNib] forCellReuseIdentifier:TWRecipientFieldCellIdentifier];
+    [self.tableViews[0] registerNib:[RecipientEntrySelectionCell viewNib] forCellReuseIdentifier:TRWRecipientEntrySelectionCellIdentifier];
+    [self.tableViews[0] registerNib:[DropdownCell viewNib] forCellReuseIdentifier:TWDropdownCellIdentifier];
+    [self.tableViews[0] registerNib:[RecipientFieldCell viewNib] forCellReuseIdentifier:TWRecipientFieldCellIdentifier];
 
 
     NSMutableArray *presentedSections = [NSMutableArray array];
 
-    RecipientEntrySelectionCell *nameCell = [self.tableView dequeueReusableCellWithIdentifier:TRWRecipientEntrySelectionCellIdentifier];
+    RecipientEntrySelectionCell *nameCell = [self.tableViews[0] dequeueReusableCellWithIdentifier:TRWRecipientEntrySelectionCellIdentifier];
     [self setHolderNameCell:nameCell];
     [nameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     [nameCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [nameCell configureWithTitle:NSLocalizedString(@"refund.details.holders.name.label", nil) value:@""];
+    __weak typeof(self) weakSelf = self;
     [nameCell setSelectionHandler:^(Recipient *recipient) {
-        [self didSelectRecipient:recipient];
+        [weakSelf didSelectRecipient:recipient];
     }];
 
 
     [presentedSections addObject:@[nameCell]];
 
-    __weak RefundDetailsViewController *weakSelf = self;
-
-    self.transferTypeSelectionCell = [self.tableView dequeueReusableCellWithIdentifier:TWTypeSelectionCellIdentifier];
-    [self.transferTypeSelectionCell setSelectionChangeHandler:^(RecipientType *type, NSArray *allTypes) {
-        [weakSelf handleSelectionChangeToType:type allTypes:allTypes];
-    }];
-
     [presentedSections addObject:@[]];
 
-    [self setPresentedSectionCells:presentedSections];
+    if([self hasMoreThanOneTableView])
+    {
+        [self setSectionCellsByTableView:@[presentedSections,@[]]];
+    }
+    else
+    {
+        [self setSectionCellsByTableView:@[presentedSections]];
+    }
+    
 
+    [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
+    
     RecipientType *type = self.currency.defaultRecipientType;
     MCLog(@"Have %d fields", [type.fields count]);
 
@@ -114,29 +125,63 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 
     NSArray *allTypes = [self.currency.recipientTypes array];
     [self handleSelectionChangeToType:type allTypes:allTypes];
+    
+    self.headerLabel.text = [NSString stringWithFormat:NSLocalizedString(IPAD?@"refund.details.header.description.iPad":@"refund.details.header.description", nil),self.payment.recipient.name, self.payment.payOutStringWithCurrency];
 
-    self.minimumFooterHeight = self.footer.frame.size.height;
-
-    CGRect headerFrame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame) - 40, 100);
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:headerFrame];
-    [headerLabel setNumberOfLines:0];
-    [headerLabel setFont:[UIFont systemFontOfSize:14]];
-    [headerLabel setTextColor:[UIColor mainTextColor]];
-    [headerLabel setBackgroundColor:[UIColor clearColor]];
-    [headerLabel setText:NSLocalizedString(@"refund.details.header.description", nil)];
-    CGFloat fitHeight = [headerLabel sizeThatFits:CGSizeMake(CGRectGetWidth(headerFrame), CGFLOAT_MAX)].height;
-    headerFrame.size.height = fitHeight;
-    headerFrame.origin.x = 20;
-    headerFrame.origin.y = TransferHeaderPaddingTop;
-    [headerLabel setFrame:headerFrame];
-    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(headerFrame) + TransferHeaderPaddingTop + TransferHeaderPaddingBottom)];
-    [header setBackgroundColor:[UIColor clearColor]];
-    [header addSubview:headerLabel];
-    [self.tableView setTableHeaderView:header];
-
+    UIView *tableViewHeader = [self.tableViews[0] tableHeaderView];
+    if(tableViewHeader)
+    {
+        CGRect headerFrame = tableViewHeader.frame;
+        CGRect labelFrame = self.headerLabel.frame;
+        [self.headerLabel sizeToFit];
+        CGFloat heightDiff = self.headerLabel.frame.size.height - labelFrame.size.height;
+        self.headerLabel.frame = labelFrame;
+        headerFrame.size.height += heightDiff;
+        tableViewHeader.frame = headerFrame;
+        [self.tableViews[0] setTableHeaderView:tableViewHeader];
+    }
+    
+    
     [self.footerButton setTitle:NSLocalizedString(@"refund.details.footer.button.title", nil) forState:UIControlStateNormal];
     [self.footerButton addTarget:self action:@selector(continuePressed) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.cellProvider = [[NameSuggestionCellProvider alloc] init];
+    
+    [super configureWithDataSource:self.cellProvider
+						 entryCell:nameCell
+							height:IPAD?70.0f:60.0f];
+    
+    if([Credentials userLoggedIn]) {
+        [self.cellProvider setAutoCompleteResults:[self.objectModel fetchedControllerForRecipientsWithCurrency:self.currency]];
+    }
+    self.cellProvider.onlyShowRecipients = YES;
+
+    
 }
+
+
+-(void)configureForInterfaceOrientation:(UIInterfaceOrientation)orientation
+{
+    [super configureForInterfaceOrientation:orientation];
+    //Lots of magic numbers here to match designs. Not sure what to do...
+    if(UIInterfaceOrientationIsPortrait(orientation))
+    {
+        
+        self.headerLeftEdgeConstraint.constant = 95.0f;
+        self.headerRightEdgeConstraint.constant = -95.0f;
+        
+    }
+    else
+    {
+        self.headerLeftEdgeConstraint.constant = 0.0f;
+        self.headerRightEdgeConstraint.constant = 0.0f;
+        if(!self.transferTypeSelectionHeader)
+        {
+            self.secondColumnTopConstraint.constant = 75.0f;
+        }
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -145,27 +190,29 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
+    
+    [self refreshTableViewSizes];
+    [self configureForInterfaceOrientation:self.interfaceOrientation];
     if (self.shown) {
         return;
     }
 
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    if(! self.navigationItem.leftBarButtonItem)
+    {
+        [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
+    }
+    
     [[AnalyticsCoordinator sharedInstance] refundDetailsScreenShown];
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
 
 
-    if ([Credentials userLoggedIn]) {
-        [self.holderNameCell setAutoCompleteRecipients:[self.objectModel fetchedControllerForRecipientsWithCurrency:self.currency]];
-    } else {
-        [self.holderNameCell setAutoCompleteRecipients:nil];
-    }
-
     void (^dataLoadCompletionBlock)() = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
+            self.recipientsOperation = nil;
             [hud hide];
-            [self.tableView setTableFooterView:self.footer];
         });
     };
 
@@ -176,10 +223,8 @@ CGFloat const TransferHeaderPaddingBottom = 0;
         [recipientsOperation setObjectModel:self.objectModel];
         [recipientsOperation setResponseHandler:^(NSError *error) {
             if (error) {
-                [hud hide];
                 TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"refund.controller.existing.recipients.preload.error.title", nil) error:error];
                 [alertView show];
-                return;
             }
 
             dataLoadCompletionBlock();
@@ -187,6 +232,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     }
 
     if (recipientsOperation) {
+        self.recipientsOperation = recipientsOperation;
         [recipientsOperation execute];
     } else {
         dataLoadCompletionBlock();
@@ -200,37 +246,58 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     NSArray *cells = [self buildCellsForType:type allTypes:allTypes];
     [self setRecipientType:type];
     [self setRecipientTypeFieldCells:cells];
-    [self setPresentedSectionCells:@[@[self.holderNameCell], cells]];
+    if([self hasMoreThanOneTableView])
+    {
+        [self setSectionCellsByTableView:@[@[@[self.holderNameCell]],@[cells]]];
+    }
+    else
+    {
+        [self setSectionCellsByTableView:@[@[@[self.holderNameCell], cells]]];
+    }
 
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:[self.presentedSectionCells count] - 1] withRowAnimation:UITableViewRowAnimationNone];
-    [self performSelector:@selector(updateFooterSize) withObject:nil afterDelay:0.5];
-
+    [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
+    [self refreshTableViewSizes];
 }
 
-- (void)updateFooterSize {
-    [self.tableView adjustFooterViewSizeForMinimumHeight:self.minimumFooterHeight];
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.headerLabel.preferredMaxLayoutWidth = self.headerLabel.frame.size.width;
+    [self.view layoutIfNeeded];
 }
+
 
 - (NSArray *)buildCellsForType:(RecipientType *)type allTypes:(NSArray *)allTypes {
     MCLog(@"Build cells for type:%@", type.type);
     NSMutableArray *result = [NSMutableArray array];
     if (allTypes.count > 1) {
-        result = [NSMutableArray arrayWithCapacity:type.fields.count + 1];
-        [self.transferTypeSelectionCell setSelectedType:type allTypes:allTypes];
-        [result addObject:self.transferTypeSelectionCell];
+        if (allTypes.count > 1) {
+            TransferTypeSelectionHeader* tabbedHeader = [[NSBundle mainBundle] loadNibNamed:@"TransferTypeSelectionHeaderNoTitle" owner:self options:nil][0];
+            __weak typeof(self) weakSelf = self;
+            [ tabbedHeader setSelectionChangeHandler:^(RecipientType *type, NSArray *allTypes) {
+                [weakSelf handleSelectionChangeToType:type allTypes:allTypes];
+            }];
+            [tabbedHeader setSelectedType:type allTypes:allTypes];
+            self.transferTypeSelectionHeader = tabbedHeader;
+        }
+        else
+        {
+            self.transferTypeSelectionHeader = nil;
+        }
+
     }
 
     for (RecipientTypeField *field in type.fields) {
         TextEntryCell *createdCell;
         if ([field.allowedValues count] > 0) {
-            DropdownCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWDropdownCellIdentifier];
+            DropdownCell *cell = [self.tableViews[0] dequeueReusableCellWithIdentifier:TWDropdownCellIdentifier];
             [cell setAllElements:[self.objectModel fetchedControllerForAllowedValuesOnField:field]];
             [cell configureWithTitle:field.title value:@""];
             [cell setType:field];
             [result addObject:cell];
             createdCell = cell;
         } else {
-            RecipientFieldCell *cell = [self.tableView dequeueReusableCellWithIdentifier:TWRecipientFieldCellIdentifier];
+            RecipientFieldCell *cell = [self.tableViews[0] dequeueReusableCellWithIdentifier:TWRecipientFieldCellIdentifier];
             [cell setFieldType:field];
             [result addObject:cell];
             createdCell = cell;
@@ -242,11 +309,77 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     return [NSArray arrayWithArray:result];
 }
 
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if([self hasMoreThanOneTableView])
+    {
+        if(tableView == self.tableViews[1] && section == 0)
+        {
+            return self.transferTypeSelectionHeader.frame.size.height;
+        }
+
+    }
+    else
+    {
+        if (section == 1)
+        {
+            return self.transferTypeSelectionHeader.frame.size.height;
+        }
+    }
+    
+    return [super tableView:tableView heightForHeaderInSection:section];
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if([self hasMoreThanOneTableView])
+    {
+        if(tableView == self.tableViews[1] && section == 0)
+        {
+            return self.transferTypeSelectionHeader;
+
+        }
+        
+    }
+    else
+    {
+        if (section == 1)
+        {
+            return self.transferTypeSelectionHeader;
+
+        }
+    }
+    
+    return [super tableView:tableView viewForHeaderInSection:section];
+}
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return NSLocalizedString(@"refund.details.account.details.section.header", nil);
+    if(tableView == self.tableViews[0])
+    {
+        if (section == 0) {
+            return NSLocalizedString(@"refund.details.account.details.section.header", nil);
+        }
     }
     return nil;
+}
+
+-(void)textFieldEntryFinished
+{
+    if(self.settingRecipient)
+    {
+        self.settingRecipient = NO;
+        return;
+    }
+    if (self.recipient)
+    {
+        if(![[self.holderNameCell value] isEqualToString:self.recipient.name])
+        {
+            NSString* value = self.holderNameCell.value;
+            [self didSelectRecipient:nil];
+            self.holderNameCell.value = value;
+        }
+    }
 }
 
 - (void)continuePressed {
@@ -269,7 +402,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     recipient.type = self.recipientType;
 
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
-        if ([cell isKindOfClass:[TransferTypeSelectionCell class]]) {
+        if ([cell isKindOfClass:[TransferTypeSelectionHeader class]]) {
             continue;
         }
 
@@ -284,8 +417,9 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     RecipientOperation *validate = [RecipientOperation validateOperationWithRecipient:recipient.objectID];
     [self setOperation:validate];
     [validate setObjectModel:self.objectModel];
+    __weak typeof(self) weakSelf = self;
     [validate setResponseHandler:^(NSError *error) {
-        [self setOperation:nil];
+        [weakSelf setOperation:nil];
         [hud hide];
 
         if (error) {
@@ -295,7 +429,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
         }
 
         [[AnalyticsCoordinator sharedInstance] refundRecipientAdded];
-        self.afterValidationBlock();
+        weakSelf.afterValidationBlock();
     }];
     [validate execute];
 }
@@ -309,7 +443,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     }
 
     for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
-        if ([cell isKindOfClass:[TransferTypeSelectionCell class]]) {
+        if ([cell isKindOfClass:[TransferTypeSelectionHeader class]]) {
             continue;
         }
 
@@ -328,13 +462,18 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 }
 
 - (void)didSelectRecipient:(Recipient *)recipient {
+
+    if(recipient)
+    {
+        self.settingRecipient = YES;
+    }
     [self setRecipient:recipient];
     [self handleSelectionChangeToType:recipient ? recipient.type : self.currency.defaultRecipientType allTypes:[self.currency.recipientTypes array]];
-
+    
     if (!recipient) {
         [self.holderNameCell setValue:@""];
         [self.holderNameCell setEditable:YES];
-
+        
         for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
             [fieldCell setValue:@""];
             [fieldCell setEditable:YES];
@@ -342,20 +481,42 @@ CGFloat const TransferHeaderPaddingBottom = 0;
         return;
     }
 
-    dispatch_async(dispatch_get_main_queue(), ^{
+    
         [self.holderNameCell setValue:recipient.name];
-        [self.holderNameCell setEditable:NO];
 
         for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
             [fieldCell setEditable:NO];
-            if ([fieldCell isKindOfClass:[TransferTypeSelectionCell class]]) {
+            if ([fieldCell isKindOfClass:[TransferTypeSelectionHeader class]]) {
                 continue;
             }
 
             RecipientTypeField *field = fieldCell.type;
             [fieldCell setValue:[recipient valueField:field]];
         }
-    });
 }
+
+-(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
+{
+    [super suggestionTable:table selectedObject:object];
+    EmailLookupWrapper* wrapper = (EmailLookupWrapper*)object;
+    if(wrapper.recordId)
+    {
+       
+        [self.holderNameCell setValue:[wrapper presentableString:FirstNameFirst]];
+        [self.holderNameCell setEditable:YES];
+            
+        for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
+                [fieldCell setEditable:YES];
+        }
+
+    }
+    else if (wrapper.managedObjectId)
+    {
+        [self didSelectRecipient:(Recipient*)[self.objectModel.managedObjectContext objectWithID:wrapper.managedObjectId]];
+    }
+
+}
+
+
 
 @end

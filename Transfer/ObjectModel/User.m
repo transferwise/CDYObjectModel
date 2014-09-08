@@ -1,6 +1,7 @@
 #import "User.h"
 #import "PersonalProfile.h"
 #import "BusinessProfile.h"
+#import "Payment.h"
 
 @interface User ()
 
@@ -35,6 +36,27 @@
 
 - (BOOL)businessProfileFilled {
     return [self.businessProfile isFilled];
+}
+
+-(BOOL)sendAsBusinessDefaultSettingValue
+{
+    NSNumber *result = [self sendAsBusinessDefaultSetting];
+    if(result)
+    {
+        return [result boolValue];
+    }
+    else
+    {
+        NSArray *sortedPayments = [self.payments sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"remoteId" ascending:NO]]];
+        if([sortedPayments count]>0)
+        {
+            Payment* latestPayment = sortedPayments[0];
+            BOOL sendAsBusiness = [latestPayment.profileUsed caseInsensitiveCompare:@"business"]== NSOrderedSame;
+            self.sendAsBusinessDefaultSettingValue = sendAsBusiness;
+            return sendAsBusiness;
+        }
+    }
+    return NO;
 }
 
 @end

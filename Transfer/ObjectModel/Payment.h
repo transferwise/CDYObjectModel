@@ -1,8 +1,21 @@
 #import "_Payment.h"
 
 
+typedef NS_ENUM(NSUInteger, PaymentStatus) {
+    PaymentStatusUnknown = 0,
+    PaymentStatusCancelled,
+    PaymentStatusMatched,
+    PaymentStatusReceived,
+    PaymentStatusRefunded,
+    PaymentStatusSubmitted,
+    PaymentStatusTransferred,
+    PaymentStatusReceivedWaitingRecipient,
+    PaymentStatusUserHasPaid //Status when this device has a record of the user having pressed the "I have paid" button.
+};
+
 @interface Payment : _Payment
 
+- (PaymentStatus)status;
 - (NSString *)localizedStatus;
 - (NSOrderedSet*)enabledPayInMethods;
 - (NSString *)transferredAmountString;
@@ -20,5 +33,6 @@
 - (BOOL)moneyTransferred;
 - (NSString *)transferredDateString;
 - (BOOL)multiplePaymentMethods;
+- (NSString *)transferredCurrenciesString;
 
 @end

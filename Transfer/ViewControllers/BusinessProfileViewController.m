@@ -18,32 +18,23 @@
 
 @implementation BusinessProfileViewController
 
-- (id)init {
+- (id)init
+{
     self = [super initWithSource:[[BusinessProfileSource alloc] init] quickValidation:[QuickProfileValidationOperation businessProfileValidation]];
-    if (self) {
+    if (self)
+	{
         // Custom initialization
     }
     return self;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (id)initWithActionButtonTitle:(NSString *)title
+{
+	self = [super initWithSource:[[BusinessProfileSource alloc] init] quickValidation:[QuickProfileValidationOperation businessProfileValidation] buttonTitle:title];
+	if (self)
+	{
+		// Custom init
+	}
+	return self;
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-
-	[[GoogleAnalytics sharedInstance] sendScreen:@"Business profile"];
-}
-
-
 @end

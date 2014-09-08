@@ -14,6 +14,7 @@ extern const struct PersonalProfileAttributes {
 	__unsafe_unretained NSString *phoneNumber;
 	__unsafe_unretained NSString *postCode;
 	__unsafe_unretained NSString *readonlyFields;
+	__unsafe_unretained NSString *sendAsBusiness;
 	__unsafe_unretained NSString *state;
 } PersonalProfileAttributes;
 
@@ -25,6 +26,7 @@ extern const struct PersonalProfileFetchedProperties {
 } PersonalProfileFetchedProperties;
 
 @class User;
+
 
 
 
@@ -140,6 +142,20 @@ extern const struct PersonalProfileFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* sendAsBusiness;
+
+
+
+@property BOOL sendAsBusinessValue;
+- (BOOL)sendAsBusinessValue;
+- (void)setSendAsBusinessValue:(BOOL)value_;
+
+//- (BOOL)validateSendAsBusiness:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* state;
 
 
@@ -217,6 +233,15 @@ extern const struct PersonalProfileFetchedProperties {
 
 - (NSString*)primitiveReadonlyFields;
 - (void)setPrimitiveReadonlyFields:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveSendAsBusiness;
+- (void)setPrimitiveSendAsBusiness:(NSNumber*)value;
+
+- (BOOL)primitiveSendAsBusinessValue;
+- (void)setPrimitiveSendAsBusinessValue:(BOOL)value_;
 
 
 

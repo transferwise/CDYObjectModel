@@ -20,13 +20,19 @@
 #import "FeedbackCoordinator.h"
 #import "UIColor+Theme.h"
 #import "GoogleAnalytics.h"
-#import "AppsFlyer.h"
+#import "AppsFlyerTracker.h"
 #import "NanTracking.h"
 #import "FBSettings.h"
 #import "FBAppEvents.h"
 #import "Mixpanel.h"
 #import "AnalyticsCoordinator.h"
 #import "TransferMixpanel.h"
+#import "MOMStyle.h"
+#import "ConnectionAwareViewController.h"
+#import "UIFont+MOMStyle.h"
+#import "UIImage+Color.h"
+#import "NavigationBarCustomiser.h"
+#import <FBAppCall.h>
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
 
@@ -38,12 +44,9 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    if (IOS_7) {
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    }
-
+    
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
-
+	
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
 #if USE_TESTFLIGHT
@@ -68,6 +71,9 @@
     [[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
 #endif
     
+    [AppsFlyerTracker sharedTracker].appsFlyerDevKey = AppsFlyerDevKey;
+    [AppsFlyerTracker sharedTracker].appleAppID = AppsFlyerIdentifier;
+    
 
     [NanTracking setFbAppId:@"274548709260402"];
 
@@ -81,20 +87,9 @@
 
     [NanTracking trackNanigansEvent:@"" type:@"install" name:@"main"];
 
-    [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeTextColor : [UIColor whiteColor]}];
-
-    if (IOS_7) {
-        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavigationBar7.png"] forBarMetrics:UIBarMetricsDefault];
-		[[UITabBar appearance] setTintColor:[UIColor transferWiseBlue]];
-    } else {
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavigationBar.png"] forBarMetrics:UIBarMetricsDefault];
-    }
+	[NavigationBarCustomiser setDefault];
 
     [[UIBarButtonItem appearance] setBackgroundImage:[[UIImage alloc] init] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-
-    UIImage *backButton = [[UIImage imageNamed:@"NavBarBackButton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 5)];
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 
     ObjectModel *model = [[ObjectModel alloc] init];
     [self setObjectModel:model];
@@ -116,18 +111,10 @@
 
     MainViewController *frontViewController = [[MainViewController alloc] init];
     [frontViewController setObjectModel:model];
-
-    SettingsViewController *rearViewController = [[SettingsViewController alloc] init];
-    [rearViewController setObjectModel:model];
     
-    SWRevealViewController *mainRevealController = [[SWRevealViewController alloc]
-                                                    initWithRearViewController:rearViewController frontViewController:frontViewController];
+    ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:frontViewController];
     
-    mainRevealController.delegate = frontViewController;
-    
-	self.viewController = mainRevealController;
-
-	self.window.rootViewController = self.viewController;
+	self.window.rootViewController = root;
 	[self.window makeKeyAndVisible];
 	return YES;
 }
@@ -157,7 +144,7 @@
 
 #if USE_APPSFLYER_EVENTS
     // Track Installs, updates & sessions (must)
-    [AppsFlyer notifyAppID:AppsFlyerIdentifier];
+    [[AppsFlyerTracker sharedTracker] trackAppLaunch];
 #endif
 
     [[TransferwiseClient sharedClient] updateConfigurationOptions];
@@ -166,6 +153,20 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Saves changes in the application's managed object context before the application terminates.
     [self.objectModel saveContext];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    BOOL urlWasHandled = [FBAppCall handleOpenURL:url
+                                sourceApplication:sourceApplication
+                                  fallbackHandler:^(FBAppCall *call) {
+                                      MCLog(@"Unhandled deep link: %@", url);
+                                  }];
+    
+    return urlWasHandled;
 }
 
 @end

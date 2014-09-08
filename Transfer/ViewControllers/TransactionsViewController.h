@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "Constants.h"
+#import "TransferPayIPadViewController.h"
+#import "CancellableCellViewController.h"
 
 @class ObjectModel;
 
-@interface TransactionsViewController : UIViewController
+@interface TransactionsViewController : CancellableCellViewController<TransferPayIpadViewControllerDelegate>
 
 @property (nonatomic, strong) ObjectModel *objectModel;
+
+- (void)clearData;
 
 @end

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" rowHeight="70" id="3" customClass="PaymentCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3" id="2Qf-I3-x2d">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="12" userLabel="View - Sliding Content">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="800" text="Name label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4">
+                                <rect key="frame" x="46" y="12" width="153" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="250" constant="21" id="jqK-s3-cE2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@17"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="800" text="Money label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5">
+                                <rect key="frame" x="214" y="12" width="86" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="PfJ-FS-nxn"/>
+                                    <constraint firstAttribute="width" priority="250" constant="130" id="p81-Bn-Njh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@17"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Status label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6">
+                                <rect key="frame" x="46" y="36" width="109" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="lNb-U2-WlS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@17.CoreFont"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="800" text="Currency label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7">
+                                <rect key="frame" x="170" y="36" width="130" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="37x-jf-kKG"/>
+                                    <constraint firstAttribute="width" priority="250" constant="130" id="jXb-UQ-a3n"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@16.CoreFont"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n2z-dX-IdV">
+                                <rect key="frame" x="15" y="27" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="fKS-KS-lCd"/>
+                                    <constraint firstAttribute="width" constant="16" id="rxo-d1-Gfs"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="4" firstAttribute="top" secondItem="12" secondAttribute="top" constant="12" id="EXl-ug-FOd"/>
+                            <constraint firstItem="6" firstAttribute="baseline" secondItem="7" secondAttribute="baseline" id="Hgd-F8-dJK"/>
+                            <constraint firstItem="4" firstAttribute="trailing" secondItem="5" secondAttribute="leading" constant="-15" id="LzS-V3-6Dv"/>
+                            <constraint firstItem="4" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="Ok2-rL-dqz"/>
+                            <constraint firstAttribute="bottom" secondItem="6" secondAttribute="bottom" constant="12" id="QBc-eE-bcR"/>
+                            <constraint firstItem="7" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" id="QON-Z9-cjz"/>
+                            <constraint firstAttribute="centerY" secondItem="n2z-dX-IdV" secondAttribute="centerY" id="S0t-82-Qis"/>
+                            <constraint firstItem="4" firstAttribute="leading" secondItem="12" secondAttribute="leading" constant="46" id="b2r-6M-mIC"/>
+                            <constraint firstItem="n2z-dX-IdV" firstAttribute="leading" secondItem="12" secondAttribute="leading" constant="15" id="cN4-Jm-PC7"/>
+                            <constraint firstItem="4" firstAttribute="top" secondItem="5" secondAttribute="top" id="fhp-nX-MXn"/>
+                            <constraint firstItem="6" firstAttribute="trailing" secondItem="7" secondAttribute="leading" constant="-15" id="quE-AC-obx"/>
+                            <constraint firstAttribute="trailing" secondItem="5" secondAttribute="trailing" constant="20" id="tN4-M5-4wP"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="white"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <gestureRecognizers/>
+                <constraints>
+                    <constraint firstItem="12" firstAttribute="top" secondItem="2Qf-I3-x2d" secondAttribute="top" id="1ie-yW-fTN"/>
+                    <constraint firstAttribute="bottom" secondItem="12" secondAttribute="bottom" id="2FH-kC-0Ee"/>
+                    <constraint firstItem="12" firstAttribute="leading" secondItem="2Qf-I3-x2d" secondAttribute="leading" placeholder="YES" id="YYS-uf-UQt"/>
+                    <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" placeholder="YES" id="bdA-NM-gGV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="currencyLabel" destination="7" id="Eja-o7-jjb"/>
+                <outlet property="moneyLabel" destination="5" id="9"/>
+                <outlet property="nameLabel" destination="4" id="8"/>
+                <outlet property="slidingContentView" destination="12" id="1Wq-fk-nWD"/>
+                <outlet property="statusIcon" destination="n2z-dX-IdV" id="TdX-89-nlT"/>
+                <outlet property="statusLabel" destination="6" id="10"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

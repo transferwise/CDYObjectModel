@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DataEntryViewController.h"
+#import "ProfileEditViewController.h"
 
 @interface BusinessProfileViewController : ProfileEditViewController
+
+- (id)initWithActionButtonTitle:(NSString *)title;
 
 @end

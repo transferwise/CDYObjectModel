@@ -12,10 +12,12 @@
 
 @interface ObjectModel (Payments)
 
-- (NSFetchedResultsController *)fetchedControllerForAllPayments;
+- (NSArray *)allPayments;
 - (Payment *)createOrUpdatePaymentWithData:(NSDictionary *)rawData;
 - (NSArray *)listRemoteIdsForExistingPayments;
 - (void)removePaymentsWithIds:(NSArray *)array;
 - (BOOL)hasCompletedPayments;
+- (void)togglePaymentMadeForPayment:(Payment*)payment;
+
 
 @end

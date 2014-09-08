@@ -10,11 +10,13 @@
 
 typedef void (^TRWOperationSuccessBlock)(NSDictionary *response);
 typedef void (^TRWOperationErrorBlock)(NSError *error);
+typedef void (^TRWUploadOperationProgressBlock)(NSUInteger bytes, long long totalBytes, long long totalBytesExpected);
 
 @interface TransferwiseOperation (Private)
 
 - (void)setOperationSuccessHandler:(TRWOperationSuccessBlock)handler;
 - (void)setOperationErrorHandler:(TRWOperationErrorBlock)handler;
+- (void)setUploadProgressHandler:(TRWUploadOperationProgressBlock)handler;
 - (void)postData:(NSDictionary *)data toPath:(NSString *)postPath;
 - (void)getDataFromPath:(NSString *)path;
 - (void)getDataFromPath:(NSString *)path params:(NSDictionary *)params;

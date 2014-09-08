@@ -91,7 +91,7 @@
 }
 
 - (NSString *)bankTotalFeeStringWithCurrency {
-    return [[MoneyFormatter sharedInstance] formatAmount:self.bankTotalFee withCurrency:self.targetCurrency];
+    return [[MoneyFormatter sharedInstance] formatAmount:self.bankTotalFee withCurrency:self.sourceCurrency];
 }
 
 - (NSString *)bankPayOutStringWithCurrency{
@@ -121,6 +121,12 @@ NSNumberFormatter *__formatter;
 
 - (NSString *)paymentDateString {
     return [[CalculationResult paymentDateFormatter] stringFromDate:self.estimatedDelivery];
+}
+
+- (NSString *)calculatedPayWinAmountWithCurrency
+{
+    NSNumber *win = @([self.bankTotalFee floatValue] - [self.transferwiseTransferFee floatValue]);
+    return [[MoneyFormatter sharedInstance] formatAmount:win withCurrency:self.sourceCurrency];
 }
 
 - (NSString *)payWinAmountWithCurrency {

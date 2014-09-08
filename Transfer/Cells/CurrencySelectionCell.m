@@ -9,15 +9,20 @@
 #import "TextEntryCell.h"
 #import "CurrencySelectionCell.h"
 #import "Currency.h"
+#import "CurrencySelectorViewController.h"
+#import "MOMStyle.h"
 
 NSString *const TWCurrencySelectionCellIdentifier = @"TWCurrencySelectionCellIdentifier";
 
-@interface CurrencySelectionCell () <UIPickerViewDataSource, UIPickerViewDelegate, NSFetchedResultsControllerDelegate>
+@interface CurrencySelectionCell ()
+@property (nonatomic,assign) BOOL shouldRestoreNavBar;
+@end
 
-@property (nonatomic, strong) IBOutlet UITextField *currencyField;
+@interface CurrencySelectionCell () <NSFetchedResultsControllerDelegate, CurrencySelectorDelegate>
+
 @property (nonatomic, strong) NSFetchedResultsController *currencies;
 @property (nonatomic, strong) Currency *selectedCurrency;
-@property (nonatomic, strong) UIPickerView *picker;
+@property (weak, nonatomic) IBOutlet UIButton *selectCurrencyButton;
 
 @end
 
@@ -38,15 +43,6 @@ NSString *const TWCurrencySelectionCellIdentifier = @"TWCurrencySelectionCellIde
 - (void)awakeFromNib {
     [super awakeFromNib];
 
-    UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:CGRectZero];
-    [self setPicker:pickerView];
-    [pickerView setShowsSelectionIndicator:YES];
-    [pickerView setDataSource:self];
-    [pickerView setDelegate:self];
-
-    [self.currencyField setInputView:pickerView];
-
-    [self addDoneButton];
 }
 
 - (void)setAllCurrencies:(NSFetchedResultsController *)currencies {
@@ -59,31 +55,49 @@ NSString *const TWCurrencySelectionCellIdentifier = @"TWCurrencySelectionCellIde
 
 - (void)didSelectCurrency:(Currency *)currency {
     [self setSelectedCurrency:currency];
-    [self.currencyField setText:[currency formattedCodeAndName]];
-
+    [self.selectCurrencyButton setTitle:currency.code forState:UIControlStateNormal];
+    UIImage* flag = [UIImage imageNamed:currency.code];
+    if(!flag)
+    {
+        flag = [UIImage imageNamed:@"flag_default"];
+    }
+    [self.selectCurrencyButton setImage:flag forState:UIControlStateNormal];
     self.selectionHandler(currency);
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 1;
+- (IBAction)selectCurrencyTapped:(id)sender
+{
+    //dismiss keyboard
+    [self endEditing:YES];
+    self.shouldRestoreNavBar = ! self.hostForCurrencySelector.navigationController.navigationBarHidden;
+    if(self.shouldRestoreNavBar)
+    {
+        [self.hostForCurrencySelector.navigationController setNavigationBarHidden:YES animated:YES];
+    }
+    CurrencySelectorViewController* selector = [[CurrencySelectorViewController alloc] init];
+    selector.delegate = self;
+    selector.currencyArray = self.currencies.fetchedObjects;
+    [selector setSelectedCurrency:self.selectedCurrency];
+    selector.view.backgroundColor = [UIColor colorFromStyle:@"TWBlueHighlighted.alpha2"];
+    [selector presentOnViewController:self.hostForCurrencySelector];
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return [self.currencies.fetchedObjects count];
+
+-(void)currencySelector:(CurrencySelectorViewController *)controller didSelectCurrencyAtIndex:(NSUInteger)selectedCurrencyIndex
+{
+    Currency *selected = [self.currencies objectAtIndexPath:[NSIndexPath indexPathForRow:selectedCurrencyIndex inSection:0]];
+    [self didSelectCurrency:selected];
+    self.selectionHandler(selected);
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    Currency *currency = [self.currencies objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
-    return [currency formattedCodeAndName];
+-(void)currencySelectorwillHide:(CurrencySelectorViewController *)controller
+{
+    if(self.shouldRestoreNavBar)
+    {
+        [self.hostForCurrencySelector.navigationController setNavigationBarHidden:NO animated:YES];
+        self.shouldRestoreNavBar = NO;
+    }
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    Currency *currency = [self.currencies objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
-    [self didSelectCurrency:currency];
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    [self.picker reloadAllComponents];
-}
 
 @end

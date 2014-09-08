@@ -15,6 +15,7 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import "UIDevice-Hardware.h"
 #import "GoogleAnalytics.h"
+#import "NavigationBarCustomiser.h"
 
 @interface SupportCoordinator () <UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
@@ -60,18 +61,25 @@
     [self setPresentedOnController:controller];
     [self setEmailSubject:emailSubject];
 
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"support.sheet.title", nil)
-                                                             delegate:self
-                                                    cancelButtonTitle:nil
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:nil];
-
-    [self setWriteButtonIndex:[actionSheet addButtonWithTitle:NSLocalizedString(@"support.sheet.write.message", nil)]];
-    [self setCallButtonIndex:[actionSheet addButtonWithTitle:NSLocalizedString(@"support.sheet.call", nil)]];
-    NSInteger cancelButtonIndex = [actionSheet addButtonWithTitle:NSLocalizedString(@"button.title.cancel", nil)];
-    [actionSheet setCancelButtonIndex:cancelButtonIndex];
-
-    [actionSheet showInView:controller.view];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"support.sheet.title", nil)
+															 delegate:self
+													cancelButtonTitle:nil
+											   destructiveButtonTitle:nil
+													otherButtonTitles:nil];
+	if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel://"]])
+	{
+		[self setWriteButtonIndex:[actionSheet addButtonWithTitle:NSLocalizedString(@"support.sheet.write.message", nil)]];
+		
+		[self setCallButtonIndex:[actionSheet addButtonWithTitle:NSLocalizedString(@"support.sheet.call", nil)]];
+		NSInteger cancelButtonIndex = [actionSheet addButtonWithTitle:NSLocalizedString(@"button.title.cancel", nil)];
+		[actionSheet setCancelButtonIndex:cancelButtonIndex];
+		
+		[actionSheet showInView:controller.view];
+	}
+	else
+	{
+		[self sendMail];
+	}
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -90,8 +98,13 @@
         return;
     }
 
-    MCLog(@"Send mail pressed");
+    [self sendMail];
+}
 
+- (void)sendMail
+{
+	MCLog(@"Send mail pressed");
+	
     if (![MFMailComposeViewController canSendMail]) {
         TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"support.cant.send.email.title", nil)
                                                            message:NSLocalizedString(@"support.cant.send.email.message", nil)];
@@ -99,18 +112,20 @@
         [alertView show];
         return;
     }
-
+	
+    [NavigationBarCustomiser noStyling];
+    
     MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
     [controller setMailComposeDelegate:self];
     [controller setToRecipients:@[[NSString stringWithFormat:@"%@ <%@>", NSLocalizedString(@"support.email.to.name", nil), TRWSupportEmail]]];
     [controller setSubject:self.emailSubject ? self.emailSubject : NSLocalizedString(@"support.generic.email.subject", nil)];
     NSString *messageBody = [NSString stringWithFormat:NSLocalizedString(@"support.email.message.body.base", nil),
-                                                       [NSString stringWithFormat:@"https://transferwise.com/admin/search?q=%@", [self.objectModel.currentUser email]], // link to profile
-                                                       [[self.objectModel currentUser] displayName],
-                                                       [[UIDevice currentDevice] platformString],
-                                                       [[UIDevice currentDevice] systemVersion],
-                                                       [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
-    ];
+							 [NSString stringWithFormat:@"https://transferwise.com/admin/search?q=%@", [self.objectModel.currentUser email]], // link to profile
+							 [[self.objectModel currentUser] displayName],
+							 [[UIDevice currentDevice] platformString],
+							 [[UIDevice currentDevice] systemVersion],
+							 [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
+							 ];
     [controller setMessageBody:messageBody isHTML:YES];
     [self.presentedOnController presentViewController:controller animated:YES completion:^{
 		if (IOS_7) {
@@ -127,7 +142,8 @@
         [alertView show];
         return;
     }
-
+    
+    [NavigationBarCustomiser setDefault];
     [self.presentedOnController dismissViewControllerAnimated:YES completion:nil];
 }
 

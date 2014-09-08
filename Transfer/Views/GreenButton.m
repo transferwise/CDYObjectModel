@@ -8,30 +8,16 @@
 
 #import "GreenButton.h"
 #import "UIButton+Skinning.h"
+#import "MOMStyle.h"
+#import "Constants.h"
 
 @implementation GreenButton
 
-- (id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self commonSetup];
-    }
-    return self;
-}
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self commonSetup];
-
-}
-
 -(void)commonSetup
 {
-    [self setBackgroundColor:[UIColor clearColor]];
-    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self skinWithImage:[UIImage imageNamed:@"GreenButton.png"] insets:UIEdgeInsetsMake(0, 15, 0, 15)];
-    [self.titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
-    self.exclusiveTouch = YES;
+	[super configureWithCompoundStyle:@"greenButton"
+						  shadowColor:@"greenShadow"];
+	[super commonSetup];
 }
 
 @end

@@ -15,6 +15,7 @@
 #import "User.h"
 #import "GoogleAnalytics.h"
 #import "ObjectModel+Settings.h"
+#import "NavigationBarCustomiser.h"
 
 @interface FeedbackCoordinator () <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 
@@ -102,6 +103,7 @@
 		return;
 	}
 
+    [NavigationBarCustomiser noStyling];
 	MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
 	[controller setMailComposeDelegate:self];
 	[controller setToRecipients:@[TRWFeedbackEmail]];
@@ -168,6 +170,7 @@
     }
 
     [controller dismissViewControllerAnimated:YES completion:nil];
+    [NavigationBarCustomiser setDefault];
 }
 
 + (id)rootViewController {

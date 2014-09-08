@@ -7,12 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MultipleEntryCell.h"
 
-@interface DataEntryViewController : UITableViewController
+@interface DataEntryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MultipleEntryCellDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) NSArray *presentedSectionCells;
+@property (nonatomic, weak) IBOutlet UITableView* tableView;
 
 - (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath;
 - (void)textFieldEntryFinished;
 
+
+-(void)reloadSeparators;
+
+-(void)keyboardWillShow:(NSNotification*)note; // Only handles fullscreen iPhone tables. Ovverride for iPad
+-(void)keyboardWillHide:(NSNotification*)note; // Only handles fullscreen iPhone tables. Ovverride for iPad
+@property (nonatomic, assign) UIEdgeInsets cachedInsets;
 @end

@@ -18,9 +18,7 @@
 #import "PersonalProfileOperation.h"
 #import "EmailCheckOperation.h"
 #import "RecipientOperation.h"
-#import "RegisterWithoutPasswordOperation.h"
 #import "BusinessProfileOperation.h"
-#import "PaymentProfileViewController.h"
 #import "TRWAlertView.h"
 #import "ObjectModel.h"
 #import "User.h"
@@ -35,7 +33,7 @@
 #import "UploadMoneyViewController.h"
 #import "GoogleAnalytics.h"
 #import "BusinessProfileIdentificationViewController.h"
-#import "AppsFlyer.h"
+#import "AppsFlyerTracker.h"
 #import "CalculationResult.h"
 #import "LoggedInPaymentFlow.h"
 #import "NanTracking.h"
@@ -46,6 +44,9 @@
 #import "RecipientType.h"
 #import "RefundDetailsViewController.h"
 #import "Mixpanel.h"
+#import "PersonalPaymentProfileViewController.h"
+#import "BusinessPaymentProfileViewController.h"
+#import "RegisterOperation.h"
 
 @interface PaymentFlow ()
 
@@ -56,60 +57,71 @@
 
 @implementation PaymentFlow
 
-- (id)initWithPresentingController:(UINavigationController *)controller {
+- (id)initWithPresentingController:(UINavigationController *)controller
+{
     self = [super init];
 
-    if (self) {
+    if (self)
+	{
         _navigationController = controller;
     }
 
     return self;
 }
 
-- (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch {
+- (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch
+{
     [[AnalyticsCoordinator sharedInstance] paymentPersonalProfileScreenShown];
 
-    PaymentProfileViewController *controller = [[PaymentProfileViewController alloc] init];
+    PersonalPaymentProfileViewController *controller = [[PersonalPaymentProfileViewController alloc] init];
+	
     [controller setObjectModel:self.objectModel];
     [controller setAllowProfileSwitch:allowProfileSwitch];
-    [controller setAnalyticsReport:YES];
-    if (self.objectModel.pendingPayment.recipient) {
-        [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.confirm.payment.button.title", nil)];
-    } else {
-        [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.continue.to.recipient.button.title", nil)];
+	
+    if (self.objectModel.pendingPayment.recipient)
+	{
+        [controller setButtonTitle:NSLocalizedString(@"personal.profile.confirm.payment.button.title", nil)];
+    } else
+	{
+        [controller setButtonTitle:NSLocalizedString(@"personal.profile.continue.to.recipient.button.title", nil)];
     }
     [controller setProfileValidation:self];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)validateBusinessProfile:(NSManagedObjectID *)profile withHandler:(BusinessProfileValidationBlock)handler {
+- (void)validateBusinessProfile:(NSManagedObjectID *)profile withHandler:(BusinessProfileValidationBlock)handler
+{
     MCLog(@"validateBusinessProfile");
     BusinessProfileOperation *operation = [BusinessProfileOperation validateWithData:profile];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
-    
+    __weak typeof(self) weakSelf = self;
     [operation setSaveResultHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (error) {
+            if (error)
+			{
                 handler(error);
                 return;
             }
 
             handler(nil);
 
-            PendingPayment *payment = [self.objectModel pendingPayment];
+            PendingPayment *payment = [weakSelf.objectModel pendingPayment];
             [payment setProfileUsed:@"business"];
             [self.objectModel saveContext];
 
-            if ([self personalProfileFilled]) {
-                [self presentNextPaymentScreen];
-            } else {
+            if ([weakSelf personalProfileFilled])
+			{
+                [weakSelf presentNextPaymentScreen];
+            }
+			else
+			{
                 //TODO jaanus: this class should not show anything on screen
                 TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.needed.popup.title", nil) message:NSLocalizedString(@"personal.profile.needed.popup.message", nil)];
                 [alertView setLeftButtonTitle:NSLocalizedString(@"button.title.fill", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
 
                 [alertView setLeftButtonAction:^{
-                    [self presentPersonalProfileEntry:NO];
+                    [weakSelf presentPersonalProfileEntry:NO];
                 }];
 
                 [alertView show];
@@ -120,54 +132,71 @@
     [operation execute];
 }
 
-- (BOOL)personalProfileFilled {
+- (BOOL)personalProfileFilled
+{
     return [self.objectModel.currentUser personalProfileFilled];
 }
 
-- (void)validatePersonalProfile:(NSManagedObjectID *)profile withHandler:(PersonalProfileValidationBlock)handler {
+- (void)validatePersonalProfile:(NSManagedObjectID *)profile withHandler:(PersonalProfileValidationBlock)handler
+{
     MCLog(@"validateProfile");
     PersonalProfileOperation *operation = [PersonalProfileOperation validateOperationWithProfile:profile];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
 
+    __weak typeof(self) weakSelf = self;
     [operation setSaveResultHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (error) {
+            if (error)
+			{
                 handler(error);
                 return;
             }
 
-            if ([Credentials userLoggedIn]) {
+            if ([Credentials userLoggedIn])
+			{
                 handler(nil);
-                [self presentNextPaymentScreen];
+                [weakSelf presentNextPaymentScreen];
                 return;
             }
 
-            [self verifyEmail:self.objectModel.currentUser.email withHandler:handler];
+			[weakSelf verifyEmail:self.objectModel.currentUser.email withHandler:handler];
         });
     }];
 
     [operation execute];
 }
 
-- (void)verifyEmail:(NSString *)email withHandler:(PersonalProfileValidationBlock)handler {
+- (void)verifyEmail:(NSString *)email withHandler:(PersonalProfileValidationBlock)handler
+{
+    __weak typeof(self) weakSelf = self;
+    [self verifyEmail:email withResultBlock:^(BOOL available, NSError *error) {
+        if (error)
+		{
+            handler(error);
+        }
+		else if (!available)
+		{
+            [[GoogleAnalytics sharedInstance] sendAlertEvent:@"EmailTakenDuringPaymentAlert" withLabel:@""];
+			//TODO: Replace with login screen showing
+            NSError *emailError = [[NSError alloc] initWithDomain:TRWErrorDomain code:ResponseLocalError userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"personal.profile.email.taken.message", nil)}];
+            handler(emailError);
+        }
+		else
+		{
+            handler(nil);
+            [weakSelf presentNextPaymentScreen];
+        }
+    }];
+}
+
+- (void)verifyEmail:(NSString *)email withResultBlock:(EmailValidationResultBlock)resultBlock
+{
     MCLog(@"Verify email %@ available", email);
     EmailCheckOperation *operation = [EmailCheckOperation operationWithEmail:email];
     [self setExecutedOperation:operation];
-
-    [operation setResultHandler:^(BOOL available, NSError *error) {
-        if (error) {
-            handler(error);
-        } else if (!available) {
-            [[GoogleAnalytics sharedInstance] sendAlertEvent:@"EmailTakenDuringPaymentAlert" withLabel:@""];
-            NSError *emailError = [[NSError alloc] initWithDomain:TRWErrorDomain code:ResponseLocalError userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"personal.profile.email.taken.message", nil)}];
-            handler(emailError);
-        } else {
-            handler(nil);
-            [self presentNextPaymentScreen];
-        }
-    }];
-
+    [operation setResultHandler:resultBlock];
+	
     [operation execute];
 }
 
@@ -190,8 +219,9 @@
     [controller setTitle:NSLocalizedString(@"recipient.controller.payment.mode.title", nil)];
     [controller setFooterButtonTitle:NSLocalizedString(@"button.title.continue", nil)];
     [controller setRecipientValidation:self];
+    __weak typeof(self) weakSelf = self;
     [controller setAfterSaveAction:^{
-        [self presentNextPaymentScreen];
+        [weakSelf presentNextPaymentScreen];
     }];
     if(template)
     {
@@ -210,6 +240,21 @@
             [self presentPersonalProfileEntry:YES];
         }
     }];
+}
+
+- (void)presentBusinessProfileScreen
+{
+	dispatch_async(dispatch_get_main_queue(), ^{
+        MCLog(@"presentBusinessProfileScreen");
+		
+		BusinessPaymentProfileViewController *controller = [[BusinessPaymentProfileViewController alloc] init];
+		
+		[controller setObjectModel:self.objectModel];
+		[controller setButtonTitle:NSLocalizedString(@"business.profile.confirm.payment.button.title", nil)];
+		[controller setProfileValidation:self];
+        
+        [self.navigationController pushViewController:controller animated:YES];
+    });
 }
 
 - (void)presentPaymentConfirmation {
@@ -239,13 +284,15 @@
 	[controller setIdentificationRequired:(IdentificationRequired) [payment verificiationNeededValue]];
 	[controller setProposedPaymentPurpose:[payment proposedPaymentsPurpose]];
     [controller setCompletionMessage:NSLocalizedString(@"identification.creating.payment.message", nil)];
+    __weak typeof(self) weakSelf = self;
+
 	[controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, VerificationStepSuccessBlock successBlock, PaymentErrorBlock errorBlock) {
-        [self.objectModel performBlock:^{
+        [weakSelf.objectModel performBlock:^{
             [payment setSendVerificationLaterValue:skipIdentification];
             [payment setPaymentPurpose:paymentPurpose];
 
-            [self.objectModel saveContext:^{
-                [self commitPaymentWithSuccessBlock:successBlock ErrorHandler:errorBlock];
+            [weakSelf.objectModel saveContext:^{
+                [weakSelf commitPaymentWithSuccessBlock:successBlock ErrorHandler:errorBlock];
             }];
         }];
 	}];
@@ -277,15 +324,16 @@
         CreatePaymentOperation *operation = [CreatePaymentOperation validateOperationWithInput:paymentInput];
         [self setExecutedOperation:operation];
         [operation setObjectModel:self.objectModel];
+        __weak typeof(self) weakSelf = self;
 
         [operation setResponseHandler:^(NSManagedObjectID *paymentID, NSError *error) {
             if (error) {
-                self.paymentErrorHandler(error);
+                weakSelf.paymentErrorHandler(error);
                 return;
             }
 
             MCLog(@"Payment valid");
-            [self checkVerificationNeeded];
+            [weakSelf checkVerificationNeeded];
         }];
 
         [operation execute];
@@ -303,40 +351,40 @@
     VerificationRequiredOperation *operation = [VerificationRequiredOperation operation];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
-
+    __weak typeof(self) weakSelf = self;
     [operation setCompletionHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error) {
-                self.paymentErrorHandler(error);
+                weakSelf.paymentErrorHandler(error);
                 return;
             }
 
-            PendingPayment *pendingPayment = [self.objectModel pendingPayment];
+            PendingPayment *pendingPayment = [weakSelf.objectModel pendingPayment];
             MCLog(@"Any verification required? %d", pendingPayment.isAnyVerificationRequired);
             MCLog(@"Logged in? %d", [Credentials userLoggedIn]);
             if ([pendingPayment isAnyVerificationRequired] && [[pendingPayment profileUsed] isEqualToString:@"business"]) {
-                if(self.verificationSuccessBlock)
+                if(weakSelf.verificationSuccessBlock)
                 {
-                    self.verificationSuccessBlock();
-                    self.verificationSuccessBlock = nil;
+                    weakSelf.verificationSuccessBlock();
+                    weakSelf.verificationSuccessBlock = nil;
                 }
-                [self presentBusinessVerificationScreen];
+                [weakSelf presentBusinessVerificationScreen];
             } else if ([pendingPayment isAnyVerificationRequired]) {
                 MCLog(@"Present verification screen");
-                if(self.verificationSuccessBlock)
+                if(weakSelf.verificationSuccessBlock)
                 {
-                    self.verificationSuccessBlock();
-                    self.verificationSuccessBlock = nil;
+                    weakSelf.verificationSuccessBlock();
+                    weakSelf.verificationSuccessBlock = nil;
                 }
-                [self presentVerificationScreen];
+                [weakSelf presentVerificationScreen];
             } else if ([Credentials userLoggedIn]) {
                 MCLog(@"Update sender profile");
-                [self updateSenderProfile:^{
-                    [self handleNextStepOfPendingPaymentCommit];
+                [weakSelf updateSenderProfile:^{
+                    [weakSelf handleNextStepOfPendingPaymentCommit];
                 }];
             } else {
                 MCLog(@"Register user");
-                [self registerUser];
+                [weakSelf registerUser];
             }
         });
     }];
@@ -349,13 +397,14 @@
     [[GoogleAnalytics sharedInstance] sendScreen:@"Business verification"];
 
     BusinessProfileIdentificationViewController *controller = [[BusinessProfileIdentificationViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
+    __weak typeof(self) weakSelf = self;
+
     [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, VerificationStepSuccessBlock successBlock,PaymentErrorBlock errorBlock) {
-        [self.objectModel performBlock:^{
+        [weakSelf.objectModel performBlock:^{
             [payment setSendVerificationLaterValue:skipIdentification];
 
-            [self.objectModel saveContext:^{
-                [self commitPaymentWithSuccessBlock:successBlock ErrorHandler:errorBlock];
+            [weakSelf.objectModel saveContext:^{
+                [weakSelf commitPaymentWithSuccessBlock:successBlock ErrorHandler:errorBlock];
             }];
         }];
     }];
@@ -366,70 +415,85 @@
     MCAssert(NO);
 }
 
-- (void)registerUser {
+- (void)registerUser
+{
     MCLog(@"registerUser");
     User *user = [self.objectModel currentUser];
     MCAssert(user.personalProfile || (user.personalProfile && user.businessProfile));
     MCAssert(user.email);
 
     NSString *email = user.email;
+	NSString *password = user.password;
 
-    RegisterWithoutPasswordOperation *operation = [RegisterWithoutPasswordOperation operationWithEmail:email];
+    RegisterOperation *operation = [RegisterOperation operationWithEmail:email password:password];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
+    __weak typeof(self) weakSelf = self;
+
     [operation setCompletionHandler:^(NSError *error) {
         MCLog(@"Register result:%@", error);
-        if (error) {
-            self.paymentErrorHandler(error);
+        if (error)
+		{
+            weakSelf.paymentErrorHandler(error);
             return;
         }
-
-        [self updateSenderProfile:^{
-            [self handleNextStepOfPendingPaymentCommit];
-        }];
-    }];
+		
+		[weakSelf updateSenderProfile:^{
+			[weakSelf handleNextStepOfPendingPaymentCommit];
+		}];
+	}];
 
     [operation execute];
 }
 
-- (void)updateSenderProfile:(TRWActionBlock)completion {
+- (void)updateSenderProfile:(TRWActionBlock)completion
+{
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"updateSenderProfile");
-        if ([self.objectModel.currentUser.businessProfile isFilled]) {
+        if ([self.objectModel.currentUser.businessProfile isFilled])
+		{
             [self updateBusinessProfile:completion];
-        } else {
+        }
+		else
+		{
             [self updatePersonalProfile:completion];
         }
     });
 }
 
-- (void)updateBusinessProfile:(TRWActionBlock)completion {
+- (void)updateBusinessProfile:(TRWActionBlock)completion
+{
     MCLog(@"updateBusinessProfile");
     BusinessProfileOperation *operation = [BusinessProfileOperation commitWithData:self.objectModel.currentUser.businessProfile.objectID];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
+    __weak typeof(self) weakSelf = self;
 
-    [operation setSaveResultHandler:^(NSError *error) {
-        if (error) {
-            self.paymentErrorHandler(error);
+    [operation setSaveResultHandler:^(NSError *error)
+	{
+        if (error)
+		{
+            weakSelf.paymentErrorHandler(error);
             return;
         }
 
-        [self updatePersonalProfile:completion];
+        [weakSelf updatePersonalProfile:completion];
     }];
 
     [operation execute];
 }
 
-- (void)updatePersonalProfile:(TRWActionBlock)completion {
+- (void)updatePersonalProfile:(TRWActionBlock)completion
+{
     MCLog(@"updatePersonalProfile");
     PersonalProfileOperation *operation = [PersonalProfileOperation commitOperationWithProfile:self.objectModel.currentUser.personalProfile.objectID];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
+    __weak typeof(self) weakSelf = self;
 
     [operation setSaveResultHandler:^(NSError *error) {
         if (error) {
-            self.paymentErrorHandler(error);
+            weakSelf.paymentErrorHandler(error);
             return;
         }
 
@@ -445,19 +509,20 @@
     PaymentPurposeOperation *operation = [PaymentPurposeOperation operationWithPurpose:pendingPayment.paymentPurpose forProfile:pendingPayment.profileUsed];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
+    __weak typeof(self) weakSelf = self;
 
     [operation setResultHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error) {
-                self.paymentErrorHandler(error);
+                weakSelf.paymentErrorHandler(error);
                 return;
             }
 
             MCLog(@"uploadPaymentPurpose done");
-            PendingPayment *payment = [self.objectModel pendingPayment];
+            PendingPayment *payment = [weakSelf.objectModel pendingPayment];
             [payment removePaymentPurposeRequiredMarker];
-            [self.objectModel saveContext:^{
-                [self handleNextStepOfPendingPaymentCommit];
+            [weakSelf.objectModel saveContext:^{
+                [weakSelf handleNextStepOfPendingPaymentCommit];
             }];
         });
     }];
@@ -471,19 +536,20 @@
     UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:@"address" profile:profile filePath:[PendingPayment addressPhotoPath]];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
+    __weak typeof(self) weakSelf = self;
 
     [operation setCompletionHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error) {
-                self.paymentErrorHandler(error);
+                weakSelf.paymentErrorHandler(error);
                 return;
             }
 
             MCLog(@"uploadAddressVerification done");
             PendingPayment *payment = [self.objectModel pendingPayment];
             [payment removerAddressVerificationRequiredMarker];
-            [self.objectModel saveContext:^{
-                [self handleNextStepOfPendingPaymentCommit];
+            [weakSelf.objectModel saveContext:^{
+                [weakSelf handleNextStepOfPendingPaymentCommit];
             }];
         });
     }];
@@ -497,19 +563,20 @@
     UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:@"id" profile:profile filePath:[PendingPayment idPhotoPath]];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
+    __weak typeof(self) weakSelf = self;
 
     [operation setCompletionHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error) {
-                self.paymentErrorHandler(error);
+                weakSelf.paymentErrorHandler(error);
                 return;
             }
 
             MCLog(@"uploadIdVerification done");
             PendingPayment *payment = [self.objectModel pendingPayment];
             [payment removeIdVerificationRequiredMarker];
-            [self.objectModel saveContext:^{
-                [self handleNextStepOfPendingPaymentCommit];
+            [weakSelf.objectModel saveContext:^{
+                [weakSelf handleNextStepOfPendingPaymentCommit];
             }];
         });
     }];
@@ -528,10 +595,11 @@
     CreatePaymentOperation *operation = [CreatePaymentOperation commitOperationWithPayment:[payment objectID]];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
+    __weak typeof(self) weakSelf = self;
 
     [operation setResponseHandler:^(NSManagedObjectID *paymentID, NSError *error) {
         if (error) {
-            self.paymentErrorHandler(error);
+            weakSelf.paymentErrorHandler(error);
             return;
         }
 
@@ -552,14 +620,14 @@
 
 #if USE_APPSFLYER_EVENTS
         MCLog(@"Log AppsFlyer purchase %@ - %@", transferFee, currencyCode);
-        [AppsFlyer setCurrencyCode:currencyCode];
-        [AppsFlyer setAppUID:[self.objectModel.currentUser pReference]];
-        [AppsFlyer notifyAppID:AppsFlyerIdentifier event:@"purchase" eventValue:[__formatter stringFromNumber:transferFee]];
+        [[AppsFlyerTracker sharedTracker] setCurrencyCode:currencyCode];
+        [AppsFlyerTracker sharedTracker].customerUserID = [weakSelf.objectModel.currentUser pReference];
+        [[AppsFlyerTracker sharedTracker] trackEvent:@"purchase" withValue:[__formatter stringFromNumber:transferFee]];
 #endif
 
         [NanTracking trackNanigansEvent:self.objectModel.currentUser.pReference type:@"purchase" name:@"main" value:[__formatter stringFromNumber:transferFee]];
 
-        [self.objectModel performBlock:^{
+        [weakSelf.objectModel performBlock:^{
             Payment *createdPayment = (Payment *) [self.objectModel.managedObjectContext objectWithID:paymentID];
             NSMutableDictionary *details = [[NSMutableDictionary alloc] init];
             details[@"recipientType"] = createdPayment.recipient.type.type;
@@ -573,11 +641,11 @@
             [mixpanel track:@"Transfer created" properties:details];
         }];
 
-        [self presentUploadMoneyController:paymentID];
-        if(self.verificationSuccessBlock)
+        [weakSelf presentUploadMoneyController:paymentID];
+        if(weakSelf.verificationSuccessBlock)
         {
-            self.verificationSuccessBlock();
-            self.verificationSuccessBlock = nil;
+            weakSelf.verificationSuccessBlock();
+            weakSelf.verificationSuccessBlock = nil;
         }
     }];
 
@@ -601,8 +669,9 @@
     [controller setObjectModel:self.objectModel];
     [controller setCurrency:payment.sourceCurrency];
     [controller setPayment:payment];
+    __weak typeof(self) weakSelf = self;
     [controller setAfterValidationBlock:^{
-        [self presentNextPaymentScreen];
+        [weakSelf presentNextPaymentScreen];
     }];
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -638,16 +707,17 @@
     RecipientOperation *operation = [RecipientOperation createOperationWithRecipient:recipient.objectID];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
+    __weak typeof(self) weakSelf = self;
 
     [operation setResponseHandler:^(NSError *error) {
-        [self setExecutedOperation:nil];
+        [weakSelf setExecutedOperation:nil];
 
         if (error) {
-            self.paymentErrorHandler(error);
+            weakSelf.paymentErrorHandler(error);
             return;
         }
 
-        [self handleNextStepOfPendingPaymentCommit];
+        [weakSelf handleNextStepOfPendingPaymentCommit];
     }];
 
     [operation execute];
@@ -657,7 +727,8 @@
     MCLog(@"presentNextPaymentScreen");
     [self.objectModel performBlock:^{
         PendingPayment *payment = [self.objectModel pendingPayment];
-        if (!payment.recipient) {
+        if (!payment.recipient)
+		{
             [self presentRecipientDetails:[payment.user personalProfileFilled]];
         }
         else if ([payment.allowedRecipientTypes indexOfObject:payment.recipient.type] == NSNotFound)
@@ -672,16 +743,22 @@
             payment.recipient = nil;
             [self presentRecipientDetails:[payment.user personalProfileFilled] templateRecipient:template];
         }
-        else if (!payment.user.personalProfileFilled)
-        {
+		else if (!payment.user.personalProfileFilled)
+		{
             [self presentPersonalProfileEntry:YES];
         }
-        else if (payment.isFixedAmountValue && !payment.refundRecipient)
-        {
+		else if (payment.user.personalProfile.sendAsBusinessValue)
+		{
+			//reset flag so we won't be coming back here again
+			payment.user.personalProfile.sendAsBusinessValue = NO;
+			[self presentBusinessProfileScreen];
+		}
+		else if (payment.isFixedAmountValue && !payment.refundRecipient)
+		{
             [self presentRefundAccountViewController];
         }
-        else
-        {
+		else
+		{
             [self presentPaymentConfirmation];
         }
     }];

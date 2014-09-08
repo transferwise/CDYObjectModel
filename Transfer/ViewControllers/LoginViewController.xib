@@ -1,92 +1,176 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13A3028" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
-                <outlet property="footerMessageLabel" destination="15" id="18"/>
-                <outlet property="footerView" destination="8" id="14"/>
-                <outlet property="loginButton" destination="9" id="16"/>
-                <outlet property="view" destination="4" id="5"/>
+                <outlet property="emailSeparatorHeight" destination="fek-HK-kQ5" id="Tbv-kT-VgQ"/>
+                <outlet property="emailTextField" destination="Sqf-jN-fvd" id="pva-OL-Vn3"/>
+                <outlet property="forgotPasswordLabel" destination="Gzj-xE-Yjr" id="ZWy-f1-Rwh"/>
+                <outlet property="googleLoginButton" destination="2Sf-8q-59z" id="BRf-2K-vsj"/>
+                <outlet property="loginButton" destination="uSj-Tb-62N" id="wrl-Rn-Dv8"/>
+                <outlet property="orLabel" destination="2d1-LU-JcI" id="8nI-dK-9ah"/>
+                <outlet property="passwordSeparatorHeight" destination="MaW-ap-Zmh" id="uzN-SV-IhO"/>
+                <outlet property="passwordTextField" destination="UJr-a0-Czd" id="dAI-mg-ysB"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="yahooLoginButton" destination="Uqc-Ct-ZJ1" id="gAu-Xp-nGd"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="4" customClass="DismissKeyboardTableView">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sqf-jN-fvd" userLabel="Email TextField" customClass="FloatingLabelTextField">
+                    <rect key="frame" x="20" y="66" width="302" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" placeholder="YES" id="c5K-jG-eut"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OOe-X8-gxb" userLabel="Separator View">
+                    <rect key="frame" x="10" y="145" width="312" height="1"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="fek-HK-kQ5"/>
+                    </constraints>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGrey"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UJr-a0-Czd" userLabel="Password TextField" customClass="FloatingLabelTextField">
+                    <rect key="frame" x="20" y="155" width="302" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" placeholder="YES" id="DmN-tB-1bM"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7f-aP-kB6" userLabel="Separator View">
+                    <rect key="frame" x="10" y="234" width="312" height="1"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="MaW-ap-Zmh"/>
+                    </constraints>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGrey"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSj-Tb-62N" userLabel="Login Button" customClass="GreenButton">
+                    <rect key="frame" x="0.0" y="262" width="322" height="49"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="49" id="dEk-hB-rjg"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="addShadow" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="loginPressed:" destination="-1" eventType="touchUpInside" id="r5y-8P-piz"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eab-el-220" customClass="IntrinsicSizeUIView">
+                    <rect key="frame" x="0.0" y="311" width="322" height="257"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gzj-xE-Yjr" userLabel="Forgot Password Label">
+                            <rect key="frame" x="140" y="28" width="42" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@15.TWElectricblue"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2d1-LU-JcI" userLabel="Or Label">
+                            <rect key="frame" x="140" y="162" width="42" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="book.@18.CoreFont"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uqc-Ct-ZJ1" userLabel="Yahoo Login Button" customClass="YahooButton">
+                            <rect key="frame" x="161" y="207" width="161" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="yahooLogInPressed:" destination="-1" eventType="touchUpInside" id="3tO-LF-T4a"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Sf-8q-59z" userLabel="Google Login Button" customClass="GoogleButton">
+                            <rect key="frame" x="0.0" y="207" width="161" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="rAd-N1-RFz"/>
+                            </constraints>
+                            <state key="normal" title="Button">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="googleLogInPressed:" destination="-1" eventType="touchUpInside" id="f7w-fT-NTT"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="2Sf-8q-59z" secondAttribute="bottom" id="BWA-xI-3cW"/>
+                        <constraint firstAttribute="trailing" secondItem="Uqc-Ct-ZJ1" secondAttribute="trailing" id="GmF-1V-aAH"/>
+                        <constraint firstItem="Uqc-Ct-ZJ1" firstAttribute="leading" secondItem="2Sf-8q-59z" secondAttribute="trailing" id="I5e-Td-xNB"/>
+                        <constraint firstAttribute="centerX" secondItem="2d1-LU-JcI" secondAttribute="centerX" id="PWp-g6-eGw"/>
+                        <constraint firstItem="Uqc-Ct-ZJ1" firstAttribute="width" secondItem="2Sf-8q-59z" secondAttribute="width" id="Uux-Kh-sft"/>
+                        <constraint firstItem="2Sf-8q-59z" firstAttribute="top" secondItem="2d1-LU-JcI" secondAttribute="bottom" constant="24" id="Yi3-P4-IGW"/>
+                        <constraint firstItem="Gzj-xE-Yjr" firstAttribute="top" secondItem="Eab-el-220" secondAttribute="top" constant="28" id="gLe-c2-aWr"/>
+                        <constraint firstAttribute="centerX" secondItem="Gzj-xE-Yjr" secondAttribute="centerX" id="iTE-j6-WL2"/>
+                        <constraint firstAttribute="bottom" secondItem="Uqc-Ct-ZJ1" secondAttribute="bottom" id="j3W-5f-YtY"/>
+                        <constraint firstItem="Uqc-Ct-ZJ1" firstAttribute="height" secondItem="2Sf-8q-59z" secondAttribute="height" id="mNx-uM-lX7"/>
+                        <constraint firstItem="2Sf-8q-59z" firstAttribute="leading" secondItem="Eab-el-220" secondAttribute="leading" id="uWd-ge-OSE"/>
+                    </constraints>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="LightBlue"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="x7f-aP-kB6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="18s-q2-FnP"/>
+                <constraint firstItem="OOe-X8-gxb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="8SA-gA-9iv"/>
+                <constraint firstItem="uSj-Tb-62N" firstAttribute="bottom" secondItem="Eab-el-220" secondAttribute="top" id="Ehu-CB-vo4"/>
+                <constraint firstAttribute="trailing" secondItem="uSj-Tb-62N" secondAttribute="trailing" id="HIC-Pk-JPJ"/>
+                <constraint firstItem="uSj-Tb-62N" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IQG-Es-9cv"/>
+                <constraint firstItem="Sqf-jN-fvd" firstAttribute="trailing" secondItem="UJr-a0-Czd" secondAttribute="trailing" id="Jkd-Oy-Vml"/>
+                <constraint firstItem="Sqf-jN-fvd" firstAttribute="leading" secondItem="UJr-a0-Czd" secondAttribute="leading" id="KPT-LD-skT"/>
+                <constraint firstItem="x7f-aP-kB6" firstAttribute="top" secondItem="UJr-a0-Czd" secondAttribute="bottom" constant="9" id="Kjo-qL-fW3"/>
+                <constraint firstItem="UJr-a0-Czd" firstAttribute="top" secondItem="OOe-X8-gxb" secondAttribute="bottom" constant="9" id="MNW-jQ-nkJ"/>
+                <constraint firstItem="Sqf-jN-fvd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="MOr-k6-BXT"/>
+                <constraint firstAttribute="bottom" secondItem="Eab-el-220" secondAttribute="bottom" id="OBE-MG-xlt"/>
+                <constraint firstAttribute="trailing" secondItem="OOe-X8-gxb" secondAttribute="trailing" id="cKb-1a-cpk"/>
+                <constraint firstItem="UJr-a0-Czd" firstAttribute="width" secondItem="Sqf-jN-fvd" secondAttribute="width" id="cYf-NV-jm4"/>
+                <constraint firstAttribute="trailing" secondItem="Eab-el-220" secondAttribute="trailing" id="dii-nJ-N22"/>
+                <constraint firstAttribute="trailing" secondItem="x7f-aP-kB6" secondAttribute="trailing" id="eGQ-3N-H4t"/>
+                <constraint firstItem="uSj-Tb-62N" firstAttribute="top" secondItem="x7f-aP-kB6" secondAttribute="bottom" constant="27" id="qfS-D0-H5Z"/>
+                <constraint firstItem="OOe-X8-gxb" firstAttribute="top" secondItem="Sqf-jN-fvd" secondAttribute="bottom" constant="9" id="rYl-UV-Lzu"/>
+                <constraint firstItem="Sqf-jN-fvd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="66" id="sbd-nD-ZJR"/>
+                <constraint firstAttribute="trailing" secondItem="Sqf-jN-fvd" secondAttribute="trailing" id="wIu-Cw-Ezs"/>
+                <constraint firstItem="Eab-el-220" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zFW-vm-IMh"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <connections>
-                <outlet property="dataSource" destination="-1" id="6"/>
-                <outlet property="delegate" destination="-1" id="7"/>
-            </connections>
-        </tableView>
-        <view contentMode="scaleToFill" id="8">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="258"/>
-            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9" customClass="GreenButton">
-                    <rect key="frame" x="10" y="10" width="300" height="45"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <state key="normal" title="Log iN">
-                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="highlighted">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="loginPressed:" destination="-1" eventType="touchUpInside" id="17"/>
-                    </connections>
-                </button>
-                <label opaque="NO" clipsSubviews="YES" contentMode="left" text="You will be remembered on this device unti you manually log out of the apP" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="15">
-                    <rect key="frame" x="20" y="66" width="280" height="48"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="19">
-                    <rect key="frame" x="9" y="140" width="301" height="45"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <state key="normal" image="SignInWithGoogleButton.png">
-                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="highlighted">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="googleLogInPressed:" destination="-1" eventType="touchUpInside" id="21"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="20">
-                    <rect key="frame" x="9" y="193" width="301" height="45"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <state key="normal" image="SignInWithYahooButton.png">
-                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="highlighted">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="yahooLogInPressed:" destination="-1" eventType="touchUpInside" id="22"/>
-                    </connections>
-                </button>
-            </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
-    <resources>
-        <image name="SignInWithGoogleButton.png" width="301" height="45"/>
-        <image name="SignInWithYahooButton.png" width="301" height="45"/>
-    </resources>
 </document>

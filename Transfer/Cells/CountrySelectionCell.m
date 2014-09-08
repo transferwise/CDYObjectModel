@@ -12,124 +12,60 @@
 
 NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
 
-@interface CountrySelectionCell () <UIPickerViewDelegate, UIPickerViewDataSource, NSFetchedResultsControllerDelegate>
+@interface CountrySelectionCell ()
 
-@property (nonatomic, strong) UIPickerView *countryPicker;
 @property (nonatomic, strong) Country *selectedCountry;
 
 @end
 
 @implementation CountrySelectionCell
 
-- (id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+- (void)configureWithTitle:(NSString *)title value:(NSString *)value;
+{
+	[super configureWithTitle:title value:value];
+	[self.entryField addTarget:self action:@selector(editingEnded) forControlEvents:UIControlEventEditingDidEnd];
 }
 
-- (void)dealloc {
-    [self.allCountries setDelegate:nil];
+- (void)setValue:(NSString *)value
+{
+    [self setValueFromCode:value];
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-
-    UIPickerView *pickerView = [[UIPickerView alloc] init];
-    [self setCountryPicker:pickerView];
-    [self.entryField setInputView:pickerView];
-    [pickerView setDelegate:self];
-    [pickerView setDataSource:self];
-    [pickerView setShowsSelectionIndicator:YES];
-
-    [self addDoneButton];
+- (NSString *)value
+{
+	//if we have selected country, set selected value
+	//if we do not have selected country, but user has typed something, set to invalid
+	//if we do not have selected country and user hasn't typed anything, leave empty
+    return self.selectedCountry ? self.selectedCountry.iso3Code :
+		([self.entryField.text hasValue] ? @"invalid" : @"");
 }
 
-- (void)setAllCountries:(NSFetchedResultsController *)allCountries {
-    [_allCountries setDelegate:nil];
-    _allCountries = allCountries;
-    [_allCountries setDelegate:self];
+- (void)setTwoLetterCountryCode:(NSString *)code
+{
+	[self setValueFromCode:code];
 }
 
-
-- (void)setValue:(NSString *)value {
-    Country *selected = [self countryByCode:value];
-    [self setSelectedCountry:selected];
-    if (!selected) {
-        return;
-    }
-
+- (void)setValueFromCode:(NSString *)value
+{
+	Country *selected = [self.countrySelectionDelegate getCountryByCode:value];
+	
+    self.selectedCountry = selected;
     [self.entryField setText:selected.name];
-    NSInteger countryIndex = [self.allCountries indexPathForObject:selected].row;
-    [self.countryPicker selectRow:countryIndex inComponent:0 animated:NO];
 }
 
-- (NSString *)value {
-    return self.selectedCountry ? self.selectedCountry.iso3Code : @"";
-}
-
-
-- (Country *)countryByCode:(NSString *)code {
-    if (![code hasValue]) {
-        //TODO jaanus: use country code from locale?
-        return nil;
-    }
-
-    for (Country *country in self.allCountries.fetchedObjects) {
-        if ([country.iso3Code isEqualToString:code]) {
-            return country;
-        }
-    }
-
-    return nil;
-}
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return [self.allCountries.fetchedObjects count];
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    Country *country = [self.allCountries objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
-    return country.name;
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    Country *selected = [self.allCountries objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
-    [self setSelectedCountry:selected];
-    [self.entryField setText:selected.name];
-    if([self.delegate respondsToSelector:@selector(countrySelectionCell:selectedCountry:)])
-    {
-        [self.delegate countrySelectionCell:self selectedCountry:selected];
-    }
-}
-
-
-- (void)setTwoLetterCountryCode:(NSString *)code {
-    Country *country = nil;
-    for (Country *checked in self.allCountries.fetchedObjects) {
-        if (![[checked.iso2Code lowercaseString] isEqualToString:code]) {
-            continue;
-        }
-
-        country = checked;
-        break;
-    }
-
-    if (!country) {
-        return;
-    }
-
-    self.selectedCountry = country;
-    self.entryField.text = country.name;
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    [self.countryPicker reloadAllComponents];
+- (void)editingEnded
+{
+	if ([self.entryField.text hasValue])
+	{
+		//this will be either set to a correct country if user typed the name of the countr
+		//or nil, if value is incorrect
+		//if user selected country form the list then that selection will be tone after this
+		self.selectedCountry = [self.countrySelectionDelegate getCountryByName:self.entryField.text];
+	}
+	else
+	{
+		self.selectedCountry = nil;
+	}
 }
 
 @end

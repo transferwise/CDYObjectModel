@@ -13,6 +13,8 @@
 
 @implementation Recipient
 
+@synthesize image;
+
 - (NSString *)detailsRowOne {
     TypeFieldValue *value = [self.fieldValues firstObject];
     return [self presentationStringFromValue:value];
@@ -25,6 +27,23 @@
 
     TypeFieldValue *value = self.fieldValues[1];
     return [self presentationStringFromValue:value];
+}
+
+- (NSString *)presentationStringFromAllValues
+{
+	NSMutableString *details = [[NSMutableString alloc] init];
+	
+	for (TypeFieldValue *value in self.fieldValues) {
+		if (value.presentedValue.length > 0) {
+			[details appendString:[self presentationStringFromValue:value]];
+			[details appendString:@"\n"];
+		}
+    }
+	if(details.length > 1)
+    {
+        return [details substringToIndex:details.length - 1];
+    }
+    return @"";
 }
 
 - (NSString *)presentationStringFromValue:(TypeFieldValue *)value {
@@ -70,6 +89,10 @@
     data[@"name"] = self.name;
     data[@"currency"] = self.currency.code;
     data[@"type"] = self.type.type;
+    if(self.email)
+    {
+        data[@"email"] = self.email;
+    }
     for (TypeFieldValue *value in self.fieldValues) {
         data[value.valueForField.name] = value.value;
     }

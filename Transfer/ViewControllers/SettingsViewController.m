@@ -24,25 +24,22 @@
 #import "SupportCoordinator.h"
 #import "FeedbackCoordinator.h"
 #import "GoogleAnalytics.h"
+#import "NewPaymentViewController.h"
+#import"ConnectionAwareViewController.h"
+#import "MOMStyle.h"
 
 NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
-typedef NS_ENUM(short, SettingsRow) {
-    LogoutRow,
-    UserProfileRow,
-    PersonalProfileRow,
-    BusinessProfileRow,
-    SignUpRow,
-    FillerRow,
-    LogInRow,
-    ClaimAccountRow,
-    ContactSupport,
-    SendFeedback
-};
 
 @interface SettingsViewController ()
 
-@property (nonatomic, strong) NSArray *presentedRows;
+@property (weak, nonatomic) IBOutlet UIButton *logOutButton;
+@property (weak, nonatomic) IBOutlet UIButton *feedbackButton;
+@property (weak, nonatomic) IBOutlet UIButton *customerServiceButton;
+@property (weak, nonatomic) IBOutlet UIButton *infoButton;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sendAsBusinessLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *sendAsBusinessSwitch;
 
 @end
 
@@ -58,18 +55,9 @@ typedef NS_ENUM(short, SettingsRow) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Settings"]];
 
-    [self.tableView registerNib:[UINib nibWithNibName:@"SettingsTitleCell" bundle:nil] forCellReuseIdentifier:kSettingsTitleCellIdentifier];
-
-    [self.tableView setBackgroundView:nil];
-    [self.tableView setBackgroundColor:[UIColor settingsBackgroundColor]];
-
-    if (IOS_7) {
-        [self setEdgesForExtendedLayout:UIRectEdgeNone];
-        [self.tableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
-    }
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -78,191 +66,71 @@ typedef NS_ENUM(short, SettingsRow) {
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    NSMutableArray *presented = [NSMutableArray array];
-    if ([Credentials userLoggedIn]) {
-        [presented addObject:@(UserProfileRow)];
-        [presented addObject:@(ContactSupport)];
-        [presented addObject:@(SendFeedback)];
-        [presented addObject:@(PersonalProfileRow)];
-        [presented addObject:@(BusinessProfileRow)];
-        if ([Credentials temporaryAccount]) {
-            [presented addObject:@(ClaimAccountRow)];
-        }
-        [presented addObject:@(FillerRow)];
-        [presented addObject:@(LogoutRow)];
-    } else {
-        [presented addObject:@(ContactSupport)];
-        [presented addObject:@(LogInRow)];
-        [presented addObject:@(SignUpRow)];
-    }
-
-    [self setPresentedRows:presented];
-    [self.tableView reloadData];
-
-    UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPressed)];
-    [self.navigationItem setLeftBarButtonItem:cancel];
-}
-
-- (void)cancelPressed {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - Table view data source
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.presentedRows count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SettingsTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:kSettingsTitleCellIdentifier];
-    [cell.imageView setImage:nil];
-    [cell.textLabel setTextColor:[UIColor whiteColor]];
-    [cell setSelectionStyle:UITableViewCellSelectionStyleDefault];
-
-    SettingsRow code = (SettingsRow) [self.presentedRows[(NSUInteger) indexPath.row] shortValue];
-    switch (code) {
-        case LogoutRow:
-            [cell setTitle:NSLocalizedString(@"settings.row.logout", nil)];
-            break;
-        case UserProfileRow:
-            [cell setTitle:[self.objectModel.currentUser displayName]];
-            [cell.imageView setImage:[UIImage imageNamed:@"ProfileIcon.png"]];
-            [cell.textLabel setTextColor:[UIColor lightGrayColor]];
-            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            break;
-        case PersonalProfileRow:
-            [cell setTitle:NSLocalizedString(@"settings.row.personal.profile", nil)];
-            break;
-        case BusinessProfileRow:
-            [cell setTitle:NSLocalizedString(@"settings.row.business.profile", nil)];
-            break;
-        case SignUpRow:
-            [cell setTitle:NSLocalizedString(@"settings.row.signup", nil)];
-            break;
-        case LogInRow:
-            [cell setTitle:NSLocalizedString(@"settings.row.log.in", nil)];
-            break;
-        case FillerRow:
-            [cell setTitle:@""];
-            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            break;
-        case ClaimAccountRow:
-            [cell setTitle:NSLocalizedString(@"settings.row.claim.account", nil)];
-            break;
-        case ContactSupport:
-            [cell setTitle:NSLocalizedString(@"settings.row.contact.support", nil)];
-            break;
-        case SendFeedback:
-            [cell setTitle:NSLocalizedString(@"settings.row.send.feedback", nil)];
-            break;
-        default:
-            [cell setTitle:@"Unknown case..."];
-    }
-
-    return cell;
-}
-
-#pragma mark - Table view delegate
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSNumber *row = self.presentedRows[indexPath.row];
-    if ([row shortValue] == UserProfileRow || [row shortValue] == FillerRow) {
-        return nil;
-    }
-
-    return indexPath;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
-    SWRevealViewController *revealController = [self revealViewController];
-    //TODO jaanus: check if can get rid of this line
-    UINavigationController *pushOnNavigationController = (UINavigationController*)revealController.frontViewController;
-
-    //TODO jaanus: check if can get rid of [revealController revealToggle:nil] call
-
-    SettingsRow code = (SettingsRow) [self.presentedRows[(NSUInteger) indexPath.row] shortValue];
-    switch (code) {
-        case LogoutRow:
-            [[GoogleAnalytics sharedInstance] sendAppEvent:@"Signout"];
-            [[TransferwiseClient sharedClient] clearCredentials];
-            [revealController revealToggle:nil];
-            [revealController.frontViewController viewDidAppear:YES];
-            break;
-        case SignUpRow: {
-            SignUpViewController *controller = [[SignUpViewController alloc] init];
-            [controller setObjectModel:self.objectModel];
-            [pushOnNavigationController pushViewController:controller animated:YES];
-            [revealController revealToggle:nil];
-            break;
-        }
-        case PersonalProfileRow: {
-            PersonalProfileViewController *controller = [[PersonalProfileViewController alloc] init];
-            [controller setObjectModel:self.objectModel];
-            [controller setFooterButtonTitle:NSLocalizedString(@"personal.profile.save.button.title", nil)];
-            PersonalProfileCommitter *validation = [[PersonalProfileCommitter alloc] init];
-            [validation setObjectModel:self.objectModel];
-            [controller setProfileValidation:validation];
-            [revealController revealToggle:nil];
-            [[GoogleAnalytics sharedInstance] sendScreen:@"Personal profile"];
-            [pushOnNavigationController pushViewController:controller animated:YES];
-            break;
-        }
-        case BusinessProfileRow: {
-            BusinessProfileViewController *controller = [[BusinessProfileViewController alloc] init];
-            [controller setObjectModel:self.objectModel];
-            [controller setFooterButtonTitle:NSLocalizedString(@"business.profile.save.button.title", nil)];
-            BusinessProfileCommitter *validation = [[BusinessProfileCommitter alloc] init];
-            [validation setObjectModel:self.objectModel];
-            [controller setProfileValidation:validation];
-            [revealController revealToggle:nil];
-            [pushOnNavigationController pushViewController:controller animated:YES];
-            break;
-        }
-        case LogInRow: {
-            LoginViewController *controller = [[LoginViewController alloc] init];
-            [controller setObjectModel:self.objectModel];
-            [self.navigationController pushViewController:controller animated:YES];
-            [revealController revealToggle:nil];
-            [pushOnNavigationController pushViewController:controller animated:YES];
-        }
-            break;
-        case ClaimAccountRow: {
-            ClaimAccountViewController *controller = [[ClaimAccountViewController alloc] init];
-            [controller setObjectModel:self.objectModel];
-            [revealController revealToggle:nil];
-            [pushOnNavigationController pushViewController:controller animated:YES];
-            break;
-        }
-        case ContactSupport: {
-            [[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"menu"];
-            [[SupportCoordinator sharedInstance] presentOnController:self];
-            break;
-        }
-        case SendFeedback: {
-            [[FeedbackCoordinator sharedInstance] presentFeedbackEmail];
-            break;
-        }
-        default:
-            NSLog(@"Unhandled row code %d", code);
-    }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSNumber *row = self.presentedRows[indexPath.row];
-    CGFloat rowHeight = self.tableView.rowHeight;
-    if ([row shortValue] != FillerRow) {
-        return rowHeight;
-    }
-
-    UIEdgeInsets insets = [self.tableView contentInset];
+    self.titleLabel.text = NSLocalizedString(@"settings.title",nil);
     
-    CGFloat filledRows = ([self.presentedRows count] - 1) * rowHeight;
-    CGFloat fillHeight = CGRectGetHeight(self.tableView.frame) - filledRows - insets.top;
-    return fillHeight;
+    [self.customerServiceButton setTitle:NSLocalizedString(@"settings.row.contact.support",nil) forState:UIControlStateNormal];
+    [self.feedbackButton setTitle:NSLocalizedString(@"settings.row.send.feedback",nil) forState:UIControlStateNormal];
+    [self.logOutButton setTitle:NSLocalizedString(@"settings.row.logout",nil) forState:UIControlStateNormal];
+    [self.infoButton setTitle:NSLocalizedString(@"settings.row.about",nil) forState:UIControlStateNormal];
+    [self verticallyAlignTextAndImageOfButton:self.infoButton];
+    
+    self.sendAsBusinessLabel.text = NSLocalizedString(@"settings.row.send.as.business",nil);
+    User *user = [self.objectModel currentUser];
+    [self.sendAsBusinessSwitch setOnTintColor:[UIColor colorFromStyle:@"TWElectricBlue"]];
+    self.sendAsBusinessSwitch.on = user.sendAsBusinessDefaultSettingValue;
 }
+
+
+- (IBAction)infoTapped:(id)sender {
+}
+
+- (IBAction)customerServiceTapped:(id)sender {
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"Settings"];
+    [[SupportCoordinator sharedInstance] presentOnController:self.hostViewController];
+}
+
+- (IBAction)feedbackTapped:(id)sender {
+    [[FeedbackCoordinator sharedInstance] presentFeedbackEmail];
+}
+
+- (IBAction)logOutTapped:(id)sender
+{
+	[self dismiss];
+	[[NSNotificationCenter defaultCenter] postNotificationName:TRWLoggedOutNotification object:nil];
+}
+
+-(void) verticallyAlignTextAndImageOfButton:(UIButton *)button
+{
+    //If this is ever needed agian, kmove to a category on UIButton and add spacing argument.
+    
+    CGFloat spacing = 10.0f; // the amount of spacing to appear between image and title
+    button.imageView.backgroundColor=[UIColor clearColor];
+    button.titleLabel.textAlignment = NSTextAlignmentCenter;
+    // get the size of the elements here for readability
+    CGSize imageSize = button.imageView.frame.size;
+    CGSize titleSize = button.titleLabel.frame.size;
+    
+    // lower the text and push it left to center it
+    button.titleEdgeInsets = UIEdgeInsetsMake(0.0, - imageSize.width, - (imageSize.height   + spacing), 0.0);
+    
+    // the text width might have changed (in case it was shortened before due to
+    // lack of space and isn't anymore now), so we get the frame size again
+    titleSize = button.titleLabel.frame.size;
+    
+    // raise the image and push it right to center it
+    button.imageEdgeInsets = UIEdgeInsetsMake(- (titleSize.height + spacing), 0.0, 0.0, -     titleSize.width);
+}
+
+- (IBAction)profileUseSwitched:(id)sender {
+    
+    User *user = [self.objectModel currentUser];
+    user.sendAsBusinessDefaultSettingValue = self.sendAsBusinessSwitch.on;
+    [self.objectModel saveContext];
+}
+
+
+
+
+
 
 @end

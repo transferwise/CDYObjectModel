@@ -11,7 +11,6 @@
 #import "ObjectModel.h"
 #import "BankTransferViewController.h"
 #import "TransferBackButtonItem.h"
-#import "UINavigationController+StackManipulations.h"
 #import "CardPaymentViewController.h"
 #import "PaymentMethodSelectionView.h"
 #import "UIView+Loading.h"
@@ -24,123 +23,103 @@
 #import "ClaimAccountViewController.h"
 #import "Credentials.h"
 #import "FeedbackCoordinator.h"
+#import "SupportCoordinator.h"
+#import "TransferDetailsViewController.h"
 
 @interface UploadMoneyViewController ()
 
 @property (nonatomic, strong) BankTransferViewController *bankViewController;
 @property (nonatomic, strong) CardPaymentViewController *cardViewController;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
-
 @end
 
 @implementation UploadMoneyViewController
 
-- (id)init {
-    self = [super initWithNibName:@"UploadMoneyViewController" bundle:nil];
-    if (self) {
-        // Custom initialization
+- (void)viewDidLoad
+{
+	self.showButtonForIphone = YES;
+	
+	[self initControllers];
+    NSArray *viewControllers;
+    NSArray *titles;
+    if([self.payment multiplePaymentMethods])
+    {
+        viewControllers = @[self.cardViewController, self.bankViewController];
+        titles = @[NSLocalizedString(@"payment.method.card", nil), NSLocalizedString(@"payment.method.regular", nil)];
+        [self setTitle:NSLocalizedString(@"upload.money.title", @"")];
     }
-    return self;
-}
-
-- (void)viewDidLoad {
+    else
+    {
+        viewControllers = @[self.bankViewController];
+        titles = @[NSLocalizedString(@"payment.method.regular", nil)];
+        [self setTitle:NSLocalizedString(@"upload.money.title.single.method", @"")];
+    }
+    
+    [super configureWithControllers:viewControllers
+                             titles:titles
+                        actionTitle:NSLocalizedString(@"transferdetails.controller.button.support",nil)
+						actionStyle:@"blueButton"
+					   actionShadow:nil
+					 actionProgress:0.f];
+					
     [super viewDidLoad];
 
-    [self setTitle:NSLocalizedString(@"upload.money.title", @"")];
+    
+}
 
-    CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
+- (void)initControllers
+{
+	CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
     [self setCardViewController:cardController];
-    [self attachChildController:cardController];
     [cardController setPayment:self.payment];
+    __weak typeof(self) weakSelf = self;
     [cardController setResultHandler:^(BOOL success) {
         if (success) {
             [[GoogleAnalytics sharedInstance] sendScreen:@"Success"];
             [[GoogleAnalytics sharedInstance] sendAppEvent:@"PaymentMade" withLabel:@"debitcard"];
-            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.card.payment.success.title", nil)
-                                                               message:NSLocalizedString(@"upload.money.card.payment.success.message", nil)];
-            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.continue", nil) action:^{
-                [self pushNextScreen];
-                [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
-                    return YES;
-                }];
-            }];
-
-            [alertView show];
+			[[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
+				return YES;
+			}];
+			[weakSelf pushNextScreen];
         } else {
             [[GoogleAnalytics sharedInstance] sendEvent:@"ErrorDebitCardPayment" category:@"Error" label:@""];
             TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.card.no.payment.title", nil)
                                                                message:NSLocalizedString(@"upload.money.card.no.payment.message", nil)];
             [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-
             [alertView show];
         }
     }];
-
-    BankTransferViewController *bankController = [[BankTransferViewController alloc] init];
-    [self setBankViewController:bankController];
-    [self attachChildController:bankController];
+	
+	BankTransferViewController *bankController = [[BankTransferViewController alloc] init];
     [bankController setPayment:self.payment];
     [bankController setObjectModel:self.objectModel];
-    [bankController setHideBottomButton:self.hideBottomButton];
-    [bankController setShowContactSupportCell:self.showContactSupportCell];
-
-    if ([self.payment multiplePaymentMethods]) {
-        PaymentMethodSelectionView *selectionView = [PaymentMethodSelectionView loadInstance];
-        [selectionView setSegmentChangeHandler:^(NSInteger selectedIndex) {
-            [self selectionChangedToIndex:selectedIndex];
-        }];
-        [selectionView setTitles:@[NSLocalizedString(@"payment.method.card", nil), NSLocalizedString(@"payment.method.regular", nil)]];
-        [self.view addSubview:selectionView];
-
-        CGFloat selectionHeight = CGRectGetHeight(selectionView.frame);
-
-        NSArray *movedControllers = @[self.bankViewController, self.cardViewController];
-        for (UIViewController *controller in movedControllers) {
-            CGRect frame = controller.view.frame;
-            frame.origin.y += selectionHeight;
-            frame.size.height -= selectionHeight;
-            [controller.view setFrame:frame];
-        }
-
-        [self selectionChangedToIndex:0];
-    }
+    [self setBankViewController:bankController];
 }
 
-- (void)selectionChangedToIndex:(NSInteger)index {
-    if (index == 1) {
-        [[GoogleAnalytics sharedInstance] sendScreen:@"Bank transfer payment"];
-        [self.view bringSubviewToFront:self.bankViewController.view];
-    } else {
+- (void)willSelectViewController:(UIViewController *)controller atIndex:(NSUInteger)index
+{
+	if(controller == self.cardViewController)
+	{
 		[[GoogleAnalytics sharedInstance] sendScreen:@"Debit card payment"];
-        [self.cardViewController loadCardView];
-        [self.view bringSubviewToFront:self.cardViewController.view];
-    }
+		[self.cardViewController loadCardView];
+	}
+	else if(controller == self.bankViewController)
+	{
+		[[GoogleAnalytics sharedInstance] sendScreen:@"Bank transfer payment"];
+		self.bankViewController.tableView.contentInset = IPAD?UIEdgeInsetsMake(55, 0, 0, 0):UIEdgeInsetsMake(20, 0, 50, 0);
+		[self.bankViewController.tableView setContentOffset:CGPointMake(0,-self.bankViewController.tableView.contentInset.top)];
+	}
 }
 
-- (void)attachChildController:(UIViewController *)controller {
-    [self addChildViewController:controller];
-    [controller.view setFrame:self.view.bounds];
-    [self.view addSubview:controller.view];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
-
-    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
-    }]];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-
-	[self.navigationController flattenStack];
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    if(!self.navigationItem.leftBarButtonItem)
+    {
+        [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
+			[[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+		}]];
+    }
 }
 
 - (void)pushNextScreen {
@@ -167,10 +146,11 @@
         PullPaymentDetailsOperation *operation = [PullPaymentDetailsOperation operationWithPaymentId:[self.payment remoteId]];
         [self setExecutedOperation:operation];
         [operation setObjectModel:self.objectModel];
+        __weak typeof(self) weakSelf = self;
         [operation setResultHandler:^(NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hud hide];
-                [self setExecutedOperation:nil];
+                [weakSelf setExecutedOperation:nil];
 
                 if (error) {
                     TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.transaction.refresh.error.title", nil) message:NSLocalizedString(@"upload.money.transaction.refresh.error.message", nil)];
@@ -178,19 +158,23 @@
                     [alertView show];
                     return;
                 }
-
-                PaymentDetailsViewController *controller = [[PaymentDetailsViewController alloc] init];
-                [controller setObjectModel:self.objectModel];
-                [controller setPayment:(Payment *) [self.objectModel.managedObjectContext objectWithID:self.payment.objectID]];
-                [controller setShowContactSupportCell:YES];
-                [controller setFlattenStack:YES];
-                [self.navigationController pushViewController:controller animated:YES];
-
+				
+				TransferDetailsViewController *details = [[TransferDetailsViewController alloc] init];
+				details.payment = weakSelf.payment;
+				details.showClose = YES;
+				
+				[self.navigationController pushViewController:details animated:YES];
             });
         }];
 
         [operation execute];
     });
+}
+
+- (void)actionTappedWithController:(UIViewController *)controller atIndex:(NSUInteger)index
+{
+    NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
+    [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 }
 
 @end

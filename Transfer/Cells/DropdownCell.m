@@ -38,7 +38,7 @@ NSString *const TWDropdownCellIdentifier = @"TWDropdownCellIdentifier";
 
     [self.entryField setInputView:pickerView];
 
-    [self addDoneButton];
+    //[self addDoneButton];
 }
 
 - (NSString *)value {
@@ -81,7 +81,7 @@ NSString *const TWDropdownCellIdentifier = @"TWDropdownCellIdentifier";
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     id rowObject = [self.allElements objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
-    return [rowObject valueForKeyPath:@"title"];
+    return [[rowObject valueForKeyPath:@"title"] capitalizedString];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
@@ -91,7 +91,7 @@ NSString *const TWDropdownCellIdentifier = @"TWDropdownCellIdentifier";
 
 - (void)selectedElement:(id)rowObject {
     [self setSelectedObject:rowObject];
-    [self.entryField setText:[rowObject valueForKeyPath:@"title"]];
+    [self.entryField setText:[[rowObject valueForKeyPath:@"title"] capitalizedString]];
 }
 
 @end

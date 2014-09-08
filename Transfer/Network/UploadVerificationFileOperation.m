@@ -9,6 +9,7 @@
 #import "UploadVerificationFileOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "GoogleAnalytics.h"
+#import "Constants.h"
 
 NSString *const kUploadPath = @"/verification/uploadFile";
 
@@ -38,7 +39,12 @@ NSString *const kUploadPath = @"/verification/uploadFile";
     [self setOperationErrorHandler:^(NSError *error) {
         weakSelf.completionHandler(error);
     }];
-
+    [self setUploadProgressHandler:^(NSUInteger bytes, long long totalBytes, long long totalBytesExpected) {
+        float progress = 1.0f*totalBytes/totalBytesExpected;
+        NSDictionary* userInfo = @{TRWUploadProgressKey:@(progress),TRWUploadFileKey:weakSelf.verification};
+        [[NSNotificationCenter defaultCenter] postNotificationName:TRWUploadProgressNotification object:nil userInfo:userInfo];
+    }];
+    
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"FileUploaded"];
         weakSelf.completionHandler(nil);

@@ -17,30 +17,26 @@
 
 @implementation PersonalProfileViewController
 
-- (id)init {
+- (id)init
+{
     self = [super initWithSource:[[PersonalProfileSource alloc] init] quickValidation:[QuickProfileValidationOperation personalProfileValidation]];
-    if (self) {
+    if (self)
+	{
         // Custom initialization
     }
     return self;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (id)initWithActionButtonTitle:(NSString *)title
+{
+	self = [super initWithSource:[[PersonalProfileSource alloc] init]
+				 quickValidation:[QuickProfileValidationOperation personalProfileValidation]
+					 buttonTitle:title];
+	if (self)
+	{
+		// Custom init
+	}
+	return self;
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-}
-
 
 @end

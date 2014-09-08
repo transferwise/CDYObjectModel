@@ -65,6 +65,8 @@
     }
 }
 
+
+
 - (void)fillDeliveryDetails:(OHAttributedLabel *)label {
     if ([self.payment isCancelled]) {
         [self setCancelledDate:label];
@@ -81,7 +83,6 @@
         [self.tableView setTableHeaderView:headerView];
         return;
     } else {
-        [super fillDeliveryDetails:label];
         if(!self.payment.targetCurrency.paymentReferenceAllowedValue)
         {
             [self appendReferenceMessageToLabel:label];
@@ -142,7 +143,7 @@
 }
 
 - (IBAction)contactSupportPressed {
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"view transfer"];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"Transfer details"];
     NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
     [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 }

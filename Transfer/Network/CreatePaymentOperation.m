@@ -60,6 +60,7 @@ NSString *const kValidatePaymentPath = @"/payment/validate";
 
     [self.workModel performBlock:^{
         PendingPayment *payment = (PendingPayment *) [self.workModel.managedObjectContext objectWithID:self.input];
+		
         [self postData:[payment data] toPath:path];
     }];
 }

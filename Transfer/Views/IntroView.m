@@ -7,13 +7,15 @@
 //
 
 #import "IntroView.h"
-#import "OHAttributedLabel.h"
+#import "MOMStyle.h"
+#import "Constants.h"
+
 
 @interface IntroView ()
 
 @property (nonatomic, strong) IBOutlet UIImageView *introImage;
 @property (nonatomic, strong) IBOutlet UILabel *taglineLabel;
-@property (nonatomic, strong) IBOutlet OHAttributedLabel *messageLabel;
+@property (nonatomic, strong) IBOutlet UILabel *messageLabel;
 
 @end
 
@@ -27,15 +29,17 @@
     return self;
 }
 
-- (void)setImage:(UIImage *)image tagline:(NSString *)tagline message:(NSAttributedString *)message {
-    [self.introImage setImage:image];
-    [self.taglineLabel setText:tagline];
-    [self.messageLabel setAttributedText:message];
-
-    CGRect messageFrame = self.messageLabel.frame;
-    CGFloat perfectMessageHeight = [self.messageLabel sizeThatFits:CGSizeMake(CGRectGetWidth(messageFrame), CGFLOAT_MAX)].height;
-    messageFrame.size.height = perfectMessageHeight;
-    [self.messageLabel setFrame:messageFrame];
+- (void)setUpWithDictionary:(NSDictionary*)dictionary {
+    [self.introImage setImage:[UIImage imageNamed:dictionary[@"imageName"]]];
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    [style setLineSpacing:IPAD?12:7];
+    [style setAlignment:NSTextAlignmentCenter];
+    NSAttributedString *adjustedLineHeightTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(dictionary[@"titleRef"],nil) attributes:@{NSParagraphStyleAttributeName:style}];
+    [self.taglineLabel setAttributedText:adjustedLineHeightTitle];
+    [self.messageLabel setText:NSLocalizedString(dictionary[@"textRef"],nil)];
+    self.bgStyle = dictionary[@"bgStyle"];
+    self.taglineLabel.fontStyle = dictionary[@"titleFontStyle"];
+    self.messageLabel.fontStyle = dictionary[@"textFontStyle"];
 }
 
 @end

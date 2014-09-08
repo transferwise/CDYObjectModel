@@ -10,17 +10,18 @@
 #import "UIColor+Theme.h"
 #import "NSString+Validation.h"
 #import "TRWAlertView.h"
+#import "MOMStyle.h"
+#import <JVFloatLabeledTextField.h>
 
 NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 @interface TextEntryCell ()
 
-@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UITextField *entryField;
-@property (nonatomic, copy) TRWActionBlock doneButtonAction;
 @property (nonatomic, assign) BOOL valueModified;
 @property (nonatomic, strong) IBOutlet UIButton *errorButton;
 @property (nonatomic, copy) NSString *validationIssue;
+@property (nonatomic, strong) UIView* maskView;
 
 - (IBAction)errorButtonTapped;
 
@@ -28,92 +29,50 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
 @implementation TextEntryCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
-- (void)configureWithTitle:(NSString *)title value:(NSString *)value {
-    [self.titleLabel setText:title];
+- (void)configureWithTitle:(NSString *)title value:(NSString *)value
+{
+    [self.entryField setPlaceholder:title];
     [self setValue:value];
-
-    CGRect titleFrame = self.titleLabel.frame;
-    CGSize titleSize = [self.titleLabel sizeThatFits:CGSizeMake(NSUIntegerMax, CGRectGetHeight(titleFrame))];
-    CGFloat widthChange = titleSize.width - CGRectGetWidth(titleFrame);
-    titleFrame.size.width += widthChange;
-    [self.titleLabel setFrame:titleFrame];
-
-    CGRect entryFrame = self.entryField.frame;
-    entryFrame.origin.x += widthChange;
-    entryFrame.size.width -= widthChange;
-    [self.entryField setFrame:entryFrame];
+	[self.entryField addTarget:self action:@selector(editingEnded) forControlEvents:UIControlEventEditingDidEnd];
 }
 
-- (NSString *)value {
+- (NSString *)value
+{
     if([self.entryField text])
         return [self.entryField text];
     else
         return @"";
 }
 
-- (void)setValue:(NSString *)value { 
+- (void)setValue:(NSString *)value
+{
     [self.entryField setText:value];
 }
 
-- (void)setEditable:(BOOL)editable {
+- (void)setEditable:(BOOL)editable
+{
     [self.entryField setEnabled:editable];
-    [self.titleLabel setTextColor:(editable ? [UIColor blackColor] : [UIColor disabledEntryTextColor])];
-    [self.entryField setTextColor:(editable ? [UIColor blackColor] : [UIColor disabledEntryTextColor])];
+    [TextEntryCell setTextColor:self.entryField editable:editable];
 }
 
-- (void)addDoneButton {
-    __block __weak TextEntryCell *weakSelf = self;
-    [self addDoneButtonToField:self.entryField withAction:^{
-        [weakSelf.entryField.delegate textFieldShouldReturn:weakSelf.entryField];
-    }];
+- (BOOL)editable
+{
+	return [self.entryField isEnabled];
 }
 
-- (void)addDoneButtonToField:(UITextField *)field withAction:(TRWActionBlock)action {
-    [self setDoneButtonAction:action];
-
-    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 20, 44)];
-    [toolbar setBarStyle:UIBarStyleBlackTranslucent];
-
-    UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    //TODO jaanus: button title based on entry return key type
-    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed)];
-    [toolbar setItems:@[flexible, done]];
-    [field setInputAccessoryView:toolbar];
-}
-
-- (void)setValueWhenEditable:(NSString *)value {
-    if (![self.entryField isEnabled]) {
+- (void)setValueWhenEditable:(NSString *)value
+{
+    if (![self.entryField isEnabled])
+	{
         return;
     }
 
     [self.entryField setText:value];
 }
 
-- (void)donePressed {
-    if (self.doneButtonAction) {
-        self.doneButtonAction();
-    }
-}
-
-- (BOOL)shouldChangeCharactersInRange:(NSRange)range
-					replacementString:(NSString *)string
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
 	NSString *modified = [self.entryField.text stringByReplacingCharactersInRange:range withString:string];
-	
 	if(![self validateAlphaNumeric:modified])
 	{
 		return NO;
@@ -133,6 +92,19 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
     return YES;
 }
 
+- (void)textFieldEntryFinished
+{
+	//used in inheriting classes
+}
+
+- (void)editingEnded
+{
+	if ([self.delegate respondsToSelector:@selector(textEntryFinishedInCell:)])
+	{
+		[self.delegate textEntryFinishedInCell:self];
+	}
+}
+
 - (void)markIssue:(NSString *)issueMessage
 {
     [self setValidationIssue:issueMessage];
@@ -146,7 +118,7 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
         return;
     }
 
-    TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:[self.titleLabel text] message:self.validationIssue];
+    TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:self.entryField.placeholder message:self.validationIssue];
     [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
     [alertView show];
 }
@@ -168,6 +140,37 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 	NSCharacterSet *unwantedCharacters = [alphanumerics invertedSet];
 	
     return ([value rangeOfCharacterFromSet:unwantedCharacters].location == NSNotFound);
+}
+
+- (void)setGrayedOut:(BOOL)isGrayedOut
+{
+	if (isGrayedOut)
+	{
+		if (!self.maskView)
+		{
+			self.maskView = [[UIView alloc] initWithFrame:self.contentView.frame];
+			self.maskView.backgroundColor = [UIColor colorFromStyle:@"white"];
+			self.maskView.alpha = 0.8f;
+		}
+		
+		[self.contentView addSubview:self.maskView];
+		[self.contentView bringSubviewToFront:self.maskView];
+	}
+	else
+	{
+		if (self.maskView && self.maskView.superview)
+		{
+			[self.maskView removeFromSuperview];
+		}
+	}
+	
+	self.editable = !isGrayedOut;
+	self.userInteractionEnabled = !isGrayedOut;
+}
+
++ (void)setTextColor:(UITextField *)textField editable:(BOOL)editable
+{
+	[textField setTextColor:(editable ? [UIColor colorFromStyle:textField.fontStyle] : [UIColor colorFromStyle:@"CoreFont"])];
 }
 
 @end

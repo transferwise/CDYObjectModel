@@ -27,6 +27,7 @@
 
 @property (nonatomic, copy) TRWOperationSuccessBlock operationSuccessHandler;
 @property (nonatomic, copy) TRWOperationErrorBlock operationErrorHandler;
+@property (nonatomic, copy) TRWUploadOperationProgressBlock uploadProgressHandler;
 @property (nonatomic, strong) ObjectModel *workModel;
 
 @end
@@ -77,12 +78,16 @@
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setThreadPriority:0.1];
     [operation setQueuePriority:NSOperationQueuePriorityLow];
+    __weak typeof(self) weakSelf = self;
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *op, id responseObject) {
         NSInteger statusCode = op.response.statusCode;
         MCLog(@"%@ - Success:%d - %d", op.request.URL.path, statusCode, [responseObject length]);
         if (statusCode != 200 || !responseObject) {
             NSError *error = [NSError errorWithDomain:TRWErrorDomain code:ResponseServerError userInfo:@{}];
-            self.operationErrorHandler(error);
+            if (weakSelf.operationErrorHandler)
+            {
+                weakSelf.operationErrorHandler(error);
+            }
             return;
         }
 
@@ -93,16 +98,24 @@
         if (jsonError) {
             MCLog(@"Error:%@", jsonError);
             NSError *error = [NSError errorWithDomain:TRWErrorDomain code:ResponseFormatError userInfo:@{NSUnderlyingErrorKey : jsonError}];
-            self.operationErrorHandler(error);
+            if (weakSelf.operationErrorHandler)
+            {
+                weakSelf.operationErrorHandler(error);
+            }
             return;
         }
-
-        self.operationSuccessHandler(response);
+        if(weakSelf.operationSuccessHandler)
+        {
+            weakSelf.operationSuccessHandler(response);
+        }
     } failure:^(AFHTTPRequestOperation *op, NSError *error) {
         MCLog(@"Error:%@", error);
         if (op.response.statusCode == 410) {
             NSError *createdError = [NSError errorWithDomain:TRWErrorDomain code:ResponseCallGoneError userInfo:@{}];
-            self.operationErrorHandler(createdError);
+            if (weakSelf.operationErrorHandler)
+            {
+                weakSelf.operationErrorHandler(createdError);
+            }
             return;
         }
 
@@ -110,19 +123,29 @@
 
         if ([responseData length] == 0) {
             MCLog(@"No recovery information");
-            self.operationErrorHandler(error);
+            if (weakSelf.operationErrorHandler)
+            {
+                weakSelf.operationErrorHandler(error);
+            }
             return;
         }
 
         NSError *jsonError = nil;
         NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonError];
         if (jsonError) {
-            NSLog(@"Error JSON read error:%@", jsonError);
-            self.operationErrorHandler(error);
+            MCLog(@"Error JSON read error:%@", jsonError);
+            if (weakSelf.operationErrorHandler)
+            {
+                weakSelf.operationErrorHandler(error);
+            }
         } else {
-            [self handleErrorResponseData:response];
+            [weakSelf handleErrorResponseData:response];
         }
     }];
+    if(self.uploadProgressHandler)
+    {
+        [operation setUploadProgressBlock:self.uploadProgressHandler];
+    }
     [operation start];
 }
 

@@ -6,12 +6,19 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-#import "DataEntryViewController.h"
+#import "DismissKeyboardViewController.h"
+
+@protocol ResetPasswordViewControllerDelegate
+
+- (void)resetEmailSent:(NSString *)email;
+
+@end
 
 @class ObjectModel;
 
-@interface ResetPasswordViewController : DataEntryViewController
+@interface ResetPasswordViewController : DismissKeyboardViewController<UITextFieldDelegate>
 
-@property (nonatomic, strong) ObjectModel *objectModel;
+@property (nonatomic, strong) ObjectModel* objectModel;
+@property (weak, nonatomic) id<ResetPasswordViewControllerDelegate> delegate;
 
 @end

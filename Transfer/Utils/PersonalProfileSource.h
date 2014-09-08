@@ -10,4 +10,7 @@
 
 @interface PersonalProfileSource : ProfileSource
 
+- (BOOL)isPasswordLengthValid;
+- (BOOL)arePasswordsMatching;
+
 @end

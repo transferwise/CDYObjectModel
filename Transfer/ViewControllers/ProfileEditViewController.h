@@ -6,21 +6,34 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import "DataEntryViewController.h"
+#import "SuggestionDataEntryViewController.h"
+#import "Constants.h"
 
 @class ProfileSource;
-@class PhoneBookProfileSelector;
 @class ObjectModel;
-@class CountriesOperation;
 @class QuickProfileValidationOperation;
 
-@interface ProfileEditViewController : DataEntryViewController
+@protocol ProfileEditViewControllerDelegate <NSObject>
 
-@property (nonatomic, strong) NSString *footerButtonTitle;
+- (void)changeActionButtonTitle:(NSString *)title andAction:(TRWActionBlock)action;
+
+@end
+
+@interface ProfileEditViewController : SuggestionDataEntryViewController
+
+@property (nonatomic, weak) id<ProfileEditViewControllerDelegate> delegate;
 @property (nonatomic, strong) id profileValidation;
 @property (nonatomic, strong) ObjectModel *objectModel;
-@property (nonatomic, assign) BOOL analyticsReport;
+@property (nonatomic) BOOL allowProfileSwitch;
+@property (nonatomic) BOOL isExisting;
+@property (nonatomic) BOOL showFooterViewForIpad;
 
-- (id)initWithSource:(ProfileSource *)source quickValidation:(QuickProfileValidationOperation *)quickValidation;
-- (void)setPresentProfileSource:(ProfileSource *)source reloadView:(BOOL)reload;
+- (id)initWithSource:(ProfileSource *)source
+	 quickValidation:(QuickProfileValidationOperation *)quickValidation;
+- (id)initWithSource:(ProfileSource *)source
+	 quickValidation:(QuickProfileValidationOperation *)quickValidation
+		 buttonTitle:(NSString *)buttonTitle;
+
+- (void)validateProfile;
+
 @end

@@ -1,0 +1,255 @@
+//
+//  MOMStyleFactory
+//
+//  Created by Mats Trovik on 15/11/2013.
+//  Copyright (c) 2014 Matsomatic Limited All rights reserved.
+//
+
+#import "MOMStyleFactory.h"
+#import "MOMBasicStyle.h"
+#import "MOMCompoundStyle.h"
+
+#define defaultStyleSheetName @"Styles"
+
+@implementation MOMStyleFactory
+
++(NSCache*)styleLibrary
+{
+    static NSCache* styleLibrary;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        styleLibrary = [[NSCache alloc] init];
+    });
+    return styleLibrary;
+}
+
++(NSCache*)baseStyleLibrary
+{
+    static NSCache* baseStyleLibrary;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        baseStyleLibrary = [[NSCache alloc] init];
+    });
+    return baseStyleLibrary;
+}
+
+static NSDictionary* styleData;
+
++(NSDictionary*)styleDataDictionary
+{
+    if(!styleData)
+    {
+        [self setStyleData:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:defaultStyleSheetName ofType:@"plist"]]];
+    }
+    
+    return styleData;
+}
+
++(void)setStyleData:(NSDictionary*)newStyleData
+{
+    styleData = newStyleData;
+    [[self styleLibrary] removeAllObjects];
+    [[self baseStyleLibrary] removeAllObjects];
+}
+
+
++(MOMBaseStyle *)getStyleForIdentifier:(NSString *)styleName
+{
+    styleName = [styleName lowercaseString];
+    
+    MOMBaseStyle* result = [[self styleLibrary] objectForKey:styleName];
+    
+    if(!result)
+    {
+        NSArray* styles = [styleName componentsSeparatedByString:@"."];
+        for (NSString* identifier in styles)
+        {
+            MOMBaseStyle* currentStyle = [MOMStyleFactory getBaseStyleForIdentifier:identifier];
+            if(currentStyle)
+            {
+                currentStyle = [currentStyle styleWrappedAsComposite];
+                if(result)
+                {
+                    [result addStyle:currentStyle];
+                }
+                else
+                {
+                    result = currentStyle;
+                }
+            }
+        }
+        if(result)
+        {
+            [[self styleLibrary] setObject:result forKey:styleName];
+        }
+    }
+    return result;
+}
+
++(MOMBaseStyle *)getBaseStyleForIdentifier:(NSString *)identifier
+{
+    identifier = [identifier lowercaseString];
+    MOMBaseStyle* result = [[self baseStyleLibrary] objectForKey:identifier];
+    
+    if(!result)
+    {
+        if([identifier rangeOfString:@"@"].location == 0)
+        {
+            NSString* fontSizeString = [identifier substringFromIndex:1];
+            NSRange startBrace = [identifier rangeOfString:@"{"];
+            NSRange endBrace = [identifier rangeOfString:@"}"];
+            NSRange comma = [identifier rangeOfString:@","];
+            if(comma.location != NSNotFound && startBrace.location != NSNotFound && endBrace.location != NSNotFound && startBrace.location < comma.location && comma.location < endBrace.location)
+            {
+                if(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
+                {
+                    fontSizeString = [identifier substringWithRange:NSMakeRange(startBrace.location + 1, comma.location-startBrace.location - 1)];
+                }
+                else
+                {
+                    fontSizeString = [identifier substringWithRange:NSMakeRange(comma.location + 1, endBrace.location-comma.location - 1)];
+                }
+            }
+            CGFloat fontSize = [fontSizeString floatValue];
+            MOMBasicStyle *fontstyle = [[MOMBasicStyle alloc] init];
+            fontstyle.fontSize = @(fontSize);
+            result = fontstyle;
+            [[self baseStyleLibrary] setObject:result forKey:identifier];
+        }
+        else
+        {
+            NSDictionary* styleDataDictionary =[self styleDataDictionary][@"base"];
+            for(NSString* groupKey in [styleDataDictionary allKeys] )
+            {
+                NSDictionary* styleGroup = [styleDataDictionary valueForKey:groupKey];
+                for (NSString* key in [styleGroup allKeys])
+                {
+                    if ([key caseInsensitiveCompare:identifier]==NSOrderedSame)
+                    {
+                        NSDictionary* styleData = styleGroup[key];
+                        if([groupKey caseInsensitiveCompare:@"font"]==NSOrderedSame
+                           ||
+                           [groupKey caseInsensitiveCompare:@"color"]==NSOrderedSame
+                           ||
+                           [groupKey caseInsensitiveCompare:@"basic"]==NSOrderedSame)
+                        {
+                            MOMBasicStyle* fontStyle = [[MOMBasicStyle alloc] init];
+                            fontStyle.fontName = styleData[@"fontName"];
+                            fontStyle.fontSize = styleData[@"fontSize"];
+                            [self setColorPropertiesFromData:styleData onColorStyle:fontStyle];
+                            result = fontStyle;
+                        }
+                        else if ([groupKey caseInsensitiveCompare:@"appearance"]==NSOrderedSame)
+                        {
+                            Class class = NSClassFromString(styleData[@"class"]);
+                            if(class && [class isSubclassOfClass:([MOMAppearanceStyle class])])
+                            {
+                                id appearanceStyle = [[class alloc] init];
+                                if(appearanceStyle)
+                                {
+                                    NSMutableDictionary* keyValues = [NSMutableDictionary dictionaryWithDictionary:styleData];
+                                    [keyValues removeObjectForKey:@"class"];
+                                    for(NSString *key in [keyValues allKeys])
+                                    {
+                                        [appearanceStyle setValue:[keyValues objectForKey:key] forKey:key];
+                                    }
+                                    result = appearanceStyle;
+                                }
+                            }
+                        }
+                        if
+                            (result)
+                        {
+                            [[self baseStyleLibrary] setObject:result forKey:identifier];
+                            break;
+                        }
+                    }
+                    if(result) break;
+                }
+                if(result) break;
+            }
+        }
+    }
+    return result;
+}
+
++(MOMCompoundStyle*)compoundStyleForIdentifier:(NSString*)identifier
+{
+    identifier = [identifier lowercaseString];
+    MOMBaseStyle* result = [[self styleLibrary] objectForKey:identifier];
+    
+    if(!result)
+    {
+        NSDictionary* compoundStyleDataDictionary =[self styleDataDictionary][@"compound"];
+        for(NSString* groupKey in [compoundStyleDataDictionary allKeys])
+        {
+            if([groupKey caseInsensitiveCompare:identifier]==NSOrderedSame)
+            {
+                result = [[MOMCompoundStyle alloc] init];
+                NSDictionary* compoundStyleDictionary = compoundStyleDataDictionary[groupKey];
+                for (NSString* key in [compoundStyleDictionary allKeys])
+                {
+                    [result setValue:[MOMStyleFactory getStyleForIdentifier:compoundStyleDictionary[key]] forKey:key];
+                }
+                [[self styleLibrary] setObject:result forKey:identifier];
+            }
+            if (result) break;
+        }
+        
+    }
+    
+    return ([result class]==[MOMCompoundStyle class])?(MOMCompoundStyle *)result:nil;
+}
+
++(void)setColorPropertiesFromData:(NSDictionary *)data onColorStyle:(MOMBasicStyle*)style
+{
+    NSString *hexColor = data[@"color"];
+    if(hexColor)
+    {
+        [style setColorWithHexString:hexColor];
+    }
+    else
+    {
+        style.red = data[@"red"];
+        style.green = data[@"green"];
+        style.blue = data[@"blue"];
+    }
+
+    NSNumber* alpha = data[@"alpha"];
+    if(alpha)
+    {
+        style.alpha = alpha;
+    }
+    
+    if([style isKindOfClass:([MOMBasicStyle class])])
+    {
+        MOMBasicStyle* fontStyle = (MOMBasicStyle*)style;
+        hexColor = data[@"shadowColor"];
+        if(hexColor)
+        {
+            [fontStyle setShadowColorWithHexString:hexColor];
+        }
+        else
+        {
+            fontStyle.shadowRed = data[@"shadowRed"];
+            fontStyle.shadowGreen = data[@"shadowGreen"];
+            fontStyle.shadowBlue = data[@"shadowBlue"];
+        }
+        
+        alpha = data[@"shadowAlpha"];
+        if(alpha)
+        {
+            fontStyle.shadowAlpha = alpha;
+        }
+        
+        fontStyle.shadowOffsetX = data[@"shadowOffsetX"];
+        fontStyle.shadowOffsetY = data[@"shadowOffsetY"];
+        
+        
+    }
+    
+}
+
+
+
+@end

@@ -38,7 +38,7 @@ NSString *const TWRecipientFieldCellIdentifier = @"TWRecipientFieldCellIdentifie
     [self configureWithTitle:field.title value:nil];
 }
 
-- (BOOL)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     NSString *pattern = self.type.presentationPattern;
 

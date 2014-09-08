@@ -9,8 +9,6 @@
 #import "PersonalProfileSource.h"
 #import "CountrySelectionCell.h"
 #import "DateEntryCell.h"
-#import "PhoneBookProfile.h"
-#import "PhoneBookAddress.h"
 #import "NSString+Validation.h"
 #import "PersonalProfileValidation.h"
 #import "User.h"
@@ -20,208 +18,274 @@
 #import "Credentials.h"
 #import "GoogleAnalytics.h"
 #import "UIView+Loading.h"
+#import "DoublePasswordEntryCell.h"
+#import "DoubleEntryCell.h"
 #import "Country.h"
+#import "SwitchCell.h"
+#import "StateSuggestionProvider.h"
+
+#define MIN_PASSWORD_LENGTH	5
 
 NSUInteger const kUserButtonSection = 0;
 NSUInteger const kUserPersonalSection = 1;
 
-@interface PersonalProfileSource ()<CountrySelectionCellDelegate>
+@interface PersonalProfileSource ()
 
-@property (nonatomic, strong) TextEntryCell *firstNameCell;
-@property (nonatomic, strong) TextEntryCell *lastNameCell;
+@property (nonatomic, strong) DoubleEntryCell *firstLastNameCell;
 @property (nonatomic, strong) TextEntryCell *emailCell;
 @property (nonatomic, strong) TextEntryCell *phoneNumberCell;
 @property (nonatomic, strong) DateEntryCell *dateOfBirthCell;
 @property (nonatomic, strong) TextEntryCell *addressCell;
-@property (nonatomic, strong) TextEntryCell *postCodeCell;
-@property (nonatomic, strong) TextEntryCell *cityCell;
-@property (nonatomic, strong) CountrySelectionCell *countryCell;
-@property (nonatomic, strong) TextEntryCell *stateCell;
-
+@property (nonatomic, strong) DoubleEntryCell *zipCityCell;
+@property (nonatomic, strong) DoublePasswordEntryCell *passwordCell;
+@property (nonatomic, strong) NSArray *loginCells;
+@property (nonatomic, strong) SwitchCell *sendAsBusinessCell;
+@property (nonatomic) BOOL allowProfileSwitch;
 
 @end
 
 @implementation PersonalProfileSource
 
-- (NSString *)editViewTitle {
-    return NSLocalizedString(@"personal.profile.controller.title", nil);
-}
-
-- (NSArray *)presentedCells {
-    if (self.cells) {
+- (NSArray *)presentedCells:(BOOL)allowProfileSwitch
+				 isExisting:(BOOL)isExisting
+{
+	self.allowProfileSwitch = allowProfileSwitch;
+	
+    if (self.cells)
+	{
+		//this might have been changed to single
+		self.passwordCell.showDouble = YES;
         return self.cells;
     }
 
-    [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
-    [self.tableView registerNib:[UINib nibWithNibName:@"DateEntryCell" bundle:nil] forCellReuseIdentifier:TWDateEntryCellIdentifier];
-    [self.tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
+    for (UITableView* tableView in self.tableViews)
+    {
+        [self setUpTableView:tableView];
+    }
 
-    NSMutableArray *personalCells = [NSMutableArray array];
-
-    TextEntryCell *firstNameCell = [TextEntryCell loadInstance];
-    [self setFirstNameCell:firstNameCell];
-    [personalCells addObject:firstNameCell];
-    [firstNameCell configureWithTitle:NSLocalizedString(@"personal.profile.first.name.label", nil) value:@""];
-    [firstNameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
-    [firstNameCell setCellTag:@"firstName"];
-
-    TextEntryCell *lastNameCell = [TextEntryCell loadInstance];
-    [self setLastNameCell:lastNameCell];
-    [personalCells addObject:lastNameCell];
-    [lastNameCell configureWithTitle:NSLocalizedString(@"personal.profile.last.name.label", nil) value:@""];
-    [lastNameCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
-    [lastNameCell setCellTag:@"lastName"];
-
-    TextEntryCell *emailCell = [TextEntryCell loadInstance];
-    [self setEmailCell:emailCell];
-    [personalCells addObject:emailCell];
-    [emailCell configureWithTitle:NSLocalizedString(@"personal.profile.email.label", nil) value:@""];
-    [emailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
-
-    TextEntryCell *phoneCell = [TextEntryCell loadInstance];
-    [self setPhoneNumberCell:phoneCell];
-    [personalCells addObject:phoneCell];
-    [phoneCell.entryField setKeyboardType:UIKeyboardTypePhonePad];
-    [phoneCell addDoneButton];
-    [phoneCell configureWithTitle:NSLocalizedString(@"personal.profile.phone.label", nil) value:@""];
-    [phoneCell setCellTag:@"phoneNumber"];
-
-    DateEntryCell *dateOfBirthCell = [DateEntryCell loadInstance];
-    [self setDateOfBirthCell:dateOfBirthCell];
-    [personalCells addObject:dateOfBirthCell];
-    [dateOfBirthCell configureWithTitle:NSLocalizedString(@"personal.profile.date.of.birth.label", nil) value:@""];
-    [dateOfBirthCell setCellTag:@"dateOfBirth"];
-
-    NSMutableArray *addressCells = [NSMutableArray array];
-
-    TextEntryCell *addressCell = [TextEntryCell loadInstance];
+    NSMutableArray *personalDetailsCells = [NSMutableArray array];
+	NSMutableArray *loginCells = [NSMutableArray array];
+	
+	TextEntryCell *emailCell = [TextEntryCell loadInstance];
+	[self setEmailCell:emailCell];
+	[emailCell configureWithTitle:NSLocalizedString(@"personal.profile.email.label", nil) value:@""];
+	[emailCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+	[emailCell.entryField setKeyboardType:UIKeyboardTypeEmailAddress];
+	[emailCell setCellTag:@"EmailCell"];
+	
+	if (!isExisting)
+	{
+		//we only need to show the email cell for new profiles
+		[personalDetailsCells addObject:emailCell];
+		[loginCells addObject:emailCell];
+		
+		DoublePasswordEntryCell *passwordCell = [DoublePasswordEntryCell loadInstance];
+		passwordCell.showDouble = YES;
+		passwordCell.useDummyPassword = NO;
+		[passwordCell configureWithTitle:NSLocalizedString(@"personal.profile.password.label", nil) value:@""];
+		[self setPasswordCell:passwordCell];
+		[personalDetailsCells addObject:passwordCell];
+		[passwordCell setCellTag:@"DoublePasswordCell"];
+		[loginCells addObject:passwordCell];
+	}
+	
+	DoubleEntryCell *firstLastNameCell = [DoubleEntryCell loadInstance];
+	[self setFirstLastNameCell:firstLastNameCell];
+	[personalDetailsCells addObject:firstLastNameCell];
+	[firstLastNameCell configureWithTitle:NSLocalizedString(@"personal.profile.first.name.label", nil)
+									value:@""
+							  secondTitle:NSLocalizedString(@"personal.profile.last.name.label", nil)
+							  secondValue:@""];
+	[firstLastNameCell setCellTag:@"firstLastNameCell"];
+	[firstLastNameCell setAutoCapitalization:UITextAutocapitalizationTypeWords];
+	
+	NSMutableArray *addressCells = [NSMutableArray array];
+	
+	CountrySelectionCell *countryCell = [CountrySelectionCell loadInstance];
+    [self setCountryCell:countryCell];
+    [addressCells addObject:countryCell];
+    [countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
+    [countryCell setCellTag:@"countryCode"];
+    
+    TextEntryCell *stateCell = [TextEntryCell loadInstance];
+    [self setStateCell:stateCell];
+    [stateCell configureWithTitle:NSLocalizedString(@"personal.profile.state.label", nil) value:@""];
+    [stateCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
+    [stateCell setCellTag:@"state"];
+	
+	TextEntryCell *addressCell = [TextEntryCell loadInstance];
     [self setAddressCell:addressCell];
     [addressCells addObject:addressCell];
     [addressCell configureWithTitle:NSLocalizedString(@"personal.profile.address.label", nil) value:@""];
     [addressCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
     [addressCell setCellTag:@"addressFirstLine"];
 
-    TextEntryCell *postCodeCell = [TextEntryCell loadInstance];
-    [self setPostCodeCell:postCodeCell];
-    [addressCells addObject:postCodeCell];
-    [postCodeCell configureWithTitle:NSLocalizedString(@"personal.profile.post.code.label", nil) value:@""];
-    [postCodeCell setCellTag:@"postCode"];
-
-    TextEntryCell *cityCell = [TextEntryCell loadInstance];
-    [self setCityCell:cityCell];
-    [addressCells addObject:cityCell];
-    [cityCell configureWithTitle:NSLocalizedString(@"personal.profile.city.label", nil) value:@""];
-    [cityCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
-    [cityCell setCellTag:@"city"];
-
-    CountrySelectionCell *countryCell = [CountrySelectionCell loadInstance];
-    [self setCountryCell:countryCell];
-    [addressCells addObject:countryCell];
-    [countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
-    [countryCell setCellTag:@"countryCode"];
-    countryCell.delegate = self;
+	DoubleEntryCell *zipCityCell = [DoubleEntryCell loadInstance];
+	[self setZipCityCell:zipCityCell];
+    [addressCells addObject:zipCityCell];
+    [zipCityCell configureWithTitle:NSLocalizedString(@"personal.profile.post.code.label", nil)
+							  value:@""
+						secondTitle:NSLocalizedString(@"personal.profile.city.label", nil)
+						secondValue:@""];
+    [zipCityCell setCellTag:@"zipCity"];
+	
+	NSMutableArray *phoneDobCells = [NSMutableArray array];
     
-    TextEntryCell *stateCell = [TextEntryCell loadInstance];
-    [self setStateCell:stateCell];
-    [addressCells addObject:stateCell];
-    [stateCell configureWithTitle:NSLocalizedString(@"personal.profile.state.label", nil) value:@""];
-    [stateCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
-    [stateCell setCellTag:@"state"];
+	TextEntryCell *phoneCell = [TextEntryCell loadInstance];
+    [self setPhoneNumberCell:phoneCell];
+    [phoneDobCells addObject:phoneCell];
+    [phoneCell.entryField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
+    [phoneCell configureWithTitle:NSLocalizedString(@"personal.profile.phone.label", nil) value:@""];
+    [phoneCell setCellTag:@"phoneNumber"];
+	
+    DateEntryCell *dateOfBirthCell = [DateEntryCell loadInstance];
+    [self setDateOfBirthCell:dateOfBirthCell];
+    [phoneDobCells addObject:dateOfBirthCell];
+    [dateOfBirthCell configureWithTitle:NSLocalizedString(@"personal.profile.date.of.birth.label", nil) value:@""];
+    [dateOfBirthCell setCellTag:@"dateOfBirth"];
 
+	if (allowProfileSwitch)
+	{
+		SwitchCell *sendAsBusinessCell = [SwitchCell loadInstance];
+		[self setSendAsBusinessCell:sendAsBusinessCell];
+		if (self.tableViews.count > 1)
+		{
+			[addressCells addObject:sendAsBusinessCell];
+		}
+		else
+		{
+			[phoneDobCells addObject:sendAsBusinessCell];
+		}
+		[loginCells addObject:sendAsBusinessCell];
+		[sendAsBusinessCell.titleLabel setText:NSLocalizedString(@"profile.selection.text.business.profile", nil)];
+	}
 
-    [self setCells:@[personalCells, addressCells]];
-
+	if (self.tableViews.count > 1)
+	{
+		[self setCells:@[
+						 @[personalDetailsCells, phoneDobCells],
+						 @[addressCells]
+						 ]];
+	}
+	else
+	{
+		[self setCells:@[
+						 @[personalDetailsCells, addressCells, phoneDobCells]
+						 ]];
+	}
+	
+	[self setLoginCells:@[
+						  @[loginCells]
+						  ]];
     return self.cells;
 }
 
-- (void)loadDetailsToCells {
+- (NSArray *)presentedLoginCells
+{
+	self.passwordCell.showDouble = NO;
+	return self.loginCells;
+}
+
+- (void)loadDetailsToCells
+{
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"loadDetailsToCells");
         User *user = [self.objectModel currentUser];
         PersonalProfile *profile = user.personalProfile;
-        [self.firstNameCell setValue:profile.firstName];
-        [self.lastNameCell setValue:profile.lastName];
-        [self.emailCell setValue:user.email];
+        [self.firstLastNameCell setValue:profile.firstName];
+        [self.firstLastNameCell setSecondValue:profile.lastName];
+		[self.emailCell setValue:user.email];
+		[self.passwordCell setUseDummyPassword:user && profile];
         [self.phoneNumberCell setValue:profile.phoneNumber];
         [self.dateOfBirthCell setValue:profile.dateOfBirth];
         [self.addressCell setValue:profile.addressFirstLine];
-        [self.postCodeCell setValue:profile.postCode];
-        [self.cityCell setValue:profile.city];
+        [self.zipCityCell setValue:profile.postCode];
+        [self.zipCityCell setSecondValue:profile.city];
         [self.countryCell setValue:profile.countryCode];
-        [self.stateCell setValue:profile.state];
+        NSString* stateTitle = [StateSuggestionProvider titleFromStateCode:profile.state];
+        [self.stateCell setValue:stateTitle];
 
-        [self.firstNameCell setEditable:![profile isFieldReadonly:@"firstName"]];
-        [self.lastNameCell setEditable:![profile isFieldReadonly:@"lastName"]];
+
+        [self.firstLastNameCell setEditable:![profile isFieldReadonly:@"firstName"]];
+        [self.firstLastNameCell setSecondEditable:![profile isFieldReadonly:@"lastName"]];
         [self.dateOfBirthCell setEditable:![profile isFieldReadonly:@"dateOfBirth"]];
         [self.phoneNumberCell setEditable:![profile isFieldReadonly:@"phoneNumber"]];
         [self.emailCell setEditable:![Credentials userLoggedIn]];
 
         [self.addressCell setEditable:![profile isFieldReadonly:@"addressFirstLine"]];
-        [self.postCodeCell setEditable:![profile isFieldReadonly:@"postCode"]];
-        [self.cityCell setEditable:![profile isFieldReadonly:@"city"]];
+        [self.zipCityCell setEditable:![profile isFieldReadonly:@"postCode"]];
+		[self.zipCityCell setSecondEditable:![profile isFieldReadonly:@"postCode"]];
         [self.countryCell setEditable:![profile isFieldReadonly:@"countryCode"]];
         [self.stateCell setEditable:![profile isFieldReadonly:@"state"]];
-        [self includeStateCell:[@"usa" caseInsensitiveCompare:profile.countryCode]==NSOrderedSame];
+		
+		[self includeStateCell:[ProfileSource showStateCell:profile.countryCode]
+				withCompletion:nil];
     });
 }
 
-- (void)loadDataFromProfile:(PhoneBookProfile *)profile {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        MCLog(@"Did load:%@", profile);
-        PersonalProfile *personal = self.objectModel.currentUser.personalProfile;
 
-        [self.firstNameCell setValueWhenEditable:profile.firstName];
-        [self.lastNameCell setValueWhenEditable:profile.lastName];
-        [self.phoneNumberCell setValueWhenEditable:profile.phone];
-        if (![personal isFieldReadonly:@"dateOfBirth"]) {
-            [self.dateOfBirthCell setDateValue:profile.dateOfBirth];
-        }
-
-        [self.emailCell setValueWhenEditable:profile.email];
-
-        PhoneBookAddress *address = profile.address;
-        [self.addressCell setValueWhenEditable:address.street];
-        [self.postCodeCell setValueWhenEditable:address.zipCode];
-        [self.cityCell setValueWhenEditable:address.city];
-        if (![personal isFieldReadonly:@"countryCode"]) {
-            [self.countryCell setTwoLetterCountryCode:address.countryCode];
-        }
-        [self.stateCell setValueWhenEditable:address.state];
-        [self includeStateCell:[@"usa" caseInsensitiveCompare:self.countryCell.value]==NSOrderedSame];
-    });
+- (BOOL)inputValid
+{
+    return [[self.firstLastNameCell value] hasValue] && [[self.firstLastNameCell secondValue] hasValue]
+			&& [[self.emailCell value] hasValue] && [[self.phoneNumberCell value] hasValue]
+			&& [[self.dateOfBirthCell value] hasValue] && [[self.addressCell value] hasValue]
+			&& [[self.zipCityCell value] hasValue] && [[self.zipCityCell secondValue] hasValue]
+            && [[self.countryCell value] hasValue] && (![ProfileSource showStateCell:self.countryCell.value] || [[self.stateCell value] hasValue]);
 }
 
-- (BOOL)inputValid {
-    return [[self.firstNameCell value] hasValue] && [[self.lastNameCell value] hasValue] && [[self.emailCell value] hasValue]
-            && [[self.phoneNumberCell value] hasValue] && [[self.dateOfBirthCell value] hasValue]
-            && [[self.addressCell value] hasValue] && [[self.postCodeCell value] hasValue] && [[self.cityCell value] hasValue]
-            && [[self.countryCell value] hasValue];
+//this should be removed when API supports atomic account creation operation
+- (BOOL)isPasswordLengthValid
+{
+	return self.passwordCell.useDummyPassword
+		|| ([self.passwordCell.value hasValue]
+		&& [self.passwordCell.value length] >= MIN_PASSWORD_LENGTH);
 }
 
-- (id)enteredProfile {
+- (BOOL)arePasswordsMatching
+{
+	return self.passwordCell.useDummyPassword
+	|| ([self.passwordCell.value hasValue]
+		&& self.passwordCell.areMatching);
+}
+
+- (id)enteredProfile
+{
     User *user = [self.objectModel currentUser];
     PersonalProfile *profile = [user personalProfileObject];
 
-    [profile setFirstName:self.firstNameCell.value];
-    [profile setLastName:self.lastNameCell.value];
+    [profile setFirstName:self.firstLastNameCell.value];
+    [profile setLastName:self.firstLastNameCell.secondValue];
     [user setEmail:self.emailCell.value];
+	[user setPassword:self.passwordCell.value];
     [profile setPhoneNumber:self.phoneNumberCell.value];
     [profile setAddressFirstLine:self.addressCell.value];
-    [profile setPostCode:self.postCodeCell.value];
-    [profile setCity:self.cityCell.value];
+    [profile setPostCode:self.zipCityCell.value];
+    [profile setCity:self.zipCityCell.secondValue];
     [profile setCountryCode:self.countryCell.value];
     [profile setDateOfBirth:[self.dateOfBirthCell value]];
-    [profile setState:[self.stateCell value]];
+    NSString* stateCode = [StateSuggestionProvider stateCodeFromTitle:self.stateCell.value];
+    if(stateCode)
+    {
+        [profile setState:stateCode];
+    }
+
+	
+	if (self.allowProfileSwitch)
+	{
+		[profile setSendAsBusinessValue:[self.sendAsBusinessCell value]];
+	}
 
     [self.objectModel saveContext];
 
     return profile.objectID;
 }
 
-- (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion {
+- (void)validateProfile:(id)profile withValidation:(id)validation completion:(ProfileActionBlock)completion
+{
     [validation validatePersonalProfile:profile withHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (error) {
+            if (error)
+			{
                 completion(error);
                 return;
             }
@@ -233,63 +297,22 @@ NSUInteger const kUserPersonalSection = 1;
     }];
 }
 
-- (NSString *)titleForHeaderInSection:(NSInteger)section {
-    if (section == kUserButtonSection) {
-        return nil;
-    }
-
-    if (section == kUserPersonalSection) {
-        return NSLocalizedString(@"personal.profile.personal.section.title", nil);
-    } else {
-        return NSLocalizedString(@"personal.profile.address.section.title", nil);
-    }
-}
-
-- (void)fillQuickValidation:(QuickProfileValidationOperation *)operation {
-    [operation setFirstName:[self.firstNameCell value]];
-    [operation setLastName:[self.lastNameCell value]];
+- (void)fillQuickValidation:(QuickProfileValidationOperation *)operation
+{
+    [operation setFirstName:[self.firstLastNameCell value]];
+    [operation setLastName:[self.firstLastNameCell secondValue]];
     [operation setPhoneNumber:[self.phoneNumberCell value]];
     [operation setAddressFirstLine:[self.addressCell value]];
-    [operation setPostCode:[self.postCodeCell value]];
-    [operation setCity:[self.cityCell value]];
+    [operation setPostCode:[self.zipCityCell value]];
+    [operation setCity:[self.zipCityCell secondValue]];
     [operation setCountryCode:[self.countryCell value]];
     [operation setDateOfBirth:[self.dateOfBirthCell value]];
-    [operation setState:[self.stateCell value]];
-}
+    NSString* stateCode = [StateSuggestionProvider stateCodeFromTitle:self.stateCell.value];
+    if(stateCode)
+    {
+        [operation setState:stateCode];
+    }
 
--(void)includeStateCell:(BOOL)shouldInclude
-{
-    if (1 > [self.cells count])
-    {
-        return;
-    }
-    
-    NSMutableArray* addressFields = self.cells[1];
-    if(shouldInclude && ![addressFields containsObject:self.stateCell])
-    {
-        [addressFields addObject:self.stateCell];
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:self.countryCell];
-        if (indexPath)
-        {
-            indexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
-            [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
-        }
-        
-    }
-    else if(!shouldInclude && [addressFields containsObject:self.stateCell])
-    {
-        [addressFields removeObject:self.stateCell];
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:self.stateCell];
-        if (indexPath)
-        {
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
-        }
-    }
-}
-
--(void)countrySelectionCell:(CountrySelectionCell *)cell selectedCountry:(Country *)country
-{
-    [self includeStateCell:([@"usa" caseInsensitiveCompare:country.iso3Code]==NSOrderedSame)];
 }
 
 @end

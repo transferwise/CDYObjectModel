@@ -7,11 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SwipeToCancelCell.h"
 
 @class Recipient;
 
-@interface RecipientCell : UITableViewCell
+@interface RecipientCell : SwipeToCancelCell
 
-- (void)configureWithRecipient:(Recipient *)recipient;
+@property (strong, nonatomic) IBOutlet UILabel *sendLabel;
+
+- (void)configureWithRecipient:(Recipient *)recipient
+		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
+		  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
+		  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
+		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock;
 
 @end

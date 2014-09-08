@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewPaymentViewController">
+            <connections>
+                <outlet property="amountLabel" destination="eTr-o2-8Xr" id="udi-ps-WMt"/>
+                <outlet property="howButton" destination="WRX-dl-Alg" id="DHq-E5-7S9"/>
+                <outlet property="loginButton" destination="KVn-N5-EGf" id="xwX-R6-Luh"/>
+                <outlet property="modalCloseButton" destination="JFE-j8-Q2Z" id="8JU-v8-fqy"/>
+                <outlet property="saveLabel" destination="Lrw-M9-5jB" id="Yvf-w4-cpa"/>
+                <outlet property="sendMoneyLabel" destination="NJU-Hs-h7h" id="THK-Lv-4ye"/>
+                <outlet property="startedButton" destination="UAL-I7-qIC" id="HsM-OH-U2p"/>
+                <outlet property="tableView" destination="jOH-gc-1dO" id="jrL-as-Nbw"/>
+                <outlet property="view" destination="o2g-cv-K3K" id="OFd-hp-K7v"/>
+                <outlet property="vsLabel" destination="Tkb-LF-80g" id="vZf-5r-iOc"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="o2g-cv-K3K">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAL-I7-qIC" customClass="StartPaymentButton">
+                    <rect key="frame" x="169" y="526" width="430" height="49"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="49" id="S7W-9S-7cf"/>
+                        <constraint firstAttribute="width" constant="430" id="qzi-sQ-qJg"/>
+                    </constraints>
+                    <state key="normal" title="Get started">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="addShadow" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="startPaymentPressed:" destination="-1" eventType="touchUpInside" id="Tx5-vS-0V4"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="KVn-N5-EGf" customClass="BlueRoundedButton">
+                    <rect key="frame" x="661" y="930" width="57" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="QBl-IE-FK0"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                    <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                    <inset key="titleEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="Login" backgroundImage="Rounded">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@{14,17}.TWElectricBlue"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="loginPressed:" destination="-1" eventType="touchUpInside" id="KMq-i8-xeW"/>
+                    </connections>
+                </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="save" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lrw-M9-5jB">
+                    <rect key="frame" x="366" y="618" width="36" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="book.@{20,27}.CoreFont"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTr-o2-8Xr">
+                    <rect key="frame" x="355" y="637" width="59" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@{20,27}.DarkFont"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="vs bank" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tkb-LF-80g">
+                    <rect key="frame" x="354" y="656" width="60" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="book.@{20,27}.CoreFont"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRX-dl-Alg">
+                    <rect key="frame" x="366" y="696" width="37" height="34"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="How">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@{14,17}.TWElectricBlue"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="howButtonTapped:" destination="-1" eventType="touchUpInside" id="M5D-Je-ddx"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jOH-gc-1dO">
+                    <rect key="frame" x="169" y="337" width="430" height="160"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="430" id="5bh-g6-iRU"/>
+                        <constraint firstAttribute="height" constant="160" id="vQT-3f-CDc"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="5SZ-hY-4me"/>
+                        <outlet property="delegate" destination="-1" id="ljk-gc-qMO"/>
+                    </connections>
+                </tableView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send money" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJU-Hs-h7h">
+                    <rect key="frame" x="336" y="30" width="97" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@19.CoreFont"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JFE-j8-Q2Z">
+                    <rect key="frame" x="0.0" y="20" width="76" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="o8U-LY-4TB"/>
+                        <constraint firstAttribute="width" constant="76" id="toP-AF-YuP"/>
+                    </constraints>
+                    <state key="normal" image="CloseButton">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="closeModalTapped:" destination="-1" eventType="touchUpInside" id="KLd-rU-UGJ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="eTr-o2-8Xr" firstAttribute="top" secondItem="Lrw-M9-5jB" secondAttribute="bottom" constant="-2" id="2oa-Mw-5rj"/>
+                <constraint firstAttribute="bottom" secondItem="KVn-N5-EGf" secondAttribute="bottom" priority="800" constant="30" id="4Rh-Gf-bm9"/>
+                <constraint firstItem="JFE-j8-Q2Z" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" id="7Dy-KD-lNU"/>
+                <constraint firstAttribute="centerX" secondItem="WRX-dl-Alg" secondAttribute="centerX" id="9Py-3r-f10"/>
+                <constraint firstItem="JFE-j8-Q2Z" firstAttribute="top" secondItem="o2g-cv-K3K" secondAttribute="top" constant="20" id="AsX-5o-SBM"/>
+                <constraint firstItem="Tkb-LF-80g" firstAttribute="centerX" secondItem="eTr-o2-8Xr" secondAttribute="centerX" id="Cen-RH-wCk"/>
+                <constraint firstAttribute="centerY" secondItem="jOH-gc-1dO" secondAttribute="centerY" constant="95" id="CrD-N2-mMA"/>
+                <constraint firstAttribute="centerX" secondItem="jOH-gc-1dO" secondAttribute="centerX" id="DHS-AZ-UVI"/>
+                <constraint firstAttribute="trailing" secondItem="KVn-N5-EGf" secondAttribute="trailing" constant="50" id="EV6-pj-97j"/>
+                <constraint firstItem="eTr-o2-8Xr" firstAttribute="centerX" secondItem="Lrw-M9-5jB" secondAttribute="centerX" id="O1S-JK-2eW"/>
+                <constraint firstItem="Lrw-M9-5jB" firstAttribute="top" secondItem="UAL-I7-qIC" secondAttribute="bottom" constant="43" id="Psx-Cb-GIV"/>
+                <constraint firstItem="Tkb-LF-80g" firstAttribute="top" secondItem="eTr-o2-8Xr" secondAttribute="bottom" constant="-2" id="WQU-WJ-YUM"/>
+                <constraint firstAttribute="centerX" secondItem="NJU-Hs-h7h" secondAttribute="centerX" id="Yg2-4x-uQf"/>
+                <constraint firstAttribute="centerX" secondItem="Lrw-M9-5jB" secondAttribute="centerX" id="eZc-54-oSx"/>
+                <constraint firstAttribute="bottom" secondItem="KVn-N5-EGf" secondAttribute="bottom" constant="50" id="gHH-Ia-1NT"/>
+                <constraint firstItem="NJU-Hs-h7h" firstAttribute="top" secondItem="o2g-cv-K3K" secondAttribute="top" constant="30" id="iTs-0d-6wV"/>
+                <constraint firstItem="UAL-I7-qIC" firstAttribute="top" secondItem="jOH-gc-1dO" secondAttribute="bottom" constant="29" id="igO-95-wk9"/>
+                <constraint firstAttribute="centerX" secondItem="UAL-I7-qIC" secondAttribute="centerX" id="t4U-c0-teW"/>
+                <constraint firstItem="WRX-dl-Alg" firstAttribute="top" secondItem="Tkb-LF-80g" secondAttribute="bottom" constant="19" id="zAv-yX-Ls9"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="LightBlue"/>
+            </userDefinedRuntimeAttributes>
+        </view>
+    </objects>
+    <resources>
+        <image name="CloseButton" width="42" height="42"/>
+        <image name="Rounded" width="100" height="44"/>
+    </resources>
+</document>

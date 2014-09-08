@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Constants.h"
+#import "SwipeToCancelCell.h"
 
 @class Payment;
 
-@interface PaymentCell : UITableViewCell
+@interface PaymentCell : SwipeToCancelCell
 
-- (void)configureWithPayment:(Payment *)payment;
+- (void)configureWithPayment:(Payment *)payment
+		 willShowCancelBlock:(TRWActionBlock)willShowCancelBlock
+		  didShowCancelBlock:(TRWActionBlock)didShowCancelBlock
+		  didHideCancelBlock:(TRWActionBlock)didHideCancelBlock
+		   cancelTappedBlock:(TRWActionBlock)cancelTappedBlock;
 
 @end
