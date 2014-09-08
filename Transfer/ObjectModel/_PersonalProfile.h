@@ -11,6 +11,7 @@ extern const struct PersonalProfileAttributes {
 	__unsafe_unretained NSString *dateOfBirth;
 	__unsafe_unretained NSString *firstName;
 	__unsafe_unretained NSString *lastName;
+	__unsafe_unretained NSString *occupation;
 	__unsafe_unretained NSString *phoneNumber;
 	__unsafe_unretained NSString *postCode;
 	__unsafe_unretained NSString *readonlyFields;
@@ -26,6 +27,7 @@ extern const struct PersonalProfileFetchedProperties {
 } PersonalProfileFetchedProperties;
 
 @class User;
+
 
 
 
@@ -107,6 +109,16 @@ extern const struct PersonalProfileFetchedProperties {
 
 
 //- (BOOL)validateLastName:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* occupation;
+
+
+
+//- (BOOL)validateOccupation:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -215,6 +227,12 @@ extern const struct PersonalProfileFetchedProperties {
 
 - (NSString*)primitiveLastName;
 - (void)setPrimitiveLastName:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveOccupation;
+- (void)setPrimitiveOccupation:(NSString*)value;
 
 
 

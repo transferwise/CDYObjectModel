@@ -160,19 +160,41 @@
 }
 
 - (TextEntryCell *)includeStateCell:(BOOL)shouldInclude
-					 withCompletion:(CountrySelectionCompletion)completion
+					 withCompletion:(SelectionCompletion)completion
 {
-    UITableView* tableView;
-    for(UITableView *table in self.tableViews)
-    {
-        if ([table indexPathForCell:self.countryCell])
-        {
-            tableView = table;
-            break;
-        }
-    }
-    
-    NSMutableArray* addressFields;
+	TextEntryCell *result = [self includeCell:self.stateCell
+									afterCell:self.countryCell
+								shouldInclude:shouldInclude
+							   withCompletion:completion];
+	
+	if (result)
+	{
+		[self.zipCityCell setFirstTitle:NSLocalizedString(@"profile.post.code.usa.label", nil)];
+	}
+	else
+	{
+		[self.zipCityCell setFirstTitle:NSLocalizedString(@"profile.post.code.label", nil)];
+	}
+	
+	return result;
+}
+
+- (TextEntryCell *)includeCell:(TextEntryCell *)includeCell
+					 afterCell:(UITableViewCell *)afterCell
+				 shouldInclude:(BOOL)shouldInclude
+				withCompletion:(SelectionCompletion)completion
+{
+	UITableView* tableView;
+	for(UITableView *table in self.tableViews)
+	{
+		if ([table indexPathForCell:afterCell])
+		{
+			tableView = table;
+			break;
+		}
+	}
+	
+	NSMutableArray* addressFields;
 	
 	if(self.tableViews.count > 1)
 	{
@@ -183,45 +205,44 @@
 		addressFields = self.cells[0][1];
 	}
 	
-    if(shouldInclude && ![addressFields containsObject:self.stateCell])
-    {
-        [addressFields insertObject:self.stateCell atIndex:[addressFields indexOfObject:self.countryCell] + 1];
+	if(shouldInclude && ![addressFields containsObject:includeCell])
+	{
+		[addressFields insertObject:includeCell atIndex:[addressFields indexOfObject:afterCell] + 1];
 		
-        NSIndexPath *indexPath = [tableView indexPathForCell:self.countryCell];
-        if (indexPath)
-        {
-            indexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
+		NSIndexPath *indexPath = [tableView indexPathForCell:afterCell];
+		if (indexPath)
+		{
+			indexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
 			
 			[self updateTableView:tableView
 						   update:^{
 							   [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
 						   }
 					   completion:completion];
-			[self.zipCityCell setFirstTitle:NSLocalizedString(@"profile.post.code.usa.label", nil)];
-			return self.stateCell;
-        }
-    }
-    else if(!shouldInclude && [addressFields containsObject:self.stateCell])
-    {
-        [addressFields removeObject:self.stateCell];
-        NSIndexPath *indexPath = [tableView indexPathForCell:self.stateCell];
-        if (indexPath)
-        {
+			
+			return includeCell;
+		}
+	}
+	else if(!shouldInclude && [addressFields containsObject:includeCell])
+	{
+		[addressFields removeObject:includeCell];
+		NSIndexPath *indexPath = [tableView indexPathForCell:includeCell];
+		if (indexPath)
+		{
 			[self updateTableView:tableView
 						   update:^{
 							   [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
 						   }
 					   completion:completion];
-			[self.zipCityCell setFirstTitle:NSLocalizedString(@"profile.post.code.label", nil)];
-        }
-    }
+		}
+	}
 	
 	return nil;
 }
 
 - (void)updateTableView:(UITableView *)tableView
 				 update:(void (^)())update
-			 completion:(CountrySelectionCompletion)completion
+			 completion:(SelectionCompletion)completion
 {
 	[UIView animateWithDuration:0.5 animations:^{
 		[tableView beginUpdates];
@@ -237,7 +258,7 @@
 
 - (TextEntryCell *)countrySelectionCell:(CountrySelectionCell *)cell
 					   didSelectCountry:(Country *)country
-						 withCompletion:(CountrySelectionCompletion)completion
+						 withCompletion:(SelectionCompletion)completion
 {
 	return [self includeStateCell:[ProfileSource showStateCell:country.iso3Code]
 				   withCompletion:completion];
@@ -245,7 +266,14 @@
 
 + (BOOL)showStateCell:(NSString *)countryCode
 {
-	return countryCode && [@"usa" caseInsensitiveCompare:countryCode] == NSOrderedSame;
+	return [self isMatchingSource:@"usa"
+					   withTarget:countryCode];
+}
+
++ (BOOL)isMatchingSource:(NSString *)source
+			  withTarget:(NSString *)target
+{
+	return source && [source caseInsensitiveCompare:target] == NSOrderedSame;
 }
 
 @end

@@ -254,6 +254,7 @@ It generally taks 1 business day.";
 "personal.profile.phone.label" = "Phone";
 "personal.profile.password.label" = "Password";
 "personal.profile.password.confirm.label" = "Retype password";
+"personal.profile.occupation.label" = "Occupation";
 "personal.profile.refresh.error.message" = "Oops! Your profile couldn't be loaded. Please try again later.";
 "personal.profile.refresh.error.title" = "Profile unavailable";
 "personal.profile.refreshing.countries.message" = "Refreshing countries...";

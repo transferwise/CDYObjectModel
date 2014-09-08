@@ -17,7 +17,7 @@
 @class DoubleEntryCell;
 
 typedef void (^ProfileActionBlock)(NSError *error);
-typedef void (^CountrySelectionCompletion)();
+typedef void (^SelectionCompletion)();
 
 @interface ProfileSource : NSObject
 
@@ -41,14 +41,19 @@ typedef void (^CountrySelectionCompletion)();
 			 completion:(ProfileActionBlock)completion;
 - (void)loadDetailsToCells;
 - (void)fillQuickValidation:(QuickProfileValidationOperation *)operation;
+- (TextEntryCell *)includeCell:(TextEntryCell *)includeCell
+					 afterCell:(UITableViewCell *)afterCell
+				 shouldInclude:(BOOL)shouldInclude
+				withCompletion:(SelectionCompletion)completion;
 - (TextEntryCell *)includeStateCell:(BOOL)shouldInclude
-					 withCompletion:(CountrySelectionCompletion)completion;
+					 withCompletion:(SelectionCompletion)completion;
 - (void)markCellsWithIssues:(NSArray *)issues;
 - (void)setUpTableView:(UITableView *)tableView;
 - (TextEntryCell *)countrySelectionCell:(CountrySelectionCell *)cell
 					   didSelectCountry:(Country *)country
-						 withCompletion:(CountrySelectionCompletion)completion;
-
+						 withCompletion:(SelectionCompletion)completion;
 + (BOOL)showStateCell:(NSString *)countryCode;
++ (BOOL)isMatchingSource:(NSString *)source
+			  withTarget:(NSString *)target;
 
 @end
