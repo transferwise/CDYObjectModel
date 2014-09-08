@@ -11,7 +11,6 @@
 @interface InvitationProgressIndicatorView : UIView
 
 - (void)setProgress:(NSUInteger)progress
-		  withDelta:(NSUInteger)delta
 		   animated:(BOOL)animated;
 
 @end

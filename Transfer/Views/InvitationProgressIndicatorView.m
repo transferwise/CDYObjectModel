@@ -143,7 +143,6 @@
 }
 
 - (void)setProgress:(NSUInteger)progress
-		  withDelta:(NSUInteger)delta
 		   animated:(BOOL)animated
 {
     if(!self.staticSegments)
@@ -159,7 +158,6 @@
     
     //setup static segments
     NSUInteger truncatedProgress = (progress - 1 ) % ([self.staticSegments count]);
-	NSUInteger truncatedDelta = (delta - 1) % ([self.staticSegments count]);
 	
     [self.staticSegments enumerateObjectsUsingBlock:^(ProgressSegment* segment, NSUInteger i, BOOL *stop) {
         [self bringSubviewToFront:segment];
@@ -182,7 +180,8 @@
     self.dynamicSegment.startColor = self.startColors[truncatedProgress];
     self.dynamicSegment.endColor = self.endColors[truncatedProgress];
     if(animated)
-    {   NSInteger previousSegmentIndex = truncatedProgress - 1;
+    {
+		NSInteger previousSegmentIndex = truncatedProgress - 1;
         if(previousSegmentIndex<0)
         {
             previousSegmentIndex = [self.staticSegments count] - 1;
@@ -198,9 +197,6 @@
     {
         self.dynamicSegment.transform = [(ProgressSegment*)self.staticSegments[truncatedProgress] transform];
     }
-    
-    
-    
 }
 
 

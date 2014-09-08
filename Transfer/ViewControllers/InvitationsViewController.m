@@ -290,7 +290,7 @@
 				 {
 					 self.numberOfFriends = successCount;
 					 [weakSelf setProgress:successCount
-								  animated:YES];
+								  animated:self.numberOfFriends == 0];
 				 }
 				 
 				 return;
