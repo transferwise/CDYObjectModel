@@ -57,7 +57,7 @@ NSString *const TWCountrySelectionCellIdentifier = @"CountrySelectionCell";
 {
 	if ([self.entryField.text hasValue])
 	{
-		//this will be either set to a correct country if user typed the name of the countr
+		//this will be either set to a correct country if user typed the name of the country
 		//or nil, if value is incorrect
 		//if user selected country form the list then that selection will be tone after this
 		self.selectedCountry = [self.countrySelectionDelegate getCountryByName:self.entryField.text];

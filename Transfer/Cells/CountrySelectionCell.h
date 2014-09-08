@@ -22,7 +22,7 @@ typedef void (^CountrySelectionBlock)(NSString *countryName);
 - (Country *)getCountryByName:(NSString *)name;
 
 @optional
--(void)countrySelectionCell:(CountrySelectionCell*)cell selectedCountry:(Country*)countryCode;
+-(void)countrySelectionCell:(CountrySelectionCell*)cell selectedCountry:(Country*)country;
 
 @end
 
