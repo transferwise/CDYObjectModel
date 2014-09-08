@@ -22,5 +22,6 @@ extern NSString *const TWDoubleEntryCellIdentifier;
 
 - (void)setSecondEditable:(BOOL)value;
 - (void)setAutoCapitalization:(UITextAutocapitalizationType)capitalizationType;
+- (void)setFirstTitle:(NSString *)title;
 
 @end

@@ -6,9 +6,11 @@
 const struct UserAttributes UserAttributes = {
 	.anonymous = @"anonymous",
 	.email = @"email",
+	.inviteUrl = @"inviteUrl",
 	.pReference = @"pReference",
 	.password = @"password",
 	.sendAsBusinessDefaultSetting = @"sendAsBusinessDefaultSetting",
+	.successfulInviteCount = @"successfulInviteCount",
 };
 
 const struct UserRelationships UserRelationships = {
@@ -57,6 +59,11 @@ const struct UserFetchedProperties UserFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"successfulInviteCountValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"successfulInviteCount"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -97,6 +104,13 @@ const struct UserFetchedProperties UserFetchedProperties = {
 
 
 
+@dynamic inviteUrl;
+
+
+
+
+
+
 @dynamic pReference;
 
 
@@ -131,6 +145,32 @@ const struct UserFetchedProperties UserFetchedProperties = {
 
 - (void)setPrimitiveSendAsBusinessDefaultSettingValue:(BOOL)value_ {
 	[self setPrimitiveSendAsBusinessDefaultSetting:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
+@dynamic successfulInviteCount;
+
+
+
+- (int16_t)successfulInviteCountValue {
+	NSNumber *result = [self successfulInviteCount];
+	return [result shortValue];
+}
+
+- (void)setSuccessfulInviteCountValue:(int16_t)value_ {
+	[self setSuccessfulInviteCount:[NSNumber numberWithShort:value_]];
+}
+
+- (int16_t)primitiveSuccessfulInviteCountValue {
+	NSNumber *result = [self primitiveSuccessfulInviteCount];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveSuccessfulInviteCountValue:(int16_t)value_ {
+	[self setPrimitiveSuccessfulInviteCount:[NSNumber numberWithShort:value_]];
 }
 
 

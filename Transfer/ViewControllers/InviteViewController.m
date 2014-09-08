@@ -159,9 +159,7 @@
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     self.urlCopyButton.alpha = 0.5f;
     pasteboard.string = self.inviteUrl;
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"CopyInviteLink"];
-
-    
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"CopyInviteLink"];    
 }
 
 #pragma mark mail and sms delegate

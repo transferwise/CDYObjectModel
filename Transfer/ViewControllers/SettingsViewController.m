@@ -80,7 +80,6 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
     self.sendAsBusinessSwitch.on = user.sendAsBusinessDefaultSettingValue;
 }
 
-
 - (IBAction)infoTapped:(id)sender {
 }
 
@@ -127,10 +126,5 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
     user.sendAsBusinessDefaultSettingValue = self.sendAsBusinessSwitch.on;
     [self.objectModel saveContext];
 }
-
-
-
-
-
 
 @end

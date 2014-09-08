@@ -20,6 +20,8 @@
 #import "PersonalProfile.h"
 #import "ReferralsCoordinator.h"
 #import "GoogleAnalytics.h"
+#import "ObjectModel+Users.h"
+#import "User.h"
 
 @interface InvitationsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *profilePictureContainer;
@@ -52,13 +54,26 @@
 
 - (void)viewDidLoad
 {
-	[self loadProfileImages];
     [super viewDidLoad];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+	
+	User *user = [self.objectModel currentUser];
+	self.numberOfFriends = user.successfulInviteCountValue;
+	
+	if (self.numberOfFriends > 0)
+	{
+		self.profilePictureContainer.hidden = YES;
+		self.indicatorContainer.hidden = NO;
+	}
+	else
+	{
+		[self loadProfileImagesWithUser:user];
+	}
+	
     self.title = NSLocalizedString(@"invite.controller.title", nil);
     if(!IPAD)
     {
@@ -67,13 +82,12 @@
     self.headerLabel.text = NSLocalizedString(@"invite.header", nil);
     [self.inviteButtons[0] setTitle:NSLocalizedString(@"invite.button.title", nil) forState:UIControlStateNormal];
     [self.inviteButtons[1] setTitle:NSLocalizedString(@"invite.button.title", nil) forState:UIControlStateNormal];
-    
-	//init with 0 and load actual data
-    [self setProgress:0];
 	
+	[self setProgress:self.numberOfFriends
+			 animated:NO];
 	[self loadInviteStatus];
     
-     [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Invite"]];
+	[[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Invite"]];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -82,10 +96,8 @@
     self.navigationController.navigationBar.topItem.titleView = nil;
 }
 
-- (void)loadProfileImages
+- (void)loadProfileImagesWithUser:(User *)user
 {
-	User *user = [self.objectModel currentUser];
-	
 	NSString* ownNumber = user.personalProfile.phoneNumber;
 	
 	if (ownNumber)
@@ -151,8 +163,8 @@
 }
 
 -(void)setProgress:(NSUInteger)progress
+		  animated:(BOOL)animated
 {
-    self.numberOfFriends = progress;
     self.numberLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)progress];
     NSUInteger truncatedProgress = progress % 3;
     if(truncatedProgress > 0)
@@ -165,9 +177,8 @@
         self.indicatorContextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"invite.complete.format",nil),progress];
     }
 	
-	if (progress > 0)
+	if (progress > 0 && animated)
 	{
-		//TODO: remove, when invitation status is saved
 		//indicator view is always hidden
 		self.indicatorContainer.opaque = NO;
 		self.indicatorContainer.alpha = 0.f;
@@ -255,7 +266,6 @@
             self.navigationController.navigationBar.topItem.titleView = container;
         }
     }
-    
 }
 
 - (IBAction)inviteButtonTapped:(id)sender
@@ -269,14 +279,20 @@
 {
 	ReferralListOperation *referralLinkOperation = [ReferralListOperation operation];
 	self.currentOperation = referralLinkOperation;
+	[referralLinkOperation setObjectModel:self.objectModel];
 	__weak InvitationsViewController *weakSelf = self;
 	
-    [referralLinkOperation setResultHandler:^(NSError *error, NSInteger successCount)
-	 {
+    [referralLinkOperation setResultHandler:^(NSError *error, NSInteger successCount) {
 		 dispatch_async(dispatch_get_main_queue(), ^{
 			 if (!error && successCount > -1)
 			 {
-				 [weakSelf setProgress:successCount];
+				 if (successCount > self.numberOfFriends)
+				 {
+					 self.numberOfFriends = successCount;
+					 [weakSelf setProgress:successCount
+								  animated:self.numberOfFriends == 0];
+				 }
+				 
 				 return;
 			 }
 		 });

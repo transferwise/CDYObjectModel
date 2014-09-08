@@ -36,7 +36,6 @@ NSUInteger const kUserPersonalSection = 1;
 @property (nonatomic, strong) TextEntryCell *phoneNumberCell;
 @property (nonatomic, strong) DateEntryCell *dateOfBirthCell;
 @property (nonatomic, strong) TextEntryCell *addressCell;
-@property (nonatomic, strong) DoubleEntryCell *zipCityCell;
 @property (nonatomic, strong) DoublePasswordEntryCell *passwordCell;
 @property (nonatomic, strong) NSArray *loginCells;
 @property (nonatomic, strong) SwitchCell *sendAsBusinessCell;
@@ -123,7 +122,7 @@ NSUInteger const kUserPersonalSection = 1;
 	DoubleEntryCell *zipCityCell = [DoubleEntryCell loadInstance];
 	[self setZipCityCell:zipCityCell];
     [addressCells addObject:zipCityCell];
-    [zipCityCell configureWithTitle:NSLocalizedString(@"personal.profile.post.code.label", nil)
+    [zipCityCell configureWithTitle:NSLocalizedString(@"profile.post.code.label", nil)
 							  value:@""
 						secondTitle:NSLocalizedString(@"personal.profile.city.label", nil)
 						secondValue:@""];

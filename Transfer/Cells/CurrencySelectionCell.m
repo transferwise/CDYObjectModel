@@ -23,6 +23,7 @@ NSString *const TWCurrencySelectionCellIdentifier = @"TWCurrencySelectionCellIde
 @property (nonatomic, strong) NSFetchedResultsController *currencies;
 @property (nonatomic, strong) Currency *selectedCurrency;
 @property (weak, nonatomic) IBOutlet UIButton *selectCurrencyButton;
+@property (nonatomic) BOOL isSelecting;
 
 @end
 
@@ -53,7 +54,8 @@ NSString *const TWCurrencySelectionCellIdentifier = @"TWCurrencySelectionCellIde
     [self didSelectCurrency:shown];
 }
 
-- (void)didSelectCurrency:(Currency *)currency {
+- (void)didSelectCurrency:(Currency *)currency
+{
     [self setSelectedCurrency:currency];
     [self.selectCurrencyButton setTitle:currency.code forState:UIControlStateNormal];
     UIImage* flag = [UIImage imageNamed:currency.code];
@@ -67,6 +69,12 @@ NSString *const TWCurrencySelectionCellIdentifier = @"TWCurrencySelectionCellIde
 
 - (IBAction)selectCurrencyTapped:(id)sender
 {
+	if (self.isSelecting)
+	{
+		return;
+	}
+	
+	self.isSelecting = YES;
     //dismiss keyboard
     [self endEditing:YES];
     self.shouldRestoreNavBar = ! self.hostForCurrencySelector.navigationController.navigationBarHidden;
@@ -92,6 +100,8 @@ NSString *const TWCurrencySelectionCellIdentifier = @"TWCurrencySelectionCellIde
 
 -(void)currencySelectorwillHide:(CurrencySelectorViewController *)controller
 {
+	self.isSelecting = NO;
+	
     if(self.shouldRestoreNavBar)
     {
         [self.hostForCurrencySelector.navigationController setNavigationBarHidden:NO animated:YES];
