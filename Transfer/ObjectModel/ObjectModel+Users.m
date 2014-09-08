@@ -117,6 +117,25 @@
     return user;
 }
 
+- (void)saveInviteUrl:(NSString *)inviteUrl
+{
+	User* user = [self currentUser];
+	if (user && inviteUrl)
+	{
+		user.inviteUrl = inviteUrl;
+	}
+}
+
+- (void)saveSuccessfulInviteCount:(NSNumber *)count
+{
+	User* user = [self currentUser];
+	
+	if (user)
+	{
+		user.successfulInviteCount = count;
+	}
+}
+
 - (void)removeAnonymousUser {
     User *anonymous = [self anonymousUser];
     if (anonymous) {

@@ -8,7 +8,6 @@
 "business.profile.description.label" = "Business description";
 "business.profile.details.section.title" = "Business details";
 "business.profile.name.label" = "Business name";
-"business.profile.post.code.label" = "Post code";
 "business.profile.refresh.error.message" = "Could not load business profile. Please try again later.";
 "business.profile.refresh.error.title" = "Your details couldn't be refreshed";
 "business.profile.refreshing.message" = "Refreshing...";
@@ -83,7 +82,7 @@
 "contacts.refresh.error.message" = "Could not refresh your recipients list";
 "contacts.refresh.error.title" = "Refresh error";
 "contacts.controller.send.button.title" = "Send %@";
-"contacts.controller.footer.invite" = "Earn 50£ by inviting
+"contacts.controller.footer.invite" = "Earn £50 by inviting
 your friends to TransferWise";
 "contacts.controller.footer.invite.button.title" = "Invite friends";
 
@@ -136,8 +135,8 @@ your friends to TransferWise";
 "introduction.savings.pay.message.base" = "You'll pay %@ less vs your bank";
 "introduction.savings.message.part1" = "You'll save";
 "introduction.savings.message.part1.ipad" = "You'll save";
-"introduction.savings.message.part2" = "vs Your bank";
-"introduction.savings.message.part2.ipad" = "vs Your bank";
+"introduction.savings.message.part2" = "vs your bank";
+"introduction.savings.message.part2.ipad" = "vs your bank";
 "introduction.savings.message.how" = "SEE HOW";
 "introduction.savings.message.how.ipad" = "SEE HOW";
 "introduction.header.sub.title.text" = "No hidden fees. No headache.
@@ -232,6 +231,9 @@ It generally taks 1 business day.";
 "payment.status.receivedWaitingRecipient.description" = "Waiting for recipient";
 "payment.status.unknown.description" = "Unknown";
 
+"profile.post.code.label" = "Post code";
+"profile.post.code.usa.label" = "Zip code";
+
 "personal.profile.address.label" = "Address";
 "personal.profile.address.section.title" = "Address";
 "personal.profile.city.label" = "City";
@@ -252,7 +254,6 @@ It generally taks 1 business day.";
 "personal.profile.phone.label" = "Phone";
 "personal.profile.password.label" = "Password";
 "personal.profile.password.confirm.label" = "Retype password";
-"personal.profile.post.code.label" = "Post code";
 "personal.profile.refresh.error.message" = "Oops! Your profile couldn't be loaded. Please try again later.";
 "personal.profile.refresh.error.title" = "Profile unavailable";
 "personal.profile.refreshing.countries.message" = "Refreshing countries...";
@@ -444,8 +445,8 @@ This can't be undone.";
 "upload.money.card.payment.success.title" = "Success";
 
 "why.popup.bank.column.label" = "Average bank";
-"why.popup.tw.rate.title" = "We use the real exchange rate";
-"why.popup.bank.rate.title" = "Banks set their \nown rate";
+"why.popup.tw.rate.title" = "We use the real exchange rate.";
+"why.popup.bank.rate.title" = "Banks set their \nown rate.";
 "why.popup.tw.fee.title" = "We charge as little as possible.";
 "why.popup.bank.fee.title" = "Banks hide profit in the exchange rate + fee. ";
 "why.popup.tw.you.get.title" = "You get";

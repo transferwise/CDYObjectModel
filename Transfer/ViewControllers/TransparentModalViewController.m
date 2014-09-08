@@ -75,17 +75,25 @@
 -(IBAction)dismiss
 {
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        CGRect newFrame = self.view.bounds;
-        newFrame.origin.y = newFrame.size.height;
-        self.view.frame = newFrame;
-        newFrame.size.height = 0.0f;
-        self.blurView.frame = newFrame;
-    }completion:^(BOOL finished) {
-        [self.view removeFromSuperview];
-        [self.blurView removeFromSuperview];
-        [self removeFromParentViewController];
-    }];
+    [UIView animateWithDuration:0.3f
+						  delay:0.0f
+						options:UIViewAnimationOptionCurveEaseInOut
+					 animations:^{
+						 CGRect newFrame = self.view.bounds;
+						 newFrame.origin.y = newFrame.size.height;
+						 self.view.frame = newFrame;
+						 newFrame.size.height = 0.0f;
+						 self.blurView.frame = newFrame;
+					 }
+					 completion:^(BOOL finished) {
+						 [self.view removeFromSuperview];
+						 [self.blurView removeFromSuperview];
+						 [self removeFromParentViewController];
+						 if ([self.delegate respondsToSelector:@selector(modalClosed)])
+						 {
+							 [self.delegate modalClosed];
+						 }
+					 }];
 }
 
 

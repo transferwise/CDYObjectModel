@@ -61,8 +61,13 @@
 
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value
 {
-    self.placeholder=title;
+    self.placeholder = title;
     [self setText:value];
+}
+
+- (void)setTitle:(NSString *)title
+{
+	self.placeholder = title;
 }
 
 @end

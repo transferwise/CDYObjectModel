@@ -14,6 +14,7 @@
 @class TextEntryCell;
 @class CountrySelectionCell;
 @class Country;
+@class DoubleEntryCell;
 
 typedef void (^ProfileActionBlock)(NSError *error);
 typedef void (^CountrySelectionCompletion)();
@@ -26,6 +27,7 @@ typedef void (^CountrySelectionCompletion)();
 
 @property (nonatomic, strong) TextEntryCell *stateCell;
 @property (nonatomic, strong) CountrySelectionCell *countryCell;
+@property (nonatomic, strong) DoubleEntryCell *zipCityCell;
 
 
 - (NSArray *)presentedCells:(BOOL)allowProfileSwitch

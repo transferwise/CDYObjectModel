@@ -18,6 +18,7 @@
 #import "DoublePasswordEntryCell.h"
 #import "CountrySelectionCell.h"
 #import "Country.h"
+#import "DoubleEntryCell.h"
 
 @implementation ProfileSource
 
@@ -196,6 +197,7 @@
 							   [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
 						   }
 					   completion:completion];
+			[self.zipCityCell setFirstTitle:NSLocalizedString(@"profile.post.code.usa.label", nil)];
 			return self.stateCell;
         }
     }
@@ -209,7 +211,8 @@
 						   update:^{
 							   [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
 						   }
-					   completion:completion];			
+					   completion:completion];
+			[self.zipCityCell setFirstTitle:NSLocalizedString(@"profile.post.code.label", nil)];
         }
     }
 	
