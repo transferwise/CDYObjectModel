@@ -7,7 +7,10 @@
 //
 
 #import "TransparentModalViewController.h"
+@class TouchIdPromptViewController;
 
 @interface TouchIdPromptViewController : TransparentModalViewController
+
+-(void)presentOnViewController:(UIViewController *)hostViewcontroller withUsername:(NSString*)username password:(NSString*)password;
 
 @end

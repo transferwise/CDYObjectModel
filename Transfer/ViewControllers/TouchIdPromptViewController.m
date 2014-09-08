@@ -7,31 +7,37 @@
 //
 
 #import "TouchIdPromptViewController.h"
+#import "TouchIDHelper.h"
+#import "Constants.h"
 
 @interface TouchIdPromptViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *descripitionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *yesButton;
+@property (weak, nonatomic) IBOutlet UIButton *noButton;
+
+@property (nonatomic,strong) NSString* username;
+@property (nonatomic,strong) NSString* password;
 
 @end
 
 @implementation TouchIdPromptViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+-(void)presentOnViewController:(UIViewController *)hostViewcontroller withUsername:(NSString *)username password:(NSString *)password
+{
+    self.username = username;
+    self.password = password;
+    [super presentOnViewController:hostViewcontroller];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)closeTapped:(id)sender {
+    [TouchIDHelper blockStorageForUsername:self.username];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)yesTapped:(id)sender {
+    [TouchIDHelper storeCredentialsWithUsername:self.username password:self.password result:^(BOOL success) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+    }];
 }
-*/
 
 @end
