@@ -278,7 +278,6 @@
 		38BBE4641990F2B900A14B9F /* IntroViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4621990F2B900A14B9F /* IntroViewController~ipad.xib */; };
 		38BBE4661990F43500A14B9F /* IntroView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4651990F43500A14B9F /* IntroView~ipad.xib */; };
 		38BBE4671990F43500A14B9F /* IntroView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4651990F43500A14B9F /* IntroView~ipad.xib */; };
-		38BCE11719B8C8EF0003D0EE /* TransferDev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38BCE11619B8C8EF0003D0EE /* TransferDev.plist */; };
 		38BD98A3195C5973009F9B4A /* NameSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */; };
 		38BD98A4195C5973009F9B4A /* NameSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */; };
 		38BD98A5195C5973009F9B4A /* NameSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */; };
@@ -2845,7 +2844,6 @@
 				380021AB192B9506009B1D53 /* TabViewController~ipad.xib in Resources */,
 				EA0450DE17EC64E4008921DA /* IntroView.xib in Resources */,
 				38CACA65196EE4D400BFCF82 /* TextFieldSuggestionTable~ipad.xib in Resources */,
-				38BCE11719B8C8EF0003D0EE /* TransferDev.plist in Resources */,
 				EA31A1D917DDB29B00F937F7 /* TableHeaderView.xib in Resources */,
 				EA31A1DA17DDB29B00F937F7 /* TextEntryCell.xib in Resources */,
 				47F84D631988E83300886D41 /* CountrySelectionCell.xib in Resources */,
@@ -4165,7 +4163,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "b1267d3e-2ad9-4db9-9b99-fed449542e39";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B10ABF7D-1D2A-424F-83AA-D01502C91494";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
