@@ -11,15 +11,16 @@
 
 @interface TextFieldSuggestionTable ()<UITableViewDelegate>
 @property (nonatomic, strong) NSDate *startedEditing;
+@property (nonatomic, strong) IBOutlet UITableView* tableView;
 @end
 
 @implementation TextFieldSuggestionTable
 
 -(void)layoutSubviews
 {
-    if(!self.tableFooterView)
+    if(!self.tableView.tableFooterView)
     {
-        self.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+        self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     }
 }
 
@@ -28,7 +29,7 @@
 -(void)didStartEditing:(UITextField*)field
 {
     self.startedEditing = [NSDate date];
-    self.delegate = self;
+    self.tableView.delegate = self;
     if ([self.suggestionTableDelegate respondsToSelector:@selector(suggestionTableDidStartEditing:)])
     {
         [self.suggestionTableDelegate suggestionTableDidStartEditing:self];
@@ -50,14 +51,14 @@
 {
     if (field.isFirstResponder)
     {
-        self.hidden = ([field.text length] <= 0 || [self.visibleCells count] == 0);
+        self.hidden = ([field.text length] <= 0 || [self.tableView.visibleCells count] == 0);
         if(self.dataSource)
         {
             [self.dataSource filterForText:field.text completionBlock:^(BOOL contentDidChange) {
                 if(contentDidChange)
                 {
-                    [self reloadData];
-                    self.hidden = (! field.isFirstResponder || [self.visibleCells count] == 0);
+                    [self.tableView reloadData];
+                    self.hidden = (! field.isFirstResponder || [self.tableView.visibleCells count] == 0);
                 }
             }];
         }        
@@ -98,6 +99,12 @@
     {
         [self.suggestionTableDelegate suggestionTable:self selectedObject:[self.dataSource respondsToSelector:@selector(objectForIndexPath:)]?[self.dataSource objectForIndexPath:indexPath]:nil];
     }
+}
+
+-(void)setDataSource:(id<SuggestionTableCellProvider>)dataSource
+{
+    _dataSource = dataSource;
+    self.tableView.dataSource = dataSource;
 }
 
 

@@ -36,7 +36,7 @@
 	suggestionTable.textField = entryCell.entryField;
     suggestionTable.associatedView = entryCell;
 	suggestionTable.dataSource = dataSource;
-    suggestionTable.rowHeight = height;
+    suggestionTable.tableView.rowHeight = height;
     [self.view addSubview:suggestionTable];
     if(!self.suggestionTables)
     {
@@ -106,7 +106,7 @@
             }
         UIImageView* background = [[UIImageView alloc] initWithImage:backgroundImage];
         background.contentMode = UIViewContentModeBottom;
-        table.backgroundView = background;
+        table.tableView.backgroundView = background;
         
         UIView *colorOverlay = [[UIView alloc] initWithFrame:background.bounds];
         colorOverlay.bgStyle = @"DarkFont.alpha4";
@@ -170,7 +170,7 @@
     CGRect newframe = [self.view convertRect:[note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:self.view.window];
     for (TextFieldSuggestionTable* table in self.suggestionTables)
     {
-        table.contentInset = UIEdgeInsetsMake(0, 0, newframe.size.height, 0);
+        table.tableView.contentInset = UIEdgeInsetsMake(0, 0, newframe.size.height, 0);
     }
     
 }

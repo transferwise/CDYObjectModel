@@ -28,10 +28,11 @@
 -(id)objectForIndexPath:(NSIndexPath*)indexPath;
 @end
 
-@interface TextFieldSuggestionTable : UITableView
+@interface TextFieldSuggestionTable : UIView
 
 @property (nonatomic,weak) IBOutlet id<SuggestionTableDelegate> suggestionTableDelegate;
 @property (nonatomic, weak) IBOutlet id<SuggestionTableCellProvider> dataSource;
 @property (nonatomic, strong) IBOutlet UITextField *textField;
 @property (nonatomic, strong) UIView *associatedView;
+@property (nonatomic, readonly) UITableView* tableView;
 @end
