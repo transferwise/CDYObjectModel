@@ -126,13 +126,13 @@
 	}
 }
 
-- (void)markHasSuccesfulInvites
+- (void)saveSuccessfulInviteCount:(NSNumber *)count
 {
 	User* user = [self currentUser];
 	
 	if (user)
 	{
-		user.hasSuccessfulInvites = [NSNumber numberWithBool:YES];
+		user.successfulInviteCount = count;
 	}
 }
 

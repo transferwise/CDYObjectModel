@@ -18,6 +18,6 @@
 - (void)removeAnonymousUser;
 - (void)markAnonUserWithEmail:(NSString *)email;
 - (void)saveInviteUrl:(NSString *)inviteUrl;
-- (void)markHasSuccesfulInvites;
+- (void)saveSuccessfulInviteCount:(NSNumber *)count;
 
 @end

@@ -114,7 +114,6 @@
 
 @implementation InvitationProgressIndicatorView
 
-
 -(void)setupSegments
 {
     NSMutableArray* segments = [NSMutableArray arrayWithCapacity:4];
@@ -141,12 +140,11 @@
     [self addSubview:segment];
     
     self.dynamicSegment = segment;
-    
-
 }
 
-
--(void)setProgress:(NSUInteger)progress animated:(BOOL)animated
+- (void)setProgress:(NSUInteger)progress
+		  withDelta:(NSUInteger)delta
+		   animated:(BOOL)animated
 {
     if(!self.staticSegments)
     {
@@ -161,6 +159,8 @@
     
     //setup static segments
     NSUInteger truncatedProgress = (progress - 1 ) % ([self.staticSegments count]);
+	NSUInteger truncatedDelta = (delta - 1) % ([self.staticSegments count]);
+	
     [self.staticSegments enumerateObjectsUsingBlock:^(ProgressSegment* segment, NSUInteger i, BOOL *stop) {
         [self bringSubviewToFront:segment];
         if (i >= truncatedProgress )

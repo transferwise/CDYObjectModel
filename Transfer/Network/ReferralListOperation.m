@@ -34,7 +34,7 @@ NSString *const kReferralListPath = @"/referral/list";
 			NSInteger count = [response[@"successfulReferrals"] count];
 			
 			if (count > 0) {
-				[weakSelf.workModel markHasSuccesfulInvites];
+				[weakSelf.workModel saveSuccessfulInviteCount:[NSNumber numberWithInt:count]];
 				[weakSelf.workModel saveContext:^{
 					weakSelf.resultHandler(nil, count);
 				}];
