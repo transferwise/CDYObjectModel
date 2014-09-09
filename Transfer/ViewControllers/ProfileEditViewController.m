@@ -321,6 +321,11 @@
 	{
 		[stateCell.entryField setDelegate:self];
 	}
+	else
+	{
+		self.stateCell.value = @"";
+		[self didSelectState:@""];
+	}
 	
 	[self moveFocusOnNextEntryAfterCell:self.countryCell];
 }

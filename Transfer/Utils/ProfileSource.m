@@ -194,16 +194,16 @@
 		}
 	}
 	
-	NSMutableArray* addressFields = [self findContainingArrayForObject:afterCell
+	NSMutableArray* fields = [self findContainingArrayForObject:afterCell
 											 withArray:self.cells];
-	if (!addressFields)
+	if (!fields)
 	{
 		return nil;
 	}
 	
-	if(shouldInclude && ![addressFields containsObject:includeCell])
+	if(shouldInclude && ![fields containsObject:includeCell])
 	{
-		[addressFields insertObject:includeCell atIndex:[addressFields indexOfObject:afterCell] + 1];
+		[fields insertObject:includeCell atIndex:[fields indexOfObject:afterCell] + 1];
 		
 		NSIndexPath *indexPath = [tableView indexPathForCell:afterCell];
 		if (indexPath)
@@ -219,9 +219,9 @@
 			return includeCell;
 		}
 	}
-	else if(!shouldInclude && [addressFields containsObject:includeCell])
+	else if(!shouldInclude && [fields containsObject:includeCell])
 	{
-		[addressFields removeObject:includeCell];
+		[fields removeObject:includeCell];
 		NSIndexPath *indexPath = [tableView indexPathForCell:includeCell];
 		if (indexPath)
 		{
