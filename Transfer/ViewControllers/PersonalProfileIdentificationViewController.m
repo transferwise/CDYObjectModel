@@ -321,7 +321,7 @@
 
     int numberOfMissingFields = 0;
     int numberOfMissingDocuments = 0;
-    int numberOfMissingReasons = 0;
+    BOOL missingReason = NO;
 
     if ([self idVerificationRequired] && ![PendingPayment isIdVerificationImagePresent]) {
         numberOfMissingFields++;
@@ -335,12 +335,11 @@
 
     if ([self paymentPurposeRequired] && ![self.paymentPurposeCell.entryField.text hasValue]) {
         numberOfMissingFields++;
-        numberOfMissingReasons++;
+        missingReason = YES;
     }
     
     if ([self ssnVerificationRequired] && ![self.ssnCell.entryField.text hasValue]) {
         numberOfMissingFields++;
-        numberOfMissingReasons++;
     }
     
     self.reasonIcon.image = nil;
@@ -412,8 +411,20 @@
                     [self.reasonTitle setText:[NSString stringWithFormat:NSLocalizedString(@"identification.good.format", @""),numberOfMissingDocuments]];
                 }
             }
-            else
+            else if(numberOfMissingFields >1)
             {
+                if(IPAD)
+                {
+                    [self.navigationItem setTitle:NSLocalizedString(@"identification.fields", nil)];
+                }
+                else
+                {
+                    [self.reasonTitle setText:NSLocalizedString(@"identification.fields", nil)];
+                }
+            }
+            else if(missingReason)
+            {
+                
                 if(IPAD)
                 {
                     [self.navigationItem setTitle:NSLocalizedString(@"identification.only.purpose", nil)];
@@ -421,6 +432,17 @@
                 else
                 {
                     [self.reasonTitle setText:NSLocalizedString(@"identification.only.purpose", nil)];
+                }
+            }
+            else
+            {
+                if(IPAD)
+                {
+                    [self.navigationItem setTitle:NSLocalizedString(@"identification.only.ssn", nil)];
+                }
+                else
+                {
+                    [self.reasonTitle setText:NSLocalizedString(@"identification.only.ssn", nil)];
                 }
             }
 

@@ -121,8 +121,11 @@ your friends to TransferWise";
 "identification.good.format" = "Good! %d documents left.";
 "identification.good.single.format" = "Good! %d document left.";
 "identification.good.single.ipad" = "1 more document needed for security reasons.";
-"identification.only.ssn" = "You're almost done. Fill the field : Social security number";
-"identification.only.purpose" = "You're almost done. Fill the field : Purpose of transfer";
+"identification.fields" = "Fill the remaining fields";
+"identification.only.ssn" = "Almost done. Enter Social security number";
+"identification.only.purpose" = "Almost done. Enter Purpose of transfer";
+"identification.only.ssn.ipad" = "You're almost done. Fill the field : Social security number";
+"identification.only.purpose.ipad" = "You're almost done. Fill the field : Purpose of transfer";
 "identification.well.done.format" = "Well done %@!";
 
 
