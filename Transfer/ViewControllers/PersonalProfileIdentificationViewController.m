@@ -156,6 +156,7 @@
         [photoCells addObject:entryCell];
         [entryCell.entryField addTarget:self action:@selector(validateInput) forControlEvents:UIControlEventAllEditingEvents];
         [entryCell configureWithTitle:NSLocalizedString(@"identification.ssn", nil) value:@""];
+        entryCell.presentationPattern = @"***-**-****";
         if(IPAD)
         {
             CGRect newFrame = entryCell.separatorLine.frame;

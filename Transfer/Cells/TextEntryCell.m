@@ -12,6 +12,7 @@
 #import "TRWAlertView.h"
 #import "MOMStyle.h"
 #import <JVFloatLabeledTextField.h>
+#import "NSString+Presentation.h"
 
 NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 
@@ -78,18 +79,37 @@ NSString *const TWTextEntryCellIdentifier = @"TextEntryCell";
 		return NO;
 	}
 	
-	if (self.maxValueLength == 0)
+    NSString *pattern = self.presentationPattern;
+    
+    if (![pattern hasValue] && self.maxValueLength == 0)
 	{
         return YES;
     }
-	
-	if (self.maxValueLength > 0 && [modified length] > self.maxValueLength)
+    
+    if ([pattern hasValue] && [modified length] > [pattern length])
 	{
         return NO;
     }
-	
+    
+    if (self.maxValueLength > 0 && [modified length] > self.maxValueLength)
+	{
+        return NO;
+    }
+    
+    if ([string length] == 0)
+	{
+        modified = [modified stringByRemovingPatterChar:pattern];
+    }
+	else
+	{
+        modified = [modified applyPattern:pattern];
+        modified = [modified stringByAddingPatternChar:pattern];
+    }
+    
+    [self.entryField setText:modified];
     [self setValueModified:YES];
-    return YES;
+    return NO;
+
 }
 
 - (void)textFieldEntryFinished
