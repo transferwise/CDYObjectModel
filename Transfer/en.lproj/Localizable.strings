@@ -651,3 +651,7 @@ We'll send you an email in order to let you choose a new password.";
 "invite.status.querying" = "Getting invite's status";
 "invite.status.error.title" = "Unable to get status";
 "invite.status.error.message" = "Something went wrong while getting invite's status";
+
+"usd.low.title" = "Coming soon";
+"usd.low.info" = "Unfortunately you cannot transfer less than 1500 USD just yet.\nYou will soon be able to.";
+"usd.low.dismiss" = "Ok";

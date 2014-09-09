@@ -41,6 +41,7 @@
 #import "RecipientTypesOperation.h"
 #import "TRWProgressHUD.h"
 #import "CurrenciesOperation.h"
+#import "CustomInfoViewController.h"
 
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
@@ -363,6 +364,17 @@ static NSUInteger const kRowYouSend = 0;
 		[alertView show];
 		return;
 	}
+    
+    if([sourceCurrency.code caseInsensitiveCompare:@"USD"] == NSOrderedSame && [payIn floatValue] < 1500.0f)
+    {
+        CustomInfoViewController *customInfo = [[CustomInfoViewController alloc] init];
+        customInfo.titleText = NSLocalizedString(@"usd.low.title",nil);
+        customInfo.infoText = NSLocalizedString(@"usd.low.info",nil);
+        customInfo.dismissButtonTitle = NSLocalizedString(@"usd.low.dismiss",nil);
+        customInfo.infoImage = [UIImage imageNamed:@"illustration_under1500usd"];
+        [customInfo presentOnViewController:self];
+        return;
+    }
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
