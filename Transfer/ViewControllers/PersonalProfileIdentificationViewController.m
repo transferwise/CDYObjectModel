@@ -40,6 +40,7 @@
 @property (nonatomic, assign) NSInteger selectedRow;
 @property (nonatomic, assign) NSInteger idVerificationRowIndex;
 @property (nonatomic, assign) NSInteger addressVerificationRowIndex;
+@property (nonatomic, strong) TextEntryCell *ssnCell;
 @property (nonatomic, strong) TextEntryCell *paymentPurposeCell;
 
 @property (nonatomic, assign) float uploadProgressId,uploadProgressAddress;
@@ -103,7 +104,7 @@
     }
     else
     {
-        [self.navigationItem setTitle:NSLocalizedString(@"identification.only.purpose", nil)];
+        [self.navigationItem setTitle:NSLocalizedString(IPAD?@"identification.only.purpose":@"identification.controller.fields.title", nil)];
     }
 
     [self.tableView adjustFooterViewSize];
@@ -148,6 +149,22 @@
         self.addressVerificationRowIndex = [photoCells count] - 1;
     }
 
+    if ([self ssnVerificationRequired]) {
+        TextEntryCell *entryCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+        [self setSsnCell:entryCell];
+        [entryCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
+        [photoCells addObject:entryCell];
+        [entryCell.entryField addTarget:self action:@selector(validateInput) forControlEvents:UIControlEventAllEditingEvents];
+        [entryCell configureWithTitle:NSLocalizedString(@"identification.ssn", nil) value:@""];
+        if(IPAD)
+        {
+            CGRect newFrame = entryCell.separatorLine.frame;
+            newFrame.size.height = 1.0f/[[UIScreen mainScreen] scale];
+            entryCell.separatorLine.frame=newFrame;
+        }
+    }
+
+    
     if ([self paymentPurposeRequired]) {
         TextEntryCell *entryCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
         [self setPaymentPurposeCell:entryCell];
@@ -163,6 +180,8 @@
         }
     }
 
+    
+    
     [self setPresentedSectionCells:@[photoCells]];
     [self.tableView reloadData];
 }
@@ -177,6 +196,10 @@
 
 - (BOOL)idVerificationRequired {
     return (self.identificationRequired & IdentificationIdRequired) == IdentificationIdRequired;
+}
+
+- (BOOL)ssnVerificationRequired {
+    return (self.identificationRequired & IdentificationSSNRequired) == IdentificationSSNRequired;
 }
 
 #pragma mark - ValidationCell delegate
@@ -275,7 +298,7 @@
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProgress:) name:TRWUploadProgressNotification object:nil];
     }
     
-    self.completionHandler(skip, [self.paymentPurposeCell.entryField text], ^(void){
+    self.completionHandler(skip, [self.paymentPurposeCell.entryField text], [self.ssnCell.entryField text], ^(void){
 		[hud hide];
 		if (!skip)
 		{
@@ -310,6 +333,11 @@
     }
 
     if ([self paymentPurposeRequired] && ![self.paymentPurposeCell.entryField.text hasValue]) {
+        numberOfMissingFields++;
+        numberOfMissingReasons++;
+    }
+    
+    if ([self ssnVerificationRequired] && ![self.ssnCell.entryField.text hasValue]) {
         numberOfMissingFields++;
         numberOfMissingReasons++;
     }

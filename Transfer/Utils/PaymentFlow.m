@@ -289,8 +289,9 @@
     [controller setCompletionMessage:NSLocalizedString(@"identification.creating.payment.message", nil)];
     __weak typeof(self) weakSelf = self;
 
-	[controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, VerificationStepSuccessBlock successBlock, PaymentErrorBlock errorBlock) {
+	[controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, VerificationStepSuccessBlock successBlock, PaymentErrorBlock errorBlock) {
         [weakSelf.objectModel performBlock:^{
+            //TODO: SSN
             [payment setSendVerificationLaterValue:skipIdentification];
             [payment setPaymentPurpose:paymentPurpose];
 
@@ -402,10 +403,9 @@
     BusinessProfileIdentificationViewController *controller = [[BusinessProfileIdentificationViewController alloc] init];
     __weak typeof(self) weakSelf = self;
 
-    [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, VerificationStepSuccessBlock successBlock,PaymentErrorBlock errorBlock) {
+    [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, VerificationStepSuccessBlock successBlock,PaymentErrorBlock errorBlock) {
         [weakSelf.objectModel performBlock:^{
             [payment setSendVerificationLaterValue:skipIdentification];
-
             [weakSelf.objectModel saveContext:^{
                 [weakSelf commitPaymentWithSuccessBlock:successBlock ErrorHandler:errorBlock];
             }];

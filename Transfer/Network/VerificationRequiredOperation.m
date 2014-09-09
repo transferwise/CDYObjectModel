@@ -45,6 +45,9 @@ NSString *const kVerificationRequiredPath = @"/verification/required";
 			if ([response[@"paymentsPurposeVerification"] boolValue]) {
 				identificationRequired = identificationRequired | IdentificationPaymentPurposeRequired;
 			}
+            if (YES){//[response[@"ssnVerification"] boolValue]) {
+				identificationRequired = identificationRequired | IdentificationSSNRequired;
+			}
             [payment setVerificiationNeededValue:identificationRequired];
             [payment setProposedPaymentsPurpose:response[@"proposedPaymentsPurpose"]];
 

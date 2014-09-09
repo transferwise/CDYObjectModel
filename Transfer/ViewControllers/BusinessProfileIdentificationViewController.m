@@ -56,7 +56,7 @@
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"business.profile.identification.making.payment.message", nil)];
 
-    self.completionHandler(skipped, @"", ^(void){
+    self.completionHandler(skipped, @"", @"", ^(void){
         [hud hide];
     }, ^(NSError *error) {
         [hud hide];
