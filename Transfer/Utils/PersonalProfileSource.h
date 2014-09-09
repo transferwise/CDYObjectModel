@@ -8,9 +8,14 @@
 
 #import "ProfileSource.h"
 
+@class State;
+
 @interface PersonalProfileSource : ProfileSource
 
 - (BOOL)isPasswordLengthValid;
 - (BOOL)arePasswordsMatching;
+- (TextEntryCell *)stateSelectionCell:(TextEntryCell *)cell
+								state:(State *)state
+					   withCompletion:(SelectionCompletion)completion;
 
 @end

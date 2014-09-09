@@ -326,10 +326,10 @@ NSUInteger const kUserPersonalSection = 1;
 }
 
 - (TextEntryCell *)stateSelectionCell:(TextEntryCell *)cell
-								state:(NSString *)state
+								state:(State *)state
 					   withCompletion:(SelectionCompletion)completion
 {
-	return [self includeOccupationCell:[PersonalProfileSource showOccupationCell:state]
+	return [self includeOccupationCell:[PersonalProfileSource showOccupationCell:state.code]
 						withCompletion:completion];
 }
 

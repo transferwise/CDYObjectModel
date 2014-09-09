@@ -329,7 +329,14 @@
 {
 	self.stateCell.value = state;
 	
-//	TextEntryCell *occupationCell = [self.profileSource ]
+	if ([self.profileSource isKindOfClass:[PersonalProfileSource class]])
+	{
+		[(PersonalProfileSource *)self.profileSource stateSelectionCell:self.stateCell
+																  state:[self.stateCellProvider getByCodeOrName:self.stateCell.value]
+														 withCompletion:^{
+															 [self refreshTableViewSizes];
+														 }];
+	}
 }
 
 - (void)pullCountriesWithHud:(TRWProgressHUD *)hud completionHandler:(TRWActionBlock)completion

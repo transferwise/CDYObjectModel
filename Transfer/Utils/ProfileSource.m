@@ -194,15 +194,11 @@
 		}
 	}
 	
-	NSMutableArray* addressFields;
-	
-	if(self.tableViews.count > 1)
+	NSMutableArray* addressFields = [self findContainingArrayForObject:afterCell
+											 withArray:self.cells];
+	if (!addressFields)
 	{
-		addressFields = self.cells[1][0];
-	}
-	else
-	{
-		addressFields = self.cells[0][1];
+		return nil;
 	}
 	
 	if(shouldInclude && ![addressFields containsObject:includeCell])
@@ -274,6 +270,30 @@
 			  withTarget:(NSString *)target
 {
 	return source && [source caseInsensitiveCompare:target] == NSOrderedSame;
+}
+
+- (id)findContainingArrayForObject:(id)object
+									   withArray:(NSArray *)array
+{
+	for (id o in array)
+	{
+		if (o == object)
+		{
+			return array;
+		}
+		else if([o isKindOfClass:[NSArray class]])
+		{
+			NSArray* result = [self findContainingArrayForObject:object
+															  withArray:(NSArray *)o];
+			
+			if (result)
+			{
+				return result;
+			}
+		}
+	}
+	
+	return nil;
 }
 
 @end
