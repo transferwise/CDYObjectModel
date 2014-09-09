@@ -12,7 +12,7 @@
 @class ObjectModel;
 @class QuickProfileValidationOperation;
 @class TextEntryCell;
-@class CountrySelectionCell;
+@class SelectionCell;
 @class Country;
 @class DoubleEntryCell;
 
@@ -25,8 +25,8 @@ typedef void (^SelectionCompletion)();
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, strong) NSArray *cells;
 
-@property (nonatomic, strong) TextEntryCell *stateCell;
-@property (nonatomic, strong) CountrySelectionCell *countryCell;
+@property (nonatomic, strong) SelectionCell *stateCell;
+@property (nonatomic, strong) SelectionCell *countryCell;
 @property (nonatomic, strong) DoubleEntryCell *zipCityCell;
 
 
@@ -49,7 +49,7 @@ typedef void (^SelectionCompletion)();
 					 withCompletion:(SelectionCompletion)completion;
 - (void)markCellsWithIssues:(NSArray *)issues;
 - (void)setUpTableView:(UITableView *)tableView;
-- (TextEntryCell *)countrySelectionCell:(CountrySelectionCell *)cell
+- (TextEntryCell *)countrySelectionCell:(SelectionCell *)cell
 					   didSelectCountry:(Country *)country
 						 withCompletion:(SelectionCompletion)completion;
 + (BOOL)showStateCell:(NSString *)countryCode;

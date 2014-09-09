@@ -10,7 +10,7 @@
 #import "ProfileSource.h"
 #import "ButtonCell.h"
 #import "UIColor+Theme.h"
-#import "CountrySelectionCell.h"
+#import "SelectionCell.h"
 #import "TRWAlertView.h"
 #import "TransferwiseClient.h"
 #import "PhoneBookProfileSelector.h"
@@ -42,12 +42,12 @@
 #import "PersonalPaymentProfileViewController.h"
 #import "StateSuggestionProvider.h"
 
-@interface ProfileEditViewController ()<CountrySelectionCellDelegate, TextEntryCellDelegate>
+@interface ProfileEditViewController ()<SelectionCellDelegate, TextEntryCellDelegate>
 
 @property (nonatomic, strong) ProfileSource *profileSource;
-@property (nonatomic, strong) CountrySelectionCell *countryCell;
+@property (nonatomic, strong) SelectionCell *countryCell;
 @property (nonatomic, strong) TextEntryCell *emailCell;
-@property (nonatomic, strong) TextEntryCell *stateCell;
+@property (nonatomic, strong) SelectionCell *stateCell;
 @property (nonatomic, strong) DoublePasswordEntryCell *passwordCell;
 @property (nonatomic, strong) SwitchCell *sendAsBusinessCell;
 @property (nonatomic, strong) NSArray *presentationCells;
@@ -103,12 +103,6 @@
 	[self.profileSource setTableViews:self.tableViews];
 
     [self createPresentationCells];
-    self.stateCell = self.profileSource.stateCell;
-    self.stateCellProvider = [[StateSuggestionProvider alloc] init];
-    [super configureWithDataSource:self.stateCellProvider
-                             entryCell:self.stateCell
-                                height:self.stateCell.frame.size.height];
-    
 	[self createFooterView];
 }
 
@@ -138,7 +132,6 @@
     [self setCells:presented];
 	
 	self.countryCellProvider = [[CountrySuggestionCellProvider alloc] init];
-    
     [super configureWithDataSource:self.countryCellProvider
 						 entryCell:self.countryCell
 							height:self.countryCell.frame.size.height];
@@ -148,14 +141,26 @@
         [weakSelf didSelectCountry:countryName];
     }];
     
-	self.countryCell.countrySelectionDelegate = self;
+	self.countryCell.selectionDelegate = self;
+	
+	self.stateCell = self.profileSource.stateCell;
+    self.stateCellProvider = [[StateSuggestionProvider alloc] init];
+    [super configureWithDataSource:self.stateCellProvider
+						 entryCell:self.stateCell
+							height:self.stateCell.frame.size.height];
+	
+	[self.stateCell setSelectionHandler:^(NSString *state) {
+        [weakSelf didSelectState:state];
+    }];
+	
+	self.stateCell.selectionDelegate = self;
 
     [self setPresentationCells:presented];
 }
 
 - (void)setCells:(NSArray *)presented
 {
-	CountrySelectionCell *countryCell = nil;
+	SelectionCell *countryCell = nil;
 	TextEntryCell *emailCell = nil;
 	DoublePasswordEntryCell *passwordCell = nil;
 	SwitchCell *sendAsBusinessCell = nil;
@@ -166,9 +171,9 @@
 		{
 			for (UITableViewCell *cell in sections)
 			{
-				if ([cell isKindOfClass:[CountrySelectionCell class]])
+				if ([cell isKindOfClass:[SelectionCell class]])
 				{
-					countryCell = (CountrySelectionCell *)cell;
+					countryCell = (SelectionCell *)cell;
 				}
 				else if([cell isKindOfClass:[TextEntryCell class]]
 						&& [((TextEntryCell *)cell).cellTag isEqualToString:@"EmailCell"])
@@ -298,7 +303,7 @@
     }
     else
     {
-        self.stateCell.value = (NSString*)object;
+		[self didSelectState:(NSString *)object];
     }
     self.suppressAnimation = NO;
 }
@@ -307,7 +312,7 @@
 {
     self.countryCell.value = country;
 	TextEntryCell *stateCell = [self.profileSource countrySelectionCell:self.countryCell
-													   didSelectCountry:[self getCountryByCode:self.countryCell.value]
+													   didSelectCountry:[self.countryCellProvider getCountryByCodeOrName:self.countryCell.value]
 														 withCompletion:^{
 															 [self refreshTableViewSizes];
 														 }];
@@ -318,6 +323,13 @@
 	}
 	
 	[self moveFocusOnNextEntryAfterCell:self.countryCell];
+}
+
+- (void)didSelectState:(NSString *)state
+{
+	self.stateCell.value = state;
+	
+//	TextEntryCell *occupationCell = [self.profileSource ]
 }
 
 - (void)pullCountriesWithHud:(TRWProgressHUD *)hud completionHandler:(TRWActionBlock)completion
@@ -454,15 +466,17 @@
     });
 }
 
-#pragma mark - CountrySelectionCell Delegate
-- (Country *)getCountryByCode:(NSString *)code
+#pragma mark - SelectionCell Delegate
+- (id<SelectionItem>)selectionCell:(SelectionCell*)cell getByCodeOrName:(NSString *)codeOrName
 {
-	return [self.countryCellProvider getCountryByCode:code];
-}
-
-- (Country *)getCountryByName:(NSString *)name
-{
-	return [self.countryCellProvider getCountryByCode:name];
+	if (cell == self.countryCell)
+	{
+		return [self.countryCellProvider getCountryByCodeOrName:codeOrName];
+	}
+	else
+	{
+		return [self.stateCellProvider getByCodeOrName:codeOrName];
+	}
 }
 
 #pragma mark - Show as Login

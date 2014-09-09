@@ -8,6 +8,11 @@
 
 #import "StateSuggestionProvider.h"
 
+//TODO: remove when state is available from api
+@implementation State
+
+@end
+
 @interface StateSuggestionProvider ()
 
 @end
@@ -77,7 +82,7 @@
                         @"WY": @"Wyoming"};
 }
 
--(id)init
+- (id)init
 {
     self = [super init];
     if(self)
@@ -87,17 +92,42 @@
     return self;
 }
 
-+(NSString*)stateCodeFromTitle:(NSString*)title
+- (State *)stateFromTitle:(NSString*)title
 {
-    NSDictionary* stateLookup = [self stateLookup];
-    title = [[title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]capitalizedString];
+    NSDictionary* stateLookup = [StateSuggestionProvider stateLookup];
+    title = [[title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] capitalizedString];
     NSArray* codes = [stateLookup allKeysForObject:title];
-    return [codes firstObject];
+	
+	if (codes && codes.count > 0)
+	{
+		State *s = [self getState:title code:[codes firstObject]];
+		return s;
+	}
+	
+	return nil;
 }
 
-+(NSString*)titleFromStateCode:(NSString*)code
+- (State *)getByCodeOrName:(NSString*)codeOrName
 {
-    return [self stateLookup][[code uppercaseString]];
+	NSString* title = [StateSuggestionProvider stateLookup][[codeOrName uppercaseString]];
+	
+	if (title)
+	{
+		State *s = [self getState:title code:codeOrName];
+		return s;
+	}
+	else
+	{
+		return [self stateFromTitle:codeOrName];
+	}
+}
+
+- (State *)getState:(NSString *)title code:(NSString *)code
+{
+	State *state = [[State alloc] init];
+	state.name = title;
+	state.code = code;
+	return state;
 }
 
 @end

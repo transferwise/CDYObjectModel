@@ -7,7 +7,7 @@
 //
 
 #import "PersonalProfileSource.h"
-#import "CountrySelectionCell.h"
+#import "SelectionCell.h"
 #import "DateEntryCell.h"
 #import "NSString+Validation.h"
 #import "PersonalProfileValidation.h"
@@ -101,13 +101,13 @@ NSUInteger const kUserPersonalSection = 1;
 	
 	NSMutableArray *addressCells = [NSMutableArray array];
 	
-	CountrySelectionCell *countryCell = [CountrySelectionCell loadInstance];
+	SelectionCell *countryCell = [SelectionCell loadInstance];
     [self setCountryCell:countryCell];
     [addressCells addObject:countryCell];
     [countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
     [countryCell setCellTag:@"countryCode"];
     
-    TextEntryCell *stateCell = [TextEntryCell loadInstance];
+    SelectionCell *stateCell = [SelectionCell loadInstance];
     [self setStateCell:stateCell];
     [stateCell configureWithTitle:NSLocalizedString(@"personal.profile.state.label", nil) value:@""];
     [stateCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
@@ -208,10 +208,8 @@ NSUInteger const kUserPersonalSection = 1;
         [self.zipCityCell setValue:profile.postCode];
         [self.zipCityCell setSecondValue:profile.city];
         [self.countryCell setValue:profile.countryCode];
-        NSString* stateTitle = [StateSuggestionProvider titleFromStateCode:profile.state];
-        [self.stateCell setValue:stateTitle];
-		//TODO: Verify api is providing this
-		[self.stateCell setValue:profile.occupation];
+        [self.stateCell setValue:profile.state];
+		[self.occupationCell setValue:profile.occupation];
 
         [self.firstLastNameCell setEditable:![profile isFieldReadonly:@"firstName"]];
         [self.firstLastNameCell setSecondEditable:![profile isFieldReadonly:@"lastName"]];
@@ -273,11 +271,7 @@ NSUInteger const kUserPersonalSection = 1;
     [profile setCity:self.zipCityCell.secondValue];
     [profile setCountryCode:self.countryCell.value];
     [profile setDateOfBirth:[self.dateOfBirthCell value]];
-    NSString* stateCode = [StateSuggestionProvider stateCodeFromTitle:self.stateCell.value];
-    if(stateCode)
-    {
-        [profile setState:stateCode];
-    }
+    [profile setState:self.stateCell.value];
 	[profile setOccupation:[self.occupationCell value]];
 
 	
@@ -318,11 +312,7 @@ NSUInteger const kUserPersonalSection = 1;
     [operation setCity:[self.zipCityCell secondValue]];
     [operation setCountryCode:[self.countryCell value]];
     [operation setDateOfBirth:[self.dateOfBirthCell value]];
-    NSString* stateCode = [StateSuggestionProvider stateCodeFromTitle:self.stateCell.value];
-    if(stateCode)
-    {
-        [operation setState:stateCode];
-    }
+    [operation setState:self.stateCell.value];
 	[operation setOccupation:[self.occupationCell value]];
 }
 

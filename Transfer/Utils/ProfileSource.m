@@ -16,7 +16,7 @@
 #import "DateEntryCell.h"
 #import "DoubleEntryCell.h"
 #import "DoublePasswordEntryCell.h"
-#import "CountrySelectionCell.h"
+#import "SelectionCell.h"
 #import "Country.h"
 #import "DoubleEntryCell.h"
 
@@ -152,7 +152,7 @@
 {
 	[tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
     [tableView registerNib:[UINib nibWithNibName:@"DateEntryCell" bundle:nil] forCellReuseIdentifier:TWDateEntryCellIdentifier];
-    [tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
+    [tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWSelectionCellIdentifier];
 	[tableView registerNib:[UINib nibWithNibName:@"DoublePasswordEntryCell" bundle:nil] forCellReuseIdentifier:TWDoublePasswordEntryCellIdentifier];
 	[tableView registerNib:[UINib nibWithNibName:@"DoubleEntryCell" bundle:nil] forCellReuseIdentifier:TWDoubleEntryCellIdentifier];
 	
@@ -256,7 +256,7 @@
 	} completion:nil];
 }
 
-- (TextEntryCell *)countrySelectionCell:(CountrySelectionCell *)cell
+- (TextEntryCell *)countrySelectionCell:(SelectionCell *)cell
 					   didSelectCountry:(Country *)country
 						 withCompletion:(SelectionCompletion)completion
 {

@@ -11,5 +11,9 @@
 @implementation Country
 
 // Custom logic goes here.
+- (NSString *)code
+{
+	return self.iso3Code;
+}
 
 @end
