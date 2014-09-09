@@ -142,7 +142,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 		[self.window endEditing:YES];
 		
 		CurrencySelectorViewController* selector = [[CurrencySelectorViewController alloc] init];
-		selector.delegate = self;
+		selector.currencySelectorDelegate = self;
 		selector.currencyArray = [self.currencies.fetchedObjects valueForKey:@"currency"];
 		[selector setSelectedCurrency:self.selectedCurrency];
 		selector.view.backgroundColor = self.selectorBackgroundColor;
