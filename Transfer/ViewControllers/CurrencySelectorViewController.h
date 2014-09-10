@@ -24,7 +24,7 @@
 @interface CurrencySelectorViewController : TransparentModalViewController
 
 @property (nonatomic,strong)NSArray* currencyArray;
-@property (nonatomic,weak) id<CurrencySelectorDelegate> delegate;
+@property (nonatomic,weak) id<CurrencySelectorDelegate> currencySelectorDelegate;
 
 -(void)setSelectedCurrency:(Currency*)selectedCurrency;
 
