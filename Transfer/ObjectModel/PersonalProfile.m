@@ -41,6 +41,7 @@
     data[@"city"] = self.city;
     data[@"countryCode"] = self.countryCode;
     data[@"state"] = ([@"usa" caseInsensitiveCompare:self.countryCode]==NSOrderedSame && self.state)?self.state:@"";
+	data[@"occupation"] = ([@"az" caseInsensitiveCompare:self.state]==NSOrderedSame && self.occupation)?self.occupation:@"";
     return [NSDictionary dictionaryWithDictionary:data];
 }
 

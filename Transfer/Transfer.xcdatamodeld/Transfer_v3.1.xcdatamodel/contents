@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6220.17" systemVersion="13E28" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AllowedTypeFieldValue" representedClassName="AllowedTypeFieldValue" syncable="YES">
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -109,6 +109,7 @@
         <attribute name="dateOfBirth" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="occupation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="readonlyFields" optional="YES" attributeType="String" syncable="YES"/>
@@ -191,7 +192,7 @@
         <element name="Payment" positionX="349" positionY="-63" width="128" height="375"/>
         <element name="PaymentMadeIndicator" positionX="-405" positionY="-279" width="128" height="75"/>
         <element name="PendingPayment" positionX="79" positionY="-189" width="128" height="165"/>
-        <element name="PersonalProfile" positionX="-614" positionY="-42" width="128" height="225"/>
+        <element name="PersonalProfile" positionX="-614" positionY="-42" width="128" height="240"/>
         <element name="Recipient" positionX="277" positionY="152" width="128" height="285"/>
         <element name="RecipientType" positionX="205" positionY="-432" width="128" height="178"/>
         <element name="RecipientTypeField" positionX="277" positionY="69" width="128" height="210"/>

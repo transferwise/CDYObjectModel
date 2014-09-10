@@ -56,7 +56,7 @@
 #import "UIView+RenderBlur.h"
 #import "UIResponder+FirstResponder.h"
 #import "GreenButton.h"
-#import "CountrySelectionCell.h"
+#import "SelectionCell.h"
 #import "Country.h"
 #import "ObjectModel+Countries.h"
 #import "CurrenciesOperation.h"
@@ -72,7 +72,7 @@ static NSUInteger const kAddressSection = 3;
 
 NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
-@interface RecipientViewController () <SuggestionTableDelegate, CountrySelectionCellDelegate>
+@interface RecipientViewController () <SuggestionTableDelegate, SelectionCellDelegate>
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
@@ -119,7 +119,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic,strong)TextEntryCell *addressCell;
 @property (nonatomic,strong)TextEntryCell *postCodeCell;
 @property (nonatomic,strong)TextEntryCell *cityCell;
-@property (nonatomic,strong)CountrySelectionCell *countryCell;
+@property (nonatomic,strong)SelectionCell *countryCell;
 @property (nonatomic,strong)TextEntryCell *stateCell;
 
 @property (nonatomic, strong) CountrySuggestionCellProvider *countryCellProvider;
@@ -201,7 +201,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     
      NSMutableArray *addressCells = [NSMutableArray array];
     
-    CountrySelectionCell *countryCell = [CountrySelectionCell loadInstance];
+    SelectionCell *countryCell = [SelectionCell loadInstance];
     [self setCountryCell:countryCell];
     [addressCells addObject:countryCell];
     [countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
@@ -220,7 +220,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         [weakSelf didSelectCountry:countryName];
     }];
     
-	self.countryCell.countrySelectionDelegate = self;
+	self.countryCell.selectionDelegate = self;
     
     TRWProgressHUD * hud = nil;
     if([countriesFetcher.fetchedObjects count]<=0)
@@ -289,7 +289,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [tableView registerNib:[UINib nibWithNibName:@"RecipientFieldCell" bundle:nil] forCellReuseIdentifier:TWRecipientFieldCellIdentifier];
     [tableView registerNib:[UINib nibWithNibName:@"RecipientEntrySelectionCell" bundle:nil] forCellReuseIdentifier:TRWRecipientEntrySelectionCellIdentifier];
     [tableView registerNib:[UINib nibWithNibName:@"DropdownCell" bundle:nil] forCellReuseIdentifier:TWDropdownCellIdentifier];
-    [tableView registerNib:[UINib nibWithNibName:@"CountrySelectCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
+    [tableView registerNib:[UINib nibWithNibName:@"CountrySelectCell" bundle:nil] forCellReuseIdentifier:TWSelectionCellIdentifier];
     
     [tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
@@ -685,10 +685,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     recipientInput.addressCountryCode = [self.countryCell value];
     if ([@"usa" caseInsensitiveCompare:self.countryCell.value]== NSOrderedSame)
     {
-        NSString* stateCode = [StateSuggestionProvider stateCodeFromTitle:self.stateCell.value];
-        if(stateCode)
+        State* state = [self.stateCellProvider getByCodeOrName:self.stateCell.value];
+        if(state)
         {
-            recipientInput.addressState = stateCode;
+            recipientInput.addressState = state.code;
         }
     }
 
@@ -785,11 +785,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     
     return [NSString stringWithString:issues];
 }
-
-
-
-
-
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -947,7 +942,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
 }
 
--(void)countrySelectionCell:(CountrySelectionCell *)cell selectedCountry:(Country *)country
+-(void)selectionCell:(SelectionCell *)cell selectedItem:(Country *)country
 {
     [self includeStateCell:([@"usa" caseInsensitiveCompare:country.iso3Code]==NSOrderedSame)];
 }
@@ -1069,14 +1064,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 }
 
 #pragma mark - CountrySelectionCell Delegate
-- (Country *)getCountryByCode:(NSString *)code
+- (id<SelectionItem>)selectionCell:(SelectionCell *)cell
+						 getByCodeOrName:(NSString *)codeOrName
 {
-	return [self.countryCellProvider getCountryByCode:code];
-}
-
-- (Country *)getCountryByName:(NSString *)name
-{
-	return [self.countryCellProvider getCountryByCode:name];
+	return [self.countryCellProvider getCountryByCodeOrName:codeOrName];
 }
 
 #pragma mark - Configure for interface orientation

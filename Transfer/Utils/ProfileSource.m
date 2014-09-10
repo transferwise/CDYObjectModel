@@ -16,7 +16,7 @@
 #import "DateEntryCell.h"
 #import "DoubleEntryCell.h"
 #import "DoublePasswordEntryCell.h"
-#import "CountrySelectionCell.h"
+#import "SelectionCell.h"
 #import "Country.h"
 #import "DoubleEntryCell.h"
 
@@ -152,7 +152,7 @@
 {
 	[tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
     [tableView registerNib:[UINib nibWithNibName:@"DateEntryCell" bundle:nil] forCellReuseIdentifier:TWDateEntryCellIdentifier];
-    [tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWCountrySelectionCellIdentifier];
+    [tableView registerNib:[UINib nibWithNibName:@"CountrySelectionCell" bundle:nil] forCellReuseIdentifier:TWSelectionCellIdentifier];
 	[tableView registerNib:[UINib nibWithNibName:@"DoublePasswordEntryCell" bundle:nil] forCellReuseIdentifier:TWDoublePasswordEntryCellIdentifier];
 	[tableView registerNib:[UINib nibWithNibName:@"DoubleEntryCell" bundle:nil] forCellReuseIdentifier:TWDoubleEntryCellIdentifier];
 	
@@ -160,68 +160,85 @@
 }
 
 - (TextEntryCell *)includeStateCell:(BOOL)shouldInclude
-					 withCompletion:(CountrySelectionCompletion)completion
+					 withCompletion:(SelectionCompletion)completion
 {
-    UITableView* tableView;
-    for(UITableView *table in self.tableViews)
-    {
-        if ([table indexPathForCell:self.countryCell])
-        {
-            tableView = table;
-            break;
-        }
-    }
-    
-    NSMutableArray* addressFields;
+	TextEntryCell *result = [self includeCell:self.stateCell
+									afterCell:self.countryCell
+								shouldInclude:shouldInclude
+							   withCompletion:completion];
 	
-	if(self.tableViews.count > 1)
+	if (result)
 	{
-		addressFields = self.cells[1][0];
+		[self.zipCityCell setFirstTitle:NSLocalizedString(@"profile.post.code.usa.label", nil)];
 	}
 	else
 	{
-		addressFields = self.cells[0][1];
+		[self.zipCityCell setFirstTitle:NSLocalizedString(@"profile.post.code.label", nil)];
 	}
 	
-    if(shouldInclude && ![addressFields containsObject:self.stateCell])
-    {
-        [addressFields insertObject:self.stateCell atIndex:[addressFields indexOfObject:self.countryCell] + 1];
+	return result;
+}
+
+- (TextEntryCell *)includeCell:(TextEntryCell *)includeCell
+					 afterCell:(UITableViewCell *)afterCell
+				 shouldInclude:(BOOL)shouldInclude
+				withCompletion:(SelectionCompletion)completion
+{
+	UITableView* tableView;
+	for(UITableView *table in self.tableViews)
+	{
+		if ([table indexPathForCell:afterCell])
+		{
+			tableView = table;
+			break;
+		}
+	}
+	
+	NSMutableArray* fields = [self findContainingArrayForObject:afterCell
+											 withArray:self.cells];
+	if (!fields)
+	{
+		return nil;
+	}
+	
+	if(shouldInclude && ![fields containsObject:includeCell])
+	{
+		[fields insertObject:includeCell atIndex:[fields indexOfObject:afterCell] + 1];
 		
-        NSIndexPath *indexPath = [tableView indexPathForCell:self.countryCell];
-        if (indexPath)
-        {
-            indexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
+		NSIndexPath *indexPath = [tableView indexPathForCell:afterCell];
+		if (indexPath)
+		{
+			indexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
 			
 			[self updateTableView:tableView
 						   update:^{
 							   [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
 						   }
 					   completion:completion];
-			[self.zipCityCell setFirstTitle:NSLocalizedString(@"profile.post.code.usa.label", nil)];
-			return self.stateCell;
-        }
-    }
-    else if(!shouldInclude && [addressFields containsObject:self.stateCell])
-    {
-        [addressFields removeObject:self.stateCell];
-        NSIndexPath *indexPath = [tableView indexPathForCell:self.stateCell];
-        if (indexPath)
-        {
+			
+			return includeCell;
+		}
+	}
+	else if(!shouldInclude && [fields containsObject:includeCell])
+	{
+		[fields removeObject:includeCell];
+		NSIndexPath *indexPath = [tableView indexPathForCell:includeCell];
+		if (indexPath)
+		{
 			[self updateTableView:tableView
 						   update:^{
 							   [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
 						   }
 					   completion:completion];
-			[self.zipCityCell setFirstTitle:NSLocalizedString(@"profile.post.code.label", nil)];
-        }
-    }
+		}
+	}
 	
 	return nil;
 }
 
 - (void)updateTableView:(UITableView *)tableView
 				 update:(void (^)())update
-			 completion:(CountrySelectionCompletion)completion
+			 completion:(SelectionCompletion)completion
 {
 	[UIView animateWithDuration:0.5 animations:^{
 		[tableView beginUpdates];
@@ -235,9 +252,9 @@
 	} completion:nil];
 }
 
-- (TextEntryCell *)countrySelectionCell:(CountrySelectionCell *)cell
+- (TextEntryCell *)countrySelectionCell:(SelectionCell *)cell
 					   didSelectCountry:(Country *)country
-						 withCompletion:(CountrySelectionCompletion)completion
+						 withCompletion:(SelectionCompletion)completion
 {
 	return [self includeStateCell:[ProfileSource showStateCell:country.iso3Code]
 				   withCompletion:completion];
@@ -245,7 +262,38 @@
 
 + (BOOL)showStateCell:(NSString *)countryCode
 {
-	return countryCode && [@"usa" caseInsensitiveCompare:countryCode] == NSOrderedSame;
+	return [self isMatchingSource:@"usa"
+					   withTarget:countryCode];
+}
+
++ (BOOL)isMatchingSource:(NSString *)source
+			  withTarget:(NSString *)target
+{
+	return source && [source caseInsensitiveCompare:target] == NSOrderedSame;
+}
+
+- (id)findContainingArrayForObject:(id)object
+									   withArray:(NSArray *)array
+{
+	for (id o in array)
+	{
+		if (o == object)
+		{
+			return array;
+		}
+		else if([o isKindOfClass:[NSArray class]])
+		{
+			NSArray* result = [self findContainingArrayForObject:object
+															  withArray:(NSArray *)o];
+			
+			if (result)
+			{
+				return result;
+			}
+		}
+	}
+	
+	return nil;
 }
 
 @end

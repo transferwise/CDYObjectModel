@@ -7,7 +7,7 @@
 //
 
 #import "PersonalProfileSource.h"
-#import "CountrySelectionCell.h"
+#import "SelectionCell.h"
 #import "DateEntryCell.h"
 #import "NSString+Validation.h"
 #import "PersonalProfileValidation.h"
@@ -39,6 +39,7 @@ NSUInteger const kUserPersonalSection = 1;
 @property (nonatomic, strong) DoublePasswordEntryCell *passwordCell;
 @property (nonatomic, strong) NSArray *loginCells;
 @property (nonatomic, strong) SwitchCell *sendAsBusinessCell;
+@property (nonatomic, strong) TextEntryCell *occupationCell;
 @property (nonatomic) BOOL allowProfileSwitch;
 
 @end
@@ -100,13 +101,13 @@ NSUInteger const kUserPersonalSection = 1;
 	
 	NSMutableArray *addressCells = [NSMutableArray array];
 	
-	CountrySelectionCell *countryCell = [CountrySelectionCell loadInstance];
+	SelectionCell *countryCell = [SelectionCell loadInstance];
     [self setCountryCell:countryCell];
     [addressCells addObject:countryCell];
     [countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
     [countryCell setCellTag:@"countryCode"];
     
-    TextEntryCell *stateCell = [TextEntryCell loadInstance];
+    SelectionCell *stateCell = [SelectionCell loadInstance];
     [self setStateCell:stateCell];
     [stateCell configureWithTitle:NSLocalizedString(@"personal.profile.state.label", nil) value:@""];
     [stateCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
@@ -142,6 +143,12 @@ NSUInteger const kUserPersonalSection = 1;
     [phoneDobCells addObject:dateOfBirthCell];
     [dateOfBirthCell configureWithTitle:NSLocalizedString(@"personal.profile.date.of.birth.label", nil) value:@""];
     [dateOfBirthCell setCellTag:@"dateOfBirth"];
+	
+	TextEntryCell *occupationCell = [TextEntryCell loadInstance];
+	[self setOccupationCell:occupationCell];
+	[occupationCell configureWithTitle:NSLocalizedString(@"personal.profile.occupation.label", nil) value:@""];
+	[occupationCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
+	[occupationCell setCellTag:@"occupation"];
 
 	if (allowProfileSwitch)
 	{
@@ -201,9 +208,8 @@ NSUInteger const kUserPersonalSection = 1;
         [self.zipCityCell setValue:profile.postCode];
         [self.zipCityCell setSecondValue:profile.city];
         [self.countryCell setValue:profile.countryCode];
-        NSString* stateTitle = [StateSuggestionProvider titleFromStateCode:profile.state];
-        [self.stateCell setValue:stateTitle];
-
+        [self.stateCell setValue:profile.state];
+		[self.occupationCell setValue:profile.occupation];
 
         [self.firstLastNameCell setEditable:![profile isFieldReadonly:@"firstName"]];
         [self.firstLastNameCell setSecondEditable:![profile isFieldReadonly:@"lastName"]];
@@ -219,6 +225,8 @@ NSUInteger const kUserPersonalSection = 1;
 		
 		[self includeStateCell:[ProfileSource showStateCell:profile.countryCode]
 				withCompletion:nil];
+		[self includeOccupationCell:[PersonalProfileSource showOccupationCell:profile.state]
+					 withCompletion:nil];
     });
 }
 
@@ -229,7 +237,8 @@ NSUInteger const kUserPersonalSection = 1;
 			&& [[self.emailCell value] hasValue] && [[self.phoneNumberCell value] hasValue]
 			&& [[self.dateOfBirthCell value] hasValue] && [[self.addressCell value] hasValue]
 			&& [[self.zipCityCell value] hasValue] && [[self.zipCityCell secondValue] hasValue]
-            && [[self.countryCell value] hasValue] && (![ProfileSource showStateCell:self.countryCell.value] || [[self.stateCell value] hasValue]);
+            && [[self.countryCell value] hasValue] && (![ProfileSource showStateCell:self.countryCell.value] || [[self.stateCell value] hasValue])
+			&& (![PersonalProfileSource showOccupationCell:self.stateCell.value] || [[self.occupationCell value] hasValue]);
 }
 
 //this should be removed when API supports atomic account creation operation
@@ -262,11 +271,8 @@ NSUInteger const kUserPersonalSection = 1;
     [profile setCity:self.zipCityCell.secondValue];
     [profile setCountryCode:self.countryCell.value];
     [profile setDateOfBirth:[self.dateOfBirthCell value]];
-    NSString* stateCode = [StateSuggestionProvider stateCodeFromTitle:self.stateCell.value];
-    if(stateCode)
-    {
-        [profile setState:stateCode];
-    }
+    [profile setState:self.stateCell.value];
+	[profile setOccupation:[self.occupationCell value]];
 
 	
 	if (self.allowProfileSwitch)
@@ -306,12 +312,31 @@ NSUInteger const kUserPersonalSection = 1;
     [operation setCity:[self.zipCityCell secondValue]];
     [operation setCountryCode:[self.countryCell value]];
     [operation setDateOfBirth:[self.dateOfBirthCell value]];
-    NSString* stateCode = [StateSuggestionProvider stateCodeFromTitle:self.stateCell.value];
-    if(stateCode)
-    {
-        [operation setState:stateCode];
-    }
+    [operation setState:self.stateCell.value];
+	[operation setOccupation:[self.occupationCell value]];
+}
 
+- (TextEntryCell *)includeOccupationCell:(BOOL)shouldInclude
+						  withCompletion:(SelectionCompletion)completion
+{
+	return [self includeCell:self.occupationCell
+				   afterCell:self.dateOfBirthCell
+			   shouldInclude:shouldInclude
+			  withCompletion:completion];
+}
+
+- (TextEntryCell *)stateSelectionCell:(TextEntryCell *)cell
+								state:(State *)state
+					   withCompletion:(SelectionCompletion)completion
+{
+	return [self includeOccupationCell:[PersonalProfileSource showOccupationCell:state.code]
+						withCompletion:completion];
+}
+
++ (BOOL)showOccupationCell:(NSString *)state
+{
+	return [PersonalProfileSource isMatchingSource:@"az"
+										withTarget:state];
 }
 
 @end

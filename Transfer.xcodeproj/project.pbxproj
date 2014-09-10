@@ -404,8 +404,8 @@
 		47971C62199A3C1C0018FDA8 /* DateEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C60199A3C1C0018FDA8 /* DateEntryCell~ipad.xib */; };
 		47971C64199A3F1F0018FDA8 /* DoublePasswordEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C63199A3F1F0018FDA8 /* DoublePasswordEntryCell~ipad.xib */; };
 		47971C65199A3F1F0018FDA8 /* DoublePasswordEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C63199A3F1F0018FDA8 /* DoublePasswordEntryCell~ipad.xib */; };
-		47971C67199A3FB60018FDA8 /* CountrySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C66199A3FB60018FDA8 /* CountrySelectionCell~ipad.xib */; };
-		47971C68199A3FB60018FDA8 /* CountrySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C66199A3FB60018FDA8 /* CountrySelectionCell~ipad.xib */; };
+		47971C67199A3FB60018FDA8 /* SelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C66199A3FB60018FDA8 /* SelectionCell~ipad.xib */; };
+		47971C68199A3FB60018FDA8 /* SelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C66199A3FB60018FDA8 /* SelectionCell~ipad.xib */; };
 		47971C6A199A4E830018FDA8 /* DoubleEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C69199A4E830018FDA8 /* DoubleEntryCell~ipad.xib */; };
 		47971C6B199A4E830018FDA8 /* DoubleEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C69199A4E830018FDA8 /* DoubleEntryCell~ipad.xib */; };
 		479B692C19487865001FA4FE /* TransferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B692A19487865001FA4FE /* TransferDetailsViewController.m */; };
@@ -440,8 +440,8 @@
 		47F1F5921941C87600FC4BEB /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
 		47F84D5F1988D73A00886D41 /* CountrySuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */; };
 		47F84D601988D73A00886D41 /* CountrySuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */; };
-		47F84D621988E83300886D41 /* CountrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47F84D611988E83300886D41 /* CountrySelectionCell.xib */; };
-		47F84D631988E83300886D41 /* CountrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47F84D611988E83300886D41 /* CountrySelectionCell.xib */; };
+		47F84D621988E83300886D41 /* SelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47F84D611988E83300886D41 /* SelectionCell.xib */; };
+		47F84D631988E83300886D41 /* SelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47F84D611988E83300886D41 /* SelectionCell.xib */; };
 		47F84D6B198A638B00886D41 /* DoubleEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F84D69198A638B00886D41 /* DoubleEntryCell.m */; };
 		47F84D6C198A638B00886D41 /* DoubleEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F84D69198A638B00886D41 /* DoubleEntryCell.m */; };
 		47F84D6D198A638B00886D41 /* DoubleEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47F84D6A198A638B00886D41 /* DoubleEntryCell.xib */; };
@@ -576,7 +576,7 @@
 		EA31A14E17DDB29B00F937F7 /* CountriesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E67D172F97D50021492C /* CountriesOperation.m */; };
 		EA31A14F17DDB29B00F937F7 /* NetworkErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E67F172F97D50021492C /* NetworkErrorCodes.m */; };
 		EA31A15017DDB29B00F937F7 /* UserDetailsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E683172F97D50021492C /* UserDetailsOperation.m */; };
-		EA31A15117DDB29B00F937F7 /* CountrySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E689172F97E20021492C /* CountrySelectionCell.m */; };
+		EA31A15117DDB29B00F937F7 /* SelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E689172F97E20021492C /* SelectionCell.m */; };
 		EA31A15217DDB29B00F937F7 /* DateEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E68C172F97E20021492C /* DateEntryCell.m */; };
 		EA31A15317DDB29B00F937F7 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E692172F97F50021492C /* Constants.m */; };
 		EA31A15417DDB29B00F937F7 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E695172F980A0021492C /* SignUpViewController.m */; };
@@ -745,7 +745,7 @@
 		EA88E684172F97D50021492C /* CountriesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E67D172F97D50021492C /* CountriesOperation.m */; };
 		EA88E685172F97D50021492C /* NetworkErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E67F172F97D50021492C /* NetworkErrorCodes.m */; };
 		EA88E687172F97D50021492C /* UserDetailsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E683172F97D50021492C /* UserDetailsOperation.m */; };
-		EA88E68E172F97E20021492C /* CountrySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E689172F97E20021492C /* CountrySelectionCell.m */; };
+		EA88E68E172F97E20021492C /* SelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E689172F97E20021492C /* SelectionCell.m */; };
 		EA88E690172F97E20021492C /* DateEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E68C172F97E20021492C /* DateEntryCell.m */; };
 		EA88E691172F97E20021492C /* DateEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E68D172F97E20021492C /* DateEntryCell.xib */; };
 		EA88E693172F97F50021492C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E692172F97F50021492C /* Constants.m */; };
@@ -1216,7 +1216,7 @@
 		47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TextEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C60199A3C1C0018FDA8 /* DateEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DateEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C63199A3F1F0018FDA8 /* DoublePasswordEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DoublePasswordEntryCell~ipad.xib"; sourceTree = "<group>"; };
-		47971C66199A3FB60018FDA8 /* CountrySelectionCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CountrySelectionCell~ipad.xib"; sourceTree = "<group>"; };
+		47971C66199A3FB60018FDA8 /* SelectionCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectionCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C69199A4E830018FDA8 /* DoubleEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DoubleEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		479B692919487865001FA4FE /* TransferDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferDetailsViewController.h; sourceTree = "<group>"; };
 		479B692A19487865001FA4FE /* TransferDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDetailsViewController.m; sourceTree = "<group>"; };
@@ -1244,7 +1244,7 @@
 		47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Cancel.m"; sourceTree = "<group>"; };
 		47F84D5D1988D73A00886D41 /* CountrySuggestionCellProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountrySuggestionCellProvider.h; sourceTree = "<group>"; };
 		47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountrySuggestionCellProvider.m; sourceTree = "<group>"; };
-		47F84D611988E83300886D41 /* CountrySelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountrySelectionCell.xib; sourceTree = "<group>"; };
+		47F84D611988E83300886D41 /* SelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectionCell.xib; sourceTree = "<group>"; };
 		47F84D68198A638B00886D41 /* DoubleEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleEntryCell.h; sourceTree = "<group>"; };
 		47F84D69198A638B00886D41 /* DoubleEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleEntryCell.m; sourceTree = "<group>"; };
 		47F84D6A198A638B00886D41 /* DoubleEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoubleEntryCell.xib; sourceTree = "<group>"; };
@@ -1430,8 +1430,8 @@
 		EA88E680172F97D50021492C /* TransferwiseClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferwiseClient.h; sourceTree = "<group>"; };
 		EA88E682172F97D50021492C /* UserDetailsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsOperation.h; sourceTree = "<group>"; };
 		EA88E683172F97D50021492C /* UserDetailsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsOperation.m; sourceTree = "<group>"; };
-		EA88E688172F97E20021492C /* CountrySelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountrySelectionCell.h; sourceTree = "<group>"; };
-		EA88E689172F97E20021492C /* CountrySelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountrySelectionCell.m; sourceTree = "<group>"; };
+		EA88E688172F97E20021492C /* SelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectionCell.h; sourceTree = "<group>"; };
+		EA88E689172F97E20021492C /* SelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionCell.m; sourceTree = "<group>"; };
 		EA88E68B172F97E20021492C /* DateEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateEntryCell.h; sourceTree = "<group>"; };
 		EA88E68C172F97E20021492C /* DateEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateEntryCell.m; sourceTree = "<group>"; };
 		EA88E68D172F97E20021492C /* DateEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateEntryCell.xib; sourceTree = "<group>"; };
@@ -2020,10 +2020,10 @@
 				EA222E3A173A8A7100C5D613 /* ConfirmPaymentCell.h */,
 				EA222E3B173A8A7100C5D613 /* ConfirmPaymentCell.m */,
 				EA222E3D173A8A7C00C5D613 /* ConfirmPaymentCell.xib */,
-				EA88E688172F97E20021492C /* CountrySelectionCell.h */,
-				EA88E689172F97E20021492C /* CountrySelectionCell.m */,
-				47F84D611988E83300886D41 /* CountrySelectionCell.xib */,
-				47971C66199A3FB60018FDA8 /* CountrySelectionCell~ipad.xib */,
+				EA88E688172F97E20021492C /* SelectionCell.h */,
+				EA88E689172F97E20021492C /* SelectionCell.m */,
+				47F84D611988E83300886D41 /* SelectionCell.xib */,
+				47971C66199A3FB60018FDA8 /* SelectionCell~ipad.xib */,
 				380021FD192F443E009B1D53 /* CurrencyCell.h */,
 				380021FE192F443E009B1D53 /* CurrencyCell.m */,
 				3800220B192F5774009B1D53 /* CurrencyCell.xib */,
@@ -2860,7 +2860,7 @@
 				38CACA65196EE4D400BFCF82 /* TextFieldSuggestionTable~ipad.xib in Resources */,
 				EA31A1D917DDB29B00F937F7 /* TableHeaderView.xib in Resources */,
 				EA31A1DA17DDB29B00F937F7 /* TextEntryCell.xib in Resources */,
-				47F84D631988E83300886D41 /* CountrySelectionCell.xib in Resources */,
+				47F84D631988E83300886D41 /* SelectionCell.xib in Resources */,
 				38EFABE4196D7EAB00126192 /* TextFieldSuggestionTable.xib in Resources */,
 				3840863B19A38A5E00C837C2 /* TextEntryCellValidation~ipad.xib in Resources */,
 				38C7B2A119756A9C004324E8 /* BankTransferViewController~ipad.xib in Resources */,
@@ -2913,7 +2913,7 @@
 				EA31A20117DDB29B00F937F7 /* RecipientViewController.xib in Resources */,
 				4723EA2C1975349C00B4345F /* TransferPayIPadViewController~ipad.xib in Resources */,
 				38EFABE0196D7EAB00126192 /* DataEntryDefaultHeader~ipad.xib in Resources */,
-				47971C68199A3FB60018FDA8 /* CountrySelectionCell~ipad.xib in Resources */,
+				47971C68199A3FB60018FDA8 /* SelectionCell~ipad.xib in Resources */,
 				EA31A20217DDB29B00F937F7 /* CurrencySelectionCell.xib in Resources */,
 				EA31A20317DDB29B00F937F7 /* RecipientFieldCell.xib in Resources */,
 				380021E7192CEB66009B1D53 /* TransactionsViewController~ipad.xib in Resources */,
@@ -3035,7 +3035,7 @@
 				EAE7B6AF17E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */,
 				38675457198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */,
 				EA333F3818A4BEDC00D8A44E /* page_zoom.json in Resources */,
-				47971C67199A3FB60018FDA8 /* CountrySelectionCell~ipad.xib in Resources */,
+				47971C67199A3FB60018FDA8 /* SelectionCell~ipad.xib in Resources */,
 				478031781999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */,
 				38BD98A5195C5973009F9B4A /* NameSuggestionCell.xib in Resources */,
 				47AC3F991987B2C3005491C6 /* SuggestionCell.xib in Resources */,
@@ -3101,7 +3101,7 @@
 				47343AD11977E0B1009D9C3A /* RecipientsFooterView.xib in Resources */,
 				385669181981437900BC4230 /* ContactDetailsViewController~ipad.xib in Resources */,
 				EA225C76178EA124009D6B83 /* TabBarActivityIndicatorView.xib in Resources */,
-				47F84D621988E83300886D41 /* CountrySelectionCell.xib in Resources */,
+				47F84D621988E83300886D41 /* SelectionCell.xib in Resources */,
 				471CA006197FCB2200BCA3B4 /* TabbedHeaderViewController.xib in Resources */,
 				EA225CBA178EEA8A009D6B83 /* currencies.json in Resources */,
 				EA225CBB178EEA8A009D6B83 /* currency_pairs.json in Resources */,
@@ -3393,7 +3393,7 @@
 				3831AA38194B31A200B3EE5C /* TransparentModalViewController.m in Sources */,
 				3856691E198157C600BC4230 /* CircleStyle.m in Sources */,
 				47F84D601988D73A00886D41 /* CountrySuggestionCellProvider.m in Sources */,
-				EA31A15117DDB29B00F937F7 /* CountrySelectionCell.m in Sources */,
+				EA31A15117DDB29B00F937F7 /* SelectionCell.m in Sources */,
 				EA31A15217DDB29B00F937F7 /* DateEntryCell.m in Sources */,
 				EA31A15317DDB29B00F937F7 /* Constants.m in Sources */,
 				EA31A15417DDB29B00F937F7 /* SignUpViewController.m in Sources */,
@@ -3681,7 +3681,7 @@
 				389F6811198FC1C6006CF1F6 /* _RecipientTypeField.m in Sources */,
 				EA88E685172F97D50021492C /* NetworkErrorCodes.m in Sources */,
 				EA88E687172F97D50021492C /* UserDetailsOperation.m in Sources */,
-				EA88E68E172F97E20021492C /* CountrySelectionCell.m in Sources */,
+				EA88E68E172F97E20021492C /* SelectionCell.m in Sources */,
 				EA88E690172F97E20021492C /* DateEntryCell.m in Sources */,
 				3856691D198157C600BC4230 /* CircleStyle.m in Sources */,
 				47F84D5F1988D73A00886D41 /* CountrySuggestionCellProvider.m in Sources */,
