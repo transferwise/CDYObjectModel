@@ -336,11 +336,15 @@
 	
 	if ([self.profileSource isKindOfClass:[PersonalProfileSource class]])
 	{
-		[(PersonalProfileSource *)self.profileSource stateSelectionCell:self.stateCell
-																  state:[self.stateCellProvider getByCodeOrName:self.stateCell.value]
-														 withCompletion:^{
-															 [self refreshTableViewSizes];
-														 }];
+		TextEntryCell* occupationCell =[(PersonalProfileSource *)self.profileSource stateSelectionCell:self.stateCell
+																								 state:[self.stateCellProvider getByCodeOrName:self.stateCell.value]
+																						withCompletion:^{
+																							[self refreshTableViewSizes];
+																						}];
+		if (occupationCell)
+		{
+			[occupationCell.entryField setDelegate:self];
+		}
 	}
 }
 
