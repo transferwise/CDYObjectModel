@@ -4,6 +4,7 @@
 "business.profile.city.label" = "City";
 "business.profile.state.label" = "State";
 "business.profile.controller.title" = "Business profile";
+"business.profile.controller.send.title" = "Your business details";
 "business.profile.country.label" = "Country";
 "business.profile.description.label" = "Business description";
 "business.profile.details.section.title" = "Business details";
