@@ -137,6 +137,12 @@
 		38675455198B977800DEA359 /* RefundDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */; };
 		38675457198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */; };
 		38675458198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */; };
+		3876768F19BF4914007B0EE5 /* CustomInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876768D19BF4914007B0EE5 /* CustomInfoViewController.m */; };
+		3876769019BF4914007B0EE5 /* CustomInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876768D19BF4914007B0EE5 /* CustomInfoViewController.m */; };
+		3876769119BF4914007B0EE5 /* CustomInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3876768E19BF4914007B0EE5 /* CustomInfoViewController.xib */; };
+		3876769219BF4914007B0EE5 /* CustomInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3876768E19BF4914007B0EE5 /* CustomInfoViewController.xib */; };
+		3876769419BF56A2007B0EE5 /* CustomInfoViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3876769319BF56A2007B0EE5 /* CustomInfoViewController~ipad.xib */; };
+		3876769519BF56A2007B0EE5 /* CustomInfoViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3876769319BF56A2007B0EE5 /* CustomInfoViewController~ipad.xib */; };
 		3887CBBA197690FC004DFFFD /* OptionalSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */; };
 		3887CBBB197690FC004DFFFD /* OptionalSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */; };
 		3887CBBE1976AF2B004DFFFD /* CancelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBBD1976AF2B004DFFFD /* CancelHelper.m */; };
@@ -974,6 +980,10 @@
 		385AC115198FE5500088DCD6 /* intro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = intro.plist; sourceTree = "<group>"; };
 		38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RefundDetailsViewController~ipad.xib"; sourceTree = "<group>"; };
 		38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransferTypeSelectionHeaderNoTitle~ipad.xib"; sourceTree = "<group>"; };
+		3876768C19BF4914007B0EE5 /* CustomInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomInfoViewController.h; sourceTree = "<group>"; };
+		3876768D19BF4914007B0EE5 /* CustomInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomInfoViewController.m; sourceTree = "<group>"; };
+		3876768E19BF4914007B0EE5 /* CustomInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfoViewController.xib; sourceTree = "<group>"; };
+		3876769319BF56A2007B0EE5 /* CustomInfoViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomInfoViewController~ipad.xib"; sourceTree = "<group>"; };
 		3887CBB8197690FC004DFFFD /* OptionalSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionalSplitViewController.h; sourceTree = "<group>"; };
 		3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionalSplitViewController.m; sourceTree = "<group>"; };
 		3887CBBC1976AF2B004DFFFD /* CancelHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelHelper.h; sourceTree = "<group>"; };
@@ -2522,6 +2532,10 @@
 				380021ED192F3DD3009B1D53 /* CurrencySelectorViewController.m */,
 				380021EE192F3DD3009B1D53 /* CurrencySelectorViewController.xib */,
 				47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */,
+				3876768C19BF4914007B0EE5 /* CustomInfoViewController.h */,
+				3876768D19BF4914007B0EE5 /* CustomInfoViewController.m */,
+				3876768E19BF4914007B0EE5 /* CustomInfoViewController.xib */,
+				3876769319BF56A2007B0EE5 /* CustomInfoViewController~ipad.xib */,
 				38342BA9196E9362002FF371 /* DataEntryMultiColumnViewController.h */,
 				38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */,
 				EA88E661172F979F0021492C /* DataEntryViewController.h */,
@@ -2860,6 +2874,7 @@
 				47FAF354194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */,
 				38CACA62196EE21600BFCF82 /* NameSuggestionCell~ipad.xib in Resources */,
 				385669141980FB0500BC4230 /* PlainPresentationCell.xib in Resources */,
+				3876769219BF4914007B0EE5 /* CustomInfoViewController.xib in Resources */,
 				380021FA192F43EA009B1D53 /* TabCell.xib in Resources */,
 				38B0930C1951FA2A00315BE4 /* DataEntryDefaultHeader.xib in Resources */,
 				38274080199529F0009FAB97 /* CardPaymentViewController~ipad.xib in Resources */,
@@ -2877,6 +2892,7 @@
 				47AC3F9C1987B2C3005491C6 /* SuggestionCell~ipad.xib in Resources */,
 				EAE7B6B017E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */,
 				47971C5F199A3A560018FDA8 /* TextEntryCell~ipad.xib in Resources */,
+				3876769519BF56A2007B0EE5 /* CustomInfoViewController~ipad.xib in Resources */,
 				EA333F3918A4BEDC00D8A44E /* page_zoom.json in Resources */,
 				380021F2192F3DD3009B1D53 /* CurrencySelectorViewController.xib in Resources */,
 				474C451E1992874E001F207C /* ProfileEditViewController~ipad.xib in Resources */,
@@ -3006,6 +3022,7 @@
 				3840863419A368DD00C837C2 /* PersonalProfileIdentificationViewController~ipad.xib in Resources */,
 				38CACA61196EE21600BFCF82 /* NameSuggestionCell~ipad.xib in Resources */,
 				385669131980FB0500BC4230 /* PlainPresentationCell.xib in Resources */,
+				3876769119BF4914007B0EE5 /* CustomInfoViewController.xib in Resources */,
 				3800220C192F5774009B1D53 /* CurrencyCell.xib in Resources */,
 				385AC113198FE52E0088DCD6 /* NoRefCurrencyMessages.plist in Resources */,
 				383FC10E19AE1B8400465FCA /* SeeHowViewController~ipad.xib in Resources */,
@@ -3023,6 +3040,7 @@
 				38BD98A5195C5973009F9B4A /* NameSuggestionCell.xib in Resources */,
 				47AC3F991987B2C3005491C6 /* SuggestionCell.xib in Resources */,
 				38675454198B977800DEA359 /* RefundDetailsViewController~ipad.xib in Resources */,
+				3876769419BF56A2007B0EE5 /* CustomInfoViewController~ipad.xib in Resources */,
 				47971C64199A3F1F0018FDA8 /* DoublePasswordEntryCell~ipad.xib in Resources */,
 				380021F1192F3DD3009B1D53 /* CurrencySelectorViewController.xib in Resources */,
 				3840863719A370A400C837C2 /* ValidationCell~ipad.xib in Resources */,
@@ -3361,6 +3379,7 @@
 				EACD942F18D82C2C00369905 /* NanTracking.m in Sources */,
 				EA31A14817DDB29B00F937F7 /* Credentials.m in Sources */,
 				EA31A14917DDB29B00F937F7 /* SWRevealViewController.m in Sources */,
+				3876769019BF4914007B0EE5 /* CustomInfoViewController.m in Sources */,
 				EA31A14A17DDB29B00F937F7 /* DataEntryViewController.m in Sources */,
 				EA31A14B17DDB29B00F937F7 /* PersonalProfileViewController.m in Sources */,
 				389F67FC198FC1C6006CF1F6 /* _Country.m in Sources */,
@@ -3652,6 +3671,7 @@
 				479B69371948A2EB001FA4FE /* UIFont+MOMStyle.m in Sources */,
 				EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */,
 				EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */,
+				3876768F19BF4914007B0EE5 /* CustomInfoViewController.m in Sources */,
 				EA88E667172F979F0021492C /* PersonalProfileViewController.m in Sources */,
 				EA88E67A172F97C40021492C /* NSError+TRWErrors.m in Sources */,
 				389F67FB198FC1C6006CF1F6 /* _Country.m in Sources */,
