@@ -117,7 +117,16 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
     titleSize = button.titleLabel.frame.size;
     
     // raise the image and push it right to center it
-    button.imageEdgeInsets = UIEdgeInsetsMake(- (titleSize.height + spacing), 0.0, 0.0, -     titleSize.width);
+	if (IOS_8)
+	{
+		//alignment for iOS8
+		CGSize totalSize = button.frame.size;
+		button.imageEdgeInsets = UIEdgeInsetsMake(- (titleSize.height + spacing), (totalSize.width / 2) - (imageSize.width / 2) - 8, 0.0, -     titleSize.width);
+	}
+	else
+	{
+		button.imageEdgeInsets = UIEdgeInsetsMake(- (titleSize.height + spacing), 0.0, 0.0, -     titleSize.width);
+	}
 }
 
 - (IBAction)profileUseSwitched:(id)sender {
