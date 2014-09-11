@@ -18,6 +18,12 @@
 @implementation CurrencyCell
 
 
+-(void)awakeFromNib
+{
+    self.contentView.frame = self.bounds;
+    self.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+}
+
 -(void)configureWithCurrency:(Currency *)currency
 {
     UIImage *flag = [UIImage imageNamed:currency.code];
