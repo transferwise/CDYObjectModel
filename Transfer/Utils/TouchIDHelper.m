@@ -45,14 +45,14 @@
     return NO;
 }
 
-+(void)validateTouchID:(void(^)(BOOL success))resultBlock
++(void)validateTouchIDWithReason:(NSString*)reason completion:(void(^)(BOOL success))resultBlock
 {
     LAContext* context = [self getContextIfTouchIDAvailable];
     if(context)
     {
         
         [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
-                localizedReason:NSLocalizedString(@"touchid.reason", nil)
+                localizedReason:reason
                           reply:^(BOOL success, NSError *error) {
                               resultBlock(success);
                           }];
@@ -83,13 +83,30 @@
 
 +(void)clearCredentials
 {
-    [Lockbox setString:@"" forKey:localUser];
-    [Lockbox setString:@"" forKey:localPass];
+    /*
+    NSString *localUserName = [Lockbox stringForKey:localUser];
+    if( localUserName)
+    {
+        [self validateTouchIDWithReason:NSLocalizedString(@"touchid.reason.clear", nil) completion:^(BOOL success) {
+            if(success)
+            {*/
+                [Lockbox setString:@"" forKey:localUser];
+                [Lockbox setString:@"" forKey:localPass];
+                [Lockbox setSet:[NSSet set] forKey:blockList];
+    /*
+            }
+        }];
+    }
+    else
+    {
+        [Lockbox setSet:[NSSet set] forKey:blockList];
+    }
+     */
 }
 
 +(void)storeCredentialsWithUsername:(NSString*)username password:(NSString*)password result:(void(^)(BOOL success))resultBlock
 {
-    [self validateTouchID:^(BOOL success) {
+    [self validateTouchIDWithReason:NSLocalizedString(@"touchid.reason.store", nil) completion:^(BOOL success) {
         if(success)
         {
             [Lockbox setString:username forKey:localUser];
@@ -101,7 +118,7 @@
 
 +(void)retrieveStoredCredentials:(void(^)(BOOL success, NSString* username, NSString* password))resultBlock
 {
-    [self validateTouchID:^(BOOL success) {
+    [self validateTouchIDWithReason:NSLocalizedString(@"touchid.reason.retrieve", nil) completion:^(BOOL success) {
         NSString* localUserName;
         NSString* localPassword;
         if(success)

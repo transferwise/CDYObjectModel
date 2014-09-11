@@ -11,7 +11,7 @@
 #import "Constants.h"
 
 @interface TouchIdPromptViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *descripitionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *yesButton;
 @property (weak, nonatomic) IBOutlet UIButton *noButton;
@@ -22,6 +22,13 @@
 @end
 
 @implementation TouchIdPromptViewController
+
+-(void)viewDidLoad
+{
+    self.descriptionLabel.text = NSLocalizedString(@"touchid.prompt.info", nil);
+    self.titleLabel.text = NSLocalizedString(@"touchid.prompt.title", nil);
+    [super viewDidLoad];
+}
 
 -(void)presentOnViewController:(UIViewController *)hostViewcontroller withUsername:(NSString *)username password:(NSString *)password
 {
@@ -36,7 +43,11 @@
 }
 - (IBAction)yesTapped:(id)sender {
     [TouchIDHelper storeCredentialsWithUsername:self.username password:self.password result:^(BOOL success) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+        if(success)
+        {
+            [self dismiss];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+        }
     }];
 }
 

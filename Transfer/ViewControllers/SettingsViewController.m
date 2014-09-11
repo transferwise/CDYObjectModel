@@ -26,6 +26,7 @@
 #import "NewPaymentViewController.h"
 #import"ConnectionAwareViewController.h"
 #import "MOMStyle.h"
+#import "TouchIDHelper.h"
 
 NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
@@ -39,6 +40,7 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sendAsBusinessLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *sendAsBusinessSwitch;
+@property (weak, nonatomic) IBOutlet UIButton *touchIdButton;
 
 @end
 
@@ -72,6 +74,8 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
     [self.logOutButton setTitle:NSLocalizedString(@"settings.row.logout",nil) forState:UIControlStateNormal];
     [self.infoButton setTitle:NSLocalizedString(@"settings.row.about",nil) forState:UIControlStateNormal];
     [self verticallyAlignTextAndImageOfButton:self.infoButton];
+    [self.touchIdButton setTitle:NSLocalizedString(@"settings.row.touchid",nil) forState:UIControlStateNormal];
+    self.touchIdButton.hidden = ![TouchIDHelper isTouchIdAvailable];
     
     self.sendAsBusinessLabel.text = NSLocalizedString(@"settings.row.send.as.business",nil);
     User *user = [self.objectModel currentUser];
@@ -133,6 +137,11 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
     User *user = [self.objectModel currentUser];
     user.sendAsBusinessDefaultSettingValue = self.sendAsBusinessSwitch.on;
     [self.objectModel saveContext];
+}
+- (IBAction)touchIdButtonTapped:(id)sender {
+    
+    [TouchIDHelper clearCredentials];
+    
 }
 
 @end

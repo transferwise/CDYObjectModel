@@ -145,7 +145,7 @@
     if([TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:self.emailTextField.text])
     {
         TouchIdPromptViewController* prompt = [[TouchIdPromptViewController alloc] init];
-        [prompt presentOnViewController:self withUsername:self.emailTextField.text password:self.passwordTextField.text];
+        [prompt presentOnViewController:self.navigationController.parentViewController withUsername:self.emailTextField.text password:self.passwordTextField.text];
     }
     else
     {
