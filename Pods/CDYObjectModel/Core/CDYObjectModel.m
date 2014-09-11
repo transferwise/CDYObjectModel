@@ -153,7 +153,12 @@
 }
 
 - (NSArray *)fetchEntitiesNamed:(NSString *)entityName usingPredicate:(NSPredicate *)predicate withSortDescriptors:(NSArray *)descriptors {
+    return [self fetchEntitiesNamed:entityName usingPredicate:predicate sortDescriptors:descriptors limit:0];
+}
+
+- (NSArray *)fetchEntitiesNamed:(NSString *)entityName usingPredicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)descriptors limit:(NSUInteger)limit {
     NSFetchRequest *fetchRequest = [self fetchRequestForEntity:entityName predicate:predicate sortDescriptors:descriptors];
+    [fetchRequest setFetchLimit:limit];
 
     NSError *error = nil;
     NSArray *objects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];

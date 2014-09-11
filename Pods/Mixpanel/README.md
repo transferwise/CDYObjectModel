@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mixpanel/mixpanel-iphone.svg?branch=yolo-travis-ci)](https://travis-ci.org/mixpanel/mixpanel-iphone)
+
 **Quick start**
 
 1. Install [CocoaPods](http://cocoapods.org/) with `gem install cocoapods`.
@@ -18,5 +20,9 @@ install the Mixpanel library, and create a new Xcode workspace. Open up this wor
 5. Start tracking actions in your app:
 
         [[Mixpanel sharedInstance] track:@"Watched video" properties:@{@"duration": @53}];
+
+**Want to Contribute?**
+
+The Mixpanel library for iOS is an open source project, and we'd love to see your contributions! We'd also love for you to come and work with us! Check out http://boards.greenhouse.io/mixpanel/jobs/25226#.U_4JXEhORKU for details.
 
 **Check out the [full documentation »](https://mixpanel.com/help/reference/ios)**

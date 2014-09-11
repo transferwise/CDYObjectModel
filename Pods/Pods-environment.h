@@ -10,7 +10,7 @@
 #define COCOAPODS_POD_AVAILABLE_AFNetworking
 #define COCOAPODS_VERSION_MAJOR_AFNetworking 1
 #define COCOAPODS_VERSION_MINOR_AFNetworking 3
-#define COCOAPODS_VERSION_PATCH_AFNetworking 2
+#define COCOAPODS_VERSION_PATCH_AFNetworking 4
 
 // Bolts
 #define COCOAPODS_POD_AVAILABLE_Bolts
@@ -32,14 +32,14 @@
 
 // CDYObjectModel
 #define COCOAPODS_POD_AVAILABLE_CDYObjectModel
-#define COCOAPODS_VERSION_MAJOR_CDYObjectModel 0
-#define COCOAPODS_VERSION_MINOR_CDYObjectModel 1
+#define COCOAPODS_VERSION_MAJOR_CDYObjectModel 1
+#define COCOAPODS_VERSION_MINOR_CDYObjectModel 0
 #define COCOAPODS_VERSION_PATCH_CDYObjectModel 0
 
 // CDYObjectModel/Core
 #define COCOAPODS_POD_AVAILABLE_CDYObjectModel_Core
-#define COCOAPODS_VERSION_MAJOR_CDYObjectModel_Core 0
-#define COCOAPODS_VERSION_MINOR_CDYObjectModel_Core 1
+#define COCOAPODS_VERSION_MAJOR_CDYObjectModel_Core 1
+#define COCOAPODS_VERSION_MINOR_CDYObjectModel_Core 0
 #define COCOAPODS_VERSION_PATCH_CDYObjectModel_Core 0
 
 // CXAlertView
@@ -58,31 +58,31 @@
 #define COCOAPODS_POD_AVAILABLE_JVFloatLabeledTextField
 #define COCOAPODS_VERSION_MAJOR_JVFloatLabeledTextField 0
 #define COCOAPODS_VERSION_MINOR_JVFloatLabeledTextField 0
-#define COCOAPODS_VERSION_PATCH_JVFloatLabeledTextField 8
+#define COCOAPODS_VERSION_PATCH_JVFloatLabeledTextField 9
 
 // Lockbox
 #define COCOAPODS_POD_AVAILABLE_Lockbox
 #define COCOAPODS_VERSION_MAJOR_Lockbox 1
 #define COCOAPODS_VERSION_MINOR_Lockbox 4
-#define COCOAPODS_VERSION_PATCH_Lockbox 3
+#define COCOAPODS_VERSION_PATCH_Lockbox 9
 
 // MBProgressHUD
 #define COCOAPODS_POD_AVAILABLE_MBProgressHUD
 #define COCOAPODS_VERSION_MAJOR_MBProgressHUD 0
-#define COCOAPODS_VERSION_MINOR_MBProgressHUD 7
+#define COCOAPODS_VERSION_MINOR_MBProgressHUD 9
 #define COCOAPODS_VERSION_PATCH_MBProgressHUD 0
 
 // Mixpanel
 #define COCOAPODS_POD_AVAILABLE_Mixpanel
 #define COCOAPODS_VERSION_MAJOR_Mixpanel 2
-#define COCOAPODS_VERSION_MINOR_Mixpanel 3
-#define COCOAPODS_VERSION_PATCH_Mixpanel 4
+#define COCOAPODS_VERSION_MINOR_Mixpanel 5
+#define COCOAPODS_VERSION_PATCH_Mixpanel 1
 
 // OHAttributedLabel
 #define COCOAPODS_POD_AVAILABLE_OHAttributedLabel
 #define COCOAPODS_VERSION_MAJOR_OHAttributedLabel 3
-#define COCOAPODS_VERSION_MINOR_OHAttributedLabel 4
-#define COCOAPODS_VERSION_PATCH_OHAttributedLabel 1
+#define COCOAPODS_VERSION_MINOR_OHAttributedLabel 5
+#define COCOAPODS_VERSION_PATCH_OHAttributedLabel 4
 
 // Reachability
 #define COCOAPODS_POD_AVAILABLE_Reachability
@@ -93,12 +93,12 @@
 // SMPageControl
 #define COCOAPODS_POD_AVAILABLE_SMPageControl
 #define COCOAPODS_VERSION_MAJOR_SMPageControl 1
-#define COCOAPODS_VERSION_MINOR_SMPageControl 1
+#define COCOAPODS_VERSION_MINOR_SMPageControl 2
 #define COCOAPODS_VERSION_PATCH_SMPageControl 0
 
 // TestFlightSDK
 #define COCOAPODS_POD_AVAILABLE_TestFlightSDK
 #define COCOAPODS_VERSION_MAJOR_TestFlightSDK 3
 #define COCOAPODS_VERSION_MINOR_TestFlightSDK 0
-#define COCOAPODS_VERSION_PATCH_TestFlightSDK 0
+#define COCOAPODS_VERSION_PATCH_TestFlightSDK 2
 
