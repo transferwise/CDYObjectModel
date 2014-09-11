@@ -266,7 +266,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     TextEntryCell *postCodeCell = [TextEntryCell loadInstance];
     [self setPostCodeCell:postCodeCell];
     [addressCells addObject:postCodeCell];
-    [postCodeCell configureWithTitle:NSLocalizedString(@"personal.profile.post.code.label", nil) value:@""];
+    [postCodeCell configureWithTitle:NSLocalizedString(@"profile.post.code.label", nil) value:@""];
     [postCodeCell setCellTag:@"postCode"];
     
     TextEntryCell *cityCell = [TextEntryCell loadInstance];
