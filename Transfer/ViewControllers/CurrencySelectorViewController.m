@@ -230,9 +230,9 @@
 - (void)select
 {
 	[self dismiss];
-    if([self.delegate respondsToSelector:@selector(currencySelector:didSelectCurrencyAtIndex:)])
+    if([self.currencySelectorDelegate respondsToSelector:@selector(currencySelector:didSelectCurrencyAtIndex:)])
     {
-        [self.delegate currencySelector:self didSelectCurrencyAtIndex:self.selectedIndex];
+        [self.currencySelectorDelegate currencySelector:self didSelectCurrencyAtIndex:self.selectedIndex];
     }
 }
 
@@ -242,18 +242,18 @@
 
 -(void)presentOnViewController:(UIViewController *)hostViewcontroller
 {
-    if([self.delegate respondsToSelector:@selector(currencySelectorwillShow:)])
+    if([self.currencySelectorDelegate respondsToSelector:@selector(currencySelectorwillShow:)])
     {
-        [self.delegate currencySelectorwillShow:self];
+        [self.currencySelectorDelegate currencySelectorwillShow:self];
     }
     [super presentOnViewController:hostViewcontroller];
 }
 
 -(void)dismiss
 {
-    if([self.delegate respondsToSelector:@selector(currencySelectorwillHide:)])
+    if([self.currencySelectorDelegate respondsToSelector:@selector(currencySelectorwillHide:)])
     {
-        [self.delegate currencySelectorwillHide:self];
+        [self.currencySelectorDelegate currencySelectorwillHide:self];
     }
     [super dismiss];
 }

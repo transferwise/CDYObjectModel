@@ -4,6 +4,7 @@
 "business.profile.city.label" = "City";
 "business.profile.state.label" = "State";
 "business.profile.controller.title" = "Business profile";
+"business.profile.controller.send.title" = "Your business details";
 "business.profile.country.label" = "Country";
 "business.profile.description.label" = "Business description";
 "business.profile.details.section.title" = "Business details";
@@ -254,6 +255,7 @@ It generally taks 1 business day.";
 "personal.profile.phone.label" = "Phone";
 "personal.profile.password.label" = "Password";
 "personal.profile.password.confirm.label" = "Retype password";
+"personal.profile.occupation.label" = "Occupation";
 "personal.profile.refresh.error.message" = "Oops! Your profile couldn't be loaded. Please try again later.";
 "personal.profile.refresh.error.title" = "Profile unavailable";
 "personal.profile.refreshing.countries.message" = "Refreshing countries...";
@@ -654,3 +656,8 @@ We'll send you an email in order to let you choose a new password.";
 
 "touchid.reason" = "I cAn HaZ tOuChId PlZ??";
 "touchid.reason" = "Login associated with TouchID has been removed. Login again to re-associate.";
+
+"usd.low.title" = "Coming soon";
+"usd.low.info" = "Unfortunately you cannot transfer less than 1500 USD just yet.\nYou will soon be able to.";
+"usd.low.dismiss" = "Ok";
+

@@ -29,5 +29,6 @@ typedef void (^QuickValidationBlock)(NSArray *issues);
 - (void)setRegistrationNumber:(NSString *)value;
 - (void)setBusinessDescription:(NSString *)value;
 - (void)setState:(NSString *)value;
+- (void)setOccupation:(NSString *)value;
 
 @end

@@ -7,9 +7,18 @@
 //
 
 #import "SuggestionCellProvider.h"
+#import "SelectionCell.h"
+
+//TODO: remove when state is available from api
+@interface State : NSObject<SelectionItem>
+
+@property (nonatomic, strong) NSString *code;
+@property (nonatomic, strong) NSString *name;
+
+@end
 
 @interface StateSuggestionProvider : SuggestionCellProvider
 
-+(NSString*)stateCodeFromTitle:(NSString*)title;
-+(NSString*)titleFromStateCode:(NSString*)code;
+- (State *)getByCodeOrName:(NSString*)codeOrName;
+
 @end

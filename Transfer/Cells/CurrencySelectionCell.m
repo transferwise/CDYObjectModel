@@ -76,14 +76,14 @@ NSString *const TWCurrencySelectionCellIdentifier = @"TWCurrencySelectionCellIde
 	
 	self.isSelecting = YES;
     //dismiss keyboard
-    [self endEditing:YES];
+    [self.window endEditing:YES];
     self.shouldRestoreNavBar = ! self.hostForCurrencySelector.navigationController.navigationBarHidden;
     if(self.shouldRestoreNavBar)
     {
         [self.hostForCurrencySelector.navigationController setNavigationBarHidden:YES animated:YES];
     }
     CurrencySelectorViewController* selector = [[CurrencySelectorViewController alloc] init];
-    selector.delegate = self;
+    selector.currencySelectorDelegate= self;
     selector.currencyArray = self.currencies.fetchedObjects;
     [selector setSelectedCurrency:self.selectedCurrency];
     selector.view.backgroundColor = [UIColor colorFromStyle:@"TWBlueHighlighted.alpha2"];

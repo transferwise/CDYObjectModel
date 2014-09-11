@@ -34,10 +34,14 @@
 #import "NavigationBarCustomiser.h"
 #import <FBAppCall.h>
 
-@interface AppDelegate () <SWRevealViewControllerDelegate>
+#import "Credentials.h"
+#import "ObjectModel+Settings.h"
+#import "IntroViewController.h"
+#import "NewPaymentViewController.h"
+
+@interface AppDelegate ()
 
 @property (nonatomic, strong) ObjectModel *objectModel;
-@property (strong, nonatomic) SWRevealViewController *viewController;
 
 @end
 
@@ -49,43 +53,7 @@
 	
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-#if USE_TESTFLIGHT
-    [TestFlight setOptions:@{TFOptionReportCrashes : @NO}];
-    #if DEV_VERSION
-        [TestFlight takeOff:@"78f288b9-67c6-4bd3-b6ba-bf9b54645412"];
-    #else
-        [TestFlight takeOff:@"4b176dca-177c-48bf-9480-a15001cc9211"];
-    #endif
-#endif
-
-    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelNone];
-#if DEBUG
-    [[GAI sharedInstance] setDispatchInterval:1];
-#else
-    [[GAI sharedInstance] setDispatchInterval:5];
-#endif
-
-#if DEV_VERSION
-    [[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsDevTrackingId];
-#else
-    [[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
-#endif
-    
-    [AppsFlyerTracker sharedTracker].appsFlyerDevKey = AppsFlyerDevKey;
-    [AppsFlyerTracker sharedTracker].appleAppID = AppsFlyerIdentifier;
-    
-
-    [NanTracking setFbAppId:@"274548709260402"];
-
-    [Mixpanel sharedInstanceWithToken:TRWMixpanelToken];
-
-    TransferMixpanel *mixpanel = [[TransferMixpanel alloc] init];
-    [[AnalyticsCoordinator sharedInstance] addAnalyticsService:mixpanel];
-    [[AnalyticsCoordinator sharedInstance] addAnalyticsService:[GoogleAnalytics sharedInstance]];
-
-    [Crashlytics startWithAPIKey:@"84bc4b5736898e3cfdb50d3d2c162c4f74480862"];
-
-    [NanTracking trackNanigansEvent:@"" type:@"install" name:@"main"];
+	TransferMixpanel *mixpanel = [self setupThirdParties];
 
 	[NavigationBarCustomiser setDefault];
 
@@ -108,13 +76,32 @@
     [[FeedbackCoordinator sharedInstance] setObjectModel:model];
 
     [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:nil];
+	
+	UIViewController* controller;
 
-    MainViewController *frontViewController = [[MainViewController alloc] init];
-    [frontViewController setObjectModel:model];
+	if (![Credentials userLoggedIn] && ![self.objectModel hasIntroBeenShown])
+	{
+		IntroViewController *introController = [[IntroViewController alloc] init];
+		[introController setObjectModel:self.objectModel];
+		controller = introController;
+	}
+	else if(![self.objectModel hasExistingUserIntroBeenShown])
+	{
+		IntroViewController *introController = [[IntroViewController alloc] init];
+		introController.plistFilenameOverride = @"existingUserIntro";
+		[introController setObjectModel:self.objectModel];
+		controller = introController;
+		[[GoogleAnalytics sharedInstance] sendScreen:@"Whats new screen"];
+	}
+	else
+	{
+		MainViewController *mainController = [[MainViewController alloc] init];
+		[mainController setObjectModel:self.objectModel];
+		ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:mainController];
+		controller = root;
+	}
     
-    ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:frontViewController];
-    
-	self.window.rootViewController = root;
+	self.window.rootViewController = controller;
 	[self.window makeKeyAndVisible];
 	return YES;
 }
@@ -153,6 +140,48 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Saves changes in the application's managed object context before the application terminates.
     [self.objectModel saveContext];
+}
+
+- (TransferMixpanel *)setupThirdParties
+{
+#if USE_TESTFLIGHT
+	[TestFlight setOptions:@{TFOptionReportCrashes : @NO}];
+#if DEV_VERSION
+	[TestFlight takeOff:@"78f288b9-67c6-4bd3-b6ba-bf9b54645412"];
+#else
+	[TestFlight takeOff:@"4b176dca-177c-48bf-9480-a15001cc9211"];
+#endif
+#endif
+	
+	[[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelNone];
+#if DEBUG
+	[[GAI sharedInstance] setDispatchInterval:1];
+#else
+	[[GAI sharedInstance] setDispatchInterval:5];
+#endif
+	
+#if DEV_VERSION
+	[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsDevTrackingId];
+#else
+	[[GAI sharedInstance] trackerWithTrackingId:TRWGoogleAnalyticsTrackingId];
+#endif
+	
+	[AppsFlyerTracker sharedTracker].appsFlyerDevKey = AppsFlyerDevKey;
+	[AppsFlyerTracker sharedTracker].appleAppID = AppsFlyerIdentifier;
+	
+	
+	[NanTracking setFbAppId:@"274548709260402"];
+	
+	[Mixpanel sharedInstanceWithToken:TRWMixpanelToken];
+	
+	TransferMixpanel *mixpanel = [[TransferMixpanel alloc] init];
+	[[AnalyticsCoordinator sharedInstance] addAnalyticsService:mixpanel];
+	[[AnalyticsCoordinator sharedInstance] addAnalyticsService:[GoogleAnalytics sharedInstance]];
+	
+	[Crashlytics startWithAPIKey:@"84bc4b5736898e3cfdb50d3d2c162c4f74480862"];
+	
+	[NanTracking trackNanigansEvent:@"" type:@"install" name:@"main"];
+	return mixpanel;
 }
 
 - (BOOL)application:(UIApplication *)application

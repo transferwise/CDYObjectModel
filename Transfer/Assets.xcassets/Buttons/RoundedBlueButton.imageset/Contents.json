@@ -44,6 +44,10 @@
       "scale" : "2x"
     },
     {
+      "idiom" : "iphone",
+      "scale" : "3x"
+    },
+    {
       "resizing" : {
         "mode" : "9-part",
         "center" : {

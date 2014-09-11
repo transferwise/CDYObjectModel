@@ -16,7 +16,3 @@ pod 'CDYAnalyticsCoordinator', :git => 'https://github.com/coodly/CDYAnalyticsCo
 pod 'JVFloatLabeledTextField'
 pod 'Reachability'
 
-target :TransferTests, :exclusive => true do
-   pod 'Kiwi'
-   pod 'OCMock'
-end

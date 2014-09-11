@@ -9,6 +9,7 @@
 #import "BusinessPaymentProfileViewController.h"
 #import "BusinessProfileViewController.h"
 #import "TransferBackButtonItem.h"
+#import "Credentials.h"
 
 @interface BusinessPaymentProfileViewController ()
 
@@ -40,7 +41,7 @@
 					 actionProgress:0.3f];
     [super viewDidLoad];
 	
-	[self setTitle:NSLocalizedString(@"personal.profile.controller.title", nil)];
+	[self setTitle:[Credentials userLoggedIn] ? NSLocalizedString(@"business.profile.controller.send.title", nil) : NSLocalizedString(@"personal.profile.controller.title", nil)];
 	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
 }
 

@@ -69,6 +69,7 @@
     [profile setReadonlyFields:[data[@"readonlyFields"] componentsJoinedByString:@"|"]];
     [profile setCountryCode:data[@"countryCode"]];
     [profile setState:data[@"state"]];
+	[profile setOccupation:data[@"occupation"]];
 
     return profile;
 }

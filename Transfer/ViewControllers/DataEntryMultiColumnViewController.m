@@ -421,6 +421,7 @@
         self.secondColumnHeightConstraint.constant =((UITableView*) self.tableViews[1]).contentSize.height;
         [self.tableViews[0] layoutIfNeeded];
         [self.tableViews[1] layoutIfNeeded];
+		[self configureForInterfaceOrientation:self.interfaceOrientation];
     }
 }
 

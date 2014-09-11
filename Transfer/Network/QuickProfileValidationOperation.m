@@ -101,4 +101,8 @@
     [self.data setNotNilValue:value forKey:@"state"];
 }
 
+- (void)setOccupation:(NSString *)value {
+	[self.data setNotNilValue:value forKey:@"occupation"];
+}
+
 @end
