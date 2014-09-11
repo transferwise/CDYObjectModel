@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0286BD7B9CD44CD1BAB42E42 /* libPods-TransferTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1FBDCF7CCD414999CC7D3D /* libPods-TransferTests.a */; };
 		1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC92173B7C28008773FC /* BusinessProfileViewController.m */; };
 		1864AC9E173B7C80008773FC /* BusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */; };
 		1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */; };
@@ -725,11 +724,6 @@
 		EA61557517A69A5A008B6C79 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61557417A69A5A008B6C79 /* Crashlytics.framework */; };
 		EA677B45189B855200505139 /* StartPaymentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA677B44189B855200505139 /* StartPaymentButton.m */; };
 		EA677B46189B855200505139 /* StartPaymentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA677B44189B855200505139 /* StartPaymentButton.m */; };
-		EA76D90E175CF80100AE3F86 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */; };
-		EA76D90F175CF80100AE3F86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146B171BC911005B9430 /* UIKit.framework */; };
-		EA76D910175CF80100AE3F86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146D171BC911005B9430 /* Foundation.framework */; };
-		EA76D916175CF80100AE3F86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA76D914175CF80100AE3F86 /* InfoPlist.strings */; };
-		EA76D925175CFAEA00AE3F86 /* SampleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EA76D924175CFAEA00AE3F86 /* SampleSpec.m */; };
 		EA7F8816176F2B44003B0F46 /* RemoveTokenOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7F8815176F2B44003B0F46 /* RemoveTokenOperation.m */; };
 		EA84055917F06DCD00F44916 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA84055817F06DCD00F44916 /* AdSupport.framework */; };
 		EA84055C17F06E0100F44916 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA84055817F06DCD00F44916 /* AdSupport.framework */; };
@@ -764,9 +758,6 @@
 		EA92D9541769BD9D0078D0C4 /* BusinessProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D9531769BD9D0078D0C4 /* BusinessProfileCommitter.m */; };
 		EAA053D2175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */; };
 		EAA053D6175DD5EE00ACD3F6 /* NoUserPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D5175DD5EE00ACD3F6 /* NoUserPaymentFlow.m */; };
-		EAA053DA175DD63100ACD3F6 /* PaymentFlowSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D9175DD63100ACD3F6 /* PaymentFlowSpec.m */; };
-		EAA053E0175DD64D00ACD3F6 /* NoUserPaymentFlowSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053DF175DD64D00ACD3F6 /* NoUserPaymentFlowSpec.m */; };
-		EAA053E4175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053E3175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m */; };
 		EAA07BF117AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA07BF017AF750A004B97AC /* QuickProfileValidationOperation.m */; };
 		EAA54F4B1733DA1400B65BF3 /* RecipientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F491733DA1400B65BF3 /* RecipientViewController.m */; };
 		EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F4A1733DA1400B65BF3 /* RecipientViewController.xib */; };
@@ -774,9 +765,6 @@
 		EAA54F581733E8F700B65BF3 /* TransferwiseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F571733E8F700B65BF3 /* TransferwiseClient.m */; };
 		EAA54F5B1733EF1A00B65BF3 /* RecipientTypesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F5A1733EF1A00B65BF3 /* RecipientTypesOperation.m */; };
 		EAA6AD0717A91A95006A347D /* NSString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6AD0617A91A95006A347D /* NSString+Presentation.m */; };
-		EAA6AD0A17A91BF9006A347D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA1471171BC911005B9430 /* CoreData.framework */; };
-		EAA6AD0D17A91D1F006A347D /* NSStringPatternTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6AD0C17A91D1F006A347D /* NSStringPatternTest.m */; };
-		EAA6AD0E17A91E72006A347D /* NSString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6AD0617A91A95006A347D /* NSString+Presentation.m */; };
 		EAAA146C171BC911005B9430 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146B171BC911005B9430 /* UIKit.framework */; };
 		EAAA146E171BC911005B9430 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146D171BC911005B9430 /* Foundation.framework */; };
 		EAAA1470171BC911005B9430 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146F171BC911005B9430 /* CoreGraphics.framework */; };
@@ -864,16 +852,6 @@
 		EAEA6257172011C500A96770 /* CalculationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6256172011C500A96770 /* CalculationResult.m */; };
 		EAEA626117202D6100A96770 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EAEA626017202D6100A96770 /* libz.dylib */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		EA76D921175CFA6E00AE3F86 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EAAA1460171BC911005B9430 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EAAA1467171BC911005B9430;
-			remoteInfo = Transfer;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1864AC91173B7C28008773FC /* BusinessProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileViewController.h; sourceTree = "<group>"; };
@@ -1261,9 +1239,7 @@
 		47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencySelectorViewController~ipad.xib"; sourceTree = "<group>"; };
 		47FB7EA71941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DeviceSpecificLocalisation.h"; sourceTree = "<group>"; };
 		47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeviceSpecificLocalisation.m"; sourceTree = "<group>"; };
-		9C1FBDCF7CCD414999CC7D3D /* libPods-TransferTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TransferTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4C9172C19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecipientEntrySelectionCell~ipad.xib"; sourceTree = "<group>"; };
-		B9D5DEC1F8394C87A604EF4F /* Pods-TransferTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransferTests.xcconfig"; path = "Pods/Pods-TransferTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		BA66546EEC8C630867200E77 /* GoogleAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalytics.m; sourceTree = "<group>"; };
 		BA665E006BBEF0C455DE7F84 /* GoogleAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAnalytics.h; sourceTree = "<group>"; };
 		BB29BD45173CD2FF0016A6E9 /* BankTransferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BankTransferViewController.h; sourceTree = "<group>"; };
@@ -1399,12 +1375,7 @@
 		EA61557417A69A5A008B6C79 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		EA677B43189B855200505139 /* StartPaymentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartPaymentButton.h; path = Views/StartPaymentButton.h; sourceTree = "<group>"; };
 		EA677B44189B855200505139 /* StartPaymentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartPaymentButton.m; path = Views/StartPaymentButton.m; sourceTree = "<group>"; };
-		EA76D90C175CF80100AE3F86 /* TransferTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransferTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		EA76D913175CF80100AE3F86 /* TransferTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TransferTests-Info.plist"; sourceTree = "<group>"; };
-		EA76D915175CF80100AE3F86 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		EA76D91A175CF80100AE3F86 /* TransferTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TransferTests-Prefix.pch"; sourceTree = "<group>"; };
-		EA76D924175CFAEA00AE3F86 /* SampleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleSpec.m; sourceTree = "<group>"; };
 		EA7F8814176F2B44003B0F46 /* RemoveTokenOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveTokenOperation.h; sourceTree = "<group>"; };
 		EA7F8815176F2B44003B0F46 /* RemoveTokenOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveTokenOperation.m; sourceTree = "<group>"; };
 		EA84055817F06DCD00F44916 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -1474,9 +1445,6 @@
 		EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggedInPaymentFlow.m; sourceTree = "<group>"; };
 		EAA053D4175DD5EE00ACD3F6 /* NoUserPaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoUserPaymentFlow.h; sourceTree = "<group>"; };
 		EAA053D5175DD5EE00ACD3F6 /* NoUserPaymentFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoUserPaymentFlow.m; sourceTree = "<group>"; };
-		EAA053D9175DD63100ACD3F6 /* PaymentFlowSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentFlowSpec.m; sourceTree = "<group>"; };
-		EAA053DF175DD64D00ACD3F6 /* NoUserPaymentFlowSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoUserPaymentFlowSpec.m; sourceTree = "<group>"; };
-		EAA053E3175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggedInPaymentFlowSpec.m; sourceTree = "<group>"; };
 		EAA07BEF17AF750A004B97AC /* QuickProfileValidationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickProfileValidationOperation.h; sourceTree = "<group>"; };
 		EAA07BF017AF750A004B97AC /* QuickProfileValidationOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickProfileValidationOperation.m; sourceTree = "<group>"; };
 		EAA54F481733DA1400B65BF3 /* RecipientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientViewController.h; sourceTree = "<group>"; };
@@ -1489,7 +1457,6 @@
 		EAA54F5A1733EF1A00B65BF3 /* RecipientTypesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientTypesOperation.m; sourceTree = "<group>"; };
 		EAA6AD0517A91A95006A347D /* NSString+Presentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Presentation.h"; sourceTree = "<group>"; };
 		EAA6AD0617A91A95006A347D /* NSString+Presentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Presentation.m"; sourceTree = "<group>"; };
-		EAA6AD0C17A91D1F006A347D /* NSStringPatternTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringPatternTest.m; sourceTree = "<group>"; };
 		EAAA1468171BC911005B9430 /* TransferWise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransferWise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAAA146B171BC911005B9430 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EAAA146D171BC911005B9430 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1630,18 +1597,6 @@
 				EA31A1CC17DDB29B00F937F7 /* MessageUI.framework in Frameworks */,
 				EA31A1CD17DDB29B00F937F7 /* libPods.a in Frameworks */,
 				38AEB3C4196436F800B852E1 /* libAppsFlyerLib.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EA76D908175CF80100AE3F86 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EAA6AD0A17A91BF9006A347D /* CoreData.framework in Frameworks */,
-				EA76D90E175CF80100AE3F86 /* SenTestingKit.framework in Frameworks */,
-				EA76D90F175CF80100AE3F86 /* UIKit.framework in Frameworks */,
-				EA76D910175CF80100AE3F86 /* Foundation.framework in Frameworks */,
-				0286BD7B9CD44CD1BAB42E42 /* libPods-TransferTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2172,27 +2127,6 @@
 			path = BaseData;
 			sourceTree = SOURCE_ROOT;
 		};
-		EA76D911175CF80100AE3F86 /* TransferTests */ = {
-			isa = PBXGroup;
-			children = (
-				EAA6AD0917A91BA8006A347D /* Extensions */,
-				EA76D912175CF80100AE3F86 /* Supporting Files */,
-				EAA053D7175DD61400ACD3F6 /* Utils */,
-				EA76D924175CFAEA00AE3F86 /* SampleSpec.m */,
-			);
-			path = TransferTests;
-			sourceTree = "<group>";
-		};
-		EA76D912175CF80100AE3F86 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				EA76D913175CF80100AE3F86 /* TransferTests-Info.plist */,
-				EA76D914175CF80100AE3F86 /* InfoPlist.strings */,
-				EA76D91A175CF80100AE3F86 /* TransferTests-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		EA84056717F0A3FD00F44916 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -2367,33 +2301,13 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		EAA053D7175DD61400ACD3F6 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				EAA053E3175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m */,
-				EAA053DF175DD64D00ACD3F6 /* NoUserPaymentFlowSpec.m */,
-				EAA053D9175DD63100ACD3F6 /* PaymentFlowSpec.m */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
-		EAA6AD0917A91BA8006A347D /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				EAA6AD0C17A91D1F006A347D /* NSStringPatternTest.m */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		EAAA145F171BC911005B9430 = {
 			isa = PBXGroup;
 			children = (
 				EAAA1473171BC911005B9430 /* Transfer */,
-				EA76D911175CF80100AE3F86 /* TransferTests */,
 				EAAA146A171BC911005B9430 /* Frameworks */,
 				EAAA1469171BC911005B9430 /* Products */,
 				EA8FF68C171D22080090A658 /* Thirdparty */,
-				B9D5DEC1F8394C87A604EF4F /* Pods-TransferTests.xcconfig */,
 				2C541BABB70E4B6195F5BC1A /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
@@ -2402,7 +2316,6 @@
 			isa = PBXGroup;
 			children = (
 				EAAA1468171BC911005B9430 /* TransferWise.app */,
-				EA76D90C175CF80100AE3F86 /* TransferTests.octest */,
 				EA31A23817DDB29B00F937F7 /* TransferDev.app */,
 			);
 			name = Products;
@@ -2419,7 +2332,6 @@
 				BB92B143172A747300B6F096 /* CoreText.framework */,
 				EA61557417A69A5A008B6C79 /* Crashlytics.framework */,
 				EAAA146D171BC911005B9430 /* Foundation.framework */,
-				9C1FBDCF7CCD414999CC7D3D /* libPods-TransferTests.a */,
 				2F2D1DE7BECC4078BB45E6AD /* libPods.a */,
 				EAEA626017202D6100A96770 /* libz.dylib */,
 				EA0253B817D5D28400F54C18 /* MessageUI.framework */,
@@ -2727,27 +2639,6 @@
 			productReference = EA31A23817DDB29B00F937F7 /* TransferDev.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EA76D90B175CF80100AE3F86 /* TransferTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EA76D91E175CF80100AE3F86 /* Build configuration list for PBXNativeTarget "TransferTests" */;
-			buildPhases = (
-				56A90A46AE7B423883F2D031 /* Check Pods Manifest.lock */,
-				EA76D907175CF80100AE3F86 /* Sources */,
-				EA76D908175CF80100AE3F86 /* Frameworks */,
-				EA76D909175CF80100AE3F86 /* Resources */,
-				EA76D90A175CF80100AE3F86 /* ShellScript */,
-				01B41B0E4D0842479723F7DD /* Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EA76D922175CFA6E00AE3F86 /* PBXTargetDependency */,
-			);
-			name = TransferTests;
-			productName = TransferTests;
-			productReference = EA76D90C175CF80100AE3F86 /* TransferTests.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
-		};
 		EAAA1467171BC911005B9430 /* TransferWise */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EAAA148A171BC911005B9430 /* Build configuration list for PBXNativeTarget "TransferWise" */;
@@ -2802,7 +2693,6 @@
 			targets = (
 				EAAA1467171BC911005B9430 /* TransferWise */,
 				EA31A12117DDB29B00F937F7 /* TransferDev */,
-				EA76D90B175CF80100AE3F86 /* TransferTests */,
 			);
 		};
 /* End PBXProject section */
@@ -2945,14 +2835,6 @@
 				EA31A22F17DDB29B00F937F7 /* SwitchCell.xib in Resources */,
 				38AA83D01949C7220065AD2A /* PaymentCell~ipad.xib in Resources */,
 				B4C9172E19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EA76D909175CF80100AE3F86 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EA76D916175CF80100AE3F86 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3099,20 +2981,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		01B41B0E4D0842479723F7DD /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-TransferTests-resources.sh\"\n";
-		};
 		2E57B8DE397E43DE878090FF /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3127,20 +2995,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
-		};
-		56A90A46AE7B423883F2D031 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 		};
 		EA2B238E17212099001AE9DE /* Version update */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3239,19 +3093,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./Crashlytics.framework/run 84bc4b5736898e3cfdb50d3d2c162c4f74480862";
-		};
-		EA76D90A175CF80100AE3F86 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 		EAD73695171E820100A037B1 /* mogenerator */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3563,19 +3404,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EA76D907175CF80100AE3F86 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EA76D925175CFAEA00AE3F86 /* SampleSpec.m in Sources */,
-				EAA053DA175DD63100ACD3F6 /* PaymentFlowSpec.m in Sources */,
-				EAA053E0175DD64D00ACD3F6 /* NoUserPaymentFlowSpec.m in Sources */,
-				EAA053E4175DD68D00ACD3F6 /* LoggedInPaymentFlowSpec.m in Sources */,
-				EAA6AD0D17A91D1F006A347D /* NSStringPatternTest.m in Sources */,
-				EAA6AD0E17A91E72006A347D /* NSString+Presentation.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EAAA1464171BC911005B9430 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3856,23 +3684,7 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		EA76D922175CFA6E00AE3F86 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EAAA1467171BC911005B9430 /* TransferWise */;
-			targetProxy = EA76D921175CFA6E00AE3F86 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
-		EA76D914175CF80100AE3F86 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EA76D915175CF80100AE3F86 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		EAAA1476171BC911005B9430 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3961,46 +3773,6 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F6DFACD5-97DF-48DF-8310-C1E1142E278A";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		EA76D91B175CF80100AE3F86 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B9D5DEC1F8394C87A604EF4F /* Pods-TransferTests.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Transfer.app/Transfer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TransferTests/TransferTests-Prefix.pch";
-				INFOPLIST_FILE = "TransferTests/TransferTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		EA76D91C175CF80100AE3F86 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B9D5DEC1F8394C87A604EF4F /* Pods-TransferTests.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Transfer.app/Transfer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TransferTests/TransferTests-Prefix.pch";
-				INFOPLIST_FILE = "TransferTests/TransferTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -4180,15 +3952,6 @@
 			buildConfigurations = (
 				EA31A23617DDB29B00F937F7 /* Debug */,
 				EA31A23717DDB29B00F937F7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EA76D91E175CF80100AE3F86 /* Build configuration list for PBXNativeTarget "TransferTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EA76D91B175CF80100AE3F86 /* Debug */,
-				EA76D91C175CF80100AE3F86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

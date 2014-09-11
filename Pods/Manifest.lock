@@ -9,11 +9,9 @@ PODS:
   - CXAlertView (1.0.1)
   - Facebook-iOS-SDK (3.7.1)
   - JVFloatLabeledTextField (0.0.8)
-  - Kiwi (2.1)
   - Lockbox (1.4.3)
   - MBProgressHUD (0.7)
   - Mixpanel (2.3.4)
-  - OCMock (2.1.1)
   - OHAttributedLabel (3.4.1)
   - Reachability (3.1.1)
   - SMPageControl (1.1)
@@ -26,11 +24,9 @@ DEPENDENCIES:
   - CXAlertView (~> 1.0.1)
   - Facebook-iOS-SDK
   - JVFloatLabeledTextField
-  - Kiwi
   - Lockbox
   - MBProgressHUD
   - Mixpanel
-  - OCMock
   - OHAttributedLabel
   - Reachability
   - SMPageControl
@@ -49,11 +45,9 @@ SPEC CHECKSUMS:
   CXAlertView: 29bfa5841d168a016e1a70474ed840d0f4f67c2c
   Facebook-iOS-SDK: 215cb2b4a7c83887bf7ed0409eba71b558f8ac65
   JVFloatLabeledTextField: 16dea87b899a7b62026eb8d8cf9902c08b1953da
-  Kiwi: bd8d652f1a18e245c24db893cd53a108d531baf1
   Lockbox: 6c53a3dfe0ee74174cd22290ade247be8fb9190f
   MBProgressHUD: 1458a93b44933b4ccfb97c13d54202c943522bb2
   Mixpanel: f80261f894ae0a71231da2a7eed67ce9ba1d5a26
-  OCMock: 363db8429164eaa219ea96a51f06e830ef3e7393
   OHAttributedLabel: 526aaf0e4e8013e441381563adf952245675b881
   Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
   SMPageControl: 6ba95e9f946c4c5d3ac4c3a26d221b43ca2c6f2d
