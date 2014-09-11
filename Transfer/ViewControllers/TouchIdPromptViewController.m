@@ -45,7 +45,6 @@
     [TouchIDHelper storeCredentialsWithUsername:self.username password:self.password result:^(BOOL success) {
         if(success)
         {
-            [self dismiss];
             [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
         }
     }];

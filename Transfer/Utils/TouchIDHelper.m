@@ -9,9 +9,10 @@
 #import "TouchIDHelper.h"
 #import <LocalAuthentication/LocalAuthentication.h>
 #import <Lockbox.h>
+#import "TRWAlertView.h"
 
 #define localUser @"localUser"
-#define localPass @"localUser"
+#define localPass @"localPass"
 #define blockList @"blockList"
 
 @implementation TouchIDHelper
@@ -45,7 +46,7 @@
     return NO;
 }
 
-+(void)validateTouchIDWithReason:(NSString*)reason completion:(void(^)(BOOL success))resultBlock
++(void)validateTouchIDWithReason:(NSString*)reason completion:(void(^)(BOOL success, NSError * error))resultBlock
 {
     LAContext* context = [self getContextIfTouchIDAvailable];
     if(context)
@@ -54,12 +55,12 @@
         [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
                 localizedReason:reason
                           reply:^(BOOL success, NSError *error) {
-                              resultBlock(success);
+                              resultBlock(success, error);
                           }];
     }
     else
     {
-        resultBlock(NO);
+        resultBlock(NO, nil);
     }
 }
 
@@ -83,17 +84,20 @@
 
 +(void)clearCredentials
 {
-    /*
     NSString *localUserName = [Lockbox stringForKey:localUser];
     if( localUserName)
     {
-        [self validateTouchIDWithReason:NSLocalizedString(@"touchid.reason.clear", nil) completion:^(BOOL success) {
+        [self validateTouchIDWithReason:NSLocalizedString(@"touchid.reason.clear", nil) completion:^(BOOL success, NSError* error) {
             if(success)
-            {*/
+            {
                 [Lockbox setString:@"" forKey:localUser];
                 [Lockbox setString:@"" forKey:localPass];
                 [Lockbox setSet:[NSSet set] forKey:blockList];
-    /*
+
+            }
+            else if (error && error.code != kLAErrorUserCancel && error.code != kLAErrorSystemCancel)
+            {
+                [TRWAlertView alertViewWithTitle:NSLocalizedString(@"touchid.error.title", nil) message:[error localizedDescription]];
             }
         }];
     }
@@ -101,32 +105,44 @@
     {
         [Lockbox setSet:[NSSet set] forKey:blockList];
     }
-     */
 }
 
 +(void)storeCredentialsWithUsername:(NSString*)username password:(NSString*)password result:(void(^)(BOOL success))resultBlock
 {
-    [self validateTouchIDWithReason:NSLocalizedString(@"touchid.reason.store", nil) completion:^(BOOL success) {
-        if(success)
-        {
-            [Lockbox setString:username forKey:localUser];
-            [Lockbox setString:password forKey:localPass];
-        }
+    [self validateTouchIDWithReason:NSLocalizedString(@"touchid.reason.store", nil) completion:^(BOOL success, NSError* error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(success)
+            {
+                [Lockbox setString:username forKey:localUser];
+                [Lockbox setString:password forKey:localPass];
+            }
+            else if (error && error.code != kLAErrorUserCancel && error.code != kLAErrorSystemCancel)
+            {
+                [TRWAlertView alertViewWithTitle:NSLocalizedString(@"touchid.error.title", nil) message:[error localizedDescription]];
+            }
+            resultBlock(success);
+        });
         
     }];
 }
 
 +(void)retrieveStoredCredentials:(void(^)(BOOL success, NSString* username, NSString* password))resultBlock
 {
-    [self validateTouchIDWithReason:NSLocalizedString(@"touchid.reason.retrieve", nil) completion:^(BOOL success) {
-        NSString* localUserName;
-        NSString* localPassword;
-        if(success)
-        {
-            localUserName = [Lockbox stringForKey:localUser];
-            localPassword = [Lockbox stringForKey:localPass];
-        }
-        resultBlock(success, localUserName, localPassword);
+    [self validateTouchIDWithReason:NSLocalizedString(@"touchid.reason.retrieve", nil) completion:^(BOOL success, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString* localUserName;
+            NSString* localPassword;
+            if(success)
+            {
+                localUserName = [Lockbox stringForKey:localUser];
+                localPassword = [Lockbox stringForKey:localPass];
+            }
+            else if (error && error.code != kLAErrorUserCancel && error.code != kLAErrorSystemCancel)
+            {
+                [TRWAlertView alertViewWithTitle:NSLocalizedString(@"touchid.error.title", nil) message:[error localizedDescription]];
+            }
+            resultBlock(success, localUserName, localPassword);
+        });
     }];
 }
 
