@@ -63,7 +63,7 @@
 }
 
 - (IBAction)facebookTapped:(id)sender {
-    FBShareDialogParams *params = [[FBShareDialogParams alloc] init];
+    FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
     NSURL* url = [NSURL URLWithString:self.inviteUrl];
     params.link = url;
     BOOL canShare = [FBDialogs canPresentShareDialogWithParams:params];
