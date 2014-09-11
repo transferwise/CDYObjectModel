@@ -138,7 +138,7 @@
 	
 	if (![Credentials userLoggedIn])
 	{
-		[self setViewControllers:@[[self getAnonumousViewController]]];
+		[self setViewControllers:@[[self getAnonymousViewController]]];
 	}
 	else
 	{
@@ -162,13 +162,13 @@
 {
 	[self clearData];
 	
-	[self presentViewController:[self getAnonumousViewController]
+	[self presentViewController:[self getAnonymousViewController]
 					   animated:YES
 					 completion:nil];
 	[self popToRootViewControllerAnimated:NO];
 }
 
-- (ConnectionAwareViewController *)getAnonumousViewController
+- (ConnectionAwareViewController *)getAnonymousViewController
 {
 	UIViewController *presented;
 	if ([self.objectModel shouldShowDirectUserSignup])

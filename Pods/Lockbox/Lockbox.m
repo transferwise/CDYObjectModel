@@ -8,6 +8,15 @@
 #import "Lockbox.h"
 #import <Security/Security.h>
 
+// Define DLog if user hasn't already defined his own implementation
+#ifndef DLog
+#ifdef DEBUG
+#define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#define DLog(...)
+#endif
+#endif
+
 #define kDelimiter @"-|-"
 #define DEFAULT_ACCESSIBILITY kSecAttrAccessibleWhenUnlocked
 
@@ -25,7 +34,7 @@ static NSString *_bundleId = nil;
 
 +(void)initialize
 {
-    _bundleId = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleIdentifierKey];
+    _bundleId = [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:(NSString*)kCFBundleIdentifierKey]; 
 }
 
 +(NSMutableDictionary *)_service
@@ -82,7 +91,7 @@ static NSString *_bundleId = nil;
             status = SecItemAdd((LOCKBOX_DICTREF) dict, NULL);
     }
     if (status != errSecSuccess)
-        NSLog(@"SecItemAdd failed for key %@: %ld", hierKey, status);
+        DLog(@"SecItemAdd failed for key %@: %d", hierKey, (int)status);
     
     return (status == errSecSuccess);
 }
@@ -97,8 +106,8 @@ static NSString *_bundleId = nil;
     CFDataRef data = nil;
     OSStatus status =
     SecItemCopyMatching ( (LOCKBOX_DICTREF) query, (CFTypeRef *) &data );
-    if (status != errSecSuccess)
-        NSLog(@"SecItemCopyMatching failed for key %@: %ld", hierKey, status);
+    if (status != errSecSuccess && status != errSecItemNotFound)
+        DLog(@"SecItemCopyMatching failed for key %@: %d", hierKey, (int)status);
     
     if (!data)
         return nil;
@@ -142,7 +151,10 @@ static NSString *_bundleId = nil;
 
 +(BOOL)setArray:(NSArray *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
 {
-    NSString *components = [value componentsJoinedByString:kDelimiter];
+    NSString *components = nil;
+    if (value != nil && value.count > 0) {
+        components = [value componentsJoinedByString:kDelimiter];
+    }
     return [self setObject:components forKey:key accessibility:accessibility];
 }
 
@@ -176,6 +188,38 @@ static NSString *_bundleId = nil;
     return set;
 }
 
++ (BOOL)setDictionary:(NSDictionary *)value forKey:(NSString *)key
+{
+    return [self setDictionary:value forKey:key accessibility:DEFAULT_ACCESSIBILITY];
+}
+
++ (BOOL)setDictionary:(NSDictionary *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
+{
+    NSMutableArray * keysAndValues = [NSMutableArray arrayWithArray:value.allKeys];
+    [keysAndValues addObjectsFromArray:value.allValues];
+    
+    return [self setArray:keysAndValues forKey:key accessibility:accessibility];
+}
+
++ (NSDictionary *)dictionaryForKey:(NSString *)key
+{
+    NSArray * keysAndValues = [self arrayForKey:key];
+    
+    if (!keysAndValues || keysAndValues.count == 0)
+        return nil;
+    
+    if ((keysAndValues.count % 2) != 0)
+    {
+        DLog(@"Dictionary for %@ was not saved properly to keychain", key);
+        return nil;
+    }
+    
+    NSUInteger half = keysAndValues.count / 2;
+    NSRange keys = NSMakeRange(0, half);
+    NSRange values = NSMakeRange(half, half);
+    return [NSDictionary dictionaryWithObjects:[keysAndValues subarrayWithRange:values]
+                                       forKeys:[keysAndValues subarrayWithRange:keys]];
+}
 
 +(BOOL)setDate:(NSDate *)value forKey:(NSString *)key
 {
