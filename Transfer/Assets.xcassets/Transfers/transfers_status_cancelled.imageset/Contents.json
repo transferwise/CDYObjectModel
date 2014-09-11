@@ -11,6 +11,10 @@
       "filename" : "transfers_status_canceled@2x.png"
     },
     {
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
       "idiom" : "ipad",
       "scale" : "1x",
       "filename" : "transfers_status_canceled~ipad.png"
