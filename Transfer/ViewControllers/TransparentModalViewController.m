@@ -8,10 +8,12 @@
 
 #import "TransparentModalViewController.h"
 #import "UIView+RenderBlur.h"
+#import "MOMStyle.h"
 
 @interface TransparentModalViewController ()
 
-@property (nonatomic, weak) UIImageView* blurView;
+@property (nonatomic, weak) UIImageView* blurImageView;
+@property (nonatomic, weak) UIView* blurEffectView;
 @property (nonatomic, strong) UIViewController* hostViewController;
 
 @end
@@ -28,7 +30,7 @@
 {
 	[super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
     
-    self.blurView.hidden = YES;
+    self.blurImageView.hidden = YES;
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -45,35 +47,52 @@
     [hostViewcontroller.view addSubview:self.view];
     CGRect newFrame = hostViewcontroller.view.bounds;
     newFrame.origin.y = newFrame.size.height;
-    UIImageView *blurredimage = [[UIImageView alloc] initWithFrame:hostViewcontroller.view.frame];
-    self.blurView = blurredimage;
-    [self redrawBlurView];
-    [hostViewcontroller.view insertSubview:blurredimage belowSubview:self.view];
-    blurredimage.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    blurredimage.contentMode = UIViewContentModeBottom;
-    blurredimage.clipsToBounds = YES;
+    UIView *blurView;
+    if ([UIVisualEffectView class])
+    {
+        UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+        [hostViewcontroller.view insertSubview:blurEffectView belowSubview:self.view];
+        blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+        self.blurEffectView=blurEffectView;
+        blurView = blurEffectView;
+    }
+    else
+    {
+        UIImageView *blurredimage = [[UIImageView alloc] initWithFrame:hostViewcontroller.view.frame];
+        self.blurImageView = blurredimage;
+        [self redrawBlurView];
+        [hostViewcontroller.view insertSubview:blurredimage belowSubview:self.view];
+        blurView = blurredimage;
+        blurredimage.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+        blurredimage.contentMode = UIViewContentModeBottom;
+        blurredimage.clipsToBounds = YES;
+    }
     self.view.frame = newFrame;
     newFrame.size.height = 0.0f;
-    blurredimage.frame=newFrame;
+    blurView.frame=newFrame;
     [self didMoveToParentViewController:hostViewcontroller];
     [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.view.frame = hostViewcontroller.view.bounds;
-        self.blurView.frame = hostViewcontroller.view.bounds;
+       blurView.frame = hostViewcontroller.view.bounds;
         
     } completion:nil];
 }
 
 -(void)redrawBlurView
 {
-    self.view.hidden = YES;
-    self.blurView.hidden = YES;
-    self.blurView.image = [self.hostViewController.view renderBlurWithTintColor:[UIColor clearColor]];
-    self.view.hidden = NO;
-    self.blurView.hidden = NO;
+    if(self.blurImageView)
+    {
+        self.view.hidden = YES;
+        self.blurImageView.hidden = YES;
+        self.blurImageView.image = [self.hostViewController.view renderBlurWithTintColor:[UIColor clearColor]];
+        self.view.hidden = NO;
+        self.blurImageView.hidden = NO;
+    }
 }
 
 -(IBAction)dismiss
 {
+    UIView *blurView = self.blurImageView?:self.blurEffectView;
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     [UIView animateWithDuration:0.3f
 						  delay:0.0f
@@ -83,11 +102,11 @@
 						 newFrame.origin.y = newFrame.size.height;
 						 self.view.frame = newFrame;
 						 newFrame.size.height = 0.0f;
-						 self.blurView.frame = newFrame;
+						 blurView.frame = newFrame;
 					 }
 					 completion:^(BOOL finished) {
 						 [self.view removeFromSuperview];
-						 [self.blurView removeFromSuperview];
+						 [blurView removeFromSuperview];
 						 [self removeFromParentViewController];
 						 if ([self.delegate respondsToSelector:@selector(modalClosed)])
 						 {

@@ -92,26 +92,38 @@
 
 -(void)updateSuggestionTablePositions
 {
-    UIImage* backgroundImage;
-
     TextFieldSuggestionTable* table = self.currentSuggestionTable;
     [table removeFromSuperview];
     UIView* viewToAlignTo = table.associatedView;
     
     if(!IPAD)
     {
-        if(!backgroundImage)
+        if ([UIVisualEffectView class])
+        {
+            if(!table.tableView.backgroundView)
             {
-                backgroundImage = [self.view renderBlurWithTintColor:nil];
+                UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+                blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+                table.tableView.backgroundView = blurEffectView;
+                UIView *colorOverlay = [[UIView alloc] initWithFrame:blurEffectView.bounds];
+                colorOverlay.bgStyle = @"DarkFont.alpha4";
+                colorOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+                [blurEffectView addSubview:colorOverlay];
             }
-        UIImageView* background = [[UIImageView alloc] initWithImage:backgroundImage];
-        background.contentMode = UIViewContentModeBottom;
-        table.tableView.backgroundView = background;
-        
-        UIView *colorOverlay = [[UIView alloc] initWithFrame:background.bounds];
-        colorOverlay.bgStyle = @"DarkFont.alpha4";
-        colorOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        [background addSubview:colorOverlay];
+        }
+        else
+        {
+            UIImage* backgroundImage = [self.view renderBlurWithTintColor:nil];
+            
+            UIImageView* background = [[UIImageView alloc] initWithImage:backgroundImage];
+            background.contentMode = UIViewContentModeBottom;
+            table.tableView.backgroundView = background;
+            
+            UIView *colorOverlay = [[UIView alloc] initWithFrame:background.bounds];
+            colorOverlay.bgStyle = @"DarkFont.alpha4";
+            colorOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+            [background addSubview:colorOverlay];
+        }
     }
     else
     {
