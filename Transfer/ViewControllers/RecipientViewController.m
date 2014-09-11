@@ -956,6 +956,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         if ([self.addressCells indexOfObject:self.stateCell]==NSNotFound)
         {
             [self.addressCells insertObject:self.stateCell atIndex:1];
+			self.postCodeCell.entryField.placeholder = NSLocalizedString(@"profile.post.code.usa.label", nil);
             didIncludeState = YES;
         }
     }
@@ -964,6 +965,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         if ([self.addressCells indexOfObject:self.stateCell]!=NSNotFound)
         {
             [self.addressCells removeObject:self.stateCell];
+			self.postCodeCell.entryField.placeholder = NSLocalizedString(@"profile.post.code.label", nil);
             didRemoveState = YES;
         }
     }
