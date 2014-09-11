@@ -29,7 +29,7 @@
 @property (nonatomic, strong) UIView *revealTapView;
 @property (nonatomic, strong) TransactionsViewController *transactionsController;
 @property (nonatomic, assign) BOOL launchTableViewGamAdjustmentDone;
-@property (nonatomic, assign) BOOL shown;
+@property (nonatomic) BOOL shown;
 
 @end
 
@@ -131,11 +131,6 @@
     [self setDelegate:self];
 }
 
-- (void)menuPressed {
-	[[GoogleAnalytics sharedInstance] sendAppEvent:@"Menu clicked"];
-	[self.revealViewController revealToggle:nil];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -149,34 +144,9 @@
     }
 
     [self setLaunchTableViewGamAdjustmentDone:YES];
-    
-    /*Note to any developer looking at this after me / m@s
-     
-     I've just looked at this long and hard and can only conclude that the view controllers presented here
-     are only temporary placeholder viewcontrollers intended to prevent a visual glitch from happening when
-     presenting a viewcontroller modally in viewDidAppear. The below code presents exactly the same viewcontroller
-     as the modal in viewDidAppear, but does it by pushing on the nav stack so the right view is shown for a fraction 
-     of a second before the sime view is shown modally.
-     
-     A potential other workaround would be to show the default.png here instead and remove after view did load.
-     I choose not to meddle with it (only add a condition for the new "hasExistingUserBeenShown" case). 
-     But if you do, be aware... here be (visual glitch) dragons!
-    */
-    
-    if (![Credentials userLoggedIn] && !self.shown && ![self.objectModel hasIntroBeenShown]) {
-        IntroViewController *controller = [[IntroViewController alloc] init];
-        [self setNavigationBarHidden:YES];
-        [self pushViewController:controller animated:NO];
-    }
-    else if(![self.objectModel hasExistingUserIntroBeenShown])
-    {
-        IntroViewController *controller = [[IntroViewController alloc] init];
-        controller.plistFilenameOverride = @"existingUserIntro";
-        [self setNavigationBarHidden:YES];
-        [self pushViewController:controller animated:NO];
-        [[GoogleAnalytics sharedInstance] sendScreen:@"Whats new screen"];
-    }
-    else if (![Credentials userLoggedIn] && !self.shown) {
+	
+    if (![Credentials userLoggedIn])
+	{
         NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
         [controller setObjectModel:self.objectModel];
         [controller setDummyPresentation:YES];
@@ -188,81 +158,44 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    if (![Credentials userLoggedIn]) {
-        [self presentIntroductionController:self.shown];
-        [self popToRootViewControllerAnimated:NO];
-    }
-    else if(![self.objectModel hasExistingUserIntroBeenShown])
-    {
-        IntroViewController *controller = [[IntroViewController alloc] init];
-        controller.plistFilenameOverride = @"existingUserIntro";
-        [controller setObjectModel:self.objectModel];
-        ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:YES];
-        [self presentViewController:wrapper animated:self.shown completion:nil];
-        [self popToRootViewControllerAnimated:NO];
-    }
-
-    [self setShown:YES];
-}
-
-- (void)presentIntroductionController:(BOOL)shownBefore {
-    UIViewController *presented;
-    if (shownBefore || ([self.objectModel hasIntroBeenShown] && [self.objectModel hasExistingUserIntroBeenShown])) {
-        if ([self.objectModel shouldShowDirectUserSignup]) {
-            SignUpViewController *controller = [[SignUpViewController alloc] init];
-            [controller setObjectModel:self.objectModel];
-            presented = controller;
-        } else {
-            NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
-            [controller setObjectModel:self.objectModel];
-            presented = controller;
-        }
-    } else {
-        IntroViewController *controller = [[IntroViewController alloc] init];
-        if([self.objectModel hasIntroBeenShown] && ![self.objectModel hasExistingUserIntroBeenShown])
-        {
-           controller.plistFilenameOverride = @"existingUserIntro";
-        }
-        [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:controller.plistFilenameOverride?@"Whats new screen":@"Intro screen"]];
-        [controller setObjectModel:self.objectModel];
-        presented = controller;
-    }
-
-    ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:presented navBarHidden:YES];
-    [self presentViewController:wrapper animated:shownBefore completion:nil];
+	[self presentNewPaymentViewController];
+	[self setShown:YES];
 }
 
 - (void)loggedOut
 {
 	[self clearData];
-    [self presentIntroductionController:YES];
+    [self presentNewPaymentViewController];
+}
+
+- (void)presentNewPaymentViewController
+{
+	if (![Credentials userLoggedIn])
+	{
+		UIViewController *presented;
+		if ([self.objectModel shouldShowDirectUserSignup])
+		{
+			SignUpViewController *controller = [[SignUpViewController alloc] init];
+			[controller setObjectModel:self.objectModel];
+			presented = controller;
+		}
+		else
+		{
+			NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
+			[controller setObjectModel:self.objectModel];
+			presented = controller;
+		}
+		
+		ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:presented navBarHidden:YES];
+		[self presentViewController:wrapper animated:YES completion:nil];
+		[self popToRootViewControllerAnimated:NO];
+	}
 }
 
 - (void)clearData
 {
 	[[TransferwiseClient sharedClient] clearCredentials];
 	[self.transactionsController clearData];
-}
-
-- (void)revealController:(SWRevealViewController *)revealController didMoveToPosition:(FrontViewPosition)position {
-    if (position != FrontViewPositionRight) {
-        [self.revealTapView removeFromSuperview];
-        return;
-    }
-
-    UIViewController *front = revealController.frontViewController;
-    UIView *tapView = [[UIView alloc] initWithFrame:front.view.bounds];
-    tapView.backgroundColor = [UIColor clearColor];
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:revealController action:@selector(revealToggle:)];
-    tapRecognizer.numberOfTapsRequired = 1;
-    tapRecognizer.numberOfTouchesRequired = 1;
-    [tapView addGestureRecognizer:tapRecognizer];
-    UIPanGestureRecognizer *directionPanGestureRecognizer = [revealController directionPanGestureRecognizer];
-    [directionPanGestureRecognizer setDelegate:nil];
-    [tapView addGestureRecognizer:directionPanGestureRecognizer];
-    [front.view addSubview:tapView];
-
-    [self setRevealTapView:tapView];
 }
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
