@@ -568,7 +568,6 @@
 		EA31A14517DDB29B00F937F7 /* CalculationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6256172011C500A96770 /* CalculationResult.m */; };
 		EA31A14617DDB29B00F937F7 /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC691221721416300F0FB1A /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -Wno-deprecated-declarations"; }; };
 		EA31A14817DDB29B00F937F7 /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
-		EA31A14917DDB29B00F937F7 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
 		EA31A14A17DDB29B00F937F7 /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
 		EA31A14B17DDB29B00F937F7 /* PersonalProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E664172F979F0021492C /* PersonalProfileViewController.m */; };
 		EA31A14C17DDB29B00F937F7 /* NSError+TRWErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E677172F97C40021492C /* NSError+TRWErrors.m */; };
@@ -737,7 +736,6 @@
 		EA84056917F0A40B00F44916 /* spinner.html in Resources */ = {isa = PBXBuildFile; fileRef = EA84056817F0A40B00F44916 /* spinner.html */; };
 		EA84056A17F0A40B00F44916 /* spinner.html in Resources */ = {isa = PBXBuildFile; fileRef = EA84056817F0A40B00F44916 /* spinner.html */; };
 		EA88E65B172F96490021492C /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
-		EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65E172F96660021492C /* SWRevealViewController.m */; };
 		EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
 		EA88E667172F979F0021492C /* PersonalProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E664172F979F0021492C /* PersonalProfileViewController.m */; };
 		EA88E67A172F97C40021492C /* NSError+TRWErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E677172F97C40021492C /* NSError+TRWErrors.m */; };
@@ -1413,8 +1411,6 @@
 		EA84056817F0A40B00F44916 /* spinner.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = spinner.html; sourceTree = "<group>"; };
 		EA88E659172F96490021492C /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credentials.h; path = Credentials/Credentials.h; sourceTree = "<group>"; };
 		EA88E65A172F96490021492C /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Credentials.m; path = Credentials/Credentials.m; sourceTree = "<group>"; };
-		EA88E65D172F96660021492C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		EA88E65E172F96660021492C /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		EA88E661172F979F0021492C /* DataEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryViewController.h; sourceTree = "<group>"; };
 		EA88E662172F979F0021492C /* DataEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryViewController.m; sourceTree = "<group>"; };
 		EA88E663172F979F0021492C /* PersonalProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileViewController.h; sourceTree = "<group>"; };
@@ -2218,15 +2214,6 @@
 			name = Credentials;
 			sourceTree = "<group>";
 		};
-		EA88E65C172F96660021492C /* SWRevealViewController */ = {
-			isa = PBXGroup;
-			children = (
-				EA88E65D172F96660021492C /* SWRevealViewController.h */,
-				EA88E65E172F96660021492C /* SWRevealViewController.m */,
-			);
-			path = SWRevealViewController;
-			sourceTree = "<group>";
-		};
 		EA88E669172F97B10021492C /* AddressBookInteraction */ = {
 			isa = PBXGroup;
 			children = (
@@ -2300,7 +2287,6 @@
 				4781F48D194737C700B8926C /* JVFloatLabeledTextField */,
 				EACD942B18D82C2C00369905 /* NanTracking */,
 				EA8FA85C1891065F00153EBC /* GoogleAnalyticsServicesiOS_3.03 */,
-				EA88E65C172F96660021492C /* SWRevealViewController */,
 				BBC6911B1721414300F0FB1A /* TSAlertView */,
 				EA0253BB17D5E44400F54C18 /* uidevice-extension */,
 			);
@@ -3377,7 +3363,6 @@
 				389F6814198FC1C6006CF1F6 /* _Setting.m in Sources */,
 				EACD942F18D82C2C00369905 /* NanTracking.m in Sources */,
 				EA31A14817DDB29B00F937F7 /* Credentials.m in Sources */,
-				EA31A14917DDB29B00F937F7 /* SWRevealViewController.m in Sources */,
 				3876769019BF4914007B0EE5 /* CustomInfoViewController.m in Sources */,
 				EA31A14A17DDB29B00F937F7 /* DataEntryViewController.m in Sources */,
 				EA31A14B17DDB29B00F937F7 /* PersonalProfileViewController.m in Sources */,
@@ -3668,7 +3653,6 @@
 				389F684F198FC1C6006CF1F6 /* User.m in Sources */,
 				389F6813198FC1C6006CF1F6 /* _Setting.m in Sources */,
 				479B69371948A2EB001FA4FE /* UIFont+MOMStyle.m in Sources */,
-				EA88E65F172F96660021492C /* SWRevealViewController.m in Sources */,
 				EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */,
 				3876768F19BF4914007B0EE5 /* CustomInfoViewController.m in Sources */,
 				EA88E667172F979F0021492C /* PersonalProfileViewController.m in Sources */,
