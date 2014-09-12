@@ -22,5 +22,6 @@
 - (void)setUpAccounts;
 
 - (NSString*)getStatusBasedLocalization:(NSString *)localizationKey status:(NSString*)status;
+- (void)setBackOrCloseButton;
 
 @end
