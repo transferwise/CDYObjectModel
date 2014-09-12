@@ -348,7 +348,7 @@ We'll refund the remaining money to your bank account once the transfer is compl
 "settings.row.logout" = "Log out";
 "settings.row.send.feedback" = "Send feedback";
 "settings.row.about" = "About";
-"settings.row.touchid" = "Clear touch ID settings";
+"settings.row.touchid" = "Touch ID settings";
 "settings.row.send.as.business" = "Send as business";
 
 
@@ -655,13 +655,17 @@ We'll send you an email in order to let you choose a new password.";
 "invite.status.error.title" = "Unable to get status";
 "invite.status.error.message" = "Something went wrong while getting invite's status";
 
-"touchid.reason.store" = "Associate login credentials with Touch ID";
-"touchid.reason.retrieve" = "Log in with Touch ID account";
-"touchid.reason.clear" = "remove credentials associated with Touch ID";
+"touchid.reason.store" = "Authenticate to associate login credentials with Touch ID.";
+"touchid.reason.retrieve" = "Authenticate to log in with Touch ID account.";
+"touchid.reason.clear" = "Authenticate to remove credentials associated with Touch ID.";
 "touchid.removed" = "Login associated with TouchID has been removed. Login again to re-associate.";
 "touchid.prompt.title" = "Fast & secure login";
 "touchid.prompt.info" = "Would you like to use Touch ID to log into this account next time?";
-"touchid.error.title" = "Touch ID";
+"touchid.alert.title" = "Touch ID";
+"touchid.settings.clear.info" = "Remove stored login details for Touch ID?";
+"touchid.settings.names.info" = "If you said No to using Touch ID you will not automatically be asked again. Tap \"Ask Again\" to be prompted again next time you log in.";
+"touchid.settings.names.title" = "Ask again";
+
 
 "usd.low.title" = "Coming soon";
 "usd.low.info" = "Unfortunately you cannot transfer less than 1500 USD just yet.\nYou will soon be able to.";

@@ -53,4 +53,20 @@
  */
 +(void)clearCredentials;
 
+/**
+ call to clear credentials and blocked user list if the user successfully authenticates with touchID
+ 
+ @param resultBlock called with success indicating if the user authenticated and details were cleared.
+ */
++(void)clearCredentialsAfterValidation:(void(^)(BOOL success))resultBlock;
+
+/**
+ call to clear the list of blocked usernames
+ */
++(void)clearBlockedUsernames;
+
+/**
+ checks if any usernames are blocked
+ */
++(BOOL)isBlockedUserNameListEmpty;
 @end

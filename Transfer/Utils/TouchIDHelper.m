@@ -49,9 +49,9 @@
 +(void)validateTouchIDWithReason:(NSString*)reason completion:(void(^)(BOOL success, NSError * error))resultBlock
 {
     LAContext* context = [self getContextIfTouchIDAvailable];
+    context.localizedFallbackTitle = @"";
     if(context)
     {
-        
         [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
                 localizedReason:reason
                           reply:^(BOOL success, NSError *error) {
@@ -84,27 +84,37 @@
 
 +(void)clearCredentials
 {
-    NSString *localUserName = [Lockbox stringForKey:localUser];
-    if( localUserName)
-    {
-        [self validateTouchIDWithReason:NSLocalizedString(@"touchid.reason.clear", nil) completion:^(BOOL success, NSError* error) {
-            if(success)
-            {
-                [Lockbox setString:@"" forKey:localUser];
-                [Lockbox setString:@"" forKey:localPass];
-                [Lockbox setSet:[NSSet set] forKey:blockList];
+    [Lockbox setString:@"" forKey:localUser];
+    [Lockbox setString:@"" forKey:localPass];
+}
 
-            }
-            else if (error && error.code != kLAErrorUserCancel && error.code != kLAErrorSystemCancel)
-            {
-                [TRWAlertView alertViewWithTitle:NSLocalizedString(@"touchid.error.title", nil) message:[error localizedDescription]];
-            }
-        }];
-    }
-    else
-    {
-        [Lockbox setSet:[NSSet set] forKey:blockList];
-    }
++(void)clearCredentialsAfterValidation:(void(^)(BOOL success))resultBlock
+{
+        [self validateTouchIDWithReason:NSLocalizedString(@"touchid.reason.clear", nil) completion:^(BOOL success, NSError* error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+
+                if(success)
+                {
+                    [Lockbox setString:@"" forKey:localUser];
+                    [Lockbox setString:@"" forKey:localPass];
+                }
+                else if (error && error.code != kLAErrorUserCancel && error.code != kLAErrorSystemCancel)
+                {
+                    TRWAlertView* alert = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"touchid.alert.title", nil) message:[error localizedDescription]];
+                    [alert setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                    [alert show];
+                }
+                if(resultBlock)
+                {
+                    resultBlock(success);
+                }
+            });
+    }];
+}
+
++(void)clearBlockedUsernames
+{
+    [Lockbox setSet:[NSSet set] forKey:blockList];
 }
 
 +(void)storeCredentialsWithUsername:(NSString*)username password:(NSString*)password result:(void(^)(BOOL success))resultBlock
@@ -118,7 +128,9 @@
             }
             else if (error && error.code != kLAErrorUserCancel && error.code != kLAErrorSystemCancel)
             {
-                [TRWAlertView alertViewWithTitle:NSLocalizedString(@"touchid.error.title", nil) message:[error localizedDescription]];
+                TRWAlertView* alert = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"touchid.alert.title", nil) message:[error localizedDescription]];
+                [alert setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                [alert show];
             }
             resultBlock(success);
         });
@@ -139,11 +151,19 @@
             }
             else if (error && error.code != kLAErrorUserCancel && error.code != kLAErrorSystemCancel)
             {
-                [TRWAlertView alertViewWithTitle:NSLocalizedString(@"touchid.error.title", nil) message:[error localizedDescription]];
+                TRWAlertView* alert = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"touchid.alert.title", nil) message:[error localizedDescription]];
+                [alert setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                [alert show];
             }
             resultBlock(success, localUserName, localPassword);
         });
     }];
+}
+
++(BOOL)isBlockedUserNameListEmpty
+{
+     NSSet *blockedNameList = [Lockbox setForKey:blockList];
+    return [blockedNameList count] <= 0;
 }
 
 
