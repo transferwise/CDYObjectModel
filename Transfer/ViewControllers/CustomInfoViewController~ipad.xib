@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomInfoViewController">
@@ -19,8 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IiW-51-o7V">
-                    <rect key="frame" x="41" y="23" width="42" height="42"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="20" y="20" width="42" height="42"/>
                     <color key="backgroundColor" red="1" green="0.2133821186" blue="0.18887848600000001" alpha="0.0" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="NgE-E2-LE7"/>
@@ -34,8 +34,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGZ-vv-3wR">
-                    <rect key="frame" x="139" y="32" width="42" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="139" y="32" width="42" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -45,17 +44,15 @@
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KXk-CC-Thp">
                     <rect key="frame" x="93" y="113" width="134" height="134"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="134" id="8Hd-jN-QvX"/>
                         <constraint firstAttribute="height" constant="134" id="t2Q-zm-ZcZ"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="xGc-tE-8cX">
-                    <rect key="frame" x="30" y="273" width="260" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="10" y="273" width="300" height="20.5"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="260" id="Rgy-tb-MfN"/>
+                        <constraint firstAttribute="width" constant="300" id="Rgy-tb-MfN"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -65,8 +62,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zT5-MG-sUE" customClass="BlueRoundedButton">
-                    <rect key="frame" x="110" y="386" width="100" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="110" y="336" width="100" height="44"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="2C1-xe-JN9"/>
                         <constraint firstAttribute="height" constant="44" id="3Qm-er-U5R"/>
@@ -81,18 +77,17 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="zT5-MG-sUE" secondAttribute="bottom" constant="50" id="AXW-dM-W15"/>
+                <constraint firstAttribute="bottom" secondItem="zT5-MG-sUE" secondAttribute="bottom" constant="100" id="AXW-dM-W15"/>
                 <constraint firstAttribute="centerX" secondItem="KXk-CC-Thp" secondAttribute="centerX" id="N8x-31-fed"/>
                 <constraint firstAttribute="centerX" secondItem="xGc-tE-8cX" secondAttribute="centerX" id="QJD-uz-0Hq"/>
-                <constraint firstItem="IiW-51-o7V" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="23" id="Swm-MS-AkE"/>
+                <constraint firstItem="IiW-51-o7V" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="Swm-MS-AkE"/>
                 <constraint firstAttribute="centerX" secondItem="zT5-MG-sUE" secondAttribute="centerX" id="cbg-BT-26u"/>
                 <constraint firstAttribute="centerY" secondItem="KXk-CC-Thp" secondAttribute="centerY" constant="60" id="cgV-Jx-uqO"/>
                 <constraint firstAttribute="centerX" secondItem="JGZ-vv-3wR" secondAttribute="centerX" id="dkB-tf-1bZ"/>
                 <constraint firstItem="JGZ-vv-3wR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="32" id="mIB-oe-A3n"/>
-                <constraint firstItem="IiW-51-o7V" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="41" id="roV-zg-Qwu"/>
+                <constraint firstItem="IiW-51-o7V" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="roV-zg-Qwu"/>
                 <constraint firstItem="xGc-tE-8cX" firstAttribute="top" secondItem="KXk-CC-Thp" secondAttribute="bottom" constant="26" id="spn-Rc-yc3"/>
             </constraints>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="TWBlue.alpha2"/>
@@ -102,4 +97,9 @@
     <resources>
         <image name="ModalClose" width="42" height="42"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>
