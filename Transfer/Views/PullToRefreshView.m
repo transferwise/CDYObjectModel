@@ -20,6 +20,8 @@
 
 @property (nonatomic, strong) CADisplayLink *displayLink;
 
+@property (nonatomic,strong) NSNumber* bufferedTopInset;
+
 @end
 
 @implementation PullToRefreshView
@@ -123,6 +125,10 @@
     {
         self.isRefreshing = YES;
         UIEdgeInsets insets = self.scrollView.contentInset;
+        if(!self.bufferedTopInset)
+        {
+            self.bufferedTopInset = @(insets.top);
+        }
         insets.top += self.targetHeight;
         [UIView animateWithDuration:0.2f animations:^(void) {
             [self.scrollView setContentInset:insets];
@@ -149,7 +155,8 @@
         self.endRefreshRequestedDuringDeceleration = NO;
         self.isRefreshing = NO;
         UIEdgeInsets insets = self.scrollView.contentInset;
-        insets.top -= self.targetHeight;
+        insets.top = [self.bufferedTopInset floatValue];
+        self.bufferedTopInset = nil;
         CGFloat offset = [self verticalOffset];
         if (offset < self.targetHeight)
         {
