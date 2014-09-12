@@ -37,17 +37,22 @@
     [super presentOnViewController:hostViewcontroller];
 }
 
-- (IBAction)closeTapped:(id)sender {
+- (IBAction)noTapped:(id)sender {
     [TouchIDHelper blockStorageForUsername:self.username];
-    [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+    [self dismiss];
 }
 - (IBAction)yesTapped:(id)sender {
     [TouchIDHelper storeCredentialsWithUsername:self.username password:self.password result:^(BOOL success) {
         if(success)
         {
-            [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+            [self dismiss];
         }
     }];
+}
+
+-(void)dismiss
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
 }
 
 @end

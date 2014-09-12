@@ -46,21 +46,41 @@
     return NO;
 }
 
-+(void)validateTouchIDWithReason:(NSString*)reason completion:(void(^)(BOOL success, NSError * error))resultBlock
++(void)validateTouchIDWithReason:(NSString*)reason successAction:(void(^)(void))successActionBlock completion:(void(^)(BOOL success))resultBlock
 {
     LAContext* context = [self getContextIfTouchIDAvailable];
-    context.localizedFallbackTitle = @"";
     if(context)
     {
+        context.localizedFallbackTitle = @"";
         [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
                 localizedReason:reason
                           reply:^(BOOL success, NSError *error) {
-                              resultBlock(success, error);
+                              dispatch_async(dispatch_get_main_queue(), ^{
+                                  if(success)
+                                  {
+                                      if(successActionBlock)
+                                      {
+                                          successActionBlock();
+                                      }
+                                  }
+                                  else if (error && error.code != kLAErrorUserCancel && error.code != kLAErrorSystemCancel)
+                                  {
+                                      TRWAlertView* alert = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"touchid.alert.title", nil) message:[error localizedDescription]];
+                                      [alert setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                                      [alert show];
+                                  }
+                                  
+                                  if(resultBlock)
+                                  {
+                                      resultBlock(success);
+                                      
+                                  };
+                              });
                           }];
     }
     else
     {
-        resultBlock(NO, nil);
+        resultBlock(NO);
     }
 }
 
@@ -90,26 +110,10 @@
 
 +(void)clearCredentialsAfterValidation:(void(^)(BOOL success))resultBlock
 {
-        [self validateTouchIDWithReason:NSLocalizedString(@"touchid.reason.clear", nil) completion:^(BOOL success, NSError* error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-
-                if(success)
-                {
-                    [Lockbox setString:@"" forKey:localUser];
-                    [Lockbox setString:@"" forKey:localPass];
-                }
-                else if (error && error.code != kLAErrorUserCancel && error.code != kLAErrorSystemCancel)
-                {
-                    TRWAlertView* alert = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"touchid.alert.title", nil) message:[error localizedDescription]];
-                    [alert setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-                    [alert show];
-                }
-                if(resultBlock)
-                {
-                    resultBlock(success);
-                }
-            });
-    }];
+    [self validateTouchIDWithReason:NSLocalizedString(@"touchid.reason.clear", nil) successAction:^{
+            [Lockbox setString:@"" forKey:localUser];
+            [Lockbox setString:@"" forKey:localPass];
+        } completion:resultBlock];
 }
 
 +(void)clearBlockedUsernames
@@ -119,44 +123,26 @@
 
 +(void)storeCredentialsWithUsername:(NSString*)username password:(NSString*)password result:(void(^)(BOOL success))resultBlock
 {
-    [self validateTouchIDWithReason:NSLocalizedString(@"touchid.reason.store", nil) completion:^(BOOL success, NSError* error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if(success)
-            {
-                [Lockbox setString:username forKey:localUser];
-                [Lockbox setString:password forKey:localPass];
-            }
-            else if (error && error.code != kLAErrorUserCancel && error.code != kLAErrorSystemCancel)
-            {
-                TRWAlertView* alert = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"touchid.alert.title", nil) message:[error localizedDescription]];
-                [alert setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-                [alert show];
-            }
-            resultBlock(success);
-        });
-        
-    }];
+    [self validateTouchIDWithReason:NSLocalizedString(@"touchid.reason.store", nil) successAction:^{
+        [Lockbox setString:username forKey:localUser];
+        [Lockbox setString:password forKey:localPass];
+    } completion:resultBlock];
 }
 
 +(void)retrieveStoredCredentials:(void(^)(BOOL success, NSString* username, NSString* password))resultBlock
 {
-    [self validateTouchIDWithReason:NSLocalizedString(@"touchid.reason.retrieve", nil) completion:^(BOOL success, NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSString* localUserName;
-            NSString* localPassword;
-            if(success)
-            {
-                localUserName = [Lockbox stringForKey:localUser];
-                localPassword = [Lockbox stringForKey:localPass];
-            }
-            else if (error && error.code != kLAErrorUserCancel && error.code != kLAErrorSystemCancel)
-            {
-                TRWAlertView* alert = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"touchid.alert.title", nil) message:[error localizedDescription]];
-                [alert setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-                [alert show];
-            }
+    [self validateTouchIDWithReason:NSLocalizedString(@"touchid.reason.retrieve", nil) successAction:nil completion:^(BOOL success) {
+        NSString* localUserName;
+        NSString* localPassword;
+        if(success)
+        {
+            localUserName = [Lockbox stringForKey:localUser];
+            localPassword = [Lockbox stringForKey:localPass];
+        }
+        if(resultBlock)
+        {
             resultBlock(success, localUserName, localPassword);
-        });
+        }
     }];
 }
 
