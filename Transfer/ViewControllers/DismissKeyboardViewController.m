@@ -8,6 +8,7 @@
 
 #import "DismissKeyboardViewController.h"
 #import "UIApplication+Keyboard.h"
+#import "UIView+InheritantOf.h"
 
 @interface DismissKeyboardViewController ()
 
@@ -38,11 +39,13 @@
 {
     if ([gestureRecognizer isEqual:self.recognizer])
 	{
-        // for ios 7 , need to compare with UITableViewCellContentView
-        if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"] || [touch.view.superview isKindOfClass:[UITableViewCell class]])
+		if ([touch.view isInheritantOfClass:[UITableViewCell class]
+								orClassName:@"UITableViewCellContentView"]
+			|| [touch.view isInheritantOfClass:[UICollectionViewCell class]
+								   orClassName:nil])
 		{
-            return FALSE;
-        }
+			return FALSE;
+		}
     }
     return TRUE;
 }
