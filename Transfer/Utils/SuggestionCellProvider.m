@@ -96,6 +96,7 @@
     if(_autoCompleteResults != autoCompleteResults)
     {
         _autoCompleteResults = autoCompleteResults;
+        autoCompleteResults.delegate = self;
         [self refreshResults];
     }
 }
