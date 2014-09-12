@@ -215,12 +215,8 @@ static NSUInteger const kRowYouSend = 0;
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
 
     [self.navigationController setNavigationBarHidden:YES animated:YES];
@@ -229,9 +225,12 @@ static NSUInteger const kRowYouSend = 0;
     UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TWlogo.png"]];
     [self.navigationItem setTitleView:logoView];
     
-    if (self.recipient) {
+    if (self.recipient)
+	{
         [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSourcesContainingTargetCurrency:self.recipient.currency]];
-    } else {
+    }
+	else
+	{
         [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSources]];
     }
 
@@ -242,14 +241,17 @@ static NSUInteger const kRowYouSend = 0;
     self.logo.hidden = [Credentials userLoggedIn];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
 
-    if ([Credentials temporaryAccount]) {
+    if ([Credentials temporaryAccount])
+	{
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 
-    if (!self.dummyPresentation) {
+    if (!self.dummyPresentation)
+	{
         [[AnalyticsCoordinator sharedInstance] startScreenShown];
     }
 }
@@ -260,13 +262,16 @@ static NSUInteger const kRowYouSend = 0;
 	[self.view needsUpdateConstraints];
 }
 
-- (void)retrieveCurrencyPairs {
-    if (self.dummyPresentation) {
+- (void)retrieveCurrencyPairs
+{
+    if (self.dummyPresentation)
+	{
         //It is dummy instance used on app launch
         return;
     }
 
-    if (self.executedOperation) {
+    if (self.executedOperation)
+	{
         return;
     }
 
@@ -299,16 +304,20 @@ static NSUInteger const kRowYouSend = 0;
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return 2;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == kRowYouSend) {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == kRowYouSend)
+	{
         return self.youSendCell;
     }
 
@@ -316,12 +325,16 @@ static NSUInteger const kRowYouSend = 0;
 }
 
 #pragma mark - Table view delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    if (indexPath.row == kRowYouSend) {
+    if (indexPath.row == kRowYouSend)
+	{
         [self.youSendCell.moneyField becomeFirstResponder];
-    } else {
+    }
+	else
+	{
         [self.theyReceiveCell.moneyField becomeFirstResponder];
     }
 }
@@ -331,7 +344,8 @@ static NSUInteger const kRowYouSend = 0;
     [self.view endEditing:YES];
 }
 
-- (IBAction)loginPressed:(id)sender {
+- (IBAction)loginPressed:(id)sender
+{
 	LoginViewController *controller = [[LoginViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [self.navigationController pushViewController:controller animated:YES];
@@ -441,8 +455,6 @@ static NSUInteger const kRowYouSend = 0;
     [operation execute];
     
 }
-
-
 
 - (IBAction)howButtonTapped:(id)sender {
     SeeHowViewController * whyController = [[SeeHowViewController alloc] init];

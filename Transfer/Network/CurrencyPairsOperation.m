@@ -16,7 +16,8 @@ NSString *const kCurrencyPairsPath = @"/currency/pairs";
 
 @implementation CurrencyPairsOperation
 
-- (id)init {
+- (id)init
+{
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:[NSString stringWithFormat:@"You must use [%@ %@] instead",
                                                                      NSStringFromClass([self class]),
@@ -25,15 +26,18 @@ NSString *const kCurrencyPairsPath = @"/currency/pairs";
     return nil;
 }
 
-- (id)initPrivate {
+- (id)initPrivate
+{
     self = [super init];
-    if (self) {
+    if (self)
+	{
 
     }
     return self;
 }
 
-- (void)execute {
+- (void)execute
+{
     NSString *path = [self addTokenToPath:kCurrencyPairsPath];
 
     __block __weak CurrencyPairsOperation *weakSelf = self;
@@ -42,7 +46,6 @@ NSString *const kCurrencyPairsPath = @"/currency/pairs";
         weakSelf.currenciesHandler(error);
     }];
 
-    //TODO jaanus: check that all currencies are present. Needed to show correct symbol for the ones where they are missing in system.
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         [weakSelf.workModel.managedObjectContext performBlock:^{
             NSArray *pairs = response[@"sourceCurrencies"];
@@ -64,7 +67,8 @@ NSString *const kCurrencyPairsPath = @"/currency/pairs";
     [self getDataFromPath:path];
 }
 
-+ (CurrencyPairsOperation *)pairsOperation {
++ (CurrencyPairsOperation *)pairsOperation
+{
     return [[CurrencyPairsOperation alloc] initPrivate];
 }
 

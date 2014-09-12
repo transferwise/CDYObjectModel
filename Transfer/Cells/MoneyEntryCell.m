@@ -28,26 +28,27 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *leftSeparatorHeight;
 @property (strong, nonatomic) UIColor *selectorBackgroundColor;
 @property (weak, nonatomic) IBOutlet UIImageView *dropdownArrow;
-@property (nonatomic) BOOL currenciesLoaded;
 @property (nonatomic) BOOL isSelecting;
 
 @end
 
 @implementation MoneyEntryCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
+    if (self)
+	{
         // Initialization code
     }
     return self;
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
 
     [self.moneyField setDelegate:self];
-
 }
 
 -(void)layoutSubviews
@@ -56,17 +57,20 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     self.contentView.frame = self.bounds;
 }
 
-- (void)setTitle:(NSString *)title {
+- (void)setTitle:(NSString *)title
+{
     [self.titleLabel setText:title];
 }
 
-- (void)setAmount:(NSString *)amount currency:(Currency *)currency {
+- (void)setAmount:(NSString *)amount currency:(Currency *)currency
+{
     [self.moneyField setText:amount];
 }
 
 - (void)setLeftSeparatorHidden:(BOOL)leftSeparatorHidden
 {
-	if (leftSeparatorHidden && self.leftSeparatorHeight != nil) {
+	if (leftSeparatorHidden && self.leftSeparatorHeight != nil)
+	{
 		self.leftSeparatorHeight.constant = 0;
 	}
 }
@@ -77,27 +81,33 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     self.selectorBackgroundColor = [(MOMBasicStyle*)style.highlightedBgStyle color];
 }
 
-- (NSString *)amount {
+- (NSString *)amount
+{
     return [[self.moneyField text] stringByReplacingOccurrencesOfString:@" " withString:@""];
 }
 
-- (Currency *)currency {
+- (Currency *)currency
+{
     return self.selectedCurrency;
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
     NSString *modified = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    if (![string isEqualToString:@","] && ![string isEqualToString:@"."] && [self entryBelowMaxAmount:modified]) {
+    if (![string isEqualToString:@","] && ![string isEqualToString:@"."] && [self entryBelowMaxAmount:modified])
+	{
         [textField setText:[modified moneyFormatting]];
         [textField sendActionsForControlEvents:UIControlEventEditingChanged];
         return NO;
     }
 
-    if (![self entryBelowMaxAmount:modified]) {
+    if (![self entryBelowMaxAmount:modified])
+	{
         return NO;
     }
 
-    if ([textField.text rangeOfString:@"."].location == NSNotFound) {
+    if ([textField.text rangeOfString:@"."].location == NSNotFound)
+	{
         [textField setText:[textField.text stringByAppendingString:@"."]];
     }
 
@@ -110,9 +120,11 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     return YES;
 }
 
-- (BOOL)entryBelowMaxAmount:(NSString *)amountString {
+- (BOOL)entryBelowMaxAmount:(NSString *)amountString
+{
     //TODO: quick hack, needs something more solid and fuctional
-    if (![amountString hasValue] || ![self.source isKindOfClass:[PairSourceCurrency class]]) {
+    if (![amountString hasValue] || ![self.source isKindOfClass:[PairSourceCurrency class]])
+	{
         return YES;
     }
 
@@ -120,7 +132,8 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
     NSNumber *amount = [[MoneyFormatter sharedInstance] numberFromString:amountString];
 
-    if (!amount) {
+    if (!amount)
+	{
         return YES;
     }
 
@@ -166,14 +179,14 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 	self.isSelecting = NO;
 }
 
-- (void)setForcedCurrency:(Currency *)currency {
+- (void)setForcedCurrency:(Currency *)currency
+{
     
     self.forced = currency;
 }
 
-
-- (void)setCurrencies:(NSFetchedResultsController *)currencies {
-    
+- (void)setCurrencies:(NSFetchedResultsController *)currencies
+{
     [_currencies setDelegate:nil];
     _currencies = currencies;
     [_currencies setDelegate:self];
@@ -196,7 +209,8 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 
     Currency *selected = [source currency];
     
-    if (self.forced) {
+    if (self.forced)
+	{
         selected = self.forced;
         self.dropdownArrow.hidden = YES;
         self.currencyButton.enabled = NO;
@@ -204,7 +218,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     
     [self setSelectedCurrency:selected];
     [self.currencyButton setTitle:selected.code forState:UIControlStateNormal];
-	self.currenciesLoaded = YES;
+	self.currenciesLoaded = currencies.fetchedObjects.count > 2;
     self.currencyChangedHandler(selected);
 }
 
@@ -220,7 +234,8 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
     [self.currencyButton setImage:flag forState:UIControlStateNormal];
 }
 
-- (void)setMoneyValue:(NSString *)moneyString {
+- (void)setMoneyValue:(NSString *)moneyString
+{
     [self.moneyField setText:moneyString];
 }
 
