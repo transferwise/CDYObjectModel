@@ -327,6 +327,8 @@
 		470DEFAE19460C8D00684FEB /* MoneyEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */; };
 		4710499719470AFD00660B2F /* CurrencyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */; };
 		4710499819470B2A00660B2F /* CurrencyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */; };
+		47126B5519C2DCD40049F4C5 /* UIView+InheritantOf.m in Sources */ = {isa = PBXBuildFile; fileRef = 47126B5419C2DCD40049F4C5 /* UIView+InheritantOf.m */; };
+		47126B5619C2DCD40049F4C5 /* UIView+InheritantOf.m in Sources */ = {isa = PBXBuildFile; fileRef = 47126B5419C2DCD40049F4C5 /* UIView+InheritantOf.m */; };
 		4716EE9F19B4D0DB00564A48 /* DoublePasswordEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47535CAE1981362600DC39D6 /* DoublePasswordEntryCell.xib */; };
 		471CA004197FCB2200BCA3B4 /* TabbedHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 471CA002197FCB2200BCA3B4 /* TabbedHeaderViewController.m */; };
 		471CA005197FCB2200BCA3B4 /* TabbedHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 471CA002197FCB2200BCA3B4 /* TabbedHeaderViewController.m */; };
@@ -1135,6 +1137,8 @@
 		38EFABDE196D7EAB00126192 /* TextFieldSuggestionTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldSuggestionTable.xib; sourceTree = "<group>"; };
 		470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MoneyEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencyCell~ipad.xib"; sourceTree = "<group>"; };
+		47126B5319C2DCD40049F4C5 /* UIView+InheritantOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+InheritantOf.h"; sourceTree = "<group>"; };
+		47126B5419C2DCD40049F4C5 /* UIView+InheritantOf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+InheritantOf.m"; sourceTree = "<group>"; };
 		471CA001197FCB2200BCA3B4 /* TabbedHeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabbedHeaderViewController.h; sourceTree = "<group>"; };
 		471CA002197FCB2200BCA3B4 /* TabbedHeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabbedHeaderViewController.m; sourceTree = "<group>"; };
 		471CA003197FCB2200BCA3B4 /* TabbedHeaderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabbedHeaderViewController.xib; sourceTree = "<group>"; };
@@ -2123,6 +2127,8 @@
 				47535CB41981367C00DC39D6 /* UIView+SeparatorLine.m */,
 				476D78C319B70F7500B561DA /* UIViewController+SwitchToViewController.h */,
 				476D78C419B70F7500B561DA /* UIViewController+SwitchToViewController.m */,
+				47126B5319C2DCD40049F4C5 /* UIView+InheritantOf.h */,
+				47126B5419C2DCD40049F4C5 /* UIView+InheritantOf.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3228,6 +3234,7 @@
 				EA31A14B17DDB29B00F937F7 /* PersonalProfileViewController.m in Sources */,
 				389F67FC198FC1C6006CF1F6 /* _Country.m in Sources */,
 				389F683A198FC1C6006CF1F6 /* PairTargetCurrency.m in Sources */,
+				47126B5619C2DCD40049F4C5 /* UIView+InheritantOf.m in Sources */,
 				EA31A14C17DDB29B00F937F7 /* NSError+TRWErrors.m in Sources */,
 				EA31A14D17DDB29B00F937F7 /* UIView+Container.m in Sources */,
 				389F6812198FC1C6006CF1F6 /* _RecipientTypeField.m in Sources */,
@@ -3508,6 +3515,7 @@
 				EA88E67A172F97C40021492C /* NSError+TRWErrors.m in Sources */,
 				389F67FB198FC1C6006CF1F6 /* _Country.m in Sources */,
 				389F6839198FC1C6006CF1F6 /* PairTargetCurrency.m in Sources */,
+				47126B5519C2DCD40049F4C5 /* UIView+InheritantOf.m in Sources */,
 				EA88E67B172F97C40021492C /* UIView+Container.m in Sources */,
 				EA88E684172F97D50021492C /* CountriesOperation.m in Sources */,
 				389F6811198FC1C6006CF1F6 /* _RecipientTypeField.m in Sources */,

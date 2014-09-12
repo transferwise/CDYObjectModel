@@ -466,17 +466,15 @@
     NSString *email;
     if(IPAD)
     {
-        email =  (!self.emailField.hidden)?self.emailField.text:self.payment.recipient.email;
+        email =  (!self.emailField.hidden) ? self.emailField.text : self.payment.recipient.email;
     }
     else
     {
-        email = self.receiverEmailCell?[self.receiverEmailCell value]:self.payment.recipient.email;
+        email = self.receiverEmailCell ? [self.receiverEmailCell value] : self.payment.recipient.email;
     }
     
-    if ([email hasValue]) {
-        [input setRecipientEmail:email];
-    }
-    
+    [input setRecipientEmail:email];
+	
     [self.paymentFlow validatePayment:input.objectID successBlock:^{
         [hud hide];
     } errorHandler:^(NSError *error) {
