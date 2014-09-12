@@ -341,6 +341,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     if (self.preLoadRecipientsWithCurrency && [Credentials userLoggedIn]) {
         [self.cellProvider setAutoCompleteResults:[self.objectModel fetchedControllerForRecipientsWithCurrency:self.preLoadRecipientsWithCurrency]];
+        
     }
 
     [self.currencyCell setAllCurrencies:[self.objectModel fetchedControllerForAllCurrencies]];
@@ -397,6 +398,23 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         }];
         
         [currenciesOperation execute];
+    }
+    else
+    {
+        if (self.preLoadRecipientsWithCurrency && [Credentials userLoggedIn]) {
+           UserRecipientsOperation * recipientsOperation = [UserRecipientsOperation recipientsOperationWithCurrency:self.preLoadRecipientsWithCurrency];
+            [recipientsOperation setObjectModel:self.objectModel];
+            [recipientsOperation setResponseHandler:^(NSError *error) {
+                if (error) {
+                    TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.recipients.preload.error.title", nil) error:error];
+                    [alertView show];
+                    return;
+                }
+            }];
+            self.retrieveCurrenciesOperation = recipientsOperation;
+            [recipientsOperation execute];
+        }
+
     }
    
     [self didSelectRecipient:self.recipient];
