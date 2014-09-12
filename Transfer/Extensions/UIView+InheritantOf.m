@@ -15,7 +15,6 @@
 {
 	return [[self class] doForEachView:self
 								action:^BOOL(UIView *view) {
-									NSLog(@"%@", NSStringFromClass([view class]));
 									return [view isKindOfClass:class]
 										|| [[view superclass] isKindOfClass:class]
 										|| (className && [NSStringFromClass([view class]) isEqualToString:className])
