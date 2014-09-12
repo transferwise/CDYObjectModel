@@ -31,6 +31,37 @@
 								 successBlock:(TRWActionBlock)successBlock
 					waitForDetailsCompletions:(BOOL)waitForDetailsCompletion
 {
+    [self validateInputAndPerformLoginWithEmail:email password:password navigationControllerView:navigationControllerView objectModel:objectModel successBlock:successBlock errorBlock:^(NSError * error) {
+        TRWAlertView *alertView;
+        if ([error isTransferwiseError])
+        {
+            NSString *message = [error localizedTransferwiseMessage];
+            [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials" withLabel:message];
+            alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil) message:message];
+        }
+        else
+        {
+            alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
+                                                 message:NSLocalizedString(@"login.error.generic.message", nil)];
+            [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials" withLabel:error.localizedDescription];
+        }
+        
+        [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+        
+        [alertView show];
+
+        
+    } waitForDetailsCompletions:waitForDetailsCompletion];
+}
+    
+- (void)validateInputAndPerformLoginWithEmail:(NSString *)email
+                                     password:(NSString *)password
+                     navigationControllerView:(UIView *)navigationControllerView
+                                  objectModel:(ObjectModel *)objectModel
+                                 successBlock:(TRWActionBlock)successBlock
+                                   errorBlock:(void(^)(NSError* error))errorBlock
+                    waitForDetailsCompletions:(BOOL)waitForDetailsCompletion
+{
 	[UIApplication dismissKeyboard];
 	
     NSString *issues = [self validateEmail:email password:password];
@@ -63,23 +94,7 @@
                 return;
             }
 			
-            TRWAlertView *alertView;
-            if ([error isTransferwiseError])
-			{
-                NSString *message = [error localizedTransferwiseMessage];
-                [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials" withLabel:message];
-                alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil) message:message];
-            }
-			else
-			{
-                alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"login.error.title", nil)
-                                                     message:NSLocalizedString(@"login.error.generic.message", nil)];
-                [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentials" withLabel:error.localizedDescription];
-            }
-			
-            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-			
-            [alertView show];
+            errorBlock(error);
         });
     }];
 	
