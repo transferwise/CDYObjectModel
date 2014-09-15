@@ -28,8 +28,9 @@
 #import "MOMStyle.h"
 #import "TouchIDHelper.h"
 
-NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
+#define ABOUT_URL	@"https://transferwise.com/en/about"
 
+NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
 
 @interface SettingsViewController ()<UIAlertViewDelegate>
 
@@ -83,7 +84,10 @@ NSString *const kSettingsTitleCellIdentifier = @"kSettingsTitleCellIdentifier";
     self.sendAsBusinessSwitch.on = user.sendAsBusinessDefaultSettingValue;
 }
 
-- (IBAction)infoTapped:(id)sender {
+- (IBAction)infoTapped:(id)sender
+{
+	NSURL *url = [NSURL URLWithString:ABOUT_URL];
+	[[UIApplication sharedApplication] openURL:url];
 }
 
 - (IBAction)customerServiceTapped:(id)sender {
