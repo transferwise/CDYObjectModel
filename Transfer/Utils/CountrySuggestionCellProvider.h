@@ -12,6 +12,6 @@
 
 @interface CountrySuggestionCellProvider : SuggestionCellProvider
 
-- (Country *)getCountryByCode:(NSString *)code;
+- (Country *)getCountryByCodeOrName:(NSString *)codeOrName;
 
 @end

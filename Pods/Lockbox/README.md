@@ -1,5 +1,7 @@
 # Lockbox
 
+[![Build Status](https://travis-ci.org/granoff/Lockbox.png)](https://travis-ci.org/granoff/Lockbox)
+
 Lockbox is an Objective-C utility class for storing data securely in the keychain. Use it to store small, sensitive bits of data securely.
 
 ## Overview
@@ -15,7 +17,7 @@ The thing to realize is that data stored in `NSUserDefaults` is stored in the cl
 
 Surprisingly, new and experienced app developers alike often do not realize this, until it's too late.
 
-The Lockbox class methods make it easy to store and retrieve `NSString`s, `NSArray`s, `NSSet`s, and `NSDate`s into and from the key chain. You are spared having to deal with the keychain APIs directly!
+The Lockbox class methods make it easy to store and retrieve `NSString`s, `NSArray`s, `NSSet`s, `NSDictionary`s, and `NSDate`s into and from the key chain. You are spared having to deal with the keychain APIs directly!
 
 One caveat here is that the keychain is really not meant to store large chunks of data, so don't try and store a huge array of data with these APIs simply because you want it secure. In this case, consider alternative encryption techniques.
 
@@ -32,6 +34,9 @@ There are three pairs of methods, but method pairs for other container classes w
 + `+setSet:forKey:`
 + `+setSet:forKey:accessibility:`
 + `+setForKey:`
++ `+setDictionary:forKey:`
++ `+setDictionary:forKey:accessibility:`
++ `+dictionaryForKey:`
 + `+setDateForKey:`
 + `+setDateForKey:accessibility:`
 + `+dateForKey:`
@@ -56,6 +61,17 @@ item to a new device or installation. The methods without a specific
 To use this class you will need to add the `Security` framework to your project.
 
 This class was written for use under Cocoa Touch and iOS. The code and tests run fine in the iOS simulator under Mac OS. But there are some issues using this class under Cocoa and Mac OS. There are some keychain API differences between the 2 platforms, as it happens. Feel free to fork this repo to make it work for both Cocoa and Cocoa Touch and I'll be happy to consider your pull request!
+
+### Note on running unittests on device
+If you experience SecItemCopyMatching errors with code 34018 on Lockbox methods while running your app unit tests target on device, your can avoid these by code signing your unit tests .xcttest folder. 
+
+Add Run Script phase to your unit tests target Build Phases with:
+
+`codesign --verify --force --sign "$CODE_SIGN_IDENTITY" "$CODESIGNING_FOLDER_PATH"`
+
+
+## Docs
+Link to latest CocoaDocs: [cocoadocs.org/docsets/Lockbox/](http://cocoadocs.org/docsets/Lockbox/)  
 
 ## License
 

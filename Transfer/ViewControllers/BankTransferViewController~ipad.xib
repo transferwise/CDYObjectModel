@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BankTransferViewController">
@@ -23,7 +23,6 @@
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="708" translatesAutoresizingMaskIntoConstraints="NO" id="0go-zj-Qsx">
                     <rect key="frame" x="30" y="0.0" width="708" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
@@ -38,15 +37,15 @@
                 <constraint firstItem="0go-zj-Qsx" firstAttribute="leading" secondItem="I7x-yl-vAr" secondAttribute="leading" constant="30" id="qUZ-aw-9Ze"/>
                 <constraint firstAttribute="trailing" secondItem="0go-zj-Qsx" secondAttribute="trailing" constant="30" id="xvG-31-09s"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view contentMode="scaleToFill" id="TBf-ks-sBe" customClass="IntrinsicSizeUIView">
             <rect key="frame" x="0.0" y="0.0" width="768" height="172"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVH-WE-6fL" customClass="BlueRoundedButton">
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVH-WE-6fL" customClass="BlueRoundedButton">
                     <rect key="frame" x="357" y="51" width="55" height="45"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="FTU-Cz-qeA"/>
                     </constraints>
@@ -59,7 +58,6 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAz-f4-Wka" customClass="GrayRoundedButton">
                     <rect key="frame" x="358" y="111" width="55" height="45"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="arX-FH-TEw"/>
                     </constraints>
@@ -72,7 +70,6 @@
                 </button>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="708" translatesAutoresizingMaskIntoConstraints="NO" id="7wU-EP-uQi">
                     <rect key="frame" x="30" y="0.0" width="708" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
@@ -90,6 +87,7 @@
                 <constraint firstItem="7wU-EP-uQi" firstAttribute="leading" secondItem="TBf-ks-sBe" secondAttribute="leading" constant="30" id="t60-Nw-Vv6"/>
                 <constraint firstItem="oAz-f4-Wka" firstAttribute="centerX" secondItem="vVH-WE-6fL" secondAttribute="centerX" constant="1" id="vkH-UO-f0b"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view contentMode="scaleToFill" id="Zej-vK-qv3">
@@ -98,9 +96,7 @@
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PQs-vm-wM5">
                     <rect key="frame" x="0.0" y="0.0" width="768" height="200"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="cz4-Xh-OZr"/>
                         <outlet property="delegate" destination="-1" id="Soo-hN-tZF"/>
@@ -114,11 +110,17 @@
                 <constraint firstItem="PQs-vm-wM5" firstAttribute="top" secondItem="Zej-vK-qv3" secondAttribute="top" id="syx-nB-SqN"/>
                 <constraint firstItem="PQs-vm-wM5" firstAttribute="leading" secondItem="Zej-vK-qv3" secondAttribute="leading" id="yDZ-tE-jOM"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>
-        <image name="Rounded" width="43" height="28"/>
+        <image name="Rounded" width="36" height="28"/>
         <image name="RoundedBlueButton" width="50" height="40"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

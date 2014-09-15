@@ -76,7 +76,7 @@ NSString *const TWCurrencySelectionCellIdentifier = @"TWCurrencySelectionCellIde
 	
 	self.isSelecting = YES;
     //dismiss keyboard
-    [self endEditing:YES];
+    [self.window endEditing:YES];
     self.shouldRestoreNavBar = ! self.hostForCurrencySelector.navigationController.navigationBarHidden;
     if(self.shouldRestoreNavBar)
     {

@@ -19,6 +19,9 @@
 #import "GoogleAnalytics.h"
 #import "MOMStyle.h"
 #import "Credentials.h"
+#import "MainViewController.h"
+#import "AppDelegate.h"
+#import "ConnectionAwareViewController.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
 
@@ -250,29 +253,16 @@
     return [[NSAttributedString alloc] initWithAttributedString:result];
 }
 
-- (IBAction)startPressed {
-    
+- (IBAction)startPressed
+{
     [self.objectModel markIntroShown];
     [self.objectModel markExistingUserIntroShown];
-    
-    UIViewController *presented;
-    if(![Credentials userLoggedIn])
-    {
-        if ([self.objectModel shouldShowDirectUserSignup]) {
-            SignUpViewController *controller = [[SignUpViewController alloc] init];
-            [controller setObjectModel:self.objectModel];
-            presented = controller;
-        } else {
-            NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
-            [controller setObjectModel:self.objectModel];
-            presented = controller;
-        }
-            [self.navigationController pushViewController:presented animated:YES];
-    }
-    else
-    {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
+	
+	MainViewController *mainController = [[MainViewController alloc] init];
+	[mainController setObjectModel:self.objectModel];
+	ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:mainController];
+	
+	((AppDelegate *)[[UIApplication sharedApplication] delegate]).window.rootViewController = root;
 }
 
 @end

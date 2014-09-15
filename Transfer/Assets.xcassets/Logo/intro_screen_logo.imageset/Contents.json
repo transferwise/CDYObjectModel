@@ -12,8 +12,8 @@
     },
     {
       "idiom" : "iphone",
-      "subtype" : "retina4",
-      "scale" : "2x"
+      "scale" : "3x",
+      "filename" : "intro_screen_logo_iphone@3x.png"
     },
     {
       "idiom" : "ipad",

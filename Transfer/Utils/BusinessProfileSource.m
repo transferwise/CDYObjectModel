@@ -7,7 +7,7 @@
 //
 
 #import "BusinessProfileSource.h"
-#import "CountrySelectionCell.h"
+#import "SelectionCell.h"
 #import "NSString+Validation.h"
 #import "BusinessProfileValidation.h"
 #import "User.h"
@@ -27,8 +27,6 @@
 @property (nonatomic, strong) TextEntryCell *registrationNumberCell;
 @property (nonatomic, strong) TextEntryCell *descriptionCell;
 @property (nonatomic, strong) TextEntryCell *addressCell;
-@property (nonatomic, strong) CountrySelectionCell *countryCell;
-@property (nonatomic, strong) TextEntryCell *stateCell;
 
 @end
 
@@ -77,13 +75,13 @@
 
     NSMutableArray *secondColumnCells = [NSMutableArray array];
 	
-	CountrySelectionCell *countryCell = [CountrySelectionCell loadInstance];
+	SelectionCell *countryCell = [SelectionCell loadInstance];
     [self setCountryCell:countryCell];
     [secondColumnCells addObject:countryCell];
     [countryCell configureWithTitle:NSLocalizedString(@"business.profile.country.label", nil) value:@""];
     [countryCell setCellTag:@"countryCode"];
 
-    TextEntryCell *stateCell = [TextEntryCell loadInstance];
+    SelectionCell *stateCell = [SelectionCell loadInstance];
     [self setStateCell:stateCell];
     [stateCell configureWithTitle:NSLocalizedString(@"business.profile.state.label", nil) value:@""];
     [stateCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
@@ -135,8 +133,7 @@
     [self.zipCityCell setValue:profile.postCode];
 	[self.zipCityCell setSecondValue:profile.city];
     [self.countryCell setValue:profile.countryCode];
-    NSString* stateTitle = [StateSuggestionProvider titleFromStateCode:profile.state];
-    [self.stateCell setValue:stateTitle];
+    [self.stateCell setValue:profile.state];
 
     [self.businessNameCell setEditable:![profile isFieldReadonly:@"name"]];
     [self.registrationNumberCell setEditable:![profile isFieldReadonly:@"registrationNumber"]];
@@ -170,11 +167,7 @@
     [profile setPostCode:self.zipCityCell.value];
     [profile setCity:self.zipCityCell.secondValue];
     [profile setCountryCode:[self.countryCell value]];
-    NSString* stateCode = [StateSuggestionProvider stateCodeFromTitle:self.stateCell.value];
-    if(stateCode)
-    {
-        [profile setState:stateCode];
-    }
+    [profile setState:self.stateCell.value];
 
     [self.objectModel saveContext];
 
@@ -207,12 +200,7 @@
     [operation setPostCode:[self.zipCityCell value]];
     [operation setCity:[self.zipCityCell secondValue]];
     [operation setCountryCode:[self.countryCell value]];
-    NSString* stateCode = [StateSuggestionProvider stateCodeFromTitle:self.stateCell.value];
-    if(stateCode)
-    {
-        [operation setState:stateCode];
-    }
-
+    [operation setState:[self.stateCell value]];
 }
 
 @end

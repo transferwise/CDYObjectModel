@@ -12,8 +12,8 @@
     },
     {
       "idiom" : "iphone",
-      "subtype" : "retina4",
-      "scale" : "2x"
+      "scale" : "3x",
+      "filename" : "back_button_iphone_white@3x.png"
     },
     {
       "idiom" : "ipad",

@@ -9,6 +9,12 @@
 #import "DismissKeyboardTableView.h"
 #import "UIApplication+Keyboard.h"
 
+@interface DismissKeyboardTableView ()
+
+@property (strong, nonatomic) UITapGestureRecognizer *recognizer;
+
+@end
+
 @implementation DismissKeyboardTableView
 
 - (id)initWithFrame:(CGRect)frame
@@ -34,16 +40,29 @@
 
 - (void)createTapGestureRecognizer
 {
-    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
-    [recognizer setNumberOfTapsRequired:1];
-    [recognizer setNumberOfTouchesRequired:1];
-    [recognizer setCancelsTouchesInView:YES];
-    [self addGestureRecognizer:recognizer];
+    self.recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
+    [self.recognizer setNumberOfTapsRequired:1];
+    [self.recognizer setNumberOfTouchesRequired:1];
+    [self.recognizer setCancelsTouchesInView:YES];
+    [self addGestureRecognizer:self.recognizer];
 }
 
 - (void)tapped:(UITapGestureRecognizer *)sender
 {
     [UIApplication dismissKeyboard];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+	if ([gestureRecognizer isEqual:self.recognizer])
+	{
+		// for ios 7 , need to compare with UITableViewCellContentView
+		if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"] || [touch.view.superview isKindOfClass:[UITableViewCell class]])
+		{
+			return FALSE;
+		}
+	}
+	return TRUE;
 }
 
 @end

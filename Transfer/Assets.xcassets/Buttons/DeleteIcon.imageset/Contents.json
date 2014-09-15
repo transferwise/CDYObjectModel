@@ -12,8 +12,8 @@
     },
     {
       "idiom" : "iphone",
-      "subtype" : "retina4",
-      "scale" : "2x"
+      "scale" : "3x",
+      "filename" : "delete_icon_iphone@3x.png"
     },
     {
       "idiom" : "ipad",

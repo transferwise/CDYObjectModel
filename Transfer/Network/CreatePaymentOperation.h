@@ -7,7 +7,6 @@
 //
 
 #import "TransferwiseOperation.h"
-#import "CurrencyPairsOperation.h"
 
 typedef void (^CreatePaymentBlock)(NSManagedObjectID *paymentID, NSError *error);
 

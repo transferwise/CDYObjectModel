@@ -27,26 +27,21 @@
 
 #import "OHAttributedLabel.h"
 #import "CoreTextUtils.h"
+#import "OHTouchesGestureRecognizer.h"
 
+#include <tgmath.h>
+
+#ifndef OHATTRIBUTEDLABEL_WARN_ABOUT_KNOWN_ISSUES
 #define OHATTRIBUTEDLABEL_WARN_ABOUT_KNOWN_ISSUES 1
+#endif
+#ifndef OHATTRIBUTEDLABEL_WARN_ABOUT_OLD_API
 #define OHATTRIBUTEDLABEL_WARN_ABOUT_OLD_API 1
-
-#ifndef OHATTRIBUTEDLABEL_DEDICATED_PROJECT
-// Copying files in your project and thus compiling OHAttributedLabel under different build settings
-// than the one provided is not recommended abd increase risks of leaks (ARC vs. MRC) or unwanted behaviors
-#warning [OHAttributedLabel integration] You should include OHAttributedLabel project in your workspace instead of copying the files in your own app project. See README for instructions.
 #endif
 
-#if __has_feature(objc_arc)
-#define BRIDGE_CAST __bridge
-#define MRC_RETAIN(x) (x)
-#define MRC_RELEASE(x)
-#define MRC_AUTORELEASE(x) (x)
-#else
-#define BRIDGE_CAST
-#define MRC_RETAIN(x) [x retain]
-#define MRC_RELEASE(x) [x release]; x = nil
-#define MRC_AUTORELEASE(x) [x autorelease]
+#if ! defined(COCOAPODS) && ! defined(OHATTRIBUTEDLABEL_DEDICATED_PROJECT)
+// Copying files in your project and thus compiling OHAttributedLabel under different build settings
+// than the one provided is not recommended and increase risks of leaks (mixing ARC vs. MRC) or unwanted behaviors
+#warning [OHAttributedLabel integration] You should include OHAttributedLabel project in your workspace instead of copying the files in your own app project. Or better, use CocoaPods to integrate your 3rd party libs. See README for instructions.
 #endif
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -56,7 +51,7 @@
 
 const int UITextAlignmentJustify = ((UITextAlignment)kCTJustifiedTextAlignment);
 
-@interface OHAttributedLabel(/* Private */)
+@interface OHAttributedLabel(/* Private */) <UIGestureRecognizerDelegate>
 {
 	NSAttributedString* _attributedText;
     NSAttributedString* _attributedTextWithLinks;
@@ -66,6 +61,7 @@ const int UITextAlignmentJustify = ((UITextAlignment)kCTJustifiedTextAlignment);
 	CGRect drawingRect;
 	NSMutableArray* _customLinks;
 	CGPoint _touchStartPoint;
+    UIGestureRecognizer *_gestureRecogniser;
 }
 @property(nonatomic, retain) NSTextCheckingResult* activeLink;
 -(NSTextCheckingResult*)linkAtCharacterIndex:(CFIndex)idx;
@@ -127,20 +123,31 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
 
 - (void)commonInit
 {
-    _linkColor = MRC_RETAIN([UIColor blueColor]);
-    _highlightedLinkColor = MRC_RETAIN([UIColor colorWithWhite:0.4f alpha:0.3f]);
+    _linkColor = [UIColor blueColor];
+    _highlightedLinkColor = [UIColor colorWithWhite:0.4f alpha:0.3f];
 	_linkUnderlineStyle = kCTUnderlineStyleSingle | kCTUnderlinePatternSolid;
     
 	NSTextCheckingTypes linksType = (NSTextCheckingTypes)(NSTextCheckingTypeLink);
-	if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel:0"]])
+	
+	static dispatch_once_t onceToken;
+	static BOOL canOpenPhoneLinks;
+	dispatch_once(&onceToken, ^{
+		canOpenPhoneLinks = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel:0"]];
+	});
+	if (canOpenPhoneLinks)
     {
 		linksType |= NSTextCheckingTypePhoneNumber;
 	}
     self.automaticallyAddLinksForType = linksType;
+    
 	self.onlyCatchTouchesOnLinks = YES;
 	self.userInteractionEnabled = YES;
 	self.contentMode = UIViewContentModeRedraw;
 	[self resetAttributedText];
+    
+    _gestureRecogniser = [[OHTouchesGestureRecognizer alloc] initWithTarget:self action:@selector(_gestureRecognised:)];
+    _gestureRecogniser.delegate = self;
+    [self addGestureRecognizer:_gestureRecogniser];
 }
 
 - (id) initWithFrame:(CGRect)aFrame
@@ -170,19 +177,6 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
 -(void)dealloc
 {
 	[self resetTextFrame]; // CFRelease the text frame
-
-#if ! __has_feature(objc_arc)
-    [_linksDetector release]; _linksDetector = nil;
-    [_linkColor release]; _linkColor = nil;
-	[_highlightedLinkColor release]; _highlightedLinkColor = nil;
-	[_activeLink release]; _activeLink = nil;
-
-	[_attributedText release]; _attributedText = nil;
-    [_attributedTextWithLinks release]; _attributedTextWithLinks = nil;
-	[_customLinks release]; _customLinks = nil;
-
-	[super dealloc];
-#endif
 }
 
 
@@ -226,10 +220,20 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
     
     _needsRecomputeLinksInText = NO;
     
-    if (!_attributedText || (self.automaticallyAddLinksForType == 0 && _customLinks.count == 0))
+    __block BOOL hasOHLinkAttribute = NO;
+    [_attributedText enumerateAttribute:kOHLinkAttributeName inRange:NSMakeRange(0, [_attributedText length])
+                                options:0 usingBlock:^(id value, NSRange range, BOOL *stop)
+     {
+         if (value)
+         {
+             hasOHLinkAttribute = YES;
+             *stop = YES;
+         }
+     }];
+    
+    if (!_attributedText || (self.automaticallyAddLinksForType == 0 && _customLinks.count == 0 && hasOHLinkAttribute == 0))
     {
-        MRC_RELEASE(_attributedTextWithLinks);
-        _attributedTextWithLinks = MRC_RETAIN(_attributedText);
+        _attributedTextWithLinks = _attributedText;
         return;
 	}
     
@@ -242,7 +246,7 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
 #if OHATTRIBUTEDLABEL_WARN_ABOUT_OLD_API
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            BOOL hasOldLinkColorSelector = [self.delegate respondsToSelector:@selector(colorForLink:underlineStyle:)];
+            BOOL hasOldLinkColorSelector = [self.delegate respondsToSelector:NSSelectorFromString(@"colorForLink:underlineStyle:")];
             if (hasOldLinkColorSelector)
             {
                 NSLog(@"[OHAttributedLabel] Warning: \"-colorForLink:underlineStyle:\" delegate method is deprecated and has been replaced"
@@ -301,10 +305,8 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
              applyLinkStyle((NSTextCheckingResult*)obj);
          }];
         
-        MRC_RELEASE(_attributedTextWithLinks);
         _attributedTextWithLinks = [[NSAttributedString alloc] initWithAttributedString:mutAS];
         
-        MRC_RELEASE(mutAS);
     } // @autoreleasepool
     
     [self setNeedsDisplay];
@@ -327,7 +329,7 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
                  if (value && NSLocationInRange((NSUInteger)idx, range))
                  {
                      NSTextCheckingResult* result = [NSTextCheckingResult linkCheckingResultWithRange:range URL:(NSURL*)value];
-                     foundResult = MRC_RETAIN(result);
+                     foundResult = result;
                      *stop = YES;
                  }
              }];
@@ -342,7 +344,7 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
                  NSRange r = [result range];
                  if (NSLocationInRange((NSUInteger)idx, r))
                  {
-                     foundResult = MRC_RETAIN(result);
+                     foundResult = result;
                      *stop = YES;
                  }
              }];
@@ -356,14 +358,14 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
                  NSRange r = [(NSTextCheckingResult*)obj range];
                  if (NSLocationInRange((NSUInteger)idx, r))
                  {
-                     foundResult = MRC_RETAIN(obj);
+                     foundResult = obj;
                      *stop = YES;
                  }
              }];
         }
     } // @autoreleasepool
     
-	return MRC_AUTORELEASE(foundResult);
+	return foundResult;
 }
 
 -(NSTextCheckingResult*)linkAtPoint:(CGPoint)point
@@ -442,59 +444,58 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
 	return hitResult;
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+-(void)_gestureRecognised:(UIGestureRecognizer*)recogniser
 {
-	UITouch* touch = [touches anyObject];
-	CGPoint pt = [touch locationInView:self];
-	
-	self.activeLink = [self linkAtPoint:pt];
-	_touchStartPoint = pt;
-
-	if (_catchTouchesOnLinksOnTouchBegan)
-    {
-		[self processActiveLink];
-	}
+    CGPoint pt = [recogniser locationInView:self];
     
-	// we're using activeLink to draw a highlight in -drawRect:, so force redraw
-	[self setNeedsDisplay];
-}
-
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-	if (!_catchTouchesOnLinksOnTouchBegan)
-    {
-        UITouch* touch = [touches anyObject];
-        CGPoint pt = [touch locationInView:self];
-
-        // Check that the link on touchEnd is the same as the link on touchBegan
-		NSTextCheckingResult* linkAtTouchesEnded = [self linkAtPoint:pt];
-        BOOL closeToStart = (fabs(_touchStartPoint.x - pt.x) < 10 && fabs(_touchStartPoint.y - pt.y) < 10);
-        
-        // we must check on equality of the ranges themselves since the data detectors create new results
-        if (_activeLink && (NSEqualRanges(_activeLink.range,linkAtTouchesEnded.range) || closeToStart))
-        {
-            // Same link on touchEnded than the one on touchBegan, so trigger it
-            [self processActiveLink];
+    switch (recogniser.state) {
+        case UIGestureRecognizerStateBegan: {
+            self.activeLink = [self linkAtPoint:pt];
+            _touchStartPoint = pt;
+            
+            if (_catchTouchesOnLinksOnTouchBegan)
+            {
+                [self processActiveLink];
+            }
+            
+            // we're using activeLink to draw a highlight in -drawRect:
+            [self setNeedsDisplay];
         }
-	}
-
-    // we're using activeLink to draw a highlight in -drawRect:, so force redraw
-    self.activeLink = nil;
-	[self setNeedsDisplay];
-}
-
--(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    // we're using activeLink to draw a highlight in -drawRect:, so force redraw
-	self.activeLink = nil;
-	[self setNeedsDisplay];
+            break;
+        case UIGestureRecognizerStateEnded: {
+            if (!_catchTouchesOnLinksOnTouchBegan)
+            {
+                // Check that the link on touchEnd is the same as the link on touchBegan
+                NSTextCheckingResult* linkAtTouchesEnded = [self linkAtPoint:pt];
+                BOOL closeToStart = (fabs(_touchStartPoint.x - pt.x) < 10 && fabs(_touchStartPoint.y - pt.y) < 10);
+                
+                // we must check on equality of the ranges themselves since the data detectors create new results
+                if (_activeLink && (NSEqualRanges(_activeLink.range,linkAtTouchesEnded.range) || closeToStart))
+                {
+                    // Same link on touchEnded than the one on touchBegan, so trigger it
+                    [self processActiveLink];
+                }
+            }
+            
+            self.activeLink = nil;
+            [self setNeedsDisplay];
+        }
+            break;
+        case UIGestureRecognizerStateCancelled:
+        case UIGestureRecognizerStateFailed: {
+            self.activeLink = nil;
+            [self setNeedsDisplay];
+        }
+            break;
+        case UIGestureRecognizerStateChanged:
+        case UIGestureRecognizerStatePossible:
+            break;
+    }
 }
 
 - (void)processActiveLink
 {
     NSTextCheckingResult* linkToOpen = _activeLink;
-    // In case the delegate calls recomputeLinksInText or anything that will clear the _activeLink variable, keep it around anyway
-    (void)MRC_AUTORELEASE(MRC_RETAIN(linkToOpen));
     
     BOOL openLink = (self.delegate && [self.delegate respondsToSelector:@selector(attributedLabel:shouldFollowLink:)])
     ? [self.delegate attributedLabel:self shouldFollowLink:linkToOpen] : YES;
@@ -546,11 +547,10 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
                 NSMutableAttributedString* mutAS = [attributedStringToDisplay mutableCopy];
                 [mutAS setTextColor:self.highlightedTextColor];
                 attributedStringToDisplay = mutAS;
-                (void)MRC_AUTORELEASE(mutAS);
             }
             if (textFrame == NULL)
             {
-                CFAttributedStringRef cfAttrStrWithLinks = (BRIDGE_CAST CFAttributedStringRef)attributedStringToDisplay;
+                CFAttributedStringRef cfAttrStrWithLinks = (__bridge CFAttributedStringRef)attributedStringToDisplay;
                 CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(cfAttrStrWithLinks);
                 drawingRect = self.bounds;
                 if (self.centerVertically || self.extendBottomToFit)
@@ -558,7 +558,7 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
                     CGSize sz = CTFramesetterSuggestFrameSizeWithConstraints(framesetter,CFRangeMake(0,0),NULL,CGSizeMake(drawingRect.size.width,CGFLOAT_MAX),NULL);
                     if (self.extendBottomToFit)
                     {
-                        CGFloat delta = MAX(0.f , ceilf(sz.height - drawingRect.size.height)) + 10 /* Security margin */;
+                        CGFloat delta = MAX(0.f , ceil(sz.height - drawingRect.size.height)) + 10 /* Security margin */;
                         drawingRect.origin.y -= delta;
                         drawingRect.size.height += delta;
                     }
@@ -634,8 +634,18 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
 				}
 				continue; // with next run
 			}
-			
-			CGRect linkRunRect = CTRunGetTypographicBoundsAsRect(run, line, lineOrigins[lineIndex]);
+            
+            CFRange fullRunRange = CTRunGetStringRange(run);
+
+            CFIndex startActiveLinkInRun = (CFIndex)activeLinkRange.location - fullRunRange.location;
+            CFIndex endActiveLinkInRun = startActiveLinkInRun + (CFIndex)activeLinkRange.length;
+            
+            CFRange inRunRange;
+            inRunRange.location = MAX(startActiveLinkInRun, 0);
+            inRunRange.length = MIN(endActiveLinkInRun, fullRunRange.length);
+            
+            CGRect linkRunRect = CTRunGetTypographicBoundsForRangeAsRect(run, line, lineOrigins[lineIndex], inRunRange, ctx);
+            
 			linkRunRect = CGRectIntegral(linkRunRect);		// putting the rect on pixel edges
 			linkRunRect = CGRectInset(linkRunRect, -1, -1);	// increase the rect a little
 			if (CGRectIsEmpty(unionRect))
@@ -658,6 +668,18 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
 {
     [self recomputeLinksInTextIfNeeded];
     return _attributedTextWithLinks ? [_attributedTextWithLinks sizeConstrainedToSize:size] : CGSizeZero;
+}
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UIGestureRecognizerDelegate
+/////////////////////////////////////////////////////////////////////////////////////
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return ([[otherGestureRecognizer.view class] isSubclassOfClass:[UIScrollView class]]);
 }
 
 
@@ -710,7 +732,6 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
 
 -(void)setAttributedText:(NSAttributedString*)newText
 {
-	MRC_RELEASE(_attributedText);
 	_attributedText = [newText copy];
 	[self setAccessibilityLabel:_attributedText.string];
 #pragma clang diagnostic push
@@ -737,7 +758,6 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
     {
         NSMutableAttributedString* mutAS = [NSMutableAttributedString attributedStringWithAttributedString:_attributedText];
         [mutAS setFont:font];
-        MRC_RELEASE(_attributedText);
         _attributedText = [[NSAttributedString alloc] initWithAttributedString:mutAS];
     }
 	[super setFont:font]; // will call setNeedsDisplay too
@@ -749,13 +769,12 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
     {
         NSMutableAttributedString* mutAS = [NSMutableAttributedString attributedStringWithAttributedString:_attributedText];
         [mutAS setTextColor:color];
-        MRC_RELEASE(_attributedText);
         _attributedText = [[NSAttributedString alloc] initWithAttributedString:mutAS];
     }
 	[super setTextColor:color]; // will call setNeedsDisplay too
 }
 
--(void)setTextAlignment:(UITextAlignment)alignment
+-(void)setTextAlignment:(NSUITextAlignment)alignment
 {
     if (_attributedText)
     {
@@ -763,13 +782,12 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
         CTLineBreakMode coreTextLBMode = CTLineBreakModeFromUILineBreakMode(self.lineBreakMode);
         NSMutableAttributedString* mutAS = [NSMutableAttributedString attributedStringWithAttributedString:_attributedText];
         [mutAS setTextAlignment:coreTextAlign lineBreakMode:coreTextLBMode];
-        MRC_RELEASE(_attributedText);
         _attributedText = [[NSAttributedString alloc] initWithAttributedString:mutAS];
     }
 	[super setTextAlignment:alignment]; // will call setNeedsDisplay too
 }
 
--(void)setLineBreakMode:(UILineBreakMode)lineBreakMode
+-(void)setLineBreakMode:(NSUILineBreakMode)lineBreakMode
 {
     if (_attributedText)
     {
@@ -777,7 +795,6 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
         CTLineBreakMode coreTextLBMode = CTLineBreakModeFromUILineBreakMode(lineBreakMode);
         NSMutableAttributedString* mutAS = [NSMutableAttributedString attributedStringWithAttributedString:_attributedText];
         [mutAS setTextAlignment:coreTextAlign lineBreakMode:coreTextLBMode];
-        MRC_RELEASE(_attributedText);
         _attributedText = [[NSAttributedString alloc] initWithAttributedString:mutAS];
     }
 	[super setLineBreakMode:lineBreakMode]; // will call setNeedsDisplay too
@@ -798,8 +815,7 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
 	_automaticallyAddLinksForType = types;
 
     NSDataDetector* dd = sharedReusableDataDetector(types);
-    MRC_RELEASE(_linksDetector);
-    _linksDetector = MRC_RETAIN(dd);
+    _linksDetector = dd;
     [self setNeedsRecomputeLinksInText];
 }
 -(NSDataDetector*)linksDataDetector
@@ -809,8 +825,7 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
 
 -(void)setLinkColor:(UIColor *)newLinkColor
 {
-    MRC_RELEASE(_linkColor);
-    _linkColor = MRC_RETAIN(newLinkColor);
+    _linkColor = newLinkColor;
     
     [self setNeedsRecomputeLinksInText];
 }

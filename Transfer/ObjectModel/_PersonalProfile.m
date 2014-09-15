@@ -10,6 +10,7 @@ const struct PersonalProfileAttributes PersonalProfileAttributes = {
 	.dateOfBirth = @"dateOfBirth",
 	.firstName = @"firstName",
 	.lastName = @"lastName",
+	.occupation = @"occupation",
 	.phoneNumber = @"phoneNumber",
 	.postCode = @"postCode",
 	.readonlyFields = @"readonlyFields",
@@ -98,6 +99,13 @@ const struct PersonalProfileFetchedProperties PersonalProfileFetchedProperties =
 
 
 @dynamic lastName;
+
+
+
+
+
+
+@dynamic occupation;
 
 
 

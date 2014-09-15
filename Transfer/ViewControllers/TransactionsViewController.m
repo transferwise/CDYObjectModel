@@ -422,6 +422,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 		}
 		else
 		{
+            if(successBlock)
+            {
+                successBlock();
+            }
 			[weakSelf.navigationController popViewControllerAnimated:YES];
 		}
     }];

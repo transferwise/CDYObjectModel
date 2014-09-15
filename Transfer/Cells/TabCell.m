@@ -33,6 +33,12 @@
 
 @implementation TabCell
 
+-(void)awakeFromNib
+{
+    self.contentView.frame = self.bounds;
+    self.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+}
+
 -(void)configureWithTabItem:(TabItem*)item
 {
     self.currentItem = item;

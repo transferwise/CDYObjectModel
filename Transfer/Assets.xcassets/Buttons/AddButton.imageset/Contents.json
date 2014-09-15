@@ -9,6 +9,11 @@
       "idiom" : "universal",
       "scale" : "2x",
       "filename" : "plus_button_iphone_blue@2x.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x",
+      "filename" : "plus_button_iphone_blue@3x.png"
     }
   ],
   "info" : {

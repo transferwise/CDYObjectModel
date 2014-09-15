@@ -29,6 +29,7 @@ typedef void (^CDYModelInjectionBlock)(CDYObjectModel *objectModel);
 @property (nonatomic, assign) BOOL wipeDatabaseOnSchemaConflict;
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, copy) CDYModelActionBlock databaseWipeCallback;
+@property (nonatomic, strong, readonly) NSURL *storeURL;
 
 - (id)initWithDataModelName:(NSString *)modelName storeType:(NSString *)storeType;
 - (id)initWithDataModelName:(NSString *)modelName storeURL:(NSURL *)storeURL storeType:(NSString *)storeType;
@@ -52,6 +53,7 @@ typedef void (^CDYModelInjectionBlock)(CDYObjectModel *objectModel);
 - (NSArray *)fetchEntitiesNamed:(NSString *)entityName withPredicate:(NSPredicate *)predicate;
 - (NSArray *)fetchEntitiesNamed:(NSString *)entityName withSortDescriptors:(NSArray *)descriptors;
 - (NSArray *)fetchEntitiesNamed:(NSString *)entityName usingPredicate:(NSPredicate *)predicate withSortDescriptors:(NSArray *)descriptors;
+- (NSArray *)fetchEntitiesNamed:(NSString *)entityName usingPredicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)descriptors limit:(NSUInteger)limit;
 
 - (NSArray *)fetchAttributeNamed:(NSString *)attributeName forEntity:(NSString *)entityName;
 - (NSArray *)fetchAttributeNamed:(NSString *)attributeName forEntity:(NSString *)entityName withPredicate:(NSPredicate *)predicate;

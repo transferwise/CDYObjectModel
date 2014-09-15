@@ -18,6 +18,8 @@
 
 @interface CDYAnalyticsCoordinator : NSObject
 
+@property (nonatomic, strong, readonly) NSMutableArray *services;
+
 + (instancetype)sharedInstance;
 
 - (void)addAnalyticsService:(id)service;

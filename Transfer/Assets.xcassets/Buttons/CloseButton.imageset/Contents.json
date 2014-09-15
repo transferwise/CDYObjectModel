@@ -12,8 +12,8 @@
     },
     {
       "idiom" : "iphone",
-      "subtype" : "retina4",
-      "scale" : "2x"
+      "scale" : "3x",
+      "filename" : "close_button_iphone_blue@3x.png"
     },
     {
       "idiom" : "ipad",

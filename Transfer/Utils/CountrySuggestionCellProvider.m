@@ -25,13 +25,13 @@
     self.results = result;
 }
 
-- (Country *)getCountryByCode:(NSString *)code
+- (Country *)getCountryByCodeOrName:(NSString *)codeOrName
 {
 	for(Country *country in self.autoCompleteResults.fetchedObjects)
     {
-        if([country.iso3Code isEqualToString:code]
-		   || [country.iso2Code isEqualToString:code]
-		   || [[country.name lowercaseString] isEqualToString:[code lowercaseString]])
+        if([country.iso3Code isEqualToString:codeOrName]
+		   || [country.iso2Code isEqualToString:codeOrName]
+		   || [[country.name lowercaseString] isEqualToString:[codeOrName lowercaseString]])
         {
             return country;
         }

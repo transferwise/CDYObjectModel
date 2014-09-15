@@ -21,4 +21,13 @@
 								 successBlock:(TRWActionBlock)successBlock
 					waitForDetailsCompletions:(BOOL)waitForDetailsCompletion;
 
+- (void)validateInputAndPerformLoginWithEmail:(NSString *)email
+                                     password:(NSString *)password
+                     navigationControllerView:(UIView *)navigationControllerView
+                                  objectModel:(ObjectModel *)objectModel
+                                 successBlock:(TRWActionBlock)successBlock
+                                   errorBlock:(void(^)(NSError* error))errorBlock
+                    waitForDetailsCompletions:(BOOL)waitForDetailsCompletion;
+
+
 @end
