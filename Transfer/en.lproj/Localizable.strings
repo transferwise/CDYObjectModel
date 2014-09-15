@@ -128,6 +128,8 @@ your friends to TransferWise";
 "identification.only.ssn.ipad" = "You're almost done. Fill the field : Social security number";
 "identification.only.purpose.ipad" = "You're almost done. Fill the field : Purpose of transfer";
 "identification.well.done.format" = "Well done %@!";
+"identification.error" = "Error";
+"identification.ssn.short" = "Social security number is too short";
 
 
 

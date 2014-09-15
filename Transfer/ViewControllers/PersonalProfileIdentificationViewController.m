@@ -280,7 +280,15 @@
 }
 
 - (IBAction)continueClicked:(id)sender {
-    [self complete:NO];
+    NSString *inputValidationError = [self validateEnteredText];
+    if(inputValidationError)
+    {
+        TRWAlertView *alert = [[TRWAlertView alloc] initWithTitle:NSLocalizedString(@"identification.ssn.short",nil) message:inputValidationError delegate:nil cancelButtonTitle:NSLocalizedString(@"button.title.ok",nil) otherButtonTitles:nil];
+    }
+    else
+    {
+        [self complete:NO];
+    }
 }
 
 -(void)complete:(BOOL)skip
@@ -451,6 +459,16 @@
     }
 
     return numberOfMissingFields<=0;
+}
+
+-(NSString*)validateEnteredText
+{
+    if(self.ssnCell && [[self.ssnCell value] length] < 11)
+    {
+        return NSLocalizedString(@"identification.ssn.short",nil);
+    }
+    
+    return nil;
 }
 
 #pragma mark - number helpers
