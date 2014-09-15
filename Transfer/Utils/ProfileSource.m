@@ -167,7 +167,7 @@
 								shouldInclude:shouldInclude
 							   withCompletion:completion];
 	
-	if (result)
+	if (shouldInclude)
 	{
 		[self.zipCityCell setFirstTitle:NSLocalizedString(@"profile.post.code.usa.label", nil)];
 	}
