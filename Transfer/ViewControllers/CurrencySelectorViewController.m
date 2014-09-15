@@ -19,6 +19,7 @@
 @property (nonatomic, assign) NSUInteger selectedIndex;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) NSMutableArray* maskedCells;
+@property (nonatomic, assign) BOOL offsetNeedsUpdate;
 
 @end
 
@@ -49,6 +50,7 @@
 											action:@selector(highlightViewTapped)];
 	recognizer.numberOfTapsRequired = 1;
 	[self.highlightView addGestureRecognizer:recognizer];
+    self.offsetNeedsUpdate = YES;
 }
 
 -(void)viewDidLayoutSubviews
@@ -58,7 +60,11 @@
     {
         self.selectedIndex = 0;
     }
-    self.collectionView.contentOffset = [self calculateOffsetForCellAtIndex:self.selectedIndex];
+    if(self.offsetNeedsUpdate)
+    {
+        self.collectionView.contentOffset = [self calculateOffsetForCellAtIndex:self.selectedIndex];
+        self.offsetNeedsUpdate = NO;
+    }
 	[self maskCenterCells];
     dispatch_async(dispatch_get_main_queue(), ^{
         //Mask the selected cell
@@ -114,7 +120,7 @@
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
 	[super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-	
+    self.offsetNeedsUpdate = YES;
 	[[self.collectionView collectionViewLayout] invalidateLayout];
 }
 
