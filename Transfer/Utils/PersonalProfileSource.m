@@ -256,6 +256,11 @@ NSUInteger const kUserPersonalSection = 1;
 		&& self.passwordCell.areMatching);
 }
 
+- (BOOL)isValidDateOfBirth
+{
+	return self.dateOfBirthCell.isValidDate;
+}
+
 - (id)enteredProfile
 {
     User *user = [self.objectModel currentUser];
@@ -273,7 +278,6 @@ NSUInteger const kUserPersonalSection = 1;
     [profile setDateOfBirth:[self.dateOfBirthCell value]];
     [profile setState:self.stateCell.value];
 	[profile setOccupation:[self.occupationCell value]];
-
 	
 	if (self.allowProfileSwitch)
 	{

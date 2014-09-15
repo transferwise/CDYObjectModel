@@ -13,5 +13,6 @@ extern NSString *const TWDateEntryCellIdentifier;
 @interface DateEntryCell : MultipleEntryCell<UITextFieldDelegate>
 
 - (void)setDateValue:(NSDate *)date;
+- (BOOL)isValidDate;
 
 @end

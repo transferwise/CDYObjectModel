@@ -409,26 +409,38 @@
         return;
     }
 	
-	if (!isExisting && [self.profileSource isKindOfClass:[PersonalProfileSource class]])
+	if ([self.profileSource isKindOfClass:[PersonalProfileSource class]])
 	{
 		PersonalProfileSource* personalProfile = (PersonalProfileSource *)self.profileSource;
 		
-		if (![personalProfile arePasswordsMatching])
+		if (![personalProfile isValidDateOfBirth])
 		{
 			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
-															   message:NSLocalizedString(@"personal.profile.validation.password.error.notmatching.message", nil)];
+															   message:NSLocalizedString(@"personal.profile.validation.dateofbirth.invalid.message", nil)];
 			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
 			[alertView show];
 			return;
 		}
 		
-		if (![personalProfile isPasswordLengthValid])
+		if (!isExisting)
 		{
-			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
-															   message:NSLocalizedString(@"personal.profile.validation.password.error.invalid.length.message", nil)];
-			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-			[alertView show];
-			return;
+			if (![personalProfile arePasswordsMatching])
+			{
+				TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
+																   message:NSLocalizedString(@"personal.profile.validation.password.error.notmatching.message", nil)];
+				[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+				[alertView show];
+				return;
+			}
+			
+			if (![personalProfile isPasswordLengthValid])
+			{
+				TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.validation.error.title", nil)
+																   message:NSLocalizedString(@"personal.profile.validation.password.error.invalid.length.message", nil)];
+				[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+				[alertView show];
+				return;
+			}
 		}
 	}
 	

@@ -228,6 +228,15 @@ NSInteger const kYearField = 3;
 }
 
 #pragma mark - Validation
+- (BOOL)isValidDate
+{
+	NSString *value = self.value;
+	NSError *error = nil;
+	NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeDate error:&error];
+	
+	return [value hasValue] && [detector numberOfMatchesInString:value options:0 range:NSMakeRange(0, value.length)] > 0;
+}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
 	NSUInteger newLength = [textField.text length] + [string length] - range.length;
