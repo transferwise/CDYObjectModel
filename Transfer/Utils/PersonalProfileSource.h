@@ -14,6 +14,7 @@
 
 - (BOOL)isPasswordLengthValid;
 - (BOOL)arePasswordsMatching;
+- (BOOL)isValidDateOfBirth;
 - (TextEntryCell *)stateSelectionCell:(TextEntryCell *)cell
 								state:(State *)state
 					   withCompletion:(SelectionCompletion)completion;
