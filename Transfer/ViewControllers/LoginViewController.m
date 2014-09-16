@@ -209,15 +209,11 @@
                                                                      if (error.code == ResponseCumulativeError) {
                                                                          NSArray *errors = error.userInfo[TRWErrors];
                                                                          for (NSDictionary *error in errors) {
-                                                                             NSString *message = error[@"message"];
-                                                                             
-                                                                             if (!message) {
-                                                                                 NSString *code = error[@"code"];
-                                                                                 if ([code caseInsensitiveCompare:@"CRD_NOT_VALID"])
-                                                                                 {
-                                                                                     isIncorrectCredentials = YES;
-                                                                                     break;
-                                                                                 }
+                                                                             NSString *code = error[@"code"];
+                                                                             if ([code caseInsensitiveCompare:@"CRD_NOT_VALID"] == NSOrderedSame)
+                                                                             {
+                                                                                 isIncorrectCredentials = YES;
+                                                                                 break;
                                                                              }
                                                                          }
                                                                          
@@ -229,6 +225,7 @@
                                                                              message = [message stringByAppendingString:@"\n"];
                                                                              message = [message stringByAppendingString:NSLocalizedString(@"touchid.cleared", nil)];
                                                                              [[GoogleAnalytics sharedInstance] sendAlertEvent:@"LoginIncorrectCredentialsTouchID" withLabel:message];
+                                                                             self.touchIdButton.hidden = YES;
                                                                          }
                                                                          else
                                                                          {
