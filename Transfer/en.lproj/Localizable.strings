@@ -667,7 +667,7 @@ We'll send you an email in order to let you choose a new password.";
 "touchid.reason.store" = "Authenticate to associate login credentials with Touch ID.";
 "touchid.reason.retrieve" = "Authenticate to log in with Touch ID account.";
 "touchid.reason.clear" = "Authenticate to remove credentials associated with Touch ID.";
-"touchid.removed" = "Login associated with TouchID has been removed. Login again to re-associate.";
+"touchid.cleared" = "Login associated with TouchID has been removed. Login again to re-associate.";
 "touchid.prompt.title" = "Fast & secure login";
 "touchid.prompt.info" = "Would you like to use Touch ID to log into this account next time?";
 "touchid.alert.title" = "Touch ID";
