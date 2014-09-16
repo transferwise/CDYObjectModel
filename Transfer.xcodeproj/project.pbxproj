@@ -60,6 +60,16 @@
 		3813791E1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */; };
 		3827407F199529F0009FAB97 /* CardPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3827407E199529F0009FAB97 /* CardPaymentViewController~ipad.xib */; };
 		38274080199529F0009FAB97 /* CardPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3827407E199529F0009FAB97 /* CardPaymentViewController~ipad.xib */; };
+		38288F4719C86A6700661BFB /* PaymentMethodSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38288F4519C86A6700661BFB /* PaymentMethodSelectorViewController.m */; };
+		38288F4819C86A6700661BFB /* PaymentMethodSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38288F4519C86A6700661BFB /* PaymentMethodSelectorViewController.m */; };
+		38288F4919C86A6700661BFB /* PaymentMethodSelectorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38288F4619C86A6700661BFB /* PaymentMethodSelectorViewController.xib */; };
+		38288F4A19C86A6700661BFB /* PaymentMethodSelectorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38288F4619C86A6700661BFB /* PaymentMethodSelectorViewController.xib */; };
+		38288F4E19C86DC200661BFB /* PaymentMethodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38288F4C19C86DC200661BFB /* PaymentMethodCell.m */; };
+		38288F4F19C86DC200661BFB /* PaymentMethodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38288F4C19C86DC200661BFB /* PaymentMethodCell.m */; };
+		38288F5019C86DC200661BFB /* PaymentMethodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38288F4D19C86DC200661BFB /* PaymentMethodCell.xib */; };
+		38288F5119C86DC200661BFB /* PaymentMethodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38288F4D19C86DC200661BFB /* PaymentMethodCell.xib */; };
+		38288F5419C8855800661BFB /* PaymentMethodViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */; };
+		38288F5519C8855800661BFB /* PaymentMethodViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */; };
 		3831AA37194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
 		3831AA38194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
 		3831DCC419B764B900151A3D /* existingUserIntro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3831DCC319B764B900151A3D /* existingUserIntro.plist */; };
@@ -911,6 +921,14 @@
 		3811674419C1E9A800B29151 /* TouchIdPromptViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TouchIdPromptViewController.xib; sourceTree = "<group>"; };
 		3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ConfirmPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
 		3827407E199529F0009FAB97 /* CardPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CardPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
+		38288F4419C86A6700661BFB /* PaymentMethodSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentMethodSelectorViewController.h; sourceTree = "<group>"; };
+		38288F4519C86A6700661BFB /* PaymentMethodSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodSelectorViewController.m; sourceTree = "<group>"; };
+		38288F4619C86A6700661BFB /* PaymentMethodSelectorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentMethodSelectorViewController.xib; sourceTree = "<group>"; };
+		38288F4B19C86DC200661BFB /* PaymentMethodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentMethodCell.h; sourceTree = "<group>"; };
+		38288F4C19C86DC200661BFB /* PaymentMethodCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodCell.m; sourceTree = "<group>"; };
+		38288F4D19C86DC200661BFB /* PaymentMethodCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentMethodCell.xib; sourceTree = "<group>"; };
+		38288F5219C8855800661BFB /* PaymentMethodViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentMethodViewControllerFactory.h; sourceTree = "<group>"; };
+		38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodViewControllerFactory.m; sourceTree = "<group>"; };
 		3831AA32194B31A200B3EE5C /* TransparentModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentModalViewController.h; sourceTree = "<group>"; };
 		3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentModalViewController.m; sourceTree = "<group>"; };
 		3831DCC319B764B900151A3D /* existingUserIntro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = existingUserIntro.plist; sourceTree = "<group>"; };
@@ -2074,6 +2092,9 @@
 				38B52F95199B622D00B6AEBD /* ValidationCell.m */,
 				3840863619A370A400C837C2 /* ValidationCell~ipad.xib */,
 				38B52F96199B622D00B6AEBD /* ValidationCell.xib */,
+				38288F4B19C86DC200661BFB /* PaymentMethodCell.h */,
+				38288F4C19C86DC200661BFB /* PaymentMethodCell.m */,
+				38288F4D19C86DC200661BFB /* PaymentMethodCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2407,9 +2428,6 @@
 		EAAA148D171BD057005B9430 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				3811674219C1E9A800B29151 /* TouchIdPromptViewController.h */,
-				3811674319C1E9A800B29151 /* TouchIdPromptViewController.m */,
-				3811674419C1E9A800B29151 /* TouchIdPromptViewController.xib */,
 				BB29BD45173CD2FF0016A6E9 /* BankTransferViewController.h */,
 				BB29BD46173CD2FF0016A6E9 /* BankTransferViewController.m */,
 				BB29BD48173CD30C0016A6E9 /* BankTransferViewController.xib */,
@@ -2532,6 +2550,9 @@
 				38E57F76192A51DD00D864A2 /* TabViewController.m */,
 				38E57F77192A51DD00D864A2 /* TabViewController.xib */,
 				380021A9192B91A9009B1D53 /* TabViewController~ipad.xib */,
+				3811674219C1E9A800B29151 /* TouchIdPromptViewController.h */,
+				3811674319C1E9A800B29151 /* TouchIdPromptViewController.m */,
+				3811674419C1E9A800B29151 /* TouchIdPromptViewController.xib */,
 				EAD39678171BD51400F6D011 /* TransactionsViewController.h */,
 				EAD39679171BD51400F6D011 /* TransactionsViewController.m */,
 				EAD3967A171BD51400F6D011 /* TransactionsViewController.xib */,
@@ -2555,6 +2576,9 @@
 				471CA002197FCB2200BCA3B4 /* TabbedHeaderViewController.m */,
 				471CA003197FCB2200BCA3B4 /* TabbedHeaderViewController.xib */,
 				471CA008197FCB6700BCA3B4 /* TabbedHeaderViewController~ipad.xib */,
+				38288F4419C86A6700661BFB /* PaymentMethodSelectorViewController.h */,
+				38288F4519C86A6700661BFB /* PaymentMethodSelectorViewController.m */,
+				38288F4619C86A6700661BFB /* PaymentMethodSelectorViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -2609,6 +2633,8 @@
 				47AC3F901987AFAC005491C6 /* SuggestionCellProvider.m */,
 				38504B0719C1E83700276203 /* TouchIDHelper.h */,
 				38504B0819C1E83700276203 /* TouchIDHelper.m */,
+				38288F5219C8855800661BFB /* PaymentMethodViewControllerFactory.h */,
+				38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2801,6 +2827,7 @@
 				473DF976196D637200524C64 /* LoginViewController~ipad.xib in Resources */,
 				3840D34A19A4D90F00D1485A /* RecipientFieldCell~ipad.xib in Resources */,
 				38B52FA1199B63B600B6AEBD /* InvitationsViewController.xib in Resources */,
+				38288F5119C86DC200661BFB /* PaymentMethodCell.xib in Resources */,
 				EAB61711191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
 				EA31A1F017DDB29B00F937F7 /* DateEntryCell.xib in Resources */,
 				EA31A1F117DDB29B00F937F7 /* SignUpViewController.xib in Resources */,
@@ -2813,6 +2840,7 @@
 				47971C68199A3FB60018FDA8 /* SelectionCell~ipad.xib in Resources */,
 				EA31A20217DDB29B00F937F7 /* CurrencySelectionCell.xib in Resources */,
 				EA31A20317DDB29B00F937F7 /* RecipientFieldCell.xib in Resources */,
+				38288F4A19C86A6700661BFB /* PaymentMethodSelectorViewController.xib in Resources */,
 				380021E7192CEB66009B1D53 /* TransactionsViewController~ipad.xib in Resources */,
 				EA31A20A17DDB29B00F937F7 /* PersonalProfileIdentificationViewController.xib in Resources */,
 				3831DCC819B8646000151A3D /* PullToRefreshView.xib in Resources */,
@@ -2942,6 +2970,7 @@
 				38B093111951FA2A00315BE4 /* TransferTypeSelectionHeader.xib in Resources */,
 				473DF975196D637200524C64 /* LoginViewController~ipad.xib in Resources */,
 				EA35C77217327981005602F7 /* PaymentCell.xib in Resources */,
+				38288F5019C86DC200661BFB /* PaymentMethodCell.xib in Resources */,
 				EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */,
 				EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */,
 				EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */,
@@ -2954,6 +2983,7 @@
 				38C1A89D199CC5A0000BF59C /* InviteViewController.xib in Resources */,
 				38EFABDF196D7EAB00126192 /* DataEntryDefaultHeader~ipad.xib in Resources */,
 				4716EE9F19B4D0DB00564A48 /* DoublePasswordEntryCell.xib in Resources */,
+				38288F4919C86A6700661BFB /* PaymentMethodSelectorViewController.xib in Resources */,
 				474C451D1992874E001F207C /* ProfileEditViewController~ipad.xib in Resources */,
 				380021FB192F43EA009B1D53 /* TabCell~ipad.xib in Resources */,
 				3831DCC719B8646000151A3D /* PullToRefreshView.xib in Resources */,
@@ -3187,6 +3217,7 @@
 				4723EA0E1973D8E900B4345F /* RedButton.m in Sources */,
 				EA31A13517DDB29B00F937F7 /* NSMutableString+Issues.m in Sources */,
 				EA31A13617DDB29B00F937F7 /* UIApplication+Keyboard.m in Sources */,
+				38288F5519C8855800661BFB /* PaymentMethodViewControllerFactory.m in Sources */,
 				EA31A13717DDB29B00F937F7 /* TRWAlertView.m in Sources */,
 				38B52FA5199B69C800B6AEBD /* InvitationProgressIndicatorView.m in Sources */,
 				EA31A13817DDB29B00F937F7 /* TRWProgressHUD.m in Sources */,
@@ -3329,6 +3360,7 @@
 				389F6806198FC1C6006CF1F6 /* _Payment.m in Sources */,
 				EA31A17B17DDB29B00F937F7 /* LoggedInPaymentFlow.m in Sources */,
 				EA31A17C17DDB29B00F937F7 /* NoUserPaymentFlow.m in Sources */,
+				38288F4819C86A6700661BFB /* PaymentMethodSelectorViewController.m in Sources */,
 				388F09FC1934A1C000DBD93D /* UIView+RenderBlur.m in Sources */,
 				EA31A17E17DDB29B00F937F7 /* ClaimAccountViewController.m in Sources */,
 				EA31A17F17DDB29B00F937F7 /* ClaimAccountOperation.m in Sources */,
@@ -3410,6 +3442,7 @@
 				4723EA1E1974095B00B4345F /* NavigationBarCustomiser.m in Sources */,
 				47F84D6C198A638B00886D41 /* DoubleEntryCell.m in Sources */,
 				389F6846198FC1C6006CF1F6 /* Recipient.m in Sources */,
+				38288F4F19C86DC200661BFB /* PaymentMethodCell.m in Sources */,
 				EA31A1BC17DDB29B00F937F7 /* UIDevice-Hardware.m in Sources */,
 				389F6834198FC1C6006CF1F6 /* ObjectModel+Users.m in Sources */,
 				389F6836198FC1C6006CF1F6 /* ObjectModel.m in Sources */,
@@ -3468,6 +3501,7 @@
 				EAD7D4C2171D43440099063F /* NSDictionary+SensibleData.m in Sources */,
 				4723EA0D1973D8E900B4345F /* RedButton.m in Sources */,
 				479B693A19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */,
+				38288F5419C8855800661BFB /* PaymentMethodViewControllerFactory.m in Sources */,
 				EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */,
 				38B52FA4199B69C800B6AEBD /* InvitationProgressIndicatorView.m in Sources */,
 				EAD7D4D1171D4BB20099063F /* GreenButton.m in Sources */,
@@ -3610,6 +3644,7 @@
 				389F6805198FC1C6006CF1F6 /* _Payment.m in Sources */,
 				479B693E1949C36F001FA4FE /* TransferDetialsRecipientView.m in Sources */,
 				EAC1051A17607C4600B3B018 /* ClaimAccountViewController.m in Sources */,
+				38288F4719C86A6700661BFB /* PaymentMethodSelectorViewController.m in Sources */,
 				EAB93B481761C74700A7337C /* ClaimAccountOperation.m in Sources */,
 				4723EA2F1975639E00B4345F /* BlueRoundedButton.m in Sources */,
 				EA01331E1765FC7700D63C82 /* RoundedCellBackgroundView.m in Sources */,
@@ -3691,6 +3726,7 @@
 				4723EA1D1974095B00B4345F /* NavigationBarCustomiser.m in Sources */,
 				47F84D6B198A638B00886D41 /* DoubleEntryCell.m in Sources */,
 				389F6845198FC1C6006CF1F6 /* Recipient.m in Sources */,
+				38288F4E19C86DC200661BFB /* PaymentMethodCell.m in Sources */,
 				EA8FC93E17D864F100E13969 /* FeedbackCoordinator.m in Sources */,
 				389F6833198FC1C6006CF1F6 /* ObjectModel+Users.m in Sources */,
 				389F6835198FC1C6006CF1F6 /* ObjectModel.m in Sources */,

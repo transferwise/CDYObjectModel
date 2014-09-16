@@ -11,11 +11,13 @@
 
 @class Payment;
 @class ObjectModel;
+@class PayInMethod;
 
 @interface UploadMoneyViewController : TabbedHeaderViewController
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, strong) Payment *payment;
+@property (nonatomic, strong) PayInMethod* forcedMethod;
 @property (nonatomic, assign) BOOL hideBottomButton;
 @property (nonatomic, assign) BOOL showContactSupportCell;
 

@@ -205,10 +205,6 @@
     }
 }
 
--(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)vieTwController animated:(BOOL)animated
-{
-    
-}
 
 - (void)moveToPaymentsList
 {
