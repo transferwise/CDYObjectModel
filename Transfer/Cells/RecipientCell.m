@@ -105,9 +105,19 @@
 	return nil;
 }
 
+
 - (NSString *)getFirstChar:(id)input
 {
-	return [[((NSString *)input) substringToIndex:1] uppercaseString];
+	NSString* str = (NSString *)input;
+	
+	if (str && str.length > 0)
+	{
+		return [[str substringToIndex:1] uppercaseString];
+	}
+	else
+	{
+		return @"";
+	}
 }
 
 - (void)maskRecipientImage
