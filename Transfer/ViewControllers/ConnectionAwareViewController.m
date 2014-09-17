@@ -83,17 +83,19 @@
     {
         NSTimeInterval duration = (IPAD?40.0f:30.0f) + pow((3.3f),index);
         
-        UIView* cloud = self.clouds[index];
-        CGRect startFrame = cloud.frame;
-        startFrame.origin.x = ((self.connectionAlert.bounds.size.width + startFrame.size.width) * timeOffset ) - startFrame.size.width;
-        startFrame.origin.y = 30.0f + roundf((self.connectionAlert.bounds.size.height - 40.0f)/self.numberOfClouds*index);
-        cloud.frame = startFrame;
-        [UIView animateWithDuration:duration - duration*timeOffset delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
-            CGRect endFrame = cloud.frame;
-            endFrame.origin.x = self.connectionAlert.bounds.size.width;
-            cloud.frame = endFrame;
-        } completion:^(BOOL finished) {
-            [self animateCloud:[self.clouds indexOfObject:cloud] offset:finished?0:1.0f - 0.9f * (arc4random()%100/100.0f)];
+        if(index < [self.clouds count])
+        {
+            UIView* cloud = self.clouds[index];
+            CGRect startFrame = cloud.frame;
+            startFrame.origin.x = ((self.connectionAlert.bounds.size.width + startFrame.size.width) * timeOffset ) - startFrame.size.width;
+            startFrame.origin.y = 30.0f + roundf((self.connectionAlert.bounds.size.height - 40.0f)/self.numberOfClouds*index);
+            cloud.frame = startFrame;
+            [UIView animateWithDuration:duration - duration*timeOffset delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
+                CGRect endFrame = cloud.frame;
+                endFrame.origin.x = self.connectionAlert.bounds.size.width;
+                cloud.frame = endFrame;
+            } completion:^(BOOL finished) {
+                [self animateCloud:[self.clouds indexOfObject:cloud] offset:finished?0:1.0f - 0.9f * (arc4random()%100/100.0f)];
         }];
     }
 }
