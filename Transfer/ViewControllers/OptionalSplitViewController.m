@@ -20,7 +20,10 @@
 {
     if(!self.detailContainer)
     {
-        [self.navigationController pushViewController:controller animated:YES];
+        if(controller)
+        {
+            [self.navigationController pushViewController:controller animated:YES];
+        }
     }
     else
     {

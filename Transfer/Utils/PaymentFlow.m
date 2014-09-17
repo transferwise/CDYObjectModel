@@ -47,6 +47,7 @@
 #import "PersonalPaymentProfileViewController.h"
 #import "BusinessPaymentProfileViewController.h"
 #import "RegisterOperation.h"
+#import "PaymentMethodSelectorViewController.h"
 
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
@@ -310,11 +311,24 @@
         } else {
             [[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentCreated" withLabel:@"not logged"];
         }
-
-        UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
-        [controller setObjectModel:self.objectModel];
-        [controller setPayment:(id) [self.objectModel.managedObjectContext objectWithID:paymentID]];
-        [self.navigationController pushViewController:controller animated:YES];
+        
+        Payment* payment = (id) [self.objectModel.managedObjectContext objectWithID:paymentID];
+        
+        if(!IPAD && [[payment enabledPayInMethods] count]>2)
+        {
+            PaymentMethodSelectorViewController* selector = [[PaymentMethodSelectorViewController alloc] init];
+            selector.objectModel = self.objectModel;
+            selector.payment = payment;
+            [self.navigationController pushViewController:selector animated:YES];
+        }
+        else
+        {
+            UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+            [controller setObjectModel:self.objectModel];
+            [controller setPayment:(id) [self.objectModel.managedObjectContext objectWithID:paymentID]];
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+        
     });
 }
 

@@ -75,6 +75,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.tableView.contentInset = IPAD?UIEdgeInsetsMake(55, 0, 0, 0):UIEdgeInsetsMake(20, 0, 50, 0);
+    [self.tableView setContentOffset:CGPointMake(0,-self.tableView.contentInset.top)];
     [self loadData];
 }
 
@@ -82,14 +84,10 @@
     MCLog(@"loadData");
     
     
-    NSOrderedSet *payInMethodTypes = [self.payment.enabledPayInMethods valueForKey:@"type"];
-    NSUInteger indexOfPaymentType= [payInMethodTypes indexOfObject:@"REGULAR"];
+   
     
-    PayInMethod* method;
-    if(indexOfPaymentType < [self.payment.enabledPayInMethods count])
-    {
-       method = self.payment.enabledPayInMethods[indexOfPaymentType];
-    }
+    PayInMethod* method = self.method;
+
     
     //Header
     NSString *exactlyString = NSLocalizedString(@"upload.money.header.label.exactly", @"");
