@@ -10,6 +10,7 @@ extern const struct PendingPaymentAttributes {
 	__unsafe_unretained NSString *recipientEmail;
 	__unsafe_unretained NSString *reference;
 	__unsafe_unretained NSString *sendVerificationLater;
+	__unsafe_unretained NSString *socialSecurityNumber;
 	__unsafe_unretained NSString *transferwiseTransferFee;
 	__unsafe_unretained NSString *verificiationNeeded;
 } PendingPaymentAttributes;
@@ -22,6 +23,7 @@ extern const struct PendingPaymentFetchedProperties {
 } PendingPaymentFetchedProperties;
 
 @class RecipientType;
+
 
 
 
@@ -93,6 +95,16 @@ extern const struct PendingPaymentFetchedProperties {
 - (void)setSendVerificationLaterValue:(BOOL)value_;
 
 //- (BOOL)validateSendVerificationLater:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* socialSecurityNumber;
+
+
+
+//- (BOOL)validateSocialSecurityNumber:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -177,6 +189,12 @@ extern const struct PendingPaymentFetchedProperties {
 
 - (BOOL)primitiveSendVerificationLaterValue;
 - (void)setPrimitiveSendVerificationLaterValue:(BOOL)value_;
+
+
+
+
+- (NSString*)primitiveSocialSecurityNumber;
+- (void)setPrimitiveSocialSecurityNumber:(NSString*)value;
 
 
 

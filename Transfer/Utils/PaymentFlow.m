@@ -48,6 +48,7 @@
 #import "BusinessPaymentProfileViewController.h"
 #import "RegisterOperation.h"
 #import "PaymentMethodSelectorViewController.h"
+#import "SetSSNOperation.h"
 
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
@@ -295,6 +296,7 @@
             //TODO: SSN
             [payment setSendVerificationLaterValue:skipIdentification];
             [payment setPaymentPurpose:paymentPurpose];
+            [payment setSocialSecurityNumber:socialSecurityNumber];
 
             [weakSelf.objectModel saveContext:^{
                 [weakSelf commitPaymentWithSuccessBlock:successBlock ErrorHandler:errorBlock];
@@ -601,6 +603,31 @@
     [operation execute];
 }
 
+- (void)uploadSocialSecurityNumber {
+    MCLog(@"uploadPaymentPurpose");
+    PendingPayment *pendingPayment = [self.objectModel pendingPayment];
+    __weak typeof(self) weakSelf = self;
+    SetSSNOperation *operation = [SetSSNOperation operationWithSsn:pendingPayment.socialSecurityNumber resultHandler:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                weakSelf.paymentErrorHandler(error);
+                return;
+            }
+            
+            MCLog(@"setSSN done");
+            PendingPayment *payment = [weakSelf.objectModel pendingPayment];
+            [payment removeSsnRequiredMarker];
+            [weakSelf.objectModel saveContext:^{
+                [weakSelf handleNextStepOfPendingPaymentCommit];
+            }];
+        });
+
+    }];
+    [self setExecutedOperation:operation];
+    [operation setObjectModel:self.objectModel];
+    [operation execute];
+}
+
 - (void)commitPayment {
     MCLog(@"Commit payment");
 
@@ -711,9 +738,13 @@
             MCLog(@"Upload address");
             [self uploadAddressVerification];
         } else if (!payment.sendVerificationLaterValue &&[payment paymentPurposeRequired]) {
-            MCLog(@"Upload paiment purpose");
+            MCLog(@"Upload payment purpose");
             [self uploadPaymentPurpose];
-        } else {
+        } else if (!payment.sendVerificationLaterValue &&[payment ssnVerificationRequired]) {
+            MCLog(@"Upload SSN");
+            [self uploadSocialSecurityNumber];
+        }
+        else {
             [self commitPayment];
         }
     }];

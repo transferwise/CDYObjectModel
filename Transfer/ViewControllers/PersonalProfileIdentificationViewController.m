@@ -308,7 +308,7 @@
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProgress:) name:TRWUploadProgressNotification object:nil];
     }
     
-    self.completionHandler(skip, [self.paymentPurposeCell.entryField text], [self.ssnCell.entryField text], ^(void){
+    self.completionHandler(skip, [self.paymentPurposeCell.entryField text], [[self.ssnCell.entryField text] stringByReplacingOccurrencesOfString:@"-" withString:@""], ^(void){
 		[hud hide];
 		if (!skip)
 		{

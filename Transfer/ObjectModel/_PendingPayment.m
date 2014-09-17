@@ -9,6 +9,7 @@ const struct PendingPaymentAttributes PendingPaymentAttributes = {
 	.recipientEmail = @"recipientEmail",
 	.reference = @"reference",
 	.sendVerificationLater = @"sendVerificationLater",
+	.socialSecurityNumber = @"socialSecurityNumber",
 	.transferwiseTransferFee = @"transferwiseTransferFee",
 	.verificiationNeeded = @"verificiationNeeded",
 };
@@ -117,6 +118,13 @@ const struct PendingPaymentFetchedProperties PendingPaymentFetchedProperties = {
 - (void)setPrimitiveSendVerificationLaterValue:(BOOL)value_ {
 	[self setPrimitiveSendVerificationLater:[NSNumber numberWithBool:value_]];
 }
+
+
+
+
+
+@dynamic socialSecurityNumber;
+
 
 
 

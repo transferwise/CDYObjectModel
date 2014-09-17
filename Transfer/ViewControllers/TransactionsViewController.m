@@ -40,6 +40,7 @@
 #import "Currency.h"
 #import "NavigationBarCustomiser.h"
 #import "PaymentMethodSelectorViewController.h"
+#import "SetSSNOperation.h"
 
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
@@ -423,8 +424,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     __weak typeof(self) weakSelf = self;
     [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, VerificationStepSuccessBlock successBlock, PaymentErrorBlock errorBlock) {
 		if (!skipIdentification) {
-			[weakSelf uploadPaymentPurpose:paymentPurpose errorHandler:errorBlock completionHandler:^{
-				//TODO: SSN
+            [weakSelf uploadPaymentPurpose:paymentPurpose andSSN:socialSecurityNumber errorHandler:errorBlock completionHandler:^{
                 [weakSelf.navigationController popViewControllerAnimated:YES];
 				if(successBlock)
 				{
@@ -444,11 +444,11 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)uploadPaymentPurpose:(NSString *)purpose errorHandler:(PaymentErrorBlock)errorBlock completionHandler:(TRWActionBlock)completion
+- (void)uploadPaymentPurpose:(NSString *)purpose andSSN:(NSString*)ssn errorHandler:(PaymentErrorBlock)errorBlock completionHandler:(TRWActionBlock)completion
 {
     if ((self.identificationRequired & IdentificationPaymentPurposeRequired) != IdentificationPaymentPurposeRequired) {
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"sent"];
-        [self uploadIdImageWithErrorHandler:errorBlock completionHandler:completion];
+        [self uploadSocialSecurityNumber:ssn errorHandler:errorBlock completionHandler:completion];
         return;
     }
 
@@ -466,12 +466,37 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
             [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"sent"];
             MCLog(@"uploadPaymentPurpose done");
-            [weakSelf uploadIdImageWithErrorHandler:errorBlock completionHandler:completion];
+            [weakSelf uploadSocialSecurityNumber:ssn errorHandler:errorBlock completionHandler:completion];
         });
     }];
 
     [operation execute];
 }
+
+- (void)uploadSocialSecurityNumber:(NSString *)ssn errorHandler:(PaymentErrorBlock)errorBlock completionHandler:(TRWActionBlock)completion
+{
+    if ((self.identificationRequired & IdentificationSSNRequired) != IdentificationSSNRequired) {
+        [self uploadIdImageWithErrorHandler:errorBlock completionHandler:completion];
+        return;
+    }
+    
+     __weak typeof(self) weakSelf = self;
+    SetSSNOperation *operation = [SetSSNOperation operationWithSsn:ssn resultHandler:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error)
+            {
+                errorBlock(error);
+                return;
+            }
+            MCLog(@"uploadPaymentPurpose done");
+            [weakSelf uploadIdImageWithErrorHandler:errorBlock completionHandler:completion];
+        });
+    }];
+    [self setExecutedUploadOperation:operation];
+    [operation setObjectModel:self.objectModel];
+    [operation execute];
+}
+
 
 - (void)uploadIdImageWithErrorHandler:(PaymentErrorBlock)errorBlock completionHandler:(TRWActionBlock)completion {
     MCLog(@"uploadIdImageWithErrorHandler");
