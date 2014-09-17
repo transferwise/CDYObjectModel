@@ -76,6 +76,7 @@
                 
                 if(self.onlyShowRecipients)
                 {
+                    filteredRecipients = filteredRecipients?:[NSArray array];
                     self.dataSource = @[filteredRecipients];
                 }
                 else
@@ -96,6 +97,10 @@
                         return [obj1.lastName caseInsensitiveCompare:obj2.lastName];
                     }];
                     [workArray removeObjectsInArray:lastnameMatches];
+                    
+                    filteredRecipients = filteredRecipients?:[NSArray array];
+                    firstnameMatches = firstnameMatches?:[NSArray array];
+                    lastnameMatches = lastnameMatches?:[NSArray array];
                     
                     self.dataSource = @[filteredRecipients, firstnameMatches, lastnameMatches];
                 }
