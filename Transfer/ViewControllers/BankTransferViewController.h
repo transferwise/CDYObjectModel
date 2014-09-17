@@ -11,11 +11,13 @@
 
 @class ObjectModel;
 @class Payment;
+@class PayInMethod;
 
 @interface BankTransferViewController : DataEntryViewController
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, strong) Payment *payment;
+@property (nonatomic, strong) PayInMethod *method;
 
 
 @end

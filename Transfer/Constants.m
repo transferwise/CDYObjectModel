@@ -14,7 +14,7 @@ NSString *const TRWMoveToPaymentViewNotification = @"TRWMoveToPaymentViewNotific
 
 #if DEV_VERSION
 NSString *const TRWApplicationKey = @"ad8d836d18ec18fbd4ccc7bffd71eb54";
-NSString *const TRWServerAddress = @"https://api-sandbox.transferwise.com";//@"https://canis.transferwise.com";
+NSString *const TRWServerAddress = @"https://canis.transferwise.com";//@"https://canis.transferwise.com";
 #else
 NSString *const TRWApplicationKey = @"pfwk97car71rtatr1656zqyatd343dsq";
 NSString *const TRWServerAddress = @"https://transferwise.com";

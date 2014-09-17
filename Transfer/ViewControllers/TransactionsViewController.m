@@ -39,6 +39,7 @@
 #import "CancelHelper.h"
 #import "Currency.h"
 #import "NavigationBarCustomiser.h"
+#import "PaymentMethodSelectorViewController.h"
 
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
@@ -234,12 +235,23 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 		}
 		else
 		{
-			UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
-			[controller setPayment:payment];
-			[controller setObjectModel:self.objectModel];
-			[controller setHideBottomButton:YES];
-			[controller setShowContactSupportCell:YES];
-			resultController = controller;
+            if([[payment enabledPayInMethods] count]>2)
+            {
+                PaymentMethodSelectorViewController* selector = [[PaymentMethodSelectorViewController alloc] init];
+                selector.objectModel = self.objectModel;
+                selector.payment = payment;
+                resultController = selector;
+            }
+            else
+            {
+
+                UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+                [controller setPayment:payment];
+                [controller setObjectModel:self.objectModel];
+                [controller setHideBottomButton:YES];
+                [controller setShowContactSupportCell:YES];
+                resultController = controller;
+            }
 		}
     }
     else if (payment.status == PaymentStatusUserHasPaid)

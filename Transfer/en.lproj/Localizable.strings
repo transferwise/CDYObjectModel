@@ -494,8 +494,10 @@ This can't be undone.";
 "payment.detail.sent.header.message" = "Transfer sent out to recipient.
 Payment #%@";
 "payment.detail.converting.header.message" = "Waiting to convert your money for transfer #%@.";
-"payment.method.card" = "Debit card";
-"payment.method.regular" = "Bank transfer";
+"payment.method.DATA_CASH" = "Debit card";
+"payment.method.REGULAR" = "Bank transfer";
+"payment.method.description.DATA_CASH" = "We accept all Visa & Mastercard debit cards.";
+"payment.method.description.REGULAR" = "You transfer us the money via a local transfer and we do the rest.";
 
 "support.sheet.title" = "If you have questions, please don't hesitate to contact our support team.";
 "support.sheet.write.message" = "Send an email";

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class Payment;
+@class ObjectModel;
 
 typedef void (^CardPaymentResultBlock)(BOOL success);
 
@@ -16,6 +17,7 @@ typedef void (^CardPaymentResultBlock)(BOOL success);
 
 @property (nonatomic, strong) CardPaymentResultBlock resultHandler;
 @property (nonatomic, strong) Payment *payment;
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 - (void)loadCardView;
 

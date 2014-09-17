@@ -10,10 +10,17 @@
 #import "Constants.h"
 #import "TransferwiseClient.h"
 #import "Payment.h"
+#import "ClaimAccountViewController.h"
+#import "Credentials.h"
+#import "TRWProgressHUD.h"
+#import "TRWAlertView.h"
+#import "PullPaymentDetailsOperation.h"
+#import "TransferDetailsViewController.h" 
 
 @interface CardPaymentViewController () <UIWebViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
+@property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
 @end
 
@@ -36,6 +43,13 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self loadCardView];
+}
+
 - (void)presentLoadingView {
     NSString *loadingPagePath = [[NSBundle mainBundle] pathForResource:@"spinner" ofType:@"html"];
     NSString *loadingPageContent = [[NSString alloc] initWithContentsOfFile:loadingPagePath encoding:NSUTF8StringEncoding error:nil];
@@ -53,6 +67,7 @@
     NSString *absoluteString = [request.URL absoluteString];
     if ([absoluteString rangeOfString:@"/card/paidIn"].location != NSNotFound) {
         self.resultHandler(YES);
+        [self pushNextScreen];
         return NO;
     } else if ([absoluteString rangeOfString:@"/card/notPaidIn"].location != NSNotFound) {
         self.resultHandler(NO);
@@ -91,5 +106,55 @@
     [TransferwiseOperation provideAuthenticationHeaders:request];
     [self.webView loadRequest:request];
 }
+
+- (void)pushNextScreen {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //TODO jaanus: copy/paste from BankTransferScreen
+        if ([Credentials temporaryAccount]) {
+            ClaimAccountViewController *controller = [[ClaimAccountViewController alloc] init];
+            [controller setObjectModel:self.objectModel];
+            [self.navigationController pushViewController:controller animated:YES];
+        } else {
+            [self pushUpdatedTransactionScreen];
+        }
+    });
+}
+
+- (void)pushUpdatedTransactionScreen {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.executedOperation) {
+            return;
+        }
+        
+        TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+        [hud setMessage:NSLocalizedString(@"upload.money.refreshing.payment.message", nil)];
+        PullPaymentDetailsOperation *operation = [PullPaymentDetailsOperation operationWithPaymentId:[self.payment remoteId]];
+        [self setExecutedOperation:operation];
+        [operation setObjectModel:self.objectModel];
+        __weak typeof(self) weakSelf = self;
+        [operation setResultHandler:^(NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hide];
+                [weakSelf setExecutedOperation:nil];
+                
+                if (error) {
+                    TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.transaction.refresh.error.title", nil) message:NSLocalizedString(@"upload.money.transaction.refresh.error.message", nil)];
+                    [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                    [alertView show];
+                    return;
+                }
+                
+                TransferDetailsViewController *details = [[TransferDetailsViewController alloc] init];
+                details.payment = weakSelf.payment;
+                details.showClose = YES;
+                
+                [self.navigationController pushViewController:details animated:YES];
+            });
+        }];
+        
+        [operation execute];
+    });
+}
+
 
 @end

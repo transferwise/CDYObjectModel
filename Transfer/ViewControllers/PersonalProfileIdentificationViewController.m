@@ -283,7 +283,8 @@
     NSString *inputValidationError = [self validateEnteredText];
     if(inputValidationError)
     {
-        TRWAlertView *alert = [[TRWAlertView alloc] initWithTitle:NSLocalizedString(@"identification.ssn.short",nil) message:inputValidationError delegate:nil cancelButtonTitle:NSLocalizedString(@"button.title.ok",nil) otherButtonTitles:nil];
+        TRWAlertView *alert = [[TRWAlertView alloc] initWithTitle:NSLocalizedString(@"identification.error",nil) message:inputValidationError delegate:nil cancelButtonTitle:NSLocalizedString(@"button.title.ok",nil) otherButtonTitles:nil];
+        [alert show];
     }
     else
     {
