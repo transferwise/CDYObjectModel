@@ -96,7 +96,8 @@
                 cloud.frame = endFrame;
             } completion:^(BOOL finished) {
                 [self animateCloud:[self.clouds indexOfObject:cloud] offset:finished?0:1.0f - 0.9f * (arc4random()%100/100.0f)];
-        }];
+            }];
+        }
     }
 }
 
