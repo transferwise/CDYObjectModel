@@ -32,14 +32,14 @@
 
 - (NSDictionary *)data {
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    data[@"firstName"] = self.firstName;
-    data[@"lastName"] = self.lastName;
-    data[@"dateOfBirth"] = self.dateOfBirth;
-    data[@"phoneNumber"] = self.phoneNumber;
-    data[@"addressFirstLine"] = self.addressFirstLine;
-    data[@"postCode"] = self.postCode;
-    data[@"city"] = self.city;
-    data[@"countryCode"] = self.countryCode;
+	data[@"firstName"] = self.firstName ? self.firstName : @"";
+    data[@"lastName"] = self.lastName ? self.lastName : @"";
+    data[@"dateOfBirth"] = self.dateOfBirth ? self.dateOfBirth : @"";
+    data[@"phoneNumber"] = self.phoneNumber ? self.phoneNumber : @"";
+    data[@"addressFirstLine"] = self.addressFirstLine ? self.addressFirstLine : @"";
+    data[@"postCode"] = self.postCode ? self.postCode : @"";
+    data[@"city"] = self.city ? self.city : @"";
+    data[@"countryCode"] = self.countryCode ? self.countryCode : @"";
     data[@"state"] = ([@"usa" caseInsensitiveCompare:self.countryCode]==NSOrderedSame && self.state)?self.state:@"";
 	data[@"occupation"] = ([@"az" caseInsensitiveCompare:self.state]==NSOrderedSame && self.occupation)?self.occupation:@"";
     return [NSDictionary dictionaryWithDictionary:data];
