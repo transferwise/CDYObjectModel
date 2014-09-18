@@ -28,7 +28,8 @@
 	self.showButtonForIphone = YES;
 	
 	self.personalProfile = [[PersonalProfileViewController alloc] initWithActionButtonTitle:
-							self.buttonTitle ? self.buttonTitle : NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
+							self.buttonTitle ? self.buttonTitle : NSLocalizedString(@"confirm.payment.footer.button.title", nil)
+																				 isExisting:self.isExisting];
 	self.personalProfile.objectModel = self.objectModel;
 	self.personalProfile.allowProfileSwitch = self.allowProfileSwitch;
 	self.personalProfile.delegate = self;

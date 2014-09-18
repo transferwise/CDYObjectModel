@@ -16,5 +16,7 @@
 @property (nonatomic, strong) ObjectModel* objectModel;
 @property (nonatomic, strong) NSString* buttonTitle;
 @property (nonatomic, strong) id profileValidation;
+//used for filling missing US fields
+@property (nonatomic) BOOL isExisting;
 
 @end

@@ -65,13 +65,13 @@
 
 - (void)initControllers
 {
-	self.personalProfile = [[PersonalProfileViewController alloc] initWithActionButtonTitle:NSLocalizedString(@"profile.edit.save", nil)];
+	self.personalProfile = [[PersonalProfileViewController alloc] initWithActionButtonTitle:NSLocalizedString(@"profile.edit.save", nil)
+																				 isExisting:YES];
 	self.personalProfile.objectModel = self.objectModel;
 	self.personalProfile.allowProfileSwitch = NO;
 	PersonalProfileCommitter *personalValidation = [[PersonalProfileCommitter alloc] init];
 	personalValidation.objectModel = self.objectModel;
 	self.personalProfile.profileValidation = personalValidation;
-	self.personalProfile.isExisting = YES;
 	self.personalProfile.showInsideTabControllerForIpad = YES;
 	self.personalProfile.showFooterViewForIpad = YES;
 	
