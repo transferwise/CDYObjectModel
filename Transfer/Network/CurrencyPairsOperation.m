@@ -49,7 +49,7 @@ NSString *const kCurrencyPairsPath = @"/currency/pairs";
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         [weakSelf.workModel.managedObjectContext performBlock:^{
             NSArray *pairs = response[@"sourceCurrencies"];
-            MCLog(@"Retrieved %d paris", [pairs count]);
+            MCLog(@"Retrieved %lu paris", [pairs count]);
 
             [weakSelf.workModel hideExistingPairSources];
 

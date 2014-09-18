@@ -119,7 +119,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
     
     RecipientType *type = self.currency.defaultRecipientType;
-    MCLog(@"Have %d fields", [type.fields count]);
+    MCLog(@"Have %lu fields", [type.fields count]);
 
     [self setRecipientType:type];
 

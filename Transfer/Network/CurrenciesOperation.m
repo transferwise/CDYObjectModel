@@ -34,7 +34,7 @@ NSString *const kCurrencyListPath = @"/currency/list";
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         [weakSelf.workModel.managedObjectContext performBlock:^{
             NSArray *currencies = response[@"currencies"];
-            MCLog(@"Pulled %d currencies", [currencies count]);
+            MCLog(@"Pulled %lu currencies", [currencies count]);
 
             void (^persistingBlock)() = ^() {
                 [weakSelf.workModel.managedObjectContext performBlock:^{

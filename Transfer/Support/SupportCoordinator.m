@@ -83,7 +83,7 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    MCLog(@"clickedButtonAtIndex:%d", buttonIndex);
+    MCLog(@"clickedButtonAtIndex:%ld", buttonIndex);
     if (buttonIndex == actionSheet.cancelButtonIndex) {
         MCLog(@"Cancel pressed");
         return;

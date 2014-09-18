@@ -93,7 +93,7 @@
 
 - (void)removePaymentsWithIds:(NSArray *)array {
     NSArray *payments = [self paymentsWithRemoteIds:array];
-    MCLog(@"Will remove %d payments", [payments count]);
+    MCLog(@"Will remove %lu payments", [payments count]);
     [self deleteObjects:payments saveAfter:NO];
 }
 

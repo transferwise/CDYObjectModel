@@ -11,7 +11,7 @@
 @interface ObjectModel (Countries)
 
 - (void)addOrCreateCountryWithData:(NSDictionary *)dictionary;
-- (int)numberOfCountries;
+- (NSInteger)numberOfCountries;
 - (NSFetchedResultsController *)fetchedControllerForAllCountries;
 
 @end

@@ -141,8 +141,8 @@
 			}
 			
 			//get images for chosen wrappers
-			int limit = (matchingLookups.count < self.profilePictures.count) ? matchingLookups.count : self.profilePictures.count;
-			for (int i = 0; i < limit; i++)
+			NSInteger limit = (matchingLookups.count < self.profilePictures.count) ? matchingLookups.count : self.profilePictures.count;
+			for (NSInteger i = 0; i < limit; i++)
 			{
 				[manager getImageForRecordId:((PhoneLookupWrapper *)matchingLookups[i]).recordId
 							   requestAccess:NO
@@ -207,7 +207,7 @@
         [self.progressIndicator setProgress:progress animated:YES];
     }
 
-    int numberOfRewards = progress/3;
+    NSUInteger numberOfRewards = progress/3;
     if(numberOfRewards == 0 && progress == 0)
     {
         NSString *titleText = NSLocalizedString(@"invite.controller.title", nil);
