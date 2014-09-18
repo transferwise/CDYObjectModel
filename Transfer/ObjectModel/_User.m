@@ -20,6 +20,9 @@ const struct UserRelationships UserRelationships = {
 	.personalProfile = @"personalProfile",
 };
 
+const struct UserFetchedProperties UserFetchedProperties = {
+};
+
 @implementation UserID
 @end
 
@@ -45,7 +48,7 @@ const struct UserRelationships UserRelationships = {
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-
+	
 	if ([key isEqualToString:@"anonymousValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"anonymous"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -65,7 +68,12 @@ const struct UserRelationships UserRelationships = {
 	return keyPaths;
 }
 
+
+
+
 @dynamic anonymous;
+
+
 
 - (BOOL)anonymousValue {
 	NSNumber *result = [self anonymous];
@@ -85,15 +93,41 @@ const struct UserRelationships UserRelationships = {
 	[self setPrimitiveAnonymous:[NSNumber numberWithBool:value_]];
 }
 
+
+
+
+
 @dynamic email;
+
+
+
+
+
 
 @dynamic inviteUrl;
 
+
+
+
+
+
 @dynamic pReference;
+
+
+
+
+
 
 @dynamic password;
 
+
+
+
+
+
 @dynamic sendAsBusinessDefaultSetting;
+
+
 
 - (BOOL)sendAsBusinessDefaultSettingValue {
 	NSNumber *result = [self sendAsBusinessDefaultSetting];
@@ -113,7 +147,13 @@ const struct UserRelationships UserRelationships = {
 	[self setPrimitiveSendAsBusinessDefaultSetting:[NSNumber numberWithBool:value_]];
 }
 
+
+
+
+
 @dynamic successfulInviteCount;
+
+
 
 - (int16_t)successfulInviteCountValue {
 	NSNumber *result = [self successfulInviteCount];
@@ -133,31 +173,47 @@ const struct UserRelationships UserRelationships = {
 	[self setPrimitiveSuccessfulInviteCount:[NSNumber numberWithShort:value_]];
 }
 
+
+
+
+
 @dynamic businessProfile;
+
+	
 
 @dynamic contacts;
 
+	
 - (NSMutableSet*)contactsSet {
 	[self willAccessValueForKey:@"contacts"];
-
+  
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"contacts"];
-
+  
 	[self didAccessValueForKey:@"contacts"];
 	return result;
 }
+	
 
 @dynamic payments;
 
+	
 - (NSMutableSet*)paymentsSet {
 	[self willAccessValueForKey:@"payments"];
-
+  
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"payments"];
-
+  
 	[self didAccessValueForKey:@"payments"];
 	return result;
 }
+	
 
 @dynamic personalProfile;
 
-@end
+	
 
+
+
+
+
+
+@end

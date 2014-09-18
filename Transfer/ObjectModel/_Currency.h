@@ -3,6 +3,7 @@
 
 #import <CoreData/CoreData.h>
 
+
 extern const struct CurrencyAttributes {
 	__unsafe_unretained NSString *code;
 	__unsafe_unretained NSString *index;
@@ -24,6 +25,9 @@ extern const struct CurrencyRelationships {
 	__unsafe_unretained NSString *targets;
 } CurrencyRelationships;
 
+extern const struct CurrencyFetchedProperties {
+} CurrencyFetchedProperties;
+
 @class Recipient;
 @class RecipientType;
 @class RecipientType;
@@ -32,6 +36,15 @@ extern const struct CurrencyRelationships {
 @class Payment;
 @class PairTargetCurrency;
 
+
+
+
+
+
+
+
+
+
 @interface CurrencyID : NSManagedObjectID {}
 @end
 
@@ -39,138 +52,191 @@ extern const struct CurrencyRelationships {
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) CurrencyID* objectID;
+- (CurrencyID*)objectID;
+
+
+
+
 
 @property (nonatomic, strong) NSString* code;
 
+
+
 //- (BOOL)validateCode:(id*)value_ error:(NSError**)error_;
+
+
+
+
 
 @property (nonatomic, strong) NSNumber* index;
 
-@property (atomic) int16_t indexValue;
+
+
+@property int16_t indexValue;
 - (int16_t)indexValue;
 - (void)setIndexValue:(int16_t)value_;
 
 //- (BOOL)validateIndex:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSString* name;
+
+
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSNumber* paymentReferenceAllowed;
 
-@property (atomic) BOOL paymentReferenceAllowedValue;
+
+
+@property BOOL paymentReferenceAllowedValue;
 - (BOOL)paymentReferenceAllowedValue;
 - (void)setPaymentReferenceAllowedValue:(BOOL)value_;
 
 //- (BOOL)validatePaymentReferenceAllowed:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSNumber* recipientBicRequired;
 
-@property (atomic) BOOL recipientBicRequiredValue;
+
+
+@property BOOL recipientBicRequiredValue;
 - (BOOL)recipientBicRequiredValue;
 - (void)setRecipientBicRequiredValue:(BOOL)value_;
 
 //- (BOOL)validateRecipientBicRequired:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSNumber* recipientEmailRequired;
 
-@property (atomic) BOOL recipientEmailRequiredValue;
+
+
+@property BOOL recipientEmailRequiredValue;
 - (BOOL)recipientEmailRequiredValue;
 - (void)setRecipientEmailRequiredValue:(BOOL)value_;
 
 //- (BOOL)validateRecipientEmailRequired:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSNumber* referenceMaxLength;
 
-@property (atomic) int16_t referenceMaxLengthValue;
+
+
+@property int16_t referenceMaxLengthValue;
 - (int16_t)referenceMaxLengthValue;
 - (void)setReferenceMaxLengthValue:(int16_t)value_;
 
 //- (BOOL)validateReferenceMaxLength:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSString* symbol;
 
+
+
 //- (BOOL)validateSymbol:(id*)value_ error:(NSError**)error_;
+
+
+
+
 
 @property (nonatomic, strong) NSSet *currencyForRecipients;
 
 - (NSMutableSet*)currencyForRecipientsSet;
 
+
+
+
 @property (nonatomic, strong) RecipientType *defaultRecipientType;
 
 //- (BOOL)validateDefaultRecipientType:(id*)value_ error:(NSError**)error_;
+
+
+
 
 @property (nonatomic, strong) NSOrderedSet *recipientTypes;
 
 - (NSMutableOrderedSet*)recipientTypesSet;
 
+
+
+
 @property (nonatomic, strong) NSSet *sourceForPayments;
 
 - (NSMutableSet*)sourceForPaymentsSet;
+
+
+
 
 @property (nonatomic, strong) NSSet *sources;
 
 - (NSMutableSet*)sourcesSet;
 
+
+
+
 @property (nonatomic, strong) NSSet *targetForPayments;
 
 - (NSMutableSet*)targetForPaymentsSet;
+
+
+
 
 @property (nonatomic, strong) NSSet *targets;
 
 - (NSMutableSet*)targetsSet;
 
+
+
+
+
 @end
 
-@interface _Currency (CurrencyForRecipientsCoreDataGeneratedAccessors)
+@interface _Currency (CoreDataGeneratedAccessors)
+
 - (void)addCurrencyForRecipients:(NSSet*)value_;
 - (void)removeCurrencyForRecipients:(NSSet*)value_;
 - (void)addCurrencyForRecipientsObject:(Recipient*)value_;
 - (void)removeCurrencyForRecipientsObject:(Recipient*)value_;
 
-@end
-
-@interface _Currency (RecipientTypesCoreDataGeneratedAccessors)
 - (void)addRecipientTypes:(NSOrderedSet*)value_;
 - (void)removeRecipientTypes:(NSOrderedSet*)value_;
 - (void)addRecipientTypesObject:(RecipientType*)value_;
 - (void)removeRecipientTypesObject:(RecipientType*)value_;
 
-- (void)insertObject:(RecipientType*)value inRecipientTypesAtIndex:(NSUInteger)idx;
-- (void)removeObjectFromRecipientTypesAtIndex:(NSUInteger)idx;
-- (void)insertRecipientTypes:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
-- (void)removeRecipientTypesAtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectInRecipientTypesAtIndex:(NSUInteger)idx withObject:(RecipientType*)value;
-- (void)replaceRecipientTypesAtIndexes:(NSIndexSet *)indexes withRecipientTypes:(NSArray *)values;
-
-@end
-
-@interface _Currency (SourceForPaymentsCoreDataGeneratedAccessors)
 - (void)addSourceForPayments:(NSSet*)value_;
 - (void)removeSourceForPayments:(NSSet*)value_;
 - (void)addSourceForPaymentsObject:(Payment*)value_;
 - (void)removeSourceForPaymentsObject:(Payment*)value_;
 
-@end
-
-@interface _Currency (SourcesCoreDataGeneratedAccessors)
 - (void)addSources:(NSSet*)value_;
 - (void)removeSources:(NSSet*)value_;
 - (void)addSourcesObject:(PairSourceCurrency*)value_;
 - (void)removeSourcesObject:(PairSourceCurrency*)value_;
 
-@end
-
-@interface _Currency (TargetForPaymentsCoreDataGeneratedAccessors)
 - (void)addTargetForPayments:(NSSet*)value_;
 - (void)removeTargetForPayments:(NSSet*)value_;
 - (void)addTargetForPaymentsObject:(Payment*)value_;
 - (void)removeTargetForPaymentsObject:(Payment*)value_;
 
-@end
-
-@interface _Currency (TargetsCoreDataGeneratedAccessors)
 - (void)addTargets:(NSSet*)value_;
 - (void)removeTargets:(NSSet*)value_;
 - (void)addTargetsObject:(PairTargetCurrency*)value_;
@@ -180,8 +246,12 @@ extern const struct CurrencyRelationships {
 
 @interface _Currency (CoreDataGeneratedPrimitiveAccessors)
 
+
 - (NSString*)primitiveCode;
 - (void)setPrimitiveCode:(NSString*)value;
+
+
+
 
 - (NSNumber*)primitiveIndex;
 - (void)setPrimitiveIndex:(NSNumber*)value;
@@ -189,8 +259,14 @@ extern const struct CurrencyRelationships {
 - (int16_t)primitiveIndexValue;
 - (void)setPrimitiveIndexValue:(int16_t)value_;
 
+
+
+
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
+
+
+
 
 - (NSNumber*)primitivePaymentReferenceAllowed;
 - (void)setPrimitivePaymentReferenceAllowed:(NSNumber*)value;
@@ -198,11 +274,17 @@ extern const struct CurrencyRelationships {
 - (BOOL)primitivePaymentReferenceAllowedValue;
 - (void)setPrimitivePaymentReferenceAllowedValue:(BOOL)value_;
 
+
+
+
 - (NSNumber*)primitiveRecipientBicRequired;
 - (void)setPrimitiveRecipientBicRequired:(NSNumber*)value;
 
 - (BOOL)primitiveRecipientBicRequiredValue;
 - (void)setPrimitiveRecipientBicRequiredValue:(BOOL)value_;
+
+
+
 
 - (NSNumber*)primitiveRecipientEmailRequired;
 - (void)setPrimitiveRecipientEmailRequired:(NSNumber*)value;
@@ -210,34 +292,57 @@ extern const struct CurrencyRelationships {
 - (BOOL)primitiveRecipientEmailRequiredValue;
 - (void)setPrimitiveRecipientEmailRequiredValue:(BOOL)value_;
 
+
+
+
 - (NSNumber*)primitiveReferenceMaxLength;
 - (void)setPrimitiveReferenceMaxLength:(NSNumber*)value;
 
 - (int16_t)primitiveReferenceMaxLengthValue;
 - (void)setPrimitiveReferenceMaxLengthValue:(int16_t)value_;
 
+
+
+
 - (NSString*)primitiveSymbol;
 - (void)setPrimitiveSymbol:(NSString*)value;
+
+
+
+
 
 - (NSMutableSet*)primitiveCurrencyForRecipients;
 - (void)setPrimitiveCurrencyForRecipients:(NSMutableSet*)value;
 
+
+
 - (RecipientType*)primitiveDefaultRecipientType;
 - (void)setPrimitiveDefaultRecipientType:(RecipientType*)value;
+
+
 
 - (NSMutableOrderedSet*)primitiveRecipientTypes;
 - (void)setPrimitiveRecipientTypes:(NSMutableOrderedSet*)value;
 
+
+
 - (NSMutableSet*)primitiveSourceForPayments;
 - (void)setPrimitiveSourceForPayments:(NSMutableSet*)value;
+
+
 
 - (NSMutableSet*)primitiveSources;
 - (void)setPrimitiveSources:(NSMutableSet*)value;
 
+
+
 - (NSMutableSet*)primitiveTargetForPayments;
 - (void)setPrimitiveTargetForPayments:(NSMutableSet*)value;
 
+
+
 - (NSMutableSet*)primitiveTargets;
 - (void)setPrimitiveTargets:(NSMutableSet*)value;
+
 
 @end

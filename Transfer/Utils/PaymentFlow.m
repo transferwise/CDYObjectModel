@@ -764,11 +764,10 @@
             payment.recipient = nil;
             [self presentRecipientDetails:[payment.user personalProfileFilled] templateRecipient:template];
         }
-		else if (!payment.user.personalProfileFilled
-				 || [self needsUsdProfileShowing:payment])
+		else if (!payment.user.personalProfileFilled)
 		{
             [self presentPersonalProfileEntry:YES
-								   isExisting:[self needsUsdProfileShowing:payment.user.personalProfile]];
+								   isExisting:[Credentials userLoggedIn]];
         }
 		else if (payment.user.personalProfile.sendAsBusinessValue
 				 || ([payment.profileUsed isEqualToString:BUSINESS_PROFILE] && !payment.user.businessProfileFilled))
@@ -786,11 +785,6 @@
             [self presentPaymentConfirmation];
         }
     }];
-}
-
-- (BOOL)needsUsdProfileShowing:(Payment *)profile
-{
-	return YES;
 }
 
 @end

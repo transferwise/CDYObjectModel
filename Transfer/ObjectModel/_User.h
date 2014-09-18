@@ -3,6 +3,7 @@
 
 #import <CoreData/CoreData.h>
 
+
 extern const struct UserAttributes {
 	__unsafe_unretained NSString *anonymous;
 	__unsafe_unretained NSString *email;
@@ -20,10 +21,21 @@ extern const struct UserRelationships {
 	__unsafe_unretained NSString *personalProfile;
 } UserRelationships;
 
+extern const struct UserFetchedProperties {
+} UserFetchedProperties;
+
 @class BusinessProfile;
 @class Recipient;
 @class Payment;
 @class PersonalProfile;
+
+
+
+
+
+
+
+
 
 @interface UserID : NSManagedObjectID {}
 @end
@@ -32,75 +44,132 @@ extern const struct UserRelationships {
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) UserID* objectID;
+- (UserID*)objectID;
+
+
+
+
 
 @property (nonatomic, strong) NSNumber* anonymous;
 
-@property (atomic) BOOL anonymousValue;
+
+
+@property BOOL anonymousValue;
 - (BOOL)anonymousValue;
 - (void)setAnonymousValue:(BOOL)value_;
 
 //- (BOOL)validateAnonymous:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSString* email;
+
+
 
 //- (BOOL)validateEmail:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSString* inviteUrl;
+
+
 
 //- (BOOL)validateInviteUrl:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSString* pReference;
+
+
 
 //- (BOOL)validatePReference:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSString* password;
+
+
 
 //- (BOOL)validatePassword:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSNumber* sendAsBusinessDefaultSetting;
 
-@property (atomic) BOOL sendAsBusinessDefaultSettingValue;
+
+
+@property BOOL sendAsBusinessDefaultSettingValue;
 - (BOOL)sendAsBusinessDefaultSettingValue;
 - (void)setSendAsBusinessDefaultSettingValue:(BOOL)value_;
 
 //- (BOOL)validateSendAsBusinessDefaultSetting:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSNumber* successfulInviteCount;
 
-@property (atomic) int16_t successfulInviteCountValue;
+
+
+@property int16_t successfulInviteCountValue;
 - (int16_t)successfulInviteCountValue;
 - (void)setSuccessfulInviteCountValue:(int16_t)value_;
 
 //- (BOOL)validateSuccessfulInviteCount:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) BusinessProfile *businessProfile;
 
 //- (BOOL)validateBusinessProfile:(id*)value_ error:(NSError**)error_;
+
+
+
 
 @property (nonatomic, strong) NSSet *contacts;
 
 - (NSMutableSet*)contactsSet;
 
+
+
+
 @property (nonatomic, strong) NSSet *payments;
 
 - (NSMutableSet*)paymentsSet;
+
+
+
 
 @property (nonatomic, strong) PersonalProfile *personalProfile;
 
 //- (BOOL)validatePersonalProfile:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @end
 
-@interface _User (ContactsCoreDataGeneratedAccessors)
+@interface _User (CoreDataGeneratedAccessors)
+
 - (void)addContacts:(NSSet*)value_;
 - (void)removeContacts:(NSSet*)value_;
 - (void)addContactsObject:(Recipient*)value_;
 - (void)removeContactsObject:(Recipient*)value_;
 
-@end
-
-@interface _User (PaymentsCoreDataGeneratedAccessors)
 - (void)addPayments:(NSSet*)value_;
 - (void)removePayments:(NSSet*)value_;
 - (void)addPaymentsObject:(Payment*)value_;
@@ -110,23 +179,39 @@ extern const struct UserRelationships {
 
 @interface _User (CoreDataGeneratedPrimitiveAccessors)
 
+
 - (NSNumber*)primitiveAnonymous;
 - (void)setPrimitiveAnonymous:(NSNumber*)value;
 
 - (BOOL)primitiveAnonymousValue;
 - (void)setPrimitiveAnonymousValue:(BOOL)value_;
 
+
+
+
 - (NSString*)primitiveEmail;
 - (void)setPrimitiveEmail:(NSString*)value;
+
+
+
 
 - (NSString*)primitiveInviteUrl;
 - (void)setPrimitiveInviteUrl:(NSString*)value;
 
+
+
+
 - (NSString*)primitivePReference;
 - (void)setPrimitivePReference:(NSString*)value;
 
+
+
+
 - (NSString*)primitivePassword;
 - (void)setPrimitivePassword:(NSString*)value;
+
+
+
 
 - (NSNumber*)primitiveSendAsBusinessDefaultSetting;
 - (void)setPrimitiveSendAsBusinessDefaultSetting:(NSNumber*)value;
@@ -134,22 +219,36 @@ extern const struct UserRelationships {
 - (BOOL)primitiveSendAsBusinessDefaultSettingValue;
 - (void)setPrimitiveSendAsBusinessDefaultSettingValue:(BOOL)value_;
 
+
+
+
 - (NSNumber*)primitiveSuccessfulInviteCount;
 - (void)setPrimitiveSuccessfulInviteCount:(NSNumber*)value;
 
 - (int16_t)primitiveSuccessfulInviteCountValue;
 - (void)setPrimitiveSuccessfulInviteCountValue:(int16_t)value_;
 
+
+
+
+
 - (BusinessProfile*)primitiveBusinessProfile;
 - (void)setPrimitiveBusinessProfile:(BusinessProfile*)value;
+
+
 
 - (NSMutableSet*)primitiveContacts;
 - (void)setPrimitiveContacts:(NSMutableSet*)value;
 
+
+
 - (NSMutableSet*)primitivePayments;
 - (void)setPrimitivePayments:(NSMutableSet*)value;
 
+
+
 - (PersonalProfile*)primitivePersonalProfile;
 - (void)setPrimitivePersonalProfile:(PersonalProfile*)value;
+
 
 @end

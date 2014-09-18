@@ -17,6 +17,9 @@ const struct PayInMethodRelationships PayInMethodRelationships = {
 	.recipient = @"recipient",
 };
 
+const struct PayInMethodFetchedProperties PayInMethodFetchedProperties = {
+};
+
 @implementation PayInMethodID
 @end
 
@@ -42,7 +45,7 @@ const struct PayInMethodRelationships PayInMethodRelationships = {
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-
+	
 	if ([key isEqualToString:@"disabledValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"disabled"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -52,9 +55,19 @@ const struct PayInMethodRelationships PayInMethodRelationships = {
 	return keyPaths;
 }
 
+
+
+
 @dynamic bankName;
 
+
+
+
+
+
 @dynamic disabled;
+
+
 
 - (BOOL)disabledValue {
 	NSNumber *result = [self disabled];
@@ -74,17 +87,49 @@ const struct PayInMethodRelationships PayInMethodRelationships = {
 	[self setPrimitiveDisabled:[NSNumber numberWithBool:value_]];
 }
 
+
+
+
+
 @dynamic disabledReason;
+
+
+
+
+
 
 @dynamic paymentReference;
 
+
+
+
+
+
 @dynamic transferWiseAddress;
+
+
+
+
+
 
 @dynamic type;
 
+
+
+
+
+
 @dynamic payment;
+
+	
 
 @dynamic recipient;
 
-@end
+	
 
+
+
+
+
+
+@end

@@ -9,6 +9,12 @@ const struct CountryAttributes CountryAttributes = {
 	.name = @"name",
 };
 
+const struct CountryRelationships CountryRelationships = {
+};
+
+const struct CountryFetchedProperties CountryFetchedProperties = {
+};
+
 @implementation CountryID
 @end
 
@@ -34,15 +40,38 @@ const struct CountryAttributes CountryAttributes = {
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+	
 
 	return keyPaths;
 }
 
+
+
+
 @dynamic iso2Code;
+
+
+
+
+
 
 @dynamic iso3Code;
 
+
+
+
+
+
 @dynamic name;
 
-@end
 
+
+
+
+
+
+
+
+
+
+@end
