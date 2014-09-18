@@ -339,4 +339,20 @@ NSUInteger const kUserPersonalSection = 1;
 										withTarget:state];
 }
 
+- (void)clearData
+{
+	[self.firstLastNameCell setValue:@""];
+	[self.firstLastNameCell setSecondValue:@""];
+	[self.emailCell setValue:@""];
+	[self.passwordCell setUseDummyPassword:@""];
+	[self.phoneNumberCell setValue:@""];
+	[self.dateOfBirthCell setValue:@""];
+	[self.addressCell setValue:@""];
+	[self.zipCityCell setValue:@""];
+	[self.zipCityCell setSecondValue:@""];
+	[self.countryCell setValue:@""];
+	[self.stateCell setValue:@""];
+	[self.occupationCell setValue:@""];
+}
+
 @end

@@ -209,7 +209,6 @@
 	[self setEmailCell:emailCell];
 	[self setPasswordCell:passwordCell];
 	[self setSendAsBusinessCell:sendAsBusinessCell];
-
 }
 
 - (void)setObjectModel:(ObjectModel *)objectModel
@@ -665,5 +664,11 @@
 			}
 		}
 	}
+}
+
+- (void)clearData
+{
+	[self.profileSource clearData];
+	[self reloadTableViews];
 }
 @end

@@ -35,5 +35,6 @@
 		 buttonTitle:(NSString *)buttonTitle;
 
 - (void)validateProfile;
+- (void)clearData;
 
 @end

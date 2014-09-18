@@ -203,4 +203,16 @@
     [operation setState:[self.stateCell value]];
 }
 
+- (void)clearData
+{
+	[self.businessNameCell setValue:@""];
+	[self.registrationNumberCell setValue:@""];
+	[self.descriptionCell setValue:@""];
+	[self.addressCell setValue:@""];
+	[self.zipCityCell setValue:@""];
+	[self.zipCityCell setSecondValue:@""];
+	[self.countryCell setValue:@""];
+	[self.stateCell setValue:@""];
+}
+
 @end

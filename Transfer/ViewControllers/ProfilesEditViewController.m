@@ -128,4 +128,10 @@
 {
 	self.isShowingSettings = NO;
 }
+
+- (void)clearData
+{
+	[self.personalProfile clearData];
+	[self.businessProfile clearData];
+}
 @end
