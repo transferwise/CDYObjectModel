@@ -26,6 +26,7 @@
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic) BOOL allowProfileSwitch;
 @property (nonatomic) BOOL isExisting;
+@property (nonatomic) BOOL doNotShowSuccessMessageForExisting;
 @property (nonatomic) BOOL showFooterViewForIpad;
 
 - (id)initWithSource:(ProfileSource *)source

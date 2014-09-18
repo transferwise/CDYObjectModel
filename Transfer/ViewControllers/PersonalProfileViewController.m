@@ -29,6 +29,7 @@
 
 - (id)initWithActionButtonTitle:(NSString *)title
 					 isExisting:(BOOL)isExisting
+	doNotShowMessageForExisting:(BOOL)doNotShowMessageForExisting
 {
 	self = [super initWithSource:[[PersonalProfileSource alloc] init]
 				 quickValidation:[QuickProfileValidationOperation personalProfileValidation]
@@ -36,6 +37,7 @@
 	if (self)
 	{
 		self.isExisting = isExisting;
+		self.doNotShowSuccessMessageForExisting = doNotShowMessageForExisting;
 	}
 	return self;
 }

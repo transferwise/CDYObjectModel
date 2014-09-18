@@ -765,7 +765,7 @@
             [self presentRecipientDetails:[payment.user personalProfileFilled] templateRecipient:template];
         }
 		else if (!payment.user.personalProfileFilled
-				 || [self needsUsdProfileShowing:payment.user.personalProfile])
+				 || [self needsUsdProfileShowing:payment])
 		{
             [self presentPersonalProfileEntry:YES
 								   isExisting:[self needsUsdProfileShowing:payment.user.personalProfile]];
@@ -788,7 +788,7 @@
     }];
 }
 
-- (BOOL)needsUsdProfileShowing:(PersonalProfile *)profile
+- (BOOL)needsUsdProfileShowing:(Payment *)profile
 {
 	return YES;
 }

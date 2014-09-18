@@ -459,7 +459,7 @@
 			return;
         }
 		
-		if (isExisting)
+		if (isExisting && !self.doNotShowSuccessMessageForExisting)
 		{
 			//show sucess message
 			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"profile.edit.save.success.header", nil)

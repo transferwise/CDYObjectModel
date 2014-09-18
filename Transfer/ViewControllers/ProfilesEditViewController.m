@@ -66,7 +66,8 @@
 - (void)initControllers
 {
 	self.personalProfile = [[PersonalProfileViewController alloc] initWithActionButtonTitle:NSLocalizedString(@"profile.edit.save", nil)
-																				 isExisting:YES];
+																				 isExisting:YES
+																doNotShowMessageForExisting:NO];
 	self.personalProfile.objectModel = self.objectModel;
 	self.personalProfile.allowProfileSwitch = NO;
 	PersonalProfileCommitter *personalValidation = [[PersonalProfileCommitter alloc] init];
