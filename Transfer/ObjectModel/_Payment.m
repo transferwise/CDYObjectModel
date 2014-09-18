@@ -31,9 +31,6 @@ const struct PaymentRelationships PaymentRelationships = {
 	.user = @"user",
 };
 
-const struct PaymentFetchedProperties PaymentFetchedProperties = {
-};
-
 @implementation PaymentID
 @end
 
@@ -59,7 +56,7 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-	
+
 	if ([key isEqualToString:@"conversionRateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"conversionRate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -84,19 +81,9 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 	return keyPaths;
 }
 
-
-
-
 @dynamic cancelledDate;
 
-
-
-
-
-
 @dynamic conversionRate;
-
-
 
 - (double)conversionRateValue {
 	NSNumber *result = [self conversionRate];
@@ -116,27 +103,11 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 	[self setPrimitiveConversionRate:[NSNumber numberWithDouble:value_]];
 }
 
-
-
-
-
 @dynamic estimatedDelivery;
-
-
-
-
-
 
 @dynamic estimatedDeliveryStringFromServer;
 
-
-
-
-
-
 @dynamic isFixedAmount;
-
-
 
 - (BOOL)isFixedAmountValue {
 	NSNumber *result = [self isFixedAmount];
@@ -156,41 +127,15 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 	[self setPrimitiveIsFixedAmount:[NSNumber numberWithBool:value_]];
 }
 
-
-
-
-
 @dynamic lastUpdateTime;
-
-
-
-
-
 
 @dynamic payIn;
 
-
-
-
-
-
 @dynamic payOut;
-
-
-
-
-
 
 @dynamic paymentStatus;
 
-
-
-
-
-
 @dynamic presentable;
-
-
 
 - (BOOL)presentableValue {
 	NSNumber *result = [self presentable];
@@ -210,27 +155,11 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 	[self setPrimitivePresentable:[NSNumber numberWithBool:value_]];
 }
 
-
-
-
-
 @dynamic profileUsed;
-
-
-
-
-
 
 @dynamic receivedDate;
 
-
-
-
-
-
 @dynamic remoteId;
-
-
 
 - (int32_t)remoteIdValue {
 	NSNumber *result = [self remoteId];
@@ -250,64 +179,92 @@ const struct PaymentFetchedProperties PaymentFetchedProperties = {
 	[self setPrimitiveRemoteId:[NSNumber numberWithInt:value_]];
 }
 
-
-
-
-
 @dynamic submittedDate;
-
-
-
-
-
 
 @dynamic transferredDate;
 
-
-
-
-
-
 @dynamic payInMethods;
 
-	
 - (NSMutableOrderedSet*)payInMethodsSet {
 	[self willAccessValueForKey:@"payInMethods"];
-  
+
 	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"payInMethods"];
-  
+
 	[self didAccessValueForKey:@"payInMethods"];
 	return result;
 }
-	
 
 @dynamic paymentMadeIndicator;
 
-	
-
 @dynamic recipient;
-
-	
 
 @dynamic refundRecipient;
 
-	
-
 @dynamic sourceCurrency;
-
-	
 
 @dynamic targetCurrency;
 
-	
-
 @dynamic user;
 
-	
-
-
-
-
-
-
 @end
+
+@implementation _Payment (PayInMethodsCoreDataGeneratedAccessors)
+- (void)addPayInMethods:(NSOrderedSet*)value_ {
+	[self.payInMethodsSet unionOrderedSet:value_];
+}
+- (void)removePayInMethods:(NSOrderedSet*)value_ {
+	[self.payInMethodsSet minusOrderedSet:value_];
+}
+- (void)addPayInMethodsObject:(PayInMethod*)value_ {
+	[self.payInMethodsSet addObject:value_];
+}
+- (void)removePayInMethodsObject:(PayInMethod*)value_ {
+	[self.payInMethodsSet removeObject:value_];
+}
+- (void)insertObject:(PayInMethod*)value inPayInMethodsAtIndex:(NSUInteger)idx {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"payInMethods"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self payInMethods]];
+    [tmpOrderedSet insertObject:value atIndex:idx];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"payInMethods"];
+    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"payInMethods"];
+}
+- (void)removeObjectFromPayInMethodsAtIndex:(NSUInteger)idx {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"payInMethods"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self payInMethods]];
+    [tmpOrderedSet removeObjectAtIndex:idx];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"payInMethods"];
+    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"payInMethods"];
+}
+- (void)insertPayInMethods:(NSArray *)value atIndexes:(NSIndexSet *)indexes {
+    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"payInMethods"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self payInMethods]];
+    [tmpOrderedSet insertObjects:value atIndexes:indexes];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"payInMethods"];
+    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"payInMethods"];
+}
+- (void)removePayInMethodsAtIndexes:(NSIndexSet *)indexes {
+    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"payInMethods"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self payInMethods]];
+    [tmpOrderedSet removeObjectsAtIndexes:indexes];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"payInMethods"];
+    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"payInMethods"];
+}
+- (void)replaceObjectInPayInMethodsAtIndex:(NSUInteger)idx withObject:(PayInMethod*)value {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"payInMethods"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self payInMethods]];
+    [tmpOrderedSet replaceObjectAtIndex:idx withObject:value];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"payInMethods"];
+    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"payInMethods"];
+}
+- (void)replacePayInMethodsAtIndexes:(NSIndexSet *)indexes withPayInMethods:(NSArray *)value {
+    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"payInMethods"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self payInMethods]];
+    [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"payInMethods"];
+    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"payInMethods"];
+}
+@end
+

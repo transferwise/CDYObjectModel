@@ -20,7 +20,7 @@
 
 - (NSString *)localizedTransferwiseMessage {
     if (self.code != ResponseCumulativeError) {
-        NSString *messageKey = [NSString stringWithFormat:@"errors.TRWErrorDomain.%d.message", self.code];
+        NSString *messageKey = [NSString stringWithFormat:@"errors.TRWErrorDomain.%ld.message", (long)self.code];
         NSString *message = NSLocalizedString(messageKey, nil);
         if ([message isEqualToString:messageKey]) {
             return [self localizedDescription];

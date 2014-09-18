@@ -290,7 +290,7 @@
 					  }];
 }
 
-- (NSArray *)getABMultivalueProperty:(ABRecordRef)entry property:(NSInteger)field
+- (NSArray *)getABMultivalueProperty:(ABRecordRef)entry property:(int)field
 {
 	CFTypeRef theProperty = ABRecordCopyValue(entry, field);
 	NSArray *items = (__bridge_transfer NSArray *) ABMultiValueCopyArrayOfAllValues(theProperty);
