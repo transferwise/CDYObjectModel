@@ -52,6 +52,7 @@ typedef void (^SelectionCompletion)();
 - (TextEntryCell *)countrySelectionCell:(SelectionCell *)cell
 					   didSelectCountry:(Country *)country
 						 withCompletion:(SelectionCompletion)completion;
+- (void)clearData;
 + (BOOL)showStateCell:(NSString *)countryCode;
 + (BOOL)isMatchingSource:(NSString *)source
 			  withTarget:(NSString *)target;

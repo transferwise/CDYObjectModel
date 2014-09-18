@@ -28,6 +28,8 @@
 @property (nonatomic, strong) TabViewController *tabController;
 @property (nonatomic, strong) UIView *revealTapView;
 @property (nonatomic, strong) TransactionsViewController *transactionsController;
+@property (nonatomic, strong) ContactsViewController *contactsController;
+@property (nonatomic, strong) ProfilesEditViewController *profileController;
 @property (nonatomic, assign) BOOL launchTableViewGamAdjustmentDone;
 @property (nonatomic) BOOL shown;
 
@@ -101,6 +103,7 @@
 	
 	
 	ContactsViewController *contactsController = [[ContactsViewController alloc] init];
+	[self setContactsController:contactsController];
 	[contactsController setObjectModel:self.objectModel];
 	TabItem *contactsItem = [TabItem new];
 	contactsItem.title = NSLocalizedString(@"contacts.controller.tabbar.title", nil);
@@ -109,6 +112,7 @@
 	contactsItem.viewController = contactsController;
 	
 	ProfilesEditViewController *profileController = [[ProfilesEditViewController alloc] init];
+	[self setProfileController:profileController];
 	[profileController setObjectModel:self.objectModel];
 	
 	TabItem *profileItem = [TabItem new];
@@ -192,6 +196,8 @@
 {
 	[[TransferwiseClient sharedClient] clearCredentials];
 	[self.transactionsController clearData];
+	[self.contactsController clearData];
+	[self.profileController clearData];
 }
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated

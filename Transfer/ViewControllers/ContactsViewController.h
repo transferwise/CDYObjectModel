@@ -15,4 +15,6 @@
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 
+- (void)clearData;
+
 @end
