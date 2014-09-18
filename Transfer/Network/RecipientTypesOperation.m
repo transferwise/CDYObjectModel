@@ -26,7 +26,7 @@ NSString *const kRecipientTypesPath = @"/recipient/listTypes";
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         [weakSelf.workModel.managedObjectContext performBlock:^{
             NSArray *recipients = response[@"recipients"];
-            MCLog(@"Pulled %lu receipient types", [recipients count]);
+            MCLog(@"Pulled %lu receipient types", (unsigned long)[recipients count]);
             for (NSDictionary *data in recipients) {
                 NSDictionary *dataToUse = data;
                 if(weakSelf.sourceCurrency)

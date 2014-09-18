@@ -81,7 +81,7 @@
     __weak typeof(self) weakSelf = self;
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *op, id responseObject) {
         NSInteger statusCode = op.response.statusCode;
-        MCLog(@"%@ - Success:%ld - %lu", op.request.URL.path, statusCode, (unsigned long)[responseObject length]);
+        MCLog(@"%@ - Success:%ld - %lu", op.request.URL.path, (long)statusCode, (unsigned long)[responseObject length]);
         if (statusCode != 200 || !responseObject) {
             NSError *error = [NSError errorWithDomain:TRWErrorDomain code:ResponseServerError userInfo:@{}];
             if (weakSelf.operationErrorHandler)

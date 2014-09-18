@@ -121,7 +121,7 @@ NSString *kAddressVerificationImageName = @"~/Documents/addressVerification.jpg"
 + (void)saveImage:(UIImage *)image toPath:(NSString *)path {
     MCLog(@"Save image %@ to path:%@", image, [path stringByExpandingTildeInPath]);
     NSData *imageData = UIImageJPEGRepresentation(image, 0.6);
-    MCLog(@"ImageData:%lu", [imageData length]);
+    MCLog(@"ImageData:%lu", (unsigned long)[imageData length]);
     [imageData writeToFile:[path stringByExpandingTildeInPath] atomically:NO];
 }
 

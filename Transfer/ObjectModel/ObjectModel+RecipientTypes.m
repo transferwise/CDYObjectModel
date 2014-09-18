@@ -140,7 +140,7 @@
 - (void)removeOtherUsers {
     NSPredicate *notLoggedInUser = [NSPredicate predicateWithFormat:@"email != %@", [Credentials userEmail]];
     NSArray *users = [self fetchEntitiesNamed:[User entityName] withPredicate:notLoggedInUser];
-    MCLog(@"Will remove %lu redundant users", [users count]);
+    MCLog(@"Will remove %lu redundant users", (unsigned long)[users count]);
     [self deleteObjects:users saveAfter:NO];
 }
 

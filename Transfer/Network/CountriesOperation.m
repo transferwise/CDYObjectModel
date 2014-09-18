@@ -32,7 +32,7 @@ NSString *const kCountriesPath = @"/user/countries";
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         [weakSelf.workModel.managedObjectContext performBlock:^{
             NSArray *countries = response[@"countries"];
-            MCLog(@"Retrieved %lu countries", [countries count]);
+            MCLog(@"Retrieved %lu countries", (unsigned long)[countries count]);
             for (NSDictionary *data in countries) {
                 [weakSelf.workModel addOrCreateCountryWithData:data];
             }

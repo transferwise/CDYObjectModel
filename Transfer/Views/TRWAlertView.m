@@ -55,7 +55,7 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    MCLog(@"alertView:didDismissWithButtonIndex:%ld", buttonIndex);
+    MCLog(@"alertView:didDismissWithButtonIndex:%ld", (long)buttonIndex);
     if (buttonIndex == self.leftButtonIndex && self.leftButtonAction) {
         self.leftButtonAction();
     }

@@ -26,7 +26,7 @@
 
     [self.workModel.managedObjectContext performBlock:^{
         NSArray *recipients = response[@"recipients"];
-        MCLog(@"Received %lu recipients from server", [recipients count]);
+        MCLog(@"Received %lu recipients from server", (unsigned long)[recipients count]);
 
         void (^persistingBlock)() = ^() {
             NSMutableArray *existingRecipients = [NSMutableArray arrayWithArray:[self.workModel allUserRecipients]];

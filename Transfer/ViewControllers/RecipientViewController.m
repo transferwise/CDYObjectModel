@@ -558,7 +558,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         MCLog(@"Did select currency:%@. Default type:%@", currency.code, currency.defaultRecipientType.type);
         
         RecipientType *type = currency.defaultRecipientType;
-        MCLog(@"Have %lu fields", [type.fields count]);
+        MCLog(@"Have %lu fields", (unsigned long)[type.fields count]);
         
         [self setCurrency:currency];
         [self setRecipientType:type];
