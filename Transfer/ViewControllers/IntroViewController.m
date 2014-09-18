@@ -234,7 +234,7 @@
     [self setReportedPage:currentPage];
     MCLog(@"Report page:%ld", (long)currentPage);
 
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"IntroScreensSlided" withLabel:[NSString stringWithFormat:@"%d", currentPage + 1]];
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"IntroScreensSlided" withLabel:[NSString stringWithFormat:@"%ld", (long) currentPage + 1]];
 }
 
 - (NSAttributedString *)attributedMessage:(NSString *)message bold:(NSArray *)boldTexts {
