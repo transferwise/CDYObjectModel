@@ -192,7 +192,7 @@
     }];
 }
 
--(void)getAddressBookAndExecuteInBackground:(BOOL)requestAcces
+-(void)getAddressBookAndExecuteInBackground:(BOOL)requestAccess
 							 executionBlock:(void(^)(BOOL hasAddressBook))excecutionBlock
 {
     if(excecutionBlock)
@@ -200,7 +200,7 @@
         dispatch_async(self.dispatchQueue, ^{
             if (self.addressBook == NULL)
             {
-				if (requestAcces
+				if (requestAccess
 					|| ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized)
 				{
 					[self requestAddressBookWithHandler:^(bool granted, CFErrorRef error) {
@@ -367,8 +367,12 @@ void addressBookExternalChangeCallback (ABAddressBookRef notificationaddressbook
             });
             dispatch_semaphore_signal(sema);
         });
-        //This should block the local dispatch queue until the address boook has been set up.
+        //This should block the local dispatch queue until the address book has been set up.
         dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+    }
+    else
+    {
+        handler(NO,nil);
     }
 }
 
