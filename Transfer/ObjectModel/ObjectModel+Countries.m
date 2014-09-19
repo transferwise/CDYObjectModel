@@ -29,7 +29,7 @@
     [country setName:data[@"name"]];
 }
 
-- (int)numberOfCountries {
+- (NSInteger)numberOfCountries {
     return [self countInstancesOfEntity:[Country entityName]];
 }
 

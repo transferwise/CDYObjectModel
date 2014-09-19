@@ -164,8 +164,17 @@ NSInteger const kYearField = 3;
 #pragma mark - Value Getters/Setters
 - (void)setValue:(NSString *)value
 {
-    NSDate *date = [[DateEntryCell rawDateFormatter] dateFromString:value];
-    [self setDateValue:date];
+	if ([value hasValue])
+	{
+		NSDate *date = [[DateEntryCell rawDateFormatter] dateFromString:value];
+		[self setDateValue:date];
+	}
+	else
+	{
+		self.dayTextField.text = @"";
+		self.monthTextField.text = @"";
+		self.yearTextField.text = @"";
+	}	
 }
 
 - (void)setDateValue:(NSDate *)date
@@ -219,12 +228,12 @@ NSInteger const kYearField = 3;
 	
 	self.dayTextField.text = [DateEntryCell paddedString:[components day]];
 	self.monthTextField.text = [DateEntryCell paddedString:[components month]];
-	self.yearTextField.text = [NSString stringWithFormat:@"%i", [components year]];
+	self.yearTextField.text = [NSString stringWithFormat:@"%li", (long)[components year]];
 }
 
 + (NSString *)paddedString:(NSInteger)component
 {
-	return [NSString stringWithFormat:(component < 10 ? @"0%i" : @"%i"), component];
+	return [NSString stringWithFormat:(component < 10 ? @"0%li" : @"%li"), (long)component];
 }
 
 #pragma mark - Validation

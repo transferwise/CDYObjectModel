@@ -28,13 +28,16 @@
 }
 
 - (id)initWithActionButtonTitle:(NSString *)title
+					 isExisting:(BOOL)isExisting
+	doNotShowMessageForExisting:(BOOL)doNotShowMessageForExisting
 {
 	self = [super initWithSource:[[PersonalProfileSource alloc] init]
 				 quickValidation:[QuickProfileValidationOperation personalProfileValidation]
 					 buttonTitle:title];
 	if (self)
 	{
-		// Custom init
+		self.isExisting = isExisting;
+		self.doNotShowSuccessMessageForExisting = doNotShowMessageForExisting;
 	}
 	return self;
 }

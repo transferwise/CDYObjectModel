@@ -88,7 +88,7 @@
         templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=APP_ID";
     }
 
-    NSString *reviewURL = [templateReviewURL stringByReplacingOccurrencesOfString:@"APP_ID" withString:[NSString stringWithFormat:@"%d", TransferwiseAppID]];
+    NSString *reviewURL = [templateReviewURL stringByReplacingOccurrencesOfString:@"APP_ID" withString:[NSString stringWithFormat:@"%lu", (unsigned long)TransferwiseAppID]];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:reviewURL]];
 }
 

@@ -205,7 +205,7 @@
 {
     [UIView transitionWithView:self.image duration:0.3f options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionCurveEaseInOut animations:^{
         self.image.tag = ++self.image.tag%3;
-        self.image.image = [UIImage imageNamed:[NSString stringWithFormat:@"refreshFlag%d",self.image.tag]];
+        self.image.image = [UIImage imageNamed:[NSString stringWithFormat:@"refreshFlag%ld",(long)self.image.tag]];
     } completion:^(BOOL finished) {
         if (self.isRefreshing)
         {

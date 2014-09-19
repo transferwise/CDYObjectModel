@@ -624,6 +624,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)clearData
 {
 	self.payments = nil;
+	[self.tableView reloadData];
 }
-
 @end

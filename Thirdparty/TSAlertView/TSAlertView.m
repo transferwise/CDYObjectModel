@@ -73,7 +73,7 @@
 @property (nonatomic, readonly) UITextView* messageTextView;
 @property (nonatomic, readonly) UIView* messageView;
 - (void) TSAlertView_commonInit;
-- (void) releaseWindow: (int) buttonIndex;
+- (void) releaseWindow: (NSInteger) buttonIndex;
 - (void) pulse;
 - (CGSize) titleLabelSize;
 - (CGSize) messageLabelSize;
@@ -587,7 +587,7 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
 	}
 }
 
-- (void) releaseWindow: (int) buttonIndex
+- (void) releaseWindow: (NSInteger) buttonIndex
 {
 	if ( [self.delegate respondsToSelector: @selector(alertView:didDismissWithButtonIndex:)] )
 	{
@@ -659,7 +659,7 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
 
 - (void) onButtonPress: (id) sender
 {
-	int buttonIndex = [_buttons indexOfObjectIdenticalTo: sender];
+	NSUInteger buttonIndex = [_buttons indexOfObjectIdenticalTo: sender];
 	
 	if ( [self.delegate respondsToSelector: @selector(alertView:clickedButtonAtIndex:)] )
 	{
@@ -827,7 +827,7 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
 - (CGSize) buttonsAreaSize_Stacked
 {
 	CGFloat maxWidth = self.width - (kTSAlertView_LeftMargin * 2);
-	int buttonCount = [self.buttons count];
+	NSUInteger buttonCount = [self.buttons count];
 	
 	CGSize bs = [[self.buttons objectAtIndex:0] sizeThatFits: CGSizeZero];
 	

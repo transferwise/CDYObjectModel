@@ -29,7 +29,8 @@ typedef void (^EmailValidationResultBlock)(BOOL available, NSError *error);
 - (void)verifyEmail:(NSString *)email withResultBlock:(EmailValidationResultBlock)resultBlock;
 - (void)validatePayment:(NSManagedObjectID *)paymentInput successBlock:(VerificationStepSuccessBlock)successBlock errorHandler:(PaymentErrorBlock)errorHandler;
 - (void)commitPaymentWithSuccessBlock:(VerificationStepSuccessBlock)successBlock ErrorHandler:(PaymentErrorBlock)errorHandler;
-- (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch;
+- (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch
+						 isExisting:(BOOL)isExisting;
 - (void)presentRecipientDetails:(BOOL)showMiniProfile;
 - (void)presentPaymentConfirmation;
 - (void)registerUser;

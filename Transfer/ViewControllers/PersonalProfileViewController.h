@@ -12,6 +12,8 @@
 
 @interface PersonalProfileViewController : ProfileEditViewController
 
-- (id)initWithActionButtonTitle:(NSString *)title;
+- (id)initWithActionButtonTitle:(NSString *)title
+					 isExisting:(BOOL)isExisting
+	doNotShowMessageForExisting:(BOOL)doNotShowMessageForExisting;
 
 @end

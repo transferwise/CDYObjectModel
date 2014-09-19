@@ -209,7 +209,6 @@
 	[self setEmailCell:emailCell];
 	[self setPasswordCell:passwordCell];
 	[self setSendAsBusinessCell:sendAsBusinessCell];
-
 }
 
 - (void)setObjectModel:(ObjectModel *)objectModel
@@ -459,7 +458,7 @@
 			return;
         }
 		
-		if (isExisting)
+		if (isExisting && !self.doNotShowSuccessMessageForExisting)
 		{
 			//show sucess message
 			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"profile.edit.save.success.header", nil)
@@ -677,5 +676,11 @@
 			}
 		}
 	}
+}
+
+- (void)clearData
+{
+	[self.profileSource clearData];
+	[self reloadTableViews];
 }
 @end

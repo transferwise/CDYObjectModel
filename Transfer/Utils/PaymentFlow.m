@@ -75,6 +75,7 @@
 }
 
 - (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch
+						 isExisting:(BOOL)isExisting
 {
     [[AnalyticsCoordinator sharedInstance] paymentPersonalProfileScreenShown];
 
@@ -82,6 +83,7 @@
 	
     [controller setObjectModel:self.objectModel];
     [controller setAllowProfileSwitch:allowProfileSwitch];
+	[controller setIsExisting:isExisting];
 	
     if (self.objectModel.pendingPayment.recipient)
 	{
@@ -126,7 +128,8 @@
                 [alertView setLeftButtonTitle:NSLocalizedString(@"button.title.fill", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
 
                 [alertView setLeftButtonAction:^{
-                    [weakSelf presentPersonalProfileEntry:NO];
+                    [weakSelf presentPersonalProfileEntry:NO
+											   isExisting:NO];
                 }];
 
                 [alertView show];
@@ -242,7 +245,8 @@
         if ([payment.user personalProfileFilled]) {
             [self presentPaymentConfirmation];
         } else {
-            [self presentPersonalProfileEntry:YES];
+            [self presentPersonalProfileEntry:YES
+								   isExisting:NO];
         }
     }];
 }
@@ -793,7 +797,8 @@
         }
 		else if (!payment.user.personalProfileFilled)
 		{
-            [self presentPersonalProfileEntry:YES];
+            [self presentPersonalProfileEntry:YES
+								   isExisting:[Credentials userLoggedIn]];
         }
 		else if (payment.user.personalProfile.sendAsBusinessValue
 				 || ([payment.profileUsed isEqualToString:BUSINESS_PROFILE] && !payment.user.businessProfileFilled))

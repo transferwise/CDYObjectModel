@@ -26,7 +26,7 @@
 
     [self.workModel.managedObjectContext performBlock:^{
         NSArray *recipients = response[@"recipients"];
-        MCLog(@"Received %d recipients from server", [recipients count]);
+        MCLog(@"Received %lu recipients from server", (unsigned long)[recipients count]);
 
         void (^persistingBlock)() = ^() {
             NSMutableArray *existingRecipients = [NSMutableArray arrayWithArray:[self.workModel allUserRecipients]];
@@ -36,7 +36,7 @@
             }
 
             if ([existingRecipients count] > 0) {
-                MCLog(@"%d recipients removed on server", [existingRecipients count]);
+                MCLog(@"%lu recipients removed on server", (unsigned long)[existingRecipients count]);
                 for (Recipient *recipient in existingRecipients) {
                     [recipient setHiddenValue:YES];
                 }
