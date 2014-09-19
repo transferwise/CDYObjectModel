@@ -735,6 +735,9 @@
         } else if ([payment needsToCommitRefundRecipientData]) {
             MCLog(@"commit refund");
             [self commitRecipient:payment.refundRecipient];
+        } else if (!payment.sendVerificationLaterValue &&[payment ssnVerificationRequired]) {
+            MCLog(@"Upload SSN");
+            [self uploadSocialSecurityNumber];
         } else if (!payment.sendVerificationLaterValue && [payment idVerificationRequired]) {
             MCLog(@"Upload id");
             [self uploadIdVerification];
@@ -744,9 +747,6 @@
         } else if (!payment.sendVerificationLaterValue &&[payment paymentPurposeRequired]) {
             MCLog(@"Upload payment purpose");
             [self uploadPaymentPurpose];
-        } else if (!payment.sendVerificationLaterValue &&[payment ssnVerificationRequired]) {
-            MCLog(@"Upload SSN");
-            [self uploadSocialSecurityNumber];
         }
         else {
             [self commitPayment];
