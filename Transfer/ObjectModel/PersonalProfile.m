@@ -45,9 +45,14 @@
     return [NSDictionary dictionaryWithDictionary:data];
 }
 
-- (BOOL)isFilled {
-	return [self.firstName hasValue] && [self.lastName hasValue] && [self.dateOfBirth hasValue] && [self.phoneNumber hasValue]
-			&& [self.addressFirstLine hasValue] && [self.postCode hasValue] && [self.city hasValue] && [self.countryCode hasValue];
+- (BOOL)isFilled
+{
+	return [self.firstName hasValue] && [self.lastName hasValue]
+		&& [self.dateOfBirth hasValue] && [self.phoneNumber hasValue]
+		&& [self.addressFirstLine hasValue] && [self.postCode hasValue]
+		&& [self.city hasValue] && [self.countryCode hasValue]
+		&& ([@"usa" caseInsensitiveCompare:self.countryCode] != NSOrderedSame || self.state)
+		&& ([@"az" caseInsensitiveCompare:self.state] != NSOrderedSame || self.occupation);
 }
 
 @end
