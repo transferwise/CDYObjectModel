@@ -82,7 +82,8 @@ typedef NS_OPTIONS(short, IdentificationRequired) {
 	IdentificationNoneRequired = 0,
 	IdentificationIdRequired = 1 << 0,
 	IdentificationAddressRequired = 1 << 1,
-	IdentificationPaymentPurposeRequired = 1 << 2
+	IdentificationPaymentPurposeRequired = 1 << 2,
+    IdentificationSSNRequired = 1 << 3
 };
 
 extern NSString *AppsFlyerDevKey;

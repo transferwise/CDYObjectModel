@@ -101,6 +101,7 @@ your friends to TransferWise";
 
 "identification.controller.title" = "%d documents required";
 "identification.controller.single.title" = "%d document required";
+"identification.controller.fields.title" = "Fill the fields";
 "identification.controller.title.ipad" = "%d documents required for security reasons";
 "identification.controller.single.title.ipad" = "%d document required for security reasons";
 "identification.reason.title" = "For security reasons we need:";
@@ -117,11 +118,18 @@ your friends to TransferWise";
 "identification.skip.button" = "Skip, I'll do it later";
 "identification.delete.button" = "Delete";
 "identification.payment.purpose" = "Purpose of this transfer";
+"identification.ssn" = "Social security number";
 "identification.good.format" = "Good! %d documents left.";
 "identification.good.single.format" = "Good! %d document left.";
 "identification.good.single.ipad" = "1 more document needed for security reasons.";
-"identification.only.purpose" = "You're almost done. Fill the field : Purpose of transfer";
+"identification.fields" = "Fill the remaining fields";
+"identification.only.ssn" = "Almost done. Enter Social security number";
+"identification.only.purpose" = "Almost done. Enter Purpose of transfer";
+"identification.only.ssn.ipad" = "You're almost done. Fill the field : Social security number";
+"identification.only.purpose.ipad" = "You're almost done. Fill the field : Purpose of transfer";
 "identification.well.done.format" = "Well done %@!";
+"identification.error" = "Error";
+"identification.ssn.short" = "Social security number is too short";
 
 
 

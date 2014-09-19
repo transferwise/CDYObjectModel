@@ -40,6 +40,7 @@
 @property (nonatomic, assign) NSInteger selectedRow;
 @property (nonatomic, assign) NSInteger idVerificationRowIndex;
 @property (nonatomic, assign) NSInteger addressVerificationRowIndex;
+@property (nonatomic, strong) TextEntryCell *ssnCell;
 @property (nonatomic, strong) TextEntryCell *paymentPurposeCell;
 
 @property (nonatomic, assign) float uploadProgressId,uploadProgressAddress;
@@ -103,7 +104,7 @@
     }
     else
     {
-        [self.navigationItem setTitle:NSLocalizedString(@"identification.only.purpose", nil)];
+        [self.navigationItem setTitle:NSLocalizedString(IPAD?@"identification.only.purpose":@"identification.controller.fields.title", nil)];
     }
 
     [self.tableView adjustFooterViewSize];
@@ -148,6 +149,23 @@
         self.addressVerificationRowIndex = [photoCells count] - 1;
     }
 
+    if ([self ssnVerificationRequired]) {
+        TextEntryCell *entryCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+        [self setSsnCell:entryCell];
+        [entryCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
+        [photoCells addObject:entryCell];
+        [entryCell.entryField addTarget:self action:@selector(validateInput) forControlEvents:UIControlEventAllEditingEvents];
+        [entryCell configureWithTitle:NSLocalizedString(@"identification.ssn", nil) value:@""];
+        entryCell.presentationPattern = @"***-**-****";
+        if(IPAD)
+        {
+            CGRect newFrame = entryCell.separatorLine.frame;
+            newFrame.size.height = 1.0f/[[UIScreen mainScreen] scale];
+            entryCell.separatorLine.frame=newFrame;
+        }
+    }
+
+    
     if ([self paymentPurposeRequired]) {
         TextEntryCell *entryCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
         [self setPaymentPurposeCell:entryCell];
@@ -163,6 +181,8 @@
         }
     }
 
+    
+    
     [self setPresentedSectionCells:@[photoCells]];
     [self.tableView reloadData];
 }
@@ -177,6 +197,10 @@
 
 - (BOOL)idVerificationRequired {
     return (self.identificationRequired & IdentificationIdRequired) == IdentificationIdRequired;
+}
+
+- (BOOL)ssnVerificationRequired {
+    return (self.identificationRequired & IdentificationSSNRequired) == IdentificationSSNRequired;
 }
 
 #pragma mark - ValidationCell delegate
@@ -256,7 +280,16 @@
 }
 
 - (IBAction)continueClicked:(id)sender {
-    [self complete:NO];
+    NSString *inputValidationError = [self validateEnteredText];
+    if(inputValidationError)
+    {
+        TRWAlertView *alert = [[TRWAlertView alloc] initWithTitle:NSLocalizedString(@"identification.error",nil) message:inputValidationError delegate:nil cancelButtonTitle:NSLocalizedString(@"button.title.ok",nil) otherButtonTitles:nil];
+        [alert show];
+    }
+    else
+    {
+        [self complete:NO];
+    }
 }
 
 -(void)complete:(BOOL)skip
@@ -275,7 +308,7 @@
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProgress:) name:TRWUploadProgressNotification object:nil];
     }
     
-    self.completionHandler(skip, [self.paymentPurposeCell.entryField text], ^(void){
+    self.completionHandler(skip, [self.paymentPurposeCell.entryField text], [[self.ssnCell.entryField text] stringByReplacingOccurrencesOfString:@"-" withString:@""], ^(void){
 		[hud hide];
 		if (!skip)
 		{
@@ -297,7 +330,7 @@
 
     int numberOfMissingFields = 0;
     int numberOfMissingDocuments = 0;
-    int numberOfMissingReasons = 0;
+    BOOL missingReason = NO;
 
     if ([self idVerificationRequired] && ![PendingPayment isIdVerificationImagePresent]) {
         numberOfMissingFields++;
@@ -311,7 +344,11 @@
 
     if ([self paymentPurposeRequired] && ![self.paymentPurposeCell.entryField.text hasValue]) {
         numberOfMissingFields++;
-        numberOfMissingReasons++;
+        missingReason = YES;
+    }
+    
+    if ([self ssnVerificationRequired] && ![self.ssnCell.entryField.text hasValue]) {
+        numberOfMissingFields++;
     }
     
     self.reasonIcon.image = nil;
@@ -383,8 +420,20 @@
                     [self.reasonTitle setText:[NSString stringWithFormat:NSLocalizedString(@"identification.good.format", @""),numberOfMissingDocuments]];
                 }
             }
-            else
+            else if(numberOfMissingFields >1)
             {
+                if(IPAD)
+                {
+                    [self.navigationItem setTitle:NSLocalizedString(@"identification.fields", nil)];
+                }
+                else
+                {
+                    [self.reasonTitle setText:NSLocalizedString(@"identification.fields", nil)];
+                }
+            }
+            else if(missingReason)
+            {
+                
                 if(IPAD)
                 {
                     [self.navigationItem setTitle:NSLocalizedString(@"identification.only.purpose", nil)];
@@ -394,12 +443,33 @@
                     [self.reasonTitle setText:NSLocalizedString(@"identification.only.purpose", nil)];
                 }
             }
+            else
+            {
+                if(IPAD)
+                {
+                    [self.navigationItem setTitle:NSLocalizedString(@"identification.only.ssn", nil)];
+                }
+                else
+                {
+                    [self.reasonTitle setText:NSLocalizedString(@"identification.only.ssn", nil)];
+                }
+            }
 
         }
 
     }
 
     return numberOfMissingFields<=0;
+}
+
+-(NSString*)validateEnteredText
+{
+    if(self.ssnCell && [[self.ssnCell value] length] < 11)
+    {
+        return NSLocalizedString(@"identification.ssn.short",nil);
+    }
+    
+    return nil;
 }
 
 #pragma mark - number helpers

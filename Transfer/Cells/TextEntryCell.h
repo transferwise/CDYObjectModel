@@ -29,6 +29,7 @@ extern NSString *const TWTextEntryCellIdentifier;
 @property (nonatomic) BOOL editable;
 @property (nonatomic) NSInteger maxValueLength;
 @property (nonatomic) BOOL validateAlphaNumeric;
+@property (nonatomic, copy) NSString* presentationPattern;
 
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value;
 - (NSString *)value;

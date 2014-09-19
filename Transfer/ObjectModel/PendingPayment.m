@@ -64,23 +64,31 @@ NSString *kAddressVerificationImageName = @"~/Documents/addressVerification.jpg"
 	return (self.verificiationNeededValue & IdentificationPaymentPurposeRequired) == IdentificationPaymentPurposeRequired;
 }
 
+- (BOOL)ssnVerificationRequired {
+	return (self.verificiationNeededValue & IdentificationSSNRequired) == IdentificationSSNRequired;
+}
+
 + (NSString *)addressPhotoPath {
     return [kAddressVerificationImageName stringByExpandingTildeInPath];
 }
 
 - (void)removePaymentPurposeRequiredMarker {
-	[self setVerificationMarkerWithId:self.idVerificationRequired address:self.addressVerificationRequired paymentPurpose:NO];
+	[self setVerificationMarkerWithId:self.idVerificationRequired address:self.addressVerificationRequired paymentPurpose:NO ssn:self.ssnVerificationRequired];
 }
 
 - (void)removerAddressVerificationRequiredMarker {
-	[self setVerificationMarkerWithId:self.idVerificationRequired address:NO paymentPurpose:self.paymentPurposeRequired];
+	[self setVerificationMarkerWithId:self.idVerificationRequired address:NO paymentPurpose:self.paymentPurposeRequired ssn:self.ssnVerificationRequired];
 }
 
 - (void)removeIdVerificationRequiredMarker {
-	[self setVerificationMarkerWithId:NO address:self.addressVerificationRequired paymentPurpose:self.paymentPurposeRequired];
+	[self setVerificationMarkerWithId:NO address:self.addressVerificationRequired paymentPurpose:self.paymentPurposeRequired ssn:self.ssnVerificationRequired];
 }
 
-- (void)setVerificationMarkerWithId:(BOOL)idVerification address:(BOOL)addressVerification paymentPurpose:(BOOL)purposeVerification {
+- (void)removeSsnRequiredMarker {
+	[self setVerificationMarkerWithId:self.idVerificationRequired address:self.addressVerificationRequired paymentPurpose:self.paymentPurposeRequired ssn:NO];
+}
+
+- (void)setVerificationMarkerWithId:(BOOL)idVerification address:(BOOL)addressVerification paymentPurpose:(BOOL)purposeVerification ssn:(BOOL)ssnVerification {
 	IdentificationRequired identification = IdentificationNoneRequired;
 	if (idVerification) {
 		identification = identification | IdentificationIdRequired;
@@ -90,6 +98,9 @@ NSString *kAddressVerificationImageName = @"~/Documents/addressVerification.jpg"
 	}
 	if (purposeVerification) {
 		identification = identification | IdentificationPaymentPurposeRequired;
+	}
+    if (ssnVerification) {
+		identification = identification | IdentificationSSNRequired;
 	}
 	[self setVerificiationNeededValue:identification];
 }

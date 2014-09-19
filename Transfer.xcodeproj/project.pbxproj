@@ -58,6 +58,8 @@
 		3811674819C1E9A800B29151 /* TouchIdPromptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3811674419C1E9A800B29151 /* TouchIdPromptViewController.xib */; };
 		3813791D1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */; };
 		3813791E1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */; };
+		3818605719C9A206009A413E /* SetSSNOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3818605619C9A206009A413E /* SetSSNOperation.m */; };
+		3818605819C9A206009A413E /* SetSSNOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3818605619C9A206009A413E /* SetSSNOperation.m */; };
 		3827407F199529F0009FAB97 /* CardPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3827407E199529F0009FAB97 /* CardPaymentViewController~ipad.xib */; };
 		38274080199529F0009FAB97 /* CardPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3827407E199529F0009FAB97 /* CardPaymentViewController~ipad.xib */; };
 		38288F4719C86A6700661BFB /* PaymentMethodSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38288F4519C86A6700661BFB /* PaymentMethodSelectorViewController.m */; };
@@ -920,6 +922,9 @@
 		3811674319C1E9A800B29151 /* TouchIdPromptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchIdPromptViewController.m; sourceTree = "<group>"; };
 		3811674419C1E9A800B29151 /* TouchIdPromptViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TouchIdPromptViewController.xib; sourceTree = "<group>"; };
 		3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ConfirmPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
+		3818605519C9A206009A413E /* SetSSNOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSSNOperation.h; sourceTree = "<group>"; };
+		3818605619C9A206009A413E /* SetSSNOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSSNOperation.m; sourceTree = "<group>"; };
+		3818605919C9AB3E009A413E /* Transfer_v4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v4.xcdatamodel; sourceTree = "<group>"; };
 		3827407E199529F0009FAB97 /* CardPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CardPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
 		38288F4419C86A6700661BFB /* PaymentMethodSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentMethodSelectorViewController.h; sourceTree = "<group>"; };
 		38288F4519C86A6700661BFB /* PaymentMethodSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodSelectorViewController.m; sourceTree = "<group>"; };
@@ -2268,6 +2273,8 @@
 		EA8FF6B5171D25530090A658 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				3818605519C9A206009A413E /* SetSSNOperation.h */,
+				3818605619C9A206009A413E /* SetSSNOperation.m */,
 				1864AC9C173B7C80008773FC /* BusinessProfileOperation.h */,
 				1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */,
 				EAE7B6B117E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.h */,
@@ -3213,6 +3220,7 @@
 				4746EAFD19A7267B00D03557 /* ReferralListOperation.m in Sources */,
 				EA31A13217DDB29B00F937F7 /* UIView+Loading.m in Sources */,
 				EA31A13317DDB29B00F937F7 /* TextEntryCell.m in Sources */,
+				3818605819C9A206009A413E /* SetSSNOperation.m in Sources */,
 				EA31A13417DDB29B00F937F7 /* NSString+Validation.m in Sources */,
 				4723EA0E1973D8E900B4345F /* RedButton.m in Sources */,
 				EA31A13517DDB29B00F937F7 /* NSMutableString+Issues.m in Sources */,
@@ -3497,6 +3505,7 @@
 				4746EAFC19A7267B00D03557 /* ReferralListOperation.m in Sources */,
 				EA8FF6B8171D25C20090A658 /* TransferwiseOperation.m in Sources */,
 				EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */,
+				3818605719C9A206009A413E /* SetSSNOperation.m in Sources */,
 				380021F7192F43EA009B1D53 /* TabCell.m in Sources */,
 				EAD7D4C2171D43440099063F /* NSDictionary+SensibleData.m in Sources */,
 				4723EA0D1973D8E900B4345F /* RedButton.m in Sources */,
@@ -4046,13 +4055,14 @@
 		38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				3818605919C9AB3E009A413E /* Transfer_v4.xcdatamodel */,
 				38CB1F7919ABBB6200CD0953 /* Transfer_v3.1.xcdatamodel */,
 				38CB1F7319ABB47000CD0953 /* Transfer.xcdatamodel */,
 				38CB1F7419ABB47000CD0953 /* Transfer_v2.1.xcdatamodel */,
 				38CB1F7519ABB47000CD0953 /* Transfer_v2.xcdatamodel */,
 				38CB1F7619ABB47000CD0953 /* Transfer_v3.xcdatamodel */,
 			);
-			currentVersion = 38CB1F7919ABBB6200CD0953 /* Transfer_v3.1.xcdatamodel */;
+			currentVersion = 3818605919C9AB3E009A413E /* Transfer_v4.xcdatamodel */;
 			name = Transfer.xcdatamodeld;
 			path = ../Transfer.xcdatamodeld;
 			sourceTree = "<group>";

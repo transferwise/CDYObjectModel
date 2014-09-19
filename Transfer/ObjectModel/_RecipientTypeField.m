@@ -20,9 +20,6 @@ const struct RecipientTypeFieldRelationships RecipientTypeFieldRelationships = {
 	.values = @"values",
 };
 
-const struct RecipientTypeFieldFetchedProperties RecipientTypeFieldFetchedProperties = {
-};
-
 @implementation RecipientTypeFieldID
 @end
 
@@ -48,7 +45,7 @@ const struct RecipientTypeFieldFetchedProperties RecipientTypeFieldFetchedProper
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-	
+
 	if ([key isEqualToString:@"maxLengthValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"maxLength"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -68,19 +65,9 @@ const struct RecipientTypeFieldFetchedProperties RecipientTypeFieldFetchedProper
 	return keyPaths;
 }
 
-
-
-
 @dynamic example;
 
-
-
-
-
-
 @dynamic maxLength;
-
-
 
 - (int16_t)maxLengthValue {
 	NSNumber *result = [self maxLength];
@@ -100,13 +87,7 @@ const struct RecipientTypeFieldFetchedProperties RecipientTypeFieldFetchedProper
 	[self setPrimitiveMaxLength:[NSNumber numberWithShort:value_]];
 }
 
-
-
-
-
 @dynamic minLength;
-
-
 
 - (int16_t)minLengthValue {
 	NSNumber *result = [self minLength];
@@ -126,27 +107,11 @@ const struct RecipientTypeFieldFetchedProperties RecipientTypeFieldFetchedProper
 	[self setPrimitiveMinLength:[NSNumber numberWithShort:value_]];
 }
 
-
-
-
-
 @dynamic name;
-
-
-
-
-
 
 @dynamic presentationPattern;
 
-
-
-
-
-
 @dynamic required;
-
-
 
 - (BOOL)requiredValue {
 	NSNumber *result = [self required];
@@ -166,57 +131,33 @@ const struct RecipientTypeFieldFetchedProperties RecipientTypeFieldFetchedProper
 	[self setPrimitiveRequired:[NSNumber numberWithBool:value_]];
 }
 
-
-
-
-
 @dynamic title;
-
-
-
-
-
 
 @dynamic validationRegexp;
 
-
-
-
-
-
 @dynamic allowedValues;
 
-	
 - (NSMutableSet*)allowedValuesSet {
 	[self willAccessValueForKey:@"allowedValues"];
-  
+
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"allowedValues"];
-  
+
 	[self didAccessValueForKey:@"allowedValues"];
 	return result;
 }
-	
 
 @dynamic fieldForType;
 
-	
-
 @dynamic values;
 
-	
 - (NSMutableSet*)valuesSet {
 	[self willAccessValueForKey:@"values"];
-  
+
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"values"];
-  
+
 	[self didAccessValueForKey:@"values"];
 	return result;
 }
-	
-
-
-
-
-
 
 @end
+
