@@ -365,4 +365,11 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [self confirmRecipientDelete:deletedRecipient indexPath:nil];
 }
 
+#pragma mark - Clear Data
+- (void)clearData
+{
+	self.allRecipients = nil;
+	[self.tableView reloadData];
+}
+
 @end

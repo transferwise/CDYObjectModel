@@ -93,7 +93,8 @@
     ABSTRACT_METHOD;
 }
 
-- (void)markCellsWithIssues:(NSArray *)issues {
+- (void)markCellsWithIssues:(NSArray *)issues
+{
     [self removeAllErrorMarkers];
 
     for (NSDictionary *issue in issues) {
@@ -294,6 +295,11 @@
 	}
 	
 	return nil;
+}
+
+- (void)clearData
+{
+	ABSTRACT_METHOD;
 }
 
 @end
