@@ -11,6 +11,9 @@ const struct PaymentMadeIndicatorRelationships PaymentMadeIndicatorRelationships
 	.payment = @"payment",
 };
 
+const struct PaymentMadeIndicatorFetchedProperties PaymentMadeIndicatorFetchedProperties = {
+};
+
 @implementation PaymentMadeIndicatorID
 @end
 
@@ -36,7 +39,7 @@ const struct PaymentMadeIndicatorRelationships PaymentMadeIndicatorRelationships
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-
+	
 	if ([key isEqualToString:@"paymentRemoteIdValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"paymentRemoteId"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -46,7 +49,12 @@ const struct PaymentMadeIndicatorRelationships PaymentMadeIndicatorRelationships
 	return keyPaths;
 }
 
+
+
+
 @dynamic paymentRemoteId;
+
+
 
 - (int32_t)paymentRemoteIdValue {
 	NSNumber *result = [self paymentRemoteId];
@@ -66,7 +74,17 @@ const struct PaymentMadeIndicatorRelationships PaymentMadeIndicatorRelationships
 	[self setPrimitivePaymentRemoteId:[NSNumber numberWithInt:value_]];
 }
 
+
+
+
+
 @dynamic payment;
 
-@end
+	
 
+
+
+
+
+
+@end

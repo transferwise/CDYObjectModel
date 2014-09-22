@@ -24,6 +24,9 @@ const struct CurrencyRelationships CurrencyRelationships = {
 	.targets = @"targets",
 };
 
+const struct CurrencyFetchedProperties CurrencyFetchedProperties = {
+};
+
 @implementation CurrencyID
 @end
 
@@ -49,7 +52,7 @@ const struct CurrencyRelationships CurrencyRelationships = {
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-
+	
 	if ([key isEqualToString:@"indexValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"index"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -79,9 +82,19 @@ const struct CurrencyRelationships CurrencyRelationships = {
 	return keyPaths;
 }
 
+
+
+
 @dynamic code;
 
+
+
+
+
+
 @dynamic index;
+
+
 
 - (int16_t)indexValue {
 	NSNumber *result = [self index];
@@ -101,9 +114,20 @@ const struct CurrencyRelationships CurrencyRelationships = {
 	[self setPrimitiveIndex:[NSNumber numberWithShort:value_]];
 }
 
+
+
+
+
 @dynamic name;
 
+
+
+
+
+
 @dynamic paymentReferenceAllowed;
+
+
 
 - (BOOL)paymentReferenceAllowedValue {
 	NSNumber *result = [self paymentReferenceAllowed];
@@ -123,7 +147,13 @@ const struct CurrencyRelationships CurrencyRelationships = {
 	[self setPrimitivePaymentReferenceAllowed:[NSNumber numberWithBool:value_]];
 }
 
+
+
+
+
 @dynamic recipientBicRequired;
+
+
 
 - (BOOL)recipientBicRequiredValue {
 	NSNumber *result = [self recipientBicRequired];
@@ -143,7 +173,13 @@ const struct CurrencyRelationships CurrencyRelationships = {
 	[self setPrimitiveRecipientBicRequired:[NSNumber numberWithBool:value_]];
 }
 
+
+
+
+
 @dynamic recipientEmailRequired;
+
+
 
 - (BOOL)recipientEmailRequiredValue {
 	NSNumber *result = [self recipientEmailRequired];
@@ -163,7 +199,13 @@ const struct CurrencyRelationships CurrencyRelationships = {
 	[self setPrimitiveRecipientEmailRequired:[NSNumber numberWithBool:value_]];
 }
 
+
+
+
+
 @dynamic referenceMaxLength;
+
+
 
 - (int16_t)referenceMaxLengthValue {
 	NSNumber *result = [self referenceMaxLength];
@@ -183,135 +225,102 @@ const struct CurrencyRelationships CurrencyRelationships = {
 	[self setPrimitiveReferenceMaxLength:[NSNumber numberWithShort:value_]];
 }
 
+
+
+
+
 @dynamic symbol;
+
+
+
+
+
 
 @dynamic currencyForRecipients;
 
+	
 - (NSMutableSet*)currencyForRecipientsSet {
 	[self willAccessValueForKey:@"currencyForRecipients"];
-
+  
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"currencyForRecipients"];
-
+  
 	[self didAccessValueForKey:@"currencyForRecipients"];
 	return result;
 }
+	
 
 @dynamic defaultRecipientType;
 
+	
+
 @dynamic recipientTypes;
 
+	
 - (NSMutableOrderedSet*)recipientTypesSet {
 	[self willAccessValueForKey:@"recipientTypes"];
-
+  
 	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"recipientTypes"];
-
+  
 	[self didAccessValueForKey:@"recipientTypes"];
 	return result;
 }
+	
 
 @dynamic sourceForPayments;
 
+	
 - (NSMutableSet*)sourceForPaymentsSet {
 	[self willAccessValueForKey:@"sourceForPayments"];
-
+  
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"sourceForPayments"];
-
+  
 	[self didAccessValueForKey:@"sourceForPayments"];
 	return result;
 }
+	
 
 @dynamic sources;
 
+	
 - (NSMutableSet*)sourcesSet {
 	[self willAccessValueForKey:@"sources"];
-
+  
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"sources"];
-
+  
 	[self didAccessValueForKey:@"sources"];
 	return result;
 }
+	
 
 @dynamic targetForPayments;
 
+	
 - (NSMutableSet*)targetForPaymentsSet {
 	[self willAccessValueForKey:@"targetForPayments"];
-
+  
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"targetForPayments"];
-
+  
 	[self didAccessValueForKey:@"targetForPayments"];
 	return result;
 }
+	
 
 @dynamic targets;
 
+	
 - (NSMutableSet*)targetsSet {
 	[self willAccessValueForKey:@"targets"];
-
+  
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"targets"];
-
+  
 	[self didAccessValueForKey:@"targets"];
 	return result;
 }
+	
+
+
+
+
+
 
 @end
-
-@implementation _Currency (RecipientTypesCoreDataGeneratedAccessors)
-- (void)addRecipientTypes:(NSOrderedSet*)value_ {
-	[self.recipientTypesSet unionOrderedSet:value_];
-}
-- (void)removeRecipientTypes:(NSOrderedSet*)value_ {
-	[self.recipientTypesSet minusOrderedSet:value_];
-}
-- (void)addRecipientTypesObject:(RecipientType*)value_ {
-	[self.recipientTypesSet addObject:value_];
-}
-- (void)removeRecipientTypesObject:(RecipientType*)value_ {
-	[self.recipientTypesSet removeObject:value_];
-}
-- (void)insertObject:(RecipientType*)value inRecipientTypesAtIndex:(NSUInteger)idx {
-    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
-    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"recipientTypes"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self recipientTypes]];
-    [tmpOrderedSet insertObject:value atIndex:idx];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"recipientTypes"];
-    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"recipientTypes"];
-}
-- (void)removeObjectFromRecipientTypesAtIndex:(NSUInteger)idx {
-    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
-    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"recipientTypes"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self recipientTypes]];
-    [tmpOrderedSet removeObjectAtIndex:idx];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"recipientTypes"];
-    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"recipientTypes"];
-}
-- (void)insertRecipientTypes:(NSArray *)value atIndexes:(NSIndexSet *)indexes {
-    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"recipientTypes"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self recipientTypes]];
-    [tmpOrderedSet insertObjects:value atIndexes:indexes];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"recipientTypes"];
-    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"recipientTypes"];
-}
-- (void)removeRecipientTypesAtIndexes:(NSIndexSet *)indexes {
-    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"recipientTypes"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self recipientTypes]];
-    [tmpOrderedSet removeObjectsAtIndexes:indexes];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"recipientTypes"];
-    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"recipientTypes"];
-}
-- (void)replaceObjectInRecipientTypesAtIndex:(NSUInteger)idx withObject:(RecipientType*)value {
-    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
-    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"recipientTypes"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self recipientTypes]];
-    [tmpOrderedSet replaceObjectAtIndex:idx withObject:value];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"recipientTypes"];
-    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"recipientTypes"];
-}
-- (void)replaceRecipientTypesAtIndexes:(NSIndexSet *)indexes withRecipientTypes:(NSArray *)value {
-    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"recipientTypes"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self recipientTypes]];
-    [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"recipientTypes"];
-    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"recipientTypes"];
-}
-@end
-

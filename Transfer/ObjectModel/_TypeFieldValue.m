@@ -12,6 +12,9 @@ const struct TypeFieldValueRelationships TypeFieldValueRelationships = {
 	.valueForField = @"valueForField",
 };
 
+const struct TypeFieldValueFetchedProperties TypeFieldValueFetchedProperties = {
+};
+
 @implementation TypeFieldValueID
 @end
 
@@ -37,15 +40,32 @@ const struct TypeFieldValueRelationships TypeFieldValueRelationships = {
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+	
 
 	return keyPaths;
 }
 
+
+
+
 @dynamic value;
+
+
+
+
+
 
 @dynamic recipient;
 
+	
+
 @dynamic valueForField;
 
-@end
+	
 
+
+
+
+
+
+@end

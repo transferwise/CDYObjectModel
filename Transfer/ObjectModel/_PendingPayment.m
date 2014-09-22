@@ -18,6 +18,9 @@ const struct PendingPaymentRelationships PendingPaymentRelationships = {
 	.allowedRecipientTypes = @"allowedRecipientTypes",
 };
 
+const struct PendingPaymentFetchedProperties PendingPaymentFetchedProperties = {
+};
+
 @implementation PendingPaymentID
 @end
 
@@ -43,7 +46,7 @@ const struct PendingPaymentRelationships PendingPaymentRelationships = {
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-
+	
 	if ([key isEqualToString:@"sendVerificationLaterValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"sendVerificationLater"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -63,15 +66,40 @@ const struct PendingPaymentRelationships PendingPaymentRelationships = {
 	return keyPaths;
 }
 
+
+
+
 @dynamic paymentPurpose;
+
+
+
+
+
 
 @dynamic proposedPaymentsPurpose;
 
+
+
+
+
+
 @dynamic recipientEmail;
+
+
+
+
+
 
 @dynamic reference;
 
+
+
+
+
+
 @dynamic sendVerificationLater;
+
+
 
 - (BOOL)sendVerificationLaterValue {
 	NSNumber *result = [self sendVerificationLater];
@@ -91,9 +119,20 @@ const struct PendingPaymentRelationships PendingPaymentRelationships = {
 	[self setPrimitiveSendVerificationLater:[NSNumber numberWithBool:value_]];
 }
 
+
+
+
+
 @dynamic socialSecurityNumber;
 
+
+
+
+
+
 @dynamic transferwiseTransferFee;
+
+
 
 - (double)transferwiseTransferFeeValue {
 	NSNumber *result = [self transferwiseTransferFee];
@@ -113,7 +152,13 @@ const struct PendingPaymentRelationships PendingPaymentRelationships = {
 	[self setPrimitiveTransferwiseTransferFee:[NSNumber numberWithDouble:value_]];
 }
 
+
+
+
+
 @dynamic verificiationNeeded;
+
+
 
 - (int16_t)verificiationNeededValue {
 	NSNumber *result = [self verificiationNeeded];
@@ -133,76 +178,26 @@ const struct PendingPaymentRelationships PendingPaymentRelationships = {
 	[self setPrimitiveVerificiationNeeded:[NSNumber numberWithShort:value_]];
 }
 
+
+
+
+
 @dynamic allowedRecipientTypes;
 
+	
 - (NSMutableOrderedSet*)allowedRecipientTypesSet {
 	[self willAccessValueForKey:@"allowedRecipientTypes"];
-
+  
 	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"allowedRecipientTypes"];
-
+  
 	[self didAccessValueForKey:@"allowedRecipientTypes"];
 	return result;
 }
+	
+
+
+
+
+
 
 @end
-
-@implementation _PendingPayment (AllowedRecipientTypesCoreDataGeneratedAccessors)
-- (void)addAllowedRecipientTypes:(NSOrderedSet*)value_ {
-	[self.allowedRecipientTypesSet unionOrderedSet:value_];
-}
-- (void)removeAllowedRecipientTypes:(NSOrderedSet*)value_ {
-	[self.allowedRecipientTypesSet minusOrderedSet:value_];
-}
-- (void)addAllowedRecipientTypesObject:(RecipientType*)value_ {
-	[self.allowedRecipientTypesSet addObject:value_];
-}
-- (void)removeAllowedRecipientTypesObject:(RecipientType*)value_ {
-	[self.allowedRecipientTypesSet removeObject:value_];
-}
-- (void)insertObject:(RecipientType*)value inAllowedRecipientTypesAtIndex:(NSUInteger)idx {
-    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
-    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"allowedRecipientTypes"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self allowedRecipientTypes]];
-    [tmpOrderedSet insertObject:value atIndex:idx];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"allowedRecipientTypes"];
-    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"allowedRecipientTypes"];
-}
-- (void)removeObjectFromAllowedRecipientTypesAtIndex:(NSUInteger)idx {
-    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
-    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"allowedRecipientTypes"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self allowedRecipientTypes]];
-    [tmpOrderedSet removeObjectAtIndex:idx];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"allowedRecipientTypes"];
-    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"allowedRecipientTypes"];
-}
-- (void)insertAllowedRecipientTypes:(NSArray *)value atIndexes:(NSIndexSet *)indexes {
-    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"allowedRecipientTypes"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self allowedRecipientTypes]];
-    [tmpOrderedSet insertObjects:value atIndexes:indexes];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"allowedRecipientTypes"];
-    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"allowedRecipientTypes"];
-}
-- (void)removeAllowedRecipientTypesAtIndexes:(NSIndexSet *)indexes {
-    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"allowedRecipientTypes"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self allowedRecipientTypes]];
-    [tmpOrderedSet removeObjectsAtIndexes:indexes];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"allowedRecipientTypes"];
-    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"allowedRecipientTypes"];
-}
-- (void)replaceObjectInAllowedRecipientTypesAtIndex:(NSUInteger)idx withObject:(RecipientType*)value {
-    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
-    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"allowedRecipientTypes"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self allowedRecipientTypes]];
-    [tmpOrderedSet replaceObjectAtIndex:idx withObject:value];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"allowedRecipientTypes"];
-    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"allowedRecipientTypes"];
-}
-- (void)replaceAllowedRecipientTypesAtIndexes:(NSIndexSet *)indexes withAllowedRecipientTypes:(NSArray *)value {
-    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"allowedRecipientTypes"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self allowedRecipientTypes]];
-    [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"allowedRecipientTypes"];
-    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"allowedRecipientTypes"];
-}
-@end
-

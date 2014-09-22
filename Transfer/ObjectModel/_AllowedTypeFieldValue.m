@@ -12,6 +12,9 @@ const struct AllowedTypeFieldValueRelationships AllowedTypeFieldValueRelationshi
 	.valueForField = @"valueForField",
 };
 
+const struct AllowedTypeFieldValueFetchedProperties AllowedTypeFieldValueFetchedProperties = {
+};
+
 @implementation AllowedTypeFieldValueID
 @end
 
@@ -37,15 +40,35 @@ const struct AllowedTypeFieldValueRelationships AllowedTypeFieldValueRelationshi
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+	
 
 	return keyPaths;
 }
 
+
+
+
 @dynamic code;
+
+
+
+
+
 
 @dynamic title;
 
+
+
+
+
+
 @dynamic valueForField;
 
-@end
+	
 
+
+
+
+
+
+@end

@@ -22,6 +22,9 @@ const struct PersonalProfileRelationships PersonalProfileRelationships = {
 	.user = @"user",
 };
 
+const struct PersonalProfileFetchedProperties PersonalProfileFetchedProperties = {
+};
+
 @implementation PersonalProfileID
 @end
 
@@ -47,7 +50,7 @@ const struct PersonalProfileRelationships PersonalProfileRelationships = {
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-
+	
 	if ([key isEqualToString:@"sendAsBusinessValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"sendAsBusiness"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -57,27 +60,82 @@ const struct PersonalProfileRelationships PersonalProfileRelationships = {
 	return keyPaths;
 }
 
+
+
+
 @dynamic addressFirstLine;
+
+
+
+
+
 
 @dynamic city;
 
+
+
+
+
+
 @dynamic countryCode;
+
+
+
+
+
 
 @dynamic dateOfBirth;
 
+
+
+
+
+
 @dynamic firstName;
+
+
+
+
+
 
 @dynamic lastName;
 
+
+
+
+
+
 @dynamic occupation;
+
+
+
+
+
 
 @dynamic phoneNumber;
 
+
+
+
+
+
 @dynamic postCode;
+
+
+
+
+
 
 @dynamic readonlyFields;
 
+
+
+
+
+
 @dynamic sendAsBusiness;
+
+
 
 - (BOOL)sendAsBusinessValue {
 	NSNumber *result = [self sendAsBusiness];
@@ -97,9 +155,24 @@ const struct PersonalProfileRelationships PersonalProfileRelationships = {
 	[self setPrimitiveSendAsBusiness:[NSNumber numberWithBool:value_]];
 }
 
+
+
+
+
 @dynamic state;
+
+
+
+
+
 
 @dynamic user;
 
-@end
+	
 
+
+
+
+
+
+@end

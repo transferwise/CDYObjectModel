@@ -103,6 +103,13 @@
     {
         headerFormat = NSLocalizedString(@"upload.money.header.label.EUR", @"");
     }
+	else if ([currencyCode caseInsensitiveCompare:@"USD"]==NSOrderedSame)
+	{
+		//this is an assumption...
+		headerFormat = [self isWire] ?
+			NSLocalizedString(@"upload.money.header.label.USD.wire", nil)
+			: NSLocalizedString(@"upload.money.header.label.USD.swift", nil);
+	}
     else
     {
         headerFormat = NSLocalizedString(@"upload.money.header.label", @"");
@@ -124,16 +131,17 @@
     self.headerView.frame = frame;
     
     //Footer
-    
-    self.addressLabel.text = [NSString stringWithFormat:NSLocalizedString(@"upload.money.our.address.label", @""),method.transferWiseAddress];
-    [self.footerView setNeedsLayout];
-    [self.footerView layoutIfNeeded];
-    height = [self.footerView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    frame = self.footerView.frame;
-    frame.size.height = height;
-    self.footerView.frame = frame;
-
-    
+	if (![self isWire])
+	{
+		self.addressLabel.text = [NSString stringWithFormat:NSLocalizedString(@"upload.money.our.address.label", @""),method.transferWiseAddress];
+		[self.footerView setNeedsLayout];
+		[self.footerView layoutIfNeeded];
+		height = [self.footerView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+		frame = self.footerView.frame;
+		frame.size.height = height;
+		self.footerView.frame = frame;
+	}
+	
     //Cells
 
     
@@ -243,6 +251,11 @@
 -(NSString*)addColon:(NSString*)original
 {
     return [original stringByAppendingString:@":"];
+}
+
+- (BOOL)isWire
+{
+	return [self.method.type caseInsensitiveCompare:@"WIRE"]==NSOrderedSame;
 }
 @end
 

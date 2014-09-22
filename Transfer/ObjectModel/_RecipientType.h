@@ -3,6 +3,7 @@
 
 #import <CoreData/CoreData.h>
 
+
 extern const struct RecipientTypeAttributes {
 	__unsafe_unretained NSString *hideFromCreation;
 	__unsafe_unretained NSString *recipientAddressRequired;
@@ -18,11 +19,19 @@ extern const struct RecipientTypeRelationships {
 	__unsafe_unretained NSString *recipients;
 } RecipientTypeRelationships;
 
+extern const struct RecipientTypeFetchedProperties {
+} RecipientTypeFetchedProperties;
+
 @class Currency;
 @class Currency;
 @class RecipientTypeField;
 @class PendingPayment;
 @class Recipient;
+
+
+
+
+
 
 @interface RecipientTypeID : NSManagedObjectID {}
 @end
@@ -31,86 +40,115 @@ extern const struct RecipientTypeRelationships {
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) RecipientTypeID* objectID;
+- (RecipientTypeID*)objectID;
+
+
+
+
 
 @property (nonatomic, strong) NSNumber* hideFromCreation;
 
-@property (atomic) BOOL hideFromCreationValue;
+
+
+@property BOOL hideFromCreationValue;
 - (BOOL)hideFromCreationValue;
 - (void)setHideFromCreationValue:(BOOL)value_;
 
 //- (BOOL)validateHideFromCreation:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSNumber* recipientAddressRequired;
 
-@property (atomic) BOOL recipientAddressRequiredValue;
+
+
+@property BOOL recipientAddressRequiredValue;
 - (BOOL)recipientAddressRequiredValue;
 - (void)setRecipientAddressRequiredValue:(BOOL)value_;
 
 //- (BOOL)validateRecipientAddressRequired:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSString* title;
+
+
 
 //- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSString* type;
 
+
+
 //- (BOOL)validateType:(id*)value_ error:(NSError**)error_;
+
+
+
+
 
 @property (nonatomic, strong) NSSet *currencies;
 
 - (NSMutableSet*)currenciesSet;
 
+
+
+
 @property (nonatomic, strong) NSSet *defaultForCurrencies;
 
 - (NSMutableSet*)defaultForCurrenciesSet;
+
+
+
 
 @property (nonatomic, strong) NSOrderedSet *fields;
 
 - (NSMutableOrderedSet*)fieldsSet;
 
+
+
+
 @property (nonatomic, strong) PendingPayment *pendingPayment;
 
 //- (BOOL)validatePendingPayment:(id*)value_ error:(NSError**)error_;
+
+
+
 
 @property (nonatomic, strong) NSSet *recipients;
 
 - (NSMutableSet*)recipientsSet;
 
+
+
+
+
 @end
 
-@interface _RecipientType (CurrenciesCoreDataGeneratedAccessors)
+@interface _RecipientType (CoreDataGeneratedAccessors)
+
 - (void)addCurrencies:(NSSet*)value_;
 - (void)removeCurrencies:(NSSet*)value_;
 - (void)addCurrenciesObject:(Currency*)value_;
 - (void)removeCurrenciesObject:(Currency*)value_;
 
-@end
-
-@interface _RecipientType (DefaultForCurrenciesCoreDataGeneratedAccessors)
 - (void)addDefaultForCurrencies:(NSSet*)value_;
 - (void)removeDefaultForCurrencies:(NSSet*)value_;
 - (void)addDefaultForCurrenciesObject:(Currency*)value_;
 - (void)removeDefaultForCurrenciesObject:(Currency*)value_;
 
-@end
-
-@interface _RecipientType (FieldsCoreDataGeneratedAccessors)
 - (void)addFields:(NSOrderedSet*)value_;
 - (void)removeFields:(NSOrderedSet*)value_;
 - (void)addFieldsObject:(RecipientTypeField*)value_;
 - (void)removeFieldsObject:(RecipientTypeField*)value_;
 
-- (void)insertObject:(RecipientTypeField*)value inFieldsAtIndex:(NSUInteger)idx;
-- (void)removeObjectFromFieldsAtIndex:(NSUInteger)idx;
-- (void)insertFields:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
-- (void)removeFieldsAtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectInFieldsAtIndex:(NSUInteger)idx withObject:(RecipientTypeField*)value;
-- (void)replaceFieldsAtIndexes:(NSIndexSet *)indexes withFields:(NSArray *)values;
-
-@end
-
-@interface _RecipientType (RecipientsCoreDataGeneratedAccessors)
 - (void)addRecipients:(NSSet*)value_;
 - (void)removeRecipients:(NSSet*)value_;
 - (void)addRecipientsObject:(Recipient*)value_;
@@ -120,11 +158,15 @@ extern const struct RecipientTypeRelationships {
 
 @interface _RecipientType (CoreDataGeneratedPrimitiveAccessors)
 
+
 - (NSNumber*)primitiveHideFromCreation;
 - (void)setPrimitiveHideFromCreation:(NSNumber*)value;
 
 - (BOOL)primitiveHideFromCreationValue;
 - (void)setPrimitiveHideFromCreationValue:(BOOL)value_;
+
+
+
 
 - (NSNumber*)primitiveRecipientAddressRequired;
 - (void)setPrimitiveRecipientAddressRequired:(NSNumber*)value;
@@ -132,22 +174,44 @@ extern const struct RecipientTypeRelationships {
 - (BOOL)primitiveRecipientAddressRequiredValue;
 - (void)setPrimitiveRecipientAddressRequiredValue:(BOOL)value_;
 
+
+
+
 - (NSString*)primitiveTitle;
 - (void)setPrimitiveTitle:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveType;
+- (void)setPrimitiveType:(NSString*)value;
+
+
+
+
 
 - (NSMutableSet*)primitiveCurrencies;
 - (void)setPrimitiveCurrencies:(NSMutableSet*)value;
 
+
+
 - (NSMutableSet*)primitiveDefaultForCurrencies;
 - (void)setPrimitiveDefaultForCurrencies:(NSMutableSet*)value;
+
+
 
 - (NSMutableOrderedSet*)primitiveFields;
 - (void)setPrimitiveFields:(NSMutableOrderedSet*)value;
 
+
+
 - (PendingPayment*)primitivePendingPayment;
 - (void)setPrimitivePendingPayment:(PendingPayment*)value;
 
+
+
 - (NSMutableSet*)primitiveRecipients;
 - (void)setPrimitiveRecipients:(NSMutableSet*)value;
+
 
 @end

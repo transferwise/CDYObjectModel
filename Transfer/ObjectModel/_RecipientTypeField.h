@@ -3,6 +3,7 @@
 
 #import <CoreData/CoreData.h>
 
+
 extern const struct RecipientTypeFieldAttributes {
 	__unsafe_unretained NSString *example;
 	__unsafe_unretained NSString *maxLength;
@@ -20,9 +21,21 @@ extern const struct RecipientTypeFieldRelationships {
 	__unsafe_unretained NSString *values;
 } RecipientTypeFieldRelationships;
 
+extern const struct RecipientTypeFieldFetchedProperties {
+} RecipientTypeFieldFetchedProperties;
+
 @class AllowedTypeFieldValue;
 @class RecipientType;
 @class TypeFieldValue;
+
+
+
+
+
+
+
+
+
 
 @interface RecipientTypeFieldID : NSManagedObjectID {}
 @end
@@ -31,75 +44,135 @@ extern const struct RecipientTypeFieldRelationships {
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) RecipientTypeFieldID* objectID;
+- (RecipientTypeFieldID*)objectID;
+
+
+
+
 
 @property (nonatomic, strong) NSString* example;
 
+
+
 //- (BOOL)validateExample:(id*)value_ error:(NSError**)error_;
+
+
+
+
 
 @property (nonatomic, strong) NSNumber* maxLength;
 
-@property (atomic) int16_t maxLengthValue;
+
+
+@property int16_t maxLengthValue;
 - (int16_t)maxLengthValue;
 - (void)setMaxLengthValue:(int16_t)value_;
 
 //- (BOOL)validateMaxLength:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSNumber* minLength;
 
-@property (atomic) int16_t minLengthValue;
+
+
+@property int16_t minLengthValue;
 - (int16_t)minLengthValue;
 - (void)setMinLengthValue:(int16_t)value_;
 
 //- (BOOL)validateMinLength:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSString* name;
+
+
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSString* presentationPattern;
+
+
 
 //- (BOOL)validatePresentationPattern:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSNumber* required;
 
-@property (atomic) BOOL requiredValue;
+
+
+@property BOOL requiredValue;
 - (BOOL)requiredValue;
 - (void)setRequiredValue:(BOOL)value_;
 
 //- (BOOL)validateRequired:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSString* title;
+
+
 
 //- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
 @property (nonatomic, strong) NSString* validationRegexp;
 
+
+
 //- (BOOL)validateValidationRegexp:(id*)value_ error:(NSError**)error_;
+
+
+
+
 
 @property (nonatomic, strong) NSSet *allowedValues;
 
 - (NSMutableSet*)allowedValuesSet;
 
+
+
+
 @property (nonatomic, strong) RecipientType *fieldForType;
 
 //- (BOOL)validateFieldForType:(id*)value_ error:(NSError**)error_;
+
+
+
 
 @property (nonatomic, strong) NSSet *values;
 
 - (NSMutableSet*)valuesSet;
 
+
+
+
+
 @end
 
-@interface _RecipientTypeField (AllowedValuesCoreDataGeneratedAccessors)
+@interface _RecipientTypeField (CoreDataGeneratedAccessors)
+
 - (void)addAllowedValues:(NSSet*)value_;
 - (void)removeAllowedValues:(NSSet*)value_;
 - (void)addAllowedValuesObject:(AllowedTypeFieldValue*)value_;
 - (void)removeAllowedValuesObject:(AllowedTypeFieldValue*)value_;
 
-@end
-
-@interface _RecipientTypeField (ValuesCoreDataGeneratedAccessors)
 - (void)addValues:(NSSet*)value_;
 - (void)removeValues:(NSSet*)value_;
 - (void)addValuesObject:(TypeFieldValue*)value_;
@@ -109,8 +182,12 @@ extern const struct RecipientTypeFieldRelationships {
 
 @interface _RecipientTypeField (CoreDataGeneratedPrimitiveAccessors)
 
+
 - (NSString*)primitiveExample;
 - (void)setPrimitiveExample:(NSString*)value;
+
+
+
 
 - (NSNumber*)primitiveMaxLength;
 - (void)setPrimitiveMaxLength:(NSNumber*)value;
@@ -118,17 +195,29 @@ extern const struct RecipientTypeFieldRelationships {
 - (int16_t)primitiveMaxLengthValue;
 - (void)setPrimitiveMaxLengthValue:(int16_t)value_;
 
+
+
+
 - (NSNumber*)primitiveMinLength;
 - (void)setPrimitiveMinLength:(NSNumber*)value;
 
 - (int16_t)primitiveMinLengthValue;
 - (void)setPrimitiveMinLengthValue:(int16_t)value_;
 
+
+
+
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
 
+
+
+
 - (NSString*)primitivePresentationPattern;
 - (void)setPrimitivePresentationPattern:(NSString*)value;
+
+
+
 
 - (NSNumber*)primitiveRequired;
 - (void)setPrimitiveRequired:(NSNumber*)value;
@@ -136,19 +225,34 @@ extern const struct RecipientTypeFieldRelationships {
 - (BOOL)primitiveRequiredValue;
 - (void)setPrimitiveRequiredValue:(BOOL)value_;
 
+
+
+
 - (NSString*)primitiveTitle;
 - (void)setPrimitiveTitle:(NSString*)value;
+
+
+
 
 - (NSString*)primitiveValidationRegexp;
 - (void)setPrimitiveValidationRegexp:(NSString*)value;
 
+
+
+
+
 - (NSMutableSet*)primitiveAllowedValues;
 - (void)setPrimitiveAllowedValues:(NSMutableSet*)value;
+
+
 
 - (RecipientType*)primitiveFieldForType;
 - (void)setPrimitiveFieldForType:(RecipientType*)value;
 
+
+
 - (NSMutableSet*)primitiveValues;
 - (void)setPrimitiveValues:(NSMutableSet*)value;
+
 
 @end

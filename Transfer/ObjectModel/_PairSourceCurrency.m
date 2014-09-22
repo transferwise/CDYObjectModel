@@ -14,6 +14,9 @@ const struct PairSourceCurrencyRelationships PairSourceCurrencyRelationships = {
 	.targets = @"targets",
 };
 
+const struct PairSourceCurrencyFetchedProperties PairSourceCurrencyFetchedProperties = {
+};
+
 @implementation PairSourceCurrencyID
 @end
 
@@ -39,7 +42,7 @@ const struct PairSourceCurrencyRelationships PairSourceCurrencyRelationships = {
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-
+	
 	if ([key isEqualToString:@"hiddenValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"hidden"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -59,7 +62,12 @@ const struct PairSourceCurrencyRelationships PairSourceCurrencyRelationships = {
 	return keyPaths;
 }
 
+
+
+
 @dynamic hidden;
+
+
 
 - (BOOL)hiddenValue {
 	NSNumber *result = [self hidden];
@@ -79,7 +87,13 @@ const struct PairSourceCurrencyRelationships PairSourceCurrencyRelationships = {
 	[self setPrimitiveHidden:[NSNumber numberWithBool:value_]];
 }
 
+
+
+
+
 @dynamic index;
+
+
 
 - (int16_t)indexValue {
 	NSNumber *result = [self index];
@@ -99,7 +113,13 @@ const struct PairSourceCurrencyRelationships PairSourceCurrencyRelationships = {
 	[self setPrimitiveIndex:[NSNumber numberWithShort:value_]];
 }
 
+
+
+
+
 @dynamic maxInvoiceAmount;
+
+
 
 - (int32_t)maxInvoiceAmountValue {
 	NSNumber *result = [self maxInvoiceAmount];
@@ -119,78 +139,30 @@ const struct PairSourceCurrencyRelationships PairSourceCurrencyRelationships = {
 	[self setPrimitiveMaxInvoiceAmount:[NSNumber numberWithInt:value_]];
 }
 
+
+
+
+
 @dynamic currency;
+
+	
 
 @dynamic targets;
 
+	
 - (NSMutableOrderedSet*)targetsSet {
 	[self willAccessValueForKey:@"targets"];
-
+  
 	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"targets"];
-
+  
 	[self didAccessValueForKey:@"targets"];
 	return result;
 }
+	
+
+
+
+
+
 
 @end
-
-@implementation _PairSourceCurrency (TargetsCoreDataGeneratedAccessors)
-- (void)addTargets:(NSOrderedSet*)value_ {
-	[self.targetsSet unionOrderedSet:value_];
-}
-- (void)removeTargets:(NSOrderedSet*)value_ {
-	[self.targetsSet minusOrderedSet:value_];
-}
-- (void)addTargetsObject:(PairTargetCurrency*)value_ {
-	[self.targetsSet addObject:value_];
-}
-- (void)removeTargetsObject:(PairTargetCurrency*)value_ {
-	[self.targetsSet removeObject:value_];
-}
-- (void)insertObject:(PairTargetCurrency*)value inTargetsAtIndex:(NSUInteger)idx {
-    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
-    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"targets"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self targets]];
-    [tmpOrderedSet insertObject:value atIndex:idx];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"targets"];
-    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"targets"];
-}
-- (void)removeObjectFromTargetsAtIndex:(NSUInteger)idx {
-    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
-    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"targets"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self targets]];
-    [tmpOrderedSet removeObjectAtIndex:idx];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"targets"];
-    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"targets"];
-}
-- (void)insertTargets:(NSArray *)value atIndexes:(NSIndexSet *)indexes {
-    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"targets"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self targets]];
-    [tmpOrderedSet insertObjects:value atIndexes:indexes];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"targets"];
-    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"targets"];
-}
-- (void)removeTargetsAtIndexes:(NSIndexSet *)indexes {
-    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"targets"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self targets]];
-    [tmpOrderedSet removeObjectsAtIndexes:indexes];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"targets"];
-    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"targets"];
-}
-- (void)replaceObjectInTargetsAtIndex:(NSUInteger)idx withObject:(PairTargetCurrency*)value {
-    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
-    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"targets"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self targets]];
-    [tmpOrderedSet replaceObjectAtIndex:idx withObject:value];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"targets"];
-    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"targets"];
-}
-- (void)replaceTargetsAtIndexes:(NSIndexSet *)indexes withTargets:(NSArray *)value {
-    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"targets"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self targets]];
-    [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
-    [self setPrimitiveValue:tmpOrderedSet forKey:@"targets"];
-    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"targets"];
-}
-@end
-
