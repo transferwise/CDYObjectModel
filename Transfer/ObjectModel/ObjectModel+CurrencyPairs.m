@@ -27,7 +27,7 @@
 
 - (void)createOrUpdatePairWithData:(NSDictionary *)data index:(NSUInteger)index {
     NSArray *targets = data[@"targetCurrencies"];
-    if([targets count]<2)
+    if([targets count] > 0)
     {
         NSString *currencyCode = data[@"currencyCode"];
         Currency *currency = [self currencyWithCode:currencyCode];
