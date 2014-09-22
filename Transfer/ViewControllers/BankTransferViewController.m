@@ -131,16 +131,14 @@
     self.headerView.frame = frame;
     
     //Footer
-	if (![self isWire])
-	{
-		self.addressLabel.text = [NSString stringWithFormat:NSLocalizedString(@"upload.money.our.address.label", @""),method.transferWiseAddress];
-		[self.footerView setNeedsLayout];
-		[self.footerView layoutIfNeeded];
-		height = [self.footerView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-		frame = self.footerView.frame;
-		frame.size.height = height;
-		self.footerView.frame = frame;
-	}
+	
+	self.addressLabel.text = [NSString stringWithFormat:NSLocalizedString(@"upload.money.our.address.label", @""),method.transferWiseAddress];
+	[self.footerView setNeedsLayout];
+	[self.footerView layoutIfNeeded];
+	height = [self.footerView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+	frame = self.footerView.frame;
+	frame.size.height = height;
+	self.footerView.frame = frame;
 	
     //Cells
 
@@ -255,7 +253,7 @@
 
 - (BOOL)isWire
 {
-	return [self.method.type caseInsensitiveCompare:@"WIRE"]==NSOrderedSame;
+	return [self.method.type caseInsensitiveCompare:@"ACH"]==NSOrderedSame;
 }
 @end
 
