@@ -199,34 +199,33 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     UIViewController *resultController;
     if ([payment isSubmitted])
 	{
-//        if([payment.sourceCurrency.code caseInsensitiveCompare:@"USD"] == NSOrderedSame)
-//        {
-//            //Temporarily don't display pay in info for USD as no API available
-//            //Added Viewcontrolle rin code to avoid adding extraf iles for this trivial view
-//            //TODO: remove once USD API is ready
-//            
-//            CGRect labelFrame = self.view.frame;
-//            labelFrame.origin.x +=20;
-//            labelFrame.size.width -= 40;
-//            UILabel * infoLabel = [[UILabel alloc] initWithFrame:labelFrame];
-//            infoLabel.font = [UIFont systemFontOfSize:16];
-//            infoLabel.textColor = [UIColor colorWithWhite:9.0/15.0 alpha:1.0f];
-//            infoLabel.numberOfLines = 0;
-//            infoLabel.textAlignment = NSTextAlignmentCenter;
-//            infoLabel.text = NSLocalizedString(@"usd.not.supported", nil);
-//            
-//            UIView *contentView = [[UIView alloc] initWithFrame:self.view.frame];
-//            contentView.backgroundColor = [UIColor whiteColor];
-//            [contentView addSubview:infoLabel];
-//            
-//            UIViewController *placeholderController = [[UIViewController alloc] init];
-//            placeholderController.view = contentView;
-//            placeholderController.title = NSLocalizedString(@"usd.coming.soon",nil);
-//            resultController = placeholderController;
-//            
-//        }
-
-		/*else */if(IPAD)
+        if([payment.sourceCurrency.code caseInsensitiveCompare:@"USD"] == NSOrderedSame)
+        {
+            //Temporarily don't display pay in info for USD as no API available
+            //Added Viewcontrolle rin code to avoid adding extraf iles for this trivial view
+            //TODO: remove once USD API is ready
+            
+            CGRect labelFrame = self.view.frame;
+            labelFrame.origin.x +=20;
+            labelFrame.size.width -= 40;
+            UILabel * infoLabel = [[UILabel alloc] initWithFrame:labelFrame];
+            infoLabel.font = [UIFont systemFontOfSize:16];
+            infoLabel.textColor = [UIColor colorWithWhite:9.0/15.0 alpha:1.0f];
+            infoLabel.numberOfLines = 0;
+            infoLabel.textAlignment = NSTextAlignmentCenter;
+            infoLabel.text = NSLocalizedString(@"usd.not.supported", nil);
+            
+            UIView *contentView = [[UIView alloc] initWithFrame:self.view.frame];
+            contentView.backgroundColor = [UIColor whiteColor];
+            [contentView addSubview:infoLabel];
+            
+            UIViewController *placeholderController = [[UIViewController alloc] init];
+            placeholderController.view = contentView;
+            placeholderController.title = NSLocalizedString(@"usd.coming.soon",nil);
+            resultController = placeholderController;
+            
+        }
+		else if(IPAD)
 		{
 			TransferPayIPadViewController *controller = [[TransferPayIPadViewController alloc] init];
 			controller.payment = payment;

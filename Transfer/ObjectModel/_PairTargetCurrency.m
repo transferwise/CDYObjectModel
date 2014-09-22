@@ -15,9 +15,6 @@ const struct PairTargetCurrencyRelationships PairTargetCurrencyRelationships = {
 	.source = @"source",
 };
 
-const struct PairTargetCurrencyFetchedProperties PairTargetCurrencyFetchedProperties = {
-};
-
 @implementation PairTargetCurrencyID
 @end
 
@@ -43,7 +40,7 @@ const struct PairTargetCurrencyFetchedProperties PairTargetCurrencyFetchedProper
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-	
+
 	if ([key isEqualToString:@"fixedTargetPaymentAllowedValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"fixedTargetPaymentAllowed"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -68,12 +65,7 @@ const struct PairTargetCurrencyFetchedProperties PairTargetCurrencyFetchedProper
 	return keyPaths;
 }
 
-
-
-
 @dynamic fixedTargetPaymentAllowed;
-
-
 
 - (BOOL)fixedTargetPaymentAllowedValue {
 	NSNumber *result = [self fixedTargetPaymentAllowed];
@@ -93,13 +85,7 @@ const struct PairTargetCurrencyFetchedProperties PairTargetCurrencyFetchedProper
 	[self setPrimitiveFixedTargetPaymentAllowed:[NSNumber numberWithBool:value_]];
 }
 
-
-
-
-
 @dynamic hidden;
-
-
 
 - (BOOL)hiddenValue {
 	NSNumber *result = [self hidden];
@@ -119,13 +105,7 @@ const struct PairTargetCurrencyFetchedProperties PairTargetCurrencyFetchedProper
 	[self setPrimitiveHidden:[NSNumber numberWithBool:value_]];
 }
 
-
-
-
-
 @dynamic index;
-
-
 
 - (int16_t)indexValue {
 	NSNumber *result = [self index];
@@ -145,13 +125,7 @@ const struct PairTargetCurrencyFetchedProperties PairTargetCurrencyFetchedProper
 	[self setPrimitiveIndex:[NSNumber numberWithShort:value_]];
 }
 
-
-
-
-
 @dynamic minInvoiceAmount;
-
-
 
 - (int32_t)minInvoiceAmountValue {
 	NSNumber *result = [self minInvoiceAmount];
@@ -171,21 +145,9 @@ const struct PairTargetCurrencyFetchedProperties PairTargetCurrencyFetchedProper
 	[self setPrimitiveMinInvoiceAmount:[NSNumber numberWithInt:value_]];
 }
 
-
-
-
-
 @dynamic currency;
-
-	
 
 @dynamic source;
 
-	
-
-
-
-
-
-
 @end
+
