@@ -225,7 +225,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
             resultController = placeholderController;
             
         }
-
 		else if(IPAD)
 		{
 			TransferPayIPadViewController *controller = [[TransferPayIPadViewController alloc] init];

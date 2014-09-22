@@ -19,5 +19,4 @@
 @property (nonatomic, strong) Payment *payment;
 @property (nonatomic, strong) PayInMethod *method;
 
-
 @end
