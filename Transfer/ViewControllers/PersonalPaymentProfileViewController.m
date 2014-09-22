@@ -44,7 +44,7 @@
 						actionTitle:self.buttonTitle ? self.buttonTitle : NSLocalizedString(@"confirm.payment.footer.button.title", nil)
 						actionStyle:@"greenButton"
 					   actionShadow:@"greenShadow"
-					 actionProgress:0.3f];
+					 actionProgress:0.0f];
     [super viewDidLoad];
 }
 
