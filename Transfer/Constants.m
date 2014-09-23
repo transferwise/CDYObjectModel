@@ -36,7 +36,12 @@ NSString *const TRWGoogleAnalyticsTrackingId = @"UA-16492313-2";
 NSString *const TRWGoogleAnalyticsDevTrackingId = @"UA-24270670-3";
 
 NSString *const TRWMixpanelToken = @"96ffee966b209ba8b874598f4d936ff6";
+
 NSString *const TRWAppType = @"IosApp";
+
+NSString *const TRWImpactRadiusAppId = @"6598";
+NSString *const TRWImpactRadiusSID = @"IR4gjNxRYJ6d26091rA9zo7rpJBPnosnn2";
+NSString *const TRWImpactRadiusToken = @"e4rpBDiFcRCgQ4NsponLbPqzBcS8wAE9";
 
 void delayedExecution(CGFloat seconds, TRWActionBlock action) {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC), dispatch_get_main_queue(), action);
