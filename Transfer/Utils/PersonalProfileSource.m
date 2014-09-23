@@ -348,7 +348,7 @@ NSUInteger const kUserPersonalSection = 1;
 	[self.firstLastNameCell setValue:@""];
 	[self.firstLastNameCell setSecondValue:@""];
 	[self.emailCell setValue:@""];
-	[self.passwordCell setUseDummyPassword:@""];
+	[self.passwordCell setUseDummyPassword:NO];
 	[self.phoneNumberCell setValue:@""];
 	[self.dateOfBirthCell setValue:@""];
 	[self.addressCell setValue:@""];

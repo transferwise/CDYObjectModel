@@ -105,7 +105,7 @@
 {
     //Create Alert
     
-    GradientView* gradientView = [[GradientView alloc] initWithFrame:CGRectMake(0,0,IPAD?1024:320,74)];
+    GradientView* gradientView = [[GradientView alloc] initWithFrame:CGRectMake(0,0,IPAD?1024:self.view.frame.size.width,74)];
     gradientView.orientation = OrientationVertical;
     gradientView.fromColor = [UIColor colorWithRed:174.0f/255.0f green:46.0f/255.0f blue:70.0f/255.0f alpha:1.0f];
     gradientView.toColor = [UIColor colorWithRed:221.0f/255.0f green:73.0f/255.0f blue:51.0f/255.0f alpha:1.0f];

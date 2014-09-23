@@ -199,6 +199,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     UIViewController *resultController;
     if ([payment isSubmitted])
 	{
+        
 		if(IPAD)
 		{
 			TransferPayIPadViewController *controller = [[TransferPayIPadViewController alloc] init];
