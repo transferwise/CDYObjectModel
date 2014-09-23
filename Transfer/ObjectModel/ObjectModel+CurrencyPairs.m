@@ -26,36 +26,39 @@
 }
 
 - (void)createOrUpdatePairWithData:(NSDictionary *)data index:(NSUInteger)index {
-    NSString *currencyCode = data[@"currencyCode"];
-    Currency *currency = [self currencyWithCode:currencyCode];
-    PairSourceCurrency *source = [self pairSourceWithCurrency:currency];
-    if (!source) {
-        source = [PairSourceCurrency insertInManagedObjectContext:self.managedObjectContext];
-        [source setCurrency:currency];
-    }
-
-    [source setHiddenValue:NO];
-    [source setIndex:@(index)];
-    [source setMaxInvoiceAmount:data[@"maxInvoiceAmount"]];
     NSArray *targets = data[@"targetCurrencies"];
-
-    [self hideExistingTargetsForSource:source];
-
-    NSUInteger targetIndex = 0;
-    for (NSDictionary *targetData in targets) {
-        NSString *targetCode = targetData[@"currencyCode"];
-        Currency *targetCurrency = [self currencyWithCode:targetCode];
-        PairTargetCurrency *target = [self existingTargetForSource:source withCurrency:targetCurrency];
-        if (!target) {
-            target = [PairTargetCurrency insertInManagedObjectContext:self.managedObjectContext];
-            [target setCurrency:targetCurrency];
-            [target setSource:source];
+    if([targets count] > 0)
+    {
+        NSString *currencyCode = data[@"currencyCode"];
+        Currency *currency = [self currencyWithCode:currencyCode];
+        PairSourceCurrency *source = [self pairSourceWithCurrency:currency];
+        if (!source) {
+            source = [PairSourceCurrency insertInManagedObjectContext:self.managedObjectContext];
+            [source setCurrency:currency];
         }
-
-        [target setHiddenValue:NO];
-        [target setMinInvoiceAmount:targetData[@"minInvoiceAmount"]];
-        [target setFixedTargetPaymentAllowed:targetData[@"fixedTargetPaymentAllowed"]];
-        [target setIndex:@(targetIndex++)];
+        
+        [source setHiddenValue:NO];
+        [source setIndex:@(index)];
+        [source setMaxInvoiceAmount:data[@"maxInvoiceAmount"]];
+        
+        [self hideExistingTargetsForSource:source];
+        
+        NSUInteger targetIndex = 0;
+        for (NSDictionary *targetData in targets) {
+            NSString *targetCode = targetData[@"currencyCode"];
+            Currency *targetCurrency = [self currencyWithCode:targetCode];
+            PairTargetCurrency *target = [self existingTargetForSource:source withCurrency:targetCurrency];
+            if (!target) {
+                target = [PairTargetCurrency insertInManagedObjectContext:self.managedObjectContext];
+                [target setCurrency:targetCurrency];
+                [target setSource:source];
+            }
+            
+            [target setHiddenValue:NO];
+            [target setMinInvoiceAmount:targetData[@"minInvoiceAmount"]];
+            [target setFixedTargetPaymentAllowed:targetData[@"fixedTargetPaymentAllowed"]];
+            [target setIndex:@(targetIndex++)];
+        }
     }
 }
 
