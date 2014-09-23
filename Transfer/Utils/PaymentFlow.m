@@ -49,6 +49,8 @@
 #import "RegisterOperation.h"
 #import "PaymentMethodSelectorViewController.h"
 #import "SetSSNOperation.h"
+#import "EventTracker.h"
+#import "ObjectModel+Payments.h"
 
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
@@ -674,6 +676,11 @@
 #endif
 
         [NanTracking trackNanigansEvent:self.objectModel.currentUser.pReference type:@"purchase" name:@"main" value:[__formatter stringFromNumber:transferFee]];
+		
+		if ([self.objectModel hasNoOrOnlyCancelledPaymentsExeptThis:paymentID])
+		{
+			[[EventTracker sharedManager] trackEvent:@"InappConversion"];
+		}
 
         [weakSelf.objectModel performBlock:^{
             Payment *createdPayment = (Payment *) [self.objectModel.managedObjectContext objectWithID:paymentID];

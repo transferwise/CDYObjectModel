@@ -18,6 +18,6 @@
 - (void)removePaymentsWithIds:(NSArray *)array;
 - (BOOL)hasCompletedPayments;
 - (void)togglePaymentMadeForPayment:(Payment*)payment;
-
+- (BOOL)hasNoOrOnlyCancelledPaymentsExeptThis:(NSManagedObjectID *)paymentID;
 
 @end

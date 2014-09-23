@@ -33,7 +33,7 @@
 #import "UIImage+Color.h"
 #import "NavigationBarCustomiser.h"
 #import <FBAppCall.h>
-
+#import "EventTracker.h"
 #import "Credentials.h"
 #import "ObjectModel+Settings.h"
 #import "IntroViewController.h"
@@ -79,12 +79,14 @@
 	
 	UIViewController* controller;
 
+	//this is the first run
 	if (![Credentials userLoggedIn] && ![self.objectModel hasIntroBeenShown])
 	{
 		IntroViewController *introController = [[IntroViewController alloc] init];
 		[introController setObjectModel:self.objectModel];
 		controller = introController;
 	}
+	//this is the first run of v2
 	else if(![self.objectModel hasExistingUserIntroBeenShown])
 	{
 		IntroViewController *introController = [[IntroViewController alloc] init];
@@ -181,6 +183,14 @@
 	[Crashlytics startWithAPIKey:@"84bc4b5736898e3cfdb50d3d2c162c4f74480862"];
 	
 	[NanTracking trackNanigansEvent:@"" type:@"install" name:@"main"];
+	
+	EventTracker *tracker = [EventTracker sharedManager];
+	[tracker initEventTracker:TRWImpactRadiusAppId username:TRWImpactRadiusSID password:TRWImpactRadiusToken];
+	
+#if DEV_VERSION
+	[[EventTracker sharedManager] setDebug:YES];
+#endif
+	
 	return mixpanel;
 }
 
