@@ -278,7 +278,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     
     self.addressCells = addressCells;
     
-    
+    if (self.updateRecipient)
+    {
+        self.recipient = self.updateRecipient;
+    }
 }
 
 
@@ -692,7 +695,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view]; 
     [hud setMessage:NSLocalizedString(@"recipient.controller.validating.message", nil)];
 
-    Recipient *recipientInput = [self.objectModel createRecipient];
+    Recipient *recipientInput = self.updateRecipient?:[self.objectModel createRecipient];
     recipientInput.name = self.nameCell.value;
     recipientInput.currency = self.currency;
     recipientInput.type = self.recipientType;
@@ -950,6 +953,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 -(NSArray*)allTypes
 {
+    if(self.updateRecipient)
+    {
+        return @[self.updateRecipient.type];
+    }
     if ([self pendingPayment])
     {
         return [self.objectModel.pendingPayment.allowedRecipientTypes array];

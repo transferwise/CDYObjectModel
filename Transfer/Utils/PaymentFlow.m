@@ -213,7 +213,18 @@
     [self presentRecipientDetails:showMiniProfile templateRecipient:nil];
 }
 
-- (void)presentRecipientDetails:(BOOL)showMiniProfile templateRecipient:(Recipient*)template {
+- (void)presentRecipientDetails:(BOOL)showMiniProfile templateRecipient:(Recipient*)template
+{
+    [self presentRecipientDetails:showMiniProfile templateRecipient:template updateRecipient:nil];
+}
+
+- (void)presentRecipientDetails:(BOOL)showMiniProfile updateRecipient:(Recipient*)updateRecipient
+{
+    [self presentRecipientDetails:showMiniProfile templateRecipient:nil updateRecipient:updateRecipient];
+}
+
+- (void)presentRecipientDetails:(BOOL)showMiniProfile templateRecipient:(Recipient*)template updateRecipient:(Recipient*)updateRecipient
+{
     [[AnalyticsCoordinator sharedInstance] paymentRecipientProfileScreenShown];
 
     RecipientViewController *controller = [[RecipientViewController alloc] init];
@@ -234,6 +245,10 @@
     if(template)
     {
         controller.templateRecipient = template;
+    }
+    if(updateRecipient)
+    {
+        controller.updateRecipient = updateRecipient;
     }
     [controller setPreLoadRecipientsWithCurrency:self.objectModel.pendingPayment.targetCurrency];
     [self.navigationController pushViewController:controller animated:YES];
@@ -791,9 +806,9 @@
         }
         else if ([payment.recipient.type recipientAddressRequiredValue] && ! [payment.recipient hasAddress])
         {
-            Recipient *template = payment.recipient;
+            Recipient *updateRecipient = payment.recipient;
             payment.recipient = nil;
-            [self presentRecipientDetails:[payment.user personalProfileFilled] templateRecipient:template];
+            [self presentRecipientDetails:[payment.user personalProfileFilled] updateRecipient:updateRecipient];
         }
 		else if (!payment.user.personalProfileFilled)
 		{

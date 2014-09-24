@@ -31,6 +31,7 @@ typedef NS_ENUM(short, RecipientReportingType) {
 @property (nonatomic, assign) RecipientReportingType reportingType;
 
 @property (nonatomic, strong) Recipient* templateRecipient;
+@property (nonatomic, strong) Recipient* updateRecipient;
 
 //Set YES if adding recipient without payment flow.
 @property (nonatomic, assign) BOOL noPendingPayment;
