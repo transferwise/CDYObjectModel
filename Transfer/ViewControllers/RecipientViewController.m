@@ -462,13 +462,17 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         allowedType = [allowedTypes firstObject];
     }
     
-    if(type != allowedType || (type.recipientAddressRequiredValue && ![recipient hasAddress]))
+    if(type != allowedType)
     {
         self.recipient = nil;
         if(recipient)
         {
             self.templateRecipient = recipient;
         }
+    }
+    else if (type.recipientAddressRequiredValue && ![recipient hasAddress])
+    {
+        self.updateRecipient = recipient;
     }
     else
     {
@@ -516,22 +520,36 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         return;
     }
 
-        //We're using an existing recipient.
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"ExistingRecipientSelected"];
-        [self.nameCell setValue:recipient.name];
-        [self.emailCell setValue:recipient.email];
-
-        [self updateUserNameText];
+    //We're using an existing recipient.
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ExistingRecipientSelected"];
+    [self.nameCell setValue:recipient.name];
+    [self.emailCell setValue:recipient.email];
+    
+    [self updateUserNameText];
+    
+    for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
         
-        for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
-
-            RecipientTypeField *field = fieldCell.type;
-            [fieldCell setValue:[recipient valueField:field]];
+        RecipientTypeField *field = fieldCell.type;
+        [fieldCell setValue:[recipient valueField:field]];
+        if(self.updateRecipient!= recipient || [[fieldCell value] hasValue])
+        {
             [fieldCell setEditable:NO];
         }
-        [self setAddressFieldsFromRecipient:recipient];
+        else
+        {
+            [fieldCell setEditable:YES];
+        }
+    }
+    [self setAddressFieldsFromRecipient:recipient];
+    if([recipient hasAddress])
+    {
         [self setAddressFieldsEditable:NO];
-        self.settingRecipient = NO;
+    }
+    else
+    {
+        [self setAddressFieldsEditable:YES];
+    }
+    self.settingRecipient = NO;
 }
 
 -(void)setAddressFieldsFromRecipient:(Recipient*)recipient
@@ -687,7 +705,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     PendingPayment *payment = [self pendingPayment];
 
-    if (self.recipient && !self.updateRecipient) {
+    if (self.recipient && (self.updateRecipient != self.recipient)) {
         self.recipient.email = self.emailCell.value;
         [payment setRecipient:self.recipient];
         [self.objectModel saveContext:self.afterSaveAction];
@@ -810,6 +828,21 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             {
                 addressValidationFailed = YES;
                 break;
+            }
+            else if(cell == self.countryCell || cell == self.stateCell)
+            {
+                if ([[cell value] isEqualToString:@"invalid"])
+                {
+                    if(cell == self.countryCell)
+                    {
+                        [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.country", nil),self.currency.code]];
+                    }
+                    else
+                    {
+                        [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.state", nil),self.currency.code]];
+                    }
+
+                }
             }
         }
         if(addressValidationFailed)
