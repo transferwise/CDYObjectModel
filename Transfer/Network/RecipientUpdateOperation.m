@@ -14,7 +14,7 @@
 
 @implementation RecipientUpdateOperation
 
-static NSString* updatePath = @"recipient/update";
+static NSString* updatePath = @"/recipient/update";
 
 +(instancetype)instanceWithRecipient:(Recipient*)recipient objectModel:(ObjectModel*)objectModel completionHandler:(void (^)(NSError *))completionHandler
 {
@@ -28,8 +28,9 @@ static NSString* updatePath = @"recipient/update";
 
 -(void)execute
 {
-    if(self.recipient && self. objectModel)
+    if(self.recipient && self.objectModel)
     {
+        NSString *path = [self addTokenToPath:updatePath];
         Recipient *recipient = self.recipient;
         NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
         parameters[@"recipientId"] = recipient.remoteId;
@@ -83,7 +84,7 @@ static NSString* updatePath = @"recipient/update";
             }
         }];
         
-        [self postData:parameters toPath:updatePath];
+        [self postData:parameters toPath:path];
         
 
     }
