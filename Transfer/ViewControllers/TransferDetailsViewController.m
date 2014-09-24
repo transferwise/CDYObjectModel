@@ -102,7 +102,14 @@
     }
     self.statusIcon.image = icon;
 	
-	[self.supportButton setTitle:NSLocalizedString([@"transferdetails.controller.button.support" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
+	if (self.payment.status == PaymentStatusTransferred)
+	{
+		[self.supportButton setTitle:NSLocalizedString([@"transferdetails.controller.button.rate" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
+	}
+	else
+	{
+		[self.supportButton setTitle:NSLocalizedString([@"transferdetails.controller.button.support" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
+	}
 	
 	[self.view layoutIfNeeded];
 }
@@ -169,9 +176,16 @@
 
 - (IBAction)contactSupportPressed
 {
-    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"Transfer details"];
-    NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
-    [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
+	if (self.payment.status == PaymentStatusTransferred)
+	{
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:TRWRateAppUrl]];
+	}
+	else
+	{
+		[[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"Transfer details"];
+		NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
+		[[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
+	}
 }
 
 - (NSString*)getStatusBasedLocalization:(NSString *)localizationKey status:(NSString*)status
