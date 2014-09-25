@@ -382,11 +382,13 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     }
 }
 
-- (void)continuePressed {
+- (void)continuePressed
+{
     [UIApplication dismissKeyboard];
 
     NSString *issues = [self validateInput];
-    if ([issues hasValue]) {
+    if ([issues hasValue])
+	{
         TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"refund.details.save.error.title", nil) message:issues];
         [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
         [alertView show];
@@ -396,25 +398,30 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"refund.controller.validating.message", nil)];
 
-    Recipient *recipient = [self.objectModel createRecipient];
-    recipient.name = self.holderNameCell.value;
-    recipient.currency = self.currency;
-    recipient.type = self.recipientType;
+	if (!self.recipient)
+	{
+		self.recipient = [self.objectModel createRecipient];
+		self.recipient.name = self.holderNameCell.value;
+		self.recipient.currency = self.currency;
+		self.recipient.type = self.recipientType;
+		
+		for (RecipientFieldCell *cell in self.recipientTypeFieldCells)
+		{
+			if ([cell isKindOfClass:[TransferTypeSelectionHeader class]])
+			{
+				continue;
+			}
+			
+			NSString *value = [cell value];
+			RecipientTypeField *field = cell.type;
+			[self.recipient setValue:[field stripPossiblePatternFromValue:value] forField:field];
+		}
+	}
 
-    for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
-        if ([cell isKindOfClass:[TransferTypeSelectionHeader class]]) {
-            continue;
-        }
-
-        NSString *value = [cell value];
-        RecipientTypeField *field = cell.type;
-        [recipient setValue:[field stripPossiblePatternFromValue:value] forField:field];
-    }
-
-    [self.payment setRefundRecipient:recipient];
+    [self.payment setRefundRecipient:self.recipient];
     [self.objectModel saveContext];
 
-    RecipientOperation *validate = [RecipientOperation validateOperationWithRecipient:recipient.objectID];
+    RecipientOperation *validate = [RecipientOperation validateOperationWithRecipient:self.recipient.objectID];
     [self setOperation:validate];
     [validate setObjectModel:self.objectModel];
     __weak typeof(self) weakSelf = self;
@@ -422,7 +429,8 @@ CGFloat const TransferHeaderPaddingBottom = 0;
         [weakSelf setOperation:nil];
         [hud hide];
 
-        if (error) {
+        if (error)
+		{
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"refund.controller.validation.error.title", nil) error:error];
             [alertView show];
             return;
@@ -434,16 +442,20 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     [validate execute];
 }
 
-- (NSString *)validateInput {
+- (NSString *)validateInput
+{
     NSMutableString *issues = [NSMutableString string];
 
     NSString *name = [self.holderNameCell value];
-    if (![name hasValue]) {
+    if (![name hasValue])
+	{
         [issues appendIssue:NSLocalizedString(@"refund.controller.validation.error.empty.name", nil)];
     }
 
-    for (RecipientFieldCell *cell in self.recipientTypeFieldCells) {
-        if ([cell isKindOfClass:[TransferTypeSelectionHeader class]]) {
+    for (RecipientFieldCell *cell in self.recipientTypeFieldCells)
+	{
+        if ([cell isKindOfClass:[TransferTypeSelectionHeader class]])
+		{
             continue;
         }
 
@@ -451,7 +463,8 @@ CGFloat const TransferHeaderPaddingBottom = 0;
         NSString *value = [cell value];
 
         NSString *valueIssue = [field hasIssueWithValue:value];
-        if (![valueIssue hasValue]) {
+        if (![valueIssue hasValue])
+		{
             continue;
         }
 
@@ -461,52 +474,54 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     return [NSString stringWithString:issues];
 }
 
-- (void)didSelectRecipient:(Recipient *)recipient {
-
-    if(recipient)
-    {
-        self.settingRecipient = YES;
-    }
-    [self setRecipient:recipient];
-    [self handleSelectionChangeToType:recipient ? recipient.type : self.currency.defaultRecipientType allTypes:[self.currency.recipientTypes array]];
-    
-    if (!recipient) {
-        [self.holderNameCell setValue:@""];
-        [self.holderNameCell setEditable:YES];
-        
-        for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
-            [fieldCell setValue:@""];
-            [fieldCell setEditable:YES];
-        }
-        return;
-    }
-
-    
-        [self.holderNameCell setValue:recipient.name];
-
-        for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
-            [fieldCell setEditable:NO];
-            if ([fieldCell isKindOfClass:[TransferTypeSelectionHeader class]]) {
-                continue;
-            }
-
-            RecipientTypeField *field = fieldCell.type;
-            [fieldCell setValue:[recipient valueField:field]];
-        }
+- (void)didSelectRecipient:(Recipient *)recipient
+{
+	if (!recipient)
+	{
+		[self.holderNameCell setValue:@""];
+		[self.holderNameCell setEditable:YES];
+		
+		for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
+			[fieldCell setValue:@""];
+			[fieldCell setEditable:YES];
+		}
+		return;
+	}
+	
+	self.settingRecipient = YES;
+	
+	[self setRecipient:recipient];
+	[self handleSelectionChangeToType:recipient ? recipient.type : self.currency.defaultRecipientType allTypes:[self.currency.recipientTypes array]];
+	
+	[self.holderNameCell setValue:recipient.name];
+	
+	for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells)
+	{
+		[fieldCell setEditable:NO];
+		if ([fieldCell isKindOfClass:[TransferTypeSelectionHeader class]])
+		{
+			continue;
+		}
+		
+		RecipientTypeField *field = fieldCell.type;
+		[fieldCell setValue:[recipient valueField:field]];
+	}
 }
 
 -(void)suggestionTable:(TextFieldSuggestionTable *)table selectedObject:(id)object
 {
     [super suggestionTable:table selectedObject:object];
     EmailLookupWrapper* wrapper = (EmailLookupWrapper*)object;
+	
     if(wrapper.recordId)
     {
        
         [self.holderNameCell setValue:[wrapper presentableString:FirstNameFirst]];
         [self.holderNameCell setEditable:YES];
             
-        for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
-                [fieldCell setEditable:YES];
+        for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells)
+		{
+			[fieldCell setEditable:YES];
         }
 
     }
@@ -514,9 +529,6 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     {
         [self didSelectRecipient:(Recipient*)[self.objectModel.managedObjectContext objectWithID:wrapper.managedObjectId]];
     }
-
 }
-
-
 
 @end

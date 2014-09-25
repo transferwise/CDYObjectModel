@@ -392,12 +392,27 @@
 	}
 	
     NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:headerText];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"darkfont"] range:[headerText rangeOfString:amountString]];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"darkfont"] range:[headerText rangeOfString:self.payment.recipient.name]];
-    UIFont* boldText = [((MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"heavy.@17"]) font];
-    [attributedString addAttribute:NSFontAttributeName value:boldText range:[headerText rangeOfString:amountString]];
-    [attributedString addAttribute:NSFontAttributeName value:boldText range:[headerText rangeOfString:self.payment.recipient.name]];
+
+    [self markSubstring:amountString inMutableAttributedString:attributedString];
+    [self markSubstring:self.payment.recipient.name inMutableAttributedString:attributedString];
+
     self.headerLabel.attributedText = attributedString;
+}
+
+-(void)markSubstring:(NSString*)substring inMutableAttributedString:(NSMutableAttributedString*)attributedString
+{
+    if(!substring)
+    {
+        return;
+    }
+    NSRange range = [[attributedString string] rangeOfString:substring];
+    
+    if(range.location != NSNotFound && range.length > 0 && range.location + range.length <= attributedString.length)
+    {
+        [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"darkfont"] range:range];
+        UIFont* boldText = [((MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:@"heavy.@17"]) font];
+        [attributedString addAttribute:NSFontAttributeName value:boldText range:range];
+    }
 }
 
 -(void)fillFooterText

@@ -62,6 +62,7 @@ extern NSString *const TRWUploadProgressNotification;
 extern NSString *const TRWUploadProgressKey;
 extern NSString *const TRWUploadFileKey;
 extern NSString *const TRWAppType;
+extern NSString *const TRWRateAppUrl;
 
 
 void delayedExecution(CGFloat seconds, TRWActionBlock action);

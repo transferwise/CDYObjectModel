@@ -325,6 +325,8 @@ It generally taks 1 business day.";
 "recipient.controller.validation.error.bic.required" = "BIC is required for transfers to %@";
 "recipient.controller.validation.error.email.format" = "Email is invalid";
 "recipient.controller.validation.error.address" = "Address has empty fields";
+"recipient.controller.validation.error.country" = "Invalid country";
+"recipient.controller.validation.error.state" = "Invalid state";
 "recipient.controller.section.title.address" = "Address";
 
 "recipient.details.ABA.base" = "ACH / ABA: %@, State:%@";
@@ -418,6 +420,8 @@ This can't be undone.";
 "transferdetails.controller.transfer.account.sent" = "%@\nWe've sent email to %@ at\n%@";
 "transferdetails.controller.button.support.ipad" = "Contact support";
 "transferdetails.controller.button.support" = "Contact customer support";
+"transferdetails.controller.button.rate" = "Rate the app";
+"transferdetails.controller.button.rate.ipad" = "Rate the app";
 "transferdetails.controller.button.notransfer" = "Bank transfer not done";
 "transferdetails.controller.button.gotit" = "Got it!";
 "transferdetails.controller.button.pay" = "Pay %@ now";
