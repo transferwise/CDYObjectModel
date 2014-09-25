@@ -63,6 +63,7 @@
 #import "CountriesOperation.h"
 #import "CountrySuggestionCellProvider.h"
 #import "StateSuggestionProvider.h"
+#import "RecipientUpdateOperation.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
@@ -278,7 +279,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     
     self.addressCells = addressCells;
     
-    
+    if (self.updateRecipient)
+    {
+        self.settingRecipient = YES;
+        self.recipient = self.updateRecipient;
+    }
 }
 
 
@@ -457,9 +462,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         allowedType = [allowedTypes firstObject];
     }
     
-    if(type != allowedType || (type.recipientAddressRequiredValue && ![recipient hasAddress]))
+    if(type != allowedType)
     {
         self.recipient = nil;
+        self.updateRecipient = nil;
         if(recipient)
         {
             self.templateRecipient = recipient;
@@ -467,7 +473,16 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
     else
     {
-        [self setRecipient:recipient];
+        self.recipient = recipient;
+        if (type.recipientAddressRequiredValue && ![recipient hasAddress])
+        {
+            self.updateRecipient = recipient;
+        }
+        else
+        {
+            self.updateRecipient = nil;
+        }
+
     }
     type = allowedType;
     
@@ -511,22 +526,36 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         return;
     }
 
-        //We're using an existing recipient.
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"ExistingRecipientSelected"];
-        [self.nameCell setValue:recipient.name];
-        [self.emailCell setValue:recipient.email];
-
-        [self updateUserNameText];
+    //We're using an existing recipient.
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ExistingRecipientSelected"];
+    [self.nameCell setValue:recipient.name];
+    [self.emailCell setValue:recipient.email];
+    
+    [self updateUserNameText];
+    
+    for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
         
-        for (RecipientFieldCell *fieldCell in self.recipientTypeFieldCells) {
-
-            RecipientTypeField *field = fieldCell.type;
-            [fieldCell setValue:[recipient valueField:field]];
+        RecipientTypeField *field = fieldCell.type;
+        [fieldCell setValue:[recipient valueField:field]];
+        if(self.updateRecipient!= recipient || [[fieldCell value] hasValue])
+        {
             [fieldCell setEditable:NO];
         }
-        [self setAddressFieldsFromRecipient:recipient];
+        else
+        {
+            [fieldCell setEditable:YES];
+        }
+    }
+    [self setAddressFieldsFromRecipient:recipient];
+    if([recipient hasAddress])
+    {
         [self setAddressFieldsEditable:NO];
-        self.settingRecipient = NO;
+    }
+    else
+    {
+        [self setAddressFieldsEditable:YES];
+    }
+    self.settingRecipient = NO;
 }
 
 -(void)setAddressFieldsFromRecipient:(Recipient*)recipient
@@ -682,7 +711,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
     PendingPayment *payment = [self pendingPayment];
 
-    if (self.recipient) {
+    if (self.recipient && (self.updateRecipient != self.recipient)) {
         self.recipient.email = self.emailCell.value;
         [payment setRecipient:self.recipient];
         [self.objectModel saveContext:self.afterSaveAction];
@@ -692,7 +721,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view]; 
     [hud setMessage:NSLocalizedString(@"recipient.controller.validating.message", nil)];
 
-    Recipient *recipientInput = [self.objectModel createRecipient];
+    Recipient *recipientInput = self.updateRecipient?:[self.objectModel createRecipient];
     recipientInput.name = self.nameCell.value;
     recipientInput.currency = self.currency;
     recipientInput.type = self.recipientType;
@@ -723,21 +752,33 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [payment setRecipient:recipientInput];
     [self.objectModel saveContext];
 
-    [self.recipientValidation validateRecipient:recipientInput.objectID completion:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+    if(recipientInput == self.updateRecipient)
+    {
+        RecipientUpdateOperation* operation = [RecipientUpdateOperation instanceWithRecipient:self.updateRecipient objectModel:self.objectModel completionHandler:^(NSError *error) {
             [hud hide];
-
-            if (error) {
-                [[GoogleAnalytics sharedInstance] sendAlertEvent:@"SavingRecipientAlert" withLabel:[error localizedTransferwiseMessage]];
-
-                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) error:error];
-                [alertView show];
-                return;
-            }
-
             self.afterSaveAction();
-        });
-    }];
+        }];
+        self.executedOperation = operation;
+        [operation execute];
+    }
+    else
+    {
+        [self.recipientValidation validateRecipient:recipientInput.objectID completion:^(NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hide];
+                
+                if (error) {
+                    [[GoogleAnalytics sharedInstance] sendAlertEvent:@"SavingRecipientAlert" withLabel:[error localizedTransferwiseMessage]];
+                    
+                    TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) error:error];
+                    [alertView show];
+                    return;
+                }
+                
+                self.afterSaveAction();
+            });
+        }];
+    }
 }
 
 - (NSString *)validateInput {
@@ -793,6 +834,21 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             {
                 addressValidationFailed = YES;
                 break;
+            }
+            else if(cell == self.countryCell || cell == self.stateCell)
+            {
+                if ([[cell value] isEqualToString:@"invalid"])
+                {
+                    if(cell == self.countryCell)
+                    {
+                        [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.country", nil),self.currency.code]];
+                    }
+                    else
+                    {
+                        [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.state", nil),self.currency.code]];
+                    }
+
+                }
             }
         }
         if(addressValidationFailed)
@@ -950,6 +1006,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 -(NSArray*)allTypes
 {
+    if(self.updateRecipient)
+    {
+        return @[self.updateRecipient.type];
+    }
     if ([self pendingPayment])
     {
         return [self.objectModel.pendingPayment.allowedRecipientTypes array];
