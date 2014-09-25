@@ -409,8 +409,6 @@ This can't be undone.";
 "transferdetails.controller.transfer.account.sent" = "%@\nWe've sent email to %@ at\n%@";
 "transferdetails.controller.button.support.ipad" = "Contact support";
 "transferdetails.controller.button.support" = "Contact customer support";
-"transferdetails.controller.button.rate" = "Rate the app";
-"transferdetails.controller.button.rate.ipad" = "Rate the app";
 "transferdetails.controller.button.notransfer" = "Bank transfer not done";
 "transferdetails.controller.button.gotit" = "Got it!";
 "transferdetails.controller.button.pay" = "Pay %@ now";
