@@ -794,6 +794,8 @@
     MCLog(@"presentNextPaymentScreen");
     [self.objectModel performBlock:^{
         PendingPayment *payment = [self.objectModel pendingPayment];
+        NSOrderedSet *fieldNames = [payment.recipient.type.fields valueForKey:@"name"];
+        BOOL bicIsRequired = payment.targetCurrency.recipientBicRequiredValue && [fieldNames indexOfObject:@"BIC"] != NSNotFound;
         if (!payment.recipient)
 		{
             [self presentRecipientDetails:[payment.user personalProfileFilled]];
@@ -805,6 +807,12 @@
             [self presentRecipientDetails:[payment.user personalProfileFilled] templateRecipient:template];
         }
         else if ([payment.recipient.type recipientAddressRequiredValue] && ! [payment.recipient hasAddress])
+        {
+            Recipient *updateRecipient = payment.recipient;
+            payment.recipient = nil;
+            [self presentRecipientDetails:[payment.user personalProfileFilled] updateRecipient:updateRecipient];
+        }
+        else if (bicIsRequired && ! [[payment.recipient valueForFieldNamed:@"BIC"] length] > 0)
         {
             Recipient *updateRecipient = payment.recipient;
             payment.recipient = nil;

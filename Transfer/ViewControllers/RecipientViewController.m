@@ -474,7 +474,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     else
     {
         self.recipient = recipient;
-        if (type.recipientAddressRequiredValue && ![recipient hasAddress])
+        NSOrderedSet *fieldNames = [self.recipientType.fields valueForKey:@"name"];
+        BOOL bicIsRequired = self.currency.recipientBicRequiredValue && [fieldNames indexOfObject:@"BIC"] != NSNotFound;
+        if ((type.recipientAddressRequiredValue && ![recipient hasAddress]) || (bicIsRequired && [[recipient valueForFieldNamed:@"BIC"] length] <= 0))
         {
             self.updateRecipient = recipient;
         }
@@ -815,7 +817,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
         NSString *valueIssue = [field hasIssueWithValue:value];
         if (![valueIssue hasValue]) {
-            if([value length] < 1 && self.currency.recipientBicRequiredValue && [field.name caseInsensitiveCompare:@"bic"]== NSOrderedSame)
+            if([field.name caseInsensitiveCompare:@"bic"]== NSOrderedSame && [value length] < 1 && self.currency.recipientBicRequiredValue)
             {
                 [issues appendIssue:[NSString stringWithFormat:NSLocalizedString(@"recipient.controller.validation.error.bic.required", nil),self.currency.code]];
             }
