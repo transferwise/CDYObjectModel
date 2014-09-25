@@ -49,6 +49,7 @@
         else
         {
             button.fontStyle = @"heavy.@17.TWElectricBlue";
+            button.highlightedFontStyle = @"heavy.@17.darkfont";
             [button setTitle:NSLocalizedString(@"settings.title",nil) forState:UIControlStateNormal];
             [button sizeToFit];
             frame.size.width = button.frame.size.width;
