@@ -19,9 +19,6 @@ const struct BusinessProfileRelationships BusinessProfileRelationships = {
 	.user = @"user",
 };
 
-const struct BusinessProfileFetchedProperties BusinessProfileFetchedProperties = {
-};
-
 @implementation BusinessProfileID
 @end
 
@@ -47,84 +44,29 @@ const struct BusinessProfileFetchedProperties BusinessProfileFetchedProperties =
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-	
 
 	return keyPaths;
 }
 
-
-
-
 @dynamic addressFirstLine;
-
-
-
-
-
 
 @dynamic businessDescription;
 
-
-
-
-
-
 @dynamic city;
-
-
-
-
-
 
 @dynamic countryCode;
 
-
-
-
-
-
 @dynamic name;
-
-
-
-
-
 
 @dynamic postCode;
 
-
-
-
-
-
 @dynamic readonlyFields;
-
-
-
-
-
 
 @dynamic registrationNumber;
 
-
-
-
-
-
 @dynamic state;
-
-
-
-
-
 
 @dynamic user;
 
-	
-
-
-
-
-
-
 @end
+

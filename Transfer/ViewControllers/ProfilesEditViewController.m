@@ -20,6 +20,7 @@
 #import "GoogleAnalytics.h"
 #import "NSString+DeviceSpecificLocalisation.h"
 #import "SettingsViewController.h"
+#import "MOMStyle.h"
 
 @interface ProfilesEditViewController()
 
@@ -37,10 +38,23 @@
 	if (self)
 	{
 		[self setTitle:NSLocalizedString([@"profile.edit.title" deviceSpecificLocalization], nil)];
-		UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 98, 44)];
+        CGRect frame = CGRectMake(0, 0, 98, 44);
+		UIButton *button = [[UIButton alloc] initWithFrame:frame];
 		[button addTarget:self action:@selector(showSettings) forControlEvents:UIControlEventTouchUpInside];
-		[button setImage:[UIImage imageNamed:@"SettingsButton"] forState:UIControlStateNormal];
-		[button setImageEdgeInsets:UIEdgeInsetsMake(0, 58, 0, -17)];
+        if(IPAD)
+        {
+            [button setImage:[UIImage imageNamed:@"SettingsButton"] forState:UIControlStateNormal];
+            [button setImageEdgeInsets:UIEdgeInsetsMake(0, 58, 0, -17)];
+        }
+        else
+        {
+            button.fontStyle = @"heavy.@17.TWElectricBlue";
+            button.highlightedFontStyle = @"heavy.@17.darkfont";
+            [button setTitle:NSLocalizedString(@"settings.title",nil) forState:UIControlStateNormal];
+            [button sizeToFit];
+            frame.size.width = button.frame.size.width;
+            button.frame = frame;
+        }
 		UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithCustomView:button];
 		[self.navigationItem setRightBarButtonItem:settingsButton];
 	}
@@ -127,5 +141,11 @@
 - (void)modalClosed
 {
 	self.isShowingSettings = NO;
+}
+
+- (void)clearData
+{
+	[self.personalProfile clearData];
+	[self.businessProfile clearData];
 }
 @end

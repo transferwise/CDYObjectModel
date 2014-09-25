@@ -93,7 +93,8 @@
     ABSTRACT_METHOD;
 }
 
-- (void)markCellsWithIssues:(NSArray *)issues {
+- (void)markCellsWithIssues:(NSArray *)issues
+{
     [self removeAllErrorMarkers];
 
     for (NSDictionary *issue in issues) {
@@ -187,7 +188,7 @@
 	UITableView* tableView;
 	for(UITableView *table in self.tableViews)
 	{
-		if ([table indexPathForCell:afterCell])
+		if ([self getIndexPathForCell:afterCell inTableView:table])
 		{
 			tableView = table;
 			break;
@@ -205,7 +206,7 @@
 	{
 		[fields insertObject:includeCell atIndex:[fields indexOfObject:afterCell] + 1];
 		
-		NSIndexPath *indexPath = [tableView indexPathForCell:afterCell];
+		NSIndexPath *indexPath = [self getIndexPathForCell:afterCell inTableView:tableView];
 		if (indexPath)
 		{
 			indexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
@@ -222,7 +223,7 @@
 	else if(!shouldInclude && [fields containsObject:includeCell])
 	{
 		[fields removeObject:includeCell];
-		NSIndexPath *indexPath = [tableView indexPathForCell:includeCell];
+		NSIndexPath *indexPath = [self getIndexPathForCell:includeCell inTableView:tableView];
 		if (indexPath)
 		{
 			[self updateTableView:tableView
@@ -234,6 +235,18 @@
 	}
 	
 	return nil;
+}
+
+- (NSIndexPath *)getIndexPathForCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView
+{
+	NSIndexPath *path = [tableView indexPathForCell:cell];
+	
+	if (!path)
+	{
+		path = [tableView indexPathForRowAtPoint:[cell convertPoint:cell.center toView:tableView]];
+	}
+	
+	return path;
 }
 
 - (void)updateTableView:(UITableView *)tableView
@@ -294,6 +307,11 @@
 	}
 	
 	return nil;
+}
+
+- (void)clearData
+{
+	ABSTRACT_METHOD;
 }
 
 @end

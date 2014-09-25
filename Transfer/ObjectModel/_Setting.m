@@ -8,12 +8,6 @@ const struct SettingAttributes SettingAttributes = {
 	.value = @"value",
 };
 
-const struct SettingRelationships SettingRelationships = {
-};
-
-const struct SettingFetchedProperties SettingFetchedProperties = {
-};
-
 @implementation SettingID
 @end
 
@@ -39,7 +33,7 @@ const struct SettingFetchedProperties SettingFetchedProperties = {
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-	
+
 	if ([key isEqualToString:@"keyValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"key"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -49,12 +43,7 @@ const struct SettingFetchedProperties SettingFetchedProperties = {
 	return keyPaths;
 }
 
-
-
-
 @dynamic key;
-
-
 
 - (int16_t)keyValue {
 	NSNumber *result = [self key];
@@ -74,20 +63,7 @@ const struct SettingFetchedProperties SettingFetchedProperties = {
 	[self setPrimitiveKey:[NSNumber numberWithShort:value_]];
 }
 
-
-
-
-
 @dynamic value;
 
-
-
-
-
-
-
-
-
-
-
 @end
+
