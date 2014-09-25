@@ -465,18 +465,24 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     if(type != allowedType)
     {
         self.recipient = nil;
+        self.updateRecipient = nil;
         if(recipient)
         {
             self.templateRecipient = recipient;
         }
     }
-    else if (type.recipientAddressRequiredValue && ![recipient hasAddress])
-    {
-        self.updateRecipient = recipient;
-    }
     else
     {
-        [self setRecipient:recipient];
+        self.recipient = recipient;
+        if (type.recipientAddressRequiredValue && ![recipient hasAddress])
+        {
+            self.updateRecipient = recipient;
+        }
+        else
+        {
+            self.updateRecipient = nil;
+        }
+
     }
     type = allowedType;
     
