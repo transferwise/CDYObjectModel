@@ -38,8 +38,6 @@ NSString *const TRWGoogleAnalyticsDevTrackingId = @"UA-24270670-3";
 NSString *const TRWMixpanelToken = @"96ffee966b209ba8b874598f4d936ff6";
 NSString *const TRWAppType = @"IosApp";
 
-NSString *const TRWRateAppUrl = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=612261027&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8";
-
 void delayedExecution(CGFloat seconds, TRWActionBlock action) {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC), dispatch_get_main_queue(), action);
 }

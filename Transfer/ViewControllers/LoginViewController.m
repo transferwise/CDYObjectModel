@@ -124,21 +124,6 @@
     return YES;
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-	if (textField == self.emailTextField)
-	{
-		NSString *modified = [textField.text stringByReplacingCharactersInRange:range withString:string];
-		textField.text = [modified lowercaseString];
-		
-		return NO;
-	}
-	else
-	{
-		return YES;
-	}
-}
-
 #pragma mark - Login
 - (IBAction)loginPressed:(id)sender
 {
