@@ -414,9 +414,9 @@
 		476461E91982859F00F16F05 /* StyledPlaceholderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */; };
 		476461EA1982859F00F16F05 /* StyledPlaceholderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */; };
 		47679A3F19D1763E00DA1D5C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47679A3E19D1763E00DA1D5C /* CoreTelephony.framework */; };
-		47679A4319D19E6700DA1D5C /* libEventTracker-noAFNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47679A4219D19E6700DA1D5C /* libEventTracker-noAFNetwork.a */; };
-		47679A4419D19E6700DA1D5C /* libEventTracker-noAFNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47679A4219D19E6700DA1D5C /* libEventTracker-noAFNetwork.a */; };
 		47679A4519D19F0F00DA1D5C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47679A3E19D1763E00DA1D5C /* CoreTelephony.framework */; };
+		47679A5319D42AC100DA1D5C /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47679A5019D42AAE00DA1D5C /* libEventTracker.a */; };
+		47679A5519D42E4000DA1D5C /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47679A5019D42AAE00DA1D5C /* libEventTracker.a */; };
 		476C6B88196C18BF007002F9 /* SwipeToCancelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */; };
 		476C6B89196C18BF007002F9 /* SwipeToCancelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */; };
 		476D78C519B70F7500B561DA /* UIViewController+SwitchToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 476D78C419B70F7500B561DA /* UIViewController+SwitchToViewController.m */; };
@@ -1230,11 +1230,11 @@
 		47535CB41981367C00DC39D6 /* UIView+SeparatorLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SeparatorLine.m"; sourceTree = "<group>"; };
 		476461E71982859F00F16F05 /* StyledPlaceholderTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyledPlaceholderTextField.h; sourceTree = "<group>"; };
 		476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyledPlaceholderTextField.m; sourceTree = "<group>"; };
-		47679A3919D175DF00DA1D5C /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
-		47679A3A19D175DF00DA1D5C /* EventTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTracker.h; sourceTree = "<group>"; };
 		47679A3E19D1763E00DA1D5C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		47679A4019D19DF800DA1D5C /* libEventTracker-noAFNetwork */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libEventTracker-noAFNetwork"; path = "Thirdparty/iOS EventTracker-SDK/libEventTracker-noAFNetwork"; sourceTree = "<group>"; };
-		47679A4219D19E6700DA1D5C /* libEventTracker-noAFNetwork.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libEventTracker-noAFNetwork.a"; sourceTree = "<group>"; };
+		47679A4E19D42AAE00DA1D5C /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		47679A4F19D42AAE00DA1D5C /* EventTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTracker.h; sourceTree = "<group>"; };
+		47679A5019D42AAE00DA1D5C /* libEventTracker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEventTracker.a; sourceTree = "<group>"; };
 		476C6B86196C18BF007002F9 /* SwipeToCancelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeToCancelCell.h; sourceTree = "<group>"; };
 		476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeToCancelCell.m; sourceTree = "<group>"; };
 		476D78C319B70F7500B561DA /* UIViewController+SwitchToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SwitchToViewController.h"; sourceTree = "<group>"; };
@@ -1630,6 +1630,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47679A5519D42E4000DA1D5C /* libEventTracker.a in Frameworks */,
 				EA84055917F06DCD00F44916 /* AdSupport.framework in Frameworks */,
 				EA31A1C517DDB29B00F937F7 /* SystemConfiguration.framework in Frameworks */,
 				47679A4519D19F0F00DA1D5C /* CoreTelephony.framework in Frameworks */,
@@ -1646,7 +1647,6 @@
 				EA8FA96B1891066000153EBC /* libGoogleAnalyticsServices.a in Frameworks */,
 				EA31A1C917DDB29B00F937F7 /* CoreData.framework in Frameworks */,
 				EA31A1CA17DDB29B00F937F7 /* Crashlytics.framework in Frameworks */,
-				47679A4419D19E6700DA1D5C /* libEventTracker-noAFNetwork.a in Frameworks */,
 				EA31A1CC17DDB29B00F937F7 /* MessageUI.framework in Frameworks */,
 				EA31A1CD17DDB29B00F937F7 /* libPods.a in Frameworks */,
 				38AEB3C4196436F800B852E1 /* libAppsFlyerLib.a in Frameworks */,
@@ -1657,7 +1657,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47679A4319D19E6700DA1D5C /* libEventTracker-noAFNetwork.a in Frameworks */,
+				47679A5319D42AC100DA1D5C /* libEventTracker.a in Frameworks */,
 				EA84055C17F06E0100F44916 /* AdSupport.framework in Frameworks */,
 				EA8FF6AB171D222E0090A658 /* SystemConfiguration.framework in Frameworks */,
 				47679A3F19D1763E00DA1D5C /* CoreTelephony.framework in Frameworks */,
@@ -1897,14 +1897,14 @@
 			path = "AF-iOS-SDK-v2";
 			sourceTree = "<group>";
 		};
-		47679A3819D175DF00DA1D5C /* iOS EventTracker-SDK */ = {
+		47679A4D19D42AAE00DA1D5C /* iOS-EventTracker-SDK */ = {
 			isa = PBXGroup;
 			children = (
-				47679A4219D19E6700DA1D5C /* libEventTracker-noAFNetwork.a */,
-				47679A3919D175DF00DA1D5C /* Event.h */,
-				47679A3A19D175DF00DA1D5C /* EventTracker.h */,
+				47679A4E19D42AAE00DA1D5C /* Event.h */,
+				47679A4F19D42AAE00DA1D5C /* EventTracker.h */,
+				47679A5019D42AAE00DA1D5C /* libEventTracker.a */,
 			);
-			path = "iOS EventTracker-SDK";
+			path = "iOS-EventTracker-SDK";
 			sourceTree = "<group>";
 		};
 		4781F48D194737C700B8926C /* JVFloatLabeledTextField */ = {
@@ -2287,7 +2287,7 @@
 		EA8FF68C171D22080090A658 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
-				47679A3819D175DF00DA1D5C /* iOS EventTracker-SDK */,
+				47679A4D19D42AAE00DA1D5C /* iOS-EventTracker-SDK */,
 				38AEB3C01964369F00B852E1 /* AF-iOS-SDK-v2 */,
 				4781F48D194737C700B8926C /* JVFloatLabeledTextField */,
 				EACD942B18D82C2C00369905 /* NanTracking */,
@@ -3840,8 +3840,7 @@
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
-					"$(PROJECT_DIR)/Thirdparty/iOS",
-					"EventTracker-SDK",
+					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 				);
 				PRODUCT_NAME = TransferDev;
 				PROVISIONING_PROFILE = "";
@@ -3878,8 +3877,7 @@
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
-					"$(PROJECT_DIR)/Thirdparty/iOS",
-					"EventTracker-SDK",
+					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 				);
 				PRODUCT_NAME = TransferDev;
 				PROVISIONING_PROFILE = "";
@@ -3975,8 +3973,7 @@
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
-					"$(PROJECT_DIR)/Thirdparty/iOS",
-					"EventTracker-SDK",
+					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -4012,8 +4009,7 @@
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
 					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
-					"$(PROJECT_DIR)/Thirdparty/iOS",
-					"EventTracker-SDK",
+					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",
