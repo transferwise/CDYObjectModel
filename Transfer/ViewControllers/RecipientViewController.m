@@ -474,8 +474,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     else
     {
         self.recipient = recipient;
-        NSOrderedSet *fieldNames = [self.recipientType.fields valueForKey:@"name"];
-        BOOL bicIsRequired = self.currency.recipientBicRequiredValue && [fieldNames indexOfObject:@"BIC"] != NSNotFound;
+        BOOL bicIsRequired = [self.currency isBicRequiredForType:self.recipientType];
         if ((type.recipientAddressRequiredValue && ![recipient hasAddress]) || (bicIsRequired && [[recipient valueForFieldNamed:@"BIC"] length] <= 0))
         {
             self.updateRecipient = recipient;
