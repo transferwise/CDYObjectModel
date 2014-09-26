@@ -4051,7 +4051,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "b9acd9d1-1bac-472e-98c2-a16f84a58083";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ee88535e-ac1d-47db-ac1d-1a57297b963a";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
