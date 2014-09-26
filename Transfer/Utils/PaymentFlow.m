@@ -810,6 +810,12 @@
             payment.recipient = nil;
             [self presentRecipientDetails:[payment.user personalProfileFilled] updateRecipient:updateRecipient];
         }
+        else if ([payment.targetCurrency isBicRequiredForType:payment.recipient.type] && ! [[payment.recipient valueForFieldNamed:@"BIC"] length] > 0)
+        {
+            Recipient *updateRecipient = payment.recipient;
+            payment.recipient = nil;
+            [self presentRecipientDetails:[payment.user personalProfileFilled] updateRecipient:updateRecipient];
+        }
 		else if (!payment.user.personalProfileFilled)
 		{
             [self presentPersonalProfileEntry:YES

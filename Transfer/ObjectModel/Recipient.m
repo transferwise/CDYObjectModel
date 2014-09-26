@@ -128,4 +128,16 @@
     return result;
 }
 
+- (NSString *)valueForFieldNamed:(NSString*)fieldName
+{
+    NSOrderedSet* names = [self.fieldValues valueForKeyPath:@"valueForField.name"];
+    NSUInteger index = [names indexOfObject:fieldName];
+    if(index != NSNotFound)
+    {
+        TypeFieldValue *fieldValue = self.fieldValues[index];
+        return fieldValue.value;
+    }
+    return nil;
+}
+
 @end
