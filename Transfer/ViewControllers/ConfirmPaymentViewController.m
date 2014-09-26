@@ -34,6 +34,7 @@
 #import "Currency.h"
 #import "PlainPresentationCell.h"
 #import "MOMStyle.h"
+#import "RecipientUpdateOperation.h"
 
 @interface ExtraTextfieldDelegate : NSObject<UITextFieldDelegate>
 
@@ -479,27 +480,57 @@
     [input setReference:reference];
     
     NSString *email;
+    BOOL emailAdded;
     if(IPAD)
     {
         email =  (!self.emailField.hidden) ? self.emailField.text : self.payment.recipient.email;
+        emailAdded = (!self.emailField.hidden) && [email hasValue];
     }
     else
     {
         email = self.receiverEmailCell ? [self.receiverEmailCell value] : self.payment.recipient.email;
+        emailAdded = (self.receiverEmailCell) && [email hasValue];
     }
     
     [input setRecipientEmail:email];
+    
+    void(^validateBlock)(void) = ^void(){
+        [self.paymentFlow validatePayment:input.objectID successBlock:^{
+            [hud hide];
+        } errorHandler:^(NSError *error) {
+            [hud hide];
+            if (error) {
+                [[GoogleAnalytics sharedInstance] sendAlertEvent:@"CreatingPaymentAlert" withLabel:[error localizedTransferwiseMessage]];
+                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
+                [alertView show];
+            }
+        }];
+    };
 	
-    [self.paymentFlow validatePayment:input.objectID successBlock:^{
-        [hud hide];
-    } errorHandler:^(NSError *error) {
-        [hud hide];
-        if (error) {
-            [[GoogleAnalytics sharedInstance] sendAlertEvent:@"CreatingPaymentAlert" withLabel:[error localizedTransferwiseMessage]];
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
-            [alertView show];
-        }
-    }];
+    if(emailAdded)
+    {
+        self.payment.recipient.email = email;
+        RecipientUpdateOperation * updateOperation = [RecipientUpdateOperation instanceWithRecipient:self.payment.recipient objectModel:self.objectModel completionHandler:^(NSError *error) {
+           if(error)
+           {
+               [hud hide];
+               [[GoogleAnalytics sharedInstance] sendAlertEvent:@"SavingRecipientAlert" withLabel:[error localizedTransferwiseMessage]];
+               TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) error:error];
+               [alertView show];
+               return;
+           }
+            validateBlock();
+            
+            
+        }];
+        self.executedOperation = updateOperation;
+        [updateOperation execute];
+    }
+    else
+    {
+        validateBlock();
+    }
+    
 
 }
 

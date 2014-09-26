@@ -711,12 +711,19 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
 
     PendingPayment *payment = [self pendingPayment];
+    
 
     if (self.recipient && (self.updateRecipient != self.recipient)) {
-        self.recipient.email = self.emailCell.value;
-        [payment setRecipient:self.recipient];
-        [self.objectModel saveContext:self.afterSaveAction];
-        return;
+        if([self.recipient.email isEqualToString:self.emailCell.value])
+        {
+            [payment setRecipient:self.recipient];
+            [self.objectModel saveContext:self.afterSaveAction];
+            return;
+        }
+        else
+        {
+            self.updateRecipient = self.recipient;
+        }
     }
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view]; 
@@ -757,6 +764,14 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     {
         RecipientUpdateOperation* operation = [RecipientUpdateOperation instanceWithRecipient:self.updateRecipient objectModel:self.objectModel completionHandler:^(NSError *error) {
             [hud hide];
+            if(error)
+            {
+                [[GoogleAnalytics sharedInstance] sendAlertEvent:@"SavingRecipientAlert" withLabel:[error localizedTransferwiseMessage]];
+                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) error:error];
+                [alertView show];
+                return;
+            }
+            
             self.afterSaveAction();
         }];
         self.executedOperation = operation;
