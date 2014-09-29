@@ -90,7 +90,7 @@
 //iPad
 @property (nonatomic,weak) IBOutlet UITextField *referenceField;
 @property (nonatomic,weak) IBOutlet UITextField *emailField;
-@property (nonatomic,strong) ExtraTextfieldDelegate *nonCellTextfieldDelegate;
+@property (nonatomic,weak) ExtraTextfieldDelegate *nonCellTextfieldDelegate;
 @property (weak, nonatomic) IBOutlet UIView *separatorLine;
 
 - (IBAction)footerButtonPressed:(id)sender;
