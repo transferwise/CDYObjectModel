@@ -129,7 +129,9 @@ your friends to TransferWise";
 "identification.only.purpose.ipad" = "You're almost done. Fill the field : Purpose of transfer";
 "identification.well.done.format" = "Well done %@!";
 "identification.error" = "Error";
+"identification.optional.suffix" = " (Optional)";
 "identification.ssn.short" = "Social security number is too short";
+"identification.ssn.generic.error" = "Social security validation . Please upload an ID document instead.";
 
 
 
