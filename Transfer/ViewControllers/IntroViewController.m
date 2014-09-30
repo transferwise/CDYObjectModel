@@ -40,6 +40,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *whiteRegisterButton;
 @property (weak, nonatomic) IBOutlet UIView *upfrontRegistrationcontainer;
 @property (weak, nonatomic) IBOutlet UIView *noRegistrationContainer;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *whiteButtons;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *blueButtons;
 
 - (IBAction)startPressed;
 
@@ -91,6 +93,8 @@
     
     //Initialise with a invalid value to ensure layout first time around.
     self.lastLoadedIndex = -1;
+    self.upfrontRegistrationcontainer.hidden = !self.requireRegistration;
+    self.noRegistrationContainer.hidden = self.requireRegistration;
 
 }
 
@@ -175,10 +179,14 @@
     {
         //On one specific page
         BOOL useWhiteButton = [self.introData[index][@"useWhiteButton"] boolValue];
-        self.whiteStartButton.hidden = !useWhiteButton;
-        self.whiteStartButton.alpha = 1.0f;
-        self.startButton.hidden = useWhiteButton;
-        self.startButton.alpha = 1.0f;
+        [self modifyViews:self.whiteButtons withBlock:^(UIView *view) {
+            view.hidden = !useWhiteButton;
+            view.alpha = 1.0f;
+        }];
+        [self modifyViews:self.blueButtons withBlock:^(UIView *view) {
+            view.hidden = useWhiteButton;
+            view.alpha = 1.0f;
+        }];
     }
     else
     {
@@ -187,24 +195,37 @@
         BOOL rightPageUseWhiteButton =  [self.introData[index+1][@"useWhiteButton"] boolValue];
         if(leftPageUseWhiteButton != rightPageUseWhiteButton)
         {
-            self.whiteStartButton.hidden = NO;
-            self.whiteStartButton.alpha = relativeOffset - index;
-            self.startButton.hidden = NO;
-            self.startButton.alpha = 1.0f - self.whiteStartButton.alpha;
+            CGFloat whiteAlpha = relativeOffset - index;
+            [self modifyViews:self.whiteButtons withBlock:^(UIView *view) {
+                view.hidden = NO;
+                view.alpha = whiteAlpha;
+            }];
+            [self modifyViews:self.blueButtons withBlock:^(UIView *view) {
+                view.hidden = NO;
+                view.alpha = 1.0f - whiteAlpha;
+            }];
         }
         else if( leftPageUseWhiteButton && rightPageUseWhiteButton)
         {
-            self.whiteStartButton.hidden = NO;
-            self.whiteStartButton.alpha = 1.0f;
-            self.startButton.hidden = YES;
-            self.startButton.alpha = 1.0f;
+            [self modifyViews:self.whiteButtons withBlock:^(UIView *view) {
+                view.hidden = NO;
+                view.alpha = 1.0f;
+            }];
+            [self modifyViews:self.blueButtons withBlock:^(UIView *view) {
+                view.hidden = YES;
+                view.alpha = 1.0f;
+            }];
         }
         else if (!leftPageUseWhiteButton && !rightPageUseWhiteButton)
         {
-            self.whiteStartButton.hidden = YES;
-            self.whiteStartButton.alpha = 1.0f;
-            self.startButton.hidden = NO;
-            self.startButton.alpha = 1.0f;
+            [self modifyViews:self.whiteButtons withBlock:^(UIView *view) {
+                view.hidden = YES;
+                view.alpha = 1.0f;
+            }];
+            [self modifyViews:self.blueButtons withBlock:^(UIView *view) {
+                view.hidden = NO;
+                view.alpha = 1.0f;
+            }];
 
         }
     }
@@ -257,6 +278,17 @@
     }
 
     return [[NSAttributedString alloc] initWithAttributedString:result];
+}
+
+-(void)modifyViews:(NSArray*)viewArray withBlock:(void(^)(UIView* view))modificationBlock
+{
+    if(modificationBlock)
+    {
+        for(UIView* view in viewArray)
+        {
+            modificationBlock(view);
+        }
+    }
 }
 
 - (IBAction)startPressed
