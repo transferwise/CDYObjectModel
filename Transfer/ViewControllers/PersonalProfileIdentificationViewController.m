@@ -23,6 +23,7 @@
 #import "PersonalProfile.h"
 #import "ColoredButton.h"
 #import "MOMStyle.h"
+#import "NetworkErrorCodes.h"
 
 @interface PersonalProfileIdentificationViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, ValidationCellDelegate>
 
@@ -319,7 +320,31 @@
         [hud hide];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:TRWUploadProgressNotification object:nil];
         if (error) {
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) error:error];
+            
+            //Check for SSN specific errors
+            NSArray *errors = error.userInfo[TRWErrors];
+            NSString* message;
+            for (NSDictionary* errorDictionary in errors)
+            {
+                NSString *code = errorDictionary[@"code"];
+                if([code rangeOfString:@"SSN"].location != NSNotFound || [code isEqualToString:@"PROFILE_INVALID"])
+                {
+                    message = NSLocalizedString(@"identification.ssn.generic.error", nil);
+                }
+
+            }
+            
+            
+            TRWAlertView *alertView;
+            if(message)
+            {
+                alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) message:message];
+                [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+            }
+            else
+            {
+                alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) error:error];
+            }
             [alertView show];
             self.continueButton.progress = 0.0f;
         }
@@ -332,11 +357,6 @@
     int numberOfMissingDocuments = 0;
     BOOL missingReason = NO;
 
-    if ([self idVerificationRequired] && ![PendingPayment isIdVerificationImagePresent]) {
-        numberOfMissingFields++;
-        numberOfMissingDocuments++;
-    }
-
     if ([self addressVerificationRequired] && ![PendingPayment isAddressVerificationImagePresent]) {
         numberOfMissingFields++;
         numberOfMissingDocuments++;
@@ -347,8 +367,33 @@
         missingReason = YES;
     }
     
-    if ([self ssnVerificationRequired] && ![self.ssnCell.entryField.text hasValue]) {
-        numberOfMissingFields++;
+    if ([self ssnVerificationRequired])
+    {
+        // If SSNVerification requires an SSN OR uploaded Id
+        if([self idVerificationRequired] && ![PendingPayment isIdVerificationImagePresent] && [[self.ssnCell value] length] < 11) {
+            numberOfMissingFields +=2;
+            numberOfMissingDocuments++;
+            [self.ssnCell configureWithTitle:NSLocalizedString(@"identification.ssn", nil) value:[self.ssnCell value]];
+            [self.idDocumentCell configureWithButtonTitle:NSLocalizedString(@"identification.id.document", @"") buttonImage:[UIImage imageNamed:@"camera_icon_button"] caption:NSLocalizedString(@"identification.id.description", @"") selectedCaption:NSLocalizedString(@"identification.id.selected.description", @"")];
+            [self.idDocumentCell documentSelected:NO];
+        }
+        else if (![self.ssnCell.entryField.text hasValue])
+        {
+            [self.ssnCell configureWithTitle:[NSLocalizedString(@"identification.ssn", nil) stringByAppendingString:NSLocalizedString(@"identification.optional.suffix", nil)] value:@""];
+        }
+        else
+        {
+            [self.idDocumentCell configureWithButtonTitle:NSLocalizedString(@"identification.id.document", @"") buttonImage:[UIImage imageNamed:@"camera_icon_button"] caption:[NSLocalizedString(@"identification.id.description", @"") stringByAppendingString:NSLocalizedString(@"identification.optional.suffix", nil)] selectedCaption:NSLocalizedString(@"identification.id.selected.description", @"")];
+            [self.idDocumentCell documentSelected:NO];
+        }
+    
+    }
+    else
+    {
+        if ([self idVerificationRequired] && ![PendingPayment isIdVerificationImagePresent]) {
+            numberOfMissingFields++;
+            numberOfMissingDocuments++;
+        }
     }
     
     self.reasonIcon.image = nil;
