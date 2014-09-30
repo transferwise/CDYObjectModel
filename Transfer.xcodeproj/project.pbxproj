@@ -56,6 +56,10 @@
 		3811674619C1E9A800B29151 /* TouchIdPromptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3811674319C1E9A800B29151 /* TouchIdPromptViewController.m */; };
 		3811674719C1E9A800B29151 /* TouchIdPromptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3811674419C1E9A800B29151 /* TouchIdPromptViewController.xib */; };
 		3811674819C1E9A800B29151 /* TouchIdPromptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3811674419C1E9A800B29151 /* TouchIdPromptViewController.xib */; };
+		3812FA2F19DAD931003F9904 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3812F99519DAD930003F9904 /* libGoogleAnalyticsServices.a */; };
+		3812FA3019DAD931003F9904 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3812F99519DAD930003F9904 /* libGoogleAnalyticsServices.a */; };
+		3812FA3A19DAD9B5003F9904 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3812FA3919DAD9B5003F9904 /* libsqlite3.dylib */; };
+		3812FA3B19DAD9C1003F9904 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3812FA3919DAD9B5003F9904 /* libsqlite3.dylib */; };
 		3813791D1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */; };
 		3813791E1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */; };
 		3818605719C9A206009A413E /* SetSSNOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3818605619C9A206009A413E /* SetSSNOperation.m */; };
@@ -765,8 +769,6 @@
 		EA88E693172F97F50021492C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E692172F97F50021492C /* Constants.m */; };
 		EA88E697172F980A0021492C /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E695172F980A0021492C /* SignUpViewController.m */; };
 		EA88E698172F980A0021492C /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E696172F980A0021492C /* SignUpViewController.xib */; };
-		EA8FA96A1891066000153EBC /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8FA8D21891065F00153EBC /* libGoogleAnalyticsServices.a */; };
-		EA8FA96B1891066000153EBC /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8FA8D21891065F00153EBC /* libGoogleAnalyticsServices.a */; };
 		EA8FC93E17D864F100E13969 /* FeedbackCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FC93D17D864F100E13969 /* FeedbackCoordinator.m */; };
 		EA8FF682171D19B50090A658 /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF681171D19B50090A658 /* NSString+Validation.m */; };
 		EA8FF685171D1A320090A658 /* NSMutableString+Issues.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */; };
@@ -923,6 +925,23 @@
 		3811674219C1E9A800B29151 /* TouchIdPromptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchIdPromptViewController.h; sourceTree = "<group>"; };
 		3811674319C1E9A800B29151 /* TouchIdPromptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchIdPromptViewController.m; sourceTree = "<group>"; };
 		3811674419C1E9A800B29151 /* TouchIdPromptViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TouchIdPromptViewController.xib; sourceTree = "<group>"; };
+		3812F94819DAD930003F9904 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		3812F94919DAD930003F9904 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		3812F94A19DAD930003F9904 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceFields.h; sourceTree = "<group>"; };
+		3812F94B19DAD930003F9904 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProduct.h; sourceTree = "<group>"; };
+		3812F94C19DAD930003F9904 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProductAction.h; sourceTree = "<group>"; };
+		3812F94D19DAD930003F9904 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommercePromotion.h; sourceTree = "<group>"; };
+		3812F94E19DAD930003F9904 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		3812F94F19DAD930003F9904 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		3812F95019DAD930003F9904 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		3812F95119DAD930003F9904 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		3812F98E19DAD930003F9904 /* TAGContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAGContainer.h; sourceTree = "<group>"; };
+		3812F98F19DAD930003F9904 /* TAGContainerOpener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAGContainerOpener.h; sourceTree = "<group>"; };
+		3812F99019DAD930003F9904 /* TAGDataLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAGDataLayer.h; sourceTree = "<group>"; };
+		3812F99119DAD930003F9904 /* TAGLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAGLogger.h; sourceTree = "<group>"; };
+		3812F99219DAD930003F9904 /* TAGManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAGManager.h; sourceTree = "<group>"; };
+		3812F99519DAD930003F9904 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		3812FA3919DAD9B5003F9904 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ConfirmPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
 		3818605519C9A206009A413E /* SetSSNOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSSNOperation.h; sourceTree = "<group>"; };
 		3818605619C9A206009A413E /* SetSSNOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSSNOperation.m; sourceTree = "<group>"; };
@@ -1448,16 +1467,6 @@
 		EA88E694172F980A0021492C /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		EA88E695172F980A0021492C /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		EA88E696172F980A0021492C /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
-		EA8FA85E1891065F00153EBC /* Changelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Changelog.txt; sourceTree = "<group>"; };
-		EA8FA88A1891065F00153EBC /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
-		EA8FA88B1891065F00153EBC /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
-		EA8FA88C1891065F00153EBC /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
-		EA8FA88D1891065F00153EBC /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
-		EA8FA88E1891065F00153EBC /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
-		EA8FA88F1891065F00153EBC /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
-		EA8FA8901891065F00153EBC /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
-		EA8FA8D21891065F00153EBC /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
-		EA8FA8D31891065F00153EBC /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
 		EA8FC93C17D864F100E13969 /* FeedbackCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackCoordinator.h; sourceTree = "<group>"; };
 		EA8FC93D17D864F100E13969 /* FeedbackCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackCoordinator.m; sourceTree = "<group>"; };
 		EA8FF67F171D167C0090A658 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; wrapsLines = 0; };
@@ -1621,6 +1630,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3812FA3A19DAD9B5003F9904 /* libsqlite3.dylib in Frameworks */,
 				EA84055917F06DCD00F44916 /* AdSupport.framework in Frameworks */,
 				EA34529F17DF1019005BB4F1 /* QuartzCore.framework in Frameworks */,
 				EA31A1BF17DDB29B00F937F7 /* AddressBook.framework in Frameworks */,
@@ -1633,8 +1643,8 @@
 				EA31A1C617DDB29B00F937F7 /* UIKit.framework in Frameworks */,
 				EA31A1C717DDB29B00F937F7 /* Foundation.framework in Frameworks */,
 				EA31A1C817DDB29B00F937F7 /* CoreGraphics.framework in Frameworks */,
-				EA8FA96B1891066000153EBC /* libGoogleAnalyticsServices.a in Frameworks */,
 				EA31A1C917DDB29B00F937F7 /* CoreData.framework in Frameworks */,
+				3812FA3019DAD931003F9904 /* libGoogleAnalyticsServices.a in Frameworks */,
 				EA31A1CA17DDB29B00F937F7 /* Crashlytics.framework in Frameworks */,
 				EA31A1CC17DDB29B00F937F7 /* MessageUI.framework in Frameworks */,
 				EA31A1CD17DDB29B00F937F7 /* libPods.a in Frameworks */,
@@ -1646,6 +1656,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3812FA3B19DAD9C1003F9904 /* libsqlite3.dylib in Frameworks */,
 				EAD6675E174A565500D29BCB /* AddressBook.framework in Frameworks */,
 				EAD6675F174A565500D29BCB /* AddressBookUI.framework in Frameworks */,
 				BB92B144172A747300B6F096 /* CoreText.framework in Frameworks */,
@@ -1659,7 +1670,7 @@
 				EAAA1472171BC911005B9430 /* CoreData.framework in Frameworks */,
 				EA84055C17F06E0100F44916 /* AdSupport.framework in Frameworks */,
 				38AEB3C31964369F00B852E1 /* libAppsFlyerLib.a in Frameworks */,
-				EA8FA96A1891066000153EBC /* libGoogleAnalyticsServices.a in Frameworks */,
+				3812FA2F19DAD931003F9904 /* libGoogleAnalyticsServices.a in Frameworks */,
 				EA61557517A69A5A008B6C79 /* Crashlytics.framework in Frameworks */,
 				EA0253BA17D5D28900F54C18 /* MessageUI.framework in Frameworks */,
 				BC92EA001E7D4BE89CF454A0 /* libPods.a in Frameworks */,
@@ -1714,6 +1725,61 @@
 				380021C1192CC531009B1D53 /* MOMRoundedCornerStyle.m */,
 			);
 			path = Styles;
+			sourceTree = "<group>";
+		};
+		3812F91A19DAD930003F9904 /* GoogleAnalyticsServicesiOS_3.09 */ = {
+			isa = PBXGroup;
+			children = (
+				3812F91B19DAD930003F9904 /* GoogleAnalytics */,
+				3812F95319DAD930003F9904 /* GoogleTagManager */,
+				3812F99519DAD930003F9904 /* libGoogleAnalyticsServices.a */,
+			);
+			path = GoogleAnalyticsServicesiOS_3.09;
+			sourceTree = "<group>";
+		};
+		3812F91B19DAD930003F9904 /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				3812F94719DAD930003F9904 /* Library */,
+			);
+			path = GoogleAnalytics;
+			sourceTree = "<group>";
+		};
+		3812F94719DAD930003F9904 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				3812F94819DAD930003F9904 /* GAI.h */,
+				3812F94919DAD930003F9904 /* GAIDictionaryBuilder.h */,
+				3812F94A19DAD930003F9904 /* GAIEcommerceFields.h */,
+				3812F94B19DAD930003F9904 /* GAIEcommerceProduct.h */,
+				3812F94C19DAD930003F9904 /* GAIEcommerceProductAction.h */,
+				3812F94D19DAD930003F9904 /* GAIEcommercePromotion.h */,
+				3812F94E19DAD930003F9904 /* GAIFields.h */,
+				3812F94F19DAD930003F9904 /* GAILogger.h */,
+				3812F95019DAD930003F9904 /* GAITrackedViewController.h */,
+				3812F95119DAD930003F9904 /* GAITracker.h */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		3812F95319DAD930003F9904 /* GoogleTagManager */ = {
+			isa = PBXGroup;
+			children = (
+				3812F98D19DAD930003F9904 /* Library */,
+			);
+			path = GoogleTagManager;
+			sourceTree = "<group>";
+		};
+		3812F98D19DAD930003F9904 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				3812F98E19DAD930003F9904 /* TAGContainer.h */,
+				3812F98F19DAD930003F9904 /* TAGContainerOpener.h */,
+				3812F99019DAD930003F9904 /* TAGDataLayer.h */,
+				3812F99119DAD930003F9904 /* TAGLogger.h */,
+				3812F99219DAD930003F9904 /* TAGManager.h */,
+			);
+			path = Library;
 			sourceTree = "<group>";
 		};
 		3856691A1981579A00BC4230 /* CustomStyles */ = {
@@ -2219,39 +2285,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		EA8FA85C1891065F00153EBC /* GoogleAnalyticsServicesiOS_3.03 */ = {
-			isa = PBXGroup;
-			children = (
-				EA8FA85D1891065F00153EBC /* GoogleAnalytics */,
-				EA8FA8D21891065F00153EBC /* libGoogleAnalyticsServices.a */,
-				EA8FA8D31891065F00153EBC /* Readme.txt */,
-			);
-			path = GoogleAnalyticsServicesiOS_3.03;
-			sourceTree = "<group>";
-		};
-		EA8FA85D1891065F00153EBC /* GoogleAnalytics */ = {
-			isa = PBXGroup;
-			children = (
-				EA8FA85E1891065F00153EBC /* Changelog.txt */,
-				EA8FA8891891065F00153EBC /* Library */,
-				EA8FA8901891065F00153EBC /* Readme.txt */,
-			);
-			path = GoogleAnalytics;
-			sourceTree = "<group>";
-		};
-		EA8FA8891891065F00153EBC /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				EA8FA88A1891065F00153EBC /* GAI.h */,
-				EA8FA88B1891065F00153EBC /* GAIDictionaryBuilder.h */,
-				EA8FA88C1891065F00153EBC /* GAIFields.h */,
-				EA8FA88D1891065F00153EBC /* GAILogger.h */,
-				EA8FA88E1891065F00153EBC /* GAITrackedViewController.h */,
-				EA8FA88F1891065F00153EBC /* GAITracker.h */,
-			);
-			path = Library;
-			sourceTree = "<group>";
-		};
 		EA8FC93A17D864DB00E13969 /* Feedback */ = {
 			isa = PBXGroup;
 			children = (
@@ -2264,10 +2297,10 @@
 		EA8FF68C171D22080090A658 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
+				3812F91A19DAD930003F9904 /* GoogleAnalyticsServicesiOS_3.09 */,
 				38AEB3C01964369F00B852E1 /* AF-iOS-SDK-v2 */,
 				4781F48D194737C700B8926C /* JVFloatLabeledTextField */,
 				EACD942B18D82C2C00369905 /* NanTracking */,
-				EA8FA85C1891065F00153EBC /* GoogleAnalyticsServicesiOS_3.03 */,
 				BBC6911B1721414300F0FB1A /* TSAlertView */,
 				EA0253BB17D5E44400F54C18 /* uidevice-extension */,
 			);
@@ -2375,6 +2408,7 @@
 		EAAA146A171BC911005B9430 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3812FA3919DAD9B5003F9904 /* libsqlite3.dylib */,
 				EA84055817F06DCD00F44916 /* AdSupport.framework */,
 				EAD6675C174A565500D29BCB /* AddressBook.framework */,
 				EAD6675D174A565500D29BCB /* AddressBookUI.framework */,
@@ -3812,8 +3846,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
-					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
+					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.09",
 				);
 				PRODUCT_NAME = TransferDev;
 				PROVISIONING_PROFILE = "";
@@ -3848,8 +3882,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
-					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
+					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.09",
 				);
 				PRODUCT_NAME = TransferDev;
 				PROVISIONING_PROFILE = "";
@@ -3943,8 +3977,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
-					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
+					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.09",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -3978,8 +4012,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
-					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
+					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.09",
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",
