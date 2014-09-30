@@ -34,6 +34,12 @@
 @property (nonatomic, assign) NSInteger reportedPage;
 @property (nonatomic, assign) NSInteger lastLoadedIndex;
 @property (nonatomic, assign) NSInteger pageBeforeRotation;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
+@property (weak, nonatomic) IBOutlet UIButton *whiteLoginButton;
+@property (weak, nonatomic) IBOutlet UIButton *whiteRegisterButton;
+@property (weak, nonatomic) IBOutlet UIView *upfrontRegistrationcontainer;
+@property (weak, nonatomic) IBOutlet UIView *noRegistrationContainer;
 
 - (IBAction)startPressed;
 

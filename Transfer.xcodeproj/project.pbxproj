@@ -301,8 +301,6 @@
 		38B52FA1199B63B600B6AEBD /* InvitationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B52F9D199B63B600B6AEBD /* InvitationsViewController.xib */; };
 		38B52FA4199B69C800B6AEBD /* InvitationProgressIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */; };
 		38B52FA5199B69C800B6AEBD /* InvitationProgressIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */; };
-		38BBE4631990F2B900A14B9F /* IntroViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4621990F2B900A14B9F /* IntroViewController~ipad.xib */; };
-		38BBE4641990F2B900A14B9F /* IntroViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4621990F2B900A14B9F /* IntroViewController~ipad.xib */; };
 		38BBE4661990F43500A14B9F /* IntroView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4651990F43500A14B9F /* IntroView~ipad.xib */; };
 		38BBE4671990F43500A14B9F /* IntroView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4651990F43500A14B9F /* IntroView~ipad.xib */; };
 		38BD98A3195C5973009F9B4A /* NameSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */; };
@@ -1149,7 +1147,6 @@
 		38B52F9D199B63B600B6AEBD /* InvitationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvitationsViewController.xib; sourceTree = "<group>"; };
 		38B52FA2199B69C800B6AEBD /* InvitationProgressIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationProgressIndicatorView.h; sourceTree = "<group>"; };
 		38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationProgressIndicatorView.m; sourceTree = "<group>"; };
-		38BBE4621990F2B900A14B9F /* IntroViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "IntroViewController~ipad.xib"; sourceTree = "<group>"; };
 		38BBE4651990F43500A14B9F /* IntroView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "IntroView~ipad.xib"; sourceTree = "<group>"; };
 		38BCE11619B8C8EF0003D0EE /* TransferDev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TransferDev.plist; sourceTree = SOURCE_ROOT; };
 		38BD98A0195C5973009F9B4A /* NameSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSuggestionCell.h; sourceTree = "<group>"; };
@@ -2527,7 +2524,6 @@
 				EA0450D117EC5BC1008921DA /* IntroViewController.h */,
 				EA0450D217EC5BC1008921DA /* IntroViewController.m */,
 				EA0450D317EC5BC1008921DA /* IntroViewController.xib */,
-				38BBE4621990F2B900A14B9F /* IntroViewController~ipad.xib */,
 				38B52F9B199B63B600B6AEBD /* InvitationsViewController.h */,
 				38B52F9C199B63B600B6AEBD /* InvitationsViewController.m */,
 				38B52F9D199B63B600B6AEBD /* InvitationsViewController.xib */,
@@ -2834,7 +2830,6 @@
 				38EFABE4196D7EAB00126192 /* TextFieldSuggestionTable.xib in Resources */,
 				3840863B19A38A5E00C837C2 /* TextEntryCellValidation~ipad.xib in Resources */,
 				38C7B2A119756A9C004324E8 /* BankTransferViewController~ipad.xib in Resources */,
-				38BBE4641990F2B900A14B9F /* IntroViewController~ipad.xib in Resources */,
 				38BBE4671990F43500A14B9F /* IntroView~ipad.xib in Resources */,
 				EA31A1E117DDB29B00F937F7 /* RecipientCell.xib in Resources */,
 				EA31A1E617DDB29B00F937F7 /* SettingsViewController.xib in Resources */,
@@ -2978,7 +2973,6 @@
 				3840D34319A49E1E00D1485A /* BusinessProfileIdentificationViewController~ipad.xib in Resources */,
 				38C7B2A019756A9C004324E8 /* BankTransferViewController~ipad.xib in Resources */,
 				380021F9192F43EA009B1D53 /* TabCell.xib in Resources */,
-				38BBE4631990F2B900A14B9F /* IntroViewController~ipad.xib in Resources */,
 				BBC691241721416300F0FB1A /* TSAlertViewMessageListViewShadow.png in Resources */,
 				BBC691251721416300F0FB1A /* TSAlertViewCancelButtonBackground.png in Resources */,
 				EA0450D617EC5BC1008921DA /* IntroViewController.xib in Resources */,
