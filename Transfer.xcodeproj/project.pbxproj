@@ -293,6 +293,8 @@
 		38B1C5D7195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */; };
 		38B4CB6119DC00FC004173C9 /* IntroViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B4CB6019DC00FC004173C9 /* IntroViewController~ipad.xib */; };
 		38B4CB6219DC00FC004173C9 /* IntroViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B4CB6019DC00FC004173C9 /* IntroViewController~ipad.xib */; };
+		38B4CB6419DC2676004173C9 /* GTM-NB4FCW in Resources */ = {isa = PBXBuildFile; fileRef = 38B4CB6319DC2676004173C9 /* GTM-NB4FCW */; };
+		38B4CB6519DC2676004173C9 /* GTM-NB4FCW in Resources */ = {isa = PBXBuildFile; fileRef = 38B4CB6319DC2676004173C9 /* GTM-NB4FCW */; };
 		38B52F97199B622D00B6AEBD /* ValidationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52F95199B622D00B6AEBD /* ValidationCell.m */; };
 		38B52F98199B622D00B6AEBD /* ValidationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52F95199B622D00B6AEBD /* ValidationCell.m */; };
 		38B52F99199B622D00B6AEBD /* ValidationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B52F96199B622D00B6AEBD /* ValidationCell.xib */; };
@@ -1142,6 +1144,7 @@
 		38B1C5D4195DBA6400BEE66E /* ConnectionAwareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionAwareViewController.h; sourceTree = "<group>"; };
 		38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionAwareViewController.m; sourceTree = "<group>"; };
 		38B4CB6019DC00FC004173C9 /* IntroViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "IntroViewController~ipad.xib"; sourceTree = "<group>"; };
+		38B4CB6319DC2676004173C9 /* GTM-NB4FCW */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GTM-NB4FCW"; sourceTree = "<group>"; };
 		38B52F94199B622D00B6AEBD /* ValidationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationCell.h; sourceTree = "<group>"; };
 		38B52F95199B622D00B6AEBD /* ValidationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidationCell.m; sourceTree = "<group>"; };
 		38B52F96199B622D00B6AEBD /* ValidationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ValidationCell.xib; sourceTree = "<group>"; };
@@ -2243,6 +2246,7 @@
 		EA84056717F0A3FD00F44916 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				38B4CB6319DC2676004173C9 /* GTM-NB4FCW */,
 				3831DCC319B764B900151A3D /* existingUserIntro.plist */,
 				385AC115198FE5500088DCD6 /* intro.plist */,
 				385AC112198FE52E0088DCD6 /* NoRefCurrencyMessages.plist */,
@@ -2798,6 +2802,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				479B6930194878EE001FA4FE /* TransferDetailsViewController.xib in Resources */,
+				38B4CB6519DC2676004173C9 /* GTM-NB4FCW in Resources */,
 				479B6931194878EE001FA4FE /* TransferDetailsViewController~ipad.xib in Resources */,
 				38062177196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */,
 				4710499819470B2A00660B2F /* CurrencyCell~ipad.xib in Resources */,
@@ -2941,6 +2946,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				479B692F194878CA001FA4FE /* TransferDetailsViewController~ipad.xib in Resources */,
+				38B4CB6419DC2676004173C9 /* GTM-NB4FCW in Resources */,
 				47F84D6D198A638B00886D41 /* DoubleEntryCell.xib in Resources */,
 				EAAA1478171BC911005B9430 /* InfoPlist.strings in Resources */,
 				3840862719A20D9900C837C2 /* InvitationsViewController~ipad.xib in Resources */,

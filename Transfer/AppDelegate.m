@@ -38,6 +38,8 @@
 #import "ObjectModel+Settings.h"
 #import "IntroViewController.h"
 #import "NewPaymentViewController.h"
+#import "TAGManager.h"
+#import "TAGContainerOpener.h"
 
 @interface AppDelegate ()
 
@@ -48,6 +50,8 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    id<TAGContainerFuture> future = [TAGContainerOpener openContainerWithId:@"GTM-NB4FCW" tagManager:[TAGManager instance] openType:kTAGOpenTypePreferNonDefault timeout:nil];
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 	
@@ -76,14 +80,19 @@
     [[FeedbackCoordinator sharedInstance] setObjectModel:model];
 
     [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:nil];
-	
+    
 	UIViewController* controller;
 
-	if (![Credentials userLoggedIn] && ![self.objectModel hasIntroBeenShown])
+    TAGContainer* container = [future get];
+    
+    BOOL requireRegistration = [container booleanForKey:@"proposeRegistrationUpfront"];
+    [self.objectModel markDirectSignupEnabled:requireRegistration];
+    
+	if (![Credentials userLoggedIn] && (![self.objectModel hasIntroBeenShown] || (requireRegistration && [self.objectModel hasExistingUserIntroBeenShown])))
 	{
 		IntroViewController *introController = [[IntroViewController alloc] init];
 		[introController setObjectModel:self.objectModel];
-        introController.requireRegistration = YES;
+        introController.requireRegistration = requireRegistration;
 		controller = introController;
 	}
 	else if(![self.objectModel hasExistingUserIntroBeenShown])
@@ -91,6 +100,7 @@
 		IntroViewController *introController = [[IntroViewController alloc] init];
 		introController.plistFilenameOverride = @"existingUserIntro";
 		[introController setObjectModel:self.objectModel];
+        introController.requireRegistration = requireRegistration;
 		controller = introController;
 		[[GoogleAnalytics sharedInstance] sendScreen:@"Whats new screen"];
 	}
