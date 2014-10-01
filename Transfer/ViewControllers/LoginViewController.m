@@ -25,6 +25,8 @@
 #import "NSError+TRWErrors.h"
 #import "NetworkErrorCodes.h"
 #import "TransferwiseOperation.h"
+#import "MainViewController.h"
+#import "ConnectionAwareViewController.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -164,7 +166,7 @@
     }
     else
     {
-        [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+        [LoginHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
     }
 }
 

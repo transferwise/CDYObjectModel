@@ -367,18 +367,18 @@ We'll refund the remaining money to your bank account once the transfer is compl
 
 "sign.up.controller.creating.message" = "Creating account...";
 "sign.up.controller.signup.error.message" = "Sign up error";
-"sign.up.controller.title" = "Sign up";
+"sign.up.controller.title" = "Register";
 "sign.up.controller.validation.email.invalid" = "Email is not valid";
 "sign.up.controller.validation.email.missing" = "Email is missing";
 "sign.up.controller.validation.password.missing" = "Password is missing";
-"sign.up.controller.validation.passwords.dont.match" = "Passwords don't match";
+"sign.up.controller.validation.password.mismatch" = "Passwords don't match";
 "sign.up.controller.google.signup.message" = "Sign up via Google";
 "sign.up.controller.set.password.message" = "OR SET A PASSWORD";
 "sign.up.error.title" = "Can't continue";
-"sign.up.button.title.log.in" = "Sign up now";
+"sign.up.button.title.register" = "Register";
 "sign.up.controller.header.message" = "Create a Transferwise account";
-"sign.up.email.field.title" = "Your email";
-"sign.up.password.again.field.title" = "Password again";
+"sign.up.email.field.title" = "Email";
+"sign.up.password.confirm.field.title" = "Confirm password";
 "sign.up.password.field.title" = "Password";
 "sign.up.controller.existing.user.action" = "Log in";
 "sign.up.controller.existing.user.message" = "Already a user?";

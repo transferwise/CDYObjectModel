@@ -23,6 +23,7 @@
 #import "AppDelegate.h"
 #import "ConnectionAwareViewController.h"
 #import "LoginViewController.h"
+#import "SignUpViewController.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
 
@@ -316,7 +317,15 @@
 
 - (IBAction)logInTapped:(id)sender {
     LoginViewController* login = [[LoginViewController alloc] init];
+    login.objectModel = self.objectModel;
     [self.navigationController pushViewController:login animated:YES];
+}
+
+
+- (IBAction)registerTapped:(id)sender {
+    SignUpViewController *signup = [[SignUpViewController alloc] init];
+    signup.objectModel = self.objectModel;
+    [self.navigationController pushViewController:signup animated:YES];
 }
 
 

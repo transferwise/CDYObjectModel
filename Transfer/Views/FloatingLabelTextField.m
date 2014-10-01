@@ -70,4 +70,16 @@
 	self.placeholder = title;
 }
 
+-(void)setSecureTextEntry:(BOOL)secureTextEntry
+{
+    if(secureTextEntry)
+    {
+        self.font = [UIFont systemFontOfSize:self.font.pointSize];
+    }
+    else
+    {
+        self.fontStyle = @"heavy.@{17,20}.DarkFont";
+    }
+    [super setSecureTextEntry:secureTextEntry];
+}
 @end

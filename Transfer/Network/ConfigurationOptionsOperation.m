@@ -43,7 +43,6 @@ NSString *const kOptionsPath = @"/option/status";
 
     [self.workModel performBlock:^{
         [self.workModel markReviewsEnabled:[data[@"askForIPhoneReview"] boolValue]];
-        [self.workModel markDirectSignupEnabled:[data[@"useDirectIPhoneUserSignup"] boolValue]];
         self.completion();
     }];
 }
