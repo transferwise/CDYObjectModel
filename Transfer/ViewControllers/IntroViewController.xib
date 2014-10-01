@@ -162,7 +162,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="NiX-z4-79M" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1" secondAttribute="top" constant="380" id="3QD-4K-jqX"/>
-                <constraint firstItem="NiX-z4-79M" firstAttribute="top" secondItem="1" secondAttribute="top" priority="993" constant="380" id="GVT-l4-eQ5"/>
+                <constraint firstItem="NiX-z4-79M" firstAttribute="top" secondItem="1" secondAttribute="top" constant="380" id="GVT-l4-eQ5"/>
                 <constraint firstItem="nC2-nS-Nkq" firstAttribute="centerY" secondItem="96q-Df-1oh" secondAttribute="centerY" id="HN2-2p-3Tx"/>
                 <constraint firstAttribute="trailing" secondItem="nC2-nS-Nkq" secondAttribute="trailing" id="IzJ-EU-bzN"/>
                 <constraint firstAttribute="trailing" secondItem="96q-Df-1oh" secondAttribute="trailing" id="KHT-Hi-S81"/>
@@ -171,7 +171,7 @@
                 <constraint firstAttribute="trailing" secondItem="vVN-5a-Y2I" secondAttribute="trailing" id="Xw8-dJ-LvM"/>
                 <constraint firstItem="vVN-5a-Y2I" firstAttribute="top" secondItem="1" secondAttribute="top" id="YXh-52-aGZ"/>
                 <constraint firstAttribute="bottom" secondItem="vVN-5a-Y2I" secondAttribute="bottom" id="bAG-VB-xGg"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="nC2-nS-Nkq" secondAttribute="bottom" priority="950" constant="20" id="e0I-qz-BMF"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="nC2-nS-Nkq" secondAttribute="bottom" priority="900" constant="20" id="e0I-qz-BMF"/>
                 <constraint firstAttribute="bottom" secondItem="nC2-nS-Nkq" secondAttribute="bottom" priority="800" constant="52" id="e5z-i0-ks9"/>
                 <constraint firstItem="vVN-5a-Y2I" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="emr-2d-vxL"/>
                 <constraint firstItem="nC2-nS-Nkq" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="hGF-80-1vj"/>
