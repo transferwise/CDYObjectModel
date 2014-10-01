@@ -291,6 +291,8 @@
 		38B0931A1951FA8300315BE4 /* SettlementRecipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B093161951FA8300315BE4 /* SettlementRecipient.m */; };
 		38B1C5D6195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */; };
 		38B1C5D7195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */; };
+		38B4CB6119DC00FC004173C9 /* IntroViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B4CB6019DC00FC004173C9 /* IntroViewController~ipad.xib */; };
+		38B4CB6219DC00FC004173C9 /* IntroViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B4CB6019DC00FC004173C9 /* IntroViewController~ipad.xib */; };
 		38B52F97199B622D00B6AEBD /* ValidationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52F95199B622D00B6AEBD /* ValidationCell.m */; };
 		38B52F98199B622D00B6AEBD /* ValidationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52F95199B622D00B6AEBD /* ValidationCell.m */; };
 		38B52F99199B622D00B6AEBD /* ValidationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B52F96199B622D00B6AEBD /* ValidationCell.xib */; };
@@ -1139,6 +1141,7 @@
 		38B093161951FA8300315BE4 /* SettlementRecipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettlementRecipient.m; sourceTree = "<group>"; };
 		38B1C5D4195DBA6400BEE66E /* ConnectionAwareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionAwareViewController.h; sourceTree = "<group>"; };
 		38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionAwareViewController.m; sourceTree = "<group>"; };
+		38B4CB6019DC00FC004173C9 /* IntroViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "IntroViewController~ipad.xib"; sourceTree = "<group>"; };
 		38B52F94199B622D00B6AEBD /* ValidationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationCell.h; sourceTree = "<group>"; };
 		38B52F95199B622D00B6AEBD /* ValidationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidationCell.m; sourceTree = "<group>"; };
 		38B52F96199B622D00B6AEBD /* ValidationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ValidationCell.xib; sourceTree = "<group>"; };
@@ -2524,6 +2527,7 @@
 				EA0450D117EC5BC1008921DA /* IntroViewController.h */,
 				EA0450D217EC5BC1008921DA /* IntroViewController.m */,
 				EA0450D317EC5BC1008921DA /* IntroViewController.xib */,
+				38B4CB6019DC00FC004173C9 /* IntroViewController~ipad.xib */,
 				38B52F9B199B63B600B6AEBD /* InvitationsViewController.h */,
 				38B52F9C199B63B600B6AEBD /* InvitationsViewController.m */,
 				38B52F9D199B63B600B6AEBD /* InvitationsViewController.xib */,
@@ -2837,6 +2841,7 @@
 				47AC3F9A1987B2C3005491C6 /* SuggestionCell.xib in Resources */,
 				EA31A1E717DDB29B00F937F7 /* SettingsTitleCell.xib in Resources */,
 				47FAF354194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */,
+				38B4CB6219DC00FC004173C9 /* IntroViewController~ipad.xib in Resources */,
 				38CACA62196EE21600BFCF82 /* NameSuggestionCell~ipad.xib in Resources */,
 				385669141980FB0500BC4230 /* PlainPresentationCell.xib in Resources */,
 				3876769219BF4914007B0EE5 /* CustomInfoViewController.xib in Resources */,
@@ -2979,6 +2984,7 @@
 				47FAF353194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */,
 				385AC110198FE2190088DCD6 /* SharpSansFrontieres-Bold.otf in Resources */,
 				3840863419A368DD00C837C2 /* PersonalProfileIdentificationViewController~ipad.xib in Resources */,
+				38B4CB6119DC00FC004173C9 /* IntroViewController~ipad.xib in Resources */,
 				38CACA61196EE21600BFCF82 /* NameSuggestionCell~ipad.xib in Resources */,
 				385669131980FB0500BC4230 /* PlainPresentationCell.xib in Resources */,
 				3876769119BF4914007B0EE5 /* CustomInfoViewController.xib in Resources */,

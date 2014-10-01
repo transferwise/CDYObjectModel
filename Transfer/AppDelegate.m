@@ -83,6 +83,7 @@
 	{
 		IntroViewController *introController = [[IntroViewController alloc] init];
 		[introController setObjectModel:self.objectModel];
+        introController.requireRegistration = YES;
 		controller = introController;
 	}
 	else if(![self.objectModel hasExistingUserIntroBeenShown])

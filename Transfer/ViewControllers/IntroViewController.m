@@ -62,9 +62,14 @@
 
     [self setReportedPage:NSNotFound];
 
-    [self.startButton setTitle:NSLocalizedString(@"intro.start.buttont.title", nil) forState:UIControlStateNormal];
-    [self.whiteStartButton setTitle:NSLocalizedString(@"intro.start.buttont.title", nil) forState:UIControlStateNormal];
+    [self.startButton setTitle:NSLocalizedString(@"intro.start.button.title", nil) forState:UIControlStateNormal];
+    [self.whiteStartButton setTitle:NSLocalizedString(@"intro.start.button.title", nil) forState:UIControlStateNormal];
 
+    [self.registerButton setTitle:NSLocalizedString(@"intro.register.button.title", nil) forState:UIControlStateNormal];
+    [self.whiteRegisterButton setTitle:NSLocalizedString(@"intro.register.button.title", nil) forState:UIControlStateNormal];
+    
+    [self.loginButton setTitle:NSLocalizedString(@"intro.login.button.title", nil) forState:UIControlStateNormal];
+    [self.whiteLoginButton setTitle:NSLocalizedString(@"intro.login.button.title", nil) forState:UIControlStateNormal];
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     
