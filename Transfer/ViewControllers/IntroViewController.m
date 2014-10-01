@@ -22,6 +22,7 @@
 #import "MainViewController.h"
 #import "AppDelegate.h"
 #import "ConnectionAwareViewController.h"
+#import "LoginViewController.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
 
@@ -52,7 +53,6 @@
 - (id)init {
     self = [super initWithNibName:@"IntroViewController" bundle:nil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -101,6 +101,12 @@
     self.upfrontRegistrationcontainer.hidden = !self.requireRegistration;
     self.noRegistrationContainer.hidden = self.requireRegistration;
 
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -307,5 +313,11 @@
 	
 	((AppDelegate *)[[UIApplication sharedApplication] delegate]).window.rootViewController = root;
 }
+
+- (IBAction)logInTapped:(id)sender {
+    LoginViewController* login = [[LoginViewController alloc] init];
+    [self.navigationController pushViewController:login animated:YES];
+}
+
 
 @end

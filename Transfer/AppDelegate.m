@@ -85,7 +85,7 @@
 
     TAGContainer* container = [future get];
     
-    BOOL requireRegistration = NO;// TODO: comment out once configured [container booleanForKey:@"'proposeRegistrationUpfront"];
+    BOOL requireRegistration = [container booleanForKey:@"proposeRegistrationUpfront"];
     [self.objectModel markDirectSignupEnabled:requireRegistration];
     
 	if (![Credentials userLoggedIn] && (![self.objectModel hasIntroBeenShown] || (requireRegistration && [self.objectModel hasExistingUserIntroBeenShown])))
@@ -93,24 +93,26 @@
 		IntroViewController *introController = [[IntroViewController alloc] init];
 		[introController setObjectModel:self.objectModel];
         introController.requireRegistration = requireRegistration;
-		controller = introController;
+        controller = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:introController navBarHidden:YES];
 	}
 	else if(![self.objectModel hasExistingUserIntroBeenShown])
 	{
 		IntroViewController *introController = [[IntroViewController alloc] init];
 		introController.plistFilenameOverride = @"existingUserIntro";
 		[introController setObjectModel:self.objectModel];
-        introController.requireRegistration = requireRegistration;
-		controller = introController;
+        introController.requireRegistration = requireRegistration && ![Credentials userLoggedIn];
 		[[GoogleAnalytics sharedInstance] sendScreen:@"Whats new screen"];
+        controller = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:introController navBarHidden:YES];
 	}
 	else
 	{
 		MainViewController *mainController = [[MainViewController alloc] init];
 		[mainController setObjectModel:self.objectModel];
-		ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:mainController];
-		controller = root;
+		controller = mainController;
+        controller = [[ConnectionAwareViewController alloc] initWithWrappedViewController:controller];
 	}
+    
+    
     
 	self.window.rootViewController = controller;
 	[self.window makeKeyAndVisible];
