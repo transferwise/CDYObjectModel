@@ -85,7 +85,7 @@
 
     TAGContainer* container = [future get];
     
-    BOOL requireRegistration = [container booleanForKey:@"proposeRegistrationUpfront"];
+    BOOL requireRegistration = NO;// TODO: comment out once configured [container booleanForKey:@"'proposeRegistrationUpfront"];
     [self.objectModel markDirectSignupEnabled:requireRegistration];
     
 	if (![Credentials userLoggedIn] && (![self.objectModel hasIntroBeenShown] || (requireRegistration && [self.objectModel hasExistingUserIntroBeenShown])))
