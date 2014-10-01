@@ -177,9 +177,10 @@
 	UIViewController *presented;
 	if ([self.objectModel shouldShowDirectUserSignup])
 	{
-		SignUpViewController *controller = [[SignUpViewController alloc] init];
-		[controller setObjectModel:self.objectModel];
-		presented = controller;
+        IntroViewController *introController = [[IntroViewController alloc] init];
+        [introController setObjectModel:self.objectModel];
+        introController.requireRegistration = YES;
+        presented = introController;
 	}
 	else
 	{
