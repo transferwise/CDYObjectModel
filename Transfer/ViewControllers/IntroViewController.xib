@@ -161,7 +161,6 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="NiX-z4-79M" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1" secondAttribute="top" constant="380" id="3QD-4K-jqX"/>
                 <constraint firstItem="NiX-z4-79M" firstAttribute="top" secondItem="1" secondAttribute="top" constant="380" id="GVT-l4-eQ5"/>
                 <constraint firstItem="nC2-nS-Nkq" firstAttribute="centerY" secondItem="96q-Df-1oh" secondAttribute="centerY" id="HN2-2p-3Tx"/>
                 <constraint firstAttribute="trailing" secondItem="nC2-nS-Nkq" secondAttribute="trailing" id="IzJ-EU-bzN"/>
