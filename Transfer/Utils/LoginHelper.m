@@ -17,6 +17,7 @@
 #import "GoogleAnalytics.h"
 #import "MainViewController.h"
 #import "ConnectionAwareViewController.h"
+#import "ObjectModel+Settings.h"
 
 @interface LoginHelper ()
 
@@ -126,6 +127,10 @@
 
 +(void)proceedFromSuccessfulLoginFromViewController:(UIViewController*)controller objectModel:(ObjectModel*)objectModel
 {
+    //If registration upfront is used, these flags won't be set by the intro screen. Set them after logging in.
+    [objectModel markIntroShown];
+    [objectModel markExistingUserIntroShown];
+    
     if(controller.presentingViewController)
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentViewNotification object:nil];
@@ -137,7 +142,6 @@
         ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:mainController];
         
         controller.view.window.rootViewController = root;
-
     }
 }
 
