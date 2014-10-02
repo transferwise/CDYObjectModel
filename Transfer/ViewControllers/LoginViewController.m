@@ -49,12 +49,27 @@
 #pragma mark - Init
 - (id)init
 {
-    self = [super initWithNibName:@"LoginViewController" bundle:nil];
+    self = [super init];
     if (self)
 	{
-        self.loginHelper = [[LoginHelper alloc] init];
+        [self commonSetup];
     }
     return self;
+}
+
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if(self)
+    {
+        [self commonSetup];
+    }
+    return self;
+}
+
+-(void)commonSetup
+{
+    _loginHelper = [[LoginHelper alloc] init];
 }
 
 #pragma mark - View Life-cycle

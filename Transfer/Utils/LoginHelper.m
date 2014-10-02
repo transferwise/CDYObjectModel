@@ -133,7 +133,7 @@
     
     if(controller.presentingViewController)
     {
-        [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentViewNotification object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
     }
     else
     {

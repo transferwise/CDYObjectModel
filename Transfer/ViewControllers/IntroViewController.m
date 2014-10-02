@@ -316,7 +316,7 @@
 }
 
 - (IBAction)logInTapped:(id)sender {
-    LoginViewController* login = [[LoginViewController alloc] init];
+    LoginViewController* login = [[LoginViewController alloc] initWithNibName:@"LoginViewControllerUpfront" bundle:nil];
     login.objectModel = self.objectModel;
     [self.navigationController pushViewController:login animated:YES];
 }
