@@ -76,7 +76,7 @@ NSString *kAddressVerificationImageName = @"~/Documents/addressVerification.jpg"
 	[self setVerificationMarkerWithId:self.idVerificationRequired address:self.addressVerificationRequired paymentPurpose:NO ssn:self.ssnVerificationRequired];
 }
 
-- (void)removerAddressVerificationRequiredMarker {
+- (void)removeAddressVerificationRequiredMarker {
 	[self setVerificationMarkerWithId:self.idVerificationRequired address:NO paymentPurpose:self.paymentPurposeRequired ssn:self.ssnVerificationRequired];
 }
 

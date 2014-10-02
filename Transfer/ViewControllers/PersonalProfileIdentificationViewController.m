@@ -375,7 +375,7 @@
             numberOfMissingDocuments++;
             [self.ssnCell configureWithTitle:NSLocalizedString(@"identification.ssn", nil) value:[self.ssnCell value]];
             [self.idDocumentCell configureWithButtonTitle:NSLocalizedString(@"identification.id.document", @"") buttonImage:[UIImage imageNamed:@"camera_icon_button"] caption:NSLocalizedString(@"identification.id.description", @"") selectedCaption:NSLocalizedString(@"identification.id.selected.description", @"")];
-            [self.idDocumentCell documentSelected:NO];
+            [self.idDocumentCell documentSelected:[PendingPayment isIdVerificationImagePresent]];
         }
         else if (![self.ssnCell.entryField.text hasValue])
         {
@@ -383,8 +383,9 @@
         }
         else
         {
-            [self.idDocumentCell configureWithButtonTitle:NSLocalizedString(@"identification.id.document", @"") buttonImage:[UIImage imageNamed:@"camera_icon_button"] caption:[NSLocalizedString(@"identification.id.description", @"") stringByAppendingString:NSLocalizedString(@"identification.optional.suffix", nil)] selectedCaption:NSLocalizedString(@"identification.id.selected.description", @"")];
-            [self.idDocumentCell documentSelected:NO];
+            NSString* caption = IPAD?[NSLocalizedString(@"identification.id.description", @"") stringByAppendingString:NSLocalizedString(@"identification.optional.suffix", nil)]:NSLocalizedString(@"identification.optional.suffix", nil);
+            [self.idDocumentCell configureWithButtonTitle:NSLocalizedString(@"identification.id.document", @"") buttonImage:[UIImage imageNamed:@"camera_icon_button"] caption:caption selectedCaption:NSLocalizedString(@"identification.id.selected.description", @"")];
+            [self.idDocumentCell documentSelected:[PendingPayment isIdVerificationImagePresent]];
         }
     
     }
@@ -509,7 +510,7 @@
 
 -(NSString*)validateEnteredText
 {
-    if(self.ssnCell && [[self.ssnCell value] length] < 11)
+    if([[self.ssnCell value] hasValue] && [[self.ssnCell value] length] < 11)
     {
         return NSLocalizedString(@"identification.ssn.short",nil);
     }
