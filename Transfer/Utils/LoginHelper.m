@@ -15,6 +15,9 @@
 #import "LoginOperation.h"
 #import "NSError+TRWErrors.h"
 #import "GoogleAnalytics.h"
+#import "MainViewController.h"
+#import "ConnectionAwareViewController.h"
+#import "ObjectModel+Settings.h"
 
 @interface LoginHelper ()
 
@@ -120,6 +123,26 @@
     }
 	
     return [NSString stringWithString:issues];
+}
+
++(void)proceedFromSuccessfulLoginFromViewController:(UIViewController*)controller objectModel:(ObjectModel*)objectModel
+{
+    //If registration upfront is used, these flags won't be set by the intro screen. Set them after logging in.
+    [objectModel markIntroShown];
+    [objectModel markExistingUserIntroShown];
+    
+    if(controller.presentingViewController)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+    }
+    else
+    {
+        MainViewController *mainController = [[MainViewController alloc] init];
+        [mainController setObjectModel:objectModel];
+        ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:mainController];
+        
+        controller.view.window.rootViewController = root;
+    }
 }
 
 @end

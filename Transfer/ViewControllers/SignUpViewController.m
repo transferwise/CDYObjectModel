@@ -18,34 +18,30 @@
 #import "TRWAlertView.h"
 #import "TRWProgressHUD.h"
 #import "RegisterOperation.h"
-#import "OpenIDViewController.h"
-#import "LoginViewController.h"
 #import "GoogleAnalytics.h"
+#import "TransferBackButtonItem.h"
+#import "NavigationBarCustomiser.h"
+#import "LoginHelper.h"
 
 
 @interface SignUpViewController () <UITextFieldDelegate>
 
-@property (strong, nonatomic) IBOutlet UIView *footerView;
-@property (strong, nonatomic) IBOutlet UIButton *singUpButton;
+@property (strong, nonatomic) IBOutlet UIButton *registerButton;
 @property (nonatomic, strong) TextEntryCell *emailCell;
 @property (nonatomic, strong) TextEntryCell *passwordCell;
+@property (nonatomic, strong) TextEntryCell *confirmPasswordCell;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
-@property (nonatomic, strong) IBOutlet UIView *headerView;
-@property (nonatomic, strong) IBOutlet UILabel *googleSignupMessageLabel;
-@property (nonatomic, strong) IBOutlet UILabel *passwordMessageLabel;
-@property (nonatomic, strong) IBOutlet UILabel *existingUserActionLabel;
 
 - (IBAction)signUpPressed:(id)sender;
-- (IBAction)googleSignUpPressed:(id)sender;
 
 @end
 
 @implementation SignUpViewController
 
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithNibName:@"SignUpViewController" bundle:nil];
+- (id)init{
+    self = [super init];
     if (self) {
-        // Custom initialization
+        self.title = NSLocalizedString(@"sign.up.controller.title", nil);
     }
     return self;
 }
@@ -53,7 +49,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.tableView setBackgroundView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LandingBackground"]]];
+    [NavigationBarCustomiser setWhite];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
 
@@ -72,22 +68,26 @@
     [password.entryField setReturnKeyType:UIReturnKeyDone];
     [password.entryField setSecureTextEntry:YES];
     [cells addObject:password];
+    
+    password = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+    [self setConfirmPasswordCell:password];
+    [password configureWithTitle:NSLocalizedString(@"sign.up.password.confirm.field.title", nil) value:@""];
+    [password.entryField setReturnKeyType:UIReturnKeyDone];
+    [password.entryField setSecureTextEntry:YES];
+    [cells addObject:password];
 
-    [self.singUpButton setTitle:NSLocalizedString(@"sign.up.button.title.log.in", nil) forState:UIControlStateNormal];
+    [self.registerButton setTitle:NSLocalizedString(@"sign.up.button.title.register", nil) forState:UIControlStateNormal];
 
-    [self.googleSignupMessageLabel setText:NSLocalizedString(@"sign.up.controller.google.signup.message", nil)];
-    [self.passwordMessageLabel setText:NSLocalizedString(@"sign.up.controller.set.password.message", nil)];
-    [self.existingUserActionLabel setAttributedText:[self existingUserMessage]];
+
 
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loginPressed)];
     [tapGestureRecognizer setNumberOfTapsRequired:1];
     [tapGestureRecognizer setNumberOfTouchesRequired:1];
-    [self.existingUserActionLabel addGestureRecognizer:tapGestureRecognizer];
-
     [self setPresentedSectionCells:@[cells]];
+    
+    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController
+                                                                                                       isBlue:YES]];
 
-    [self.tableView setTableHeaderView:self.headerView];
-    [self.tableView setTableFooterView:self.footerView];
 }
 
 - (NSAttributedString *)existingUserMessage {
@@ -112,10 +112,15 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    [self.navigationItem setHidesBackButton:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 
     [[GoogleAnalytics sharedInstance] sendScreen:@"Start screen register"];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [NavigationBarCustomiser setDefault];
 }
 
 
@@ -134,6 +139,7 @@
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"sign.up.controller.creating.message", nil)];
     RegisterOperation *operation = [RegisterOperation operationWithEmail:self.emailCell.value password:self.passwordCell.value];
+    operation.objectModel = self.objectModel;
     [self setExecutedOperation:operation];
     [operation setCompletionHandler:^(NSError *error) {
         [hud hide];
@@ -145,7 +151,7 @@
         }
 
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserRegistered" withLabel:@"tw"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentViewNotification object:nil];
+        [LoginHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
     }];
 
     [operation execute];
@@ -154,6 +160,7 @@
 - (NSString *)validateInput {
     NSString *email = self.emailCell.value;
     NSString *passwordOne = self.passwordCell.value;
+    NSString *passwordTwo = self.confirmPasswordCell.value;
 
     NSMutableString *issues = [NSMutableString string];
 
@@ -168,28 +175,13 @@
     if (![passwordOne hasValue]) {
         [issues appendIssue:NSLocalizedString(@"sign.up.controller.validation.password.missing", nil)];
     }
+    else if (![passwordOne isEqualToString:passwordTwo]) {
+        [issues appendIssue:NSLocalizedString(@"sign.up.controller.validation.password.mismatch", nil)];
+    }
 
     return [NSString stringWithString:issues];
 }
 
-- (IBAction)googleSignUpPressed:(id)sender {
-    [self presentOpenIDSignUpWithProvider:@"google" name:@"Google"];
-}
 
-- (void)presentOpenIDSignUpWithProvider:(NSString *)provider name:(NSString *)providerName {
-    OpenIDViewController *controller = [[OpenIDViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
-    [controller setProvider:provider];
-    [controller setEmail:self.emailCell.value];
-    [controller setProviderName:providerName];
-    [controller setRegisterUser:YES];
-    [self.navigationController pushViewController:controller animated:YES];
-}
-
-- (void)loginPressed {
-    LoginViewController *controller = [[LoginViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
-    [self.navigationController pushViewController:controller animated:YES];
-}
 
 @end
