@@ -9,7 +9,7 @@
 - (BOOL)paymentPurposeRequired;
 - (BOOL)ssnVerificationRequired;
 - (void)removePaymentPurposeRequiredMarker;
-- (void)removerAddressVerificationRequiredMarker;
+- (void)removeAddressVerificationRequiredMarker;
 - (void)removeIdVerificationRequiredMarker;
 - (void)removeSsnRequiredMarker;
 
