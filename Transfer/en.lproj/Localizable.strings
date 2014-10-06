@@ -33,7 +33,7 @@
 "button.title.get.started.ipad" = "Get Started";
 "button.title.send.money.ipad" = "Send Money";
 "button.title.import.from.phonebook" = "Import from phonebook";
-"button.title.log.in" = "Login";
+"button.title.log.in" = "Log in";
 "button.title.log.in.google" = "Google";
 "button.title.log.in.yahoo" = "Yahoo!";
 "button.title.log.in.google.ipad" = "Log in with Google";
@@ -367,7 +367,7 @@ We'll refund the remaining money to your bank account once the transfer is compl
 
 "sign.up.controller.creating.message" = "Creating account...";
 "sign.up.controller.signup.error.message" = "Sign up error";
-"sign.up.controller.title" = "Register";
+"sign.up.controller.title" = "Join the revolution";
 "sign.up.controller.validation.email.invalid" = "Email is not valid";
 "sign.up.controller.validation.email.missing" = "Email is missing";
 "sign.up.controller.validation.password.missing" = "Password is missing";
@@ -377,9 +377,9 @@ We'll refund the remaining money to your bank account once the transfer is compl
 "sign.up.error.title" = "Can't continue";
 "sign.up.button.title.register" = "Register";
 "sign.up.controller.header.message" = "Create a Transferwise account";
-"sign.up.email.field.title" = "Email";
+"sign.up.email.field.title" = "Your email";
 "sign.up.password.confirm.field.title" = "Confirm password";
-"sign.up.password.field.title" = "Password";
+"sign.up.password.field.title" = "Choose a password";
 "sign.up.controller.existing.user.action" = "Log in";
 "sign.up.controller.existing.user.message" = "Already a user?";
 
