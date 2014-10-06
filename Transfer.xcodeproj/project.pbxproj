@@ -313,6 +313,8 @@
 		38BD98A6195C5973009F9B4A /* NameSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */; };
 		38C0394919E29CBB00555F65 /* GTM-TDZF76 in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394819E29CBB00555F65 /* GTM-TDZF76 */; };
 		38C0394A19E29CBB00555F65 /* GTM-TDZF76 in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394819E29CBB00555F65 /* GTM-TDZF76 */; };
+		38C0394C19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */; };
+		38C0394D19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */; };
 		38C1A89B199CC5A0000BF59C /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C1A899199CC5A0000BF59C /* InviteViewController.m */; };
 		38C1A89C199CC5A0000BF59C /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C1A899199CC5A0000BF59C /* InviteViewController.m */; };
 		38C1A89D199CC5A0000BF59C /* InviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C1A89A199CC5A0000BF59C /* InviteViewController.xib */; };
@@ -1161,6 +1163,7 @@
 		38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameSuggestionCell.m; sourceTree = "<group>"; };
 		38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NameSuggestionCell.xib; sourceTree = "<group>"; };
 		38C0394819E29CBB00555F65 /* GTM-TDZF76 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GTM-TDZF76"; sourceTree = "<group>"; };
+		38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SignUpViewController~ipad.xib"; sourceTree = "<group>"; };
 		38C1A898199CC5A0000BF59C /* InviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteViewController.h; sourceTree = "<group>"; };
 		38C1A899199CC5A0000BF59C /* InviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteViewController.m; sourceTree = "<group>"; };
 		38C1A89A199CC5A0000BF59C /* InviteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteViewController.xib; sourceTree = "<group>"; };
@@ -2599,6 +2602,7 @@
 				EA88E694172F980A0021492C /* SignUpViewController.h */,
 				EA88E695172F980A0021492C /* SignUpViewController.m */,
 				EA88E696172F980A0021492C /* SignUpViewController.xib */,
+				38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */,
 				47AC3F8B1987845A005491C6 /* SuggestionDataEntryViewController.h */,
 				47AC3F8C1987845A005491C6 /* SuggestionDataEntryViewController.m */,
 				38E57F75192A51DD00D864A2 /* TabViewController.h */,
@@ -2881,6 +2885,7 @@
 				3840D34419A49E1F00D1485A /* BusinessProfileIdentificationViewController~ipad.xib in Resources */,
 				38B093121951FA2A00315BE4 /* TransferTypeSelectionHeader.xib in Resources */,
 				473DF976196D637200524C64 /* LoginViewController~ipad.xib in Resources */,
+				38C0394D19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */,
 				3840D34A19A4D90F00D1485A /* RecipientFieldCell~ipad.xib in Resources */,
 				38B52FA1199B63B600B6AEBD /* InvitationsViewController.xib in Resources */,
 				38288F5119C86DC200661BFB /* PaymentMethodCell.xib in Resources */,
@@ -3026,6 +3031,7 @@
 				EA88E691172F97E20021492C /* DateEntryCell.xib in Resources */,
 				EA88E698172F980A0021492C /* SignUpViewController.xib in Resources */,
 				38B093111951FA2A00315BE4 /* TransferTypeSelectionHeader.xib in Resources */,
+				38C0394C19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */,
 				473DF975196D637200524C64 /* LoginViewController~ipad.xib in Resources */,
 				EA35C77217327981005602F7 /* PaymentCell.xib in Resources */,
 				38288F5019C86DC200661BFB /* PaymentMethodCell.xib in Resources */,

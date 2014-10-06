@@ -35,7 +35,7 @@
 @property (nonatomic, strong) IBOutlet SMPageControl *pageControl;
 @property (nonatomic, assign) NSInteger reportedPage;
 @property (nonatomic, assign) NSInteger lastLoadedIndex;
-@property (nonatomic, assign) NSInteger pageBeforeRotation;
+@property (nonatomic, assign) NSInteger currentPage;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @property (weak, nonatomic) IBOutlet UIButton *whiteLoginButton;
@@ -107,34 +107,31 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.lastLoadedIndex = -1; //Force re-layout
+    [self.scrollView setNeedsLayout];
+    [self layoutScrollView];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
--(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+-(void)viewWillLayoutSubviews
 {
-    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    self.pageBeforeRotation = self.pageControl.currentPage;
-}
-
--(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [super viewWillLayoutSubviews];
     self.lastLoadedIndex = -1; //Force re-layout
-    [self layoutScrollView];
-    self.scrollView.contentOffset = CGPointMake(self.pageBeforeRotation*self.scrollView.bounds.size.width, 0);
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)viewDidLayoutSubviews
 {
+    self.scrollView.contentOffset = CGPointMake(self.currentPage*self.scrollView.bounds.size.width, 0);
     [self.scrollView setNeedsLayout];
     [self layoutScrollView];
     [self.view layoutSubviews];
     [super viewDidLayoutSubviews];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 
@@ -251,6 +248,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.pageControl updatePageNumberForScrollView:self.scrollView];
+    self.currentPage = [self.pageControl currentPage];
     [self updatePages];
 }
 
