@@ -51,7 +51,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    id<TAGContainerFuture> future = [TAGContainerOpener openContainerWithId:@"GTM-NB4FCW" tagManager:[TAGManager instance] openType:kTAGOpenTypePreferNonDefault timeout:nil];
+    id<TAGContainerFuture> future = [TAGContainerOpener openContainerWithId:TRWGoogleTagManagerContainerId tagManager:[TAGManager instance] openType:kTAGOpenTypePreferNonDefault timeout:nil];
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 	
