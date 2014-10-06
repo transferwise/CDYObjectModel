@@ -44,6 +44,7 @@
 @property (weak, nonatomic) IBOutlet UIView *noRegistrationContainer;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *whiteButtons;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *blueButtons;
+@property (nonatomic, assign) CGSize lastLaidoutPageSize;
 
 - (IBAction)startPressed;
 
@@ -113,15 +114,14 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
--(void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-    self.lastLoadedIndex = -1; //Force re-layout
-}
 
 -(void)viewDidLayoutSubviews
 {
-    self.scrollView.contentOffset = CGPointMake(self.currentPage*self.scrollView.bounds.size.width, 0);
+    if(!CGSizeEqualToSize(self.lastLaidoutPageSize,self.scrollView.bounds.size))
+    {
+        self.lastLoadedIndex = -1;
+         self.scrollView.contentOffset = CGPointMake(self.currentPage*self.scrollView.bounds.size.width, 0);
+    }
     [self.scrollView setNeedsLayout];
     [self layoutScrollView];
     [self.view layoutSubviews];
@@ -149,11 +149,13 @@
     [self.scrollView layoutIfNeeded];
     
     //Calculate leftmost index
-    NSInteger index = MAX(0,MIN(self.introData.count - 3 ,round(self.scrollView.contentOffset.x/self.scrollView.bounds.size.width) - 1));
+    NSInteger page = MAX(0,MIN(self.introData.count - 3 ,round(self.scrollView.contentOffset.x/self.scrollView.bounds.size.width) - 1));
     
-    if(index != self.lastLoadedIndex)
+    if(page != self.lastLoadedIndex)
     {
-        self.lastLoadedIndex = index;
+        NSUInteger index = page;
+        self.lastLoadedIndex = page;
+        
         for (IntroView *intro in self.introScreens) {
             CGRect introFrame = intro.frame;
             introFrame.size = self.scrollView.bounds.size;
@@ -163,6 +165,7 @@
             [self.scrollView addSubview:intro];
             index++;
         }
+        self.lastLaidoutPageSize = self.scrollView.bounds.size;
     }
     
     [self updateButtonAppearance];
