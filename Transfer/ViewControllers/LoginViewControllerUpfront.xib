@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
@@ -84,7 +85,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2d1-LU-JcI" userLabel="Or Label">
-                            <rect key="frame" x="139" y="172" width="42" height="21"/>
+                            <rect key="frame" x="139" y="175" width="42" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
@@ -130,7 +131,7 @@
                         <constraint firstAttribute="centerX" secondItem="2d1-LU-JcI" secondAttribute="centerX" id="PWp-g6-eGw"/>
                         <constraint firstItem="Uqc-Ct-ZJ1" firstAttribute="width" secondItem="2Sf-8q-59z" secondAttribute="width" id="Uux-Kh-sft"/>
                         <constraint firstItem="cO2-eB-1cd" firstAttribute="top" secondItem="Gzj-xE-Yjr" secondAttribute="bottom" constant="32" id="XfU-7c-E7R"/>
-                        <constraint firstItem="2Sf-8q-59z" firstAttribute="top" secondItem="2d1-LU-JcI" secondAttribute="bottom" constant="24" id="Yi3-P4-IGW"/>
+                        <constraint firstItem="2Sf-8q-59z" firstAttribute="top" secondItem="2d1-LU-JcI" secondAttribute="bottom" constant="21" id="Yi3-P4-IGW"/>
                         <constraint firstItem="Gzj-xE-Yjr" firstAttribute="top" secondItem="Eab-el-220" secondAttribute="top" constant="28" id="gLe-c2-aWr"/>
                         <constraint firstAttribute="centerX" secondItem="Gzj-xE-Yjr" secondAttribute="centerX" id="iTE-j6-WL2"/>
                         <constraint firstAttribute="bottom" secondItem="Uqc-Ct-ZJ1" secondAttribute="bottom" id="j3W-5f-YtY"/>
