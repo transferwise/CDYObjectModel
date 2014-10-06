@@ -53,6 +53,8 @@
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
 
+    [self.registerButton setTitle:NSLocalizedString(@"sign.up.button.title.register", nil) forState:UIControlStateNormal];
+    
     NSMutableArray *cells = [NSMutableArray arrayWithCapacity:3];
 
     TextEntryCell *email = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
@@ -76,18 +78,17 @@
     [password.entryField setSecureTextEntry:YES];
     [cells addObject:password];
 
-    [self.registerButton setTitle:NSLocalizedString(@"sign.up.button.title.register", nil) forState:UIControlStateNormal];
-
-
 
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loginPressed)];
     [tapGestureRecognizer setNumberOfTapsRequired:1];
     [tapGestureRecognizer setNumberOfTouchesRequired:1];
     [self setPresentedSectionCells:@[cells]];
     
-    [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController
-                                                                                                       isBlue:YES]];
-
+    if(!self.navigationItem.leftBarButtonItem)
+    {
+        [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController
+                                                                                                           isBlue:YES]];
+    }
 }
 
 - (NSAttributedString *)existingUserMessage {

@@ -319,15 +319,35 @@
 - (IBAction)logInTapped:(id)sender {
     LoginViewController* login = [[LoginViewController alloc] initWithNibName:@"LoginViewControllerUpfront" bundle:nil];
     login.objectModel = self.objectModel;
-    [self.navigationController pushViewController:login animated:YES];
+    [self fadeInDismissableViewController:login];
 }
 
 
 - (IBAction)registerTapped:(id)sender {
     SignUpViewController *signup = [[SignUpViewController alloc] init];
     signup.objectModel = self.objectModel;
-    [self.navigationController pushViewController:signup animated:YES];
+    [self fadeInDismissableViewController:signup];
 }
+
+-(void)fadeInDismissableViewController:(UIViewController*)viewController
+{
+    UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,40,40)];
+    [closeButton setImage:[UIImage imageNamed:@"CloseButton"] forState:UIControlStateNormal];
+    [closeButton addTarget:self action:@selector(dismissFade) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *dismissButton = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
+    viewController.navigationItem.leftBarButtonItem = dismissButton;
+    
+    [UIView transitionWithView:self.view.window duration:0.3f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        [self.navigationController pushViewController:viewController animated:NO];
+    } completion:nil];
+}
+
+-(void)dismissFade
+{
+    [UIView transitionWithView:self.navigationController.view.window duration:0.3f options:UIViewAnimationOptionTransitionCrossDissolve animations:nil completion:nil];
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
 
 
 @end

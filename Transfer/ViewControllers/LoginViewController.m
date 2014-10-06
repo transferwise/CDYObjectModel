@@ -78,8 +78,11 @@
     [super viewDidLoad];
 	
 	[NavigationBarCustomiser setWhite];
-	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController
+    if(!self.navigationItem.leftBarButtonItem)
+    {
+        [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController
 																									   isBlue:YES]];
+    }
 	
 	[self.emailTextField configureWithTitle:NSLocalizedString(@"login.email.field.title", nil) value:@""];
 	self.emailTextField.delegate = self;
