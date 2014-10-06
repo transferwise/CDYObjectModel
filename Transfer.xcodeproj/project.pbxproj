@@ -315,6 +315,8 @@
 		38C0394A19E29CBB00555F65 /* GTM-TDZF76 in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394819E29CBB00555F65 /* GTM-TDZF76 */; };
 		38C0394C19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */; };
 		38C0394D19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */; };
+		38C0394F19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */; };
+		38C0395019E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */; };
 		38C1A89B199CC5A0000BF59C /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C1A899199CC5A0000BF59C /* InviteViewController.m */; };
 		38C1A89C199CC5A0000BF59C /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C1A899199CC5A0000BF59C /* InviteViewController.m */; };
 		38C1A89D199CC5A0000BF59C /* InviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C1A89A199CC5A0000BF59C /* InviteViewController.xib */; };
@@ -1164,6 +1166,7 @@
 		38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NameSuggestionCell.xib; sourceTree = "<group>"; };
 		38C0394819E29CBB00555F65 /* GTM-TDZF76 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GTM-TDZF76"; sourceTree = "<group>"; };
 		38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SignUpViewController~ipad.xib"; sourceTree = "<group>"; };
+		38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewControllerUpfront~ipad.xib"; sourceTree = "<group>"; };
 		38C1A898199CC5A0000BF59C /* InviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteViewController.h; sourceTree = "<group>"; };
 		38C1A899199CC5A0000BF59C /* InviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteViewController.m; sourceTree = "<group>"; };
 		38C1A89A199CC5A0000BF59C /* InviteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteViewController.xib; sourceTree = "<group>"; };
@@ -2548,6 +2551,7 @@
 				3840862C19A23F5A00C837C2 /* InviteViewController~ipad.xib */,
 				47233CD3196D457300449042 /* LoginViewController.h */,
 				47233CD4196D457300449042 /* LoginViewController.m */,
+				38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */,
 				386B039B19DD687C002285EF /* LoginViewControllerUpfront.xib */,
 				47233CD5196D457300449042 /* LoginViewController.xib */,
 				473DF974196D637200524C64 /* LoginViewController~ipad.xib */,
@@ -2879,6 +2883,7 @@
 				EA333F3918A4BEDC00D8A44E /* page_zoom.json in Resources */,
 				380021F2192F3DD3009B1D53 /* CurrencySelectorViewController.xib in Resources */,
 				474C451E1992874E001F207C /* ProfileEditViewController~ipad.xib in Resources */,
+				38C0395019E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */,
 				3840D34719A4D6AD00D1485A /* DropdownCell~ipad.xib in Resources */,
 				EA31A1EC17DDB29B00F937F7 /* TSAlertViewBackground2.png in Resources */,
 				EA31A1ED17DDB29B00F937F7 /* TSAlertViewBackground.png in Resources */,
@@ -3025,6 +3030,7 @@
 				47971C64199A3F1F0018FDA8 /* DoublePasswordEntryCell~ipad.xib in Resources */,
 				380021F1192F3DD3009B1D53 /* CurrencySelectorViewController.xib in Resources */,
 				3840863719A370A400C837C2 /* ValidationCell~ipad.xib in Resources */,
+				38C0394F19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */,
 				BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */,
 				BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */,
 				EAB61710191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
