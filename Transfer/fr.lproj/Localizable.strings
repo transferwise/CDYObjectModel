@@ -1,522 +1,520 @@
-"business.profile.address.label" = "Address";
-"business.profile.email.label" = "Your business email";
-"business.profile.address.section.title" = "Address";
-"business.profile.city.label" = "City";
-"business.profile.state.label" = "State";
-"business.profile.controller.title" = "Business profile";
-"business.profile.controller.send.title" = "Your business details";
-"business.profile.country.label" = "Country";
-"business.profile.description.label" = "Business description";
-"business.profile.details.section.title" = "Business details";
-"business.profile.name.label" = "Business name";
-"business.profile.refresh.error.message" = "Could not load business profile. Please try again later.";
-"business.profile.refresh.error.title" = "Your details couldn't be refreshed";
-"business.profile.refreshing.message" = "Refreshing...";
-"business.profile.registration.number.label" = "Registration number";
-"business.profile.save.button.title" = "Save profile";
-"business.profile.save.error.title" = "Your details couldn't be saved. Please try again.";
-"business.profile.saving.message" = "Saving...";
-"business.profile.validation.error.message" = "Please make sure all fields are filled.";
-"business.profile.validation.error.title" = "Check your details";
-"business.profile.password.lable" = "Password";
-"business.profile.confirm.payment.button.title" = "Continue";
-"business.profile.controller.title" = "Business details";
+"business.profile.address.label" = "Adresse";
+"business.profile.email.label" = "Votre email proffesionnel";
+"business.profile.address.section.title" = "Adresse";
+"business.profile.city.label" = "Ville";
+"business.profile.state.label" = "Etat";
+"business.profile.controller.title" = "Profil d'entreprise";
+"business.profile.controller.send.title" = "Détails de votre entreprise";
+"business.profile.country.label" = "Pays";
+"business.profile.description.label" = "Description de l'entreprise";
+"business.profile.details.section.title" = "Infos sur votre entreprise";
+"business.profile.name.label" = "Nom de l'entreprise";
+"business.profile.refresh.error.message" = "Profil d'entreprise n'a pas pu etre chargé. Reéssayez plus tard.";
+"business.profile.refresh.error.title" = "Vos informations n'ont pas pu etre raffraichie";
+"business.profile.refreshing.message" = "Raffraichissement...";
+"business.profile.registration.number.label" = "Numéro d'immatriculation";
+"business.profile.save.button.title" = "Sauvegarder";
+"business.profile.save.error.title" = "Vos informations n'ont pas pu etre sauvegardées. Veuillez Reéssayer.";
+"business.profile.saving.message" = "Sauvegarde en cours...";
+"business.profile.validation.error.message" = "Veuillez remplir tous les champs.";
+"business.profile.validation.error.title" = "Vérifiez vos informations";
+"business.profile.password.lable" = "Mot de passe";
+"business.profile.confirm.payment.button.title" = "Continuer";
+"business.profile.controller.title" = "Infos sur votre entreprise";
 
-"button.title.back" = "Back";
-"button.title.cancel" = "Cancel";
-"button.title.continue" = "Continue";
-"button.title.delete" = "Delete";
-"button.title.done" = "Done";
-"button.title.fill" = "Fill it";
-"button.title.get.started" = "Get started";
-"button.title.send.money" = "Send Money";
-"button.title.get.started.ipad" = "Get Started";
-"button.title.send.money.ipad" = "Send Money";
-"button.title.import.from.phonebook" = "Import from phonebook";
-"button.title.log.in" = "Login";
+"button.title.back" = "Retour";
+"button.title.cancel" = "Annuler";
+"button.title.continue" = "Continuer";
+"button.title.delete" = "Supprimer";
+"button.title.done" = "Fait!";
+"button.title.fill" = "Remplir";
+"button.title.get.started" = "Démarrer";
+"button.title.send.money" = "Envoyer de l'argent";
+"button.title.get.started.ipad" = "Démarrer";
+"button.title.send.money.ipad" = "Envoyer de l'argent";
+"button.title.import.from.phonebook" = "Importer mon répertoire";
+"button.title.log.in" = "Connexion";
 "button.title.log.in.google" = "Google";
 "button.title.log.in.yahoo" = "Yahoo!";
-"button.title.log.in.google.ipad" = "Log in with Google";
-"button.title.log.in.yahoo.ipad" = "Log in with Yahoo!";
+"button.title.log.in.google.ipad" = "Se connecter via Google";
+"button.title.log.in.yahoo.ipad" = "Se connecter via Yahoo!";
 "button.title.ok" = "OK";
-"button.title.retry" = "Retry";
-"button.title.yes" = "Yes";
-"button.title.no" = "No";
+"button.title.retry" = "Reéssayer";
+"button.title.yes" = "Oui";
+"button.title.no" = "Non";
 
-"confirm.payment.controller.title" = "Review details";
-"confirm.payment.creating.message" = "Creating transfer";
-"confirm.payment.data.error.title" = "Error loading data";
-"confirm.payment.delivery.date.message" = "estimated to arrive on";
-"confirm.payment.deposit.title.label" = "You're sending exactly";
-"confirm.payment.deposit.fixed.title.label" = "You're sending";
-"confirm.payment.recipient.title.label" = "%@ will receive";
-"confirm.payment.recipient.fixed.title.label" = "Y%@ will receive exactly";
-"confirm.payment.email.label" = "Recipient's Email";
+"confirm.payment.controller.title" = "Revue des details";
+"confirm.payment.creating.message" = "Création du transfer en cours";
+"confirm.payment.data.error.title" = "Erreur de chargement des données";
+"confirm.payment.delivery.date.message" = "arrivée estimée le";
+"confirm.payment.deposit.title.label" = "Vous envoyez exactement";
+"confirm.payment.deposit.fixed.title.label" = "Vous envoyez";
+"confirm.payment.recipient.title.label" = "%@ recevra";
+"confirm.payment.recipient.fixed.title.label" = "Y%@ recevra exactement";
+"confirm.payment.email.label" = "Email du destinataire";
 "confirm.payment.target.sum.format" = "%@";
-"confirm.payment.fixed.target.sum.format" = "exactly %@";
-"confirm.payment.header.format" = "On %@,\n%@\nis estimated to reach\n%@'s account";
-"confirm.payment.header.format.nodate" = "%@\n will reach\n%@'s account";
-"confirm.payment.exchangerate.title.label" = "Estimated rate";
-"confirm.payment.footer.button.title" = "Confirm";
-"confirm.payment.payment.error.title" = "Couldn't create transfer. Please try again.";
-"confirm.payment.pulling.data" = "Refreshing...";
-"confirm.payment.receiver.section.title" = "Receiver";
-"confirm.payment.recipient.marker.label" = "Receiver";
-"confirm.payment.reference.label" = "Type a reference";
-"confirm.payment.sender.marker.label" = "Sender (you)";
-"confirm.payment.sender.section.title" = "Sender";
-"confirm.payment.reference.message" = "The reference will not appear on %@'s bank statement. Instead %@ will see \"%@\", TransferWise's trusted local partner in %@. The reference will still be visible in the email sent to %@.";
-"confirm.payment.reference.message.default" = "The reference will not appear on %@'s bank statement. Instead %@ will see the name of TransferWise's trusted local partner in his country. The reference will still be visible in the email sent to %@.";
-"confirm.payment.reference.message.USD" = "The reference will not appear on %@'s bank statement. The reference will still be visible in the email sent to %@.";
-"confirm.payment.recipient.will.be.informed" = "%@ will be informed via email.";
+"confirm.payment.fixed.target.sum.format" = "exactement %@";
+"confirm.payment.header.format" = "Le %@,\n%@\nest estimaté d'arriver sur le compte de \n%@'";
+"confirm.payment.header.format.nodate" = "%@\n arrivera sur le compte de \n%@";
+"confirm.payment.exchangerate.title.label" = "Taux de change estimé";
+"confirm.payment.footer.button.title" = "Confirmer";
+"confirm.payment.payment.error.title" = "Le transfer n'a pas pu etre crée. Reéssayez.";
+"confirm.payment.pulling.data" = "Refraichissement...";
+"confirm.payment.receiver.section.title" = "Destinataire";
+"confirm.payment.recipient.marker.label" = "Destinataire";
+"confirm.payment.reference.label" = "Saisir une référence";
+"confirm.payment.sender.marker.label" = "Envoyeur (vous)";
+"confirm.payment.sender.section.title" = "Envoyeur";
+"confirm.payment.reference.message" = "La référence n'apparaitra pas sur le relevé bancaire de %@. A la place, %@ verra \"%@\", le nom du partenaire local de TransferWise %@. La référence sera pourtant visible dans l'email envoyé a %@.";
+"confirm.payment.reference.message.default" = "La référence n'apparaitra pas sur le relevé bancaire de %@. A la place, %@ verra \"%@\", le nom du partenaire local de TransferWise %@. Ceci dit, la référence sera visible dans l'email envoyé a %@.";
+"confirm.payment.reference.message.USD" = "La référence n'apparaitra pas sur le relevé bancaire de %@. Ceci dit, la référence sera visible dans l'email envoyé a %@.";
+"confirm.payment.recipient.will.be.informed" = "%@ sera informé par email.";
 "confirm.payment.reference.message.confirm" = "Ok";
-"confirm.payment.reference.message.cancel" = "Cancel";
+"confirm.payment.reference.message.cancel" = "Annuler";
 
 
-"contacts.controller.delete.button.title" = "Delete";
-"contacts.controller.delete.confirmation.message" = "Are you sure you wish to delete %@ from your recipients?";
-"contacts.controller.delete.conformation.title" = "Delete contact";
-"contacts.controller.deleting.message" = "Deleting...";
-"contacts.controller.refreshing.message" = "Refreshing recipients list";
-"contacts.controller.title" = "Recipients";
-"contacts.controller.tabbar.title" = "Recipients";
-"contacts.refresh.error.message" = "Could not refresh your recipients list";
-"contacts.refresh.error.title" = "Refresh error";
-"contacts.controller.send.button.title" = "Send %@";
-"contacts.controller.footer.invite" = "Earn £50 by inviting
-your friends to TransferWise";
-"contacts.controller.footer.invite.button.title" = "Invite friends";
+"contacts.controller.delete.button.title" = "Supprimer";
+"contacts.controller.delete.confirmation.message" = "Etes-vous sur de vouloir supprimer %@ de la liste de vos destinataires?";
+"contacts.controller.delete.conformation.title" = "Supprimer contact";
+"contacts.controller.deleting.message" = "Suppression...";
+"contacts.controller.refreshing.message" = "Rachraissement des destinataires";
+"contacts.controller.title" = "Destinataires";
+"contacts.controller.tabbar.title" = "Destinataires";
+"contacts.refresh.error.message" = "La list de vos destinataires n'a pas pu etre raffraichie";
+"contacts.refresh.error.title" = "Erreur de raffraichissement";
+"contacts.controller.send.button.title" = "Envoyer %@";
+"contacts.controller.footer.invite" = "Gagner £50 en invitant
+vos amis sur TransferWise";
+"contacts.controller.footer.invite.button.title" = "Invitez vos amis";
 
-"claim.account.controller.title" = "Choose a password";
-"claim.account.error.title" = "Error";
-"claim.account.footer.message.text" = "Please set a password to be able to login and check the status of your transfers.";
-"claim.account.password.not.entered" = "Password is missing";
-"claim.account.setting.password.message" = "Working...";
+"claim.account.controller.title" = "Choisir un mot de passe";
+"claim.account.error.title" = "Erreur";
+"claim.account.footer.message.text" = "Choisissez un mot de passe afin de vos connecter et suivre vos transferts.";
+"claim.account.password.not.entered" = "Mot de passe manquant";
+"claim.account.setting.password.message" = "...";
 
-"currency.selector.title" = "Select currency";
-"currency.selector.select.button.title" = "Select";
+"currency.selector.title" = "Choisir une monnaie";
+"currency.selector.select.button.title" = "Choisir";
 
-"generic.error.message" = "We are working on the issue. Please try again later.";
-"generic.error.title" = "Oops. Something went wrong.";
+"generic.error.message" = "Nous travaillons sur le probleme. Reessayer plus tard.";
+"generic.error.title" = "Oops. Quelque chose n'a pas marché.";
 
-"identification.controller.title" = "%d documents required";
-"identification.controller.single.title" = "%d document required";
-"identification.controller.fields.title" = "Fill the fields";
-"identification.controller.title.ipad" = "%d documents required for security reasons";
-"identification.controller.single.title.ipad" = "%d document required for security reasons";
-"identification.reason.title" = "For security reasons we need:";
-"identification.creating.payment.message" = "Creating transfer...";
-"identification.id.document" = "Photo of your ID";
-"identification.id.description" = "A good quality photo of a valid passport or ID card or driving licence. Not a picture of yourself.";
-"identification.id.selected.description" = "ID document selected";
-"identification.payment.error.title" = "Payment error";
-"identification.proof.of.address" = "Photo of proof of address";
-"identification.proof.of.address.description" = "A utility bill or credit card statement from the last 3 months sent to your current address.";
-"identification.proof.of.address.selected.description" = "Proof of address selected";
-"identification.take.photo" = "Take Photo";
-"identification.upload.button" = "Send";
-"identification.skip.button" = "Skip, I'll do it later";
-"identification.delete.button" = "Delete";
-"identification.payment.purpose" = "Purpose of this transfer";
+"identification.controller.title" = "%d documents requis";
+"identification.controller.single.title" = "%d document requis";
+"identification.controller.fields.title" = "Remplir les champs";
+"identification.controller.title.ipad" = "%d documents requis en raison de sécurité";
+"identification.controller.single.title.ipad" = "%d documents requis en raison de sécurité";
+"identification.reason.title" = "Pour des raisons de sécurité, nous avons besoin de:";
+"identification.creating.payment.message" = "Creation du transfert...";
+"identification.id.document" = "Photo d'une piece d'identité";
+"identification.id.description" = "Une photo de votre passeport, carte d'identité ou permi de conduire valide et de bonne qualité. Non pas une photo de vous.";
+"identification.id.selected.description" = "Piece d'identité selectionnée";
+"identification.payment.error.title" = "Erreur de paiement";
+"identification.proof.of.address" = "Photo d'une preuve de domicile";
+"identification.proof.of.address.description" = "Une facture ou un relevé de carte de crédit envoyé dans les 3 derniers mois a votre adresse actuelle.";
+"identification.proof.of.address.selected.description" = "Preuve de domiciliation sélectionnée";
+"identification.take.photo" = "Photographier";
+"identification.upload.button" = "Envoyer";
+"identification.skip.button" = "Je le ferai plus tard";
+"identification.delete.button" = "Supprimer";
+"identification.payment.purpose" = "Raison de ce transfert";
 "identification.ssn" = "Social security number";
-"identification.good.format" = "Good! %d documents left.";
-"identification.good.single.format" = "Good! %d document left.";
-"identification.good.single.ipad" = "1 more document needed for security reasons.";
-"identification.fields" = "Fill the remaining fields";
-"identification.only.ssn" = "Almost done. Enter Social security number";
-"identification.only.purpose" = "Almost done. Enter Purpose of transfer";
-"identification.only.ssn.ipad" = "You're almost done. Fill the field : Social security number";
-"identification.only.purpose.ipad" = "You're almost done. Fill the field : Purpose of transfer";
-"identification.well.done.format" = "Well done %@!";
-"identification.error" = "Error";
-"identification.optional.suffix" = " (Optional)";
-"identification.ssn.short" = "Social security number is too short";
-"identification.ssn.generic.error" = "Social security validation . Please upload an ID document instead.";
+"identification.good.format" = "Bien! %d documents restants.";
+"identification.good.single.format" = "Bien! %d document restant.";
+"identification.good.single.ipad" = "Plus qu'un document requis.";
+"identification.fields" = "Remplissez les champs restants";
+"identification.only.ssn" = "Presque fini. Saisissez votre Social security number";
+"identification.only.purpose" = "Presque fini. Saisissez la raison de votre transfert";
+"identification.only.ssn.ipad" = "Presque fini. Remplissez le champ: Social security number";
+"identification.only.purpose.ipad" = "Presque fini. Remplissez le champ: Raison du transfert";
+"identification.well.done.format" = "Bravo %@!";
+"identification.error" = "Erreur";
+"identification.optional.suffix" = " (Optionnel)";
+"identification.ssn.short" = "Le Social security number est trop court";
+"identification.ssn.generic.error" = "Erreur de validation du Social security number. Veuillez fournir une piece d'identité.";
 
 
 
 
-"introduction.currencies.retrieve.error.message" = "Could not retrieve currencies from server";
-"introduction.currencies.retrieve.error.title" = "Currencies error";
-"introduction.calculation.error.title" = "Calculation failed";
-"introduction.title" = "Send money";
-"introduction.header.title.text" = "How much would you like to send?";
-"introduction.login.section.title" = "Already a user?";
-"introduction.savings.receive.message.base" = "You'll get %@ more vs your bank";
-"introduction.savings.pay.message.base" = "You'll pay %@ less vs your bank";
-"introduction.savings.message.part1" = "You'll save";
-"introduction.savings.message.part1.ipad" = "You'll save";
-"introduction.savings.message.part2" = "vs your bank";
-"introduction.savings.message.part2.ipad" = "vs your bank";
-"introduction.savings.message.how" = "SEE HOW";
-"introduction.savings.message.how.ipad" = "SEE HOW";
-"introduction.header.sub.title.text" = "No hidden fees. No headache.
-A revolution in your pocket.";
+"introduction.currencies.retrieve.error.message" = "Impossible de téléchargé la liste des monnaies";
+"introduction.currencies.retrieve.error.title" = "Erreure liée aux monnaies";
+"introduction.calculation.error.title" = "Calculation avortée";
+"introduction.title" = "Envoyer de l'argent";
+"introduction.header.title.text" = "Combien souhaitez-vous envoyer?";
+"introduction.login.section.title" = "Déja un utilisateur?";
+"introduction.savings.receive.message.base" = "Vous obtiendrez %@ de plus qu'avec votre banque";
+"introduction.savings.pay.message.base" = "Vous économiserez %@ par rapport a votre banque";
+"introduction.savings.message.part1" = "Vous éconnomiserez";
+"introduction.savings.message.part1.ipad" = "Vous éconnomiserez";
+"introduction.savings.message.part2" = "par rapport a votre banque";
+"introduction.savings.message.part2.ipad" = "par rapport a votre banque";
+"introduction.savings.message.how" = "Voir explication";
+"introduction.savings.message.how.ipad" = "Voir explication";
+"introduction.header.sub.title.text" = "Pas de frais cachés. Pas de migraine.
+Une révolution dans votre poche.";
 
-"invite.controller.tabbar.title" = "Invite";
+"invite.controller.tabbar.title" = "Inviter";
 
-"login.controller.footer.message" = "You will remain logged in until you manually log out of the app.";
-"login.controller.header.message" = "Enter your login details";
-"login.controller.logging.in.message" = "Logging in...";
-"login.controller.title" = "Login";
-"login.email.field.title" = "Your email";
-"login.error.generic.message" = "Login failed. Please try again.";
-"login.error.title" = "Can't log in";
-"login.password.field.title" = "Password";
-"login.validation.email.missing" = "You haven't entered an email";
-"login.validation.email.not.valid" = "The entered email is not correct";
-"login.validation.password.missing" = "Passwordis missing";
+"login.controller.footer.message" = "Vous resterez connecter jusqu'a ce que vous vous déconnectiez.";
+"login.controller.header.message" = "Saisissez vos identifiants";
+"login.controller.logging.in.message" = "Connexion...";
+"login.controller.title" = "Connexion";
+"login.email.field.title" = "Votre addresse email";
+"login.error.generic.message" = "Erreur de connexion. Essayez de nouveau.";
+"login.error.title" = "Impossible de se connecter";
+"login.password.field.title" = "Mot de passe";
+"login.validation.email.missing" = "Adresse email manquante";
+"login.validation.email.not.valid" = "L'émail saisi n'est pas valide";
+"login.validation.password.missing" = "Mot de passe manquant";
 
-"money.entry.priority.payment.title" = "Priority Payment";
-"money.entry.receive.fixed.amount.title" = "Receive fixed amount";
-"money.entry.they.receive.title" = "Receiver gets";
-"money.entry.they.receive.exactly.title" = "Receiver gets exactly";
-"money.entry.you.send.title" = "You send";
-"money.entry.you.send.exactly.title" = "You send exactly";
-"money.entry.recipient.receive.title" = "%@ gets";
-"money.entry.recipient.receive.exactly.title" = "%@ gets exactly";
+"money.entry.priority.payment.title" = "Transfert prioritaire";
+"money.entry.receive.fixed.amount.title" = "Recevoir un montant fixe";
+"money.entry.they.receive.title" = "Destinataire recois";
+"money.entry.they.receive.exactly.title" = "Destinataire recois exactement";
+"money.entry.you.send.title" = "Vous envoyez";
+"money.entry.you.send.exactly.title" = "Vous envoyez exactement";
+"money.entry.recipient.receive.title" = "%@ recois";
+"money.entry.recipient.receive.exactly.title" = "%@ recois exactement";
 
-"openid.login.error.title" = "Login failed";
-"openid.login.generic.error.message" = "Login failed. Please try again later.";
+"openid.login.error.title" = "Erreur de connexion";
+"openid.login.generic.error.message" = "Erreur de connexion. Essayez de nouveau.";
 
-"payment.change.time.days.ago" = "%d days ago";
-"payment.change.time.hours.ago" = "%d hours ago";
-"payment.change.time.minutes.ago" = "%d minutes ago";
-"payment.change.time.months.ago" = "%d months ago";
-"payment.change.time.one.day.ago" = "1 day ago";
-"payment.change.time.one.hour.ago" = "1 hour ago";
-"payment.change.time.one.minute.ago" = "1 minute ago";
-"payment.change.time.one.month.ago" = "1 month ago";
-"payment.change.time.one.year.ago" = "1 year ago";
-"payment.change.time.years.ago" = "%d years ago";
+"payment.change.time.days.ago" = "Il y a %d jours";
+"payment.change.time.hours.ago" = "Il y a %d heures";
+"payment.change.time.minutes.ago" = "Il y a %d minutes";
+"payment.change.time.months.ago" = "Il y a %d mois";
+"payment.change.time.one.day.ago" = "Hier";
+"payment.change.time.one.hour.ago" = "Il y a 1 heure";
+"payment.change.time.one.minute.ago" = "Il y a 1 minute ago";
+"payment.change.time.one.month.ago" = "Il y a 1 mois";
+"payment.change.time.one.year.ago" = "Il y a 1 an";
+"payment.change.time.years.ago" = "Il y a %d ans ago";
 "payment.date.format.long" = "MMM d YYYY";
 "payment.date.format.short" = "MMM d";
-"payment.controller.calculation.error.title" = "Calculation failed";
-"payment.controller.continue.to.details.button.title" = "Continue";
-"payment.controller.currency.cost.label" = "To be converted";
-"payment.controller.currency.payment.error.message" = "Can't make payments to recipients using %@";
-"payment.controller.currency.payment.error.title" = "Can't make payment";
-"payment.controller.deposit.label" = "Your deposit";
-"payment.controller.estimated.exchange.rate.label" = "Estimated exchange rate";
-"payment.controller.payment.date.message" = "Money arrives %@";
-"payment.controller.title" = "Send";
-"payment.controller.tabbar.title" = "Send";
+"payment.controller.calculation.error.title" = "Calcul avorté";
+"payment.controller.continue.to.details.button.title" = "Continuer";
+"payment.controller.currency.cost.label" = "Sera converti";
+"payment.controller.currency.payment.error.message" = "Impossible de payer au destinataire en utilisant %@";
+"payment.controller.currency.payment.error.title" = "Paiement impossible";
+"payment.controller.deposit.label" = "Votre dépot";
+"payment.controller.estimated.exchange.rate.label" = "Taux de change estimé";
+"payment.controller.payment.date.message" = "L'argent arrive le %@";
+"payment.controller.title" = "Envoyer";
+"payment.controller.tabbar.title" = "Envoyer";
 
-"payment.controller.title.with.contact.name" = "Payment to %@";
-"payment.controller.transfer.fee.label" = "Total fee";
-"payment.controller.you.get.label" = "Receiver gets (estimated)";
-"payment.currencies.format" = "%@ to %@";
+"payment.controller.title.with.contact.name" = "Transfert a %@";
+"payment.controller.transfer.fee.label" = "Coût total";
+"payment.controller.you.get.label" = "Destinataire recois (estimation)";
+"payment.currencies.format" = "%@ à %@";
 
-"payment.status.cancelled.description" = "Cancelled - %@";
-"payment.status.cancelled.description.long" = "has now been cancelled.";
-"payment.status.cancelled.description.conversion" = "was not converted to";
+"payment.status.cancelled.description" = "Annulé - %@";
+"payment.status.cancelled.description.long" = "a été annulé.";
+"payment.status.cancelled.description.conversion" = "n'a pas été converti en";
 "payment.status.cancelled.description.eta" = "";
-"payment.status.refunded.description" = "Refunded - %@";
-"payment.status.refunded.description.long" = "has now been cancelled.";
-"payment.status.refunded.description.conversion" = "has been refunded";
+"payment.status.refunded.description" = "Remboursé - %@";
+"payment.status.refunded.description.long" = "a été annulé.";
+"payment.status.refunded.description.conversion" = "a été remboursé";
 "payment.status.refunded.description.eta" = "";
-"payment.status.matched.description" = "on its way";
-"payment.status.matched.description.long" = "is on its way.";
-"payment.status.matched.description.conversion" = "have been converted to";
-"payment.status.matched.description.eta" = "& should arrive on";
-"payment.status.received.description" = "Converting";
-"payment.status.received.description.long" = "is now being converted.";
-"payment.status.received.description.conversion" = "is estimated to convert to";
-"payment.status.received.description.eta" = "& should arrive on";
-"payment.status.refunded.description" = "Refunded %@";
-"payment.status.submitted.description" = "Waiting for money";
-"payment.status.submitted.description.long" = "will start as soon";
-"payment.status.submitted.description.long2" = "as we receive the money.";
-"payment.status.payed.description" = "Waiting for money";
-"payment.status.payed.description.long" = "will start once we";
-"payment.status.payed.description.long2" = "received the money.";
-"payment.status.payed.description.conversion" = "We're now waiting for your
-bank transfer to reach our account.
-It generally taks 1 business day.";
+"payment.status.matched.description" = "en cours";
+"payment.status.matched.description.long" = "est en cours";
+"payment.status.matched.description.conversion" = "a éte converti en";
+"payment.status.matched.description.eta" = "& devrait arriver le";
+"payment.status.received.description" = "en conversion";
+"payment.status.received.description.long" = "est en conversion.";
+"payment.status.received.description.conversion" = "est estimé de convertir en";
+"payment.status.received.description.eta" = "& devrait arriver le";
+"payment.status.refunded.description" = "Remboursé %@";
+"payment.status.submitted.description" = "En attente d'argent";
+"payment.status.submitted.description.long" = "demarrera";
+"payment.status.submitted.description.long2" = "dés que nous aurons reçu l'argent.";
+"payment.status.payed.description" = "En attente d'argent";
+"payment.status.payed.description.long" = "demarrera des que";
+"payment.status.payed.description.long2" = "nous aurons reçu l'argent.";
+"payment.status.payed.description.conversion" = "Nous sommes maintenant dans l'attente de votre transfert bancaire. Cela prend genéralement 1 jour ouvré.";
 "payment.status.payed.description.eta" = "";
-"payment.status.transferred.description" = "Completed - %@";
-"payment.status.transferred.description.long" = "has been transfered.";
-"payment.status.transferred.description.conversion" = "have been converted to";
-"payment.status.transferred.description.eta" = "& should arrive on";
-"payment.status.transferred.description.eta.past" = "& should have arrived on";
-"payment.status.receivedWaitingRecipient.description" = "Waiting for recipient";
-"payment.status.unknown.description" = "Unknown";
+"payment.status.transferred.description" = "Effectué - %@";
+"payment.status.transferred.description.long" = "a été effectué.";
+"payment.status.transferred.description.conversion" = "a été converti en";
+"payment.status.transferred.description.eta" = "& devrait arriver le";
+"payment.status.transferred.description.eta.past" = "& devrait arriver le";
+"payment.status.receivedWaitingRecipient.description" = "En attente du destinataire";
+"payment.status.unknown.description" = "Inconnu";
 
-"profile.post.code.label" = "Post code";
+"profile.post.code.label" = "Code postale";
 "profile.post.code.usa.label" = "Zip code";
 
-"personal.profile.address.label" = "Address";
-"personal.profile.address.section.title" = "Address";
-"personal.profile.city.label" = "City";
-"personal.profile.confirm.payment.button.title" = "Continue";
-"personal.profile.state.label" = "State";
-"personal.profile.continue.to.recipient.button.title" = "Continue";
-"personal.profile.controller.title" = "Your details";
-"personal.profile.countries.refresh.error.message" = "Could not retrieve data. Please try again later.";
-"personal.profile.countries.refresh.error.title" = "Error while refreshing";
-"personal.profile.country.label" = "Country";
-"personal.profile.date.of.birth.label" = "Date of birth";
-"personal.profile.email.label" = "Your Email";
-"personal.profile.email.taken.message" = "Email is already registered.";
-"personal.profile.email.validating" = "Checking email";
-"personal.profile.first.name.label" = "First name";
-"personal.profile.last.name.label" = "Last name";
-"personal.profile.personal.section.title" = "Personal details";
-"personal.profile.phone.label" = "Phone";
-"personal.profile.password.label" = "Password";
-"personal.profile.password.confirm.label" = "Retype password";
+"personal.profile.address.label" = "Adresse";
+"personal.profile.address.section.title" = "Adresse";
+"personal.profile.city.label" = "Ville";
+"personal.profile.confirm.payment.button.title" = "Continuer";
+"personal.profile.state.label" = "Etat";
+"personal.profile.continue.to.recipient.button.title" = "Continuer";
+"personal.profile.controller.title" = "Vos détails";
+"personal.profile.countries.refresh.error.message" = "Accés aux données impossible. Réessayer plus tard.";
+"personal.profile.countries.refresh.error.title" = "Erreur lors du raffraichissement";
+"personal.profile.country.label" = "Pays";
+"personal.profile.date.of.birth.label" = "Date de naissance";
+"personal.profile.email.label" = "Votre email";
+"personal.profile.email.taken.message" = "Cet email est déjà enregistré";
+"personal.profile.email.validating" = "Vérification de l'émail";
+"personal.profile.first.name.label" = "Prénom";
+"personal.profile.last.name.label" = "Nom de famille";
+"personal.profile.personal.section.title" = "Details personnels";
+"personal.profile.phone.label" = "Numéro de téléphone";
+"personal.profile.password.label" = "Mot de passe";
+"personal.profile.password.confirm.label" = "Resaisir mot de passe";
 "personal.profile.occupation.label" = "Occupation";
-"personal.profile.refresh.error.message" = "Oops! Your profile couldn't be loaded. Please try again later.";
-"personal.profile.refresh.error.title" = "Profile unavailable";
-"personal.profile.refreshing.countries.message" = "Refreshing countries...";
-"personal.profile.refreshing.message" = "Loading profile...";
-"personal.profile.save.button.title" = "Save profile";
-"personal.profile.save.error.title" = "Error saving your profile";
-"personal.profile.saving.message" = "Saving your profile...";
-"personal.profile.validation.error.message" = "Please check that all fields are filled in.";
-"personal.profile.validation.password.error.notmatching.message" = "Passwords don't match.";
-"personal.profile.validation.password.error.invalid.length.message" = "Password should be at least 5 characters";
-"personal.profile.validation.dateofbirth.invalid.message" = "Your date of birth is not valid";
-"personal.profile.validation.error.title" = "Check your details";
-"personal.profile.verify.error.title" = "Verify error";
-"personal.profile.verify.message" = "Checking profile";
-"personal.profile.login.title" = "Login";
+"personal.profile.refresh.error.message" = "Oops! Votre profil n'a pas pu être chargé. Réessayer plus tard.";
+"personal.profile.refresh.error.title" = "Profil indisponible";
+"personal.profile.refreshing.countries.message" = "Rafraichissement des pays...";
+"personal.profile.refreshing.message" = "Chargement du profil...";
+"personal.profile.save.button.title" = "Sauvegarder";
+"personal.profile.save.error.title" = "Erreur lors de la sauvegarde du profil";
+"personal.profile.saving.message" = "Sauvegarde du profil...";
+"personal.profile.validation.error.message" = "Vérifiez que tous les champs sont remplis.";
+"personal.profile.validation.password.error.notmatching.message" = "Les mots de passes sont différents.";
+"personal.profile.validation.password.error.invalid.length.message" = "Le mot de passe doit contenir au moins 5 caractères";
+"personal.profile.validation.dateofbirth.invalid.message" = "Date de naissance non valide";
+"personal.profile.validation.error.title" = "Verifiez vos informations";
+"personal.profile.verify.error.title" = "Erreur de vérification";
+"personal.profile.verify.message" = "Verification du profil";
+"personal.profile.login.title" = "Connexion";
 
-"personal.profile.needed.popup.message" = "You need to fill personal profile also to continue payment.";
-"personal.profile.needed.popup.title" = "Missing data";
+"personal.profile.needed.popup.message" = "Veuillez remplir votre profil personnel afin de continuer.";
+"personal.profile.needed.popup.title" = "Informations manquantes";
 
-"profile.controller.title" = "Profile";
-"profile.controller.tabbar.title" = "Profile";
-"profile.selection.text.base" = "Or %@";
-"profile.selection.text.business.profile" = "Send as a business";
-"profile.selection.text.personal.profile" = "Send as me";
-"profile.dob.day" = "DD";
+"profile.controller.title" = "Profil";
+"profile.controller.tabbar.title" = "Profil";
+"profile.selection.text.base" = "Ou %@";
+"profile.selection.text.business.profile" = "En tant qu'entreprise";
+"profile.selection.text.personal.profile" = "En tant que personne";
+"profile.dob.day" = "JJ";
 "profile.dob.month" = "MM";
-"profile.dob.year" = "YYYY";
-"profile.edit.title" = "My profile";
-"profile.edit.title.ipad" = "My profile";
-"profile.edit.business" = "Business profile";
-"profile.edit.personal" = "Personal profile";
-"profile.edit.save" = "Save";
-"profile.edit.save.success.header" = "Success";
-"profile.edit.save.success.message" = "Your profile has been saved";
+"profile.dob.year" = "AAAA";
+"profile.edit.title" = "Mon profil";
+"profile.edit.title.ipad" = "Mon profil";
+"profile.edit.business" = "Profil d'entreprise";
+"profile.edit.personal" = "Profil personnel";
+"profile.edit.save" = "Sauvegarde";
+"profile.edit.save.success.header" = "Succès";
+"profile.edit.save.success.message" = "Votre profil a été sauvegardé";
 
-"recipient.controller.add.button.title" = "Add";
-"recipient.controller.add.mode.title" = "Add recipient";
-"recipient.controller.cell.label.email" = "Recipient's Email (Optional)";
-"recipient.controller.cell.label.name" = "Recipient's Name";
-"recipient.controller.scell.title.recipient.currency" = "%@'s currency";
-"recipient.controller.confirm.payment.button.title" = "Confirm payment";
-"recipient.controller.creating.message" = "Creating...";
-"recipient.controller.payment.mode.title" = "Select a recipient";
-"recipient.controller.recipient.types.load.error.title" = "Data error";
-"recipient.controller.recipients.preload.error.title" = "Can't load contacts";
-"recipient.controller.refreshing.message" = "Loading...";
-"recipient.controller.sattes.load.error.title" = "Data error";
-"recipient.controller.save.error.title" = "Add error";
-"recipient.controller.section.title.currency" = "Currency";
-"recipient.controller.section.title.recipient" = "Who are you sending money to?";
-"recipient.controller.section.title.sender" = "Sender";
-"recipient.controller.section.title.recipient.placeholder" = "Recipient";
-"recipient.controller.section.title.recipient.bank.details" = "%@'s Bank Details:";
-"recipient.controller.section.title.ipad.recipient" = "Who are you sending to?";
-"recipient.controller.validating.message" = "Validating...";
-"recipient.controller.validation.error.empty.name" = "Name is missing";
-"recipient.controller.validation.error.field.empty" = "%@ is missing";
-"recipient.controller.validation.error.title" = "Validation error";
-"recipient.controller.validation.error.bic.required" = "BIC is required for transfers to %@";
-"recipient.controller.validation.error.email.format" = "Email is invalid";
-"recipient.controller.validation.error.address" = "Address has empty fields";
-"recipient.controller.validation.error.country" = "Invalid country";
-"recipient.controller.validation.error.state" = "Invalid state";
-"recipient.controller.section.title.address" = "Address";
+"recipient.controller.add.button.title" = "Ajouter";
+"recipient.controller.add.mode.title" = "Ajouter un destinataire";
+"recipient.controller.cell.label.email" = "Email du destinataire (Optionnel)";
+"recipient.controller.cell.label.name" = "Nom du destinataire";
+"recipient.controller.scell.title.recipient.currency" = "Monnaie de %@";
+"recipient.controller.confirm.payment.button.title" = "Confirmer paiement";
+"recipient.controller.creating.message" = "Création en cours...";
+"recipient.controller.payment.mode.title" = "Sélectionner un destinataire";
+"recipient.controller.recipient.types.load.error.title" = "Erreur de donnée";
+"recipient.controller.recipients.preload.error.title" = "Impossible de charger les contacts";
+"recipient.controller.refreshing.message" = "Chargement...";
+"recipient.controller.sattes.load.error.title" = "Erreur de donnée";
+"recipient.controller.save.error.title" = "Erreur d'ajout";
+"recipient.controller.section.title.currency" = "Monnaie";
+"recipient.controller.section.title.recipient" = "A qui voulez-vous envoyer de l'argent?";
+"recipient.controller.section.title.sender" = "Envoyeur";
+"recipient.controller.section.title.recipient.placeholder" = "Destinataire";
+"recipient.controller.section.title.recipient.bank.details" = "Détails bancaires de %@:";
+"recipient.controller.section.title.ipad.recipient" = "A qui envoyez-vous l'argent?";
+"recipient.controller.validating.message" = "Validation...";
+"recipient.controller.validation.error.empty.name" = "Le nom est manquant";
+"recipient.controller.validation.error.field.empty" = "%@ est manquant";
+"recipient.controller.validation.error.title" = "Erreur de validation";
+"recipient.controller.validation.error.bic.required" = "Le BIC est requis pour transférer à %@";
+"recipient.controller.validation.error.email.format" = "L'adresse email est invalide";
+"recipient.controller.validation.error.address" = "L'addresse contient des champs vides";
+"recipient.controller.validation.error.country" = "Le pays est invalide";
+"recipient.controller.validation.error.state" = "L'état est invalide";
+"recipient.controller.section.title.address" = "Adresse";
 
 "recipient.details.ABA.base" = "ACH / ABA: %@, State:%@";
 "recipient.details.BIC.base" = "BIC: %@";
 "recipient.details.IBAN.base" = "IBAN: %@";
-"recipient.details.SORT_CODE.base" = "UK Sort code: %@";
-"recipient.details.SWIFT_CODE.base" = "SWIFT code: %@";
-"recipient.details.account.number.base" = "Account number: %@";
-"recipient.details.bank.code.base" = "Bank code: %@";
+"recipient.details.SORT_CODE.base" = "Code UK Sort: %@";
+"recipient.details.SWIFT_CODE.base" = "Code SWIFT: %@";
+"recipient.details.account.number.base" = "Numéro de compte: %@";
+"recipient.details.bank.code.base" = "Code banque: %@";
 "recipient.details.bic.base" = "BIC: %@";
 "recipient.details.iban.base" = "IBAN: %@";
 
-"recipient.import.from.phonebook.label" = "Import from phonebook";
-"recipient.save.error.title" = "Can't save";
+"recipient.import.from.phonebook.label" = "Importer";
+"recipient.save.error.title" = "Impossible de sauvegarder";
 
-"refund.details.account.details.section.header" = "Your bank details";
-"refund.details.controller.title" = "Your refund account";
-"refund.details.header.description" = "To guarantee that %@ receives exactly %@, we asked you to send a little extra money.
+"refund.details.account.details.section.header" = "Vos détails bancaires";
+"refund.details.controller.title" = "Votre compte en cas de remboursement";
+"refund.details.header.description" = "Afin de guarantir que %@ recoive exactement %@, nous vous avons demandé un petit extra.
 
-We'll refund the remaining money to your bank account once the transfer is complete.";
-"refund.details.header.description.iPad" = "To guarantee that %@ receives exactly %@, we asked you to send a little extra money.
+Nous vous rembourserons l'argent non utilisé après le transfert.";
+"refund.details.header.description.iPad" = "Afin de guarantir que %@ recoive exactement %@, nous vous avons demandé un petit extra.
 
-We'll refund the remaining money to your bank account once the transfer is complete.";
-"refund.details.holders.name.label" = "Your account holder name";
-"refund.details.footer.button.title" = "Continue";
-
-
-"settings.title" = "Settings";
-"settings.row.contact.support" = "Contact customer service";
-"settings.row.logout" = "Log out";
-"settings.row.send.feedback" = "Send feedback";
-"settings.row.about" = "About";
-"settings.row.touchid" = "Touch ID settings";
-"settings.row.send.as.business" = "Send as business";
+Nous vous rembourserons l'argent non utilisé après le transfert.";
+"refund.details.holders.name.label" = "Nom du détenteur du compte";
+"refund.details.footer.button.title" = "Continuer";
 
 
-"sign.up.controller.creating.message" = "Creating account...";
-"sign.up.controller.signup.error.message" = "Sign up error";
-"sign.up.controller.title" = "Register";
-"sign.up.controller.validation.email.invalid" = "Email is not valid";
-"sign.up.controller.validation.email.missing" = "Email is missing";
-"sign.up.controller.validation.password.missing" = "Password is missing";
-"sign.up.controller.validation.password.mismatch" = "Passwords don't match";
-"sign.up.controller.google.signup.message" = "Sign up via Google";
-"sign.up.controller.set.password.message" = "OR SET A PASSWORD";
-"sign.up.error.title" = "Can't continue";
-"sign.up.button.title.register" = "Register";
-"sign.up.controller.header.message" = "Create a Transferwise account";
-"sign.up.email.field.title" = "Email";
-"sign.up.password.confirm.field.title" = "Confirm password";
-"sign.up.password.field.title" = "Password";
-"sign.up.controller.existing.user.action" = "Log in";
-"sign.up.controller.existing.user.message" = "Already a user?";
-
-"transactions.controller.refreshing.message" = "Refreshing payments";
-"transactions.controller.title" = "My Transfers";
-"transactions.controller.tabbar.title" = "Transfers";
-"transactions.identification.notification.message" = "We will soon review your documents";
-"transactions.identification.upload.message" = "Haven't uploaded them?";
-"transactions.identification.done.button.title" = "Upload";
-"transactions.identification.uploading.message" = "Uploading...";
-"transactions.cancel.confirmation.title" = "Cancel this transfer?";
-"transactions.cancel.confirmation.message" = "Please confirm you want to cancel this transfer.
-This can't be undone.";
-"transactions.cancel.progress.title" = "Cancelling transfer...";
-"transactions.cancel.fail.title" = "Cancel failed";
-"transactions.cancel.fail.message" = "Reload your transfer feed and try again.";
-"validation.documents.needed" ="Documents needed";
-"validation.view" = "View";
+"settings.title" = "Paramètres";
+"settings.row.contact.support" = "Contacter le support client";
+"settings.row.logout" = "Se déconnecter";
+"settings.row.send.feedback" = "Envoyer votre commentaire";
+"settings.row.about" = "A propos";
+"settings.row.touchid" = "Paramètres Touch ID";
+"settings.row.send.as.business" = "Envoyer en tant qu'entreprise";
 
 
-"transfer.pay.in.too.low.message.base" = "The entered amount is too small to convert, please change it under 'You send'. Current minimum is %@ %@";
-"transfer.pay.in.too.low.title" = "Amount too small";
-"transfer.pay.in.too.high.message.base" = "The entered amount is too large to convert, please change it under 'You send'. Current maximum is %@ %@";
-"transfer.pay.in.too.high.title" = "Amount too large";
+"sign.up.controller.creating.message" = "Création du compte...";
+"sign.up.controller.signup.error.message" = "Erreur de création du compte";
+"sign.up.controller.title" = "S'enregistrer";
+"sign.up.controller.validation.email.invalid" = "Adresse email non valide";
+"sign.up.controller.validation.email.missing" = "Adresse email manquante";
+"sign.up.controller.validation.password.missing" = "Mot de passe manquant";
+"sign.up.controller.validation.password.mismatch" = "Les mots de passe sont différents";
+"sign.up.controller.google.signup.message" = "S'enregistrer via Google";
+"sign.up.controller.set.password.message" = "Ou choisir son mot de passe";
+"sign.up.error.title" = "Impossible de continuer";
+"sign.up.button.title.register" = "S'enregistrer";
+"sign.up.controller.header.message" = "Créer un compte TransferWise";
+"sign.up.email.field.title" = "Adresse email";
+"sign.up.password.confirm.field.title" = "Confirmer mot de passe";
+"sign.up.password.field.title" = "Mot de passe";
+"sign.up.controller.existing.user.action" = "Connexion";
+"sign.up.controller.existing.user.message" = "Déjà un utilisateur?";
 
-"transferdetails.controller.refunded.header" = "Transfer refunded";
-"transferdetails.controller.cancelled.header" = "Transfer cancelled";
-"transferdetails.controller.matched.header" = "Transfer on its way";
-"transferdetails.controller.received.header" = "We received your money";
-"transferdetails.controller.submitted.header" = "Transfer waiting for money";
-"transferdetails.controller.transferred.header" = "Transfer completed";
-"transferdetails.controller.transfer.header" = "Your transfer";
-"transferdetails.controller.transfer.thankyou" = "Thank you!";
-"transferdetails.controller.transfer.message1" = "We're now waiting for your";
-"transferdetails.controller.transfer.message2" = "bank transfer to reach our account.";
-"transferdetails.controller.transfer.message3" = "It generally takes 1 business day.";
+"transactions.controller.refreshing.message" = "Raffraichissement des transferts";
+"transactions.controller.title" = "Mes transferts";
+"transactions.controller.tabbar.title" = "Transferts";
+"transactions.identification.notification.message" = "Vos documents seront bientôt en revue";
+"transactions.identification.upload.message" = "Documents non fournis?";
+"transactions.identification.done.button.title" = "Télécharger";
+"transactions.identification.uploading.message" = "Téléchargement en cours...";
+"transactions.cancel.confirmation.title" = "Annuler ce transfert?";
+"transactions.cancel.confirmation.message" = "Veuillez confirmer que vous souhaitez annuler ce transfert.
+C'est irréversible.";
+"transactions.cancel.progress.title" = "Annulation en cours...";
+"transactions.cancel.fail.title" = "Annulation avortée";
+"transactions.cancel.fail.message" = "Raffraichissez votre list de transfer et réessayez.";
+"validation.documents.needed" ="Documents requis";
+"validation.view" = "Voir";
+
+
+"transfer.pay.in.too.low.message.base" = "Le montant à envoyer est trop petit. Le minimum est %@ %@";
+"transfer.pay.in.too.low.title" = "Montant trop petit";
+"transfer.pay.in.too.high.message.base" = "Le montant à envoyer est trop grand. Le maximum est %@ %@";
+"transfer.pay.in.too.high.title" = "Montant trop grand";
+
+"transferdetails.controller.refunded.header" = "Transfert remboursé";
+"transferdetails.controller.cancelled.header" = "Transfert annulé";
+"transferdetails.controller.matched.header" = "Transfert en cours";
+"transferdetails.controller.received.header" = "Nous avons bien reçus votre argent";
+"transferdetails.controller.submitted.header" = "Transfert en attente d'argent";
+"transferdetails.controller.transferred.header" = "Transfert effectué";
+"transferdetails.controller.transfer.header" = "Votre transfert";
+"transferdetails.controller.transfer.thankyou" = "Merci!";
+"transferdetails.controller.transfer.message1" = "Nous sommes maintenant dans l'attente";
+"transferdetails.controller.transfer.message2" = "de reception de votre transfert sur notre compte.";
+"transferdetails.controller.transfer.message3" = "Cela prend généralement 1 jour ouvré.";
 "transferdetails.controller.transfer.number" = "#%@";
-"transferdetails.controller.transfer.recipient" = "to %@";
-"transferdetails.controller.transfer.account.to" = "%@'s account details";
-"transferdetails.controller.transfer.account.sent" = "%@\nWe've sent email to %@ at\n%@";
-"transferdetails.controller.button.support.ipad" = "Contact support";
-"transferdetails.controller.button.support" = "Contact customer support";
-"transferdetails.controller.button.rate" = "Rate the app";
-"transferdetails.controller.button.rate.ipad" = "Rate the app";
-"transferdetails.controller.button.notransfer" = "Bank transfer not done";
-"transferdetails.controller.button.gotit" = "Got it!";
-"transferdetails.controller.button.pay" = "Pay %@ now";
-"transferdetails.controller.button.cancel" = "Cancel transfer";
+"transferdetails.controller.transfer.recipient" = "à %@";
+"transferdetails.controller.transfer.account.to" = "Details bancaires de %@";
+"transferdetails.controller.transfer.account.sent" = "%@\nNous avons envoyé un email à %@ via\n%@";
+"transferdetails.controller.button.support.ipad" = "Service client";
+"transferdetails.controller.button.support" = "Contacter le service client";
+"transferdetails.controller.button.rate" = "Noter l'app";
+"transferdetails.controller.button.rate.ipad" = "Noter l'app";
+"transferdetails.controller.button.notransfer" = "Transfert bancaire pas fait";
+"transferdetails.controller.button.gotit" = "Compris!";
+"transferdetails.controller.button.pay" = "Payer %@";
+"transferdetails.controller.button.cancel" = "Annuler transfert";
 
-"upload.money.account.nr.title" = "Account number";
-"upload.money.address.title" = "Our address";
-"upload.money.amount.title" = "Amount";
-"upload.money.bank.name.title" = "Bank name";
+"upload.money.account.nr.title" = "Numéro de compte";
+"upload.money.address.title" = "Notre adresse";
+"upload.money.amount.title" = "Montant";
+"upload.money.bank.name.title" = "Nom de la banque";
 "upload.money.bic.title" = "BIC";
-"upload.money.data.error.title" = "Data error";
-"upload.money.done.button.title" = "I made this transfer";
-"upload.money.cancel.button.title" = "Cancel";
-"upload.money.our.address.label" = "Our address: %@";
-"upload.money.header.label.GBP" = "Connect to your online banking & transfer %@ to Transferwise's UK account below.\nIt's free.";
-"upload.money.header.label.EUR" = "Connect to your online banking or call your bank. Transfer %@ to Transferwise's European account.";
-"upload.money.header.label.USD.swift" = "Connect to your online banking or call your bank. Transfer %@ to Transferwise's European account below. (Must be sent from your account)";
-"upload.money.header.label.USD.wire" = "Only if you have US domestic account, Transfer %@ to Transferwise's US account below. Must be sent from your own account. We don't accept cheques or cash";
-"upload.money.header.label" = "Connect to your online banking or call your bank. Transfer %@ to Transferwise's account.";
-"upload.money.header.label.exactly" = "exactly %@";
-"upload.money.info.label.EUR" = "SEPA transfers within Europe cost the same as a local transfer.";
+"upload.money.data.error.title" = "Erreur de donnée";
+"upload.money.done.button.title" = "J'ai fais ce transfert";
+"upload.money.cancel.button.title" = "Annuler";
+"upload.money.our.address.label" = "Notre adresse: %@";
+"upload.money.header.label.GBP" = "Connectez-vous à votre banque en ligne et transférez %@ sur le compte UK de Transferwise ci-dessous.\nC'est gratuit.";
+"upload.money.header.label.EUR" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte européen de Transferwise ci-dessous.";
+"upload.money.header.label.USD.swift" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte européen de Transferwise ci-dessous. (depuis votre compte uniquement)";
+"upload.money.header.label.USD.wire" = "Seulement si vous disposez d'un compte domestique américain, transférez %@ sur le compte américain de Transferwise ci-dessous. Uniquement depuis votre compte. Nous n'acceptons pas les cheques et le cash";
+"upload.money.header.label" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ à sur le compte Transferwise ci-dessous";
+"upload.money.header.label.exactly" = "éxactement %@";
+"upload.money.info.label.EUR" = "Les transferts SEPA au sein de la zone Euro ne coûtent pas plus cher qu'un transfert local.";
 "upload.money.iban.title" = "IBAN";
-"upload.money.notification.label" = "Your payment will be activated when we receive your deposit.";
-"upload.money.pulling.data.message" = "Pulling data...";
-"upload.money.reference.title" = "Reference";
-"upload.money.title" = "How do you want to pay?";
-"upload.money.title.single.method" = "How to pay";
-"upload.money.to.title" = "To";
-"upload.money.toggle.button.bank.transfer.title" = "Bank transfer";
-"upload.money.toggle.button.debit.card.title" = "Debit card";
-"upload.money.uksort.title" = "UK Sort code";
-"upload.money.refreshing.payment.message" = "Refreshing details...";
-"upload.money.transaction.refresh.error.message" = "Could not update payment details. Please try again later.";
-"upload.money.transaction.refresh.error.title" = "Update error";
+"upload.money.notification.label" = "Votre transfert demarrera dés que nous aurons reçus votre argent.";
+"upload.money.pulling.data.message" = "Chargement des données...";
+"upload.money.reference.title" = "Référence";
+"upload.money.title" = "Comment souhaitez-vous payer?";
+"upload.money.title.single.method" = "Comment payer";
+"upload.money.to.title" = "A";
+"upload.money.toggle.button.bank.transfer.title" = "Virement bancaire";
+"upload.money.toggle.button.debit.card.title" = "Carte de débit";
+"upload.money.uksort.title" = "Code UK Sort";
+"upload.money.refreshing.payment.message" = "Raffraichissement des details...";
+"upload.money.transaction.refresh.error.message" = "Impossible de mettre à jour les details du transfert. Réessayez plus tard.";
+"upload.money.transaction.refresh.error.title" = "Erreur de mise à jour";
 
-"upload.money.card.no.payment.message" = "Payment not made";
-"upload.money.card.no.payment.title" = "Payment was not made. Please try again later.";
-"upload.money.card.payment.success.message" = "Great, your card payment was accepted!";
-"upload.money.card.payment.success.title" = "Success";
+"upload.money.card.no.payment.message" = "Paiement avorté";
+"upload.money.card.no.payment.title" = "Le paiement n'a pu être éffectué. Réessayez plus tard.";
+"upload.money.card.payment.success.message" = "Parfait, votre paiement par carte a été accepté!";
+"upload.money.card.payment.success.title" = "Paiment éffectué";
 
-"why.popup.bank.column.label" = "Average bank";
-"why.popup.tw.rate.title" = "We use the real exchange rate.";
-"why.popup.bank.rate.title" = "Banks set their \nown rate.";
-"why.popup.tw.fee.title" = "We charge as little as possible.";
-"why.popup.bank.fee.title" = "Banks hide profit in the exchange rate + fee. ";
-"why.popup.tw.you.get.title" = "You get";
-"why.popup.bank.you.get.title" = "You would have got";
-"why.popup.tw.you.pay.title" = "You pay";
-"why.popup.bank.you.pay.title" = "You would have payed";
-"why.popup.button" = "Got it, I save %@";
-"why.popup.title" = "Price comparison";
-"why.popup.vs" = "VS";
-"why.popup.rate" = "EXCHANGE\nRATE";
-"why.popup.fee" = "COST";
+"why.popup.bank.column.label" = "Banque lambda";
+"why.popup.tw.rate.title" = "Nous utilisons le vrai taux de change.";
+"why.popup.bank.rate.title" = "Les banques inventent \nleur taux.";
+"why.popup.tw.fee.title" = "Nous coûtons aussi peu que possible.";
+"why.popup.bank.fee.title" = "Les banques masquent leur profit dans le taux + commission ";
+"why.popup.tw.you.get.title" = "Vous reçevez";
+"why.popup.bank.you.get.title" = "Vous auriez reçu";
+"why.popup.tw.you.pay.title" = "Vous payez";
+"why.popup.bank.you.pay.title" = "Vous auriez payé";
+"why.popup.button" = "Compris, j'éconnomise %@";
+"why.popup.title" = "Comparatif des prix";
+"why.popup.vs" = "Contre";
+"why.popup.rate" = "TAUX DE\nCHANGE";
+"why.popup.fee" = "COUT";
 
-"errors.CRD_NOT_VALID.message" = "Incorrect credentials.";
-"errors.TRWErrorDomain.1.message" = "Could not read server response.";
-"errors.TRWErrorDomain.2.message" = "Could not read server response.";
-"errors.TRWErrorDomain.3.message" = "Functionality removed. Please update your app.";
+"errors.CRD_NOT_VALID.message" = "Identifiants incorrects.";
+"errors.TRWErrorDomain.1.message" = "Impossible de lire réponse du serveur.";
+"errors.TRWErrorDomain.2.message" = "Impossible de lire réponse du serveur.";
+"errors.TRWErrorDomain.3.message" = "Fonctionnalité supprimée. Veuillez mettre à jour votre application";
 
 "recipient.type.IBAN.name" = "IBAN";
 "recipient.type.SORT_CODE.name" = "UK SORT";
 
-"recipient.type.field.value.not.entered" = "Value for %@ is missing.";
-"recipient.type.field.value.too.short" = "Value for %@ too short. Min length is %d.";
-"recipient.type.field.value.too.long" = "Value for %@ too long. Max length is %d.";
-"recipient.type.field.value.invalid" = "Value for %@ invalid.";
-"recipient.type.field.email.invalid" = "Entered email is invalid.";
+"recipient.type.field.value.not.entered" = "Valeur manquante pour le champ %@.";
+"recipient.type.field.value.too.short" = "Valeur trop longue pour le champ %@. Le nombre de caractères minimum est %d.";
+"recipient.type.field.value.too.long" = "Valeur trop courte pour le champ %@. Le nombre de caractères maximum est %d.";
+"recipient.type.field.value.invalid" = "Valeur invalide pour le champ %@.";
+"recipient.type.field.email.invalid" = "Adresse email invalide.";
 
-"calculation.pending.message" = "Calculating";
-"start.calculating.button.pending.message" = "Calculating...";
+"calculation.pending.message" = "Calcul en cours";
+"start.calculating.button.pending.message" = "Calcul en cours...";
 
-"payment.detail.cancel.date.message" = "Cancelled on %@";
-"payment.detail.transferred.date.message" = "Transferred on %@";
-"payment.detail.exchange.rate.message" = "Exchange rate %@";
-"payment.detail.sent.header.message" = "Transfer sent out to recipient.
-Payment #%@";
-"payment.detail.converting.header.message" = "Waiting to convert your money for transfer #%@.";
-"payment.method.DATA_CASH" = "Debit card";
-"payment.method.REGULAR" = "Bank transfer";
-"payment.method.description.DATA_CASH" = "We accept all Visa & Mastercard debit cards.";
-"payment.method.description.REGULAR" = "You transfer us the money via a local transfer and we do the rest.";
+"payment.detail.cancel.date.message" = "Annulé le %@";
+"payment.detail.transferred.date.message" = "Transféré on %@";
+"payment.detail.exchange.rate.message" = "Taux de change %@";
+"payment.detail.sent.header.message" = "Transfert envoyé au destinataire.
+Transfert #%@";
+"payment.detail.converting.header.message" = "Transfert #%@ en attente de conversion.";
+"payment.method.DATA_CASH" = "Carte de débit";
+"payment.method.REGULAR" = "Virement bancaire";
+"payment.method.description.DATA_CASH" = "Nous acceptons les cartes de débit Visa & Mastercard.";
+"payment.method.description.REGULAR" = "Vous nous envoyer l'argent via un virement local et on s'occupe du reste.";
 
-"support.sheet.title" = "If you have questions, please don't hesitate to contact our support team.";
-"support.sheet.write.message" = "Send an email";
-"support.sheet.call" = "Give us a call";
+"support.sheet.title" = "Si vous avez la moindre question, n'hésitez pas à contacter notre service client.";
+"support.sheet.write.message" = "Nous envoyer un email";
+"support.sheet.call" = "Nous téléphoner";
 
-"support.cant.send.email.message" = "Please check email settings. Sending emails is not enabled on your device.";
-"support.cant.send.email.title" = "Can't send email";
-"support.send.email.error.title" = "Email not sent";
-"support.send.email.error.message" = "Email could not be sent. Please try again later.";
-"support.email.to.name" = "TransferWise Support";
-"support.generic.email.subject" = "I've got a question";
+"support.cant.send.email.message" = "Vérifier vos parametres d'envoi d'email. Votre iPhone / iPad n'est pas configuré pour envoyer des emails.";
+"support.cant.send.email.title" = "Impossible d'envoyer l'email";
+"support.send.email.error.title" = "L'email n'a pas été envoyé";
+"support.send.email.error.message" = "Impossible d'envoyer l'email. Réessayez plus tard.";
+"support.email.to.name" = "Service client TransferWise";
+"support.generic.email.subject" = "J'ai une question";
 
 "support.email.message.body.base" = "<body>
 <br />
@@ -529,16 +527,16 @@ Payment #%@";
 </body>";
 
 "support.contact.cell.label" = "Contact support";
-"support.email.payment.subject.base" = "About payment #%@";
+"support.email.payment.subject.base" = "A propos du transfert #%@";
 
 
-"feedback.alert.message" = "If you like TransferWise as much as we do, please leave your rating to help spread the revolution.";
-"feedback.alert.title" = "Enjoy using TransferWise?";
-"feedback.alert.button.rate" = "Yes, rate it now!";
-"feedback.alert.button.send.feedback" = "No, send feedback";
-"feedback.alert.button.send.dismiss" = "Dismiss";
+"feedback.alert.message" = "Si vous aimez TransferWise autant que nous, notez l'app sur l'appstore afin d'aider notre révolution.";
+"feedback.alert.title" = "Vous aimez TransferWise?";
+"feedback.alert.button.rate" = "Oui! Je note l'app";
+"feedback.alert.button.send.feedback" = "Non, j'envoi mon commentaire";
+"feedback.alert.button.send.dismiss" = "Pas maintenant";
 
-"feedback.email.subject" = "Feedback on your app";
+"feedback.email.subject" = "Commentaire sur l'app TransferWise";
 "feedback.email.message.body.base" = "<body>
 <br />
 <br />
@@ -549,13 +547,13 @@ Payment #%@";
 | Application: v%@ |<br />
 </body>";
 
-"business.profile.identification.controller.title" = "A few documents needed";
-"business.profile.identification.button.title" = "Continue";
-"business.profile.identification.instruction.text" = "For security reasons our team will send you an email in the next 24 hours to request a few documents regarding your company.";
+"business.profile.identification.controller.title" = "Quelques infos requises";
+"business.profile.identification.button.title" = "Continuer";
+"business.profile.identification.instruction.text" = "Pour des raisons de sécurité, notre équipe vous contactera par email dans les 24 prochaines heures afin de vous demander quelques documents au sujet de votre entreprise.";
 
-"identification.email.subject" = "Our business details";
+"identification.email.subject" = "Details de l'entreprise";
 "identification.email.message.body.base" = "<body>
-Please attach your documents to this email and send it our way.<br />
+Veuillez joindre vos documents à cet email et envoyez ce dernier.<br />
 <br />
 <br />
 | Info for the TransferWise team: |<br />
@@ -563,132 +561,117 @@ Please attach your documents to this email and send it our way.<br />
 | Business: %@ |<br />
 </body>";
 
-"business.profile.identification.making.payment.message" = "Creating payment...";
+"business.profile.identification.making.payment.message" = "Création du transfert...";
 
-"intro.start.button.title" = "Got it";
-"intro.login.button.title" = "Log in";
-"intro.register.button.title" = "Register";
-"intro.tagline.one" = "MONEY
-WITHOUT
-BORDERS";
-"intro.tagline.two" = "90\% CHEAPER
-THAN YOUR
-BANK";
-"intro.tagline.three" = "TRUSTED
-AROUND
-THE WORLD";
-"intro.tagline.four" = "EASIER &
-FASTER
-EXPERIENCE";
-"intro.message.one" = "Send money abroad
-cheaper & faster.";
-"intro.message.two" = "Banks charge 5% with hidden
-fees. We charge 0.5%";
-"intro.message.three" = "5/5 ratings across 6758
-independent reviews";
-"intro.message.four" = "From the people
-who built Skype";
+"intro.start.button.title" = "Compris";
+"intro.login.button.title" = "Connexion";
+"intro.register.button.title" = "S'enregistrer";
+"intro.tagline.one" = "ARGENT
+SANS
+FRONTIERES";
+"intro.tagline.two" = "90\% MOINS CHER
+QUE VOTRE
+BANQUE";
+"intro.tagline.three" = "RESPECTÉ
+A TRAVERS
+LE MONDE";
+"intro.tagline.four" = "EXPERIENCE
+FACILE &
+RAPID";
+"intro.message.one" = "Envoyer de l'argent a l'étranger. Moins cher. Rapidement.";
+"intro.message.two" = "Les banques vous prennent 5% via des frais cachés. Nous prenons 0.5%";
+"intro.message.three" = "6758 revues independantes. Note: 5/5";
+"intro.message.four" = "Par les développeurs de Skype";
 
-"intro.existing.tagline.one" = "VERSION 2 OF OUR IPHONE & IPAD APP";
-"intro.existing.tagline.two" = "NOTHING CHANGED IN YOUR ACCOUNT";
-"intro.existing.tagline.three" = "MONEY TRANSFER MADE BEAUTIFUL";
-"intro.existing.tagline.four" = "NEW FEATURES YOU REQUESTED";
+"intro.existing.tagline.one" = "VERSION 2 DE NOTRE APP IPHONE & IPAD";
+"intro.existing.tagline.two" = "VOTRE COMPTE N'A PAS CHANGÉ";
+"intro.existing.tagline.three" = "TRANSFERER AVEC ELEGANCE.";
+"intro.existing.tagline.four" = "LES FONCTIONALITÉS DEMANDÉES";
 
-"intro.existing.message.one" = "The exact same TransferWise service. Simply improved.";
-"intro.existing.message.two" = "Don't worry. All your past transfers & recipients are here.";
-"intro.existing.message.three" = "Clearer instructions & design for your peace of mind.";
-"intro.existing.message.four" = "Set exactly how much the receiver gets, cancel transfers, invite friends...";
+"intro.existing.message.one" = "Une qualité de service inchangée. Simplement amélioré.";
+"intro.existing.message.two" = "Pas d'inquiètude. Vos transfers sont toujours là";
+"intro.existing.message.three" = "Des instructions et un design plus clair pour un esprit tranquille.";
+"intro.existing.message.four" = "Définir exactement combien le destinataire recois, annuler un transfer, inviter vos amis...";
 
-"refresh.pull" = "Pull down to refresh";
-"refresh.release" = "Release to refresh";
-"refresh.refreshing" = "Updating...";
+"refresh.pull" = "Tirez vers le bas pour raffraichir";
+"refresh.release" = "Lachez maintenant";
+"refresh.refreshing" = "Chargement des transferts...";
 
+"refund.controller.validation.error.empty.name" = "Nom du détenteur du compte manquant";
+"refund.details.save.error.title" = "Sauvegarde impossible";
+"refund.controller.validating.message" = "Validation en cours...";
+"refund.controller.validation.error.title" = "Validation impossible";
 
-"business.profile.identification.header.instructions.text" = "As we follow the anti-money laundering policies of our regulators (HMRC and FCA), we unfortunately need photos (or scanned copies) of a few key documents:
+"login.controller.forgot.password.link" = "Mot de passe oublié?";
+"login.controller.or" = "Ou connexion via";
+"login.controller.or.ipad" = "Ou";
 
-1. A valid business incorporation document
-2. A list of the shareholders with over 25% ownership (with % of ownership stated)
-3. Photo ID and proof of address for all of the above stakeholders";
-"business.profile.identification.footer.instructions.text" = "Our apologies for the inconvenience. Rest assured that we will never share your documents with 3rd parties.";
-
-"refund.controller.validation.error.empty.name" = "Holder's name is missing";
-"refund.details.save.error.title" = "Could not save";
-"refund.controller.validating.message" = "Validating...";
-"refund.controller.validation.error.title" = "Validation failed";
-
-"login.controller.forgot.password.link" = "Forgot password";
-"login.controller.or" = "Or log in with";
-"login.controller.or.ipad" = "Or";
-
-"reset.password.controller.title" = "Reset password";
-"reset.password.controller.email.cell.label" = "Your email";
-"reset.password.header.description" = "Enter the email address you
-registered with. We'll send you
-an email in order to let you
-choose a new password.";
-"reset.password.header.description.ipad" = "Enter the email address you registered with.
-We'll send you an email in order to let you choose a new password.";
-"reset.controller.footer.button.title" = "Reset password";
-"reset.password.email.not.entered" = "Email is missing.";
-"reset.password.invaild.email.error" = "Please provide a valid email.";
+"reset.password.controller.title" = "Reinitialiser mot de passe";
+"reset.password.controller.email.cell.label" = "Votre email";
+"reset.password.header.description" = "Saisir l'adresse email avec laquelle vous vous êtes enregistré. Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de passe.";
+"reset.password.header.description.ipad" = "Saisir l'adresse email avec laquelle vous vous êtes enregistré.
+Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de passe.";
+"reset.controller.footer.button.title" = "Reinitialiser mot de passe";
+"reset.password.email.not.entered" = "Adresse email manquante.";
+"reset.password.invaild.email.error" = "Veuillez saisir une adresse email valide.";
 "reset.password.error.title" = "Oops!";
-"reset.password.success.alert.title" = "Good!";
-"reset.password.success.alert.message" = "Now check your email. We sent you an email with a link to choose a new password.";
+"reset.password.success.alert.title" = "Parfait!";
+"reset.password.success.alert.message" = "Maintenant consultez votre boite de réception. Nous vous avons envoyé un email avec un lien pour choisir un nouveau mot de passe.";
 "reset.password.alert.dismiss.button" = "OK";
 "reset.password.failed.alert.title" = "Oops!";
-"reset.password.not.found.alert.message" = "There is no account registered with that email. Please provide a valid email.";
-"refund.controller.existing.recipients.preload.error.title" = "Can't load contacts";
+"reset.password.not.found.alert.message" = "Aucun compte correspondant à cette adresse email.";
+"refund.controller.existing.recipients.preload.error.title" = "Impossible de charger vos contacts";
 
-"network.alert" = "No Internet Connection";
+"network.alert" = "Pas de connexion internet";
 "unknown.value" = "??";
-"contact.detail.send" = "Send money";
+"contact.detail.send" = "Envoi d'argent";
 
-"usd.coming.soon" = "Coming soon";
-"usd.not.supported" = "Sending USD abroad will soon be supported in our mobile applications.\n\nIn the mean time, please go to transferwise.com to pay for this transfer.";
+"usd.coming.soon" = "Bientôt dans votre app...";
+"usd.not.supported" = "Envoyer des dollards américains (USD) à l'étranger sera bientôt supporté dans l'app.\n\nEn attendant, cette fonctionnalité est déjà disponible sur notre site web transferwise.com";
 
-"invite.button.title" = "Invite friends";
-"invite.controller.title" = "Save your friends from banks";
-"invite.controller.title.short" = "Help your friends";
-"invite.controller.title.reward.format" = "£%d earned! %@";
-"invite.controller.title.boom" = "Boom!";
-"invite.header" = "You earn £50 for every 3 friends who start using Transferwise.";
-"invite.progress.format1" = "%d friend started using Transferwise. %d to go & you get £50.";
-"invite.progress.format2" = "%d friends started using Transferwise. %d to go!";
-"invite.complete.format" = "%d friends joined! Do it again to earn £50 extra!";
+"invite.button.title" = "Inviter mes amis";
+"invite.controller.title" = "Sauvez vos amis des banques";
+"invite.controller.title.short" = "Aidez vos amis";
+"invite.controller.title.reward.format" = "£%d gagnés! %@";
+"invite.controller.title.boom" = "BAM!";
+"invite.header" = "Gagner £50 quand 3 amis commencent a utiliser TransferWise.";
+"invite.progress.format1" = "%d amis utilisent TransferWise. %d restant & vous gagnez £50.";
+"invite.progress.format2" = "%d amis utilisent TransferWise. %d restant!";
+"invite.complete.format" = "%d amis utilisent TransferWise! Recommencez et gagnez £50 de plus!";
 
-"invite.fb.button.title" = "Share on Facebook";
-"invite.email.button.title" = "Invite via email";
-"invite.sms.button.title" = "Invite via sms";
-"invite.copy.button.title" = "Copy my invite link";
-"invite.copied.button.title" = "Copied";
-"invite.context" = "When 3 friends start using Transferwise, you'll get 50 GBP.";
-"invite.modal.title" = "Share your invite url";
-"invite.error.facebook.title" = "Facebook error";
-"invite.error.facebook.message" = "Please enable Facebook in your device settings and try again.";
+"invite.fb.button.title" = "Partager sur Facebook";
+"invite.email.button.title" = "Inviter par email";
+"invite.sms.button.title" = "Inviter par sms";
+"invite.copy.button.title" = "Copier mon lien d'invitation";
+"invite.copied.button.title" = "Copié";
+"invite.context" = "Quand 3 amis commencent à utiliser TransferWise, vous gagnez £50.";
+"invite.modal.title" = "Partager votre lien d'invitation";
+"invite.error.facebook.title" = "Erreur de Facebook";
+"invite.error.facebook.message" = "Activez Facebook sur votre téléphone et réessayez.";
 "invite.facebook.default.message" = "";
-"invite.email.subject" = "%@ has invited you to TransferWise";
-"invite.email.message" = "Hi,<br><br>I’ve been using TransferWise to send money abroad. Really easy and a lot cheaper than the bank! I got you a free transfer using my invite link: <br><a href=\"%@\">Accept %@'s invitation</a> <br><br>Cheers,<br>%@";
-"invite.sms.message" = "I’ve been using TransferWise to send money abroad. Really easy and a lot cheaper than the bank! I got you a free transfer using my invite link: %@. Cheers. %@";
-"invite.link.querying" = "Getting invite link";
-"invite.link.error.title" = "Unable to get invite link";
-"invite.link.error.message" = "Something went wrong while getting invite link";
-"invite.status.querying" = "Getting invite's status";
-"invite.status.error.title" = "Unable to get status";
-"invite.status.error.message" = "Something went wrong while getting invite's status";
+"invite.email.subject" = "%@ vous invite sur TransferWise";
+"invite.email.message" = "Salut,<br><br>J'utilise TransferWise pour envoyer de l'argent à l'étranger. C'est vraiment facile et bien moins cher que les banques! Je obtenu un transfert gratuit pour toi: <br><a href=\"%@\">Accepter l'invitation de %@</a> <br><br>J'espères que cela te rendra service,<br>%@";
+"invite.sms.message" = "J'utilise TransferWise pour envoyer de l'argent à l'étranger. C'est vraiment facile et bien moins cher que les banques! Je obtenu un transfert gratuit pour toi via ce lien: %@. J'espères que cela te rendra service, %@";
+"invite.link.querying" = "Obtention du lien d'invitation";
+"invite.link.error.title" = "Lien d'invitation non disponible";
+"invite.link.error.message" = "Il est impossible de charger votre lien d'invitation pour le moment. Réessayer plus tard.";
+"invite.status.querying" = "Obtention du statut des invitations";
+"invite.status.error.title" = "Impossible d'obtenir le statut des invitations";
+"invite.status.error.message" = "Il est impossible de charger le status de vos invitations pour le moment. Réessayer plus tard.";
 
 "touchid.reason.store" = "Authenticate to associate login credentials with Touch ID.";
 "touchid.reason.retrieve" = "Authenticate to log in with Touch ID account.";
 "touchid.reason.clear" = "Authenticate to remove credentials associated with Touch ID.";
 "touchid.cleared" = "Login associated with TouchID has been removed. Login again to re-associate.";
-"touchid.prompt.title" = "Fast & secure login";
-"touchid.prompt.info" = "Would you like to use Touch ID to log into this account next time?";
+"touchid.prompt.title" = "Connexion rapide et sécurisée";
+"touchid.prompt.info" = "Souhaiteriez-vous utiliser Touch ID pour vous connecter la prochaine fois?";
 "touchid.alert.title" = "Touch ID";
 "touchid.settings.clear.info" = "Remove stored login details for Touch ID?";
 "touchid.settings.names.info" = "If you said No to using Touch ID you will not automatically be asked again. Tap \"Ask Again\" to be prompted again next time you log in.";
 "touchid.settings.names.title" = "Ask again";
 
 
-"usd.low.title" = "Coming soon";
-"usd.low.info" = "Unfortunately you cannot transfer less than 1500 USD just yet.\nYou will soon be able to.";
+"usd.low.title" = "Bientôt dans votre app";
+"usd.low.info" = "Malheureusement il est impossible de transférer moins de 1500 USD pour le moment.\nCela sera bientôt possible.";
 "usd.low.dismiss" = "Ok";
 
