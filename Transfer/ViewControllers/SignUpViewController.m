@@ -49,8 +49,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [NavigationBarCustomiser setWhite];
-
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
 
     [self.registerButton setTitle:NSLocalizedString(@"sign.up.button.title.register", nil) forState:UIControlStateNormal];
@@ -113,6 +111,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    [NavigationBarCustomiser setWhite];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 
     [[GoogleAnalytics sharedInstance] sendScreen:@"Start screen register"];

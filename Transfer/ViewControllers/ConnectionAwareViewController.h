@@ -29,4 +29,11 @@
  */
 - (id)initWithWrappedViewController:(UIViewController*)wrappedViewController;
 
+/**
+ *  replace the wrapped viewcontroller
+ *
+ *  @param controller new controller to wrap
+ */
+-(void) replaceWrappedViewControllerWithController:(UIViewController*)controller;
+
 @end

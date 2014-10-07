@@ -77,7 +77,6 @@
 {
     [super viewDidLoad];
 	
-	[NavigationBarCustomiser setWhite];
     if(!self.navigationItem.leftBarButtonItem)
     {
         [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController
@@ -109,7 +108,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	
+    [NavigationBarCustomiser setWhite];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationItem setTitle:NSLocalizedString(@"login.controller.title", nil)];
 	
@@ -171,7 +170,7 @@
 												   successBlock:^{
                                                        [weakSelf processSuccessfulLogin];
 												   }
-									  waitForDetailsCompletions:NO];
+									  waitForDetailsCompletions:YES];
     });
 }
 
