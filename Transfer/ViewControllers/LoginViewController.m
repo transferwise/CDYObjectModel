@@ -171,7 +171,7 @@
 												   successBlock:^{
                                                        [weakSelf processSuccessfulLogin];
 												   }
-									  waitForDetailsCompletions:NO];
+									  waitForDetailsCompletions:YES];
     });
 }
 
