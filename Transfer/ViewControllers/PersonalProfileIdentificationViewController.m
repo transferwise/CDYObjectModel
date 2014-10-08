@@ -127,6 +127,22 @@
 
     NSMutableArray *photoCells = [NSMutableArray array];
 
+    if ([self ssnVerificationRequired]) {
+        TextEntryCell *entryCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+        [self setSsnCell:entryCell];
+        [entryCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
+        [photoCells addObject:entryCell];
+        [entryCell.entryField addTarget:self action:@selector(validateInput) forControlEvents:UIControlEventAllEditingEvents];
+        [entryCell configureWithTitle:NSLocalizedString(@"identification.ssn", nil) value:@""];
+        entryCell.presentationPattern = @"***-**-****";
+        if(IPAD)
+        {
+            CGRect newFrame = entryCell.separatorLine.frame;
+            newFrame.size.height = 1.0f/[[UIScreen mainScreen] scale];
+            entryCell.separatorLine.frame=newFrame;
+        }
+    }
+    
     if ([self idVerificationRequired]) {
         ValidationCell *idDocumentCell = [self.tableView dequeueReusableCellWithIdentifier:ValidationCellIdentifier];
         [self setIdDocumentCell:idDocumentCell];
@@ -148,22 +164,6 @@
         proofOfAddressCell.delegate = self;
         proofOfAddressCell.contentView.bgStyle = @"lightblueHighlighted";
         self.addressVerificationRowIndex = [photoCells count] - 1;
-    }
-
-    if ([self ssnVerificationRequired]) {
-        TextEntryCell *entryCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
-        [self setSsnCell:entryCell];
-        [entryCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
-        [photoCells addObject:entryCell];
-        [entryCell.entryField addTarget:self action:@selector(validateInput) forControlEvents:UIControlEventAllEditingEvents];
-        [entryCell configureWithTitle:NSLocalizedString(@"identification.ssn", nil) value:@""];
-        entryCell.presentationPattern = @"***-**-****";
-        if(IPAD)
-        {
-            CGRect newFrame = entryCell.separatorLine.frame;
-            newFrame.size.height = 1.0f/[[UIScreen mainScreen] scale];
-            entryCell.separatorLine.frame=newFrame;
-        }
     }
 
     
