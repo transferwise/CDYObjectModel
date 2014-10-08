@@ -57,6 +57,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (nonatomic, weak) PullToRefreshView* refreshView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic) CGPoint touchStart;
+@property (weak, nonatomic) IBOutlet UILabel *noTransfersMessage;
 
 //iPad
 @property (weak, nonatomic) IBOutlet UIView *verificationBar;
@@ -97,6 +98,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [self.viewButton setTitle:NSLocalizedString(@"validation.view",nil) forState:UIControlStateNormal];
     
     self.titleLabel.text = self.title;
+    
+    self.noTransfersMessage.text = NSLocalizedString(@"empty.transfers",nil);
 }
 
 - (void)didReceiveMemoryWarning
@@ -140,6 +143,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     {
         [NavigationBarCustomiser applyDefault:self.navigationController.navigationBar];
     }
+    [self.lackOfTransfersDelegate setHighlightingForLackOfTransfers:NO fromController:self];
 }
 
 #pragma mark - Table view data source
@@ -261,6 +265,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 - (void)refreshPaymentsWithOffset:(NSInteger)offset hud:(TabBarActivityIndicatorView *)hud
 {
+    self.noTransfersMessage.hidden = YES;
+    [self.lackOfTransfersDelegate setHighlightingForLackOfTransfers:NO fromController:self];
+    
     PaymentsOperation *operation = [PaymentsOperation operationWithOffset:offset];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
@@ -284,6 +291,16 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
             }
 			
 			[self.tableView reloadData];
+            
+            if(totalCount == 0)
+            {
+                self.noTransfersMessage.hidden = NO;
+                self.noTransfersMessage.alpha = 0.0f;
+                [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+                    self.noTransfersMessage.alpha = 1.0f;
+                } completion:nil];
+                [self.lackOfTransfersDelegate setHighlightingForLackOfTransfers:YES fromController:self];
+            }
 			
 			
 			//data may already be locally stored, this will be overwritten

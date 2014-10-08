@@ -40,4 +40,6 @@ typedef BOOL(^TabItemActionBlock)(TabItem*);
 -(void)configureForSelectedState:(BOOL)selected;
 -(void)configureForHighlightedState;
 
+-(void)setFlashOn:(BOOL)turnOn;
+
 @end

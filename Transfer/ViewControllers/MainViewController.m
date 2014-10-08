@@ -23,7 +23,7 @@
 #import "ProfilesEditViewController.h"
 #import "InvitationsViewController.h"
 
-@interface MainViewController () <UINavigationControllerDelegate>
+@interface MainViewController () <UINavigationControllerDelegate, HighlightLackOfTransfersDelegate>
 
 @property (nonatomic, strong) TabViewController *tabController;
 @property (nonatomic, strong) UIView *revealTapView;
@@ -70,6 +70,7 @@
 	TransactionsViewController *transactionsController = [[TransactionsViewController alloc] init];
 	[self setTransactionsController:transactionsController];
 	[transactionsController setObjectModel:self.objectModel];
+    transactionsController.lackOfTransfersDelegate = self;
 	TabItem *transactionsItem = [TabItem new];
 	transactionsItem.viewController = transactionsController;
 	transactionsItem.title = NSLocalizedString(@"transactions.controller.tabbar.title", nil);
@@ -227,6 +228,20 @@
     [self popToRootViewControllerAnimated:YES];
 	[self setViewControllers:@[self.tabController]];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Highlight Lack of Payments delegate
+
+-(void)setHighlightingForLackOfTransfers:(BOOL)turnedOn fromController:(TransactionsViewController *)controller
+{
+    if(turnedOn)
+    {
+        [self.tabController turnOnFlashForItemAtIndex:IPAD?0:2];
+    }
+    else
+    {
+        [self.tabController turnOffFlashForItemAtIndex:IPAD?0:2];
+    }
 }
 
 @end
