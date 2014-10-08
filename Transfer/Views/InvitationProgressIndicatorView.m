@@ -109,13 +109,35 @@
 @property (nonatomic,strong) ProgressSegment *dynamicSegment;
 @property (nonatomic,strong) NSArray* startColors;
 @property (nonatomic,strong) NSArray* endColors;
+@property (nonatomic, assign) CGSize laidOutSize;
+@property (nonatomic, assign) BOOL isAnimating;
+@property (nonatomic, assign) NSUInteger progress;
 
 @end
 
 @implementation InvitationProgressIndicatorView
 
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    if(!CGSizeEqualToSize(self.laidOutSize, self.bounds.size))
+    {
+        //Redraw segments. Perform animation if in progress.
+        [self setProgress:self.progress animated:self.isAnimating];
+    }
+}
+
 -(void)setupSegments
 {
+    for(ProgressSegment* segment in _staticSegments)
+    {
+        [segment removeFromSuperview];
+    }
+    _staticSegments = nil;
+    
+    [_dynamicSegment removeFromSuperview];
+    _dynamicSegment = nil;
+    
     NSMutableArray* segments = [NSMutableArray arrayWithCapacity:4];
     CGFloat radius = (roundf(self.bounds.size.width/2.0f));
     
@@ -139,22 +161,24 @@
     segment.transform = CGAffineTransformIdentity;
     [self addSubview:segment];
     
-    self.dynamicSegment = segment;
+    _dynamicSegment = segment;
 }
 
 - (void)setProgress:(NSUInteger)progress
 		   animated:(BOOL)animated
 {
-    if(!self.staticSegments)
-    {
-        [self setupSegments];
-    }
+    self.progress = progress;
     
     if(progress==0)
     {
         return;
     }
     
+    if( ! self.staticSegments || !CGSizeEqualToSize(self.laidOutSize, self.bounds.size))
+    {
+        self.laidOutSize = self.bounds.size;
+        [self setupSegments];
+    }
     
     //setup static segments
     NSUInteger truncatedProgress = (progress - 1 ) % ([self.staticSegments count]);
@@ -187,9 +211,12 @@
             previousSegmentIndex = [self.staticSegments count] - 1;
         }
         self.dynamicSegment.transform = [(ProgressSegment*)self.staticSegments[previousSegmentIndex] transform];
+        self.isAnimating = YES;
         [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             self.dynamicSegment.transform = [(ProgressSegment*)self.staticSegments[truncatedProgress] transform];
-        } completion:nil];
+        } completion:^(BOOL finished) {
+            self.isAnimating = NO;
+        }];
         
         
     }

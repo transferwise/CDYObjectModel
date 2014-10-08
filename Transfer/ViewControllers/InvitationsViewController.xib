@@ -3,6 +3,7 @@
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvitationsViewController">
@@ -10,8 +11,6 @@
                 <outlet property="headerLabel" destination="khm-LQ-dnq" id="Ay5-cY-EfY"/>
                 <outlet property="indicatorContainer" destination="JlX-8u-9xq" id="mgv-dQ-eSP"/>
                 <outlet property="indicatorContextLabel" destination="i9E-mc-ETr" id="dNS-CJ-qQi"/>
-                <outlet property="indicatorHeight" destination="1yf-EB-aHy" id="MJm-om-VsE"/>
-                <outlet property="indicatorWidth" destination="rRN-Ls-7Bi" id="CWx-SR-pSI"/>
                 <outlet property="numberLabel" destination="E4w-3t-YBd" id="cFm-fj-0h9"/>
                 <outlet property="profilePictureContainer" destination="3AO-Gr-zBc" id="jyo-Yx-Io0"/>
                 <outlet property="progressIndicator" destination="HJX-4X-iH2" id="CKo-Rx-b3J"/>
@@ -113,7 +112,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="khm-LQ-dnq">
-                            <rect key="frame" x="10" y="145" width="300" height="20.5"/>
+                            <rect key="frame" x="10" y="145" width="300" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="300" id="8Xt-Mh-irt"/>
                             </constraints>
@@ -125,7 +124,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJH-J1-88a" customClass="BlueRoundedButton">
-                            <rect key="frame" x="132" y="193" width="55" height="40"/>
+                            <rect key="frame" x="132" y="194" width="55" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="xZj-64-nc7"/>
                             </constraints>
@@ -156,14 +155,17 @@
                     <rect key="frame" x="0.0" y="37" width="320" height="412"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3jk-gs-yQ1">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="251.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="252"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HJX-4X-iH2" customClass="InvitationProgressIndicatorView">
                                     <rect key="frame" x="35" y="1" width="250" height="250"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="250" id="1yf-EB-aHy"/>
-                                        <constraint firstAttribute="width" constant="250" id="rRN-Ls-7Bi"/>
+                                        <constraint firstAttribute="height" priority="800" constant="250" id="1yf-EB-aHy"/>
+                                        <constraint firstAttribute="width" secondItem="HJX-4X-iH2" secondAttribute="height" multiplier="1:1" id="8VS-dE-ecY"/>
+                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="Wju-W0-eHS"/>
+                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="250" id="aiY-3g-CHh"/>
+                                        <constraint firstAttribute="width" priority="800" constant="250" id="rRN-Ls-7Bi"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -174,7 +176,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="262" translatesAutoresizingMaskIntoConstraints="NO" id="i9E-mc-ETr" userLabel="FriendStatus">
-                            <rect key="frame" x="29" y="273" width="262" height="20.5"/>
+                            <rect key="frame" x="29" y="274" width="262" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="262" id="l7O-iX-ZAq"/>
                             </constraints>
