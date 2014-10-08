@@ -8,6 +8,14 @@
 
 #import "SendButtonFlashHelper.h"
 
+NSString *const TRWChangeSendButtonFlashStatusNotification = @"TRWChangeSendButtonFlashStatusNotification";
+NSString *const TRWChangeSendButtonFlashOnOffKey = @"TRWChangeSendButtonFlashOnOffKey";
+
 @implementation SendButtonFlashHelper
+
++(void)setSendFlash:(BOOL)on
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:TRWChangeSendButtonFlashStatusNotification object:nil userInfo:@{TRWChangeSendButtonFlashOnOffKey:@(on)}];
+}
 
 @end
