@@ -131,7 +131,8 @@ your friends to TransferWise";
 "identification.error" = "Error";
 "identification.optional.suffix" = " (Optional)";
 "identification.ssn.short" = "Social security number is too short";
-"identification.ssn.generic.error" = "Social security validation . Please upload an ID document instead.";
+"identification.ssn.error.title" = "SSN invalid";
+"identification.ssn.generic.error" = "Please provide a valid SSN number or provide of photo of your ID.";
 
 
 

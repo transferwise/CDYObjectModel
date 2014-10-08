@@ -25,7 +25,7 @@
 #import "MOMStyle.h"
 #import "NetworkErrorCodes.h"
 
-@interface PersonalProfileIdentificationViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, ValidationCellDelegate>
+@interface PersonalProfileIdentificationViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, ValidationCellDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIView *headerSeparator;
@@ -338,8 +338,9 @@
             TRWAlertView *alertView;
             if(message)
             {
-                alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) message:message];
+                alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"identification.ssn.error.title", nil) message:message];
                 [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                alertView.delegate = self;
             }
             else
             {
@@ -604,6 +605,14 @@
         self.tableView.contentOffset = CGPointZero;
         [UIView commitAnimations];
     }
+}
+
+#pragma mark - UIAlertViewDelegate
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    self.ssnCell.value = @"";
+    [self validateInput];
 }
 
 @end
