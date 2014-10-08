@@ -37,6 +37,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *indicatorContextLabel;
 @property (strong, nonatomic) TransferwiseOperation *currentOperation;
 
+//iPhone
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *indicatorHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *indicatorWidth;
+
+
 //iPad
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
@@ -83,6 +88,15 @@
     [self.inviteButtons[0] setTitle:NSLocalizedString(@"invite.button.title", nil) forState:UIControlStateNormal];
     [self.inviteButtons[1] setTitle:NSLocalizedString(@"invite.button.title", nil) forState:UIControlStateNormal];
 	
+    if(!IPAD && [[UIScreen mainScreen] bounds].size.height <= 480)
+    {
+        //Ugly hack forced by iOS8 seemingly not respecting 1:1 constraints.
+        self.indicatorHeight.constant = 180;
+        self.indicatorWidth.constant = 180;
+        [self.indicatorContainer layoutIfNeeded];
+        [self.indicatorContextLabel layoutIfNeeded];
+    }
+    
 	[self setProgress:self.numberOfFriends
 			 animated:NO];
 	[self loadInviteStatus];
@@ -95,6 +109,7 @@
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.topItem.titleView = nil;
 }
+
 
 - (void)loadProfileImagesWithUser:(User *)user
 {
