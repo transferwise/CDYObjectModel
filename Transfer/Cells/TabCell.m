@@ -46,7 +46,7 @@
     self.titleLabel.text = item.title;
     self.iconImage.image = item.icon;
     [self configureForSelectedState:NO];
-    self.flashView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.2f];
+    self.flashView.backgroundColor = item.flashColor;
 }
 
 -(void)configureForSelectedState:(BOOL)selected

@@ -14,18 +14,10 @@
 @class ObjectModel;
 @class TransactionsViewController;
 
-@protocol HighlightLackOfTransfersDelegate <NSObject>
-
-@required
--(void)setHighlightingForLackOfTransfers:(BOOL)turnedOn fromController:(TransactionsViewController*)controller;
-
-@end
-
 
 @interface TransactionsViewController : CancellableCellViewController<TransferPayIpadViewControllerDelegate>
 
 @property (nonatomic, strong) ObjectModel *objectModel;
-@property (nonatomic, weak) id<HighlightLackOfTransfersDelegate> lackOfTransfersDelegate;
 
 - (void)clearData;
 

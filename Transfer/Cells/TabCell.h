@@ -25,6 +25,7 @@ typedef BOOL(^TabItemActionBlock)(TabItem*);
 @property (nonatomic, strong) UIColor *highlightedColor;
 @property (nonatomic, strong) UIColor *textColor;
 @property (nonatomic, strong) UIColor *textSelectedColor;
+@property (nonatomic, strong) UIColor *flashColor;
 
 @property (nonatomic, assign) CGFloat deselectedAlpha;
 

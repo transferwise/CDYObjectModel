@@ -317,6 +317,8 @@
 		38C0394D19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */; };
 		38C0394F19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */; };
 		38C0395019E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */; };
+		38C0395B19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */; };
+		38C0395C19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */; };
 		38C1A89B199CC5A0000BF59C /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C1A899199CC5A0000BF59C /* InviteViewController.m */; };
 		38C1A89C199CC5A0000BF59C /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C1A899199CC5A0000BF59C /* InviteViewController.m */; };
 		38C1A89D199CC5A0000BF59C /* InviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C1A89A199CC5A0000BF59C /* InviteViewController.xib */; };
@@ -1167,6 +1169,8 @@
 		38C0394819E29CBB00555F65 /* GTM-TDZF76 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GTM-TDZF76"; sourceTree = "<group>"; };
 		38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SignUpViewController~ipad.xib"; sourceTree = "<group>"; };
 		38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewControllerUpfront~ipad.xib"; sourceTree = "<group>"; };
+		38C0395919E598DF00555F65 /* SendButtonFlashHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendButtonFlashHelper.h; sourceTree = "<group>"; };
+		38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendButtonFlashHelper.m; sourceTree = "<group>"; };
 		38C1A898199CC5A0000BF59C /* InviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteViewController.h; sourceTree = "<group>"; };
 		38C1A899199CC5A0000BF59C /* InviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteViewController.m; sourceTree = "<group>"; };
 		38C1A89A199CC5A0000BF59C /* InviteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteViewController.xib; sourceTree = "<group>"; };
@@ -2698,6 +2702,8 @@
 				38504B0819C1E83700276203 /* TouchIDHelper.m */,
 				38288F5219C8855800661BFB /* PaymentMethodViewControllerFactory.h */,
 				38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */,
+				38C0395919E598DF00555F65 /* SendButtonFlashHelper.h */,
+				38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -3469,6 +3475,7 @@
 				38B0931A1951FA8300315BE4 /* SettlementRecipient.m in Sources */,
 				EA31A19517DDB29B00F937F7 /* NSDictionary+Cleanup.m in Sources */,
 				389F681A198FC1C6006CF1F6 /* AllowedTypeFieldValue.m in Sources */,
+				38C0395C19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */,
 				38B092E6194F325B00315BE4 /* AddressBookManager.m in Sources */,
 				380021CF192CC531009B1D53 /* MOMCompoundStyle.m in Sources */,
 				389F683C198FC1C6006CF1F6 /* PayInMethod.m in Sources */,
@@ -3755,6 +3762,7 @@
 				EAE7B6B317E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */,
 				47FAF35B195031E7004CE986 /* BlueButton.m in Sources */,
 				389F6819198FC1C6006CF1F6 /* AllowedTypeFieldValue.m in Sources */,
+				38C0395B19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */,
 				38AA83411949B8DF0065AD2A /* GradientView.m in Sources */,
 				474D1AA61951A500008BC7A7 /* RedGradientButton.m in Sources */,
 				389F683B198FC1C6006CF1F6 /* PayInMethod.m in Sources */,

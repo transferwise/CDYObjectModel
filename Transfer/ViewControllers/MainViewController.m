@@ -22,8 +22,9 @@
 #import "ConnectionAwareViewController.h"
 #import "ProfilesEditViewController.h"
 #import "InvitationsViewController.h"
+#import "SendButtonFlashHelper.h"
 
-@interface MainViewController () <UINavigationControllerDelegate, HighlightLackOfTransfersDelegate>
+@interface MainViewController () <UINavigationControllerDelegate>
 
 @property (nonatomic, strong) TabViewController *tabController;
 @property (nonatomic, strong) UIView *revealTapView;
@@ -45,6 +46,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loggedOut) name:TRWLoggedOutNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentsList) name:TRWMoveToPaymentsListNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentView) name:TRWMoveToPaymentViewNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSendButtonFlashNotification:) name:TRWChangeSendButtonFlashStatusNotification object:nil];
     }
     return self;
 }
@@ -70,7 +72,6 @@
 	TransactionsViewController *transactionsController = [[TransactionsViewController alloc] init];
 	[self setTransactionsController:transactionsController];
 	[transactionsController setObjectModel:self.objectModel];
-    transactionsController.lackOfTransfersDelegate = self;
 	TabItem *transactionsItem = [TabItem new];
 	transactionsItem.viewController = transactionsController;
 	transactionsItem.title = NSLocalizedString(@"transactions.controller.tabbar.title", nil);
@@ -93,6 +94,7 @@
 	paymentItem.selectedIcon = [UIImage imageNamed:@"Payment_selected"];
 	paymentItem.deSelectedColor = [UIColor colorFromStyle:@"TWBlueHighlighted"];
 	paymentItem.textColor = [UIColor whiteColor];
+    paymentItem.flashColor = [UIColor colorFromStyle:@"TWElectricblueDarker"];
 	[paymentItem setActionBlock:^(TabItem* item){
 		NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
 		[controller setObjectModel:self.objectModel];
@@ -230,10 +232,11 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - Highlight Lack of Payments delegate
+#pragma mark - Highlight Send Button
 
--(void)setHighlightingForLackOfTransfers:(BOOL)turnedOn fromController:(TransactionsViewController *)controller
+-(void)changeSendButtonFlashNotification:(NSNotification*) note;
 {
+    BOOL turnedOn = [note.userInfo[TRWChangeSendButtonFlashOnOffKey] boolValue];
     if(turnedOn)
     {
         [self.tabController turnOnFlashForItemAtIndex:IPAD?0:2];

@@ -694,4 +694,5 @@ We'll send you an email in order to let you choose a new password.";
 "usd.low.dismiss" = "Ok";
 
 "empty.transfers" = "No transfers made yet?\nTap send to start.";
+"empty.contacts" = "No recipients saved.\nTap send to transfer money.";
 

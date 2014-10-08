@@ -41,6 +41,7 @@
 #import "NavigationBarCustomiser.h"
 #import "PaymentMethodSelectorViewController.h"
 #import "SetSSNOperation.h"
+#import "SendButtonFlashHelper.h"
 
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
@@ -143,7 +144,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     {
         [NavigationBarCustomiser applyDefault:self.navigationController.navigationBar];
     }
-    [self.lackOfTransfersDelegate setHighlightingForLackOfTransfers:NO fromController:self];
+    [SendButtonFlashHelper setSendFlash:NO];
 }
 
 #pragma mark - Table view data source
@@ -266,7 +267,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 - (void)refreshPaymentsWithOffset:(NSInteger)offset hud:(TabBarActivityIndicatorView *)hud
 {
     self.noTransfersMessage.hidden = YES;
-    [self.lackOfTransfersDelegate setHighlightingForLackOfTransfers:NO fromController:self];
+    [SendButtonFlashHelper setSendFlash:NO];
     
     PaymentsOperation *operation = [PaymentsOperation operationWithOffset:offset];
     [self setExecutedOperation:operation];
@@ -299,7 +300,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
                 [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
                     self.noTransfersMessage.alpha = 1.0f;
                 } completion:nil];
-                [self.lackOfTransfersDelegate setHighlightingForLackOfTransfers:YES fromController:self];
+                if(self.isViewLoaded && self.view.window)
+                {
+                    [SendButtonFlashHelper setSendFlash:YES];
+                }
             }
 			
 			
@@ -617,4 +621,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	self.payments = nil;
 	[self.tableView reloadData];
 }
+
+#pragma mark - Flash send button
+
 @end
