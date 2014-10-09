@@ -71,7 +71,7 @@
 
     [self.reasonTitle setText:NSLocalizedString(@"identification.reason.title", @"")];
     
-     [self.skipButton setTitle:NSLocalizedString(@"identification.skip.button", @"") forState:UIControlStateNormal];
+    [self.skipButton setTitle:NSLocalizedString(@"identification.skip.button", @"") forState:UIControlStateNormal];
     [self.continueButton setTitle:NSLocalizedString(@"identification.upload.button", @"") forState:UIControlStateNormal];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"ValidationCell" bundle:nil] forCellReuseIdentifier:ValidationCellIdentifier];
@@ -130,7 +130,7 @@
     if ([self ssnVerificationRequired]) {
         TextEntryCell *entryCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
         [self setSsnCell:entryCell];
-        [entryCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
+        entryCell.entryField.keyboardType = UIKeyboardTypeNumberPad;
         [photoCells addObject:entryCell];
         [entryCell.entryField addTarget:self action:@selector(validateInput) forControlEvents:UIControlEventAllEditingEvents];
         [entryCell configureWithTitle:NSLocalizedString(@"identification.ssn", nil) value:@""];
@@ -515,7 +515,6 @@
     {
         return NSLocalizedString(@"identification.ssn.short",nil);
     }
-    
     return nil;
 }
 
@@ -615,4 +614,19 @@
     [self validateInput];
 }
 
+#pragma mark - textfield delegate
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (textField == self.ssnCell.entryField)
+    {
+        NSCharacterSet* excludedCharacters = [[NSCharacterSet characterSetWithCharactersInString:@"1234567890"] invertedSet];
+        if([string rangeOfCharacterFromSet:excludedCharacters].location != NSNotFound)
+        {
+            return NO;
+        }
+        
+    }
+    return [super textField:textField shouldChangeCharactersInRange:range replacementString:string];
+}
 @end
