@@ -22,6 +22,7 @@
 #import "ConnectionAwareViewController.h"
 #import "ProfilesEditViewController.h"
 #import "InvitationsViewController.h"
+#import "SendButtonFlashHelper.h"
 
 @interface MainViewController () <UINavigationControllerDelegate>
 
@@ -45,6 +46,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loggedOut) name:TRWLoggedOutNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentsList) name:TRWMoveToPaymentsListNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentView) name:TRWMoveToPaymentViewNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSendButtonFlashNotification:) name:TRWChangeSendButtonFlashStatusNotification object:nil];
     }
     return self;
 }
@@ -92,6 +94,7 @@
 	paymentItem.selectedIcon = [UIImage imageNamed:@"Payment_selected"];
 	paymentItem.deSelectedColor = [UIColor colorFromStyle:@"TWBlueHighlighted"];
 	paymentItem.textColor = [UIColor whiteColor];
+    paymentItem.flashColor = [UIColor colorFromStyle:@"TWElectricblueDarker"];
 	[paymentItem setActionBlock:^(TabItem* item){
 		NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
 		[controller setObjectModel:self.objectModel];
@@ -177,9 +180,10 @@
 	UIViewController *presented;
 	if ([self.objectModel shouldShowDirectUserSignup])
 	{
-		SignUpViewController *controller = [[SignUpViewController alloc] init];
-		[controller setObjectModel:self.objectModel];
-		presented = controller;
+        IntroViewController *introController = [[IntroViewController alloc] init];
+        [introController setObjectModel:self.objectModel];
+        introController.requireRegistration = YES;
+        presented = introController;
 	}
 	else
 	{
@@ -226,6 +230,21 @@
     [self popToRootViewControllerAnimated:YES];
 	[self setViewControllers:@[self.tabController]];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Highlight Send Button
+
+-(void)changeSendButtonFlashNotification:(NSNotification*) note;
+{
+    BOOL turnedOn = [note.userInfo[TRWChangeSendButtonFlashOnOffKey] boolValue];
+    if(turnedOn)
+    {
+        [self.tabController turnOnFlashForItemAtIndex:IPAD?0:2];
+    }
+    else
+    {
+        [self.tabController turnOffFlashForItemAtIndex:IPAD?0:2];
+    }
 }
 
 @end

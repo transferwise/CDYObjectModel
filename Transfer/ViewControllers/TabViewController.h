@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "TabCell.h"
 
-
 @interface TabViewController : UIViewController
 
 @property (nonatomic, assign) CGSize fixedSize;
@@ -30,5 +29,8 @@
 
 -(void)selectItem:(TabItem *)newSelectedItem;
 -(void)selectIndex:(NSUInteger)index;
+
+-(void)turnOnFlashForItemAtIndex:(NSUInteger)index;
+-(void)turnOffFlashForItemAtIndex:(NSUInteger)index;
 
 @end

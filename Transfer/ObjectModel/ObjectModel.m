@@ -64,4 +64,36 @@
     return [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 }
 
+-(void)clearUserRelatedData
+{
+    [self.managedObjectContext performBlockAndWait:^{
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Payment"];
+        fetchRequest.returnsObjectsAsFaults = YES;
+        NSArray* result = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+        for (NSManagedObject* toDelete in result)
+        {
+            [self.managedObjectContext deleteObject:toDelete];
+        }
+        
+        fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Recipient"];
+        fetchRequest.returnsObjectsAsFaults = YES;
+        result = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+        for (NSManagedObject* toDelete in result)
+        {
+            [self.managedObjectContext deleteObject:toDelete];
+        }
+        
+        fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+        fetchRequest.returnsObjectsAsFaults = YES;
+        result = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+        for (NSManagedObject* toDelete in result)
+        {
+            [self.managedObjectContext deleteObject:toDelete];
+        }
+        
+        [self saveContext];
+        
+    }];
+}
+
 @end

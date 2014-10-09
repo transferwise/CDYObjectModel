@@ -37,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *indicatorContextLabel;
 @property (strong, nonatomic) TransferwiseOperation *currentOperation;
 
+
 //iPad
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
@@ -82,10 +83,10 @@
     self.headerLabel.text = NSLocalizedString(@"invite.header", nil);
     [self.inviteButtons[0] setTitle:NSLocalizedString(@"invite.button.title", nil) forState:UIControlStateNormal];
     [self.inviteButtons[1] setTitle:NSLocalizedString(@"invite.button.title", nil) forState:UIControlStateNormal];
-	
-	[self setProgress:self.numberOfFriends
-			 animated:NO];
-	[self loadInviteStatus];
+
+    [self setProgress:self.numberOfFriends
+             animated:NO];
+    [self loadInviteStatus];
     
 	[[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Invite"]];
 }
@@ -95,6 +96,7 @@
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.topItem.titleView = nil;
 }
+
 
 - (void)loadProfileImagesWithUser:(User *)user
 {

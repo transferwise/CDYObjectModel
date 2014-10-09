@@ -33,7 +33,7 @@
 "button.title.get.started.ipad" = "Get Started";
 "button.title.send.money.ipad" = "Send Money";
 "button.title.import.from.phonebook" = "Import from phonebook";
-"button.title.log.in" = "Login";
+"button.title.log.in" = "Log in";
 "button.title.log.in.google" = "Google";
 "button.title.log.in.yahoo" = "Yahoo!";
 "button.title.log.in.google.ipad" = "Log in with Google";
@@ -129,7 +129,10 @@ your friends to TransferWise";
 "identification.only.purpose.ipad" = "You're almost done. Fill the field : Purpose of transfer";
 "identification.well.done.format" = "Well done %@!";
 "identification.error" = "Error";
+"identification.optional.suffix" = " (Optional)";
 "identification.ssn.short" = "Social security number is too short";
+"identification.ssn.error.title" = "SSN invalid";
+"identification.ssn.generic.error" = "Please provide a valid SSN number or provide of photo of your ID.";
 
 
 
@@ -365,19 +368,19 @@ We'll refund the remaining money to your bank account once the transfer is compl
 
 "sign.up.controller.creating.message" = "Creating account...";
 "sign.up.controller.signup.error.message" = "Sign up error";
-"sign.up.controller.title" = "Sign up";
+"sign.up.controller.title" = "Join the revolution";
 "sign.up.controller.validation.email.invalid" = "Email is not valid";
 "sign.up.controller.validation.email.missing" = "Email is missing";
 "sign.up.controller.validation.password.missing" = "Password is missing";
-"sign.up.controller.validation.passwords.dont.match" = "Passwords don't match";
+"sign.up.controller.validation.password.mismatch" = "Passwords don't match";
 "sign.up.controller.google.signup.message" = "Sign up via Google";
 "sign.up.controller.set.password.message" = "OR SET A PASSWORD";
 "sign.up.error.title" = "Can't continue";
-"sign.up.button.title.log.in" = "Sign up now";
+"sign.up.button.title.register" = "Register";
 "sign.up.controller.header.message" = "Create a Transferwise account";
 "sign.up.email.field.title" = "Your email";
-"sign.up.password.again.field.title" = "Password again";
-"sign.up.password.field.title" = "Password";
+"sign.up.password.confirm.field.title" = "Confirm password";
+"sign.up.password.field.title" = "Choose a password";
 "sign.up.controller.existing.user.action" = "Log in";
 "sign.up.controller.existing.user.message" = "Already a user?";
 
@@ -563,7 +566,9 @@ Please attach your documents to this email and send it our way.<br />
 
 "business.profile.identification.making.payment.message" = "Creating payment...";
 
-"intro.start.buttont.title" = "Got it";
+"intro.start.button.title" = "Got it";
+"intro.login.button.title" = "Log in";
+"intro.register.button.title" = "Register";
 "intro.tagline.one" = "MONEY
 WITHOUT
 BORDERS";
@@ -687,4 +692,7 @@ We'll send you an email in order to let you choose a new password.";
 "usd.low.title" = "Coming soon";
 "usd.low.info" = "Unfortunately you cannot transfer less than 1500 USD just yet.\nYou will soon be able to.";
 "usd.low.dismiss" = "Ok";
+
+"empty.transfers" = "No transfers made yet?\nTap send to start.";
+"empty.contacts" = "No recipients saved.\nTap send to transfer money.";
 

@@ -23,8 +23,12 @@
 #import "PersonalProfile.h"
 #import "ColoredButton.h"
 #import "MOMStyle.h"
+#import "NetworkErrorCodes.h"
 
-@interface PersonalProfileIdentificationViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, ValidationCellDelegate>
+#define pictureCellHeight (IPAD?210.0f:145.0f)
+#define textCellHeight (IPAD?70.0f:60.0f)
+
+@interface PersonalProfileIdentificationViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, ValidationCellDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIView *headerSeparator;
@@ -44,6 +48,9 @@
 @property (nonatomic, strong) TextEntryCell *paymentPurposeCell;
 
 @property (nonatomic, assign) float uploadProgressId,uploadProgressAddress;
+
+@property (nonatomic, assign) BOOL hideSSN;
+@property (nonatomic, assign) BOOL hideID;
 
 @end
 
@@ -70,7 +77,7 @@
 
     [self.reasonTitle setText:NSLocalizedString(@"identification.reason.title", @"")];
     
-     [self.skipButton setTitle:NSLocalizedString(@"identification.skip.button", @"") forState:UIControlStateNormal];
+    [self.skipButton setTitle:NSLocalizedString(@"identification.skip.button", @"") forState:UIControlStateNormal];
     [self.continueButton setTitle:NSLocalizedString(@"identification.upload.button", @"") forState:UIControlStateNormal];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"ValidationCell" bundle:nil] forCellReuseIdentifier:ValidationCellIdentifier];
@@ -126,6 +133,23 @@
 
     NSMutableArray *photoCells = [NSMutableArray array];
 
+    if ([self ssnVerificationRequired]) {
+        TextEntryCell *entryCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
+        [self setSsnCell:entryCell];
+        entryCell.clipsToBounds = YES;
+        entryCell.entryField.keyboardType = UIKeyboardTypeNumberPad;
+        [photoCells addObject:entryCell];
+        [entryCell.entryField addTarget:self action:@selector(validateInput) forControlEvents:UIControlEventAllEditingEvents];
+        [entryCell configureWithTitle:NSLocalizedString(@"identification.ssn", nil) value:@""];
+        entryCell.presentationPattern = @"***-**-****";
+        if(IPAD)
+        {
+            CGRect newFrame = entryCell.separatorLine.frame;
+            newFrame.size.height = 1.0f/[[UIScreen mainScreen] scale];
+            entryCell.separatorLine.frame=newFrame;
+        }
+    }
+    
     if ([self idVerificationRequired]) {
         ValidationCell *idDocumentCell = [self.tableView dequeueReusableCellWithIdentifier:ValidationCellIdentifier];
         [self setIdDocumentCell:idDocumentCell];
@@ -147,22 +171,6 @@
         proofOfAddressCell.delegate = self;
         proofOfAddressCell.contentView.bgStyle = @"lightblueHighlighted";
         self.addressVerificationRowIndex = [photoCells count] - 1;
-    }
-
-    if ([self ssnVerificationRequired]) {
-        TextEntryCell *entryCell = [self.tableView dequeueReusableCellWithIdentifier:TWTextEntryCellIdentifier];
-        [self setSsnCell:entryCell];
-        [entryCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
-        [photoCells addObject:entryCell];
-        [entryCell.entryField addTarget:self action:@selector(validateInput) forControlEvents:UIControlEventAllEditingEvents];
-        [entryCell configureWithTitle:NSLocalizedString(@"identification.ssn", nil) value:@""];
-        entryCell.presentationPattern = @"***-**-****";
-        if(IPAD)
-        {
-            CGRect newFrame = entryCell.separatorLine.frame;
-            newFrame.size.height = 1.0f/[[UIScreen mainScreen] scale];
-            entryCell.separatorLine.frame=newFrame;
-        }
     }
 
     
@@ -207,6 +215,12 @@
 
 -(void)actionTappedOnValidationCell:(ValidationCell *)cell
 {
+    [self validateInput];
+    if([self ssnVerificationRequired] && cell == self.idDocumentCell)
+    {
+        if(self.hideID)
+            return;
+    }
     NSUInteger row = [self.presentedSectionCells[0] indexOfObject:cell];
     self.selectedRow = row;
     [self presentCameraController];
@@ -261,6 +275,10 @@
         if (weakSelf.selectedRow == weakSelf.idVerificationRowIndex) {
             [PendingPayment setIdPhoto:originalImage];
             [weakSelf.idDocumentCell documentSelected:YES];
+            if(self.ssnCell)
+            {
+                self.ssnCell.value = @"";
+            }
         } else if (weakSelf.selectedRow == weakSelf.addressVerificationRowIndex) {
             [PendingPayment setAddressPhoto:originalImage];
             [weakSelf.proofOfAddressCell documentSelected:YES];
@@ -319,7 +337,32 @@
         [hud hide];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:TRWUploadProgressNotification object:nil];
         if (error) {
-            TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) error:error];
+            
+            //Check for SSN specific errors
+            NSArray *errors = error.userInfo[TRWErrors];
+            NSString* message;
+            for (NSDictionary* errorDictionary in errors)
+            {
+                NSString *code = errorDictionary[@"code"];
+                if([code rangeOfString:@"SSN"].location != NSNotFound || [code isEqualToString:@"PROFILE_INVALID"])
+                {
+                    message = NSLocalizedString(@"identification.ssn.generic.error", nil);
+                }
+
+            }
+            
+            
+            TRWAlertView *alertView;
+            if(message)
+            {
+                alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"identification.ssn.error.title", nil) message:message];
+                [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                alertView.delegate = self;
+            }
+            else
+            {
+                alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"identification.payment.error.title", nil) error:error];
+            }
             [alertView show];
             self.continueButton.progress = 0.0f;
         }
@@ -332,11 +375,6 @@
     int numberOfMissingDocuments = 0;
     BOOL missingReason = NO;
 
-    if ([self idVerificationRequired] && ![PendingPayment isIdVerificationImagePresent]) {
-        numberOfMissingFields++;
-        numberOfMissingDocuments++;
-    }
-
     if ([self addressVerificationRequired] && ![PendingPayment isAddressVerificationImagePresent]) {
         numberOfMissingFields++;
         numberOfMissingDocuments++;
@@ -347,8 +385,38 @@
         missingReason = YES;
     }
     
-    if ([self ssnVerificationRequired] && ![self.ssnCell.entryField.text hasValue]) {
-        numberOfMissingFields++;
+    if ([self ssnVerificationRequired])
+    {
+        // If SSNVerification requires an SSN OR uploaded Id
+        BOOL idBefore = self.hideID;
+        BOOL ssnBefore = self.hideSSN;
+        self.hideSSN = NO;
+        self.hideID = NO;
+        if([self idVerificationRequired] && ![PendingPayment isIdVerificationImagePresent] && [[self.ssnCell value] length] < 11) {
+            numberOfMissingFields +=2;
+            numberOfMissingDocuments++;
+        }
+        else if (![self.ssnCell.entryField.text hasValue])
+        {
+            self.hideSSN = YES;
+        }
+        else
+        {
+            self.hideID = YES;
+        }
+        
+        if(idBefore != self.hideID || ssnBefore != self.hideSSN)
+        {
+            [self.tableView beginUpdates];
+            [self.tableView endUpdates];
+        }
+    }
+    else
+    {
+        if ([self idVerificationRequired] && ![PendingPayment isIdVerificationImagePresent]) {
+            numberOfMissingFields++;
+            numberOfMissingDocuments++;
+        }
     }
     
     self.reasonIcon.image = nil;
@@ -464,11 +532,10 @@
 
 -(NSString*)validateEnteredText
 {
-    if(self.ssnCell && [[self.ssnCell value] length] < 11)
+    if([[self.ssnCell value] hasValue] && [[self.ssnCell value] length] < 11)
     {
         return NSLocalizedString(@"identification.ssn.short",nil);
     }
-    
     return nil;
 }
 
@@ -560,4 +627,46 @@
     }
 }
 
+#pragma mark - UIAlertViewDelegate
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    self.ssnCell.value = @"";
+    [self validateInput];
+}
+
+#pragma mark - textfield delegate
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (textField == self.ssnCell.entryField)
+    {
+        NSCharacterSet* excludedCharacters = [[NSCharacterSet characterSetWithCharactersInString:@"1234567890"] invertedSet];
+        if([string rangeOfCharacterFromSet:excludedCharacters].location != NSNotFound)
+        {
+            return NO;
+        }
+        
+    }
+    return [super textField:textField shouldChangeCharactersInRange:range replacementString:string];
+}
+
+#pragma mark - Tableview data source
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([self ssnVerificationRequired])
+    {
+        UITableViewCell *cell = self.presentedSectionCells[0][indexPath.row];
+        if(cell == self.idDocumentCell)
+        {
+            return self.hideID?0.0f:pictureCellHeight;
+        }
+        else if (cell == self.ssnCell)
+        {
+            return self.hideSSN?0.0f:textCellHeight;
+        }
+    }
+    
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
 @end

@@ -15,6 +15,12 @@
 #import "LoginOperation.h"
 #import "NSError+TRWErrors.h"
 #import "GoogleAnalytics.h"
+#import "MainViewController.h"
+#import "ConnectionAwareViewController.h"
+#import "ObjectModel+Settings.h"
+#import "ObjectModel+Payments.h"
+#import "NewPaymentViewController.h"
+#import "ConnectionAwareViewController.h"
 
 @interface LoginHelper ()
 
@@ -120,6 +126,39 @@
     }
 	
     return [NSString stringWithString:issues];
+}
+
++(void)proceedFromSuccessfulLoginFromViewController:(UIViewController*)controller objectModel:(ObjectModel*)objectModel
+{
+    //If registration upfront is used, these flags won't be set by the intro screen. Set them after logging in.
+    [objectModel markIntroShown];
+    [objectModel markExistingUserIntroShown];
+    
+    if([[objectModel allPayments] count] <= 0)
+    {
+        //Use smoke and mirrors to sneak in a MainViewController underneath a modally presented new payment viewcontroller
+        
+        ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:controller.navigationController?:controller];
+        controller.view.window.rootViewController = root;
+        
+        NewPaymentViewController *paymentView = [[NewPaymentViewController alloc] init];
+        [paymentView setObjectModel:objectModel];
+        ConnectionAwareViewController *wrapper =  [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:paymentView navBarHidden:YES];
+        [root presentViewController:wrapper animated:NO completion:^{
+            MainViewController *mainController = [[MainViewController alloc] init];
+            [mainController setObjectModel:objectModel];
+            [root replaceWrappedViewControllerWithController:mainController];
+        }];
+        [[GoogleAnalytics sharedInstance] sendScreen:@"New payment"];
+    }
+    else
+    {
+    
+        MainViewController *mainController = [[MainViewController alloc] init];
+        [mainController setObjectModel:objectModel];
+        ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:mainController];
+        controller.view.window.rootViewController = root;
+    }
 }
 
 @end

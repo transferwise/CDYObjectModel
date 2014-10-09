@@ -14,7 +14,7 @@
 
 @interface ConnectionAwareViewController ()
 
-@property (nonatomic, weak) UIViewController *wrappedViewController;
+@property (nonatomic, strong) UIViewController *wrappedViewController;
 @property (nonatomic, strong) Reachability *reachability;
 @property (nonatomic, weak) UIView *connectionAlert;
 @property (nonatomic, strong) NSArray* clouds;
@@ -38,7 +38,6 @@
 {
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
-        [self addChildViewController:wrappedViewController];
         _wrappedViewController = wrappedViewController;
         _numberOfClouds = IPAD?7:4;
     }
@@ -51,9 +50,7 @@
     
     //Add contained viewcontroller's view
     
-    self.wrappedViewController.view.frame = self.view.bounds;
-    self.wrappedViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    [self.view addSubview:self.wrappedViewController.view];
+    [self replaceWrappedViewControllerWithController:self.wrappedViewController];
     
     
     NSURL* url = [NSURL URLWithString:TRWServerAddress];
@@ -75,6 +72,20 @@
     
     [self.reachability startNotifier];
 
+}
+
+-(void) replaceWrappedViewControllerWithController:(UIViewController*)controller
+{
+    [self.wrappedViewController removeFromParentViewController];
+    [self.wrappedViewController.view removeFromSuperview];
+    self.wrappedViewController = controller;
+    if(controller)
+    {
+        [self addChildViewController:controller];
+        self.wrappedViewController.view.frame = self.view.bounds;
+        self.wrappedViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        [self.view addSubview:self.wrappedViewController.view];
+    }
 }
 
 -(void)animateCloud:(NSUInteger)index offset:(float)timeOffset

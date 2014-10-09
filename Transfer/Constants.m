@@ -34,6 +34,7 @@ NSString *const TRWUploadFileKey = @"TRWUploadFileKey";
 
 NSString *const TRWGoogleAnalyticsTrackingId = @"UA-16492313-2";
 NSString *const TRWGoogleAnalyticsDevTrackingId = @"UA-24270670-3";
+NSString *const TRWGoogleTagManagerContainerId = @"GTM-TDZF76";
 
 NSString *const TRWMixpanelToken = @"96ffee966b209ba8b874598f4d936ff6";
 

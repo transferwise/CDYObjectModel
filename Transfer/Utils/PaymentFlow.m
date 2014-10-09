@@ -587,7 +587,7 @@
 
             MCLog(@"uploadAddressVerification done");
             PendingPayment *payment = [self.objectModel pendingPayment];
-            [payment removerAddressVerificationRequiredMarker];
+            [payment removeAddressVerificationRequiredMarker];
             [weakSelf.objectModel saveContext:^{
                 [weakSelf handleNextStepOfPendingPaymentCommit];
             }];
@@ -628,25 +628,44 @@
     MCLog(@"uploadPaymentPurpose");
     PendingPayment *pendingPayment = [self.objectModel pendingPayment];
     __weak typeof(self) weakSelf = self;
-    SetSSNOperation *operation = [SetSSNOperation operationWithSsn:pendingPayment.socialSecurityNumber resultHandler:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (error) {
-                weakSelf.paymentErrorHandler(error);
-                return;
-            }
+    if([pendingPayment.socialSecurityNumber length] == 9)
+    {
+        SetSSNOperation *operation = [SetSSNOperation operationWithSsn:pendingPayment.socialSecurityNumber resultHandler:^(NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (error) {
+                    weakSelf.paymentErrorHandler(error);
+                    return;
+                }
+                
+                MCLog(@"setSSN done");
+                PendingPayment *payment = [weakSelf.objectModel pendingPayment];
+                [payment removeSsnRequiredMarker];
+                [payment removeIdVerificationRequiredMarker];
+                [weakSelf.objectModel saveContext:^{
+                    [weakSelf handleNextStepOfPendingPaymentCommit];
+                }];
+            });
             
-            MCLog(@"setSSN done");
-            PendingPayment *payment = [weakSelf.objectModel pendingPayment];
-            [payment removeSsnRequiredMarker];
+        }];
+        [self setExecutedOperation:operation];
+        [operation setObjectModel:self.objectModel];
+        [operation execute];
+    }
+    else
+    {
+        if ([PendingPayment isIdVerificationImagePresent])
+        {
+            [pendingPayment removeSsnRequiredMarker];
             [weakSelf.objectModel saveContext:^{
                 [weakSelf handleNextStepOfPendingPaymentCommit];
             }];
-        });
-
-    }];
-    [self setExecutedOperation:operation];
-    [operation setObjectModel:self.objectModel];
-    [operation execute];
+        }
+        else
+        {
+            weakSelf.paymentErrorHandler([NSError errorWithDomain:TRWErrorDomain code:0 userInfo:@{@"code":@"SSN"}]);
+        }
+        
+    }
 }
 
 - (void)commitPayment {
@@ -812,6 +831,12 @@
             [self presentRecipientDetails:[payment.user personalProfileFilled] templateRecipient:template];
         }
         else if ([payment.recipient.type recipientAddressRequiredValue] && ! [payment.recipient hasAddress])
+        {
+            Recipient *updateRecipient = payment.recipient;
+            payment.recipient = nil;
+            [self presentRecipientDetails:[payment.user personalProfileFilled] updateRecipient:updateRecipient];
+        }
+        else if ([payment.targetCurrency isBicRequiredForType:payment.recipient.type] && ! [[payment.recipient valueForFieldNamed:@"BIC"] length] > 0)
         {
             Recipient *updateRecipient = payment.recipient;
             payment.recipient = nil;

@@ -56,6 +56,10 @@
 		3811674619C1E9A800B29151 /* TouchIdPromptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3811674319C1E9A800B29151 /* TouchIdPromptViewController.m */; };
 		3811674719C1E9A800B29151 /* TouchIdPromptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3811674419C1E9A800B29151 /* TouchIdPromptViewController.xib */; };
 		3811674819C1E9A800B29151 /* TouchIdPromptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3811674419C1E9A800B29151 /* TouchIdPromptViewController.xib */; };
+		3812FA2F19DAD931003F9904 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3812F99519DAD930003F9904 /* libGoogleAnalyticsServices.a */; };
+		3812FA3019DAD931003F9904 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3812F99519DAD930003F9904 /* libGoogleAnalyticsServices.a */; };
+		3812FA3A19DAD9B5003F9904 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3812FA3919DAD9B5003F9904 /* libsqlite3.dylib */; };
+		3812FA3B19DAD9C1003F9904 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3812FA3919DAD9B5003F9904 /* libsqlite3.dylib */; };
 		3813791D1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */; };
 		3813791E1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */; };
 		3818605719C9A206009A413E /* SetSSNOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3818605619C9A206009A413E /* SetSSNOperation.m */; };
@@ -150,10 +154,14 @@
 		385AC114198FE52E0088DCD6 /* NoRefCurrencyMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 385AC112198FE52E0088DCD6 /* NoRefCurrencyMessages.plist */; };
 		385AC116198FE5500088DCD6 /* intro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 385AC115198FE5500088DCD6 /* intro.plist */; };
 		385AC117198FE5500088DCD6 /* intro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 385AC115198FE5500088DCD6 /* intro.plist */; };
+		3863B81E19E6B57D004009A2 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3863B81D19E6B57D004009A2 /* libEventTracker.a */; };
+		3863B81F19E6B57D004009A2 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3863B81D19E6B57D004009A2 /* libEventTracker.a */; };
 		38675454198B977800DEA359 /* RefundDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */; };
 		38675455198B977800DEA359 /* RefundDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */; };
 		38675457198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */; };
 		38675458198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */; };
+		386B039C19DD687C002285EF /* LoginViewControllerUpfront.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386B039B19DD687C002285EF /* LoginViewControllerUpfront.xib */; };
+		386B039D19DD687C002285EF /* LoginViewControllerUpfront.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386B039B19DD687C002285EF /* LoginViewControllerUpfront.xib */; };
 		3876768F19BF4914007B0EE5 /* CustomInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876768D19BF4914007B0EE5 /* CustomInfoViewController.m */; };
 		3876769019BF4914007B0EE5 /* CustomInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876768D19BF4914007B0EE5 /* CustomInfoViewController.m */; };
 		3876769119BF4914007B0EE5 /* CustomInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3876768E19BF4914007B0EE5 /* CustomInfoViewController.xib */; };
@@ -287,6 +295,8 @@
 		38B0931A1951FA8300315BE4 /* SettlementRecipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B093161951FA8300315BE4 /* SettlementRecipient.m */; };
 		38B1C5D6195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */; };
 		38B1C5D7195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */; };
+		38B4CB6119DC00FC004173C9 /* IntroViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B4CB6019DC00FC004173C9 /* IntroViewController~ipad.xib */; };
+		38B4CB6219DC00FC004173C9 /* IntroViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B4CB6019DC00FC004173C9 /* IntroViewController~ipad.xib */; };
 		38B52F97199B622D00B6AEBD /* ValidationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52F95199B622D00B6AEBD /* ValidationCell.m */; };
 		38B52F98199B622D00B6AEBD /* ValidationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52F95199B622D00B6AEBD /* ValidationCell.m */; };
 		38B52F99199B622D00B6AEBD /* ValidationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B52F96199B622D00B6AEBD /* ValidationCell.xib */; };
@@ -297,14 +307,20 @@
 		38B52FA1199B63B600B6AEBD /* InvitationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B52F9D199B63B600B6AEBD /* InvitationsViewController.xib */; };
 		38B52FA4199B69C800B6AEBD /* InvitationProgressIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */; };
 		38B52FA5199B69C800B6AEBD /* InvitationProgressIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */; };
-		38BBE4631990F2B900A14B9F /* IntroViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4621990F2B900A14B9F /* IntroViewController~ipad.xib */; };
-		38BBE4641990F2B900A14B9F /* IntroViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4621990F2B900A14B9F /* IntroViewController~ipad.xib */; };
 		38BBE4661990F43500A14B9F /* IntroView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4651990F43500A14B9F /* IntroView~ipad.xib */; };
 		38BBE4671990F43500A14B9F /* IntroView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4651990F43500A14B9F /* IntroView~ipad.xib */; };
 		38BD98A3195C5973009F9B4A /* NameSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */; };
 		38BD98A4195C5973009F9B4A /* NameSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */; };
 		38BD98A5195C5973009F9B4A /* NameSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */; };
 		38BD98A6195C5973009F9B4A /* NameSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */; };
+		38C0394919E29CBB00555F65 /* GTM-TDZF76 in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394819E29CBB00555F65 /* GTM-TDZF76 */; };
+		38C0394A19E29CBB00555F65 /* GTM-TDZF76 in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394819E29CBB00555F65 /* GTM-TDZF76 */; };
+		38C0394C19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */; };
+		38C0394D19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */; };
+		38C0394F19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */; };
+		38C0395019E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */; };
+		38C0395B19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */; };
+		38C0395C19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */; };
 		38C1A89B199CC5A0000BF59C /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C1A899199CC5A0000BF59C /* InviteViewController.m */; };
 		38C1A89C199CC5A0000BF59C /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C1A899199CC5A0000BF59C /* InviteViewController.m */; };
 		38C1A89D199CC5A0000BF59C /* InviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C1A89A199CC5A0000BF59C /* InviteViewController.xib */; };
@@ -413,10 +429,6 @@
 		47592CC71940C35800ECDAF2 /* NewPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */; };
 		476461E91982859F00F16F05 /* StyledPlaceholderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */; };
 		476461EA1982859F00F16F05 /* StyledPlaceholderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */; };
-		47679A3F19D1763E00DA1D5C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47679A3E19D1763E00DA1D5C /* CoreTelephony.framework */; };
-		47679A4519D19F0F00DA1D5C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47679A3E19D1763E00DA1D5C /* CoreTelephony.framework */; };
-		47679A5319D42AC100DA1D5C /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47679A5019D42AAE00DA1D5C /* libEventTracker.a */; };
-		47679A5519D42E4000DA1D5C /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47679A5019D42AAE00DA1D5C /* libEventTracker.a */; };
 		476C6B88196C18BF007002F9 /* SwipeToCancelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */; };
 		476C6B89196C18BF007002F9 /* SwipeToCancelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */; };
 		476D78C519B70F7500B561DA /* UIViewController+SwitchToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 476D78C419B70F7500B561DA /* UIViewController+SwitchToViewController.m */; };
@@ -769,8 +781,6 @@
 		EA88E693172F97F50021492C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E692172F97F50021492C /* Constants.m */; };
 		EA88E697172F980A0021492C /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E695172F980A0021492C /* SignUpViewController.m */; };
 		EA88E698172F980A0021492C /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E696172F980A0021492C /* SignUpViewController.xib */; };
-		EA8FA96A1891066000153EBC /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8FA8D21891065F00153EBC /* libGoogleAnalyticsServices.a */; };
-		EA8FA96B1891066000153EBC /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8FA8D21891065F00153EBC /* libGoogleAnalyticsServices.a */; };
 		EA8FC93E17D864F100E13969 /* FeedbackCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FC93D17D864F100E13969 /* FeedbackCoordinator.m */; };
 		EA8FF682171D19B50090A658 /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF681171D19B50090A658 /* NSString+Validation.m */; };
 		EA8FF685171D1A320090A658 /* NSMutableString+Issues.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */; };
@@ -927,6 +937,23 @@
 		3811674219C1E9A800B29151 /* TouchIdPromptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchIdPromptViewController.h; sourceTree = "<group>"; };
 		3811674319C1E9A800B29151 /* TouchIdPromptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchIdPromptViewController.m; sourceTree = "<group>"; };
 		3811674419C1E9A800B29151 /* TouchIdPromptViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TouchIdPromptViewController.xib; sourceTree = "<group>"; };
+		3812F94819DAD930003F9904 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		3812F94919DAD930003F9904 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		3812F94A19DAD930003F9904 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceFields.h; sourceTree = "<group>"; };
+		3812F94B19DAD930003F9904 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProduct.h; sourceTree = "<group>"; };
+		3812F94C19DAD930003F9904 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProductAction.h; sourceTree = "<group>"; };
+		3812F94D19DAD930003F9904 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommercePromotion.h; sourceTree = "<group>"; };
+		3812F94E19DAD930003F9904 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		3812F94F19DAD930003F9904 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		3812F95019DAD930003F9904 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		3812F95119DAD930003F9904 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		3812F98E19DAD930003F9904 /* TAGContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAGContainer.h; sourceTree = "<group>"; };
+		3812F98F19DAD930003F9904 /* TAGContainerOpener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAGContainerOpener.h; sourceTree = "<group>"; };
+		3812F99019DAD930003F9904 /* TAGDataLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAGDataLayer.h; sourceTree = "<group>"; };
+		3812F99119DAD930003F9904 /* TAGLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAGLogger.h; sourceTree = "<group>"; };
+		3812F99219DAD930003F9904 /* TAGManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAGManager.h; sourceTree = "<group>"; };
+		3812F99519DAD930003F9904 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		3812FA3919DAD9B5003F9904 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ConfirmPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
 		3818605519C9A206009A413E /* SetSSNOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSSNOperation.h; sourceTree = "<group>"; };
 		3818605619C9A206009A413E /* SetSSNOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSSNOperation.m; sourceTree = "<group>"; };
@@ -996,8 +1023,12 @@
 		385AC10F198FE2190088DCD6 /* SharpSansFrontieres-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SharpSansFrontieres-Bold.otf"; sourceTree = "<group>"; };
 		385AC112198FE52E0088DCD6 /* NoRefCurrencyMessages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NoRefCurrencyMessages.plist; sourceTree = "<group>"; };
 		385AC115198FE5500088DCD6 /* intro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = intro.plist; sourceTree = "<group>"; };
+		3863B81B19E6B57D004009A2 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		3863B81C19E6B57D004009A2 /* EventTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTracker.h; sourceTree = "<group>"; };
+		3863B81D19E6B57D004009A2 /* libEventTracker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEventTracker.a; sourceTree = "<group>"; };
 		38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RefundDetailsViewController~ipad.xib"; sourceTree = "<group>"; };
 		38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransferTypeSelectionHeaderNoTitle~ipad.xib"; sourceTree = "<group>"; };
+		386B039B19DD687C002285EF /* LoginViewControllerUpfront.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewControllerUpfront.xib; sourceTree = "<group>"; };
 		3876768C19BF4914007B0EE5 /* CustomInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomInfoViewController.h; sourceTree = "<group>"; };
 		3876768D19BF4914007B0EE5 /* CustomInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomInfoViewController.m; sourceTree = "<group>"; };
 		3876768E19BF4914007B0EE5 /* CustomInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfoViewController.xib; sourceTree = "<group>"; };
@@ -1126,6 +1157,7 @@
 		38B093161951FA8300315BE4 /* SettlementRecipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettlementRecipient.m; sourceTree = "<group>"; };
 		38B1C5D4195DBA6400BEE66E /* ConnectionAwareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionAwareViewController.h; sourceTree = "<group>"; };
 		38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionAwareViewController.m; sourceTree = "<group>"; };
+		38B4CB6019DC00FC004173C9 /* IntroViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "IntroViewController~ipad.xib"; sourceTree = "<group>"; };
 		38B52F94199B622D00B6AEBD /* ValidationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationCell.h; sourceTree = "<group>"; };
 		38B52F95199B622D00B6AEBD /* ValidationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidationCell.m; sourceTree = "<group>"; };
 		38B52F96199B622D00B6AEBD /* ValidationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ValidationCell.xib; sourceTree = "<group>"; };
@@ -1134,12 +1166,16 @@
 		38B52F9D199B63B600B6AEBD /* InvitationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvitationsViewController.xib; sourceTree = "<group>"; };
 		38B52FA2199B69C800B6AEBD /* InvitationProgressIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationProgressIndicatorView.h; sourceTree = "<group>"; };
 		38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationProgressIndicatorView.m; sourceTree = "<group>"; };
-		38BBE4621990F2B900A14B9F /* IntroViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "IntroViewController~ipad.xib"; sourceTree = "<group>"; };
 		38BBE4651990F43500A14B9F /* IntroView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "IntroView~ipad.xib"; sourceTree = "<group>"; };
 		38BCE11619B8C8EF0003D0EE /* TransferDev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TransferDev.plist; sourceTree = SOURCE_ROOT; };
 		38BD98A0195C5973009F9B4A /* NameSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSuggestionCell.h; sourceTree = "<group>"; };
 		38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameSuggestionCell.m; sourceTree = "<group>"; };
 		38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NameSuggestionCell.xib; sourceTree = "<group>"; };
+		38C0394819E29CBB00555F65 /* GTM-TDZF76 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GTM-TDZF76"; sourceTree = "<group>"; };
+		38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SignUpViewController~ipad.xib"; sourceTree = "<group>"; };
+		38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewControllerUpfront~ipad.xib"; sourceTree = "<group>"; };
+		38C0395919E598DF00555F65 /* SendButtonFlashHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendButtonFlashHelper.h; sourceTree = "<group>"; };
+		38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendButtonFlashHelper.m; sourceTree = "<group>"; };
 		38C1A898199CC5A0000BF59C /* InviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteViewController.h; sourceTree = "<group>"; };
 		38C1A899199CC5A0000BF59C /* InviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteViewController.m; sourceTree = "<group>"; };
 		38C1A89A199CC5A0000BF59C /* InviteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteViewController.xib; sourceTree = "<group>"; };
@@ -1230,11 +1266,6 @@
 		47535CB41981367C00DC39D6 /* UIView+SeparatorLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SeparatorLine.m"; sourceTree = "<group>"; };
 		476461E71982859F00F16F05 /* StyledPlaceholderTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyledPlaceholderTextField.h; sourceTree = "<group>"; };
 		476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyledPlaceholderTextField.m; sourceTree = "<group>"; };
-		47679A3E19D1763E00DA1D5C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		47679A4019D19DF800DA1D5C /* libEventTracker-noAFNetwork */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libEventTracker-noAFNetwork"; path = "Thirdparty/iOS EventTracker-SDK/libEventTracker-noAFNetwork"; sourceTree = "<group>"; };
-		47679A4E19D42AAE00DA1D5C /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
-		47679A4F19D42AAE00DA1D5C /* EventTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTracker.h; sourceTree = "<group>"; };
-		47679A5019D42AAE00DA1D5C /* libEventTracker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEventTracker.a; sourceTree = "<group>"; };
 		476C6B86196C18BF007002F9 /* SwipeToCancelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeToCancelCell.h; sourceTree = "<group>"; };
 		476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeToCancelCell.m; sourceTree = "<group>"; };
 		476D78C319B70F7500B561DA /* UIViewController+SwitchToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SwitchToViewController.h"; sourceTree = "<group>"; };
@@ -1457,16 +1488,6 @@
 		EA88E694172F980A0021492C /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		EA88E695172F980A0021492C /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		EA88E696172F980A0021492C /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
-		EA8FA85E1891065F00153EBC /* Changelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Changelog.txt; sourceTree = "<group>"; };
-		EA8FA88A1891065F00153EBC /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
-		EA8FA88B1891065F00153EBC /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
-		EA8FA88C1891065F00153EBC /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
-		EA8FA88D1891065F00153EBC /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
-		EA8FA88E1891065F00153EBC /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
-		EA8FA88F1891065F00153EBC /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
-		EA8FA8901891065F00153EBC /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
-		EA8FA8D21891065F00153EBC /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
-		EA8FA8D31891065F00153EBC /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
 		EA8FC93C17D864F100E13969 /* FeedbackCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackCoordinator.h; sourceTree = "<group>"; };
 		EA8FC93D17D864F100E13969 /* FeedbackCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackCoordinator.m; sourceTree = "<group>"; };
 		EA8FF67F171D167C0090A658 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; wrapsLines = 0; };
@@ -1630,10 +1651,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47679A5519D42E4000DA1D5C /* libEventTracker.a in Frameworks */,
+				3812FA3A19DAD9B5003F9904 /* libsqlite3.dylib in Frameworks */,
 				EA84055917F06DCD00F44916 /* AdSupport.framework in Frameworks */,
-				EA31A1C517DDB29B00F937F7 /* SystemConfiguration.framework in Frameworks */,
-				47679A4519D19F0F00DA1D5C /* CoreTelephony.framework in Frameworks */,
 				EA34529F17DF1019005BB4F1 /* QuartzCore.framework in Frameworks */,
 				EA31A1BF17DDB29B00F937F7 /* AddressBook.framework in Frameworks */,
 				EA31A1C017DDB29B00F937F7 /* AddressBookUI.framework in Frameworks */,
@@ -1641,11 +1660,13 @@
 				EA31A1C217DDB29B00F937F7 /* libz.dylib in Frameworks */,
 				EA31A1C317DDB29B00F937F7 /* Security.framework in Frameworks */,
 				EA31A1C417DDB29B00F937F7 /* MobileCoreServices.framework in Frameworks */,
+				3863B81F19E6B57D004009A2 /* libEventTracker.a in Frameworks */,
+				EA31A1C517DDB29B00F937F7 /* SystemConfiguration.framework in Frameworks */,
 				EA31A1C617DDB29B00F937F7 /* UIKit.framework in Frameworks */,
 				EA31A1C717DDB29B00F937F7 /* Foundation.framework in Frameworks */,
 				EA31A1C817DDB29B00F937F7 /* CoreGraphics.framework in Frameworks */,
-				EA8FA96B1891066000153EBC /* libGoogleAnalyticsServices.a in Frameworks */,
 				EA31A1C917DDB29B00F937F7 /* CoreData.framework in Frameworks */,
+				3812FA3019DAD931003F9904 /* libGoogleAnalyticsServices.a in Frameworks */,
 				EA31A1CA17DDB29B00F937F7 /* Crashlytics.framework in Frameworks */,
 				EA31A1CC17DDB29B00F937F7 /* MessageUI.framework in Frameworks */,
 				EA31A1CD17DDB29B00F937F7 /* libPods.a in Frameworks */,
@@ -1657,22 +1678,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47679A5319D42AC100DA1D5C /* libEventTracker.a in Frameworks */,
-				EA84055C17F06E0100F44916 /* AdSupport.framework in Frameworks */,
-				EA8FF6AB171D222E0090A658 /* SystemConfiguration.framework in Frameworks */,
-				47679A3F19D1763E00DA1D5C /* CoreTelephony.framework in Frameworks */,
+				3812FA3B19DAD9C1003F9904 /* libsqlite3.dylib in Frameworks */,
 				EAD6675E174A565500D29BCB /* AddressBook.framework in Frameworks */,
 				EAD6675F174A565500D29BCB /* AddressBookUI.framework in Frameworks */,
 				BB92B144172A747300B6F096 /* CoreText.framework in Frameworks */,
 				EAEA626117202D6100A96770 /* libz.dylib in Frameworks */,
 				EAD73694171E7A3200A037B1 /* Security.framework in Frameworks */,
 				EA8FF6AD171D22340090A658 /* MobileCoreServices.framework in Frameworks */,
+				EA8FF6AB171D222E0090A658 /* SystemConfiguration.framework in Frameworks */,
 				EAAA146C171BC911005B9430 /* UIKit.framework in Frameworks */,
+				3863B81E19E6B57D004009A2 /* libEventTracker.a in Frameworks */,
 				EAAA146E171BC911005B9430 /* Foundation.framework in Frameworks */,
 				EAAA1470171BC911005B9430 /* CoreGraphics.framework in Frameworks */,
 				EAAA1472171BC911005B9430 /* CoreData.framework in Frameworks */,
+				EA84055C17F06E0100F44916 /* AdSupport.framework in Frameworks */,
 				38AEB3C31964369F00B852E1 /* libAppsFlyerLib.a in Frameworks */,
-				EA8FA96A1891066000153EBC /* libGoogleAnalyticsServices.a in Frameworks */,
+				3812FA2F19DAD931003F9904 /* libGoogleAnalyticsServices.a in Frameworks */,
 				EA61557517A69A5A008B6C79 /* Crashlytics.framework in Frameworks */,
 				EA0253BA17D5D28900F54C18 /* MessageUI.framework in Frameworks */,
 				BC92EA001E7D4BE89CF454A0 /* libPods.a in Frameworks */,
@@ -1729,6 +1750,61 @@
 			path = Styles;
 			sourceTree = "<group>";
 		};
+		3812F91A19DAD930003F9904 /* GoogleAnalyticsServicesiOS_3.09 */ = {
+			isa = PBXGroup;
+			children = (
+				3812F91B19DAD930003F9904 /* GoogleAnalytics */,
+				3812F95319DAD930003F9904 /* GoogleTagManager */,
+				3812F99519DAD930003F9904 /* libGoogleAnalyticsServices.a */,
+			);
+			path = GoogleAnalyticsServicesiOS_3.09;
+			sourceTree = "<group>";
+		};
+		3812F91B19DAD930003F9904 /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				3812F94719DAD930003F9904 /* Library */,
+			);
+			path = GoogleAnalytics;
+			sourceTree = "<group>";
+		};
+		3812F94719DAD930003F9904 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				3812F94819DAD930003F9904 /* GAI.h */,
+				3812F94919DAD930003F9904 /* GAIDictionaryBuilder.h */,
+				3812F94A19DAD930003F9904 /* GAIEcommerceFields.h */,
+				3812F94B19DAD930003F9904 /* GAIEcommerceProduct.h */,
+				3812F94C19DAD930003F9904 /* GAIEcommerceProductAction.h */,
+				3812F94D19DAD930003F9904 /* GAIEcommercePromotion.h */,
+				3812F94E19DAD930003F9904 /* GAIFields.h */,
+				3812F94F19DAD930003F9904 /* GAILogger.h */,
+				3812F95019DAD930003F9904 /* GAITrackedViewController.h */,
+				3812F95119DAD930003F9904 /* GAITracker.h */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		3812F95319DAD930003F9904 /* GoogleTagManager */ = {
+			isa = PBXGroup;
+			children = (
+				3812F98D19DAD930003F9904 /* Library */,
+			);
+			path = GoogleTagManager;
+			sourceTree = "<group>";
+		};
+		3812F98D19DAD930003F9904 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				3812F98E19DAD930003F9904 /* TAGContainer.h */,
+				3812F98F19DAD930003F9904 /* TAGContainerOpener.h */,
+				3812F99019DAD930003F9904 /* TAGDataLayer.h */,
+				3812F99119DAD930003F9904 /* TAGLogger.h */,
+				3812F99219DAD930003F9904 /* TAGManager.h */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		3856691A1981579A00BC4230 /* CustomStyles */ = {
 			isa = PBXGroup;
 			children = (
@@ -1779,6 +1855,16 @@
 				4723EA101973D9B500B4345F /* YahooButton.m */,
 			);
 			name = Buttons;
+			sourceTree = "<group>";
+		};
+		3863B81A19E6B57D004009A2 /* iOS-EventTracker-SDK */ = {
+			isa = PBXGroup;
+			children = (
+				3863B81B19E6B57D004009A2 /* Event.h */,
+				3863B81C19E6B57D004009A2 /* EventTracker.h */,
+				3863B81D19E6B57D004009A2 /* libEventTracker.a */,
+			);
+			path = "iOS-EventTracker-SDK";
 			sourceTree = "<group>";
 		};
 		389F679C198FC1C5006CF1F6 /* ObjectModel */ = {
@@ -1895,16 +1981,6 @@
 				38AEB3C21964369F00B852E1 /* libAppsFlyerLib.a */,
 			);
 			path = "AF-iOS-SDK-v2";
-			sourceTree = "<group>";
-		};
-		47679A4D19D42AAE00DA1D5C /* iOS-EventTracker-SDK */ = {
-			isa = PBXGroup;
-			children = (
-				47679A4E19D42AAE00DA1D5C /* Event.h */,
-				47679A4F19D42AAE00DA1D5C /* EventTracker.h */,
-				47679A5019D42AAE00DA1D5C /* libEventTracker.a */,
-			);
-			path = "iOS-EventTracker-SDK";
 			sourceTree = "<group>";
 		};
 		4781F48D194737C700B8926C /* JVFloatLabeledTextField */ = {
@@ -2200,6 +2276,7 @@
 		EA84056717F0A3FD00F44916 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				38C0394819E29CBB00555F65 /* GTM-TDZF76 */,
 				3831DCC319B764B900151A3D /* existingUserIntro.plist */,
 				385AC115198FE5500088DCD6 /* intro.plist */,
 				385AC112198FE52E0088DCD6 /* NoRefCurrencyMessages.plist */,
@@ -2242,39 +2319,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		EA8FA85C1891065F00153EBC /* GoogleAnalyticsServicesiOS_3.03 */ = {
-			isa = PBXGroup;
-			children = (
-				EA8FA85D1891065F00153EBC /* GoogleAnalytics */,
-				EA8FA8D21891065F00153EBC /* libGoogleAnalyticsServices.a */,
-				EA8FA8D31891065F00153EBC /* Readme.txt */,
-			);
-			path = GoogleAnalyticsServicesiOS_3.03;
-			sourceTree = "<group>";
-		};
-		EA8FA85D1891065F00153EBC /* GoogleAnalytics */ = {
-			isa = PBXGroup;
-			children = (
-				EA8FA85E1891065F00153EBC /* Changelog.txt */,
-				EA8FA8891891065F00153EBC /* Library */,
-				EA8FA8901891065F00153EBC /* Readme.txt */,
-			);
-			path = GoogleAnalytics;
-			sourceTree = "<group>";
-		};
-		EA8FA8891891065F00153EBC /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				EA8FA88A1891065F00153EBC /* GAI.h */,
-				EA8FA88B1891065F00153EBC /* GAIDictionaryBuilder.h */,
-				EA8FA88C1891065F00153EBC /* GAIFields.h */,
-				EA8FA88D1891065F00153EBC /* GAILogger.h */,
-				EA8FA88E1891065F00153EBC /* GAITrackedViewController.h */,
-				EA8FA88F1891065F00153EBC /* GAITracker.h */,
-			);
-			path = Library;
-			sourceTree = "<group>";
-		};
 		EA8FC93A17D864DB00E13969 /* Feedback */ = {
 			isa = PBXGroup;
 			children = (
@@ -2287,11 +2331,11 @@
 		EA8FF68C171D22080090A658 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
-				47679A4D19D42AAE00DA1D5C /* iOS-EventTracker-SDK */,
+				3863B81A19E6B57D004009A2 /* iOS-EventTracker-SDK */,
+				3812F91A19DAD930003F9904 /* GoogleAnalyticsServicesiOS_3.09 */,
 				38AEB3C01964369F00B852E1 /* AF-iOS-SDK-v2 */,
 				4781F48D194737C700B8926C /* JVFloatLabeledTextField */,
 				EACD942B18D82C2C00369905 /* NanTracking */,
-				EA8FA85C1891065F00153EBC /* GoogleAnalyticsServicesiOS_3.03 */,
 				BBC6911B1721414300F0FB1A /* TSAlertView */,
 				EA0253BB17D5E44400F54C18 /* uidevice-extension */,
 			);
@@ -2399,8 +2443,7 @@
 		EAAA146A171BC911005B9430 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				47679A4019D19DF800DA1D5C /* libEventTracker-noAFNetwork */,
-				47679A3E19D1763E00DA1D5C /* CoreTelephony.framework */,
+				3812FA3919DAD9B5003F9904 /* libsqlite3.dylib */,
 				EA84055817F06DCD00F44916 /* AdSupport.framework */,
 				EAD6675C174A565500D29BCB /* AddressBook.framework */,
 				EAD6675D174A565500D29BCB /* AddressBookUI.framework */,
@@ -2519,7 +2562,7 @@
 				EA0450D117EC5BC1008921DA /* IntroViewController.h */,
 				EA0450D217EC5BC1008921DA /* IntroViewController.m */,
 				EA0450D317EC5BC1008921DA /* IntroViewController.xib */,
-				38BBE4621990F2B900A14B9F /* IntroViewController~ipad.xib */,
+				38B4CB6019DC00FC004173C9 /* IntroViewController~ipad.xib */,
 				38B52F9B199B63B600B6AEBD /* InvitationsViewController.h */,
 				38B52F9C199B63B600B6AEBD /* InvitationsViewController.m */,
 				38B52F9D199B63B600B6AEBD /* InvitationsViewController.xib */,
@@ -2530,6 +2573,8 @@
 				3840862C19A23F5A00C837C2 /* InviteViewController~ipad.xib */,
 				47233CD3196D457300449042 /* LoginViewController.h */,
 				47233CD4196D457300449042 /* LoginViewController.m */,
+				38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */,
+				386B039B19DD687C002285EF /* LoginViewControllerUpfront.xib */,
 				47233CD5196D457300449042 /* LoginViewController.xib */,
 				473DF974196D637200524C64 /* LoginViewController~ipad.xib */,
 				EAD39673171BD4EE00F6D011 /* MainViewController.h */,
@@ -2583,6 +2628,7 @@
 				EA88E694172F980A0021492C /* SignUpViewController.h */,
 				EA88E695172F980A0021492C /* SignUpViewController.m */,
 				EA88E696172F980A0021492C /* SignUpViewController.xib */,
+				38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */,
 				47AC3F8B1987845A005491C6 /* SuggestionDataEntryViewController.h */,
 				47AC3F8C1987845A005491C6 /* SuggestionDataEntryViewController.m */,
 				38E57F75192A51DD00D864A2 /* TabViewController.h */,
@@ -2674,6 +2720,8 @@
 				38504B0819C1E83700276203 /* TouchIDHelper.m */,
 				38288F5219C8855800661BFB /* PaymentMethodViewControllerFactory.h */,
 				38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */,
+				38C0395919E598DF00555F65 /* SendButtonFlashHelper.h */,
+				38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2826,7 +2874,6 @@
 				38EFABE4196D7EAB00126192 /* TextFieldSuggestionTable.xib in Resources */,
 				3840863B19A38A5E00C837C2 /* TextEntryCellValidation~ipad.xib in Resources */,
 				38C7B2A119756A9C004324E8 /* BankTransferViewController~ipad.xib in Resources */,
-				38BBE4641990F2B900A14B9F /* IntroViewController~ipad.xib in Resources */,
 				38BBE4671990F43500A14B9F /* IntroView~ipad.xib in Resources */,
 				EA31A1E117DDB29B00F937F7 /* RecipientCell.xib in Resources */,
 				EA31A1E617DDB29B00F937F7 /* SettingsViewController.xib in Resources */,
@@ -2834,11 +2881,13 @@
 				47AC3F9A1987B2C3005491C6 /* SuggestionCell.xib in Resources */,
 				EA31A1E717DDB29B00F937F7 /* SettingsTitleCell.xib in Resources */,
 				47FAF354194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */,
+				38B4CB6219DC00FC004173C9 /* IntroViewController~ipad.xib in Resources */,
 				38CACA62196EE21600BFCF82 /* NameSuggestionCell~ipad.xib in Resources */,
 				385669141980FB0500BC4230 /* PlainPresentationCell.xib in Resources */,
 				3876769219BF4914007B0EE5 /* CustomInfoViewController.xib in Resources */,
 				380021FA192F43EA009B1D53 /* TabCell.xib in Resources */,
 				38B0930C1951FA2A00315BE4 /* DataEntryDefaultHeader.xib in Resources */,
+				386B039D19DD687C002285EF /* LoginViewControllerUpfront.xib in Resources */,
 				38274080199529F0009FAB97 /* CardPaymentViewController~ipad.xib in Resources */,
 				EA31A1E817DDB29B00F937F7 /* TSAlertViewMessageListViewShadow.png in Resources */,
 				385AC114198FE52E0088DCD6 /* NoRefCurrencyMessages.plist in Resources */,
@@ -2858,12 +2907,14 @@
 				EA333F3918A4BEDC00D8A44E /* page_zoom.json in Resources */,
 				380021F2192F3DD3009B1D53 /* CurrencySelectorViewController.xib in Resources */,
 				474C451E1992874E001F207C /* ProfileEditViewController~ipad.xib in Resources */,
+				38C0395019E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */,
 				3840D34719A4D6AD00D1485A /* DropdownCell~ipad.xib in Resources */,
 				EA31A1EC17DDB29B00F937F7 /* TSAlertViewBackground2.png in Resources */,
 				EA31A1ED17DDB29B00F937F7 /* TSAlertViewBackground.png in Resources */,
 				3840D34419A49E1F00D1485A /* BusinessProfileIdentificationViewController~ipad.xib in Resources */,
 				38B093121951FA2A00315BE4 /* TransferTypeSelectionHeader.xib in Resources */,
 				473DF976196D637200524C64 /* LoginViewController~ipad.xib in Resources */,
+				38C0394D19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */,
 				3840D34A19A4D90F00D1485A /* RecipientFieldCell~ipad.xib in Resources */,
 				38B52FA1199B63B600B6AEBD /* InvitationsViewController.xib in Resources */,
 				38288F5119C86DC200661BFB /* PaymentMethodCell.xib in Resources */,
@@ -2894,6 +2945,7 @@
 				EA31A20F17DDB29B00F937F7 /* RecipientEntrySelectionCell.xib in Resources */,
 				EA31A21017DDB29B00F937F7 /* DropdownCell.xib in Resources */,
 				EAD3648F17E2F6EF001EFE40 /* CardPaymentViewController.xib in Resources */,
+				38C0394A19E29CBB00555F65 /* GTM-TDZF76 in Resources */,
 				EA31A21117DDB29B00F937F7 /* BankTransferViewController.xib in Resources */,
 				38C1A89E199CC5A0000BF59C /* InviteViewController.xib in Resources */,
 				EA31A21217DDB29B00F937F7 /* TextCell.xib in Resources */,
@@ -2970,18 +3022,19 @@
 				3840D34319A49E1E00D1485A /* BusinessProfileIdentificationViewController~ipad.xib in Resources */,
 				38C7B2A019756A9C004324E8 /* BankTransferViewController~ipad.xib in Resources */,
 				380021F9192F43EA009B1D53 /* TabCell.xib in Resources */,
-				38BBE4631990F2B900A14B9F /* IntroViewController~ipad.xib in Resources */,
 				BBC691241721416300F0FB1A /* TSAlertViewMessageListViewShadow.png in Resources */,
 				BBC691251721416300F0FB1A /* TSAlertViewCancelButtonBackground.png in Resources */,
 				EA0450D617EC5BC1008921DA /* IntroViewController.xib in Resources */,
 				47FAF353194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */,
 				385AC110198FE2190088DCD6 /* SharpSansFrontieres-Bold.otf in Resources */,
 				3840863419A368DD00C837C2 /* PersonalProfileIdentificationViewController~ipad.xib in Resources */,
+				38B4CB6119DC00FC004173C9 /* IntroViewController~ipad.xib in Resources */,
 				38CACA61196EE21600BFCF82 /* NameSuggestionCell~ipad.xib in Resources */,
 				385669131980FB0500BC4230 /* PlainPresentationCell.xib in Resources */,
 				3876769119BF4914007B0EE5 /* CustomInfoViewController.xib in Resources */,
 				3800220C192F5774009B1D53 /* CurrencyCell.xib in Resources */,
 				385AC113198FE52E0088DCD6 /* NoRefCurrencyMessages.plist in Resources */,
+				386B039C19DD687C002285EF /* LoginViewControllerUpfront.xib in Resources */,
 				383FC10E19AE1B8400465FCA /* SeeHowViewController~ipad.xib in Resources */,
 				47971C5E199A3A560018FDA8 /* TextEntryCell~ipad.xib in Resources */,
 				38B0930B1951FA2A00315BE4 /* DataEntryDefaultHeader.xib in Resources */,
@@ -3001,12 +3054,14 @@
 				47971C64199A3F1F0018FDA8 /* DoublePasswordEntryCell~ipad.xib in Resources */,
 				380021F1192F3DD3009B1D53 /* CurrencySelectorViewController.xib in Resources */,
 				3840863719A370A400C837C2 /* ValidationCell~ipad.xib in Resources */,
+				38C0394F19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */,
 				BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */,
 				BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */,
 				EAB61710191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
 				EA88E691172F97E20021492C /* DateEntryCell.xib in Resources */,
 				EA88E698172F980A0021492C /* SignUpViewController.xib in Resources */,
 				38B093111951FA2A00315BE4 /* TransferTypeSelectionHeader.xib in Resources */,
+				38C0394C19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */,
 				473DF975196D637200524C64 /* LoginViewController~ipad.xib in Resources */,
 				EA35C77217327981005602F7 /* PaymentCell.xib in Resources */,
 				38288F5019C86DC200661BFB /* PaymentMethodCell.xib in Resources */,
@@ -3037,6 +3092,7 @@
 				3840862A19A2391D00C837C2 /* SettingsViewController~ipad.xib in Resources */,
 				473F62931940BDD9001E280B /* NewPaymentViewController~ipad.xib in Resources */,
 				47FB7EA519419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */,
+				38C0394919E29CBB00555F65 /* GTM-TDZF76 in Resources */,
 				479B692D19487865001FA4FE /* TransferDetailsViewController.xib in Resources */,
 				38CACD691987C43E0085C254 /* CurrencySelectionCell~ipad.xib in Resources */,
 				EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */,
@@ -3437,6 +3493,7 @@
 				38B0931A1951FA8300315BE4 /* SettlementRecipient.m in Sources */,
 				EA31A19517DDB29B00F937F7 /* NSDictionary+Cleanup.m in Sources */,
 				389F681A198FC1C6006CF1F6 /* AllowedTypeFieldValue.m in Sources */,
+				38C0395C19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */,
 				38B092E6194F325B00315BE4 /* AddressBookManager.m in Sources */,
 				380021CF192CC531009B1D53 /* MOMCompoundStyle.m in Sources */,
 				389F683C198FC1C6006CF1F6 /* PayInMethod.m in Sources */,
@@ -3723,6 +3780,7 @@
 				EAE7B6B317E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */,
 				47FAF35B195031E7004CE986 /* BlueButton.m in Sources */,
 				389F6819198FC1C6006CF1F6 /* AllowedTypeFieldValue.m in Sources */,
+				38C0395B19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */,
 				38AA83411949B8DF0065AD2A /* GradientView.m in Sources */,
 				474D1AA61951A500008BC7A7 /* RedGradientButton.m in Sources */,
 				389F683B198FC1C6006CF1F6 /* PayInMethod.m in Sources */,
@@ -3838,8 +3896,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
-					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
+					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 				);
 				PRODUCT_NAME = TransferDev;
@@ -3875,8 +3933,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
-					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
+					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 				);
 				PRODUCT_NAME = TransferDev;
@@ -3971,8 +4029,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
-					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
+					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4007,8 +4065,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
-					"$(SRCROOT)/Thirdparty/GoogleAnalyticsServicesiOS_3.03",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
+					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 				);
 				OTHER_CFLAGS = (

@@ -14,5 +14,6 @@
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, copy) NSString *plistFilenameOverride;
+@property (nonatomic, assign) BOOL requireRegistration;
 
 @end

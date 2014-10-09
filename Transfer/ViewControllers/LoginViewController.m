@@ -25,6 +25,8 @@
 #import "NSError+TRWErrors.h"
 #import "NetworkErrorCodes.h"
 #import "TransferwiseOperation.h"
+#import "MainViewController.h"
+#import "ConnectionAwareViewController.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -47,12 +49,27 @@
 #pragma mark - Init
 - (id)init
 {
-    self = [super initWithNibName:@"LoginViewController" bundle:nil];
+    self = [super init];
     if (self)
 	{
-        self.loginHelper = [[LoginHelper alloc] init];
+        [self commonSetup];
     }
     return self;
+}
+
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if(self)
+    {
+        [self commonSetup];
+    }
+    return self;
+}
+
+-(void)commonSetup
+{
+    _loginHelper = [[LoginHelper alloc] init];
 }
 
 #pragma mark - View Life-cycle
@@ -60,9 +77,11 @@
 {
     [super viewDidLoad];
 	
-	[NavigationBarCustomiser setWhite];
-	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController
+    if(!self.navigationItem.leftBarButtonItem)
+    {
+        [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController
 																									   isBlue:YES]];
+    }
 	
 	[self.emailTextField configureWithTitle:NSLocalizedString(@"login.email.field.title", nil) value:@""];
 	self.emailTextField.delegate = self;
@@ -89,7 +108,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	
+    [NavigationBarCustomiser setWhite];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationItem setTitle:NSLocalizedString(@"login.controller.title", nil)];
 	
@@ -151,7 +170,7 @@
 												   successBlock:^{
                                                        [weakSelf processSuccessfulLogin];
 												   }
-									  waitForDetailsCompletions:NO];
+									  waitForDetailsCompletions:YES];
     });
 }
 
@@ -164,7 +183,7 @@
     }
     else
     {
-        [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+        [LoginHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
     }
 }
 

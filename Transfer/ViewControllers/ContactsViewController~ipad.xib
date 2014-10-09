@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13A3028" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContactsViewController">
             <connections>
                 <outlet property="detailContainer" destination="kfm-xm-i62" id="vTh-lM-THB"/>
+                <outlet property="noRecipientsMessage" destination="ILs-8Q-EvU" id="qEq-yX-8YU"/>
                 <outlet property="tableView" destination="9" id="12"/>
                 <outlet property="titleLabel" destination="Z6O-O7-ybS" id="Wen-d2-r4n"/>
                 <outlet property="view" destination="8" id="13"/>
@@ -19,11 +21,9 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7d9-mH-9CL" userLabel="TitleBar">
                     <rect key="frame" x="0.0" y="0.0" width="512" height="64"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6O-O7-ybS">
                             <rect key="frame" x="0.0" y="20" width="512" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="8MX-qe-c1d"/>
                             </constraints>
@@ -36,7 +36,6 @@
                         </label>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Szi-Xp-HaH">
                             <rect key="frame" x="0.0" y="63" width="512" height="1"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGray"/>
@@ -44,7 +43,6 @@
                         </view>
                         <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDw-PZ-rYn">
                             <rect key="frame" x="460" y="22" width="42" height="42"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="42" id="Pii-Yx-UTW"/>
                                 <constraint firstAttribute="height" constant="42" id="eUe-Tm-saY"/>
@@ -72,7 +70,6 @@
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9">
                     <rect key="frame" x="0.0" y="64" width="512" height="704"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <connections>
@@ -80,14 +77,24 @@
                         <outlet property="delegate" destination="-1" id="11"/>
                     </connections>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILs-8Q-EvU">
+                    <rect key="frame" x="106" y="374" width="300" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="300" id="3VB-F6-diR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="book.@20.corefont"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfm-xm-i62">
                     <rect key="frame" x="512" y="0.0" width="512" height="768"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="apv-IM-6Gh" userLabel="shadow" customClass="GradientView">
                     <rect key="frame" x="504" y="0.0" width="8" height="768"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="8" id="fvS-t9-doG"/>
@@ -104,7 +111,6 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n5H-do-28I" userLabel="Separator">
                     <rect key="frame" x="511" y="0.0" width="1" height="768"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="1" id="fCU-TC-qhp"/>
@@ -117,6 +123,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="apv-IM-6Gh" firstAttribute="top" secondItem="8" secondAttribute="top" id="2F6-qq-1ed"/>
+                <constraint firstItem="ILs-8Q-EvU" firstAttribute="centerX" secondItem="7d9-mH-9CL" secondAttribute="centerX" id="68X-Ih-WRr"/>
                 <constraint firstItem="kfm-xm-i62" firstAttribute="top" secondItem="8" secondAttribute="top" id="C0l-I2-j2K"/>
                 <constraint firstAttribute="bottom" secondItem="kfm-xm-i62" secondAttribute="bottom" id="Cq2-5v-Dxi"/>
                 <constraint firstItem="kfm-xm-i62" firstAttribute="width" secondItem="7d9-mH-9CL" secondAttribute="width" id="HcC-EQ-Tjc"/>
@@ -129,15 +136,22 @@
                 <constraint firstItem="kfm-xm-i62" firstAttribute="leading" secondItem="7d9-mH-9CL" secondAttribute="trailing" id="ebc-n0-Xs3"/>
                 <constraint firstAttribute="bottom" secondItem="9" secondAttribute="bottom" id="ij8-OH-rKy"/>
                 <constraint firstAttribute="bottom" secondItem="apv-IM-6Gh" secondAttribute="bottom" id="j2I-9t-wfX"/>
+                <constraint firstAttribute="centerY" secondItem="ILs-8Q-EvU" secondAttribute="centerY" id="j5Q-4E-vy2"/>
                 <constraint firstAttribute="trailing" secondItem="kfm-xm-i62" secondAttribute="trailing" id="nhf-lj-6wo"/>
                 <constraint firstAttribute="centerX" secondItem="n5H-do-28I" secondAttribute="centerX" id="oaJ-Wx-8oM"/>
                 <constraint firstAttribute="centerX" secondItem="apv-IM-6Gh" secondAttribute="centerX" constant="4" id="pnu-G6-Q5e"/>
                 <constraint firstItem="7d9-mH-9CL" firstAttribute="centerX" secondItem="9" secondAttribute="centerX" id="q7j-Xv-WLJ"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>
-        <image name="AddButton" width="21" height="21"/>
+        <image name="AddButton" width="42" height="42"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

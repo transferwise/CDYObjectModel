@@ -22,6 +22,8 @@
 #import "MainViewController.h"
 #import "AppDelegate.h"
 #import "ConnectionAwareViewController.h"
+#import "LoginViewController.h"
+#import "SignUpViewController.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
 
@@ -33,7 +35,16 @@
 @property (nonatomic, strong) IBOutlet SMPageControl *pageControl;
 @property (nonatomic, assign) NSInteger reportedPage;
 @property (nonatomic, assign) NSInteger lastLoadedIndex;
-@property (nonatomic, assign) NSInteger pageBeforeRotation;
+@property (nonatomic, assign) NSInteger currentPage;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
+@property (weak, nonatomic) IBOutlet UIButton *whiteLoginButton;
+@property (weak, nonatomic) IBOutlet UIButton *whiteRegisterButton;
+@property (weak, nonatomic) IBOutlet UIView *upfrontRegistrationcontainer;
+@property (weak, nonatomic) IBOutlet UIView *noRegistrationContainer;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *whiteButtons;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *blueButtons;
+@property (nonatomic, assign) CGSize lastLaidoutPageSize;
 
 - (IBAction)startPressed;
 
@@ -44,7 +55,6 @@
 - (id)init {
     self = [super initWithNibName:@"IntroViewController" bundle:nil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -54,9 +64,14 @@
 
     [self setReportedPage:NSNotFound];
 
-    [self.startButton setTitle:NSLocalizedString(@"intro.start.buttont.title", nil) forState:UIControlStateNormal];
-    [self.whiteStartButton setTitle:NSLocalizedString(@"intro.start.buttont.title", nil) forState:UIControlStateNormal];
+    [self.startButton setTitle:NSLocalizedString(@"intro.start.button.title", nil) forState:UIControlStateNormal];
+    [self.whiteStartButton setTitle:NSLocalizedString(@"intro.start.button.title", nil) forState:UIControlStateNormal];
 
+    [self.registerButton setTitle:NSLocalizedString(@"intro.register.button.title", nil) forState:UIControlStateNormal];
+    [self.whiteRegisterButton setTitle:NSLocalizedString(@"intro.register.button.title", nil) forState:UIControlStateNormal];
+    
+    [self.loginButton setTitle:NSLocalizedString(@"intro.login.button.title", nil) forState:UIControlStateNormal];
+    [self.whiteLoginButton setTitle:NSLocalizedString(@"intro.login.button.title", nil) forState:UIControlStateNormal];
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -85,34 +100,38 @@
     
     //Initialise with a invalid value to ensure layout first time around.
     self.lastLoadedIndex = -1;
+    self.upfrontRegistrationcontainer.hidden = !self.requireRegistration;
+    self.noRegistrationContainer.hidden = self.requireRegistration;
 
 }
 
--(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+-(void)viewWillAppear:(BOOL)animated
 {
-    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    self.pageBeforeRotation = self.pageControl.currentPage;
-}
-
--(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [super viewWillAppear:animated];
     self.lastLoadedIndex = -1; //Force re-layout
+    [self.scrollView setNeedsLayout];
     [self layoutScrollView];
-    self.scrollView.contentOffset = CGPointMake(self.pageBeforeRotation*self.scrollView.bounds.size.width, 0);
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 -(void)viewDidLayoutSubviews
 {
+    if(!CGSizeEqualToSize(self.lastLaidoutPageSize,self.scrollView.bounds.size))
+    {
+        self.lastLoadedIndex = -1;
+         self.scrollView.contentOffset = CGPointMake(self.currentPage*self.scrollView.bounds.size.width, 0);
+    }
     [self.scrollView setNeedsLayout];
     [self layoutScrollView];
     [self.view layoutSubviews];
     [super viewDidLayoutSubviews];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 
@@ -130,11 +149,13 @@
     [self.scrollView layoutIfNeeded];
     
     //Calculate leftmost index
-    NSInteger index = MAX(0,MIN(self.introData.count - 3 ,round(self.scrollView.contentOffset.x/self.scrollView.bounds.size.width) - 1));
+    NSInteger page = MAX(0,MIN(self.introData.count - 3 ,round(self.scrollView.contentOffset.x/self.scrollView.bounds.size.width) - 1));
     
-    if(index != self.lastLoadedIndex)
+    if(page != self.lastLoadedIndex)
     {
-        self.lastLoadedIndex = index;
+        NSUInteger index = page;
+        self.lastLoadedIndex = page;
+        
         for (IntroView *intro in self.introScreens) {
             CGRect introFrame = intro.frame;
             introFrame.size = self.scrollView.bounds.size;
@@ -144,6 +165,7 @@
             [self.scrollView addSubview:intro];
             index++;
         }
+        self.lastLaidoutPageSize = self.scrollView.bounds.size;
     }
     
     [self updateButtonAppearance];
@@ -169,10 +191,14 @@
     {
         //On one specific page
         BOOL useWhiteButton = [self.introData[index][@"useWhiteButton"] boolValue];
-        self.whiteStartButton.hidden = !useWhiteButton;
-        self.whiteStartButton.alpha = 1.0f;
-        self.startButton.hidden = useWhiteButton;
-        self.startButton.alpha = 1.0f;
+        [self modifyViews:self.whiteButtons withBlock:^(UIView *view) {
+            view.hidden = !useWhiteButton;
+            view.alpha = 1.0f;
+        }];
+        [self modifyViews:self.blueButtons withBlock:^(UIView *view) {
+            view.hidden = useWhiteButton;
+            view.alpha = 1.0f;
+        }];
     }
     else
     {
@@ -181,24 +207,37 @@
         BOOL rightPageUseWhiteButton =  [self.introData[index+1][@"useWhiteButton"] boolValue];
         if(leftPageUseWhiteButton != rightPageUseWhiteButton)
         {
-            self.whiteStartButton.hidden = NO;
-            self.whiteStartButton.alpha = relativeOffset - index;
-            self.startButton.hidden = NO;
-            self.startButton.alpha = 1.0f - self.whiteStartButton.alpha;
+            CGFloat whiteAlpha = relativeOffset - index;
+            [self modifyViews:self.whiteButtons withBlock:^(UIView *view) {
+                view.hidden = NO;
+                view.alpha = whiteAlpha;
+            }];
+            [self modifyViews:self.blueButtons withBlock:^(UIView *view) {
+                view.hidden = NO;
+                view.alpha = 1.0f - whiteAlpha;
+            }];
         }
         else if( leftPageUseWhiteButton && rightPageUseWhiteButton)
         {
-            self.whiteStartButton.hidden = NO;
-            self.whiteStartButton.alpha = 1.0f;
-            self.startButton.hidden = YES;
-            self.startButton.alpha = 1.0f;
+            [self modifyViews:self.whiteButtons withBlock:^(UIView *view) {
+                view.hidden = NO;
+                view.alpha = 1.0f;
+            }];
+            [self modifyViews:self.blueButtons withBlock:^(UIView *view) {
+                view.hidden = YES;
+                view.alpha = 1.0f;
+            }];
         }
         else if (!leftPageUseWhiteButton && !rightPageUseWhiteButton)
         {
-            self.whiteStartButton.hidden = YES;
-            self.whiteStartButton.alpha = 1.0f;
-            self.startButton.hidden = NO;
-            self.startButton.alpha = 1.0f;
+            [self modifyViews:self.whiteButtons withBlock:^(UIView *view) {
+                view.hidden = YES;
+                view.alpha = 1.0f;
+            }];
+            [self modifyViews:self.blueButtons withBlock:^(UIView *view) {
+                view.hidden = NO;
+                view.alpha = 1.0f;
+            }];
 
         }
     }
@@ -212,6 +251,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.pageControl updatePageNumberForScrollView:self.scrollView];
+    self.currentPage = [self.pageControl currentPage];
     [self updatePages];
 }
 
@@ -253,6 +293,17 @@
     return [[NSAttributedString alloc] initWithAttributedString:result];
 }
 
+-(void)modifyViews:(NSArray*)viewArray withBlock:(void(^)(UIView* view))modificationBlock
+{
+    if(modificationBlock)
+    {
+        for(UIView* view in viewArray)
+        {
+            modificationBlock(view);
+        }
+    }
+}
+
 - (IBAction)startPressed
 {
     [self.objectModel markIntroShown];
@@ -263,6 +314,19 @@
 	ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:mainController];
 	
 	((AppDelegate *)[[UIApplication sharedApplication] delegate]).window.rootViewController = root;
+}
+
+- (IBAction)logInTapped:(id)sender {
+    LoginViewController* login = [[LoginViewController alloc] initWithNibName:@"LoginViewControllerUpfront" bundle:nil];
+    login.objectModel = self.objectModel;
+    [self.navigationController pushViewController:login animated:YES];
+}
+
+
+- (IBAction)registerTapped:(id)sender {
+    SignUpViewController *signup = [[SignUpViewController alloc] init];
+    signup.objectModel = self.objectModel;
+    [self.navigationController pushViewController:signup animated:YES];
 }
 
 @end

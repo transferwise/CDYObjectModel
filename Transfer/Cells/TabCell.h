@@ -25,6 +25,7 @@ typedef BOOL(^TabItemActionBlock)(TabItem*);
 @property (nonatomic, strong) UIColor *highlightedColor;
 @property (nonatomic, strong) UIColor *textColor;
 @property (nonatomic, strong) UIColor *textSelectedColor;
+@property (nonatomic, strong) UIColor *flashColor;
 
 @property (nonatomic, assign) CGFloat deselectedAlpha;
 
@@ -39,5 +40,7 @@ typedef BOOL(^TabItemActionBlock)(TabItem*);
 -(void)configureWithTabItem:(TabItem*)item;
 -(void)configureForSelectedState:(BOOL)selected;
 -(void)configureForHighlightedState;
+
+-(void)setFlashOn:(BOOL)turnOn;
 
 @end

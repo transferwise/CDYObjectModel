@@ -33,8 +33,13 @@
         bankController.method = method;
         result = bankController;
     }
+    
     NSString *title = [NSString stringWithFormat:@"payment.method.%@",method.type];
     result.title = NSLocalizedString(title,nil);
+    if([result.title isEqualToString:title])
+    {
+        result.title = method.type;
+    }
     return result;
 }
 
