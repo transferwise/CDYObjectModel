@@ -398,25 +398,27 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"refund.controller.validating.message", nil)];
 
+    BOOL didCreateRecipient = NO;
 	if (!self.recipient)
 	{
+        didCreateRecipient = YES;
 		self.recipient = [self.objectModel createRecipient];
-		self.recipient.name = self.holderNameCell.value;
-		self.recipient.currency = self.currency;
-		self.recipient.type = self.recipientType;
-		
-		for (RecipientFieldCell *cell in self.recipientTypeFieldCells)
-		{
-			if ([cell isKindOfClass:[TransferTypeSelectionHeader class]])
-			{
-				continue;
-			}
-			
-			NSString *value = [cell value];
-			RecipientTypeField *field = cell.type;
-			[self.recipient setValue:[field stripPossiblePatternFromValue:value] forField:field];
-		}
-	}
+        self.recipient.name = self.holderNameCell.value;
+        self.recipient.currency = self.currency;
+        self.recipient.type = self.recipientType;
+        
+        for (RecipientFieldCell *cell in self.recipientTypeFieldCells)
+        {
+            if ([cell isKindOfClass:[TransferTypeSelectionHeader class]])
+            {
+                continue;
+            }
+            
+            NSString *value = [cell value];
+            RecipientTypeField *field = cell.type;
+            [self.recipient setValue:[field stripPossiblePatternFromValue:value] forField:field];
+        }
+    }
 
     [self.payment setRefundRecipient:self.recipient];
     [self.objectModel saveContext];
@@ -431,6 +433,11 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 
         if (error)
 		{
+            if(didCreateRecipient)
+            {
+                [weakSelf.objectModel deleteObject:self.recipient saveAfter:YES];
+                weakSelf.recipient = nil;
+            }
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"refund.controller.validation.error.title", nil) error:error];
             [alertView show];
             return;
@@ -485,6 +492,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 			[fieldCell setValue:@""];
 			[fieldCell setEditable:YES];
 		}
+        self.recipient=nil;
 		return;
 	}
 	
