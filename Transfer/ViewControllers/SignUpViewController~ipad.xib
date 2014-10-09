@@ -18,11 +18,11 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3" customClass="DismissKeyboardTableView">
-                    <rect key="frame" x="224" y="140" width="320" height="488"/>
+                    <rect key="frame" x="224" y="140" width="316" height="377"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="488" id="8dL-Vn-7am"/>
-                        <constraint firstAttribute="width" constant="320" id="jfn-MA-zkk"/>
+                        <constraint firstAttribute="height" constant="377" id="8dL-Vn-7am"/>
+                        <constraint firstAttribute="width" constant="316" id="jfn-MA-zkk"/>
                     </constraints>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="14"/>
@@ -30,7 +30,7 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2EZ-yE-GQd" customClass="BlueRoundedButton">
-                    <rect key="frame" x="357" y="684" width="55" height="34"/>
+                    <rect key="frame" x="357" y="609" width="55" height="34"/>
                     <state key="normal" title="Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -41,10 +41,10 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="3" secondAttribute="centerX" id="1t8-XX-FTb"/>
+                <constraint firstAttribute="centerX" secondItem="3" secondAttribute="centerX" constant="2" id="1t8-XX-FTb"/>
                 <constraint firstAttribute="centerX" secondItem="2EZ-yE-GQd" secondAttribute="centerX" id="98O-EB-Dw1"/>
-                <constraint firstAttribute="bottom" secondItem="2EZ-yE-GQd" secondAttribute="bottom" constant="50" id="Dkr-so-zbl"/>
-                <constraint firstAttribute="centerY" secondItem="3" secondAttribute="centerY" id="oSi-50-NCm"/>
+                <constraint firstAttribute="centerY" secondItem="3" secondAttribute="centerY" constant="55.5" id="oSi-50-NCm"/>
+                <constraint firstAttribute="centerY" secondItem="2EZ-yE-GQd" secondAttribute="centerY" constant="-242" id="vxB-Lc-5C3"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
