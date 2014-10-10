@@ -61,6 +61,8 @@ extern NSString *const TRWUploadProgressKey;
 extern NSString *const TRWUploadFileKey;
 extern NSString *const TRWAppType;
 extern NSString *const TRWRateAppUrl;
+extern NSString *const TRWToSUrl;
+extern NSString *const TRWPrivacyUrl;
 
 
 void delayedExecution(CGFloat seconds, TRWActionBlock action);

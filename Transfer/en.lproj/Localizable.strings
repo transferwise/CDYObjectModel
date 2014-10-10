@@ -696,3 +696,6 @@ We'll send you an email in order to let you choose a new password.";
 "empty.transfers" = "No transfers made yet?\nTap send to start.";
 "empty.contacts" = "No recipients saved.\nTap send to transfer money.";
 
+"registration.legaleze" = "By using TransferWise, you agree to our %@ & %@";
+"registration.tos" = "Terms of services";
+"registration.privacy" = "Privacy Policy";

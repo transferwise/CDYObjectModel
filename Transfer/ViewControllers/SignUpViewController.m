@@ -22,15 +22,17 @@
 #import "TransferBackButtonItem.h"
 #import "NavigationBarCustomiser.h"
 #import "LoginHelper.h"
+#import "MOMStyle.h"
 
 
-@interface SignUpViewController () <UITextFieldDelegate>
+@interface SignUpViewController () <UITextFieldDelegate, UITextViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIButton *registerButton;
 @property (nonatomic, strong) TextEntryCell *emailCell;
 @property (nonatomic, strong) TextEntryCell *passwordCell;
 @property (nonatomic, strong) TextEntryCell *confirmPasswordCell;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
+@property (weak, nonatomic) IBOutlet UITextView *legalezetextView;
 
 - (IBAction)signUpPressed:(id)sender;
 
@@ -87,6 +89,24 @@
         [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController
                                                                                                            isBlue:YES]];
     }
+    
+    NSString* tos = NSLocalizedString(@"registration.tos", nil);
+    NSString* privacy = NSLocalizedString(@"registration.privacy", nil);
+    NSString* legaleze = [NSString stringWithFormat:NSLocalizedString(@"registration.legaleze", nil),tos,privacy];
+    NSMutableAttributedString *attributedLegaleze = [NSMutableAttributedString attributedStringWithString:legaleze];
+    NSRange wholeString = NSMakeRange(0, [legaleze length]);
+    [attributedLegaleze addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:self.legalezetextView.fontStyle] range:wholeString];
+    [attributedLegaleze addAttribute:NSFontAttributeName value:[UIFont fontFromStyle:self.legalezetextView.fontStyle] range:wholeString];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setAlignment:NSTextAlignmentCenter];
+    [attributedLegaleze addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:wholeString];
+    NSRange tosRange = [legaleze rangeOfString:tos];
+    [attributedLegaleze addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%@%@",TRWServerAddress,TRWToSUrl] range:tosRange];
+    NSRange privacyRange = [legaleze rangeOfString:privacy];
+    [attributedLegaleze addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%@%@",TRWServerAddress,TRWPrivacyUrl] range:privacyRange];
+    self.legalezetextView.linkTextAttributes = @{NSForegroundColorAttributeName:[UIColor colorFromStyle:@"TWElectricBlue"]};
+    self.legalezetextView.attributedText = attributedLegaleze;
+    
 }
 
 - (NSAttributedString *)existingUserMessage {
@@ -182,6 +202,12 @@
     return [NSString stringWithString:issues];
 }
 
+#pragma mark - TextViewDelegate
+
+-(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
+{
+    return YES;
+}
 
 
 @end
