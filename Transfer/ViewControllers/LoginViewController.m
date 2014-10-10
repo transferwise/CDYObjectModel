@@ -172,6 +172,7 @@ IB_DESIGNABLE
 									   navigationControllerView:self.navigationController.view
 													objectModel:self.objectModel
 												   successBlock:^{
+                                                       [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"tw"];
                                                        [weakSelf processSuccessfulLogin];
 												   }
 									  waitForDetailsCompletions:YES];
@@ -236,6 +237,8 @@ IB_DESIGNABLE
                                                navigationControllerView:self.navigationController.view
                                                             objectModel:self.objectModel
                                                            successBlock:^{
+                                                               
+                                                               [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"touchID"];
                                                                [weakSelf processSuccessfulLogin];
                                                            }
                                                              errorBlock:^(NSError *error) {

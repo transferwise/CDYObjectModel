@@ -95,7 +95,6 @@
 			
             if (!error)
 			{
-                [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"tw"];
                 successBlock();
                 return;
             }

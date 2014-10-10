@@ -572,6 +572,7 @@
 								   navigationControllerView:self.navigationController.view
 												objectModel:self.objectModel
 											   successBlock:^{
+                                                   [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"tw"];
 												   [weakSelf reloadDataAfterLoginWithPayment:pendingPayment
 																			  sendAsBusiness:sendAsBusiness];
 											   }
