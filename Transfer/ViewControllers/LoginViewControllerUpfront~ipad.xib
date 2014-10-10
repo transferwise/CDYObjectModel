@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="xibNameForResetPassword" value="ResetPasswordViewControllerUpfront"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="emailSeparatorHeight" destination="vHM-sh-uTK" id="6zS-qk-KHI"/>
                 <outlet property="emailTextField" destination="jNz-Kj-TyF" id="RQo-Is-8f0"/>

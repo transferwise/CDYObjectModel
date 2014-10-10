@@ -154,6 +154,10 @@
 		385AC114198FE52E0088DCD6 /* NoRefCurrencyMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 385AC112198FE52E0088DCD6 /* NoRefCurrencyMessages.plist */; };
 		385AC116198FE5500088DCD6 /* intro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 385AC115198FE5500088DCD6 /* intro.plist */; };
 		385AC117198FE5500088DCD6 /* intro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 385AC115198FE5500088DCD6 /* intro.plist */; };
+		3863B82119E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3863B82019E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib */; };
+		3863B82219E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3863B82019E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib */; };
+		3863B82419E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3863B82319E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib */; };
+		3863B82519E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3863B82319E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib */; };
 		38675454198B977800DEA359 /* RefundDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */; };
 		38675455198B977800DEA359 /* RefundDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */; };
 		38675457198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */; };
@@ -1021,6 +1025,8 @@
 		385AC10F198FE2190088DCD6 /* SharpSansFrontieres-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SharpSansFrontieres-Bold.otf"; sourceTree = "<group>"; };
 		385AC112198FE52E0088DCD6 /* NoRefCurrencyMessages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NoRefCurrencyMessages.plist; sourceTree = "<group>"; };
 		385AC115198FE5500088DCD6 /* intro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = intro.plist; sourceTree = "<group>"; };
+		3863B82019E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResetPasswordViewControllerUpfront.xib; sourceTree = "<group>"; };
+		3863B82319E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResetPasswordViewControllerUpfront~ipad.xib"; sourceTree = "<group>"; };
 		38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RefundDetailsViewController~ipad.xib"; sourceTree = "<group>"; };
 		38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransferTypeSelectionHeaderNoTitle~ipad.xib"; sourceTree = "<group>"; };
 		386B039B19DD687C002285EF /* LoginViewControllerUpfront.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewControllerUpfront.xib; sourceTree = "<group>"; };
@@ -2597,8 +2603,10 @@
 				38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */,
 				EAB6170B191CD61900545C21 /* ResetPasswordViewController.h */,
 				EAB6170C191CD61900545C21 /* ResetPasswordViewController.m */,
+				3863B82019E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib */,
 				EAB6170D191CD61900545C21 /* ResetPasswordViewController.xib */,
 				4723EA1F1974363000B4345F /* ResetPasswordViewController~ipad.xib */,
+				3863B82319E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib */,
 				383FC10419AE1B8300465FCA /* SeeHowViewController.h */,
 				383FC10519AE1B8300465FCA /* SeeHowViewController.m */,
 				383FC10619AE1B8300465FCA /* SeeHowViewController.xib */,
@@ -2861,6 +2869,7 @@
 				EA31A1E617DDB29B00F937F7 /* SettingsViewController.xib in Resources */,
 				EAD3646717E1E19A001EFE40 /* Assets.xcassets in Resources */,
 				47AC3F9A1987B2C3005491C6 /* SuggestionCell.xib in Resources */,
+				3863B82219E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib in Resources */,
 				EA31A1E717DDB29B00F937F7 /* SettingsTitleCell.xib in Resources */,
 				47FAF354194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */,
 				38B4CB6219DC00FC004173C9 /* IntroViewController~ipad.xib in Resources */,
@@ -2899,6 +2908,7 @@
 				38C0394D19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */,
 				3840D34A19A4D90F00D1485A /* RecipientFieldCell~ipad.xib in Resources */,
 				38B52FA1199B63B600B6AEBD /* InvitationsViewController.xib in Resources */,
+				3863B82519E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib in Resources */,
 				38288F5119C86DC200661BFB /* PaymentMethodCell.xib in Resources */,
 				EAB61711191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
 				EA31A1F017DDB29B00F937F7 /* DateEntryCell.xib in Resources */,
@@ -3008,6 +3018,7 @@
 				BBC691251721416300F0FB1A /* TSAlertViewCancelButtonBackground.png in Resources */,
 				EA0450D617EC5BC1008921DA /* IntroViewController.xib in Resources */,
 				47FAF353194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */,
+				3863B82119E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib in Resources */,
 				385AC110198FE2190088DCD6 /* SharpSansFrontieres-Bold.otf in Resources */,
 				3840863419A368DD00C837C2 /* PersonalProfileIdentificationViewController~ipad.xib in Resources */,
 				38B4CB6119DC00FC004173C9 /* IntroViewController~ipad.xib in Resources */,
@@ -3046,6 +3057,7 @@
 				38C0394C19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */,
 				473DF975196D637200524C64 /* LoginViewController~ipad.xib in Resources */,
 				EA35C77217327981005602F7 /* PaymentCell.xib in Resources */,
+				3863B82419E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib in Resources */,
 				38288F5019C86DC200661BFB /* PaymentMethodCell.xib in Resources */,
 				EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */,
 				EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */,
