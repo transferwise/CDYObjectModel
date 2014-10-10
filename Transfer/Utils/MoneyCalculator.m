@@ -150,6 +150,7 @@
     PairTargetCurrency* target = [self.objectModel pairTargetWithSource:self.waitingSourceCurrency target:self.waitingTargetCurrency];
     if(!target.fixedTargetPaymentAllowedValue && self.amountCurrency == TargetCurrency)
     {
+        [self setWaitingAmount:[self.sendCell amount]];
         self.amountCurrency = SourceCurrency;
     }
 }
