@@ -7,16 +7,17 @@
 
 #import <UIKit/UIKit.h>
 
+IB_DESIGNABLE
 @interface UIView (MOMStyle)
 
-@property (nonatomic, strong) NSString* bgStyle;
-@property (nonatomic, strong) NSString* fontStyle;
-@property (nonatomic, strong) NSString* selectedBgStyle;
-@property (nonatomic, strong) NSString* selectedFontStyle;
-@property (nonatomic, strong) NSString* highlightedBgStyle;
-@property (nonatomic, strong) NSString* highlightedFontStyle;
-@property (nonatomic, strong) NSString* compoundStyle;
-@property (nonatomic, strong) NSString* appearanceStyle;
+@property (nonatomic, strong) IBInspectable NSString* bgStyle;
+@property (nonatomic, strong) IBInspectable NSString* fontStyle;
+@property (nonatomic, strong) IBInspectable NSString* selectedBgStyle;
+@property (nonatomic, strong) IBInspectable NSString* selectedFontStyle;
+@property (nonatomic, strong) IBInspectable NSString* highlightedBgStyle;
+@property (nonatomic, strong) IBInspectable NSString* highlightedFontStyle;
+@property (nonatomic, strong) IBInspectable NSString* compoundStyle;
+@property (nonatomic, strong) IBInspectable NSString* appearanceStyle;
 
 -(void)recursivelyReapplyStyles;
 
