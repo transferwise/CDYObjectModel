@@ -7,7 +7,10 @@
 
 #import <UIKit/UIKit.h>
 
-IB_DESIGNABLE
+#ifndef IBInspectable
+#define IBInspectable
+#endif
+
 @interface UIView (MOMStyle)
 
 @property (nonatomic, strong) IBInspectable NSString* bgStyle;
