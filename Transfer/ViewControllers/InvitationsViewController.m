@@ -100,68 +100,70 @@
 
 - (void)loadProfileImagesWithUser:(User *)user
 {
-	NSString* ownNumber = user.personalProfile.phoneNumber;
-	
-	if (ownNumber)
-	{
-		AddressBookManager *manager = [[AddressBookManager alloc] init];
-		
-		[manager getPhoneLookupWithHandler:^(NSArray *phoneLookup) {
-			NSMutableArray* matchingLookups = [[NSMutableArray alloc] initWithCapacity:self.profilePictures.count];
-			
-			//get profiles having pics, at least 2 numbers and of those 1 has the same country code
-			for (PhoneLookupWrapper *wrapper in phoneLookup)
-			{
-				if(matchingLookups.count >= self.profilePictures.count)
-				{
-					break;
-				}
-				
-				if ([wrapper hasPhonesWithDifferentCountryCodes]
-					&& [wrapper hasPhoneWithMatchingCountryCode:ownNumber])
-				{
-					[matchingLookups addObject:wrapper];
-				}
-			}
-			
-			//if we didn't get the necessary amount, try to get more ignoring the "same country code" rule
-			if (matchingLookups.count < self.profilePictures.count)
-			{
-				for (PhoneLookupWrapper *wrapper in phoneLookup)
-				{
-					if ([wrapper hasPhonesWithDifferentCountryCodes]
-						&& [matchingLookups indexOfObject:wrapper] == NSNotFound)
-					{
-						[matchingLookups addObject:wrapper];
-						
-						if (matchingLookups.count >= self.profilePictures.count)
-						{
-							break;
-						}
-					}
-				}
-			}
-			
-			//get images for chosen wrappers
-			NSInteger limit = (matchingLookups.count < self.profilePictures.count) ? matchingLookups.count : self.profilePictures.count;
-			for (NSInteger i = 0; i < limit; i++)
-			{
-				[manager getImageForRecordId:((PhoneLookupWrapper *)matchingLookups[i]).recordId
-							   requestAccess:NO
-								  completion:^(UIImage *image) {
-									  UIImageView *viewToChange = ((UIImageView *)self.profilePictures[i]);
-									  [UIView transitionWithView:viewToChange
-														duration:0.5f
-														 options:UIViewAnimationOptionTransitionCrossDissolve
-													  animations:^{
-														  viewToChange.image = image;
-													  }
-													  completion:nil];
-								  }];
-			}
-		}
-							 requestAccess:NO];
-	}
+    AddressBookManager *manager = [[AddressBookManager alloc] init];
+    
+    [manager getPhoneLookupWithHandler:^(NSArray *phoneLookup) {
+        
+        NSMutableArray* matchingLookups = [[NSMutableArray alloc] initWithCapacity:self.profilePictures.count];
+        
+        NSString* ownNumber = user.personalProfile.phoneNumber;
+        if (ownNumber)
+        {
+            
+            //get profiles having pics, at least 2 numbers and of those 1 has the same country code
+            for (PhoneLookupWrapper *wrapper in phoneLookup)
+            {
+                if(matchingLookups.count >= self.profilePictures.count)
+                {
+                    break;
+                }
+                
+                if ([wrapper hasPhonesWithDifferentCountryCodes]
+                    && [wrapper hasPhoneWithMatchingCountryCode:ownNumber])
+                {
+                    [matchingLookups addObject:wrapper];
+                }
+            }
+        }
+        
+        //if we didn't get the necessary amount, try to get more ignoring the "same country code" rule
+        if (matchingLookups.count < self.profilePictures.count)
+        {
+            for (PhoneLookupWrapper *wrapper in phoneLookup)
+            {
+                if ([wrapper hasPhonesWithDifferentCountryCodes]
+                    && [matchingLookups indexOfObject:wrapper] == NSNotFound)
+                {
+                    [matchingLookups addObject:wrapper];
+                    
+                    if (matchingLookups.count >= self.profilePictures.count)
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+        
+        //get images for chosen wrappers
+        NSInteger limit = (matchingLookups.count < self.profilePictures.count) ? matchingLookups.count : self.profilePictures.count;
+        for (NSInteger i = 0; i < limit; i++)
+        {
+            [[GoogleAnalytics sharedInstance] sendEvent:@"expatsfoundinAB" category:@"recipient" label:[NSString stringWithFormat:@"%ld",(unsigned long)matchingLookups.count]];
+            [manager getImageForRecordId:((PhoneLookupWrapper *)matchingLookups[i]).recordId
+                           requestAccess:NO
+                              completion:^(UIImage *image) {
+                                  UIImageView *viewToChange = ((UIImageView *)self.profilePictures[i]);
+                                  [UIView transitionWithView:viewToChange
+                                                    duration:0.5f
+                                                     options:UIViewAnimationOptionTransitionCrossDissolve
+                                                  animations:^{
+                                                      viewToChange.image = image;
+                                                  }
+                                                  completion:nil];
+                              }];
+        }
+    }
+                         requestAccess:NO];
 }
 
 -(void)setProgress:(NSUInteger)progress
