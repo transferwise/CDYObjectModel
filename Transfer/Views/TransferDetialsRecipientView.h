@@ -13,6 +13,8 @@
 
 @interface TransferDetialsRecipientView : IntrinsicSizeUIView
 
+- (void)configureBlank;
+
 - (void)configureWithRecipient:(Recipient *)recipient;
 
 @end

@@ -171,7 +171,14 @@
 
 - (void)setUpAccounts
 {
-	[self.accountView configureWithRecipient:self.payment.recipient];
+    if(self.payment.status == PaymentStatusCancelled || self.payment.status == PaymentStatusRefunded)
+    {
+        [self.accountView configureBlank];
+    }
+    else
+    {
+        [self.accountView configureWithRecipient:self.payment.recipient];
+    }
 }
 
 - (IBAction)contactSupportPressed
