@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
@@ -62,7 +63,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1z-HI-x7D" userLabel="Login Button" customClass="BlueRoundedButton">
-                    <rect key="frame" x="462" y="284" width="100" height="44"/>
+                    <rect key="frame" x="297" y="284" width="100" height="44"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="OYp-dd-r59"/>
                         <constraint firstAttribute="height" constant="44" id="XQM-j6-8CV"/>
@@ -75,10 +76,10 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5AO-Ch-ke6" customClass="IntrinsicSizeUIView">
-                    <rect key="frame" x="0.0" y="417" width="1024" height="352"/>
+                    <rect key="frame" x="0.0" y="416" width="1024" height="351.5"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2S-88-Izr" userLabel="Or Label">
-                            <rect key="frame" x="491" y="45" width="42" height="21"/>
+                            <rect key="frame" x="491" y="45" width="42" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
@@ -87,7 +88,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8f-4O-fgG" userLabel="Yahoo Login Button" customClass="YahooButton">
-                            <rect key="frame" x="297" y="156" width="430" height="55"/>
+                            <rect key="frame" x="297" y="155.5" width="430" height="55"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="55" id="P8x-ZE-LrH"/>
                             </constraints>
@@ -102,7 +103,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQJ-ts-mwH" userLabel="Google Login Button" customClass="GoogleButton">
-                            <rect key="frame" x="297" y="81" width="430" height="55"/>
+                            <rect key="frame" x="297" y="80.5" width="430" height="55"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="55" id="dpd-QZ-jck"/>
                             </constraints>
@@ -126,9 +127,12 @@
                         <constraint firstAttribute="centerX" secondItem="Z2S-88-Izr" secondAttribute="centerX" id="qDI-se-Q31"/>
                         <constraint firstItem="Z2S-88-Izr" firstAttribute="top" secondItem="5AO-Ch-ke6" secondAttribute="top" constant="45" id="rLP-as-dUi"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="LightBlue"/>
+                    </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVw-3E-NCJ" userLabel="Forgot Password Label">
-                    <rect key="frame" x="491" y="369" width="42" height="21"/>
+                    <rect key="frame" x="685" y="295" width="42" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -140,16 +144,17 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="RCm-Tg-pZv" firstAttribute="centerX" secondItem="jNz-Kj-TyF" secondAttribute="centerX" id="3od-ps-FcN"/>
-                <constraint firstItem="5AO-Ch-ke6" firstAttribute="top" secondItem="nVw-3E-NCJ" secondAttribute="bottom" constant="27" id="5Du-w1-TdR"/>
+                <constraint firstItem="5AO-Ch-ke6" firstAttribute="top" secondItem="nVw-3E-NCJ" secondAttribute="bottom" constant="100" id="5Du-w1-TdR"/>
                 <constraint firstItem="seY-db-tL6" firstAttribute="top" secondItem="RCm-Tg-pZv" secondAttribute="bottom" constant="10" id="5Yi-s1-iW8"/>
+                <constraint firstItem="nVw-3E-NCJ" firstAttribute="top" secondItem="RCm-Tg-pZv" secondAttribute="bottom" constant="62" id="7hq-eq-M2M"/>
                 <constraint firstItem="71E-0J-nDm" firstAttribute="top" secondItem="jNz-Kj-TyF" secondAttribute="bottom" constant="10" id="DPJ-hD-RWC"/>
                 <constraint firstItem="seY-db-tL6" firstAttribute="centerX" secondItem="RCm-Tg-pZv" secondAttribute="centerX" id="FDb-IC-8Jx"/>
-                <constraint firstItem="nVw-3E-NCJ" firstAttribute="top" secondItem="A1z-HI-x7D" secondAttribute="bottom" constant="41" id="HEA-xl-lqZ"/>
-                <constraint firstItem="RCm-Tg-pZv" firstAttribute="centerX" secondItem="A1z-HI-x7D" secondAttribute="centerX" id="ONo-CJ-pqQ"/>
+                <constraint firstItem="nVw-3E-NCJ" firstAttribute="trailing" secondItem="RCm-Tg-pZv" secondAttribute="trailing" id="OK1-iL-K7J"/>
                 <constraint firstItem="RCm-Tg-pZv" firstAttribute="width" secondItem="jNz-Kj-TyF" secondAttribute="width" id="OYl-jk-nK6"/>
                 <constraint firstItem="seY-db-tL6" firstAttribute="width" secondItem="RCm-Tg-pZv" secondAttribute="width" id="aAE-eW-HRV"/>
                 <constraint firstItem="71E-0J-nDm" firstAttribute="width" secondItem="jNz-Kj-TyF" secondAttribute="width" id="alY-vK-ymg"/>
                 <constraint firstItem="A1z-HI-x7D" firstAttribute="top" secondItem="seY-db-tL6" secondAttribute="bottom" constant="40" id="c9M-eF-Bjr"/>
+                <constraint firstItem="A1z-HI-x7D" firstAttribute="leading" secondItem="RCm-Tg-pZv" secondAttribute="leading" id="hIW-Nu-I7L"/>
                 <constraint firstItem="jNz-Kj-TyF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="72" id="hpb-RC-0d1"/>
                 <constraint firstAttribute="bottom" secondItem="5AO-Ch-ke6" secondAttribute="bottom" id="kIl-X3-hS4"/>
                 <constraint firstItem="RCm-Tg-pZv" firstAttribute="top" secondItem="71E-0J-nDm" secondAttribute="bottom" constant="10" id="kXr-8o-Sdd"/>
@@ -158,7 +163,6 @@
                 <constraint firstAttribute="trailing" secondItem="5AO-Ch-ke6" secondAttribute="trailing" id="tvc-Za-e4G"/>
                 <constraint firstItem="5AO-Ch-ke6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uqO-gY-Qek"/>
                 <constraint firstItem="RCm-Tg-pZv" firstAttribute="width" secondItem="ZQJ-ts-mwH" secondAttribute="width" id="yZx-Vb-DqJ"/>
-                <constraint firstItem="A1z-HI-x7D" firstAttribute="centerX" secondItem="nVw-3E-NCJ" secondAttribute="centerX" id="zDk-Py-K15"/>
             </constraints>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
         </view>
