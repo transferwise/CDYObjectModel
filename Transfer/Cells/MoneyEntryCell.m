@@ -78,7 +78,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 - (void)initializeSelectorBackground
 {
 	MOMCompoundStyle* style = (MOMCompoundStyle*)[MOMStyleFactory getStyleForIdentifier:self.currencyButton.compoundStyle];
-    self.selectorBackgroundColor = [(MOMBasicStyle*)style.highlightedBgStyle color];
+    self.selectorBackgroundColor = [(MOMBasicStyle*)([UIVisualEffectView class]?style.selectedBgStyle:style.highlightedBgStyle) color];
 }
 
 - (NSString *)amount
@@ -158,7 +158,7 @@ NSString *const TWMoneyEntryCellIdentifier = @"TWMoneyEntryCell";
 		selector.currencySelectorDelegate = self;
 		selector.currencyArray = [self.currencies.fetchedObjects valueForKey:@"currency"];
 		[selector setSelectedCurrency:self.selectedCurrency];
-		selector.view.backgroundColor = self.selectorBackgroundColor;
+        selector.view.backgroundColor = self.selectorBackgroundColor;
 		[selector presentOnViewController:self.hostForCurrencySelector];
 	}
 }

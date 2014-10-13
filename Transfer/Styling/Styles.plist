@@ -271,6 +271,8 @@
 			<string>TWblue.alpha2</string>
 			<key>bgStyle</key>
 			<string>TWBlue</string>
+			<key>selectedBgStyle</key>
+			<string>TWblue.alpha7</string>
 		</dict>
 		<key>getButton</key>
 		<dict>
@@ -280,6 +282,8 @@
 			<string>TWBlueHighlighted.alpha2</string>
 			<key>bgStyle</key>
 			<string>TWBlueHighlighted</string>
+			<key>selectedBgStyle</key>
+			<string>TWBlueHighlighted.alpha7</string>
 		</dict>
 		<key>greenButton</key>
 		<dict>

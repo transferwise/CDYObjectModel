@@ -106,7 +106,7 @@
                 blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
                 table.tableView.backgroundView = blurEffectView;
                 UIView *colorOverlay = [[UIView alloc] initWithFrame:blurEffectView.bounds];
-                colorOverlay.bgStyle = @"DarkFont.alpha4";
+                colorOverlay.bgStyle = @"DarkFont.alpha7";
                 colorOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
                 [blurEffectView addSubview:colorOverlay];
             }
