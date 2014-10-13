@@ -27,6 +27,7 @@
 	self.businessProfile = [[BusinessProfileViewController alloc] initWithActionButtonTitle:self.buttonTitle ? self.buttonTitle :  NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
 	self.businessProfile.objectModel = self.objectModel;
 	self.businessProfile.showFooterViewForIpad = YES;
+    self.businessProfile.isShownInPaymentFlow = YES;
 	
 	if(self.profileValidation)
 	{

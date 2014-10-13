@@ -35,6 +35,7 @@
 	self.personalProfile.allowProfileSwitch = self.allowProfileSwitch;
 	self.personalProfile.delegate = self;
 	self.personalProfile.showFooterViewForIpad = YES;
+    self.personalProfile.isShownInPaymentFlow = YES;
 	
 	if(self.profileValidation)
 	{
