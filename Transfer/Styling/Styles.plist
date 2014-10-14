@@ -61,6 +61,11 @@
 				<key>alpha</key>
 				<real>0.8</real>
 			</dict>
+			<key>iOS8alpha</key>
+			<dict>
+				<key>alpha</key>
+				<real>0.7</real>
+			</dict>
 			<key>Black</key>
 			<dict>
 				<key>color</key>
@@ -272,7 +277,7 @@
 			<key>bgStyle</key>
 			<string>TWBlue</string>
 			<key>selectedBgStyle</key>
-			<string>TWblue.alpha7</string>
+			<string>TWblue.iOS8alpha</string>
 		</dict>
 		<key>getButton</key>
 		<dict>
@@ -283,7 +288,7 @@
 			<key>bgStyle</key>
 			<string>TWBlueHighlighted</string>
 			<key>selectedBgStyle</key>
-			<string>TWBlueHighlighted.alpha7</string>
+			<string>TWBlueHighlighted.iOS8alpha</string>
 		</dict>
 		<key>greenButton</key>
 		<dict>

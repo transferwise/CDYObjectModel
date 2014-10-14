@@ -9,6 +9,7 @@
 #import "SeeHowView.h"
 #import "TransferCalculationsOperation.h"
 #import "CalculationResult.h"
+#import "MOMStyle.h"
 
 @interface SeeHowView ()
 
@@ -35,6 +36,9 @@
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UIButton *actionButton;
 
+@property (nonatomic, weak) IBOutlet UIView *leftColumnBackground;
+@property (nonatomic, weak) IBOutlet UIView *rightColumnBackground;
+
 
 
 
@@ -54,6 +58,11 @@
     self.rateLabel.text = NSLocalizedString(@"why.popup.rate", nil);
     self.feeLabel.text = NSLocalizedString(@"why.popup.fee", nil);
     self.titleLabel.text = NSLocalizedString(@"why.popup.title", nil);
+    if([UIVisualEffectView class])
+    {
+        self.leftColumnBackground.bgStyle = [self.leftColumnBackground.bgStyle stringByAppendingString:@".iOS8alpha"];
+        self.rightColumnBackground.bgStyle = [self.rightColumnBackground.bgStyle stringByAppendingString:@".iOS8alpha"];
+    }
 }
 
 

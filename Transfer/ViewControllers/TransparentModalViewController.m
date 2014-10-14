@@ -26,7 +26,7 @@
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     if(self.view.bgStyle && [UIVisualEffectView class])
     {
-        self.view.bgStyle = [self.view.bgStyle stringByAppendingString:@".alpha7"];
+        self.view.bgStyle = [self.view.bgStyle stringByAppendingString:@".iOS8alpha"];
     }
 }
 

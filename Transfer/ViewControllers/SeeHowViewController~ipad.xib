@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
@@ -293,7 +293,9 @@
                 <outlet property="bankTransferFeeLabel" destination="oEy-fq-pFN" id="tSq-cA-4hZ"/>
                 <outlet property="bankTransferRateTitleLabel" destination="jeu-hO-XCw" id="nwW-J7-49r"/>
                 <outlet property="feeLabel" destination="Rn5-xO-UfR" id="9yE-cx-jAa"/>
+                <outlet property="leftColumnBackground" destination="juB-fg-Pju" id="0va-lh-6H7"/>
                 <outlet property="rateLabel" destination="ddh-nr-r7e" id="QCa-WD-LU1"/>
+                <outlet property="rightColumnBackground" destination="aGZ-IH-zOS" id="LIm-us-dgI"/>
                 <outlet property="titleLabel" destination="ehO-9s-ggY" id="5jE-0g-Du9"/>
                 <outlet property="transferWiseHeaderImage" destination="5nc-A1-Mof" id="FOB-nv-Vs2"/>
                 <outlet property="transferwiseRateLabel" destination="rG1-Fu-9Ba" id="wT0-2o-3Uf"/>
