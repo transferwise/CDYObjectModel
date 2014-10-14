@@ -115,5 +115,24 @@
     return formatted;
 }
 
+- (NSString *)getInitials
+{
+ 
+    NSMutableString* result = [NSMutableString string];
+    NSArray *components = [self componentsSeparatedByString:@" "];
+    components = [components filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"length > 0"]];
+    
+    if([components count] > 2)
+    {
+        components = @[components[0],[components lastObject]];
+    }
+    
+    for(NSString* component in components)
+    {
+        [result appendString:[[component substringToIndex:1] uppercaseString]];
+    }
+    
+    return [NSString stringWithString:result];
+}
 
 @end

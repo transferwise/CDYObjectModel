@@ -12,6 +12,7 @@
 #import "NameSuggestionCell.h"
 #import "MOMstyle.h"
 #import "Recipient.h"
+#import "NSString+Presentation.h"
 
 
 @interface NameSuggestionCellProvider ()
@@ -150,17 +151,28 @@
     cell.nameLabel.attributedText = attributedText;
     
     cell.emailLabel.text = wrapper.email;
-    cell.tag = wrapper.recordId;
     cell.thumbnailImage.hidden = YES;
-    [self.addressBookManager getImageForRecordId:wrapper.recordId
-								   requestAccess:YES
-									  completion:^(UIImage *image) {
-        if(image && cell.tag == wrapper.recordId)
+    [self.addressBookManager getImageForEmail:wrapper.email requestAccess:YES completion:^(UIImage *image) {
+        if(image && [cell.emailLabel.text isEqualToString:wrapper.email])
         {
             cell.thumbnailImage.hidden = NO;
             cell.thumbnailImage.image = image;
+            cell.initialsLabel.hidden = YES;
         }
     }];
+    
+    if(wrapper.managedObjectId)
+    {
+        cell.transferwiseIndicator.hidden = NO;
+        cell.initialsLabel.hidden = NO;
+        cell.initialsLabel.text = [text getInitials];
+    }
+    else
+    {
+        cell.transferwiseIndicator.hidden = YES;
+        cell.initialsLabel.hidden = YES;
+    }
+    
     return cell;
 }
 

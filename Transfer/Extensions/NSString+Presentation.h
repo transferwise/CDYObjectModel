@@ -15,5 +15,5 @@
 - (NSString *)stringByRemovingPatterChar:(NSString *)pattern;
 - (NSString *)stringByAddingPatternChar:(NSString *)pattern;
 - (NSString *)moneyFormatting;
-
+- (NSString *)getInitials;
 @end
