@@ -16,7 +16,6 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *accountHeaderLabel;
 @property (strong, nonatomic) IBOutlet UILabel *detailsLabel;
-@property (weak, nonatomic) IBOutlet UIView *separatorLine;
 
 @end
 
@@ -29,13 +28,6 @@
         // Initialization code
     }
     return self;
-}
-
--(void)configureBlank
-{
-    self.accountHeaderLabel.text = @"";
-    self.detailsLabel.text = @"";
-    self.separatorLine.hidden = YES;
 }
 
 - (void)configureWithRecipient:(Recipient *)recipient
