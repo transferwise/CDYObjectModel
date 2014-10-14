@@ -148,7 +148,6 @@
         NSInteger limit = (matchingLookups.count < self.profilePictures.count) ? matchingLookups.count : self.profilePictures.count;
         for (NSInteger i = 0; i < limit; i++)
         {
-            [[GoogleAnalytics sharedInstance] sendEvent:@"expatsfoundinAB" category:@"recipient" label:[NSString stringWithFormat:@"%ld",(unsigned long)matchingLookups.count]];
             [manager getImageForRecordId:((PhoneLookupWrapper *)matchingLookups[i]).recordId
                            requestAccess:NO
                               completion:^(UIImage *image) {
@@ -162,6 +161,27 @@
                                                   completion:nil];
                               }];
         }
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            NSUInteger totalCount = limit;
+            if (limit < 1)
+            {
+                return;
+            }
+            if(limit >= [self.profilePictures count])
+            {
+                totalCount = 0;
+                for (PhoneLookupWrapper *wrapper in phoneLookup)
+                {
+                    if ([wrapper hasPhonesWithDifferentCountryCodes])
+                    {
+                        totalCount++;
+                    }
+                }
+            }
+            [[GoogleAnalytics sharedInstance] sendEvent:@"expatsfoundinAB" category:@"recipient" label:[NSString stringWithFormat:@"%ld",(unsigned long)totalCount]];
+        });
+        
     }
                          requestAccess:NO];
 }
