@@ -23,6 +23,9 @@
 #import "ProfilesEditViewController.h"
 #import "InvitationsViewController.h"
 #import "SendButtonFlashHelper.h"
+#import "TAGManager.h"
+#import "TAGContainerOpener.h"
+
 
 @interface MainViewController () <UINavigationControllerDelegate>
 
@@ -33,6 +36,7 @@
 @property (nonatomic, strong) ProfilesEditViewController *profileController;
 @property (nonatomic, assign) BOOL launchTableViewGamAdjustmentDone;
 @property (nonatomic) BOOL shown;
+@property (nonatomic, strong) id<TAGContainerFuture> future;
 
 @end
 
@@ -47,6 +51,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentsList) name:TRWMoveToPaymentsListNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentView) name:TRWMoveToPaymentViewNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSendButtonFlashNotification:) name:TRWChangeSendButtonFlashStatusNotification object:nil];
+        _future = [TAGContainerOpener openContainerWithId:TRWGoogleTagManagerContainerId tagManager:[TAGManager instance] openType:kTAGOpenTypePreferNonDefault timeout:nil];
     }
     return self;
 }
@@ -178,7 +183,12 @@
 - (ConnectionAwareViewController *)getAnonymousViewController
 {
 	UIViewController *presented;
-	if ([self.objectModel shouldShowDirectUserSignup])
+    
+    TAGContainer* container = [self.future get];
+    //TODO: Use A/B test
+    BOOL requireRegistration = YES;//[container booleanForKey:@"proposeRegistrationUpfront"];
+    
+	if (requireRegistration)
 	{
         IntroViewController *introController = [[IntroViewController alloc] init];
         [introController setObjectModel:self.objectModel];

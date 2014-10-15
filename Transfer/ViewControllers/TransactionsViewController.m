@@ -293,7 +293,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 			
 			[self.tableView reloadData];
             
-            if(totalCount == 0)
+            if(!error && totalCount == 0)
             {
                 self.noTransfersMessage.hidden = NO;
                 self.noTransfersMessage.alpha = 0.0f;

@@ -28,6 +28,8 @@
 #import "MainViewController.h"
 #import "ConnectionAwareViewController.h"
 
+IB_DESIGNABLE
+
 @interface LoginViewController () <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *emailTextField;
@@ -41,6 +43,8 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *passwordSeparatorHeight;
 @property (strong, nonatomic) LoginHelper *loginHelper;
 @property (weak, nonatomic) IBOutlet UIButton *touchIdButton;
+
+@property (nonatomic, strong) IBInspectable NSString* xibNameForResetPassword;
 
 @end
 
@@ -168,6 +172,7 @@
 									   navigationControllerView:self.navigationController.view
 													objectModel:self.objectModel
 												   successBlock:^{
+                                                       [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"tw"];
                                                        [weakSelf processSuccessfulLogin];
 												   }
 									  waitForDetailsCompletions:YES];
@@ -210,7 +215,7 @@
 #pragma mark - Password reset
 - (void)forgotPasswordTapped
 {
-    ResetPasswordViewController *controller = [[ResetPasswordViewController alloc] init];
+    ResetPasswordViewController *controller = self.xibNameForResetPassword?[[ResetPasswordViewController alloc] initWithNibName:self.xibNameForResetPassword bundle:nil]:[[ResetPasswordViewController alloc] init];
     [controller setObjectModel:self.objectModel];
 	controller.delegate = self;
     [self.navigationController pushViewController:controller animated:YES];
@@ -232,6 +237,8 @@
                                                navigationControllerView:self.navigationController.view
                                                             objectModel:self.objectModel
                                                            successBlock:^{
+                                                               
+                                                               [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"touchID"];
                                                                [weakSelf processSuccessfulLogin];
                                                            }
                                                              errorBlock:^(NSError *error) {

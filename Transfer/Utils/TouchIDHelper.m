@@ -10,6 +10,7 @@
 #import <LocalAuthentication/LocalAuthentication.h>
 #import <Lockbox.h>
 #import "TRWAlertView.h"
+#import "GoogleAnalytics.h"
 
 #define localUser @"localUser"
 #define localPass @"localPass"
@@ -68,12 +69,12 @@
                                       TRWAlertView* alert = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"touchid.alert.title", nil) message:[error localizedDescription]];
                                       [alert setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
                                       [alert show];
+                                      [[GoogleAnalytics sharedInstance] sendAlertEvent:@"TouchIDError" withLabel:[error localizedDescription]];
                                   }
                                   
                                   if(resultBlock)
                                   {
                                       resultBlock(success);
-                                      
                                   };
                               });
                           }];

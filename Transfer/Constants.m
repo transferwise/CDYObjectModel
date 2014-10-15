@@ -14,7 +14,7 @@ NSString *const TRWMoveToPaymentViewNotification = @"TRWMoveToPaymentViewNotific
 
 #if DEV_VERSION
 NSString *const TRWApplicationKey = @"ad8d836d18ec18fbd4ccc7bffd71eb54";
-NSString *const TRWServerAddress = @"https://canis.transferwise.com";
+NSString *const TRWServerAddress = @"https://api-sandbox.transferwise.com";
 #else
 NSString *const TRWApplicationKey = @"pfwk97car71rtatr1656zqyatd343dsq";
 NSString *const TRWServerAddress = @"https://transferwise.com";
@@ -45,6 +45,8 @@ NSString *const TRWImpactRadiusSID = @"IR4gjNxRYJ6d26091rA9zo7rpJBPnosnn2";
 NSString *const TRWImpactRadiusToken = @"e4rpBDiFcRCgQ4NsponLbPqzBcS8wAE9";
 
 NSString *const TRWRateAppUrl = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=612261027&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8";
+NSString *const TRWToSUrl = @"/terms-of-use";
+NSString *const TRWPrivacyUrl = @"/privacy-policy";
 
 void delayedExecution(CGFloat seconds, TRWActionBlock action) {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC), dispatch_get_main_queue(), action);

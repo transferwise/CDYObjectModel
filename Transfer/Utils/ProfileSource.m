@@ -239,14 +239,29 @@
 
 - (NSIndexPath *)getIndexPathForCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView
 {
-	NSIndexPath *path = [tableView indexPathForCell:cell];
-	
-	if (!path)
-	{
-		path = [tableView indexPathForRowAtPoint:[cell convertPoint:cell.center toView:tableView]];
-	}
-	
-	return path;
+    NSIndexPath *path = [tableView indexPathForCell:cell];
+    if (!path)
+    {
+        NSUInteger tableViewIndex = [self.tableViews indexOfObject:tableView];
+        if(tableViewIndex!=NSNotFound)
+        {
+            for(NSArray *section in self.cells[tableViewIndex])
+            {
+                if([section containsObject:cell])
+                {
+                    NSUInteger sectionIndex = [self.cells[tableViewIndex] indexOfObject:section];
+                    NSUInteger row = [section indexOfObject:cell];
+                    if(sectionIndex != NSNotFound && row != NSNotFound)
+                    {
+                        return [NSIndexPath indexPathForRow:row inSection:sectionIndex];
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+    return path;
 }
 
 - (void)updateTableView:(UITableView *)tableView

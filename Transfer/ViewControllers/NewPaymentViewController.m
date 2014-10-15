@@ -167,7 +167,7 @@ static NSUInteger const kRowYouSend = 0;
         weakSelf.result = result;
         [weakSelf displayWinMessage:result];
         
-        [self updateCellTitles];
+        [self updateCellApperance];
         
     }];
     
@@ -234,7 +234,7 @@ static NSUInteger const kRowYouSend = 0;
         [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSources]];
     }
 
-    [self updateCellTitles];
+    [self updateCellApperance];
     
     self.loginButton.hidden = [Credentials userLoggedIn];
     self.modalCloseButton.hidden = ![Credentials userLoggedIn];
@@ -473,7 +473,7 @@ static NSUInteger const kRowYouSend = 0;
     });
 }
 
--(void)updateCellTitles
+-(void)updateCellApperance
 {
     if (self.result.isFixedTargetPayment)
     {
@@ -499,6 +499,10 @@ static NSUInteger const kRowYouSend = 0;
             [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
         }
     }
+    
+    PairTargetCurrency* targetCurrency =  [self.objectModel pairTargetWithSource:self.youSendCell.currency target:self.theyReceiveCell.currency];
+    [self.theyReceiveCell setEditable:targetCurrency.fixedTargetPaymentAllowedValue];
+    
 }
 
 @end

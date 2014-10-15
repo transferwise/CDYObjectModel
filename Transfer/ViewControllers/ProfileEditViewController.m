@@ -226,7 +226,7 @@
 	
 	if(!IPAD)
 	{
-		if (!self.isExisting)
+		if (self.isShownInPaymentFlow)
 		{
 			self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
 			if([self createSendAsBusinessCell])
@@ -255,13 +255,13 @@
 	}
 	else
 	{
-		[self validateProfile:self.isExisting];
+		[self validateProfile];
 	}
 }
 
 - (BOOL)createSendAsBusinessCell
 {
-	return self.allowProfileSwitch && ![Credentials userLoggedIn];
+	return self.allowProfileSwitch;
 }
 
 - (void)textEntryFinishedInCell:(UITableViewCell *)cell
@@ -392,11 +392,6 @@
 
 - (void)validateProfile
 {
-	[self validateProfile:NO];
-}
-
-- (void)validateProfile:(BOOL)isExisting
-{
 	[UIApplication dismissKeyboard];
 	
     if (![self.profileSource inputValid])
@@ -421,7 +416,7 @@
 			return;
 		}
 		
-		if (!isExisting)
+		if (!self.isExisting)
 		{
 			if (![personalProfile arePasswordsMatching])
 			{
@@ -458,7 +453,7 @@
 			return;
         }
 		
-		if (isExisting && !self.doNotShowSuccessMessageForExisting)
+		if (self.isExisting && !self.doNotShowSuccessMessageForExisting)
 		{
 			//show sucess message
 			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"profile.edit.save.success.header", nil)
@@ -572,6 +567,7 @@
 								   navigationControllerView:self.navigationController.view
 												objectModel:self.objectModel
 											   successBlock:^{
+                                                   [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"tw"];
 												   [weakSelf reloadDataAfterLoginWithPayment:pendingPayment
 																			  sendAsBusiness:sendAsBusiness];
 											   }

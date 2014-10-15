@@ -24,6 +24,10 @@
 {
 	[super viewDidLoad];
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    if(self.view.bgStyle && [UIVisualEffectView class])
+    {
+        self.view.bgStyle = [self.view.bgStyle stringByAppendingString:@".iOS8alpha"];
+    }
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -50,7 +54,7 @@
     UIView *blurView;
     if ([UIVisualEffectView class])
     {
-        UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+        UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
         [hostViewcontroller.view insertSubview:blurEffectView belowSubview:self.view];
         blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
         self.blurEffectView=blurEffectView;
@@ -101,7 +105,10 @@
 						 CGRect newFrame = self.view.bounds;
 						 newFrame.origin.y = newFrame.size.height;
 						 self.view.frame = newFrame;
-						 newFrame.size.height = 0.0f;
+                         if(blurView == self.blurImageView)
+                         {
+                             newFrame.size.height = 0.0f;
+                         }
 						 blurView.frame = newFrame;
 					 }
 					 completion:^(BOOL finished) {

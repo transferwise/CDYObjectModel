@@ -13,7 +13,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="64" height="55"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xSM-Hy-y5B">
+                    <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xSM-Hy-y5B">
                         <rect key="frame" x="0.0" y="0.0" width="64" height="55"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -40,11 +40,15 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="xSM-Hy-y5B" secondAttribute="trailing" id="3TB-LX-iJK"/>
                 <constraint firstAttribute="centerY" secondItem="BX3-Q0-VBE" secondAttribute="centerY" constant="6" id="5BT-p1-8VU"/>
+                <constraint firstItem="xSM-Hy-y5B" firstAttribute="top" secondItem="mlS-e1-ddg" secondAttribute="top" id="C5T-aL-ssM"/>
                 <constraint firstItem="0NB-cn-n2u" firstAttribute="leading" secondItem="mlS-e1-ddg" secondAttribute="leading" id="LpU-t9-2fD"/>
+                <constraint firstItem="xSM-Hy-y5B" firstAttribute="leading" secondItem="mlS-e1-ddg" secondAttribute="leading" id="Qzt-Eh-bsQ"/>
                 <constraint firstAttribute="centerY" secondItem="0NB-cn-n2u" secondAttribute="centerY" constant="-13" id="UWe-af-mKA"/>
                 <constraint firstAttribute="centerX" secondItem="BX3-Q0-VBE" secondAttribute="centerX" id="Vq1-G3-Ndf"/>
                 <constraint firstAttribute="centerX" secondItem="0NB-cn-n2u" secondAttribute="centerX" id="YRK-Xz-14O"/>
+                <constraint firstAttribute="bottom" secondItem="xSM-Hy-y5B" secondAttribute="bottom" id="vMn-pr-e6L"/>
             </constraints>
             <connections>
                 <outlet property="flashView" destination="xSM-Hy-y5B" id="GFZ-wL-GUi"/>
