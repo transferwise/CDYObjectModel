@@ -10,4 +10,9 @@
 
 @implementation Mixpanel (Customisation)
 
+
+- (void)sendPageView:(NSString *)page {
+    [self track:[NSString stringWithFormat:@"Page View - %@", page]];
+}
+
 @end

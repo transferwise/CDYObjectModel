@@ -10,4 +10,6 @@
 
 @interface Mixpanel (Customisation)
 
+- (void)sendPageView:(NSString *)page;
+
 @end
