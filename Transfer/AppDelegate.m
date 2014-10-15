@@ -33,7 +33,7 @@
 #import "UIImage+Color.h"
 #import "NavigationBarCustomiser.h"
 #import <FBAppCall.h>
-
+#import "EventTracker.h"
 #import "Credentials.h"
 #import "ObjectModel+Settings.h"
 #import "IntroViewController.h"
@@ -93,7 +93,6 @@
     
 	UIViewController* controller;
 
-    
     
     //TODO: Use A/B test
     TAGContainer* container = [future get];
@@ -205,6 +204,33 @@
 	[Crashlytics startWithAPIKey:@"84bc4b5736898e3cfdb50d3d2c162c4f74480862"];
 	
 	[NanTracking trackNanigansEvent:@"" type:@"install" name:@"main"];
+	
+#if !TARGET_IPHONE_SIMULATOR //Supplied library does not contain binary for simulator
+	EventTracker *tracker = [EventTracker sharedManager];
+#if DEV_VERSION
+    [tracker setDebug:YES];
+#endif
+	[tracker initEventTracker:TRWImpactRadiusAppId username:TRWImpactRadiusSID password:TRWImpactRadiusToken];
+    
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSString *lastInstalledVersion = [defaults stringForKey:TRWAppInstalledSettingsKey];
+    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
+    if (![lastInstalledVersion isEqualToString:version])
+    {
+        if(!lastInstalledVersion)
+        {
+            [tracker trackInstall];
+        }
+        else
+        {
+            [tracker trackUpdate];
+        }
+        [defaults setObject:version forKey:TRWAppInstalledSettingsKey];
+    }
+    
+#endif
+	
 	return mixpanel;
 }
 

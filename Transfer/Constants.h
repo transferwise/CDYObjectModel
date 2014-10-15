@@ -46,7 +46,13 @@ extern NSString *const TRWServerAddress;
 extern NSString *const TRWGoogleAnalyticsTrackingId;
 extern NSString *const TRWGoogleAnalyticsDevTrackingId;
 extern NSString *const TRWMixpanelToken;
+extern NSString *const TRWImpactRadiusSID;
+extern NSString *const TRWImpactRadiusToken;
+extern NSString *const TRWImpactRadiusAppId;
 extern NSString *const TRWGoogleTagManagerContainerId;
+
+extern NSString *const TRWAppInstalledSettingsKey;
+
 
 extern NSString *const TransferSandboxUsername;
 extern NSString *const TransferSandboxPassword;

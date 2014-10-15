@@ -37,7 +37,12 @@ NSString *const TRWGoogleAnalyticsDevTrackingId = @"UA-24270670-3";
 NSString *const TRWGoogleTagManagerContainerId = @"GTM-TDZF76";
 
 NSString *const TRWMixpanelToken = @"96ffee966b209ba8b874598f4d936ff6";
+
 NSString *const TRWAppType = @"IosApp";
+
+NSString *const TRWImpactRadiusAppId = @"6598";
+NSString *const TRWImpactRadiusSID = @"IR4gjNxRYJ6d26091rA9zo7rpJBPnosnn2";
+NSString *const TRWImpactRadiusToken = @"e4rpBDiFcRCgQ4NsponLbPqzBcS8wAE9";
 
 NSString *const TRWRateAppUrl = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=612261027&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8";
 NSString *const TRWToSUrl = @"/terms-of-use";
@@ -49,3 +54,5 @@ void delayedExecution(CGFloat seconds, TRWActionBlock action) {
 
 NSString *AppsFlyerDevKey = @"6g8vUfZXve88zupKDb94pk";
 NSString *AppsFlyerIdentifier = @"612261027;6g8vUfZXve88zupKDb94pk";
+
+NSString *const TRWAppInstalledSettingsKey = @"TRWAppInstalledSettingsKey";

@@ -355,6 +355,8 @@
 		38EFABE4196D7EAB00126192 /* TextFieldSuggestionTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EFABDE196D7EAB00126192 /* TextFieldSuggestionTable.xib */; };
 		38F6DE5F19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F6DE5E19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m */; };
 		38F6DE6019D2DF5A00C5B4B5 /* RecipientUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F6DE5E19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m */; };
+		38FC0B9719EE84E000173E07 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC0B9619EE84E000173E07 /* libEventTracker.a */; settings = {ATTRIBUTES = (Weak, ); }; };
+		38FC0B9819EE84E000173E07 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC0B9619EE84E000173E07 /* libEventTracker.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		470DEFAD1945F02300684FEB /* MoneyEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */; };
 		470DEFAE19460C8D00684FEB /* MoneyEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */; };
 		4710499719470AFD00660B2F /* CurrencyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */; };
@@ -1203,6 +1205,9 @@
 		38EFABDE196D7EAB00126192 /* TextFieldSuggestionTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldSuggestionTable.xib; sourceTree = "<group>"; };
 		38F6DE5D19D2DF5A00C5B4B5 /* RecipientUpdateOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientUpdateOperation.h; sourceTree = "<group>"; };
 		38F6DE5E19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientUpdateOperation.m; sourceTree = "<group>"; };
+		38FC0B9419EE84E000173E07 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		38FC0B9519EE84E000173E07 /* EventTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTracker.h; sourceTree = "<group>"; };
+		38FC0B9619EE84E000173E07 /* libEventTracker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEventTracker.a; sourceTree = "<group>"; };
 		470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MoneyEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencyCell~ipad.xib"; sourceTree = "<group>"; };
 		47126B5319C2DCD40049F4C5 /* UIView+InheritantOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+InheritantOf.h"; sourceTree = "<group>"; };
@@ -1661,6 +1666,7 @@
 				EA31A1C217DDB29B00F937F7 /* libz.dylib in Frameworks */,
 				EA31A1C317DDB29B00F937F7 /* Security.framework in Frameworks */,
 				EA31A1C417DDB29B00F937F7 /* MobileCoreServices.framework in Frameworks */,
+				38FC0B9819EE84E000173E07 /* libEventTracker.a in Frameworks */,
 				EA31A1C517DDB29B00F937F7 /* SystemConfiguration.framework in Frameworks */,
 				EA31A1C617DDB29B00F937F7 /* UIKit.framework in Frameworks */,
 				EA31A1C717DDB29B00F937F7 /* Foundation.framework in Frameworks */,
@@ -1687,6 +1693,7 @@
 				EA8FF6AD171D22340090A658 /* MobileCoreServices.framework in Frameworks */,
 				EA8FF6AB171D222E0090A658 /* SystemConfiguration.framework in Frameworks */,
 				EAAA146C171BC911005B9430 /* UIKit.framework in Frameworks */,
+				38FC0B9719EE84E000173E07 /* libEventTracker.a in Frameworks */,
 				EAAA146E171BC911005B9430 /* Foundation.framework in Frameworks */,
 				EAAA1470171BC911005B9430 /* CoreGraphics.framework in Frameworks */,
 				EAAA1472171BC911005B9430 /* CoreData.framework in Frameworks */,
@@ -1970,6 +1977,16 @@
 				38AEB3C21964369F00B852E1 /* libAppsFlyerLib.a */,
 			);
 			path = "AF-iOS-SDK-v2";
+			sourceTree = "<group>";
+		};
+		38FC0B9319EE84E000173E07 /* iOS-EventTracker-SDK */ = {
+			isa = PBXGroup;
+			children = (
+				38FC0B9419EE84E000173E07 /* Event.h */,
+				38FC0B9519EE84E000173E07 /* EventTracker.h */,
+				38FC0B9619EE84E000173E07 /* libEventTracker.a */,
+			);
+			path = "iOS-EventTracker-SDK";
 			sourceTree = "<group>";
 		};
 		4781F48D194737C700B8926C /* JVFloatLabeledTextField */ = {
@@ -2320,6 +2337,7 @@
 		EA8FF68C171D22080090A658 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
+				38FC0B9319EE84E000173E07 /* iOS-EventTracker-SDK */,
 				3812F91A19DAD930003F9904 /* GoogleAnalyticsServicesiOS_3.09 */,
 				38AEB3C01964369F00B852E1 /* AF-iOS-SDK-v2 */,
 				4781F48D194737C700B8926C /* JVFloatLabeledTextField */,
@@ -3892,6 +3910,72 @@
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.09",
+					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lTestFlight",
+					"-licucore",
+					"-lz",
+					"-framework",
+					Accelerate,
+					"-framework",
+					Accounts,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreLocation,
+					"-framework",
+					CoreTelephony,
+					"-framework",
+					CoreText,
+					"-framework",
+					Foundation,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					Social,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
+					"-lEventTracker",
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
+					"-ObjC",
+					"-lTestFlight",
+					"-licucore",
+					"-lz",
+					"-framework",
+					Accelerate,
+					"-framework",
+					Accounts,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreLocation,
+					"-framework",
+					CoreTelephony,
+					"-framework",
+					CoreText,
+					"-framework",
+					Foundation,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					Social,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
 				);
 				PRODUCT_NAME = TransferDev;
 				PROVISIONING_PROFILE = "";
@@ -3928,6 +4012,72 @@
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.09",
+					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lTestFlight",
+					"-licucore",
+					"-lz",
+					"-framework",
+					Accelerate,
+					"-framework",
+					Accounts,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreLocation,
+					"-framework",
+					CoreTelephony,
+					"-framework",
+					CoreText,
+					"-framework",
+					Foundation,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					Social,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
+					"-lEventTracker",
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
+					"-ObjC",
+					"-lTestFlight",
+					"-licucore",
+					"-lz",
+					"-framework",
+					Accelerate,
+					"-framework",
+					Accounts,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreLocation,
+					"-framework",
+					CoreTelephony,
+					"-framework",
+					CoreText,
+					"-framework",
+					Foundation,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					Social,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
 				);
 				PRODUCT_NAME = TransferDev;
 				PROVISIONING_PROFILE = "";
@@ -4023,6 +4173,7 @@
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.09",
+					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -4058,6 +4209,7 @@
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.09",
+					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",
