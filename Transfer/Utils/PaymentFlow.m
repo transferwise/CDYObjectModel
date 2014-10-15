@@ -710,11 +710,13 @@
 #endif
 
         [NanTracking trackNanigansEvent:self.objectModel.currentUser.pReference type:@"purchase" name:@"main" value:[__formatter stringFromNumber:transferFee]];
-		
-		if ([self.objectModel hasNoOrOnlyCancelledPaymentsExeptThis:paymentID])
+
+#if !TARGET_IPHONE_SIMULATOR
+        if ([self.objectModel hasNoOrOnlyCancelledPaymentsExeptThis:paymentID])
 		{
 			[[EventTracker sharedManager] trackEvent:@"InappConversion"];
 		}
+#endif
 
         [weakSelf.objectModel performBlock:^{
             Payment *createdPayment = (Payment *) [self.objectModel.managedObjectContext objectWithID:paymentID];

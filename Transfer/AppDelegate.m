@@ -205,11 +205,30 @@
 	
 	[NanTracking trackNanigansEvent:@"" type:@"install" name:@"main"];
 	
+#if !TARGET_IPHONE_SIMULATOR //Supplied library does not contain binary for simulator
 	EventTracker *tracker = [EventTracker sharedManager];
-	[tracker initEventTracker:TRWImpactRadiusAppId username:TRWImpactRadiusSID password:TRWImpactRadiusToken];
-	
 #if DEV_VERSION
-	[[EventTracker sharedManager] setDebug:YES];
+    [tracker setDebug:YES];
+#endif
+	[tracker initEventTracker:TRWImpactRadiusAppId username:TRWImpactRadiusSID password:TRWImpactRadiusToken];
+    
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSString *lastInstalledVersion = [defaults stringForKey:TRWAppInstalledSettingsKey];
+    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
+    if (![lastInstalledVersion isEqualToString:version])
+    {
+        if(!lastInstalledVersion)
+        {
+            [tracker trackInstall];
+        }
+        else
+        {
+            [tracker trackUpdate];
+        }
+        [defaults setObject:version forKey:TRWAppInstalledSettingsKey];
+    }
+    
 #endif
 	
 	return mixpanel;

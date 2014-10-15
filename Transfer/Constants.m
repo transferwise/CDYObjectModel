@@ -54,3 +54,5 @@ void delayedExecution(CGFloat seconds, TRWActionBlock action) {
 
 NSString *AppsFlyerDevKey = @"6g8vUfZXve88zupKDb94pk";
 NSString *AppsFlyerIdentifier = @"612261027;6g8vUfZXve88zupKDb94pk";
+
+NSString *const TRWAppInstalledSettingsKey = @"TRWAppInstalledSettingsKey";
