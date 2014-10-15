@@ -56,6 +56,16 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 	
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    
+    //Preload keyboard by showing and removing a textfield. This prevents horrible lag the first time the user
+    //enters text. iOS defect that's been around since iOS 7.1 if I'm not mistaken.
+    UITextField *lagFreeField = [[UITextField alloc] init];
+    [self.window addSubview:lagFreeField];
+    [lagFreeField becomeFirstResponder];
+    [lagFreeField resignFirstResponder];
+    [lagFreeField removeFromSuperview];
+    
 
 	TransferMixpanel *mixpanel = [self setupThirdParties];
 
