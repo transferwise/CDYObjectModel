@@ -29,7 +29,6 @@
 #import "TransferBackButtonItem.h"
 #import "GoogleAnalytics.h"
 #import "NSError+TRWErrors.h"
-#import "AnalyticsCoordinator.h"
 #import "NSMutableString+Issues.h"
 #import "Currency.h"
 #import "PlainPresentationCell.h"

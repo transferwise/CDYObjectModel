@@ -30,7 +30,6 @@
 #import "UIApplication+Keyboard.h"
 #import "NSMutableString+Issues.h"
 #import "RecipientOperation.h"
-#import "AnalyticsCoordinator.h"
 #import "UserRecipientsOperation.h"
 #import "Credentials.h"
 #import "RecipientEntrySelectionCell.h"
@@ -40,6 +39,7 @@
 #import "PersonalProfile.h"
 #import "NameSuggestionCellProvider.h"
 #import "EmailLookupWrapper.h"
+#import "GoogleAnalytics.h"
 
 CGFloat const TransferHeaderPaddingTop = 40;
 CGFloat const TransferHeaderPaddingBottom = 0;
@@ -203,7 +203,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
         [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
     }
     
-    [[AnalyticsCoordinator sharedInstance] refundDetailsScreenShown];
+    [[GoogleAnalytics sharedInstance] refundDetailsScreenShown];
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
@@ -443,7 +443,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
             return;
         }
 
-        [[AnalyticsCoordinator sharedInstance] refundRecipientAdded];
+        [[GoogleAnalytics sharedInstance] refundRecipientAdded];
         weakSelf.afterValidationBlock();
     }];
     [validate execute];

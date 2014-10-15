@@ -25,8 +25,6 @@
 #import "FBSettings.h"
 #import "FBAppEvents.h"
 #import "Mixpanel.h"
-#import "AnalyticsCoordinator.h"
-#import "TransferMixpanel.h"
 #import "MOMStyle.h"
 #import "ConnectionAwareViewController.h"
 #import "UIFont+MOMStyle.h"
@@ -67,7 +65,7 @@
     [lagFreeField removeFromSuperview];
     
 
-	TransferMixpanel *mixpanel = [self setupThirdParties];
+	[self setupThirdParties];
 
 	[NavigationBarCustomiser setDefault];
 
@@ -79,7 +77,6 @@
     [model loadBaseData];
 
     [[GoogleAnalytics sharedInstance] setObjectModel:model];
-    [mixpanel setObjectModel:model];
 
     [[TransferwiseClient sharedClient] setObjectModel:model];
 #if DEV_VERSION
@@ -145,7 +142,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	[[GoogleAnalytics sharedInstance] sendAppEvent:@"AppStarted"];
-	[[AnalyticsCoordinator sharedInstance] markLoggedIn];
+	[[GoogleAnalytics sharedInstance] markLoggedIn];
 
 #if USE_FACEBOOK_EVENTS
     [FBSettings setDefaultAppID:@"274548709260402"];
@@ -165,7 +162,7 @@
     [self.objectModel saveContext];
 }
 
-- (TransferMixpanel *)setupThirdParties
+- (void)setupThirdParties
 {
 #if USE_TESTFLIGHT
 	[TestFlight setOptions:@{TFOptionReportCrashes : @NO}];
@@ -197,10 +194,6 @@
 	
 	[Mixpanel sharedInstanceWithToken:TRWMixpanelToken];
 	
-	TransferMixpanel *mixpanel = [[TransferMixpanel alloc] init];
-	[[AnalyticsCoordinator sharedInstance] addAnalyticsService:mixpanel];
-	[[AnalyticsCoordinator sharedInstance] addAnalyticsService:[GoogleAnalytics sharedInstance]];
-	
 	[Crashlytics startWithAPIKey:@"84bc4b5736898e3cfdb50d3d2c162c4f74480862"];
 	
 	[NanTracking trackNanigansEvent:@"" type:@"install" name:@"main"];
@@ -230,8 +223,6 @@
     }
     
 #endif
-	
-	return mixpanel;
 }
 
 - (BOOL)application:(UIApplication *)application

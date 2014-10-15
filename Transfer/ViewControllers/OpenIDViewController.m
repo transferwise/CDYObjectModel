@@ -19,7 +19,6 @@
 #import "ObjectModel+Users.h"
 #import "User.h"
 #import "GoogleAnalytics.h"
-#import "AnalyticsCoordinator.h"
 
 @interface OpenIDViewController () <UIWebViewDelegate>
 
@@ -99,7 +98,7 @@
         [Credentials setUserEmail:email];
     }
 
-    [[AnalyticsCoordinator sharedInstance] markLoggedIn];
+    [[GoogleAnalytics sharedInstance] markLoggedIn];
 
     if ([Credentials userLoggedIn]) {
         __weak typeof(self) weakSelf = self;

@@ -357,6 +357,8 @@
 		38F6DE6019D2DF5A00C5B4B5 /* RecipientUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F6DE5E19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m */; };
 		38FC0B9719EE84E000173E07 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC0B9619EE84E000173E07 /* libEventTracker.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		38FC0B9819EE84E000173E07 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC0B9619EE84E000173E07 /* libEventTracker.a */; settings = {ATTRIBUTES = (Weak, ); }; };
+		38FC0B9B19EED51500173E07 /* Mixpanel+Customisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */; };
+		38FC0B9C19EED51500173E07 /* Mixpanel+Customisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */; };
 		470DEFAD1945F02300684FEB /* MoneyEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */; };
 		470DEFAE19460C8D00684FEB /* MoneyEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */; };
 		4710499719470AFD00660B2F /* CurrencyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */; };
@@ -829,10 +831,6 @@
 		EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */; };
 		EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */; };
 		EAB93B481761C74700A7337C /* ClaimAccountOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB93B471761C74700A7337C /* ClaimAccountOperation.m */; };
-		EABD864518E2B65D004A5A57 /* TransferMixpanel.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD864418E2B65D004A5A57 /* TransferMixpanel.m */; };
-		EABD864618E2B65D004A5A57 /* TransferMixpanel.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD864418E2B65D004A5A57 /* TransferMixpanel.m */; };
-		EABD864A18E2B6B2004A5A57 /* AnalyticsCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD864918E2B6B2004A5A57 /* AnalyticsCoordinator.m */; };
-		EABD864B18E2B6B2004A5A57 /* AnalyticsCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD864918E2B6B2004A5A57 /* AnalyticsCoordinator.m */; };
 		EAC1051A17607C4600B3B018 /* ClaimAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */; };
 		EAC1051B17607C4600B3B018 /* ClaimAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */; };
 		EACD942E18D82C2C00369905 /* NanTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = EACD942D18D82C2C00369905 /* NanTracking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -1208,6 +1206,8 @@
 		38FC0B9419EE84E000173E07 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		38FC0B9519EE84E000173E07 /* EventTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTracker.h; sourceTree = "<group>"; };
 		38FC0B9619EE84E000173E07 /* libEventTracker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEventTracker.a; sourceTree = "<group>"; };
+		38FC0B9919EED51500173E07 /* Mixpanel+Customisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Mixpanel+Customisation.h"; sourceTree = "<group>"; };
+		38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Mixpanel+Customisation.m"; sourceTree = "<group>"; };
 		470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MoneyEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencyCell~ipad.xib"; sourceTree = "<group>"; };
 		47126B5319C2DCD40049F4C5 /* UIView+InheritantOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+InheritantOf.h"; sourceTree = "<group>"; };
@@ -1569,11 +1569,6 @@
 		EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyCalculator.m; sourceTree = "<group>"; };
 		EAB93B461761C74700A7337C /* ClaimAccountOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimAccountOperation.h; sourceTree = "<group>"; };
 		EAB93B471761C74700A7337C /* ClaimAccountOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimAccountOperation.m; sourceTree = "<group>"; };
-		EABD864318E2B65D004A5A57 /* TransferMixpanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferMixpanel.h; sourceTree = "<group>"; };
-		EABD864418E2B65D004A5A57 /* TransferMixpanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferMixpanel.m; sourceTree = "<group>"; };
-		EABD864718E2B694004A5A57 /* TransferAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferAnalytics.h; sourceTree = "<group>"; };
-		EABD864818E2B6B2004A5A57 /* AnalyticsCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsCoordinator.h; sourceTree = "<group>"; };
-		EABD864918E2B6B2004A5A57 /* AnalyticsCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsCoordinator.m; sourceTree = "<group>"; };
 		EAC1051717607C4600B3B018 /* ClaimAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimAccountViewController.h; sourceTree = "<group>"; };
 		EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimAccountViewController.m; sourceTree = "<group>"; };
 		EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClaimAccountViewController.xib; sourceTree = "<group>"; };
@@ -2737,13 +2732,10 @@
 		EABD864218E2B63A004A5A57 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				EABD864818E2B6B2004A5A57 /* AnalyticsCoordinator.h */,
-				EABD864918E2B6B2004A5A57 /* AnalyticsCoordinator.m */,
 				BA665E006BBEF0C455DE7F84 /* GoogleAnalytics.h */,
 				BA66546EEC8C630867200E77 /* GoogleAnalytics.m */,
-				EABD864718E2B694004A5A57 /* TransferAnalytics.h */,
-				EABD864318E2B65D004A5A57 /* TransferMixpanel.h */,
-				EABD864418E2B65D004A5A57 /* TransferMixpanel.m */,
+				38FC0B9919EED51500173E07 /* Mixpanel+Customisation.h */,
+				38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -3489,6 +3481,7 @@
 				47FAF345194B2F11004CE986 /* LightBlueButton.m in Sources */,
 				EA31A18817DDB29B00F937F7 /* RemoveTokenOperation.m in Sources */,
 				479B693B19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */,
+				38FC0B9C19EED51500173E07 /* Mixpanel+Customisation.m in Sources */,
 				389F6842198FC1C6006CF1F6 /* PendingPayment.m in Sources */,
 				389F67F8198FC1C6006CF1F6 /* _AllowedTypeFieldValue.m in Sources */,
 				EA31A18917DDB29B00F937F7 /* UITableView+FooterPositioning.m in Sources */,
@@ -3538,7 +3531,6 @@
 				389F6802198FC1C6006CF1F6 /* _PairTargetCurrency.m in Sources */,
 				EA31A1B717DDB29B00F937F7 /* NSString+Presentation.m in Sources */,
 				389F682A198FC1C6006CF1F6 /* ObjectModel+Payments.m in Sources */,
-				EABD864B18E2B6B2004A5A57 /* AnalyticsCoordinator.m in Sources */,
 				EA31A1B817DDB29B00F937F7 /* QuickProfileValidationOperation.m in Sources */,
 				EA31A1B917DDB29B00F937F7 /* SwitchCell.m in Sources */,
 				EA31A1BA17DDB29B00F937F7 /* PaymentDetailsViewController.m in Sources */,
@@ -3560,7 +3552,6 @@
 				38D8FBD619AF21B4007C73DF /* ReferralsCoordinator.m in Sources */,
 				EA31A1BD17DDB29B00F937F7 /* FeedbackCoordinator.m in Sources */,
 				383FC10B19AE1B8400465FCA /* SeeHowViewController.m in Sources */,
-				EABD864618E2B65D004A5A57 /* TransferMixpanel.m in Sources */,
 				383FC0FD19AE1ABC00465FCA /* PhoneLookupWrapper.m in Sources */,
 				EA2296C317E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
 				383FC0F119AE1A1A00465FCA /* StateSuggestionProvider.m in Sources */,
@@ -3776,6 +3767,7 @@
 				BB704E7D177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m in Sources */,
 				479B692C19487865001FA4FE /* TransferDetailsViewController.m in Sources */,
 				47FAF344194B2F11004CE986 /* LightBlueButton.m in Sources */,
+				38FC0B9B19EED51500173E07 /* Mixpanel+Customisation.m in Sources */,
 				389F6841198FC1C6006CF1F6 /* PendingPayment.m in Sources */,
 				389F67F7198FC1C6006CF1F6 /* _AllowedTypeFieldValue.m in Sources */,
 				380021E3192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */,
@@ -3825,7 +3817,6 @@
 				389F6801198FC1C6006CF1F6 /* _PairTargetCurrency.m in Sources */,
 				EAA6AD0717A91A95006A347D /* NSString+Presentation.m in Sources */,
 				389F6829198FC1C6006CF1F6 /* ObjectModel+Payments.m in Sources */,
-				EABD864A18E2B6B2004A5A57 /* AnalyticsCoordinator.m in Sources */,
 				EAA07BF117AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */,
 				BB7EAE8E17AFE0DF006A7182 /* SwitchCell.m in Sources */,
 				EAE1E3A317B2519000A45623 /* PaymentDetailsViewController.m in Sources */,
@@ -3845,7 +3836,6 @@
 				389F6835198FC1C6006CF1F6 /* ObjectModel.m in Sources */,
 				4746EAF819A603BB00D03557 /* ReferralLinkOperation.m in Sources */,
 				38D8FBD519AF21B4007C73DF /* ReferralsCoordinator.m in Sources */,
-				EABD864518E2B65D004A5A57 /* TransferMixpanel.m in Sources */,
 				383FC10A19AE1B8400465FCA /* SeeHowViewController.m in Sources */,
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
 				383FC0FC19AE1ABC00465FCA /* PhoneLookupWrapper.m in Sources */,

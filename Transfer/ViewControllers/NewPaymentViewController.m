@@ -30,7 +30,6 @@
 #import "GoogleAnalytics.h"
 #import "CXAlertView.h"
 #import "StartPaymentButton.h"
-#import "AnalyticsCoordinator.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 #import "MOMStyle.h"
 #import "NSString+DeviceSpecificLocalisation.h"
@@ -250,10 +249,6 @@ static NSUInteger const kRowYouSend = 0;
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 
-    if (!self.dummyPresentation)
-	{
-        [[AnalyticsCoordinator sharedInstance] startScreenShown];
-    }
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration

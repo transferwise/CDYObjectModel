@@ -39,11 +39,12 @@
 #import "NanTracking.h"
 #import "FBAppEvents.h"
 #import "NetworkErrorCodes.h"
-#import "AnalyticsCoordinator.h"
 #import "_RecipientType.h"
 #import "RecipientType.h"
 #import "RefundDetailsViewController.h"
 #import "Mixpanel.h"
+#import "Mixpanel+Customisation.h"
+#import "GoogleAnalytics.h"
 #import "PersonalPaymentProfileViewController.h"
 #import "BusinessPaymentProfileViewController.h"
 #import "RegisterOperation.h"
@@ -79,7 +80,7 @@
 - (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch
 						 isExisting:(BOOL)isExisting
 {
-    [[AnalyticsCoordinator sharedInstance] paymentPersonalProfileScreenShown];
+    [[Mixpanel sharedInstance] sendPageView:@"Your details"];
 
     PersonalPaymentProfileViewController *controller = [[PersonalPaymentProfileViewController alloc] init];
 	
@@ -227,7 +228,8 @@
 
 - (void)presentRecipientDetails:(BOOL)showMiniProfile templateRecipient:(Recipient*)template updateRecipient:(Recipient*)updateRecipient
 {
-    [[AnalyticsCoordinator sharedInstance] paymentRecipientProfileScreenShown];
+    [[GoogleAnalytics sharedInstance] paymentRecipientProfileScreenShown];
+    [[Mixpanel sharedInstance] sendPageView:@"Recipient details"];
 
     RecipientViewController *controller = [[RecipientViewController alloc] init];
     if ([Credentials userLoggedIn]) {
