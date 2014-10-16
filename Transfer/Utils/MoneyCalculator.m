@@ -43,7 +43,6 @@
     [_sendCell.moneyField addTarget:self action:@selector(sendAmountChanged:) forControlEvents:UIControlEventEditingChanged];
     __weak typeof(self) weakSelf = self;
     [sendCell setCurrencyChangedHandler:^(Currency *currency) {
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency1Selected" withLabel:currency.code];
         [weakSelf sourceCurrencyChanged:currency];
     }];
 }
@@ -54,7 +53,6 @@
     [_receiveCell.moneyField addTarget:self action:@selector(receiveAmountChanged:) forControlEvents:UIControlEventEditingChanged];
     __weak typeof(self) weakSelf = self;
     [receiveCell setCurrencyChangedHandler:^(Currency *currency) {
-        [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency2Selected" withLabel:currency.code];
         [weakSelf setWaitingTargetCurrency:currency];
         [weakSelf enforceFixedTargetAllowedRule];
         [weakSelf performCalculation];

@@ -424,6 +424,9 @@ static NSUInteger const kRowYouSend = 0;
                     PaymentFlow *paymentFlow = [Credentials userLoggedIn]?[[LoggedInPaymentFlow alloc] initWithPresentingController:self.navigationController]:[[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
                     [self setPaymentFlow:paymentFlow];
                     
+                    [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency1Selected" withLabel:[self.youSendCell currency].code];
+                    [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency2Selected" withLabel:[self.theyReceiveCell currency].code];
+                    
                     [paymentFlow setObjectModel:self.objectModel];
                     [paymentFlow presentNextPaymentScreen];
                 }];
