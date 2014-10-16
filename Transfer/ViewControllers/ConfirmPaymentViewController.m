@@ -34,6 +34,7 @@
 #import "PlainPresentationCell.h"
 #import "MOMStyle.h"
 #import "RecipientUpdateOperation.h"
+#import "Mixpanel+Customisation.h"
 
 @interface ExtraTextfieldDelegate : NSObject<UITextFieldDelegate>
 
@@ -117,6 +118,8 @@
 
     [self.tableView registerNib:[UINib nibWithNibName:@"PlainPresentationCell" bundle:nil] forCellReuseIdentifier:PlainPresentationCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
+    
+    [[Mixpanel sharedInstance] sendPageView:@"Confirm"];
 }
 
 - (void)createContent
