@@ -24,6 +24,7 @@
 #import "ConnectionAwareViewController.h"
 #import "LoginViewController.h"
 #import "SignUpViewController.h"
+#import "Mixpanel+Customisation.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
 
@@ -102,6 +103,8 @@
     self.lastLoadedIndex = -1;
     self.upfrontRegistrationcontainer.hidden = !self.requireRegistration;
     self.noRegistrationContainer.hidden = self.requireRegistration;
+    
+    [[Mixpanel sharedInstance] sendPageView:@"Intro screen"];
 
 }
 
