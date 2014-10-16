@@ -62,7 +62,7 @@ NSUInteger kPaymentsListLimit = 20;
             }
         } completion:^{
             [[GoogleAnalytics sharedInstance] markHasCompletedPayments];
-            [[Mixpanel sharedInstance] registerSuperProperties:@{@"Hascompletepayment":[[GoogleAnalytics sharedInstance].objectModel hasAtLeastOneCompletePayment]?@"YES":@"NO"}];
+            [[Mixpanel sharedInstance] registerSuperProperties:@{@"Hascompletepayment":[[GoogleAnalytics sharedInstance].objectModel hasCompletedPayments]?@"YES":@"NO"}];
             
             weakSelf.completion([totalCount integerValue], nil);
         }];
