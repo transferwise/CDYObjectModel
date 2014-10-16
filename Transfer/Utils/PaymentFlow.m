@@ -39,16 +39,19 @@
 #import "NanTracking.h"
 #import "FBAppEvents.h"
 #import "NetworkErrorCodes.h"
-#import "AnalyticsCoordinator.h"
 #import "_RecipientType.h"
 #import "RecipientType.h"
 #import "RefundDetailsViewController.h"
 #import "Mixpanel.h"
+#import "Mixpanel+Customisation.h"
+#import "GoogleAnalytics.h"
 #import "PersonalPaymentProfileViewController.h"
 #import "BusinessPaymentProfileViewController.h"
 #import "RegisterOperation.h"
 #import "PaymentMethodSelectorViewController.h"
 #import "SetSSNOperation.h"
+#import "EventTracker.h"
+#import "ObjectModel+Payments.h"
 
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
@@ -77,7 +80,7 @@
 - (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch
 						 isExisting:(BOOL)isExisting
 {
-    [[AnalyticsCoordinator sharedInstance] paymentPersonalProfileScreenShown];
+    [[Mixpanel sharedInstance] sendPageView:@"Your details"];
 
     PersonalPaymentProfileViewController *controller = [[PersonalPaymentProfileViewController alloc] init];
 	
@@ -225,7 +228,8 @@
 
 - (void)presentRecipientDetails:(BOOL)showMiniProfile templateRecipient:(Recipient*)template updateRecipient:(Recipient*)updateRecipient
 {
-    [[AnalyticsCoordinator sharedInstance] paymentRecipientProfileScreenShown];
+    [[GoogleAnalytics sharedInstance] paymentRecipientProfileScreenShown];
+    [[Mixpanel sharedInstance] sendPageView:@"Select recipient"];
 
     RecipientViewController *controller = [[RecipientViewController alloc] init];
     if ([Credentials userLoggedIn]) {
@@ -708,6 +712,13 @@
 #endif
 
         [NanTracking trackNanigansEvent:self.objectModel.currentUser.pReference type:@"purchase" name:@"main" value:[__formatter stringFromNumber:transferFee]];
+
+#if !TARGET_IPHONE_SIMULATOR
+        if ([self.objectModel hasNoOrOnlyCancelledPaymentsExeptThis:paymentID])
+		{
+			[[EventTracker sharedManager] trackEvent:@"InappConversion"];
+		}
+#endif
 
         [weakSelf.objectModel performBlock:^{
             Payment *createdPayment = (Payment *) [self.objectModel.managedObjectContext objectWithID:paymentID];

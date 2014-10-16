@@ -64,6 +64,7 @@
 #import "CountrySuggestionCellProvider.h"
 #import "StateSuggestionProvider.h"
 #import "RecipientUpdateOperation.h"
+#import "Mixpanel+Customisation.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;

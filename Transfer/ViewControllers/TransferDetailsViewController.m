@@ -146,7 +146,7 @@
 	//transferred needs special handling
 	//delivery estimator returns dates in the future or today FOREVER, hence this nice comparison
 	if (self.payment.status == PaymentStatusTransferred
-		&& [[[self class] getDateWithoutTime:self.payment.estimatedDelivery] compare:[[self class] getDateWithoutTime:[NSDate date]]] == NSOrderedSame)
+		&& [[[self class] getDateWithoutTime:self.payment.estimatedDelivery] compare:[[self class] getDateWithoutTime:[NSDate date]]] == NSOrderedAscending)
 	{
 		self.amountsView.shouldArrive = NSLocalizedString(@"payment.status.transferred.description.eta.past", nil);
 		self.amountsView.eta = [self.payment latestChangeTimeString];

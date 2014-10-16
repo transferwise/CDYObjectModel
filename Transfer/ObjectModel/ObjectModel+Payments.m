@@ -97,8 +97,10 @@
     [self deleteObjects:payments saveAfter:NO];
 }
 
-- (BOOL)hasCompletedPayments {
-    if (![Credentials userLoggedIn]) {
+- (BOOL)hasCompletedPayments
+{
+    if (![Credentials userLoggedIn])
+	{
         return NO;
     }
 
@@ -124,6 +126,12 @@
         indicator.paymentRemoteId = payment.remoteId;
         payment.paymentMadeIndicator = indicator;
     }
+}
+
+- (BOOL)hasNoOrOnlyCancelledPaymentsExeptThis:(NSManagedObjectID *)paymentID
+{
+	NSPredicate *noOrCancelledPayments = [NSPredicate predicateWithFormat:@"(SELF != %@) AND paymentStatus != %@", paymentID, @"cancelled"];
+	return [self countInstancesOfEntity:[Payment entityName] withPredicate:noOrCancelledPayments] <= 0;
 }
 
 @end

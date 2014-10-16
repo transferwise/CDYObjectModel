@@ -12,6 +12,8 @@
 #import "CancellableCellViewController.h"
 
 @class ObjectModel;
+@class TransactionsViewController;
+
 
 @interface TransactionsViewController : CancellableCellViewController<TransferPayIpadViewControllerDelegate>
 

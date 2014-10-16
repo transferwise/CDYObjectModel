@@ -13,5 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *thumbnailImage;
+@property (weak, nonatomic) IBOutlet UIImageView *transferwiseIndicator;
+@property (weak, nonatomic) IBOutlet UILabel *initialsLabel;
 
 @end

@@ -115,8 +115,5 @@
     }];
 }
 
-- (void)startScreenShown {
-    [self sendScreen:@"Start screen"];
-}
 
 @end

@@ -15,6 +15,7 @@
 @property (assign, nonatomic)CGSize tabSize;
 @property (assign, nonatomic)CGSize lastTabSize;
 @property (assign, nonatomic)CGSize gapSize;
+@property (nonatomic, strong) NSMutableSet *flashingItems;
 
 @end
 
@@ -37,7 +38,12 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     self.tabBarCollectionView.contentInset = self.tabBarInsets;
+    for(TabItem* item in self.flashingItems)
+    {
+        [self turnOnFlashForItemAtIndex:[self.tabItems indexOfObject:item]];
+    }
 }
 
 -(NSInteger)insertFlexibleSpaceAtIndex
@@ -276,6 +282,11 @@
         [cell configureForSelectedState:YES];
     }
     
+    if([self.flashingItems containsObject:item])
+    {
+        [cell setFlashOn:YES];
+    }
+    
     return cell;
 }
 
@@ -403,6 +414,40 @@
 -(BOOL)useFixedSizeTabs
 {
     return (self.fixedSize.width > 0 || self.fixedSize.height > 0);
+}
+
+-(void)turnOnFlashForItemAtIndex:(NSUInteger)index
+{
+    if(index >= [self.tabItems count])
+    {
+        return;
+    }
+
+    TabItem* item = self.tabItems[index];
+    if(!self.flashingItems)
+    {
+        self.flashingItems = [NSMutableSet set];
+    }
+    [self.flashingItems addObject:item];
+   
+    NSIndexPath *indexPath = [self indexPathForIndex:index];
+    TabCell* cell = (TabCell*)[self.tabBarCollectionView cellForItemAtIndexPath:indexPath];
+    [cell setFlashOn:YES];
+}
+
+-(void)turnOffFlashForItemAtIndex:(NSUInteger)index
+{
+    if(index >= [self.tabItems count])
+    {
+        return;
+    }
+    
+    TabItem* item = self.tabItems[index];
+    [self.flashingItems removeObject:item];
+    
+    NSIndexPath *indexPath = [self indexPathForIndex:index];
+    TabCell* cell = (TabCell*)[self.tabBarCollectionView cellForItemAtIndexPath:indexPath];
+    [cell setFlashOn:NO];
 }
 
 @end

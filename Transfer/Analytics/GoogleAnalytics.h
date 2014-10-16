@@ -7,11 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TransferAnalytics.h"
 
 @class ObjectModel;
 
-@interface GoogleAnalytics : NSObject <TransferAnalytics>
+@interface GoogleAnalytics : NSObject
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 
@@ -25,5 +24,10 @@
 - (void)sendPaymentEvent:(NSString *)event withLabel:(NSString *)label;
 - (void)sendEvent:(NSString *)event category:(NSString *)category label:(NSString *)label;
 - (void)markHasCompletedPayments;
+
+- (void)markLoggedIn;
+- (void)paymentRecipientProfileScreenShown;
+- (void)refundDetailsScreenShown;
+- (void)refundRecipientAdded;
 
 @end

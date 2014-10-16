@@ -30,7 +30,6 @@
 #import "UIApplication+Keyboard.h"
 #import "NSMutableString+Issues.h"
 #import "RecipientOperation.h"
-#import "AnalyticsCoordinator.h"
 #import "UserRecipientsOperation.h"
 #import "Credentials.h"
 #import "RecipientEntrySelectionCell.h"
@@ -40,6 +39,7 @@
 #import "PersonalProfile.h"
 #import "NameSuggestionCellProvider.h"
 #import "EmailLookupWrapper.h"
+#import "GoogleAnalytics.h"
 
 CGFloat const TransferHeaderPaddingTop = 40;
 CGFloat const TransferHeaderPaddingBottom = 0;
@@ -203,7 +203,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
         [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
     }
     
-    [[AnalyticsCoordinator sharedInstance] refundDetailsScreenShown];
+    [[GoogleAnalytics sharedInstance] refundDetailsScreenShown];
 
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"recipient.controller.refreshing.message", nil)];
@@ -398,25 +398,27 @@ CGFloat const TransferHeaderPaddingBottom = 0;
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"refund.controller.validating.message", nil)];
 
+    BOOL didCreateRecipient = NO;
 	if (!self.recipient)
 	{
+        didCreateRecipient = YES;
 		self.recipient = [self.objectModel createRecipient];
-		self.recipient.name = self.holderNameCell.value;
-		self.recipient.currency = self.currency;
-		self.recipient.type = self.recipientType;
-		
-		for (RecipientFieldCell *cell in self.recipientTypeFieldCells)
-		{
-			if ([cell isKindOfClass:[TransferTypeSelectionHeader class]])
-			{
-				continue;
-			}
-			
-			NSString *value = [cell value];
-			RecipientTypeField *field = cell.type;
-			[self.recipient setValue:[field stripPossiblePatternFromValue:value] forField:field];
-		}
-	}
+        self.recipient.name = self.holderNameCell.value;
+        self.recipient.currency = self.currency;
+        self.recipient.type = self.recipientType;
+        
+        for (RecipientFieldCell *cell in self.recipientTypeFieldCells)
+        {
+            if ([cell isKindOfClass:[TransferTypeSelectionHeader class]])
+            {
+                continue;
+            }
+            
+            NSString *value = [cell value];
+            RecipientTypeField *field = cell.type;
+            [self.recipient setValue:[field stripPossiblePatternFromValue:value] forField:field];
+        }
+    }
 
     [self.payment setRefundRecipient:self.recipient];
     [self.objectModel saveContext];
@@ -431,12 +433,17 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 
         if (error)
 		{
+            if(didCreateRecipient)
+            {
+                [weakSelf.objectModel deleteObject:self.recipient saveAfter:YES];
+                weakSelf.recipient = nil;
+            }
             TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"refund.controller.validation.error.title", nil) error:error];
             [alertView show];
             return;
         }
 
-        [[AnalyticsCoordinator sharedInstance] refundRecipientAdded];
+        [[GoogleAnalytics sharedInstance] refundRecipientAdded];
         weakSelf.afterValidationBlock();
     }];
     [validate execute];
@@ -485,6 +492,7 @@ CGFloat const TransferHeaderPaddingBottom = 0;
 			[fieldCell setValue:@""];
 			[fieldCell setEditable:YES];
 		}
+        self.recipient=nil;
 		return;
 	}
 	

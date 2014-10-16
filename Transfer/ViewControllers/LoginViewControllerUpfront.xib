@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="xibNameForResetPassword" value="ResetPasswordViewControllerUpfront"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="emailSeparatorHeight" destination="fek-HK-kQ5" id="Tbv-kT-VgQ"/>
                 <outlet property="emailTextField" destination="Sqf-jN-fvd" id="pva-OL-Vn3"/>
@@ -76,7 +78,7 @@
                     <rect key="frame" x="0.0" y="302" width="320" height="266"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gzj-xE-Yjr" userLabel="Forgot Password Label">
-                            <rect key="frame" x="139" y="28" width="42" height="20.5"/>
+                            <rect key="frame" x="139" y="28" width="42" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
@@ -85,7 +87,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2d1-LU-JcI" userLabel="Or Label">
-                            <rect key="frame" x="139" y="171.5" width="42" height="20.5"/>
+                            <rect key="frame" x="139" y="175" width="42" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
@@ -115,7 +117,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cO2-eB-1cd">
-                            <rect key="frame" x="138" y="80.5" width="45" height="45"/>
+                            <rect key="frame" x="138" y="81" width="45" height="45"/>
                             <state key="normal" image="touch_id_icon">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -131,7 +133,7 @@
                         <constraint firstAttribute="centerX" secondItem="2d1-LU-JcI" secondAttribute="centerX" id="PWp-g6-eGw"/>
                         <constraint firstItem="Uqc-Ct-ZJ1" firstAttribute="width" secondItem="2Sf-8q-59z" secondAttribute="width" id="Uux-Kh-sft"/>
                         <constraint firstItem="cO2-eB-1cd" firstAttribute="top" secondItem="Gzj-xE-Yjr" secondAttribute="bottom" constant="32" id="XfU-7c-E7R"/>
-                        <constraint firstItem="2Sf-8q-59z" firstAttribute="top" secondItem="2d1-LU-JcI" secondAttribute="bottom" constant="24" id="Yi3-P4-IGW"/>
+                        <constraint firstItem="2Sf-8q-59z" firstAttribute="top" secondItem="2d1-LU-JcI" secondAttribute="bottom" constant="21" id="Yi3-P4-IGW"/>
                         <constraint firstItem="Gzj-xE-Yjr" firstAttribute="top" secondItem="Eab-el-220" secondAttribute="top" constant="28" id="gLe-c2-aWr"/>
                         <constraint firstAttribute="centerX" secondItem="Gzj-xE-Yjr" secondAttribute="centerX" id="iTE-j6-WL2"/>
                         <constraint firstAttribute="bottom" secondItem="Uqc-Ct-ZJ1" secondAttribute="bottom" id="j3W-5f-YtY"/>

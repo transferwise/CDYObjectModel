@@ -48,7 +48,7 @@
                     <rect key="frame" x="0.0" y="476" width="320" height="40"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZXR-ic-jH3" userLabel="LogIn" customClass="BlueRoundedButton">
-                            <rect key="frame" x="50" y="0.0" width="100" height="40"/>
+                            <rect key="frame" x="45" y="0.0" width="100" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="BNI-Ir-XzO"/>
                             </constraints>
@@ -61,7 +61,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C83-aN-zCM" userLabel="Register" customClass="BlueRoundedButton">
-                            <rect key="frame" x="170" y="0.0" width="100" height="40"/>
+                            <rect key="frame" x="175" y="0.0" width="100" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="7TE-5g-emQ"/>
                             </constraints>
@@ -74,7 +74,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jd5-pH-5lu" userLabel="WhiteLogIn" customClass="WhiteRoundedButton">
-                            <rect key="frame" x="50" y="0.0" width="100" height="40"/>
+                            <rect key="frame" x="45" y="0.0" width="100" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="Get starteD">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -84,7 +84,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JO7-Z3-QyQ" userLabel="WhiteRegister" customClass="WhiteRoundedButton">
-                            <rect key="frame" x="170" y="0.0" width="100" height="40"/>
+                            <rect key="frame" x="175" y="0.0" width="100" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="Get starteD">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -94,11 +94,11 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GVo-Rm-seK">
-                            <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
+                            <rect key="frame" x="0.0" y="0.0" width="45" height="40"/>
                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qiz-bn-SR7">
-                            <rect key="frame" x="270" y="0.0" width="50" height="40"/>
+                            <rect key="frame" x="275" y="0.0" width="45" height="40"/>
                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                     </subviews>
@@ -119,7 +119,7 @@
                         <constraint firstItem="JO7-Z3-QyQ" firstAttribute="width" secondItem="C83-aN-zCM" secondAttribute="width" id="Yno-X6-0dX"/>
                         <constraint firstAttribute="height" constant="40" id="cit-TP-y4Y"/>
                         <constraint firstItem="C83-aN-zCM" firstAttribute="top" secondItem="nC2-nS-Nkq" secondAttribute="top" id="fRh-0E-k8s"/>
-                        <constraint firstItem="C83-aN-zCM" firstAttribute="leading" secondItem="ZXR-ic-jH3" secondAttribute="trailing" constant="20" id="gCg-V2-E12"/>
+                        <constraint firstItem="C83-aN-zCM" firstAttribute="leading" secondItem="ZXR-ic-jH3" secondAttribute="trailing" constant="30" id="gCg-V2-E12"/>
                         <constraint firstItem="qiz-bn-SR7" firstAttribute="leading" secondItem="C83-aN-zCM" secondAttribute="trailing" id="h8V-H6-y1x"/>
                         <constraint firstItem="GVo-Rm-seK" firstAttribute="top" secondItem="nC2-nS-Nkq" secondAttribute="top" id="j6u-ZH-ZNy"/>
                         <constraint firstItem="JO7-Z3-QyQ" firstAttribute="centerX" secondItem="C83-aN-zCM" secondAttribute="centerX" id="mm4-d0-vOs"/>

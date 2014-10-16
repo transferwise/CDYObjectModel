@@ -14,6 +14,7 @@
 #import "UIColor+MOMStyle.h"
 #import "UIImage+Color.h"
 #import "AddressBookManager.h"
+#import "NSString+Presentation.h"
 
 #define UK_SORT	@"UK Sort code"
 #define IBAN	@"IBAN"
@@ -75,49 +76,9 @@
         }
     }];
     self.initialsLabel.hidden = NO;
-    self.initialsLabel.text = [self getInitials:[recipient name]];
+    self.initialsLabel.text = [recipient.name getInitials];
     return [UIImage imageFromColor:[UIColor colorFromStyle:@"LightBlue"]];
 	
-}
-
-- (NSString *)getInitials:(NSString *)name
-{
-	if (name)
-	{
-		NSArray *components = [name componentsSeparatedByString:@" "];
-		
-		if (components.count < 1)
-		{
-			return nil;
-		}
-		else if (components.count == 1)
-		{
-			return [self getFirstChar:[components firstObject]];
-		}
-		else
-		{
-			return [NSString stringWithFormat:@"%@%@",
-				[self getFirstChar:[components firstObject]],
-				[self getFirstChar:[components lastObject]]];
-		}
-	}
-	
-	return nil;
-}
-
-
-- (NSString *)getFirstChar:(id)input
-{
-	NSString* str = (NSString *)input;
-	
-	if (str && str.length > 0)
-	{
-		return [[str substringToIndex:1] uppercaseString];
-	}
-	else
-	{
-		return @"";
-	}
 }
 
 - (void)maskRecipientImage

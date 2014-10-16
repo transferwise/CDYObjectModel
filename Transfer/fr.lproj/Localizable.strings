@@ -597,6 +597,14 @@ RAPID";
 "refresh.release" = "Lachez maintenant";
 "refresh.refreshing" = "Chargement des transferts...";
 
+
+"business.profile.identification.header.instructions.text" = "As we follow the anti-money laundering policies of our regulators (HMRC and FCA), we unfortunately need photos (or scanned copies) of a few key documents:
+
+1. A valid business incorporation document
+2. A list of the shareholders with over 25% ownership (with % of ownership stated)
+3. Photo ID and proof of address for all of the above stakeholders";
+"business.profile.identification.footer.instructions.text" = "Our apologies for the inconvenience. Rest assured that we will never share your documents with 3rd parties.";
+
 "refund.controller.validation.error.empty.name" = "Nom du détenteur du compte manquant";
 "refund.details.save.error.title" = "Sauvegarde impossible";
 "refund.controller.validating.message" = "Validation en cours...";
@@ -675,3 +683,9 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "usd.low.info" = "Malheureusement il est impossible de transférer moins de 1500 USD pour le moment.\nCela sera bientôt possible.";
 "usd.low.dismiss" = "Ok";
 
+"empty.transfers" = "No transfers made yet?\nTap send to start.";
+"empty.contacts" = "No recipients saved.\nTap send to transfer money.";
+
+"registration.legaleze" = "By using TransferWise, you agree to our %@ & %@";
+"registration.tos" = "Terms of services";
+"registration.privacy" = "Privacy Policy";

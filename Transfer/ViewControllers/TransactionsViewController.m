@@ -41,6 +41,7 @@
 #import "NavigationBarCustomiser.h"
 #import "PaymentMethodSelectorViewController.h"
 #import "SetSSNOperation.h"
+#import "SendButtonFlashHelper.h"
 
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
@@ -57,6 +58,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 @property (nonatomic, weak) PullToRefreshView* refreshView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic) CGPoint touchStart;
+@property (weak, nonatomic) IBOutlet UILabel *noTransfersMessage;
 
 //iPad
 @property (weak, nonatomic) IBOutlet UIView *verificationBar;
@@ -97,6 +99,8 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [self.viewButton setTitle:NSLocalizedString(@"validation.view",nil) forState:UIControlStateNormal];
     
     self.titleLabel.text = self.title;
+    
+    self.noTransfersMessage.text = NSLocalizedString(@"empty.transfers",nil);
 }
 
 - (void)didReceiveMemoryWarning
@@ -140,6 +144,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     {
         [NavigationBarCustomiser applyDefault:self.navigationController.navigationBar];
     }
+    [SendButtonFlashHelper setSendFlash:NO];
 }
 
 #pragma mark - Table view data source
@@ -261,6 +266,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 - (void)refreshPaymentsWithOffset:(NSInteger)offset hud:(TabBarActivityIndicatorView *)hud
 {
+    self.noTransfersMessage.hidden = YES;
+    [SendButtonFlashHelper setSendFlash:NO];
+    
     PaymentsOperation *operation = [PaymentsOperation operationWithOffset:offset];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
@@ -284,6 +292,19 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
             }
 			
 			[self.tableView reloadData];
+            
+            if(!error && totalCount == 0)
+            {
+                self.noTransfersMessage.hidden = NO;
+                self.noTransfersMessage.alpha = 0.0f;
+                [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+                    self.noTransfersMessage.alpha = 1.0f;
+                } completion:nil];
+                if(self.isViewLoaded && self.view.window)
+                {
+                    [SendButtonFlashHelper setSendFlash:YES];
+                }
+            }
 			
 			
 			//data may already be locally stored, this will be overwritten
@@ -600,4 +621,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	self.payments = nil;
 	[self.tableView reloadData];
 }
+
+#pragma mark - Flash send button
+
 @end
