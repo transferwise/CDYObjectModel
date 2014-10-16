@@ -105,7 +105,6 @@
 		[controller setObjectModel:self.objectModel];
 		ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:YES];
 		[self presentViewController:wrapper animated:YES completion:nil];
-		[[GoogleAnalytics sharedInstance] sendScreen:@"New payment"];
 		return NO;
 	}];
 	

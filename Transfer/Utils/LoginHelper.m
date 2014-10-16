@@ -148,7 +148,6 @@
             [mainController setObjectModel:objectModel];
             [root replaceWrappedViewControllerWithController:mainController];
         }];
-        [[GoogleAnalytics sharedInstance] sendScreen:@"New payment"];
     }
     else
     {
