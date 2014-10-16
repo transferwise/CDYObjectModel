@@ -229,7 +229,7 @@
 - (void)presentRecipientDetails:(BOOL)showMiniProfile templateRecipient:(Recipient*)template updateRecipient:(Recipient*)updateRecipient
 {
     [[GoogleAnalytics sharedInstance] paymentRecipientProfileScreenShown];
-    [[Mixpanel sharedInstance] sendPageView:@"Recipient details"];
+    [[Mixpanel sharedInstance] sendPageView:@"Select recipient"];
 
     RecipientViewController *controller = [[RecipientViewController alloc] init];
     if ([Credentials userLoggedIn]) {

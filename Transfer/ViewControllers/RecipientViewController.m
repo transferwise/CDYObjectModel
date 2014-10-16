@@ -285,10 +285,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         self.settingRecipient = YES;
         self.recipient = self.updateRecipient;
     }
-    if(!self.noPendingPayment)
-    {
-        [[Mixpanel sharedInstance] sendPageView:@"Select recipient"];
-    }
 }
 
 
