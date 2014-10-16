@@ -268,16 +268,25 @@
 				 update:(void (^)())update
 			 completion:(SelectionCompletion)completion
 {
-	[UIView animateWithDuration:0.5 animations:^{
-		[tableView beginUpdates];
-		update();
-		[tableView reloadData];
-		[tableView endUpdates];
-		if (completion)
-		{
-			completion();
-		}
-	} completion:nil];
+    if(tableView.numberOfSections > 0)
+    {
+        [CATransaction begin];
+        [CATransaction setCompletionBlock:^{
+            if (completion)
+            {
+                completion();
+            }
+        }];
+            [tableView beginUpdates];
+            update();
+            [tableView endUpdates];
+        [CATransaction commit];
+    }
+    else
+    {
+        //Table view hasn't loaded cells yet. Don't animate.
+        [tableView reloadData];
+    }
 }
 
 - (TextEntryCell *)countrySelectionCell:(SelectionCell *)cell

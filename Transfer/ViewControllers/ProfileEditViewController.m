@@ -313,7 +313,14 @@
 	TextEntryCell *stateCell = [self.profileSource countrySelectionCell:self.countryCell
 													   didSelectCountry:[self.countryCellProvider getCountryByCodeOrName:self.countryCell.value]
 														 withCompletion:^{
-															 [self refreshTableViewSizes];
+                                                             dispatch_async(dispatch_get_main_queue(), ^{
+                                                                 [UIView animateWithDuration:0.2f animations:^{
+                                                                     [self refreshTableViewSizes];
+                                                                 } completion:^(BOOL finished) {
+                                                                     [self forceLayoutOfSuggestionTable];
+                                                                 }];
+                                                             });
+                                                             
 														 }];
 	
 	if (stateCell)
@@ -338,7 +345,14 @@
 		TextEntryCell* occupationCell =[(PersonalProfileSource *)self.profileSource stateSelectionCell:self.stateCell
 																								 state:[self.stateCellProvider getByCodeOrName:self.stateCell.value]
 																						withCompletion:^{
-																							[self refreshTableViewSizes];
+                                                                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                                                                                [UIView animateWithDuration:0.2f animations:^{
+                                                                                                    [self refreshTableViewSizes];
+                                                                                                }];
+
+                                                                                            });
+                                                                                            
+																							
 																						}];
 		if (occupationCell)
 		{

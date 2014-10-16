@@ -18,4 +18,6 @@
 					  entryCell:(TextEntryCell *)entryCell
 						 height:(CGFloat)height;
 
+-(void)forceLayoutOfSuggestionTable;
+
 @end

@@ -90,6 +90,11 @@
    [self updateSuggestionTablePositions];
 }
 
+-(void)forceLayoutOfSuggestionTable
+{
+    [self updateSuggestionTablePositions];
+}
+
 -(void)updateSuggestionTablePositions
 {
     TextFieldSuggestionTable* table = self.currentSuggestionTable;
