@@ -19,6 +19,7 @@
 #import "ObjectModel+Users.h"
 #import "User.h"
 #import "GoogleAnalytics.h"
+#import "Mixpanel+Customisation.h"
 
 @interface OpenIDViewController () <UIWebViewDelegate>
 
@@ -101,6 +102,7 @@
     [[GoogleAnalytics sharedInstance] markLoggedIn];
 
     if ([Credentials userLoggedIn]) {
+        [[Mixpanel sharedInstance] track:@"UserLogged"];
         __weak typeof(self) weakSelf = self;
         [self.objectModel removeOtherUsers];
         [self.objectModel saveContext:^{

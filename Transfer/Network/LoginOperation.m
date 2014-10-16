@@ -88,6 +88,8 @@ NSString *const kLoginPath = @"/token/create";
 			[FBAppEvents logEvent:@"loggedIn"];
 #endif
 			[[GoogleAnalytics sharedInstance] markLoggedIn];
+            
+            [[Mixpanel sharedInstance] track:@"UserLogged"];
 			
 			[weakSelf.workModel saveContext:^{
 				if (!weakSelf.waitForDetailsCompletion)

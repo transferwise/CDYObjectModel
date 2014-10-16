@@ -10,6 +10,7 @@
 #import "TransferwiseOperation+Private.h"
 #import "Credentials.h"
 #import "ObjectModel+Users.h"
+#import "Mixpanel+Customisation.h"
 
 NSString *const kRegisterPath = @"/account/register";
 
@@ -58,6 +59,7 @@ NSString *const kRegisterPath = @"/account/register";
                 weakSelf.completionHandler(nil);
             }];
         }];
+        [[Mixpanel sharedInstance] track:@"UserRegistered"];
     }];
 
     [self postData:@{@"email" : self.email, @"password" : self.password} toPath:path];
