@@ -20,10 +20,13 @@
 #import "User.h"
 #import "GoogleAnalytics.h"
 #import "Mixpanel+Customisation.h"
+#import "LoginHelper.h"
+#import "PaymentsOperation.h"
 
 @interface OpenIDViewController () <UIWebViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
+@property (nonatomic, strong) PaymentsOperation* paymentsOperation;
 
 @end
 
@@ -117,11 +120,17 @@
                 NSString *event = [absoluteString rangeOfString:@"/openId/registered"].location != NSNotFound ? @"UserRegistered" : @"UserLogged";
                 [[GoogleAnalytics sharedInstance] sendAppEvent:event withLabel:self.provider];
 
-                if (weakSelf.registerUser) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentViewNotification object:nil];
-                } else {
-                    [weakSelf dismissViewControllerAnimated:YES completion:nil];
-                }
+                PaymentsOperation *operation = [PaymentsOperation operationWithOffset:0];
+                weakSelf.paymentsOperation = operation;
+                [operation setObjectModel:weakSelf.objectModel];
+                [operation setCompletion:^(NSInteger totalCount, NSError *error)
+                 {
+                     [LoginHelper proceedFromSuccessfulLoginFromViewController:weakSelf objectModel:weakSelf.objectModel];
+                     weakSelf.paymentsOperation = nil;
+                 }];
+                [operation execute];
+                
+                
             });
         }];
     } else {
