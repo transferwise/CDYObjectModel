@@ -13,6 +13,6 @@
 
 - (void)loadBaseData;
 
--(void)clearUserRelatedData;
+-(void)clearUserRelatedDataKeepingPendingPayment:(BOOL)keepPendingPayment;
 
 @end

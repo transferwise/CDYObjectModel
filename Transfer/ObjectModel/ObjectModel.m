@@ -11,6 +11,9 @@
 #import "ObjectModel+RecipientTypes.h"
 #import "ObjectModel+Currencies.h"
 #import "ObjectModel+CurrencyPairs.h"
+#import "ObjectModel+PendingPayments.h"
+#import "PendingPayment.h"
+#import "Recipient.h"
 
 @interface ObjectModel ()
 
@@ -64,13 +67,23 @@
     return [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 }
 
--(void)clearUserRelatedData
+
+-(void)clearUserRelatedDataKeepingPendingPayment:(BOOL)keepPendingPayment
 {
     [self.managedObjectContext performBlockAndWait:^{
+        
+        PendingPayment* pendingPayment = keepPendingPayment ? [self pendingPayment] : nil;
+        
+        //Set user to nil to prevent deletion as a result of the current placeholder user being deleted
+        pendingPayment.user = nil;
+        pendingPayment.recipient.user = nil;
+        
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Payment"];
         fetchRequest.returnsObjectsAsFaults = YES;
         NSArray* result = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
-        for (NSManagedObject* toDelete in result)
+        NSMutableArray *filteredResult = [result mutableCopy];
+        [filteredResult removeObject:pendingPayment]; //Don't delete pending payment in case we're in payment flow when logging in
+        for (NSManagedObject* toDelete in filteredResult)
         {
             [self.managedObjectContext deleteObject:toDelete];
         }
@@ -78,7 +91,9 @@
         fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Recipient"];
         fetchRequest.returnsObjectsAsFaults = YES;
         result = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
-        for (NSManagedObject* toDelete in result)
+        filteredResult = [result mutableCopy];
+        [filteredResult removeObject:pendingPayment.recipient]; //Don't delete pending payment recipient in case we're in payment flow when logging in
+        for (NSManagedObject* toDelete in filteredResult)
         {
             [self.managedObjectContext deleteObject:toDelete];
         }

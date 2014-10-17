@@ -88,7 +88,9 @@
 }
 
 - (NSArray *)listRemoteIdsForExistingPayments {
-    return [self fetchAttributeNamed:@"remoteId" forEntity:[Payment entityName]];
+    NSMutableArray* remoteIds = [[self fetchAttributeNamed:@"remoteId" forEntity:[Payment entityName]] mutableCopy];
+    [remoteIds removeObject:@(0)];
+    return [NSArray arrayWithArray:remoteIds];
 }
 
 - (void)removePaymentsWithIds:(NSArray *)array {

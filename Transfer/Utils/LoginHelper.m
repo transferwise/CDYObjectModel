@@ -32,12 +32,13 @@
 
 - (void)validateInputAndPerformLoginWithEmail:(NSString *)email
 									 password:(NSString *)password
+                           keepPendingPayment:(BOOL)keepPendingPayment
 					 navigationControllerView:(UIView *)navigationControllerView
 								  objectModel:(ObjectModel *)objectModel
 								 successBlock:(TRWActionBlock)successBlock
 					waitForDetailsCompletions:(BOOL)waitForDetailsCompletion
 {
-    [self validateInputAndPerformLoginWithEmail:email password:password navigationControllerView:navigationControllerView objectModel:objectModel successBlock:successBlock errorBlock:^(NSError * error) {
+    [self validateInputAndPerformLoginWithEmail:email password:password keepPendingPayment:keepPendingPayment navigationControllerView:navigationControllerView objectModel:objectModel successBlock:successBlock errorBlock:^(NSError * error) {
         TRWAlertView *alertView;
         if ([error isTransferwiseError])
         {
@@ -62,6 +63,7 @@
     
 - (void)validateInputAndPerformLoginWithEmail:(NSString *)email
                                      password:(NSString *)password
+                           keepPendingPayment:(BOOL)keepPendingPayment
                      navigationControllerView:(UIView *)navigationControllerView
                                   objectModel:(ObjectModel *)objectModel
                                  successBlock:(TRWActionBlock)successBlock
@@ -84,7 +86,7 @@
     [hud setMessage:NSLocalizedString(@"login.controller.logging.in.message", nil)];
 	
     LoginOperation *loginOperation = [LoginOperation loginOperationWithEmail:email
-																	password:password];
+																	password:password keepPendingPayment:keepPendingPayment];
 	self.executedOperation = loginOperation;
     [loginOperation setObjectModel:objectModel];
 	[loginOperation setWaitForDetailsCompletion:waitForDetailsCompletion];

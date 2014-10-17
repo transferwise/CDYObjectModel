@@ -16,6 +16,7 @@
 
 - (void)validateInputAndPerformLoginWithEmail:(NSString *)email
 									 password:(NSString *)password
+                           keepPendingPayment:(BOOL)keepPendingPayment
 					 navigationControllerView:(UIView *)navigationControllerView
 								  objectModel:(ObjectModel *)objectModel
 								 successBlock:(TRWActionBlock)successBlock
@@ -23,6 +24,7 @@
 
 - (void)validateInputAndPerformLoginWithEmail:(NSString *)email
                                      password:(NSString *)password
+                           keepPendingPayment:(BOOL)keepPendingPayment
                      navigationControllerView:(UIView *)navigationControllerView
                                   objectModel:(ObjectModel *)objectModel
                                  successBlock:(TRWActionBlock)successBlock
