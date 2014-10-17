@@ -65,13 +65,7 @@
     [payment setCancelledDate:[NSDate dateFromServerString:data[@"cancelledDate"]]];
     [payment setEstimatedDelivery:[NSDate dateFromServerString:data[@"estimatedDelivery"]]];
     [payment setEstimatedDeliveryStringFromServer:data[@"formattedEstimatedDelivery"]];
-    NSOrderedSet *payInMethods = payment.payInMethods;
-    payment.payInMethods = [NSOrderedSet orderedSet];
-    for(PayInMethod *method in payInMethods)
-    {
-        [self.managedObjectContext deleteObject:(NSManagedObject*)method];
-    }
-    [payment setPayInMethods:[self createPayInMethodsWithData:data[@"payInMethods"]]];
+    [self createOrUpdatePayInMethodsWithData:data[@"payInMethods"] forPayment:payment];
     [payment setConversionRate:data[@"conversionRate"]];
     [payment setPayOut:data[@"payOut"]];
     [payment setProfileUsed:data[@"profile"]];

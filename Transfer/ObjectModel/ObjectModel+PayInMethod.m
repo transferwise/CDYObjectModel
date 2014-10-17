@@ -10,31 +10,51 @@
 #import "ObjectModel+Recipients.h"
 #import "PayInMethod.h"
 #import <objc/runtime.h>
+#import "Payment.h"
 
 @implementation ObjectModel (PayInMethod)
 
--(NSOrderedSet*)createPayInMethodsWithData:(NSArray*)data
+-(void)createOrUpdatePayInMethodsWithData:(NSArray*)data forPayment:(Payment*)payment
 {
-    NSMutableOrderedSet *result = [[NSMutableOrderedSet alloc] initWithCapacity:[data count]];
+    NSMutableOrderedSet *objectsToDelete = [payment.payInMethods mutableCopy];
+    NSOrderedSet *existingTypes = [payment.payInMethods valueForKey:@"type"];
+    NSMutableOrderedSet *newSet = [NSMutableOrderedSet orderedSetWithCapacity:[data count]];
+    
     for(NSDictionary* payInMethodDictionary in data)
     {
-        PayInMethod* method = [PayInMethod insertInManagedObjectContext:self.managedObjectContext];
+        PayInMethod* method;
+        NSString *typeName = payInMethodDictionary[@"type"];
+        if([existingTypes containsObject:typeName])
+        {
+            method = [payment.payInMethods objectAtIndex:[existingTypes indexOfObject:typeName]];
+            [objectsToDelete removeObject:method];
+        }
+        else
+        {
+            method = [PayInMethod insertInManagedObjectContext:self.managedObjectContext];
+            method.type = typeName;
+        }
+        
         NSDictionary* recipientDetails = payInMethodDictionary[@"recipient"];
         if(recipientDetails)
         {
             method.recipient = [self createOrUpdatePayInMethodRecipientWithData:recipientDetails];
         }
         method.bankName = payInMethodDictionary[@"bankName"];
-        method.type = payInMethodDictionary[@"type"];
         method.transferWiseAddress = payInMethodDictionary[@"transferwiseAddress"];
         //TODO: m@s Remove special cases for ADYEN,SOFORT and SWIFT when supported
         method.disabled = @([payInMethodDictionary[@"disabled"] boolValue] || [method.type caseInsensitiveCompare:@"SOFORT"] == NSOrderedSame || [method.type caseInsensitiveCompare:@"SWIFT"] == NSOrderedSame || [method.type caseInsensitiveCompare:@"ADYEN"] == NSOrderedSame );
         method.disabledReason = payInMethodDictionary[@"disabledReason"];
 		method.paymentReference = payInMethodDictionary[@"paymentReference"];
         
-        [result addObject:method];
+        [newSet addObject:method];
     }
-    return [[NSOrderedSet alloc] initWithOrderedSet:result];
+    
+    payment.payInMethods = newSet;
+    for(NSManagedObject* toDelete in objectsToDelete)
+    {
+        [self.managedObjectContext deleteObject:toDelete];
+    }
 }
 
 
