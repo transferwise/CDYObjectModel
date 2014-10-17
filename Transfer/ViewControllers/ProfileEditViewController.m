@@ -65,6 +65,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *actionButton;
 @property (nonatomic, strong) NSString* actionButtonTitle;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *ipadFooterHeight;
+@property (nonatomic) BOOL removeFromNavStackOnDidDisappear;
 
 @end
 
@@ -121,6 +122,18 @@
     if ([self.profileSource isKindOfClass:[PersonalProfileSource class]])
 	{
         [[GoogleAnalytics sharedInstance] sendScreen:@"Enter sender details"];
+    }
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    UINavigationController * navController = self.navigationController;
+    if(self.removeFromNavStackOnDidDisappear && [navController.viewControllers containsObject:self.parentViewController])
+    {
+        NSMutableArray *modifiedNavStack = [navController.viewControllers mutableCopy];
+        [modifiedNavStack removeObject:self.parentViewController];
+        navController.viewControllers = modifiedNavStack;
     }
 }
 
@@ -615,8 +628,8 @@
 			[alertView show];
 			return;
         }
-		
-		[self.navigationController popViewControllerAnimated:NO];
+        
+        self.removeFromNavStackOnDidDisappear = YES;
     }];
 }
 

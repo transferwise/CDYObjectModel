@@ -213,7 +213,10 @@
 			
 			[self updateTableView:tableView
 						   update:^{
-							   [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+                               if(tableView.numberOfSections > indexPath.section)
+                               {
+                                   [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+                               }
 						   }
 					   completion:completion];
 			
@@ -228,7 +231,10 @@
 		{
 			[self updateTableView:tableView
 						   update:^{
-							   [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+                               if(tableView.numberOfSections > indexPath.section)
+                               {
+                                   [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+                               }
 						   }
 					   completion:completion];
 		}
