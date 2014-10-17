@@ -690,7 +690,7 @@ We'll send you an email in order to let you choose a new password.";
 
 
 "usd.low.title" = "Coming soon";
-"usd.low.info" = "Unfortunately you cannot transfer less than 1500 USD just yet.\nYou will soon be able to.";
+"usd.low.info" = "Unfortunately you cannot transfer less than 3 USD.";
 "usd.low.dismiss" = "Ok";
 
 "empty.transfers" = "No transfers made yet?\nTap send to start.";
