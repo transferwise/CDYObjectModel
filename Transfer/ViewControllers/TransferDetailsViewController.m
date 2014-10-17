@@ -171,7 +171,7 @@
 
 - (void)setUpAccounts
 {
-	[self.accountView configureWithRecipient:self.payment.recipient];
+	[self.accountView configureWithPayment:self.payment];
 }
 
 - (IBAction)contactSupportPressed
