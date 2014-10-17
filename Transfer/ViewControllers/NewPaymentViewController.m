@@ -355,6 +355,8 @@ static NSUInteger const kRowYouSend = 0;
 	{
         return;
     }
+    
+    [self.view endEditing:YES];
 
 	Currency *sourceCurrency = [self.youSendCell currency];
     Currency *targetCurrency = [self.theyReceiveCell currency];
