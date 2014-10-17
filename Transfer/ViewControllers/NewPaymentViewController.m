@@ -41,6 +41,7 @@
 #import "TRWProgressHUD.h"
 #import "CurrenciesOperation.h"
 #import "CustomInfoViewController.h"
+#import "NavigationBarCustomiser.h"
 
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
@@ -428,6 +429,9 @@ static NSUInteger const kRowYouSend = 0;
                     
                     [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency1Selected" withLabel:[self.youSendCell currency].code];
                     [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency2Selected" withLabel:[self.theyReceiveCell currency].code];
+                    
+                    
+                    [NavigationBarCustomiser setDefault];
                     
                     [paymentFlow setObjectModel:self.objectModel];
                     [paymentFlow presentNextPaymentScreen];
