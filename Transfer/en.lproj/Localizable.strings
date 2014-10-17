@@ -644,7 +644,7 @@ We'll send you an email in order to let you choose a new password.";
 "unknown.value" = "??";
 "contact.detail.send" = "Send money";
 
-"usd.coming.soon" = "Coming soon";
+"usd.coming.soon" = "U-S-A!";
 "usd.not.supported" = "Sending USD abroad will soon be supported in our mobile applications.\n\nIn the mean time, please go to transferwise.com to pay for this transfer.";
 
 "invite.button.title" = "Invite friends";
@@ -689,7 +689,7 @@ We'll send you an email in order to let you choose a new password.";
 "touchid.settings.names.title" = "Ask again";
 
 
-"usd.low.title" = "Coming soon";
+"usd.low.title" = "U-S-A!";
 "usd.low.info" = "Unfortunately you cannot transfer less than 3 USD.";
 "usd.low.dismiss" = "Ok";
 
