@@ -34,7 +34,7 @@
 - (void)configureWithPayment:(Payment *)payment
 {
 	[self.accountHeaderLabel setText:[NSString stringWithFormat:NSLocalizedString(@"transferdetails.controller.transfer.account.to", nil), [payment.recipient name]]];
-    NSString* email =(payment.status == PaymentStatusCancelled||payment.status == PaymentStatusRefunded)?nil:[payment.recipient email];
+    NSString* email =(payment.status == PaymentStatusTransferred)?[payment.recipient email]:nil;
 	
 	if (email.length > 0)
 	{
