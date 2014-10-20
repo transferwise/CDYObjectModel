@@ -25,6 +25,7 @@
 #import "SendButtonFlashHelper.h"
 #import "TAGManager.h"
 #import "TAGContainerOpener.h"
+#import "NavigationBarCustomiser.h"
 
 
 @interface MainViewController () <UINavigationControllerDelegate>
@@ -161,6 +162,8 @@
 {
     [super viewWillAppear:animated];
 
+    [NavigationBarCustomiser setDefault];
+    
     if (self.launchTableViewGamAdjustmentDone)
 	{
         return;
