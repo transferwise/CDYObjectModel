@@ -93,7 +93,7 @@
     
     //TODO: Use A/B test
     TAGContainer* container = [future get];
-    BOOL requireRegistration = YES;//[container booleanForKey:@"proposeRegistrationUpfront"];
+    BOOL requireRegistration = NO;//[container booleanForKey:@"proposeRegistrationUpfront"];
     
 	if (![Credentials userLoggedIn] && (![self.objectModel hasIntroBeenShown] || (requireRegistration && [self.objectModel hasExistingUserIntroBeenShown])))
 	{
