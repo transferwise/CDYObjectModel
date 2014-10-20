@@ -185,7 +185,7 @@
     
     TAGContainer* container = [self.future get];
     //TODO: Use A/B test
-    BOOL requireRegistration = [container booleanForKey:@"proposeRegistrationUpfront"];
+    BOOL requireRegistration = YES;//[container booleanForKey:@"proposeRegistrationUpfront"];
     
 	if (requireRegistration)
 	{
