@@ -49,11 +49,11 @@
                         <constraint firstItem="hCE-EH-Jio" firstAttribute="width" secondItem="S2Z-ba-zJQ" secondAttribute="width" id="7pH-1W-tNX"/>
                         <constraint firstAttribute="centerX" secondItem="aVj-we-iHX" secondAttribute="centerX" id="9pU-n6-PY5"/>
                         <constraint firstAttribute="height" constant="768" id="NAZ-CT-T2k"/>
-                        <constraint firstAttribute="centerX" secondItem="hCE-EH-Jio" secondAttribute="centerX" id="Pv5-Jp-Epe"/>
+                        <constraint firstAttribute="centerX" secondItem="hCE-EH-Jio" secondAttribute="centerX" id="NF5-hY-mgo"/>
                         <constraint firstItem="aVj-we-iHX" firstAttribute="top" secondItem="pvd-54-5ce" secondAttribute="top" constant="75" id="Rnk-4n-vFa"/>
                         <constraint firstItem="S2Z-ba-zJQ" firstAttribute="top" secondItem="aVj-we-iHX" secondAttribute="bottom" constant="60" id="UWz-yg-acs"/>
+                        <constraint firstAttribute="centerX" secondItem="S2Z-ba-zJQ" secondAttribute="centerX" id="btE-3j-5a0"/>
                         <constraint firstItem="hCE-EH-Jio" firstAttribute="top" secondItem="S2Z-ba-zJQ" secondAttribute="bottom" constant="30" id="xUY-Qs-ZTj"/>
-                        <constraint firstAttribute="centerX" secondItem="S2Z-ba-zJQ" secondAttribute="centerX" id="yQL-X4-elA"/>
                     </constraints>
                 </view>
             </subviews>
@@ -66,11 +66,8 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="flagCenterConstraint" destination="9pU-n6-PY5" id="xC2-9d-oy8"/>
                 <outlet property="introImage" destination="aVj-we-iHX" id="rNv-nQ-4l1"/>
                 <outlet property="messageLabel" destination="hCE-EH-Jio" id="Xit-Qg-O3W"/>
-                <outlet property="messageLabelCenterConstraint" destination="Pv5-Jp-Epe" id="ena-gi-mM1"/>
-                <outlet property="tagLineCenterConstraint" destination="yQL-X4-elA" id="q2T-x1-X1Y"/>
                 <outlet property="taglineLabel" destination="S2Z-ba-zJQ" id="iQ7-bG-ipo"/>
             </connections>
         </view>
