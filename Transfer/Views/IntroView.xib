@@ -43,18 +43,21 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="hCE-EH-Jio" firstAttribute="width" secondItem="S2Z-ba-zJQ" secondAttribute="width" id="7pH-1W-tNX"/>
-                <constraint firstItem="aVj-we-iHX" firstAttribute="centerX" secondItem="S2Z-ba-zJQ" secondAttribute="centerX" constant="0.5" id="89I-BR-20L"/>
                 <constraint firstAttribute="centerX" secondItem="aVj-we-iHX" secondAttribute="centerX" id="9pU-n6-PY5"/>
-                <constraint firstItem="hCE-EH-Jio" firstAttribute="centerX" secondItem="aVj-we-iHX" secondAttribute="centerX" constant="-0.5" id="L30-yB-mw8"/>
                 <constraint firstItem="aVj-we-iHX" firstAttribute="top" secondItem="pvd-54-5ce" secondAttribute="top" constant="74" id="Rnk-4n-vFa"/>
                 <constraint firstItem="S2Z-ba-zJQ" firstAttribute="top" secondItem="aVj-we-iHX" secondAttribute="bottom" constant="30" id="UWz-yg-acs"/>
+                <constraint firstAttribute="centerX" secondItem="hCE-EH-Jio" secondAttribute="centerX" id="nVZ-CT-qTY"/>
                 <constraint firstItem="hCE-EH-Jio" firstAttribute="top" secondItem="S2Z-ba-zJQ" secondAttribute="bottom" constant="14" id="xUY-Qs-ZTj"/>
+                <constraint firstAttribute="centerX" secondItem="S2Z-ba-zJQ" secondAttribute="centerX" id="y5G-CM-E2a"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="flagCenterConstraint" destination="9pU-n6-PY5" id="8JK-qw-lvi"/>
                 <outlet property="introImage" destination="aVj-we-iHX" id="7Wl-YV-aU5"/>
                 <outlet property="messageLabel" destination="hCE-EH-Jio" id="Rp6-wp-Rqo"/>
+                <outlet property="messageLabelCenterConstraint" destination="nVZ-CT-qTY" id="U3V-YY-Gpn"/>
+                <outlet property="tagLineCenterConstraint" destination="y5G-CM-E2a" id="P81-Ll-v4v"/>
                 <outlet property="taglineLabel" destination="S2Z-ba-zJQ" id="iyf-Zh-lMh"/>
             </connections>
         </view>

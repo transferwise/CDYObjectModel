@@ -4071,7 +4071,7 @@
 				);
 				PRODUCT_NAME = TransferDev;
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F6DFACD5-97DF-48DF-8310-C1E1142E278A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
