@@ -4,6 +4,7 @@
 #import "_PaymentMadeIndicator.h"
 
 const struct PaymentMadeIndicatorAttributes PaymentMadeIndicatorAttributes = {
+	.payInMethodName = @"payInMethodName",
 	.paymentRemoteId = @"paymentRemoteId",
 };
 
@@ -45,6 +46,8 @@ const struct PaymentMadeIndicatorRelationships PaymentMadeIndicatorRelationships
 
 	return keyPaths;
 }
+
+@dynamic payInMethodName;
 
 @dynamic paymentRemoteId;
 

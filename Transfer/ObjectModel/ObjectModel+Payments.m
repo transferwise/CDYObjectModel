@@ -115,7 +115,7 @@
     return [self fetchEntitiesNamed:[Payment entityName] withPredicate:remoteIdPredicate];
 }
 
--(void)togglePaymentMadeForPayment:(Payment*)payment
+-(void)togglePaymentMadeForPayment:(Payment*)payment payInMethodName:(NSString*)payInMethodName;
 {
     PaymentMadeIndicator* indicator = payment.paymentMadeIndicator;
     if (indicator)
@@ -126,6 +126,7 @@
     {
         indicator = [PaymentMadeIndicator insertInManagedObjectContext:self.managedObjectContext];
         indicator.paymentRemoteId = payment.remoteId;
+        indicator.payInMethodName = payInMethodName;
         payment.paymentMadeIndicator = indicator;
     }
 }

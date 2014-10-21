@@ -416,7 +416,7 @@ This can't be undone.";
 "transferdetails.controller.transfer.thankyou" = "Thank you!";
 "transferdetails.controller.transfer.message1" = "We're now waiting for your";
 "transferdetails.controller.transfer.message2" = "bank transfer to reach our account.";
-"transferdetails.controller.transfer.message3" = "It generally takes 1 business day.";
+"transferdetails.controller.transfer.message3" = "It generally takes %@.";
 "transferdetails.controller.transfer.number" = "#%@";
 "transferdetails.controller.transfer.recipient" = "to %@";
 "transferdetails.controller.transfer.account.to" = "%@'s account details";
@@ -699,3 +699,9 @@ We'll send you an email in order to let you choose a new password.";
 "registration.legaleze" = "By using TransferWise, you agree to our %@ & %@";
 "registration.tos" = "Terms of services";
 "registration.privacy" = "Privacy Policy";
+
+"transfertime.default" = "1 business day";
+"transfertime.EUR.REGULAR" = "1-2 business days";
+"transfertime.GBP.REGULAR" = "a few business hours";
+"transfertime.USD.SWIFT" = "3 business days";
+"transfertime.USD.REGULAR" = "a few business hours";

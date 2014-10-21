@@ -4,6 +4,7 @@
 #import <CoreData/CoreData.h>
 
 extern const struct PaymentMadeIndicatorAttributes {
+	__unsafe_unretained NSString *payInMethodName;
 	__unsafe_unretained NSString *paymentRemoteId;
 } PaymentMadeIndicatorAttributes;
 
@@ -22,6 +23,10 @@ extern const struct PaymentMadeIndicatorRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) PaymentMadeIndicatorID* objectID;
 
+@property (nonatomic, strong) NSString* payInMethodName;
+
+//- (BOOL)validatePayInMethodName:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSNumber* paymentRemoteId;
 
 @property (atomic) int32_t paymentRemoteIdValue;
@@ -37,6 +42,9 @@ extern const struct PaymentMadeIndicatorRelationships {
 @end
 
 @interface _PaymentMadeIndicator (CoreDataGeneratedPrimitiveAccessors)
+
+- (NSString*)primitivePayInMethodName;
+- (void)setPrimitivePayInMethodName:(NSString*)value;
 
 - (NSNumber*)primitivePaymentRemoteId;
 - (void)setPrimitivePaymentRemoteId:(NSNumber*)value;

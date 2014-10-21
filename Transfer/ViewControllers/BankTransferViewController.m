@@ -205,30 +205,31 @@
 {
     __weak typeof(self) weakSelf = self;
     [self.objectModel performBlock:^{
-        [weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment];
+        [weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment payInMethodName:self.method.type];
+        [[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"BankTransfer"];
+        if ([Credentials temporaryAccount])
+        {
+            ClaimAccountViewController *controller = [[ClaimAccountViewController alloc] init];
+            [controller setObjectModel:self.objectModel];
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+        else
+        {
+            if (IPAD)
+            {
+                [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+            }
+            else
+            {
+                TransferWaitingViewController *controller = [[TransferWaitingViewController alloc] init];
+                controller.payment = self.payment;
+                controller.objectModel = self.objectModel;
+                
+                [self switchToViewController:controller];
+            }
+        }
+
     }];
-    [[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"BankTransfer"];
-    if ([Credentials temporaryAccount])
-	{
-        ClaimAccountViewController *controller = [[ClaimAccountViewController alloc] init];
-        [controller setObjectModel:self.objectModel];
-        [self.navigationController pushViewController:controller animated:YES];
-    }
-	else
-	{
-		if (IPAD)
-		{
-			[[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
-		}
-		else
-		{
-			TransferWaitingViewController *controller = [[TransferWaitingViewController alloc] init];
-			controller.payment = self.payment;
-			controller.objectModel = self.objectModel;
-			
-			[self switchToViewController:controller];
-		}
-    }
 }
 
 - (IBAction)contactSupportPressed {

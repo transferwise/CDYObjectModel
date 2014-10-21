@@ -13,6 +13,8 @@
 #import "UploadMoneyViewController.h"
 #import "UIViewController+SwitchToViewController.h"
 #import "TransferBackButtonItem.h"
+#import "Currency.h"
+#import "PaymentMadeIndicator.h"
 
 @interface TransferWaitingViewController ()
 
@@ -58,7 +60,16 @@
 	[self.thankYouLabel setText:NSLocalizedString(@"transferdetails.controller.transfer.thankyou", nil)];
 	[self.messageLabel1 setText:NSLocalizedString(@"transferdetails.controller.transfer.message1", nil)];
 	[self.messageLabel2 setText:NSLocalizedString(@"transferdetails.controller.transfer.message2", nil)];
-	[self.messageLabel3 setText:NSLocalizedString(@"transferdetails.controller.transfer.message3", nil)];
+    
+    NSString *key = [NSString stringWithFormat:@"transfertime.%@.%@",self.payment.sourceCurrency.code,self.payment.paymentMadeIndicator.payInMethodName];
+    NSString *timingString = NSLocalizedString(key,nil);
+    if ([timingString isEqualToString:key])
+    {
+        timingString = NSLocalizedString(@"transfertime.default", nil);
+    }
+    [self.messageLabel3 setText:[NSString stringWithFormat:NSLocalizedString(@"transferdetails.controller.transfer.message3", nil),timingString]];
+    
+    
 	[super setUpHeader];
 }
 
@@ -80,7 +91,7 @@
 - (IBAction)noTransferButtonTap:(id)sender {
     __weak typeof(self) weakSelf = self;
     [self.objectModel performBlock:^{
-        [weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment];
+        [weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment payInMethodName:nil];
     }];
 	
 	if (IPAD)
