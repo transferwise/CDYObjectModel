@@ -233,7 +233,7 @@ A revolution in your pocket.";
 "payment.status.payed.description.long2" = "received the money.";
 "payment.status.payed.description.conversion" = "We're now waiting for your
 bank transfer to reach our account.
-It generally taks 1 business day.";
+It generally takes 1-2 business day.";
 "payment.status.payed.description.eta" = "";
 "payment.status.transferred.description" = "Completed - %@";
 "payment.status.transferred.description.long" = "has been transfered.";
