@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13A3028" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,11 +13,9 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pvd-54-5ce">
                     <rect key="frame" x="0.0" y="0.0" width="500" height="768"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_screen_logo" translatesAutoresizingMaskIntoConstraints="NO" id="aVj-we-iHX">
                             <rect key="frame" x="213" y="75" width="75" height="75"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="75" id="79L-oo-vIT"/>
                                 <constraint firstAttribute="width" constant="75" id="oup-O8-1ng"/>
@@ -24,7 +23,6 @@
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beat the system in minutes" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="500" translatesAutoresizingMaskIntoConstraints="NO" id="S2Z-ba-zJQ">
                             <rect key="frame" x="0.0" y="210" width="500" height="22"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="500" id="TCS-cx-rJs"/>
@@ -37,7 +35,6 @@
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="500" translatesAutoresizingMaskIntoConstraints="NO" id="hCE-EH-Jio">
                             <rect key="frame" x="0.0" y="262" width="500" height="22"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -50,12 +47,12 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="hCE-EH-Jio" firstAttribute="width" secondItem="S2Z-ba-zJQ" secondAttribute="width" id="7pH-1W-tNX"/>
-                        <constraint firstItem="aVj-we-iHX" firstAttribute="centerX" secondItem="S2Z-ba-zJQ" secondAttribute="centerX" constant="0.5" id="89I-BR-20L"/>
                         <constraint firstAttribute="centerX" secondItem="aVj-we-iHX" secondAttribute="centerX" id="9pU-n6-PY5"/>
-                        <constraint firstItem="hCE-EH-Jio" firstAttribute="centerX" secondItem="aVj-we-iHX" secondAttribute="centerX" constant="-0.5" id="L30-yB-mw8"/>
                         <constraint firstAttribute="height" constant="768" id="NAZ-CT-T2k"/>
+                        <constraint firstAttribute="centerX" secondItem="hCE-EH-Jio" secondAttribute="centerX" id="NF5-hY-mgo"/>
                         <constraint firstItem="aVj-we-iHX" firstAttribute="top" secondItem="pvd-54-5ce" secondAttribute="top" constant="75" id="Rnk-4n-vFa"/>
                         <constraint firstItem="S2Z-ba-zJQ" firstAttribute="top" secondItem="aVj-we-iHX" secondAttribute="bottom" constant="60" id="UWz-yg-acs"/>
+                        <constraint firstAttribute="centerX" secondItem="S2Z-ba-zJQ" secondAttribute="centerX" id="btE-3j-5a0"/>
                         <constraint firstItem="hCE-EH-Jio" firstAttribute="top" secondItem="S2Z-ba-zJQ" secondAttribute="bottom" constant="30" id="xUY-Qs-ZTj"/>
                     </constraints>
                 </view>
@@ -66,6 +63,7 @@
                 <constraint firstAttribute="trailing" secondItem="pvd-54-5ce" secondAttribute="trailing" id="fLO-e0-wUc"/>
                 <constraint firstAttribute="centerY" secondItem="pvd-54-5ce" secondAttribute="centerY" id="giI-O1-BqP"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="introImage" destination="aVj-we-iHX" id="rNv-nQ-4l1"/>
@@ -77,4 +75,9 @@
     <resources>
         <image name="intro_screen_logo" width="65" height="65"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

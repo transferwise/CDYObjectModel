@@ -12,5 +12,6 @@
 
 - (void)setUpWithDictionary:(NSDictionary*)dictionary;
 
+- (void)shiftCenter:(CGFloat)relativeOffset;
 
 @end
