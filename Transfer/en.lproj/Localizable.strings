@@ -233,7 +233,7 @@ A revolution in your pocket.";
 "payment.status.payed.description.long2" = "received the money.";
 "payment.status.payed.description.conversion" = "We're now waiting for your
 bank transfer to reach our account.
-It generally taks 1 business day.";
+It generally takes 1-2 business day.";
 "payment.status.payed.description.eta" = "";
 "payment.status.transferred.description" = "Completed - %@";
 "payment.status.transferred.description.long" = "has been transfered.";
@@ -420,7 +420,7 @@ This can't be undone.";
 "transferdetails.controller.transfer.number" = "#%@";
 "transferdetails.controller.transfer.recipient" = "to %@";
 "transferdetails.controller.transfer.account.to" = "%@'s account details";
-"transferdetails.controller.transfer.account.sent" = "%@\nWe've sent email to %@ at\n%@";
+"transferdetails.controller.transfer.account.sent" = "%@\nWe've sent an email to %@ at\n%@";
 "transferdetails.controller.button.support.ipad" = "Contact support";
 "transferdetails.controller.button.support" = "Contact customer support";
 "transferdetails.controller.button.rate" = "Rate the app";
