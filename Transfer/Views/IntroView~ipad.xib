@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
@@ -65,8 +66,11 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="flagCenterConstraint" destination="9pU-n6-PY5" id="p7X-iC-enf"/>
                 <outlet property="introImage" destination="aVj-we-iHX" id="rNv-nQ-4l1"/>
                 <outlet property="messageLabel" destination="hCE-EH-Jio" id="Xit-Qg-O3W"/>
+                <outlet property="messageLabelCenterConstraint" destination="NF5-hY-mgo" id="WKC-xZ-BxK"/>
+                <outlet property="tagLineCenterConstraint" destination="btE-3j-5a0" id="sNH-aq-ADU"/>
                 <outlet property="taglineLabel" destination="S2Z-ba-zJQ" id="iQ7-bG-ipo"/>
             </connections>
         </view>
