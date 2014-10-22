@@ -50,6 +50,7 @@
 	if (recipient.image)
 	{
 		self.recipientImage.image = recipient.image;
+        self.initialsLabel.hidden = YES;
 	}
 	else
 	{
@@ -95,6 +96,16 @@
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {
     self.slidingContentView.bgStyle = highlighted ? @"LightBlueHighlighted" : @"white";
+}
+
+-(void)prepareForReuse
+{
+    [super prepareForReuse];
+    self.recipientImage.image = nil;
+    self.initialsLabel.hidden = YES;
+    self.bankLabel.text = nil;
+    self.nameLabel.text = nil;
+    self.sendLabel.text = nil;
 }
 
 @end
