@@ -413,7 +413,7 @@ C'est irréversible.";
 "transferdetails.controller.transfer.thankyou" = "Merci!";
 "transferdetails.controller.transfer.message1" = "Nous sommes maintenant dans l'attente";
 "transferdetails.controller.transfer.message2" = "de reception de votre transfert sur notre compte.";
-"transferdetails.controller.transfer.message3" = "Cela prend généralement 1 jour ouvré.";
+"transferdetails.controller.transfer.message3" = "Cela prend généralement %@.";
 "transferdetails.controller.transfer.number" = "#%@";
 "transferdetails.controller.transfer.recipient" = "à %@";
 "transferdetails.controller.transfer.account.to" = "Details bancaires de %@";
@@ -676,8 +676,8 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "touchid.settings.names.title" = "Ask again";
 
 
-"usd.low.title" = "Bientôt dans votre app";
-"usd.low.info" = "Malheureusement il est impossible de transférer moins de 1500 USD pour le moment.\nCela sera bientôt possible.";
+"usd.low.title" = "U-S-A!";
+"usd.low.info" = "Malheureusement il est impossible de transférer moins de 3 USD pour le moment.\nCela sera bientôt possible.";
 "usd.low.dismiss" = "Ok";
 
 "empty.transfers" = "No transfers made yet?\nTap send to start.";
@@ -686,3 +686,9 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "registration.legaleze" = "By using TransferWise, you agree to our %@ & %@";
 "registration.tos" = "Terms of services";
 "registration.privacy" = "Privacy Policy";
+
+"transfertime.default" = "1 business day";
+"transfertime.EUR.REGULAR" = "1-2 business days";
+"transfertime.GBP.REGULAR" = "a few business hours";
+"transfertime.USD.SWIFT" = "3 business days";
+"transfertime.USD.REGULAR" = "a few business hours";
