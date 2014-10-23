@@ -94,6 +94,9 @@
     //TODO: Use A/B test
     TAGContainer* container = [future get];
     BOOL requireRegistration = [container booleanForKey:@"proposeRegistrationUpfront"];
+#ifdef REGISTRATION_UPFRONT_OVERRIDE
+    requireRegistration = REGISTRATION_UPFRONT_OVERRIDE;
+#endif
     
 	if (![Credentials userLoggedIn] && (![self.objectModel hasIntroBeenShown] || (requireRegistration && [self.objectModel hasExistingUserIntroBeenShown])))
 	{

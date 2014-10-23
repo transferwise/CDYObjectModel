@@ -189,6 +189,9 @@
     TAGContainer* container = [self.future get];
     //TODO: Use A/B test
     BOOL requireRegistration = [container booleanForKey:@"proposeRegistrationUpfront"];
+#ifdef REGISTRATION_UPFRONT_OVERRIDE
+    requireRegistration = REGISTRATION_UPFRONT_OVERRIDE;
+#endif
     
 	if (requireRegistration)
 	{
