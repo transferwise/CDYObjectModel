@@ -1,5 +1,5 @@
 "business.profile.address.label" = "Adresse";
-"business.profile.email.label" = "Votre email proffesionnel";
+"business.profile.email.label" = "Votre email profesionnel";
 "business.profile.address.section.title" = "Adresse";
 "business.profile.city.label" = "Ville";
 "business.profile.state.label" = "Etat";
@@ -563,7 +563,7 @@ Veuillez joindre vos documents à cet email et envoyez ce dernier.<br />
 
 "business.profile.identification.making.payment.message" = "Création du transfert...";
 
-"intro.start.button.title" = "Compris";
+"intro.start.button.title" = "Ok";
 "intro.login.button.title" = "Connexion";
 "intro.register.button.title" = "S'enregistrer";
 "intro.tagline.one" = "ARGENT
