@@ -460,7 +460,7 @@ C'est irréversible.";
 "upload.money.card.no.payment.message" = "Paiement avorté";
 "upload.money.card.no.payment.title" = "Le paiement n'a pu être éffectué. Réessayez plus tard.";
 "upload.money.card.payment.success.message" = "Parfait, votre paiement par carte a été accepté!";
-"upload.money.card.payment.success.title" = "Paiment éffectué";
+"upload.money.card.payment.success.title" = "Paiement éffectué";
 
 "why.popup.bank.column.label" = "Banque lambda";
 "why.popup.tw.rate.title" = "Nous utilisons le vrai taux de change.";
