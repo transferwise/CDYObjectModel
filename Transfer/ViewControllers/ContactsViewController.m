@@ -31,6 +31,7 @@
 #import "RecipientsFooterView.h"
 #import "ContactDetailsViewController.h"
 #import "ReferralsCoordinator.h"
+#import "SendButtonFlashHelper.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
@@ -40,6 +41,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 @property (nonatomic, strong) NSArray *allRecipients;
 @property (nonatomic, strong) RecipientsFooterView *footerView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *noRecipientsMessage;
 
 @end
 
@@ -68,6 +70,8 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [self.tableView registerNib:[UINib nibWithNibName:@"RecipientCell" bundle:nil] forCellReuseIdentifier:kRecipientCellIdentifier];
     
     self.titleLabel.text = self.title;
+    
+    self.noRecipientsMessage.text = NSLocalizedString(@"empty.contacts", nil);
 }
 
 - (void)didReceiveMemoryWarning
@@ -105,6 +109,12 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 	[super viewDidAppear:animated];
 
 	[[GoogleAnalytics sharedInstance] sendScreen:@"Recipients"];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [SendButtonFlashHelper setSendFlash:NO];
 }
 
 
@@ -208,6 +218,9 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
         return;
     }
 
+    self.noRecipientsMessage.hidden = YES;
+    [SendButtonFlashHelper setSendFlash:NO];
+    
     UserRecipientsOperation *operation = [UserRecipientsOperation recipientsOperation];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
@@ -344,6 +357,18 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 		{
 			[self setFooter];
 		}
+        else
+        {
+            self.noRecipientsMessage.hidden = NO;
+            self.noRecipientsMessage.alpha = 0.0f;
+            [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+                self.noRecipientsMessage.alpha = 1.0f;
+            } completion:nil];
+            if(self.isViewLoaded && self.view.window)
+            {
+                [SendButtonFlashHelper setSendFlash:YES];
+            }
+        }
     });
 }
 

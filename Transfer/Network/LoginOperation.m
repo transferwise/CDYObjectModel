@@ -15,7 +15,9 @@
 #import "GoogleAnalytics.h"
 #import "AppsFlyerTracker.h"
 #import "ObjectModel+Users.h"
+#import "PaymentsOperation.h"
 #import "User.h"
+#import "Mixpanel+Customisation.h"
 
 NSString *const kLoginPath = @"/token/create";
 
@@ -23,6 +25,7 @@ NSString *const kLoginPath = @"/token/create";
 
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *password;
+@property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
 @end
 
@@ -51,6 +54,9 @@ NSString *const kLoginPath = @"/token/create";
     params[@"password"] = self.password;
     params[@"lifeTime"] = @"week";
 
+    //Ensure no stale data is present before logging in.
+    [self.objectModel clearUserRelatedData];
+    
     __block __weak LoginOperation *weakSelf = self;
     [self setOperationSuccessHandler:^(NSDictionary *response) {
         [weakSelf.workModel performBlock:^{
@@ -64,7 +70,15 @@ NSString *const kLoginPath = @"/token/create";
 #endif
 				if (weakSelf.waitForDetailsCompletion)
 				{
-					weakSelf.responseHandler(nil);
+                    //Attempt to retreive the user's transactions prior to showing the first logged in screen.
+                    PaymentsOperation *operation = [PaymentsOperation operationWithOffset:0];
+                    [weakSelf setExecutedOperation:operation];
+                    [operation setObjectModel:weakSelf.objectModel];
+                    [operation setCompletion:^(NSInteger totalCount, NSError *error)
+                     {
+                        weakSelf.responseHandler(nil);
+                     }];
+                    [operation execute];
 				}
             }];
 
@@ -74,6 +88,8 @@ NSString *const kLoginPath = @"/token/create";
 			[FBAppEvents logEvent:@"loggedIn"];
 #endif
 			[[GoogleAnalytics sharedInstance] markLoggedIn];
+            
+            [[Mixpanel sharedInstance] track:@"UserLogged"];
 			
 			[weakSelf.workModel saveContext:^{
 				if (!weakSelf.waitForDetailsCompletion)

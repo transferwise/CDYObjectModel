@@ -239,30 +239,54 @@
 
 - (NSIndexPath *)getIndexPathForCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView
 {
-	NSIndexPath *path = [tableView indexPathForCell:cell];
-	
-	if (!path)
-	{
-		path = [tableView indexPathForRowAtPoint:[cell convertPoint:cell.center toView:tableView]];
-	}
-	
-	return path;
+    NSIndexPath *path = [tableView indexPathForCell:cell];
+    if (!path)
+    {
+        NSUInteger tableViewIndex = [self.tableViews indexOfObject:tableView];
+        if(tableViewIndex!=NSNotFound)
+        {
+            for(NSArray *section in self.cells[tableViewIndex])
+            {
+                if([section containsObject:cell])
+                {
+                    NSUInteger sectionIndex = [self.cells[tableViewIndex] indexOfObject:section];
+                    NSUInteger row = [section indexOfObject:cell];
+                    if(sectionIndex != NSNotFound && row != NSNotFound)
+                    {
+                        return [NSIndexPath indexPathForRow:row inSection:sectionIndex];
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+    return path;
 }
 
 - (void)updateTableView:(UITableView *)tableView
 				 update:(void (^)())update
 			 completion:(SelectionCompletion)completion
 {
-	[UIView animateWithDuration:0.5 animations:^{
-		[tableView beginUpdates];
-		update();
-		[tableView reloadData];
-		[tableView endUpdates];
-		if (completion)
-		{
-			completion();
-		}
-	} completion:nil];
+    if(tableView.numberOfSections > 0)
+    {
+        [CATransaction begin];
+        [CATransaction setCompletionBlock:^{
+            if (completion)
+            {
+                completion();
+            }
+        }];
+            [tableView beginUpdates];
+            update();
+            [tableView endUpdates];
+        [CATransaction commit];
+    }
+    else
+    {
+        //Table view hasn't loaded cells yet. Don't animate.
+        [tableView reloadData];
+    }
 }
 
 - (TextEntryCell *)countrySelectionCell:(SelectionCell *)cell

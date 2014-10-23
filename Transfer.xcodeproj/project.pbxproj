@@ -154,6 +154,10 @@
 		385AC114198FE52E0088DCD6 /* NoRefCurrencyMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 385AC112198FE52E0088DCD6 /* NoRefCurrencyMessages.plist */; };
 		385AC116198FE5500088DCD6 /* intro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 385AC115198FE5500088DCD6 /* intro.plist */; };
 		385AC117198FE5500088DCD6 /* intro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 385AC115198FE5500088DCD6 /* intro.plist */; };
+		3863B82119E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3863B82019E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib */; };
+		3863B82219E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3863B82019E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib */; };
+		3863B82419E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3863B82319E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib */; };
+		3863B82519E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3863B82319E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib */; };
 		38675454198B977800DEA359 /* RefundDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */; };
 		38675455198B977800DEA359 /* RefundDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */; };
 		38675457198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */; };
@@ -295,8 +299,6 @@
 		38B1C5D7195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */; };
 		38B4CB6119DC00FC004173C9 /* IntroViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B4CB6019DC00FC004173C9 /* IntroViewController~ipad.xib */; };
 		38B4CB6219DC00FC004173C9 /* IntroViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B4CB6019DC00FC004173C9 /* IntroViewController~ipad.xib */; };
-		38B4CB6419DC2676004173C9 /* GTM-NB4FCW in Resources */ = {isa = PBXBuildFile; fileRef = 38B4CB6319DC2676004173C9 /* GTM-NB4FCW */; };
-		38B4CB6519DC2676004173C9 /* GTM-NB4FCW in Resources */ = {isa = PBXBuildFile; fileRef = 38B4CB6319DC2676004173C9 /* GTM-NB4FCW */; };
 		38B52F97199B622D00B6AEBD /* ValidationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52F95199B622D00B6AEBD /* ValidationCell.m */; };
 		38B52F98199B622D00B6AEBD /* ValidationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52F95199B622D00B6AEBD /* ValidationCell.m */; };
 		38B52F99199B622D00B6AEBD /* ValidationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B52F96199B622D00B6AEBD /* ValidationCell.xib */; };
@@ -313,6 +315,14 @@
 		38BD98A4195C5973009F9B4A /* NameSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */; };
 		38BD98A5195C5973009F9B4A /* NameSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */; };
 		38BD98A6195C5973009F9B4A /* NameSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */; };
+		38C0394919E29CBB00555F65 /* GTM-TDZF76 in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394819E29CBB00555F65 /* GTM-TDZF76 */; };
+		38C0394A19E29CBB00555F65 /* GTM-TDZF76 in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394819E29CBB00555F65 /* GTM-TDZF76 */; };
+		38C0394C19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */; };
+		38C0394D19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */; };
+		38C0394F19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */; };
+		38C0395019E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */; };
+		38C0395B19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */; };
+		38C0395C19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */; };
 		38C1A89B199CC5A0000BF59C /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C1A899199CC5A0000BF59C /* InviteViewController.m */; };
 		38C1A89C199CC5A0000BF59C /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C1A899199CC5A0000BF59C /* InviteViewController.m */; };
 		38C1A89D199CC5A0000BF59C /* InviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C1A89A199CC5A0000BF59C /* InviteViewController.xib */; };
@@ -345,6 +355,10 @@
 		38EFABE4196D7EAB00126192 /* TextFieldSuggestionTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EFABDE196D7EAB00126192 /* TextFieldSuggestionTable.xib */; };
 		38F6DE5F19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F6DE5E19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m */; };
 		38F6DE6019D2DF5A00C5B4B5 /* RecipientUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F6DE5E19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m */; };
+		38FC0B9719EE84E000173E07 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC0B9619EE84E000173E07 /* libEventTracker.a */; settings = {ATTRIBUTES = (Weak, ); }; };
+		38FC0B9819EE84E000173E07 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC0B9619EE84E000173E07 /* libEventTracker.a */; settings = {ATTRIBUTES = (Weak, ); }; };
+		38FC0B9B19EED51500173E07 /* Mixpanel+Customisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */; };
+		38FC0B9C19EED51500173E07 /* Mixpanel+Customisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */; };
 		470DEFAD1945F02300684FEB /* MoneyEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */; };
 		470DEFAE19460C8D00684FEB /* MoneyEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */; };
 		4710499719470AFD00660B2F /* CurrencyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */; };
@@ -817,10 +831,6 @@
 		EAB72161171FCAB900DE29F5 /* SettingsTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */; };
 		EAB72165171FDC7F00DE29F5 /* MoneyCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */; };
 		EAB93B481761C74700A7337C /* ClaimAccountOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB93B471761C74700A7337C /* ClaimAccountOperation.m */; };
-		EABD864518E2B65D004A5A57 /* TransferMixpanel.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD864418E2B65D004A5A57 /* TransferMixpanel.m */; };
-		EABD864618E2B65D004A5A57 /* TransferMixpanel.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD864418E2B65D004A5A57 /* TransferMixpanel.m */; };
-		EABD864A18E2B6B2004A5A57 /* AnalyticsCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD864918E2B6B2004A5A57 /* AnalyticsCoordinator.m */; };
-		EABD864B18E2B6B2004A5A57 /* AnalyticsCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD864918E2B6B2004A5A57 /* AnalyticsCoordinator.m */; };
 		EAC1051A17607C4600B3B018 /* ClaimAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */; };
 		EAC1051B17607C4600B3B018 /* ClaimAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */; };
 		EACD942E18D82C2C00369905 /* NanTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = EACD942D18D82C2C00369905 /* NanTracking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -1015,6 +1025,8 @@
 		385AC10F198FE2190088DCD6 /* SharpSansFrontieres-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SharpSansFrontieres-Bold.otf"; sourceTree = "<group>"; };
 		385AC112198FE52E0088DCD6 /* NoRefCurrencyMessages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NoRefCurrencyMessages.plist; sourceTree = "<group>"; };
 		385AC115198FE5500088DCD6 /* intro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = intro.plist; sourceTree = "<group>"; };
+		3863B82019E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResetPasswordViewControllerUpfront.xib; sourceTree = "<group>"; };
+		3863B82319E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResetPasswordViewControllerUpfront~ipad.xib"; sourceTree = "<group>"; };
 		38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RefundDetailsViewController~ipad.xib"; sourceTree = "<group>"; };
 		38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransferTypeSelectionHeaderNoTitle~ipad.xib"; sourceTree = "<group>"; };
 		386B039B19DD687C002285EF /* LoginViewControllerUpfront.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewControllerUpfront.xib; sourceTree = "<group>"; };
@@ -1122,6 +1134,7 @@
 		389F67F4198FC1C6006CF1F6 /* TypeFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeFieldValue.m; sourceTree = "<group>"; };
 		389F67F5198FC1C6006CF1F6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		389F67F6198FC1C6006CF1F6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		38A8B39319F021700047BD29 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		38AA833F1949B8DF0065AD2A /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
 		38AA83401949B8DF0065AD2A /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		38AA83CE1949C7220065AD2A /* PaymentCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PaymentCell~ipad.xib"; sourceTree = "<group>"; };
@@ -1147,7 +1160,6 @@
 		38B1C5D4195DBA6400BEE66E /* ConnectionAwareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionAwareViewController.h; sourceTree = "<group>"; };
 		38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionAwareViewController.m; sourceTree = "<group>"; };
 		38B4CB6019DC00FC004173C9 /* IntroViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "IntroViewController~ipad.xib"; sourceTree = "<group>"; };
-		38B4CB6319DC2676004173C9 /* GTM-NB4FCW */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GTM-NB4FCW"; sourceTree = "<group>"; };
 		38B52F94199B622D00B6AEBD /* ValidationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationCell.h; sourceTree = "<group>"; };
 		38B52F95199B622D00B6AEBD /* ValidationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidationCell.m; sourceTree = "<group>"; };
 		38B52F96199B622D00B6AEBD /* ValidationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ValidationCell.xib; sourceTree = "<group>"; };
@@ -1161,7 +1173,11 @@
 		38BD98A0195C5973009F9B4A /* NameSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSuggestionCell.h; sourceTree = "<group>"; };
 		38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameSuggestionCell.m; sourceTree = "<group>"; };
 		38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NameSuggestionCell.xib; sourceTree = "<group>"; };
-		38C0391819DF01E100555F65 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		38C0394819E29CBB00555F65 /* GTM-TDZF76 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GTM-TDZF76"; sourceTree = "<group>"; };
+		38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SignUpViewController~ipad.xib"; sourceTree = "<group>"; };
+		38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewControllerUpfront~ipad.xib"; sourceTree = "<group>"; };
+		38C0395919E598DF00555F65 /* SendButtonFlashHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendButtonFlashHelper.h; sourceTree = "<group>"; };
+		38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendButtonFlashHelper.m; sourceTree = "<group>"; };
 		38C1A898199CC5A0000BF59C /* InviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteViewController.h; sourceTree = "<group>"; };
 		38C1A899199CC5A0000BF59C /* InviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteViewController.m; sourceTree = "<group>"; };
 		38C1A89A199CC5A0000BF59C /* InviteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteViewController.xib; sourceTree = "<group>"; };
@@ -1188,6 +1204,11 @@
 		38EFABDE196D7EAB00126192 /* TextFieldSuggestionTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldSuggestionTable.xib; sourceTree = "<group>"; };
 		38F6DE5D19D2DF5A00C5B4B5 /* RecipientUpdateOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientUpdateOperation.h; sourceTree = "<group>"; };
 		38F6DE5E19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientUpdateOperation.m; sourceTree = "<group>"; };
+		38FC0B9419EE84E000173E07 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		38FC0B9519EE84E000173E07 /* EventTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTracker.h; sourceTree = "<group>"; };
+		38FC0B9619EE84E000173E07 /* libEventTracker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEventTracker.a; sourceTree = "<group>"; };
+		38FC0B9919EED51500173E07 /* Mixpanel+Customisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Mixpanel+Customisation.h"; sourceTree = "<group>"; };
+		38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Mixpanel+Customisation.m"; sourceTree = "<group>"; };
 		470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MoneyEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencyCell~ipad.xib"; sourceTree = "<group>"; };
 		47126B5319C2DCD40049F4C5 /* UIView+InheritantOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+InheritantOf.h"; sourceTree = "<group>"; };
@@ -1549,11 +1570,6 @@
 		EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyCalculator.m; sourceTree = "<group>"; };
 		EAB93B461761C74700A7337C /* ClaimAccountOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimAccountOperation.h; sourceTree = "<group>"; };
 		EAB93B471761C74700A7337C /* ClaimAccountOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimAccountOperation.m; sourceTree = "<group>"; };
-		EABD864318E2B65D004A5A57 /* TransferMixpanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferMixpanel.h; sourceTree = "<group>"; };
-		EABD864418E2B65D004A5A57 /* TransferMixpanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferMixpanel.m; sourceTree = "<group>"; };
-		EABD864718E2B694004A5A57 /* TransferAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferAnalytics.h; sourceTree = "<group>"; };
-		EABD864818E2B6B2004A5A57 /* AnalyticsCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsCoordinator.h; sourceTree = "<group>"; };
-		EABD864918E2B6B2004A5A57 /* AnalyticsCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsCoordinator.m; sourceTree = "<group>"; };
 		EAC1051717607C4600B3B018 /* ClaimAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimAccountViewController.h; sourceTree = "<group>"; };
 		EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimAccountViewController.m; sourceTree = "<group>"; };
 		EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClaimAccountViewController.xib; sourceTree = "<group>"; };
@@ -1646,6 +1662,7 @@
 				EA31A1C217DDB29B00F937F7 /* libz.dylib in Frameworks */,
 				EA31A1C317DDB29B00F937F7 /* Security.framework in Frameworks */,
 				EA31A1C417DDB29B00F937F7 /* MobileCoreServices.framework in Frameworks */,
+				38FC0B9819EE84E000173E07 /* libEventTracker.a in Frameworks */,
 				EA31A1C517DDB29B00F937F7 /* SystemConfiguration.framework in Frameworks */,
 				EA31A1C617DDB29B00F937F7 /* UIKit.framework in Frameworks */,
 				EA31A1C717DDB29B00F937F7 /* Foundation.framework in Frameworks */,
@@ -1672,6 +1689,7 @@
 				EA8FF6AD171D22340090A658 /* MobileCoreServices.framework in Frameworks */,
 				EA8FF6AB171D222E0090A658 /* SystemConfiguration.framework in Frameworks */,
 				EAAA146C171BC911005B9430 /* UIKit.framework in Frameworks */,
+				38FC0B9719EE84E000173E07 /* libEventTracker.a in Frameworks */,
 				EAAA146E171BC911005B9430 /* Foundation.framework in Frameworks */,
 				EAAA1470171BC911005B9430 /* CoreGraphics.framework in Frameworks */,
 				EAAA1472171BC911005B9430 /* CoreData.framework in Frameworks */,
@@ -1955,6 +1973,16 @@
 				38AEB3C21964369F00B852E1 /* libAppsFlyerLib.a */,
 			);
 			path = "AF-iOS-SDK-v2";
+			sourceTree = "<group>";
+		};
+		38FC0B9319EE84E000173E07 /* iOS-EventTracker-SDK */ = {
+			isa = PBXGroup;
+			children = (
+				38FC0B9419EE84E000173E07 /* Event.h */,
+				38FC0B9519EE84E000173E07 /* EventTracker.h */,
+				38FC0B9619EE84E000173E07 /* libEventTracker.a */,
+			);
+			path = "iOS-EventTracker-SDK";
 			sourceTree = "<group>";
 		};
 		4781F48D194737C700B8926C /* JVFloatLabeledTextField */ = {
@@ -2250,7 +2278,7 @@
 		EA84056717F0A3FD00F44916 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				38B4CB6319DC2676004173C9 /* GTM-NB4FCW */,
+				38C0394819E29CBB00555F65 /* GTM-TDZF76 */,
 				3831DCC319B764B900151A3D /* existingUserIntro.plist */,
 				385AC115198FE5500088DCD6 /* intro.plist */,
 				385AC112198FE52E0088DCD6 /* NoRefCurrencyMessages.plist */,
@@ -2305,6 +2333,7 @@
 		EA8FF68C171D22080090A658 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
+				38FC0B9319EE84E000173E07 /* iOS-EventTracker-SDK */,
 				3812F91A19DAD930003F9904 /* GoogleAnalyticsServicesiOS_3.09 */,
 				38AEB3C01964369F00B852E1 /* AF-iOS-SDK-v2 */,
 				4781F48D194737C700B8926C /* JVFloatLabeledTextField */,
@@ -2546,6 +2575,7 @@
 				3840862C19A23F5A00C837C2 /* InviteViewController~ipad.xib */,
 				47233CD3196D457300449042 /* LoginViewController.h */,
 				47233CD4196D457300449042 /* LoginViewController.m */,
+				38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */,
 				386B039B19DD687C002285EF /* LoginViewControllerUpfront.xib */,
 				47233CD5196D457300449042 /* LoginViewController.xib */,
 				473DF974196D637200524C64 /* LoginViewController~ipad.xib */,
@@ -2587,8 +2617,10 @@
 				38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */,
 				EAB6170B191CD61900545C21 /* ResetPasswordViewController.h */,
 				EAB6170C191CD61900545C21 /* ResetPasswordViewController.m */,
+				3863B82019E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib */,
 				EAB6170D191CD61900545C21 /* ResetPasswordViewController.xib */,
 				4723EA1F1974363000B4345F /* ResetPasswordViewController~ipad.xib */,
+				3863B82319E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib */,
 				383FC10419AE1B8300465FCA /* SeeHowViewController.h */,
 				383FC10519AE1B8300465FCA /* SeeHowViewController.m */,
 				383FC10619AE1B8300465FCA /* SeeHowViewController.xib */,
@@ -2600,6 +2632,7 @@
 				EA88E694172F980A0021492C /* SignUpViewController.h */,
 				EA88E695172F980A0021492C /* SignUpViewController.m */,
 				EA88E696172F980A0021492C /* SignUpViewController.xib */,
+				38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */,
 				47AC3F8B1987845A005491C6 /* SuggestionDataEntryViewController.h */,
 				47AC3F8C1987845A005491C6 /* SuggestionDataEntryViewController.m */,
 				38E57F75192A51DD00D864A2 /* TabViewController.h */,
@@ -2691,6 +2724,8 @@
 				38504B0819C1E83700276203 /* TouchIDHelper.m */,
 				38288F5219C8855800661BFB /* PaymentMethodViewControllerFactory.h */,
 				38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */,
+				38C0395919E598DF00555F65 /* SendButtonFlashHelper.h */,
+				38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2698,13 +2733,10 @@
 		EABD864218E2B63A004A5A57 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				EABD864818E2B6B2004A5A57 /* AnalyticsCoordinator.h */,
-				EABD864918E2B6B2004A5A57 /* AnalyticsCoordinator.m */,
 				BA665E006BBEF0C455DE7F84 /* GoogleAnalytics.h */,
 				BA66546EEC8C630867200E77 /* GoogleAnalytics.m */,
-				EABD864718E2B694004A5A57 /* TransferAnalytics.h */,
-				EABD864318E2B65D004A5A57 /* TransferMixpanel.h */,
-				EABD864418E2B65D004A5A57 /* TransferMixpanel.m */,
+				38FC0B9919EED51500173E07 /* Mixpanel+Customisation.h */,
+				38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -2808,7 +2840,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				479B6930194878EE001FA4FE /* TransferDetailsViewController.xib in Resources */,
-				38B4CB6519DC2676004173C9 /* GTM-NB4FCW in Resources */,
 				479B6931194878EE001FA4FE /* TransferDetailsViewController~ipad.xib in Resources */,
 				38062177196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */,
 				4710499819470B2A00660B2F /* CurrencyCell~ipad.xib in Resources */,
@@ -2850,6 +2881,7 @@
 				EA31A1E617DDB29B00F937F7 /* SettingsViewController.xib in Resources */,
 				EAD3646717E1E19A001EFE40 /* Assets.xcassets in Resources */,
 				47AC3F9A1987B2C3005491C6 /* SuggestionCell.xib in Resources */,
+				3863B82219E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib in Resources */,
 				EA31A1E717DDB29B00F937F7 /* SettingsTitleCell.xib in Resources */,
 				47FAF354194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */,
 				38B4CB6219DC00FC004173C9 /* IntroViewController~ipad.xib in Resources */,
@@ -2878,14 +2910,17 @@
 				EA333F3918A4BEDC00D8A44E /* page_zoom.json in Resources */,
 				380021F2192F3DD3009B1D53 /* CurrencySelectorViewController.xib in Resources */,
 				474C451E1992874E001F207C /* ProfileEditViewController~ipad.xib in Resources */,
+				38C0395019E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */,
 				3840D34719A4D6AD00D1485A /* DropdownCell~ipad.xib in Resources */,
 				EA31A1EC17DDB29B00F937F7 /* TSAlertViewBackground2.png in Resources */,
 				EA31A1ED17DDB29B00F937F7 /* TSAlertViewBackground.png in Resources */,
 				3840D34419A49E1F00D1485A /* BusinessProfileIdentificationViewController~ipad.xib in Resources */,
 				38B093121951FA2A00315BE4 /* TransferTypeSelectionHeader.xib in Resources */,
 				473DF976196D637200524C64 /* LoginViewController~ipad.xib in Resources */,
+				38C0394D19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */,
 				3840D34A19A4D90F00D1485A /* RecipientFieldCell~ipad.xib in Resources */,
 				38B52FA1199B63B600B6AEBD /* InvitationsViewController.xib in Resources */,
+				3863B82519E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib in Resources */,
 				38288F5119C86DC200661BFB /* PaymentMethodCell.xib in Resources */,
 				EAB61711191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
 				EA31A1F017DDB29B00F937F7 /* DateEntryCell.xib in Resources */,
@@ -2914,6 +2949,7 @@
 				EA31A20F17DDB29B00F937F7 /* RecipientEntrySelectionCell.xib in Resources */,
 				EA31A21017DDB29B00F937F7 /* DropdownCell.xib in Resources */,
 				EAD3648F17E2F6EF001EFE40 /* CardPaymentViewController.xib in Resources */,
+				38C0394A19E29CBB00555F65 /* GTM-TDZF76 in Resources */,
 				EA31A21117DDB29B00F937F7 /* BankTransferViewController.xib in Resources */,
 				38C1A89E199CC5A0000BF59C /* InviteViewController.xib in Resources */,
 				EA31A21217DDB29B00F937F7 /* TextCell.xib in Resources */,
@@ -2953,7 +2989,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				479B692F194878CA001FA4FE /* TransferDetailsViewController~ipad.xib in Resources */,
-				38B4CB6419DC2676004173C9 /* GTM-NB4FCW in Resources */,
 				47F84D6D198A638B00886D41 /* DoubleEntryCell.xib in Resources */,
 				EAAA1478171BC911005B9430 /* InfoPlist.strings in Resources */,
 				3840862719A20D9900C837C2 /* InvitationsViewController~ipad.xib in Resources */,
@@ -2995,6 +3030,7 @@
 				BBC691251721416300F0FB1A /* TSAlertViewCancelButtonBackground.png in Resources */,
 				EA0450D617EC5BC1008921DA /* IntroViewController.xib in Resources */,
 				47FAF353194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */,
+				3863B82119E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib in Resources */,
 				385AC110198FE2190088DCD6 /* SharpSansFrontieres-Bold.otf in Resources */,
 				3840863419A368DD00C837C2 /* PersonalProfileIdentificationViewController~ipad.xib in Resources */,
 				38B4CB6119DC00FC004173C9 /* IntroViewController~ipad.xib in Resources */,
@@ -3023,14 +3059,17 @@
 				47971C64199A3F1F0018FDA8 /* DoublePasswordEntryCell~ipad.xib in Resources */,
 				380021F1192F3DD3009B1D53 /* CurrencySelectorViewController.xib in Resources */,
 				3840863719A370A400C837C2 /* ValidationCell~ipad.xib in Resources */,
+				38C0394F19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib in Resources */,
 				BBC691281721416300F0FB1A /* TSAlertViewBackground2.png in Resources */,
 				BBC691291721416300F0FB1A /* TSAlertViewBackground.png in Resources */,
 				EAB61710191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
 				EA88E691172F97E20021492C /* DateEntryCell.xib in Resources */,
 				EA88E698172F980A0021492C /* SignUpViewController.xib in Resources */,
 				38B093111951FA2A00315BE4 /* TransferTypeSelectionHeader.xib in Resources */,
+				38C0394C19E2A14300555F65 /* SignUpViewController~ipad.xib in Resources */,
 				473DF975196D637200524C64 /* LoginViewController~ipad.xib in Resources */,
 				EA35C77217327981005602F7 /* PaymentCell.xib in Resources */,
+				3863B82419E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib in Resources */,
 				38288F5019C86DC200661BFB /* PaymentMethodCell.xib in Resources */,
 				EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */,
 				EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */,
@@ -3059,6 +3098,7 @@
 				3840862A19A2391D00C837C2 /* SettingsViewController~ipad.xib in Resources */,
 				473F62931940BDD9001E280B /* NewPaymentViewController~ipad.xib in Resources */,
 				47FB7EA519419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */,
+				38C0394919E29CBB00555F65 /* GTM-TDZF76 in Resources */,
 				479B692D19487865001FA4FE /* TransferDetailsViewController.xib in Resources */,
 				38CACD691987C43E0085C254 /* CurrencySelectionCell~ipad.xib in Resources */,
 				EAAC203D17422ADB001DDE7A /* DropdownCell.xib in Resources */,
@@ -3443,6 +3483,7 @@
 				47FAF345194B2F11004CE986 /* LightBlueButton.m in Sources */,
 				EA31A18817DDB29B00F937F7 /* RemoveTokenOperation.m in Sources */,
 				479B693B19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */,
+				38FC0B9C19EED51500173E07 /* Mixpanel+Customisation.m in Sources */,
 				389F6842198FC1C6006CF1F6 /* PendingPayment.m in Sources */,
 				389F67F8198FC1C6006CF1F6 /* _AllowedTypeFieldValue.m in Sources */,
 				EA31A18917DDB29B00F937F7 /* UITableView+FooterPositioning.m in Sources */,
@@ -3459,6 +3500,7 @@
 				38B0931A1951FA8300315BE4 /* SettlementRecipient.m in Sources */,
 				EA31A19517DDB29B00F937F7 /* NSDictionary+Cleanup.m in Sources */,
 				389F681A198FC1C6006CF1F6 /* AllowedTypeFieldValue.m in Sources */,
+				38C0395C19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */,
 				38B092E6194F325B00315BE4 /* AddressBookManager.m in Sources */,
 				380021CF192CC531009B1D53 /* MOMCompoundStyle.m in Sources */,
 				389F683C198FC1C6006CF1F6 /* PayInMethod.m in Sources */,
@@ -3491,7 +3533,6 @@
 				389F6802198FC1C6006CF1F6 /* _PairTargetCurrency.m in Sources */,
 				EA31A1B717DDB29B00F937F7 /* NSString+Presentation.m in Sources */,
 				389F682A198FC1C6006CF1F6 /* ObjectModel+Payments.m in Sources */,
-				EABD864B18E2B6B2004A5A57 /* AnalyticsCoordinator.m in Sources */,
 				EA31A1B817DDB29B00F937F7 /* QuickProfileValidationOperation.m in Sources */,
 				EA31A1B917DDB29B00F937F7 /* SwitchCell.m in Sources */,
 				EA31A1BA17DDB29B00F937F7 /* PaymentDetailsViewController.m in Sources */,
@@ -3513,7 +3554,6 @@
 				38D8FBD619AF21B4007C73DF /* ReferralsCoordinator.m in Sources */,
 				EA31A1BD17DDB29B00F937F7 /* FeedbackCoordinator.m in Sources */,
 				383FC10B19AE1B8400465FCA /* SeeHowViewController.m in Sources */,
-				EABD864618E2B65D004A5A57 /* TransferMixpanel.m in Sources */,
 				383FC0FD19AE1ABC00465FCA /* PhoneLookupWrapper.m in Sources */,
 				EA2296C317E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
 				383FC0F119AE1A1A00465FCA /* StateSuggestionProvider.m in Sources */,
@@ -3729,6 +3769,7 @@
 				BB704E7D177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m in Sources */,
 				479B692C19487865001FA4FE /* TransferDetailsViewController.m in Sources */,
 				47FAF344194B2F11004CE986 /* LightBlueButton.m in Sources */,
+				38FC0B9B19EED51500173E07 /* Mixpanel+Customisation.m in Sources */,
 				389F6841198FC1C6006CF1F6 /* PendingPayment.m in Sources */,
 				389F67F7198FC1C6006CF1F6 /* _AllowedTypeFieldValue.m in Sources */,
 				380021E3192CC99D009B1D53 /* NSString+MOMStyle.m in Sources */,
@@ -3745,6 +3786,7 @@
 				EAE7B6B317E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */,
 				47FAF35B195031E7004CE986 /* BlueButton.m in Sources */,
 				389F6819198FC1C6006CF1F6 /* AllowedTypeFieldValue.m in Sources */,
+				38C0395B19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */,
 				38AA83411949B8DF0065AD2A /* GradientView.m in Sources */,
 				474D1AA61951A500008BC7A7 /* RedGradientButton.m in Sources */,
 				389F683B198FC1C6006CF1F6 /* PayInMethod.m in Sources */,
@@ -3777,7 +3819,6 @@
 				389F6801198FC1C6006CF1F6 /* _PairTargetCurrency.m in Sources */,
 				EAA6AD0717A91A95006A347D /* NSString+Presentation.m in Sources */,
 				389F6829198FC1C6006CF1F6 /* ObjectModel+Payments.m in Sources */,
-				EABD864A18E2B6B2004A5A57 /* AnalyticsCoordinator.m in Sources */,
 				EAA07BF117AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */,
 				BB7EAE8E17AFE0DF006A7182 /* SwitchCell.m in Sources */,
 				EAE1E3A317B2519000A45623 /* PaymentDetailsViewController.m in Sources */,
@@ -3797,7 +3838,6 @@
 				389F6835198FC1C6006CF1F6 /* ObjectModel.m in Sources */,
 				4746EAF819A603BB00D03557 /* ReferralLinkOperation.m in Sources */,
 				38D8FBD519AF21B4007C73DF /* ReferralsCoordinator.m in Sources */,
-				EABD864518E2B65D004A5A57 /* TransferMixpanel.m in Sources */,
 				383FC10A19AE1B8400465FCA /* SeeHowViewController.m in Sources */,
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
 				383FC0FC19AE1ABC00465FCA /* PhoneLookupWrapper.m in Sources */,
@@ -3828,7 +3868,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				EAAA148F171BD07E005B9430 /* en */,
-				38C0391819DF01E100555F65 /* fr */,
+				38A8B39319F021700047BD29 /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -3863,6 +3903,72 @@
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.09",
+					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lTestFlight",
+					"-licucore",
+					"-lz",
+					"-framework",
+					Accelerate,
+					"-framework",
+					Accounts,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreLocation,
+					"-framework",
+					CoreTelephony,
+					"-framework",
+					CoreText,
+					"-framework",
+					Foundation,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					Social,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
+					"-lEventTracker",
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
+					"-ObjC",
+					"-lTestFlight",
+					"-licucore",
+					"-lz",
+					"-framework",
+					Accelerate,
+					"-framework",
+					Accounts,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreLocation,
+					"-framework",
+					CoreTelephony,
+					"-framework",
+					CoreText,
+					"-framework",
+					Foundation,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					Social,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
 				);
 				PRODUCT_NAME = TransferDev;
 				PROVISIONING_PROFILE = "";
@@ -3899,6 +4005,72 @@
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.09",
+					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lTestFlight",
+					"-licucore",
+					"-lz",
+					"-framework",
+					Accelerate,
+					"-framework",
+					Accounts,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreLocation,
+					"-framework",
+					CoreTelephony,
+					"-framework",
+					CoreText,
+					"-framework",
+					Foundation,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					Social,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
+					"-lEventTracker",
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
+					"-ObjC",
+					"-lTestFlight",
+					"-licucore",
+					"-lz",
+					"-framework",
+					Accelerate,
+					"-framework",
+					Accounts,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreLocation,
+					"-framework",
+					CoreTelephony,
+					"-framework",
+					CoreText,
+					"-framework",
+					Foundation,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					Social,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
 				);
 				PRODUCT_NAME = TransferDev;
 				PROVISIONING_PROFILE = "";
@@ -3994,6 +4166,72 @@
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.09",
+					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lTestFlight",
+					"-licucore",
+					"-lz",
+					"-framework",
+					Accelerate,
+					"-framework",
+					Accounts,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreLocation,
+					"-framework",
+					CoreTelephony,
+					"-framework",
+					CoreText,
+					"-framework",
+					Foundation,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					Social,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
+					"-lEventTracker",
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
+					"-ObjC",
+					"-lTestFlight",
+					"-licucore",
+					"-lz",
+					"-framework",
+					Accelerate,
+					"-framework",
+					Accounts,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreLocation,
+					"-framework",
+					CoreTelephony,
+					"-framework",
+					CoreText,
+					"-framework",
+					Foundation,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					Social,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -4029,6 +4267,7 @@
 					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.09",
+					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",
@@ -4067,6 +4306,71 @@
 					"-isystem",
 					"\"${PODS_ROOT}/Headers/TestFlightSDK\"",
 					"-DNDEBUG",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lTestFlight",
+					"-licucore",
+					"-lz",
+					"-framework",
+					Accelerate,
+					"-framework",
+					Accounts,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreLocation,
+					"-framework",
+					CoreTelephony,
+					"-framework",
+					CoreText,
+					"-framework",
+					Foundation,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					Social,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
+					"-lEventTracker",
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
+					"-ObjC",
+					"-lTestFlight",
+					"-licucore",
+					"-lz",
+					"-framework",
+					Accelerate,
+					"-framework",
+					Accounts,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreLocation,
+					"-framework",
+					CoreTelephony,
+					"-framework",
+					CoreText,
+					"-framework",
+					Foundation,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					Social,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

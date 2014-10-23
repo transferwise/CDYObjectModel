@@ -9,6 +9,7 @@
 #import "TouchIdPromptViewController.h"
 #import "TouchIDHelper.h"
 #import "Constants.h"
+#import "GoogleAnalytics.h"
 
 @interface TouchIdPromptViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
@@ -35,16 +36,20 @@
     self.username = username;
     self.password = password;
     [super presentOnViewController:hostViewcontroller];
+    
 }
 
 - (IBAction)noTapped:(id)sender {
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"TouchIdPrompted" withLabel:@"Declined"];
     [TouchIDHelper blockStorageForUsername:self.username];
     [self dismiss];
 }
 - (IBAction)yesTapped:(id)sender {
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"TouchIdPrompted" withLabel:@"Accepted"];
     [TouchIDHelper storeCredentialsWithUsername:self.username password:self.password result:^(BOOL success) {
         if(success)
         {
+            [[GoogleAnalytics sharedInstance] sendAppEvent:@"TouchIDSetup"];
             [self dismiss];
         }
     }];

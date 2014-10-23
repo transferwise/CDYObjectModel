@@ -13,4 +13,6 @@
 
 - (void)loadBaseData;
 
+-(void)clearUserRelatedData;
+
 @end

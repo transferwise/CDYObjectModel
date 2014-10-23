@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController">
+            <connections>
+                <outlet property="legalezetextView" destination="zdv-7I-fHF" id="Na0-aL-9wM"/>
+                <outlet property="registerButton" destination="2EZ-yE-GQd" id="vfs-f8-Kb5"/>
+                <outlet property="tableView" destination="3" id="gBL-To-FSv"/>
+                <outlet property="view" destination="wq2-DH-K08" id="Rld-60-i1a"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="wq2-DH-K08">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="768"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3" customClass="DismissKeyboardTableView">
+                    <rect key="frame" x="167" y="185" width="430" height="240"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="240" id="8dL-Vn-7am"/>
+                        <constraint firstAttribute="width" constant="430" id="jfn-MA-zkk"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="14"/>
+                        <outlet property="delegate" destination="-1" id="15"/>
+                    </connections>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2EZ-yE-GQd" customClass="BlueRoundedButton">
+                    <rect key="frame" x="357" y="470" width="55" height="34"/>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="signUpPressed:" destination="-1" eventType="touchUpInside" id="3hK-EL-Eux"/>
+                    </connections>
+                </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zdv-7I-fHF">
+                    <rect key="frame" x="89" y="668" width="600" height="55"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="WHC-4z-blU"/>
+                        <constraint firstAttribute="width" constant="600" id="mSs-4o-FAf"/>
+                    </constraints>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@{15,17}.coreFont"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="T5N-4Q-bX0"/>
+                    </connections>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="3" secondAttribute="centerX" constant="2" id="1t8-XX-FTb"/>
+                <constraint firstAttribute="centerY" secondItem="zdv-7I-fHF" secondAttribute="centerY" constant="-311.5" id="2Fa-wX-dhE"/>
+                <constraint firstAttribute="centerX" secondItem="2EZ-yE-GQd" secondAttribute="centerX" id="98O-EB-Dw1"/>
+                <constraint firstAttribute="centerY" secondItem="3" secondAttribute="centerY" constant="79" id="oSi-50-NCm"/>
+                <constraint firstAttribute="centerX" secondItem="zdv-7I-fHF" secondAttribute="centerX" constant="-5" id="rqZ-oV-fao"/>
+                <constraint firstAttribute="centerY" secondItem="2EZ-yE-GQd" secondAttribute="centerY" constant="-103" id="vxB-Lc-5C3"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

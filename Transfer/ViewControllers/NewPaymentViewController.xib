@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
@@ -29,7 +30,7 @@
                         <constraint firstAttribute="height" relation="lessThanOrEqual" priority="800" constant="28" id="53r-pU-nLA"/>
                     </constraints>
                 </imageView>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="w5b-eJ-Ssl">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="w5b-eJ-Ssl">
                     <rect key="frame" x="0.0" y="105" width="320" height="159"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -40,7 +41,7 @@
                         <outlet property="delegate" destination="-1" id="KNd-7d-y5e"/>
                     </connections>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAL-I7-qIC" customClass="StartPaymentButton">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAL-I7-qIC" customClass="StartPaymentButton">
                     <rect key="frame" x="0.0" y="275" width="320" height="49"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="49" id="S7W-9S-7cf"/>
@@ -55,8 +56,8 @@
                         <action selector="startPaymentPressed:" destination="-1" eventType="touchUpInside" id="Tx5-vS-0V4"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="KVn-N5-EGf" customClass="BlueRoundedButton">
-                    <rect key="frame" x="132" y="504" width="57" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="KVn-N5-EGf" customClass="BlueRoundedButton">
+                    <rect key="frame" x="142" y="504" width="37" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="800" constant="57" id="Fdi-Tc-HtQ"/>
                         <constraint firstAttribute="height" constant="40" id="QBl-IE-FK0"/>
@@ -113,7 +114,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRX-dl-Alg">
-                    <rect key="frame" x="60" y="437" width="200" height="30"/>
+                    <rect key="frame" x="60" y="436" width="200" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="bW4-I8-zWx"/>
                         <constraint firstAttribute="width" constant="200" id="mrU-WK-j9H"/>
@@ -129,7 +130,7 @@
                     </connections>
                 </button>
                 <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PSX-uF-FAV" userLabel="Separator Line">
-                    <rect key="frame" x="80" y="482" width="160" height="1"/>
+                    <rect key="frame" x="80" y="481" width="160" height="1"/>
                     <color key="backgroundColor" red="0.792156862745098" green="0.84705882352941175" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1" id="P3O-eA-U1C"/>
@@ -167,7 +168,7 @@
                 <constraint firstItem="KVn-N5-EGf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WRX-dl-Alg" secondAttribute="bottom" constant="14" id="E7F-4c-7xG"/>
                 <constraint firstItem="eTr-o2-8Xr" firstAttribute="centerX" secondItem="Lrw-M9-5jB" secondAttribute="centerX" id="O1S-JK-2eW"/>
                 <constraint firstItem="UAL-I7-qIC" firstAttribute="leading" secondItem="o2g-cv-K3K" secondAttribute="leading" id="PG8-cJ-E5J"/>
-                <constraint firstItem="Lrw-M9-5jB" firstAttribute="top" secondItem="UAL-I7-qIC" secondAttribute="bottom" priority="800" constant="36" id="Psx-Cb-GIV"/>
+                <constraint firstItem="Lrw-M9-5jB" firstAttribute="top" secondItem="UAL-I7-qIC" secondAttribute="bottom" priority="850" constant="36" id="Psx-Cb-GIV"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Lrw-M9-5jB" secondAttribute="bottom" constant="160" id="T8Y-Rg-Big"/>
                 <constraint firstAttribute="bottom" secondItem="tx6-jd-3M7" secondAttribute="bottom" priority="900" constant="512" id="Trq-5e-f1h"/>
                 <constraint firstAttribute="centerX" secondItem="PSX-uF-FAV" secondAttribute="centerX" id="Ujf-WL-RbA"/>

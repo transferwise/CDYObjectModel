@@ -12,4 +12,5 @@
 #import "UIView+MOMStyle.h"
 #import "MOMBasicstyle.h"
 #import "MOMCompoundStyle.h"
+#import "UIFont+MOMStyle.h"
 

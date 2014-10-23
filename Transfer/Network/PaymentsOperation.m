@@ -13,6 +13,7 @@
 #import "Payment.h"
 #import "Constants.h"
 #import "GoogleAnalytics.h"
+#import "Mixpanel+Customisation.h"
 
 NSString *const kPaymentsListPath = @"/payment/list";
 NSUInteger kPaymentsListLimit = 20;
@@ -61,6 +62,8 @@ NSUInteger kPaymentsListLimit = 20;
             }
         } completion:^{
             [[GoogleAnalytics sharedInstance] markHasCompletedPayments];
+            [[Mixpanel sharedInstance] registerSuperProperties:@{@"Hascompletepayment":[[GoogleAnalytics sharedInstance].objectModel hasCompletedPayments]?@"YES":@"NO"}];
+            
             weakSelf.completion([totalCount integerValue], nil);
         }];
     }];

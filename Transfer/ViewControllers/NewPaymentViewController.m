@@ -30,7 +30,6 @@
 #import "GoogleAnalytics.h"
 #import "CXAlertView.h"
 #import "StartPaymentButton.h"
-#import "AnalyticsCoordinator.h"
 #import <OHAttributedLabel/OHAttributedLabel.h>
 #import "MOMStyle.h"
 #import "NSString+DeviceSpecificLocalisation.h"
@@ -167,7 +166,7 @@ static NSUInteger const kRowYouSend = 0;
         weakSelf.result = result;
         [weakSelf displayWinMessage:result];
         
-        [self updateCellTitles];
+        [self updateCellApperance];
         
     }];
     
@@ -183,6 +182,8 @@ static NSUInteger const kRowYouSend = 0;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+    
+    [[GoogleAnalytics sharedInstance] sendScreen:[Credentials userLoggedIn]?@"New payment":@"Start screen"];
 }
 
 -(void)keyboardWillShow:(NSNotification*)note
@@ -234,7 +235,7 @@ static NSUInteger const kRowYouSend = 0;
         [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSources]];
     }
 
-    [self updateCellTitles];
+    [self updateCellApperance];
     
     self.loginButton.hidden = [Credentials userLoggedIn];
     self.modalCloseButton.hidden = ![Credentials userLoggedIn];
@@ -250,10 +251,6 @@ static NSUInteger const kRowYouSend = 0;
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 
-    if (!self.dummyPresentation)
-	{
-        [[AnalyticsCoordinator sharedInstance] startScreenShown];
-    }
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -429,6 +426,9 @@ static NSUInteger const kRowYouSend = 0;
                     PaymentFlow *paymentFlow = [Credentials userLoggedIn]?[[LoggedInPaymentFlow alloc] initWithPresentingController:self.navigationController]:[[NoUserPaymentFlow alloc] initWithPresentingController:self.navigationController];
                     [self setPaymentFlow:paymentFlow];
                     
+                    [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency1Selected" withLabel:[self.youSendCell currency].code];
+                    [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency2Selected" withLabel:[self.theyReceiveCell currency].code];
+                    
                     [paymentFlow setObjectModel:self.objectModel];
                     [paymentFlow presentNextPaymentScreen];
                 }];
@@ -473,7 +473,7 @@ static NSUInteger const kRowYouSend = 0;
     });
 }
 
--(void)updateCellTitles
+-(void)updateCellApperance
 {
     if (self.result.isFixedTargetPayment)
     {
@@ -499,6 +499,10 @@ static NSUInteger const kRowYouSend = 0;
             [self.theyReceiveCell setTitle:NSLocalizedString(@"money.entry.they.receive.title", nil)];
         }
     }
+    
+    PairTargetCurrency* targetCurrency =  [self.objectModel pairTargetWithSource:self.youSendCell.currency target:self.theyReceiveCell.currency];
+    [self.theyReceiveCell setEditable:targetCurrency.fixedTargetPaymentAllowedValue];
+    
 }
 
 @end

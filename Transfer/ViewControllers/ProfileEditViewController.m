@@ -226,7 +226,7 @@
 	
 	if(!IPAD)
 	{
-		if (!self.isExisting)
+		if (self.isShownInPaymentFlow)
 		{
 			self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
 			if([self createSendAsBusinessCell])
@@ -255,13 +255,13 @@
 	}
 	else
 	{
-		[self validateProfile:self.isExisting];
+		[self validateProfile];
 	}
 }
 
 - (BOOL)createSendAsBusinessCell
 {
-	return self.allowProfileSwitch && ![Credentials userLoggedIn];
+	return self.allowProfileSwitch;
 }
 
 - (void)textEntryFinishedInCell:(UITableViewCell *)cell
@@ -313,7 +313,14 @@
 	TextEntryCell *stateCell = [self.profileSource countrySelectionCell:self.countryCell
 													   didSelectCountry:[self.countryCellProvider getCountryByCodeOrName:self.countryCell.value]
 														 withCompletion:^{
-															 [self refreshTableViewSizes];
+                                                             dispatch_async(dispatch_get_main_queue(), ^{
+                                                                 [UIView animateWithDuration:0.2f animations:^{
+                                                                     [self refreshTableViewSizes];
+                                                                 } completion:^(BOOL finished) {
+                                                                     [self forceLayoutOfSuggestionTable];
+                                                                 }];
+                                                             });
+                                                             
 														 }];
 	
 	if (stateCell)
@@ -338,7 +345,14 @@
 		TextEntryCell* occupationCell =[(PersonalProfileSource *)self.profileSource stateSelectionCell:self.stateCell
 																								 state:[self.stateCellProvider getByCodeOrName:self.stateCell.value]
 																						withCompletion:^{
-																							[self refreshTableViewSizes];
+                                                                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                                                                                [UIView animateWithDuration:0.2f animations:^{
+                                                                                                    [self refreshTableViewSizes];
+                                                                                                }];
+
+                                                                                            });
+                                                                                            
+																							
 																						}];
 		if (occupationCell)
 		{
@@ -392,11 +406,6 @@
 
 - (void)validateProfile
 {
-	[self validateProfile:NO];
-}
-
-- (void)validateProfile:(BOOL)isExisting
-{
 	[UIApplication dismissKeyboard];
 	
     if (![self.profileSource inputValid])
@@ -421,7 +430,7 @@
 			return;
 		}
 		
-		if (!isExisting)
+		if (!self.isExisting)
 		{
 			if (![personalProfile arePasswordsMatching])
 			{
@@ -458,7 +467,7 @@
 			return;
         }
 		
-		if (isExisting && !self.doNotShowSuccessMessageForExisting)
+		if (self.isExisting && !self.doNotShowSuccessMessageForExisting)
 		{
 			//show sucess message
 			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"profile.edit.save.success.header", nil)
@@ -572,6 +581,7 @@
 								   navigationControllerView:self.navigationController.view
 												objectModel:self.objectModel
 											   successBlock:^{
+                                                   [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserLogged" withLabel:@"tw"];
 												   [weakSelf reloadDataAfterLoginWithPayment:pendingPayment
 																			  sendAsBusiness:sendAsBusiness];
 											   }

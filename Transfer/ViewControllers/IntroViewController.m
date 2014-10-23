@@ -24,6 +24,7 @@
 #import "ConnectionAwareViewController.h"
 #import "LoginViewController.h"
 #import "SignUpViewController.h"
+#import "Mixpanel+Customisation.h"
 
 @interface IntroViewController () <UIScrollViewDelegate>
 
@@ -35,7 +36,7 @@
 @property (nonatomic, strong) IBOutlet SMPageControl *pageControl;
 @property (nonatomic, assign) NSInteger reportedPage;
 @property (nonatomic, assign) NSInteger lastLoadedIndex;
-@property (nonatomic, assign) NSInteger pageBeforeRotation;
+@property (nonatomic, assign) NSInteger currentPage;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @property (weak, nonatomic) IBOutlet UIButton *whiteLoginButton;
@@ -44,6 +45,7 @@
 @property (weak, nonatomic) IBOutlet UIView *noRegistrationContainer;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *whiteButtons;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *blueButtons;
+@property (nonatomic, assign) CGSize lastLaidoutPageSize;
 
 - (IBAction)startPressed;
 
@@ -101,40 +103,38 @@
     self.lastLoadedIndex = -1;
     self.upfrontRegistrationcontainer.hidden = !self.requireRegistration;
     self.noRegistrationContainer.hidden = self.requireRegistration;
+    
+    [[Mixpanel sharedInstance] sendPageView:@"Intro screen"];
 
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.lastLoadedIndex = -1; //Force re-layout
+    [self.scrollView setNeedsLayout];
+    [self layoutScrollView];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
--(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    self.pageBeforeRotation = self.pageControl.currentPage;
-}
-
--(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    self.lastLoadedIndex = -1; //Force re-layout
-    [self layoutScrollView];
-    self.scrollView.contentOffset = CGPointMake(self.pageBeforeRotation*self.scrollView.bounds.size.width, 0);
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 -(void)viewDidLayoutSubviews
 {
+    if(!CGSizeEqualToSize(self.lastLaidoutPageSize,self.scrollView.bounds.size))
+    {
+        self.lastLoadedIndex = -1;
+         self.scrollView.contentOffset = CGPointMake(self.currentPage*self.scrollView.bounds.size.width, 0);
+    }
     [self.scrollView setNeedsLayout];
     [self layoutScrollView];
     [self.view layoutSubviews];
     [super viewDidLayoutSubviews];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 
@@ -152,11 +152,13 @@
     [self.scrollView layoutIfNeeded];
     
     //Calculate leftmost index
-    NSInteger index = MAX(0,MIN(self.introData.count - 3 ,round(self.scrollView.contentOffset.x/self.scrollView.bounds.size.width) - 1));
+    NSInteger page = MAX(0,MIN(self.introData.count - 3 ,round(self.scrollView.contentOffset.x/self.scrollView.bounds.size.width) - 1));
     
-    if(index != self.lastLoadedIndex)
+    if(page != self.lastLoadedIndex)
     {
-        self.lastLoadedIndex = index;
+        NSUInteger index = page;
+        self.lastLoadedIndex = page;
+        
         for (IntroView *intro in self.introScreens) {
             CGRect introFrame = intro.frame;
             introFrame.size = self.scrollView.bounds.size;
@@ -166,6 +168,7 @@
             [self.scrollView addSubview:intro];
             index++;
         }
+        self.lastLaidoutPageSize = self.scrollView.bounds.size;
     }
     
     [self updateButtonAppearance];
@@ -251,6 +254,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.pageControl updatePageNumberForScrollView:self.scrollView];
+    self.currentPage = [self.pageControl currentPage];
     [self updatePages];
 }
 
@@ -318,15 +322,33 @@
 - (IBAction)logInTapped:(id)sender {
     LoginViewController* login = [[LoginViewController alloc] initWithNibName:@"LoginViewControllerUpfront" bundle:nil];
     login.objectModel = self.objectModel;
-    [self.navigationController pushViewController:login animated:YES];
+    [self fadeInDismissableViewController:login];
 }
 
 
 - (IBAction)registerTapped:(id)sender {
     SignUpViewController *signup = [[SignUpViewController alloc] init];
     signup.objectModel = self.objectModel;
-    [self.navigationController pushViewController:signup animated:YES];
+    [self fadeInDismissableViewController:signup];
 }
 
+-(void)fadeInDismissableViewController:(UIViewController*)viewController
+{
+    UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,40,40)];
+    [closeButton setImage:[UIImage imageNamed:@"CloseButton"] forState:UIControlStateNormal];
+    [closeButton addTarget:self action:@selector(dismissFade) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *dismissButton = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
+    viewController.navigationItem.leftBarButtonItem = dismissButton;
+    
+    [UIView transitionWithView:self.view.window duration:0.3f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        [self.navigationController pushViewController:viewController animated:NO];
+    } completion:nil];
+}
+
+-(void)dismissFade
+{
+    [UIView transitionWithView:self.navigationController.view.window duration:0.3f options:UIViewAnimationOptionTransitionCrossDissolve animations:nil completion:nil];
+    [self.navigationController popViewControllerAnimated:NO];
+}
 
 @end

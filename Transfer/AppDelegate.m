@@ -25,15 +25,13 @@
 #import "FBSettings.h"
 #import "FBAppEvents.h"
 #import "Mixpanel.h"
-#import "AnalyticsCoordinator.h"
-#import "TransferMixpanel.h"
 #import "MOMStyle.h"
 #import "ConnectionAwareViewController.h"
 #import "UIFont+MOMStyle.h"
 #import "UIImage+Color.h"
 #import "NavigationBarCustomiser.h"
 #import <FBAppCall.h>
-
+#import "EventTracker.h"
 #import "Credentials.h"
 #import "ObjectModel+Settings.h"
 #import "IntroViewController.h"
@@ -51,13 +49,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    id<TAGContainerFuture> future = [TAGContainerOpener openContainerWithId:@"GTM-NB4FCW" tagManager:[TAGManager instance] openType:kTAGOpenTypePreferNonDefault timeout:nil];
+    id<TAGContainerFuture> future = [TAGContainerOpener openContainerWithId:TRWGoogleTagManagerContainerId tagManager:[TAGManager instance] openType:kTAGOpenTypePreferNonDefault timeout:nil];
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 	
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    
+    //Preload keyboard by showing and removing a textfield. This prevents horrible lag the first time the user
+    //enters text. iOS defect that's been around since iOS 7.1 if I'm not mistaken.
+    UITextField *lagFreeField = [[UITextField alloc] init];
+    [self.window addSubview:lagFreeField];
+    [lagFreeField becomeFirstResponder];
+    [lagFreeField resignFirstResponder];
+    [lagFreeField removeFromSuperview];
+    
 
-	TransferMixpanel *mixpanel = [self setupThirdParties];
+	[self setupThirdParties];
 
 	[NavigationBarCustomiser setDefault];
 
@@ -69,7 +77,6 @@
     [model loadBaseData];
 
     [[GoogleAnalytics sharedInstance] setObjectModel:model];
-    [mixpanel setObjectModel:model];
 
     [[TransferwiseClient sharedClient] setObjectModel:model];
 #if DEV_VERSION
@@ -83,10 +90,10 @@
     
 	UIViewController* controller;
 
-    TAGContainer* container = [future get];
     
+    //TODO: Use A/B test
+    TAGContainer* container = [future get];
     BOOL requireRegistration = [container booleanForKey:@"proposeRegistrationUpfront"];
-    [self.objectModel markDirectSignupEnabled:requireRegistration];
     
 	if (![Credentials userLoggedIn] && (![self.objectModel hasIntroBeenShown] || (requireRegistration && [self.objectModel hasExistingUserIntroBeenShown])))
 	{
@@ -135,7 +142,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	[[GoogleAnalytics sharedInstance] sendAppEvent:@"AppStarted"];
-	[[AnalyticsCoordinator sharedInstance] markLoggedIn];
+	[[GoogleAnalytics sharedInstance] markLoggedIn];
 
 #if USE_FACEBOOK_EVENTS
     [FBSettings setDefaultAppID:@"274548709260402"];
@@ -155,7 +162,7 @@
     [self.objectModel saveContext];
 }
 
-- (TransferMixpanel *)setupThirdParties
+- (void)setupThirdParties
 {
 #if USE_TESTFLIGHT
 	[TestFlight setOptions:@{TFOptionReportCrashes : @NO}];
@@ -187,14 +194,35 @@
 	
 	[Mixpanel sharedInstanceWithToken:TRWMixpanelToken];
 	
-	TransferMixpanel *mixpanel = [[TransferMixpanel alloc] init];
-	[[AnalyticsCoordinator sharedInstance] addAnalyticsService:mixpanel];
-	[[AnalyticsCoordinator sharedInstance] addAnalyticsService:[GoogleAnalytics sharedInstance]];
-	
 	[Crashlytics startWithAPIKey:@"84bc4b5736898e3cfdb50d3d2c162c4f74480862"];
 	
 	[NanTracking trackNanigansEvent:@"" type:@"install" name:@"main"];
-	return mixpanel;
+	
+#if !TARGET_IPHONE_SIMULATOR //Supplied library does not contain binary for simulator
+	EventTracker *tracker = [EventTracker sharedManager];
+#if DEV_VERSION
+    [tracker setDebug:YES];
+#endif
+	[tracker initEventTracker:TRWImpactRadiusAppId username:TRWImpactRadiusSID password:TRWImpactRadiusToken];
+    
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSString *lastInstalledVersion = [defaults stringForKey:TRWAppInstalledSettingsKey];
+    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
+    if (![lastInstalledVersion isEqualToString:version])
+    {
+        if(!lastInstalledVersion)
+        {
+            [tracker trackInstall];
+        }
+        else
+        {
+            [tracker trackUpdate];
+        }
+        [defaults setObject:version forKey:TRWAppInstalledSettingsKey];
+    }
+    
+#endif
 }
 
 - (BOOL)application:(UIApplication *)application

@@ -22,6 +22,10 @@
 #import "ConnectionAwareViewController.h"
 #import "ProfilesEditViewController.h"
 #import "InvitationsViewController.h"
+#import "SendButtonFlashHelper.h"
+#import "TAGManager.h"
+#import "TAGContainerOpener.h"
+
 
 @interface MainViewController () <UINavigationControllerDelegate>
 
@@ -32,6 +36,7 @@
 @property (nonatomic, strong) ProfilesEditViewController *profileController;
 @property (nonatomic, assign) BOOL launchTableViewGamAdjustmentDone;
 @property (nonatomic) BOOL shown;
+@property (nonatomic, strong) id<TAGContainerFuture> future;
 
 @end
 
@@ -45,6 +50,8 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loggedOut) name:TRWLoggedOutNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentsList) name:TRWMoveToPaymentsListNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentView) name:TRWMoveToPaymentViewNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSendButtonFlashNotification:) name:TRWChangeSendButtonFlashStatusNotification object:nil];
+        _future = [TAGContainerOpener openContainerWithId:TRWGoogleTagManagerContainerId tagManager:[TAGManager instance] openType:kTAGOpenTypePreferNonDefault timeout:nil];
     }
     return self;
 }
@@ -92,12 +99,12 @@
 	paymentItem.selectedIcon = [UIImage imageNamed:@"Payment_selected"];
 	paymentItem.deSelectedColor = [UIColor colorFromStyle:@"TWBlueHighlighted"];
 	paymentItem.textColor = [UIColor whiteColor];
+    paymentItem.flashColor = [UIColor colorFromStyle:@"TWElectricblueDarker"];
 	[paymentItem setActionBlock:^(TabItem* item){
 		NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
 		[controller setObjectModel:self.objectModel];
 		ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:controller navBarHidden:YES];
 		[self presentViewController:wrapper animated:YES completion:nil];
-		[[GoogleAnalytics sharedInstance] sendScreen:@"New payment"];
 		return NO;
 	}];
 	
@@ -175,7 +182,12 @@
 - (ConnectionAwareViewController *)getAnonymousViewController
 {
 	UIViewController *presented;
-	if ([self.objectModel shouldShowDirectUserSignup])
+    
+    TAGContainer* container = [self.future get];
+    //TODO: Use A/B test
+    BOOL requireRegistration = [container booleanForKey:@"proposeRegistrationUpfront"];
+    
+	if (requireRegistration)
 	{
         IntroViewController *introController = [[IntroViewController alloc] init];
         [introController setObjectModel:self.objectModel];
@@ -227,6 +239,21 @@
     [self popToRootViewControllerAnimated:YES];
 	[self setViewControllers:@[self.tabController]];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Highlight Send Button
+
+-(void)changeSendButtonFlashNotification:(NSNotification*) note;
+{
+    BOOL turnedOn = [note.userInfo[TRWChangeSendButtonFlashOnOffKey] boolValue];
+    if(turnedOn)
+    {
+        [self.tabController turnOnFlashForItemAtIndex:IPAD?0:2];
+    }
+    else
+    {
+        [self.tabController turnOffFlashForItemAtIndex:IPAD?0:2];
+    }
 }
 
 @end

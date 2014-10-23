@@ -90,6 +90,11 @@
    [self updateSuggestionTablePositions];
 }
 
+-(void)forceLayoutOfSuggestionTable
+{
+    [self updateSuggestionTablePositions];
+}
+
 -(void)updateSuggestionTablePositions
 {
     TextFieldSuggestionTable* table = self.currentSuggestionTable;
@@ -106,7 +111,7 @@
                 blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
                 table.tableView.backgroundView = blurEffectView;
                 UIView *colorOverlay = [[UIView alloc] initWithFrame:blurEffectView.bounds];
-                colorOverlay.bgStyle = @"DarkFont.alpha4";
+                colorOverlay.bgStyle = @"DarkFont.iOS8alpha";
                 colorOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
                 [blurEffectView addSubview:colorOverlay];
             }
