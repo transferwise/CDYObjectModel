@@ -169,12 +169,12 @@ Une révolution dans votre poche.";
 
 "money.entry.priority.payment.title" = "Transfert prioritaire";
 "money.entry.receive.fixed.amount.title" = "Recevoir un montant fixe";
-"money.entry.they.receive.title" = "Destinataire recois";
-"money.entry.they.receive.exactly.title" = "Destinataire recois exactement";
+"money.entry.they.receive.title" = "Destinataire reçoit";
+"money.entry.they.receive.exactly.title" = "Destinataire reçoit exactement";
 "money.entry.you.send.title" = "Vous envoyez";
 "money.entry.you.send.exactly.title" = "Vous envoyez exactement";
-"money.entry.recipient.receive.title" = "%@ recois";
-"money.entry.recipient.receive.exactly.title" = "%@ recois exactement";
+"money.entry.recipient.receive.title" = "%@ reçoit";
+"money.entry.recipient.receive.exactly.title" = "%@ reçoit exactement";
 
 "openid.login.error.title" = "Erreur de connexion";
 "openid.login.generic.error.message" = "Erreur de connexion. Essayez de nouveau.";
@@ -204,7 +204,7 @@ Une révolution dans votre poche.";
 
 "payment.controller.title.with.contact.name" = "Transfert a %@";
 "payment.controller.transfer.fee.label" = "Coût total";
-"payment.controller.you.get.label" = "Destinataire recois (estimation)";
+"payment.controller.you.get.label" = "Destinataire reçoit (estimation)";
 "payment.currencies.format" = "%@ à %@";
 
 "payment.status.cancelled.description" = "Annulé - %@";
@@ -344,10 +344,10 @@ Une révolution dans votre poche.";
 
 "refund.details.account.details.section.header" = "Vos détails bancaires";
 "refund.details.controller.title" = "Votre compte en cas de remboursement";
-"refund.details.header.description" = "Afin de guarantir que %@ recoive exactement %@, nous vous avons demandé un petit extra.
+"refund.details.header.description" = "Afin de guarantir que %@ reçoive exactement %@, nous vous avons demandé un petit extra.
 
 Nous vous rembourserons l'argent non utilisé après le transfert.";
-"refund.details.header.description.iPad" = "Afin de guarantir que %@ recoive exactement %@, nous vous avons demandé un petit extra.
+"refund.details.header.description.iPad" = "Afin de guarantir que %@ reçoive exactement %@, nous vous avons demandé un petit extra.
 
 Nous vous rembourserons l'argent non utilisé après le transfert.";
 "refund.details.holders.name.label" = "Nom du détenteur du compte";
@@ -588,7 +588,7 @@ RAPIDES";
 "intro.existing.message.one" = "Une qualité de service inchangée. Simplement amélioré.";
 "intro.existing.message.two" = "Pas d'inquiètude. Vos transfers sont toujours là";
 "intro.existing.message.three" = "Des instructions et un design plus clair pour un esprit tranquille.";
-"intro.existing.message.four" = "Définir exactement combien le destinataire recois, annuler un transfer, inviter vos amis...";
+"intro.existing.message.four" = "Définir exactement combien le destinataire reçoit, annuler un transfer, inviter vos amis...";
 
 "refresh.pull" = "Tirez vers le bas pour raffraichir";
 "refresh.release" = "Lachez maintenant";
