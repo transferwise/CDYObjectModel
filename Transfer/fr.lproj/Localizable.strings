@@ -677,7 +677,7 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 
 
 "usd.low.title" = "U-S-A!";
-"usd.low.info" = "Malheureusement il est impossible de transférer moins de 3 USD pour le moment.";
+"usd.low.info" = "Malheureusement il est impossible de transférer moins de 3 USD.";
 "usd.low.dismiss" = "Ok";
 
 "empty.transfers" = "Aucun transferts?\nTap Envoyer pour démarrer.";
