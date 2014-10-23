@@ -8,8 +8,10 @@
 
 #import "ObjectModel.h"
 
+@class Payment;
+
 @interface ObjectModel (PayInMethod)
 
--(NSOrderedSet*)createPayInMethodsWithData:(NSArray*)data;
+-(void)createOrUpdatePayInMethodsWithData:(NSArray*)data forPayment:(Payment*)payment;
 
 @end

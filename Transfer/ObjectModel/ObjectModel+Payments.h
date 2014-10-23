@@ -17,7 +17,7 @@
 - (NSArray *)listRemoteIdsForExistingPayments;
 - (void)removePaymentsWithIds:(NSArray *)array;
 - (BOOL)hasCompletedPayments;
-- (void)togglePaymentMadeForPayment:(Payment*)payment;
+- (void)togglePaymentMadeForPayment:(Payment*)payment payInMethodName:(NSString*)payInMethodName;
 - (BOOL)hasNoOrOnlyCancelledPaymentsExeptThis:(NSManagedObjectID *)paymentID;
 
 @end

@@ -200,7 +200,7 @@
 	
 #if !TARGET_IPHONE_SIMULATOR //Supplied library does not contain binary for simulator
 	EventTracker *tracker = [EventTracker sharedManager];
-#if DEV_VERSION
+#if DEBUG
     [tracker setDebug:YES];
 #endif
 	[tracker initEventTracker:TRWImpactRadiusAppId username:TRWImpactRadiusSID password:TRWImpactRadiusToken];

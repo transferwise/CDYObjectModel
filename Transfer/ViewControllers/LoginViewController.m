@@ -169,6 +169,7 @@ IB_DESIGNABLE
             __weak typeof(self) weakSelf = self;
 		[self.loginHelper validateInputAndPerformLoginWithEmail:self.emailTextField.text
 													   password:self.passwordTextField.text
+                                             keepPendingPayment:NO
 									   navigationControllerView:self.navigationController.view
 													objectModel:self.objectModel
 												   successBlock:^{
@@ -234,6 +235,7 @@ IB_DESIGNABLE
                 __weak typeof(self) weakSelf = self;
                 [self.loginHelper validateInputAndPerformLoginWithEmail:username
                                                                password:password
+                                                     keepPendingPayment:NO
                                                navigationControllerView:self.navigationController.view
                                                             objectModel:self.objectModel
                                                            successBlock:^{

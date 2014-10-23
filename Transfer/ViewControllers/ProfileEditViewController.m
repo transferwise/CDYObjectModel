@@ -65,6 +65,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *actionButton;
 @property (nonatomic, strong) NSString* actionButtonTitle;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *ipadFooterHeight;
+@property (nonatomic) BOOL removeFromNavStackOnDidDisappear;
 
 @end
 
@@ -121,6 +122,18 @@
     if ([self.profileSource isKindOfClass:[PersonalProfileSource class]])
 	{
         [[GoogleAnalytics sharedInstance] sendScreen:@"Enter sender details"];
+    }
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    UINavigationController * navController = self.navigationController;
+    if(self.removeFromNavStackOnDidDisappear && [navController.viewControllers containsObject:self.parentViewController])
+    {
+        NSMutableArray *modifiedNavStack = [navController.viewControllers mutableCopy];
+        [modifiedNavStack removeObject:self.parentViewController];
+        navController.viewControllers = modifiedNavStack;
     }
 }
 
@@ -363,41 +376,54 @@
 
 - (void)pullCountriesWithHud:(TRWProgressHUD *)hud completionHandler:(TRWActionBlock)completion
 {
-    CountriesOperation *operation = [CountriesOperation operation];
-    [self setExecutedOperation:operation];
-    [operation setObjectModel:self.objectModel];
-    [operation setCompletionHandler:^(NSError *error) {
-        if (error)
-		{
-            [hud hide];
-            return;
-        }
-
-        completion();
-    }];
-    [operation execute];
+    if(self.executedOperation)
+    {
+        [hud hide];
+    }
+    else
+    {
+        CountriesOperation *operation = [CountriesOperation operation];
+        [self setExecutedOperation:operation];
+        [operation setObjectModel:self.objectModel];
+        __weak typeof(self) weakSelf = self;
+        [operation setCompletionHandler:^(NSError *error) {
+            if (error)
+            {
+                [hud hide];
+                 weakSelf.executedOperation = nil;
+            }
+            else if(completion)
+            {
+                completion();
+            }
+        }];
+        [operation execute];
+    }
 }
 
 - (void)pullDetails
 {
+    if(self.executedOperation)
+    {
+        return;
+    }
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.refreshing.message", nil)];
-
+    __weak typeof(self) weakSelf = self;
     [self pullCountriesWithHud:hud completionHandler:^{
 		[self.countryCellProvider setAutoCompleteResults:[self.objectModel fetchedControllerForAllCountries]];
-		
         [self.profileSource pullDetailsWithHandler:^(NSError *profileError) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hud hide];
+                weakSelf.executedOperation = nil;
                 if (profileError)
 				{
                     return;
                 }
-				
-                self.sectionCellsByTableView = self.presentationCells;
-                [self reloadTableViews];
-				[self refreshTableViewSizes];
-				[self configureForInterfaceOrientation:self.interfaceOrientation];
+                weakSelf.sectionCellsByTableView = self.presentationCells;
+                [weakSelf reloadTableViews];
+				[weakSelf refreshTableViewSizes];
+				[weakSelf configureForInterfaceOrientation:self.interfaceOrientation];
             });
         }];
 
@@ -573,11 +599,13 @@
 - (void)login
 {
 	PendingPayment* pendingPayment = self.objectModel.pendingPayment;
-	BOOL sendAsBusiness = self.sendAsBusinessCell.value;
+	
+    BOOL sendAsBusiness = self.sendAsBusinessCell.value;
 	
 	__weak typeof(self) weakSelf = self;
 	[self.loginHelper validateInputAndPerformLoginWithEmail:self.emailCell.value
 												   password:self.passwordCell.value
+                                         keepPendingPayment:YES
 								   navigationControllerView:self.navigationController.view
 												objectModel:self.objectModel
 											   successBlock:^{
@@ -595,9 +623,9 @@
     PersonalProfile *profile = [user personalProfileObject];
 	
 	profile.sendAsBusinessValue = sendAsBusiness;
-	
-	PendingPayment *pendingPayment = [self getPendingPaymentFromPayment:payment];
-	[self setRecipient:payment.recipient forPayment:pendingPayment];
+
+    payment.user = user;
+    payment.recipient.user = user;
 	
 	[self.objectModel saveContext];
 	
@@ -613,45 +641,12 @@
 			[alertView show];
 			return;
         }
-		
-		[self.navigationController popViewControllerAnimated:NO];
+        
+        self.removeFromNavStackOnDidDisappear = YES;
     }];
 }
 
 #pragma mark - Helpers
-- (PendingPayment *)getPendingPaymentFromPayment:(PendingPayment *)payment
-{
-	PendingPayment *newPayment = [self.objectModel createPendingPayment];
-	
-	[newPayment setSourceCurrency:payment.sourceCurrency];
-	[newPayment setTargetCurrency:payment.targetCurrency];
-	[newPayment setPayIn:payment.payIn];
-	[newPayment setPayOut:payment.payOut];
-	[newPayment setConversionRate:payment.conversionRate];
-	[newPayment setEstimatedDelivery:payment.estimatedDelivery];
-	[newPayment setEstimatedDeliveryStringFromServer:payment.estimatedDeliveryStringFromServer];
-	[newPayment setTransferwiseTransferFee:payment.transferwiseTransferFee];
-	[newPayment setIsFixedAmountValue:payment.isFixedAmountValue];
-    newPayment.allowedRecipientTypes = payment.allowedRecipientTypes;
-	
-	return newPayment;
-}
-
-- (void)setRecipient:(Recipient *)recipient forPayment:(PendingPayment *)payment
-{
-	Recipient *newRecipient = [self.objectModel createRecipient];
-    newRecipient.name = recipient.name;
-    newRecipient.currency = recipient.currency;
-    newRecipient.type = recipient.type;
-    newRecipient.email = recipient.email;
-	
-	for (TypeFieldValue *value in recipient.fieldValues)
-	{
-		[newRecipient setValue:value.value forField:value.valueForField];
-	}
-	
-    [payment setRecipient:newRecipient];
-}
 
 - (void)maskNonLoginCells:(NSArray *)loginCells
 {

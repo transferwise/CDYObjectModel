@@ -711,6 +711,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         return;
     }
 
+    [[GoogleAnalytics sharedInstance] pendingRecipientOrigin:@"Manual"];
+    
     PendingPayment *payment = [self pendingPayment];
     
 
@@ -780,6 +782,10 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
     else
     {
+        if(self.lastSelectedWrapper && [[self.lastSelectedWrapper presentableString:FirstNameFirst] caseInsensitiveCompare:recipientInput.name] == NSOrderedSame && [self.lastSelectedWrapper.email caseInsensitiveCompare:recipientInput.email] == NSOrderedSame)
+        {
+            [[GoogleAnalytics sharedInstance] pendingRecipientOrigin:@"AB"];
+        }
         [self.recipientValidation validateRecipient:recipientInput.objectID completion:^(NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hud hide];

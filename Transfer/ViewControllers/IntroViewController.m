@@ -60,6 +60,11 @@
     return self;
 }
 
+-(void)dealloc
+{
+    _scrollView.delegate = nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -79,6 +84,16 @@
     NSMutableArray *screens = [NSMutableArray array];
 
     self.introData = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.plistFilenameOverride?:@"intro" ofType:@"plist"]];
+    NSMutableArray* preLoadedStylesArray = [NSMutableArray arrayWithCapacity:[self.introData count]];
+    for(NSDictionary* dictionary in self.introData)
+    {
+        NSMutableDictionary* preLoadedStylesDictionary = [NSMutableDictionary dictionaryWithDictionary:dictionary];
+        [self replaceStyleForKey:@"bgStyle" inDictionary:preLoadedStylesDictionary];
+        [self replaceStyleForKey:@"titleFontStyle" inDictionary:preLoadedStylesDictionary];
+        [self replaceStyleForKey:@"textFontStyle" inDictionary:preLoadedStylesDictionary];
+        [preLoadedStylesArray addObject:preLoadedStylesDictionary];
+    }
+    self.introData = preLoadedStylesArray;
 
     for(int i=0; i<[self.introData count] && i<3; i++)
     {
@@ -152,7 +167,7 @@
     [self.scrollView layoutIfNeeded];
     
     //Calculate leftmost index
-    NSInteger page = MAX(0,MIN(self.introData.count - 3 ,round(self.scrollView.contentOffset.x/self.scrollView.bounds.size.width) - 1));
+    NSInteger page = MAX(0,MIN(self.introData.count - 3 ,floor(self.scrollView.contentOffset.x/self.scrollView.bounds.size.width) - 1));
     
     if(page != self.lastLoadedIndex)
     {
@@ -171,6 +186,7 @@
         self.lastLaidoutPageSize = self.scrollView.bounds.size;
     }
     
+    [self updateViewOffsets];
     [self updateButtonAppearance];
 }
 
@@ -245,6 +261,17 @@
         }
     }
     
+}
+
+-(void)updateViewOffsets
+{
+     CGFloat relativeOffset = self.scrollView.contentOffset.x/self.scrollView.bounds.size.width;
+    for (IntroView *intro in self.introScreens)
+    {
+        CGFloat viewOffset = intro.frame.origin.x/self.scrollView.bounds.size.width;
+        CGFloat difference = relativeOffset - viewOffset;
+        [intro shiftCenter:difference];
+    }
 }
 
 - (void)pageChanged {
@@ -349,6 +376,28 @@
 {
     [UIView transitionWithView:self.navigationController.view.window duration:0.3f options:UIViewAnimationOptionTransitionCrossDissolve animations:nil completion:nil];
     [self.navigationController popViewControllerAnimated:NO];
+}
+
+-(void)replaceStyleForKey:(NSString*)key inDictionary:(NSMutableDictionary*)dictionary
+{
+    MOMBasicStyle* style = (MOMBasicStyle*)[MOMStyleFactory getStyleForIdentifier:dictionary[key]];
+    if(style)
+    {
+        UIColor *color = [style color];
+        if(color)
+        {
+            dictionary[[key stringByAppendingString:@"Color"]] = color;
+        }
+        UIFont *font = [style font];
+        if(font)
+        {
+            dictionary[[key stringByAppendingString:@"Font"]] = font;
+        }
+        
+    }
+    [dictionary removeObjectForKey:key];
+
+
 }
 
 @end

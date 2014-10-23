@@ -7,6 +7,7 @@
 //
 
 #import "TransferDetialsRecipientView.h"
+#import "Payment.h"
 #import "Recipient.h"
 #import "TypeFieldValue.h"
 #import "RecipientTypeField.h"
@@ -30,18 +31,18 @@
     return self;
 }
 
-- (void)configureWithRecipient:(Recipient *)recipient
+- (void)configureWithPayment:(Payment *)payment
 {
-	[self.accountHeaderLabel setText:[NSString stringWithFormat:NSLocalizedString(@"transferdetails.controller.transfer.account.to", nil), [recipient name]]];
-	NSString* email = [recipient email];
+	[self.accountHeaderLabel setText:[NSString stringWithFormat:NSLocalizedString(@"transferdetails.controller.transfer.account.to", nil), [payment.recipient name]]];
+    NSString* email =(payment.status == PaymentStatusTransferred)?[payment.recipient email]:nil;
 	
 	if (email.length > 0)
 	{
-		[self.detailsLabel setText:[NSString stringWithFormat:NSLocalizedString(@"transferdetails.controller.transfer.account.sent", nil), [recipient presentationStringFromAllValues], [recipient name], [recipient email]]];
+		[self.detailsLabel setText:[NSString stringWithFormat:NSLocalizedString(@"transferdetails.controller.transfer.account.sent", nil), [payment.recipient presentationStringFromAllValues], [payment.recipient name], [payment.recipient email]]];
 	}
 	else
 	{
-		[self.detailsLabel setText:[recipient presentationStringFromAllValues]];
+		[self.detailsLabel setText:[payment.recipient presentationStringFromAllValues]];
 	}
 }
 

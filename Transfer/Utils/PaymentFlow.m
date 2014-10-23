@@ -775,7 +775,7 @@
         PendingPayment *payment = self.objectModel.pendingPayment;
         if ([payment needsToCommitRecipientData]) {
             MCLog(@"commit recipient");
-            [[GoogleAnalytics sharedInstance] sendEvent:@"RecipientAdded" category:@"recipient" label:@"DuringPayment"];
+            [[GoogleAnalytics sharedInstance] sendNewRecipentEventWithLabel:@"DuringPayment"];
             [self commitRecipient:payment.recipient];
         } else if ([payment needsToCommitRefundRecipientData]) {
             MCLog(@"commit refund");

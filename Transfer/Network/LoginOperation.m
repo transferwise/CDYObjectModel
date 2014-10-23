@@ -25,23 +25,27 @@ NSString *const kLoginPath = @"/token/create";
 
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *password;
+@property (nonatomic) BOOL keepPendingPayment;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
 @end
 
 @implementation LoginOperation
 
-- (id)initWithEmail:(NSString *)email password:(NSString *)password {
+- (id)initWithEmail:(NSString *)email password:(NSString *)password keepPendingPayment:(BOOL)keepPendingPayment
+{
     self = [super init];
     if (self) {
         _email = email;
         _password = password;
+        _keepPendingPayment = keepPendingPayment;
     }
     return self;
 }
 
-+ (LoginOperation *)loginOperationWithEmail:(NSString *)email password:(NSString *)password {
-    return [[LoginOperation alloc] initWithEmail:email password:password];
++ (LoginOperation *)loginOperationWithEmail:(NSString *)email password:(NSString *)password keepPendingPayment:(BOOL)keepPendingPayment
+{
+    return [[LoginOperation alloc] initWithEmail:email password:password keepPendingPayment:keepPendingPayment];
 }
 
 - (void)execute {
@@ -55,7 +59,7 @@ NSString *const kLoginPath = @"/token/create";
     params[@"lifeTime"] = @"week";
 
     //Ensure no stale data is present before logging in.
-    [self.objectModel clearUserRelatedData];
+    [self.objectModel clearUserRelatedDataKeepingPendingPayment:self.keepPendingPayment];
     
     __block __weak LoginOperation *weakSelf = self;
     [self setOperationSuccessHandler:^(NSDictionary *response) {

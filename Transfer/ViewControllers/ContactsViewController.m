@@ -252,7 +252,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [controller setRecipientValidation:committer];
     __weak typeof(self) weakSelf = self;
     [controller setAfterSaveAction:^{
-        [[GoogleAnalytics sharedInstance] sendEvent:@"RecipientAdded" category:@"recipient" label:@"AddRecipientScreen"];
+        [[GoogleAnalytics sharedInstance] sendNewRecipentEventWithLabel:@"AddRecipientScreen"];
         [weakSelf closeModal];
     }];
     controller.noPendingPayment = YES;

@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "IntrinsicSizeUIView.h"
 
-@class Recipient;
+
+@class Payment;
 
 @interface TransferDetialsRecipientView : IntrinsicSizeUIView
 
-- (void)configureWithRecipient:(Recipient *)recipient;
+- (void)configureWithPayment:(Payment*)recipient;
 
 @end

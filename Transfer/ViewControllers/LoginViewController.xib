@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
@@ -58,8 +59,8 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGrey"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSj-Tb-62N" userLabel="Login Button" customClass="GreenButton">
-                    <rect key="frame" x="0.0" y="262" width="322" height="49"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSj-Tb-62N" userLabel="Login Button" customClass="GreenButton">
+                    <rect key="frame" x="0.0" y="267" width="322" height="49"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="49" id="dEk-hB-rjg"/>
                     </constraints>
@@ -116,7 +117,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cO2-eB-1cd">
-                            <rect key="frame" x="138" y="81" width="45" height="45"/>
+                            <rect key="frame" x="138" y="80" width="45" height="45"/>
                             <state key="normal" image="touch_id_icon">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -150,7 +151,7 @@
                 <constraint firstItem="x7f-aP-kB6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="18s-q2-FnP"/>
                 <constraint firstItem="OOe-X8-gxb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="8SA-gA-9iv"/>
                 <constraint firstItem="uSj-Tb-62N" firstAttribute="bottom" secondItem="Eab-el-220" secondAttribute="top" id="Ehu-CB-vo4"/>
-                <constraint firstAttribute="trailing" secondItem="uSj-Tb-62N" secondAttribute="trailing" id="HIC-Pk-JPJ"/>
+                <constraint firstAttribute="trailing" secondItem="uSj-Tb-62N" secondAttribute="trailing" constant="-2" id="HIC-Pk-JPJ"/>
                 <constraint firstItem="uSj-Tb-62N" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IQG-Es-9cv"/>
                 <constraint firstItem="Sqf-jN-fvd" firstAttribute="trailing" secondItem="UJr-a0-Czd" secondAttribute="trailing" id="Jkd-Oy-Vml"/>
                 <constraint firstItem="Sqf-jN-fvd" firstAttribute="leading" secondItem="UJr-a0-Czd" secondAttribute="leading" id="KPT-LD-skT"/>
@@ -162,7 +163,7 @@
                 <constraint firstItem="UJr-a0-Czd" firstAttribute="width" secondItem="Sqf-jN-fvd" secondAttribute="width" id="cYf-NV-jm4"/>
                 <constraint firstAttribute="trailing" secondItem="Eab-el-220" secondAttribute="trailing" id="dii-nJ-N22"/>
                 <constraint firstAttribute="trailing" secondItem="x7f-aP-kB6" secondAttribute="trailing" id="eGQ-3N-H4t"/>
-                <constraint firstItem="uSj-Tb-62N" firstAttribute="top" secondItem="x7f-aP-kB6" secondAttribute="bottom" constant="27" id="qfS-D0-H5Z"/>
+                <constraint firstItem="uSj-Tb-62N" firstAttribute="top" secondItem="x7f-aP-kB6" secondAttribute="bottom" constant="32" id="qfS-D0-H5Z"/>
                 <constraint firstItem="OOe-X8-gxb" firstAttribute="top" secondItem="Sqf-jN-fvd" secondAttribute="bottom" constant="9" id="rYl-UV-Lzu"/>
                 <constraint firstItem="Sqf-jN-fvd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="66" id="sbd-nD-ZJR"/>
                 <constraint firstAttribute="trailing" secondItem="Sqf-jN-fvd" secondAttribute="trailing" id="wIu-Cw-Ezs"/>

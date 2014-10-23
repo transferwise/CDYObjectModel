@@ -15,6 +15,10 @@
 #import "GAIFields.h"
 #import "ObjectModel+Payments.h"
 
+@interface GoogleAnalytics ()
+@property (nonatomic, copy) NSString* pendingRecipientOrigin;
+@end
+
 @implementation GoogleAnalytics
 
 + (GoogleAnalytics *)sharedInstance {
@@ -102,18 +106,37 @@
 }
 
 - (void)sendEvent:(NSString *)event category:(NSString *)category label:(NSString *)label {
+    [self sendEvent:event category:category label:label value:nil];
+}
+
+- (void)sendEvent:(NSString *)event category:(NSString *)category label:(NSString *)label value:(NSNumber*)value{
     NSMutableDictionary *eventDict = [[GAIDictionaryBuilder createEventWithCategory:category
                                                                              action:event
                                                                               label:label
-                                                                              value:nil] build];
+                                                                              value:value] build];
     [[[GAI sharedInstance] defaultTracker] send:eventDict];
 }
+
 
 - (void)markHasCompletedPayments {
     [self.objectModel performBlock:^{
         [[[GAI sharedInstance] defaultTracker] set:[GAIFields customDimensionForIndex:2] value:[self.objectModel hasCompletedPayments] ? @"Y" : @"N"];
     }];
 }
+
+
+-(void)pendingRecipientOrigin:(NSString*)recipientOrigin
+{
+    self.pendingRecipientOrigin = recipientOrigin;
+}
+
+-(void)sendNewRecipentEventWithLabel:(NSString*)label
+{
+    [self sendEvent:@"RecipientAdded" category:@"recipient" label:label];
+    [self sendEvent:@"RecipientOrigin" category:@"recipient" label:self.pendingRecipientOrigin];
+    self.pendingRecipientOrigin = @"Manual";
+}
+
 
 
 @end

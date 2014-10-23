@@ -41,6 +41,7 @@
 #import "TRWProgressHUD.h"
 #import "CurrenciesOperation.h"
 #import "CustomInfoViewController.h"
+#import "NavigationBarCustomiser.h"
 
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
@@ -354,6 +355,8 @@ static NSUInteger const kRowYouSend = 0;
 	{
         return;
     }
+    
+    [self.view endEditing:YES];
 
 	Currency *sourceCurrency = [self.youSendCell currency];
     Currency *targetCurrency = [self.theyReceiveCell currency];
@@ -376,7 +379,7 @@ static NSUInteger const kRowYouSend = 0;
 		return;
 	}
     
-    if([sourceCurrency.code caseInsensitiveCompare:@"USD"] == NSOrderedSame && [payIn floatValue] < 1500.0f)
+    if([sourceCurrency.code caseInsensitiveCompare:@"USD"] == NSOrderedSame && [payIn floatValue] < 3.0f)
     {
         CustomInfoViewController *customInfo = [[CustomInfoViewController alloc] init];
         customInfo.titleText = NSLocalizedString(@"usd.low.title",nil);
@@ -428,6 +431,9 @@ static NSUInteger const kRowYouSend = 0;
                     
                     [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency1Selected" withLabel:[self.youSendCell currency].code];
                     [[GoogleAnalytics sharedInstance] sendAppEvent:@"Currency2Selected" withLabel:[self.theyReceiveCell currency].code];
+                    
+                    
+                    [NavigationBarCustomiser setDefault];
                     
                     [paymentFlow setObjectModel:self.objectModel];
                     [paymentFlow presentNextPaymentScreen];

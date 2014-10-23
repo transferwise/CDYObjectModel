@@ -30,4 +30,6 @@
 - (void)refundDetailsScreenShown;
 - (void)refundRecipientAdded;
 
+-(void)pendingRecipientOrigin:(NSString*)recipientOrigin;
+-(void)sendNewRecipentEventWithLabel:(NSString*)label;
 @end

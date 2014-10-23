@@ -65,7 +65,7 @@
     [payment setCancelledDate:[NSDate dateFromServerString:data[@"cancelledDate"]]];
     [payment setEstimatedDelivery:[NSDate dateFromServerString:data[@"estimatedDelivery"]]];
     [payment setEstimatedDeliveryStringFromServer:data[@"formattedEstimatedDelivery"]];
-    [payment setPayInMethods:[self createPayInMethodsWithData:data[@"payInMethods"]]];
+    [self createOrUpdatePayInMethodsWithData:data[@"payInMethods"] forPayment:payment];
     [payment setConversionRate:data[@"conversionRate"]];
     [payment setPayOut:data[@"payOut"]];
     [payment setProfileUsed:data[@"profile"]];
@@ -88,7 +88,9 @@
 }
 
 - (NSArray *)listRemoteIdsForExistingPayments {
-    return [self fetchAttributeNamed:@"remoteId" forEntity:[Payment entityName]];
+    NSMutableArray* remoteIds = [[self fetchAttributeNamed:@"remoteId" forEntity:[Payment entityName]] mutableCopy];
+    [remoteIds removeObject:@(0)];
+    return [NSArray arrayWithArray:remoteIds];
 }
 
 - (void)removePaymentsWithIds:(NSArray *)array {
@@ -113,7 +115,7 @@
     return [self fetchEntitiesNamed:[Payment entityName] withPredicate:remoteIdPredicate];
 }
 
--(void)togglePaymentMadeForPayment:(Payment*)payment
+-(void)togglePaymentMadeForPayment:(Payment*)payment payInMethodName:(NSString*)payInMethodName;
 {
     PaymentMadeIndicator* indicator = payment.paymentMadeIndicator;
     if (indicator)
@@ -124,6 +126,7 @@
     {
         indicator = [PaymentMadeIndicator insertInManagedObjectContext:self.managedObjectContext];
         indicator.paymentRemoteId = payment.remoteId;
+        indicator.payInMethodName = payInMethodName;
         payment.paymentMadeIndicator = indicator;
     }
 }

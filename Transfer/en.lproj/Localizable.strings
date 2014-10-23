@@ -233,7 +233,7 @@ A revolution in your pocket.";
 "payment.status.payed.description.long2" = "received the money.";
 "payment.status.payed.description.conversion" = "We're now waiting for your
 bank transfer to reach our account.
-It generally taks 1 business day.";
+It generally takes 1-2 business day.";
 "payment.status.payed.description.eta" = "";
 "payment.status.transferred.description" = "Completed - %@";
 "payment.status.transferred.description.long" = "has been transfered.";
@@ -416,11 +416,11 @@ This can't be undone.";
 "transferdetails.controller.transfer.thankyou" = "Thank you!";
 "transferdetails.controller.transfer.message1" = "We're now waiting for your";
 "transferdetails.controller.transfer.message2" = "bank transfer to reach our account.";
-"transferdetails.controller.transfer.message3" = "It generally takes 1 business day.";
+"transferdetails.controller.transfer.message3" = "It generally takes %@.";
 "transferdetails.controller.transfer.number" = "#%@";
 "transferdetails.controller.transfer.recipient" = "to %@";
 "transferdetails.controller.transfer.account.to" = "%@'s account details";
-"transferdetails.controller.transfer.account.sent" = "%@\nWe've sent email to %@ at\n%@";
+"transferdetails.controller.transfer.account.sent" = "%@\nWe've sent an email to %@ at\n%@";
 "transferdetails.controller.button.support.ipad" = "Contact support";
 "transferdetails.controller.button.support" = "Contact customer support";
 "transferdetails.controller.button.rate" = "Rate the app";
@@ -644,7 +644,7 @@ We'll send you an email in order to let you choose a new password.";
 "unknown.value" = "??";
 "contact.detail.send" = "Send money";
 
-"usd.coming.soon" = "Coming soon";
+"usd.coming.soon" = "U-S-A!";
 "usd.not.supported" = "Sending USD abroad will soon be supported in our mobile applications.\n\nIn the mean time, please go to transferwise.com to pay for this transfer.";
 
 "invite.button.title" = "Invite friends";
@@ -689,8 +689,8 @@ We'll send you an email in order to let you choose a new password.";
 "touchid.settings.names.title" = "Ask again";
 
 
-"usd.low.title" = "Coming soon";
-"usd.low.info" = "Unfortunately you cannot transfer less than 1500 USD just yet.\nYou will soon be able to.";
+"usd.low.title" = "U-S-A!";
+"usd.low.info" = "Unfortunately you cannot transfer less than 3 USD.";
 "usd.low.dismiss" = "Ok";
 
 "empty.transfers" = "No transfers made yet?\nTap send to start.";
@@ -699,3 +699,9 @@ We'll send you an email in order to let you choose a new password.";
 "registration.legaleze" = "By using TransferWise, you agree to our %@ & %@";
 "registration.tos" = "Terms of services";
 "registration.privacy" = "Privacy Policy";
+
+"transfertime.default" = "1 business day";
+"transfertime.EUR.REGULAR" = "1-2 business days";
+"transfertime.GBP.REGULAR" = "a few business hours";
+"transfertime.USD.SWIFT" = "3 business days";
+"transfertime.USD.REGULAR" = "a few business hours";

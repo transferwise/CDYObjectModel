@@ -16,6 +16,6 @@ typedef void (^LoginResponseBlock)(NSError *error);
 @property (nonatomic, copy) LoginResponseBlock responseHandler;
 @property (nonatomic) BOOL waitForDetailsCompletion;
 
-+ (LoginOperation *)loginOperationWithEmail:(NSString *)email password:(NSString *)password;
++ (LoginOperation *)loginOperationWithEmail:(NSString *)email password:(NSString *)password keepPendingPayment:(BOOL)keepPendingPayment ;
 
 @end
