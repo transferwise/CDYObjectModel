@@ -677,18 +677,18 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 
 
 "usd.low.title" = "U-S-A!";
-"usd.low.info" = "Malheureusement il est impossible de transférer moins de 3 USD pour le moment.\nCela sera bientôt possible.";
+"usd.low.info" = "Malheureusement il est impossible de transférer moins de 3 USD pour le moment.";
 "usd.low.dismiss" = "Ok";
 
-"empty.transfers" = "No transfers made yet?\nTap send to start.";
-"empty.contacts" = "No recipients saved.\nTap send to transfer money.";
+"empty.transfers" = "Aucun transferts?\nTap Envoyer pour démarrer.";
+"empty.contacts" = "Aucun destinataires sauvegardés.\nTap Envoyer pour démarrer.";
 
-"registration.legaleze" = "By using TransferWise, you agree to our %@ & %@";
-"registration.tos" = "Terms of services";
-"registration.privacy" = "Privacy Policy";
+"registration.legaleze" = "En utilisant TransferWise, vous adherez à nos %@ & %@";
+"registration.tos" = "conditions générales";
+"registration.privacy" = "règles de confidentialité";
 
-"transfertime.default" = "1 business day";
-"transfertime.EUR.REGULAR" = "1-2 business days";
-"transfertime.GBP.REGULAR" = "a few business hours";
-"transfertime.USD.SWIFT" = "3 business days";
-"transfertime.USD.REGULAR" = "a few business hours";
+"transfertime.default" = "1 jour ouvré";
+"transfertime.EUR.REGULAR" = "1-2 jours ouvrés";
+"transfertime.GBP.REGULAR" = "quelques heures ouvrées";
+"transfertime.USD.SWIFT" = "3 jours ouvrés";
+"transfertime.USD.REGULAR" = "quelques heures ouvrées";
