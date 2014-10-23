@@ -376,41 +376,54 @@
 
 - (void)pullCountriesWithHud:(TRWProgressHUD *)hud completionHandler:(TRWActionBlock)completion
 {
-    CountriesOperation *operation = [CountriesOperation operation];
-    [self setExecutedOperation:operation];
-    [operation setObjectModel:self.objectModel];
-    [operation setCompletionHandler:^(NSError *error) {
-        if (error)
-		{
-            [hud hide];
-            return;
-        }
-
-        completion();
-    }];
-    [operation execute];
+    if(self.executedOperation)
+    {
+        [hud hide];
+    }
+    else
+    {
+        CountriesOperation *operation = [CountriesOperation operation];
+        [self setExecutedOperation:operation];
+        [operation setObjectModel:self.objectModel];
+        __weak typeof(self) weakSelf = self;
+        [operation setCompletionHandler:^(NSError *error) {
+            if (error)
+            {
+                [hud hide];
+                 weakSelf.executedOperation = nil;
+            }
+            else if(completion)
+            {
+                completion();
+            }
+        }];
+        [operation execute];
+    }
 }
 
 - (void)pullDetails
 {
+    if(self.executedOperation)
+    {
+        return;
+    }
     TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
     [hud setMessage:NSLocalizedString(@"personal.profile.refreshing.message", nil)];
-
+    __weak typeof(self) weakSelf = self;
     [self pullCountriesWithHud:hud completionHandler:^{
 		[self.countryCellProvider setAutoCompleteResults:[self.objectModel fetchedControllerForAllCountries]];
-		
         [self.profileSource pullDetailsWithHandler:^(NSError *profileError) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hud hide];
+                weakSelf.executedOperation = nil;
                 if (profileError)
 				{
                     return;
                 }
-				
-                self.sectionCellsByTableView = self.presentationCells;
-                [self reloadTableViews];
-				[self refreshTableViewSizes];
-				[self configureForInterfaceOrientation:self.interfaceOrientation];
+                weakSelf.sectionCellsByTableView = self.presentationCells;
+                [weakSelf reloadTableViews];
+				[weakSelf refreshTableViewSizes];
+				[weakSelf configureForInterfaceOrientation:self.interfaceOrientation];
             });
         }];
 
