@@ -88,7 +88,7 @@ static NSUInteger const TransferwiseAppID = 612261027;
 #define USE_FACEBOOK_EVENTS 1
 #define USE_APPSFLYER_EVENTS 1
 
-#define REGISTRATION_UPFRONT_OVERRIDE NO
+#define REGISTRATION_UPFRONT_OVERRIDE YES
 
 typedef NS_OPTIONS(short, IdentificationRequired) {
 	IdentificationNoneRequired = 0,
