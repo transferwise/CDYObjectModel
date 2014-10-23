@@ -53,8 +53,8 @@
 "confirm.payment.recipient.fixed.title.label" = "Y%@ recevra exactement";
 "confirm.payment.email.label" = "Email du destinataire";
 "confirm.payment.target.sum.format" = "%@";
-"confirm.payment.fixed.target.sum.format" = "exactement %@";
-"confirm.payment.header.format" = "Le %@,\n%@\nest estimaté d'arriver sur le compte de \n%@'";
+"confirm.payment.fixed.target.sum.format" = "La somme exacte de %@";
+"confirm.payment.header.format" = "Le %@,\n%@\nest estimé d'arriver sur le compte de \n%@";
 "confirm.payment.header.format.nodate" = "%@\n arrivera sur le compte de \n%@";
 "confirm.payment.exchangerate.title.label" = "Taux de change estimé";
 "confirm.payment.footer.button.title" = "Confirmer";
@@ -79,7 +79,7 @@
 "contacts.controller.deleting.message" = "Suppression...";
 "contacts.controller.refreshing.message" = "Rachraissement des destinataires";
 "contacts.controller.title" = "Destinataires";
-"contacts.controller.tabbar.title" = "Destinataires";
+"contacts.controller.tabbar.title" = "Contacts";
 "contacts.refresh.error.message" = "La list de vos destinataires n'a pas pu etre raffraichie";
 "contacts.refresh.error.title" = "Erreur de raffraichissement";
 "contacts.controller.send.button.title" = "Envoyer %@";
@@ -93,7 +93,7 @@ vos amis sur TransferWise";
 "claim.account.password.not.entered" = "Mot de passe manquant";
 "claim.account.setting.password.message" = "...";
 
-"currency.selector.title" = "Choisir une monnaie";
+"currency.selector.title" = "Choix de monnaie";
 "currency.selector.select.button.title" = "Choisir";
 
 "generic.error.message" = "Nous travaillons sur le probleme. Reessayer plus tard.";
@@ -143,13 +143,13 @@ vos amis sur TransferWise";
 "introduction.header.title.text" = "Combien souhaitez-vous envoyer?";
 "introduction.login.section.title" = "Déja un utilisateur?";
 "introduction.savings.receive.message.base" = "Vous obtiendrez %@ de plus qu'avec votre banque";
-"introduction.savings.pay.message.base" = "Vous économiserez %@ par rapport a votre banque";
-"introduction.savings.message.part1" = "Vous éconnomiserez";
-"introduction.savings.message.part1.ipad" = "Vous éconnomiserez";
-"introduction.savings.message.part2" = "par rapport a votre banque";
-"introduction.savings.message.part2.ipad" = "par rapport a votre banque";
-"introduction.savings.message.how" = "Voir explication";
-"introduction.savings.message.how.ipad" = "Voir explication";
+"introduction.savings.pay.message.base" = "Vous économisez %@ par rapport a votre banque";
+"introduction.savings.message.part1" = "Vous éconnomisez";
+"introduction.savings.message.part1.ipad" = "Vous éconnomisez";
+"introduction.savings.message.part2" = "avec TransferWise";
+"introduction.savings.message.part2.ipad" = "par rapport à votre banque";
+"introduction.savings.message.how" = "VOIR EXPLICATION";
+"introduction.savings.message.how.ipad" = "VOIR EXPLICATION";
 "introduction.header.sub.title.text" = "Pas de frais cachés. Pas de migraine.
 Une révolution dans votre poche.";
 
@@ -354,10 +354,10 @@ Nous vous rembourserons l'argent non utilisé après le transfert.";
 "refund.details.footer.button.title" = "Continuer";
 
 
-"settings.title" = "Paramètres";
-"settings.row.contact.support" = "Contacter le support client";
+"settings.title" = "Options";
+"settings.row.contact.support" = "Support client";
 "settings.row.logout" = "Se déconnecter";
-"settings.row.send.feedback" = "Envoyer votre commentaire";
+"settings.row.send.feedback" = "Votre commentaire";
 "settings.row.about" = "A propos";
 "settings.row.touchid" = "Paramètres Touch ID";
 "settings.row.send.as.business" = "Envoyer en tant qu'entreprise";
@@ -375,7 +375,7 @@ Nous vous rembourserons l'argent non utilisé après le transfert.";
 "sign.up.error.title" = "Impossible de continuer";
 "sign.up.button.title.register" = "S'enregistrer";
 "sign.up.controller.header.message" = "Créer un compte TransferWise";
-"sign.up.email.field.title" = "Adresse email";
+"sign.up.email.field.title" = "Votre adresse email";
 "sign.up.password.confirm.field.title" = "Confirmer mot de passe";
 "sign.up.password.field.title" = "Mot de passe";
 "sign.up.controller.existing.user.action" = "Connexion";
@@ -433,21 +433,21 @@ C'est irréversible.";
 "upload.money.bank.name.title" = "Nom de la banque";
 "upload.money.bic.title" = "BIC";
 "upload.money.data.error.title" = "Erreur de donnée";
-"upload.money.done.button.title" = "J'ai fais ce transfert";
+"upload.money.done.button.title" = "J'ai fais ce virement";
 "upload.money.cancel.button.title" = "Annuler";
 "upload.money.our.address.label" = "Notre adresse: %@";
 "upload.money.header.label.GBP" = "Connectez-vous à votre banque en ligne et transférez %@ sur le compte UK de Transferwise ci-dessous.\nC'est gratuit.";
 "upload.money.header.label.EUR" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte européen de Transferwise ci-dessous.";
 "upload.money.header.label.USD.swift" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte européen de Transferwise ci-dessous. (depuis votre compte uniquement)";
 "upload.money.header.label.USD.wire" = "Seulement si vous disposez d'un compte domestique américain, transférez %@ sur le compte américain de Transferwise ci-dessous. Uniquement depuis votre compte. Nous n'acceptons pas les cheques et le cash";
-"upload.money.header.label" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ à sur le compte Transferwise ci-dessous";
+"upload.money.header.label" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ à sur le compte Transferwise ci-dessous.";
 "upload.money.header.label.exactly" = "éxactement %@";
 "upload.money.info.label.EUR" = "Les transferts SEPA au sein de la zone Euro ne coûtent pas plus cher qu'un transfert local.";
 "upload.money.iban.title" = "IBAN";
 "upload.money.notification.label" = "Votre transfert demarrera dés que nous aurons reçus votre argent.";
 "upload.money.pulling.data.message" = "Chargement des données...";
 "upload.money.reference.title" = "Référence";
-"upload.money.title" = "Comment souhaitez-vous payer?";
+"upload.money.title" = "Choisir comment payer";
 "upload.money.title.single.method" = "Comment payer";
 "upload.money.to.title" = "A";
 "upload.money.toggle.button.bank.transfer.title" = "Virement bancaire";
@@ -466,14 +466,14 @@ C'est irréversible.";
 "why.popup.tw.rate.title" = "Nous utilisons le vrai taux de change.";
 "why.popup.bank.rate.title" = "Les banques inventent \nleur taux.";
 "why.popup.tw.fee.title" = "Nous coûtons aussi peu que possible.";
-"why.popup.bank.fee.title" = "Les banques masquent leur profit dans le taux + commission ";
+"why.popup.bank.fee.title" = "Les banques cachent leur profit dans le taux + commission ";
 "why.popup.tw.you.get.title" = "Vous reçevez";
 "why.popup.bank.you.get.title" = "Vous auriez reçu";
 "why.popup.tw.you.pay.title" = "Vous payez";
 "why.popup.bank.you.pay.title" = "Vous auriez payé";
 "why.popup.button" = "Compris, j'éconnomise %@";
-"why.popup.title" = "Comparatif des prix";
-"why.popup.vs" = "Contre";
+"why.popup.title" = "Comparatif";
+"why.popup.vs" = "Vs";
 "why.popup.rate" = "TAUX DE\nCHANGE";
 "why.popup.fee" = "COUT";
 
@@ -569,19 +569,16 @@ Veuillez joindre vos documents à cet email et envoyez ce dernier.<br />
 "intro.tagline.one" = "ARGENT
 SANS
 FRONTIERES";
-"intro.tagline.two" = "90\% MOINS CHER
-QUE VOTRE
-BANQUE";
+"intro.tagline.two" = "90\%\n MOINS CHER";
 "intro.tagline.three" = "RESPECTÉ
 A TRAVERS
 LE MONDE";
-"intro.tagline.four" = "EXPERIENCE
-FACILE &
-RAPID";
-"intro.message.one" = "Envoyer de l'argent a l'étranger. Moins cher. Rapidement.";
-"intro.message.two" = "Les banques vous prennent 5% via des frais cachés. Nous prenons 0.5%";
+"intro.tagline.four" = "VIREMENTS FACILE &
+RAPIDES";
+"intro.message.one" = "Envoi d'argent à l'étranger. Moins cher. Rapide.";
+"intro.message.two" = "Les banques vous prennent 5% via des frais cachés. Nous ne prenons que 0.5%";
 "intro.message.three" = "6758 revues independantes. Note: 5/5";
-"intro.message.four" = "Par les développeurs de Skype";
+"intro.message.four" = "Par les développeurs de Skype. ";
 
 "intro.existing.tagline.one" = "VERSION 2 DE NOTRE APP IPHONE & IPAD";
 "intro.existing.tagline.two" = "VOTRE COMPTE N'A PAS CHANGÉ";
@@ -624,7 +621,7 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 
 "network.alert" = "Pas de connexion internet";
 "unknown.value" = "??";
-"contact.detail.send" = "Envoi d'argent";
+"contact.detail.send" = "Envoyer de l'argent";
 
 "usd.coming.soon" = "Bientôt dans votre app...";
 "usd.not.supported" = "Envoyer des dollards américains (USD) à l'étranger sera bientôt supporté dans l'app.\n\nEn attendant, cette fonctionnalité est déjà disponible sur notre site web transferwise.com";
@@ -639,13 +636,13 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "invite.progress.format2" = "%d amis utilisent TransferWise. %d restant!";
 "invite.complete.format" = "%d amis utilisent TransferWise! Recommencez et gagnez £50 de plus!";
 
-"invite.fb.button.title" = "Partager sur Facebook";
+"invite.fb.button.title" = "Poster sur Facebook";
 "invite.email.button.title" = "Inviter par email";
 "invite.sms.button.title" = "Inviter par sms";
-"invite.copy.button.title" = "Copier mon lien d'invitation";
+"invite.copy.button.title" = "Copier mon lien";
 "invite.copied.button.title" = "Copié";
-"invite.context" = "Quand 3 amis commencent à utiliser TransferWise, vous gagnez £50.";
-"invite.modal.title" = "Partager votre lien d'invitation";
+"invite.context" = "Quand 3 amis utilisent TransferWise, vous gagnez £50.";
+"invite.modal.title" = "Envoyer vos invitations";
 "invite.error.facebook.title" = "Erreur de Facebook";
 "invite.error.facebook.message" = "Activez Facebook sur votre téléphone et réessayez.";
 "invite.facebook.default.message" = "";
