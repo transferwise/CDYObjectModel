@@ -146,8 +146,15 @@
 {
     if(self.willDecelerate)
     {
-        self.endRefreshRequestedDuringDeceleration = YES;
-        return;
+        if ([self window])
+        {
+            self.endRefreshRequestedDuringDeceleration = YES;
+            return;
+        }
+        else
+        {
+            self.willDecelerate = NO;
+        }
     }
     
     if(self.isRefreshing)
@@ -156,7 +163,6 @@
         self.isRefreshing = NO;
         UIEdgeInsets insets = self.scrollView.contentInset;
         insets.top = [self.bufferedTopInset floatValue];
-        self.bufferedTopInset = nil;
         CGFloat offset = [self verticalOffset];
         if (offset < self.targetHeight)
         {
