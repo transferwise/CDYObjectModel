@@ -35,10 +35,9 @@ NSString *const TWDropdownCellIdentifier = @"TWDropdownCellIdentifier";
     [pickerView setShowsSelectionIndicator:YES];
     [pickerView setDataSource:self];
     [pickerView setDelegate:self];
-
+    
     [self.entryField setInputView:pickerView];
-
-    //[self addDoneButton];
+    
 }
 
 - (NSString *)value {
@@ -92,6 +91,27 @@ NSString *const TWDropdownCellIdentifier = @"TWDropdownCellIdentifier";
 - (void)selectedElement:(id)rowObject {
     [self setSelectedObject:rowObject];
     [self.entryField setText:[[rowObject valueForKeyPath:@"title"] capitalizedString]];
+}
+
+-(void)pickerTapped:(UITapGestureRecognizer*)sender;
+{
+    CGPoint tappedPoint = [sender locationInView:self.picker];
+    if(ABS(tappedPoint.y - self.picker.bounds.size.height/2.0f) < 15.0f)
+    {
+        [self cellTapped:sender];
+    }
+}
+
+- (IBAction)cellTapped:(id)sender {
+    
+    if(self.entryField.isFirstResponder)
+    {
+        [self.entryField resignFirstResponder];
+    }
+    else
+    {
+        [self.entryField becomeFirstResponder];
+    }
 }
 
 @end
