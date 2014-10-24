@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
@@ -9,8 +10,6 @@
                 <outlet property="gotItButton" destination="rxs-mj-tLy" id="7YQ-dM-LbJ"/>
                 <outlet property="headerView" destination="Qim-Hp-yQF" id="5Xj-Xo-lAz"/>
                 <outlet property="messageLabel1" destination="Ku0-jo-fZR" id="ufC-Ln-wbs"/>
-                <outlet property="messageLabel2" destination="h0a-dw-5MW" id="tgQ-Nj-ThP"/>
-                <outlet property="messageLabel3" destination="Mfc-ct-POE" id="7Yx-Ig-v3b"/>
                 <outlet property="noTransferButton" destination="gEe-YD-6Z4" id="AO1-Yn-gwW"/>
                 <outlet property="statusIcon" destination="8dh-F6-i1O" id="7wI-SB-I7T"/>
                 <outlet property="supportButton" destination="g0K-st-6YG" id="Hcn-2l-tWe"/>
@@ -32,7 +31,7 @@
                                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="VMj-aZ-kxz" userLabel="Header Message - View" customClass="TransferDetialsHeaderView">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2oX-ko-ain" userLabel="Label - Thank You">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="700" verticalHuggingPriority="700" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2oX-ko-ain" userLabel="Label - Thank You">
                                             <rect key="frame" x="147" y="0.0" width="26" height="12"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -41,29 +40,10 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@17.DarkFont"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ku0-jo-fZR" userLabel="Label - Message1">
-                                            <rect key="frame" x="147" y="10" width="26" height="12"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <nil key="highlightedColor"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@17.CoreFont"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0a-dw-5MW" userLabel="Label - Message2">
-                                            <rect key="frame" x="-17" y="20" width="354" height="12"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="700" verticalHuggingPriority="700" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ku0-jo-fZR" userLabel="Label - Message1">
+                                            <rect key="frame" x="20" y="10" width="280" height="12"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="354" id="Pxg-jG-k0A"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <nil key="highlightedColor"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@17.CoreFont"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mfc-ct-POE" userLabel="Label - Message3">
-                                            <rect key="frame" x="-17" y="30" width="354" height="12"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="354" id="wwW-t8-5Oj"/>
+                                                <constraint firstAttribute="width" constant="280" id="z0f-m9-tSu"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
@@ -76,23 +56,19 @@
                                         <constraint firstAttribute="height" constant="90" id="678-mx-ueb"/>
                                         <constraint firstItem="Ku0-jo-fZR" firstAttribute="top" secondItem="2oX-ko-ain" secondAttribute="bottom" constant="-2" id="GYe-Rz-AyS"/>
                                         <constraint firstAttribute="centerX" secondItem="Ku0-jo-fZR" secondAttribute="centerX" id="Xmo-2G-67f"/>
-                                        <constraint firstAttribute="centerX" secondItem="h0a-dw-5MW" secondAttribute="centerX" id="dpL-1K-tjT"/>
-                                        <constraint firstItem="h0a-dw-5MW" firstAttribute="top" secondItem="Ku0-jo-fZR" secondAttribute="bottom" constant="-2" id="sbn-e2-eIa"/>
-                                        <constraint firstItem="Mfc-ct-POE" firstAttribute="top" secondItem="h0a-dw-5MW" secondAttribute="bottom" constant="-2" id="tXw-Y8-Ie3"/>
                                         <constraint firstItem="2oX-ko-ain" firstAttribute="top" secondItem="VMj-aZ-kxz" secondAttribute="top" id="u5w-mJ-3c8"/>
                                         <constraint firstAttribute="centerX" secondItem="2oX-ko-ain" secondAttribute="centerX" id="uXj-af-Wg1"/>
-                                        <constraint firstAttribute="centerX" secondItem="Mfc-ct-POE" secondAttribute="centerX" id="zaI-fr-oZp"/>
                                     </constraints>
                                 </view>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="8dh-F6-i1O">
-                                    <rect key="frame" x="120" y="103" width="80" height="80"/>
+                                    <rect key="frame" x="120" y="37" width="80" height="80"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="4pe-wN-NIZ"/>
                                         <constraint firstAttribute="width" constant="80" id="6IT-v3-Fgh"/>
                                     </constraints>
                                 </imageView>
                                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="Qim-Hp-yQF" userLabel="Header View" customClass="TransferDetialsHeaderView">
-                                    <rect key="frame" x="0.0" y="198" width="320" height="90"/>
+                                    <rect key="frame" x="0.0" y="132" width="320" height="90"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqR-kL-SVq" userLabel="Label - Your Transfer">
                                             <rect key="frame" x="147" y="0.0" width="26" height="12"/>
@@ -161,7 +137,7 @@
                                     </connections>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEe-YD-6Z4" userLabel="Button - No Transfer" customClass="BlueRoundedButton">
-                                    <rect key="frame" x="133" y="369" width="55" height="40"/>
+                                    <rect key="frame" x="133" y="303" width="55" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="A62-cQ-hmw"/>
                                     </constraints>
@@ -173,7 +149,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rxs-mj-tLy" userLabel="Button - Got It" customClass="BlueRoundedButton">
-                                    <rect key="frame" x="133" y="313" width="55" height="40"/>
+                                    <rect key="frame" x="133" y="247" width="55" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="x8u-Cp-uOS"/>
                                     </constraints>
@@ -191,14 +167,13 @@
                                 <constraint firstItem="VMj-aZ-kxz" firstAttribute="top" secondItem="KMX-bp-X1m" secondAttribute="top" id="1ln-Wu-gAg"/>
                                 <constraint firstAttribute="centerX" secondItem="8dh-F6-i1O" secondAttribute="centerX" id="3Yh-kT-pdr"/>
                                 <constraint firstAttribute="centerX" secondItem="gEe-YD-6Z4" secondAttribute="centerX" id="Om3-2y-qby"/>
-                                <constraint firstItem="8dh-F6-i1O" firstAttribute="top" secondItem="VMj-aZ-kxz" secondAttribute="bottom" constant="13" id="THL-MV-fZb"/>
                                 <constraint firstItem="gEe-YD-6Z4" firstAttribute="top" secondItem="rxs-mj-tLy" secondAttribute="bottom" constant="16" id="Wzz-5X-qET"/>
                                 <constraint firstAttribute="centerX" secondItem="rxs-mj-tLy" secondAttribute="centerX" id="XNR-qN-DDK"/>
+                                <constraint firstItem="8dh-F6-i1O" firstAttribute="top" secondItem="Ku0-jo-fZR" secondAttribute="bottom" constant="15" id="XhR-Ae-VQt"/>
                                 <constraint firstAttribute="trailing" secondItem="VMj-aZ-kxz" secondAttribute="trailing" id="apb-91-51X"/>
                                 <constraint firstItem="VMj-aZ-kxz" firstAttribute="leading" secondItem="KMX-bp-X1m" secondAttribute="leading" id="gOb-n1-Stj"/>
                                 <constraint firstAttribute="height" priority="800" constant="431" placeholder="YES" id="ho0-V8-Pav"/>
                                 <constraint firstItem="rxs-mj-tLy" firstAttribute="width" secondItem="gEe-YD-6Z4" secondAttribute="width" id="pUG-ng-2gw"/>
-                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gEe-YD-6Z4" secondAttribute="bottom" constant="20" id="tF3-dV-n1o"/>
                                 <constraint firstItem="Qim-Hp-yQF" firstAttribute="top" secondItem="8dh-F6-i1O" secondAttribute="bottom" constant="15" id="u3e-1I-6Y4"/>
                                 <constraint firstAttribute="trailing" secondItem="Qim-Hp-yQF" secondAttribute="trailing" id="vJQ-Wl-BPt"/>
                                 <constraint firstItem="Qim-Hp-yQF" firstAttribute="leading" secondItem="KMX-bp-X1m" secondAttribute="leading" id="wpn-cJ-GX5"/>
@@ -206,7 +181,7 @@
                         </view>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="KMX-bp-X1m" secondAttribute="bottom" id="ZLW-Xv-KCo"/>
+                        <constraint firstAttribute="bottom" secondItem="KMX-bp-X1m" secondAttribute="bottom" constant="20" id="ZLW-Xv-KCo"/>
                         <constraint firstItem="KMX-bp-X1m" firstAttribute="top" secondItem="RC5-kk-Kyq" secondAttribute="top" constant="26" id="gXh-Od-3hE"/>
                         <constraint firstItem="KMX-bp-X1m" firstAttribute="leading" secondItem="RC5-kk-Kyq" secondAttribute="leading" id="oud-9g-CO3"/>
                         <constraint firstAttribute="trailing" secondItem="KMX-bp-X1m" secondAttribute="trailing" id="pPo-ZL-8Da"/>

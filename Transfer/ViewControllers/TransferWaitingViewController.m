@@ -20,8 +20,6 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *thankYouLabel;
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel1;
-@property (strong, nonatomic) IBOutlet UILabel *messageLabel2;
-@property (strong, nonatomic) IBOutlet UILabel *messageLabel3;
 @property (strong, nonatomic) IBOutlet ColoredButton *noTransferButton;
 @property (weak, nonatomic) IBOutlet ColoredButton *gotItButton;
 
@@ -58,8 +56,6 @@
 - (void)setUpHeader
 {
 	[self.thankYouLabel setText:NSLocalizedString(@"transferdetails.controller.transfer.thankyou", nil)];
-	[self.messageLabel1 setText:NSLocalizedString(@"transferdetails.controller.transfer.message1", nil)];
-	[self.messageLabel2 setText:NSLocalizedString(@"transferdetails.controller.transfer.message2", nil)];
     
     NSString *key = [NSString stringWithFormat:@"transfertime.%@.%@",self.payment.sourceCurrency.code,self.payment.paymentMadeIndicator.payInMethodName];
     NSString *timingString = NSLocalizedString(key,nil);
@@ -67,7 +63,7 @@
     {
         timingString = NSLocalizedString(@"transfertime.default", nil);
     }
-    [self.messageLabel3 setText:[NSString stringWithFormat:NSLocalizedString(@"transferdetails.controller.transfer.message3", nil),timingString]];
+    [self.messageLabel1 setText:[NSString stringWithFormat:NSLocalizedString(@"transferdetails.controller.transfer.message", nil),timingString]];
     
     
 	[super setUpHeader];
