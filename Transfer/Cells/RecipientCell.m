@@ -44,7 +44,7 @@
 						  cancelTappedBlock:cancelTappedBlock];
 	
     [self.nameLabel setText:[recipient name]];
-    [self.bankLabel setText:[NSString stringWithFormat:@"%@ account",[recipient.currency code]]];
+    [self.bankLabel setText:[NSString stringWithFormat:NSLocalizedString(@"contacts.controller.account.type", nil),[recipient.currency code]]];
 	[self.sendLabel setText:[NSString stringWithFormat:NSLocalizedString(@"contacts.controller.send.button.title", nil), recipient.currency.code]];
 	
 	if (recipient.image)

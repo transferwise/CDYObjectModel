@@ -86,6 +86,7 @@
 "contacts.controller.footer.invite" = "Gagner £50 en invitant
 vos amis sur TransferWise";
 "contacts.controller.footer.invite.button.title" = "Invitez vos amis";
+"contacts.controller.account.type" = "Compte %@";
 
 "claim.account.controller.title" = "Choisir un mot de passe";
 "claim.account.error.title" = "Erreur";
