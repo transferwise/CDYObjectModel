@@ -147,6 +147,12 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [SendButtonFlashHelper setSendFlash:NO];
 }
 
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self.refreshView refreshComplete];
+}
+
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
