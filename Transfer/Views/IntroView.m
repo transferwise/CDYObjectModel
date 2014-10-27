@@ -24,6 +24,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tagLineCenterConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageLabelCenterConstraint;
 
+@property (nonatomic, assign) CGFloat flagOffsetFactor;
+@property (nonatomic, assign) CGFloat tagLineOffsetFactor;
+@property (nonatomic, assign) CGFloat messageOffsetFactor;
 @end
 
 @implementation IntroView
@@ -50,15 +53,20 @@
     self.taglineLabel.textColor = dictionary[@"titleFontStyleColor"];
     self.messageLabel.font = dictionary[@"textFontStyleFont"];
     self.messageLabel.textColor = dictionary[@"textFontStyleColor"];
+    
+    self.flagOffsetFactor = (IPAD?2.0f:1.0f) * flagFactor;
+    self.tagLineOffsetFactor = (IPAD?2.0f:1.0f) * tagLineFactor;
+    self.messageOffsetFactor = (IPAD?2.0f:1.0f) * messageFactor;
+    
 }
 
 - (void)shiftCenter:(CGFloat)relativeOffset
 {
     short direction = relativeOffset > 0.0f ? 1 : -1 ;
     CGFloat offset = ABS(sinf(relativeOffset * M_PI) * self.bounds.size.width) * direction;
-    self.flagCenterConstraint.constant = offset * flagFactor;
-    self.tagLineCenterConstraint.constant = offset * tagLineFactor;
-    self.messageLabelCenterConstraint.constant = offset * messageFactor;
+    self.flagCenterConstraint.constant = offset * self.flagOffsetFactor;
+    self.tagLineCenterConstraint.constant = offset * self.tagLineOffsetFactor;
+    self.messageLabelCenterConstraint.constant = offset * self.messageOffsetFactor;
 }
 
 @end
