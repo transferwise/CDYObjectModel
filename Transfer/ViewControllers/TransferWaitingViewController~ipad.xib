@@ -9,8 +9,6 @@
             <connections>
                 <outlet property="headerView" destination="jJD-by-0Jd" id="z78-Er-Ntb"/>
                 <outlet property="messageLabel1" destination="33e-1t-Ruy" id="zCt-hD-5bW"/>
-                <outlet property="messageLabel2" destination="Kmp-qQ-wvp" id="NEB-oS-Lp2"/>
-                <outlet property="messageLabel3" destination="2fe-OX-nDn" id="mBE-0R-jcg"/>
                 <outlet property="noTransferButton" destination="ECd-cI-GOp" id="fNb-Og-0Ds"/>
                 <outlet property="statusIcon" destination="8dh-F6-i1O" id="7wI-SB-I7T"/>
                 <outlet property="supportButton" destination="g0K-st-6YG" id="Hcn-2l-tWe"/>
@@ -24,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="88" translatesAutoresizingMaskIntoConstraints="NO" id="jJD-by-0Jd" userLabel="Header View" customClass="TransferDetialsHeaderView">
-                    <rect key="frame" x="0.0" y="403.5" width="1024" height="88"/>
+                    <rect key="frame" x="0.0" y="374" width="1024" height="88"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bB-ke-DbF" userLabel="Label - Your Transfer">
                             <rect key="frame" x="491" y="0.0" width="42" height="20.5"/>
@@ -36,7 +34,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7NO-O2-ul7" userLabel="Label - Transfer Number">
-                            <rect key="frame" x="491" y="14" width="42" height="20.5"/>
+                            <rect key="frame" x="491" y="14.5" width="42" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
@@ -60,7 +58,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGr-ZR-JTK" userLabel="Label - Status Waiting">
-                            <rect key="frame" x="491" y="65" width="42" height="20.5"/>
+                            <rect key="frame" x="491" y="65.5" width="42" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
@@ -103,29 +101,10 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="heavy.@20.DarkFont"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33e-1t-Ruy" userLabel="Label - Message1">
-                            <rect key="frame" x="491" y="15" width="42" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="highlightedColor"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.CoreFont"/>
-                            </userDefinedRuntimeAttributes>
-                        </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kmp-qQ-wvp" userLabel="Label - Message2">
-                            <rect key="frame" x="335" y="30" width="354" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33e-1t-Ruy" userLabel="Label - Message1">
+                            <rect key="frame" x="352" y="16" width="320" height="21"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="354" id="JPt-bf-PA8"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="highlightedColor"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@20.CoreFont"/>
-                            </userDefinedRuntimeAttributes>
-                        </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fe-OX-nDn" userLabel="Label - Message3">
-                            <rect key="frame" x="362" y="44" width="300" height="21"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="300" id="4jq-kh-f7f"/>
+                                <constraint firstAttribute="width" constant="320" id="xHU-lv-m9V"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
@@ -136,18 +115,14 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="centerX" secondItem="2fe-OX-nDn" secondAttribute="centerX" id="NmW-Fd-gKm"/>
                         <constraint firstItem="jgn-bZ-7n3" firstAttribute="top" secondItem="ZSJ-R1-tNS" secondAttribute="top" id="Nzh-TJ-UHn"/>
-                        <constraint firstItem="2fe-OX-nDn" firstAttribute="top" secondItem="Kmp-qQ-wvp" secondAttribute="bottom" constant="-6" id="TiV-5B-xor"/>
-                        <constraint firstAttribute="centerX" secondItem="Kmp-qQ-wvp" secondAttribute="centerX" id="YX3-KQ-FBZ"/>
-                        <constraint firstItem="Kmp-qQ-wvp" firstAttribute="top" secondItem="33e-1t-Ruy" secondAttribute="bottom" constant="-6" id="hhT-dt-uGT"/>
                         <constraint firstAttribute="centerX" secondItem="33e-1t-Ruy" secondAttribute="centerX" id="igZ-EW-qwl"/>
                         <constraint firstAttribute="centerX" secondItem="jgn-bZ-7n3" secondAttribute="centerX" id="pdD-PF-Aha"/>
                         <constraint firstItem="33e-1t-Ruy" firstAttribute="top" secondItem="jgn-bZ-7n3" secondAttribute="bottom" constant="-5" id="xjf-lM-8gZ"/>
                     </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8dh-F6-i1O">
-                    <rect key="frame" x="412" y="180.5" width="200" height="200"/>
+                    <rect key="frame" x="412" y="151" width="200" height="200"/>
                     <constraints>
                         <constraint firstAttribute="height" priority="1" constant="200" id="4pe-wN-NIZ"/>
                         <constraint firstAttribute="width" priority="1" constant="200" id="6IT-v3-Fgh"/>
@@ -156,7 +131,7 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0K-st-6YG" userLabel="Button - Contact Support" customClass="BlueRoundedButton">
-                    <rect key="frame" x="485" y="525.5" width="55" height="45"/>
+                    <rect key="frame" x="485" y="497" width="55" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="Q9Q-tK-AjY"/>
                     </constraints>
@@ -168,7 +143,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECd-cI-GOp" userLabel="Button - No Transfer" customClass="BlueRoundedButton">
-                    <rect key="frame" x="485" y="585.5" width="55" height="45"/>
+                    <rect key="frame" x="485" y="557" width="55" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="EOp-g5-EHI"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="WCq-FT-pHZ"/>
@@ -185,10 +160,10 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="g0K-st-6YG" firstAttribute="width" secondItem="ECd-cI-GOp" secondAttribute="width" id="15G-sX-vrP"/>
+                <constraint firstItem="8dh-F6-i1O" firstAttribute="top" secondItem="33e-1t-Ruy" secondAttribute="bottom" constant="20" id="4Zd-xs-XVT"/>
                 <constraint firstAttribute="trailing" secondItem="jJD-by-0Jd" secondAttribute="trailing" id="8Ae-SM-pfN"/>
                 <constraint firstAttribute="centerX" secondItem="ECd-cI-GOp" secondAttribute="centerX" id="8ZG-GP-1dd"/>
                 <constraint firstItem="jJD-by-0Jd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8c2-nS-QMY"/>
-                <constraint firstItem="8dh-F6-i1O" firstAttribute="top" secondItem="2fe-OX-nDn" secondAttribute="bottom" constant="21" id="Dd9-dt-Ufx"/>
                 <constraint firstAttribute="centerX" secondItem="8dh-F6-i1O" secondAttribute="centerX" id="Emq-JO-aeE"/>
                 <constraint firstAttribute="centerX" secondItem="g0K-st-6YG" secondAttribute="centerX" id="Qbh-LH-yaH"/>
                 <constraint firstAttribute="trailing" secondItem="ZSJ-R1-tNS" secondAttribute="trailing" id="USt-Mb-OWH"/>

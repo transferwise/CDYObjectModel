@@ -1135,6 +1135,7 @@
 		389F67F4198FC1C6006CF1F6 /* TypeFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeFieldValue.m; sourceTree = "<group>"; };
 		389F67F5198FC1C6006CF1F6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		389F67F6198FC1C6006CF1F6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		38A8B39319F021700047BD29 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		38AA833F1949B8DF0065AD2A /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
 		38AA83401949B8DF0065AD2A /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		38AA83CE1949C7220065AD2A /* PaymentCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PaymentCell~ipad.xib"; sourceTree = "<group>"; };
@@ -2821,6 +2822,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				fr,
 			);
 			mainGroup = EAAA145F171BC911005B9430;
 			productRefGroup = EAAA1469171BC911005B9430 /* Products */;
@@ -3867,6 +3869,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				EAAA148F171BD07E005B9430 /* en */,
+				38A8B39319F021700047BD29 /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

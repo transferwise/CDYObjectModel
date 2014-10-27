@@ -1020,9 +1020,16 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         }
     }
     
-    NSString *recipientName = [nameCellValue length] > 0 ? nameCellValue: NSLocalizedString(@"recipient.controller.section.title.recipient.placeholder", nil);
-    self.recipientFieldsHeader.titleLabel.text =  [NSString stringWithFormat:NSLocalizedString(@"recipient.controller.section.title.recipient.bank.details", nil),recipientName];
-    self.currencyCell.titleLabel.text =  [NSString stringWithFormat:NSLocalizedString(@"recipient.controller.scell.title.recipient.currency", nil),recipientName];
+    if([nameCellValue length]>0)
+    {
+        self.recipientFieldsHeader.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"recipient.controller.section.title.recipient.bank.details", nil),nameCellValue];
+        self.currencyCell.titleLabel.text =  [NSString stringWithFormat:NSLocalizedString(@"recipient.controller.cell.title.recipient.currency", nil),nameCellValue];
+    }
+    else
+    {
+        self.recipientFieldsHeader.titleLabel.text = NSLocalizedString(@"recipient.controller.section.title.recipient.bank.details.generic",nil);
+        self.currencyCell.titleLabel.text = NSLocalizedString(@"recipient.controller.cell.title.recipient.currency.generic", nil);
+    }
 }
 
 #pragma mark - recipient type helpers
