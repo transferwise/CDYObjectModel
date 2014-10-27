@@ -14,7 +14,8 @@
 
 @property (nonatomic, weak) UIButton * lastSelectedButton;
 @property (strong, nonatomic) NSMutableArray *presentedButtons;
-
+@property (nonatomic, assign) CGFloat adaptiveMinWidth;
+          
 
 @end
 
@@ -56,7 +57,6 @@
 
 -(void)setTabTitles:(NSArray*)titles
 {
-    
     for (UIView *presented in self.presentedButtons) {
         [presented removeFromSuperview];
     }
@@ -69,18 +69,16 @@
     
     self.presentedButtons = [NSMutableArray array];
     
-    
-    NSUInteger index = 0;
+    self.adaptiveMinWidth = self.fixedTabWidth;
     
     for (NSString* title in titles) {
-    UIButton *button = [self createButton];
-    [button setTitle:title forState:UIControlStateNormal];
-    
-    [self insertSubview:button aboveSubview:self.separatorLine];
-    [self.presentedButtons addObject:button];
-    index ++;
-
+        UIButton *button = [self createButton];
+        [button setTitle:title forState:UIControlStateNormal];
+        [self insertSubview:button aboveSubview:self.separatorLine];
+        [self.presentedButtons addObject:button];
+        self.adaptiveMinWidth = MAX(self.adaptiveMinWidth, ceil([title sizeWithAttributes:@{NSFontAttributeName:[button.titleLabel font]}].width + 30.0f));
     }
+    
     [self layoutButtons];
 }
 
@@ -92,9 +90,9 @@
     NSUInteger count = [self.presentedButtons count];
     
     CGFloat cellWidth = groupedCellWidth/count;
-    if( self.fixedTabWidth)
+    if(self.fixedTabWidth > 0)
     {
-        cellWidth = [self.fixedTabWidth floatValue] + gap;
+        cellWidth = self.overrideFixedWidthWithLongestTitle?self.adaptiveMinWidth:self.fixedTabWidth + gap;
         groupedCellWidth = cellWidth * count;
         margin = (CGRectGetWidth(self.frame) - groupedCellWidth )/ 2;
     }
