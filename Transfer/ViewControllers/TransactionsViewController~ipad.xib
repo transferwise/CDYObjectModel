@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -98,16 +99,6 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@19.White"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jk7-0q-bOb">
-                                    <rect key="frame" x="0.0" y="63" width="512" height="1"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="1" id="mBk-lN-nqS"/>
-                                    </constraints>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGray"/>
-                                    </userDefinedRuntimeAttributes>
-                                </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBF-qY-h2A" userLabel="viewButton">
                                     <rect key="frame" x="437" y="23" width="55" height="34"/>
                                     <state key="normal" title="Button">
@@ -125,13 +116,10 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="64" id="1Eb-AY-iOk"/>
                                 <constraint firstItem="5U9-zL-MVZ" firstAttribute="top" secondItem="tbo-5G-Ohz" secondAttribute="top" constant="20" id="1oE-lo-t3P"/>
-                                <constraint firstAttribute="centerX" secondItem="Jk7-0q-bOb" secondAttribute="centerX" id="29W-jq-Qhu"/>
                                 <constraint firstItem="oBF-qY-h2A" firstAttribute="centerY" secondItem="5U9-zL-MVZ" secondAttribute="centerY" constant="-2" id="58A-eV-vHH"/>
                                 <constraint firstItem="5U9-zL-MVZ" firstAttribute="leading" secondItem="tbo-5G-Ohz" secondAttribute="leading" id="9DW-C0-qhX"/>
                                 <constraint firstAttribute="trailing" secondItem="5U9-zL-MVZ" secondAttribute="trailing" id="BzV-0W-URZ"/>
                                 <constraint firstAttribute="bottom" secondItem="5U9-zL-MVZ" secondAttribute="bottom" id="DS7-Ql-bco"/>
-                                <constraint firstAttribute="bottom" secondItem="Jk7-0q-bOb" secondAttribute="bottom" id="EuD-y4-r0f"/>
-                                <constraint firstItem="Jk7-0q-bOb" firstAttribute="width" secondItem="tbo-5G-Ohz" secondAttribute="width" id="YjT-R9-7s7"/>
                                 <constraint firstAttribute="trailing" secondItem="oBF-qY-h2A" secondAttribute="trailing" constant="20" id="aw8-UG-7Yk"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
