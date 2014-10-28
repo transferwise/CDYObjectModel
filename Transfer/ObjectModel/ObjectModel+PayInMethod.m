@@ -42,8 +42,8 @@
         }
         method.bankName = payInMethodDictionary[@"bankName"];
         method.transferWiseAddress = payInMethodDictionary[@"transferwiseAddress"];
-        //TODO: m@s Remove special cases for ADYEN and SOFORT when supported
-        method.disabled = @([payInMethodDictionary[@"disabled"] boolValue] || [method.type caseInsensitiveCompare:@"SOFORT"] == NSOrderedSame || [method.type caseInsensitiveCompare:@"ADYEN"] == NSOrderedSame );
+        //TODO: m@s Remove special case for SOFORT when supported
+        method.disabled = @([payInMethodDictionary[@"disabled"] boolValue] || [method.type caseInsensitiveCompare:@"SOFORT"] == NSOrderedSame );
         method.disabledReason = payInMethodDictionary[@"disabledReason"];
 		method.paymentReference = payInMethodDictionary[@"paymentReference"];
         

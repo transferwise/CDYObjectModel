@@ -39,6 +39,27 @@
         };
         result = cardController;
     }
+    else if([method.type caseInsensitiveCompare:@"ADYEN"] == NSOrderedSame)
+    {
+    //TODO: m@s add Adyen Specifics here.
+        CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
+        [cardController setPayment:payment];
+        cardController.path = @"/card/pay";
+        cardController.loadURLBlock = ^(NSURL *url)
+        {
+            NSString *absoluteString = [url absoluteString];
+            if ([absoluteString rangeOfString:@"/card/paidIn"].location != NSNotFound) {
+                return URLActionAbortAndReportSuccess;
+            } else if ([absoluteString rangeOfString:@"/card/notPaidIn"].location != NSNotFound) {
+                return URLActionAbortAndReportFailure;
+            } else if ([absoluteString rangeOfString:@"/payment/"].location != NSNotFound) {
+                return URLActionAbortLoad;
+            }
+            
+            return URLActionContinueLoad;
+        };
+        result = cardController;
+    }
     else
     {
         BankTransferViewController *bankController = [[BankTransferViewController alloc] init];
