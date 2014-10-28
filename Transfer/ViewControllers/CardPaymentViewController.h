@@ -28,7 +28,14 @@ typedef URLAction (^ShouldLoadURLBlock)(NSURL *url);
 @property (nonatomic, copy) CardPaymentResultBlock resultHandler;
 @property (nonatomic, strong) Payment *payment;
 @property (nonatomic, strong) ObjectModel *objectModel;
+/**
+ *  path to payment page
+ */
 @property (nonatomic, copy) NSString *path;
+
+/**
+ *  called to check whether a URL should be loaded or not. Implement logic for detecting success/ failure etc. in here.
+ */
 @property (nonatomic, copy) ShouldLoadURLBlock loadURLBlock;
 
 - (void)loadCardView;
