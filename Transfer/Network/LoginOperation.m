@@ -56,7 +56,7 @@ NSString *const kLoginPath = @"/token/create";
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"login"] = self.email;
     params[@"password"] = self.password;
-    params[@"lifeTime"] = @"week";
+    params[@"lifeTime"] = @"two_months";
 
     //Ensure no stale data is present before logging in.
     [self.objectModel clearUserRelatedDataKeepingPendingPayment:self.keepPendingPayment];
