@@ -9,6 +9,7 @@
 #import "PaymentMethodCell.h"
 #import "PayInMethod.h"
 #import "UIView+SeparatorLine.h"
+#import "NSString+Presentation.h"
 
 
 @interface PaymentMethodCell ()
@@ -39,10 +40,10 @@
 -(void)configureWithPaymentMethod:(PayInMethod*)method
 {
     self.method = method;
-    NSString *title = [NSString stringWithFormat:@"payment.method.%@",method.type];
-    [self.button setTitle:NSLocalizedString(title,nil) forState:UIControlStateNormal];
-    NSString *description = [NSString stringWithFormat:@"payment.method.description.%@",method.type];
-    self.descriptionLabel.text = NSLocalizedString(description, nil);
+    NSString *titleKey = [NSString stringWithFormat:@"payment.method.%@",method.type];
+    [self.button setTitle:[NSString localizedStringForKey:titleKey withFallback:method.type] forState:UIControlStateNormal];
+    NSString *descriptionKey = [NSString stringWithFormat:@"payment.method.description.%@",method.type];
+    self.descriptionLabel.text = [NSString localizedStringForKey:descriptionKey withFallback:nil];
 
 }
 

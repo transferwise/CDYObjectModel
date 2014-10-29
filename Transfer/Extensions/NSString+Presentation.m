@@ -135,4 +135,14 @@
     return [NSString stringWithString:result];
 }
 
++ (NSString *)localizedStringForKey:(NSString*)key withFallback:(NSString*)fallback
+{
+    NSString *result = NSLocalizedString(key,nil);
+    if([key isEqualToString:result])
+    {
+        result = fallback;
+    }
+    return result;
+}
+
 @end

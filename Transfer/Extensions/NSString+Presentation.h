@@ -16,4 +16,5 @@
 - (NSString *)stringByAddingPatternChar:(NSString *)pattern;
 - (NSString *)moneyFormatting;
 - (NSString *)getInitials;
++ (NSString *)localizedStringForKey:(NSString*)key withFallback:(NSString*)fallback;
 @end

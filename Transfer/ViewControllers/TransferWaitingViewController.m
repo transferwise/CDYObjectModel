@@ -15,6 +15,8 @@
 #import "TransferBackButtonItem.h"
 #import "Currency.h"
 #import "PaymentMadeIndicator.h"
+#import "NSString+Presentation.h"
+#import "PaymentMethodSelectorViewController.h"
 
 @interface TransferWaitingViewController ()
 
@@ -58,14 +60,8 @@
 	[self.thankYouLabel setText:NSLocalizedString(@"transferdetails.controller.transfer.thankyou", nil)];
     
     NSString *key = [NSString stringWithFormat:@"transfertime.%@.%@",self.payment.sourceCurrency.code,self.payment.paymentMadeIndicator.payInMethodName];
-    NSString *timingString = NSLocalizedString(key,nil);
-    if ([timingString isEqualToString:key])
-    {
-        timingString = NSLocalizedString(@"transfertime.default", nil);
-    }
+    NSString *timingString = [NSString localizedStringForKey:key withFallback:NSLocalizedString(@"transfertime.default", nil)];
     [self.messageLabel1 setText:[NSString stringWithFormat:NSLocalizedString(@"transferdetails.controller.transfer.message", nil),timingString]];
-    
-    
 	[super setUpHeader];
 }
 
@@ -96,11 +92,24 @@
 	}
 	else
 	{
-		UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
-		[controller setPayment:self.payment];
-		[controller setObjectModel:self.objectModel];
-		[controller setHideBottomButton:YES];
-		[controller setShowContactSupportCell:YES];
+        UIViewController* controller;
+        if ([[self.payment enabledPayInMethods] count] > 2)
+        {
+            PaymentMethodSelectorViewController* selector = [[PaymentMethodSelectorViewController alloc] init];
+            selector.objectModel = self.objectModel;
+            selector.payment = self.payment;
+            controller = selector;
+        }
+        else
+        {
+            UploadMoneyViewController *uploadController = [[UploadMoneyViewController alloc] init];
+            [uploadController setPayment:self.payment];
+            [uploadController setObjectModel:self.objectModel];
+            [uploadController setHideBottomButton:YES];
+            [uploadController setShowContactSupportCell:YES];
+            controller = uploadController;
+        }
+		
 		
 		[self switchToViewController:controller];
 	}

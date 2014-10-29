@@ -33,6 +33,7 @@
 #import "PayInMethod.h"
 #import "TransferWaitingViewController.h"
 #import "UIViewController+SwitchToViewController.h"
+#import "NSString+Presentation.h"
 
 @interface BankTransferViewController ()
 
@@ -106,12 +107,7 @@
 	else if ([currencyCode caseInsensitiveCompare:@"USD"]==NSOrderedSame)
 	{
         NSString* key = [NSString stringWithFormat:@"upload.money.header.label.USD.%@",self.method.type];
-		//this is an assumption...
-		headerFormat = NSLocalizedString(key, nil);
-        if([headerFormat isEqualToString:key])
-        {
-            headerFormat = NSLocalizedString(@"upload.money.header.label", @"");
-        }
+        headerFormat = [NSString localizedStringForKey:key withFallback:NSLocalizedString(@"upload.money.header.label", @"")];
 	}
     else
     {
