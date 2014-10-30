@@ -509,7 +509,7 @@ Payment #%@";
 "payment.method.ACH" = "ACH";
 "payment.method.description.DATA_CASH" = "We accept all Visa & Mastercard debit cards.";
 "payment.method.description.REGULAR" = "You transfer us the money via a local transfer and we do the rest.";
-"payment.method.description.SWIFT" = "Transfer money to our account in Europe.";
+"payment.method.description.SWIFT" = "Send USD to our European account if your USD account is not in the United States.";
 "payment.method.description.ACH" = "Pay directly through your online bank.";
 
 "support.sheet.title" = "If you have questions, please don't hesitate to contact our support team.";

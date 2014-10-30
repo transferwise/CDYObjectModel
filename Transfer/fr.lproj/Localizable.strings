@@ -504,6 +504,11 @@ Transfert #%@";
 "payment.method.REGULAR" = "Virement bancaire";
 "payment.method.description.DATA_CASH" = "Nous acceptons les cartes de débit Visa & Mastercard.";
 "payment.method.description.REGULAR" = "Vous nous envoyer l'argent via un virement local et on s'occupe du reste.";
+"payment.method.description.SWIFT" = "Si votre compte USD n'est pas aux États Unis, virer vos USD vers notre compte Européen.";
+"payment.method.description.ACH" = "Payer directement via votre banque.";
+"payment.method.SWIFT" = "SWIFT";
+"payment.method.ACH" = "ACH";
+
 
 "support.sheet.title" = "Si vous avez la moindre question, n'hésitez pas à contacter notre service client.";
 "support.sheet.write.message" = "Nous envoyer un email";
@@ -692,3 +697,5 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "transfertime.GBP.REGULAR" = "quelques heures ouvrées";
 "transfertime.USD.SWIFT" = "3 jours ouvrés";
 "transfertime.USD.REGULAR" = "quelques heures ouvrées";
+
+"upload.money.bankname.title" = "Nom de la banque";
