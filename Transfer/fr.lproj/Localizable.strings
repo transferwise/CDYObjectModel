@@ -44,13 +44,13 @@
 "button.title.no" = "Non";
 
 "confirm.payment.controller.title" = "Revue des details";
-"confirm.payment.creating.message" = "Création du transfer en cours";
+"confirm.payment.creating.message" = "Création du transfert en cours";
 "confirm.payment.data.error.title" = "Erreur de chargement des données";
 "confirm.payment.delivery.date.message" = "arrivée estimée le";
-"confirm.payment.deposit.title.label" = "Vous envoyez exactement";
+"confirm.payment.deposit.title.label" = "Vous envoyez éxactement";
 "confirm.payment.deposit.fixed.title.label" = "Vous envoyez";
 "confirm.payment.recipient.title.label" = "%@ recevra";
-"confirm.payment.recipient.fixed.title.label" = "Y%@ recevra exactement";
+"confirm.payment.recipient.fixed.title.label" = "Y%@ recevra éxactement";
 "confirm.payment.email.label" = "Email du destinataire";
 "confirm.payment.target.sum.format" = "%@";
 "confirm.payment.fixed.target.sum.format" = "La somme exacte de %@";
@@ -58,7 +58,7 @@
 "confirm.payment.header.format.nodate" = "%@\n arrivera sur le compte de \n%@";
 "confirm.payment.exchangerate.title.label" = "Taux de change estimé";
 "confirm.payment.footer.button.title" = "Confirmer";
-"confirm.payment.payment.error.title" = "Le transfer n'a pas pu etre crée. Reéssayez.";
+"confirm.payment.payment.error.title" = "Le transfert n'a pas pu etre crée. Reéssayez.";
 "confirm.payment.pulling.data" = "Refraichissement...";
 "confirm.payment.receiver.section.title" = "Destinataire";
 "confirm.payment.recipient.marker.label" = "Destinataire";
@@ -171,11 +171,11 @@ Une révolution dans votre poche.";
 "money.entry.priority.payment.title" = "Transfert prioritaire";
 "money.entry.receive.fixed.amount.title" = "Recevoir un montant fixe";
 "money.entry.they.receive.title" = "Destinataire reçoit";
-"money.entry.they.receive.exactly.title" = "Destinataire reçoit exactement";
+"money.entry.they.receive.exactly.title" = "Destinataire reçoit éxactement";
 "money.entry.you.send.title" = "Vous envoyez";
-"money.entry.you.send.exactly.title" = "Vous envoyez exactement";
+"money.entry.you.send.exactly.title" = "Vous envoyez éxactement";
 "money.entry.recipient.receive.title" = "%@ reçoit";
-"money.entry.recipient.receive.exactly.title" = "%@ reçoit exactement";
+"money.entry.recipient.receive.exactly.title" = "%@ reçoit éxactement";
 
 "openid.login.error.title" = "Erreur de connexion";
 "openid.login.generic.error.message" = "Erreur de connexion. Essayez de nouveau.";
@@ -346,10 +346,10 @@ Une révolution dans votre poche.";
 
 "refund.details.account.details.section.header" = "Vos détails bancaires";
 "refund.details.controller.title" = "Votre compte en cas de remboursement";
-"refund.details.header.description" = "Afin de guarantir que %@ reçoive exactement %@, nous vous avons demandé un petit extra.
+"refund.details.header.description" = "Afin de guarantir que %@ reçoive éxactement %@, nous vous avons demandé un petit extra.
 
 Nous vous rembourserons l'argent non utilisé après le transfert.";
-"refund.details.header.description.iPad" = "Afin de guarantir que %@ reçoive exactement %@, nous vous avons demandé un petit extra.
+"refund.details.header.description.iPad" = "Afin de guarantir que %@ reçoive éxactement %@, nous vous avons demandé un petit extra.
 
 Nous vous rembourserons l'argent non utilisé après le transfert.";
 "refund.details.holders.name.label" = "Nom du détenteur du compte";
@@ -395,7 +395,7 @@ Nous vous rembourserons l'argent non utilisé après le transfert.";
 C'est irréversible.";
 "transactions.cancel.progress.title" = "Annulation en cours...";
 "transactions.cancel.fail.title" = "Annulation avortée";
-"transactions.cancel.fail.message" = "Raffraichissez votre list de transfer et réessayez.";
+"transactions.cancel.fail.message" = "Raffraichissez votre liste de transferts et réessayez.";
 "validation.documents.needed" ="Documents requis";
 "validation.view" = "Voir";
 
@@ -442,7 +442,7 @@ C'est irréversible.";
 "upload.money.header.label.USD.wire" = "Seulement si vous disposez d'un compte domestique américain, transférez %@ sur le compte américain de Transferwise ci-dessous. Uniquement depuis votre compte. Nous n'acceptons pas les cheques et le cash";
 "upload.money.header.label" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte Transferwise ci-dessous.";
 "upload.money.header.label.exactly" = "éxactement %@";
-"upload.money.info.label.EUR" = "Les transferts SEPA au sein de la zone Euro ne coûtent pas plus cher qu'un transfert local.";
+"upload.money.info.label.EUR" = "Les transferts SEPA au sein de la zone euro ne coûtent pas plus cher qu'un transfert local.";
 "upload.money.iban.title" = "IBAN";
 "upload.money.notification.label" = "Votre transfert démarrera dés que nous aurons reçus votre argent.";
 "upload.money.pulling.data.message" = "Chargement des données...";
@@ -591,9 +591,9 @@ RAPIDES";
 "intro.existing.tagline.four" = "LES FONCTIONALITÉS DEMANDÉES";
 
 "intro.existing.message.one" = "Une qualité de service inchangée. Simplement amélioré.";
-"intro.existing.message.two" = "Pas d'inquiètude. Vos transfers sont toujours là";
+"intro.existing.message.two" = "Pas d'inquiètude. Vos transferts sont toujours là";
 "intro.existing.message.three" = "Des instructions et un design plus clair pour un esprit tranquille.";
-"intro.existing.message.four" = "Définir exactement combien le destinataire reçoit, annuler un transfer, inviter vos amis...";
+"intro.existing.message.four" = "Définir éxactement combien le destinataire reçoit, annuler un transfert, inviter vos amis...";
 
 "refresh.pull" = "Tirez vers le bas pour raffraichir";
 "refresh.release" = "Lachez maintenant";
