@@ -709,3 +709,5 @@ We'll send you an email in order to let you choose a new password.";
 "transfertime.GBP.REGULAR" = "a few business hours";
 "transfertime.USD.SWIFT" = "3 business days";
 "transfertime.USD.REGULAR" = "a few business hours";
+
+"upload.money.bankname.title" = "Bank name";

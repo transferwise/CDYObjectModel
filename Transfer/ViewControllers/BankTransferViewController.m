@@ -152,6 +152,13 @@
     NSArray *accountCells = [self buildAccountCellForType:type recipient:method.recipient];
     [presentedCells addObjectsFromArray:accountCells];
 
+    if(method.bankName)
+    {
+        PlainPresentationCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
+        [referenceCell configureWithTitle: [self addColon:NSLocalizedString(@"upload.money.bankname.title", nil)] text:method.bankName];
+        [presentedCells addObject:referenceCell];
+    }
+    
     PlainPresentationCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
     [referenceCell configureWithTitle: [self addColon:NSLocalizedString(@"upload.money.reference.title", nil)] text:method.paymentReference];
     [presentedCells addObject:referenceCell];
