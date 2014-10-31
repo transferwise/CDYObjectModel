@@ -17,5 +17,6 @@
 + (ReferralsCoordinator *)sharedInstance;
 
 - (void)presentOnController:(UIViewController *)controller;
+- (void)removeInvalidReferralLink;
 
 @end
