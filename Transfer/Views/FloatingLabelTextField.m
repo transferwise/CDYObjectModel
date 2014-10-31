@@ -55,8 +55,21 @@
 - (void)drawPlaceholderInRect:(CGRect)rect {
 
     // We use self.font.pointSize in order to match the input text's font size
+    UIFont *font = [self.placeholderStyle font];
+    CGSize placeholderSize = [self.placeholder sizeWithAttributes:@{NSFontAttributeName: font}];
+    if(placeholderSize.width > rect.size.width)
+    {
+        CGFloat fontsize = font.pointSize;
+        while (fontsize > 9 && placeholderSize.width > rect.size.width)
+        {
+            fontsize -= 0.5f;
+            font = [UIFont fontWithName:self.placeholderStyle.fontName size:fontsize];
+            placeholderSize = [self.placeholder sizeWithAttributes:@{NSFontAttributeName: font}];
+        }
+        
+    }
     [self.placeholder drawInRect:rect
-                  withAttributes:@{NSForegroundColorAttributeName:[self.placeholderStyle color] , NSFontAttributeName:[self.placeholderStyle font]}];
+                  withAttributes:@{NSForegroundColorAttributeName:[self.placeholderStyle color] , NSFontAttributeName:font}];
 }
 
 
