@@ -121,9 +121,7 @@
 		controller = mainController;
         controller = [[ConnectionAwareViewController alloc] initWithWrappedViewController:controller];
 	}
-    
-    
-    
+	
 	self.window.rootViewController = controller;
 	[self.window makeKeyAndVisible];
 	return YES;
