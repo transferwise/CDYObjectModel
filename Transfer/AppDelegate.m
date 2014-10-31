@@ -38,7 +38,6 @@
 #import "NewPaymentViewController.h"
 #import "TAGManager.h"
 #import "TAGContainerOpener.h"
-#import "ReferralsCoordinator.h"
 
 @interface AppDelegate ()
 
