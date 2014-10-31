@@ -93,7 +93,7 @@
     
     //TODO: Use A/B test
     TAGContainer* container = [future get];
-    BOOL requireRegistration = [container booleanForKey:@"proposeRegistrationUpfront"];
+    BOOL requireRegistration = [container booleanForKey:@"iOSRegistrationUpfront"];
 #ifdef REGISTRATION_UPFRONT_OVERRIDE
     requireRegistration = REGISTRATION_UPFRONT_OVERRIDE;
 #endif
