@@ -527,6 +527,8 @@
 
     }
 
+    [self resizeHeader];
+    
     return numberOfMissingFields<=0;
 }
 
@@ -537,6 +539,18 @@
         return NSLocalizedString(@"identification.ssn.short",nil);
     }
     return nil;
+}
+
+-(void)resizeHeader
+{
+    CGRect headerFrame = self.headerView.frame;
+    CGRect reasonFrame = self.reasonTitle.frame;
+    [self.reasonTitle sizeToFit];
+    headerFrame.size.height = headerFrame.size.height - reasonFrame.size.height + self.reasonTitle.frame.size.height;
+    reasonFrame.size.height = self.reasonTitle.frame.size.height;
+    self.headerView.frame = headerFrame;
+    self.reasonTitle.frame = reasonFrame;
+    self.tableView.tableHeaderView = self.headerView;
 }
 
 #pragma mark - number helpers
