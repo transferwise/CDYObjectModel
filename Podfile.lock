@@ -1,6 +1,6 @@
 PODS:
   - AFNetworking (1.3.4)
-  - Bolts (1.1.2)
+  - Bolts (1.1.3)
   - CDYAnalyticsCoordinator (0.1.0):
     - CDYAnalyticsCoordinator/Core
   - CDYAnalyticsCoordinator/Core (0.1.0)
@@ -42,7 +42,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 80c4e0652b08eb34e25b9c0ff3c82556fe5967b4
-  Bolts: 2635e8698a630774689441047f3465d78c48d485
+  Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
   CDYAnalyticsCoordinator: 75094418537506be1355dd6cc0248f622d9f591e
   CDYObjectModel: da0ab52fa697ba2df41b32219f3bb90dea544270
   CXAlertView: 29bfa5841d168a016e1a70474ed840d0f4f67c2c
@@ -56,4 +56,4 @@ SPEC CHECKSUMS:
   SMPageControl: 506b0c561d3ddbe2d5df28cb33acc8e4b1f93f19
   TestFlightSDK: 0c24c533748d0d84bfe7a3cb6036fa79124d84ee
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.34.4

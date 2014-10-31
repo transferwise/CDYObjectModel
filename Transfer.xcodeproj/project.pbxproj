@@ -480,6 +480,7 @@
 		47C580A3196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47C580A4196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47DBE05919703494008915A6 /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
+		47DC89861A03950F0042054B /* TransferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DC89851A03950F0042054B /* TransferTests.swift */; };
 		47F1F5921941C87600FC4BEB /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
 		47F84D5F1988D73A00886D41 /* CountrySuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */; };
 		47F84D601988D73A00886D41 /* CountrySuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */; };
@@ -891,6 +892,16 @@
 		EAEA626117202D6100A96770 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EAEA626017202D6100A96770 /* libz.dylib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		47DC89871A03950F0042054B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EAAA1460171BC911005B9430 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA31A12117DDB29B00F937F7;
+			remoteInfo = TransferDev;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1864AC91173B7C28008773FC /* BusinessProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProfileViewController.h; sourceTree = "<group>"; };
 		1864AC92173B7C28008773FC /* BusinessProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProfileViewController.m; sourceTree = "<group>"; };
@@ -901,7 +912,6 @@
 		18D478FE173A3B5300FC317E /* PersonalProfileIdentificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileIdentificationViewController.h; sourceTree = "<group>"; };
 		18D478FF173A3B5300FC317E /* PersonalProfileIdentificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileIdentificationViewController.m; sourceTree = "<group>"; };
 		18D47902173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalProfileIdentificationViewController.xib; sourceTree = "<group>"; };
-		2C541BABB70E4B6195F5BC1A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		2F2D1DE7BECC4078BB45E6AD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		380021A9192B91A9009B1D53 /* TabViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TabViewController~ipad.xib"; sourceTree = "<group>"; };
 		380021B3192CC531009B1D53 /* UIColor+SinglePixelImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SinglePixelImage.h"; sourceTree = "<group>"; };
@@ -1308,6 +1318,9 @@
 		47B36C821986543B002E66C7 /* MultipleEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleEntryCell.m; sourceTree = "<group>"; };
 		47C580A1196AC1A7007771DB /* UIGestureRecognizer+Cancel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Cancel.h"; sourceTree = "<group>"; };
 		47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Cancel.m"; sourceTree = "<group>"; };
+		47DC89811A03950F0042054B /* TransferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		47DC89841A03950F0042054B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47DC89851A03950F0042054B /* TransferTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferTests.swift; sourceTree = "<group>"; };
 		47F84D5D1988D73A00886D41 /* CountrySuggestionCellProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountrySuggestionCellProvider.h; sourceTree = "<group>"; };
 		47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountrySuggestionCellProvider.m; sourceTree = "<group>"; };
 		47F84D611988E83300886D41 /* SelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectionCell.xib; sourceTree = "<group>"; };
@@ -1329,6 +1342,8 @@
 		47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencySelectorViewController~ipad.xib"; sourceTree = "<group>"; };
 		47FB7EA71941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DeviceSpecificLocalisation.h"; sourceTree = "<group>"; };
 		47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeviceSpecificLocalisation.m"; sourceTree = "<group>"; };
+		7A7F07DC7BBE0A79CA26F843 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		A92F0FB2A76538EDCB7E38B7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B4C9172C19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecipientEntrySelectionCell~ipad.xib"; sourceTree = "<group>"; };
 		BA66546EEC8C630867200E77 /* GoogleAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalytics.m; sourceTree = "<group>"; };
 		BA665E006BBEF0C455DE7F84 /* GoogleAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAnalytics.h; sourceTree = "<group>"; };
@@ -1650,6 +1665,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		47DC897E1A03950F0042054B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA31A1BE17DDB29B00F937F7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1707,6 +1729,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		235F7C7030E9A118DDA01767 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A92F0FB2A76538EDCB7E38B7 /* Pods.debug.xcconfig */,
+				7A7F07DC7BBE0A79CA26F843 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		380021AF192CC531009B1D53 /* Styling */ = {
 			isa = PBXGroup;
 			children = (
@@ -1991,6 +2022,23 @@
 			children = (
 			);
 			name = JVFloatLabeledTextField;
+			sourceTree = "<group>";
+		};
+		47DC89821A03950F0042054B /* TransferTests */ = {
+			isa = PBXGroup;
+			children = (
+				47DC89851A03950F0042054B /* TransferTests.swift */,
+				47DC89831A03950F0042054B /* Supporting Files */,
+			);
+			path = TransferTests;
+			sourceTree = "<group>";
+		};
+		47DC89831A03950F0042054B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				47DC89841A03950F0042054B /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		BBC6911B1721414300F0FB1A /* TSAlertView */ = {
@@ -2427,10 +2475,11 @@
 			isa = PBXGroup;
 			children = (
 				EAAA1473171BC911005B9430 /* Transfer */,
+				47DC89821A03950F0042054B /* TransferTests */,
 				EAAA146A171BC911005B9430 /* Frameworks */,
 				EAAA1469171BC911005B9430 /* Products */,
 				EA8FF68C171D22080090A658 /* Thirdparty */,
-				2C541BABB70E4B6195F5BC1A /* Pods.xcconfig */,
+				235F7C7030E9A118DDA01767 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2439,6 +2488,7 @@
 			children = (
 				EAAA1468171BC911005B9430 /* TransferWise.app */,
 				EA31A23817DDB29B00F937F7 /* TransferDev.app */,
+				47DC89811A03950F0042054B /* TransferTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2754,6 +2804,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		47DC89801A03950F0042054B /* TransferTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 47DC898B1A03950F0042054B /* Build configuration list for PBXNativeTarget "TransferTests" */;
+			buildPhases = (
+				47DC897D1A03950F0042054B /* Sources */,
+				47DC897E1A03950F0042054B /* Frameworks */,
+				47DC897F1A03950F0042054B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				47DC89881A03950F0042054B /* PBXTargetDependency */,
+			);
+			name = TransferTests;
+			productName = TransferTests;
+			productReference = 47DC89811A03950F0042054B /* TransferTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		EA31A12117DDB29B00F937F7 /* TransferDev */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA31A23517DDB29B00F937F7 /* Build configuration list for PBXNativeTarget "TransferDev" */;
@@ -2808,6 +2876,10 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Mooncascade OÜ";
 				TargetAttributes = {
+					47DC89801A03950F0042054B = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = EA31A12117DDB29B00F937F7;
+					};
 					EA31A12117DDB29B00F937F7 = {
 						DevelopmentTeam = W53MTDV45J;
 					};
@@ -2831,11 +2903,19 @@
 			targets = (
 				EAAA1467171BC911005B9430 /* TransferWise */,
 				EA31A12117DDB29B00F937F7 /* TransferDev */,
+				47DC89801A03950F0042054B /* TransferTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		47DC897F1A03950F0042054B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA31A1CF17DDB29B00F937F7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3234,7 +3314,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EA61557217A69A21008B6C79 /* ShellScript */ = {
@@ -3282,6 +3362,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		47DC897D1A03950F0042054B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47DC89861A03950F0042054B /* TransferTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA31A12417DDB29B00F937F7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3856,6 +3944,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		47DC89881A03950F0042054B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA31A12117DDB29B00F937F7 /* TransferDev */;
+			targetProxy = 47DC89871A03950F0042054B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		EAAA1476171BC911005B9430 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -3877,9 +3973,69 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		47DC89891A03950F0042054B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = TransferTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TransferDev.app/TransferDev";
+			};
+			name = Debug;
+		};
+		47DC898A1A03950F0042054B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = TransferTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TransferDev.app/TransferDev";
+			};
+			name = Release;
+		};
 		EA31A23617DDB29B00F937F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C541BABB70E4B6195F5BC1A /* Pods.xcconfig */;
+			baseConfigurationReference = A92F0FB2A76538EDCB7E38B7 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3906,39 +4062,7 @@
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lTestFlight",
-					"-licucore",
-					"-lz",
-					"-framework",
-					Accelerate,
-					"-framework",
-					Accounts,
-					"-framework",
-					CoreGraphics,
-					"-framework",
-					CoreLocation,
-					"-framework",
-					CoreTelephony,
-					"-framework",
-					CoreText,
-					"-framework",
-					Foundation,
-					"-framework",
-					MobileCoreServices,
-					"-framework",
-					QuartzCore,
-					"-framework",
-					Security,
-					"-framework",
-					Social,
-					"-framework",
-					SystemConfiguration,
-					"-framework",
-					UIKit,
-					"-lEventTracker",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
 					"-ObjC",
 					"-lTestFlight",
@@ -3970,6 +4094,7 @@
 					SystemConfiguration,
 					"-framework",
 					UIKit,
+					"$(OTHER_LDFLAGS)",
 				);
 				PRODUCT_NAME = TransferDev;
 				PROVISIONING_PROFILE = "";
@@ -3981,7 +4106,7 @@
 		};
 		EA31A23717DDB29B00F937F7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C541BABB70E4B6195F5BC1A /* Pods.xcconfig */;
+			baseConfigurationReference = 7A7F07DC7BBE0A79CA26F843 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -4008,39 +4133,7 @@
 					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lTestFlight",
-					"-licucore",
-					"-lz",
-					"-framework",
-					Accelerate,
-					"-framework",
-					Accounts,
-					"-framework",
-					CoreGraphics,
-					"-framework",
-					CoreLocation,
-					"-framework",
-					CoreTelephony,
-					"-framework",
-					CoreText,
-					"-framework",
-					Foundation,
-					"-framework",
-					MobileCoreServices,
-					"-framework",
-					QuartzCore,
-					"-framework",
-					Security,
-					"-framework",
-					Social,
-					"-framework",
-					SystemConfiguration,
-					"-framework",
-					UIKit,
-					"-lEventTracker",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
 					"-ObjC",
 					"-lTestFlight",
@@ -4072,6 +4165,7 @@
 					SystemConfiguration,
 					"-framework",
 					UIKit,
+					"-lEventTracker",
 				);
 				PRODUCT_NAME = TransferDev;
 				PROVISIONING_PROFILE = "";
@@ -4143,7 +4237,6 @@
 		};
 		EAAA148B171BC911005B9430 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C541BABB70E4B6195F5BC1A /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -4244,7 +4337,6 @@
 		};
 		EAAA148C171BC911005B9430 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C541BABB70E4B6195F5BC1A /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -4384,6 +4476,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		47DC898B1A03950F0042054B /* Build configuration list for PBXNativeTarget "TransferTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47DC89891A03950F0042054B /* Debug */,
+				47DC898A1A03950F0042054B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		EA31A23517DDB29B00F937F7 /* Build configuration list for PBXNativeTarget "TransferDev" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
