@@ -76,7 +76,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.tableView.contentInset = IPAD?UIEdgeInsetsMake(55, 0, 0, 0):UIEdgeInsetsMake(20, 0, 50, 0);
+    self.tableView.contentInset = IPAD?UIEdgeInsetsMake(55, 0, 50, 0):UIEdgeInsetsMake(20, 0, 50, 0);
     [self.tableView setContentOffset:CGPointMake(0,-self.tableView.contentInset.top)];
     [self loadData];
 }
@@ -167,12 +167,8 @@
     {
         PlainPresentationCell *euroInfoCell = [self.tableView dequeueReusableCellWithIdentifier:
                                 PlainPresentationCellIdentifier];
-		if (!IPAD)
-		{
-			//Multiple lines will break layout on iPad
-			//TODO: This should be fixed in a more humane manner.
-			euroInfoCell.headerLabel.numberOfLines=0; // Allow multiline
-		}
+
+        euroInfoCell.headerLabel.numberOfLines=0; // Allow multiline
 		
         [euroInfoCell configureWithTitle:NSLocalizedString(@"upload.money.info.label.EUR",nil) text:nil];
         CGRect infoFrame = euroInfoCell.frame;
