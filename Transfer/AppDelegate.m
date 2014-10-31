@@ -86,7 +86,6 @@
 
     [[SupportCoordinator sharedInstance] setObjectModel:model];
     [[FeedbackCoordinator sharedInstance] setObjectModel:model];
-	[[ReferralsCoordinator sharedInstance] setObjectModel:model];
 
     [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:nil];
     
@@ -123,9 +122,6 @@
 		controller = mainController;
         controller = [[ConnectionAwareViewController alloc] initWithWrappedViewController:controller];
 	}
-	
-	//remove saved invalid referral links
-	[[ReferralsCoordinator sharedInstance] removeInvalidReferralLink];
 	
 	self.window.rootViewController = controller;
 	[self.window makeKeyAndVisible];

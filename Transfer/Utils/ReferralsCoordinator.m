@@ -65,7 +65,7 @@
 {
 	User *user = self.objectModel.currentUser;
 	
-	if (user && user.inviteUrl)
+	if (user && user.inviteUrl && [user.inviteUrl rangeOfString:@"/r/"].location == NSNotFound)
 	{
 		[self showInviteController:user.inviteUrl
 				   weakCoordinator:self
@@ -100,17 +100,6 @@
 		}];
 		
 		[referralLinkOperation execute];
-	}
-}
-
-- (void)removeInvalidReferralLink
-{
-	User *user = self.objectModel.currentUser;
-	
-	if (user && user.inviteUrl && ([user.inviteUrl rangeOfString:@"/r/"].location != NSNotFound))
-	{
-		user.inviteUrl = nil;
-		[self.objectModel saveContext];
 	}
 }
 
