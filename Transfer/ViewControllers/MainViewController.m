@@ -187,8 +187,9 @@
 	UIViewController *presented;
     
     TAGContainer* container = [self.future get];
-    //TODO: Use A/B test
-    BOOL requireRegistration = [container booleanForKey:@"proposeRegistrationUpfront"];
+    //A/B test
+    NSString* testName = [container stringForKey:@"iOSRegistrationTestName"];
+    BOOL requireRegistration = [container booleanForKey:testName];
 #ifdef REGISTRATION_UPFRONT_OVERRIDE
     requireRegistration = REGISTRATION_UPFRONT_OVERRIDE;
 #endif
