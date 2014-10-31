@@ -317,7 +317,7 @@ Une révolution dans votre poche.";
 "recipient.controller.section.title.currency" = "Monnaie";
 "recipient.controller.section.title.recipient" = "A qui voulez-vous envoyer de l'argent?";
 "recipient.controller.section.title.sender" = "Envoyeur";
-"recipient.controller.section.title.recipient.bank.details.generic" = "Détails bancaires de Destinataire:";
+"recipient.controller.section.title.recipient.bank.details.generic" = "Détails bancaires du destinataire:";
 "recipient.controller.section.title.recipient.bank.details" = "Détails bancaires de %@:";
 "recipient.controller.section.title.ipad.recipient" = "A qui envoyez-vous l'argent?";
 "recipient.controller.validating.message" = "Validation...";
