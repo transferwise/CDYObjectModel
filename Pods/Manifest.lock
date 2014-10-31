@@ -11,6 +11,7 @@ PODS:
   - Facebook-iOS-SDK (3.17.0):
     - Bolts
   - JVFloatLabeledTextField (0.0.9)
+  - Kiwi (2.3.0)
   - Lockbox (1.4.9)
   - MBProgressHUD (0.9)
   - Mixpanel (2.5.1)
@@ -26,6 +27,7 @@ DEPENDENCIES:
   - CXAlertView (~> 1.0.1)
   - Facebook-iOS-SDK
   - JVFloatLabeledTextField
+  - Kiwi
   - Lockbox
   - MBProgressHUD
   - Mixpanel
@@ -48,6 +50,7 @@ SPEC CHECKSUMS:
   CXAlertView: 29bfa5841d168a016e1a70474ed840d0f4f67c2c
   Facebook-iOS-SDK: f20274d809f112ba540842e2b6cbe50128d51b7b
   JVFloatLabeledTextField: b6c7d824d231b3c01d14692feada878808480af8
+  Kiwi: 54bece5b35564d9b8e03c608d926f1a22fcfc589
   Lockbox: cfe87dbbce6b5c6d7cfeefc3fe6594ef55919b11
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   Mixpanel: 713ac75a74e92aebb1335ff2468ecb4d20cdddfe

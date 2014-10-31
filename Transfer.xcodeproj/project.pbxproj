@@ -507,6 +507,7 @@
 		47FB7EA519419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
 		47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
 		47FB7EA91941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
+		9C93F6A0094BCECD78EE4BBE /* libPods-TransferTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFD2D0B9F39816FF7BB3DA4 /* libPods-TransferTests.a */; };
 		B4C9172D19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4C9172C19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib */; };
 		B4C9172E19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4C9172C19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib */; };
 		BA6650856E3051C31A982C78 /* GoogleAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = BA66546EEC8C630867200E77 /* GoogleAnalytics.m */; };
@@ -1343,7 +1344,9 @@
 		47FB7EA71941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DeviceSpecificLocalisation.h"; sourceTree = "<group>"; };
 		47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeviceSpecificLocalisation.m"; sourceTree = "<group>"; };
 		7A7F07DC7BBE0A79CA26F843 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		8FB7727F5849FF439B605EF8 /* Pods-TransferTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransferTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransferTests/Pods-TransferTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A92F0FB2A76538EDCB7E38B7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		ADFD2D0B9F39816FF7BB3DA4 /* libPods-TransferTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TransferTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4C9172C19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecipientEntrySelectionCell~ipad.xib"; sourceTree = "<group>"; };
 		BA66546EEC8C630867200E77 /* GoogleAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalytics.m; sourceTree = "<group>"; };
 		BA665E006BBEF0C455DE7F84 /* GoogleAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAnalytics.h; sourceTree = "<group>"; };
@@ -1370,6 +1373,7 @@
 		BBC691211721416300F0FB1A /* TSAlertViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewBackground.png; path = TSAlertView/TSAlertViewBackground.png; sourceTree = "<group>"; };
 		BBC691221721416300F0FB1A /* TSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSAlertView.m; path = TSAlertView/TSAlertView.m; sourceTree = "<group>"; };
 		BBC691231721416300F0FB1A /* TSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSAlertView.h; path = TSAlertView/TSAlertView.h; sourceTree = "<group>"; };
+		E1618BB229D3C7C22F73EA17 /* Pods-TransferTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransferTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TransferTests/Pods-TransferTests.release.xcconfig"; sourceTree = "<group>"; };
 		EA01331C1765FC7700D63C82 /* RoundedCellBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedCellBackgroundView.h; sourceTree = "<group>"; };
 		EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedCellBackgroundView.m; sourceTree = "<group>"; };
 		EA0253B417D5C89500F54C18 /* SupportCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportCoordinator.h; sourceTree = "<group>"; };
@@ -1669,6 +1673,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C93F6A0094BCECD78EE4BBE /* libPods-TransferTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1734,6 +1739,8 @@
 			children = (
 				A92F0FB2A76538EDCB7E38B7 /* Pods.debug.xcconfig */,
 				7A7F07DC7BBE0A79CA26F843 /* Pods.release.xcconfig */,
+				8FB7727F5849FF439B605EF8 /* Pods-TransferTests.debug.xcconfig */,
+				E1618BB229D3C7C22F73EA17 /* Pods-TransferTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -2514,6 +2521,7 @@
 				EA76D90D175CF80100AE3F86 /* SenTestingKit.framework */,
 				EA8FF6AA171D222E0090A658 /* SystemConfiguration.framework */,
 				EAAA146B171BC911005B9430 /* UIKit.framework */,
+				ADFD2D0B9F39816FF7BB3DA4 /* libPods-TransferTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2808,9 +2816,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 47DC898B1A03950F0042054B /* Build configuration list for PBXNativeTarget "TransferTests" */;
 			buildPhases = (
+				22934D72CD773B225271F754 /* Check Pods Manifest.lock */,
 				47DC897D1A03950F0042054B /* Sources */,
 				47DC897E1A03950F0042054B /* Frameworks */,
 				47DC897F1A03950F0042054B /* Resources */,
+				DD5474AF5D2B72CF4002A6E7 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3217,6 +3227,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		22934D72CD773B225271F754 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		2E57B8DE397E43DE878090FF /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3230,6 +3255,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DD5474AF5D2B72CF4002A6E7 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TransferTests/Pods-TransferTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EA2B238E17212099001AE9DE /* Version update */ = {
@@ -3975,6 +4015,7 @@
 /* Begin XCBuildConfiguration section */
 		47DC89891A03950F0042054B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8FB7727F5849FF439B605EF8 /* Pods-TransferTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -3985,6 +4026,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -4007,6 +4049,7 @@
 		};
 		47DC898A1A03950F0042054B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1618BB229D3C7C22F73EA17 /* Pods-TransferTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -4018,6 +4061,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -4045,6 +4089,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Thirdparty\"",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
@@ -4116,6 +4161,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Thirdparty\"",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
@@ -4483,6 +4529,7 @@
 				47DC898A1A03950F0042054B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EA31A23517DDB29B00F937F7 /* Build configuration list for PBXNativeTarget "TransferDev" */ = {
 			isa = XCConfigurationList;
