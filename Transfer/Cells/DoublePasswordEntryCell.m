@@ -182,7 +182,7 @@ NSInteger const kSecondPassword = 2;
 	}
 	else
 	{
-		self.firstPasswordWidth.constant = 280;
+		self.firstPasswordWidth.constant = 800;
 	}
 	
 	_showDouble = showDouble;
