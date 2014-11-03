@@ -245,11 +245,12 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }];
     [operation execute];
     
-    TextEntryCell *stateCell = [TextEntryCell loadInstance];
+    SelectionCell *stateCell = [SelectionCell loadInstance];
     [self setStateCell:stateCell];
     [stateCell configureWithTitle:NSLocalizedString(@"personal.profile.state.label", nil) value:@""];
     [stateCell.entryField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
     [stateCell setCellTag:@"state"];
+    stateCell.selectionDelegate = self;
     
     self.stateCellProvider = [[StateSuggestionProvider alloc] init];
     [super configureWithDataSource:self.stateCellProvider
@@ -860,7 +861,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
             }
             else if(cell == self.countryCell || cell == self.stateCell)
             {
-                if ([[cell value] isEqualToString:@"invalid"])
+                NSString* value = [cell value];
+                if ([value isEqualToString:@"invalid"])
                 {
                     if(cell == self.countryCell)
                     {
@@ -1177,7 +1179,14 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 - (id<SelectionItem>)selectionCell:(SelectionCell *)cell
 						 getByCodeOrName:(NSString *)codeOrName
 {
-	return [self.countryCellProvider getCountryByCodeOrName:codeOrName];
+    if(cell == self.countryCell)
+    {
+        return [self.countryCellProvider getCountryByCodeOrName:codeOrName];
+    }
+    else
+    {
+        return [self.stateCellProvider getByCodeOrName:codeOrName];
+    }
 }
 
 #pragma mark - Configure for interface orientation
