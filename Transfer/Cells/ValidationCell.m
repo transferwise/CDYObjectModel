@@ -7,6 +7,7 @@
 //
 
 #import "ValidationCell.h"
+#import "Constants.h"
 
 @interface ValidationCell ()
 @property (weak, nonatomic) IBOutlet UIButton *button;
@@ -42,6 +43,9 @@
     self.selectedCaption = selectedCaption;
     
     [self.deleteButton setTitle:NSLocalizedString(@"identification.delete.button", nil) forState:UIControlStateNormal];
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+    
 }
 
 - (IBAction)buttonTapped:(id)sender {
@@ -64,6 +68,17 @@
     self.captionLabel.text = documentSelectedState?self.selectedCaption:self.caption;
     self.selectedImage.hidden = !documentSelectedState;
     self.deleteButton.hidden = !documentSelectedState;
+}
+
+-(CGFloat)requiredHeight
+{
+    CGRect rect = [self.caption boundingRectWithSize:CGSizeMake(IPAD?510:280, MAXFLOAT)
+                                             options:NSStringDrawingUsesLineFragmentOrigin
+                                          attributes:@{NSFontAttributeName:self.captionLabel.font}
+                                             context:nil];
+    CGFloat height = self.captionLabel.frame.origin.y + rect.size.height + 10.0f;
+    
+    return MAX(height, IPAD?210:145);
 }
 
 @end

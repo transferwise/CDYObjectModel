@@ -25,7 +25,6 @@
 #import "MOMStyle.h"
 #import "NetworkErrorCodes.h"
 
-#define pictureCellHeight (IPAD?210.0f:145.0f)
 #define textCellHeight (IPAD?70.0f:60.0f)
 
 @interface PersonalProfileIdentificationViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, ValidationCellDelegate, UIAlertViewDelegate>
@@ -668,17 +667,23 @@
 #pragma mark - Tableview data source
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell *cell = self.presentedSectionCells[0][indexPath.row];
     if([self ssnVerificationRequired])
     {
-        UITableViewCell *cell = self.presentedSectionCells[0][indexPath.row];
         if(cell == self.idDocumentCell)
         {
-            return self.hideID?0.0f:pictureCellHeight;
+            ValidationCell* validationCell = (ValidationCell*) cell;
+            return self.hideID?0.0f:[validationCell requiredHeight];
         }
         else if (cell == self.ssnCell)
         {
             return self.hideSSN?0.0f:textCellHeight;
         }
+    }
+    
+    if([cell isKindOfClass:[ValidationCell class]])
+    {
+        return [((ValidationCell*)cell) requiredHeight];
     }
     
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
