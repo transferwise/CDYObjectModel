@@ -62,6 +62,10 @@
 
 - (void)shiftCenter:(CGFloat)relativeOffset
 {
+    if(isnan(relativeOffset))
+    {
+        return;
+    }
     short direction = relativeOffset > 0.0f ? 1 : -1 ;
     CGFloat offset = ABS(sinf(relativeOffset * M_PI) * self.bounds.size.width) * direction;
     self.flagCenterConstraint.constant = offset * self.flagOffsetFactor;
