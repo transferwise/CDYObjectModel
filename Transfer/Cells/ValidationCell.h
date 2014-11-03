@@ -28,4 +28,5 @@
 
 -(void)documentSelected:(BOOL)documentSelectedState;
 
+-(CGFloat)requiredHeight;
 @end

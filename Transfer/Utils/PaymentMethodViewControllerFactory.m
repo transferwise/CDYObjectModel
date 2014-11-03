@@ -23,6 +23,21 @@
     {
         CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
         [cardController setPayment:payment];
+        [cardController setResultHandler:^(BOOL success) {
+            if (success) {
+                [[GoogleAnalytics sharedInstance] sendScreen:@"Success"];
+                [[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentMade" withLabel:@"debitcard"];
+                [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
+                    return YES;
+                }];
+            } else {
+                [[GoogleAnalytics sharedInstance] sendEvent:@"ErrorDebitCardPayment" category:@"Error" label:@""];
+                TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.card.no.payment.title", nil)
+                                                                   message:NSLocalizedString(@"upload.money.card.no.payment.message", nil)];
+                [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                [alertView show];
+            }
+        }];
         result = cardController;
     }
     else
