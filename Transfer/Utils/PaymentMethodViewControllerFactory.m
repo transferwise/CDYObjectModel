@@ -12,7 +12,6 @@
 #import "BankTransferViewController.h"
 #import "TRWAlertView.h"
 #import "GoogleAnalytics.h"
-#import "FeedbackCoordinator.h"
 
 @implementation PaymentMethodViewControllerFactory
 
@@ -23,13 +22,11 @@
     {
         CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
         [cardController setPayment:payment];
+        cardController.objectModel = objectModel;
         [cardController setResultHandler:^(BOOL success) {
             if (success) {
                 [[GoogleAnalytics sharedInstance] sendScreen:@"Success"];
                 [[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentMade" withLabel:@"debitcard"];
-                [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
-                    return YES;
-                }];
             } else {
                 [[GoogleAnalytics sharedInstance] sendEvent:@"ErrorDebitCardPayment" category:@"Error" label:@""];
                 TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.card.no.payment.title", nil)
