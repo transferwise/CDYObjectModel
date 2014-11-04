@@ -660,8 +660,8 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "invite.error.facebook.message" = "Activez Facebook sur votre téléphone et réessayez.";
 "invite.facebook.default.message" = "";
 "invite.email.subject" = "%@ vous invite sur TransferWise";
-"invite.email.message" = "Salut,<br><br>J'utilise TransferWise pour envoyer de l'argent à l'étranger. C'est vraiment facile et bien moins cher que les banques! Je obtenu un transfert gratuit pour toi: <br><a href=\"%@\">Accepter l'invitation de %@</a> <br><br>J'espères que cela te rendra service,<br>%@";
-"invite.sms.message" = "J'utilise TransferWise pour envoyer de l'argent à l'étranger. C'est vraiment facile et bien moins cher que les banques! Je obtenu un transfert gratuit pour toi via ce lien: %@. J'espères que cela te rendra service, %@";
+"invite.email.message" = "Salut,<br><br>J'utilise TransferWise pour envoyer de l'argent à l'étranger. C'est vraiment facile et bien moins cher que les banques! J'ai obtenu un transfert gratuit pour toi: <br><a href=\"%@\">Accepter l'invitation de %@</a> <br><br>J'espères que cela te rendra service,<br>%@";
+"invite.sms.message" = "J'utilise TransferWise pour envoyer de l'argent à l'étranger. C'est vraiment facile et bien moins cher que les banques! J'ai obtenu un transfert gratuit pour toi via ce lien: %@. J'espères que cela te rendra service, %@";
 "invite.link.querying" = "Obtention du lien d'invitation";
 "invite.link.error.title" = "Lien d'invitation non disponible";
 "invite.link.error.message" = "Il est impossible de charger votre lien d'invitation pour le moment. Réessayer plus tard.";
