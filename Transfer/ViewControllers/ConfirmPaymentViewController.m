@@ -91,7 +91,8 @@
 @property (nonatomic,weak) IBOutlet UITextField *referenceField;
 @property (nonatomic,weak) IBOutlet UITextField *emailField;
 @property (nonatomic,strong) ExtraTextfieldDelegate *nonCellTextfieldDelegate;
-@property (weak, nonatomic) IBOutlet UIView *separatorLine;
+@property (strong, nonatomic) IBOutletCollection(UIView) NSArray* separatorLines;
+@property (strong, nonatomic) IBOutletCollection(UIView) NSArray* emailFieldViews;
 
 - (IBAction)footerButtonPressed:(id)sender;
 
@@ -199,7 +200,10 @@
         self.emailField.delegate = self.nonCellTextfieldDelegate;
         if ([payment.recipient.email length] == 0)
         {
-            self.emailField.hidden = NO;
+            for(UIView* view in self.emailFieldViews)
+            {
+                view.hidden = NO;
+            }
             self.emailField.returnKeyType = UIReturnKeyDone;
             self.referenceField.returnKeyType = UIReturnKeyNext;
         }
@@ -208,10 +212,13 @@
             self.referenceField.returnKeyType = UIReturnKeyDone;
         }
         
-        CGRect newFrame = self.separatorLine.frame;
-        newFrame.size.height = 1.0/[[UIScreen mainScreen] scale];
-        self.separatorLine.frame = newFrame;
-        self.separatorLine.bgStyle = @"SeparatorGrey";
+        for(UIView* separatorLine in self.separatorLines)
+        {
+            CGRect newFrame = separatorLine.frame;
+            newFrame.size.height = 1.0/[[UIScreen mainScreen] scale];
+            separatorLine.frame = newFrame;
+            separatorLine.bgStyle = @"SeparatorGrey";
+        }
     }
     
 

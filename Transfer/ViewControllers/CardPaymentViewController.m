@@ -16,6 +16,7 @@
 #import "TRWAlertView.h"
 #import "PullPaymentDetailsOperation.h"
 #import "TransferDetailsViewController.h" 
+#import "FeedbackCoordinator.h"
 
 @interface CardPaymentViewController () <UIWebViewDelegate>
 
@@ -155,6 +156,9 @@
                 details.showClose = YES;
                 
                 [self.navigationController pushViewController:details animated:YES];
+                [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
+                    return YES;
+                }];
             });
         }];
         

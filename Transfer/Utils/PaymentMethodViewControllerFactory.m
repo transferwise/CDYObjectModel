@@ -12,7 +12,6 @@
 #import "BankTransferViewController.h"
 #import "TRWAlertView.h"
 #import "GoogleAnalytics.h"
-#import "FeedbackCoordinator.h"
 
 @implementation PaymentMethodViewControllerFactory
 
@@ -37,6 +36,20 @@
             
             return URLActionContinueLoad;
         };
+        cardController.objectModel = objectModel;
+        [cardController setResultHandler:^(BOOL success) {
+            if (success) {
+                [[GoogleAnalytics sharedInstance] sendScreen:@"Success"];
+                [[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentMade" withLabel:@"debitcard_datacash"];
+            } else {
+                [[GoogleAnalytics sharedInstance] sendEvent:@"ErrorDebitCardPayment" category:@"Error" label:@""];
+                TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.card.no.payment.title", nil)
+                                                                   message:NSLocalizedString(@"upload.money.card.no.payment.message", nil)];
+                [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                [alertView show];
+            }
+        }];
+
         result = cardController;
     }
     else if([method.type caseInsensitiveCompare:@"ADYEN"] == NSOrderedSame)
@@ -58,6 +71,20 @@
             
             return URLActionContinueLoad;
         };
+        cardController.objectModel = objectModel;
+        [cardController setResultHandler:^(BOOL success) {
+            if (success) {
+                [[GoogleAnalytics sharedInstance] sendScreen:@"Success"];
+                [[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentMade" withLabel:@"debitcard_adyen"];
+            } else {
+                [[GoogleAnalytics sharedInstance] sendEvent:@"ErrorDebitCardPayment" category:@"Error" label:@""];
+                TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.card.no.payment.title", nil)
+                                                                   message:NSLocalizedString(@"upload.money.card.no.payment.message", nil)];
+                [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                [alertView show];
+            }
+        }];
+
         result = cardController;
     }
     else

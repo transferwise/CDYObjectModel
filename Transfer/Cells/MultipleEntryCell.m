@@ -98,6 +98,7 @@
 {
 	if (!self.multipleSeparatorsAdded)
 	{
+        [self.separatorLine removeFromSuperview];
 		self.separatorLine = [UIView getSeparatorLineWithParentFrame:[self getHalfWidthFrame:YES]
 													   showFullWidth:NO];
 		[self.contentView addSubview:self.separatorLine];

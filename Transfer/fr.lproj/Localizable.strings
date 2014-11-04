@@ -44,13 +44,13 @@
 "button.title.no" = "Non";
 
 "confirm.payment.controller.title" = "Revue des details";
-"confirm.payment.creating.message" = "Création du transfer en cours";
+"confirm.payment.creating.message" = "Création du transfert en cours";
 "confirm.payment.data.error.title" = "Erreur de chargement des données";
 "confirm.payment.delivery.date.message" = "arrivée estimée le";
-"confirm.payment.deposit.title.label" = "Vous envoyez exactement";
+"confirm.payment.deposit.title.label" = "Vous envoyez éxactement";
 "confirm.payment.deposit.fixed.title.label" = "Vous envoyez";
 "confirm.payment.recipient.title.label" = "%@ recevra";
-"confirm.payment.recipient.fixed.title.label" = "Y%@ recevra exactement";
+"confirm.payment.recipient.fixed.title.label" = "Y%@ recevra éxactement";
 "confirm.payment.email.label" = "Email du destinataire";
 "confirm.payment.target.sum.format" = "%@";
 "confirm.payment.fixed.target.sum.format" = "La somme exacte de %@";
@@ -58,7 +58,7 @@
 "confirm.payment.header.format.nodate" = "%@\n arrivera sur le compte de \n%@";
 "confirm.payment.exchangerate.title.label" = "Taux de change estimé";
 "confirm.payment.footer.button.title" = "Confirmer";
-"confirm.payment.payment.error.title" = "Le transfer n'a pas pu etre crée. Reéssayez.";
+"confirm.payment.payment.error.title" = "Le transfert n'a pas pu etre crée. Reéssayez.";
 "confirm.payment.pulling.data" = "Refraichissement...";
 "confirm.payment.receiver.section.title" = "Destinataire";
 "confirm.payment.recipient.marker.label" = "Destinataire";
@@ -171,11 +171,11 @@ Une révolution dans votre poche.";
 "money.entry.priority.payment.title" = "Transfert prioritaire";
 "money.entry.receive.fixed.amount.title" = "Recevoir un montant fixe";
 "money.entry.they.receive.title" = "Destinataire reçoit";
-"money.entry.they.receive.exactly.title" = "Destinataire reçoit exactement";
+"money.entry.they.receive.exactly.title" = "Destinataire reçoit éxactement";
 "money.entry.you.send.title" = "Vous envoyez";
-"money.entry.you.send.exactly.title" = "Vous envoyez exactement";
+"money.entry.you.send.exactly.title" = "Vous envoyez éxactement";
 "money.entry.recipient.receive.title" = "%@ reçoit";
-"money.entry.recipient.receive.exactly.title" = "%@ reçoit exactement";
+"money.entry.recipient.receive.exactly.title" = "%@ reçoit éxactement";
 
 "openid.login.error.title" = "Erreur de connexion";
 "openid.login.generic.error.message" = "Erreur de connexion. Essayez de nouveau.";
@@ -226,7 +226,7 @@ Une révolution dans votre poche.";
 "payment.status.received.description.eta" = "& devrait arriver le";
 "payment.status.refunded.description" = "Remboursé %@";
 "payment.status.submitted.description" = "En attente d'argent";
-"payment.status.submitted.description.long" = "demarrera";
+"payment.status.submitted.description.long" = "démarrera";
 "payment.status.submitted.description.long2" = "dés que nous aurons reçu l'argent.";
 "payment.status.payed.description" = "En attente d'argent";
 "payment.status.payed.description.long" = "demarrera des que";
@@ -317,7 +317,7 @@ Une révolution dans votre poche.";
 "recipient.controller.section.title.currency" = "Monnaie";
 "recipient.controller.section.title.recipient" = "A qui voulez-vous envoyer de l'argent?";
 "recipient.controller.section.title.sender" = "Envoyeur";
-"recipient.controller.section.title.recipient.bank.details.generic" = "Détails bancaires de Destinataire:";
+"recipient.controller.section.title.recipient.bank.details.generic" = "Détails bancaires du destinataire:";
 "recipient.controller.section.title.recipient.bank.details" = "Détails bancaires de %@:";
 "recipient.controller.section.title.ipad.recipient" = "A qui envoyez-vous l'argent?";
 "recipient.controller.validating.message" = "Validation...";
@@ -346,10 +346,10 @@ Une révolution dans votre poche.";
 
 "refund.details.account.details.section.header" = "Vos détails bancaires";
 "refund.details.controller.title" = "Votre compte en cas de remboursement";
-"refund.details.header.description" = "Afin de guarantir que %@ reçoive exactement %@, nous vous avons demandé un petit extra.
+"refund.details.header.description" = "Afin de guarantir que %@ reçoive éxactement %@, nous vous avons demandé un petit extra.
 
 Nous vous rembourserons l'argent non utilisé après le transfert.";
-"refund.details.header.description.iPad" = "Afin de guarantir que %@ reçoive exactement %@, nous vous avons demandé un petit extra.
+"refund.details.header.description.iPad" = "Afin de guarantir que %@ reçoive éxactement %@, nous vous avons demandé un petit extra.
 
 Nous vous rembourserons l'argent non utilisé après le transfert.";
 "refund.details.holders.name.label" = "Nom du détenteur du compte";
@@ -395,7 +395,7 @@ Nous vous rembourserons l'argent non utilisé après le transfert.";
 C'est irréversible.";
 "transactions.cancel.progress.title" = "Annulation en cours...";
 "transactions.cancel.fail.title" = "Annulation avortée";
-"transactions.cancel.fail.message" = "Raffraichissez votre list de transfer et réessayez.";
+"transactions.cancel.fail.message" = "Raffraichissez votre liste de transferts et réessayez.";
 "validation.documents.needed" ="Documents requis";
 "validation.view" = "Voir";
 
@@ -409,11 +409,11 @@ C'est irréversible.";
 "transferdetails.controller.cancelled.header" = "Transfert annulé";
 "transferdetails.controller.matched.header" = "Transfert en cours";
 "transferdetails.controller.received.header" = "Nous avons bien reçus votre argent";
-"transferdetails.controller.submitted.header" = "Transfert en attente d'argent";
+"transferdetails.controller.submitted.header" = "Transfert en attente";
 "transferdetails.controller.transferred.header" = "Transfert effectué";
 "transferdetails.controller.transfer.header" = "Votre transfert";
-"transferdetails.controller.transfer.thankyou" = "Merci!";
-"transferdetails.controller.transfer.message" = "Nous sommes maintenant dans l'attente de reception de votre transfert sur notre compte.\nCela prend généralement %@.";
+"transferdetails.controller.transfer.thankyou" = "Bravo!";
+"transferdetails.controller.transfer.message" = "Nous sommes maintenant dans l'attente de réception de votre transfert sur notre compte.\nCela prend généralement %@.";
 "transferdetails.controller.transfer.number" = "#%@";
 "transferdetails.controller.transfer.recipient" = "à %@";
 "transferdetails.controller.transfer.account.to" = "Details bancaires de %@";
@@ -440,11 +440,11 @@ C'est irréversible.";
 "upload.money.header.label.EUR" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte européen de Transferwise ci-dessous.";
 "upload.money.header.label.USD.swift" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte européen de Transferwise ci-dessous. (depuis votre compte uniquement)";
 "upload.money.header.label.USD.wire" = "Seulement si vous disposez d'un compte domestique américain, transférez %@ sur le compte américain de Transferwise ci-dessous. Uniquement depuis votre compte. Nous n'acceptons pas les cheques et le cash";
-"upload.money.header.label" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ à sur le compte Transferwise ci-dessous.";
+"upload.money.header.label" = "Connectez-vous à votre banque en ligne ou contactez votre banquier. Transférez %@ sur le compte Transferwise ci-dessous.";
 "upload.money.header.label.exactly" = "éxactement %@";
-"upload.money.info.label.EUR" = "Les transferts SEPA au sein de la zone Euro ne coûtent pas plus cher qu'un transfert local.";
+"upload.money.info.label.EUR" = "Les transferts SEPA au sein de la zone euro ne coûtent pas plus cher qu'un transfert local.";
 "upload.money.iban.title" = "IBAN";
-"upload.money.notification.label" = "Votre transfert demarrera dés que nous aurons reçus votre argent.";
+"upload.money.notification.label" = "Votre transfert démarrera dés que nous aurons reçus votre argent.";
 "upload.money.pulling.data.message" = "Chargement des données...";
 "upload.money.reference.title" = "Référence";
 "upload.money.title" = "Choisir comment payer";
@@ -504,6 +504,11 @@ Transfert #%@";
 "payment.method.REGULAR" = "Virement bancaire";
 "payment.method.description.DATA_CASH" = "Nous acceptons les cartes de débit Visa & Mastercard.";
 "payment.method.description.REGULAR" = "Vous nous envoyer l'argent via un virement local et on s'occupe du reste.";
+"payment.method.description.SWIFT" = "Si votre compte USD n'est pas aux États Unis, virer vos USD vers notre compte Européen.";
+"payment.method.description.ACH" = "Payer directement via votre banque.";
+"payment.method.SWIFT" = "SWIFT";
+"payment.method.ACH" = "ACH";
+
 
 "support.sheet.title" = "Si vous avez la moindre question, n'hésitez pas à contacter notre service client.";
 "support.sheet.write.message" = "Nous envoyer un email";
@@ -586,9 +591,9 @@ RAPIDES";
 "intro.existing.tagline.four" = "LES FONCTIONALITÉS DEMANDÉES";
 
 "intro.existing.message.one" = "Une qualité de service inchangée. Simplement amélioré.";
-"intro.existing.message.two" = "Pas d'inquiètude. Vos transfers sont toujours là";
+"intro.existing.message.two" = "Pas d'inquiètude. Vos transferts sont toujours là";
 "intro.existing.message.three" = "Des instructions et un design plus clair pour un esprit tranquille.";
-"intro.existing.message.four" = "Définir exactement combien le destinataire reçoit, annuler un transfer, inviter vos amis...";
+"intro.existing.message.four" = "Définir éxactement combien le destinataire reçoit, annuler un transfert, inviter vos amis...";
 
 "refresh.pull" = "Tirez vers le bas pour raffraichir";
 "refresh.release" = "Lachez maintenant";
@@ -639,7 +644,7 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "invite.controller.title.short" = "Aidez vos amis";
 "invite.controller.title.reward.format" = "£%d gagnés! %@";
 "invite.controller.title.boom" = "BAM!";
-"invite.header" = "Gagner £50 quand 3 amis commencent a utiliser TransferWise.";
+"invite.header" = "Gagner £50 quand 3 amis commencent à utiliser TransferWise.";
 "invite.progress.format1" = "%d amis utilisent TransferWise. %d restant & vous gagnez £50.";
 "invite.progress.format2" = "%d amis utilisent TransferWise. %d restant!";
 "invite.complete.format" = "%d amis utilisent TransferWise! Recommencez et gagnez £50 de plus!";
@@ -655,8 +660,8 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "invite.error.facebook.message" = "Activez Facebook sur votre téléphone et réessayez.";
 "invite.facebook.default.message" = "";
 "invite.email.subject" = "%@ vous invite sur TransferWise";
-"invite.email.message" = "Salut,<br><br>J'utilise TransferWise pour envoyer de l'argent à l'étranger. C'est vraiment facile et bien moins cher que les banques! Je obtenu un transfert gratuit pour toi: <br><a href=\"%@\">Accepter l'invitation de %@</a> <br><br>J'espères que cela te rendra service,<br>%@";
-"invite.sms.message" = "J'utilise TransferWise pour envoyer de l'argent à l'étranger. C'est vraiment facile et bien moins cher que les banques! Je obtenu un transfert gratuit pour toi via ce lien: %@. J'espères que cela te rendra service, %@";
+"invite.email.message" = "Salut,<br><br>J'utilise TransferWise pour envoyer de l'argent à l'étranger. C'est vraiment facile et bien moins cher que les banques! J'ai obtenu un transfert gratuit pour toi: <br><a href=\"%@\">Accepter l'invitation de %@</a> <br><br>J'espères que cela te rendra service,<br>%@";
+"invite.sms.message" = "J'utilise TransferWise pour envoyer de l'argent à l'étranger. C'est vraiment facile et bien moins cher que les banques! J'ai obtenu un transfert gratuit pour toi via ce lien: %@. J'espères que cela te rendra service, %@";
 "invite.link.querying" = "Obtention du lien d'invitation";
 "invite.link.error.title" = "Lien d'invitation non disponible";
 "invite.link.error.message" = "Il est impossible de charger votre lien d'invitation pour le moment. Réessayer plus tard.";
@@ -692,3 +697,5 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "transfertime.GBP.REGULAR" = "quelques heures ouvrées";
 "transfertime.USD.SWIFT" = "3 jours ouvrés";
 "transfertime.USD.REGULAR" = "quelques heures ouvrées";
+
+"upload.money.bankname.title" = "Nom de la banque";

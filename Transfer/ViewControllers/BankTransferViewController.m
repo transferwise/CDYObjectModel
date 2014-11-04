@@ -33,6 +33,7 @@
 #import "PayInMethod.h"
 #import "TransferWaitingViewController.h"
 #import "UIViewController+SwitchToViewController.h"
+#import "NSString+Presentation.h"
 
 @interface BankTransferViewController ()
 
@@ -75,7 +76,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.tableView.contentInset = IPAD?UIEdgeInsetsMake(55, 0, 0, 0):UIEdgeInsetsMake(20, 0, 50, 0);
+    self.tableView.contentInset = IPAD?UIEdgeInsetsMake(55, 0, 50, 0):UIEdgeInsetsMake(20, 0, 50, 0);
     [self.tableView setContentOffset:CGPointMake(0,-self.tableView.contentInset.top)];
     [self loadData];
 }
@@ -106,12 +107,7 @@
 	else if ([currencyCode caseInsensitiveCompare:@"USD"]==NSOrderedSame)
 	{
         NSString* key = [NSString stringWithFormat:@"upload.money.header.label.USD.%@",self.method.type];
-		//this is an assumption...
-		headerFormat = NSLocalizedString(key, nil);
-        if([headerFormat isEqualToString:key])
-        {
-            headerFormat = NSLocalizedString(@"upload.money.header.label", @"");
-        }
+        headerFormat = [NSString localizedStringForKey:key withFallback:NSLocalizedString(@"upload.money.header.label", @"")];
 	}
     else
     {
@@ -156,6 +152,13 @@
     NSArray *accountCells = [self buildAccountCellForType:type recipient:method.recipient];
     [presentedCells addObjectsFromArray:accountCells];
 
+    if(method.bankName)
+    {
+        PlainPresentationCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
+        [referenceCell configureWithTitle: [self addColon:NSLocalizedString(@"upload.money.bankname.title", nil)] text:method.bankName];
+        [presentedCells addObject:referenceCell];
+    }
+    
     PlainPresentationCell *referenceCell = [self.tableView dequeueReusableCellWithIdentifier:PlainPresentationCellIdentifier];
     [referenceCell configureWithTitle: [self addColon:NSLocalizedString(@"upload.money.reference.title", nil)] text:method.paymentReference];
     [presentedCells addObject:referenceCell];
@@ -164,12 +167,8 @@
     {
         PlainPresentationCell *euroInfoCell = [self.tableView dequeueReusableCellWithIdentifier:
                                 PlainPresentationCellIdentifier];
-		if (!IPAD)
-		{
-			//Multiple lines will break layout on iPad
-			//TODO: This should be fixed in a more humane manner.
-			euroInfoCell.headerLabel.numberOfLines=0; // Allow multiline
-		}
+
+        euroInfoCell.headerLabel.numberOfLines=0; // Allow multiline
 		
         [euroInfoCell configureWithTitle:NSLocalizedString(@"upload.money.info.label.EUR",nil) text:nil];
         CGRect infoFrame = euroInfoCell.frame;

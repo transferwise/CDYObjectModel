@@ -268,9 +268,12 @@
      CGFloat relativeOffset = self.scrollView.contentOffset.x/self.scrollView.bounds.size.width;
     for (IntroView *intro in self.introScreens)
     {
-        CGFloat viewOffset = intro.frame.origin.x/self.scrollView.bounds.size.width;
-        CGFloat difference = relativeOffset - viewOffset;
-        [intro shiftCenter:difference];
+        if(!CGRectIsEmpty(self.scrollView.bounds))
+        {
+            CGFloat viewOffset = intro.frame.origin.x/self.scrollView.bounds.size.width;
+            CGFloat difference = relativeOffset - viewOffset;
+            [intro shiftCenter:difference];
+        }
     }
 }
 

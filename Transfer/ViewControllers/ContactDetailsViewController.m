@@ -122,7 +122,7 @@
     if(indexPath.row < [self.recipient.fieldValues count])
     {
         TypeFieldValue* value = [self.recipient.fieldValues objectAtIndex:indexPath.row];
-        [cell configureWithTitle:value.valueForField.title text:value.value];
+        [cell configureWithTitle:value.valueForField.title text:[value presentedValue]];
     }
     else
     {

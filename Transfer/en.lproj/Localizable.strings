@@ -167,7 +167,7 @@ A revolution in your pocket.";
 "login.password.field.title" = "Password";
 "login.validation.email.missing" = "You haven't entered an email";
 "login.validation.email.not.valid" = "The entered email is not correct";
-"login.validation.password.missing" = "Passwordis missing";
+"login.validation.password.missing" = "Password is missing";
 
 "money.entry.priority.payment.title" = "Priority Payment";
 "money.entry.receive.fixed.amount.title" = "Receive fixed amount";
@@ -506,9 +506,14 @@ Payment #%@";
 "payment.method.DATA_CASH" = "Debit card";
 "payment.method.REGULAR" = "Bank transfer";
 "payment.method.ADYEN" = "Debit Card";
+"payment.method.SWIFT" = "SWIFT";
+"payment.method.ACH" = "ACH";
 "payment.method.description.DATA_CASH" = "We accept all Visa & Mastercard debit cards.";
 "payment.method.description.REGULAR" = "You transfer us the money via a local transfer and we do the rest.";
 "payment.method.description.ADYEN" = "We accept all Visa & Mastercard debit cards.";
+"payment.method.description.SWIFT" = "Send USD to our European account if your USD account is not in the United States.";
+"payment.method.description.ACH" = "Pay directly through your online bank.";
+
 
 "support.sheet.title" = "If you have questions, please don't hesitate to contact our support team.";
 "support.sheet.write.message" = "Send an email";
@@ -707,3 +712,5 @@ We'll send you an email in order to let you choose a new password.";
 "transfertime.GBP.REGULAR" = "a few business hours";
 "transfertime.USD.SWIFT" = "3 business days";
 "transfertime.USD.REGULAR" = "a few business hours";
+
+"upload.money.bankname.title" = "Bank name";
