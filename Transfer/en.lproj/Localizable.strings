@@ -167,7 +167,7 @@ A revolution in your pocket.";
 "login.password.field.title" = "Password";
 "login.validation.email.missing" = "You haven't entered an email";
 "login.validation.email.not.valid" = "The entered email is not correct";
-"login.validation.password.missing" = "Passwordis missing";
+"login.validation.password.missing" = "Password is missing";
 
 "money.entry.priority.payment.title" = "Priority Payment";
 "money.entry.receive.fixed.amount.title" = "Receive fixed amount";
