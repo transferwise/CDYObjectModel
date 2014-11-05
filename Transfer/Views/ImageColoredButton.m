@@ -29,7 +29,11 @@
     CGSize textSize = [[self titleForState:UIControlStateNormal] sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}];
     CGFloat imagePadding = (self.bounds.size.width-textSize.width)/2.0f - image.size.width;
     [self setImageEdgeInsets:UIEdgeInsetsMake(0, -imagePadding, 0 ,imagePadding)];
-    [self setTitleEdgeInsets:UIEdgeInsetsMake(0, -image.size.width/2.0f, 0 ,image.size.width/2.0f)];
+    if(IPAD)
+    {
+        [self setTitleEdgeInsets:UIEdgeInsetsMake(0, -image.size.width/2.0f, 0 ,image.size.width/
+                                                  2.0f)];
+    }
 }
 
 @end
