@@ -17,12 +17,19 @@
 {
 	[super configureWithCompoundStyle:compoundStyle
 						  shadowColor:shadowColor];
-	
-	[self setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-	CGFloat left = (1 - (self.frame.size.width / 2));
-	[self setImageEdgeInsets:UIEdgeInsetsMake(0, IPAD ? left : left + 24, 0, 0)];
-	[self setTitleEdgeInsets:UIEdgeInsetsMake(0, -24, 0, 0)];
-	[super commonSetup];
+    UIImage *image = [UIImage imageNamed:imageName];
+	[self setImage:image forState:UIControlStateNormal];
+    [super commonSetup];
+}
+
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    UIImage *image = [self imageForState:UIControlStateNormal];
+    CGSize textSize = [[self titleForState:UIControlStateNormal] sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}];
+    CGFloat imagePadding = (self.bounds.size.width-textSize.width)/2.0f - image.size.width;
+    [self setImageEdgeInsets:UIEdgeInsetsMake(0, -imagePadding, 0 ,imagePadding)];
+    [self setTitleEdgeInsets:UIEdgeInsetsMake(0, -image.size.width/2.0f, 0 ,image.size.width/2.0f)];
 }
 
 @end

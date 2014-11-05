@@ -38,7 +38,7 @@ NSInteger const kSecondPassword = 2;
 	self.secondPassword.delegate = self;
 	
 	//love these magic numbers here!
-	self.firstPasswordMinWidth.constant = (self.contentView.frame.size.width / 2) + (IPAD ? 10 : - 20);
+	self.firstPasswordMinWidth.constant = (self.contentView.frame.size.width / 2) + (IPAD ? 10 : - 30);
 }
 
 - (void)updateConstraints
@@ -46,14 +46,7 @@ NSInteger const kSecondPassword = 2;
 	[super updateConstraints];
 	
 	//make textfields half the width of the cell minus separators
-	NSLayoutConstraint *secondWidth = [NSLayoutConstraint constraintWithItem:self.secondPassword
-																   attribute:NSLayoutAttributeWidth
-																   relatedBy:NSLayoutRelationEqual
-																	  toItem:self.contentView
-																   attribute:NSLayoutAttributeWidth
-																  multiplier:.5f
-																	constant:0];
-	[self.contentView addConstraints:@[secondWidth]];
+	
 }
 
 - (void)layoutSubviews
@@ -189,7 +182,7 @@ NSInteger const kSecondPassword = 2;
 	}
 	else
 	{
-		self.firstPasswordWidth.constant = 1000;
+		self.firstPasswordWidth.constant = 800;
 	}
 	
 	_showDouble = showDouble;

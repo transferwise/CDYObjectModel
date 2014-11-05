@@ -91,9 +91,10 @@
 	UIViewController* controller;
 
     
-    //TODO: Use A/B test
+    //A/B test
     TAGContainer* container = [future get];
-    BOOL requireRegistration = [container booleanForKey:@"proposeRegistrationUpfront"];
+    NSString* testName = [container stringForKey:@"iOSRegistrationTestName"];
+    BOOL requireRegistration = [container booleanForKey:testName];
 #ifdef REGISTRATION_UPFRONT_OVERRIDE
     requireRegistration = REGISTRATION_UPFRONT_OVERRIDE;
 #endif
@@ -121,9 +122,7 @@
 		controller = mainController;
         controller = [[ConnectionAwareViewController alloc] initWithWrappedViewController:controller];
 	}
-    
-    
-    
+	
 	self.window.rootViewController = controller;
 	[self.window makeKeyAndVisible];
 	return YES;

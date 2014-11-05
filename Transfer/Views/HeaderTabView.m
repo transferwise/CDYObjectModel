@@ -76,7 +76,7 @@
         [button setTitle:title forState:UIControlStateNormal];
         [self insertSubview:button aboveSubview:self.separatorLine];
         [self.presentedButtons addObject:button];
-        self.adaptiveMinWidth = MAX(self.adaptiveMinWidth, ceil([title sizeWithAttributes:@{NSFontAttributeName:[button.titleLabel font]}].width + 30.0f));
+        self.adaptiveMinWidth = MAX(self.adaptiveMinWidth, ceil([title sizeWithAttributes:@{NSFontAttributeName:[button.titleLabel font]}].width + 50.0f));
     }
     
     [self layoutButtons];
