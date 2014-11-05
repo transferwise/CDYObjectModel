@@ -22,6 +22,7 @@
 #import "Mixpanel+Customisation.h"
 #import "LoginHelper.h"
 #import "PaymentsOperation.h"
+#import "NavigationBarCustomiser.h"
 
 @interface OpenIDViewController () <UIWebViewDelegate>
 
@@ -39,6 +40,12 @@
         //[self setRegisterUser:YES];
     }
     return self;
+}
+
+-(void)dealloc
+{
+    self.webView.delegate = nil;
+    [self.webView stopLoading];
 }
 
 - (void)viewDidLoad {
@@ -67,12 +74,12 @@
     if (!self.registerUser) {
         [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Login %@", self.provider]];
     }
+    [NavigationBarCustomiser setWhite];
 }
-
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-
+    [NavigationBarCustomiser setDefault];
     [TransferwiseClient clearCookies];
 }
 
@@ -110,6 +117,10 @@
         [self.objectModel removeOtherUsers];
         [self.objectModel saveContext:^{
             dispatch_async(dispatch_get_main_queue(), ^{
+                self.webView.delegate = nil;
+                [self.webView stopLoading];
+                [self.webView removeFromSuperview];
+                self.webView = nil;
                 [[TransferwiseClient sharedClient] updateUserDetailsWithCompletionHandler:^(NSError *error) {
 #if USE_APPSFLYER_EVENTS
                     [AppsFlyerTracker sharedTracker].customerUserID = weakSelf.objectModel.currentUser.pReference;
