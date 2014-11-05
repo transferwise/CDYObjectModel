@@ -14,7 +14,7 @@
 #import "User.h"
 #import "PersonalProfile.h"
 #import <Social/Social.h>
-#import <FBErrorUtility+Internal.h>
+#import <FBErrorUtility.h>
 #import "NavigationBarCustomiser.h"
 #import "UIImage+Color.h"
 #import "GoogleAnalytics.h"
