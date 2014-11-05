@@ -23,6 +23,9 @@
 #import "ObjectModel+Users.h"
 #import "User.h"
 
+#define defaultRewardAmount 50
+#define defaultRewardCurrency @"GBP"
+
 @interface InvitationsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *profilePictureContainer;
 @property (weak, nonatomic) IBOutlet UIView *indicatorContainer;
@@ -36,6 +39,7 @@
 @property (weak, nonatomic) IBOutlet InvitationProgressIndicatorView *progressIndicator;
 @property (weak, nonatomic) IBOutlet UILabel *indicatorContextLabel;
 @property (strong, nonatomic) TransferwiseOperation *currentOperation;
+@property (nonatomic,strong) NSNumberFormatter *currencyFormatter;
 
 
 //iPad
@@ -55,6 +59,12 @@
 
 - (void)viewDidLoad
 {
+    NSNumberFormatter *currencyFormatter = [[NSNumberFormatter alloc] init];
+    [currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [currencyFormatter setCurrencyCode:defaultRewardCurrency];
+    [currencyFormatter setMaximumFractionDigits:0];
+    [currencyFormatter setMinimumFractionDigits:0];
+    self.currencyFormatter = currencyFormatter;
     [super viewDidLoad];
 }
 
@@ -64,6 +74,7 @@
 	
 	User *user = [self.objectModel currentUser];
 	self.numberOfFriends = user.successfulInviteCountValue;
+    [self.currencyFormatter setCurrencyCode:([user.invitationRewardCurrency length] == 3)?user.invitationRewardCurrency:defaultRewardCurrency];
 	
 	if (self.numberOfFriends > 0)
 	{
@@ -80,7 +91,8 @@
     {
         [self.navigationController setNavigationBarHidden:NO animated:YES];
     }
-    self.headerLabel.text = NSLocalizedString(@"invite.header", nil);
+    
+    self.headerLabel.text = [NSString stringWithFormat:NSLocalizedString(@"invite.header", nil),[self rewardString]];
     [self.inviteButtons[0] setTitle:NSLocalizedString(@"invite.button.title", nil) forState:UIControlStateNormal];
     [self.inviteButtons[1] setTitle:NSLocalizedString(@"invite.button.title", nil) forState:UIControlStateNormal];
 
@@ -194,11 +206,18 @@
     if(truncatedProgress > 0)
     {
         self.indicatorContainer.hidden = YES;
-        self.indicatorContextLabel.text = [NSString stringWithFormat:NSLocalizedString(progress==1?@"invite.progress.format1":@"invite.progress.format2",nil),progress, 3 - truncatedProgress];
+        if(progress == 1)
+        {
+            self.indicatorContextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"invite.progress.format1",nil),progress, 3 - truncatedProgress, [self rewardString]] ;
+        }
+        else
+        {
+            self.indicatorContextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"invite.progress.format2",nil),progress, 3 - truncatedProgress];
+        }
     }
     else
     {
-        self.indicatorContextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"invite.complete.format",nil),progress];
+        self.indicatorContextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"invite.complete.format",nil),progress,[self rewardString]];
     }
 	
 	if (progress > 0 && animated)
@@ -264,7 +283,7 @@
     else
     {
         NSString * boom = NSLocalizedString(@"invite.controller.title.boom", nil);
-        NSString *earned = [NSString stringWithFormat:NSLocalizedString(@"invite.controller.title.reward.format", nil),50*numberOfRewards,boom];
+        NSString *earned = [NSString stringWithFormat:numberOfRewards>1?NSLocalizedString(@"invite.controller.title.rewards.format", nil):NSLocalizedString(@"invite.controller.title.reward.format", nil),numberOfRewards,boom];
         NSMutableAttributedString *finalText= [[NSMutableAttributedString alloc] initWithString:earned];
         [finalText addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:@"twelectricblue"] range:[earned rangeOfString:boom]];
         
@@ -294,9 +313,13 @@
 
 - (IBAction)inviteButtonTapped:(id)sender
 {
-	ReferralsCoordinator* coordinator = [ReferralsCoordinator sharedInstance];
-	coordinator.objectModel = self.objectModel;
-	[coordinator presentOnController:self];
+    self.numberOfFriends++;
+    [self setProgress: self.numberOfFriends
+                 animated:YES];
+    
+//	ReferralsCoordinator* coordinator = [ReferralsCoordinator sharedInstance];
+//	coordinator.objectModel = self.objectModel;
+//	[coordinator presentOnController:self];
 }
 
 - (void)loadInviteStatus
@@ -306,18 +329,25 @@
 	[referralLinkOperation setObjectModel:self.objectModel];
 	__weak InvitationsViewController *weakSelf = self;
 	
-    [referralLinkOperation setResultHandler:^(NSError *error, NSInteger successCount) {
+    [referralLinkOperation setResultHandler:^(NSError *error) {
 		 dispatch_async(dispatch_get_main_queue(), ^{
-			 if (!error && successCount > -1)
+			 if (!error)
 			 {
-				 if (successCount > self.numberOfFriends)
-				 {
-					 self.numberOfFriends = successCount;
-					 [weakSelf setProgress:successCount
-								  animated:self.numberOfFriends == 0];
-				 }
-				 
-				 return;
+                 User *user = [self.objectModel currentUser];
+                 if ([user.invitationRewardCurrency length] == 3)
+                 {
+                     self.currencyFormatter.currencyCode = user.invitationRewardCurrency;
+                 }
+                 if(user.successfulInviteCount)
+                 {
+                     NSInteger successCount = user.successfulInviteCountValue;
+                     if (successCount > self.numberOfFriends)
+                     {
+                         self.numberOfFriends = successCount;
+                         [weakSelf setProgress:successCount
+                                      animated:self.numberOfFriends == 0];
+                     }
+                 }
 			 }
 		 });
 	 }];
@@ -325,4 +355,15 @@
     [referralLinkOperation execute];
 }
 
+-(NSString*)rewardString
+{
+    NSNumber *rewardNumber =@(defaultRewardAmount);
+    
+    if([[self.objectModel currentUser].invitationReward intValue] > 0)
+    {
+        rewardNumber = [self.objectModel currentUser].invitationReward;
+    }
+    
+    return [self.currencyFormatter stringFromNumber:rewardNumber];
+}
 @end

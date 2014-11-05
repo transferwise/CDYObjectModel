@@ -8,7 +8,7 @@
 
 #import "TransferwiseOperation.h"
 
-typedef void (^ReferralListBlock)(NSError *error, NSInteger successCount);
+typedef void (^ReferralListBlock)(NSError *error);
 
 @interface ReferralListOperation : TransferwiseOperation
 
