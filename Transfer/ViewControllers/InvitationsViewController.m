@@ -313,13 +313,9 @@
 
 - (IBAction)inviteButtonTapped:(id)sender
 {
-    self.numberOfFriends++;
-    [self setProgress: self.numberOfFriends
-                 animated:YES];
-    
-//	ReferralsCoordinator* coordinator = [ReferralsCoordinator sharedInstance];
-//	coordinator.objectModel = self.objectModel;
-//	[coordinator presentOnController:self];
+	ReferralsCoordinator* coordinator = [ReferralsCoordinator sharedInstance];
+	coordinator.objectModel = self.objectModel;
+	[coordinator presentOnController:self];
 }
 
 - (void)loadInviteStatus
