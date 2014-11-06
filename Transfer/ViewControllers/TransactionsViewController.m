@@ -43,12 +43,14 @@
 #import "SetSSNOperation.h"
 #import "SendButtonFlashHelper.h"
 
+#import "RecipientTypesOperation.h"
+
 
 NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
 @interface TransactionsViewController () <UIScrollViewDelegate, NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource, PullToRefreshViewDelegate>
 
-@property (nonatomic, strong) PaymentsOperation *executedOperation;
+@property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) IBOutlet UIView *loadingFooterView;
 @property (nonatomic, strong) NSArray *payments;
 @property (nonatomic, assign) BOOL showIdentificationView;
@@ -258,16 +260,25 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [self presentDetail:resultController];
 }
 
-
 - (void)refreshPaymentsList
 {
     if (self.executedOperation)
 	{
         return;
     }
-
+    
     [self.tableView setTableFooterView:nil];
-    [self refreshPaymentsWithOffset:0 hud:nil];
+    
+    RecipientTypesOperation* operation = [RecipientTypesOperation operation];
+    self.executedOperation = operation;
+    
+    __weak typeof(self) weakSelf = self;
+    operation.resultHandler = ^(NSError *error, NSArray* listOfRecipientTypeCodes){
+        weakSelf.executedOperation = nil;
+        [weakSelf refreshPaymentsWithOffset:0 hud:nil];
+    };
+    operation.objectModel = self.objectModel;
+    [operation execute];
 }
 
 - (void)refreshPaymentsWithOffset:(NSInteger)offset hud:(TabBarActivityIndicatorView *)hud
