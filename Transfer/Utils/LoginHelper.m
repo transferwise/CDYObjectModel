@@ -145,15 +145,16 @@
         NewPaymentViewController *paymentView = [[NewPaymentViewController alloc] init];
         [paymentView setObjectModel:objectModel];
         ConnectionAwareViewController *wrapper =  [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:paymentView navBarHidden:YES];
-        [root presentViewController:wrapper animated:NO completion:^{
-            MainViewController *mainController = [[MainViewController alloc] init];
-            [mainController setObjectModel:objectModel];
-            [root replaceWrappedViewControllerWithController:mainController];
-        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [root presentViewController:wrapper animated:YES completion:^{
+                MainViewController *mainController = [[MainViewController alloc] init];
+                [mainController setObjectModel:objectModel];
+                [root replaceWrappedViewControllerWithController:mainController];
+            }];
+        });
     }
     else
     {
-    
         MainViewController *mainController = [[MainViewController alloc] init];
         [mainController setObjectModel:objectModel];
         ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:mainController];

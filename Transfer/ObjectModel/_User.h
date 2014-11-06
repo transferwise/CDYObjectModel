@@ -6,6 +6,8 @@
 extern const struct UserAttributes {
 	__unsafe_unretained NSString *anonymous;
 	__unsafe_unretained NSString *email;
+	__unsafe_unretained NSString *invitationReward;
+	__unsafe_unretained NSString *invitationRewardCurrency;
 	__unsafe_unretained NSString *inviteUrl;
 	__unsafe_unretained NSString *pReference;
 	__unsafe_unretained NSString *password;
@@ -45,6 +47,18 @@ extern const struct UserRelationships {
 @property (nonatomic, strong) NSString* email;
 
 //- (BOOL)validateEmail:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* invitationReward;
+
+@property (atomic) int16_t invitationRewardValue;
+- (int16_t)invitationRewardValue;
+- (void)setInvitationRewardValue:(int16_t)value_;
+
+//- (BOOL)validateInvitationReward:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* invitationRewardCurrency;
+
+//- (BOOL)validateInvitationRewardCurrency:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* inviteUrl;
 
@@ -118,6 +132,15 @@ extern const struct UserRelationships {
 
 - (NSString*)primitiveEmail;
 - (void)setPrimitiveEmail:(NSString*)value;
+
+- (NSNumber*)primitiveInvitationReward;
+- (void)setPrimitiveInvitationReward:(NSNumber*)value;
+
+- (int16_t)primitiveInvitationRewardValue;
+- (void)setPrimitiveInvitationRewardValue:(int16_t)value_;
+
+- (NSString*)primitiveInvitationRewardCurrency;
+- (void)setPrimitiveInvitationRewardCurrency:(NSString*)value;
 
 - (NSString*)primitiveInviteUrl;
 - (void)setPrimitiveInviteUrl:(NSString*)value;
