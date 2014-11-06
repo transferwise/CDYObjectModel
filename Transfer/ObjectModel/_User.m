@@ -6,6 +6,8 @@
 const struct UserAttributes UserAttributes = {
 	.anonymous = @"anonymous",
 	.email = @"email",
+	.invitationReward = @"invitationReward",
+	.invitationRewardCurrency = @"invitationRewardCurrency",
 	.inviteUrl = @"inviteUrl",
 	.pReference = @"pReference",
 	.password = @"password",
@@ -51,6 +53,11 @@ const struct UserRelationships UserRelationships = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"invitationRewardValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"invitationReward"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"sendAsBusinessDefaultSettingValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"sendAsBusinessDefaultSetting"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -86,6 +93,28 @@ const struct UserRelationships UserRelationships = {
 }
 
 @dynamic email;
+
+@dynamic invitationReward;
+
+- (int16_t)invitationRewardValue {
+	NSNumber *result = [self invitationReward];
+	return [result shortValue];
+}
+
+- (void)setInvitationRewardValue:(int16_t)value_ {
+	[self setInvitationReward:[NSNumber numberWithShort:value_]];
+}
+
+- (int16_t)primitiveInvitationRewardValue {
+	NSNumber *result = [self primitiveInvitationReward];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveInvitationRewardValue:(int16_t)value_ {
+	[self setPrimitiveInvitationReward:[NSNumber numberWithShort:value_]];
+}
+
+@dynamic invitationRewardCurrency;
 
 @dynamic inviteUrl;
 

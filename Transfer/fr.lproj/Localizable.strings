@@ -237,7 +237,7 @@ Une révolution dans votre poche.";
 "payment.status.transferred.description.long" = "a été effectué.";
 "payment.status.transferred.description.conversion" = "a été converti en";
 "payment.status.transferred.description.eta" = "& devrait arriver le";
-"payment.status.transferred.description.eta.past" = "& devrait arriver le";
+"payment.status.transferred.description.eta.past" = "& devrait être arrivé le";
 "payment.status.receivedWaitingRecipient.description" = "En attente du destinataire";
 "payment.status.unknown.description" = "Inconnu";
 
@@ -642,12 +642,13 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "invite.button.title" = "Inviter mes amis";
 "invite.controller.title" = "Sauvez vos amis des banques";
 "invite.controller.title.short" = "Aidez vos amis";
-"invite.controller.title.reward.format" = "£%d gagnés! %@";
+"invite.controller.title.reward.format" = "%d récompense gagneé! %@";
+"invite.controller.title.rewards.format" = "%d récompenses gagnées! %@";
 "invite.controller.title.boom" = "BAM!";
-"invite.header" = "Gagner £50 quand 3 amis commencent à utiliser TransferWise.";
-"invite.progress.format1" = "%d amis utilisent TransferWise. %d restant & vous gagnez £50.";
+"invite.header" = "Gagner %@ quand 3 amis commencent à utiliser TransferWise.";
+"invite.progress.format1" = "%d ami utilise TransferWise. %d restant & vous gagnez %@.";
 "invite.progress.format2" = "%d amis utilisent TransferWise. %d restant!";
-"invite.complete.format" = "%d amis utilisent TransferWise! Recommencez et gagnez £50 de plus!";
+"invite.complete.format" = "%d amis utilisent TransferWise! Recommencez et gagnez %@ de plus!";
 
 "invite.fb.button.title" = "Poster sur Facebook";
 "invite.email.button.title" = "Inviter par email";

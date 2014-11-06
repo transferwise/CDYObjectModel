@@ -10,6 +10,10 @@
 
 @implementation PayInMethod
 
-// Custom logic goes here.
+
++(NSArray*)supportedPayInMethods
+{
+    return @[@"REGULAR",@"DATA_CASH",@"SWIFT"];
+}
 
 @end

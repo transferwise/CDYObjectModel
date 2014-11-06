@@ -22,31 +22,15 @@ NSString *const kReferralListPath = @"/referral/list";
 	
 	__weak ReferralListOperation *weakSelf = self;
 	[self setOperationErrorHandler:^(NSError *error) {
-		weakSelf.resultHandler(error, INT16_MIN);
+		weakSelf.resultHandler(error);
 	}];
 	
 	[self setOperationSuccessHandler:^(NSDictionary *response) {
-		//this is a naive count op, response contains more useful stuff
-		if (response
-			&& response[@"successfulReferrals"]
-			&& (NSDictionary *)response[@"successfulReferrals"])
-		{
-			NSInteger count = [response[@"successfulReferrals"] count];
-			
-			if (count > 0) {
-				[weakSelf.workModel saveSuccessfulInviteCount:[NSNumber numberWithLong:count]];
+		
+                [weakSelf.workModel saveReferralData:response];
 				[weakSelf.workModel saveContext:^{
-					weakSelf.resultHandler(nil, count);
+					weakSelf.resultHandler(nil);
 				}];
-			}
-			
-			weakSelf.resultHandler(nil, count);
-		}
-		else
-		{
-			//no error, but no result either
-			weakSelf.resultHandler(nil, INT16_MIN);
-		}
 	}];
 	
 	[self getDataFromPath:path params:nil];

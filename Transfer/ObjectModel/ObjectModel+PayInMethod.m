@@ -20,6 +20,8 @@
     NSOrderedSet *existingTypes = [payment.payInMethods valueForKey:@"type"];
     NSMutableOrderedSet *newSet = [NSMutableOrderedSet orderedSetWithCapacity:[data count]];
     
+    NSArray* acceptedMethods = [PayInMethod supportedPayInMethods];
+    
     for(NSDictionary* payInMethodDictionary in data)
     {
         PayInMethod* method;
@@ -42,8 +44,7 @@
         }
         method.bankName = payInMethodDictionary[@"bankName"];
         method.transferWiseAddress = payInMethodDictionary[@"transferwiseAddress"];
-        //TODO: m@s Remove special cases for ADYEN and SOFORT when supported
-        method.disabled = @([payInMethodDictionary[@"disabled"] boolValue] || [method.type caseInsensitiveCompare:@"SOFORT"] == NSOrderedSame || [method.type caseInsensitiveCompare:@"ACH"] == NSOrderedSame || [method.type caseInsensitiveCompare:@"ADYEN"] == NSOrderedSame );
+        method.disabled = @([payInMethodDictionary[@"disabled"] boolValue] || [acceptedMethods indexOfObject:typeName] == NSNotFound );
         method.disabledReason = payInMethodDictionary[@"disabledReason"];
 		method.paymentReference = payInMethodDictionary[@"paymentReference"];
         

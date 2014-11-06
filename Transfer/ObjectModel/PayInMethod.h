@@ -1,5 +1,14 @@
 #import "_PayInMethod.h"
 
 @interface PayInMethod : _PayInMethod {}
-// Custom logic goes here.
+
+/**
+ *  Get a list of pay in methods supported by this app verison.
+ *
+ *  Update when new pay in methods are supported.
+ *
+ *  @return List of accepted pay in method type names.
+ */
++(NSArray*)supportedPayInMethods;
+
 @end
