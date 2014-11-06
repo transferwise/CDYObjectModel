@@ -587,12 +587,12 @@ RAPIDES";
 
 "intro.existing.tagline.one" = "VERSION 2 DE NOTRE APP IPHONE & IPAD";
 "intro.existing.tagline.two" = "VOTRE COMPTE N'A PAS CHANGÉ";
-"intro.existing.tagline.three" = "TRANSFERER AVEC ELEGANCE.";
-"intro.existing.tagline.four" = "LES FONCTIONALITÉS DEMANDÉES";
+"intro.existing.tagline.three" = "TRANSFERER AVEC ELEGANCE";
+"intro.existing.tagline.four" = "LES FONCTIONS DEMANDÉES";
 
-"intro.existing.message.one" = "Une qualité de service inchangée. Simplement amélioré.";
-"intro.existing.message.two" = "Pas d'inquiètude. Vos transferts sont toujours là";
-"intro.existing.message.three" = "Des instructions et un design plus clair pour un esprit tranquille.";
+"intro.existing.message.one" = "Maintenant disponible \nen français.";
+"intro.existing.message.two" = "Pas d'inquiètude. Vos transferts sont toujours là.";
+"intro.existing.message.three" = "Instructions et design plus clairs pour un esprit tranquille.";
 "intro.existing.message.four" = "Définir éxactement combien le destinataire reçoit, annuler un transfert, inviter vos amis...";
 
 "refresh.pull" = "Tirez vers le bas pour raffraichir";
