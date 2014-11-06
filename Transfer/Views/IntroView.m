@@ -11,9 +11,9 @@
 #import "Constants.h"
 
 
-#define flagFactor 0.24337f
-#define tagLineFactor 0.125f
-#define messageFactor 0.04f
+#define flagFactor 0.5f
+#define tagLineFactor 0.25f
+#define messageFactor 0.08f
 
 @interface IntroView ()
 
@@ -66,8 +66,10 @@
     {
         return;
     }
+    
     short direction = relativeOffset > 0.0f ? 1 : -1 ;
-    CGFloat offset = ABS(sinf(relativeOffset * M_PI) * self.bounds.size.width) * direction;
+    CGFloat offset = ABS(sinf(relativeOffset * M_PI_2) * self.bounds.size.width) * direction;
+
     self.flagCenterConstraint.constant = offset * self.flagOffsetFactor;
     self.tagLineCenterConstraint.constant = offset * self.tagLineOffsetFactor;
     self.messageLabelCenterConstraint.constant = offset * self.messageOffsetFactor;
