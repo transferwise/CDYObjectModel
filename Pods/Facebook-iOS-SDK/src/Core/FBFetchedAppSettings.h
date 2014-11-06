@@ -15,11 +15,6 @@
  */
 #import <Foundation/Foundation.h>
 
-typedef NS_OPTIONS(NSUInteger, FBAppEventsFeatureOptions) {
-    FBAppEventsFeatureOptionsNone                      = 0,
-    FBAppEventsFeatureOptionsShouldAccessAdvertisingID = 1 << 0
-};
-
 // Internal class holding server side Facebook app settings we fetch once from the
 // server per process lifetime.
 
@@ -31,11 +26,7 @@ typedef NS_OPTIONS(NSUInteger, FBAppEventsFeatureOptions) {
 @property (readwrite) BOOL enableLoginTooltip;
 @property (readonly, nonatomic) NSString *appID;
 @property (copy, nonatomic) NSString *loginTooltipContent;
-@property (copy, nonatomic) NSDictionary *dialogConfigs;
 
-- (instancetype)initWithAppID:(NSString *)appID
-      appEventsFeatureOptions:(FBAppEventsFeatureOptions)appEventsFeatureOptions;
-
-- (BOOL)shouldAccessAdvertisingID;
+- (instancetype)initWithAppID:(NSString *)appID;
 
 @end

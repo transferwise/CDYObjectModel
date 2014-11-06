@@ -207,7 +207,7 @@
     }
 
     if ([objects count] > 1) {
-        CDYObjectModelLog(@"Fetched %d objects: %@", [objects count], objects);
+        CDYObjectModelLog(@"Fetched %lu objects: %@", (unsigned long)[objects count], objects);
     }
 
     return [objects lastObject];

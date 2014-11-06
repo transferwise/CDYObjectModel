@@ -16,7 +16,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FBLikeControl.h"
 #import "FBSDKMacros.h"
 
 FBSDK_EXTERN NSString *const FBLikeActionControllerDidDisableNotification;
@@ -29,11 +28,10 @@ FBSDK_EXTERN NSString *const FBLikeActionControllerAnimatedKey;
 + (BOOL)isDisabled;
 
 // this method will call beginContentAccess before returning the instance
-+ (instancetype)likeActionControllerForObjectID:(NSString *)objectID objectType:(FBLikeControlObjectType)objectType;
++ (instancetype)likeActionControllerForObjectID:(NSString *)objectID;
 
 @property (nonatomic, copy, readonly) NSString *likeCountString;
 @property (nonatomic, copy, readonly) NSString *objectID;
-@property (nonatomic, assign, readonly) FBLikeControlObjectType objectType;
 @property (nonatomic, assign, readonly) BOOL objectIsLiked;
 @property (nonatomic, copy, readonly) NSString *socialSentence;
 

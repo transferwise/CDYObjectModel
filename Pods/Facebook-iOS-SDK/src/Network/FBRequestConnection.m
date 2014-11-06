@@ -67,13 +67,13 @@ typedef void (^KeyValueActionHandler)(NSString *key, id value);
 // ----------------------------------------------------------------------------
 // FBRequestConnectionState
 
-typedef NS_ENUM(NSUInteger, FBRequestConnectionState) {
+typedef enum FBRequestConnectionState {
     kStateCreated,
     kStateSerialized,
     kStateStarted,
     kStateCompleted,
     kStateCancelled,
-};
+} FBRequestConnectionState;
 
 // ----------------------------------------------------------------------------
 // Graph API error codes
@@ -453,7 +453,7 @@ typedef NS_ENUM(NSInteger, FBGraphApiErrorAccessTokenSubcode) {
         }
     }
 
-    if (!self.deprecatedRequest && self.internalUrlRequest == nil && !cacheIdentity) {
+    if (self.internalUrlRequest == nil && !cacheIdentity) {
         // If we have all Graph API calls, see if we want to piggyback any internal calls onto
         // the request to reduce round-trips. (The piggybacked calls may themselves be non-Graph
         // API calls, but must be limited to API calls which are batchable. Not all are, which is
@@ -461,7 +461,7 @@ typedef NS_ENUM(NSInteger, FBGraphApiErrorAccessTokenSubcode) {
         // an already-formed request object, since we don't know its structure.
         BOOL safeForPiggyback = YES;
         for (FBRequestMetadata *requestMetadata in self.requests) {
-            if (requestMetadata.request.restMethod || requestMetadata.request.versionPart != nil) {
+            if (requestMetadata.request.restMethod) {
                 safeForPiggyback = NO;
                 break;
             }
@@ -979,8 +979,8 @@ typedef NS_ENUM(NSInteger, FBGraphApiErrorAccessTokenSubcode) {
 
     if (self.state != kStateCancelled) {
         NSAssert(self.state == kStateStarted,
-                 @"Unexpected state %lu in completeWithResponse",
-                 (unsigned long)self.state);
+                 @"Unexpected state %d in completeWithResponse",
+                 self.state);
         self.state = kStateCompleted;
     }
 

@@ -290,7 +290,6 @@ NSString *const FBAppLinkInboundEvent = @"fb_al_inbound";
           withSession:(FBSession *)session
       fallbackHandler:(FBAppCallHandler)handler {
     FBSession *workingSession = session ?: FBSession.activeSessionIfExists;
-    [FBAppEvents setSourceApplication:sourceApplication openURL:url];
 
     // Wrap the fallback handler to intercept login flow for FBSession
     FBAppCallHandler sessionHandler = ^(FBAppCall *call) {
@@ -486,14 +485,21 @@ NSString *const FBAppLinkInboundEvent = @"fb_al_inbound";
         return;
     }
 
-    // Deferred app links are only currently used for engagement ads, thus we consider the app to be an advertising one.
-    // If this is considered for organic, non-ads scenarios, we'll need to retrieve the FBAppSettings.shouldAccessAdvertisingID
-    // before we make this call.
-    NSMutableDictionary<FBGraphObject> *deferredAppLinkParameters =
-        [FBUtility activityParametersDictionaryForEvent:FBDeferredAppLinkEvent
-                                   includeAttributionID:YES
-                                     implicitEventsOnly:NO
-                              shouldAccessAdvertisingID:YES];
+    NSMutableDictionary<FBGraphObject> *deferredAppLinkParameters = [FBGraphObject graphObject];
+    [deferredAppLinkParameters setObject:FBDeferredAppLinkEvent forKey:@"event"];
+
+    NSString *attributionID = [FBUtility attributionID];
+    NSString *advertiserID = [FBUtility advertiserID];
+
+    if (attributionID) {
+        [deferredAppLinkParameters setObject:attributionID forKey:@"attribution"];
+    }
+
+    if (advertiserID) {
+        [deferredAppLinkParameters setObject:advertiserID forKey:@"advertiser_id"];
+    }
+
+    [FBUtility updateParametersWithEventUsageLimitsAndBundleInfo:deferredAppLinkParameters accessAdvertisingTrackingStatus:YES];
 
     FBRequest *deferredAppLinkRequest = [[[FBRequest alloc] initForPostWithSession:nil
                                                                          graphPath:[NSString stringWithFormat:@"%@/activities", appID, nil]

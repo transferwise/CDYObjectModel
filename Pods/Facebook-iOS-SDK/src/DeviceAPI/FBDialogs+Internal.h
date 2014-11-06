@@ -19,6 +19,8 @@
 
 @interface FBDialogs (Internal)
 
++ (BOOL)canPresentLikeDialog;
+
 + (FBAppCall *)presentLikeDialogWithParams:(FBLikeDialogParams *)params
                                clientState:(NSDictionary *)clientState
                                    handler:(FBDialogAppCallCompletionHandler)handler;

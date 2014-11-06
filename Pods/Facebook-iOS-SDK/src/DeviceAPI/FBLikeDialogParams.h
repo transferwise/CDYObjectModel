@@ -17,11 +17,9 @@
 #import <Foundation/Foundation.h>
 
 #import "FBDialogsParams.h"
-#import "FBLikeControl.h"
 
 @interface FBLikeDialogParams : FBDialogsParams
 
 @property (nonatomic, copy) NSString *objectID;
-@property (nonatomic, assign) FBLikeControlObjectType objectType;
 
 @end

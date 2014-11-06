@@ -16,7 +16,6 @@ pod 'CDYObjectModel', :git => 'https://github.com/coodly/CDYObjectModel.git'
 pod 'CDYAnalyticsCoordinator', :git => 'https://github.com/coodly/CDYAnalyticsCoordinator.git'
 pod 'JVFloatLabeledTextField'
 pod 'Reachability'
-pod 'CrashlyticsFramework'
 
 target :TransferTests, :exclusive => true do
   pod 'Kiwi'

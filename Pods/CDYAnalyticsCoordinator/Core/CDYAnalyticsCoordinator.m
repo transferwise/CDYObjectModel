@@ -57,42 +57,9 @@
     });
 }
 
-- (BOOL)respondsToSelector:(SEL)aSelector {
-    if ([super respondsToSelector:aSelector]) {
-        return YES;
-    }
-
-    for (id service in self.services) {
-        if ([service respondsToSelector:aSelector]) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
-- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
-    NSMethodSignature *signature = [super methodSignatureForSelector:aSelector];
-
-    if (!signature) {
-        for (id service in self.services) {
-            if ([service respondsToSelector:aSelector]) {
-                return [service methodSignatureForSelector:aSelector];
-            }
-        }
-    }
-
-    return signature;
-}
-
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
-    [anInvocation retainArguments];
-
     dispatch_async(dispatch_get_main_queue(), ^{
         for (id service in self.services) {
-            if (![service respondsToSelector:[anInvocation selector]]) {
-                continue;
-            }
-
             [anInvocation invokeWithTarget:service];
         }
     });

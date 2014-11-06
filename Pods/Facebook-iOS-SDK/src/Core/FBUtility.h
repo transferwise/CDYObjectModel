@@ -25,21 +25,11 @@
 
 @protocol FBGraphObject;
 
-typedef NS_ENUM(NSUInteger, FBAdvertisingTrackingStatus) {
+typedef enum FBAdvertisingTrackingStatus {
     AdvertisingTrackingAllowed,
     AdvertisingTrackingDisallowed,
     AdvertisingTrackingUnspecified
-};
-
-typedef NS_ENUM(NSInteger, FBIOSVersion) {
-  FBIOSVersion_6_0,
-  FBIOSVersion_6_1,
-  FBIOSVersion_7_0,
-  FBIOSVersion_7_1,
-  FBIOSVersion_8_0,
-
-  FBIOSVersionCount
-};
+} FBAdvertisingTrackingStatus;
 
 @interface FBUtility : NSObject
 
@@ -72,7 +62,6 @@ typedef NS_ENUM(NSInteger, FBIOSVersion) {
 + (NSBundle *)facebookSDKBundle;
 // Returns YES when the bundle identifier is for one of the native facebook apps
 + (BOOL)isFacebookBundleIdentifier:(NSString *)bundleIdentifier;
-+ (BOOL)isSafariBundleIdentifier:(NSString *)bundleIdentifier;
 
 #pragma mark - Permissions
 
@@ -92,12 +81,10 @@ typedef NS_ENUM(NSInteger, FBIOSVersion) {
 
 + (NSString *)newUUIDString;
 + (NSString *)attributionID;
-+ (NSString *)advertiserOrAnonymousID:(BOOL)accessAdvertisingID;
++ (NSString *)advertiserID;
 + (FBAdvertisingTrackingStatus)advertisingTrackingStatus;
-+ (NSMutableDictionary<FBGraphObject> *)activityParametersDictionaryForEvent:(NSString *)eventCategory
-                                                        includeAttributionID:(BOOL)includeAttributionID
-                                                          implicitEventsOnly:(BOOL)implicitEventsOnly
-                                                   shouldAccessAdvertisingID:(BOOL)shouldAccessAdvertisingID;
++ (void)updateParametersWithEventUsageLimitsAndBundleInfo:(NSMutableDictionary *)parameters
+                          accessAdvertisingTrackingStatus:(BOOL)accessAdvertisingTrackingStatus;
 
 #pragma mark - JSON Encode / Decode
 
@@ -134,8 +121,6 @@ typedef NS_ENUM(NSInteger, FBIOSVersion) {
 + (BOOL)isRetinaDisplay;
 + (BOOL)isRegisteredURLScheme:(NSString *)urlScheme;
 + (BOOL)isMultitaskingSupported;
-+ (BOOL)isUIKitLinkedOnOrAfter:(FBIOSVersion)version;
-+ (BOOL)isRunningOnOrAfter:(FBIOSVersion)version;
 + (BOOL)isSystemAccountStoreAvailable;
 
 #pragma mark - Cookies
