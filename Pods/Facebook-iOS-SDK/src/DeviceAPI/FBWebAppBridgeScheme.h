@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-#import "FBDialogs.h"
-#import "FBLikeDialogParams.h"
+#import <Foundation/Foundation.h>
 
-@interface FBDialogs (Internal)
+#import "FBAppBridgeScheme.h"
 
-+ (FBAppCall *)presentLikeDialogWithParams:(FBLikeDialogParams *)params
-                               clientState:(NSDictionary *)clientState
-                                   handler:(FBDialogAppCallCompletionHandler)handler;
+@interface FBWebAppBridgeScheme : FBAppBridgeScheme
+
+- (instancetype)initWithURL:(NSURL *)URL method:(NSString *)method;
+
 @end

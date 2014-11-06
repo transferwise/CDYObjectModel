@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
-#import "FBDialogs.h"
-#import "FBLikeDialogParams.h"
+#import <Foundation/Foundation.h>
 
-@interface FBDialogs (Internal)
+@interface FBDialogConfig : NSObject <NSCoding>
 
-+ (FBAppCall *)presentLikeDialogWithParams:(FBLikeDialogParams *)params
-                               clientState:(NSDictionary *)clientState
-                                   handler:(FBDialogAppCallCompletionHandler)handler;
++ (instancetype)dialogConfigWithDictionary:(NSDictionary *)dictionary;
+
+@property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, copy, readonly) NSURL *URL;
+@property (nonatomic, copy, readonly) NSArray *versions;
+
 @end
