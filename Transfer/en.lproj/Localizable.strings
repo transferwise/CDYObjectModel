@@ -505,6 +505,7 @@ Payment #%@";
 "payment.detail.converting.header.message" = "Waiting to convert your money for transfer #%@.";
 "payment.method.DATA_CASH" = "Debit card";
 "payment.method.REGULAR" = "Bank transfer";
+"payment.method.REGULAR.USD" = "Domestic Wire";
 "payment.method.SWIFT" = "SWIFT";
 "payment.method.ACH" = "ACH";
 "payment.method.description.DATA_CASH" = "We accept all Visa & Mastercard debit cards.";

@@ -502,6 +502,7 @@ Transfert #%@";
 "payment.detail.converting.header.message" = "Transfert #%@ en attente de conversion.";
 "payment.method.DATA_CASH" = "Carte de débit";
 "payment.method.REGULAR" = "Virement bancaire";
+"payment.method.REGULAR.USD" = "Domestic Wire";
 "payment.method.description.DATA_CASH" = "Nous acceptons les cartes de débit Visa & Mastercard.";
 "payment.method.description.REGULAR" = "Vous nous envoyer l'argent via un virement local et on s'occupe du reste.";
 "payment.method.description.SWIFT" = "Si votre compte USD n'est pas aux États Unis, virer vos USD vers notre compte Européen.";
