@@ -71,19 +71,25 @@
         return YES;
     }
 
-    NSString *absoluteString = [request.URL absoluteString];
-    if ([absoluteString rangeOfString:@"/card/paidIn"].location != NSNotFound) {
-        self.resultHandler(YES);
-        [self pushNextScreen];
-        return NO;
-    } else if ([absoluteString rangeOfString:@"/card/notPaidIn"].location != NSNotFound) {
-        self.resultHandler(NO);
-        return NO;
-    } else if ([absoluteString rangeOfString:@"/payment/"].location != NSNotFound) {
-		return NO;
-	}
-
-    return YES;
+    URLAction action = self.loadURLBlock(request.URL);
+    switch (action) {
+        case URLActionContinueLoad:
+            return YES;
+            break;
+        case URLActionAbortAndReportFailure:
+            self.resultHandler(NO);
+            return NO;
+            break;
+        case URLActionAbortAndReportSuccess:
+            self.resultHandler(YES);
+            [self pushNextScreen];
+            return NO;
+            break;
+        case URLActionAbortLoad:
+        default:
+            return NO;
+            break;
+    }
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
@@ -107,11 +113,10 @@
 }
 
 - (void)loadPaymentPage {
-    MCLog(@"loadPaymentPage");
-    NSString *path = [[TransferwiseClient sharedClient] addTokenToPath:@"/card/pay"];
-    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"GET" path:path parameters:@{@"paymentId" : self.payment.remoteId}];
-    [TransferwiseOperation provideAuthenticationHeaders:request];
-    [self.webView loadRequest:request];
+    __weak typeof(self) weakSelf = self;
+    self.initialRequestProvider(^(NSURLRequest* request){
+        [weakSelf.webView loadRequest:request];
+    });
 }
 
 - (void)pushNextScreen {
