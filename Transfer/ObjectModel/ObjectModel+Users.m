@@ -127,14 +127,35 @@
 	}
 }
 
-- (void)saveSuccessfulInviteCount:(NSNumber *)count
+- (void)saveReferralData:(NSDictionary*)data
 {
-	User* user = [self currentUser];
-	
-	if (user)
-	{
-		user.successfulInviteCount = count;
-	}
+    if (data)
+    {
+        User* user = [self currentUser];
+        if(data[@"successfulReferrals"])
+        {
+            NSInteger count = [data[@"successfulReferrals"] count];
+            
+            if (count > 0)
+            {
+                if (user)
+                {
+                    user.successfulInviteCount = @(count);
+                }
+            }
+        }
+        NSNumber *amount = data[@"amount"];
+        if(amount && [amount intValue] > 0)
+        {
+            user.invitationReward = amount;
+        }
+        NSString *currencyCode = data[@"currency"];
+        if(currencyCode && [currencyCode length] > 0)
+        {
+            user.invitationRewardCurrency = currencyCode;
+        }
+    }
+    
 }
 
 - (void)removeAnonymousUser {

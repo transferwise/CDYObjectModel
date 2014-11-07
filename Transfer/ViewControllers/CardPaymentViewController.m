@@ -35,6 +35,12 @@
     return self;
 }
 
+-(void)dealloc
+{
+    self.webView.delegate = nil;
+    [self.webView stopLoading];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     if(IPAD)
