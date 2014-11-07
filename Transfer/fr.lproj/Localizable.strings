@@ -502,8 +502,11 @@ Transfert #%@";
 "payment.detail.converting.header.message" = "Transfert #%@ en attente de conversion.";
 "payment.method.DATA_CASH" = "Carte de débit";
 "payment.method.REGULAR" = "Virement bancaire";
+"payment.method.REGULAR.USD" = "Domestic Wire";
+"payment.method.ADYEN" = "Carte de débit";
 "payment.method.description.DATA_CASH" = "Nous acceptons les cartes de débit Visa & Mastercard.";
 "payment.method.description.REGULAR" = "Vous nous envoyer l'argent via un virement local et on s'occupe du reste.";
+"payment.method.description.ADYEN" = "Nous acceptons les cartes de débit Visa & Mastercard.";
 "payment.method.description.SWIFT" = "Si votre compte USD n'est pas aux États Unis, virer vos USD vers notre compte Européen.";
 "payment.method.description.ACH" = "Payer directement via votre banque.";
 "payment.method.SWIFT" = "SWIFT";
@@ -587,12 +590,12 @@ RAPIDES";
 
 "intro.existing.tagline.one" = "VERSION 2 DE NOTRE APP IPHONE & IPAD";
 "intro.existing.tagline.two" = "VOTRE COMPTE N'A PAS CHANGÉ";
-"intro.existing.tagline.three" = "TRANSFERER AVEC ELEGANCE.";
-"intro.existing.tagline.four" = "LES FONCTIONALITÉS DEMANDÉES";
+"intro.existing.tagline.three" = "TRANSFERER AVEC ELEGANCE";
+"intro.existing.tagline.four" = "LES FONCTIONS DEMANDÉES";
 
-"intro.existing.message.one" = "Une qualité de service inchangée. Simplement amélioré.";
-"intro.existing.message.two" = "Pas d'inquiètude. Vos transferts sont toujours là";
-"intro.existing.message.three" = "Des instructions et un design plus clair pour un esprit tranquille.";
+"intro.existing.message.one" = "Maintenant disponible \nen français.";
+"intro.existing.message.two" = "Pas d'inquiètude. Vos transferts sont toujours là.";
+"intro.existing.message.three" = "Instructions et design plus clairs pour un esprit tranquille.";
 "intro.existing.message.four" = "Définir éxactement combien le destinataire reçoit, annuler un transfert, inviter vos amis...";
 
 "refresh.pull" = "Tirez vers le bas pour raffraichir";

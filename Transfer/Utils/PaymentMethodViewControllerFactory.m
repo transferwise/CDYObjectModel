@@ -12,6 +12,10 @@
 #import "BankTransferViewController.h"
 #import "TRWAlertView.h"
 #import "GoogleAnalytics.h"
+#import "TransferwiseClient.h"
+#import "Payment.h"
+#import "AdyenOpenSessionOperation.h"
+#import <objc/runtime.h>
 
 @implementation PaymentMethodViewControllerFactory
 
@@ -22,11 +26,31 @@
     {
         CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
         [cardController setPayment:payment];
-        cardController.objectModel = objectModel;
+        
+        cardController.initialRequestProvider = ^(LoadRequestBlock loadRequestBlock)
+        {
+            NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
+            loadRequestBlock(request);
+        };
+        
+        cardController.loadURLBlock = ^(NSURL *url)
+        {
+            NSString *absoluteString = [url absoluteString];
+            if ([absoluteString rangeOfString:@"/card/paidIn"].location != NSNotFound) {
+                return URLActionAbortAndReportSuccess;
+            } else if ([absoluteString rangeOfString:@"/card/notPaidIn"].location != NSNotFound) {
+                return URLActionAbortAndReportFailure;
+            } else if ([absoluteString rangeOfString:@"/payment/"].location != NSNotFound) {
+                return URLActionAbortLoad;
+            }
+            
+            return URLActionContinueLoad;
+        };
+        
         [cardController setResultHandler:^(BOOL success) {
             if (success) {
                 [[GoogleAnalytics sharedInstance] sendScreen:@"Success"];
-                [[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentMade" withLabel:@"debitcard"];
+                [[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentMade" withLabel:@"debitcard_datacash"];
             } else {
                 [[GoogleAnalytics sharedInstance] sendEvent:@"ErrorDebitCardPayment" category:@"Error" label:@""];
                 TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.card.no.payment.title", nil)
@@ -35,15 +59,73 @@
                 [alertView show];
             }
         }];
+
+        result = cardController;
+    }
+    else if([method.type caseInsensitiveCompare:@"ADYEN"] == NSOrderedSame)
+    {
+        CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
+        [cardController setPayment:payment];
+        __weak typeof (cardController) weakCardController = cardController;
+        cardController.initialRequestProvider = ^(LoadRequestBlock loadRequestBlock)
+        {
+            AdyenOpenSessionOperation *operation = [AdyenOpenSessionOperation operationWithPaymentId:weakCardController.payment.remoteId resultHandler:^(NSError *error, NSURL *url) {
+                NSURLRequest* request;
+                
+                if(url)
+                {
+                    request = [NSURLRequest requestWithURL:url];
+                }
+                
+                loadRequestBlock(request);
+                objc_setAssociatedObject(weakCardController, @selector(operationWithPaymentId:resultHandler:), nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            }];
+            objc_setAssociatedObject(weakCardController, @selector(operationWithPaymentId:resultHandler:), operation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            
+            [operation execute];
+           
+        };
+        
+        cardController.loadURLBlock = ^(NSURL *url)
+        {
+            NSString *absoluteString = [url absoluteString];
+            if ([absoluteString rangeOfString:@"/card/paidIn"].location != NSNotFound) {
+                return URLActionAbortAndReportSuccess;
+            } else if ([absoluteString rangeOfString:@"/card/notPaidIn"].location != NSNotFound) {
+                return URLActionAbortAndReportFailure;
+            } else if ([absoluteString rangeOfString:@"/payment/"].location != NSNotFound) {
+                return URLActionAbortLoad;
+            }
+            
+            return URLActionContinueLoad;
+        };
+        
+        [cardController setResultHandler:^(BOOL success) {
+            if (success) {
+                [[GoogleAnalytics sharedInstance] sendScreen:@"Success"];
+                [[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentMade" withLabel:@"debitcard_adyen"];
+            } else {
+                [[GoogleAnalytics sharedInstance] sendEvent:@"ErrorDebitCardPayment" category:@"Error" label:@""];
+                TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.card.no.payment.title", nil)
+                                                                   message:NSLocalizedString(@"upload.money.card.no.payment.message", nil)];
+                [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                [alertView show];
+            }
+        }];
+
         result = cardController;
     }
     else
     {
         BankTransferViewController *bankController = [[BankTransferViewController alloc] init];
         [bankController setPayment:payment];
-        [bankController setObjectModel:objectModel];
         bankController.method = method;
         result = bankController;
+    }
+    
+    if([result respondsToSelector:@selector(setObjectModel:)])
+    {
+        [result performSelector:@selector(setObjectModel:) withObject:objectModel];
     }
     
     NSString *title = [NSString stringWithFormat:@"payment.method.%@",method.type];

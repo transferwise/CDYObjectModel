@@ -233,4 +233,12 @@
     return _workModel;
 }
 
++ (NSURLRequest*)getRequestForApiPath:(NSString*)path parameters:(NSDictionary*)params
+{
+    NSString *tokenizedPath = [[TransferwiseClient sharedClient] addTokenToPath:path];
+    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"GET" path:tokenizedPath parameters:params];
+    [TransferwiseOperation provideAuthenticationHeaders:request];
+    return request;
+}
+
 @end
