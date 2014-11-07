@@ -29,9 +29,7 @@
         
         cardController.initialRequestProvider = ^(LoadRequestBlock loadRequestBlock)
         {
-            NSString *path = [[TransferwiseClient sharedClient] addTokenToPath:@"/card/pay"];
-            NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"GET" path:path parameters:@{@"paymentId" : payment.remoteId}];
-            [TransferwiseOperation provideAuthenticationHeaders:request];
+            NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
             loadRequestBlock(request);
         };
         
@@ -48,7 +46,7 @@
             
             return URLActionContinueLoad;
         };
-        cardController.objectModel = objectModel;
+        
         [cardController setResultHandler:^(BOOL success) {
             if (success) {
                 [[GoogleAnalytics sharedInstance] sendScreen:@"Success"];
@@ -66,7 +64,6 @@
     }
     else if([method.type caseInsensitiveCompare:@"ADYEN"] == NSOrderedSame)
     {
-    //TODO: m@s add Adyen Specifics here.
         CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
         [cardController setPayment:payment];
         __weak typeof (cardController) weakCardController = cardController;
@@ -102,7 +99,7 @@
             
             return URLActionContinueLoad;
         };
-        cardController.objectModel = objectModel;
+        
         [cardController setResultHandler:^(BOOL success) {
             if (success) {
                 [[GoogleAnalytics sharedInstance] sendScreen:@"Success"];
@@ -122,9 +119,13 @@
     {
         BankTransferViewController *bankController = [[BankTransferViewController alloc] init];
         [bankController setPayment:payment];
-        [bankController setObjectModel:objectModel];
         bankController.method = method;
         result = bankController;
+    }
+    
+    if([result respondsToSelector:@selector(setObjectModel:)])
+    {
+        [result performSelector:@selector(setObjectModel:) withObject:objectModel];
     }
     
     NSString *title = [NSString stringWithFormat:@"payment.method.%@",method.type];
