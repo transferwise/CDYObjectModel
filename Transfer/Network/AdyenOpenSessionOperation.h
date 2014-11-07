@@ -14,4 +14,6 @@ typedef void (^AdyenOpenSessionResultHandler)(NSError *error, NSURL* url);
 
 @property (nonatomic,copy)AdyenOpenSessionResultHandler resultHandler;
 
++(instancetype)operationWithPaymentId:(NSNumber*)paymentId resultHandler:(AdyenOpenSessionResultHandler)resultHandler;
+
 @end

@@ -10,15 +10,15 @@
 #import "TransferwiseOperation+Private.h"
 #import "NetworkErrorCodes.h"
 
-#define kOpenSessionPath @"/openSession"
+#define kOpenSessionPath @"/adyen/openSession"
 
 @interface AdyenOpenSessionOperation ()
-@property (nonatomic,copy) NSString* paymentId;
+@property (nonatomic,copy) NSNumber* paymentId;
 @end
 
 @implementation AdyenOpenSessionOperation
 
-+(instancetype)operationWithPaymentId:(NSString*)paymentId resultHandler:(AdyenOpenSessionResultHandler)resultHandler;
++(instancetype)operationWithPaymentId:(NSNumber*)paymentId resultHandler:(AdyenOpenSessionResultHandler)resultHandler
 {
     AdyenOpenSessionOperation *instance = [[AdyenOpenSessionOperation alloc] init];
     instance.paymentId = paymentId;
@@ -45,7 +45,7 @@
     }];
     
     NSDictionary *data = @{@"paymentId" : self.paymentId};
-    [self postData:data toPath:path];
+    [self getDataFromPath:path params:data];
 }
 
 

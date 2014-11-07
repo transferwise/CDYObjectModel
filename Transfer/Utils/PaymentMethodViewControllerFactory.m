@@ -12,6 +12,10 @@
 #import "BankTransferViewController.h"
 #import "TRWAlertView.h"
 #import "GoogleAnalytics.h"
+#import "TransferwiseClient.h"
+#import "Payment.h"
+#import "AdyenOpenSessionOperation.h"
+#import <objc/runtime.h>
 
 @implementation PaymentMethodViewControllerFactory
 
@@ -22,7 +26,15 @@
     {
         CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
         [cardController setPayment:payment];
-        cardController.path = @"/card/pay";
+        
+        cardController.initialRequestProvider = ^(LoadRequestBlock loadRequestBlock)
+        {
+            NSString *path = [[TransferwiseClient sharedClient] addTokenToPath:@"/card/pay"];
+            NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"GET" path:path parameters:@{@"paymentId" : payment.remoteId}];
+            [TransferwiseOperation provideAuthenticationHeaders:request];
+            loadRequestBlock(request);
+        };
+        
         cardController.loadURLBlock = ^(NSURL *url)
         {
             NSString *absoluteString = [url absoluteString];
@@ -57,7 +69,26 @@
     //TODO: m@s add Adyen Specifics here.
         CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
         [cardController setPayment:payment];
-        cardController.path = @"/card/pay";
+        __weak typeof (cardController) weakCardController = cardController;
+        cardController.initialRequestProvider = ^(LoadRequestBlock loadRequestBlock)
+        {
+            AdyenOpenSessionOperation *operation = [AdyenOpenSessionOperation operationWithPaymentId:weakCardController.payment.remoteId resultHandler:^(NSError *error, NSURL *url) {
+                NSURLRequest* request;
+                
+                if(url)
+                {
+                    request = [NSURLRequest requestWithURL:url];
+                }
+                
+                loadRequestBlock(request);
+                objc_setAssociatedObject(weakCardController, @selector(operationWithPaymentId:resultHandler:), nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            }];
+            objc_setAssociatedObject(weakCardController, @selector(operationWithPaymentId:resultHandler:), operation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            
+            [operation execute];
+           
+        };
+        
         cardController.loadURLBlock = ^(NSURL *url)
         {
             NSString *absoluteString = [url absoluteString];

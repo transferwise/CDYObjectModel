@@ -113,11 +113,10 @@
 }
 
 - (void)loadPaymentPage {
-    MCLog(@"loadPaymentPage");
-    NSString *path = [[TransferwiseClient sharedClient] addTokenToPath:self.path];
-    NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"GET" path:path parameters:@{@"paymentId" : self.payment.remoteId}];
-    [TransferwiseOperation provideAuthenticationHeaders:request];
-    [self.webView loadRequest:request];
+    __weak typeof(self) weakSelf = self;
+    self.initialRequestProvider(^(NSURLRequest* request){
+        [weakSelf.webView loadRequest:request];
+    });
 }
 
 - (void)pushNextScreen {
