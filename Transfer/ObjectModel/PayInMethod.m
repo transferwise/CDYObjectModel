@@ -13,7 +13,7 @@
 
 +(NSArray*)supportedPayInMethods
 {
-    return @[@"REGULAR",@"DATA_CASH",@"SWIFT"];
+    return @[@"REGULAR",@"DATA_CASH",@"SWIFT",@"ADYEN"];
 }
 
 @end

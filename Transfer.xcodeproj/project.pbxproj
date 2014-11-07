@@ -76,6 +76,8 @@
 		38288F5119C86DC200661BFB /* PaymentMethodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38288F4D19C86DC200661BFB /* PaymentMethodCell.xib */; };
 		38288F5419C8855800661BFB /* PaymentMethodViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */; };
 		38288F5519C8855800661BFB /* PaymentMethodViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */; };
+		382D080B1A0CDD0200296FBC /* AdyenOpenSessionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 382D080A1A0CDD0200296FBC /* AdyenOpenSessionOperation.m */; };
+		382D080C1A0CDD0200296FBC /* AdyenOpenSessionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 382D080A1A0CDD0200296FBC /* AdyenOpenSessionOperation.m */; };
 		3831AA37194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
 		3831AA38194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
 		3831DCC419B764B900151A3D /* existingUserIntro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3831DCC319B764B900151A3D /* existingUserIntro.plist */; };
@@ -969,6 +971,8 @@
 		38288F4D19C86DC200661BFB /* PaymentMethodCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentMethodCell.xib; sourceTree = "<group>"; };
 		38288F5219C8855800661BFB /* PaymentMethodViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentMethodViewControllerFactory.h; sourceTree = "<group>"; };
 		38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodViewControllerFactory.m; sourceTree = "<group>"; };
+		382D08091A0CDD0200296FBC /* AdyenOpenSessionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdyenOpenSessionOperation.h; sourceTree = "<group>"; };
+		382D080A1A0CDD0200296FBC /* AdyenOpenSessionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdyenOpenSessionOperation.m; sourceTree = "<group>"; };
 		3831AA32194B31A200B3EE5C /* TransparentModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentModalViewController.h; sourceTree = "<group>"; };
 		3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentModalViewController.m; sourceTree = "<group>"; };
 		3831DCC319B764B900151A3D /* existingUserIntro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = existingUserIntro.plist; sourceTree = "<group>"; };
@@ -2348,8 +2352,8 @@
 		EA8FF6B5171D25530090A658 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				3818605519C9A206009A413E /* SetSSNOperation.h */,
-				3818605619C9A206009A413E /* SetSSNOperation.m */,
+				382D08091A0CDD0200296FBC /* AdyenOpenSessionOperation.h */,
+				382D080A1A0CDD0200296FBC /* AdyenOpenSessionOperation.m */,
 				1864AC9C173B7C80008773FC /* BusinessProfileOperation.h */,
 				1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */,
 				EAE7B6B117E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.h */,
@@ -2374,6 +2378,8 @@
 				EA8FF6BA171D26A00090A658 /* LoginOperation.m */,
 				EA88E67E172F97D50021492C /* NetworkErrorCodes.h */,
 				EA88E67F172F97D50021492C /* NetworkErrorCodes.m */,
+				3840862F19A2444000C837C2 /* PaymentCancelOperation.h */,
+				3840863019A2444000C837C2 /* PaymentCancelOperation.m */,
 				EA2296C017E04D1B001CF541 /* PaymentPurposeOperation.h */,
 				EA2296C117E04D1B001CF541 /* PaymentPurposeOperation.m */,
 				EA35C76A1732790D005602F7 /* PaymentsOperation.h */,
@@ -2390,6 +2396,8 @@
 				EA225CAE178ECD68009D6B83 /* RecipientsOperation.m */,
 				EAA54F591733EF1A00B65BF3 /* RecipientTypesOperation.h */,
 				EAA54F5A1733EF1A00B65BF3 /* RecipientTypesOperation.m */,
+				38F6DE5D19D2DF5A00C5B4B5 /* RecipientUpdateOperation.h */,
+				38F6DE5E19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m */,
 				4746EAF619A603BB00D03557 /* ReferralLinkOperation.h */,
 				4746EAF719A603BB00D03557 /* ReferralLinkOperation.m */,
 				4746EAFA19A7267B00D03557 /* ReferralListOperation.h */,
@@ -2400,6 +2408,8 @@
 				EA7F8815176F2B44003B0F46 /* RemoveTokenOperation.m */,
 				EAB61712191CDD1000545C21 /* ResetPasswordOperation.h */,
 				EAB61713191CDD1000545C21 /* ResetPasswordOperation.m */,
+				3818605519C9A206009A413E /* SetSSNOperation.h */,
+				3818605619C9A206009A413E /* SetSSNOperation.m */,
 				EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */,
 				EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */,
 				EA88E680172F97D50021492C /* TransferwiseClient.h */,
@@ -2415,10 +2425,6 @@
 				EAD736A6171E87ED00A037B1 /* UserRecipientsOperation.m */,
 				EA59292A175621D0007C0072 /* VerificationRequiredOperation.h */,
 				EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */,
-				3840862F19A2444000C837C2 /* PaymentCancelOperation.h */,
-				3840863019A2444000C837C2 /* PaymentCancelOperation.m */,
-				38F6DE5D19D2DF5A00C5B4B5 /* RecipientUpdateOperation.h */,
-				38F6DE5E19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -3484,6 +3490,7 @@
 				47FAF345194B2F11004CE986 /* LightBlueButton.m in Sources */,
 				EA31A18817DDB29B00F937F7 /* RemoveTokenOperation.m in Sources */,
 				479B693B19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */,
+				382D080C1A0CDD0200296FBC /* AdyenOpenSessionOperation.m in Sources */,
 				38FC0B9C19EED51500173E07 /* Mixpanel+Customisation.m in Sources */,
 				389F6842198FC1C6006CF1F6 /* PendingPayment.m in Sources */,
 				389F67F8198FC1C6006CF1F6 /* _AllowedTypeFieldValue.m in Sources */,
@@ -3770,6 +3777,7 @@
 				BB704E7D177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m in Sources */,
 				479B692C19487865001FA4FE /* TransferDetailsViewController.m in Sources */,
 				47FAF344194B2F11004CE986 /* LightBlueButton.m in Sources */,
+				382D080B1A0CDD0200296FBC /* AdyenOpenSessionOperation.m in Sources */,
 				38FC0B9B19EED51500173E07 /* Mixpanel+Customisation.m in Sources */,
 				389F6841198FC1C6006CF1F6 /* PendingPayment.m in Sources */,
 				389F67F7198FC1C6006CF1F6 /* _AllowedTypeFieldValue.m in Sources */,
