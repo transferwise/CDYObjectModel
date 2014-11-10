@@ -170,5 +170,8 @@
     });
 }
 
+- (IBAction)refreshTapped:(id)sender {
+    [self loadCardView];
+}
 
 @end

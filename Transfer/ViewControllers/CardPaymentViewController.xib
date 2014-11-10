@@ -16,23 +16,37 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M8l-I3-O0R">
+                <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M8l-I3-O0R">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="Cxo-9C-uzz"/>
                     </connections>
                 </webView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vX2-Ed-W54">
+                    <rect key="frame" x="259" y="516" width="53" height="44"/>
+                    <state key="normal" image="RefreshButton">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="refreshTapped:" destination="-1" eventType="touchUpInside" id="EGF-aH-zC6"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="M8l-I3-O0R" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Icd-L4-ibr"/>
-                <constraint firstItem="M8l-I3-O0R" firstAttribute="top" secondItem="1" secondAttribute="top" id="e0m-Ww-w0B"/>
-                <constraint firstAttribute="trailing" secondItem="M8l-I3-O0R" secondAttribute="trailing" id="idE-sz-TFA"/>
-                <constraint firstAttribute="bottom" secondItem="M8l-I3-O0R" secondAttribute="bottom" id="r1X-hG-07f"/>
+                <constraint firstAttribute="trailing" secondItem="vX2-Ed-W54" secondAttribute="trailing" constant="8" id="93S-Bp-URs"/>
+                <constraint firstAttribute="bottom" secondItem="M8l-I3-O0R" secondAttribute="bottom" id="Wcn-Ao-pGc"/>
+                <constraint firstItem="M8l-I3-O0R" firstAttribute="top" secondItem="1" secondAttribute="top" id="grq-Nh-vKM"/>
+                <constraint firstItem="M8l-I3-O0R" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="lPY-J5-89M"/>
+                <constraint firstAttribute="trailing" secondItem="M8l-I3-O0R" secondAttribute="trailing" id="sjY-xO-osH"/>
+                <constraint firstAttribute="bottom" secondItem="vX2-Ed-W54" secondAttribute="bottom" constant="8" id="yHN-ZI-T5M"/>
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="RefreshButton" width="53" height="44"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
