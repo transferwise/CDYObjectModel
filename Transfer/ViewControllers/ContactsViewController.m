@@ -32,6 +32,8 @@
 #import "ContactDetailsViewController.h"
 #import "ReferralsCoordinator.h"
 #import "SendButtonFlashHelper.h"
+#import "CurrenciesOperation.h"
+#import "CurrencyPairsOperation.h"
 
 NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
@@ -72,6 +74,9 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     self.titleLabel.text = self.title;
     
     self.noRecipientsMessage.text = NSLocalizedString(@"empty.contacts", nil);
+    
+    [self loadAllRequiredData];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -208,6 +213,30 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     detailController.recipient = [self.allRecipients objectAtIndex:indexPath.row];
     detailController.deletionDelegate = self;
     [self presentDetail:detailController];
+}
+
+-(void)loadAllRequiredData
+{
+    self.noRecipientsMessage.hidden = YES;
+    
+    //Retrieve currency pairs.
+    CurrenciesOperation *currenciesOperation = [CurrenciesOperation operation];
+    currenciesOperation.objectModel = self.objectModel;
+    [self setExecutedOperation:currenciesOperation];
+    __weak typeof (self) weakSelf = self;
+    [currenciesOperation setResultHandler:^(NSError* error)
+     {
+         CurrencyPairsOperation *operation = [CurrencyPairsOperation pairsOperation];
+         [weakSelf setExecutedOperation:operation];
+         [operation setObjectModel:weakSelf.objectModel];
+         
+         [operation setCurrenciesHandler:^(NSError *error) {
+             [weakSelf setExecutedOperation:nil];
+             [weakSelf refreshRecipients];
+         }];
+         [operation execute];
+     }];
+    [currenciesOperation execute];
 }
 
 - (void)refreshRecipients
