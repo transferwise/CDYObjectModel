@@ -20,6 +20,7 @@ const struct UserRelationships UserRelationships = {
 	.contacts = @"contacts",
 	.payments = @"payments",
 	.personalProfile = @"personalProfile",
+	.referralLinks = @"referralLinks",
 };
 
 @implementation UserID
@@ -187,6 +188,8 @@ const struct UserRelationships UserRelationships = {
 }
 
 @dynamic personalProfile;
+
+@dynamic referralLinks;
 
 @end
 

@@ -361,6 +361,10 @@
 		38FC0B9819EE84E000173E07 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC0B9619EE84E000173E07 /* libEventTracker.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		38FC0B9B19EED51500173E07 /* Mixpanel+Customisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */; };
 		38FC0B9C19EED51500173E07 /* Mixpanel+Customisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */; };
+		470C131D1A12598300EEAF25 /* ReferralLinksOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 470C131C1A12598300EEAF25 /* ReferralLinksOperation.m */; };
+		470C131E1A12598300EEAF25 /* ReferralLinksOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 470C131C1A12598300EEAF25 /* ReferralLinksOperation.m */; };
+		470C13211A12660300EEAF25 /* ObjectModel+ReferralLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 470C13201A12660300EEAF25 /* ObjectModel+ReferralLinks.m */; };
+		470C13221A12660300EEAF25 /* ObjectModel+ReferralLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 470C13201A12660300EEAF25 /* ObjectModel+ReferralLinks.m */; };
 		470DEFAD1945F02300684FEB /* MoneyEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */; };
 		470DEFAE19460C8D00684FEB /* MoneyEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */; };
 		4710499719470AFD00660B2F /* CurrencyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */; };
@@ -1214,6 +1218,10 @@
 		38FC0B9619EE84E000173E07 /* libEventTracker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEventTracker.a; sourceTree = "<group>"; };
 		38FC0B9919EED51500173E07 /* Mixpanel+Customisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Mixpanel+Customisation.h"; sourceTree = "<group>"; };
 		38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Mixpanel+Customisation.m"; sourceTree = "<group>"; };
+		470C131B1A12598300EEAF25 /* ReferralLinksOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralLinksOperation.h; sourceTree = "<group>"; };
+		470C131C1A12598300EEAF25 /* ReferralLinksOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralLinksOperation.m; sourceTree = "<group>"; };
+		470C131F1A12660300EEAF25 /* ObjectModel+ReferralLinks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+ReferralLinks.h"; sourceTree = "<group>"; };
+		470C13201A12660300EEAF25 /* ObjectModel+ReferralLinks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+ReferralLinks.m"; sourceTree = "<group>"; };
 		470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MoneyEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencyCell~ipad.xib"; sourceTree = "<group>"; };
 		47126B5319C2DCD40049F4C5 /* UIView+InheritantOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+InheritantOf.h"; sourceTree = "<group>"; };
@@ -1893,6 +1901,8 @@
 				389F67D4198FC1C5006CF1F6 /* ObjectModel+Recipients.m */,
 				389F67D5198FC1C5006CF1F6 /* ObjectModel+RecipientTypes.h */,
 				389F67D6198FC1C5006CF1F6 /* ObjectModel+RecipientTypes.m */,
+				470C131F1A12660300EEAF25 /* ObjectModel+ReferralLinks.h */,
+				470C13201A12660300EEAF25 /* ObjectModel+ReferralLinks.m */,
 				389F67D7198FC1C5006CF1F6 /* ObjectModel+Settings.h */,
 				389F67D8198FC1C5006CF1F6 /* ObjectModel+Settings.m */,
 				389F67D9198FC1C5006CF1F6 /* ObjectModel+Users.h */,
@@ -2398,6 +2408,8 @@
 				EAA54F5A1733EF1A00B65BF3 /* RecipientTypesOperation.m */,
 				38F6DE5D19D2DF5A00C5B4B5 /* RecipientUpdateOperation.h */,
 				38F6DE5E19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m */,
+				470C131B1A12598300EEAF25 /* ReferralLinksOperation.h */,
+				470C131C1A12598300EEAF25 /* ReferralLinksOperation.m */,
 				4746EAF619A603BB00D03557 /* ReferralLinkOperation.h */,
 				4746EAF719A603BB00D03557 /* ReferralLinkOperation.m */,
 				4746EAFA19A7267B00D03557 /* ReferralListOperation.h */,
@@ -3513,6 +3525,7 @@
 				380021CF192CC531009B1D53 /* MOMCompoundStyle.m in Sources */,
 				389F683C198FC1C6006CF1F6 /* PayInMethod.m in Sources */,
 				EAE7B6B417E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */,
+				470C131E1A12598300EEAF25 /* ReferralLinksOperation.m in Sources */,
 				47AC3F981987B2C3005491C6 /* SuggestionCell.m in Sources */,
 				38B0930E1951FA2A00315BE4 /* TextFieldSuggestionTable.m in Sources */,
 				EA31A19F17DDB29B00F937F7 /* NSDate+ServerTime.m in Sources */,
@@ -3564,6 +3577,7 @@
 				383FC10B19AE1B8400465FCA /* SeeHowViewController.m in Sources */,
 				383FC0FD19AE1ABC00465FCA /* PhoneLookupWrapper.m in Sources */,
 				EA2296C317E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
+				470C13221A12660300EEAF25 /* ObjectModel+ReferralLinks.m in Sources */,
 				383FC0F119AE1A1A00465FCA /* StateSuggestionProvider.m in Sources */,
 				EA0523F7191B596B00B32899 /* RefundDetailsViewController.m in Sources */,
 				38002200192F443E009B1D53 /* CurrencyCell.m in Sources */,
@@ -3800,6 +3814,7 @@
 				474D1AA61951A500008BC7A7 /* RedGradientButton.m in Sources */,
 				389F683B198FC1C6006CF1F6 /* PayInMethod.m in Sources */,
 				47AC3F971987B2C3005491C6 /* SuggestionCell.m in Sources */,
+				470C131D1A12598300EEAF25 /* ReferralLinksOperation.m in Sources */,
 				EA225CA3178EB591009D6B83 /* NSDate+ServerTime.m in Sources */,
 				EA225CAF178ECD68009D6B83 /* RecipientsOperation.m in Sources */,
 				EA0450DA17EC64BC008921DA /* IntroView.m in Sources */,
@@ -3851,6 +3866,7 @@
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
 				383FC0FC19AE1ABC00465FCA /* PhoneLookupWrapper.m in Sources */,
 				EA0523F6191B596B00B32899 /* RefundDetailsViewController.m in Sources */,
+				470C13211A12660300EEAF25 /* ObjectModel+ReferralLinks.m in Sources */,
 				383FC0F019AE1A1A00465FCA /* StateSuggestionProvider.m in Sources */,
 				380021FF192F443E009B1D53 /* CurrencyCell.m in Sources */,
 				47233CD6196D457300449042 /* LoginViewController.m in Sources */,

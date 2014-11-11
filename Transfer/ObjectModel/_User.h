@@ -20,12 +20,14 @@ extern const struct UserRelationships {
 	__unsafe_unretained NSString *contacts;
 	__unsafe_unretained NSString *payments;
 	__unsafe_unretained NSString *personalProfile;
+	__unsafe_unretained NSString *referralLinks;
 } UserRelationships;
 
 @class BusinessProfile;
 @class Recipient;
 @class Payment;
 @class PersonalProfile;
+@class NSManagedObject;
 
 @interface UserID : NSManagedObjectID {}
 @end
@@ -104,6 +106,10 @@ extern const struct UserRelationships {
 
 //- (BOOL)validatePersonalProfile:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSManagedObject *referralLinks;
+
+//- (BOOL)validateReferralLinks:(id*)value_ error:(NSError**)error_;
+
 @end
 
 @interface _User (ContactsCoreDataGeneratedAccessors)
@@ -174,5 +180,8 @@ extern const struct UserRelationships {
 
 - (PersonalProfile*)primitivePersonalProfile;
 - (void)setPrimitivePersonalProfile:(PersonalProfile*)value;
+
+- (NSManagedObject*)primitiveReferralLinks;
+- (void)setPrimitiveReferralLinks:(NSManagedObject*)value;
 
 @end
