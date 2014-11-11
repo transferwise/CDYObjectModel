@@ -120,8 +120,15 @@
 - (void)loadPaymentPage {
     __weak typeof(self) weakSelf = self;
     self.initialRequestProvider(^(NSURLRequest* request){
-        self.initialRequest = request;
-        [weakSelf.webView loadRequest:request];
+        if(request)
+        {
+            weakSelf.initialRequest = request;
+            [weakSelf.webView loadRequest:request];
+        }
+        else
+        {
+            [weakSelf.webView loadHTMLString:@"" baseURL:nil];
+        }
     });
 }
 
