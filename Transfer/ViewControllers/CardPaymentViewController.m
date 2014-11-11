@@ -22,7 +22,6 @@
 
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
-@property (nonatomic, strong) NSURLRequest *initialRequest;
 
 @end
 
@@ -98,11 +97,6 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     if (![webView.request.URL isFileURL]) {
-        
-        if(webView.request == self.initialRequest)
-        {
-            
-        }
         return;
     }
 
@@ -122,7 +116,6 @@
     self.initialRequestProvider(^(NSURLRequest* request){
         if(request)
         {
-            weakSelf.initialRequest = request;
             [weakSelf.webView loadRequest:request];
         }
         else
