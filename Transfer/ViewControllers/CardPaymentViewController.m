@@ -22,6 +22,7 @@
 
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
+@property (nonatomic, strong) NSURLRequest *initialRequest;
 
 @end
 
@@ -97,6 +98,11 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     if (![webView.request.URL isFileURL]) {
+        
+        if(webView.request == self.initialRequest)
+        {
+            
+        }
         return;
     }
 
@@ -114,6 +120,7 @@
 - (void)loadPaymentPage {
     __weak typeof(self) weakSelf = self;
     self.initialRequestProvider(^(NSURLRequest* request){
+        self.initialRequest = request;
         [weakSelf.webView loadRequest:request];
     });
 }
