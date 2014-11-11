@@ -43,10 +43,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if(IPAD)
-    {
-        self.webView.scrollView.contentInset = UIEdgeInsetsMake(30,0,0,0);
-    }
+
+    self.webView.scrollView.contentInset = UIEdgeInsetsMake(IPAD?30:10,0,0,0);
+
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -115,7 +114,14 @@
 - (void)loadPaymentPage {
     __weak typeof(self) weakSelf = self;
     self.initialRequestProvider(^(NSURLRequest* request){
-        [weakSelf.webView loadRequest:request];
+        if(request)
+        {
+            [weakSelf.webView loadRequest:request];
+        }
+        else
+        {
+            [weakSelf.webView loadHTMLString:@"" baseURL:nil];
+        }
     });
 }
 
@@ -171,5 +177,8 @@
     });
 }
 
+- (IBAction)refreshTapped:(id)sender {
+    [self loadCardView];
+}
 
 @end

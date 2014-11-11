@@ -76,6 +76,13 @@
                 {
                     request = [NSURLRequest requestWithURL:url];
                 }
+                else
+                {
+                    TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.card.no.payment.title", nil)
+                                                                       message:NSLocalizedString(@"upload.money.card.no.adyen.url", nil)];
+                    [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                    [alertView show];
+                }
                 
                 loadRequestBlock(request);
                 objc_setAssociatedObject(weakCardController, @selector(operationWithPaymentId:resultHandler:), nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
