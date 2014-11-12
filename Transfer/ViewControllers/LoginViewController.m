@@ -288,7 +288,7 @@ IB_DESIGNABLE
                                                                      [alertView show];
                                                                  }
                                                              }
-                                                             waitForDetailsCompletions:NO];
+                                                             waitForDetailsCompletions:YES];
             });
         }
     }];
