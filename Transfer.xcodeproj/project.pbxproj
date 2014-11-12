@@ -425,6 +425,10 @@
 		4746EAF919A603BB00D03557 /* ReferralLinkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4746EAF719A603BB00D03557 /* ReferralLinkOperation.m */; };
 		4746EAFC19A7267B00D03557 /* ReferralListOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4746EAFB19A7267B00D03557 /* ReferralListOperation.m */; };
 		4746EAFD19A7267B00D03557 /* ReferralListOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4746EAFB19A7267B00D03557 /* ReferralListOperation.m */; };
+		474A5A871A1270AB0094757B /* _ReferralLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 474A5A861A1270AB0094757B /* _ReferralLinks.m */; };
+		474A5A881A1270AB0094757B /* _ReferralLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 474A5A861A1270AB0094757B /* _ReferralLinks.m */; };
+		474A5A8B1A1270BC0094757B /* ReferralLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 474A5A8A1A1270BC0094757B /* ReferralLinks.m */; };
+		474A5A8C1A1270BC0094757B /* ReferralLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 474A5A8A1A1270BC0094757B /* ReferralLinks.m */; };
 		474C451D1992874E001F207C /* ProfileEditViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474C451C1992874E001F207C /* ProfileEditViewController~ipad.xib */; };
 		474C451E1992874E001F207C /* ProfileEditViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474C451C1992874E001F207C /* ProfileEditViewController~ipad.xib */; };
 		474C45211993CD38001F207C /* ProfilesEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 474C45201993CD38001F207C /* ProfilesEditViewController.m */; };
@@ -1272,6 +1276,10 @@
 		4746EAF719A603BB00D03557 /* ReferralLinkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralLinkOperation.m; sourceTree = "<group>"; };
 		4746EAFA19A7267B00D03557 /* ReferralListOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralListOperation.h; sourceTree = "<group>"; };
 		4746EAFB19A7267B00D03557 /* ReferralListOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralListOperation.m; sourceTree = "<group>"; };
+		474A5A851A1270AB0094757B /* _ReferralLinks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ReferralLinks.h; sourceTree = "<group>"; };
+		474A5A861A1270AB0094757B /* _ReferralLinks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ReferralLinks.m; sourceTree = "<group>"; };
+		474A5A891A1270BC0094757B /* ReferralLinks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralLinks.h; sourceTree = "<group>"; };
+		474A5A8A1A1270BC0094757B /* ReferralLinks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralLinks.m; sourceTree = "<group>"; };
 		474C451C1992874E001F207C /* ProfileEditViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ProfileEditViewController~ipad.xib"; sourceTree = "<group>"; };
 		474C451F1993CD38001F207C /* ProfilesEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilesEditViewController.h; sourceTree = "<group>"; };
 		474C45201993CD38001F207C /* ProfilesEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilesEditViewController.m; sourceTree = "<group>"; };
@@ -1929,6 +1937,8 @@
 				389F67EE198FC1C6006CF1F6 /* RecipientType.m */,
 				389F67EF198FC1C6006CF1F6 /* RecipientTypeField.h */,
 				389F67F0198FC1C6006CF1F6 /* RecipientTypeField.m */,
+				474A5A891A1270BC0094757B /* ReferralLinks.h */,
+				474A5A8A1A1270BC0094757B /* ReferralLinks.m */,
 				389F67F1198FC1C6006CF1F6 /* Setting.h */,
 				389F67F2198FC1C6006CF1F6 /* Setting.m */,
 				389F67F3198FC1C6006CF1F6 /* TypeFieldValue.h */,
@@ -1943,6 +1953,8 @@
 		389F6851198FC1D0006CF1F6 /* generated */ = {
 			isa = PBXGroup;
 			children = (
+				474A5A851A1270AB0094757B /* _ReferralLinks.h */,
+				474A5A861A1270AB0094757B /* _ReferralLinks.m */,
 				389F679D198FC1C5006CF1F6 /* _AllowedTypeFieldValue.h */,
 				389F679E198FC1C5006CF1F6 /* _AllowedTypeFieldValue.m */,
 				389F679F198FC1C5006CF1F6 /* _BusinessProfile.h */,
@@ -3460,6 +3472,7 @@
 				3887CBBF1976AF2B004DFFFD /* CancelHelper.m in Sources */,
 				EA31A17117DDB29B00F937F7 /* PhoneBookProfile.m in Sources */,
 				EAE7B6AD17E9AC3F00E03D73 /* IdentificationNotificationView.m in Sources */,
+				474A5A881A1270AB0094757B /* _ReferralLinks.m in Sources */,
 				EA31A17217DDB29B00F937F7 /* PhoneBookProfileSelector.m in Sources */,
 				EA31A17317DDB29B00F937F7 /* PhoneBookAddress.m in Sources */,
 				EA31A17417DDB29B00F937F7 /* DismissKeyboardTableView.m in Sources */,
@@ -3493,6 +3506,7 @@
 				47B36C841986543B002E66C7 /* MultipleEntryCell.m in Sources */,
 				38C7B29419742596004324E8 /* HeaderTabView.m in Sources */,
 				38B1C5D7195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */,
+				474A5A8C1A1270BC0094757B /* ReferralLinks.m in Sources */,
 				EA31A18317DDB29B00F937F7 /* PersonalProfileSource.m in Sources */,
 				EA31A18417DDB29B00F937F7 /* BusinessProfileSource.m in Sources */,
 				4723EA161973F32400B4345F /* ImageColoredButton.m in Sources */,
@@ -3749,6 +3763,7 @@
 				EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */,
 				EAE7B6AC17E9AC3F00E03D73 /* IdentificationNotificationView.m in Sources */,
 				EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */,
+				474A5A871A1270AB0094757B /* _ReferralLinks.m in Sources */,
 				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
 				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,
 				EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */,
@@ -3782,6 +3797,7 @@
 				47B36C831986543B002E66C7 /* MultipleEntryCell.m in Sources */,
 				38C7B29319742596004324E8 /* HeaderTabView.m in Sources */,
 				EA92D9541769BD9D0078D0C4 /* BusinessProfileCommitter.m in Sources */,
+				474A5A8B1A1270BC0094757B /* ReferralLinks.m in Sources */,
 				4723EA151973F32400B4345F /* ImageColoredButton.m in Sources */,
 				EA7F8816176F2B44003B0F46 /* RemoveTokenOperation.m in Sources */,
 				473DF972196D5ED600524C64 /* FloatingLabelTextField.m in Sources */,

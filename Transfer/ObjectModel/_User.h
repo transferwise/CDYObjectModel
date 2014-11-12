@@ -27,7 +27,7 @@ extern const struct UserRelationships {
 @class Recipient;
 @class Payment;
 @class PersonalProfile;
-@class NSManagedObject;
+@class ReferralLinks;
 
 @interface UserID : NSManagedObjectID {}
 @end
@@ -106,7 +106,7 @@ extern const struct UserRelationships {
 
 //- (BOOL)validatePersonalProfile:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSManagedObject *referralLinks;
+@property (nonatomic, strong) ReferralLinks *referralLinks;
 
 //- (BOOL)validateReferralLinks:(id*)value_ error:(NSError**)error_;
 
@@ -181,7 +181,7 @@ extern const struct UserRelationships {
 - (PersonalProfile*)primitivePersonalProfile;
 - (void)setPrimitivePersonalProfile:(PersonalProfile*)value;
 
-- (NSManagedObject*)primitiveReferralLinks;
-- (void)setPrimitiveReferralLinks:(NSManagedObject*)value;
+- (ReferralLinks*)primitiveReferralLinks;
+- (void)setPrimitiveReferralLinks:(ReferralLinks*)value;
 
 @end

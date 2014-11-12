@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
+#import "ReferralLinks.h"
 #import "ObjectModel+ReferralLinks.h"
 
 @implementation ObjectModel (ReferralLinks)
@@ -17,7 +18,15 @@
 
 - (NSDictionary *)createOrUpdateReferralLinks:(NSDictionary *)referralLinks
 {
-	
+	for (NSString* key in referralLinks)
+	{
+		
+	}
 }
+
+//- (ReferralChannel)getReferralChannel:(NSString *key)
+//{
+//	
+//}
 
 @end
