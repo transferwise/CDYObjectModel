@@ -4115,39 +4115,6 @@
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
-					"-ObjC",
-					"-lTestFlight",
-					"-licucore",
-					"-lz",
-					"-framework",
-					Accelerate,
-					"-framework",
-					Accounts,
-					"-framework",
-					CoreGraphics,
-					"-framework",
-					CoreLocation,
-					"-framework",
-					CoreTelephony,
-					"-framework",
-					CoreText,
-					"-framework",
-					Foundation,
-					"-framework",
-					MobileCoreServices,
-					"-framework",
-					QuartzCore,
-					"-framework",
-					Security,
-					"-framework",
-					Social,
-					"-framework",
-					SystemConfiguration,
-					"-framework",
-					UIKit,
-					"$(OTHER_LDFLAGS)",
-				);
 				PRODUCT_NAME = TransferDev;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -4186,39 +4153,6 @@
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
-					"-ObjC",
-					"-lTestFlight",
-					"-licucore",
-					"-lz",
-					"-framework",
-					Accelerate,
-					"-framework",
-					Accounts,
-					"-framework",
-					CoreGraphics,
-					"-framework",
-					CoreLocation,
-					"-framework",
-					CoreTelephony,
-					"-framework",
-					CoreText,
-					"-framework",
-					Foundation,
-					"-framework",
-					MobileCoreServices,
-					"-framework",
-					QuartzCore,
-					"-framework",
-					Security,
-					"-framework",
-					Social,
-					"-framework",
-					SystemConfiguration,
-					"-framework",
-					UIKit,
-					"-lEventTracker",
-				);
 				PRODUCT_NAME = TransferDev;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -4316,38 +4250,6 @@
 					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
-					"-ObjC",
-					"-lTestFlight",
-					"-licucore",
-					"-lz",
-					"-framework",
-					Accelerate,
-					"-framework",
-					Accounts,
-					"-framework",
-					CoreGraphics,
-					"-framework",
-					CoreLocation,
-					"-framework",
-					CoreTelephony,
-					"-framework",
-					CoreText,
-					"-framework",
-					Foundation,
-					"-framework",
-					MobileCoreServices,
-					"-framework",
-					QuartzCore,
-					"-framework",
-					Security,
-					"-framework",
-					Social,
-					"-framework",
-					SystemConfiguration,
-					"-framework",
-					UIKit,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -4423,38 +4325,6 @@
 					"-DNDEBUG",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
-					"-ObjC",
-					"-lTestFlight",
-					"-licucore",
-					"-lz",
-					"-framework",
-					Accelerate,
-					"-framework",
-					Accounts,
-					"-framework",
-					CoreGraphics,
-					"-framework",
-					CoreLocation,
-					"-framework",
-					CoreTelephony,
-					"-framework",
-					CoreText,
-					"-framework",
-					Foundation,
-					"-framework",
-					MobileCoreServices,
-					"-framework",
-					QuartzCore,
-					"-framework",
-					Security,
-					"-framework",
-					Social,
-					"-framework",
-					SystemConfiguration,
-					"-framework",
-					UIKit,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ee88535e-ac1d-47db-ac1d-1a57297b963a";
