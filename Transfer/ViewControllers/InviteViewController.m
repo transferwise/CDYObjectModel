@@ -93,6 +93,13 @@
 				break;
 		}
 	}
+	
+	if (self.linkUrl)
+	{
+		if (!self.emailUrl) self.emailUrl = self.linkUrl;
+		if (!self.fbUrl) self.fbUrl = self.linkUrl;
+		if (!self.smsUrl) self.smsUrl = self.smsUrl;
+	}
 }
 
 - (IBAction)facebookTapped:(id)sender {

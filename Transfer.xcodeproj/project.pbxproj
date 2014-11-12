@@ -1288,6 +1288,7 @@
 		474A5A8E1A137EDC0094757B /* _ReferralLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ReferralLink.m; sourceTree = "<group>"; };
 		474A5A911A137EFA0094757B /* ReferralLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralLink.h; sourceTree = "<group>"; };
 		474A5A921A137EFA0094757B /* ReferralLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralLink.m; sourceTree = "<group>"; };
+		474A5A961A13B8370094757B /* Transfer_v5.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v5.1.xcdatamodel; sourceTree = "<group>"; };
 		474C451C1992874E001F207C /* ProfileEditViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ProfileEditViewController~ipad.xib"; sourceTree = "<group>"; };
 		474C451F1993CD38001F207C /* ProfilesEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilesEditViewController.h; sourceTree = "<group>"; };
 		474C45201993CD38001F207C /* ProfilesEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilesEditViewController.m; sourceTree = "<group>"; };
@@ -4404,6 +4405,7 @@
 		38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				474A5A961A13B8370094757B /* Transfer_v5.1.xcdatamodel */,
 				384CF64519F6ADE50011DDAD /* Transfer_v5.xcdatamodel */,
 				3818605919C9AB3E009A413E /* Transfer_v4.xcdatamodel */,
 				38CB1F7919ABBB6200CD0953 /* Transfer_v3.1.xcdatamodel */,
@@ -4412,7 +4414,7 @@
 				38CB1F7519ABB47000CD0953 /* Transfer_v2.xcdatamodel */,
 				38CB1F7619ABB47000CD0953 /* Transfer_v3.xcdatamodel */,
 			);
-			currentVersion = 384CF64519F6ADE50011DDAD /* Transfer_v5.xcdatamodel */;
+			currentVersion = 474A5A961A13B8370094757B /* Transfer_v5.1.xcdatamodel */;
 			name = Transfer.xcdatamodeld;
 			path = ../Transfer.xcdatamodeld;
 			sourceTree = "<group>";
