@@ -42,7 +42,7 @@ NSString *const kReferralLinksPath = @"/referral/links";
 		}
 	}];
 	
-	[self getDataFromPath:path params:@{@"inviteSource" : TRWAppType}];
+	[self getDataFromPath:path params:@{@"invitePlatform" : TRWAppType}];
 }
 
 + (ReferralLinksOperation *)operation

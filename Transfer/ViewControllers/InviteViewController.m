@@ -18,6 +18,7 @@
 #import "NavigationBarCustomiser.h"
 #import "UIImage+Color.h"
 #import "GoogleAnalytics.h"
+#import "ReferralLink.h"
 
 
 @interface InviteViewController () <MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
@@ -27,6 +28,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contextLabel;
 @property (weak, nonatomic) IBOutlet UIButton *urlCopyButton;
+
+@property (strong, nonatomic) NSString* fbUrl;
+@property (strong, nonatomic) NSString* smsUrl;
+@property (strong, nonatomic) NSString* emailUrl;
+@property (strong, nonatomic) NSString* linkUrl;
 
 @end
 
@@ -50,10 +56,14 @@
     [self.urlCopyButton setTitle:NSLocalizedString(@"invite.copy.button.title", @"") forState:UIControlStateNormal];
     self.titleLabel.text = NSLocalizedString(@"invite.modal.title", nil);
     self.contextLabel.text = NSLocalizedString(@"invite.context", nil);
+	
+	[self parseUrls];
     
-    
-    self.smsButton.hidden = ![MFMessageComposeViewController canSendText];
+    self.smsButton.hidden = self.smsUrl && ![MFMessageComposeViewController canSendText];
     [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Invite friends modal"]];
+	self.facebookButton.enabled = self.fbUrl;
+	self.emailButton.enabled = self.emailUrl;
+	self.urlCopyButton.enabled = self.linkUrl;
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,9 +72,32 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)parseUrls
+{
+	for (ReferralLink *link in self.referralLinks)
+	{
+		switch (link.channelValue) {
+			case ReferralChannelEmail:
+				self.emailUrl = link.url;
+				break;
+			case ReferralChannelFb:
+				self.fbUrl = link.url;
+				break;
+			case ReferralChannelSms:
+				self.smsUrl = link.url;
+				break;
+			case ReferralChannelLink:
+				self.linkUrl = link.url;
+				break;
+			default:
+				break;
+		}
+	}
+}
+
 - (IBAction)facebookTapped:(id)sender {
     FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
-    NSURL* url = [NSURL URLWithString:self.inviteUrl];
+    NSURL* url = [NSURL URLWithString:self.fbUrl];
     params.link = url;
     BOOL canShare = [FBDialogs canPresentShareDialogWithParams:params];
     if (canShare) {
@@ -124,7 +157,7 @@
     {
 
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaEmailInitiated"];
-        NSURL* url = [NSURL URLWithString:self.inviteUrl];
+        NSURL* url = [NSURL URLWithString:self.emailUrl];
         [NavigationBarCustomiser noStyling];
         MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
         [controller setMailComposeDelegate:self];
@@ -140,7 +173,7 @@
 - (IBAction)smsTapped:(id)sender {
  
     [[GoogleAnalytics sharedInstance] sendAppEvent:@"InviteViaSMSInitiated"];
-    NSURL* url = [NSURL URLWithString:self.inviteUrl];
+    NSURL* url = [NSURL URLWithString:self.smsUrl];
     [NavigationBarCustomiser noStyling];
 
     MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
@@ -158,7 +191,7 @@
     [self.urlCopyButton setTitle:NSLocalizedString(@"invite.copied.button.title", @"") forState:UIControlStateNormal];
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     self.urlCopyButton.alpha = 0.5f;
-    pasteboard.string = self.inviteUrl;
+    pasteboard.string = self.linkUrl;
     [[GoogleAnalytics sharedInstance] sendAppEvent:@"CopyInviteLink"];    
 }
 

@@ -57,7 +57,7 @@
 			  weakController:(UIViewController *)controller
 {
 	InviteViewController *inviteController = [[InviteViewController alloc] init];
-//	inviteController.inviteUrl = referralLink;
+	inviteController.referralLinks = referralLinks;
 	inviteController.objectModel = coordinator.objectModel;
 	[inviteController presentOnViewController:controller.view.window.rootViewController];
 }
@@ -75,37 +75,37 @@
 			[self showInviteController:referralLinks
 					   weakCoordinator:self
 						weakController:controller];
+		}		
+		else
+		{
+			TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:controller.navigationController.view];
+			[hud setMessage:NSLocalizedString(@"invite.link.querying", nil)];
+			ReferralLinksOperation *referralLinksOperation = [ReferralLinksOperation operation];
+			[referralLinksOperation setObjectModel:self.objectModel];
+			self.currentOperation = referralLinksOperation;
+			
+			__weak UIViewController* weakController = controller;
+			__weak ReferralsCoordinator* weakCoordinator = self;
+			
+			[referralLinksOperation setResultHandler:^(NSError *error, NSArray *referralLinks) {
+				dispatch_async(dispatch_get_main_queue(), ^{
+					[hud hide];
+					
+					if (!error && referralLinks)
+					{
+						[self showInviteController:referralLinks weakCoordinator:weakCoordinator weakController:weakController];
+						return;
+					}
+					
+					TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"invite.link.error.title", nil)
+																	   message:NSLocalizedString(@"invite.link.error.message", nil)];
+					[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+					[alertView show];
+				});
+			}];
+			
+			[referralLinksOperation execute];
 		}
-	}
-	else
-	{
-		TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:controller.navigationController.view];
-		[hud setMessage:NSLocalizedString(@"invite.link.querying", nil)];
-		ReferralLinksOperation *referralLinksOperation = [ReferralLinksOperation operation];
-		[referralLinksOperation setObjectModel:self.objectModel];
-		self.currentOperation = referralLinksOperation;
-		
-		__weak UIViewController* weakController = controller;
-		__weak ReferralsCoordinator* weakCoordinator = self;
-		
-		[referralLinksOperation setResultHandler:^(NSError *error, NSArray *referralLinks) {
-			dispatch_async(dispatch_get_main_queue(), ^{
-				[hud hide];
-				
-				if (!error && referralLinks)
-				{
-					[self showInviteController:referralLinks weakCoordinator:weakCoordinator weakController:weakController];
-					return;
-				}
-				
-				TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"invite.link.error.title", nil)
-																   message:NSLocalizedString(@"invite.link.error.message", nil)];
-				[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-				[alertView show];
-			});
-		}];
-		
-		[referralLinksOperation execute];
 	}
 }
 

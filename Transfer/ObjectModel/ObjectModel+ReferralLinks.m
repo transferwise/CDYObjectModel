@@ -13,7 +13,7 @@
 
 - (NSArray *)referralLinks
 {
-	return [self fetchEntityNamed:[ReferralLink entityName] atOffset:0];
+	return [self fetchEntitiesNamed:[ReferralLink entityName] withSortDescriptors:nil];
 }
 
 - (NSArray *)createOrUpdateReferralLinks:(NSDictionary *)referralLinks
