@@ -10,9 +10,10 @@
 #import "Constants.h"
 #import "TRWProgressHUD.h"
 #import "TRWAlertView.h"
-#import "ReferralLinkOperation.h"
+#import "ReferralLinksOperation.h"
 #import "InviteViewController.h"
 #import "ObjectModel+Users.h"
+#import "ObjectModel+ReferralLinks.h"
 #import "User.h"
 
 @interface ReferralsCoordinator ()
@@ -51,12 +52,12 @@
 	return nil;
 }
 
-- (void)showInviteController:(NSString *)referralLink
+- (void)showInviteController:(NSArray *)referralLinks
 			 weakCoordinator:(ReferralsCoordinator *)coordinator
 			  weakController:(UIViewController *)controller
 {
 	InviteViewController *inviteController = [[InviteViewController alloc] init];
-	inviteController.inviteUrl = referralLink;
+	inviteController.referralLinks = referralLinks;
 	inviteController.objectModel = coordinator.objectModel;
 	[inviteController presentOnViewController:controller.view.window.rootViewController];
 }
@@ -65,41 +66,46 @@
 {
 	User *user = self.objectModel.currentUser;
 	
-	if (user && user.inviteUrl && [user.inviteUrl rangeOfString:@"/r/"].location == NSNotFound)
+	if (user)
 	{
-		[self showInviteController:user.inviteUrl
-				   weakCoordinator:self
-					weakController:controller];
-	}
-	else
-	{
-		TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:controller.navigationController.view];
-		[hud setMessage:NSLocalizedString(@"invite.link.querying", nil)];
-		ReferralLinkOperation *referralLinkOperation = [ReferralLinkOperation operation];
-		[referralLinkOperation setObjectModel:self.objectModel];
-		self.currentOperation = referralLinkOperation;
+		NSArray *referralLinks = [self.objectModel referralLinks];
 		
-		__weak UIViewController* weakController = controller;
-		__weak ReferralsCoordinator* weakCoordinator = self;
-		
-		[referralLinkOperation setResultHandler:^(NSError *error, NSString *referralLink) {
-			dispatch_async(dispatch_get_main_queue(), ^{
-				[hud hide];
-				
-				if (!error && referralLink)
-				{
-					[self showInviteController:referralLink weakCoordinator:weakCoordinator weakController:weakController];
-					return;
-				}
-				
-				TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"invite.link.error.title", nil)
-																   message:NSLocalizedString(@"invite.link.error.message", nil)];
-				[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-				[alertView show];
-			});
-		}];
-		
-		[referralLinkOperation execute];
+		if (referralLinks && [referralLinks count] > 0)
+		{
+			[self showInviteController:referralLinks
+					   weakCoordinator:self
+						weakController:controller];
+		}		
+		else
+		{
+			TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:controller.navigationController.view];
+			[hud setMessage:NSLocalizedString(@"invite.link.querying", nil)];
+			ReferralLinksOperation *referralLinksOperation = [ReferralLinksOperation operation];
+			[referralLinksOperation setObjectModel:self.objectModel];
+			self.currentOperation = referralLinksOperation;
+			
+			__weak UIViewController* weakController = controller;
+			__weak ReferralsCoordinator* weakCoordinator = self;
+			
+			[referralLinksOperation setResultHandler:^(NSError *error, NSArray *referralLinks) {
+				dispatch_async(dispatch_get_main_queue(), ^{
+					[hud hide];
+					
+					if (!error && referralLinks)
+					{
+						[self showInviteController:referralLinks weakCoordinator:weakCoordinator weakController:weakController];
+						return;
+					}
+					
+					TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"invite.link.error.title", nil)
+																	   message:NSLocalizedString(@"invite.link.error.message", nil)];
+					[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+					[alertView show];
+				});
+			}];
+			
+			[referralLinksOperation execute];
+		}
 	}
 }
 

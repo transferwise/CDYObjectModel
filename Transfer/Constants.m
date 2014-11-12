@@ -38,7 +38,7 @@ NSString *const TRWGoogleTagManagerContainerId = @"GTM-TDZF76";
 
 NSString *const TRWMixpanelToken = @"96ffee966b209ba8b874598f4d936ff6";
 
-NSString *const TRWAppType = @"IosApp";
+NSString *const TRWAppType = @"Ios";
 
 NSString *const TRWImpactRadiusAppId = @"6598";
 NSString *const TRWImpactRadiusSID = @"IR4gjNxRYJ6d26091rA9zo7rpJBPnosnn2";

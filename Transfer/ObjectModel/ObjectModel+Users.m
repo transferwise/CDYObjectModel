@@ -118,15 +118,6 @@
     return user;
 }
 
-- (void)saveInviteUrl:(NSString *)inviteUrl
-{
-	User* user = [self currentUser];
-	if (user && inviteUrl)
-	{
-		user.inviteUrl = inviteUrl;
-	}
-}
-
 - (void)saveReferralData:(NSDictionary*)data
 {
     if (data)

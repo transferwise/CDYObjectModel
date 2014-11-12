@@ -8,7 +8,6 @@ const struct UserAttributes UserAttributes = {
 	.email = @"email",
 	.invitationReward = @"invitationReward",
 	.invitationRewardCurrency = @"invitationRewardCurrency",
-	.inviteUrl = @"inviteUrl",
 	.pReference = @"pReference",
 	.password = @"password",
 	.sendAsBusinessDefaultSetting = @"sendAsBusinessDefaultSetting",
@@ -20,6 +19,7 @@ const struct UserRelationships UserRelationships = {
 	.contacts = @"contacts",
 	.payments = @"payments",
 	.personalProfile = @"personalProfile",
+	.referralLinks = @"referralLinks",
 };
 
 @implementation UserID
@@ -116,8 +116,6 @@ const struct UserRelationships UserRelationships = {
 
 @dynamic invitationRewardCurrency;
 
-@dynamic inviteUrl;
-
 @dynamic pReference;
 
 @dynamic password;
@@ -187,6 +185,8 @@ const struct UserRelationships UserRelationships = {
 }
 
 @dynamic personalProfile;
+
+@dynamic referralLinks;
 
 @end
 
