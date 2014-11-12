@@ -716,3 +716,5 @@ We'll send you an email in order to let you choose a new password.";
 "transfertime.USD.REGULAR" = "a few business hours";
 
 "upload.money.bankname.title" = "Bank name";
+
+"upload.money.card.no.adyen.url" = "Could not load debit card screen. Please try again.";

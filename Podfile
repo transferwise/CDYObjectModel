@@ -1,3 +1,4 @@
+source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '7.0'
 
 link_with :Transfer, :TransferDev
@@ -16,3 +17,6 @@ pod 'CDYAnalyticsCoordinator', :git => 'https://github.com/coodly/CDYAnalyticsCo
 pod 'JVFloatLabeledTextField'
 pod 'Reachability'
 
+target :TransferTests, :exclusive => true do
+  pod 'Kiwi'
+end
