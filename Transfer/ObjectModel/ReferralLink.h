@@ -1,4 +1,4 @@
-#import "_ReferralLinks.h"
+#import "_ReferralLink.h"
 
 NS_ENUM(NSInteger, ReferralChannel)
 {
@@ -8,6 +8,6 @@ NS_ENUM(NSInteger, ReferralChannel)
 	ReferralChannelSms
 };
 
-@interface ReferralLinks : _ReferralLinks {}
-
+@interface ReferralLink : _ReferralLink {}
+// Custom logic goes here.
 @end

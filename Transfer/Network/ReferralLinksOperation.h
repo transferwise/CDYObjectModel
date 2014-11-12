@@ -8,7 +8,7 @@
 
 #import "TransferwiseOperation.h"
 
-typedef void (^ReferralLinksBlock)(NSError *error, NSDictionary *links);
+typedef void (^ReferralLinksBlock)(NSError *error, NSArray *links);
 
 @interface ReferralLinksOperation : TransferwiseOperation
 

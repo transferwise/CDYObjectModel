@@ -421,14 +421,13 @@
 		473DF975196D637200524C64 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473DF974196D637200524C64 /* LoginViewController~ipad.xib */; };
 		473DF976196D637200524C64 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473DF974196D637200524C64 /* LoginViewController~ipad.xib */; };
 		473F62931940BDD9001E280B /* NewPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */; };
-		4746EAF819A603BB00D03557 /* ReferralLinkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4746EAF719A603BB00D03557 /* ReferralLinkOperation.m */; };
-		4746EAF919A603BB00D03557 /* ReferralLinkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4746EAF719A603BB00D03557 /* ReferralLinkOperation.m */; };
 		4746EAFC19A7267B00D03557 /* ReferralListOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4746EAFB19A7267B00D03557 /* ReferralListOperation.m */; };
 		4746EAFD19A7267B00D03557 /* ReferralListOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4746EAFB19A7267B00D03557 /* ReferralListOperation.m */; };
-		474A5A871A1270AB0094757B /* _ReferralLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 474A5A861A1270AB0094757B /* _ReferralLinks.m */; };
-		474A5A881A1270AB0094757B /* _ReferralLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 474A5A861A1270AB0094757B /* _ReferralLinks.m */; };
-		474A5A8B1A1270BC0094757B /* ReferralLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 474A5A8A1A1270BC0094757B /* ReferralLinks.m */; };
-		474A5A8C1A1270BC0094757B /* ReferralLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 474A5A8A1A1270BC0094757B /* ReferralLinks.m */; };
+		474A5A8F1A137EDC0094757B /* _ReferralLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 474A5A8E1A137EDC0094757B /* _ReferralLink.m */; };
+		474A5A901A137EDC0094757B /* _ReferralLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 474A5A8E1A137EDC0094757B /* _ReferralLink.m */; };
+		474A5A931A137EFA0094757B /* ReferralLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 474A5A921A137EFA0094757B /* ReferralLink.m */; };
+		474A5A941A137EFA0094757B /* ReferralLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 474A5A921A137EFA0094757B /* ReferralLink.m */; };
+		474A5A951A137EFA0094757B /* ReferralLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 474A5A921A137EFA0094757B /* ReferralLink.m */; };
 		474C451D1992874E001F207C /* ProfileEditViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474C451C1992874E001F207C /* ProfileEditViewController~ipad.xib */; };
 		474C451E1992874E001F207C /* ProfileEditViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474C451C1992874E001F207C /* ProfileEditViewController~ipad.xib */; };
 		474C45211993CD38001F207C /* ProfilesEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 474C45201993CD38001F207C /* ProfilesEditViewController.m */; };
@@ -1283,14 +1282,12 @@
 		473DF971196D5ED600524C64 /* FloatingLabelTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingLabelTextField.m; sourceTree = "<group>"; };
 		473DF974196D637200524C64 /* LoginViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~ipad.xib"; sourceTree = "<group>"; };
 		473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NewPaymentViewController~ipad.xib"; sourceTree = "<group>"; };
-		4746EAF619A603BB00D03557 /* ReferralLinkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralLinkOperation.h; sourceTree = "<group>"; };
-		4746EAF719A603BB00D03557 /* ReferralLinkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralLinkOperation.m; sourceTree = "<group>"; };
 		4746EAFA19A7267B00D03557 /* ReferralListOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralListOperation.h; sourceTree = "<group>"; };
 		4746EAFB19A7267B00D03557 /* ReferralListOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralListOperation.m; sourceTree = "<group>"; };
-		474A5A851A1270AB0094757B /* _ReferralLinks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ReferralLinks.h; sourceTree = "<group>"; };
-		474A5A861A1270AB0094757B /* _ReferralLinks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ReferralLinks.m; sourceTree = "<group>"; };
-		474A5A891A1270BC0094757B /* ReferralLinks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralLinks.h; sourceTree = "<group>"; };
-		474A5A8A1A1270BC0094757B /* ReferralLinks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralLinks.m; sourceTree = "<group>"; };
+		474A5A8D1A137EDC0094757B /* _ReferralLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ReferralLink.h; sourceTree = "<group>"; };
+		474A5A8E1A137EDC0094757B /* _ReferralLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ReferralLink.m; sourceTree = "<group>"; };
+		474A5A911A137EFA0094757B /* ReferralLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralLink.h; sourceTree = "<group>"; };
+		474A5A921A137EFA0094757B /* ReferralLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralLink.m; sourceTree = "<group>"; };
 		474C451C1992874E001F207C /* ProfileEditViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ProfileEditViewController~ipad.xib"; sourceTree = "<group>"; };
 		474C451F1993CD38001F207C /* ProfilesEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilesEditViewController.h; sourceTree = "<group>"; };
 		474C45201993CD38001F207C /* ProfilesEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilesEditViewController.m; sourceTree = "<group>"; };
@@ -1975,8 +1972,8 @@
 				389F67EE198FC1C6006CF1F6 /* RecipientType.m */,
 				389F67EF198FC1C6006CF1F6 /* RecipientTypeField.h */,
 				389F67F0198FC1C6006CF1F6 /* RecipientTypeField.m */,
-				474A5A891A1270BC0094757B /* ReferralLinks.h */,
-				474A5A8A1A1270BC0094757B /* ReferralLinks.m */,
+				474A5A911A137EFA0094757B /* ReferralLink.h */,
+				474A5A921A137EFA0094757B /* ReferralLink.m */,
 				389F67F1198FC1C6006CF1F6 /* Setting.h */,
 				389F67F2198FC1C6006CF1F6 /* Setting.m */,
 				389F67F3198FC1C6006CF1F6 /* TypeFieldValue.h */,
@@ -1991,8 +1988,6 @@
 		389F6851198FC1D0006CF1F6 /* generated */ = {
 			isa = PBXGroup;
 			children = (
-				474A5A851A1270AB0094757B /* _ReferralLinks.h */,
-				474A5A861A1270AB0094757B /* _ReferralLinks.m */,
 				389F679D198FC1C5006CF1F6 /* _AllowedTypeFieldValue.h */,
 				389F679E198FC1C5006CF1F6 /* _AllowedTypeFieldValue.m */,
 				389F679F198FC1C5006CF1F6 /* _BusinessProfile.h */,
@@ -2021,6 +2016,8 @@
 				389F67B6198FC1C5006CF1F6 /* _RecipientType.m */,
 				389F67B7198FC1C5006CF1F6 /* _RecipientTypeField.h */,
 				389F67B8198FC1C5006CF1F6 /* _RecipientTypeField.m */,
+				474A5A8D1A137EDC0094757B /* _ReferralLink.h */,
+				474A5A8E1A137EDC0094757B /* _ReferralLink.m */,
 				389F67B9198FC1C5006CF1F6 /* _Setting.h */,
 				389F67BA198FC1C5006CF1F6 /* _Setting.m */,
 				389F67BB198FC1C5006CF1F6 /* _TypeFieldValue.h */,
@@ -2477,8 +2474,6 @@
 				38F6DE5E19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m */,
 				470C131B1A12598300EEAF25 /* ReferralLinksOperation.h */,
 				470C131C1A12598300EEAF25 /* ReferralLinksOperation.m */,
-				4746EAF619A603BB00D03557 /* ReferralLinkOperation.h */,
-				4746EAF719A603BB00D03557 /* ReferralLinkOperation.m */,
 				4746EAFA19A7267B00D03557 /* ReferralListOperation.h */,
 				4746EAFB19A7267B00D03557 /* ReferralListOperation.m */,
 				EA1861E11746442900BD01BB /* RegisterOperation.h */,
@@ -3436,6 +3431,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				474A5A951A137EFA0094757B /* ReferralLink.m in Sources */,
 				47DC89861A03950F0042054B /* TransferTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3473,6 +3469,7 @@
 				4746EAFD19A7267B00D03557 /* ReferralListOperation.m in Sources */,
 				EA31A13217DDB29B00F937F7 /* UIView+Loading.m in Sources */,
 				EA31A13317DDB29B00F937F7 /* TextEntryCell.m in Sources */,
+				474A5A901A137EDC0094757B /* _ReferralLink.m in Sources */,
 				3818605819C9A206009A413E /* SetSSNOperation.m in Sources */,
 				EA31A13417DDB29B00F937F7 /* NSString+Validation.m in Sources */,
 				4723EA0E1973D8E900B4345F /* RedButton.m in Sources */,
@@ -3485,6 +3482,7 @@
 				476D78C619B70F7500B561DA /* UIViewController+SwitchToViewController.m in Sources */,
 				EA31A13917DDB29B00F937F7 /* TransferwiseOperation.m in Sources */,
 				EA31A13A17DDB29B00F937F7 /* LoginOperation.m in Sources */,
+				474A5A941A137EFA0094757B /* ReferralLink.m in Sources */,
 				380021F8192F43EA009B1D53 /* TabCell.m in Sources */,
 				47343ACF1977E093009D9C3A /* RecipientsFooterView.m in Sources */,
 				3887CBBB197690FC004DFFFD /* OptionalSplitViewController.m in Sources */,
@@ -3600,7 +3598,6 @@
 				3887CBBF1976AF2B004DFFFD /* CancelHelper.m in Sources */,
 				EA31A17117DDB29B00F937F7 /* PhoneBookProfile.m in Sources */,
 				EAE7B6AD17E9AC3F00E03D73 /* IdentificationNotificationView.m in Sources */,
-				474A5A881A1270AB0094757B /* _ReferralLinks.m in Sources */,
 				EA31A17217DDB29B00F937F7 /* PhoneBookProfileSelector.m in Sources */,
 				EA31A17317DDB29B00F937F7 /* PhoneBookAddress.m in Sources */,
 				EA31A17417DDB29B00F937F7 /* DismissKeyboardTableView.m in Sources */,
@@ -3634,7 +3631,6 @@
 				47B36C841986543B002E66C7 /* MultipleEntryCell.m in Sources */,
 				38C7B29419742596004324E8 /* HeaderTabView.m in Sources */,
 				38B1C5D7195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */,
-				474A5A8C1A1270BC0094757B /* ReferralLinks.m in Sources */,
 				EA31A18317DDB29B00F937F7 /* PersonalProfileSource.m in Sources */,
 				EA31A18417DDB29B00F937F7 /* BusinessProfileSource.m in Sources */,
 				4723EA161973F32400B4345F /* ImageColoredButton.m in Sources */,
@@ -3713,7 +3709,6 @@
 				EA31A1BC17DDB29B00F937F7 /* UIDevice-Hardware.m in Sources */,
 				389F6834198FC1C6006CF1F6 /* ObjectModel+Users.m in Sources */,
 				389F6836198FC1C6006CF1F6 /* ObjectModel.m in Sources */,
-				4746EAF919A603BB00D03557 /* ReferralLinkOperation.m in Sources */,
 				38D8FBD619AF21B4007C73DF /* ReferralsCoordinator.m in Sources */,
 				EA31A1BD17DDB29B00F937F7 /* FeedbackCoordinator.m in Sources */,
 				383FC10B19AE1B8400465FCA /* SeeHowViewController.m in Sources */,
@@ -3764,6 +3759,7 @@
 				4746EAFC19A7267B00D03557 /* ReferralListOperation.m in Sources */,
 				EA8FF6B8171D25C20090A658 /* TransferwiseOperation.m in Sources */,
 				EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */,
+				474A5A8F1A137EDC0094757B /* _ReferralLink.m in Sources */,
 				3818605719C9A206009A413E /* SetSSNOperation.m in Sources */,
 				380021F7192F43EA009B1D53 /* TabCell.m in Sources */,
 				EAD7D4C2171D43440099063F /* NSDictionary+SensibleData.m in Sources */,
@@ -3776,6 +3772,7 @@
 				476D78C519B70F7500B561DA /* UIViewController+SwitchToViewController.m in Sources */,
 				EAD7368A171E6CB100A037B1 /* GrayButton.m in Sources */,
 				EAD736A2171E85C300A037B1 /* RecipientCell.m in Sources */,
+				474A5A931A137EFA0094757B /* ReferralLink.m in Sources */,
 				EAD736A7171E87ED00A037B1 /* UserRecipientsOperation.m in Sources */,
 				EAB7215B171FC61B00DE29F5 /* SettingsViewController.m in Sources */,
 				47343ACE1977E093009D9C3A /* RecipientsFooterView.m in Sources */,
@@ -3891,7 +3888,6 @@
 				EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */,
 				EAE7B6AC17E9AC3F00E03D73 /* IdentificationNotificationView.m in Sources */,
 				EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */,
-				474A5A871A1270AB0094757B /* _ReferralLinks.m in Sources */,
 				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
 				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,
 				EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */,
@@ -3925,7 +3921,6 @@
 				47B36C831986543B002E66C7 /* MultipleEntryCell.m in Sources */,
 				38C7B29319742596004324E8 /* HeaderTabView.m in Sources */,
 				EA92D9541769BD9D0078D0C4 /* BusinessProfileCommitter.m in Sources */,
-				474A5A8B1A1270BC0094757B /* ReferralLinks.m in Sources */,
 				4723EA151973F32400B4345F /* ImageColoredButton.m in Sources */,
 				EA7F8816176F2B44003B0F46 /* RemoveTokenOperation.m in Sources */,
 				473DF972196D5ED600524C64 /* FloatingLabelTextField.m in Sources */,
@@ -4004,7 +3999,6 @@
 				EA8FC93E17D864F100E13969 /* FeedbackCoordinator.m in Sources */,
 				389F6833198FC1C6006CF1F6 /* ObjectModel+Users.m in Sources */,
 				389F6835198FC1C6006CF1F6 /* ObjectModel.m in Sources */,
-				4746EAF819A603BB00D03557 /* ReferralLinkOperation.m in Sources */,
 				38D8FBD519AF21B4007C73DF /* ReferralsCoordinator.m in Sources */,
 				383FC10A19AE1B8400465FCA /* SeeHowViewController.m in Sources */,
 				EA2296C217E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,

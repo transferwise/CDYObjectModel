@@ -10,7 +10,7 @@
 
 @interface ObjectModel (ReferralLinks)
 
-- (NSDictionary *)referralLinks;
-- (NSDictionary *)createOrUpdateReferralLinks:(NSDictionary *)referralLinks;
+- (NSArray *)referralLinks;
+- (NSArray *)createOrUpdateReferralLinks:(NSDictionary *)referralLinks;
 
 @end

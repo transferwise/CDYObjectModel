@@ -9,7 +9,7 @@
 #import "ReferralLinksOperation.h"
 #import "Constants.h"
 #import "TransferwiseOperation+Private.h"
-#import "ObjectModel+Users.h"
+#import "ObjectModel+ReferralLinks.h"
 
 NSString *const kReferralLinksPath = @"/referral/links";
 
@@ -26,18 +26,19 @@ NSString *const kReferralLinksPath = @"/referral/links";
 	}];
 	
 	[self setOperationSuccessHandler:^(NSDictionary *response) {
-		NSDictionary* referralLinks;
 		if (response[@"referralLinks"])
 		{
-			referralLinks = response[@"referralLinks"];
-//			[weakSelf.workModel saveInviteUrl:referralLink];
-//			[weakSelf.workModel saveContext:^{
-//				weakSelf.resultHandler(nil, referralLink);
-//			}];
+			NSDictionary *referralLinks = response[@"referralLinks"];
+			if (referralLinks) {
+    			NSArray *links = [weakSelf.workModel createOrUpdateReferralLinks:referralLinks];
+				[weakSelf.workModel saveContext:^{
+					weakSelf.resultHandler(nil, links);
+				}];
+			}
 		}
 		else
 		{
-			weakSelf.resultHandler(nil, referralLinks);
+			weakSelf.resultHandler(nil, nil);
 		}
 	}];
 	

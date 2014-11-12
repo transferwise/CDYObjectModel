@@ -8,7 +8,6 @@ extern const struct UserAttributes {
 	__unsafe_unretained NSString *email;
 	__unsafe_unretained NSString *invitationReward;
 	__unsafe_unretained NSString *invitationRewardCurrency;
-	__unsafe_unretained NSString *inviteUrl;
 	__unsafe_unretained NSString *pReference;
 	__unsafe_unretained NSString *password;
 	__unsafe_unretained NSString *sendAsBusinessDefaultSetting;
@@ -27,7 +26,7 @@ extern const struct UserRelationships {
 @class Recipient;
 @class Payment;
 @class PersonalProfile;
-@class ReferralLinks;
+@class ReferralLink;
 
 @interface UserID : NSManagedObjectID {}
 @end
@@ -61,10 +60,6 @@ extern const struct UserRelationships {
 @property (nonatomic, strong) NSString* invitationRewardCurrency;
 
 //- (BOOL)validateInvitationRewardCurrency:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* inviteUrl;
-
-//- (BOOL)validateInviteUrl:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* pReference;
 
@@ -106,7 +101,7 @@ extern const struct UserRelationships {
 
 //- (BOOL)validatePersonalProfile:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) ReferralLinks *referralLinks;
+@property (nonatomic, strong) ReferralLink *referralLinks;
 
 //- (BOOL)validateReferralLinks:(id*)value_ error:(NSError**)error_;
 
@@ -148,9 +143,6 @@ extern const struct UserRelationships {
 - (NSString*)primitiveInvitationRewardCurrency;
 - (void)setPrimitiveInvitationRewardCurrency:(NSString*)value;
 
-- (NSString*)primitiveInviteUrl;
-- (void)setPrimitiveInviteUrl:(NSString*)value;
-
 - (NSString*)primitivePReference;
 - (void)setPrimitivePReference:(NSString*)value;
 
@@ -181,7 +173,7 @@ extern const struct UserRelationships {
 - (PersonalProfile*)primitivePersonalProfile;
 - (void)setPrimitivePersonalProfile:(PersonalProfile*)value;
 
-- (ReferralLinks*)primitiveReferralLinks;
-- (void)setPrimitiveReferralLinks:(ReferralLinks*)value;
+- (ReferralLink*)primitiveReferralLinks;
+- (void)setPrimitiveReferralLinks:(ReferralLink*)value;
 
 @end
