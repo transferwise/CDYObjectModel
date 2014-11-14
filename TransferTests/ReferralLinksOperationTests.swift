@@ -11,22 +11,21 @@ import XCTest
 
 class ReferralLinksOperationTests: XCTestCase
 {
-	class TestReferralLinksOperation: ReferralLinksOperation
+	class TestReferralLinksOperation : ReferralLinksOperation
 	{
-		private var _result : () -> Void;
+		var result : (() -> Void)?;
 		
 		private (set) var path : String?
 		private (set) var params : [NSObject : AnyObject]!
 		
-		init(_ result : (() -> Void))
-		{
-			_result = result
-		}
-		
 		override func getDataFromPath(path: String!, params: [NSObject : AnyObject]!)
 		{
 			self.params = params
-			_result()
+			
+			if (result != nil)
+			{
+				result!()
+			}
 		}
 		
 		override func addTokenToPath(path: String!) -> String!
@@ -47,7 +46,7 @@ class ReferralLinksOperationTests: XCTestCase
 	
 	func testOperatinAddsExpectedTokenToPath()
 	{
-		let sut : TestReferralLinksOperation = TestReferralLinksOperation({ () -> Void in return })
+		let sut : TestReferralLinksOperation = TestReferralLinksOperation()
 		
 		sut.execute()
 		
@@ -57,7 +56,7 @@ class ReferralLinksOperationTests: XCTestCase
 	
 	func testOperationAddsExpectedAppTypeToParameters()
 	{
-		let sut : TestReferralLinksOperation = TestReferralLinksOperation({ () -> Void in return })
+		let sut : TestReferralLinksOperation = TestReferralLinksOperation()
 		
 		sut.execute()
 		
@@ -66,5 +65,4 @@ class ReferralLinksOperationTests: XCTestCase
 		XCTAssertNotNil(sut.params["invitePlatform"], "invitePlatform not submitted")
 		XCTAssertTrue(sut.params["invitePlatform"] as NSString == TRWAppType, "invalid platform submitted")
 	}
-
 }
