@@ -345,6 +345,8 @@
 		38CB1F7819ABB47000CD0953 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */; };
 		38D8FBD519AF21B4007C73DF /* ReferralsCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */; };
 		38D8FBD619AF21B4007C73DF /* ReferralsCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */; };
+		38E1CA561A14FF63009F8E28 /* CommonAnimationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E1CA551A14FF63009F8E28 /* CommonAnimationHelper.m */; };
+		38E1CA571A14FF63009F8E28 /* CommonAnimationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E1CA551A14FF63009F8E28 /* CommonAnimationHelper.m */; };
 		38E57F78192A51DD00D864A2 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
 		38E57F79192A51DD00D864A2 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
 		38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E57F77192A51DD00D864A2 /* TabViewController.xib */; };
@@ -1218,6 +1220,8 @@
 		38CB1F7919ABBB6200CD0953 /* Transfer_v3.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v3.1.xcdatamodel; sourceTree = "<group>"; };
 		38D8FBD319AF21B4007C73DF /* ReferralsCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralsCoordinator.h; sourceTree = "<group>"; };
 		38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralsCoordinator.m; sourceTree = "<group>"; };
+		38E1CA541A14FF63009F8E28 /* CommonAnimationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonAnimationHelper.h; sourceTree = "<group>"; };
+		38E1CA551A14FF63009F8E28 /* CommonAnimationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonAnimationHelper.m; sourceTree = "<group>"; };
 		38E57F75192A51DD00D864A2 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
 		38E57F76192A51DD00D864A2 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
 		38E57F77192A51DD00D864A2 /* TabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabViewController.xib; sourceTree = "<group>"; };
@@ -2767,6 +2771,8 @@
 				EAEA6256172011C500A96770 /* CalculationResult.m */,
 				3887CBBC1976AF2B004DFFFD /* CancelHelper.h */,
 				3887CBBD1976AF2B004DFFFD /* CancelHelper.m */,
+				38E1CA541A14FF63009F8E28 /* CommonAnimationHelper.h */,
+				38E1CA551A14FF63009F8E28 /* CommonAnimationHelper.m */,
 				47F84D5D1988D73A00886D41 /* CountrySuggestionCellProvider.h */,
 				47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */,
 				EAA053D0175DD5DC00ACD3F6 /* LoggedInPaymentFlow.h */,
@@ -3486,6 +3492,7 @@
 				EA31A14217DDB29B00F937F7 /* SettingsTitleCell.m in Sources */,
 				47AC3F921987AFAC005491C6 /* SuggestionCellProvider.m in Sources */,
 				38504B0A19C1E83700276203 /* TouchIDHelper.m in Sources */,
+				38E1CA571A14FF63009F8E28 /* CommonAnimationHelper.m in Sources */,
 				EA31A14317DDB29B00F937F7 /* MoneyCalculator.m in Sources */,
 				472D5647198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */,
 				EA31A14417DDB29B00F937F7 /* TransferCalculationsOperation.m in Sources */,
@@ -3776,6 +3783,7 @@
 				EAEA6257172011C500A96770 /* CalculationResult.m in Sources */,
 				47AC3F911987AFAC005491C6 /* SuggestionCellProvider.m in Sources */,
 				38504B0919C1E83700276203 /* TouchIDHelper.m in Sources */,
+				38E1CA561A14FF63009F8E28 /* CommonAnimationHelper.m in Sources */,
 				380021C6192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */,
 				472D5646198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */,
 				47C580A3196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */,

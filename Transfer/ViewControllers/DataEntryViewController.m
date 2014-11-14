@@ -14,6 +14,7 @@
 #import "UIResponder+FirstResponder.h"
 #import "MOMStyle.h"
 #import "MultipleEntryCell.h"
+#import "CommonAnimationHelper.h"
 
 @interface DataEntryViewController()
 @end
@@ -40,6 +41,12 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.bottomButtonAnimator viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {

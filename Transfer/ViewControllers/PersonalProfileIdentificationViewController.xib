@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PersonalProfileIdentificationViewController">
             <connections>
+                <outlet property="bottomButtonAnimator" destination="eGn-Da-kH1" id="5ag-xI-GqQ"/>
                 <outlet property="continueButton" destination="Hjl-x8-JcS" id="Usx-0y-TwB"/>
                 <outlet property="headerSeparator" destination="Pa1-dy-YUF" id="DuV-cF-owf"/>
                 <outlet property="headerView" destination="7" id="31"/>
@@ -32,7 +33,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@15.CoreFont"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="71D800FD-C1DE-4207-A603-B1A016B45A0A" id="iHM-Sf-tbU">
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="9CD64A79-0B13-4CE2-9DC5-EF39867BD7F7" id="iHM-Sf-tbU">
                     <rect key="frame" x="152" y="30" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -87,9 +88,14 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
         </view>
+        <customObject id="eGn-Da-kH1" customClass="CommonAnimationHelper">
+            <connections>
+                <outlet property="button" destination="o3s-yE-jxw" id="yyN-Dm-vaN"/>
+            </connections>
+        </customObject>
     </objects>
     <resources>
-        <image name="71D800FD-C1DE-4207-A603-B1A016B45A0A" width="16" height="16">
+        <image name="9CD64A79-0B13-4CE2-9DC5-EF39867BD7F7" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

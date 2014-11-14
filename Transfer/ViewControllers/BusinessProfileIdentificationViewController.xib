@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BusinessProfileIdentificationViewController">
             <connections>
                 <outlet property="actionButton" destination="oUm-dk-dAR" id="bLF-Xe-FA7"/>
+                <outlet property="bottomButtonAnimator" destination="ZYb-Ag-Mf7" id="3dw-wc-dAt"/>
                 <outlet property="textLabel" destination="Que-Jd-8xZ" id="dut-0i-WAf"/>
                 <outlet property="view" destination="VXg-vd-OeM" id="Ib8-ej-WA6"/>
             </connections>
@@ -18,10 +19,9 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUm-dk-dAR" customClass="GreenButton">
-                    <rect key="frame" x="0.0" y="455" width="320" height="49"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <rect key="frame" x="0.0" y="449" width="320" height="55"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="49" id="tGi-n5-bsM"/>
+                        <constraint firstAttribute="height" constant="55" id="tGi-n5-bsM"/>
                     </constraints>
                     <state key="normal" title="Get started">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -32,14 +32,12 @@
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="business_screen_photo" translatesAutoresizingMaskIntoConstraints="NO" id="XSX-aM-l8u">
                     <rect key="frame" x="60" y="25" width="201" height="201"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="XSX-aM-l8u" secondAttribute="height" multiplier="1:1" id="at3-13-QJa"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_status_documents_needed" translatesAutoresizingMaskIntoConstraints="NO" id="PVa-2y-a8U">
                     <rect key="frame" x="152" y="248" width="16" height="16"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="16" id="5se-fS-crL"/>
                         <constraint firstAttribute="height" constant="16" id="E1r-2u-Og6"/>
@@ -47,7 +45,6 @@
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="210" translatesAutoresizingMaskIntoConstraints="NO" id="Que-Jd-8xZ">
                     <rect key="frame" x="55" y="279" width="210" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="YuM-N1-MbY"/>
                     </constraints>
@@ -72,10 +69,22 @@
                 <constraint firstAttribute="bottom" secondItem="oUm-dk-dAR" secondAttribute="bottom" id="lmD-LH-ac0"/>
                 <constraint firstItem="XSX-aM-l8u" firstAttribute="top" secondItem="VXg-vd-OeM" secondAttribute="top" constant="25" id="q8O-QJ-TqL"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
+        <customObject id="ZYb-Ag-Mf7" customClass="CommonAnimationHelper">
+            <connections>
+                <outlet property="actionButtonBottomConstraint" destination="lmD-LH-ac0" id="4pZ-gz-IYV"/>
+            </connections>
+        </customObject>
     </objects>
     <resources>
         <image name="business_screen_photo" width="201" height="201"/>
         <image name="icon_status_documents_needed" width="16" height="16"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>
