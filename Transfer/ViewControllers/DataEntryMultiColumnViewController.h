@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "DismissKeyboardViewController.h"
 
+@class CommonAnimationHelper;
+
 /**
  *  UIViewController for data entry in the Transferwise app
  *
@@ -54,6 +56,8 @@
  *  view controller in a non-animating state.
  */
 @property (nonatomic, assign) BOOL suppressAnimation;
+
+@property (strong, nonatomic) IBOutlet CommonAnimationHelper* bottomButtonAnimator;
 
 // iPad
 /**

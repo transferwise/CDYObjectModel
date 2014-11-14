@@ -11,6 +11,7 @@
 #import "UINavigationController+StackManipulations.h"
 #import "Constants.h"
 #import "ColoredButton.h"
+#import "CommonAnimationHelper.h"
 
 @interface TabbedHeaderViewController ()<HeaderTabViewDelegate>
 
@@ -27,6 +28,8 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonHeight;
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *contentWidth;
+
+@property (strong, nonatomic) IBOutlet CommonAnimationHelper *bottomButtonAnimator;
 
 @end
 
@@ -140,12 +143,9 @@
     {
         [self willSelectViewController:currentController atIndex:[self.controllers indexOfObject:currentController]];
     }
+    [self.bottomButtonAnimator viewWillAppear:animated];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-	[super viewDidAppear:animated];
-}
 
 - (void)headerTabView:(HeaderTabView *)tabView tabTappedAtIndex:(NSUInteger)index
 {

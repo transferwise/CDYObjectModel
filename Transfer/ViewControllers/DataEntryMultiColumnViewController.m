@@ -14,6 +14,7 @@
 #import "UIResponder+FirstResponder.h"
 #import "MOMStyle.h"
 #import "MultipleEntryCell.h"
+#import "CommonAnimationHelper.h"
 
 @interface DataEntryMultiColumnViewController() <MultipleEntryCellDelegate>
 @property (nonatomic, assign) BOOL keyboardIsVisible;
@@ -31,6 +32,12 @@
         tableView.bgStyle = @"white";
         tableView.tableFooterView = [[UIView alloc] init];
     }
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.bottomButtonAnimator viewWillAppear:animated];
 }
 
 -(void)viewDidAppear:(BOOL)animated
