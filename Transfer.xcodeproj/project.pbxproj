@@ -448,6 +448,7 @@
 		476C6B89196C18BF007002F9 /* SwipeToCancelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */; };
 		476D78C519B70F7500B561DA /* UIViewController+SwitchToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 476D78C419B70F7500B561DA /* UIViewController+SwitchToViewController.m */; };
 		476D78C619B70F7500B561DA /* UIViewController+SwitchToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 476D78C419B70F7500B561DA /* UIViewController+SwitchToViewController.m */; };
+		476EB8EC1A15030F00E4E392 /* ReferralLinksOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476EB8EB1A15030F00E4E392 /* ReferralLinksOperationTests.swift */; };
 		478031781999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
 		478031791999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
 		47971C5E199A3A560018FDA8 /* TextEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */; };
@@ -489,7 +490,6 @@
 		47C580A3196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47C580A4196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47DBE05919703494008915A6 /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
-		47DC89861A03950F0042054B /* TransferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DC89851A03950F0042054B /* TransferTests.swift */; };
 		47F1F5921941C87600FC4BEB /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
 		47F84D5F1988D73A00886D41 /* CountrySuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */; };
 		47F84D601988D73A00886D41 /* CountrySuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */; };
@@ -516,7 +516,6 @@
 		47FB7EA519419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
 		47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
 		47FB7EA91941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
-		9C93F6A0094BCECD78EE4BBE /* libPods-TransferTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFD2D0B9F39816FF7BB3DA4 /* libPods-TransferTests.a */; };
 		B4C9172D19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4C9172C19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib */; };
 		B4C9172E19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4C9172C19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib */; };
 		BA6650856E3051C31A982C78 /* GoogleAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = BA66546EEC8C630867200E77 /* GoogleAnalytics.m */; };
@@ -1307,6 +1306,8 @@
 		476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeToCancelCell.m; sourceTree = "<group>"; };
 		476D78C319B70F7500B561DA /* UIViewController+SwitchToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SwitchToViewController.h"; sourceTree = "<group>"; };
 		476D78C419B70F7500B561DA /* UIViewController+SwitchToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SwitchToViewController.m"; sourceTree = "<group>"; };
+		476EB8EA1A15030E00E4E392 /* TransferTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TransferTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		476EB8EB1A15030F00E4E392 /* ReferralLinksOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralLinksOperationTests.swift; sourceTree = "<group>"; };
 		478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SwitchCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TextEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C60199A3C1C0018FDA8 /* DateEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DateEntryCell~ipad.xib"; sourceTree = "<group>"; };
@@ -1339,7 +1340,6 @@
 		47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Cancel.m"; sourceTree = "<group>"; };
 		47DC89811A03950F0042054B /* TransferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47DC89841A03950F0042054B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		47DC89851A03950F0042054B /* TransferTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferTests.swift; sourceTree = "<group>"; };
 		47F84D5D1988D73A00886D41 /* CountrySuggestionCellProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountrySuggestionCellProvider.h; sourceTree = "<group>"; };
 		47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountrySuggestionCellProvider.m; sourceTree = "<group>"; };
 		47F84D611988E83300886D41 /* SelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectionCell.xib; sourceTree = "<group>"; };
@@ -1691,7 +1691,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C93F6A0094BCECD78EE4BBE /* libPods-TransferTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2048,6 +2047,14 @@
 			path = "iOS-EventTracker-SDK";
 			sourceTree = "<group>";
 		};
+		476EB8E71A15000D00E4E392 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				476EB8EB1A15030F00E4E392 /* ReferralLinksOperationTests.swift */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
 		4781F48D194737C700B8926C /* JVFloatLabeledTextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -2058,7 +2065,8 @@
 		47DC89821A03950F0042054B /* TransferTests */ = {
 			isa = PBXGroup;
 			children = (
-				47DC89851A03950F0042054B /* TransferTests.swift */,
+				476EB8EA1A15030E00E4E392 /* TransferTests-Bridging-Header.h */,
+				476EB8E71A15000D00E4E392 /* Network */,
 				47DC89831A03950F0042054B /* Supporting Files */,
 			);
 			path = TransferTests;
@@ -3416,8 +3424,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				476EB8EC1A15030F00E4E392 /* ReferralLinksOperationTests.swift in Sources */,
 				474A5A951A137EFA0094757B /* ReferralLink.m in Sources */,
-				47DC89861A03950F0042054B /* TransferTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4037,6 +4045,7 @@
 			baseConfigurationReference = A92F0FB2A76538EDCB7E38B7 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
@@ -4061,6 +4070,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TransferTests/TransferTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TransferDev.app/TransferDev";
 			};
@@ -4071,6 +4081,7 @@
 			baseConfigurationReference = A92F0FB2A76538EDCB7E38B7 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
@@ -4092,6 +4103,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TransferTests/TransferTests-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TransferDev.app/TransferDev";
 			};
 			name = Release;

@@ -22,43 +22,15 @@
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "YES"
+            buildForRunning = "NO"
             buildForProfiling = "NO"
             buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
+            buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "47DC89801A03950F0042054B"
                BuildableName = "TransferTests.xctest"
                BlueprintName = "TransferTests"
-               ReferencedContainer = "container:Transfer.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "47CD4AEA19C82B9D00D65668"
-               BuildableName = "TransferDeTests.xctest"
-               BlueprintName = "TransferDeTests"
-               ReferencedContainer = "container:Transfer.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "47CD4AF919C82CEC00D65668"
-               BuildableName = "TransferDevTests.xctest"
-               BlueprintName = "TransferDevTests"
                ReferencedContainer = "container:Transfer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
