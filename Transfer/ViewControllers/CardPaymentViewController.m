@@ -17,6 +17,9 @@
 #import "PullPaymentDetailsOperation.h"
 #import "TransferDetailsViewController.h" 
 #import "FeedbackCoordinator.h"
+#ifdef DEV_VERSION
+#import "TransferDevWebTools.h"
+#endif
 
 @interface CardPaymentViewController () <UIWebViewDelegate>
 
@@ -30,7 +33,9 @@
 - (id)init {
     self = [super initWithNibName:@"CardPaymentViewController" bundle:nil];
     if (self) {
-        // Custom initialization
+#ifdef DEV_VERSION
+        [NSURLProtocol registerClass:[DebugURLProtocol class]];
+#endif
     }
     return self;
 }
@@ -39,6 +44,9 @@
 {
     self.webView.delegate = nil;
     [self.webView stopLoading];
+#ifdef DEV_VERSION
+    [NSURLProtocol unregisterClass:[DebugURLProtocol class]];
+#endif
 }
 
 - (void)viewDidLoad {
@@ -55,6 +63,7 @@
     [super viewDidAppear:animated];
     [self loadCardView];
 }
+
 
 - (void)presentLoadingView {
     NSString *loadingPagePath = [[NSBundle mainBundle] pathForResource:@"spinner" ofType:@"html"];
