@@ -50,6 +50,7 @@
 		38002200192F443E009B1D53 /* CurrencyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021FE192F443E009B1D53 /* CurrencyCell.m */; };
 		3800220C192F5774009B1D53 /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3800220B192F5774009B1D53 /* CurrencyCell.xib */; };
 		3800220D192F5774009B1D53 /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3800220B192F5774009B1D53 /* CurrencyCell.xib */; };
+		380579A91A1A3520005E94DD /* TransferDevWebTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 380579A81A1A3520005E94DD /* TransferDevWebTools.m */; };
 		38062176196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */; };
 		38062177196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */; };
 		3811674519C1E9A800B29151 /* TouchIdPromptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3811674319C1E9A800B29151 /* TouchIdPromptViewController.m */; };
@@ -956,6 +957,8 @@
 		380021FD192F443E009B1D53 /* CurrencyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyCell.h; sourceTree = "<group>"; };
 		380021FE192F443E009B1D53 /* CurrencyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyCell.m; sourceTree = "<group>"; };
 		3800220B192F5774009B1D53 /* CurrencyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencyCell.xib; sourceTree = "<group>"; };
+		380579A71A1A3520005E94DD /* TransferDevWebTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferDevWebTools.h; sourceTree = "<group>"; };
+		380579A81A1A3520005E94DD /* TransferDevWebTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDevWebTools.m; sourceTree = "<group>"; };
 		38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransferTypeSelectionHeader~ipad.xib"; sourceTree = "<group>"; };
 		3811674219C1E9A800B29151 /* TouchIdPromptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchIdPromptViewController.h; sourceTree = "<group>"; };
 		3811674319C1E9A800B29151 /* TouchIdPromptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchIdPromptViewController.m; sourceTree = "<group>"; };
@@ -2825,6 +2828,8 @@
 				38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */,
 				38C0395919E598DF00555F65 /* SendButtonFlashHelper.h */,
 				38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */,
+				380579A71A1A3520005E94DD /* TransferDevWebTools.h */,
+				380579A81A1A3520005E94DD /* TransferDevWebTools.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -3579,6 +3584,7 @@
 				EA31A16917DDB29B00F937F7 /* DropdownCell.m in Sources */,
 				389F67FE198FC1C6006CF1F6 /* _Currency.m in Sources */,
 				EAB6170F191CD61900545C21 /* ResetPasswordViewController.m in Sources */,
+				380579A91A1A3520005E94DD /* TransferDevWebTools.m in Sources */,
 				383FC0FB19AE1ABC00465FCA /* PersonLookupWrapper.m in Sources */,
 				EA31A16A17DDB29B00F937F7 /* BankTransferViewController.m in Sources */,
 				474D1AA019518073008BC7A7 /* ColoredButton.m in Sources */,
