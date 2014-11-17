@@ -408,7 +408,7 @@ C'est irréversible.";
 "transferdetails.controller.refunded.header" = "Transfert remboursé";
 "transferdetails.controller.cancelled.header" = "Transfert annulé";
 "transferdetails.controller.matched.header" = "Transfert en cours";
-"transferdetails.controller.received.header" = "Nous avons bien reçus votre argent";
+"transferdetails.controller.received.header" = "Parfait!";
 "transferdetails.controller.submitted.header" = "Transfert en attente";
 "transferdetails.controller.transferred.header" = "Transfert effectué";
 "transferdetails.controller.transfer.header" = "Votre transfert";
