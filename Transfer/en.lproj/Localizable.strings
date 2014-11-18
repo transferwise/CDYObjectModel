@@ -508,7 +508,9 @@ Payment #%@";
 "payment.method.REGULAR" = "Bank transfer";
 "payment.method.REGULAR.USD" = "Wire transfer";
 "payment.method.ADYEN" = "Debit Card";
+"payment.method.SWIFT" = "International wire";
 "payment.method.SWIFT.USD" = "International wire";
+"payment.method.ACH" = "Direct debit (ACH)";
 "payment.method.ACH.USD" = "Direct debit (ACH)";
 
 "payment.method.description.DATA_CASH" = "We accept all Visa & Mastercard debit cards.";

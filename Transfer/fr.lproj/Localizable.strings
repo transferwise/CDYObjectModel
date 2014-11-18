@@ -505,7 +505,9 @@ Transfert #%@";
 "payment.method.REGULAR" = "Virement bancaire";
 "payment.method.REGULAR.USD" = "Virement bancaire domestique";
 "payment.method.ADYEN" = "Carte de débit";
+"payment.method.SWIFT" = "Virement bancaire international";
 "payment.method.SWIFT.USD" = "Virement bancaire international";
+"payment.method.ACH" = "Débit direct";
 "payment.method.ACH.USD" = "Débit direct";
 
 "payment.method.description.DATA_CASH" = "Nous acceptons les cartes de débit Visa & Mastercard.";

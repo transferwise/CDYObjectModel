@@ -42,7 +42,7 @@
 {
     self.method = method;
     NSString *titleKey = [NSString stringWithFormat:@"payment.method.%@",method.type];
-	[self.button setTitle:[NSString localizedStringForKey:[NSString stringWithFormat:@"%@.%@", titleKey, currencyCode] withFallback:titleKey] forState:UIControlStateNormal];
+	[self.button setTitle:[NSString localizedStringForKey:[NSString stringWithFormat:@"%@.%@", titleKey, currencyCode] withFallback:NSLocalizedString(titleKey, nil)] forState:UIControlStateNormal];
     NSString *descriptionKey = [NSString stringWithFormat:@"payment.method.description.%@",method.type];
     self.descriptionLabel.text = [NSString localizedStringForKey:descriptionKey withFallback:nil];
 }
