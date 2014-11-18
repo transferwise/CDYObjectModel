@@ -20,7 +20,7 @@
     NSOrderedSet *existingTypes = [payment.payInMethods valueForKey:@"type"];
     NSMutableOrderedSet *newSet = [NSMutableOrderedSet orderedSetWithCapacity:[data count]];
     
-    NSArray* acceptedMethods = [PayInMethod supportedPayInMethods];
+    NSDictionary* acceptedMethods = [PayInMethod supportedPayInMethods];
     
     for(NSDictionary* payInMethodDictionary in data)
     {
@@ -44,7 +44,7 @@
         }
         method.bankName = payInMethodDictionary[@"bankName"];
         method.transferWiseAddress = payInMethodDictionary[@"transferwiseAddress"];
-        method.disabled = @([payInMethodDictionary[@"disabled"] boolValue] || [acceptedMethods indexOfObject:typeName] == NSNotFound );
+        method.disabled = @([payInMethodDictionary[@"disabled"] boolValue] || acceptedMethods[method.type] == nil);
         method.disabledReason = payInMethodDictionary[@"disabledReason"];
 		method.paymentReference = payInMethodDictionary[@"paymentReference"];
         

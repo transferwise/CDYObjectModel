@@ -500,18 +500,21 @@ C'est irréversible.";
 "payment.detail.sent.header.message" = "Transfert envoyé au destinataire.
 Transfert #%@";
 "payment.detail.converting.header.message" = "Transfert #%@ en attente de conversion.";
+
 "payment.method.DATA_CASH" = "Carte de débit";
 "payment.method.REGULAR" = "Virement bancaire";
-"payment.method.REGULAR.USD" = "Domestic Wire";
+"payment.method.REGULAR.USD" = "Virement bancaire domestique";
 "payment.method.ADYEN" = "Carte de débit";
+"payment.method.SWIFT" = "Virement bancaire international";
+"payment.method.SWIFT.USD" = "Virement bancaire international";
+"payment.method.ACH" = "Débit direct";
+"payment.method.ACH.USD" = "Débit direct";
+
 "payment.method.description.DATA_CASH" = "Nous acceptons les cartes de débit Visa & Mastercard.";
 "payment.method.description.REGULAR" = "Vous nous envoyer l'argent via un virement local et on s'occupe du reste.";
 "payment.method.description.ADYEN" = "Nous acceptons les cartes de débit Visa & Mastercard.";
 "payment.method.description.SWIFT" = "Si votre compte USD n'est pas aux États Unis, virer vos USD vers notre compte Européen.";
 "payment.method.description.ACH" = "Payer directement via votre banque.";
-"payment.method.SWIFT" = "SWIFT";
-"payment.method.ACH" = "ACH";
-
 
 "support.sheet.title" = "Si vous avez la moindre question, n'hésitez pas à contacter notre service client.";
 "support.sheet.write.message" = "Nous envoyer un email";
