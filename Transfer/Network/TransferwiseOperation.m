@@ -221,6 +221,7 @@
 }
 
 - (NSString *)addTokenToPath:(NSString *)path {
+    path = [NSString stringWithFormat:@"/%@%@",[self apiVersion],path];
     return [[TransferwiseClient sharedClient] addTokenToPath:path];
 }
 
@@ -239,6 +240,11 @@
     NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"GET" path:tokenizedPath parameters:params];
     [TransferwiseOperation provideAuthenticationHeaders:request];
     return request;
+}
+
+- (NSString*)apiVersion
+{
+    return @"v1";
 }
 
 @end

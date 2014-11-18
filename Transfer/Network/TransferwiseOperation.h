@@ -24,6 +24,7 @@ typedef NS_ENUM(short, TRWNetworkErrorCode) {
 @property (nonatomic, strong, readonly) ObjectModel *workModel;
 
 
+- (NSString*)apiVersion;
 - (void)execute;
 - (NSString *)addTokenToPath:(NSString *)path;
 - (void)handleErrorResponseData:(NSDictionary *)errorData;

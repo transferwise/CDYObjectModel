@@ -77,8 +77,6 @@
 		38288F5119C86DC200661BFB /* PaymentMethodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38288F4D19C86DC200661BFB /* PaymentMethodCell.xib */; };
 		38288F5419C8855800661BFB /* PaymentMethodViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */; };
 		38288F5519C8855800661BFB /* PaymentMethodViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */; };
-		382D080B1A0CDD0200296FBC /* AdyenOpenSessionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 382D080A1A0CDD0200296FBC /* AdyenOpenSessionOperation.m */; };
-		382D080C1A0CDD0200296FBC /* AdyenOpenSessionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 382D080A1A0CDD0200296FBC /* AdyenOpenSessionOperation.m */; };
 		3831AA37194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
 		3831AA38194B31A200B3EE5C /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
 		3831DCC419B764B900151A3D /* existingUserIntro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3831DCC319B764B900151A3D /* existingUserIntro.plist */; };
@@ -993,8 +991,6 @@
 		38288F4D19C86DC200661BFB /* PaymentMethodCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentMethodCell.xib; sourceTree = "<group>"; };
 		38288F5219C8855800661BFB /* PaymentMethodViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentMethodViewControllerFactory.h; sourceTree = "<group>"; };
 		38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMethodViewControllerFactory.m; sourceTree = "<group>"; };
-		382D08091A0CDD0200296FBC /* AdyenOpenSessionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdyenOpenSessionOperation.h; sourceTree = "<group>"; };
-		382D080A1A0CDD0200296FBC /* AdyenOpenSessionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdyenOpenSessionOperation.m; sourceTree = "<group>"; };
 		3831AA32194B31A200B3EE5C /* TransparentModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentModalViewController.h; sourceTree = "<group>"; };
 		3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentModalViewController.m; sourceTree = "<group>"; };
 		3831DCC319B764B900151A3D /* existingUserIntro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = existingUserIntro.plist; sourceTree = "<group>"; };
@@ -2442,8 +2438,6 @@
 		EA8FF6B5171D25530090A658 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				382D08091A0CDD0200296FBC /* AdyenOpenSessionOperation.h */,
-				382D080A1A0CDD0200296FBC /* AdyenOpenSessionOperation.m */,
 				1864AC9C173B7C80008773FC /* BusinessProfileOperation.h */,
 				1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */,
 				EAE7B6B117E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.h */,
@@ -3646,7 +3640,6 @@
 				47FAF345194B2F11004CE986 /* LightBlueButton.m in Sources */,
 				EA31A18817DDB29B00F937F7 /* RemoveTokenOperation.m in Sources */,
 				479B693B19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */,
-				382D080C1A0CDD0200296FBC /* AdyenOpenSessionOperation.m in Sources */,
 				38FC0B9C19EED51500173E07 /* Mixpanel+Customisation.m in Sources */,
 				389F6842198FC1C6006CF1F6 /* PendingPayment.m in Sources */,
 				389F67F8198FC1C6006CF1F6 /* _AllowedTypeFieldValue.m in Sources */,
@@ -3937,7 +3930,6 @@
 				BB704E7D177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m in Sources */,
 				479B692C19487865001FA4FE /* TransferDetailsViewController.m in Sources */,
 				47FAF344194B2F11004CE986 /* LightBlueButton.m in Sources */,
-				382D080B1A0CDD0200296FBC /* AdyenOpenSessionOperation.m in Sources */,
 				38FC0B9B19EED51500173E07 /* Mixpanel+Customisation.m in Sources */,
 				389F6841198FC1C6006CF1F6 /* PendingPayment.m in Sources */,
 				389F67F7198FC1C6006CF1F6 /* _AllowedTypeFieldValue.m in Sources */,

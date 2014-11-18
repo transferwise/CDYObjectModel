@@ -75,4 +75,9 @@ NSUInteger kPaymentsListLimit = 20;
     return [[PaymentsOperation alloc] initWithOffset:offset];
 }
 
+-(NSString *)apiVersion
+{
+    return @"v2";
+}
+
 @end
