@@ -49,6 +49,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    //TODO: remove and replace with outcome from A/B test
     id<TAGContainerFuture> future = [TAGContainerOpener openContainerWithId:TRWGoogleTagManagerContainerId tagManager:[TAGManager instance] openType:kTAGOpenTypePreferNonDefault timeout:nil];
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
@@ -91,6 +92,7 @@
 	UIViewController* controller;
 
     
+    //TODO: remove and replace with outcome from A/B test
     //A/B test
     TAGContainer* container = [future get];
     NSString* testName = [container stringForKey:@"iOSRegistrationTestName"];
