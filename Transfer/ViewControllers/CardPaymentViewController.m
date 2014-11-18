@@ -34,7 +34,7 @@
     self = [super initWithNibName:@"CardPaymentViewController" bundle:nil];
     if (self) {
 #ifdef DEV_VERSION
-        //[NSURLProtocol registerClass:[DebugURLProtocol class]];
+        [NSURLProtocol registerClass:[DebugURLProtocol class]];
 #endif
     }
     return self;
@@ -45,7 +45,7 @@
     self.webView.delegate = nil;
     [self.webView stopLoading];
 #ifdef DEV_VERSION
-    //[NSURLProtocol unregisterClass:[DebugURLProtocol class]];
+    [NSURLProtocol unregisterClass:[DebugURLProtocol class]];
 #endif
 }
 
