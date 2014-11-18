@@ -45,7 +45,7 @@ static NSString *basicAuth;
         basicAuth = currentAuth;
     }
 
-    BOOL canInit = (![request.URL.scheme isEqualToString:@"file"] && [request valueForHTTPHeaderField:AUTHORIZED_REQUEST_HEADER] == nil);
+    BOOL canInit = (![request.URL.scheme isEqualToString:@"file"] && ![request.URL.scheme isEqualToString:@"data"] && [request.URL.host rangeOfString:@"transferwise"].location != NSNotFound && [request valueForHTTPHeaderField:AUTHORIZED_REQUEST_HEADER] == nil);
     return canInit;
 
 }
