@@ -9,6 +9,6 @@
  *
  *  @return List of accepted pay in method type names.
  */
-+(NSArray*)supportedPayInMethods;
++(NSDictionary*)supportedPayInMethods;
 
 @end

@@ -21,6 +21,6 @@
 
 @property (nonatomic, weak) id<PaymentMethodCellDelegate> paymentMethodCellDelegate;
 
--(void)configureWithPaymentMethod:(PayInMethod*)method;
+-(void)configureWithPaymentMethod:(PayInMethod*)method fromCurrency:(NSString *)currencyCode;
 
 @end

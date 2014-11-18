@@ -38,13 +38,13 @@
 
 
 -(void)configureWithPaymentMethod:(PayInMethod*)method
+					 fromCurrency:(NSString *)currencyCode
 {
     self.method = method;
     NSString *titleKey = [NSString stringWithFormat:@"payment.method.%@",method.type];
-    [self.button setTitle:[NSString localizedStringForKey:titleKey withFallback:method.type] forState:UIControlStateNormal];
+	[self.button setTitle:[NSString localizedStringForKey:[NSString stringWithFormat:@"%@.%@", titleKey, currencyCode] withFallback:titleKey] forState:UIControlStateNormal];
     NSString *descriptionKey = [NSString stringWithFormat:@"payment.method.description.%@",method.type];
     self.descriptionLabel.text = [NSString localizedStringForKey:descriptionKey withFallback:nil];
-
 }
 
 - (IBAction)actionButtonTapped:(id)sender {
