@@ -140,7 +140,7 @@
     NSString *result = NSLocalizedString(key,nil);
     if([key isEqualToString:result])
     {
-        result = fallback;
+		result = NSLocalizedString(fallback,nil);
     }
     return result;
 }
