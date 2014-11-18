@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AchDetailsViewController">
+            <connections>
+                <outlet property="supportButton" destination="esP-dg-1oN" id="aaB-RC-Iov"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Sy2-sQ-Sm4">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQ5-As-F9b">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="bYR-BP-eTs" customClass="IntrinsicSizeUIView">
+                            <rect key="frame" x="0.0" y="26" width="320" height="431"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" priority="800" constant="431" placeholder="YES" id="0iy-U5-mkw"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="bYR-BP-eTs" firstAttribute="top" secondItem="pQ5-As-F9b" secondAttribute="top" constant="26" id="6KE-lo-5kj"/>
+                        <constraint firstAttribute="trailing" secondItem="bYR-BP-eTs" secondAttribute="trailing" id="AtD-oF-1MK"/>
+                        <constraint firstAttribute="bottom" secondItem="bYR-BP-eTs" secondAttribute="bottom" constant="49" id="Pw4-E5-i1n"/>
+                        <constraint firstItem="bYR-BP-eTs" firstAttribute="leading" secondItem="pQ5-As-F9b" secondAttribute="leading" id="tdW-Mc-oe1"/>
+                    </constraints>
+                </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="esP-dg-1oN" userLabel="Button - Contact Support" customClass="BlueButton">
+                    <rect key="frame" x="0.0" y="425" width="320" height="55"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="HM5-Br-9n9"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="esP-dg-1oN" firstAttribute="leading" secondItem="Sy2-sQ-Sm4" secondAttribute="leading" id="7bv-dy-4cl"/>
+                <constraint firstAttribute="trailing" secondItem="esP-dg-1oN" secondAttribute="trailing" id="9BY-na-bDc"/>
+                <constraint firstAttribute="bottom" secondItem="pQ5-As-F9b" secondAttribute="bottom" id="bq8-fB-gkN"/>
+                <constraint firstItem="bYR-BP-eTs" firstAttribute="width" secondItem="esP-dg-1oN" secondAttribute="width" id="deE-Tw-cUF"/>
+                <constraint firstAttribute="bottom" secondItem="esP-dg-1oN" secondAttribute="bottom" id="gtm-pz-zD2"/>
+                <constraint firstItem="pQ5-As-F9b" firstAttribute="top" secondItem="Sy2-sQ-Sm4" secondAttribute="top" id="jHi-qF-mDS"/>
+                <constraint firstAttribute="centerX" secondItem="esP-dg-1oN" secondAttribute="centerX" id="jPd-Hn-EM0"/>
+                <constraint firstAttribute="trailing" secondItem="pQ5-As-F9b" secondAttribute="trailing" id="l5I-mg-5Ax"/>
+                <constraint firstItem="pQ5-As-F9b" firstAttribute="leading" secondItem="Sy2-sQ-Sm4" secondAttribute="leading" id="s2w-nj-klL"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>
