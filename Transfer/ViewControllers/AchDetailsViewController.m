@@ -82,11 +82,11 @@ IB_DESIGNABLE
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-	NSInteger maxLength = 9;
+	NSInteger maxLength = kMaxAchRoutingLength;
 	
 	if (textField == self.accountNumberTextField)
 	{
-		maxLength = 16;
+		maxLength = kMaxAchAccountlength;
 	}
 	
 	NSString *modified = [textField.text stringByReplacingCharactersInRange:range withString:string];

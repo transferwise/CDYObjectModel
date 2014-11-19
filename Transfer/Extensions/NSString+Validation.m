@@ -30,16 +30,12 @@
 
 - (BOOL)isValidAchRoutingNumber
 {
-	static NSString *achRoutingRegEx = @"(\\d{9})";
-	
-	return [self isValid:achRoutingRegEx];
+	return [self isValid:[NSString stringWithFormat:@"(\\d{%li})", (long)kMaxAchRoutingLength]];
 }
 
 - (BOOL)isValidAchAccountNumber
 {
-	static NSString *achAccountRegEx = @"(\\d{4,17})";
-	
-	return [self isValid:achAccountRegEx];
+	return [self isValid:[NSString stringWithFormat:@"(\\d{%li,%li})", (long)kMinAchAccountLength, (long)kMaxAchAccountlength]];
 }
 
 - (BOOL)isValid:(NSString *)regEx
