@@ -1,5 +1,9 @@
+"ach.controller.title" = "Payer par débit direct";
 "ach.controller.button.support.ipad" = "Service client";
 "ach.controller.button.support" = "Contacter le service client";
+"ach.controller.button.connect" = "Connecter à mon compte";
+"ach.controller.routing.label" = "Numéro de routage";
+"ach.controller.account.label" = "Numéro de votre compte";
 
 "business.profile.address.label" = "Adresse";
 "business.profile.email.label" = "Votre email profesionnel";

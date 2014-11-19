@@ -15,6 +15,7 @@
 #import "TransferwiseClient.h"
 #import "Payment.h"
 #import "AdyenOpenSessionOperation.h"
+#import "AchDetailsViewController.h"
 #import <objc/runtime.h>
 
 @implementation PaymentMethodViewControllerFactory
@@ -124,7 +125,9 @@
     }
 	else if ([method.type caseInsensitiveCompare:@"ACH"] == NSOrderedSame)
 	{
-		
+		AchDetailsViewController *achController = [[AchDetailsViewController alloc] initWithPayment:payment
+																						objectModel:objectModel];
+		result = achController;
 	}
     else
     {

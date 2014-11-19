@@ -39,8 +39,6 @@ IB_DESIGNABLE
 @property (strong, nonatomic) IBOutlet GoogleButton *googleLoginButton;
 @property (strong, nonatomic) IBOutlet YahooButton *yahooLoginButton;
 @property (strong, nonatomic) IBOutlet UILabel *orLabel;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *emailSeparatorHeight;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *passwordSeparatorHeight;
 @property (strong, nonatomic) LoginHelper *loginHelper;
 @property (weak, nonatomic) IBOutlet UIButton *touchIdButton;
 
@@ -122,14 +120,6 @@ IB_DESIGNABLE
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[NavigationBarCustomiser setDefault];
-}
-
-- (void)updateViewConstraints
-{
-	self.passwordSeparatorHeight.constant = 1.0f / [[UIScreen mainScreen] scale];
-	self.emailSeparatorHeight.constant = 1.0f / [[UIScreen mainScreen] scale];
-	
-	[super updateViewConstraints];
 }
 
 #pragma mark - TextField delegate

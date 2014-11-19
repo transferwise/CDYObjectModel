@@ -6,8 +6,16 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@class Payment;
+@class ObjectModel;
 
-@interface AchDetailsViewController : UIViewController
+#import <UIKit/UIKit.h>
+#import "DismissKeyboardViewController.h"
+
+@interface AchDetailsViewController : DismissKeyboardViewController
+
+- (id)init __attribute__((unavailable("init unavailable, use initWithPayment:objectModel.")));
+- (instancetype)initWithPayment:(Payment *)payment
+					objectModel:(ObjectModel *)objectModel;
 
 @end

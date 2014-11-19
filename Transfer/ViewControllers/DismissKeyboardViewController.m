@@ -35,6 +35,16 @@
 	[self.view addGestureRecognizer:self.recognizer];
 }
 
+- (void)updateViewConstraints
+{
+	for (NSLayoutConstraint *constraint in self.separatorHeights)
+	{
+		constraint.constant = 1.0f / [[UIScreen mainScreen] scale];
+	}
+	
+	[super updateViewConstraints];
+}
+
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
     if ([gestureRecognizer isEqual:self.recognizer])
