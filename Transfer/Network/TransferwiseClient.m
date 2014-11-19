@@ -13,7 +13,7 @@
 #import "ObjectModel+Users.h"
 #import "ConfigurationOptionsOperation.h"
 
-NSString *const kAPIPathBase = @"/api/v1";
+NSString *const kAPIPathBase = @"/api";
 
 @interface TransferwiseClient ()
 

@@ -36,6 +36,15 @@ NSString *const kValidatePaymentPath = @"/payment/validate";
     return self;
 }
 
+-(NSString *)apiVersion
+{
+    if([self.path isEqualToString:kCreatePaymentPath])
+    {
+        return @"v2";
+    }
+    return @"v1";
+}
+
 - (void)execute {
     NSString *path = [self addTokenToPath:self.path];
 
@@ -72,5 +81,7 @@ NSString *const kValidatePaymentPath = @"/payment/validate";
 + (CreatePaymentOperation *)validateOperationWithInput:(NSManagedObjectID *)input {
     return [[CreatePaymentOperation alloc] initWithPath:kValidatePaymentPath input:input];
 }
+
+
 
 @end

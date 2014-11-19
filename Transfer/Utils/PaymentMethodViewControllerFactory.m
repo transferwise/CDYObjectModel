@@ -14,7 +14,6 @@
 #import "GoogleAnalytics.h"
 #import "TransferwiseClient.h"
 #import "Payment.h"
-#import "AdyenOpenSessionOperation.h"
 #import <objc/runtime.h>
 
 @implementation PaymentMethodViewControllerFactory
@@ -29,7 +28,7 @@
         
         cardController.initialRequestProvider = ^(LoadRequestBlock loadRequestBlock)
         {
-            NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
+            NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/v2/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
             loadRequestBlock(request);
         };
         
@@ -66,39 +65,19 @@
     {
         CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
         [cardController setPayment:payment];
-        __weak typeof (cardController) weakCardController = cardController;
+        
         cardController.initialRequestProvider = ^(LoadRequestBlock loadRequestBlock)
         {
-            AdyenOpenSessionOperation *operation = [AdyenOpenSessionOperation operationWithPaymentId:weakCardController.payment.remoteId resultHandler:^(NSError *error, NSURL *url) {
-                NSURLRequest* request;
-                
-                if(url)
-                {
-                    request = [NSURLRequest requestWithURL:url];
-                }
-                else
-                {
-                    TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.card.no.payment.title", nil)
-                                                                       message:NSLocalizedString(@"upload.money.card.no.adyen.url", nil)];
-                    [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-                    [alertView show];
-                }
-                
-                loadRequestBlock(request);
-                objc_setAssociatedObject(weakCardController, @selector(operationWithPaymentId:resultHandler:), nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-            }];
-            objc_setAssociatedObject(weakCardController, @selector(operationWithPaymentId:resultHandler:), operation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-            
-            [operation execute];
-           
+            NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/v2/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
+            loadRequestBlock(request);
         };
         
         cardController.loadURLBlock = ^(NSURL *url)
         {
             NSString *absoluteString = [url absoluteString];
-            if ([absoluteString rangeOfString:@"/card/paidIn"].location != NSNotFound) {
+            if ([absoluteString rangeOfString:@"/adyen/complete"].location != NSNotFound) {
                 return URLActionAbortAndReportSuccess;
-            } else if ([absoluteString rangeOfString:@"/card/notPaidIn"].location != NSNotFound) {
+            } else if ([absoluteString rangeOfString:/*TODO: Replace once known!*/@"/card/notPaidIn"].location != NSNotFound) {
                 return URLActionAbortAndReportFailure;
             } else if ([absoluteString rangeOfString:@"/payment/"].location != NSNotFound) {
                 return URLActionAbortLoad;
