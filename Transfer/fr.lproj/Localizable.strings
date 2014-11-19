@@ -1,3 +1,14 @@
+"ach.controller.title" = "Payer par débit direct";
+"ach.controller.button.support.ipad" = "Service client";
+"ach.controller.button.support" = "Contacter le service client";
+"ach.controller.button.connect" = "Connecter à mon compte";
+"ach.controller.routing.label" = "Numéro de routage";
+"ach.controller.account.label" = "Numéro de votre compte";
+"ach.controller.validation.routing.invalid" = "Numéro de routage n'est pas correct.";
+"ach.controller.validation.account.invalid" = "Numéro de compte n'est pas correct.";
+"ach.controller.error.title" = "Données saisies n'est pas valable";
+"ach.controller.accessing" = "Accèser vos coordonnées bancaires";
+
 "business.profile.address.label" = "Adresse";
 "business.profile.email.label" = "Votre email profesionnel";
 "business.profile.address.section.title" = "Adresse";

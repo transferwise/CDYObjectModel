@@ -450,6 +450,12 @@
 		476D78C519B70F7500B561DA /* UIViewController+SwitchToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 476D78C419B70F7500B561DA /* UIViewController+SwitchToViewController.m */; };
 		476D78C619B70F7500B561DA /* UIViewController+SwitchToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 476D78C419B70F7500B561DA /* UIViewController+SwitchToViewController.m */; };
 		476EB8EC1A15030F00E4E392 /* ReferralLinksOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476EB8EB1A15030F00E4E392 /* ReferralLinksOperationTests.swift */; };
+		477319F31A1B62BB00660770 /* AchDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477319F11A1B62BB00660770 /* AchDetailsViewController.m */; };
+		477319F41A1B62BB00660770 /* AchDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477319F11A1B62BB00660770 /* AchDetailsViewController.m */; };
+		477319F51A1B62BB00660770 /* AchDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477319F21A1B62BB00660770 /* AchDetailsViewController.xib */; };
+		477319F61A1B62BB00660770 /* AchDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477319F21A1B62BB00660770 /* AchDetailsViewController.xib */; };
+		477319F81A1B635D00660770 /* AchDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477319F71A1B635D00660770 /* AchDetailsViewController~ipad.xib */; };
+		477319F91A1B635D00660770 /* AchDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477319F71A1B635D00660770 /* AchDetailsViewController~ipad.xib */; };
 		478031781999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
 		478031791999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
 		47971C5E199A3A560018FDA8 /* TextEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */; };
@@ -1311,6 +1317,10 @@
 		476D78C419B70F7500B561DA /* UIViewController+SwitchToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SwitchToViewController.m"; sourceTree = "<group>"; };
 		476EB8EA1A15030E00E4E392 /* TransferTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TransferTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		476EB8EB1A15030F00E4E392 /* ReferralLinksOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralLinksOperationTests.swift; sourceTree = "<group>"; };
+		477319F01A1B62BB00660770 /* AchDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchDetailsViewController.h; sourceTree = "<group>"; };
+		477319F11A1B62BB00660770 /* AchDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchDetailsViewController.m; sourceTree = "<group>"; };
+		477319F21A1B62BB00660770 /* AchDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AchDetailsViewController.xib; sourceTree = "<group>"; };
+		477319F71A1B635D00660770 /* AchDetailsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AchDetailsViewController~ipad.xib"; sourceTree = "<group>"; };
 		478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SwitchCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TextEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C60199A3C1C0018FDA8 /* DateEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DateEntryCell~ipad.xib"; sourceTree = "<group>"; };
@@ -2138,7 +2148,6 @@
 				38BBE4651990F43500A14B9F /* IntroView~ipad.xib */,
 				38B52FA2199B69C800B6AEBD /* InvitationProgressIndicatorView.h */,
 				38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */,
-				EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */,
 				EAD3647717E2EBF2001EFE40 /* PaymentMethodSelectionView.h */,
 				EAD3647817E2EBF2001EFE40 /* PaymentMethodSelectionView.m */,
 				EAD3649017E2F971001EFE40 /* PaymentMethodSelectionView.xib */,
@@ -2176,6 +2185,7 @@
 				EA8FF68A171D1FA50090A658 /* TRWAlertView.m */,
 				EA8FF6B2171D23B20090A658 /* TRWProgressHUD.h */,
 				EA8FF6B3171D23B20090A658 /* TRWProgressHUD.m */,
+				EA9BA54417252BAE00AAAB5A /* NonEditTextField.h */,
 				EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */,
 				38C8A79B19371DBC00714FB3 /* PullToRefreshView.h */,
 				38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */,
@@ -2606,6 +2616,10 @@
 		EAAA148D171BD057005B9430 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				477319F01A1B62BB00660770 /* AchDetailsViewController.h */,
+				477319F11A1B62BB00660770 /* AchDetailsViewController.m */,
+				477319F21A1B62BB00660770 /* AchDetailsViewController.xib */,
+				477319F71A1B635D00660770 /* AchDetailsViewController~ipad.xib */,
 				BB29BD45173CD2FF0016A6E9 /* BankTransferViewController.h */,
 				BB29BD46173CD2FF0016A6E9 /* BankTransferViewController.m */,
 				BB29BD48173CD30C0016A6E9 /* BankTransferViewController.xib */,
@@ -3077,6 +3091,7 @@
 				383FC10F19AE1B8400465FCA /* SeeHowViewController~ipad.xib in Resources */,
 				EA31A20F17DDB29B00F937F7 /* RecipientEntrySelectionCell.xib in Resources */,
 				EA31A21017DDB29B00F937F7 /* DropdownCell.xib in Resources */,
+				477319F91A1B635D00660770 /* AchDetailsViewController~ipad.xib in Resources */,
 				EAD3648F17E2F6EF001EFE40 /* CardPaymentViewController.xib in Resources */,
 				38C0394A19E29CBB00555F65 /* GTM-TDZF76 in Resources */,
 				EA31A21117DDB29B00F937F7 /* BankTransferViewController.xib in Resources */,
@@ -3110,6 +3125,7 @@
 				EA31A22F17DDB29B00F937F7 /* SwitchCell.xib in Resources */,
 				38AA83D01949C7220065AD2A /* PaymentCell~ipad.xib in Resources */,
 				B4C9172E19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib in Resources */,
+				477319F61A1B62BB00660770 /* AchDetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3226,6 +3242,7 @@
 				385669071980F9F200BC4230 /* ContactDetailsViewController.xib in Resources */,
 				3840862A19A2391D00C837C2 /* SettingsViewController~ipad.xib in Resources */,
 				473F62931940BDD9001E280B /* NewPaymentViewController~ipad.xib in Resources */,
+				477319F81A1B635D00660770 /* AchDetailsViewController~ipad.xib in Resources */,
 				47FB7EA519419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */,
 				38C0394919E29CBB00555F65 /* GTM-TDZF76 in Resources */,
 				479B692D19487865001FA4FE /* TransferDetailsViewController.xib in Resources */,
@@ -3259,6 +3276,7 @@
 				EA225CBC178EEA8A009D6B83 /* recipient_types.json in Resources */,
 				BB7EAE8A17AFE037006A7182 /* SwitchCell.xib in Resources */,
 				38AA83CF1949C7220065AD2A /* PaymentCell~ipad.xib in Resources */,
+				477319F51A1B62BB00660770 /* AchDetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3719,6 +3737,7 @@
 				38002200192F443E009B1D53 /* CurrencyCell.m in Sources */,
 				EAB61715191CDD1000545C21 /* ResetPasswordOperation.m in Sources */,
 				47FAF358194F0A47004CE986 /* IntrinsicSizeUIView.m in Sources */,
+				477319F41A1B62BB00660770 /* AchDetailsViewController.m in Sources */,
 				EA2296C717E08027001CF541 /* TransferBackButtonItem.m in Sources */,
 				BA665EA5E58A6DA4DEB8E622 /* GoogleAnalytics.m in Sources */,
 				47535CB61981367C00DC39D6 /* UIView+SeparatorLine.m in Sources */,
@@ -3901,6 +3920,7 @@
 				389F6815198FC1C6006CF1F6 /* _TypeFieldValue.m in Sources */,
 				EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */,
 				EACF7640175C71B4008F2A03 /* RecipientProfileCommitter.m in Sources */,
+				477319F31A1B62BB00660770 /* AchDetailsViewController.m in Sources */,
 				EAA053D2175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m in Sources */,
 				EAA053D6175DD5EE00ACD3F6 /* NoUserPaymentFlow.m in Sources */,
 				389F6849198FC1C6006CF1F6 /* RecipientTypeField.m in Sources */,

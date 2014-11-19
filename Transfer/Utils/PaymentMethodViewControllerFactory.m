@@ -15,6 +15,7 @@
 #import "TransferwiseClient.h"
 #import "Payment.h"
 #import <objc/runtime.h>
+#import "AchDetailsViewController.h"
 
 @implementation PaymentMethodViewControllerFactory
 
@@ -101,6 +102,12 @@
 
         result = cardController;
     }
+	else if ([method.type caseInsensitiveCompare:@"ACH"] == NSOrderedSame)
+	{
+		AchDetailsViewController *achController = [[AchDetailsViewController alloc] initWithPayment:payment
+																						objectModel:objectModel];
+		result = achController;
+	}
     else
     {
         BankTransferViewController *bankController = [[BankTransferViewController alloc] init];

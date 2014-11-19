@@ -12,4 +12,6 @@
 
 @interface DismissKeyboardViewController : UIViewController<UIGestureRecognizerDelegate>
 
+@property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray *separatorHeights;
+
 @end
