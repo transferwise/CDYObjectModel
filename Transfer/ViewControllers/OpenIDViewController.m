@@ -206,7 +206,7 @@
         data[@"email"] = self.email;
     }
     MCLog(@"Params:%@", data);
-    NSString *path = [[TransferwiseClient sharedClient] addTokenToPath:(self.registerUser ? @"/account/registerWithOpenID" : @"/account/loginWithOpenID")];
+    NSString *path = [[TransferwiseClient sharedClient] addTokenToPath:(self.registerUser ? @"/v1/account/registerWithOpenID" : @"/v1/account/loginWithOpenID")];
     NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:@"POST" path:path parameters:data];
     [TransferwiseOperation provideAuthenticationHeaders:request];
     [self.webView loadRequest:request];

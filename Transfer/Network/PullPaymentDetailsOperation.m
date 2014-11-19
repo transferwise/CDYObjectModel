@@ -30,6 +30,11 @@ NSString *const kPaymentDetailsPath = @"/payment/details";
 	return self;
 }
 
+-(NSString *)apiVersion
+{
+    return @"v2";
+}
+
 - (void)execute {
 	MCLog(@"Execute");
 	NSString *path = [self addTokenToPath:kPaymentDetailsPath];
