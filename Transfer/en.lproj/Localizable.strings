@@ -4,6 +4,10 @@
 "ach.controller.button.connect" = "Connect to my account";
 "ach.controller.routing.label" = "Your routing number";
 "ach.controller.account.label" = "Your account number";
+"ach.controller.validation.routing.invalid" = "Entered routing number is incorrect.";
+"ach.controller.validation.account.invalid" = "Entered account number is incorrect.";
+"ach.controller.error.title" = "Entered data is not valid";
+"ach.controller.accessing" = "Accessing your bank details";
 
 "business.profile.address.label" = "Address";
 "business.profile.email.label" = "Your business email";

@@ -12,5 +12,7 @@
 
 - (BOOL)hasValue;
 - (BOOL)isValidEmail;
+- (BOOL)isValidAchRoutingNumber;
+- (BOOL)isValidAchAccountNumber;
 
 @end

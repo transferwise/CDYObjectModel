@@ -21,91 +21,71 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQ5-As-F9b">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JiG-is-KA9" customClass="IntrinsicSizeUIView">
+                    <rect key="frame" x="0.0" y="122" width="320" height="237"/>
                     <subviews>
-                        <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="bYR-BP-eTs" customClass="IntrinsicSizeUIView">
-                            <rect key="frame" x="0.0" y="26" width="320" height="431"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JiG-is-KA9" customClass="IntrinsicSizeUIView">
-                                    <rect key="frame" x="0.0" y="160" width="320" height="237"/>
-                                    <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WR7-FT-iYn" userLabel="Text Field - Rounting Number" customClass="FloatingLabelTextField">
-                                            <rect key="frame" x="20" y="8" width="280" height="70"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="70" placeholder="YES" id="vVn-20-KOP"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
-                                        </textField>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3al-Rn-b2Q" userLabel="Separator View">
-                                            <rect key="frame" x="10" y="87" width="310" height="1"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="1" id="j5r-ng-yCx"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGrey"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tz2-Vu-PBr" userLabel="Text Field - Account Number" customClass="FloatingLabelTextField">
-                                            <rect key="frame" x="20" y="95" width="280" height="70"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="70" placeholder="YES" id="lU4-UY-qMw"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fw3-ug-GRh" userLabel="Separator View">
-                                            <rect key="frame" x="10" y="173" width="310" height="1"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="1" id="AbK-8e-44Y"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGrey"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dq6-Oy-hIr" userLabel="Button - Connect" customClass="BlueRoundedButton">
-                                            <rect key="frame" x="133" y="203" width="55" height="34"/>
-                                            <state key="normal" title="Button">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Fw3-ug-GRh" firstAttribute="bottom" secondItem="tz2-Vu-PBr" secondAttribute="bottom" constant="9" id="4Wc-FN-8DC"/>
-                                        <constraint firstItem="WR7-FT-iYn" firstAttribute="top" secondItem="JiG-is-KA9" secondAttribute="top" constant="8" id="AIa-if-tBD"/>
-                                        <constraint firstItem="tz2-Vu-PBr" firstAttribute="width" secondItem="WR7-FT-iYn" secondAttribute="width" id="Dp0-FK-q2O"/>
-                                        <constraint firstItem="tz2-Vu-PBr" firstAttribute="centerX" secondItem="WR7-FT-iYn" secondAttribute="centerX" id="Fts-g3-psJ"/>
-                                        <constraint firstAttribute="bottom" secondItem="Dq6-Oy-hIr" secondAttribute="bottom" id="Gog-20-rVd"/>
-                                        <constraint firstAttribute="trailing" secondItem="3al-Rn-b2Q" secondAttribute="trailing" id="Gxc-Yw-RU8"/>
-                                        <constraint firstItem="3al-Rn-b2Q" firstAttribute="leading" secondItem="JiG-is-KA9" secondAttribute="leading" constant="10" id="UBF-LY-aFW"/>
-                                        <constraint firstAttribute="trailing" secondItem="WR7-FT-iYn" secondAttribute="trailing" constant="20" symbolic="YES" id="Yym-Md-SvK"/>
-                                        <constraint firstItem="Dq6-Oy-hIr" firstAttribute="top" secondItem="tz2-Vu-PBr" secondAttribute="bottom" constant="38" id="bQ5-XH-MF6"/>
-                                        <constraint firstAttribute="centerX" secondItem="Dq6-Oy-hIr" secondAttribute="centerX" id="bXT-8M-Aq4"/>
-                                        <constraint firstItem="Fw3-ug-GRh" firstAttribute="leading" secondItem="JiG-is-KA9" secondAttribute="leading" constant="10" id="cDh-7P-str"/>
-                                        <constraint firstItem="3al-Rn-b2Q" firstAttribute="top" secondItem="WR7-FT-iYn" secondAttribute="bottom" constant="9" id="cJ7-ce-QdX"/>
-                                        <constraint firstAttribute="trailing" secondItem="Fw3-ug-GRh" secondAttribute="trailing" id="kbW-tc-43A"/>
-                                        <constraint firstItem="tz2-Vu-PBr" firstAttribute="top" secondItem="WR7-FT-iYn" secondAttribute="bottom" constant="17" id="kvJ-Gc-YnV"/>
-                                        <constraint firstItem="WR7-FT-iYn" firstAttribute="leading" secondItem="JiG-is-KA9" secondAttribute="leading" constant="20" symbolic="YES" id="uKQ-ft-MqC"/>
-                                    </constraints>
-                                </view>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WR7-FT-iYn" userLabel="Text Field - Rounting Number" customClass="FloatingLabelTextField">
+                            <rect key="frame" x="20" y="8" width="280" height="70"/>
                             <constraints>
-                                <constraint firstAttribute="height" priority="800" constant="431" placeholder="YES" id="0iy-U5-mkw"/>
-                                <constraint firstItem="JiG-is-KA9" firstAttribute="top" secondItem="bYR-BP-eTs" secondAttribute="top" constant="160" id="9Z8-lb-Fsl"/>
-                                <constraint firstItem="JiG-is-KA9" firstAttribute="leading" secondItem="bYR-BP-eTs" secondAttribute="leading" id="c7X-Pz-8By"/>
-                                <constraint firstAttribute="trailing" secondItem="JiG-is-KA9" secondAttribute="trailing" id="jgI-nP-1Fo"/>
+                                <constraint firstAttribute="height" constant="70" placeholder="YES" id="vVn-20-KOP"/>
                             </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                        </textField>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3al-Rn-b2Q" userLabel="Separator View">
+                            <rect key="frame" x="10" y="87" width="310" height="1"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="j5r-ng-yCx"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGrey"/>
+                            </userDefinedRuntimeAttributes>
                         </view>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tz2-Vu-PBr" userLabel="Text Field - Account Number" customClass="FloatingLabelTextField">
+                            <rect key="frame" x="20" y="95" width="280" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="70" placeholder="YES" id="lU4-UY-qMw"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fw3-ug-GRh" userLabel="Separator View">
+                            <rect key="frame" x="10" y="173" width="310" height="1"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="AbK-8e-44Y"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGrey"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dq6-Oy-hIr" userLabel="Button - Connect" customClass="BlueRoundedButton">
+                            <rect key="frame" x="133" y="203" width="55" height="34"/>
+                            <state key="normal" title="Button">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="connectPressed:" destination="-1" eventType="touchUpInside" id="osP-MG-gpT"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="bYR-BP-eTs" firstAttribute="top" secondItem="pQ5-As-F9b" secondAttribute="top" constant="26" id="6KE-lo-5kj"/>
-                        <constraint firstAttribute="trailing" secondItem="bYR-BP-eTs" secondAttribute="trailing" id="AtD-oF-1MK"/>
-                        <constraint firstAttribute="bottom" secondItem="bYR-BP-eTs" secondAttribute="bottom" constant="49" id="Pw4-E5-i1n"/>
-                        <constraint firstItem="bYR-BP-eTs" firstAttribute="leading" secondItem="pQ5-As-F9b" secondAttribute="leading" id="tdW-Mc-oe1"/>
+                        <constraint firstItem="Fw3-ug-GRh" firstAttribute="bottom" secondItem="tz2-Vu-PBr" secondAttribute="bottom" constant="9" id="4Wc-FN-8DC"/>
+                        <constraint firstItem="WR7-FT-iYn" firstAttribute="top" secondItem="JiG-is-KA9" secondAttribute="top" constant="8" id="AIa-if-tBD"/>
+                        <constraint firstItem="tz2-Vu-PBr" firstAttribute="width" secondItem="WR7-FT-iYn" secondAttribute="width" id="Dp0-FK-q2O"/>
+                        <constraint firstItem="tz2-Vu-PBr" firstAttribute="centerX" secondItem="WR7-FT-iYn" secondAttribute="centerX" id="Fts-g3-psJ"/>
+                        <constraint firstAttribute="bottom" secondItem="Dq6-Oy-hIr" secondAttribute="bottom" id="Gog-20-rVd"/>
+                        <constraint firstAttribute="trailing" secondItem="3al-Rn-b2Q" secondAttribute="trailing" id="Gxc-Yw-RU8"/>
+                        <constraint firstItem="3al-Rn-b2Q" firstAttribute="leading" secondItem="JiG-is-KA9" secondAttribute="leading" constant="10" id="UBF-LY-aFW"/>
+                        <constraint firstAttribute="trailing" secondItem="WR7-FT-iYn" secondAttribute="trailing" constant="20" symbolic="YES" id="Yym-Md-SvK"/>
+                        <constraint firstItem="Dq6-Oy-hIr" firstAttribute="top" secondItem="tz2-Vu-PBr" secondAttribute="bottom" constant="38" id="bQ5-XH-MF6"/>
+                        <constraint firstAttribute="centerX" secondItem="Dq6-Oy-hIr" secondAttribute="centerX" id="bXT-8M-Aq4"/>
+                        <constraint firstItem="Fw3-ug-GRh" firstAttribute="leading" secondItem="JiG-is-KA9" secondAttribute="leading" constant="10" id="cDh-7P-str"/>
+                        <constraint firstItem="3al-Rn-b2Q" firstAttribute="top" secondItem="WR7-FT-iYn" secondAttribute="bottom" constant="9" id="cJ7-ce-QdX"/>
+                        <constraint firstAttribute="trailing" secondItem="Fw3-ug-GRh" secondAttribute="trailing" id="kbW-tc-43A"/>
+                        <constraint firstItem="tz2-Vu-PBr" firstAttribute="top" secondItem="WR7-FT-iYn" secondAttribute="bottom" constant="17" id="kvJ-Gc-YnV"/>
+                        <constraint firstItem="WR7-FT-iYn" firstAttribute="leading" secondItem="JiG-is-KA9" secondAttribute="leading" constant="20" symbolic="YES" id="uKQ-ft-MqC"/>
                     </constraints>
-                </scrollView>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="esP-dg-1oN" userLabel="Button - Contact Support" customClass="BlueButton">
                     <rect key="frame" x="0.0" y="425" width="320" height="55"/>
                     <constraints>
@@ -123,13 +103,11 @@
             <constraints>
                 <constraint firstItem="esP-dg-1oN" firstAttribute="leading" secondItem="Sy2-sQ-Sm4" secondAttribute="leading" id="7bv-dy-4cl"/>
                 <constraint firstAttribute="trailing" secondItem="esP-dg-1oN" secondAttribute="trailing" id="9BY-na-bDc"/>
-                <constraint firstAttribute="bottom" secondItem="pQ5-As-F9b" secondAttribute="bottom" id="bq8-fB-gkN"/>
-                <constraint firstItem="bYR-BP-eTs" firstAttribute="width" secondItem="esP-dg-1oN" secondAttribute="width" id="deE-Tw-cUF"/>
+                <constraint firstItem="JiG-is-KA9" firstAttribute="leading" secondItem="Sy2-sQ-Sm4" secondAttribute="leading" id="VE4-Ab-FHE"/>
                 <constraint firstAttribute="bottom" secondItem="esP-dg-1oN" secondAttribute="bottom" id="gtm-pz-zD2"/>
-                <constraint firstItem="pQ5-As-F9b" firstAttribute="top" secondItem="Sy2-sQ-Sm4" secondAttribute="top" id="jHi-qF-mDS"/>
                 <constraint firstAttribute="centerX" secondItem="esP-dg-1oN" secondAttribute="centerX" id="jPd-Hn-EM0"/>
-                <constraint firstAttribute="trailing" secondItem="pQ5-As-F9b" secondAttribute="trailing" id="l5I-mg-5Ax"/>
-                <constraint firstItem="pQ5-As-F9b" firstAttribute="leading" secondItem="Sy2-sQ-Sm4" secondAttribute="leading" id="s2w-nj-klL"/>
+                <constraint firstItem="esP-dg-1oN" firstAttribute="top" secondItem="JiG-is-KA9" secondAttribute="bottom" constant="66" id="mID-em-hC2"/>
+                <constraint firstAttribute="trailing" secondItem="JiG-is-KA9" secondAttribute="trailing" id="qoJ-oz-9s9"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="213" y="430"/>

@@ -13,6 +13,10 @@
 #import "Payment.h"
 #import "FloatingLabelTextField.h"
 #import "NavigationBarCustomiser.h"
+#import "NSString+Validation.h"
+#import "NSMutableString+Issues.h"
+#import "TRWAlertView.h"
+#import "TRWProgressHUD.h"
 
 IB_DESIGNABLE
 
@@ -76,12 +80,69 @@ IB_DESIGNABLE
 	return YES;
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+	NSInteger maxLength = 9;
+	
+	if (textField == self.accountNumberTextField)
+	{
+		maxLength = 16;
+	}
+	
+	NSString *modified = [textField.text stringByReplacingCharactersInRange:range withString:string];
+	
+	return modified.length <= maxLength;
+}
+
 #pragma mark - Button Actions
 - (IBAction)contactSupportPressed:(id)sender
 {
 	[[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"Ach details"];
 	NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
 	[[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
+}
+
+- (IBAction)connectPressed:(id)sender
+{
+	NSString* errors = [self isValid];
+	
+	if (errors == nil)
+	{
+		TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
+		[hud setMessage:NSLocalizedString(@"ach.controller.accessing", nil)];
+		//show next screen
+	}
+	else
+	{
+		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"ach.controller.error.title", nil) message:errors];
+		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+		[alertView show];
+	}
+}
+
+#pragma mark - Validation
+- (NSString *)isValid
+{
+	NSMutableString *errors = [[NSMutableString alloc] init];
+	
+	if (![self.routingNumberTextField.text hasValue]
+		|| ![self.routingNumberTextField.text isValidAchRoutingNumber])
+	{
+		[errors appendIssue:NSLocalizedString(@"ach.controller.validation.routing.invalid", nil)];
+	}
+	
+	if (![self.accountNumberTextField.text hasValue]
+		|| ![self.accountNumberTextField.text isValidAchAccountNumber])
+	{
+		[errors appendIssue:NSLocalizedString(@"ach.controller.validation.account.invalid", nil)];
+	}
+	
+	if (errors.length > 0)
+	{
+		return errors;
+	}
+	
+	return nil;
 }
 
 @end
