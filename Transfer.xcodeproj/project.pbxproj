@@ -488,6 +488,8 @@
 		47AC3F9C1987B2C3005491C6 /* SuggestionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47AC3F961987B2C3005491C6 /* SuggestionCell~ipad.xib */; };
 		47B36C831986543B002E66C7 /* MultipleEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B36C821986543B002E66C7 /* MultipleEntryCell.m */; };
 		47B36C841986543B002E66C7 /* MultipleEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B36C821986543B002E66C7 /* MultipleEntryCell.m */; };
+		47B3864A1A1CDC9A00478402 /* VerificationFormOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B386491A1CDC9A00478402 /* VerificationFormOperation.m */; };
+		47B3864B1A1CDC9A00478402 /* VerificationFormOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B386491A1CDC9A00478402 /* VerificationFormOperation.m */; };
 		47C580A3196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47C580A4196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47DBE05919703494008915A6 /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
@@ -1339,6 +1341,8 @@
 		47AC3F961987B2C3005491C6 /* SuggestionCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SuggestionCell~ipad.xib"; sourceTree = "<group>"; };
 		47B36C811986543B002E66C7 /* MultipleEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipleEntryCell.h; sourceTree = "<group>"; };
 		47B36C821986543B002E66C7 /* MultipleEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleEntryCell.m; sourceTree = "<group>"; };
+		47B386481A1CDC9A00478402 /* VerificationFormOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationFormOperation.h; sourceTree = "<group>"; };
+		47B386491A1CDC9A00478402 /* VerificationFormOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationFormOperation.m; sourceTree = "<group>"; };
 		47C580A1196AC1A7007771DB /* UIGestureRecognizer+Cancel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Cancel.h"; sourceTree = "<group>"; };
 		47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Cancel.m"; sourceTree = "<group>"; };
 		47DC89811A03950F0042054B /* TransferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2509,6 +2513,8 @@
 				EAD736A6171E87ED00A037B1 /* UserRecipientsOperation.m */,
 				EA59292A175621D0007C0072 /* VerificationRequiredOperation.h */,
 				EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */,
+				47B386481A1CDC9A00478402 /* VerificationFormOperation.h */,
+				47B386491A1CDC9A00478402 /* VerificationFormOperation.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -3471,6 +3477,7 @@
 				3818605819C9A206009A413E /* SetSSNOperation.m in Sources */,
 				EA31A13417DDB29B00F937F7 /* NSString+Validation.m in Sources */,
 				4723EA0E1973D8E900B4345F /* RedButton.m in Sources */,
+				47B3864B1A1CDC9A00478402 /* VerificationFormOperation.m in Sources */,
 				EA31A13517DDB29B00F937F7 /* NSMutableString+Issues.m in Sources */,
 				EA31A13617DDB29B00F937F7 /* UIApplication+Keyboard.m in Sources */,
 				38288F5519C8855800661BFB /* PaymentMethodViewControllerFactory.m in Sources */,
@@ -3939,6 +3946,7 @@
 				389F6803198FC1C6006CF1F6 /* _PayInMethod.m in Sources */,
 				4723EA191973F3CA00B4345F /* GoogleButton.m in Sources */,
 				EA225C85178EB21C009D6B83 /* NSDictionary+Cleanup.m in Sources */,
+				47B3864A1A1CDC9A00478402 /* VerificationFormOperation.m in Sources */,
 				476C6B88196C18BF007002F9 /* SwipeToCancelCell.m in Sources */,
 				38C1A89B199CC5A0000BF59C /* InviteViewController.m in Sources */,
 				38B1C5D6195DBA6400BEE66E /* ConnectionAwareViewController.m in Sources */,
