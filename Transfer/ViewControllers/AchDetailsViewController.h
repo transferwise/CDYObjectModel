@@ -12,7 +12,7 @@
 #import <UIKit/UIKit.h>
 #import "DismissKeyboardViewController.h"
 
-@interface AchDetailsViewController : DismissKeyboardViewController
+@interface AchDetailsViewController : DismissKeyboardViewController<UITextFieldDelegate>
 
 - (id)init __attribute__((unavailable("init unavailable, use initWithPayment:objectModel.")));
 - (instancetype)initWithPayment:(Payment *)payment

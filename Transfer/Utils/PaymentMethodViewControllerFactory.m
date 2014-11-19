@@ -15,6 +15,7 @@
 #import "TransferwiseClient.h"
 #import "Payment.h"
 #import <objc/runtime.h>
+#import "AchDetailsViewController.h"
 
 @implementation PaymentMethodViewControllerFactory
 

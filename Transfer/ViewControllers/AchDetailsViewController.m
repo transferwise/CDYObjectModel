@@ -12,6 +12,9 @@
 #import "SupportCoordinator.h"
 #import "Payment.h"
 #import "FloatingLabelTextField.h"
+#import "NavigationBarCustomiser.h"
+
+IB_DESIGNABLE
 
 @interface AchDetailsViewController ()
 
@@ -50,9 +53,30 @@
 	[self.connectButton setTitle:NSLocalizedString(@"ach.controller.button.connect", nil) forState:UIControlStateNormal];
 	
 	[self.routingNumberTextField setTitle:NSLocalizedString(@"ach.controller.routing.label", nil)];
+	self.routingNumberTextField.delegate = self;
+	[self.routingNumberTextField setReturnKeyType:UIReturnKeyNext];
+	
 	[self.accountNumberTextField setTitle:NSLocalizedString(@"ach.controller.account.label", nil)];
+	self.accountNumberTextField.delegate = self;
+	[self.accountNumberTextField setReturnKeyType:UIReturnKeyDone];
 }
 
+#pragma mark - TextField delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+	if (textField == self.routingNumberTextField)
+	{
+		[self.accountNumberTextField becomeFirstResponder];
+	}
+	else
+	{
+		[textField resignFirstResponder];
+	}
+	
+	return YES;
+}
+
+#pragma mark - Button Actions
 - (IBAction)contactSupportPressed:(id)sender
 {
 	[[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"Ach details"];

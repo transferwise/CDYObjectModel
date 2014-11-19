@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -28,18 +28,18 @@
                             <rect key="frame" x="0.0" y="26" width="320" height="431"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JiG-is-KA9" customClass="IntrinsicSizeUIView">
-                                    <rect key="frame" x="0.0" y="150" width="320" height="147"/>
+                                    <rect key="frame" x="0.0" y="160" width="320" height="237"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WR7-FT-iYn" userLabel="Text Field - Rounting Number" customClass="FloatingLabelTextField">
-                                            <rect key="frame" x="20" y="8" width="280" height="35"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WR7-FT-iYn" userLabel="Text Field - Rounting Number" customClass="FloatingLabelTextField">
+                                            <rect key="frame" x="20" y="8" width="280" height="70"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="35" id="vVn-20-KOP"/>
+                                                <constraint firstAttribute="height" constant="70" placeholder="YES" id="vVn-20-KOP"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                         </textField>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3al-Rn-b2Q" userLabel="Separator View">
-                                            <rect key="frame" x="20" y="52" width="280" height="1"/>
+                                            <rect key="frame" x="10" y="87" width="310" height="1"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="j5r-ng-yCx"/>
                                             </constraints>
@@ -47,21 +47,16 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="bgStyle" value="separatorGrey"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tz2-Vu-PBr" userLabel="Text Field - Account Number" customClass="FloatingLabelTextField">
-                                            <rect key="frame" x="20" y="53" width="280" height="35"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tz2-Vu-PBr" userLabel="Text Field - Account Number" customClass="FloatingLabelTextField">
+                                            <rect key="frame" x="20" y="95" width="280" height="70"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="17" id="hYT-cS-xZW"/>
+                                                <constraint firstAttribute="height" constant="70" placeholder="YES" id="lU4-UY-qMw"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="hYT-cS-xZW"/>
-                                                </mask>
-                                            </variation>
                                         </textField>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fw3-ug-GRh" userLabel="Separator View">
-                                            <rect key="frame" x="20" y="96" width="280" height="1"/>
+                                            <rect key="frame" x="10" y="173" width="310" height="1"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="AbK-8e-44Y"/>
                                             </constraints>
@@ -70,44 +65,35 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dq6-Oy-hIr" userLabel="Button - Connect" customClass="BlueRoundedButton">
-                                            <rect key="frame" x="133" y="108" width="55" height="34"/>
+                                            <rect key="frame" x="133" y="203" width="55" height="34"/>
                                             <state key="normal" title="Button">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Fw3-ug-GRh" firstAttribute="centerX" secondItem="tz2-Vu-PBr" secondAttribute="centerX" id="39k-Pj-Xxx"/>
                                         <constraint firstItem="Fw3-ug-GRh" firstAttribute="bottom" secondItem="tz2-Vu-PBr" secondAttribute="bottom" constant="9" id="4Wc-FN-8DC"/>
-                                        <constraint firstItem="WR7-FT-iYn" firstAttribute="centerX" secondItem="3al-Rn-b2Q" secondAttribute="centerX" id="5Vb-KR-Avs"/>
                                         <constraint firstItem="WR7-FT-iYn" firstAttribute="top" secondItem="JiG-is-KA9" secondAttribute="top" constant="8" id="AIa-if-tBD"/>
                                         <constraint firstItem="tz2-Vu-PBr" firstAttribute="width" secondItem="WR7-FT-iYn" secondAttribute="width" id="Dp0-FK-q2O"/>
                                         <constraint firstItem="tz2-Vu-PBr" firstAttribute="centerX" secondItem="WR7-FT-iYn" secondAttribute="centerX" id="Fts-g3-psJ"/>
-                                        <constraint firstAttribute="bottom" secondItem="Dq6-Oy-hIr" secondAttribute="bottom" constant="5" id="Gog-20-rVd"/>
-                                        <constraint firstItem="Fw3-ug-GRh" firstAttribute="width" secondItem="tz2-Vu-PBr" secondAttribute="width" id="TQr-Pm-G8J"/>
-                                        <constraint firstItem="Fw3-ug-GRh" firstAttribute="leading" secondItem="tz2-Vu-PBr" secondAttribute="trailing" constant="-280" id="Vrt-RX-KNh"/>
+                                        <constraint firstAttribute="bottom" secondItem="Dq6-Oy-hIr" secondAttribute="bottom" id="Gog-20-rVd"/>
+                                        <constraint firstAttribute="trailing" secondItem="3al-Rn-b2Q" secondAttribute="trailing" id="Gxc-Yw-RU8"/>
+                                        <constraint firstItem="3al-Rn-b2Q" firstAttribute="leading" secondItem="JiG-is-KA9" secondAttribute="leading" constant="10" id="UBF-LY-aFW"/>
                                         <constraint firstAttribute="trailing" secondItem="WR7-FT-iYn" secondAttribute="trailing" constant="20" symbolic="YES" id="Yym-Md-SvK"/>
-                                        <constraint firstItem="Dq6-Oy-hIr" firstAttribute="top" secondItem="tz2-Vu-PBr" secondAttribute="bottom" constant="20" id="bQ5-XH-MF6"/>
+                                        <constraint firstItem="Dq6-Oy-hIr" firstAttribute="top" secondItem="tz2-Vu-PBr" secondAttribute="bottom" constant="38" id="bQ5-XH-MF6"/>
                                         <constraint firstAttribute="centerX" secondItem="Dq6-Oy-hIr" secondAttribute="centerX" id="bXT-8M-Aq4"/>
-                                        <constraint firstItem="tz2-Vu-PBr" firstAttribute="height" secondItem="WR7-FT-iYn" secondAttribute="height" id="c3H-ef-8WA"/>
+                                        <constraint firstItem="Fw3-ug-GRh" firstAttribute="leading" secondItem="JiG-is-KA9" secondAttribute="leading" constant="10" id="cDh-7P-str"/>
                                         <constraint firstItem="3al-Rn-b2Q" firstAttribute="top" secondItem="WR7-FT-iYn" secondAttribute="bottom" constant="9" id="cJ7-ce-QdX"/>
-                                        <constraint firstItem="WR7-FT-iYn" firstAttribute="width" secondItem="3al-Rn-b2Q" secondAttribute="width" id="fSE-c0-BzX"/>
-                                        <constraint firstItem="Fw3-ug-GRh" firstAttribute="leading" secondItem="tz2-Vu-PBr" secondAttribute="trailing" id="fxP-42-UbZ"/>
-                                        <constraint firstItem="tz2-Vu-PBr" firstAttribute="top" secondItem="WR7-FT-iYn" secondAttribute="bottom" constant="10" id="kvJ-Gc-YnV"/>
+                                        <constraint firstAttribute="trailing" secondItem="Fw3-ug-GRh" secondAttribute="trailing" id="kbW-tc-43A"/>
+                                        <constraint firstItem="tz2-Vu-PBr" firstAttribute="top" secondItem="WR7-FT-iYn" secondAttribute="bottom" constant="17" id="kvJ-Gc-YnV"/>
                                         <constraint firstItem="WR7-FT-iYn" firstAttribute="leading" secondItem="JiG-is-KA9" secondAttribute="leading" constant="20" symbolic="YES" id="uKQ-ft-MqC"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="Vrt-RX-KNh"/>
-                                            <exclude reference="fxP-42-UbZ"/>
-                                        </mask>
-                                    </variation>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" priority="800" constant="431" placeholder="YES" id="0iy-U5-mkw"/>
-                                <constraint firstItem="JiG-is-KA9" firstAttribute="top" secondItem="bYR-BP-eTs" secondAttribute="top" constant="150" id="9Z8-lb-Fsl"/>
+                                <constraint firstItem="JiG-is-KA9" firstAttribute="top" secondItem="bYR-BP-eTs" secondAttribute="top" constant="160" id="9Z8-lb-Fsl"/>
                                 <constraint firstItem="JiG-is-KA9" firstAttribute="leading" secondItem="bYR-BP-eTs" secondAttribute="leading" id="c7X-Pz-8By"/>
                                 <constraint firstAttribute="trailing" secondItem="JiG-is-KA9" secondAttribute="trailing" id="jgI-nP-1Fo"/>
                             </constraints>
@@ -146,6 +132,12 @@
                 <constraint firstItem="pQ5-As-F9b" firstAttribute="leading" secondItem="Sy2-sQ-Sm4" secondAttribute="leading" id="s2w-nj-klL"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="213" y="430"/>
         </view>
     </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>
