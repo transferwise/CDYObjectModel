@@ -13,6 +13,7 @@
 #import "VerificationFormOperation.h"
 #import "Payment.h"
 #import "TRWAlertView.h"
+#import "NSError+TRWErrors.h"
 
 @interface AchFlow ()
 
@@ -65,7 +66,14 @@
 														  
 														  if (error)
 														  {
-															  TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"ach.controller.accessing.error", nil) message:nil];
+															  NSString *messages = nil;
+															  
+															  if ([error isTransferwiseError])
+															  {
+																  messages = [error localizedTransferwiseMessage];
+															  }
+															  
+															  TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"ach.controller.accessing.error", nil) message:messages];
 															  [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
 															  [alertView show];
 															  return;
@@ -75,7 +83,7 @@
 													  });
 												  }];
 												  
-												  [operation execute];												  
+												  [operation execute];
 											  }];
 }
 

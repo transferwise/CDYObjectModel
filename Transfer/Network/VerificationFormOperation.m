@@ -11,7 +11,7 @@
 #import "TransferwiseOperation+Private.h"
 
 //TODO: this is probably going to change to just verificationform
-NSString *const kVerificationFormPath = @"/ach/getverificationform";
+NSString *const kVerificationFormPath = @"/ach/getVerificationForm";
 
 @interface VerificationFormOperation ()
 
