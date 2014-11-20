@@ -1,0 +1,87 @@
+//
+//  AchFlow.m
+//  Transfer
+//
+//  Created by Juhan Hion on 20.11.14.
+//  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
+//
+
+#import "AchFlow.h"
+#import "Constants.h"
+#import "TRWProgressHUD.h"
+#import "AchDetailsViewController.h"
+#import "VerificationFormOperation.h"
+#import "Payment.h"
+#import "TRWAlertView.h"
+
+@interface AchFlow ()
+
+@property (nonatomic, strong) ObjectModel *objectModel;
+@property (nonatomic, strong) Payment *payment;
+@property (nonatomic, strong) TransferwiseOperation *executedOperation;
+
+@end
+
+@implementation AchFlow
+
++ (AchFlow *)sharedInstanceWithPayment:(Payment *)payment
+						   objectModel:(ObjectModel *)objectModel
+{
+	static dispatch_once_t pred = 0;
+	__strong static AchFlow *sharedObject = nil;
+	dispatch_once(&pred, ^{
+		sharedObject = [[self alloc] initSingleton];
+	});
+	
+	sharedObject.payment = payment;
+	sharedObject.objectModel = objectModel;
+	
+	return sharedObject;
+}
+
+- (id)initSingleton
+{
+	self = [super init];
+	if (self)
+	{
+		
+	}
+	return self;
+}
+
+- (UIViewController *)presentAccountAndRoutingNumber
+{
+	return [[AchDetailsViewController alloc] initWithPayment:self.payment
+												 objectModel:self.objectModel
+											  loginFormBlock:^(NSString *accountNumber, NSString *routingNumber, TRWProgressHUD *hud) {
+												  VerificationFormOperation *operation = [VerificationFormOperation verificationFormOperationWithAccount:accountNumber
+																																		   routingNumber:routingNumber
+																																			   paymentId:self.payment.remoteId];
+												  self.executedOperation = operation;
+												  __weak typeof(self) weakSelf = self;
+												  [operation setResultHandler:^(NSError *error, NSDictionary *form) {
+													  dispatch_async(dispatch_get_main_queue(), ^{
+														  [hud hide];
+														  
+														  if (error)
+														  {
+															  TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"ach.controller.accessing.error", nil) message:nil];
+															  [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+															  [alertView show];
+															  return;
+														  }
+														  
+														  
+													  });
+												  }];
+												  
+												  [operation execute];												  
+											  }];
+}
+
+- (UIViewController *)presentLoginForm
+{
+	
+}
+
+@end

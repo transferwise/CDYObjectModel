@@ -24,6 +24,7 @@ IB_DESIGNABLE
 
 @property (nonatomic, strong) Payment *payment;
 @property (nonatomic, strong) ObjectModel *objectModel;
+@property (nonatomic, copy) GetLoginFormBlock loginFormBlock;
 
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *routingNumberTextField;
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *accountNumberTextField;
@@ -36,6 +37,7 @@ IB_DESIGNABLE
 
 - (instancetype)initWithPayment:(Payment *)payment
 					objectModel:(ObjectModel *)objectModel
+				 loginFormBlock:(GetLoginFormBlock)loginFormBlock
 {
 	self = [super init];
 	
@@ -43,6 +45,7 @@ IB_DESIGNABLE
 	{
 		self.payment = payment;
 		self.objectModel = objectModel;
+		self.loginFormBlock = loginFormBlock;
 	}
 	
 	return self;
@@ -110,7 +113,8 @@ IB_DESIGNABLE
 	{
 		TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
 		[hud setMessage:NSLocalizedString(@"ach.controller.accessing", nil)];
-		//show next screen
+		
+		self.loginFormBlock(self.accountNumberTextField.text, self.routingNumberTextField.text, hud);
 	}
 	else
 	{

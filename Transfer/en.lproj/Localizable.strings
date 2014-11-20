@@ -8,6 +8,7 @@
 "ach.controller.validation.account.invalid" = "Entered account number is incorrect.";
 "ach.controller.error.title" = "Entered data is not valid";
 "ach.controller.accessing" = "Accessing your bank details";
+"ach.controller.accessing.error" = "Unable to access your bank details";
 
 "business.profile.address.label" = "Address";
 "business.profile.email.label" = "Your business email";

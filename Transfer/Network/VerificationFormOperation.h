@@ -12,9 +12,9 @@ typedef void (^VerificationFormBlock)(NSError *error, NSDictionary *form);
 
 @interface VerificationFormOperation : TransferwiseOperation
 
-@property (nonatomic, readonly) VerificationFormBlock resultHandler;
+@property (nonatomic, copy) VerificationFormBlock resultHandler;
 
-- (id)init __attribute__((unavailable("init unavailable, use initWithAccount:routingNumber:paymentId")));
+- (id)init __attribute__((unavailable("init unavailable, use verificationFormOperationWithAccount:routingNumber:paymentId")));
 + (VerificationFormOperation *)verificationFormOperationWithAccount:(NSString *)accountNumber
 													  routingNumber:(NSString *)routingNumber
 														  paymentId:(NSNumber *)paymentId;
