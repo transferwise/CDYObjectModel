@@ -53,6 +53,10 @@
 		380579A91A1A3520005E94DD /* TransferDevWebTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 380579A81A1A3520005E94DD /* TransferDevWebTools.m */; };
 		38057ABF1A1A5C66005E94DD /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38057A251A1A5C65005E94DD /* libGoogleAnalyticsServices.a */; };
 		38057AC01A1A5C66005E94DD /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38057A251A1A5C65005E94DD /* libGoogleAnalyticsServices.a */; };
+		38057ACF1A1D03BF005E94DD /* AchWaitingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38057ACD1A1D03BF005E94DD /* AchWaitingViewController.m */; };
+		38057AD01A1D03BF005E94DD /* AchWaitingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38057ACD1A1D03BF005E94DD /* AchWaitingViewController.m */; };
+		38057AD11A1D03BF005E94DD /* AchWaitingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38057ACE1A1D03BF005E94DD /* AchWaitingViewController.xib */; };
+		38057AD21A1D03BF005E94DD /* AchWaitingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38057ACE1A1D03BF005E94DD /* AchWaitingViewController.xib */; };
 		38062176196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */; };
 		38062177196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */; };
 		3811674519C1E9A800B29151 /* TouchIdPromptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3811674319C1E9A800B29151 /* TouchIdPromptViewController.m */; };
@@ -979,6 +983,9 @@
 		38057A211A1A5C65005E94DD /* TAGLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAGLogger.h; sourceTree = "<group>"; };
 		38057A221A1A5C65005E94DD /* TAGManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAGManager.h; sourceTree = "<group>"; };
 		38057A251A1A5C65005E94DD /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		38057ACC1A1D03BF005E94DD /* AchWaitingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchWaitingViewController.h; sourceTree = "<group>"; };
+		38057ACD1A1D03BF005E94DD /* AchWaitingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchWaitingViewController.m; sourceTree = "<group>"; };
+		38057ACE1A1D03BF005E94DD /* AchWaitingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AchWaitingViewController.xib; sourceTree = "<group>"; };
 		38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TransferTypeSelectionHeader~ipad.xib"; sourceTree = "<group>"; };
 		3811674219C1E9A800B29151 /* TouchIdPromptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchIdPromptViewController.h; sourceTree = "<group>"; };
 		3811674319C1E9A800B29151 /* TouchIdPromptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchIdPromptViewController.m; sourceTree = "<group>"; };
@@ -2776,6 +2783,9 @@
 				38288F4419C86A6700661BFB /* PaymentMethodSelectorViewController.h */,
 				38288F4519C86A6700661BFB /* PaymentMethodSelectorViewController.m */,
 				38288F4619C86A6700661BFB /* PaymentMethodSelectorViewController.xib */,
+				38057ACC1A1D03BF005E94DD /* AchWaitingViewController.h */,
+				38057ACD1A1D03BF005E94DD /* AchWaitingViewController.m */,
+				38057ACE1A1D03BF005E94DD /* AchWaitingViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -3028,6 +3038,7 @@
 				EA31A1E717DDB29B00F937F7 /* SettingsTitleCell.xib in Resources */,
 				47FAF354194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */,
 				38B4CB6219DC00FC004173C9 /* IntroViewController~ipad.xib in Resources */,
+				38057AD21A1D03BF005E94DD /* AchWaitingViewController.xib in Resources */,
 				38CACA62196EE21600BFCF82 /* NameSuggestionCell~ipad.xib in Resources */,
 				385669141980FB0500BC4230 /* PlainPresentationCell.xib in Resources */,
 				3876769219BF4914007B0EE5 /* CustomInfoViewController.xib in Resources */,
@@ -3179,6 +3190,7 @@
 				385AC110198FE2190088DCD6 /* SharpSansFrontieres-Bold.otf in Resources */,
 				3840863419A368DD00C837C2 /* PersonalProfileIdentificationViewController~ipad.xib in Resources */,
 				38B4CB6119DC00FC004173C9 /* IntroViewController~ipad.xib in Resources */,
+				38057AD11A1D03BF005E94DD /* AchWaitingViewController.xib in Resources */,
 				38CACA61196EE21600BFCF82 /* NameSuggestionCell~ipad.xib in Resources */,
 				385669131980FB0500BC4230 /* PlainPresentationCell.xib in Resources */,
 				3876769119BF4914007B0EE5 /* CustomInfoViewController.xib in Resources */,
@@ -3677,6 +3689,7 @@
 				389F681A198FC1C6006CF1F6 /* AllowedTypeFieldValue.m in Sources */,
 				38C0395C19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */,
 				38B092E6194F325B00315BE4 /* AddressBookManager.m in Sources */,
+				38057AD01A1D03BF005E94DD /* AchWaitingViewController.m in Sources */,
 				380021CF192CC531009B1D53 /* MOMCompoundStyle.m in Sources */,
 				389F683C198FC1C6006CF1F6 /* PayInMethod.m in Sources */,
 				EAE7B6B417E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */,
@@ -4017,6 +4030,7 @@
 				38288F4E19C86DC200661BFB /* PaymentMethodCell.m in Sources */,
 				EA8FC93E17D864F100E13969 /* FeedbackCoordinator.m in Sources */,
 				389F6833198FC1C6006CF1F6 /* ObjectModel+Users.m in Sources */,
+				38057ACF1A1D03BF005E94DD /* AchWaitingViewController.m in Sources */,
 				389F6835198FC1C6006CF1F6 /* ObjectModel.m in Sources */,
 				38D8FBD519AF21B4007C73DF /* ReferralsCoordinator.m in Sources */,
 				383FC10A19AE1B8400465FCA /* SeeHowViewController.m in Sources */,

@@ -5,12 +5,12 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomInfoViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AchWaitingViewController">
             <connections>
                 <outlet property="actionButton" destination="zT5-MG-sUE" id="itx-0t-zNG"/>
+                <outlet property="image" destination="KXk-CC-Thp" id="04W-fz-nP0"/>
                 <outlet property="infoImageView" destination="KXk-CC-Thp" id="bTK-Zs-BRd"/>
                 <outlet property="infoLabel" destination="xGc-tE-8cX" id="7Zx-g2-VTw"/>
-                <outlet property="titleLabel" destination="JGZ-vv-3wR" id="UUP-r5-RPc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -25,31 +25,22 @@
                         <constraint firstAttribute="height" constant="42" id="NgE-E2-LE7"/>
                         <constraint firstAttribute="width" constant="42" id="eyU-NB-c99"/>
                     </constraints>
-                    <state key="normal" image="ModalClose">
+                    <state key="normal" image="CloseButton">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="dismiss" destination="-1" eventType="touchUpInside" id="Nsz-Zd-5m1"/>
                     </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGZ-vv-3wR">
-                    <rect key="frame" x="139" y="30" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@17.CoreFont"/>
-                    </userDefinedRuntimeAttributes>
-                </label>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KXk-CC-Thp">
-                    <rect key="frame" x="93" y="113" width="134" height="134"/>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="refreshFlag0" translatesAutoresizingMaskIntoConstraints="NO" id="KXk-CC-Thp">
+                    <rect key="frame" x="149" y="173" width="22" height="22"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="134" id="8Hd-jN-QvX"/>
-                        <constraint firstAttribute="height" constant="134" id="t2Q-zm-ZcZ"/>
+                        <constraint firstAttribute="width" constant="22" id="8Hd-jN-QvX"/>
+                        <constraint firstAttribute="height" constant="22" id="t2Q-zm-ZcZ"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="xGc-tE-8cX">
-                    <rect key="frame" x="30" y="273" width="260" height="21"/>
+                    <rect key="frame" x="30" y="225" width="260" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="260" id="Rgy-tb-MfN"/>
                     </constraints>
@@ -57,35 +48,53 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium.@16.CoreFont"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="light.@22.CoreFont"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zT5-MG-sUE" customClass="BlueRoundedButton">
-                    <rect key="frame" x="110" y="390" width="100" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zT5-MG-sUE" customClass="BlueButton">
+                    <rect key="frame" x="0.0" y="425" width="320" height="55"/>
                     <constraints>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="2C1-xe-JN9"/>
-                        <constraint firstAttribute="height" constant="40" id="3Qm-er-U5R"/>
+                        <constraint firstAttribute="height" constant="55" id="3Qm-er-U5R"/>
                     </constraints>
                     <state key="normal" title="Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="dismiss" destination="-1" eventType="touchUpInside" id="B2A-kx-Kbc"/>
+                        <action selector="actionButtonTapped" destination="-1" eventType="touchUpInside" id="6xl-M0-7iL"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Avb-ju-O3W" userLabel="TopSpacer">
+                    <rect key="frame" x="155" y="0.0" width="10" height="173"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="10" id="UJu-QO-RKf"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X08-9Q-AFy" userLabel="BottomSpacer">
+                    <rect key="frame" x="155" y="253" width="10" height="172"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="10" id="8W1-4d-2fH"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="zT5-MG-sUE" secondAttribute="bottom" constant="50" id="AXW-dM-W15"/>
-                <constraint firstAttribute="centerX" secondItem="KXk-CC-Thp" secondAttribute="centerX" id="N8x-31-fed"/>
+                <constraint firstAttribute="bottom" secondItem="zT5-MG-sUE" secondAttribute="bottom" id="AXW-dM-W15"/>
+                <constraint firstItem="X08-9Q-AFy" firstAttribute="height" secondItem="Avb-ju-O3W" secondAttribute="height" id="Iu8-ec-sSr"/>
                 <constraint firstAttribute="centerX" secondItem="xGc-tE-8cX" secondAttribute="centerX" id="QJD-uz-0Hq"/>
+                <constraint firstItem="zT5-MG-sUE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QYS-5f-sAu"/>
                 <constraint firstItem="IiW-51-o7V" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="Swm-MS-AkE"/>
-                <constraint firstAttribute="centerX" secondItem="zT5-MG-sUE" secondAttribute="centerX" id="cbg-BT-26u"/>
-                <constraint firstAttribute="centerY" secondItem="KXk-CC-Thp" secondAttribute="centerY" constant="60" id="cgV-Jx-uqO"/>
-                <constraint firstAttribute="centerX" secondItem="JGZ-vv-3wR" secondAttribute="centerX" id="dkB-tf-1bZ"/>
-                <constraint firstItem="JGZ-vv-3wR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="mIB-oe-A3n"/>
+                <constraint firstItem="KXk-CC-Thp" firstAttribute="top" secondItem="Avb-ju-O3W" secondAttribute="bottom" id="V08-1X-CZ8"/>
+                <constraint firstItem="zT5-MG-sUE" firstAttribute="top" secondItem="X08-9Q-AFy" secondAttribute="bottom" id="Z39-FX-oMH"/>
+                <constraint firstItem="Avb-ju-O3W" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="h2q-NS-5v7"/>
+                <constraint firstAttribute="centerX" secondItem="KXk-CC-Thp" secondAttribute="centerX" id="h7I-Ac-PUp"/>
+                <constraint firstAttribute="trailing" secondItem="zT5-MG-sUE" secondAttribute="trailing" id="oeH-zN-iS7"/>
                 <constraint firstItem="IiW-51-o7V" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="roV-zg-Qwu"/>
-                <constraint firstItem="xGc-tE-8cX" firstAttribute="top" secondItem="KXk-CC-Thp" secondAttribute="bottom" constant="26" id="spn-Rc-yc3"/>
+                <constraint firstAttribute="centerX" secondItem="X08-9Q-AFy" secondAttribute="centerX" id="sZG-z1-KTQ"/>
+                <constraint firstItem="xGc-tE-8cX" firstAttribute="top" secondItem="KXk-CC-Thp" secondAttribute="bottom" constant="30" id="spn-Rc-yc3"/>
+                <constraint firstItem="X08-9Q-AFy" firstAttribute="top" secondItem="xGc-tE-8cX" secondAttribute="bottom" constant="8" id="uVk-PZ-Ox8"/>
+                <constraint firstAttribute="centerX" secondItem="Avb-ju-O3W" secondAttribute="centerX" id="vqj-b2-pFx"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <userDefinedRuntimeAttributes>
@@ -94,7 +103,8 @@
         </view>
     </objects>
     <resources>
-        <image name="ModalClose" width="42" height="42"/>
+        <image name="CloseButton" width="42" height="42"/>
+        <image name="refreshFlag0" width="22" height="22"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
