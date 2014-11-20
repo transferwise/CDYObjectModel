@@ -529,7 +529,7 @@ Payment #%@";
 "payment.method.description.REGULAR" = "You transfer us the money via a wire transfer and we do the rest.";
 "payment.method.description.ADYEN" = "We accept all Visa & Mastercard debit cards.";
 "payment.method.description.SWIFT" = "If your USD account is not in the US, please use this option.";
-"payment.method.description.ACH" = "Instantly withdraw money from your account.";
+"payment.method.description.ACH" = "Instantly withdraw money from your USD account.";
 
 "support.sheet.title" = "If you have questions, please don't hesitate to contact our support team.";
 "support.sheet.write.message" = "Send an email";
