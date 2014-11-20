@@ -384,7 +384,7 @@ static NSUInteger const kRowYouSend = 0;
         CustomInfoViewController *customInfo = [[CustomInfoViewController alloc] init];
         customInfo.titleText = NSLocalizedString(@"usd.low.title",nil);
         customInfo.infoText = NSLocalizedString(@"usd.low.info",nil);
-        customInfo.dismissButtonTitle = NSLocalizedString(@"usd.low.dismiss",nil);
+        customInfo.actionButtonTitle = NSLocalizedString(@"usd.low.dismiss",nil);
         customInfo.infoImage = [UIImage imageNamed:@"illustration_under1500usd"];
         [customInfo presentOnViewController:self];
         return;
