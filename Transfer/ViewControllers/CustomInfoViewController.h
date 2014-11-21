@@ -12,7 +12,10 @@
 
 @property (nonatomic, copy) NSString *titleText;
 @property (nonatomic, copy) NSString *infoText;
-@property (nonatomic, copy) NSString *dismissButtonTitle;
+@property (nonatomic, copy) NSString *actionButtonTitle;
 @property (nonatomic, strong) UIImage *infoImage;
 
+@property (nonatomic,copy) void(^actionButtonBlock)(void);
+
+-(IBAction)actionButtonTapped;
 @end

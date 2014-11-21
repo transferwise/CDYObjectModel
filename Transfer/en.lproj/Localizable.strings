@@ -9,6 +9,7 @@
 "ach.controller.error.title" = "Entered data is not valid";
 "ach.controller.accessing" = "Accessing your bank details";
 "ach.controller.accessing.error" = "Unable to access your bank details";
+"ach.waiting.info" = "Now wait a moment while we are searching for your USD account";
 
 "business.profile.address.label" = "Address";
 "business.profile.email.label" = "Your business email";
@@ -526,10 +527,10 @@ Payment #%@";
 "payment.method.ACH.USD" = "Direct debit (ACH)";
 
 "payment.method.description.DATA_CASH" = "We accept all Visa & Mastercard debit cards.";
-"payment.method.description.REGULAR" = "You transfer us the money via a wire transfer and we do the rest.";
+"payment.method.description.REGULAR" = "You transfer us the money via a \n wire transfer and we do the rest.";
 "payment.method.description.ADYEN" = "We accept all Visa & Mastercard debit cards.";
 "payment.method.description.SWIFT" = "If your USD account is not in the US, please use this option.";
-"payment.method.description.ACH" = "Instantly withdraw money from your account.";
+"payment.method.description.ACH" = "Instantly withdraw money\n from your USD account.";
 
 "support.sheet.title" = "If you have questions, please don't hesitate to contact our support team.";
 "support.sheet.write.message" = "Send an email";

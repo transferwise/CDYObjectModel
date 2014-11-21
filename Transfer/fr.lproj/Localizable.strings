@@ -9,6 +9,7 @@
 "ach.controller.error.title" = "Données saisies n'est pas valable";
 "ach.controller.accessing" = "Accèser vos coordonnées bancaires";
 "ach.controller.accessing.error" = "Incapable d'èser vos coordonnées bancaires";
+"ach.waiting.info" = "Patientez quelques instants, nous recherchons votre compte USD.";
 
 "business.profile.address.label" = "Adresse";
 "business.profile.email.label" = "Votre email profesionnel";
