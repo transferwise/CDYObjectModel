@@ -48,8 +48,9 @@ NSString *const kVerificationFormPath = @"/ach/getVerificationForm";
 	}];
 	
 	[self setOperationSuccessHandler:^(NSDictionary *response) {
-		if (response[@"referralLinks"])
+		if (response[@"fieldGroups"])
 		{
+			
 		}
 		else
 		{

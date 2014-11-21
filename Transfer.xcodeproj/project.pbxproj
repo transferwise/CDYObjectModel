@@ -531,6 +531,8 @@
 		47FB7EA519419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
 		47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
 		47FB7EA91941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
+		47FC53C11A1F61CF00F5E632 /* TypeFieldParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FC53C01A1F61CF00F5E632 /* TypeFieldParser.m */; };
+		47FC53C21A1F61CF00F5E632 /* TypeFieldParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FC53C01A1F61CF00F5E632 /* TypeFieldParser.m */; };
 		B4C9172D19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4C9172C19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib */; };
 		B4C9172E19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4C9172C19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib */; };
 		BA6650856E3051C31A982C78 /* GoogleAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = BA66546EEC8C630867200E77 /* GoogleAnalytics.m */; };
@@ -1389,6 +1391,8 @@
 		47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CurrencySelectorViewController~ipad.xib"; sourceTree = "<group>"; };
 		47FB7EA71941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DeviceSpecificLocalisation.h"; sourceTree = "<group>"; };
 		47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeviceSpecificLocalisation.m"; sourceTree = "<group>"; };
+		47FC53BF1A1F61CF00F5E632 /* TypeFieldParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeFieldParser.h; sourceTree = "<group>"; };
+		47FC53C01A1F61CF00F5E632 /* TypeFieldParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeFieldParser.m; sourceTree = "<group>"; };
 		7A7F07DC7BBE0A79CA26F843 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8FB7727F5849FF439B605EF8 /* Pods-TransferTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransferTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransferTests/Pods-TransferTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A92F0FB2A76538EDCB7E38B7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2860,6 +2864,8 @@
 				38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */,
 				380579A71A1A3520005E94DD /* TransferDevWebTools.h */,
 				380579A81A1A3520005E94DD /* TransferDevWebTools.m */,
+				47FC53BF1A1F61CF00F5E632 /* TypeFieldParser.h */,
+				47FC53C01A1F61CF00F5E632 /* TypeFieldParser.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -3586,6 +3592,7 @@
 				38B093101951FA2A00315BE4 /* TransferTypeSelectionHeader.m in Sources */,
 				EA31A15617DDB29B00F937F7 /* PaymentCell.m in Sources */,
 				476461EA1982859F00F16F05 /* StyledPlaceholderTextField.m in Sources */,
+				47FC53C21A1F61CF00F5E632 /* TypeFieldParser.m in Sources */,
 				EA31A15717DDB29B00F937F7 /* CurrencyPairsOperation.m in Sources */,
 				EA31A15817DDB29B00F937F7 /* RecipientViewController.m in Sources */,
 				EA31A15917DDB29B00F937F7 /* CurrenciesOperation.m in Sources */,
@@ -4030,6 +4037,7 @@
 				389F6801198FC1C6006CF1F6 /* _PairTargetCurrency.m in Sources */,
 				EAA6AD0717A91A95006A347D /* NSString+Presentation.m in Sources */,
 				389F6829198FC1C6006CF1F6 /* ObjectModel+Payments.m in Sources */,
+				47FC53C11A1F61CF00F5E632 /* TypeFieldParser.m in Sources */,
 				EAA07BF117AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */,
 				BB7EAE8E17AFE0DF006A7182 /* SwitchCell.m in Sources */,
 				EAE1E3A317B2519000A45623 /* PaymentDetailsViewController.m in Sources */,
