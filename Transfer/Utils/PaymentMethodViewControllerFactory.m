@@ -29,7 +29,8 @@
         
         cardController.initialRequestProvider = ^(LoadRequestBlock loadRequestBlock)
         {
-            NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/v2/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
+           //TODO: Change once Danieles branch is official NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/v2/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
+            NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/v1/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
             loadRequestBlock(request);
         };
         
@@ -69,7 +70,8 @@
         
         cardController.initialRequestProvider = ^(LoadRequestBlock loadRequestBlock)
         {
-            NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/v2/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
+            //TODO: Change once Danieles branch is official NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/v2/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
+            NSURLRequest* request = [TransferwiseOperation getRequestForApiPath:@"/v1/card/pay" parameters:@{@"paymentId" : payment.remoteId}];
             loadRequestBlock(request);
         };
         

@@ -77,7 +77,7 @@ NSUInteger kPaymentsListLimit = 20;
 
 -(NSString *)apiVersion
 {
-    return @"v2";
+    return @"v1"; //TODO: Change once Danieles branch is official@"v2";
 }
 
 @end

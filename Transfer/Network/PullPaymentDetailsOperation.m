@@ -32,7 +32,7 @@ NSString *const kPaymentDetailsPath = @"/payment/details";
 
 -(NSString *)apiVersion
 {
-    return @"v2";
+    return @"v1"; //TODO: Change once Danieles branch is official @"v2";
 }
 
 - (void)execute {
