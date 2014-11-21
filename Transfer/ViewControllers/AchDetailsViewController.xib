@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -8,9 +8,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AchDetailsViewController">
             <connections>
                 <outlet property="accountNumberTextField" destination="tz2-Vu-PBr" id="ZWK-kY-FxB"/>
+                <outlet property="checkViewContainer" destination="vvj-xk-JA8" id="KjM-mM-RSb"/>
                 <outlet property="connectButton" destination="Dq6-Oy-hIr" id="MUL-fN-8Ig"/>
                 <outlet property="routingNumberTextField" destination="WR7-FT-iYn" id="2Mu-J3-Moh"/>
                 <outlet property="supportButton" destination="esP-dg-1oN" id="aaB-RC-Iov"/>
+                <outlet property="textEntryTopSpace" destination="uSq-rP-SdX" id="4z2-kv-Qps"/>
                 <outlet property="view" destination="Sy2-sQ-Sm4" id="cRr-Dp-ajQ"/>
                 <outletCollection property="separatorHeights" destination="j5r-ng-yCx" id="pac-Ti-ixR"/>
                 <outletCollection property="separatorHeights" destination="AbK-8e-44Y" id="KVT-bN-LjL"/>
@@ -21,8 +23,16 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vvj-xk-JA8">
+                    <rect key="frame" x="0.0" y="-64" width="320" height="224"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="224" id="FRz-Z1-qwb"/>
+                        <constraint firstAttribute="width" constant="320" id="XF1-oG-8ww"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JiG-is-KA9" customClass="IntrinsicSizeUIView">
-                    <rect key="frame" x="0.0" y="122" width="320" height="237"/>
+                    <rect key="frame" x="0.0" y="180" width="320" height="237"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WR7-FT-iYn" userLabel="Text Field - Rounting Number" customClass="FloatingLabelTextField">
                             <rect key="frame" x="20" y="8" width="280" height="70"/>
@@ -31,6 +41,9 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                            <connections>
+                                <action selector="textFieldBegunEditing:" destination="-1" eventType="editingDidBegin" id="ffZ-um-3ev"/>
+                            </connections>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3al-Rn-b2Q" userLabel="Separator View">
                             <rect key="frame" x="10" y="87" width="310" height="1"/>
@@ -48,6 +61,9 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <action selector="textFieldBegunEditing:" destination="-1" eventType="editingDidBegin" id="Eyc-tk-tlT"/>
+                            </connections>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fw3-ug-GRh" userLabel="Separator View">
                             <rect key="frame" x="10" y="173" width="310" height="1"/>
@@ -103,11 +119,13 @@
             <constraints>
                 <constraint firstItem="esP-dg-1oN" firstAttribute="leading" secondItem="Sy2-sQ-Sm4" secondAttribute="leading" id="7bv-dy-4cl"/>
                 <constraint firstAttribute="trailing" secondItem="esP-dg-1oN" secondAttribute="trailing" id="9BY-na-bDc"/>
+                <constraint firstAttribute="centerX" secondItem="vvj-xk-JA8" secondAttribute="centerX" id="Gms-yX-xqb"/>
                 <constraint firstItem="JiG-is-KA9" firstAttribute="leading" secondItem="Sy2-sQ-Sm4" secondAttribute="leading" id="VE4-Ab-FHE"/>
                 <constraint firstAttribute="bottom" secondItem="esP-dg-1oN" secondAttribute="bottom" id="gtm-pz-zD2"/>
                 <constraint firstAttribute="centerX" secondItem="esP-dg-1oN" secondAttribute="centerX" id="jPd-Hn-EM0"/>
-                <constraint firstItem="esP-dg-1oN" firstAttribute="top" secondItem="JiG-is-KA9" secondAttribute="bottom" constant="66" id="mID-em-hC2"/>
+                <constraint firstItem="vvj-xk-JA8" firstAttribute="top" secondItem="Sy2-sQ-Sm4" secondAttribute="top" constant="-64" id="kWd-54-DFY"/>
                 <constraint firstAttribute="trailing" secondItem="JiG-is-KA9" secondAttribute="trailing" id="qoJ-oz-9s9"/>
+                <constraint firstItem="JiG-is-KA9" firstAttribute="top" secondItem="Sy2-sQ-Sm4" secondAttribute="top" constant="180" id="uSq-rP-SdX"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="213" y="430"/>

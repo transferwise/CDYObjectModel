@@ -346,6 +346,10 @@
 		38CACD6A1987C43E0085C254 /* CurrencySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CACD681987C43E0085C254 /* CurrencySelectionCell~ipad.xib */; };
 		38CB1F7719ABB47000CD0953 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */; };
 		38CB1F7819ABB47000CD0953 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */; };
+		38CC81A51A1E368F007D965A /* ACHCheckView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CC81A41A1E368F007D965A /* ACHCheckView.m */; };
+		38CC81A61A1E368F007D965A /* ACHCheckView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CC81A41A1E368F007D965A /* ACHCheckView.m */; };
+		38CC81A81A1E36A2007D965A /* ACHCheckView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CC81A71A1E36A2007D965A /* ACHCheckView.xib */; };
+		38CC81A91A1E36A2007D965A /* ACHCheckView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CC81A71A1E36A2007D965A /* ACHCheckView.xib */; };
 		38D8FBD519AF21B4007C73DF /* ReferralsCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */; };
 		38D8FBD619AF21B4007C73DF /* ReferralsCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */; };
 		38E1CA561A14FF63009F8E28 /* CommonAnimationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E1CA551A14FF63009F8E28 /* CommonAnimationHelper.m */; };
@@ -1234,6 +1238,9 @@
 		38CB1F7519ABB47000CD0953 /* Transfer_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v2.xcdatamodel; sourceTree = "<group>"; };
 		38CB1F7619ABB47000CD0953 /* Transfer_v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v3.xcdatamodel; sourceTree = "<group>"; };
 		38CB1F7919ABBB6200CD0953 /* Transfer_v3.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v3.1.xcdatamodel; sourceTree = "<group>"; };
+		38CC81A31A1E368F007D965A /* ACHCheckView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACHCheckView.h; sourceTree = "<group>"; };
+		38CC81A41A1E368F007D965A /* ACHCheckView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACHCheckView.m; sourceTree = "<group>"; };
+		38CC81A71A1E36A2007D965A /* ACHCheckView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACHCheckView.xib; sourceTree = "<group>"; };
 		38D8FBD319AF21B4007C73DF /* ReferralsCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralsCoordinator.h; sourceTree = "<group>"; };
 		38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralsCoordinator.m; sourceTree = "<group>"; };
 		38E1CA541A14FF63009F8E28 /* CommonAnimationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonAnimationHelper.h; sourceTree = "<group>"; };
@@ -2144,8 +2151,9 @@
 		EA13E02F171BDF050019FBF0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				383FC0FE19AE1B6700465FCA /* SeeHowView.h */,
-				383FC0FF19AE1B6700465FCA /* SeeHowView.m */,
+				38CC81A31A1E368F007D965A /* ACHCheckView.h */,
+				38CC81A41A1E368F007D965A /* ACHCheckView.m */,
+				38CC81A71A1E36A2007D965A /* ACHCheckView.xib */,
 				38B093011951FA2A00315BE4 /* DataEntryDefaultHeader.h */,
 				38B093021951FA2A00315BE4 /* DataEntryDefaultHeader.m */,
 				38B093031951FA2A00315BE4 /* DataEntryDefaultHeader.xib */,
@@ -2170,6 +2178,8 @@
 				EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */,
 				BB704E7B177300C30042F8A9 /* RoundedCellWhiteBackgroundView.h */,
 				BB704E7C177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m */,
+				383FC0FE19AE1B6700465FCA /* SeeHowView.h */,
+				383FC0FF19AE1B6700465FCA /* SeeHowView.m */,
 				EA415D4317A7B2A900E9B56A /* SpinningImageView.h */,
 				EA415D4417A7B2A900E9B56A /* SpinningImageView.m */,
 				EA225C72178EA124009D6B83 /* TabBarActivityIndicatorView.h */,
@@ -2637,6 +2647,9 @@
 				477319F11A1B62BB00660770 /* AchDetailsViewController.m */,
 				477319F21A1B62BB00660770 /* AchDetailsViewController.xib */,
 				477319F71A1B635D00660770 /* AchDetailsViewController~ipad.xib */,
+				38057ACC1A1D03BF005E94DD /* AchWaitingViewController.h */,
+				38057ACD1A1D03BF005E94DD /* AchWaitingViewController.m */,
+				38057ACE1A1D03BF005E94DD /* AchWaitingViewController.xib */,
 				BB29BD45173CD2FF0016A6E9 /* BankTransferViewController.h */,
 				BB29BD46173CD2FF0016A6E9 /* BankTransferViewController.m */,
 				BB29BD48173CD30C0016A6E9 /* BankTransferViewController.xib */,
@@ -2793,9 +2806,6 @@
 				38288F4419C86A6700661BFB /* PaymentMethodSelectorViewController.h */,
 				38288F4519C86A6700661BFB /* PaymentMethodSelectorViewController.m */,
 				38288F4619C86A6700661BFB /* PaymentMethodSelectorViewController.xib */,
-				38057ACC1A1D03BF005E94DD /* AchWaitingViewController.h */,
-				38057ACD1A1D03BF005E94DD /* AchWaitingViewController.m */,
-				38057ACE1A1D03BF005E94DD /* AchWaitingViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -3046,6 +3056,7 @@
 				EA31A1E617DDB29B00F937F7 /* SettingsViewController.xib in Resources */,
 				EAD3646717E1E19A001EFE40 /* Assets.xcassets in Resources */,
 				47AC3F9A1987B2C3005491C6 /* SuggestionCell.xib in Resources */,
+				38CC81A91A1E36A2007D965A /* ACHCheckView.xib in Resources */,
 				3863B82219E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib in Resources */,
 				EA31A1E717DDB29B00F937F7 /* SettingsTitleCell.xib in Resources */,
 				47FAF354194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */,
@@ -3198,6 +3209,7 @@
 				BBC691251721416300F0FB1A /* TSAlertViewCancelButtonBackground.png in Resources */,
 				EA0450D617EC5BC1008921DA /* IntroViewController.xib in Resources */,
 				47FAF353194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */,
+				38CC81A81A1E36A2007D965A /* ACHCheckView.xib in Resources */,
 				3863B82119E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib in Resources */,
 				385AC110198FE2190088DCD6 /* SharpSansFrontieres-Bold.otf in Resources */,
 				3840863419A368DD00C837C2 /* PersonalProfileIdentificationViewController~ipad.xib in Resources */,
@@ -3633,6 +3645,7 @@
 				EA31A16C17DDB29B00F937F7 /* CreatePaymentOperation.m in Sources */,
 				EA31A16D17DDB29B00F937F7 /* MoneyFormatter.m in Sources */,
 				3840863219A2444000C837C2 /* PaymentCancelOperation.m in Sources */,
+				38CC81A61A1E368F007D965A /* ACHCheckView.m in Sources */,
 				EA31A16E17DDB29B00F937F7 /* UINavigationController+StackManipulations.m in Sources */,
 				EA31A16F17DDB29B00F937F7 /* RegisterOperation.m in Sources */,
 				389F684C198FC1C6006CF1F6 /* Setting.m in Sources */,
@@ -4057,6 +4070,7 @@
 				383FC0F019AE1A1A00465FCA /* StateSuggestionProvider.m in Sources */,
 				380021FF192F443E009B1D53 /* CurrencyCell.m in Sources */,
 				47233CD6196D457300449042 /* LoginViewController.m in Sources */,
+				38CC81A51A1E368F007D965A /* ACHCheckView.m in Sources */,
 				EAB61714191CDD1000545C21 /* ResetPasswordOperation.m in Sources */,
 				EA2296C617E08027001CF541 /* TransferBackButtonItem.m in Sources */,
 				BA6650856E3051C31A982C78 /* GoogleAnalytics.m in Sources */,

@@ -17,6 +17,8 @@
 #import "NSMutableString+Issues.h"
 #import "TRWAlertView.h"
 #import "TRWProgressHUD.h"
+#import "ACHCheckView.h"
+#import "TransferBackButtonItem.h"
 
 IB_DESIGNABLE
 
@@ -30,6 +32,13 @@ IB_DESIGNABLE
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *accountNumberTextField;
 @property (strong, nonatomic) IBOutlet UIButton *supportButton;
 @property (strong, nonatomic) IBOutlet UIButton *connectButton;
+
+@property (nonatomic, weak) IBOutlet UIView* checkViewContainer;
+@property (nonatomic, weak) ACHCheckView* checkView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textEntryTopSpace;
+@property (nonatomic, assign) CGFloat originalTopSpace;
+@property (nonatomic, assign) BOOL keyboardIsShowing;
+@property (nonatomic, assign) BOOL willDismiss;
 
 @end
 
@@ -55,6 +64,12 @@ IB_DESIGNABLE
 {
     [super viewDidLoad];
 	
+    ACHCheckView* checkView =  [[NSBundle mainBundle] loadNibNamed:@"ACHCheckView" owner:self options:nil][0];
+    self.checkView = checkView;
+    [self.checkViewContainer addSubview:checkView];
+    checkView.inactiveHostView = self.checkViewContainer;
+    checkView.activeHostView = self.navigationController.parentViewController.view;
+    
 	[self setTitle:NSLocalizedString(@"ach.controller.title", nil)];
 	[self.supportButton setTitle:NSLocalizedString([@"ach.controller.button.support" deviceSpecificLocalization], nil) forState:UIControlStateNormal];
 	[self.connectButton setTitle:NSLocalizedString(@"ach.controller.button.connect", nil) forState:UIControlStateNormal];
@@ -66,7 +81,54 @@ IB_DESIGNABLE
 	[self.accountNumberTextField setTitle:NSLocalizedString(@"ach.controller.account.label", nil)];
 	self.accountNumberTextField.delegate = self;
 	[self.accountNumberTextField setReturnKeyType:UIReturnKeyDone];
+    
+    self.originalTopSpace = self.textEntryTopSpace.constant;
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.checkView setState:CheckStatePlain animated:NO];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    __weak typeof(self) weakSelf = self;
+    TransferBackButtonItem *item = [TransferBackButtonItem backButtonWithTapHandler:^{
+        if(weakSelf)
+        {
+            if(! weakSelf.willDismiss)
+            {
+                weakSelf.willDismiss = YES;
+                NSInteger secondsToDelay = self.keyboardIsShowing?3:0;
+                dispatch_time_t timeToDismiss = dispatch_time(DISPATCH_TIME_NOW, secondsToDelay*1000000000);
+                dispatch_after(timeToDismiss, dispatch_get_main_queue(), ^{
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
+                });
+                
+                [self.view endEditing:YES];
+            }
+        }
+        else
+        {
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
+    }];
+    [self.navigationController.topViewController.navigationItem setLeftBarButtonItem:item];
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+
+
 
 #pragma mark - TextField delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -107,6 +169,7 @@ IB_DESIGNABLE
 
 - (IBAction)connectPressed:(id)sender
 {
+    [self.view endEditing:YES];
 	NSString* errors = [self isValid];
 	
 	if (errors == nil)
@@ -122,6 +185,17 @@ IB_DESIGNABLE
 		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
 		[alertView show];
 	}
+}
+
+- (IBAction)textFieldBegunEditing:(id)sender {
+    if(sender == self.accountNumberTextField)
+    {
+        [self.checkView setState:CheckStateAccountHighlighted animated:YES];
+    }
+    else
+    {
+        [self.checkView setState:CheckStateRoutingHighlighted animated:YES];
+    }
 }
 
 #pragma mark - Validation
@@ -148,5 +222,52 @@ IB_DESIGNABLE
 	
 	return nil;
 }
+#pragma mark - keyboard overlap
+
+-(void)keyboardWillShow:(NSNotification*)note
+{
+    self.keyboardIsShowing = YES;
+    
+    NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:duration];
+    [UIView setAnimationCurve:curve];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+   
+    self.textEntryTopSpace.constant = 70.0f;
+    [self.view layoutIfNeeded];
+    
+    [UIView commitAnimations];
+
+
+}
+
+-(void)keyboardWillHide:(NSNotification*)note
+{
+    self.keyboardIsShowing = NO;
+    NSTimeInterval duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    UIViewAnimationCurve curve = [note.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:duration];
+    [UIView setAnimationCurve:curve];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    
+    self.textEntryTopSpace.constant = self.originalTopSpace;
+    [self.view layoutIfNeeded];
+    
+    [UIView commitAnimations];
+    
+    [self.checkView setState:CheckStatePlain animated:YES];
+    
+ 
+}
+
+
 
 @end
+
+
