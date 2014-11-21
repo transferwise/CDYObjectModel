@@ -6,16 +6,18 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-@class Payment;
-@class ObjectModel;
-
 #import <UIKit/UIKit.h>
 #import "DismissKeyboardViewController.h"
+#import "AchFlow.h"
+
+@class Payment;
+@class ObjectModel;
 
 @interface AchDetailsViewController : DismissKeyboardViewController<UITextFieldDelegate>
 
 - (id)init __attribute__((unavailable("init unavailable, use initWithPayment:objectModel.")));
 - (instancetype)initWithPayment:(Payment *)payment
-					objectModel:(ObjectModel *)objectModel;
+					objectModel:(ObjectModel *)objectModel
+				 loginFormBlock:(GetLoginFormBlock)loginFormBlock;
 
 @end

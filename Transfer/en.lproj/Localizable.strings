@@ -8,6 +8,7 @@
 "ach.controller.validation.account.invalid" = "Entered account number is incorrect.";
 "ach.controller.error.title" = "Entered data is not valid";
 "ach.controller.accessing" = "Accessing your bank details";
+"ach.controller.accessing.error" = "Unable to access your bank details";
 "ach.waiting.info" = "Now wait a moment while we are searching for your USD account";
 
 "business.profile.address.label" = "Address";
