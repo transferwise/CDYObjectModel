@@ -66,6 +66,7 @@ IB_DESIGNABLE
 	
     ACHCheckView* checkView =  [[NSBundle mainBundle] loadNibNamed:@"ACHCheckView" owner:self options:nil][0];
     self.checkView = checkView;
+    self.checkView.frame = self.checkViewContainer.bounds;
     [self.checkViewContainer addSubview:checkView];
     checkView.inactiveHostView = self.checkViewContainer;
     checkView.activeHostView = self.navigationController.parentViewController.view;
@@ -96,28 +97,33 @@ IB_DESIGNABLE
     [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    __weak typeof(self) weakSelf = self;
-    TransferBackButtonItem *item = [TransferBackButtonItem backButtonWithTapHandler:^{
-        if(weakSelf)
-        {
-            if(! weakSelf.willDismiss)
+    UINavigationController* navigationController = self.navigationController;
+    if([[navigationController viewControllers] count]>1)
+    {
+        __weak typeof(self) weakSelf = self;
+        TransferBackButtonItem *item = [TransferBackButtonItem backButtonWithTapHandler:^{
+            if(!IPAD && weakSelf)
             {
-                weakSelf.willDismiss = YES;
-                NSInteger secondsToDelay = self.keyboardIsShowing?3:0;
-                dispatch_time_t timeToDismiss = dispatch_time(DISPATCH_TIME_NOW, secondsToDelay*1000000000);
-                dispatch_after(timeToDismiss, dispatch_get_main_queue(), ^{
-                    [weakSelf.navigationController popViewControllerAnimated:YES];
-                });
-                
-                [self.view endEditing:YES];
+                if(!weakSelf.willDismiss)
+                {
+                    weakSelf.willDismiss = YES;
+                    float secondsToDelay = weakSelf.checkView.state == CheckStatePlain?0.0f:0.4f;
+                    dispatch_time_t timeToDismiss = dispatch_time(DISPATCH_TIME_NOW, secondsToDelay*NSEC_PER_SEC);
+                    dispatch_after(timeToDismiss, dispatch_get_main_queue(), ^{
+                        [navigationController popViewControllerAnimated:YES];
+                    });
+                    
+                    [self.view endEditing:YES];
+                    [self.checkView setState:CheckStatePlain animated:YES];
+                }
             }
-        }
-        else
-        {
-            [weakSelf.navigationController popViewControllerAnimated:YES];
-        }
-    }];
-    [self.navigationController.topViewController.navigationItem setLeftBarButtonItem:item];
+            else
+            {
+                [navigationController popViewControllerAnimated:YES];
+            }
+        }];
+        [self.navigationController.topViewController.navigationItem setLeftBarButtonItem:item];
+    }
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -126,9 +132,6 @@ IB_DESIGNABLE
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
-
-
-
 
 #pragma mark - TextField delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -160,12 +163,6 @@ IB_DESIGNABLE
 }
 
 #pragma mark - Button Actions
-- (IBAction)contactSupportPressed:(id)sender
-{
-	[[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:@"Ach details"];
-	NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
-	[[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
-}
 
 - (IBAction)connectPressed:(id)sender
 {
@@ -236,11 +233,21 @@ IB_DESIGNABLE
     [UIView setAnimationCurve:curve];
     [UIView setAnimationBeginsFromCurrentState:YES];
    
-    self.textEntryTopSpace.constant = 70.0f;
+    CGPoint topOffset = [self.view convertPoint:CGPointMake(0,70) fromView:self.navigationController.view];
+    self.textEntryTopSpace.constant = MAX(10.0f, topOffset.y);
     [self.view layoutIfNeeded];
     
     [UIView commitAnimations];
 
+    if([self.accountNumberTextField isFirstResponder])
+    {
+        [self.checkView setState:CheckStateAccountHighlighted animated:YES];
+    }
+    
+    if([self.routingNumberTextField isFirstResponder])
+    {
+        [self.checkView setState:CheckStateRoutingHighlighted animated:YES];
+    }
 
 }
 

@@ -19,6 +19,7 @@ typedef NS_ENUM(short, ACHCheckViewState)
 
 @property (nonatomic, weak) UIView* inactiveHostView;
 @property (nonatomic, weak) UIView*  activeHostView;
+@property (nonatomic, readonly) ACHCheckViewState state;
 
 -(void)setState:(ACHCheckViewState)state animated:(BOOL)shouldAnimate;
 

@@ -181,6 +181,8 @@
 		3887CBBF1976AF2B004DFFFD /* CancelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBBD1976AF2B004DFFFD /* CancelHelper.m */; };
 		388B1F751990E04200DF13E8 /* WhiteRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388B1F741990E04200DF13E8 /* WhiteRoundedButton.m */; };
 		388B1F761990E04200DF13E8 /* WhiteRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388B1F741990E04200DF13E8 /* WhiteRoundedButton.m */; };
+		388B5CDF1A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 388B5CDE1A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib */; };
+		388B5CE01A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 388B5CDE1A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib */; };
 		388F09FB1934A1BB00DBD93D /* UIView+RenderBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */; };
 		388F09FC1934A1C000DBD93D /* UIView+RenderBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */; };
 		388F09FF1936434A00DBD93D /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
@@ -462,8 +464,6 @@
 		477319F41A1B62BB00660770 /* AchDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477319F11A1B62BB00660770 /* AchDetailsViewController.m */; };
 		477319F51A1B62BB00660770 /* AchDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477319F21A1B62BB00660770 /* AchDetailsViewController.xib */; };
 		477319F61A1B62BB00660770 /* AchDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477319F21A1B62BB00660770 /* AchDetailsViewController.xib */; };
-		477319F81A1B635D00660770 /* AchDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477319F71A1B635D00660770 /* AchDetailsViewController~ipad.xib */; };
-		477319F91A1B635D00660770 /* AchDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477319F71A1B635D00660770 /* AchDetailsViewController~ipad.xib */; };
 		478031781999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
 		478031791999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
 		47971C5E199A3A560018FDA8 /* TextEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */; };
@@ -1084,6 +1084,7 @@
 		3887CBBD1976AF2B004DFFFD /* CancelHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelHelper.m; sourceTree = "<group>"; };
 		388B1F731990E04200DF13E8 /* WhiteRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteRoundedButton.h; sourceTree = "<group>"; };
 		388B1F741990E04200DF13E8 /* WhiteRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteRoundedButton.m; sourceTree = "<group>"; };
+		388B5CDE1A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AchDetailsViewController~ipad.xib"; sourceTree = "<group>"; };
 		388F09F91934A1BB00DBD93D /* UIView+RenderBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RenderBlur.h"; sourceTree = "<group>"; };
 		388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RenderBlur.m"; sourceTree = "<group>"; };
 		388F09FD1936434A00DBD93D /* InsetRespectingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InsetRespectingButton.h; path = Views/InsetRespectingButton.h; sourceTree = "<group>"; };
@@ -1338,7 +1339,6 @@
 		477319F01A1B62BB00660770 /* AchDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchDetailsViewController.h; sourceTree = "<group>"; };
 		477319F11A1B62BB00660770 /* AchDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchDetailsViewController.m; sourceTree = "<group>"; };
 		477319F21A1B62BB00660770 /* AchDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AchDetailsViewController.xib; sourceTree = "<group>"; };
-		477319F71A1B635D00660770 /* AchDetailsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AchDetailsViewController~ipad.xib"; sourceTree = "<group>"; };
 		478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SwitchCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TextEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C60199A3C1C0018FDA8 /* DateEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DateEntryCell~ipad.xib"; sourceTree = "<group>"; };
@@ -2646,7 +2646,7 @@
 				477319F01A1B62BB00660770 /* AchDetailsViewController.h */,
 				477319F11A1B62BB00660770 /* AchDetailsViewController.m */,
 				477319F21A1B62BB00660770 /* AchDetailsViewController.xib */,
-				477319F71A1B635D00660770 /* AchDetailsViewController~ipad.xib */,
+				388B5CDE1A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib */,
 				38057ACC1A1D03BF005E94DD /* AchWaitingViewController.h */,
 				38057ACD1A1D03BF005E94DD /* AchWaitingViewController.m */,
 				38057ACE1A1D03BF005E94DD /* AchWaitingViewController.xib */,
@@ -3101,6 +3101,7 @@
 				38288F5119C86DC200661BFB /* PaymentMethodCell.xib in Resources */,
 				EAB61711191CD61900545C21 /* ResetPasswordViewController.xib in Resources */,
 				EA31A1F017DDB29B00F937F7 /* DateEntryCell.xib in Resources */,
+				388B5CE01A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib in Resources */,
 				EA31A1F117DDB29B00F937F7 /* SignUpViewController.xib in Resources */,
 				38EFABDA196D7E2400126192 /* RecipientViewController~ipad.xib in Resources */,
 				EA31A1F217DDB29B00F937F7 /* PaymentCell.xib in Resources */,
@@ -3125,7 +3126,6 @@
 				383FC10F19AE1B8400465FCA /* SeeHowViewController~ipad.xib in Resources */,
 				EA31A20F17DDB29B00F937F7 /* RecipientEntrySelectionCell.xib in Resources */,
 				EA31A21017DDB29B00F937F7 /* DropdownCell.xib in Resources */,
-				477319F91A1B635D00660770 /* AchDetailsViewController~ipad.xib in Resources */,
 				EAD3648F17E2F6EF001EFE40 /* CardPaymentViewController.xib in Resources */,
 				38C0394A19E29CBB00555F65 /* GTM-TDZF76 in Resources */,
 				EA31A21117DDB29B00F937F7 /* BankTransferViewController.xib in Resources */,
@@ -3254,6 +3254,7 @@
 				38288F5019C86DC200661BFB /* PaymentMethodCell.xib in Resources */,
 				EAA54F4C1733DA1400B65BF3 /* RecipientViewController.xib in Resources */,
 				EA4AA60F17379CAD00E99150 /* CurrencySelectionCell.xib in Resources */,
+				388B5CDF1A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib in Resources */,
 				EAD069071737B8C1007C8DEE /* RecipientFieldCell.xib in Resources */,
 				38EFABD9196D7E1D00126192 /* RecipientViewController~ipad.xib in Resources */,
 				380021E6192CEB66009B1D53 /* TransactionsViewController~ipad.xib in Resources */,
@@ -3278,7 +3279,6 @@
 				385669071980F9F200BC4230 /* ContactDetailsViewController.xib in Resources */,
 				3840862A19A2391D00C837C2 /* SettingsViewController~ipad.xib in Resources */,
 				473F62931940BDD9001E280B /* NewPaymentViewController~ipad.xib in Resources */,
-				477319F81A1B635D00660770 /* AchDetailsViewController~ipad.xib in Resources */,
 				47FB7EA519419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */,
 				38C0394919E29CBB00555F65 /* GTM-TDZF76 in Resources */,
 				479B692D19487865001FA4FE /* TransferDetailsViewController.xib in Resources */,

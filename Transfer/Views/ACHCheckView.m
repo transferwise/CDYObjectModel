@@ -13,7 +13,8 @@
 #define yOffset -140.0
 #define rotationAngle M_PI_4/3.0f
 #define magnifyingScale 1.5f
-#define animationDuration 0.3f
+#define animationDuration 0.5f
+#define animationSpring 0.65f
 
 
 @interface ACHCheckView ()
@@ -22,14 +23,30 @@
 @property (weak, nonatomic) IBOutlet UIImageView *checkImage;
 @property (weak, nonatomic) IBOutlet UILabel *routingNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *accountNumberLabel;
+@property (nonatomic, assign) ACHCheckViewState state;
 
 @end
 
 @implementation ACHCheckView
 
+-(void)awakeFromNib
+{
+    self.routingNumberLabel.layer.allowsEdgeAntialiasing = YES;
+    self.accountNumberLabel.layer.allowsEdgeAntialiasing = YES;
+    self.routingNumberLabel.alpha = 1.0f;
+    self.accountNumberLabel.alpha = 0.0f;
+    [self updateContextLabel];
+}
+
 
 -(void)setState:(ACHCheckViewState)state animated:(BOOL)shouldAnimate
 {
+    if(state == self.state)
+    {
+        return;
+    }
+    
+    self.state = state;
     void(^layoutblock)(ACHCheckViewState state) = ^void(ACHCheckViewState state){
         switch (state) {
             case CheckStateRoutingHighlighted:
@@ -41,18 +58,31 @@
             case CheckStatePlain:
             default:
                 [self layoutNormal];
+                [self updateContextLabel];
                 break;
         }
     };
+    CGRect newFrame = self.frame;
+    CGPoint activeOffset = [self.activeHostView convertPoint:CGPointZero fromView:self.inactiveHostView];
+    newFrame.origin = activeOffset;
+    self.frame = newFrame;
+    self.userInteractionEnabled = YES;
     [self.activeHostView addSubview:self];
     if(shouldAnimate)
     {
-        [UIView animateWithDuration:animationDuration delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:animationDuration delay:0.0f usingSpringWithDamping:animationSpring initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             layoutblock(state);
         } completion:^(BOOL finished) {
-            if(state == CheckStatePlain)
+            if(finished)
             {
-                [self.inactiveHostView addSubview:self];
+                if(state == CheckStatePlain)
+                {
+                    self.userInteractionEnabled = NO;
+                    CGRect newFrame = self.frame;
+                    newFrame.origin = CGPointZero;
+                    self.frame = newFrame;
+                    [self.inactiveHostView addSubview:self];
+                }
             }
         }];
     }
@@ -61,6 +91,10 @@
         layoutblock(state);
         if(state == CheckStatePlain)
         {
+            self.userInteractionEnabled = NO;;
+            CGRect newFrame = self.frame;
+            newFrame.origin = CGPointZero;
+            self.frame = newFrame;
             [self.inactiveHostView addSubview:self];
         }
     }
@@ -71,9 +105,6 @@
     self.checkContainer.transform = CGAffineTransformIdentity;
     
     self.contextLabel.alpha = 1.0f;
-    
-    self.routingNumberLabel.alpha = 0.0f;
-    self.accountNumberLabel.alpha = 0.0f;
 }
 
 -(void)layoutRouting
@@ -99,9 +130,53 @@
 -(void)applySelectionTransform
 {
     CGAffineTransform transform = CGAffineTransformMakeRotation(rotationAngle);
-    transform = CGAffineTransformTranslate(transform, xOffset, yOffset);
+    CGPoint activeOffset = [self.activeHostView convertPoint:CGPointZero fromView:self.inactiveHostView];
+    transform = CGAffineTransformTranslate(transform, xOffset, yOffset - activeOffset.y);
     transform = CGAffineTransformScale(transform, magnifyingScale, magnifyingScale);
     self.checkContainer.transform = transform;
+}
+- (IBAction)dismiss:(id)sender {
+    [self.superview endEditing:YES];
+}
+
+-(BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+{
+    //Only trap touch events that happen on the dismiss buttons. Lete everything else through.
+    for(UIView *view in self.subviews)
+    {
+        if([view isKindOfClass:[UIButton class]])
+        {
+            if([view pointInside:[self convertPoint:point toView:view] withEvent:event])
+            {
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
+
+-(void)updateContextLabel
+{
+    NSString *labelIdentifier = NSLocalizedString([self currentlyHighlightedLabel]==self.accountNumberLabel?@"ach.controller.checkbook.account":@"ach.controller.checkbook.routing",nil);
+    NSString *fullMessage = [NSString stringWithFormat:NSLocalizedString(@"ach.controller.checkbook", nil),labelIdentifier];
+    NSMutableAttributedString *attributedMessage = [[NSMutableAttributedString alloc] initWithString:fullMessage];
+    NSRange fullRange = NSMakeRange(0, [fullMessage length]);
+    NSRange identifierRange = [fullMessage rangeOfString:labelIdentifier];
+    [attributedMessage addAttribute:NSFontAttributeName value:[UIFont fontFromStyle:self.contextLabel.fontStyle] range:fullRange];
+    [attributedMessage addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:self.contextLabel.fontStyle] range:fullRange];
+    [attributedMessage addAttribute:NSFontAttributeName value:[UIFont fontFromStyle:self.contextLabel.selectedFontStyle] range:identifierRange];
+    [attributedMessage addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:self.contextLabel.selectedFontStyle] range:identifierRange];
+    self.contextLabel.attributedText = attributedMessage;
+}
+
+-(UIView*)currentlyHighlightedLabel
+{
+    if(self.accountNumberLabel.alpha > 0)
+    {
+        return self.accountNumberLabel;
+    }
+    
+    return self.routingNumberLabel;
 }
 
 @end
