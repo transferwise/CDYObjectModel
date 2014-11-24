@@ -232,7 +232,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
             }
             else
             {
-
                 UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
                 [controller setPayment:payment];
                 [controller setObjectModel:self.objectModel];

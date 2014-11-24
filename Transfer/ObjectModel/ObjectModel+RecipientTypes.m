@@ -14,6 +14,7 @@
 #import "Credentials.h"
 #import "User.h"
 #import "Constants.h"
+#import "TypeFieldParser.h"
 
 @implementation ObjectModel (RecipientTypes)
 
@@ -76,45 +77,35 @@
             }
             [self.managedObjectContext deleteObject:field];
         }
-    }
-    
-    
+    }   
 }
 
-- (void)createOrUpdateFieldOnType:(RecipientType *)type withData:(NSDictionary *)data {
-    NSDictionary *cleanedData = [data dictionaryByRemovingNullObjects];
-    NSString *name = cleanedData[@"name"];
-    RecipientTypeField *field = [self existingFieldOnType:type withName:name];
-    if (!field) {
-        field = [RecipientTypeField insertInManagedObjectContext:self.managedObjectContext];
-        [field setName:name];
-        [field setFieldForType:type];
-    }
-
-    [field setExample:cleanedData[@"example"]];
-    [field setMaxLength:cleanedData[@"maxLength"]];
-    [field setMinLength:cleanedData[@"minLength"]];
-    [field setPresentationPattern:cleanedData[@"presentationPattern"]];
-    [field setRequiredValue:[cleanedData[@"required"] boolValue]];
-    [field setTitle:cleanedData[@"title"]];
-    [field setValidationRegexp:cleanedData[@"validationRegexp"]];
-
-    NSArray *allowedValues = cleanedData[@"valuesAllowed"];
-    if (!allowedValues) {
-        return;
-    }
-
-    for (NSDictionary *aData in allowedValues) {
-        NSString *code = aData[@"code"];
-        AllowedTypeFieldValue *value = [self existingAllowedValueForField:field code:code];
-        if (!value) {
-            value = [AllowedTypeFieldValue insertInManagedObjectContext:self.managedObjectContext];
-            [value setCode:code];
-            [value setValueForField:field];
-        }
-
-        [value setTitle:aData[@"title"]];
-    }
+- (void)createOrUpdateFieldOnType:(RecipientType *)type withData:(NSDictionary *)data
+{
+	NSString *name = data[@"name"];
+	
+	[TypeFieldParser getTypeWithData:data
+						  nameGetter:^NSString *{
+							  return name;
+						  }
+						 fieldGetter:^RecipientTypeField *(NSString *name) {
+							 RecipientTypeField *field = [self existingFieldOnType:type withName:name];
+							 if (!field) {
+								 field = [RecipientTypeField insertInManagedObjectContext:self.managedObjectContext];
+								 [field setName:name];
+								 [field setFieldForType:type];
+							 }
+							 return field;
+						 }
+						 valueGetter:^AllowedTypeFieldValue *(RecipientTypeField *field, NSString *code) {
+							 AllowedTypeFieldValue *value = [self existingAllowedValueForField:field code:code];
+							 if (!value) {
+								 value = [AllowedTypeFieldValue insertInManagedObjectContext:self.managedObjectContext];
+								 [value setCode:code];
+								 [value setValueForField:field];
+							 }
+							 return value;
+						 }];
 }
 
 - (RecipientTypeField *)existingFieldOnType:(RecipientType *)type withName:(NSString *)name {

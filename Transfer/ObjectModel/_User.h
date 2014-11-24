@@ -15,6 +15,7 @@ extern const struct UserAttributes {
 } UserAttributes;
 
 extern const struct UserRelationships {
+	__unsafe_unretained NSString *achBanks;
 	__unsafe_unretained NSString *businessProfile;
 	__unsafe_unretained NSString *contacts;
 	__unsafe_unretained NSString *payments;
@@ -22,6 +23,7 @@ extern const struct UserRelationships {
 	__unsafe_unretained NSString *referralLinks;
 } UserRelationships;
 
+@class AchBank;
 @class BusinessProfile;
 @class Recipient;
 @class Payment;
@@ -84,6 +86,10 @@ extern const struct UserRelationships {
 - (void)setSuccessfulInviteCountValue:(int16_t)value_;
 
 //- (BOOL)validateSuccessfulInviteCount:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) AchBank *achBanks;
+
+//- (BOOL)validateAchBanks:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) BusinessProfile *businessProfile;
 
@@ -160,6 +166,9 @@ extern const struct UserRelationships {
 
 - (int16_t)primitiveSuccessfulInviteCountValue;
 - (void)setPrimitiveSuccessfulInviteCountValue:(int16_t)value_;
+
+- (AchBank*)primitiveAchBanks;
+- (void)setPrimitiveAchBanks:(AchBank*)value;
 
 - (BusinessProfile*)primitiveBusinessProfile;
 - (void)setPrimitiveBusinessProfile:(BusinessProfile*)value;

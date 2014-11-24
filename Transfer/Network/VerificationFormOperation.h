@@ -8,7 +8,9 @@
 
 #import "TransferwiseOperation.h"
 
-typedef void (^VerificationFormBlock)(NSError *error, NSDictionary *form);
+@class AchBank;
+
+typedef void (^VerificationFormBlock)(NSError *error, AchBank* form);
 
 @interface VerificationFormOperation : TransferwiseOperation
 

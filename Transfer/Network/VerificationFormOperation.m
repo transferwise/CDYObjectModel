@@ -9,9 +9,12 @@
 #import "VerificationFormOperation.h"
 #import "Constants.h"
 #import "TransferwiseOperation+Private.h"
+#import "TypeFieldParser.h"
+#import "RecipientTypeField.h"
+#import "AllowedTypeFieldValue.h"
+#import "ObjectModel+AchBank.h"
 
-//TODO: this is probably going to change to just verificationform
-NSString *const kVerificationFormPath = @"/ach/getVerificationForm";
+NSString *const kVerificationFormPath = @"/ach/verificationForm";
 
 @interface VerificationFormOperation ()
 
@@ -48,19 +51,26 @@ NSString *const kVerificationFormPath = @"/ach/getVerificationForm";
 	}];
 	
 	[self setOperationSuccessHandler:^(NSDictionary *response) {
-		if (response[@"referralLinks"])
-		{
-		}
-		else
-		{
-			weakSelf.resultHandler(nil, nil);
-		}
+		[weakSelf.workModel.managedObjectContext performBlock:^{			
+			if (response[@"fieldGroups"] && response[@"bankName"])
+			{
+				NSString* bankName = response[@"bankName"];
+				[weakSelf.workModel createOrUpdateAchBankWithData:response[@"fieldGroups"]
+														 bankTitle:bankName];
+				[weakSelf.workModel saveContext:^{
+					weakSelf.resultHandler(nil, [weakSelf.workModel bankWithTitle:bankName]);
+				}];
+			}
+			else
+			{
+				weakSelf.resultHandler(nil, nil);
+			}
+		}];
 	}];
 	
 	[self getDataFromPath:path params:@{@"routingNumber" : self.routingNumber,
 										@"accountNumber" : self.accountNumber,
-										//TODO: this has been changed to paymentId, but is undeployed
-										@"initialRequestId" : self.paymentId}];
+										@"paymentId" : self.paymentId}];
 	
 }
 
