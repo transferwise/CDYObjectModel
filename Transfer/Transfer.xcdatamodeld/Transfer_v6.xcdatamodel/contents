@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14B25" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AchBank" representedClassName="AchBank" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="fieldGroups" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FieldGroup" inverseName="achBank" inverseEntity="FieldGroup" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="fieldGroups" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="FieldGroup" inverseName="achBank" inverseEntity="FieldGroup" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="achBanks" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="AllowedTypeFieldValue" representedClassName="AllowedTypeFieldValue" syncable="YES">
@@ -45,9 +45,9 @@
         <relationship name="targets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PairTargetCurrency" inverseName="currency" inverseEntity="PairTargetCurrency" syncable="YES"/>
     </entity>
     <entity name="FieldGroup" representedClassName="FieldGroup" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="achBank" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AchBank" inverseName="fieldGroups" inverseEntity="AchBank" syncable="YES"/>
-        <relationship name="typeFieldValues" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TypeFieldValue" inverseName="fieldGroup" inverseEntity="TypeFieldValue" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="achBank" maxCount="1" deletionRule="Nullify" destinationEntity="AchBank" inverseName="fieldGroups" inverseEntity="AchBank" syncable="YES"/>
+        <relationship name="fields" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="RecipientTypeField" inverseName="fieldForGroup" inverseEntity="RecipientTypeField" syncable="YES"/>
     </entity>
     <entity name="PairSourceCurrency" representedClassName="PairSourceCurrency" syncable="YES">
         <attribute name="hidden" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
@@ -168,6 +168,7 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="validationRegexp" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="allowedValues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AllowedTypeFieldValue" inverseName="valueForField" inverseEntity="AllowedTypeFieldValue" syncable="YES"/>
+        <relationship name="fieldForGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FieldGroup" inverseName="fields" inverseEntity="FieldGroup" syncable="YES"/>
         <relationship name="fieldForType" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientType" inverseName="fields" inverseEntity="RecipientType" syncable="YES"/>
         <relationship name="values" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TypeFieldValue" inverseName="valueForField" inverseEntity="TypeFieldValue" syncable="YES"/>
     </entity>
@@ -182,7 +183,6 @@
     </entity>
     <entity name="TypeFieldValue" representedClassName="TypeFieldValue" syncable="YES">
         <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="fieldGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FieldGroup" inverseName="typeFieldValues" inverseEntity="FieldGroup" syncable="YES"/>
         <relationship name="recipient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="fieldValues" inverseEntity="Recipient" syncable="YES"/>
         <relationship name="valueForField" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RecipientTypeField" inverseName="values" inverseEntity="RecipientTypeField" syncable="YES"/>
     </entity>
@@ -210,18 +210,18 @@
         <element name="PairSourceCurrency" positionX="0" positionY="0" width="128" height="120"/>
         <element name="PairTargetCurrency" positionX="0" positionY="0" width="128" height="135"/>
         <element name="PayInMethod" positionX="36" positionY="180" width="128" height="165"/>
-        <element name="Payment" positionX="234" positionY="-15" width="128" height="375"/>
+        <element name="Payment" positionX="459" positionY="18" width="128" height="375"/>
         <element name="PaymentMadeIndicator" positionX="-405" positionY="-279" width="128" height="90"/>
         <element name="PendingPayment" positionX="79" positionY="-189" width="128" height="180"/>
         <element name="PersonalProfile" positionX="-614" positionY="-42" width="128" height="240"/>
         <element name="Recipient" positionX="745" positionY="255" width="128" height="285"/>
         <element name="RecipientType" positionX="205" positionY="-432" width="128" height="178"/>
-        <element name="RecipientTypeField" positionX="718" positionY="-207" width="128" height="210"/>
-        <element name="ReferralLink" positionX="-405" positionY="-279" width="128" height="88"/>
-        <element name="Setting" positionX="376" positionY="-108" width="128" height="75"/>
-        <element name="TypeFieldValue" positionX="54" positionY="72" width="128" height="103"/>
+        <element name="RecipientTypeField" positionX="718" positionY="-207" width="128" height="223"/>
+        <element name="ReferralLink" positionX="-218" positionY="-405" width="128" height="88"/>
+        <element name="Setting" positionX="-441" positionY="-405" width="128" height="75"/>
+        <element name="TypeFieldValue" positionX="18" positionY="504" width="128" height="88"/>
         <element name="User" positionX="-360" positionY="207" width="128" height="253"/>
-        <element name="AchBank" positionX="153" positionY="126" width="128" height="88"/>
-        <element name="FieldGroup" positionX="162" positionY="135" width="128" height="88"/>
+        <element name="AchBank" positionX="619" positionY="-324" width="128" height="88"/>
+        <element name="FieldGroup" positionX="333" positionY="-178" width="128" height="73"/>
     </elements>
 </model>

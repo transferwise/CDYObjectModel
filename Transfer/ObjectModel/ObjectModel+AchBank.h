@@ -8,6 +8,12 @@
 
 #import "ObjectModel.h"
 
+@class AchBank;
+
 @interface ObjectModel (AchBank)
+
+- (AchBank *)bankWithTitle:(NSString *)title;
+- (void)createOrUpdateAchBankWithData:(NSDictionary *)data
+							bankTitle:(NSString *)bankTitle;
 
 @end

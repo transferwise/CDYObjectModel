@@ -12,9 +12,9 @@
 #import "TypeFieldParser.h"
 #import "RecipientTypeField.h"
 #import "AllowedTypeFieldValue.h"
+#import "ObjectModel+AchBank.h"
 
-//TODO: this is probably going to change to just verificationform
-NSString *const kVerificationFormPath = @"/ach/getVerificationForm";
+NSString *const kVerificationFormPath = @"/ach/verificationForm";
 
 @interface VerificationFormOperation ()
 
@@ -51,49 +51,27 @@ NSString *const kVerificationFormPath = @"/ach/getVerificationForm";
 	}];
 	
 	[self setOperationSuccessHandler:^(NSDictionary *response) {
-		if (response[@"fieldGroups"])
-		{
-			NSDictionary *form = [[NSDictionary alloc] init];
+		[weakSelf.workModel.managedObjectContext performBlock:^{
 			
-			for (NSDictionary* group in response[@"fieldGroups"])
+			if (response[@"fieldGroups"] && response[@"bankName"])
 			{
-				NSString* title = group[@"title"];
-				NSMutableArray *fields = [[NSMutableArray alloc] init];
-				
-				for (NSDictionary* row in group[@"fields"])
-				{
-					[fields addObject:[TypeFieldParser getTypeWithData:row
-															nameGetter:^NSString *{
-																return title;
-															}
-														   fieldGetter:^RecipientTypeField *(NSString *name) {
-															   RecipientTypeField *field = [[RecipientTypeField alloc] init];
-															   [field setName:name];
-															   return field;
-														   }
-														   valueGetter:^AllowedTypeFieldValue *(RecipientTypeField *field, NSString *code) {
-															   AllowedTypeFieldValue *value = [[AllowedTypeFieldValue alloc] init];
-															   [value setCode:code];
-															   [value setValueForField:field];
-															   return value;
-														   }]];
-				}
-				
-				[form setValue:fields forKey:title];
+				NSString* bankName = response[@"bankName"];
+				[weakSelf.workModel createOrUpdateAchBankWithData:response[@"fieldGroups"]
+														 bankTitle:bankName];
+				[weakSelf.workModel saveContext:^{
+					weakSelf.resultHandler(nil, [weakSelf.workModel bankWithTitle:bankName]);
+				}];
 			}
-			
-			weakSelf.resultHandler(nil, form);
-		}
-		else
-		{
-			weakSelf.resultHandler(nil, nil);
-		}
+			else
+			{
+				weakSelf.resultHandler(nil, nil);
+			}
+		}];
 	}];
 	
 	[self getDataFromPath:path params:@{@"routingNumber" : self.routingNumber,
 										@"accountNumber" : self.accountNumber,
-										//TODO: this has been changed to paymentId, but is undeployed
-										@"initialRequestId" : self.paymentId}];
+										@"paymentId" : self.paymentId}];
 	
 }
 
