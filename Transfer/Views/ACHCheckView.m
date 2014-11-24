@@ -50,24 +50,22 @@
     void(^layoutblock)(ACHCheckViewState state) = ^void(ACHCheckViewState state){
         switch (state) {
             case CheckStateRoutingHighlighted:
-                [self layoutRouting];
+                [self styleForRoutingHighlighted];
                 break;
             case CheckStateAccountHighlighted:
-                [self layoutAccount];
+                [self styleForAccountHighlighted];
                 break;
             case CheckStatePlain:
             default:
-                [self layoutNormal];
+                [self styleForNormalState];
                 [self updateContextLabel];
                 break;
         }
     };
-    CGRect newFrame = self.frame;
-    CGPoint activeOffset = [self.activeHostView convertPoint:CGPointZero fromView:self.inactiveHostView];
-    newFrame.origin = activeOffset;
-    self.frame = newFrame;
-    self.userInteractionEnabled = YES;
-    [self.activeHostView addSubview:self];
+    self.autoresizingMask = UIViewAutoresizingNone;
+    
+    [self addToActiveView];
+    
     if(shouldAnimate)
     {
         [UIView animateWithDuration:animationDuration delay:0.0f usingSpringWithDamping:animationSpring initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -77,11 +75,16 @@
             {
                 if(state == CheckStatePlain)
                 {
+                    
                     self.userInteractionEnabled = NO;
-                    CGRect newFrame = self.frame;
-                    newFrame.origin = CGPointZero;
-                    self.frame = newFrame;
-                    [self.inactiveHostView addSubview:self];
+                    [self addToInactiveView];
+                }
+                else
+                {
+                    //set the frame again to avoid conflicts from additive animation.
+                    [self addToActiveView];
+                    self.userInteractionEnabled = YES;
+
                 }
             }
         }];
@@ -91,23 +94,20 @@
         layoutblock(state);
         if(state == CheckStatePlain)
         {
-            self.userInteractionEnabled = NO;;
-            CGRect newFrame = self.frame;
-            newFrame.origin = CGPointZero;
-            self.frame = newFrame;
-            [self.inactiveHostView addSubview:self];
+            [self addToInactiveView];
         }
     }
 }
 
--(void)layoutNormal
+
+-(void)styleForNormalState
 {
     self.checkContainer.transform = CGAffineTransformIdentity;
     
     self.contextLabel.alpha = 1.0f;
 }
 
--(void)layoutRouting
+-(void)styleForRoutingHighlighted
 {
     [self applySelectionTransform];
     
@@ -117,7 +117,7 @@
     self.accountNumberLabel.alpha = 0.0f;
 }
 
--(void)layoutAccount
+-(void)styleForAccountHighlighted
 {
     [self applySelectionTransform];
     
@@ -135,13 +135,34 @@
     transform = CGAffineTransformScale(transform, magnifyingScale, magnifyingScale);
     self.checkContainer.transform = transform;
 }
+
+-(void)addToActiveView
+{
+    CGRect newFrame = self.frame;
+    CGPoint activeOffset = [self.activeHostView convertPoint:CGPointZero fromView:self.inactiveHostView];
+    newFrame.origin = activeOffset;
+    self.frame = newFrame;
+    [self.activeHostView addSubview:self];
+    self.userInteractionEnabled = YES;
+    
+}
+
+-(void)addToInactiveView
+{
+    CGRect plainFrame = self.frame;
+    plainFrame.origin = CGPointZero;
+    self.frame = plainFrame;
+    [self.inactiveHostView addSubview:self];
+    self.userInteractionEnabled = NO;
+}
+
 - (IBAction)dismiss:(id)sender {
     [self.superview endEditing:YES];
 }
 
 -(BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
 {
-    //Only trap touch events that happen on the dismiss buttons. Lete everything else through.
+    //Only trap touch events that happen on the dismiss buttons. Let everything else through.
     for(UIView *view in self.subviews)
     {
         if([view isKindOfClass:[UIButton class]])

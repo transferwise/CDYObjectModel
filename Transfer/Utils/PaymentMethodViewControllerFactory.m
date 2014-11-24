@@ -104,7 +104,7 @@
 
         result = cardController;
     }
-	else if ([method.type caseInsensitiveCompare:@"REGULAR"] == NSOrderedSame)
+	else if ([method.type caseInsensitiveCompare:@"ACH"] == NSOrderedSame)
 	{
 		AchFlow *flow = [AchFlow sharedInstanceWithPayment:payment
 											   objectModel:objectModel];
