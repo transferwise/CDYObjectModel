@@ -19,12 +19,13 @@
 #import "FeedbackCoordinator.h"
 #ifdef DEV_VERSION
 #import "TransferDevWebTools.h"
+#import "CustomInfoViewController.h"
 #endif
 
 @interface CardPaymentViewController () <UIWebViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
-@property (nonatomic, strong) TransferwiseOperation *executedOperation;
+@property (nonatomic, strong) PullPaymentDetailsOperation *executedOperation;
 
 @end
 
@@ -153,15 +154,57 @@
             return;
         }
         
-        TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-        [hud setMessage:NSLocalizedString(@"upload.money.refreshing.payment.message", nil)];
+        CustomInfoViewController * customInfo = [[CustomInfoViewController alloc] init];
+        customInfo.infoText = NSLocalizedString(@"upload.money.card.payment.success.message", nil);
+        customInfo.actionButtonTitle = NSLocalizedString(@"button.title.ok", nil);
+        customInfo.mapCloseButtonToAction = YES;
+        customInfo.infoImage = [UIImage imageNamed:@"GreenTick"];
+        __weak typeof(self) weakSelf = self;
+        __weak typeof(customInfo) weakCustomInfo = customInfo;
+        customInfo.actionButtonBlock = ^{
+            if(weakSelf.executedOperation)
+            {
+                TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:weakCustomInfo.view];
+                [hud setMessage:NSLocalizedString(@"upload.money.refreshing.payment.message", nil)];
+                
+                [weakSelf.executedOperation setResultHandler:^(NSError *error) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [hud hide];
+                        [weakSelf setExecutedOperation:nil];
+                        
+                        if (error) {
+                            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"upload.money.transaction.refresh.error.title", nil) message:NSLocalizedString(@"upload.money.transaction.refresh.error.message", nil)];
+                            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+                            [alertView show];
+                            [weakCustomInfo dismiss];
+                            return;
+                        }
+                        
+                        TransferDetailsViewController *details = [[TransferDetailsViewController alloc] init];
+                        details.payment = weakSelf.payment;
+                        details.showClose = YES;
+                        
+                        [self.navigationController pushViewController:details animated:NO];
+                        [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
+                            return YES;
+                        }];
+                        [weakCustomInfo dismiss];
+                    });
+                }];
+            }
+            else
+            {
+              [weakCustomInfo dismiss];
+            }
+            
+        };
+        [customInfo presentOnViewController:self.navigationController.parentViewController withPresentationStyle:TransparentPresentationFade];
+        
         PullPaymentDetailsOperation *operation = [PullPaymentDetailsOperation operationWithPaymentId:[self.payment remoteId]];
         [self setExecutedOperation:operation];
         [operation setObjectModel:self.objectModel];
-        __weak typeof(self) weakSelf = self;
         [operation setResultHandler:^(NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [hud hide];
                 [weakSelf setExecutedOperation:nil];
                 
                 if (error) {
@@ -175,13 +218,12 @@
                 details.payment = weakSelf.payment;
                 details.showClose = YES;
                 
-                [self.navigationController pushViewController:details animated:YES];
+                [self.navigationController pushViewController:details animated:NO];
                 [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
                     return YES;
                 }];
             });
         }];
-        
         [operation execute];
     });
 }

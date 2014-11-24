@@ -70,7 +70,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="dismiss" destination="-1" eventType="touchUpInside" id="B2A-kx-Kbc"/>
+                        <action selector="actionButtonTapped" destination="-1" eventType="touchUpInside" id="FXn-qc-310"/>
                     </connections>
                 </button>
             </subviews>

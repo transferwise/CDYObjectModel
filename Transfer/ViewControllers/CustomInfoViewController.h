@@ -15,7 +15,16 @@
 @property (nonatomic, copy) NSString *actionButtonTitle;
 @property (nonatomic, strong) UIImage *infoImage;
 
+/**
+ *  Set to override the behaviour when the action button is tapped. Default behaviour is call to dismiss.
+ */
 @property (nonatomic,copy) void(^actionButtonBlock)(void);
 
+/**
+ *  set to YES to make the close button invoke the actionButtonBlock rather than just dismiss.
+ */
+@property (nonatomic,assign) BOOL mapCloseButtonToAction;
+
+//Invokes the actionButtonBlock.
 -(IBAction)actionButtonTapped;
 @end

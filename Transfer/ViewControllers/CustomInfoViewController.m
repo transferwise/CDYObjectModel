@@ -18,6 +18,44 @@
 
 @implementation CustomInfoViewController
 
+-(instancetype)init
+{
+    self = [super init];
+    if(self)
+    {
+        [self setDefaultAction];
+    }
+    return self;
+}
+
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if(self)
+    {
+        [self setDefaultAction];
+    }
+    return self;
+}
+
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if(self)
+    {
+        [self setDefaultAction];
+    }
+    return self;
+}
+
+-(void)setDefaultAction
+{
+    __weak typeof(self) weakSelf = self;
+    self.actionButtonBlock = ^{
+        [weakSelf dismiss];
+    };
+}
+
 -(void)viewDidLoad
 {
     [self.actionButton setTitle:self.actionButtonTitle forState:UIControlStateNormal];
@@ -56,6 +94,21 @@
     if(self.actionButtonBlock)
     {
         self.actionButtonBlock();
+    }
+}
+
+-(IBAction)closebuttonTapped
+{
+    if(self.mapCloseButtonToAction)
+    {
+        if(self.actionButtonBlock)
+        {
+            self.actionButtonBlock();
+        }
+    }
+    else
+    {
+        [self dismiss];
     }
 }
 
