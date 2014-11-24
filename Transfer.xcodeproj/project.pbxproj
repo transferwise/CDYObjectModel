@@ -500,6 +500,16 @@
 		47B36C841986543B002E66C7 /* MultipleEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B36C821986543B002E66C7 /* MultipleEntryCell.m */; };
 		47B3864A1A1CDC9A00478402 /* VerificationFormOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B386491A1CDC9A00478402 /* VerificationFormOperation.m */; };
 		47B3864B1A1CDC9A00478402 /* VerificationFormOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B386491A1CDC9A00478402 /* VerificationFormOperation.m */; };
+		47C4D03C1A232A9F005EC7C6 /* _AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0391A232A9F005EC7C6 /* _AchBank.m */; };
+		47C4D03D1A232A9F005EC7C6 /* _AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0391A232A9F005EC7C6 /* _AchBank.m */; };
+		47C4D03E1A232A9F005EC7C6 /* _FieldGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D03B1A232A9F005EC7C6 /* _FieldGroup.m */; };
+		47C4D03F1A232A9F005EC7C6 /* _FieldGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D03B1A232A9F005EC7C6 /* _FieldGroup.m */; };
+		47C4D0441A232AC1005EC7C6 /* AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0411A232AC1005EC7C6 /* AchBank.m */; };
+		47C4D0451A232AC1005EC7C6 /* AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0411A232AC1005EC7C6 /* AchBank.m */; };
+		47C4D0461A232AC1005EC7C6 /* FieldGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0431A232AC1005EC7C6 /* FieldGroup.m */; };
+		47C4D0471A232AC1005EC7C6 /* FieldGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0431A232AC1005EC7C6 /* FieldGroup.m */; };
+		47C4D04A1A232B1E005EC7C6 /* ObjectModel+AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0491A232B1E005EC7C6 /* ObjectModel+AchBank.m */; };
+		47C4D04B1A232B1E005EC7C6 /* ObjectModel+AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0491A232B1E005EC7C6 /* ObjectModel+AchBank.m */; };
 		47C580A3196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47C580A4196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47DBE05919703494008915A6 /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
@@ -1364,6 +1374,16 @@
 		47B36C821986543B002E66C7 /* MultipleEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleEntryCell.m; sourceTree = "<group>"; };
 		47B386481A1CDC9A00478402 /* VerificationFormOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationFormOperation.h; sourceTree = "<group>"; };
 		47B386491A1CDC9A00478402 /* VerificationFormOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationFormOperation.m; sourceTree = "<group>"; };
+		47C4D0381A232A9F005EC7C6 /* _AchBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AchBank.h; sourceTree = "<group>"; };
+		47C4D0391A232A9F005EC7C6 /* _AchBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AchBank.m; sourceTree = "<group>"; };
+		47C4D03A1A232A9F005EC7C6 /* _FieldGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _FieldGroup.h; sourceTree = "<group>"; };
+		47C4D03B1A232A9F005EC7C6 /* _FieldGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _FieldGroup.m; sourceTree = "<group>"; };
+		47C4D0401A232AC1005EC7C6 /* AchBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchBank.h; sourceTree = "<group>"; };
+		47C4D0411A232AC1005EC7C6 /* AchBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchBank.m; sourceTree = "<group>"; };
+		47C4D0421A232AC1005EC7C6 /* FieldGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldGroup.h; sourceTree = "<group>"; };
+		47C4D0431A232AC1005EC7C6 /* FieldGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldGroup.m; sourceTree = "<group>"; };
+		47C4D0481A232B1E005EC7C6 /* ObjectModel+AchBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+AchBank.h"; sourceTree = "<group>"; };
+		47C4D0491A232B1E005EC7C6 /* ObjectModel+AchBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+AchBank.m"; sourceTree = "<group>"; };
 		47C580A1196AC1A7007771DB /* UIGestureRecognizer+Cancel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Cancel.h"; sourceTree = "<group>"; };
 		47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Cancel.m"; sourceTree = "<group>"; };
 		47DC89811A03950F0042054B /* TransferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1393,6 +1413,7 @@
 		47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeviceSpecificLocalisation.m"; sourceTree = "<group>"; };
 		47FC53BF1A1F61CF00F5E632 /* TypeFieldParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeFieldParser.h; sourceTree = "<group>"; };
 		47FC53C01A1F61CF00F5E632 /* TypeFieldParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeFieldParser.m; sourceTree = "<group>"; };
+		47FC53C31A23267900F5E632 /* Transfer_v6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v6.xcdatamodel; sourceTree = "<group>"; };
 		7A7F07DC7BBE0A79CA26F843 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8FB7727F5849FF439B605EF8 /* Pods-TransferTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransferTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransferTests/Pods-TransferTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A92F0FB2A76538EDCB7E38B7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1950,6 +1971,10 @@
 		389F679C198FC1C5006CF1F6 /* ObjectModel */ = {
 			isa = PBXGroup;
 			children = (
+				47C4D0401A232AC1005EC7C6 /* AchBank.h */,
+				47C4D0411A232AC1005EC7C6 /* AchBank.m */,
+				47C4D0421A232AC1005EC7C6 /* FieldGroup.h */,
+				47C4D0431A232AC1005EC7C6 /* FieldGroup.m */,
 				38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */,
 				389F6851198FC1D0006CF1F6 /* generated */,
 				389F67BF198FC1C5006CF1F6 /* AllowedTypeFieldValue.h */,
@@ -1960,6 +1985,8 @@
 				389F67C4198FC1C5006CF1F6 /* Country.m */,
 				389F67C5198FC1C5006CF1F6 /* Currency.h */,
 				389F67C6198FC1C5006CF1F6 /* Currency.m */,
+				47C4D0481A232B1E005EC7C6 /* ObjectModel+AchBank.h */,
+				47C4D0491A232B1E005EC7C6 /* ObjectModel+AchBank.m */,
 				389F67C7198FC1C5006CF1F6 /* ObjectModel+Countries.h */,
 				389F67C8198FC1C5006CF1F6 /* ObjectModel+Countries.m */,
 				389F67C9198FC1C5006CF1F6 /* ObjectModel+Currencies.h */,
@@ -2020,6 +2047,8 @@
 		389F6851198FC1D0006CF1F6 /* generated */ = {
 			isa = PBXGroup;
 			children = (
+				47C4D0381A232A9F005EC7C6 /* _AchBank.h */,
+				47C4D0391A232A9F005EC7C6 /* _AchBank.m */,
 				389F679D198FC1C5006CF1F6 /* _AllowedTypeFieldValue.h */,
 				389F679E198FC1C5006CF1F6 /* _AllowedTypeFieldValue.m */,
 				389F679F198FC1C5006CF1F6 /* _BusinessProfile.h */,
@@ -2028,6 +2057,8 @@
 				389F67A2198FC1C5006CF1F6 /* _Country.m */,
 				389F67A3198FC1C5006CF1F6 /* _Currency.h */,
 				389F67A4198FC1C5006CF1F6 /* _Currency.m */,
+				47C4D03A1A232A9F005EC7C6 /* _FieldGroup.h */,
+				47C4D03B1A232A9F005EC7C6 /* _FieldGroup.m */,
 				389F67A5198FC1C5006CF1F6 /* _PairSourceCurrency.h */,
 				389F67A6198FC1C5006CF1F6 /* _PairSourceCurrency.m */,
 				389F67A7198FC1C5006CF1F6 /* _PairTargetCurrency.h */,
@@ -3490,6 +3521,7 @@
 				479B69421949E7ED001FA4FE /* TransferDetialsHeaderView.m in Sources */,
 				479B69411949E7DA001FA4FE /* TransferDetailsViewController.m in Sources */,
 				479B69401949E7BB001FA4FE /* UIFont+MOMStyle.m in Sources */,
+				47C4D03D1A232A9F005EC7C6 /* _AchBank.m in Sources */,
 				47AC3F8E1987845A005491C6 /* SuggestionDataEntryViewController.m in Sources */,
 				38AA83421949B8DF0065AD2A /* GradientView.m in Sources */,
 				383FC11319AE1BF400465FCA /* SeparatorViewCell.m in Sources */,
@@ -3514,6 +3546,7 @@
 				380021DC192CC89B009B1D53 /* UIColor+MOMStyle.m in Sources */,
 				4746EAFD19A7267B00D03557 /* ReferralListOperation.m in Sources */,
 				EA31A13217DDB29B00F937F7 /* UIView+Loading.m in Sources */,
+				47C4D0471A232AC1005EC7C6 /* FieldGroup.m in Sources */,
 				EA31A13317DDB29B00F937F7 /* TextEntryCell.m in Sources */,
 				474A5A901A137EDC0094757B /* _ReferralLink.m in Sources */,
 				3818605819C9A206009A413E /* SetSSNOperation.m in Sources */,
@@ -3549,6 +3582,7 @@
 				474C45221993CD38001F207C /* ProfilesEditViewController.m in Sources */,
 				EA31A14217DDB29B00F937F7 /* SettingsTitleCell.m in Sources */,
 				47AC3F921987AFAC005491C6 /* SuggestionCellProvider.m in Sources */,
+				47C4D03F1A232A9F005EC7C6 /* _FieldGroup.m in Sources */,
 				38504B0A19C1E83700276203 /* TouchIDHelper.m in Sources */,
 				38E1CA571A14FF63009F8E28 /* CommonAnimationHelper.m in Sources */,
 				EA31A14317DDB29B00F937F7 /* MoneyCalculator.m in Sources */,
@@ -3712,6 +3746,7 @@
 				38B092E6194F325B00315BE4 /* AddressBookManager.m in Sources */,
 				38057AD01A1D03BF005E94DD /* AchWaitingViewController.m in Sources */,
 				380021CF192CC531009B1D53 /* MOMCompoundStyle.m in Sources */,
+				47C4D0451A232AC1005EC7C6 /* AchBank.m in Sources */,
 				389F683C198FC1C6006CF1F6 /* PayInMethod.m in Sources */,
 				EAE7B6B417E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */,
 				470C131E1A12598300EEAF25 /* ReferralLinksOperation.m in Sources */,
@@ -3753,6 +3788,7 @@
 				38342BAC196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */,
 				389F681E198FC1C6006CF1F6 /* Country.m in Sources */,
 				389F6830198FC1C6006CF1F6 /* ObjectModel+RecipientTypes.m in Sources */,
+				47C4D04B1A232B1E005EC7C6 /* ObjectModel+AchBank.m in Sources */,
 				4723EA1E1974095B00B4345F /* NavigationBarCustomiser.m in Sources */,
 				47F84D6C198A638B00886D41 /* DoubleEntryCell.m in Sources */,
 				389F6846198FC1C6006CF1F6 /* Recipient.m in Sources */,
@@ -3906,6 +3942,7 @@
 				389F682B198FC1C6006CF1F6 /* ObjectModel+PendingPayments.m in Sources */,
 				EAD3648C17E2F6EF001EFE40 /* CardPaymentViewController.m in Sources */,
 				1864AC94173B7C28008773FC /* BusinessProfileViewController.m in Sources */,
+				47C4D0461A232AC1005EC7C6 /* FieldGroup.m in Sources */,
 				38B092E5194F2EB700315BE4 /* AddressBookManager.m in Sources */,
 				1864AC9E173B7C80008773FC /* BusinessProfileOperation.m in Sources */,
 				1864ACA1173B7C95008773FC /* DeleteRecipientOperation.m in Sources */,
@@ -3944,6 +3981,7 @@
 				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
 				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,
 				EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */,
+				47C4D0441A232AC1005EC7C6 /* AchBank.m in Sources */,
 				EA59293E17577CCA007C0072 /* UploadVerificationFileOperation.m in Sources */,
 				380021EF192F3DD3009B1D53 /* CurrencySelectorViewController.m in Sources */,
 				EA59298E1758CD6C007C0072 /* OpenIDViewController.m in Sources */,
@@ -3981,6 +4019,7 @@
 				472D5642198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */,
 				BB9A2E83176B711400C5E058 /* UITableView+FooterPositioning.m in Sources */,
 				389F683D198FC1C6006CF1F6 /* Payment.m in Sources */,
+				47C4D04A1A232B1E005EC7C6 /* ObjectModel+AchBank.m in Sources */,
 				BB704E7D177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m in Sources */,
 				479B692C19487865001FA4FE /* TransferDetailsViewController.m in Sources */,
 				47FAF344194B2F11004CE986 /* LightBlueButton.m in Sources */,
@@ -4008,6 +4047,7 @@
 				389F683B198FC1C6006CF1F6 /* PayInMethod.m in Sources */,
 				47F667681A1DD2A0003C018A /* AchFlow.m in Sources */,
 				47AC3F971987B2C3005491C6 /* SuggestionCell.m in Sources */,
+				47C4D03E1A232A9F005EC7C6 /* _FieldGroup.m in Sources */,
 				470C131D1A12598300EEAF25 /* ReferralLinksOperation.m in Sources */,
 				EA225CA3178EB591009D6B83 /* NSDate+ServerTime.m in Sources */,
 				EA225CAF178ECD68009D6B83 /* RecipientsOperation.m in Sources */,
@@ -4069,6 +4109,7 @@
 				EA2296C617E08027001CF541 /* TransferBackButtonItem.m in Sources */,
 				BA6650856E3051C31A982C78 /* GoogleAnalytics.m in Sources */,
 				38AEB3C71966B8BF00B852E1 /* UIResponder+FirstResponder.m in Sources */,
+				47C4D03C1A232A9F005EC7C6 /* _AchBank.m in Sources */,
 				47535CB51981367C00DC39D6 /* UIView+SeparatorLine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4465,6 +4506,7 @@
 		38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				47FC53C31A23267900F5E632 /* Transfer_v6.xcdatamodel */,
 				474A5A961A13B8370094757B /* Transfer_v5.1.xcdatamodel */,
 				384CF64519F6ADE50011DDAD /* Transfer_v5.xcdatamodel */,
 				3818605919C9AB3E009A413E /* Transfer_v4.xcdatamodel */,
@@ -4474,7 +4516,7 @@
 				38CB1F7519ABB47000CD0953 /* Transfer_v2.xcdatamodel */,
 				38CB1F7619ABB47000CD0953 /* Transfer_v3.xcdatamodel */,
 			);
-			currentVersion = 474A5A961A13B8370094757B /* Transfer_v5.1.xcdatamodel */;
+			currentVersion = 47FC53C31A23267900F5E632 /* Transfer_v6.xcdatamodel */;
 			name = Transfer.xcdatamodeld;
 			path = ../Transfer.xcdatamodeld;
 			sourceTree = "<group>";

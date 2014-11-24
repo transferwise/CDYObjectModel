@@ -8,6 +8,7 @@ const struct TypeFieldValueAttributes TypeFieldValueAttributes = {
 };
 
 const struct TypeFieldValueRelationships TypeFieldValueRelationships = {
+	.fieldGroup = @"fieldGroup",
 	.recipient = @"recipient",
 	.valueForField = @"valueForField",
 };
@@ -42,6 +43,8 @@ const struct TypeFieldValueRelationships TypeFieldValueRelationships = {
 }
 
 @dynamic value;
+
+@dynamic fieldGroup;
 
 @dynamic recipient;
 

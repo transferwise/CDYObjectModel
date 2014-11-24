@@ -9,6 +9,9 @@
 #import "VerificationFormOperation.h"
 #import "Constants.h"
 #import "TransferwiseOperation+Private.h"
+#import "TypeFieldParser.h"
+#import "RecipientTypeField.h"
+#import "AllowedTypeFieldValue.h"
 
 //TODO: this is probably going to change to just verificationform
 NSString *const kVerificationFormPath = @"/ach/getVerificationForm";
@@ -50,7 +53,36 @@ NSString *const kVerificationFormPath = @"/ach/getVerificationForm";
 	[self setOperationSuccessHandler:^(NSDictionary *response) {
 		if (response[@"fieldGroups"])
 		{
+			NSDictionary *form = [[NSDictionary alloc] init];
 			
+			for (NSDictionary* group in response[@"fieldGroups"])
+			{
+				NSString* title = group[@"title"];
+				NSMutableArray *fields = [[NSMutableArray alloc] init];
+				
+				for (NSDictionary* row in group[@"fields"])
+				{
+					[fields addObject:[TypeFieldParser getTypeWithData:row
+															nameGetter:^NSString *{
+																return title;
+															}
+														   fieldGetter:^RecipientTypeField *(NSString *name) {
+															   RecipientTypeField *field = [[RecipientTypeField alloc] init];
+															   [field setName:name];
+															   return field;
+														   }
+														   valueGetter:^AllowedTypeFieldValue *(RecipientTypeField *field, NSString *code) {
+															   AllowedTypeFieldValue *value = [[AllowedTypeFieldValue alloc] init];
+															   [value setCode:code];
+															   [value setValueForField:field];
+															   return value;
+														   }]];
+				}
+				
+				[form setValue:fields forKey:title];
+			}
+			
+			weakSelf.resultHandler(nil, form);
 		}
 		else
 		{
