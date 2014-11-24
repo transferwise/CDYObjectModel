@@ -8,7 +8,7 @@
 
 #import "TransferwiseOperation.h"
 
-typedef void (^VerificationFormBlock)(NSError *error, NSDictionary *form);
+typedef void (^VerificationFormBlock)(NSError *error, NSDictionary* form);
 
 @interface VerificationFormOperation : TransferwiseOperation
 

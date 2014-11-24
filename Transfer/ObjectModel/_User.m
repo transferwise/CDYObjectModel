@@ -15,6 +15,7 @@ const struct UserAttributes UserAttributes = {
 };
 
 const struct UserRelationships UserRelationships = {
+	.achBanks = @"achBanks",
 	.businessProfile = @"businessProfile",
 	.contacts = @"contacts",
 	.payments = @"payments",
@@ -159,6 +160,8 @@ const struct UserRelationships UserRelationships = {
 - (void)setPrimitiveSuccessfulInviteCountValue:(int16_t)value_ {
 	[self setPrimitiveSuccessfulInviteCount:[NSNumber numberWithShort:value_]];
 }
+
+@dynamic achBanks;
 
 @dynamic businessProfile;
 

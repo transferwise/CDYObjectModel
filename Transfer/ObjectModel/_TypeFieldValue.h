@@ -8,10 +8,12 @@ extern const struct TypeFieldValueAttributes {
 } TypeFieldValueAttributes;
 
 extern const struct TypeFieldValueRelationships {
+	__unsafe_unretained NSString *fieldGroup;
 	__unsafe_unretained NSString *recipient;
 	__unsafe_unretained NSString *valueForField;
 } TypeFieldValueRelationships;
 
+@class FieldGroup;
 @class Recipient;
 @class RecipientTypeField;
 
@@ -28,6 +30,10 @@ extern const struct TypeFieldValueRelationships {
 
 //- (BOOL)validateValue:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) FieldGroup *fieldGroup;
+
+//- (BOOL)validateFieldGroup:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) Recipient *recipient;
 
 //- (BOOL)validateRecipient:(id*)value_ error:(NSError**)error_;
@@ -42,6 +48,9 @@ extern const struct TypeFieldValueRelationships {
 
 - (NSString*)primitiveValue;
 - (void)setPrimitiveValue:(NSString*)value;
+
+- (FieldGroup*)primitiveFieldGroup;
+- (void)setPrimitiveFieldGroup:(FieldGroup*)value;
 
 - (Recipient*)primitiveRecipient;
 - (void)setPrimitiveRecipient:(Recipient*)value;
