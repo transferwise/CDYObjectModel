@@ -77,9 +77,7 @@
             }
             [self.managedObjectContext deleteObject:field];
         }
-    }
-    
-    
+    }   
 }
 
 - (void)createOrUpdateFieldOnType:(RecipientType *)type withData:(NSDictionary *)data

@@ -4,7 +4,7 @@
 #import <CoreData/CoreData.h>
 
 extern const struct AchBankAttributes {
-	__unsafe_unretained NSString *name;
+	__unsafe_unretained NSString *title;
 } AchBankAttributes;
 
 extern const struct AchBankRelationships {
@@ -24,13 +24,13 @@ extern const struct AchBankRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) AchBankID* objectID;
 
-@property (nonatomic, strong) NSString* name;
+@property (nonatomic, strong) NSString* title;
 
-//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) FieldGroup *fieldGroups;
+@property (nonatomic, strong) NSOrderedSet *fieldGroups;
 
-//- (BOOL)validateFieldGroups:(id*)value_ error:(NSError**)error_;
+- (NSMutableOrderedSet*)fieldGroupsSet;
 
 @property (nonatomic, strong) User *user;
 
@@ -38,13 +38,28 @@ extern const struct AchBankRelationships {
 
 @end
 
+@interface _AchBank (FieldGroupsCoreDataGeneratedAccessors)
+- (void)addFieldGroups:(NSOrderedSet*)value_;
+- (void)removeFieldGroups:(NSOrderedSet*)value_;
+- (void)addFieldGroupsObject:(FieldGroup*)value_;
+- (void)removeFieldGroupsObject:(FieldGroup*)value_;
+
+- (void)insertObject:(FieldGroup*)value inFieldGroupsAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromFieldGroupsAtIndex:(NSUInteger)idx;
+- (void)insertFieldGroups:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeFieldGroupsAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInFieldGroupsAtIndex:(NSUInteger)idx withObject:(FieldGroup*)value;
+- (void)replaceFieldGroupsAtIndexes:(NSIndexSet *)indexes withFieldGroups:(NSArray *)values;
+
+@end
+
 @interface _AchBank (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSString*)primitiveName;
-- (void)setPrimitiveName:(NSString*)value;
+- (NSString*)primitiveTitle;
+- (void)setPrimitiveTitle:(NSString*)value;
 
-- (FieldGroup*)primitiveFieldGroups;
-- (void)setPrimitiveFieldGroups:(FieldGroup*)value;
+- (NSMutableOrderedSet*)primitiveFieldGroups;
+- (void)setPrimitiveFieldGroups:(NSMutableOrderedSet*)value;
 
 - (User*)primitiveUser;
 - (void)setPrimitiveUser:(User*)value;

@@ -16,6 +16,7 @@ const struct RecipientTypeFieldAttributes RecipientTypeFieldAttributes = {
 
 const struct RecipientTypeFieldRelationships RecipientTypeFieldRelationships = {
 	.allowedValues = @"allowedValues",
+	.fieldForGroup = @"fieldForGroup",
 	.fieldForType = @"fieldForType",
 	.values = @"values",
 };
@@ -145,6 +146,8 @@ const struct RecipientTypeFieldRelationships RecipientTypeFieldRelationships = {
 	[self didAccessValueForKey:@"allowedValues"];
 	return result;
 }
+
+@dynamic fieldForGroup;
 
 @dynamic fieldForType;
 
