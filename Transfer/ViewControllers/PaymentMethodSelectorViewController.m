@@ -10,10 +10,10 @@
 #import "Payment.h"
 #import "PaymentMethodCell.h"
 #import "MOMStyle.h"
-#import "PaymentMethodViewControllerFactory.h"
 #import "TransferBackButtonItem.h"
 #import "Currency.h"
 #import "PayInMethod.h"
+#import "UploadMoneyViewController.h"
 
 #define PaymentMethodCellName @"PaymentMethodCell"
 
@@ -62,7 +62,9 @@
 
 -(void)actionButtonTappedOnCell:(PaymentMethodCell *)cell withMethod:(PayInMethod *)method
 {
-    UIViewController *controller = [PaymentMethodViewControllerFactory viewControllerForPayInMethod:method forPayment:self.payment objectModel:self.objectModel];
+    UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+    controller.objectModel = self.objectModel;
+    controller.forcedMethod = method;
     [self.navigationController pushViewController:controller animated:YES];
     __weak typeof(self) weakSelf = self;
     [controller.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{

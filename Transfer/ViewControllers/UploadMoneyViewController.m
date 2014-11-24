@@ -97,6 +97,7 @@
 
 - (void)actionTappedWithController:(UIViewController *)controller atIndex:(NSUInteger)index
 {
+    [[GoogleAnalytics sharedInstance] sendAppEvent:@"ContactSupport" withLabel:NSStringFromClass([[self.childViewControllers firstObject] class])];
     NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
     [[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 }

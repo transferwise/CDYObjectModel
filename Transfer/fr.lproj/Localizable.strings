@@ -2,13 +2,16 @@
 "ach.controller.button.support.ipad" = "Service client";
 "ach.controller.button.support" = "Contacter le service client";
 "ach.controller.button.connect" = "Connecter à mon compte";
-"ach.controller.routing.label" = "Numéro de routage";
-"ach.controller.account.label" = "Numéro de votre compte";
+"ach.controller.routing.label" = "Votre routing number";
+"ach.controller.account.label" = "Votre account number";
 "ach.controller.validation.routing.invalid" = "Numéro de routage n'est pas correct.";
 "ach.controller.validation.account.invalid" = "Numéro de compte n'est pas correct.";
 "ach.controller.error.title" = "Données saisies n'est pas valable";
 "ach.controller.accessing" = "Accèser vos coordonnées bancaires";
 "ach.controller.accessing.error" = "Incapable d'èser vos coordonnées bancaires";
+"ach.controller.checkbook.routing" = "Votre routing number";
+"ach.controller.checkbook.account" = "Votre account number";
+"ach.controller.checkbook" = "%@ sur un chéque.";
 "ach.waiting.info" = "Patientez quelques instants, nous recherchons votre compte USD.";
 
 "business.profile.address.label" = "Adresse";
@@ -516,10 +519,10 @@ Transfert #%@";
 
 "payment.method.DATA_CASH" = "Carte de débit";
 "payment.method.REGULAR" = "Virement bancaire";
-"payment.method.REGULAR.USD" = "Virement bancaire domestique";
+"payment.method.REGULAR.USD" = "Wire transfer";
 "payment.method.ADYEN" = "Carte de débit";
-"payment.method.SWIFT" = "Virement bancaire international";
-"payment.method.SWIFT.USD" = "Virement bancaire international";
+"payment.method.SWIFT" = "International wire";
+"payment.method.SWIFT.USD" = "International wire";
 "payment.method.ACH" = "Débit direct";
 "payment.method.ACH.USD" = "Débit direct";
 
