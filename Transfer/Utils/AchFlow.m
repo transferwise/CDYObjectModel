@@ -15,6 +15,8 @@
 #import "TRWAlertView.h"
 #import "NSError+TRWErrors.h"
 
+@class AchBank;
+
 @interface AchFlow ()
 
 @property (nonatomic, strong) ObjectModel *objectModel;
@@ -58,17 +60,18 @@
 												  VerificationFormOperation *operation = [VerificationFormOperation verificationFormOperationWithAccount:accountNumber
 																																		   routingNumber:routingNumber
 																																			   paymentId:self.payment.remoteId];
+												  operation.objectModel = self.objectModel;
 												  self.executedOperation = operation;
 												  __weak typeof(self) weakSelf = self;
-												  [operation setResultHandler:^(NSError *error, NSDictionary *form) {
+												  [operation setResultHandler:^(NSError *error, AchBank *form) {
 													  dispatch_async(dispatch_get_main_queue(), ^{
 														  [hud hide];
 														  
-														  if (error)
+														  if (error || !form)
 														  {
 															  NSString *messages = nil;
 															  
-															  if ([error isTransferwiseError])
+															  if (error && [error isTransferwiseError])
 															  {
 																  messages = [error localizedTransferwiseMessage];
 															  }

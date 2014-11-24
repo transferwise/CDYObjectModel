@@ -51,8 +51,7 @@ NSString *const kVerificationFormPath = @"/ach/verificationForm";
 	}];
 	
 	[self setOperationSuccessHandler:^(NSDictionary *response) {
-		[weakSelf.workModel.managedObjectContext performBlock:^{
-			
+		[weakSelf.workModel.managedObjectContext performBlock:^{			
 			if (response[@"fieldGroups"] && response[@"bankName"])
 			{
 				NSString* bankName = response[@"bankName"];

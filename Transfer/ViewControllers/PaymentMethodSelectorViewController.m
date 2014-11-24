@@ -65,6 +65,7 @@
     UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
     controller.objectModel = self.objectModel;
     controller.forcedMethod = method;
+	controller.payment = self.payment;
     [self.navigationController pushViewController:controller animated:YES];
     __weak typeof(self) weakSelf = self;
     [controller.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{

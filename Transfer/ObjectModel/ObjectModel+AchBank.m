@@ -25,13 +25,11 @@
 							 bankTitle:(NSString *)bankTitle
 {
 	AchBank* bank = [self existingBankForTitle:bankTitle];
-	if (bank)
+	if (!bank)
 	{
-		return;
+		bank = [AchBank insertInManagedObjectContext:self.managedObjectContext];
+		[bank setTitle:bankTitle];
 	}
-	
-	bank = [AchBank insertInManagedObjectContext:self.managedObjectContext];
-	[bank setTitle:bankTitle];
 	
 	for (NSDictionary* group in data)
 	{
@@ -49,7 +47,7 @@
 		{
 			[TypeFieldParser getTypeWithData:row
 								  nameGetter:^NSString *{
-									  return title;
+									  return row[@"name"];
 								  }
 								 fieldGetter:^RecipientTypeField *(NSString *name) {
 									 RecipientTypeField *field = [self existingFieldInGroup:fieldGroup
