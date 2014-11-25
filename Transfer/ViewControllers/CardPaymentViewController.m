@@ -87,6 +87,7 @@
             break;
         case URLActionAbortAndReportFailure:
             self.resultHandler(NO);
+            [self showError];
             return NO;
             break;
         case URLActionAbortAndReportSuccess:
@@ -226,6 +227,21 @@
         }];
         [operation execute];
     });
+}
+
+-(void)showError
+{
+    CustomInfoViewController * customInfo = [[CustomInfoViewController alloc] init];
+    customInfo.infoText = NSLocalizedString(@"upload.money.card.no.payment.message", nil);
+    customInfo.actionButtonTitle = NSLocalizedString(@"upload.money.card.retry", nil);
+    customInfo.infoImage = [UIImage imageNamed:@"RedCross"];
+    __weak typeof(self) weakSelf = self;
+    __weak typeof(customInfo) weakCustomInfo = customInfo;
+    customInfo.actionButtonBlock = ^{
+        [weakCustomInfo dismiss];
+        [weakSelf loadCardView];
+    };
+    [customInfo presentOnViewController:self.navigationController.parentViewController withPresentationStyle:TransparentPresentationFade];
 }
 
 - (IBAction)refreshTapped:(id)sender {

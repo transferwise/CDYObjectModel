@@ -476,8 +476,8 @@ This can't be undone.";
 "upload.money.transaction.refresh.error.message" = "Could not update payment details. Please try again later.";
 "upload.money.transaction.refresh.error.title" = "Update error";
 
-"upload.money.card.no.payment.message" = "Payment not made";
-"upload.money.card.no.payment.title" = "Payment was not made. Please try again later.";
+"upload.money.card.retry" = "Try again";
+"upload.money.card.no.payment.message" = "We could not connect to our payment partner. No payment was processed.";
 "upload.money.card.payment.success.message" = "Great, your card payment was accepted!";
 "upload.money.card.payment.success.title" = "Success";
 
