@@ -6,12 +6,16 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-#import "TypeFieldParser.h"
+#import "TypeFieldHelper.h"
 #import "NSDictionary+Cleanup.h"
 #import "RecipientTypeField.h"
 #import "AllowedTypeFieldValue.h"
+#import "DoublePasswordEntryCell.h"
+#import "DropdownCell.h"
+#import "RecipientFieldCell.h"
+#import "ObjectModel+RecipientTypes.h"
 
-@implementation TypeFieldParser
+@implementation TypeFieldHelper
 
 + (RecipientTypeField *)getTypeWithData:(NSDictionary *)data
 							 nameGetter:(GetFieldNameBlock)nameGetterBlock
@@ -43,6 +47,38 @@
 	}
 	
 	return field;
+}
+
++ (NSArray *)generateFieldsArray:(UITableView *)tableView
+					fieldsGetter:(GetFieldsBlock)fieldsGetterBlock
+					 objectModel:(ObjectModel *)objectModel
+{
+	NSMutableArray *result = [NSMutableArray array];
+	
+	for (RecipientTypeField *field in fieldsGetterBlock())
+	{
+		TextEntryCell *createdCell;
+		if ([field.allowedValues count] > 0)
+		{
+			DropdownCell *cell = [tableView dequeueReusableCellWithIdentifier:TWDropdownCellIdentifier];
+			[cell setAllElements:[objectModel fetchedControllerForAllowedValuesOnField:field]];
+			[cell configureWithTitle:field.title value:@""];
+			[cell setType:field];
+			[result addObject:cell];
+			createdCell = cell;
+		}
+		else
+		{
+			RecipientFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TWRecipientFieldCellIdentifier];
+			[cell setFieldType:field];
+			[result addObject:cell];
+			createdCell = cell;
+		}
+		
+		[createdCell setEditable:YES];
+	}
+	
+	return [NSArray arrayWithArray:result];
 }
 
 @end

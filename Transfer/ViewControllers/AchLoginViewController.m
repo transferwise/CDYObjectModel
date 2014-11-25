@@ -11,6 +11,9 @@
 #import "Constants.h"
 #import "Payment.h"
 #import "TransferBackButtonItem.h"
+#import "DoublePasswordEntryCell.h"
+#import "DropdownCell.h"
+#import "RecipientFieldCell.h"
 
 @interface AchLoginViewController ()
 
@@ -64,12 +67,9 @@
 
 - (void)setupTableView:(UITableView*)tableView
 {
-//	[tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
-//	[tableView registerNib:[UINib nibWithNibName:@"CurrencySelectionCell" bundle:nil] forCellReuseIdentifier:TWCurrencySelectionCellIdentifier];
-//	[tableView registerNib:[UINib nibWithNibName:@"RecipientFieldCell" bundle:nil] forCellReuseIdentifier:TWRecipientFieldCellIdentifier];
-//	[tableView registerNib:[UINib nibWithNibName:@"RecipientEntrySelectionCell" bundle:nil] forCellReuseIdentifier:TRWRecipientEntrySelectionCellIdentifier];
-//	[tableView registerNib:[UINib nibWithNibName:@"DropdownCell" bundle:nil] forCellReuseIdentifier:TWDropdownCellIdentifier];
-//	[tableView registerNib:[UINib nibWithNibName:@"CountrySelectCell" bundle:nil] forCellReuseIdentifier:TWSelectionCellIdentifier];
+	[tableView registerNib:[UINib nibWithNibName:@"DoublePasswordEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
+	[tableView registerNib:[UINib nibWithNibName:@"RecipientFieldCell" bundle:nil] forCellReuseIdentifier:TWRecipientFieldCellIdentifier];
+	[tableView registerNib:[UINib nibWithNibName:@"DropdownCell" bundle:nil] forCellReuseIdentifier:TWDropdownCellIdentifier];
 }
 
 #pragma mark - Support Button
@@ -79,6 +79,5 @@
 	NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
 	[[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
 }
-
 
 @end

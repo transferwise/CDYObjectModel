@@ -10,16 +10,22 @@
 
 @class RecipientTypeField;
 @class AllowedTypeFieldValue;
+@class ObjectModel;
 
 typedef NSString *(^GetFieldNameBlock)();
 typedef RecipientTypeField *(^GetRecipientTypeBlock)(NSString *name);
 typedef AllowedTypeFieldValue *(^GetAllowedTypeFieldValueBlock)(RecipientTypeField* field, NSString *code);
+typedef NSOrderedSet *(^GetFieldsBlock)();
 
-@interface TypeFieldParser : NSObject
+@interface TypeFieldHelper : NSObject
 
 + (RecipientTypeField *)getTypeWithData:(NSDictionary *)data
 							 nameGetter:(GetFieldNameBlock)nameGetterBlock
 							fieldGetter:(GetRecipientTypeBlock)fieldGetterBlock
 							valueGetter:(GetAllowedTypeFieldValueBlock)valueGetterBlock;
+
++ (NSArray *)generateFieldsArray:(UITableView *)tableView
+					fieldsGetter:(GetFieldsBlock)fieldsGetterBlock
+					 objectModel:(ObjectModel *)objectModel;
 
 @end
