@@ -20,6 +20,8 @@
 #import "ACHCheckView.h"
 #import "TransferBackButtonItem.h"
 
+#define TOP_OFFSET	130
+
 IB_DESIGNABLE
 
 @interface AchDetailsViewController ()
@@ -247,7 +249,7 @@ IB_DESIGNABLE
     [UIView setAnimationCurve:curve];
     [UIView setAnimationBeginsFromCurrentState:YES];
    
-    CGPoint topOffset = [self.view convertPoint:CGPointMake(0,70) fromView:self.navigationController.view];
+    CGPoint topOffset = [self.view convertPoint:CGPointMake(0,TOP_OFFSET) fromView:self.navigationController.view];
     self.textEntryTopSpace.constant = MAX(10.0f, topOffset.y);
     [self.view layoutIfNeeded];
     

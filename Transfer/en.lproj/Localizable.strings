@@ -14,6 +14,9 @@
 "ach.controller.checkbook.account" = "Your account number";
 "ach.controller.checkbook" = "%@ on a checkbook.";
 "ach.waiting.info" = "Now wait a moment while we are searching for your USD account";
+"ach.controller.button.pay" = "Pay %@ with %@";
+"ach.controller.label.message.nostore" = "We do not store your bank details.";
+"ach.controller.lable.message.secure" = "Payment is 100% secured.";
 
 "business.profile.address.label" = "Address";
 "business.profile.email.label" = "Your business email";

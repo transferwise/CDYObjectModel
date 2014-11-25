@@ -7,6 +7,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AchLoginViewController">
             <connections>
+                <outlet property="footerView" destination="Uh6-oE-0ps" id="NOM-sd-TyO"/>
+                <outlet property="messageOneLabel" destination="zrb-Hh-1UI" id="SVY-0W-MKT"/>
+                <outlet property="messageTwoLabel" destination="zml-6K-yJp" id="x1d-0P-zox"/>
+                <outlet property="payButton" destination="MEl-Yu-8el" id="gFo-7B-I5x"/>
                 <outlet property="supportButton" destination="rgc-j5-Zkh" id="XZG-aL-Gwf"/>
                 <outlet property="view" destination="Lr8-Mm-e2i" id="uXh-KG-EDU"/>
                 <outletCollection property="tableViews" destination="0MB-xK-phv" id="ogT-zf-0ju"/>
@@ -50,7 +54,69 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
         </view>
+        <view contentMode="scaleToFill" id="Uh6-oE-0ps" userLabel="View - Footer" customClass="IntrinsicSizeUIView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="196"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEl-Yu-8el" userLabel="Button - Pay" customClass="BlueRoundedButton">
+                    <rect key="frame" x="133" y="30" width="55" height="40"/>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="payButtonPressed:" destination="-1" eventType="touchUpInside" id="r9M-Qe-xx5"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrb-Hh-1UI" userLabel="Label - Message 1">
+                    <rect key="frame" x="139" y="96" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zml-6K-yJp" userLabel="Label - Message 2">
+                    <rect key="frame" x="139" y="114" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="fontStyle" value="medium"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Mel-9m-mJR">
+                    <rect key="frame" x="135" y="146" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="GC3-yH-b00"/>
+                        <constraint firstAttribute="height" constant="50" id="pjg-2M-dl1"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="MEl-Yu-8el" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Uh6-oE-0ps" secondAttribute="leading" id="2N6-rh-gIj"/>
+                <constraint firstItem="Mel-9m-mJR" firstAttribute="top" secondItem="zml-6K-yJp" secondAttribute="bottom" constant="11" id="Cei-Ss-oey"/>
+                <constraint firstItem="zml-6K-yJp" firstAttribute="centerX" secondItem="zrb-Hh-1UI" secondAttribute="centerX" id="Eni-fc-BXL"/>
+                <constraint firstItem="zml-6K-yJp" firstAttribute="top" secondItem="zrb-Hh-1UI" secondAttribute="bottom" constant="-2" id="LQ2-pJ-IgM"/>
+                <constraint firstAttribute="centerX" secondItem="MEl-Yu-8el" secondAttribute="centerX" id="TOw-Sv-SV0"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MEl-Yu-8el" secondAttribute="trailing" id="eUi-LG-yZk"/>
+                <constraint firstItem="zrb-Hh-1UI" firstAttribute="top" secondItem="MEl-Yu-8el" secondAttribute="bottom" constant="26" id="g39-C6-nT0"/>
+                <constraint firstItem="MEl-Yu-8el" firstAttribute="top" secondItem="Uh6-oE-0ps" secondAttribute="top" constant="30" id="lcN-0n-vEM"/>
+                <constraint firstAttribute="bottom" secondItem="Mel-9m-mJR" secondAttribute="bottom" id="reW-g6-Tuz"/>
+                <constraint firstItem="zml-6K-yJp" firstAttribute="centerX" secondItem="Mel-9m-mJR" secondAttribute="centerX" id="sfK-ST-R4r"/>
+                <constraint firstAttribute="centerX" secondItem="zrb-Hh-1UI" secondAttribute="centerX" id="y2o-Hf-SrH"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-178" y="378.5"/>
+        </view>
     </objects>
+    <resources>
+        <image name="lock_icon" width="50" height="50"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
