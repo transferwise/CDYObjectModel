@@ -108,7 +108,7 @@
 	{
 		AchFlow *flow = [AchFlow sharedInstanceWithPayment:payment
 											   objectModel:objectModel];
-		return [flow presentAccountAndRoutingNumber];
+		return [flow getAccountAndRoutingNumberController];
 	}
     else
     {

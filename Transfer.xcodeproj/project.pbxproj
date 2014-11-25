@@ -514,6 +514,10 @@
 		47C4D0471A232AC1005EC7C6 /* FieldGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0431A232AC1005EC7C6 /* FieldGroup.m */; };
 		47C4D04A1A232B1E005EC7C6 /* ObjectModel+AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0491A232B1E005EC7C6 /* ObjectModel+AchBank.m */; };
 		47C4D04B1A232B1E005EC7C6 /* ObjectModel+AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0491A232B1E005EC7C6 /* ObjectModel+AchBank.m */; };
+		47C4D04F1A237F61005EC7C6 /* AchLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D04D1A237F61005EC7C6 /* AchLoginViewController.m */; };
+		47C4D0501A237F61005EC7C6 /* AchLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D04D1A237F61005EC7C6 /* AchLoginViewController.m */; };
+		47C4D0511A237F61005EC7C6 /* AchLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47C4D04E1A237F61005EC7C6 /* AchLoginViewController.xib */; };
+		47C4D0521A237F61005EC7C6 /* AchLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47C4D04E1A237F61005EC7C6 /* AchLoginViewController.xib */; };
 		47C580A3196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47C580A4196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47DBE05919703494008915A6 /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
@@ -1391,6 +1395,9 @@
 		47C4D0431A232AC1005EC7C6 /* FieldGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldGroup.m; sourceTree = "<group>"; };
 		47C4D0481A232B1E005EC7C6 /* ObjectModel+AchBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectModel+AchBank.h"; sourceTree = "<group>"; };
 		47C4D0491A232B1E005EC7C6 /* ObjectModel+AchBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectModel+AchBank.m"; sourceTree = "<group>"; };
+		47C4D04C1A237F61005EC7C6 /* AchLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchLoginViewController.h; sourceTree = "<group>"; };
+		47C4D04D1A237F61005EC7C6 /* AchLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchLoginViewController.m; sourceTree = "<group>"; };
+		47C4D04E1A237F61005EC7C6 /* AchLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AchLoginViewController.xib; sourceTree = "<group>"; };
 		47C580A1196AC1A7007771DB /* UIGestureRecognizer+Cancel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Cancel.h"; sourceTree = "<group>"; };
 		47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Cancel.m"; sourceTree = "<group>"; };
 		47DC89811A03950F0042054B /* TransferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2682,6 +2689,9 @@
 				477319F11A1B62BB00660770 /* AchDetailsViewController.m */,
 				477319F21A1B62BB00660770 /* AchDetailsViewController.xib */,
 				388B5CDE1A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib */,
+				47C4D04C1A237F61005EC7C6 /* AchLoginViewController.h */,
+				47C4D04D1A237F61005EC7C6 /* AchLoginViewController.m */,
+				47C4D04E1A237F61005EC7C6 /* AchLoginViewController.xib */,
 				38057ACC1A1D03BF005E94DD /* AchWaitingViewController.h */,
 				38057ACD1A1D03BF005E94DD /* AchWaitingViewController.m */,
 				38057ACE1A1D03BF005E94DD /* AchWaitingViewController.xib */,
@@ -3057,6 +3067,7 @@
 				4710499819470B2A00660B2F /* CurrencyCell~ipad.xib in Resources */,
 				470DEFAE19460C8D00684FEB /* MoneyEntryCell~ipad.xib in Resources */,
 				385A668B197816AE00D00D1F /* RecipientCell~ipad.xib in Resources */,
+				47C4D0521A237F61005EC7C6 /* AchLoginViewController.xib in Resources */,
 				47F84D6E198A638B00886D41 /* DoubleEntryCell.xib in Resources */,
 				47FB7EA619419E5A003B1C8F /* CurrencySelectorViewController~ipad.xib in Resources */,
 				3840862E19A23F5A00C837C2 /* InviteViewController~ipad.xib in Resources */,
@@ -3210,6 +3221,7 @@
 				3840862719A20D9900C837C2 /* InvitationsViewController~ipad.xib in Resources */,
 				38062176196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib in Resources */,
 				EAAA1490171BD07E005B9430 /* Localizable.strings in Resources */,
+				47C4D0511A237F61005EC7C6 /* AchLoginViewController.xib in Resources */,
 				38E57F7A192A51DD00D864A2 /* TabViewController.xib in Resources */,
 				385A668A197816AE00D00D1F /* RecipientCell~ipad.xib in Resources */,
 				EAD39677171BD4EE00F6D011 /* MainViewController.xib in Resources */,
@@ -3768,6 +3780,7 @@
 				EA31A19F17DDB29B00F937F7 /* NSDate+ServerTime.m in Sources */,
 				4723EA2A1975349C00B4345F /* TransferPayIPadViewController.m in Sources */,
 				389F680C198FC1C6006CF1F6 /* _PersonalProfile.m in Sources */,
+				47C4D0501A237F61005EC7C6 /* AchLoginViewController.m in Sources */,
 				383FC10919AE1B8400465FCA /* CancellableCellViewController.m in Sources */,
 				EA31A1A317DDB29B00F937F7 /* RecipientsOperation.m in Sources */,
 				EA0450DB17EC64BC008921DA /* IntroView.m in Sources */,
@@ -3907,6 +3920,7 @@
 				389F683F198FC1C6006CF1F6 /* PaymentMadeIndicator.m in Sources */,
 				383FC10019AE1B6700465FCA /* SeeHowView.m in Sources */,
 				479B693419489303001FA4FE /* TransferDetialsHeaderView.m in Sources */,
+				47C4D04F1A237F61005EC7C6 /* AchLoginViewController.m in Sources */,
 				EA88E65B172F96490021492C /* Credentials.m in Sources */,
 				389F684F198FC1C6006CF1F6 /* User.m in Sources */,
 				389F6813198FC1C6006CF1F6 /* _Setting.m in Sources */,

@@ -1,4 +1,5 @@
 "ach.controller.title" = "Payer par débit direct";
+"ach.controller.login.title" = "Confirmer votre payement";
 "ach.controller.button.support.ipad" = "Service client";
 "ach.controller.button.support" = "Contacter le service client";
 "ach.controller.button.connect" = "Connecter à mon compte";
