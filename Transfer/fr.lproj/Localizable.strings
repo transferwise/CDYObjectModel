@@ -473,8 +473,8 @@ C'est irréversible.";
 "upload.money.transaction.refresh.error.message" = "Impossible de mettre à jour les details du transfert. Réessayez plus tard.";
 "upload.money.transaction.refresh.error.title" = "Erreur de mise à jour";
 
-"upload.money.card.no.payment.message" = "Paiement avorté";
-"upload.money.card.no.payment.title" = "Le paiement n'a pu être éffectué. Réessayez plus tard.";
+"upload.money.card.retry" = "Réessayer";
+"upload.money.card.no.payment.message" = "Le paiement n'a pu être éffectué. Réessayez plus tard.";
 "upload.money.card.payment.success.message" = "Parfait, votre paiement par carte a été accepté!";
 "upload.money.card.payment.success.title" = "Paiement éffectué";
 
