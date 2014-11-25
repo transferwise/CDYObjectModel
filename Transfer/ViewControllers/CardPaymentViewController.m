@@ -162,6 +162,7 @@
         customInfo.infoImage = [UIImage imageNamed:@"GreenTick"];
         __weak typeof(self) weakSelf = self;
         __weak typeof(customInfo) weakCustomInfo = customInfo;
+        __block BOOL shouldAutoDismiss = YES;
         customInfo.actionButtonBlock = ^{
             if(weakSelf.executedOperation)
             {
@@ -195,7 +196,8 @@
             }
             else
             {
-              [weakCustomInfo dismiss];
+                shouldAutoDismiss = NO;
+                [weakCustomInfo dismiss];
             }
             
         };
@@ -223,6 +225,15 @@
                 [[FeedbackCoordinator sharedInstance] startFeedbackTimerWithCheck:^BOOL {
                     return YES;
                 }];
+                if(shouldAutoDismiss)
+                {
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        if(shouldAutoDismiss)
+                        {
+                            [weakCustomInfo dismiss];
+                        }
+                    });
+                }
             });
         }];
         [operation execute];
