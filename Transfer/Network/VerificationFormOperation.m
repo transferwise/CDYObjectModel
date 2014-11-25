@@ -9,7 +9,7 @@
 #import "VerificationFormOperation.h"
 #import "Constants.h"
 #import "TransferwiseOperation+Private.h"
-#import "TypeFieldParser.h"
+#import "TypeFieldHelper.h"
 #import "RecipientTypeField.h"
 #import "AllowedTypeFieldValue.h"
 #import "ObjectModel+AchBank.h"

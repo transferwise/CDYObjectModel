@@ -10,7 +10,7 @@
 #import "AchBank.h"
 #import "FieldGroup.h"
 #import "RecipientTypeField.h"
-#import "TypeFieldParser.h"
+#import "TypeFieldHelper.h"
 #import "AllowedTypeFieldValue.h"
 
 @implementation ObjectModel (AchBank)
@@ -45,7 +45,7 @@
 		
 		for (NSDictionary* row in group[@"fields"])
 		{
-			[TypeFieldParser getTypeWithData:row
+			[TypeFieldHelper getTypeWithData:row
 								  nameGetter:^NSString *{
 									  return row[@"name"];
 								  }
