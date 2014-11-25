@@ -523,11 +523,20 @@ Payment #%@";
 "payment.method.DATA_CASH" = "Debit card";
 "payment.method.REGULAR" = "Bank transfer";
 "payment.method.REGULAR.USD" = "Wire transfer";
-"payment.method.ADYEN" = "Debit Card";
+"payment.method.ADYEN" = "Debit card";
 "payment.method.SWIFT" = "International wire";
 "payment.method.SWIFT.USD" = "International wire";
 "payment.method.ACH" = "Direct debit (ACH)";
 "payment.method.ACH.USD" = "Direct debit (ACH)";
+
+"payment.method.title.DATA_CASH" = "Pay by debit card";
+"payment.method.title.REGULAR" = "Pay by bank transfer";
+"payment.method.title.REGULAR.USD" = "Pay by wire transfer";
+"payment.method.title.ADYEN" = "Pay by debit card";
+"payment.method.title.SWIFT" = "Pay by international wire";
+"payment.method.title.SWIFT.USD" = "Pay by international wire";
+"payment.method.title.ACH" = "Pay by direct debit";
+"payment.method.title. ACH.USD" = "Pay by direct debit";
 
 "payment.method.description.DATA_CASH" = "We accept all Visa & Mastercard debit cards.";
 "payment.method.description.REGULAR" = "You transfer us the money via a \n wire transfer and we do the rest.";
