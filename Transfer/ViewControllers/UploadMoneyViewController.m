@@ -57,7 +57,17 @@
         }
     }
     
-    [self setTitle:[viewControllers count]>1?NSLocalizedString(@"upload.money.title", @""):NSLocalizedString(@"upload.money.title.single.method",nil)];
+    
+    if([viewControllers count] == 1)
+    {
+        PayInMethod* method = availableOptions[0];
+        NSString* key = [NSString stringWithFormat:@"payment.method.title.%@", method.type];
+        [self setTitle:[NSString localizedStringForKey:[NSString stringWithFormat:@"%@.%@",key,self.payment.sourceCurrency.code] withFallback:key]];
+    }
+    else
+    {
+        [self setTitle:NSLocalizedString(@"upload.money.title", @"")];
+    }
     
     [super configureWithControllers:viewControllers
                              titles:titles

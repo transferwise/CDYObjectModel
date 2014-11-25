@@ -526,6 +526,15 @@ Transfert #%@";
 "payment.method.ACH" = "Débit direct";
 "payment.method.ACH.USD" = "Débit direct";
 
+"payment.method.title.DATA_CASH" = "Payer par carte bancaire";
+"payment.method.title.REGULAR" = "Payer par virement bancaire";
+"payment.method.title.REGULAR.USD" = "Payer par wire transfer";
+"payment.method.title.ADYEN" = "Payer par carte bancaire";
+"payment.method.title.SWIFT" = "Payer par international wire";
+"payment.method.title.SWIFT.USD" = "Payer par international wire";
+"payment.method.title.ACH" = "Payer par direct debit";
+"payment.method.title. ACH.USD" = "Payer par direct debit";
+
 "payment.method.description.DATA_CASH" = "Nous acceptons les cartes de débit Visa & Mastercard.";
 "payment.method.description.REGULAR" = "Vous nous envoyer l'argent via un virement local et on s'occupe du reste.";
 "payment.method.description.ADYEN" = "Nous acceptons les cartes de débit Visa & Mastercard.";
