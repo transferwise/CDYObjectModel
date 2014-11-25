@@ -21,6 +21,7 @@
 							 nameGetter:(GetFieldNameBlock)nameGetterBlock
 							fieldGetter:(GetRecipientTypeBlock)fieldGetterBlock
 							valueGetter:(GetAllowedTypeFieldValueBlock)valueGetterBlock
+							titleGetter:(StringGetterBlock)titleGetterBlock
 {
 	NSDictionary *cleanedData = [data dictionaryByRemovingNullObjects];
 	NSString *name = nameGetterBlock();
@@ -31,7 +32,7 @@
 	[field setMinLength:cleanedData[@"minLength"]];
 	[field setPresentationPattern:cleanedData[@"presentationPattern"]];
 	[field setRequiredValue:[cleanedData[@"required"] boolValue]];
-	[field setTitle:cleanedData[@"title"]];
+	[field setTitle:titleGetterBlock(cleanedData)];
 	[field setValidationRegexp:cleanedData[@"validationRegexp"]];
 	
 	NSArray *allowedValues = cleanedData[@"valuesAllowed"];

@@ -28,11 +28,16 @@
 @property (nonatomic, strong) AchBank *form;
 @property (nonatomic, strong) NSArray *formCells;
 @property (nonatomic, strong) ObjectModel *objectModel;
+@property (strong, nonatomic) IBOutlet UIView *footerView;
+@property (strong, nonatomic) IBOutlet UIButton *payButton;
+@property (strong, nonatomic) IBOutlet UILabel *messageOneLabel;
+@property (strong, nonatomic) IBOutlet UILabel *messageTwoLabel;
 
 @end
 
 @implementation AchLoginViewController
 
+#pragma mark - Init
 - (instancetype)initWithForm:(AchBank *)form
 					 payment:(Payment *)payment
 				 objectModel:(ObjectModel *)objectModel
@@ -49,6 +54,7 @@
 	return self;
 }
 
+#pragma mark - View lifecycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -58,10 +64,14 @@
 		[self setupTableView:tableView];
 	}
 	
+	[self setFooter];
 	self.cellHeight = IPAD ? 70.0f : 60.0f;
 	
 	[self setTitle:NSLocalizedString(@"ach.controller.login.title", nil)];
 	[self.supportButton setTitle:NSLocalizedString(@"ach.controller.button.support", nil) forState:UIControlStateNormal];
+	[self.payButton setTitle:[NSString stringWithFormat:NSLocalizedString(@"ach.controller.button.pay", nil), [self.payment payInStringWithCurrency], self.form.title] forState:UIControlStateNormal];
+	[self.messageOneLabel setText:NSLocalizedString(@"ach.controller.label.message.nostore", nil)];
+	[self.messageTwoLabel setText:NSLocalizedString(@"ach.controller.lable.message.secure", nil)];
 	
 	if (self.form && self.form.fieldGroups.count > 0)
 	{
@@ -102,6 +112,7 @@
 	[self configureForInterfaceOrientation:self.interfaceOrientation];
 }
 
+#pragma mark - TableView setup
 - (void)setupTableView:(UITableView*)tableView
 {
 	[tableView registerNib:[UINib nibWithNibName:@"DoublePasswordEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
@@ -109,7 +120,22 @@
 	[tableView registerNib:[UINib nibWithNibName:@"DropdownCell" bundle:nil] forCellReuseIdentifier:TWDropdownCellIdentifier];
 }
 
-#pragma mark - Support Button
+- (void)setFooter
+{
+	if (!IPAD && ![self hasMoreThanOneTableView])
+	{
+		self.footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+		UITableView *table = (UITableView *)self.tableViews[0];
+		table.tableFooterView = self.footerView;
+	}
+}
+
+#pragma mark - Buttons
+- (IBAction)payButtonPressed:(id)sender
+{
+	
+}
+
 
 - (IBAction)supportButtonPressed:(id)sender
 {

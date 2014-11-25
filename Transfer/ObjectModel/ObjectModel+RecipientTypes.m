@@ -105,6 +105,9 @@
 								 [value setValueForField:field];
 							 }
 							 return value;
+						 }
+						 titleGetter:^NSString *(NSDictionary *data) {
+							 return data[@"title"];
 						 }];
 }
 

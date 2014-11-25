@@ -43,6 +43,8 @@
 			[fieldGroup setTitle:title];
 		}
 		
+		uint rowCount = 1u;
+		
 		for (NSDictionary* row in group[@"fields"])
 		{
 			[TypeFieldHelper getTypeWithData:row
@@ -68,7 +70,19 @@
 										 [value setValueForField:field];
 									 }
 									 return value;
+								 }
+								 titleGetter:^NSString *(NSDictionary *data) {
+									 if (rowCount > 1u)
+									 {
+										 return [NSString stringWithFormat:@"%@ %ui", title, rowCount];
+									 }
+									 else
+									 {
+										 return title;
+									 }
 								 }];
+			
+			rowCount++;
 		}
 		
 		NSMutableArray *removedFields = [NSMutableArray array];
