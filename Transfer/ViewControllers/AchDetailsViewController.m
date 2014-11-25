@@ -89,6 +89,26 @@ IB_DESIGNABLE
     [self.checkView setState:CheckStatePlain animated:NO];
 }
 
+- (void)navigateAway:(AchDetailsViewController *)weakSelf
+		  completion:(void (^)(void))completion
+{
+	if(!weakSelf.willDismiss)
+	{
+		weakSelf.view.userInteractionEnabled = NO;
+		weakSelf.willDismiss = YES;
+		
+		float secondsToDelay = weakSelf.checkView.state == CheckStatePlain?0.0f:0.4f;
+		dispatch_time_t timeToDismiss = dispatch_time(DISPATCH_TIME_NOW, secondsToDelay*NSEC_PER_SEC);
+		dispatch_after(timeToDismiss, dispatch_get_main_queue(), ^{
+			completion();
+		});
+		
+		[self.view endEditing:YES];
+		[self.checkView setState:CheckStatePlain animated:YES];
+		weakSelf.view.userInteractionEnabled = YES;
+	}
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -101,18 +121,10 @@ IB_DESIGNABLE
         TransferBackButtonItem *item = [TransferBackButtonItem backButtonWithTapHandler:^{
             if(!IPAD && weakSelf)
             {
-                if(!weakSelf.willDismiss)
-                {
-                    weakSelf.willDismiss = YES;
-                    float secondsToDelay = weakSelf.checkView.state == CheckStatePlain?0.0f:0.4f;
-                    dispatch_time_t timeToDismiss = dispatch_time(DISPATCH_TIME_NOW, secondsToDelay*NSEC_PER_SEC);
-                    dispatch_after(timeToDismiss, dispatch_get_main_queue(), ^{
-                        [navigationController popViewControllerAnimated:YES];
-                    });
-                    
-                    [self.view endEditing:YES];
-                    [self.checkView setState:CheckStatePlain animated:YES];
-                }
+				[self navigateAway:weakSelf
+						completion:^{
+							[navigationController popViewControllerAnimated:YES];
+						}];
             }
             else
             {
@@ -171,8 +183,12 @@ IB_DESIGNABLE
 		TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
 		[hud setMessage:NSLocalizedString(@"ach.controller.accessing", nil)];
 		
-		self.loginFormBlock(self.accountNumberTextField.text, self.routingNumberTextField.text,
-							hud, self.navigationController);
+		__weak typeof(self) weakSelf = self;
+		[self navigateAway:weakSelf
+				completion:^{
+					weakSelf.loginFormBlock(self.accountNumberTextField.text, self.routingNumberTextField.text,
+										hud, self.navigationController);
+				}];
 	}
 	else
 	{
