@@ -14,6 +14,9 @@
 #import "DoublePasswordEntryCell.h"
 #import "DropdownCell.h"
 #import "RecipientFieldCell.h"
+#import "TypeFieldHelper.h"
+#import "AchBank.h"
+#import "FieldGroup.h"
 
 @interface AchLoginViewController ()
 
@@ -23,6 +26,8 @@
 @property (nonatomic, strong) Payment *payment;
 @property (nonatomic, copy) InitiatePullBlock initiatePullBlock;
 @property (nonatomic, strong) AchBank *form;
+@property (nonatomic, strong) NSArray *formCells;
+@property (nonatomic, strong) ObjectModel *objectModel;
 
 @end
 
@@ -30,6 +35,7 @@
 
 - (instancetype)initWithForm:(AchBank *)form
 					 payment:(Payment *)payment
+				 objectModel:(ObjectModel *)objectModel
 				initiatePull:(InitiatePullBlock)initiatePullBlock
 {
 	self = [super init];
@@ -37,6 +43,7 @@
 	{
 		self.form = form;
 		self.payment = payment;
+		self.objectModel = objectModel;
 		self.initiatePullBlock = initiatePullBlock;
 	}
 	return self;
@@ -55,14 +62,44 @@
 	
 	[self setTitle:NSLocalizedString(@"ach.controller.login.title", nil)];
 	[self.supportButton setTitle:NSLocalizedString(@"ach.controller.button.support", nil) forState:UIControlStateNormal];
+	
+	if (self.form && self.form.fieldGroups.count > 0)
+	{
+		NSMutableArray *formFields = [[NSMutableArray alloc] init];
+		
+		for (FieldGroup *group in self.form.fieldGroups)
+		{
+			[formFields addObjectsFromArray:[TypeFieldHelper generateFieldsArray:self.tableViews[0]
+																   fieldsGetter:^NSOrderedSet *{
+																	   return group.fields;
+																   }
+																	 objectModel:self.objectModel]];
+		}
+		
+		self.formCells = [NSArray arrayWithArray:formFields];
+	}
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-	[super viewWillAppear:animated];
-	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonWithTapHandler:^{
-		[[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
-	}]];
+	[self refreshTableViewSizes];
+	[self configureForInterfaceOrientation:self.interfaceOrientation];
+	
+	[self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
+	
+	if([self hasMoreThanOneTableView])
+	{
+		[self setSectionCellsByTableView:@[@[self.formCells], @[]]];
+	}
+	else
+	{
+		[self setSectionCellsByTableView:@[@[self.formCells, @[]]]];
+	}
+	
+	[self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
+	
+	[self refreshTableViewSizes];
+	[self configureForInterfaceOrientation:self.interfaceOrientation];
 }
 
 - (void)setupTableView:(UITableView*)tableView

@@ -95,6 +95,7 @@
 {
 	return [[AchLoginViewController alloc] initWithForm:form
 												payment:self.payment
+											objectModel:self.objectModel
 										   initiatePull:^{
 											   
 										   }];
