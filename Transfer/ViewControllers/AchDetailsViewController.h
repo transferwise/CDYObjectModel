@@ -17,7 +17,6 @@
 
 - (id)init __attribute__((unavailable("init unavailable, use initWithPayment:objectModel.")));
 - (instancetype)initWithPayment:(Payment *)payment
-					objectModel:(ObjectModel *)objectModel
 				 loginFormBlock:(GetLoginFormBlock)loginFormBlock;
 
 @end

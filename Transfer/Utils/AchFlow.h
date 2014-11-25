@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "TRWProgressHUD.h"
 
-typedef void (^GetLoginFormBlock)(NSString* accountNumber, NSString* routingNumber, TRWProgressHUD *hud);
+typedef void (^GetLoginFormBlock)(NSString* accountNumber, NSString* routingNumber, TRWProgressHUD *hud, UINavigationController *controller);
+typedef void (^InitiatePullBlock)();
 
 @class Payment;
 @class ObjectModel;
@@ -21,6 +22,6 @@ typedef void (^GetLoginFormBlock)(NSString* accountNumber, NSString* routingNumb
 + (AchFlow *)sharedInstanceWithPayment:(Payment *)payment
 						   objectModel:(ObjectModel *)objectModel;
 
-- (UIViewController *)presentAccountAndRoutingNumber;
+- (UIViewController *)getAccountAndRoutingNumberController;
 
 @end
