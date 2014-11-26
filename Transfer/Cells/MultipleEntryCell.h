@@ -26,6 +26,7 @@
 - (BOOL)shouldNavigateAway;
 - (void)navigateAway;
 
+- (void)addSingleSeparator;
 - (void)addDoubleSeparators;
 - (void)removeDoubleSeparators;
 

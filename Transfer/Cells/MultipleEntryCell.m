@@ -128,12 +128,16 @@
 		self.secondSeparator = nil;
 		self.separatorLine = nil;
 		
-		self.separatorLine = [UIView getSeparatorLineWithParentFrame:self.contentView.frame
-													   showFullWidth:NO];
-		[self.contentView addSubview:self.separatorLine];
-		
-		self.multipleSeparatorsAdded = NO;
+		[self addSingleSeparator];
 	}
+}
+
+- (void)addSingleSeparator
+{
+	self.separatorLine = [UIView getSeparatorLineWithParentFrame:self.contentView.frame
+												   showFullWidth:NO];
+	[self.contentView addSubview:self.separatorLine];	
+	self.multipleSeparatorsAdded = NO;
 }
 
 @end

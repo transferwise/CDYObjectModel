@@ -70,10 +70,20 @@
 			[result addObject:cell];
 			createdCell = cell;
 		}
+		else if ([[field.type lowercaseString] isEqualToString:@"password"])
+		{
+			DoublePasswordEntryCell *cell = [tableView dequeueReusableCellWithIdentifier:TWDoublePasswordEntryCellIdentifier];
+			[cell setShowDouble:NO];
+			[cell configureWithTitle:field.title value:@""];
+			[cell addSingleSeparator];
+			[result addObject:cell];
+			createdCell = cell;
+		}
 		else
 		{
 			RecipientFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TWRecipientFieldCellIdentifier];
 			[cell setFieldType:field];
+			
 			[result addObject:cell];
 			createdCell = cell;
 		}
