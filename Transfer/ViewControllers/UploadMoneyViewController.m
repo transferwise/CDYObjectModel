@@ -27,6 +27,8 @@
 #import "TransferDetailsViewController.h"
 #import "PaymentMethodViewControllerFactory.h"
 #import "PayInMethod.h"
+#import "NSString+Presentation.h"
+#import "Currency.h"
 
 @interface UploadMoneyViewController ()
 
@@ -48,8 +50,10 @@
         if(controller)
         {
             [viewControllers addObject:controller];
-            NSString *title = [NSString stringWithFormat:@"payment.method.%@",method.type];
-            [titles addObject:NSLocalizedString(title,nil)];
+            NSString *currencyTitleKey = [NSString stringWithFormat:@"payment.method.%@.%@",method.type,self.payment.sourceCurrency.code];
+            NSString *titleKey = [NSString stringWithFormat:@"payment.method.%@",method.type];
+            NSString* title = [NSString localizedStringForKey:currencyTitleKey withFallback:NSLocalizedString(titleKey, nil)];
+            [titles addObject:title];
         }
     }
     
