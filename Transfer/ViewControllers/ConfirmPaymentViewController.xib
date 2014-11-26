@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConfirmPaymentViewController">
             <connections>
                 <outlet property="actionButton" destination="9" id="RSO-k8-RdP"/>
-                <outlet property="bottomButtonAnimator" destination="wjD-ao-QZH" id="gjK-Up-FNn"/>
                 <outlet property="footerLabel" destination="GCt-k6-Qdm" id="Ors-OX-rsu"/>
                 <outlet property="footerView" destination="y2R-Ww-IVZ" id="5GA-9O-HhX"/>
                 <outlet property="headerLabel" destination="SMt-BP-CVw" id="rcM-yJ-8g4"/>
@@ -66,7 +66,7 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9" customClass="GreenButton">
-                    <rect key="frame" x="0.0" y="430" width="320" height="55"/>
+                    <rect key="frame" x="0.0" y="431" width="320" height="49"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -86,11 +86,6 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
-        <customObject id="wjD-ao-QZH" customClass="CommonAnimationHelper">
-            <connections>
-                <outlet property="button" destination="9" id="DjA-P6-HAX"/>
-            </connections>
-        </customObject>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -14,7 +14,6 @@
 #import "UIResponder+FirstResponder.h"
 #import "MOMStyle.h"
 #import "MultipleEntryCell.h"
-#import "CommonAnimationHelper.h"
 
 @interface DataEntryViewController()
 @end
@@ -46,7 +45,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.bottomButtonAnimator viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {

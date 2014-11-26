@@ -9,14 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "MultipleEntryCell.h"
 
-@class CommonAnimationHelper;
 
 @interface DataEntryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MultipleEntryCellDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) NSArray *presentedSectionCells;
 @property (nonatomic, weak) IBOutlet UITableView* tableView;
-
-@property (nonatomic, strong) IBOutlet CommonAnimationHelper* bottomButtonAnimator;
 
 - (void)tappedCellAtIndexPath:(NSIndexPath *)indexPath;
 - (void)textFieldEntryFinished;

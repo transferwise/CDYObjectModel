@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RefundDetailsViewController">
             <connections>
-                <outlet property="bottomButtonAnimator" destination="sKT-NU-O21" id="4UF-1c-bcV"/>
                 <outlet property="footerButton" destination="F3N-P3-tAE" id="LOy-1N-dYl"/>
                 <outlet property="headerLabel" destination="KiC-L5-6ht" id="Win-3Y-skj"/>
                 <outlet property="view" destination="Wx0-cG-db5" id="VLV-p5-FkS"/>
@@ -19,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HVR-1r-viJ" customClass="DismissKeyboardTableView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="513"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <view key="tableHeaderView" contentMode="scaleToFill" id="Yqg-wl-2iC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
@@ -46,10 +46,10 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3N-P3-tAE" customClass="GreenButton">
-                    <rect key="frame" x="0.0" y="513" width="320" height="55"/>
+                    <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="55" id="zTP-Yp-Zl6"/>
+                        <constraint firstAttribute="height" constant="49" id="zTP-Yp-Zl6"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="Button">
@@ -73,11 +73,6 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
         </view>
-        <customObject id="sKT-NU-O21" customClass="CommonAnimationHelper">
-            <connections>
-                <outlet property="actionButtonBottomConstraint" destination="9Fo-gx-FWd" id="VDb-RT-D37"/>
-            </connections>
-        </customObject>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

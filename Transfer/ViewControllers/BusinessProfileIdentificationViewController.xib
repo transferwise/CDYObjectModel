@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
@@ -8,7 +9,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BusinessProfileIdentificationViewController">
             <connections>
                 <outlet property="actionButton" destination="oUm-dk-dAR" id="bLF-Xe-FA7"/>
-                <outlet property="bottomButtonAnimator" destination="ZYb-Ag-Mf7" id="3dw-wc-dAt"/>
                 <outlet property="textLabel" destination="Que-Jd-8xZ" id="dut-0i-WAf"/>
                 <outlet property="view" destination="VXg-vd-OeM" id="Ib8-ej-WA6"/>
             </connections>
@@ -19,9 +19,9 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUm-dk-dAR" customClass="GreenButton">
-                    <rect key="frame" x="0.0" y="449" width="320" height="55"/>
+                    <rect key="frame" x="0.0" y="455" width="320" height="49"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="55" id="tGi-n5-bsM"/>
+                        <constraint firstAttribute="height" constant="49" id="tGi-n5-bsM"/>
                     </constraints>
                     <state key="normal" title="Get started">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -72,11 +72,6 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
-        <customObject id="ZYb-Ag-Mf7" customClass="CommonAnimationHelper">
-            <connections>
-                <outlet property="actionButtonBottomConstraint" destination="lmD-LH-ac0" id="4pZ-gz-IYV"/>
-            </connections>
-        </customObject>
     </objects>
     <resources>
         <image name="business_screen_photo" width="201" height="201"/>
