@@ -24,7 +24,8 @@ typedef NSOrderedSet *(^GetFieldsBlock)();
 							 nameGetter:(GetFieldNameBlock)nameGetterBlock
 							fieldGetter:(GetRecipientTypeBlock)fieldGetterBlock
 							valueGetter:(GetAllowedTypeFieldValueBlock)valueGetterBlock
-							titleGetter:(StringGetterBlock)titleGetterBlock;
+							titleGetter:(StringGetterBlock)titleGetterBlock
+							 typeGetter:(StringGetterBlock)typeGetterBlock;
 
 + (NSArray *)generateFieldsArray:(UITableView *)tableView
 					fieldsGetter:(GetFieldsBlock)fieldsGetterBlock

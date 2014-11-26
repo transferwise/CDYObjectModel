@@ -29,6 +29,7 @@
 
 @implementation AchFlow
 
+#pragma mark - Init
 + (AchFlow *)sharedInstanceWithPayment:(Payment *)payment
 						   objectModel:(ObjectModel *)objectModel
 {
@@ -54,13 +55,15 @@
 	return self;
 }
 
+#pragma mark - Flow
 - (UIViewController *)getAccountAndRoutingNumberController
 {
 	return [[AchDetailsViewController alloc] initWithPayment:self.payment
 											  loginFormBlock:^(NSString *accountNumber, NSString *routingNumber, UINavigationController *controller) {
 												  
-												  AchWaitingViewController *waitingView = [[AchWaitingViewController alloc] init];
-												  [controller presentViewController:waitingView animated:YES completion:nil];
+												  AchWaitingViewController *waitingViewController = [[AchWaitingViewController alloc] init];
+												  [waitingViewController presentOnViewController:controller.parentViewController
+																		   withPresentationStyle:TransparentPresentationFade];
 												  
 												  VerificationFormOperation *operation = [VerificationFormOperation verificationFormOperationWithAccount:accountNumber
 																																		   routingNumber:routingNumber
@@ -81,13 +84,14 @@
 															  
 															  TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"ach.controller.accessing.error", nil) message:messages];
 															  [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+															  [waitingViewController dismiss];
 															  [alertView show];
 															  return;
 														  }
 														  
+														  [waitingViewController dismiss];
 														  UIViewController *loginController = [weakSelf getLoginForm:form];
 														  [controller pushViewController:loginController animated:YES];
-														  [controller dismissViewControllerAnimated:YES completion:nil];
 													  });
 												  }];
 												  
@@ -101,9 +105,17 @@
 												payment:self.payment
 											objectModel:self.objectModel
 										   initiatePull:^(UINavigationController* controller){
-											   AchWaitingViewController *waitingView = [[AchWaitingViewController alloc] init];
-											   [controller presentViewController:waitingView animated:YES completion:nil];
+											   AchWaitingViewController *waitingViewController = [[AchWaitingViewController alloc] init];
+												  [waitingViewController presentOnViewController:controller.parentViewController
+																		   withPresentationStyle:TransparentPresentationFade];
 										   }];
+}
+
+#pragma mark - TransparentModalViewControllerDelegate
+
+- (void)dismissCompleted:(TransparentModalViewController *)dismissedController
+{
+	
 }
 
 @end

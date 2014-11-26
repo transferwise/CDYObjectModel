@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class TransparentModalViewController;
+
 typedef NS_ENUM(short, TransparentModalPresentationStyle)
 {
     TransparentPresentationSlide = 0,
@@ -17,7 +19,8 @@ typedef NS_ENUM(short, TransparentModalPresentationStyle)
 @protocol TransparentModalViewControllerDelegate <NSObject>
 
 @optional
-- (void)modalClosed;
+
+-(void)dismissCompleted:(TransparentModalViewController*) dismissedController;
 
 @end
 

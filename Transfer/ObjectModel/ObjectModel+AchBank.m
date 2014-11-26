@@ -80,7 +80,10 @@
 									 {
 										 return title;
 									 }
-								 }];
+								 }
+								  typeGetter:^NSString *(NSDictionary *data) {
+									  return data[@"type"];
+								  }];
 			
 			rowCount++;
 		}

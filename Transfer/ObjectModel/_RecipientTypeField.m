@@ -11,6 +11,7 @@ const struct RecipientTypeFieldAttributes RecipientTypeFieldAttributes = {
 	.presentationPattern = @"presentationPattern",
 	.required = @"required",
 	.title = @"title",
+	.type = @"type",
 	.validationRegexp = @"validationRegexp",
 };
 
@@ -133,6 +134,8 @@ const struct RecipientTypeFieldRelationships RecipientTypeFieldRelationships = {
 }
 
 @dynamic title;
+
+@dynamic type;
 
 @dynamic validationRegexp;
 

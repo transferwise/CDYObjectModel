@@ -185,9 +185,9 @@
     [self.view removeFromSuperview];
     [blurView removeFromSuperview];
     [self removeFromParentViewController];
-    if ([self.delegate respondsToSelector:@selector(modalClosed)])
+    if ([self.delegate respondsToSelector:@selector(dismissCompleted:)])
     {
-        [self.delegate modalClosed];
+        [self.delegate dismissCompleted:self];
     }
 }
 

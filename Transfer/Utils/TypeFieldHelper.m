@@ -22,6 +22,7 @@
 							fieldGetter:(GetRecipientTypeBlock)fieldGetterBlock
 							valueGetter:(GetAllowedTypeFieldValueBlock)valueGetterBlock
 							titleGetter:(StringGetterBlock)titleGetterBlock
+							 typeGetter:(StringGetterBlock)typeGetterBlock
 {
 	NSDictionary *cleanedData = [data dictionaryByRemovingNullObjects];
 	NSString *name = nameGetterBlock();
@@ -34,6 +35,7 @@
 	[field setRequiredValue:[cleanedData[@"required"] boolValue]];
 	[field setTitle:titleGetterBlock(cleanedData)];
 	[field setValidationRegexp:cleanedData[@"validationRegexp"]];
+	[field setType:typeGetterBlock(cleanedData)];
 	
 	NSArray *allowedValues = cleanedData[@"valuesAllowed"];
 	

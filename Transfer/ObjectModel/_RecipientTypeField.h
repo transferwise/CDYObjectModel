@@ -11,6 +11,7 @@ extern const struct RecipientTypeFieldAttributes {
 	__unsafe_unretained NSString *presentationPattern;
 	__unsafe_unretained NSString *required;
 	__unsafe_unretained NSString *title;
+	__unsafe_unretained NSString *type;
 	__unsafe_unretained NSString *validationRegexp;
 } RecipientTypeFieldAttributes;
 
@@ -74,6 +75,10 @@ extern const struct RecipientTypeFieldRelationships {
 @property (nonatomic, strong) NSString* title;
 
 //- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* type;
+
+//- (BOOL)validateType:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* validationRegexp;
 
