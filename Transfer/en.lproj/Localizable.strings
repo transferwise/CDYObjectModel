@@ -705,6 +705,8 @@ We'll send you an email in order to let you choose a new password.";
 "registration.legaleze" = "By using TransferWise, you agree to our %@ & %@";
 "registration.tos" = "Terms of services";
 "registration.privacy" = "Privacy Policy";
+"usd.legaleze" = "By continuing you agree\nto our %@";
+"usd.state.specific" = "state specific notices";
 
 "transfertime.default" = "1 business day";
 "transfertime.EUR.REGULAR" = "1-2 business days";
