@@ -198,7 +198,8 @@ IB_DESIGNABLE
 	}
 }
 
-- (IBAction)textFieldBegunEditing:(id)sender {
+- (IBAction)textFieldBegunEditing:(id)sender
+{
     if(sender == self.accountNumberTextField)
     {
         [self.checkView setState:CheckStateAccountHighlighted animated:YES];
@@ -233,6 +234,7 @@ IB_DESIGNABLE
 	
 	return nil;
 }
+
 #pragma mark - keyboard overlap
 
 -(void)keyboardWillShow:(NSNotification*)note
