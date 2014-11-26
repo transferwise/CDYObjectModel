@@ -518,8 +518,8 @@
 		47C4D0501A237F61005EC7C6 /* AchLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D04D1A237F61005EC7C6 /* AchLoginViewController.m */; };
 		47C4D0511A237F61005EC7C6 /* AchLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47C4D04E1A237F61005EC7C6 /* AchLoginViewController.xib */; };
 		47C4D0521A237F61005EC7C6 /* AchLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47C4D04E1A237F61005EC7C6 /* AchLoginViewController.xib */; };
-		47C4D0581A25F7CC005EC7C6 /* TransparentModalViewControllerDelegateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0571A25F7CC005EC7C6 /* TransparentModalViewControllerDelegateHelper.m */; };
-		47C4D0591A25F7CC005EC7C6 /* TransparentModalViewControllerDelegateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0571A25F7CC005EC7C6 /* TransparentModalViewControllerDelegateHelper.m */; };
+		47C4D0581A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0571A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.m */; };
+		47C4D0591A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0571A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.m */; };
 		47C580A3196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47C580A4196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
 		47DBE05919703494008915A6 /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
@@ -1400,8 +1400,8 @@
 		47C4D04C1A237F61005EC7C6 /* AchLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchLoginViewController.h; sourceTree = "<group>"; };
 		47C4D04D1A237F61005EC7C6 /* AchLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchLoginViewController.m; sourceTree = "<group>"; };
 		47C4D04E1A237F61005EC7C6 /* AchLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AchLoginViewController.xib; sourceTree = "<group>"; };
-		47C4D0561A25F7CC005EC7C6 /* TransparentModalViewControllerDelegateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentModalViewControllerDelegateHelper.h; sourceTree = "<group>"; };
-		47C4D0571A25F7CC005EC7C6 /* TransparentModalViewControllerDelegateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentModalViewControllerDelegateHelper.m; sourceTree = "<group>"; };
+		47C4D0561A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomInfoViewControllerDelegateHelper.h; sourceTree = "<group>"; };
+		47C4D0571A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomInfoViewControllerDelegateHelper.m; sourceTree = "<group>"; };
 		47C580A1196AC1A7007771DB /* UIGestureRecognizer+Cancel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Cancel.h"; sourceTree = "<group>"; };
 		47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Cancel.m"; sourceTree = "<group>"; };
 		47DC89811A03950F0042054B /* TransferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2919,8 +2919,8 @@
 				38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */,
 				380579A71A1A3520005E94DD /* TransferDevWebTools.h */,
 				380579A81A1A3520005E94DD /* TransferDevWebTools.m */,
-				47C4D0561A25F7CC005EC7C6 /* TransparentModalViewControllerDelegateHelper.h */,
-				47C4D0571A25F7CC005EC7C6 /* TransparentModalViewControllerDelegateHelper.m */,
+				47C4D0561A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.h */,
+				47C4D0571A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.m */,
 				47FC53BF1A1F61CF00F5E632 /* TypeFieldHelper.h */,
 				47FC53C01A1F61CF00F5E632 /* TypeFieldHelper.m */,
 			);
@@ -3783,7 +3783,7 @@
 				470C131E1A12598300EEAF25 /* ReferralLinksOperation.m in Sources */,
 				47AC3F981987B2C3005491C6 /* SuggestionCell.m in Sources */,
 				38B0930E1951FA2A00315BE4 /* TextFieldSuggestionTable.m in Sources */,
-				47C4D0591A25F7CC005EC7C6 /* TransparentModalViewControllerDelegateHelper.m in Sources */,
+				47C4D0591A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.m in Sources */,
 				EA31A19F17DDB29B00F937F7 /* NSDate+ServerTime.m in Sources */,
 				4723EA2A1975349C00B4345F /* TransferPayIPadViewController.m in Sources */,
 				389F680C198FC1C6006CF1F6 /* _PersonalProfile.m in Sources */,
@@ -3869,7 +3869,7 @@
 				EA13E049171BEDC40019FBF0 /* UIView+Loading.m in Sources */,
 				EA13E04C171BEF5D0019FBF0 /* TextEntryCell.m in Sources */,
 				EA8FF682171D19B50090A658 /* NSString+Validation.m in Sources */,
-				47C4D0581A25F7CC005EC7C6 /* TransparentModalViewControllerDelegateHelper.m in Sources */,
+				47C4D0581A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.m in Sources */,
 				389F680D198FC1C6006CF1F6 /* _Recipient.m in Sources */,
 				EA8FF685171D1A320090A658 /* NSMutableString+Issues.m in Sources */,
 				EA8FF688171D1B6D0090A658 /* UIApplication+Keyboard.m in Sources */,

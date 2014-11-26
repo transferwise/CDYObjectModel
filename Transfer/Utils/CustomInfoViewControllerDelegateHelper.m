@@ -1,20 +1,18 @@
 //
-//  TransparentModalViewControllerDelegateHelper.m
+//  CustomInfoViewControllerDelegateHelper.m
 //  Transfer
 //
 //  Created by Juhan Hion on 26.11.14.
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-#import "TransparentModalViewControllerDelegateHelper.h"
+#import "CustomInfoViewControllerDelegateHelper.h"
 
-@interface TransparentModalViewControllerDelegateHelper ()
-
-@property (nonatomic, copy) TRWActionBlock completion;
+@interface CustomInfoViewControllerDelegateHelper ()
 
 @end
 
-@implementation TransparentModalViewControllerDelegateHelper
+@implementation CustomInfoViewControllerDelegateHelper
 
 - (instancetype)initWithCompletion:(TRWActionBlock)completion
 {
@@ -30,5 +28,4 @@
 {
 	self.completion();
 }
-
 @end

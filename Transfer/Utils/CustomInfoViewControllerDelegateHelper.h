@@ -1,5 +1,5 @@
 //
-//  TransparentModalViewControllerDelegateHelper.h
+//  CustomInfoViewControllerDelegateHelper.h
 //  Transfer
 //
 //  Created by Juhan Hion on 26.11.14.
@@ -10,7 +10,12 @@
 #import "TransparentModalViewController.h"
 #import "Constants.h"
 
-@interface TransparentModalViewControllerDelegateHelper : NSObject<TransparentModalViewControllerDelegate>
+@interface CustomInfoViewControllerDelegateHelper : NSObject<TransparentModalViewControllerDelegate>
+
+/**
+ *	Set completion here to override the one set in init
+ */
+@property (nonatomic, copy) TRWActionBlock completion;
 
 - (instancetype)initWithCompletion:(TRWActionBlock)completion;
 

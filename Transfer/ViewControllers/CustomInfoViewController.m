@@ -99,7 +99,7 @@
 
 -(IBAction)closebuttonTapped
 {
-    if(self.mapCloseButtonToAction)
+	if(self.mapCloseButtonToAction)
     {
         if(self.actionButtonBlock)
         {

@@ -16,7 +16,7 @@
 #import "NSError+TRWErrors.h"
 #import "AchLoginViewController.h"
 #import "AchWaitingViewController.h"
-#import "TransparentModalViewControllerDelegateHelper.h"
+#import "CustomInfoViewControllerDelegateHelper.h"
 
 @class AchBank;
 
@@ -25,7 +25,7 @@
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, strong) Payment *payment;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
-@property (nonatomic, strong) TransparentModalViewControllerDelegateHelper *currentWaitingDelegate;
+@property (nonatomic, strong) CustomInfoViewControllerDelegateHelper *currentWaitingDelegate;
 
 @end
 
@@ -62,21 +62,43 @@
 {
 	return [[AchDetailsViewController alloc] initWithPayment:self.payment
 											  loginFormBlock:^(NSString *accountNumber, NSString *routingNumber, UINavigationController *controller) {
+												  //lots of delegates accessing self
+												  __weak typeof(self) weakSelf = self;
 												  
-												  AchWaitingViewController *waitingViewController = [[AchWaitingViewController alloc] init];
-												  [waitingViewController presentOnViewController:controller.parentViewController
-																		   withPresentationStyle:TransparentPresentationFade];
-												  
+												  //set up operation first
 												  VerificationFormOperation *operation = [VerificationFormOperation verificationFormOperationWithAccount:accountNumber
 																																		   routingNumber:routingNumber
 																																			   paymentId:self.payment.remoteId];
 												  operation.objectModel = self.objectModel;
+												  //keep strong reference
 												  self.executedOperation = operation;
 												  
-												  __weak typeof(self) weakSelf = self;
+												  __block BOOL isCancelled = NO;
 												  
+												  //set up wait view delegate with cancel
+												  CustomInfoViewControllerDelegateHelper *delegate = [[CustomInfoViewControllerDelegateHelper alloc] initWithCompletion:^{
+													  isCancelled = YES;
+													  [weakSelf.executedOperation cancel];
+												  }];
+												  //keep strong reference
+												  self.currentWaitingDelegate = delegate;
+												  
+												  //init and show waiting view
+												  AchWaitingViewController *waitingViewController = [[AchWaitingViewController alloc] init];
+												  waitingViewController.delegate = delegate;
+												  [waitingViewController presentOnViewController:controller.parentViewController
+																		   withPresentationStyle:TransparentPresentationFade];
+												  
+												  //add result handler that references delegate for completion
 												  [operation setResultHandler:^(NSError *error, AchBank *form) {
-													  dispatch_async(dispatch_get_main_queue(), ^{				  
+													  //operation might have been cancelled before reaching here
+													  //but it might not have
+													  if (isCancelled)
+													  {
+														  return;
+													  }
+													  
+													  dispatch_async(dispatch_get_main_queue(), ^{
 														  if (error || !form)
 														  {
 															  NSString *messages = nil;
@@ -93,16 +115,24 @@
 															  return;
 														  }
 														  
-														  TransparentModalViewControllerDelegateHelper *delegate = [[TransparentModalViewControllerDelegateHelper alloc] initWithCompletion:^{
+														  //override completion here because we have succeeded
+														  weakSelf.currentWaitingDelegate.completion = ^{
+															  //could have been cancelled even now
+															  if (isCancelled)
+															  {
+																  return;
+															  }
+															  
+															  //if you are really quick You can have method be invoked twice
+															  isCancelled = YES;
 															  UIViewController *loginController = [weakSelf getLoginForm:form];
 															  [controller pushViewController:loginController animated:YES];
-														  }];
-														  self.currentWaitingDelegate = delegate;
-														  waitingViewController.delegate = delegate;
+														  };
 														  [waitingViewController dismiss];
 													  });
 												  }];
 												  
+												  //run the whole shebang
 												  [operation execute];
 											  }];
 }

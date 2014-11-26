@@ -136,7 +136,7 @@
 {
 	self.separatorLine = [UIView getSeparatorLineWithParentFrame:self.contentView.frame
 												   showFullWidth:NO];
-	[self.contentView addSubview:self.separatorLine];	
+	[self.contentView addSubview:self.separatorLine];
 	self.multipleSeparatorsAdded = NO;
 }
 
