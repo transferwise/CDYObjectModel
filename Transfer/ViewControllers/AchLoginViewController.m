@@ -69,25 +69,11 @@
 	
 	[self setTitle:NSLocalizedString(@"ach.controller.login.title", nil)];
 	[self.supportButton setTitle:NSLocalizedString(@"ach.controller.button.support", nil) forState:UIControlStateNormal];
-	[self.payButton setTitle:[NSString stringWithFormat:NSLocalizedString(@"ach.controller.button.pay", nil), [self.payment payInStringWithCurrency], self.form.title] forState:UIControlStateNormal];
+	[self.payButton setTitle:[NSString stringWithFormat:NSLocalizedString(@"ach.controller.button.pay", nil), [self.payment payInString], self.form.title] forState:UIControlStateNormal];
 	[self.messageOneLabel setText:NSLocalizedString(@"ach.controller.label.message.nostore", nil)];
-	[self.messageTwoLabel setText:NSLocalizedString(@"ach.controller.lable.message.secure", nil)];
+	[self.messageTwoLabel setText:NSLocalizedString(@"ach.controller.label.message.secure", nil)];
 	
-	if (self.form && self.form.fieldGroups.count > 0)
-	{
-		NSMutableArray *formFields = [[NSMutableArray alloc] init];
-		
-		for (FieldGroup *group in self.form.fieldGroups)
-		{
-			[formFields addObjectsFromArray:[TypeFieldHelper generateFieldsArray:self.tableViews[0]
-																   fieldsGetter:^NSOrderedSet *{
-																	   return group.fields;
-																   }
-																	 objectModel:self.objectModel]];
-		}
-		
-		self.formCells = [NSArray arrayWithArray:formFields];
-	}
+	[self generateFormCells];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -120,6 +106,29 @@
 	[tableView registerNib:[UINib nibWithNibName:@"DropdownCell" bundle:nil] forCellReuseIdentifier:TWDropdownCellIdentifier];
 }
 
+- (void)generateFormCells
+{
+	if (self.form && self.form.fieldGroups.count > 0)
+	{
+		NSMutableArray *formFields = [[NSMutableArray alloc] init];
+		
+		for (FieldGroup *group in self.form.fieldGroups)
+		{
+			[formFields addObjectsFromArray:[TypeFieldHelper generateFieldsArray:self.tableViews[0]
+																	fieldsGetter:^NSOrderedSet *{
+																		return group.fields;
+																	}
+																	 objectModel:self.objectModel]];
+		}
+		
+		TextEntryCell *firstCell = (TextEntryCell *)formFields[0];
+		[firstCell configureWithTitle:[NSString stringWithFormat:NSLocalizedString(@"ach.controller.label.firstfield", nil), firstCell.entryField.placeholder, self.form.title] value:nil];
+		
+		
+		self.formCells = [NSArray arrayWithArray:formFields];
+	}
+}
+
 - (void)setFooter
 {
 	if (!IPAD && ![self hasMoreThanOneTableView])
@@ -133,7 +142,7 @@
 #pragma mark - Buttons
 - (IBAction)payButtonPressed:(id)sender
 {
-	
+	self.initiatePullBlock(self.navigationController);
 }
 
 

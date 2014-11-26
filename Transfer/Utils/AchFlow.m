@@ -100,8 +100,9 @@
 	return [[AchLoginViewController alloc] initWithForm:form
 												payment:self.payment
 											objectModel:self.objectModel
-										   initiatePull:^{
-											   
+										   initiatePull:^(UINavigationController* controller){
+											   AchWaitingViewController *waitingView = [[AchWaitingViewController alloc] init];
+											   [controller presentViewController:waitingView animated:YES completion:nil];
 										   }];
 }
 

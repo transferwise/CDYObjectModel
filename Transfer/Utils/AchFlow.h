@@ -10,7 +10,7 @@
 #import "TRWProgressHUD.h"
 
 typedef void (^GetLoginFormBlock)(NSString* accountNumber, NSString* routingNumber, UINavigationController *controller);
-typedef void (^InitiatePullBlock)();
+typedef void (^InitiatePullBlock)(UINavigationController* controller);
 
 @class Payment;
 @class ObjectModel;
