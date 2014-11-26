@@ -182,14 +182,12 @@ IB_DESIGNABLE
 	
 	if (errors == nil)
 	{
-		TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
-		[hud setMessage:NSLocalizedString(@"ach.controller.accessing", nil)];
-		
+		//set this to no so navigation back-forward will work
+		self.willDismiss = NO;
 		__weak typeof(self) weakSelf = self;
 		[self navigateAway:weakSelf
 				completion:^{
-					weakSelf.loginFormBlock(self.accountNumberTextField.text, self.routingNumberTextField.text,
-										hud, self.navigationController);
+					weakSelf.loginFormBlock(weakSelf.accountNumberTextField.text, weakSelf.routingNumberTextField.text, weakSelf.navigationController);
 				}];
 	}
 	else

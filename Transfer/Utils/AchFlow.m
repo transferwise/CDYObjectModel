@@ -15,6 +15,7 @@
 #import "TRWAlertView.h"
 #import "NSError+TRWErrors.h"
 #import "AchLoginViewController.h"
+#import "AchWaitingViewController.h"
 
 @class AchBank;
 
@@ -56,7 +57,11 @@
 - (UIViewController *)getAccountAndRoutingNumberController
 {
 	return [[AchDetailsViewController alloc] initWithPayment:self.payment
-											  loginFormBlock:^(NSString *accountNumber, NSString *routingNumber, TRWProgressHUD *hud, UINavigationController *controller) {
+											  loginFormBlock:^(NSString *accountNumber, NSString *routingNumber, UINavigationController *controller) {
+												  
+												  AchWaitingViewController *waitingView = [[AchWaitingViewController alloc] init];
+												  [controller presentViewController:waitingView animated:YES completion:nil];
+												  
 												  VerificationFormOperation *operation = [VerificationFormOperation verificationFormOperationWithAccount:accountNumber
 																																		   routingNumber:routingNumber
 																																			   paymentId:self.payment.remoteId];
@@ -64,9 +69,7 @@
 												  self.executedOperation = operation;
 												  __weak typeof(self) weakSelf = self;
 												  [operation setResultHandler:^(NSError *error, AchBank *form) {
-													  dispatch_async(dispatch_get_main_queue(), ^{
-														  [hud hide];
-														  
+													  dispatch_async(dispatch_get_main_queue(), ^{				  
 														  if (error || !form)
 														  {
 															  NSString *messages = nil;
@@ -84,6 +87,7 @@
 														  
 														  UIViewController *loginController = [weakSelf getLoginForm:form];
 														  [controller pushViewController:loginController animated:YES];
+														  [controller dismissViewControllerAnimated:YES completion:nil];
 													  });
 												  }];
 												  

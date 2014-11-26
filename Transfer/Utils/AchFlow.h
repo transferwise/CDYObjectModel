@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "TRWProgressHUD.h"
 
-typedef void (^GetLoginFormBlock)(NSString* accountNumber, NSString* routingNumber, TRWProgressHUD *hud, UINavigationController *controller);
+typedef void (^GetLoginFormBlock)(NSString* accountNumber, NSString* routingNumber, UINavigationController *controller);
 typedef void (^InitiatePullBlock)();
 
 @class Payment;
