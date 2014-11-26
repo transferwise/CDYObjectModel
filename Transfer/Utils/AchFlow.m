@@ -16,6 +16,7 @@
 #import "NSError+TRWErrors.h"
 #import "AchLoginViewController.h"
 #import "AchWaitingViewController.h"
+#import "TransparentModalViewControllerDelegateHelper.h"
 
 @class AchBank;
 
@@ -24,6 +25,7 @@
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, strong) Payment *payment;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
+@property (nonatomic, strong) TransparentModalViewControllerDelegateHelper *currentWaitingDelegate;
 
 @end
 
@@ -70,7 +72,9 @@
 																																			   paymentId:self.payment.remoteId];
 												  operation.objectModel = self.objectModel;
 												  self.executedOperation = operation;
+												  
 												  __weak typeof(self) weakSelf = self;
+												  
 												  [operation setResultHandler:^(NSError *error, AchBank *form) {
 													  dispatch_async(dispatch_get_main_queue(), ^{				  
 														  if (error || !form)
@@ -89,9 +93,13 @@
 															  return;
 														  }
 														  
+														  TransparentModalViewControllerDelegateHelper *delegate = [[TransparentModalViewControllerDelegateHelper alloc] initWithCompletion:^{
+															  UIViewController *loginController = [weakSelf getLoginForm:form];
+															  [controller pushViewController:loginController animated:YES];
+														  }];
+														  self.currentWaitingDelegate = delegate;
+														  waitingViewController.delegate = delegate;
 														  [waitingViewController dismiss];
-														  UIViewController *loginController = [weakSelf getLoginForm:form];
-														  [controller pushViewController:loginController animated:YES];
 													  });
 												  }];
 												  
@@ -109,13 +117,6 @@
 												  [waitingViewController presentOnViewController:controller.parentViewController
 																		   withPresentationStyle:TransparentPresentationFade];
 										   }];
-}
-
-#pragma mark - TransparentModalViewControllerDelegate
-
-- (void)dismissCompleted:(TransparentModalViewController *)dismissedController
-{
-	
 }
 
 @end
