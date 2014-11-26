@@ -14,7 +14,7 @@
 #import "Credentials.h"
 #import "User.h"
 #import "Constants.h"
-#import "TypeFieldParser.h"
+#import "TypeFieldHelper.h"
 
 @implementation ObjectModel (RecipientTypes)
 
@@ -84,7 +84,7 @@
 {
 	NSString *name = data[@"name"];
 	
-	[TypeFieldParser getTypeWithData:data
+	[TypeFieldHelper getTypeWithData:data
 						  nameGetter:^NSString *{
 							  return name;
 						  }
@@ -105,7 +105,13 @@
 								 [value setValueForField:field];
 							 }
 							 return value;
-						 }];
+						 }
+						 titleGetter:^NSString *(NSDictionary *data) {
+							 return data[@"title"];
+						 }
+						  typeGetter:^NSString *(NSDictionary *data) {
+							  return nil;
+						  }];
 }
 
 - (RecipientTypeField *)existingFieldOnType:(RecipientType *)type withName:(NSString *)name {

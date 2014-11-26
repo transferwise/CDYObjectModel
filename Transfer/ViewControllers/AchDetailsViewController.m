@@ -20,12 +20,13 @@
 #import "ACHCheckView.h"
 #import "TransferBackButtonItem.h"
 
+#define TOP_OFFSET	130
+
 IB_DESIGNABLE
 
 @interface AchDetailsViewController ()
 
 @property (nonatomic, strong) Payment *payment;
-@property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, copy) GetLoginFormBlock loginFormBlock;
 
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *routingNumberTextField;
@@ -45,7 +46,6 @@ IB_DESIGNABLE
 @implementation AchDetailsViewController
 
 - (instancetype)initWithPayment:(Payment *)payment
-					objectModel:(ObjectModel *)objectModel
 				 loginFormBlock:(GetLoginFormBlock)loginFormBlock
 {
 	self = [super init];
@@ -53,7 +53,6 @@ IB_DESIGNABLE
 	if (self)
 	{
 		self.payment = payment;
-		self.objectModel = objectModel;
 		self.loginFormBlock = loginFormBlock;
 	}
 	
@@ -92,6 +91,26 @@ IB_DESIGNABLE
     [self.checkView setState:CheckStatePlain animated:NO];
 }
 
+- (void)navigateAway:(AchDetailsViewController *)weakSelf
+		  completion:(void (^)(void))completion
+{
+	if(!weakSelf.willDismiss)
+	{
+		weakSelf.view.userInteractionEnabled = NO;
+		weakSelf.willDismiss = YES;
+		
+		float secondsToDelay = weakSelf.checkView.state == CheckStatePlain?0.0f:0.4f;
+		dispatch_time_t timeToDismiss = dispatch_time(DISPATCH_TIME_NOW, secondsToDelay*NSEC_PER_SEC);
+		dispatch_after(timeToDismiss, dispatch_get_main_queue(), ^{
+			completion();
+		});
+		
+		[self.view endEditing:YES];
+		[self.checkView setState:CheckStatePlain animated:YES];
+		weakSelf.view.userInteractionEnabled = YES;
+	}
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -104,18 +123,10 @@ IB_DESIGNABLE
         TransferBackButtonItem *item = [TransferBackButtonItem backButtonWithTapHandler:^{
             if(!IPAD && weakSelf)
             {
-                if(!weakSelf.willDismiss)
-                {
-                    weakSelf.willDismiss = YES;
-                    float secondsToDelay = weakSelf.checkView.state == CheckStatePlain?0.0f:0.4f;
-                    dispatch_time_t timeToDismiss = dispatch_time(DISPATCH_TIME_NOW, secondsToDelay*NSEC_PER_SEC);
-                    dispatch_after(timeToDismiss, dispatch_get_main_queue(), ^{
-                        [navigationController popViewControllerAnimated:YES];
-                    });
-                    
-                    [self.view endEditing:YES];
-                    [self.checkView setState:CheckStatePlain animated:YES];
-                }
+				[self navigateAway:weakSelf
+						completion:^{
+							[navigationController popViewControllerAnimated:YES];
+						}];
             }
             else
             {
@@ -171,10 +182,13 @@ IB_DESIGNABLE
 	
 	if (errors == nil)
 	{
-		TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.view];
-		[hud setMessage:NSLocalizedString(@"ach.controller.accessing", nil)];
-		
-		self.loginFormBlock(self.accountNumberTextField.text, self.routingNumberTextField.text, hud);
+		//set this to no so navigation back-forward will work
+		self.willDismiss = NO;
+		__weak typeof(self) weakSelf = self;
+		[self navigateAway:weakSelf
+				completion:^{
+					weakSelf.loginFormBlock(weakSelf.accountNumberTextField.text, weakSelf.routingNumberTextField.text, weakSelf.navigationController);
+				}];
 	}
 	else
 	{
@@ -233,7 +247,7 @@ IB_DESIGNABLE
     [UIView setAnimationCurve:curve];
     [UIView setAnimationBeginsFromCurrentState:YES];
    
-    CGPoint topOffset = [self.view convertPoint:CGPointMake(0,70) fromView:self.navigationController.view];
+    CGPoint topOffset = [self.view convertPoint:CGPointMake(0,TOP_OFFSET) fromView:self.navigationController.view];
     self.textEntryTopSpace.constant = MAX(10.0f, topOffset.y);
     [self.view layoutIfNeeded];
     

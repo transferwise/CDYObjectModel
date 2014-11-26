@@ -61,9 +61,9 @@
     
     self.smsButton.hidden = self.smsUrl && ![MFMessageComposeViewController canSendText];
     [[GoogleAnalytics sharedInstance] sendScreen:[NSString stringWithFormat:@"Invite friends modal"]];
-	self.facebookButton.enabled = self.fbUrl;
-	self.emailButton.enabled = self.emailUrl;
-	self.urlCopyButton.enabled = self.linkUrl;
+	self.facebookButton.enabled = self.fbUrl != nil;
+	self.emailButton.enabled = self.emailUrl != nil;
+	self.urlCopyButton.enabled = self.linkUrl != nil;
 }
 
 - (void)didReceiveMemoryWarning

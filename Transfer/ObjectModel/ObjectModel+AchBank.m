@@ -10,7 +10,7 @@
 #import "AchBank.h"
 #import "FieldGroup.h"
 #import "RecipientTypeField.h"
-#import "TypeFieldParser.h"
+#import "TypeFieldHelper.h"
 #import "AllowedTypeFieldValue.h"
 
 @implementation ObjectModel (AchBank)
@@ -43,9 +43,11 @@
 			[fieldGroup setTitle:title];
 		}
 		
+		uint rowCount = 1u;
+		
 		for (NSDictionary* row in group[@"fields"])
 		{
-			[TypeFieldParser getTypeWithData:row
+			[TypeFieldHelper getTypeWithData:row
 								  nameGetter:^NSString *{
 									  return row[@"name"];
 								  }
@@ -68,7 +70,22 @@
 										 [value setValueForField:field];
 									 }
 									 return value;
-								 }];
+								 }
+								 titleGetter:^NSString *(NSDictionary *data) {
+									 if (rowCount > 1u)
+									 {
+										 return [NSString stringWithFormat:@"%@ %ui", title, rowCount];
+									 }
+									 else
+									 {
+										 return title;
+									 }
+								 }
+								  typeGetter:^NSString *(NSDictionary *data) {
+									  return data[@"type"];
+								  }];
+			
+			rowCount++;
 		}
 		
 		NSMutableArray *removedFields = [NSMutableArray array];

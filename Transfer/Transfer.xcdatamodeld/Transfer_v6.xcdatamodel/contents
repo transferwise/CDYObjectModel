@@ -166,6 +166,7 @@
         <attribute name="presentationPattern" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="required" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="validationRegexp" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="allowedValues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AllowedTypeFieldValue" inverseName="valueForField" inverseEntity="AllowedTypeFieldValue" syncable="YES"/>
         <relationship name="fieldForGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FieldGroup" inverseName="fields" inverseEntity="FieldGroup" syncable="YES"/>
@@ -203,10 +204,12 @@
         <relationship name="referralLinks" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ReferralLink" inverseName="user" inverseEntity="ReferralLink" syncable="YES"/>
     </entity>
     <elements>
+        <element name="AchBank" positionX="619" positionY="-324" width="128" height="88"/>
         <element name="AllowedTypeFieldValue" positionX="655" positionY="63" width="128" height="90"/>
         <element name="BusinessProfile" positionX="-396" positionY="-99" width="128" height="193"/>
         <element name="Country" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Currency" positionX="-92" positionY="-216" width="128" height="270"/>
+        <element name="FieldGroup" positionX="333" positionY="-178" width="128" height="73"/>
         <element name="PairSourceCurrency" positionX="0" positionY="0" width="128" height="120"/>
         <element name="PairTargetCurrency" positionX="0" positionY="0" width="128" height="135"/>
         <element name="PayInMethod" positionX="36" positionY="180" width="128" height="165"/>
@@ -216,12 +219,10 @@
         <element name="PersonalProfile" positionX="-614" positionY="-42" width="128" height="240"/>
         <element name="Recipient" positionX="745" positionY="255" width="128" height="285"/>
         <element name="RecipientType" positionX="205" positionY="-432" width="128" height="178"/>
-        <element name="RecipientTypeField" positionX="718" positionY="-207" width="128" height="223"/>
+        <element name="RecipientTypeField" positionX="718" positionY="-207" width="128" height="240"/>
         <element name="ReferralLink" positionX="-218" positionY="-405" width="128" height="88"/>
         <element name="Setting" positionX="-441" positionY="-405" width="128" height="75"/>
         <element name="TypeFieldValue" positionX="18" positionY="504" width="128" height="88"/>
         <element name="User" positionX="-360" positionY="207" width="128" height="253"/>
-        <element name="AchBank" positionX="619" positionY="-324" width="128" height="88"/>
-        <element name="FieldGroup" positionX="333" positionY="-178" width="128" height="73"/>
     </elements>
 </model>

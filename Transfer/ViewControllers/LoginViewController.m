@@ -120,6 +120,7 @@ IB_DESIGNABLE
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[NavigationBarCustomiser setDefault];
+	[super viewWillDisappear:animated];
 }
 
 #pragma mark - TextField delegate

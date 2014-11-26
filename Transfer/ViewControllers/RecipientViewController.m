@@ -65,6 +65,7 @@
 #import "StateSuggestionProvider.h"
 #import "RecipientUpdateOperation.h"
 #import "Mixpanel+Customisation.h"
+#import "TypeFieldHelper.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
@@ -655,7 +656,6 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 
 - (NSArray *)buildCellsForType:(RecipientType *)type allTypes:(NSArray *)allTypes {
     MCLog(@"Build cells for type:%@", type.type);
-    NSMutableArray *result = [NSMutableArray array];
 
     //Set up a tabbed or non tabbed header depending on number of types
     if (allTypes.count > 1) {
@@ -675,28 +675,13 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [self updateUserNameText];
 
     //Generate cells
-    
-    UITableView* tableView = [self hasMoreThanOneTableView]?self.tableViews[1]:self.tableViews[0];
-    for (RecipientTypeField *field in type.fields) {
-        TextEntryCell *createdCell;
-        if ([field.allowedValues count] > 0) {
-            DropdownCell *cell = [tableView dequeueReusableCellWithIdentifier:TWDropdownCellIdentifier];
-            [cell setAllElements:[self.objectModel fetchedControllerForAllowedValuesOnField:field]];
-            [cell configureWithTitle:field.title value:@""];
-            [cell setType:field];
-            [result addObject:cell];
-            createdCell = cell;
-        } else {
-            RecipientFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TWRecipientFieldCellIdentifier];
-            [cell setFieldType:field];
-            [result addObject:cell];
-            createdCell = cell;
-        }
+	UITableView* tableView = [self hasMoreThanOneTableView]?self.tableViews[1]:self.tableViews[0];
 
-        [createdCell setEditable:YES];
-    }
-
-    return [NSArray arrayWithArray:result];
+    return [TypeFieldHelper generateFieldsArray:tableView
+								   fieldsGetter:^NSOrderedSet *{
+									   return type.fields;
+								   }
+									objectModel:self.objectModel];
 }
 
 - (IBAction)addButtonPressed:(id)sender {

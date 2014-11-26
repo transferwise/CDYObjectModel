@@ -73,6 +73,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[NavigationBarCustomiser setDefault];
+	[super viewDidDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -8,19 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import "TRWProgressHUD.h"
+#import "TransparentModalViewController.h"
 
-typedef void (^GetLoginFormBlock)(NSString* accountNumber, NSString* routingNumber, TRWProgressHUD *hud);
+typedef void (^GetLoginFormBlock)(NSString* accountNumber, NSString* routingNumber, UINavigationController *controller);
+typedef void (^InitiatePullBlock)(UINavigationController* controller);
 
 @class Payment;
 @class ObjectModel;
 
-@interface AchFlow : NSObject
+@interface AchFlow : NSObject<TransparentModalViewControllerDelegate>
 
 - (id)init __attribute__((unavailable("init unavailable, use sharedInstance")));
 
 + (AchFlow *)sharedInstanceWithPayment:(Payment *)payment
 						   objectModel:(ObjectModel *)objectModel;
 
-- (UIViewController *)presentAccountAndRoutingNumber;
+- (UIViewController *)getAccountAndRoutingNumberController;
 
 @end

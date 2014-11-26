@@ -28,6 +28,7 @@
 @property (nonatomic, copy) TRWOperationErrorBlock operationErrorHandler;
 @property (nonatomic, copy) TRWUploadOperationProgressBlock uploadProgressHandler;
 @property (nonatomic, strong) ObjectModel *workModel;
+@property (nonatomic) BOOL hasBeenCancelled;
 
 @end
 
@@ -79,6 +80,10 @@
     [operation setQueuePriority:NSOperationQueuePriorityLow];
     __weak typeof(self) weakSelf = self;
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *op, id responseObject) {
+		if (self.hasBeenCancelled) {
+			return;
+		}
+		
         NSInteger statusCode = op.response.statusCode;
         MCLog(@"%@ - Success:%ld - %lu", op.request.URL.path, (long)statusCode, (unsigned long)[responseObject length]);
         if (statusCode != 200 || !responseObject) {
@@ -108,6 +113,10 @@
             weakSelf.operationSuccessHandler(response);
         }
     } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+		if (self.hasBeenCancelled) {
+			return;
+		}
+		
         MCLog(@"Error:%@", error);
         if (op.response.statusCode == 410) {
             NSError *createdError = [NSError errorWithDomain:TRWErrorDomain code:ResponseCallGoneError userInfo:@{}];
@@ -245,6 +254,11 @@
 - (NSString*)apiVersion
 {
     return @"v1";
+}
+
+- (void)cancel
+{
+	self.hasBeenCancelled = YES;
 }
 
 @end

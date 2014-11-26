@@ -1,4 +1,5 @@
 "ach.controller.title" = "Pay via direct debit";
+"ach.controller.login.title" = "Confirm your payment";
 "ach.controller.button.support.ipad" = "Contact support";
 "ach.controller.button.support" = "Contact customer support";
 "ach.controller.button.connect" = "Connect to my account";
@@ -13,6 +14,10 @@
 "ach.controller.checkbook.account" = "Your account number";
 "ach.controller.checkbook" = "%@ on a checkbook.";
 "ach.waiting.info" = "Now wait a moment while we are searching for your USD account";
+"ach.controller.button.pay" = "Pay $%@ with %@";
+"ach.controller.label.message.nostore" = "We do not store your bank details.";
+"ach.controller.label.message.secure" = "Payment is 100% secured.";
+"ach.controller.label.firstfield" = "Your %@ at %@";
 
 "business.profile.address.label" = "Address";
 "business.profile.email.label" = "Your business email";
