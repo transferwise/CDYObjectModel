@@ -122,7 +122,9 @@ static NSDictionary* statusLookupDictionary;
 }
 
 - (NSString *)paymentDateString {
-    if (self.estimatedDeliveryStringFromServer) {
+    
+    NSString *language = [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0];
+    if (self.estimatedDeliveryStringFromServer && [language isEqualToString:@"en"]) {
         return self.estimatedDeliveryStringFromServer;
     }
 

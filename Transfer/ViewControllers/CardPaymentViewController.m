@@ -17,10 +17,13 @@
 #import "PullPaymentDetailsOperation.h"
 #import "TransferDetailsViewController.h" 
 #import "FeedbackCoordinator.h"
+#import "CustomInfoViewController.h"
+
+
 #ifdef DEV_VERSION
 #import "TransferDevWebTools.h"
-#import "CustomInfoViewController.h"
 #endif
+
 
 @interface CardPaymentViewController () <UIWebViewDelegate>
 

@@ -156,10 +156,11 @@
 		NSString* eta = NSLocalizedString([self getStatusBasedLocalization:@"payment.status.%@.description.eta"
 																	status:self.payment.paymentStatus], nil);
 		
-		if(eta.length > 0 && self.payment.paymentDateString != nil)
+        NSString* dateString = self.payment.paymentDateString;
+		if(eta.length > 0 && dateString)
 		{
 			self.amountsView.shouldArrive = eta;
-			self.amountsView.eta = self.payment.estimatedDeliveryStringFromServer;
+			self.amountsView.eta = dateString;
 		}
 		else
 		{
