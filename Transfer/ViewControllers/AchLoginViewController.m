@@ -17,6 +17,10 @@
 #import "TypeFieldHelper.h"
 #import "AchBank.h"
 #import "FieldGroup.h"
+#import "RecipientFieldCell.h"
+#import "RecipientTypeField.h"
+#import "NSMutableString+Issues.h"
+#import "TRWAlertView.h"
 
 @interface AchLoginViewController ()
 
@@ -144,7 +148,19 @@
 #pragma mark - Buttons
 - (IBAction)payButtonPressed:(id)sender
 {
-	self.initiatePullBlock(self.navigationController);
+	NSString* errors = [self isValid];
+	
+	if (errors == nil)
+	{
+		__weak typeof(self) weakSelf = self;
+		self.initiatePullBlock(weakSelf.navigationController);
+	}
+	else
+	{
+		TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"ach.controller.error.title", nil) message:errors];
+		[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+		[alertView show];
+	}
 }
 
 
@@ -152,6 +168,32 @@
 {
 	NSString *subject = [NSString stringWithFormat:NSLocalizedString(@"support.email.payment.subject.base", nil), self.payment.remoteId];
 	[[SupportCoordinator sharedInstance] presentOnController:self emailSubject:subject];
+}
+
+#pragma mark - Validation
+- (NSString *)isValid
+{
+	NSMutableString *errors = [[NSMutableString alloc] init];
+	
+	for (RecipientFieldCell *cell in self.formCells)
+	{
+		RecipientTypeField *field = cell.type;
+		
+		NSString *value = [cell value];
+		NSString *valueIssue = [field hasIssueWithValue:value];
+		
+		if (valueIssue)
+		{
+			[errors appendIssue:valueIssue];
+		}
+	}
+	
+	if (errors.length > 0)
+	{
+		return errors;
+	}
+	
+	return nil;
 }
 
 @end

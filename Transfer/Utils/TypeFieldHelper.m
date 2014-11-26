@@ -75,6 +75,7 @@
 			DoublePasswordEntryCell *cell = [tableView dequeueReusableCellWithIdentifier:TWDoublePasswordEntryCellIdentifier];
 			[cell setShowDouble:NO];
 			[cell configureWithTitle:field.title value:@""];
+			[cell setType:field];
 			[cell addSingleSeparator];
 			[result addObject:cell];
 			createdCell = cell;
