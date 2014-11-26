@@ -11,13 +11,11 @@
 #import "TransferBackButtonItem.h"
 #import "TRWProgressHUD.h"
 #import "TRWAlertView.h"
-#import "CommonAnimationHelper.h"
 
 @interface BusinessProfileIdentificationViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *actionButton;
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
 
-@property (strong, nonatomic) IBOutlet CommonAnimationHelper *bottomButtonAnimator;
 
 - (IBAction)skipPressed;
 
@@ -47,8 +45,6 @@
 
     [self.navigationItem setTitle:NSLocalizedString(@"business.profile.identification.controller.title", nil)];
     [self.navigationItem setLeftBarButtonItem:[TransferBackButtonItem backButtonForPoppedNavigationController:self.navigationController]];
-    
-    [self.bottomButtonAnimator viewWillAppear:animated];
 }
 
 

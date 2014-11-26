@@ -8,7 +8,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TabbedHeaderViewController">
             <connections>
                 <outlet property="actionButton" destination="2Te-nw-lEj" id="oFA-7p-NcQ"/>
-                <outlet property="bottomButtonAnimator" destination="QKH-pg-qcA" id="GTj-RO-Uhq"/>
                 <outlet property="buttonHeight" destination="UtA-zh-WbI" id="JS9-jG-BWC"/>
                 <outlet property="containerView" destination="WE4-IL-T3h" id="9NM-eL-Lkk"/>
                 <outlet property="headerHeight" destination="NtA-7p-75U" id="NTF-BD-4X6"/>
@@ -92,11 +91,6 @@
                 <constraint firstAttribute="trailing" secondItem="WE4-IL-T3h" secondAttribute="trailing" id="wvC-0l-g6b"/>
             </constraints>
         </view>
-        <customObject id="QKH-pg-qcA" customClass="CommonAnimationHelper">
-            <connections>
-                <outlet property="actionButtonBottomConstraint" destination="ZOh-he-FYj" id="TI3-eD-CUk"/>
-            </connections>
-        </customObject>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
