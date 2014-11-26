@@ -18,6 +18,8 @@
 #import "AchWaitingViewController.h"
 #import "CustomInfoViewControllerDelegateHelper.h"
 
+#define WAIT_SCREEN_MIN_SHOW_TIME	2
+
 @class AchBank;
 
 @interface AchFlow ()
@@ -62,7 +64,10 @@
 {
 	return [[AchDetailsViewController alloc] initWithPayment:self.payment
 											  loginFormBlock:^(NSString *accountNumber, NSString *routingNumber, UINavigationController *controller) {
-												  //lots of delegates accessing self
+												  //need to track time that waiting screen is displayed for at least some time
+												  __block CFAbsoluteTime time = CFAbsoluteTimeGetCurrent();
+												  
+												  //lots of blocks accessing self
 												  __weak typeof(self) weakSelf = self;
 												  
 												  //set up operation first
@@ -128,7 +133,14 @@
 															  UIViewController *loginController = [weakSelf getLoginForm:form];
 															  [controller pushViewController:loginController animated:YES];
 														  };
-														  [waitingViewController dismiss];
+														  
+														  //if we have been faster than expected delay wait screen removal so user can read it
+														  time = CFAbsoluteTimeGetCurrent() - time;
+														  time = time < WAIT_SCREEN_MIN_SHOW_TIME ? WAIT_SCREEN_MIN_SHOW_TIME - time : 0;
+														  
+														  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+															  [waitingViewController dismiss];
+														  });
 													  });
 												  }];
 												  
