@@ -87,6 +87,8 @@ IB_DESIGNABLE
 
 -(void)viewWillAppear:(BOOL)animated
 {
+	//showing view so we are deffinetly not dismissing
+	self.willDismiss = NO;
     [super viewWillAppear:animated];
     [self.checkView setState:CheckStatePlain animated:NO];
 }
@@ -283,11 +285,7 @@ IB_DESIGNABLE
     [UIView commitAnimations];
     
     [self.checkView setState:CheckStatePlain animated:YES];
-    
- 
 }
-
-
 
 @end
 
