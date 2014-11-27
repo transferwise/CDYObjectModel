@@ -13,9 +13,11 @@ PODS:
   - JVFloatLabeledTextField (0.0.9)
   - Lockbox (2.1.0)
   - MBProgressHUD (0.9)
-  - Mixpanel (2.5.4)
+  - Mixpanel (2.6.0):
+    - Mixpanel/MPCategoryHelpers
+  - Mixpanel/MPCategoryHelpers (2.6.0)
   - OHAttributedLabel (3.5.4)
-  - Reachability (3.1.1)
+  - Reachability (3.2)
   - SMPageControl (1.2)
   - TestFlightSDK (3.0.2)
 
@@ -50,9 +52,9 @@ SPEC CHECKSUMS:
   JVFloatLabeledTextField: b6c7d824d231b3c01d14692feada878808480af8
   Lockbox: 3168f08cb26680b05a0702b8c0cc6da32788059d
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
-  Mixpanel: 87167a0b0a74f11f0ee3787f291357494730617c
+  Mixpanel: e919d14f07a34ee01f81f97e535b7a240af2f793
   OHAttributedLabel: fcf1d1245b4c8d2df94da91369b1474901d7fb14
-  Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
+  Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
   SMPageControl: 506b0c561d3ddbe2d5df28cb33acc8e4b1f93f19
   TestFlightSDK: 0c24c533748d0d84bfe7a3cb6036fa79124d84ee
 
