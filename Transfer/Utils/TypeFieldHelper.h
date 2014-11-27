@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CDYObjectModel.h"
 
 @class RecipientTypeField;
 @class AllowedTypeFieldValue;
@@ -30,5 +31,9 @@ typedef NSOrderedSet *(^GetFieldsBlock)();
 + (NSArray *)generateFieldsArray:(UITableView *)tableView
 					fieldsGetter:(GetFieldsBlock)fieldsGetterBlock
 					 objectModel:(ObjectModel *)objectModel;
+
++ (AllowedTypeFieldValue *)existingAllowedValueForField:(RecipientTypeField *)field
+												   code:(NSString *)code
+											objectModel:(CDYObjectModel *)objectModel;
 
 @end

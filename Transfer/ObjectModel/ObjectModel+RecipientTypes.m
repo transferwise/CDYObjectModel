@@ -98,7 +98,9 @@
 							 return field;
 						 }
 						 valueGetter:^AllowedTypeFieldValue *(RecipientTypeField *field, NSString *code) {
-							 AllowedTypeFieldValue *value = [self existingAllowedValueForField:field code:code];
+							 AllowedTypeFieldValue *value = [TypeFieldHelper existingAllowedValueForField:field
+																									 code:code
+																							  objectModel:self];
 							 if (!value) {
 								 value = [AllowedTypeFieldValue insertInManagedObjectContext:self.managedObjectContext];
 								 [value setCode:code];
@@ -114,27 +116,23 @@
 						  }];
 }
 
-- (RecipientTypeField *)existingFieldOnType:(RecipientType *)type withName:(NSString *)name {
+- (RecipientTypeField *)existingFieldOnType:(RecipientType *)type withName:(NSString *)name
+{
     NSPredicate *typePredicate = [NSPredicate predicateWithFormat:@"fieldForType = %@", type];
     NSPredicate *namePredicate = [NSPredicate predicateWithFormat:@"name = %@", name];
     NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[typePredicate, namePredicate]];
     return [self fetchEntityNamed:[RecipientTypeField entityName] withPredicate:predicate];
 }
 
-- (AllowedTypeFieldValue *)existingAllowedValueForField:(RecipientTypeField *)field code:(NSString *)code {
-    NSPredicate *fieldPredicate = [NSPredicate predicateWithFormat:@"valueForField = %@", field];
-    NSPredicate *codePredicate = [NSPredicate predicateWithFormat:@"code = %@", code];
-    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[fieldPredicate, codePredicate]];
-    return [self fetchEntityNamed:[AllowedTypeFieldValue entityName] withPredicate:predicate];
-}
-
-- (NSFetchedResultsController *)fetchedControllerForAllowedValuesOnField:(RecipientTypeField *)field {
+- (NSFetchedResultsController *)fetchedControllerForAllowedValuesOnField:(RecipientTypeField *)field
+{
     NSPredicate *fieldPredicate = [NSPredicate predicateWithFormat:@"valueForField = %@", field];
     NSSortDescriptor *titleSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
     return [self fetchedControllerForEntity:[AllowedTypeFieldValue entityName] predicate:fieldPredicate sortDescriptors:@[titleSortDescriptor]];
 }
 
-- (void)removeOtherUsers {
+- (void)removeOtherUsers
+{
     NSPredicate *notLoggedInUser = [NSPredicate predicateWithFormat:@"email != %@", [Credentials userEmail]];
     NSArray *users = [self fetchEntitiesNamed:[User entityName] withPredicate:notLoggedInUser];
     MCLog(@"Will remove %lu redundant users", (unsigned long)[users count]);

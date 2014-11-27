@@ -79,6 +79,7 @@
 			[cell addSingleSeparator];
 			[result addObject:cell];
 			createdCell = cell;
+			
 		}
 		else
 		{
@@ -93,6 +94,16 @@
 	}
 	
 	return [NSArray arrayWithArray:result];
+}
+
++ (AllowedTypeFieldValue *)existingAllowedValueForField:(RecipientTypeField *)field
+												   code:(NSString *)code
+											objectModel:(CDYObjectModel *)objectModel
+{
+	NSPredicate *fieldPredicate = [NSPredicate predicateWithFormat:@"valueForField = %@", field];
+	NSPredicate *codePredicate = [NSPredicate predicateWithFormat:@"code = %@", code];
+	NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[fieldPredicate, codePredicate]];
+	return [objectModel fetchEntityNamed:[AllowedTypeFieldValue entityName] withPredicate:predicate];
 }
 
 @end

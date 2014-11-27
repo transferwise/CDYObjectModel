@@ -63,7 +63,9 @@
 									 return field;
 								 }
 								 valueGetter:^AllowedTypeFieldValue *(RecipientTypeField *field, NSString *code) {
-									 AllowedTypeFieldValue *value = [self existingAllowedValueForField:field code:code];
+									 AllowedTypeFieldValue *value = [TypeFieldHelper existingAllowedValueForField:field
+																											 code:code
+																									  objectModel:self];
 									 if (!value) {
 										 value = [AllowedTypeFieldValue insertInManagedObjectContext:self.managedObjectContext];
 										 [value setCode:code];
@@ -142,14 +144,6 @@
 	NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[groupPredicate, titlePredicate]];
 	return [self fetchEntityNamed:[RecipientTypeField entityName]
 					withPredicate:predicate];
-}
-
-//copy-paste from +RecipientType :( shoud try to refacto out
-- (AllowedTypeFieldValue *)existingAllowedValueForField:(RecipientTypeField *)field code:(NSString *)code {
-	NSPredicate *fieldPredicate = [NSPredicate predicateWithFormat:@"valueForField = %@", field];
-	NSPredicate *codePredicate = [NSPredicate predicateWithFormat:@"code = %@", code];
-	NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[fieldPredicate, codePredicate]];
-	return [self fetchEntityNamed:[AllowedTypeFieldValue entityName] withPredicate:predicate];
 }
 
 @end
