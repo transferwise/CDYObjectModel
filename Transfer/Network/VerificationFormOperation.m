@@ -55,8 +55,10 @@ NSString *const kVerificationFormPath = @"/ach/verificationForm";
 			if (response[@"fieldGroups"] && response[@"bankName"])
 			{
 				NSString* bankName = response[@"bankName"];
+				NSString* formId = response[@"verifiableAccountId"];
 				[weakSelf.workModel createOrUpdateAchBankWithData:response[@"fieldGroups"]
-														 bankTitle:bankName];
+														bankTitle:bankName
+														   formId:formId];
 				[weakSelf.workModel saveContext:^{
 					weakSelf.resultHandler(nil, [weakSelf.workModel bankWithTitle:bankName]);
 				}];

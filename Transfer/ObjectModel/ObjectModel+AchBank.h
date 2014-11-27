@@ -14,6 +14,7 @@
 
 - (AchBank *)bankWithTitle:(NSString *)title;
 - (void)createOrUpdateAchBankWithData:(NSDictionary *)data
-							bankTitle:(NSString *)bankTitle;
+							bankTitle:(NSString *)bankTitle
+							   formId:(NSString *)formId;
 
 @end

@@ -21,6 +21,7 @@
 #import "RecipientTypeField.h"
 #import "NSMutableString+Issues.h"
 #import "TRWAlertView.h"
+#import "FieldGroup.h"
 
 @interface AchLoginViewController ()
 
@@ -132,7 +133,6 @@
 		TextEntryCell *firstCell = (TextEntryCell *)formFields[0];
 		[firstCell configureWithTitle:[NSString stringWithFormat:NSLocalizedString(@"ach.controller.label.firstfield", nil), firstCell.entryField.placeholder, self.form.title] value:nil];
 		
-		
 		self.formCells = [NSArray arrayWithArray:formFields];
 	}
 }
@@ -170,7 +170,7 @@
 	if (errors == nil)
 	{
 		__weak typeof(self) weakSelf = self;
-		self.initiatePullBlock(weakSelf.navigationController);
+		self.initiatePullBlock([self getFormValues], weakSelf.navigationController);
 	}
 	else
 	{
@@ -179,7 +179,6 @@
 		[alertView show];
 	}
 }
-
 
 - (IBAction)supportButtonPressed:(id)sender
 {
@@ -211,6 +210,24 @@
 	}
 	
 	return nil;
+}
+
+#pragma mark - Helpers
+- (NSDictionary *)getFormValues
+{
+	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+	
+	[dict setValue:self.form.id forKey:@"id"];
+	NSMutableDictionary *values = [[NSMutableDictionary alloc] init];
+	
+	for (RecipientFieldCell *cell in self.formCells)
+	{
+		[values setValue:[cell value] forKey:cell.type.fieldForGroup.name];
+	}
+	
+	[dict setValue:values forKey:@"params"];
+	
+	return dict;
 }
 
 @end

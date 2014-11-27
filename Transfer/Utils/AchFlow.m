@@ -17,6 +17,7 @@
 #import "AchLoginViewController.h"
 #import "AchWaitingViewController.h"
 #import "CustomInfoViewControllerDelegateHelper.h"
+#import "VerifyFormOperation.h"
 
 #define WAIT_SCREEN_MIN_SHOW_TIME	2
 
@@ -154,10 +155,85 @@
 	return [[AchLoginViewController alloc] initWithForm:form
 												payment:self.payment
 											objectModel:self.objectModel
-										   initiatePull:^(UINavigationController* controller){
+										   initiatePull:^(NSDictionary *form, UINavigationController *controller){
+											   //need to track time that waiting screen is displayed for at least some time
+												  __block CFAbsoluteTime time = CFAbsoluteTimeGetCurrent();
+											   
+											   //lots of blocks accessing self
+											   __weak typeof(self) weakSelf = self;
+											   
+											   //set up operation first
+											   VerifyFormOperation *operation = [VerifyFormOperation verifyFormOperationWithData:form];
+											   operation.objectModel = self.objectModel;
+											   //keep strong reference
+											   self.executedOperation = operation;
+											   
+											   __block BOOL isCancelled = NO;
+												  
+											   //set up wait view delegate with cancel
+											   CustomInfoViewControllerDelegateHelper *delegate = [[CustomInfoViewControllerDelegateHelper alloc] initWithCompletion:^{
+												   isCancelled = YES;
+												   [weakSelf.executedOperation cancel];
+											   }];
+											   //keep strong reference
+											   self.currentWaitingDelegate = delegate;
+												  
+											   //init and show waiting view
 											   AchWaitingViewController *waitingViewController = [[AchWaitingViewController alloc] init];
-												  [waitingViewController presentOnViewController:controller.parentViewController
-																		   withPresentationStyle:TransparentPresentationFade];
+											   waitingViewController.delegate = delegate;
+											   [waitingViewController presentOnViewController:controller.parentViewController
+																		withPresentationStyle:TransparentPresentationFade];
+											   
+											   //add result handler that references delegate for completion
+											   [operation setResultHandler:^(NSError *error) {
+												   //operation might have been cancelled before reaching here
+												   //but it might not have
+												   if (isCancelled)
+												   {
+													   return;
+												   }
+													  
+												   dispatch_async(dispatch_get_main_queue(), ^{
+													   if (error)
+													   {
+														   NSString *messages = nil;
+															  
+														   if (error && [error isTransferwiseError])
+														   {
+															   messages = [error localizedTransferwiseMessage];
+														   }
+															  
+														   TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"ach.controller.accessing.error", nil) message:messages];
+														   [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+														   [waitingViewController dismiss];
+														   [alertView show];
+														   return;
+													   }
+														  
+													   //override completion here because we have succeeded
+													   weakSelf.currentWaitingDelegate.completion = ^{
+														   //could have been cancelled even now
+														   if (isCancelled)
+														   {
+															   return;
+														   }
+															  
+														   //if you are really quick You can have method be invoked twice
+														   isCancelled = YES;
+													   };
+														  
+													   //if we have been faster than expected delay wait screen removal so user can read it
+													   time = CFAbsoluteTimeGetCurrent() - time;
+													   time = time < WAIT_SCREEN_MIN_SHOW_TIME ? WAIT_SCREEN_MIN_SHOW_TIME - time : 0;
+														  
+													   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+														   [waitingViewController dismiss];
+													   });
+												   });
+											   }];
+												  
+											   //run the whole shebang
+											   [operation execute];
 										   }];
 }
 
