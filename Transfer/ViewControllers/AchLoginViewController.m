@@ -225,7 +225,7 @@
 		[values setValue:[cell value] forKey:cell.type.fieldForGroup.name];
 	}
 	
-	[dict setValue:values forKey:@"values"];
+	[dict setValue:values forKey:@"params"];
 	
 	return dict;
 }
