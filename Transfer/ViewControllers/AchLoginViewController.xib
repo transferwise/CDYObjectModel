@@ -69,7 +69,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrb-Hh-1UI" userLabel="Label - Message 1">
-                    <rect key="frame" x="139" y="96" width="42" height="21"/>
+                    <rect key="frame" x="139" y="96" width="42" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -78,7 +78,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zml-6K-yJp" userLabel="Label - Message 2">
-                    <rect key="frame" x="139" y="115" width="42" height="21"/>
+                    <rect key="frame" x="139" y="114.5" width="42" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -95,12 +95,12 @@
                 </imageView>
             </subviews>
             <constraints>
-                <constraint firstItem="MEl-Yu-8el" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Uh6-oE-0ps" secondAttribute="leading" constant="2" id="2N6-rh-gIj"/>
+                <constraint firstItem="MEl-Yu-8el" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Uh6-oE-0ps" secondAttribute="leading" constant="3" id="2N6-rh-gIj"/>
                 <constraint firstItem="Mel-9m-mJR" firstAttribute="top" secondItem="zml-6K-yJp" secondAttribute="bottom" constant="11" id="Cei-Ss-oey"/>
                 <constraint firstItem="zml-6K-yJp" firstAttribute="centerX" secondItem="zrb-Hh-1UI" secondAttribute="centerX" id="Eni-fc-BXL"/>
                 <constraint firstItem="zml-6K-yJp" firstAttribute="top" secondItem="zrb-Hh-1UI" secondAttribute="bottom" constant="-2" id="LQ2-pJ-IgM"/>
                 <constraint firstAttribute="centerX" secondItem="MEl-Yu-8el" secondAttribute="centerX" id="TOw-Sv-SV0"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MEl-Yu-8el" secondAttribute="trailing" constant="2" id="eUi-LG-yZk"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MEl-Yu-8el" secondAttribute="trailing" constant="3" id="eUi-LG-yZk"/>
                 <constraint firstItem="zrb-Hh-1UI" firstAttribute="top" secondItem="MEl-Yu-8el" secondAttribute="bottom" constant="26" id="g39-C6-nT0"/>
                 <constraint firstItem="MEl-Yu-8el" firstAttribute="top" secondItem="Uh6-oE-0ps" secondAttribute="top" constant="30" id="lcN-0n-vEM"/>
                 <constraint firstAttribute="bottom" secondItem="Mel-9m-mJR" secondAttribute="bottom" id="reW-g6-Tuz"/>
