@@ -713,13 +713,6 @@
 
         [NanTracking trackNanigansEvent:self.objectModel.currentUser.pReference type:@"purchase" name:@"main" value:[__formatter stringFromNumber:transferFee]];
 
-#if !TARGET_IPHONE_SIMULATOR
-        if ([self.objectModel hasNoOrOnlyCancelledPaymentsExeptThis:paymentID])
-		{
-			[[EventTracker sharedManager] trackEvent:@"InappConversion"];
-		}
-#endif
-
         [weakSelf.objectModel performBlock:^{
             Payment *createdPayment = (Payment *) [self.objectModel.managedObjectContext objectWithID:paymentID];
             NSMutableDictionary *details = [[NSMutableDictionary alloc] init];
@@ -732,6 +725,16 @@
 
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
             [mixpanel track:@"Transfer created" properties:details];
+            
+#if !TARGET_IPHONE_SIMULATOR
+            if ([self.objectModel hasNoOrOnlyCancelledPaymentsExeptThis:paymentID])
+            {
+                Event* event = [[EventTracker sharedManager] newEvent:@"InappConversion"];
+                [event setOrderId:[NSString stringWithFormat:@"%@",payment.remoteId]];
+                [[EventTracker sharedManager] submit:event];
+            }
+#endif
+            
         }];
 
         [weakSelf presentUploadMoneyController:paymentID];

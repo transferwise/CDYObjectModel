@@ -47,6 +47,6 @@
 - (void) setIpAddressWifi:(NSString*) ipAddressWifi;
 - (void) setArmAbi:(NSString*) armAbi;
 - (void) setCountryCode:(NSString*) countryCode;
-
+- (void) setOrderId:(NSString *)orderId;
 
 @end
