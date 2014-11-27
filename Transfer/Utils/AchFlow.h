@@ -7,14 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TRWProgressHUD.h"
 #import "TransparentModalViewController.h"
-
-typedef void (^GetLoginFormBlock)(NSString* accountNumber, NSString* routingNumber, UINavigationController *controller);
-typedef void (^InitiatePullBlock)(UINavigationController* controller);
 
 @class Payment;
 @class ObjectModel;
+
+typedef void (^GetLoginFormBlock)(NSString *accountNumber, NSString *routingNumber, UINavigationController *controller);
+typedef void (^InitiatePullBlock)(NSDictionary *from, UINavigationController *controller);
 
 @interface AchFlow : NSObject<TransparentModalViewControllerDelegate>
 

@@ -12,6 +12,7 @@
 @class RecipientTypeField;
 @class AllowedTypeFieldValue;
 @class ObjectModel;
+@class TextEntryCell;
 
 typedef NSString *(^GetFieldNameBlock)();
 typedef RecipientTypeField *(^GetRecipientTypeBlock)(NSString *name);

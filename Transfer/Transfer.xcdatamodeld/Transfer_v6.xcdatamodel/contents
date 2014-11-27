@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14B25" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AchBank" representedClassName="AchBank" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="fieldGroups" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="FieldGroup" inverseName="achBank" inverseEntity="FieldGroup" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="achBanks" inverseEntity="User" syncable="YES"/>
@@ -45,6 +46,7 @@
         <relationship name="targets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PairTargetCurrency" inverseName="currency" inverseEntity="PairTargetCurrency" syncable="YES"/>
     </entity>
     <entity name="FieldGroup" representedClassName="FieldGroup" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="achBank" maxCount="1" deletionRule="Nullify" destinationEntity="AchBank" inverseName="fieldGroups" inverseEntity="AchBank" syncable="YES"/>
         <relationship name="fields" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="RecipientTypeField" inverseName="fieldForGroup" inverseEntity="RecipientTypeField" syncable="YES"/>
@@ -204,12 +206,12 @@
         <relationship name="referralLinks" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ReferralLink" inverseName="user" inverseEntity="ReferralLink" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AchBank" positionX="619" positionY="-324" width="128" height="88"/>
+        <element name="AchBank" positionX="619" positionY="-324" width="128" height="105"/>
         <element name="AllowedTypeFieldValue" positionX="655" positionY="63" width="128" height="90"/>
         <element name="BusinessProfile" positionX="-396" positionY="-99" width="128" height="193"/>
         <element name="Country" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Currency" positionX="-92" positionY="-216" width="128" height="270"/>
-        <element name="FieldGroup" positionX="333" positionY="-178" width="128" height="73"/>
+        <element name="FieldGroup" positionX="333" positionY="-178" width="128" height="105"/>
         <element name="PairSourceCurrency" positionX="0" positionY="0" width="128" height="120"/>
         <element name="PairTargetCurrency" positionX="0" positionY="0" width="128" height="135"/>
         <element name="PayInMethod" positionX="36" positionY="180" width="128" height="165"/>

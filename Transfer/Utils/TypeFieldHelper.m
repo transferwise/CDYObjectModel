@@ -79,13 +79,11 @@
 			[cell addSingleSeparator];
 			[result addObject:cell];
 			createdCell = cell;
-			
 		}
 		else
 		{
 			RecipientFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:TWRecipientFieldCellIdentifier];
 			[cell setFieldType:field];
-			
 			[result addObject:cell];
 			createdCell = cell;
 		}

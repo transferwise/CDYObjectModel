@@ -22,7 +22,8 @@
 }
 
 - (void)createOrUpdateAchBankWithData:(NSDictionary *)data
-							 bankTitle:(NSString *)bankTitle
+							bankTitle:(NSString *)bankTitle
+							   formId:(NSString *)formId
 {
 	AchBank* bank = [self existingBankForTitle:bankTitle];
 	if (!bank)
@@ -30,6 +31,9 @@
 		bank = [AchBank insertInManagedObjectContext:self.managedObjectContext];
 		[bank setTitle:bankTitle];
 	}
+
+	//this id changes per each request and it needs to be submitted back
+	[bank setId:[NSNumber numberWithInteger:[formId integerValue]]];
 	
 	for (NSDictionary* group in data)
 	{
@@ -41,6 +45,7 @@
 			fieldGroup = [FieldGroup insertInManagedObjectContext:self.managedObjectContext];
 			[fieldGroup setAchBank:bank];
 			[fieldGroup setTitle:title];
+			[fieldGroup setName:group[@"name"]];
 		}
 		
 		uint rowCount = 1u;

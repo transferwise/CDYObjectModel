@@ -4,6 +4,7 @@
 #import <CoreData/CoreData.h>
 
 extern const struct FieldGroupAttributes {
+	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *title;
 } FieldGroupAttributes;
 
@@ -23,6 +24,10 @@ extern const struct FieldGroupRelationships {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) FieldGroupID* objectID;
+
+@property (nonatomic, strong) NSString* name;
+
+//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* title;
 
@@ -54,6 +59,9 @@ extern const struct FieldGroupRelationships {
 @end
 
 @interface _FieldGroup (CoreDataGeneratedPrimitiveAccessors)
+
+- (NSString*)primitiveName;
+- (void)setPrimitiveName:(NSString*)value;
 
 - (NSString*)primitiveTitle;
 - (void)setPrimitiveTitle:(NSString*)value;

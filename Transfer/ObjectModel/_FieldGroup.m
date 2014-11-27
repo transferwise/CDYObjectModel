@@ -4,6 +4,7 @@
 #import "_FieldGroup.h"
 
 const struct FieldGroupAttributes FieldGroupAttributes = {
+	.name = @"name",
 	.title = @"title",
 };
 
@@ -40,6 +41,8 @@ const struct FieldGroupRelationships FieldGroupRelationships = {
 
 	return keyPaths;
 }
+
+@dynamic name;
 
 @dynamic title;
 

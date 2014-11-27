@@ -4,6 +4,7 @@
 #import <CoreData/CoreData.h>
 
 extern const struct AchBankAttributes {
+	__unsafe_unretained NSString *id;
 	__unsafe_unretained NSString *title;
 } AchBankAttributes;
 
@@ -23,6 +24,14 @@ extern const struct AchBankRelationships {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) AchBankID* objectID;
+
+@property (nonatomic, strong) NSNumber* id;
+
+@property (atomic) int32_t idValue;
+- (int32_t)idValue;
+- (void)setIdValue:(int32_t)value_;
+
+//- (BOOL)validateId:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* title;
 
@@ -54,6 +63,12 @@ extern const struct AchBankRelationships {
 @end
 
 @interface _AchBank (CoreDataGeneratedPrimitiveAccessors)
+
+- (NSNumber*)primitiveId;
+- (void)setPrimitiveId:(NSNumber*)value;
+
+- (int32_t)primitiveIdValue;
+- (void)setPrimitiveIdValue:(int32_t)value_;
 
 - (NSString*)primitiveTitle;
 - (void)setPrimitiveTitle:(NSString*)value;
