@@ -36,6 +36,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *payButton;
 @property (strong, nonatomic) IBOutlet UILabel *messageOneLabel;
 @property (strong, nonatomic) IBOutlet UILabel *messageTwoLabel;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopSpace;
 
 @end
 
@@ -102,6 +103,7 @@
 	
 	[self refreshTableViewSizes];
 	[self configureForInterfaceOrientation:self.interfaceOrientation];
+	[self calculateTopOffset];
 }
 
 #pragma mark - TableView setup
@@ -142,6 +144,21 @@
 		self.footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		UITableView *table = (UITableView *)self.tableViews[0];
 		table.tableFooterView = self.footerView;
+	}
+}
+
+- (void)calculateTopOffset
+{
+	if (!IPAD && ![self hasMoreThanOneTableView])
+	{
+		CGRect footer = [self.footerView convertRect:self.footerView.frame toView:self.view];
+		BOOL completelyVisible = CGRectContainsRect(self.view.frame, footer);
+		
+		//pad only when the footer is completely visible
+		if (completelyVisible)
+		{
+			self.tableViewTopSpace.constant = 50;
+		}
 	}
 }
 
