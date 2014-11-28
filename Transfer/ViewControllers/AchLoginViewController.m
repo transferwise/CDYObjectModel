@@ -218,7 +218,7 @@
 {
 	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 	
-	[dict setValue:self.form.id forKey:@"id"];
+	[dict setValue:self.form.id forKey:@"verifiableAccountId"];
 	NSMutableDictionary *values = [[NSMutableDictionary alloc] init];
 	
 	for (RecipientFieldCell *cell in self.formCells)
