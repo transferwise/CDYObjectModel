@@ -94,6 +94,9 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"PlainPresentationCell" bundle:nil] forCellReuseIdentifier:PlainPresentationCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
     
+    //Set background colour again because of ios 8.1 bug
+    self.tableView.bgStyle = self.tableView.bgStyle;
+    
     
     
     self.referenceExclusionSet = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ."] invertedSet];
