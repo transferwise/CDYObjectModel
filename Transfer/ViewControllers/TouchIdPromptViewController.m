@@ -10,6 +10,7 @@
 #import "TouchIDHelper.h"
 #import "Constants.h"
 #import "GoogleAnalytics.h"
+#import "LoginHelper.h"
 
 @interface TouchIdPromptViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
@@ -42,7 +43,7 @@
 - (IBAction)noTapped:(id)sender {
     [[GoogleAnalytics sharedInstance] sendAppEvent:@"TouchIdPrompted" withLabel:@"Declined"];
     [TouchIDHelper blockStorageForUsername:self.username];
-    [self dismiss];
+    [self finish];
 }
 - (IBAction)yesTapped:(id)sender {
     [[GoogleAnalytics sharedInstance] sendAppEvent:@"TouchIdPrompted" withLabel:@"Accepted"];
@@ -50,14 +51,14 @@
         if(success)
         {
             [[GoogleAnalytics sharedInstance] sendAppEvent:@"TouchIDSetup"];
-            [self dismiss];
+            [self finish];
         }
     }];
 }
 
--(void)dismiss
+-(IBAction)finish
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+    [self.touchIdDelegate touchIdPromptIsFinished:self];
 }
 
 @end
