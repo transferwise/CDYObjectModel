@@ -165,6 +165,7 @@
 #pragma mark - Buttons
 - (IBAction)payButtonPressed:(id)sender
 {
+    [self.view endEditing:YES];
 	NSString* errors = [self isValid];
 	
 	if (errors == nil)

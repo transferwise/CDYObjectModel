@@ -18,8 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.infoText = NSLocalizedString(@"ach.waiting.info", nil);
-    self.actionButtonTitle = NSLocalizedString(@"transferdetails.controller.button.support", nil);
+    self.infoText = self.infoText?:NSLocalizedString(@"ach.waiting.info", nil);
+    self.actionButtonTitle = self.actionButtonTitle?:NSLocalizedString(@"transferdetails.controller.button.support", nil);
     self.infoImage = [UIImage imageNamed:@"refreshFlag%ld"];
     __weak typeof(self) weakSelf = self;
     self.actionButtonBlock = ^{

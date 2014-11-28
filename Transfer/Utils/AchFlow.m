@@ -180,6 +180,7 @@
 												  
 											   //init and show waiting view
 											   AchWaitingViewController *waitingViewController = [[AchWaitingViewController alloc] init];
+                                               waitingViewController.infoText = NSLocalizedString(@"ach.waiting.info2", nil);
 											   waitingViewController.delegate = delegate;
 											   [waitingViewController presentOnViewController:controller.parentViewController
 																		withPresentationStyle:TransparentPresentationFade];
