@@ -219,14 +219,12 @@
 	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 	
 	[dict setValue:self.form.id forKey:@"verifiableAccountId"];
-	NSMutableDictionary *values = [[NSMutableDictionary alloc] init];
 	
 	for (RecipientFieldCell *cell in self.formCells)
 	{
-		[values setValue:[cell value] forKey:cell.type.fieldForGroup.name];
+		//TODO: this will fail if you navigate back to this screen
+		[dict setValue:[cell value] forKey:cell.type.fieldForGroup.name];
 	}
-	
-	[dict setValue:values forKey:@"params"];
 	
 	return dict;
 }
