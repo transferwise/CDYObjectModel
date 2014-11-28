@@ -494,21 +494,28 @@
     if(emailAdded)
     {
         self.payment.recipient.email = email;
-        RecipientUpdateOperation * updateOperation = [RecipientUpdateOperation instanceWithRecipient:self.payment.recipient objectModel:self.objectModel completionHandler:^(NSError *error) {
-           if(error)
-           {
-               [hud hide];
-               [[GoogleAnalytics sharedInstance] sendAlertEvent:@"SavingRecipientAlert" withLabel:[error localizedTransferwiseMessage]];
-               TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) error:error];
-               [alertView show];
-               return;
-           }
+        if(self.payment.recipient.remoteIdValue != 0)
+        {
+            //Pre-existing recipient
+            RecipientUpdateOperation * updateOperation = [RecipientUpdateOperation instanceWithRecipient:self.payment.recipient objectModel:self.objectModel completionHandler:^(NSError *error) {
+                if(error)
+                {
+                    [hud hide];
+                    [[GoogleAnalytics sharedInstance] sendAlertEvent:@"SavingRecipientAlert" withLabel:[error localizedTransferwiseMessage]];
+                    TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) error:error];
+                    [alertView show];
+                    return;
+                }
+                validateBlock();
+            }];
+            self.executedOperation = updateOperation;
+            [updateOperation execute];
+        }
+        else
+        {
+            //recipient is being created later. the validation will catch any email issues.
             validateBlock();
-            
-            
-        }];
-        self.executedOperation = updateOperation;
-        [updateOperation execute];
+        }
     }
     else
     {
