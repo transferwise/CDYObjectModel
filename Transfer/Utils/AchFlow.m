@@ -115,10 +115,12 @@
 																}
 																					 flow:weakSelf];
 											   
-											   [(VerifyFormOperation *)self.executedOperation setResultHandler:^(NSError *error) {
+											   [(VerifyFormOperation *)self.executedOperation setResultHandler:^(NSError *error, BOOL success) {
+												   //TODO handle expected error conditions here
+												   
 												   [weakSelf handleResultWithError:error
 																	  successBlock:^{
-																		  //TODO: implement
+																		  //TODO: show success screen
 																	  }
 																			  flow:weakSelf];
 											   }];

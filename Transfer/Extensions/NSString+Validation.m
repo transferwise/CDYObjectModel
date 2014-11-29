@@ -35,7 +35,7 @@
 
 - (BOOL)isValidAchAccountNumber
 {
-	return [self isValid:[NSString stringWithFormat:@"(\\d{%li,%li})", (long)kMinAchAccountLength, (long)kMaxAchAccountlength]];
+	return [self isValid:[NSString stringWithFormat:@"([\\d-]{%li,%li})", (long)kMinAchAccountLength, (long)kMaxAchAccountlength]];
 }
 
 - (BOOL)isValid:(NSString *)regEx
