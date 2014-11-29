@@ -29,10 +29,17 @@
 @property (nonatomic, strong) Payment *payment;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) CustomInfoViewControllerDelegateHelper *currentWaitingDelegate;
+@property (nonatomic, strong) AchWaitingViewController *waitingViewController;
 
 @end
 
 @implementation AchFlow
+{
+	//flag to signalise that the operation has been cancelled
+	__block BOOL isCancelled;
+	//timer to track how much time waiting screen has been shown
+	__block CFAbsoluteTime time;
+}
 
 #pragma mark - Init
 + (AchFlow *)sharedInstanceWithPayment:(Payment *)payment
@@ -65,88 +72,29 @@
 {
 	return [[AchDetailsViewController alloc] initWithPayment:self.payment
 											  loginFormBlock:^(NSString *accountNumber, NSString *routingNumber, UINavigationController *controller) {
-												  //need to track time that waiting screen is displayed for at least some time
-												  __block CFAbsoluteTime time = CFAbsoluteTimeGetCurrent();
-												  
-												  //lots of blocks accessing self
 												  __weak typeof(self) weakSelf = self;
-												  
-												  //set up operation first
-												  VerificationFormOperation *operation = [VerificationFormOperation verificationFormOperationWithAccount:accountNumber
+											   
+												  [self setOperationWithNavigationController:controller
+																			  operationBlock:^TransferwiseOperation *{
+																				  return [VerificationFormOperation verificationFormOperationWithAccount:accountNumber
 																																		   routingNumber:routingNumber
-																																			   paymentId:self.payment.remoteId];
-												  operation.objectModel = self.objectModel;
-												  //keep strong reference
-												  self.executedOperation = operation;
-												  
-												  __block BOOL isCancelled = NO;
-												  
-												  //set up wait view delegate with cancel
-												  CustomInfoViewControllerDelegateHelper *delegate = [[CustomInfoViewControllerDelegateHelper alloc] initWithCompletion:^{
-													  isCancelled = YES;
-													  [weakSelf.executedOperation cancel];
-												  }];
-												  //keep strong reference
-												  self.currentWaitingDelegate = delegate;
-												  
-												  //init and show waiting view
-												  AchWaitingViewController *waitingViewController = [[AchWaitingViewController alloc] init];
-												  waitingViewController.delegate = delegate;
-												  [waitingViewController presentOnViewController:controller.parentViewController
-																		   withPresentationStyle:TransparentPresentationFade];
-												  
-												  //add result handler that references delegate for completion
-												  [operation setResultHandler:^(NSError *error, AchBank *form) {
-													  //operation might have been cancelled before reaching here
-													  //but it might not have
-													  if (isCancelled)
-													  {
-														  return;
-													  }
-													  
-													  dispatch_async(dispatch_get_main_queue(), ^{
-														  if (error || !form)
-														  {
-															  NSString *messages = nil;
-															  
-															  if (error && [error isTransferwiseError])
-															  {
-																  messages = [error localizedTransferwiseMessage];
-															  }
-															  
-															  TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"ach.controller.accessing.error", nil) message:messages];
-															  [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-															  [waitingViewController dismiss];
-															  [alertView show];
-															  return;
-														  }
-														  
-														  //override completion here because we have succeeded
-														  weakSelf.currentWaitingDelegate.completion = ^{
-															  //could have been cancelled even now
-															  if (isCancelled)
-															  {
-																  return;
-															  }
-															  
-															  //if you are really quick You can have method be invoked twice
-															  isCancelled = YES;
-															  UIViewController *loginController = [weakSelf getLoginForm:form];
-															  [controller pushViewController:loginController animated:YES];
-														  };
-														  
-														  //if we have been faster than expected delay wait screen removal so user can read it
-														  time = CFAbsoluteTimeGetCurrent() - time;
-														  time = time < WAIT_SCREEN_MIN_SHOW_TIME ? WAIT_SCREEN_MIN_SHOW_TIME - time : 0;
-														  
-														  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-															  [waitingViewController dismiss];
-														  });
-													  });
+																																			   paymentId:weakSelf.payment.remoteId];
+																			  }
+																   waitingScreenMessageBlock:^NSString *{
+																	   return NSLocalizedString(@"ach.waiting.info", nil);
+																   }
+																						flow:weakSelf];
+											   
+												  [(VerificationFormOperation *)self.executedOperation setResultHandler:^(NSError *error, AchBank *form) {
+													  [weakSelf handleResultWithError:error
+																		successBlock:^{
+																			UIViewController *loginController = [weakSelf getLoginForm:form];
+																			[controller pushViewController:loginController animated:YES];
+																		}
+																				flow:weakSelf];
 												  }];
 												  
-												  //run the whole shebang
-												  [operation execute];
+												  [self.executedOperation execute];
 											  }];
 }
 
@@ -156,86 +104,109 @@
 												payment:self.payment
 											objectModel:self.objectModel
 										   initiatePull:^(NSDictionary *form, UINavigationController *controller){
-											   //need to track time that waiting screen is displayed for at least some time
-												  __block CFAbsoluteTime time = CFAbsoluteTimeGetCurrent();
-											   
-											   //lots of blocks accessing self
 											   __weak typeof(self) weakSelf = self;
 											   
-											   //set up operation first
-											   VerifyFormOperation *operation = [VerifyFormOperation verifyFormOperationWithData:form];
-											   operation.objectModel = self.objectModel;
-											   //keep strong reference
-											   self.executedOperation = operation;
+											   [self setOperationWithNavigationController:controller
+																		   operationBlock:^TransferwiseOperation *{
+																			   return [VerifyFormOperation verifyFormOperationWithData:form];
+																		   }
+																waitingScreenMessageBlock:^NSString *{
+																	return NSLocalizedString(@"ach.waiting.info2", nil);
+																}
+																					 flow:weakSelf];
 											   
-											   __block BOOL isCancelled = NO;
-												  
-											   //set up wait view delegate with cancel
-											   CustomInfoViewControllerDelegateHelper *delegate = [[CustomInfoViewControllerDelegateHelper alloc] initWithCompletion:^{
-												   isCancelled = YES;
-												   [weakSelf.executedOperation cancel];
+											   [(VerifyFormOperation *)self.executedOperation setResultHandler:^(NSError *error) {
+												   [weakSelf handleResultWithError:error
+																	  successBlock:^{
+																		  //TODO: implement
+																	  }
+																			  flow:weakSelf];
 											   }];
-											   //keep strong reference
-											   self.currentWaitingDelegate = delegate;
-												  
-											   //init and show waiting view
-											   AchWaitingViewController *waitingViewController = [[AchWaitingViewController alloc] init];
-                                               waitingViewController.infoText = NSLocalizedString(@"ach.waiting.info2", nil);
-											   waitingViewController.delegate = delegate;
-											   [waitingViewController presentOnViewController:controller.parentViewController
-																		withPresentationStyle:TransparentPresentationFade];
-											   
-											   //add result handler that references delegate for completion
-											   [operation setResultHandler:^(NSError *error) {
-												   //operation might have been cancelled before reaching here
-												   //but it might not have
-												   if (isCancelled)
-												   {
-													   return;
-												   }
-													  
-												   dispatch_async(dispatch_get_main_queue(), ^{
-													   if (error)
-													   {
-														   NSString *messages = nil;
-															  
-														   if (error && [error isTransferwiseError])
-														   {
-															   messages = [error localizedTransferwiseMessage];
-														   }
-															  
-														   TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"ach.controller.accessing.error", nil) message:messages];
-														   [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-														   [waitingViewController dismiss];
-														   [alertView show];
-														   return;
-													   }
-														  
-													   //override completion here because we have succeeded
-													   weakSelf.currentWaitingDelegate.completion = ^{
-														   //could have been cancelled even now
-														   if (isCancelled)
-														   {
-															   return;
-														   }
-															  
-														   //if you are really quick You can have method be invoked twice
-														   isCancelled = YES;
-													   };
-														  
-													   //if we have been faster than expected delay wait screen removal so user can read it
-													   time = CFAbsoluteTimeGetCurrent() - time;
-													   time = time < WAIT_SCREEN_MIN_SHOW_TIME ? WAIT_SCREEN_MIN_SHOW_TIME - time : 0;
-														  
-													   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-														   [waitingViewController dismiss];
-													   });
-												   });
-											   }];
-												  
-											   //run the whole shebang
-											   [operation execute];
+											   [self.executedOperation execute];
 										   }];
+}
+
+- (void)setOperationWithNavigationController:(UINavigationController *)controller
+							  operationBlock:(TransferwiseOperation *(^)())operationBlock
+				   waitingScreenMessageBlock:(NSString *(^)())waitingScreenMessageBlock
+										flow:(AchFlow *)flow
+
+{
+	//this is the entrypoint so we are definetly not cancelled
+	isCancelled = NO;
+	
+	//need to track time that waiting screen is displayed for at least some time
+	time = CFAbsoluteTimeGetCurrent();
+	
+	//keep strong reference to operation
+	self.executedOperation = operationBlock();
+	self.executedOperation.objectModel = self.objectModel;
+	
+	//set up wait view delegate with cancel
+	CustomInfoViewControllerDelegateHelper *delegate = [[CustomInfoViewControllerDelegateHelper alloc] initWithCompletion:^{
+		isCancelled = YES;
+		[flow.executedOperation cancel];
+	}];
+	//keep strong reference
+	self.currentWaitingDelegate = delegate;
+	
+	//init and show waiting view
+	self.waitingViewController = [[AchWaitingViewController alloc] init];
+	self.waitingViewController.infoText = waitingScreenMessageBlock();
+	self.waitingViewController.delegate = delegate;
+	[self.waitingViewController presentOnViewController:controller.parentViewController
+								  withPresentationStyle:TransparentPresentationFade];
+}
+
+- (void)handleResultWithError:(NSError *)error
+				 successBlock:(void (^)())successBlock
+						 flow:(AchFlow *)flow
+{
+	//operation might have been cancelled before reaching here
+	//but it might not have
+	if (self -> isCancelled)
+	{
+		return;
+	}
+	
+	dispatch_async(dispatch_get_main_queue(), ^{
+		if (error)
+		{
+			NSString *messages = nil;
+			
+			if (error && [error isTransferwiseError])
+			{
+				messages = [error localizedTransferwiseMessage];
+			}
+			
+			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"ach.controller.accessing.error", nil) message:messages];
+			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+			[self.waitingViewController dismiss];
+			[alertView show];
+			return;
+		}
+		
+		//override completion here because we have succeeded
+		flow.currentWaitingDelegate.completion = ^{
+			//could have been cancelled even now
+			if (isCancelled)
+			{
+				return;
+			}
+			
+			//if you are really quick You can have method be invoked twice
+			isCancelled = YES;
+			successBlock();
+		};
+		
+		//if we have been faster than expected delay wait screen removal so user can read it
+		time = CFAbsoluteTimeGetCurrent() - time;
+		time = time < WAIT_SCREEN_MIN_SHOW_TIME ? WAIT_SCREEN_MIN_SHOW_TIME - time : 0;
+		
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+			[self.waitingViewController dismiss];
+		});
+	});
 }
 
 @end
