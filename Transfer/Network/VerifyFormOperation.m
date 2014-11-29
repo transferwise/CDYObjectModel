@@ -42,11 +42,14 @@ NSString *const kVerifyFormPath = @"/ach/verify";
 	
 	__weak VerifyFormOperation *weakSelf = self;
 	[self setOperationErrorHandler:^(NSError *error) {
-		weakSelf.resultHandler(error);
+		weakSelf.resultHandler(error, NO);
 	}];
 	
 	[self setOperationSuccessHandler:^(NSDictionary *response) {
-		
+		if (response[@"status"])
+		{
+			weakSelf.resultHandler(nil, [response[@"status"] caseInsensitiveCompare:@"success"] == NSOrderedSame);
+		}
 	}];
 	
 	[self postData:self.data toPath:path];

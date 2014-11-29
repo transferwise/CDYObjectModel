@@ -32,12 +32,14 @@
 @property (nonatomic, copy) InitiatePullBlock initiatePullBlock;
 @property (nonatomic, strong) AchBank *form;
 @property (nonatomic, strong) NSArray *formCells;
+@property (nonatomic, strong) NSArray *formKeys;
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 @property (strong, nonatomic) IBOutlet UIButton *payButton;
 @property (strong, nonatomic) IBOutlet UILabel *messageOneLabel;
 @property (strong, nonatomic) IBOutlet UILabel *messageTwoLabel;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopSpace;
+@property (strong, nonatomic) NSNumber *formId;
 
 @end
 
@@ -56,6 +58,8 @@
 		self.payment = payment;
 		self.objectModel = objectModel;
 		self.initiatePullBlock = initiatePullBlock;
+		
+		self.formId = form.id;
 	}
 	return self;
 }
@@ -120,6 +124,7 @@
 	if (self.form && self.form.fieldGroups.count > 0)
 	{
 		NSMutableArray *formFields = [[NSMutableArray alloc] init];
+		NSMutableArray *formKeys = [[NSMutableArray alloc] init];
 		
 		for (FieldGroup *group in self.form.fieldGroups)
 		{
@@ -134,6 +139,13 @@
 		[firstCell configureWithTitle:[NSString stringWithFormat:NSLocalizedString(@"ach.controller.label.firstfield", nil), firstCell.entryField.placeholder, self.form.title] value:nil];
 		
 		self.formCells = [NSArray arrayWithArray:formFields];
+		
+		for (RecipientFieldCell *cell in self.formCells)
+		{
+			[formKeys addObject:cell.type.fieldForGroup.name];
+		}
+		
+		self.formKeys = [NSArray arrayWithArray:formKeys];
 	}
 }
 
@@ -218,15 +230,12 @@
 {
 	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 	
-	[dict setValue:self.form.id forKey:@"id"];
-	NSMutableDictionary *values = [[NSMutableDictionary alloc] init];
+	[dict setValue:self.formId forKey:@"verifiableAccountId"];
 	
-	for (RecipientFieldCell *cell in self.formCells)
+	for (NSInteger i = 0; i < [self.formKeys count] && i < [self.formCells count]; i++)
 	{
-		[values setValue:[cell value] forKey:cell.type.fieldForGroup.name];
+		[dict setValue:[(RecipientFieldCell *)self.formCells[i] value] forKey:self.formKeys[i]];
 	}
-	
-	[dict setValue:values forKey:@"params"];
 	
 	return dict;
 }
