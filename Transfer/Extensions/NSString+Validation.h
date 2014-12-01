@@ -10,7 +10,7 @@
 
 static NSInteger const kMaxAchRoutingLength = 9;
 static NSInteger const kMinAchAccountLength = 4;
-static NSInteger const kMaxAchAccountlength = 16;
+static NSInteger const kMaxAchAccountlength = 17;
 
 @interface NSString (Validation)
 
