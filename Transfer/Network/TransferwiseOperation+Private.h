@@ -22,4 +22,17 @@ typedef void (^TRWUploadOperationProgressBlock)(NSUInteger bytes, long long tota
 - (void)getDataFromPath:(NSString *)path params:(NSDictionary *)params;
 - (void)postBinaryDataFromFile:(NSString *)filePath withName:(NSString *)fileName usingParams:(NSDictionary *)params toPath:(NSString *)postPath;
 
+/**
+ *  BEWARE! HERE BE DRAGONS! Only intended to be used with the long time-out ACH request.
+ *
+ *  Use of
+ *  - (void)postData:(NSDictionary *)data toPath:(NSString *)postPath
+ *  encouraged
+ *
+ *  @param data     post data
+ *  @param postPath api path
+ *  @param timeOut  custom request timeout. negative means default is used.
+ */
+- (void)postData:(NSDictionary *)data toPath:(NSString *)postPath timeOut:(NSTimeInterval)timeOut;
+
 @end

@@ -10,6 +10,8 @@
 #import "Constants.h"
 #import "TransferwiseOperation+Private.h"
 
+#define kVerifyFormExtendedTimeout 180
+
 NSString *const kVerifyFormPath = @"/ach/verify";
 
 @interface VerifyFormOperation ()
@@ -52,7 +54,7 @@ NSString *const kVerifyFormPath = @"/ach/verify";
 		}
 	}];
 	
-	[self postData:self.data toPath:path];
+	[self postData:self.data toPath:path timeOut:kVerifyFormExtendedTimeout];
 }
 
 @end
