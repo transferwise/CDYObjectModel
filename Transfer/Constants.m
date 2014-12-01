@@ -47,6 +47,7 @@ NSString *const TRWImpactRadiusToken = @"e4rpBDiFcRCgQ4NsponLbPqzBcS8wAE9";
 NSString *const TRWRateAppUrl = @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=612261027&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8";
 NSString *const TRWToSUrl = @"/terms-of-use";
 NSString *const TRWPrivacyUrl = @"/privacy-policy";
+NSString *const TRWStateSpecificTermsUrl = @"/terms-and-conditions?execution=e1s2";
 
 void delayedExecution(CGFloat seconds, TRWActionBlock action) {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC), dispatch_get_main_queue(), action);

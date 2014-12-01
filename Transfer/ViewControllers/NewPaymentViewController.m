@@ -76,6 +76,10 @@ static NSUInteger const kRowYouSend = 0;
 @property (nonatomic, strong) IBOutlet UIView *headerView;
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *subTitleLabel;
+@property (weak, nonatomic) IBOutlet UITextView *termsLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *termsLabelCenterConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginButtonCenterConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *termsLabelWidthConstraint;
 
 - (IBAction)loginPressed:(id)sender;
 - (IBAction)startPaymentPressed:(id)sender;
@@ -167,7 +171,7 @@ static NSUInteger const kRowYouSend = 0;
         weakSelf.result = result;
         [weakSelf displayWinMessage:result];
         
-        [self updateCellApperance];
+        [self updateApperance];
         
     }];
     
@@ -185,6 +189,27 @@ static NSUInteger const kRowYouSend = 0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
     
     [[GoogleAnalytics sharedInstance] sendScreen:[Credentials userLoggedIn]?@"New payment":@"Start screen"];
+    
+    // UDS terms link
+    NSString* stateSpecific = NSLocalizedString(@"usd.state.specific", nil);
+    NSString* legaleze = [NSString stringWithFormat:NSLocalizedString(@"usd.legaleze", nil),stateSpecific];
+    NSMutableAttributedString *attributedLegaleze = [NSMutableAttributedString attributedStringWithString:legaleze];
+    NSRange wholeString = NSMakeRange(0, [legaleze length]);
+    [attributedLegaleze addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:self.termsLabel.fontStyle] range:wholeString];
+    [attributedLegaleze addAttribute:NSFontAttributeName value:[UIFont fontFromStyle:self.termsLabel.fontStyle] range:wholeString];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setAlignment:NSTextAlignmentCenter];
+    [attributedLegaleze addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:wholeString];
+    NSRange stateRange = [legaleze rangeOfString:stateSpecific];
+    [attributedLegaleze addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%@%@",TRWServerAddress,TRWStateSpecificTermsUrl] range:stateRange];
+    self.termsLabel.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorFromStyle:self.termsLabel.fontStyle], NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
+    self.termsLabel.attributedText = attributedLegaleze;
+    [self.termsLabel setTextContainerInset:UIEdgeInsetsZero];
+
+    
+    
+    
+    
 }
 
 -(void)keyboardWillShow:(NSNotification*)note
@@ -235,12 +260,12 @@ static NSUInteger const kRowYouSend = 0;
 	{
         [self.youSendCell setCurrencies:[self.objectModel fetchedControllerForSources]];
     }
-
-    [self updateCellApperance];
     
     self.loginButton.hidden = [Credentials userLoggedIn];
     self.modalCloseButton.hidden = ![Credentials userLoggedIn];
     self.logo.hidden = [Credentials userLoggedIn];
+    
+    [self updateApperance];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -479,7 +504,7 @@ static NSUInteger const kRowYouSend = 0;
     });
 }
 
--(void)updateCellApperance
+-(void)updateApperance
 {
     if (self.result.isFixedTargetPayment)
     {
@@ -508,6 +533,45 @@ static NSUInteger const kRowYouSend = 0;
     
     PairTargetCurrency* targetCurrency =  [self.objectModel pairTargetWithSource:self.youSendCell.currency target:self.theyReceiveCell.currency];
     [self.theyReceiveCell setEditable:targetCurrency.fixedTargetPaymentAllowedValue];
+    
+    if([self.youSendCell.currency.code isEqualToString:@"USD"])
+    {
+        self.termsLabel.hidden = NO;
+        if(!IPAD && !self.loginButton.hidden)
+        {
+            CGFloat viewWidth = self.view.bounds.size.width;
+            self.termsLabelCenterConstraint.constant = viewWidth;
+            [self.termsLabel layoutIfNeeded];
+            [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                
+               self.termsLabelCenterConstraint.constant = (viewWidth - self.termsLabelWidthConstraint.constant)/2.0f;
+                self.loginButtonCenterConstraint.constant =  -( viewWidth/2.0 - (viewWidth - self.termsLabelWidthConstraint.constant)/2.0);
+                [self.termsLabel layoutIfNeeded];
+                [self.loginButton layoutIfNeeded];
+            } completion:^(BOOL finished) {
+            }];
+        }
+    }
+    else
+    {
+        if(!IPAD && !self.loginButton.hidden && !self.termsLabel.hidden )
+        {
+             CGFloat viewWidth = self.view.bounds.size.width;
+            [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                self.termsLabelCenterConstraint.constant = viewWidth;
+                self.loginButtonCenterConstraint.constant = 0;
+                [self.termsLabel layoutIfNeeded];
+                [self.loginButton layoutIfNeeded];
+            } completion:^(BOOL finished) {
+                self.termsLabel.hidden = YES;
+            }];
+        }
+        else
+        {
+             self.termsLabel.hidden = YES;
+        }
+       
+    }
     
 }
 
