@@ -124,27 +124,18 @@
 												   
 												   [weakSelf handleResultWithError:error
 																	  successBlock:^{
-                                                                          CustomInfoViewController * customInfo = [[CustomInfoViewController alloc] init];
-                                                                          customInfo.infoText = NSLocalizedString(@"ach.success.message", nil);
-                                                                          customInfo.actionButtonTitle = NSLocalizedString(@"button.title.ok", nil);
-                                                                          customInfo.mapCloseButtonToAction = YES;
-                                                                          customInfo.infoImage = [UIImage imageNamed:@"GreenTick"];
+                                                                          CustomInfoViewController * customInfo = [CustomInfoViewController successScreenWithMessage:@"ach.success.message"] ;
                                                                           __weak typeof(customInfo) weakCustomInfo = customInfo;
                                                                           __block BOOL shouldAutoDismiss = YES;
                                                                           customInfo.actionButtonBlock = ^{
                                                                               shouldAutoDismiss = NO;
-                                                                              
                                                                               if (IPAD)
                                                                               {
                                                                                   [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
                                                                               }
                                                                               else
                                                                               {
-                                                                                  TransferWaitingViewController *waitingController = [[TransferWaitingViewController alloc] init];
-                                                                                  waitingController.payment = weakSelf.payment;
-                                                                                  waitingController.objectModel = weakSelf.objectModel;
-                                                                                  waitingController.showClose = YES;
-                                                                                  
+                                                                                  TransferWaitingViewController *waitingController = [TransferWaitingViewController endOfFlowInstanceForPayment:weakSelf.payment objectModel:weakSelf.objectModel];
                                                                                   [controller.topViewController switchToViewController:waitingController];
                                                                               }
                                                                               [weakCustomInfo dismiss];

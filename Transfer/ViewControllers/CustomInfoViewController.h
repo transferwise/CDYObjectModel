@@ -25,6 +25,17 @@
  */
 @property (nonatomic,assign) BOOL mapCloseButtonToAction;
 
-//Invokes the actionButtonBlock.
+/**
+ *  Invokes the actionButtonBlock.
+ */
 -(IBAction)actionButtonTapped;
+
+/**
+ *  convenince method for getting an instance with a green tick and mapCloseToAction set to YES.
+ *
+ *  @param messageKey message. An attempt will be made to get the localised version.
+ *
+ *  @return green tick screen with your message
+ */
++(instancetype)successScreenWithMessage:(NSString*)messageKey;
 @end
