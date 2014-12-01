@@ -158,11 +158,7 @@
             return;
         }
         
-        CustomInfoViewController * customInfo = [[CustomInfoViewController alloc] init];
-        customInfo.infoText = NSLocalizedString(@"upload.money.card.payment.success.message", nil);
-        customInfo.actionButtonTitle = NSLocalizedString(@"button.title.ok", nil);
-        customInfo.mapCloseButtonToAction = YES;
-        customInfo.infoImage = [UIImage imageNamed:@"GreenTick"];
+        CustomInfoViewController * customInfo = [CustomInfoViewController successScreenWithMessage:@"upload.money.card.payment.success.message"];
         __weak typeof(self) weakSelf = self;
         __weak typeof(customInfo) weakCustomInfo = customInfo;
         __block BOOL shouldAutoDismiss = YES;

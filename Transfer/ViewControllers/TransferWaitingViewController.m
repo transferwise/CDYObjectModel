@@ -121,4 +121,14 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
 }
 
++(instancetype)endOfFlowInstanceForPayment:(Payment*)payment objectModel:(ObjectModel*)objectModel
+{
+    TransferWaitingViewController *waitingController = [[TransferWaitingViewController alloc] init];
+    waitingController.payment = payment;
+    waitingController.objectModel = objectModel;
+    waitingController.showClose = YES;
+
+    return waitingController;
+}
+
 @end

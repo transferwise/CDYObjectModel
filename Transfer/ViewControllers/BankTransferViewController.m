@@ -223,9 +223,7 @@
             }
             else
             {
-                TransferWaitingViewController *controller = [[TransferWaitingViewController alloc] init];
-                controller.payment = self.payment;
-                controller.objectModel = self.objectModel;
+                TransferWaitingViewController *controller = [TransferWaitingViewController endOfFlowInstanceForPayment:self.payment objectModel:self.objectModel];
                 
                 [self switchToViewController:controller];
             }
