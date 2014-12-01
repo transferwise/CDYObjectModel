@@ -38,10 +38,15 @@
     ABSTRACT_METHOD;
 }
 
-- (void)postData:(NSDictionary *)data toPath:(NSString *)postPath {
+- (void)postData:(NSDictionary *)data toPath:(NSString *)postPath
+{
+    [self postData:data toPath:postPath timeOut:-1];
+}
+
+- (void)postData:(NSDictionary *)data toPath:(NSString *)postPath timeOut:(NSTimeInterval) timeOut{
     NSString *accessToken = [Credentials accessToken];
     MCLog(@"Post %@ to %@", [data sensibleDataHidden], [postPath stringByReplacingOccurrencesOfString:(accessToken ? accessToken : @"" ) withString:@"**********"]);
-    [self executeOperationWithMethod:@"POST" path:postPath parameters:data];
+    [self executeOperationWithMethod:@"POST" path:postPath parameters:data timeOut:timeOut];
 }
 
 - (void)getDataFromPath:(NSString *)path {
@@ -66,7 +71,15 @@
 }
 
 - (void)executeOperationWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters {
+    [self executeOperationWithMethod:method path:path parameters:parameters timeOut:-1];
+}
+    
+- (void)executeOperationWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters timeOut:(NSTimeInterval)timeout{
     NSMutableURLRequest *request = [[TransferwiseClient sharedClient] requestWithMethod:method path:path parameters:parameters];
+    if(timeout >0)
+    {
+        request.timeoutInterval = timeout;
+    }
     [self executeRequest:request];
 }
 
