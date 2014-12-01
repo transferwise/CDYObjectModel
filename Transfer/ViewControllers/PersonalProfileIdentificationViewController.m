@@ -572,11 +572,11 @@
     NSDictionary* userInfo = note.userInfo;
     dispatch_async(dispatch_get_main_queue(), ^{
         NSString *file = userInfo[TRWUploadFileKey];
-        if([file caseInsensitiveCompare:@"id"] == NSOrderedSame)
+        if([@"id" caseInsensitiveCompare:file] == NSOrderedSame)
         {
             self.uploadProgressId = [userInfo[TRWUploadProgressKey] floatValue];
         }
-        else if ([file caseInsensitiveCompare:@"address"] == NSOrderedSame)
+        else if ([@"address" caseInsensitiveCompare:file] == NSOrderedSame)
         {
             self.uploadProgressAddress = [userInfo[TRWUploadProgressKey] floatValue];
         }

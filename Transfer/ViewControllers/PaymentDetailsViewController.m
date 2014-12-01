@@ -121,7 +121,7 @@
         referenceMessage = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.reference.message", nil),self.payment.recipient.name,self.payment.recipient.name,messageLookup[@"partner"],messageLookup[@"location"],self.payment.recipient.name];
         
     }
-    else if([self.payment.targetCurrency.code caseInsensitiveCompare:@"USD"] == NSOrderedSame)
+    else if([@"USD" caseInsensitiveCompare:self.payment.targetCurrency.code] == NSOrderedSame)
     {
         referenceMessage = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.reference.message.USD", nil),self.payment.recipient.name,self.payment.recipient.name];
     }

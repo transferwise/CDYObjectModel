@@ -10,6 +10,9 @@
 
 @implementation PaymentMadeIndicator
 
-// Custom logic goes here.
+-(BOOL)isCancellable
+{
+    return [@"ACH" caseInsensitiveCompare:self.payInMethodName] != NSOrderedSame;
+}
 
 @end

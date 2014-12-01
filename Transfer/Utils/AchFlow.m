@@ -18,6 +18,10 @@
 #import "AchWaitingViewController.h"
 #import "CustomInfoViewControllerDelegateHelper.h"
 #import "VerifyFormOperation.h"
+#import "TransferWaitingViewController.h"
+#import "FeedbackCoordinator.h"
+#import "ObjectModel+Payments.h"
+#import "UIViewController+SwitchToViewController.h"
 
 #define WAIT_SCREEN_MIN_SHOW_TIME	2
 
@@ -120,7 +124,45 @@
 												   
 												   [weakSelf handleResultWithError:error
 																	  successBlock:^{
-																		  //TODO: show success screen
+                                                                          CustomInfoViewController * customInfo = [[CustomInfoViewController alloc] init];
+                                                                          customInfo.infoText = NSLocalizedString(@"ach.success.message", nil);
+                                                                          customInfo.actionButtonTitle = NSLocalizedString(@"button.title.ok", nil);
+                                                                          customInfo.mapCloseButtonToAction = YES;
+                                                                          customInfo.infoImage = [UIImage imageNamed:@"GreenTick"];
+                                                                          __weak typeof(customInfo) weakCustomInfo = customInfo;
+                                                                          __block BOOL shouldAutoDismiss = YES;
+                                                                          customInfo.actionButtonBlock = ^{
+                                                                              shouldAutoDismiss = NO;
+                                                                              
+                                                                              if (IPAD)
+                                                                              {
+                                                                                  [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+                                                                              }
+                                                                              else
+                                                                              {
+                                                                                  TransferWaitingViewController *waitingController = [[TransferWaitingViewController alloc] init];
+                                                                                  waitingController.payment = weakSelf.payment;
+                                                                                  waitingController.objectModel = weakSelf.objectModel;
+                                                                                  waitingController.showClose = YES;
+                                                                                  
+                                                                                  [controller.topViewController switchToViewController:waitingController];
+                                                                              }
+                                                                              [weakCustomInfo dismiss];
+                                                                          };
+                                                                          
+                                                                          [weakSelf.objectModel performBlock:^{
+                                                                              [weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment payInMethodName:@"ACH"];
+                                                                          }];
+                                                                          
+                                                                          [customInfo presentOnViewController:controller.parentViewController withPresentationStyle:TransparentPresentationFade];
+                                                                          
+                                                                          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                                                              if(shouldAutoDismiss)
+                                                                              {
+                                                                                  weakCustomInfo.actionButtonBlock();
+                                                                              }
+                                                                          });
+
 																	  }
 																			  flow:weakSelf];
 											   }];
@@ -172,7 +214,8 @@
 	}
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
-		if (error)
+		
+        if (error)
 		{
 			NSString *messages = nil;
 			

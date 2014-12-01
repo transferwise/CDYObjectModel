@@ -245,7 +245,7 @@ IB_DESIGNABLE
                                                                          NSArray *errors = error.userInfo[TRWErrors];
                                                                          for (NSDictionary *error in errors) {
                                                                              NSString *code = error[@"code"];
-                                                                             if ([code caseInsensitiveCompare:@"CRD_NOT_VALID"] == NSOrderedSame)
+                                                                             if ([@"CRD_NOT_VALID" caseInsensitiveCompare:code] == NSOrderedSame)
                                                                              {
                                                                                  isIncorrectCredentials = YES;
                                                                                  break;

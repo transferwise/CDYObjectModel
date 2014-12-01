@@ -424,7 +424,7 @@
             message = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.reference.message", nil),payment.recipient.name,payment.recipient.name,messageLookup[@"partner"],messageLookup[@"location"],payment.recipient.name];
         
         }
-        else if([payment.targetCurrency.code caseInsensitiveCompare:@"USD"] == NSOrderedSame)
+        else if([@"USD" caseInsensitiveCompare:payment.targetCurrency.code] == NSOrderedSame)
         {
             message = [NSString stringWithFormat:NSLocalizedString(@"confirm.payment.reference.message.USD", nil),payment.recipient.name,payment.recipient.name];
         }

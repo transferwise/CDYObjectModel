@@ -96,15 +96,15 @@
     
     NSString* currencyCode = self.payment.sourceCurrency.code;
     NSString* headerFormat;
-    if ([currencyCode caseInsensitiveCompare:@"GBP"]==NSOrderedSame)
+    if ([@"GBP" caseInsensitiveCompare:currencyCode]==NSOrderedSame)
     {
         headerFormat = NSLocalizedString(@"upload.money.header.label.GBP", @"");
     }
-    else if ([currencyCode caseInsensitiveCompare:@"EUR"]==NSOrderedSame)
+    else if ([@"EUR" caseInsensitiveCompare:currencyCode]==NSOrderedSame)
     {
         headerFormat = NSLocalizedString(@"upload.money.header.label.EUR", @"");
     }
-	else if ([currencyCode caseInsensitiveCompare:@"USD"]==NSOrderedSame)
+	else if ([@"USD" caseInsensitiveCompare:currencyCode]==NSOrderedSame)
 	{
         NSString* key = [NSString stringWithFormat:@"upload.money.header.label.USD.%@",self.method.type];
         headerFormat = [NSString localizedStringForKey:key withFallback:NSLocalizedString(@"upload.money.header.label", @"")];
