@@ -69,6 +69,7 @@ extern NSString *const TRWAppType;
 extern NSString *const TRWRateAppUrl;
 extern NSString *const TRWToSUrl;
 extern NSString *const TRWPrivacyUrl;
+extern NSString *const TRWStateSpecificTermsUrl;
 
 
 void delayedExecution(CGFloat seconds, TRWActionBlock action);
