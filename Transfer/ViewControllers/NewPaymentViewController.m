@@ -379,7 +379,7 @@ static NSUInteger const kRowYouSend = 0;
 		return;
 	}
     
-    if([sourceCurrency.code caseInsensitiveCompare:@"USD"] == NSOrderedSame && [payIn floatValue] < 3.0f)
+    if([@"USD" caseInsensitiveCompare:sourceCurrency.code] == NSOrderedSame && [payIn floatValue] < 3.0f)
     {
         CustomInfoViewController *customInfo = [[CustomInfoViewController alloc] init];
         customInfo.titleText = NSLocalizedString(@"usd.low.title",nil);

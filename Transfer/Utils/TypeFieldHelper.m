@@ -70,7 +70,7 @@
 			[result addObject:cell];
 			createdCell = cell;
 		}
-		else if ([field.type caseInsensitiveCompare:@"password"] == NSOrderedSame)
+		else if ([@"password" caseInsensitiveCompare:field.type] == NSOrderedSame)
 		{
 			DoublePasswordEntryCell *cell = [tableView dequeueReusableCellWithIdentifier:TWDoublePasswordEntryCellIdentifier];
 			[cell setShowDouble:NO];

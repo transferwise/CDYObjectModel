@@ -42,6 +42,7 @@
 {
 	[super viewDidLoad];
 	[self.noTransferButton setTitle:NSLocalizedString(@"transferdetails.controller.button.notransfer", nil) forState:UIControlStateNormal];
+    self.noTransferButton.hidden = ![self.payment.paymentMadeIndicator isCancellable];
     [self.gotItButton setTitle:NSLocalizedString(@"transferdetails.controller.button.gotit", nil) forState:UIControlStateNormal];
 }
 

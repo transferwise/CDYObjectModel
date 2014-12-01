@@ -48,7 +48,7 @@ NSString *const kVerifyFormPath = @"/ach/verify";
 	[self setOperationSuccessHandler:^(NSDictionary *response) {
 		if (response[@"status"])
 		{
-			weakSelf.resultHandler(nil, [response[@"status"] caseInsensitiveCompare:@"success"] == NSOrderedSame);
+			weakSelf.resultHandler(nil, [@"success" caseInsensitiveCompare:response[@"status"]] == NSOrderedSame);
 		}
 	}];
 	

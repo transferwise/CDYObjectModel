@@ -51,7 +51,7 @@
         if([sortedPayments count]>0)
         {
             Payment* latestPayment = sortedPayments[0];
-            BOOL sendAsBusiness = [latestPayment.profileUsed caseInsensitiveCompare:@"business"]== NSOrderedSame;
+            BOOL sendAsBusiness = [@"business" caseInsensitiveCompare:latestPayment.profileUsed]== NSOrderedSame;
             self.sendAsBusinessDefaultSettingValue = sendAsBusiness;
             return sendAsBusiness;
         }

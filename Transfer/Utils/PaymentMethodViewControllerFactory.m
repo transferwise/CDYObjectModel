@@ -22,7 +22,7 @@
 +(UIViewController*)viewControllerForPayInMethod:(PayInMethod*)method forPayment:(Payment*)payment objectModel:(ObjectModel*)objectModel;
 {
     UIViewController* result;
-    if([method.type caseInsensitiveCompare:@"DATA_CASH"] == NSOrderedSame)
+    if([@"DATA_CASH" caseInsensitiveCompare:method.type] == NSOrderedSame)
     {
         CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
         [cardController setPayment:payment];
@@ -59,7 +59,7 @@
 
         result = cardController;
     }
-    else if([method.type caseInsensitiveCompare:@"ADYEN"] == NSOrderedSame)
+    else if([@"ADYEN" caseInsensitiveCompare:method.type] == NSOrderedSame)
     {
         CardPaymentViewController *cardController = [[CardPaymentViewController alloc] init];
         [cardController setPayment:payment];
@@ -96,7 +96,7 @@
 
         result = cardController;
     }
-	else if ([method.type caseInsensitiveCompare:@"ACH"] == NSOrderedSame)
+	else if ([@"ACH" caseInsensitiveCompare:method.type] == NSOrderedSame)
 	{
 		AchFlow *flow = [AchFlow sharedInstanceWithPayment:payment
 											   objectModel:objectModel];
