@@ -35,35 +35,8 @@
 #import "MOMStyle.h"
 #import "RecipientUpdateOperation.h"
 #import "Mixpanel+Customisation.h"
-
-@interface ExtraTextfieldDelegate : NSObject<UITextFieldDelegate>
-
-@property (nonatomic,weak) UITextField *referenceField;
-@property (nonatomic,weak) UITextField *emailField;
-
-@end
-
-@implementation ExtraTextfieldDelegate
-
-#pragma mark - textfield delegate
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    if(self.referenceField == textField)
-    {
-        if(!self.emailField.hidden)
-        {
-            [self.emailField becomeFirstResponder];
-            return YES;
-        }
-    }
-    
-    [textField resignFirstResponder];
-    
-    return YES;
-}
-
-@end
+#import "UIView+Container.h"
+#import "UITextField+CaretPosition.h"
 
 
 @interface ConfirmPaymentViewController ()
@@ -87,10 +60,11 @@
 
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 
+@property (nonatomic, strong) NSCharacterSet *referenceExclusionSet;
+
 //iPad
 @property (nonatomic,weak) IBOutlet UITextField *referenceField;
 @property (nonatomic,weak) IBOutlet UITextField *emailField;
-@property (nonatomic,strong) ExtraTextfieldDelegate *nonCellTextfieldDelegate;
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray* separatorLines;
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray* emailFieldViews;
 
@@ -119,6 +93,13 @@
 
     [self.tableView registerNib:[UINib nibWithNibName:@"PlainPresentationCell" bundle:nil] forCellReuseIdentifier:PlainPresentationCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"TextEntryCell" bundle:nil] forCellReuseIdentifier:TWTextEntryCellIdentifier];
+    
+    //Set background colour again because of ios 8.1 bug
+    self.tableView.bgStyle = self.tableView.bgStyle;
+    
+    
+    
+    self.referenceExclusionSet = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ."] invertedSet];
     
     [[Mixpanel sharedInstance] sendPageView:@"Confirm"];
 }
@@ -193,11 +174,8 @@
             cell.backgroundColor = [UIColor clearColor];
         }
         
-        self.nonCellTextfieldDelegate = [[ExtraTextfieldDelegate alloc] init];
-        self.nonCellTextfieldDelegate.referenceField = self.referenceField;
-        self.nonCellTextfieldDelegate.emailField = self.emailField;
-        self.referenceField.delegate = self.nonCellTextfieldDelegate;
-        self.emailField.delegate = self.nonCellTextfieldDelegate;
+        self.referenceField.delegate = self;
+        self.emailField.delegate = self;
         if ([payment.recipient.email length] == 0)
         {
             for(UIView* view in self.emailFieldViews)
@@ -329,7 +307,7 @@
         
         [self.referenceCell setEditable:YES];
         [self.referenceCell configureWithTitle:NSLocalizedString(@"confirm.payment.reference.label", nil) value:@""];
-        [self.referenceCell.entryField setAutocorrectionType:UITextAutocorrectionTypeDefault];
+        [self.referenceCell.entryField setAutocorrectionType:UITextAutocorrectionTypeNo];
     }
     else
     {
@@ -519,21 +497,28 @@
     if(emailAdded)
     {
         self.payment.recipient.email = email;
-        RecipientUpdateOperation * updateOperation = [RecipientUpdateOperation instanceWithRecipient:self.payment.recipient objectModel:self.objectModel completionHandler:^(NSError *error) {
-           if(error)
-           {
-               [hud hide];
-               [[GoogleAnalytics sharedInstance] sendAlertEvent:@"SavingRecipientAlert" withLabel:[error localizedTransferwiseMessage]];
-               TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) error:error];
-               [alertView show];
-               return;
-           }
+        if(self.payment.recipient.remoteIdValue != 0)
+        {
+            //Pre-existing recipient
+            RecipientUpdateOperation * updateOperation = [RecipientUpdateOperation instanceWithRecipient:self.payment.recipient objectModel:self.objectModel completionHandler:^(NSError *error) {
+                if(error)
+                {
+                    [hud hide];
+                    [[GoogleAnalytics sharedInstance] sendAlertEvent:@"SavingRecipientAlert" withLabel:[error localizedTransferwiseMessage]];
+                    TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"recipient.controller.validation.error.title", nil) error:error];
+                    [alertView show];
+                    return;
+                }
+                validateBlock();
+            }];
+            self.executedOperation = updateOperation;
+            [updateOperation execute];
+        }
+        else
+        {
+            //recipient is being created later. the validation will catch any email issues.
             validateBlock();
-            
-            
-        }];
-        self.executedOperation = updateOperation;
-        [updateOperation execute];
+        }
     }
     else
     {
@@ -592,4 +577,53 @@
     }
 }
 
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(textField == self.referenceField || textField == self.emailField)
+    {
+        if(self.referenceField == textField)
+        {
+            if(!self.emailField.hidden)
+            {
+                [self.emailField becomeFirstResponder];
+                return YES;
+            }
+        }
+    
+        [textField resignFirstResponder];
+        return YES;
+    }
+    else
+    {
+        return [super textFieldShouldReturn:textField];
+    }
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+   
+    TextEntryCell *cell = [textField findContainerOfType:[TextEntryCell class]];
+    if(self.referenceField == textField || (cell && cell == self.referenceCell))
+    {
+        NSString *text = textField.text;
+        NSString *strippedAccentsReplacement = [self stripAccentsFromString:string];
+        NSString *modified = [text stringByReplacingCharactersInRange:range withString:strippedAccentsReplacement];
+        if([modified length] < [self getReferenceMaxLength:self.payment])
+        {
+            [textField setText:modified];
+            [textField moveCaretToAfterRange:NSMakeRange(range.location, [strippedAccentsReplacement length])];
+        }
+        return NO;
+    }
+    
+    return [super textField:textField shouldChangeCharactersInRange:range replacementString:string];
+}
+
+-(NSString*)stripAccentsFromString:(NSString*)source
+{
+    NSString *modified = [source decomposedStringWithCanonicalMapping];
+    modified = [[modified componentsSeparatedByCharactersInSet:self.referenceExclusionSet] componentsJoinedByString:@""];
+    return modified;
+}
 @end

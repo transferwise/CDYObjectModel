@@ -7,9 +7,24 @@
 //
 
 #import "TransparentModalViewController.h"
+
+
 @class TouchIdPromptViewController;
 
+@protocol TouchIdPromptViewControllerDelegate <NSObject>
+
+@required
+-(void)touchIdPromptIsFinished:(TouchIdPromptViewController*)controller;
+
+@end
+
+/**
+ *  displays a prompt to associate login details with touch ID.
+ *
+ */
 @interface TouchIdPromptViewController : TransparentModalViewController
+
+@property (nonatomic, weak) id<TouchIdPromptViewControllerDelegate>touchIdDelegate;
 
 -(void)presentOnViewController:(UIViewController *)hostViewcontroller withUsername:(NSString*)username password:(NSString*)password;
 

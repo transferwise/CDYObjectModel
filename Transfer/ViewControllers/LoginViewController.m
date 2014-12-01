@@ -30,7 +30,7 @@
 
 IB_DESIGNABLE
 
-@interface LoginViewController () <UITextFieldDelegate>
+@interface LoginViewController () <UITextFieldDelegate, TouchIdPromptViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *emailTextField;
 @property (strong, nonatomic) IBOutlet FloatingLabelTextField *passwordTextField;
@@ -185,6 +185,7 @@ IB_DESIGNABLE
     if([TouchIDHelper isTouchIdAvailable] && ![TouchIDHelper isTouchIdSlotTaken] && [TouchIDHelper shouldPromptForUsername:self.emailTextField.text])
     {
         TouchIdPromptViewController* prompt = [[TouchIdPromptViewController alloc] init];
+        prompt.touchIdDelegate = self;
         [prompt presentOnViewController:self.navigationController.parentViewController withUsername:self.emailTextField.text password:self.passwordTextField.text];
     }
     else
@@ -294,4 +295,10 @@ IB_DESIGNABLE
     }];
     
 }
+
+-(void)touchIdPromptIsFinished:(TouchIdPromptViewController *)controller
+{
+    [LoginHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
+}
+
 @end
