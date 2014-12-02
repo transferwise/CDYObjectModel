@@ -38,4 +38,13 @@
  *  @return green tick screen with your message
  */
 +(instancetype)successScreenWithMessage:(NSString*)messageKey;
+
+/**
+ *  convenince method for getting an instance with a red cross and mapCloseToAction set to YES.
+ *
+ *  @param messageKey message. An attempt will be made to get the localised version.
+ *
+ *  @return red cross screen with your message
+ */
++(instancetype)failScreenWithMessage:(NSString*)messageKey;
 @end
