@@ -142,7 +142,11 @@
 																				   controller:controller
 																					  message:errorKey
 																				  actionBlock:^{
-																					  [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+																					  weakSelf.currentWaitingDelegate.completion = ^{
+																						  [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+																					  };
+																					  
+																					  [weakSelf.waitingViewController dismiss];
 																				  }
 																				 successBlock:nil
 																						 flow:weakSelf];
