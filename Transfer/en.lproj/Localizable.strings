@@ -20,6 +20,8 @@
 "ach.controller.label.message.secure" = "Payment is 100% secured.";
 "ach.controller.label.firstfield" = "Your %@ at %@";
 "ach.success.message" = "You successfully sent the money to TransferWise";
+"ach.failure.message.account" = "We did not manage to verify your account";
+"ach.failure.message.number" = "Incorrect account details";
 
 "business.profile.address.label" = "Address";
 "business.profile.email.label" = "Your business email";

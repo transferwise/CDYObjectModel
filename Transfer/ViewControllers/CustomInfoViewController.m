@@ -115,12 +115,25 @@
 
 +(instancetype)successScreenWithMessage:(NSString*)messageKey
 {
-    CustomInfoViewController *customInfo = [[CustomInfoViewController alloc] init];
-    customInfo.infoText = NSLocalizedString(messageKey, nil);
-    customInfo.actionButtonTitle = NSLocalizedString(@"button.title.ok", nil);
-    customInfo.infoImage = [UIImage imageNamed:@"GreenTick"];
-    customInfo.mapCloseButtonToAction = YES;
-    
-    return customInfo;
+	return [self screenWithMessage:messageKey
+							 image:@"GreenTick"];
+}
+
++(instancetype)failScreenWithMessage:(NSString *)messageKey
+{
+	return [self screenWithMessage:messageKey
+							 image:@"RedCross"];
+}
+
++(instancetype)screenWithMessage:(NSString *)messageKey
+						   image:(NSString *)imageName
+{
+	CustomInfoViewController *customInfo = [[CustomInfoViewController alloc] init];
+	customInfo.infoText = NSLocalizedString(messageKey, nil);
+	customInfo.actionButtonTitle = NSLocalizedString(@"button.title.ok", nil);
+	customInfo.infoImage = [UIImage imageNamed:imageName];
+	customInfo.mapCloseButtonToAction = YES;
+	
+	return customInfo;
 }
 @end

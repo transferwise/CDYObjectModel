@@ -124,36 +124,15 @@
 												   
 												   [weakSelf handleResultWithError:error
 																	  successBlock:^{
-                                                                          CustomInfoViewController * customInfo = [CustomInfoViewController successScreenWithMessage:@"ach.success.message"] ;
-                                                                          __weak typeof(customInfo) weakCustomInfo = customInfo;
-                                                                          __block BOOL shouldAutoDismiss = YES;
-                                                                          customInfo.actionButtonBlock = ^{
-                                                                              shouldAutoDismiss = NO;
-                                                                              if (IPAD)
-                                                                              {
-                                                                                  [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
-                                                                              }
-                                                                              else
-                                                                              {
-                                                                                  TransferWaitingViewController *waitingController = [TransferWaitingViewController endOfFlowInstanceForPayment:weakSelf.payment objectModel:weakSelf.objectModel];
-                                                                                  [controller.topViewController switchToViewController:waitingController];
-                                                                              }
-                                                                              [weakCustomInfo dismiss];
-                                                                          };
-                                                                          
-                                                                          [weakSelf.objectModel performBlock:^{
-                                                                              [weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment payInMethodName:@"ACH"];
-                                                                          }];
-                                                                          
-                                                                          [customInfo presentOnViewController:controller.parentViewController withPresentationStyle:TransparentPresentationFade];
-                                                                          
-                                                                          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                                                              if(shouldAutoDismiss)
-                                                                              {
-                                                                                  weakCustomInfo.actionButtonBlock();
-                                                                              }
-                                                                          });
-
+																		  [weakSelf presentCustomInfoWithSuccess:YES
+																									  controller:controller
+																										 message:@"ach.success.message"
+																									 actionBlock:^{
+																										 [weakSelf.objectModel performBlock:^{
+																											 [weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment payInMethodName:@"ACH"];
+																										 }];
+																									 }
+																											flow:weakSelf];
 																	  }
 																			  flow:weakSelf];
 											   }];
@@ -242,6 +221,52 @@
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 			[self.waitingViewController dismiss];
 		});
+	});
+}
+
+- (void)presentCustomInfoWithSuccess:(BOOL)success
+						  controller:(UINavigationController *)controller
+							 message:(NSString *)message
+						 actionBlock:(void (^)())successBlock
+								flow:(AchFlow *)flow
+{
+	CustomInfoViewController * customInfo;
+	
+	if (success)
+	{
+		customInfo = [CustomInfoViewController successScreenWithMessage:message];
+	}
+	else
+	{
+		customInfo = [CustomInfoViewController failScreenWithMessage:message];
+	}
+	
+	__weak typeof(customInfo) weakCustomInfo = customInfo;
+	__block BOOL shouldAutoDismiss = YES;
+	customInfo.actionButtonBlock = ^{
+		shouldAutoDismiss = NO;
+		if (IPAD)
+		{
+			[[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+		}
+		else
+		{
+			TransferWaitingViewController *waitingController = [TransferWaitingViewController endOfFlowInstanceForPayment:flow.payment
+																											  objectModel:flow.objectModel];
+			[controller.topViewController switchToViewController:waitingController];
+		}
+		[weakCustomInfo dismiss];
+	};
+	
+	successBlock();
+	
+	[customInfo presentOnViewController:controller.parentViewController withPresentationStyle:TransparentPresentationFade];
+	
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		if(shouldAutoDismiss)
+		{
+			weakCustomInfo.actionButtonBlock();
+		}
 	});
 }
 
