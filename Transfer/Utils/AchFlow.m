@@ -22,8 +22,12 @@
 #import "FeedbackCoordinator.h"
 #import "ObjectModel+Payments.h"
 #import "UIViewController+SwitchToViewController.h"
+#import "NSError+TRWErrors.h"
 
 #define WAIT_SCREEN_MIN_SHOW_TIME	2
+
+#define VERIFICATION_FAILURE	@"VERIFICATION_FAILURE"
+#define ACCOUNT_NUMBER_MISMATCH	@"ACCOUNT_NUMBER_MISMATCH"
 
 @class AchBank;
 
@@ -120,22 +124,58 @@
 																					 flow:weakSelf];
 											   
 											   [(VerifyFormOperation *)self.executedOperation setResultHandler:^(NSError *error, BOOL success) {
-												   //TODO handle expected error conditions here
+												   NSString *errorKey;
 												   
+												   //handle known errors
+												   if (error)
+												   {
+													   if ([error containsTwCode:VERIFICATION_FAILURE])
+													   {
+														   errorKey = @"ach.failure.message.account";
+													   }
+													   else if ([error containsTwCode:ACCOUNT_NUMBER_MISMATCH])
+													   {
+														   errorKey = @"ach.failure.message.mismatch";
+													   }
+													   
+													   [weakSelf presentCustomInfoWithSuccess:NO
+																				   controller:controller
+																					  message:errorKey
+																				  actionBlock:^{
+																					  [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+																				  }
+																				 successBlock:nil
+																						 flow:weakSelf];
+													   return;
+												   }
+												   //no known errors so let standard handler deal with it
 												   [weakSelf handleResultWithError:error
 																	  successBlock:^{
 																		  [weakSelf presentCustomInfoWithSuccess:YES
 																									  controller:controller
 																										 message:@"ach.success.message"
 																									 actionBlock:^{
-																										 [weakSelf.objectModel performBlock:^{
-																											 [weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment payInMethodName:@"ACH"];
-																										 }];
+																										 if (IPAD)
+																										 {
+																											 [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+																										 }
+																										 else
+																										 {
+																											 TransferWaitingViewController *waitingController = [TransferWaitingViewController endOfFlowInstanceForPayment:weakSelf.payment
+																																																			   objectModel:weakSelf.objectModel];
+																											 [controller.topViewController switchToViewController:waitingController];
+																										 }
 																									 }
+																									successBlock:^{
+																										[weakSelf.objectModel performBlock:^{
+																											[weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment payInMethodName:@"ACH"];
+																										}];
+																									}
 																											flow:weakSelf];
 																	  }
 																			  flow:weakSelf];
 											   }];
+											   
 											   [self.executedOperation execute];
 										   }];
 }
@@ -227,7 +267,8 @@
 - (void)presentCustomInfoWithSuccess:(BOOL)success
 						  controller:(UINavigationController *)controller
 							 message:(NSString *)message
-						 actionBlock:(void (^)())successBlock
+						 actionBlock:(void (^)())actionBlock
+						successBlock:(void (^)())successBlock
 								flow:(AchFlow *)flow
 {
 	CustomInfoViewController * customInfo;
@@ -245,20 +286,19 @@
 	__block BOOL shouldAutoDismiss = YES;
 	customInfo.actionButtonBlock = ^{
 		shouldAutoDismiss = NO;
-		if (IPAD)
+		
+		if (actionBlock)
 		{
-			[[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+			actionBlock();
 		}
-		else
-		{
-			TransferWaitingViewController *waitingController = [TransferWaitingViewController endOfFlowInstanceForPayment:flow.payment
-																											  objectModel:flow.objectModel];
-			[controller.topViewController switchToViewController:waitingController];
-		}
+		
 		[weakCustomInfo dismiss];
 	};
 	
-	successBlock();
+	if (successBlock)
+	{
+		successBlock();
+	}
 	
 	[customInfo presentOnViewController:controller.parentViewController withPresentationStyle:TransparentPresentationFade];
 	

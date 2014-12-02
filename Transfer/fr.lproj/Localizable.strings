@@ -21,7 +21,7 @@
 "ach.controller.label.firstfield" = "Votre %@ à %@";
 "ach.success.message" = "You successfully sent the money to TransferWise";
 "ach.failure.message.account" = "We did not manage to verify your account";
-"ach.failure.message.number" = "Incorrect account details";
+"ach.failure.message.mismatch" = "Incorrect account details";
 
 "business.profile.address.label" = "Adresse";
 "business.profile.email.label" = "Votre email profesionnel";
