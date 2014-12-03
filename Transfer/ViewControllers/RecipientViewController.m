@@ -749,7 +749,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [payment setRecipient:recipientInput];
     [self.objectModel saveContext];
 
-    if(recipientInput == self.updateRecipient)
+    if(recipientInput == self.updateRecipient && recipientInput.remoteIdValue != 0)
     {
         RecipientUpdateOperation* operation = [RecipientUpdateOperation instanceWithRecipient:self.updateRecipient objectModel:self.objectModel completionHandler:^(NSError *error) {
             [hud hide];
