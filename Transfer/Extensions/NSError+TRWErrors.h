@@ -13,6 +13,6 @@
 - (BOOL)isTransferwiseError;
 - (NSString *)localizedTransferwiseMessage;
 - (BOOL)twCodeNotFound;
-- (BOOL)containsTwCode:(NSString *)code;
+- (BOOL)containsTwCode:(NSString *)expectedCode;
 
 @end

@@ -52,13 +52,13 @@
 	return [self containsTwCode:@"NOT_FOUND"];
 }
 
-- (BOOL)containsTwCode:(NSString *)code
+- (BOOL)containsTwCode:(NSString *)expectedCode
 {
 	NSArray *errors = self.userInfo[TRWErrors];
 	for (NSDictionary *error in errors)
 	{
 		NSString *code = error[@"code"];
-		if ([code isEqualToString:code])
+		if ([code isEqualToString:expectedCode])
 		{
 			return YES;
 		}

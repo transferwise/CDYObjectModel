@@ -124,34 +124,44 @@
 																					 flow:weakSelf];
 											   
 											   [(VerifyFormOperation *)self.executedOperation setResultHandler:^(NSError *error, BOOL success) {
-												   NSString *errorKey;
-												   
 												   //handle known errors
 												   if (error)
 												   {
 													   if ([error containsTwCode:VERIFICATION_FAILURE])
 													   {
-														   errorKey = @"ach.failure.message.account";
+														   [weakSelf presentCustomInfoWithSuccess:NO
+																					   controller:controller
+																						  message:@"ach.failure.message.account"
+																					  actionBlock:^{
+																						  weakSelf.currentWaitingDelegate.completion = ^{
+																							  [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
+																						  };
+																						  
+																						  [weakSelf.waitingViewController dismiss];
+																					  }
+																					 successBlock:nil
+																							 flow:weakSelf];
+														   return;
 													   }
 													   else if ([error containsTwCode:ACCOUNT_NUMBER_MISMATCH])
 													   {
-														   errorKey = @"ach.failure.message.mismatch";
+														   [weakSelf presentCustomInfoWithSuccess:NO
+																					   controller:controller
+																						  message:@"ach.failure.message.mismatch"
+																					  actionBlock:^{
+																						  weakSelf.currentWaitingDelegate.completion = ^{
+																							  //account number mismatch means that user needs to recheck their entered routing/account numbers
+																							  [controller popViewControllerAnimated:YES];
+																						  };
+																						  
+																						  [weakSelf.waitingViewController dismiss];
+																					  }
+																					 successBlock:nil
+																							 flow:weakSelf];
+														   return;
 													   }
-													   
-													   [weakSelf presentCustomInfoWithSuccess:NO
-																				   controller:controller
-																					  message:errorKey
-																				  actionBlock:^{
-																					  weakSelf.currentWaitingDelegate.completion = ^{
-																						  [[NSNotificationCenter defaultCenter] postNotificationName:TRWMoveToPaymentsListNotification object:nil];
-																					  };
-																					  
-																					  [weakSelf.waitingViewController dismiss];
-																				  }
-																				 successBlock:nil
-																						 flow:weakSelf];
-													   return;
 												   }
+												   
 												   //no known errors so let standard handler deal with it
 												   [weakSelf handleResultWithError:error
 																	  successBlock:^{
