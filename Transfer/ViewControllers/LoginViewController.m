@@ -27,6 +27,7 @@
 #import "TransferwiseOperation.h"
 #import "MainViewController.h"
 #import "ConnectionAwareViewController.h"
+#import "UITextField+CaretPosition.h"
 
 IB_DESIGNABLE
 
@@ -153,6 +154,7 @@ IB_DESIGNABLE
 	{
 		NSString *modified = [textField.text stringByReplacingCharactersInRange:range withString:string];
 		textField.text = [modified lowercaseString];
+        [textField moveCaretToAfterRange:NSMakeRange(range.location, string.length)];
 		
 		return NO;
 	}
