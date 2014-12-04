@@ -108,7 +108,7 @@
 "contacts.refresh.error.message" = "Could not refresh your recipients list";
 "contacts.refresh.error.title" = "Refresh error";
 "contacts.controller.send.button.title" = "Send %@";
-"contacts.controller.footer.invite" = "Earn £50 by inviting
+"contacts.controller.footer.invite" = "Earn %@ by inviting
 your friends to TransferWise";
 "contacts.controller.footer.invite.button.title" = "Invite friends";
 "contacts.controller.account.type" = "%@ account";
@@ -708,7 +708,7 @@ We'll send you an email in order to let you choose a new password.";
 "invite.sms.button.title" = "Invite via sms";
 "invite.copy.button.title" = "Copy my invite link";
 "invite.copied.button.title" = "Copied";
-"invite.context" = "When 3 friends start using Transferwise, you'll get 50 GBP.";
+"invite.context.format" = "When 3 friends start using Transferwise, you'll get %@.";
 "invite.modal.title" = "Share your invite url";
 "invite.error.facebook.title" = "Facebook error";
 "invite.error.facebook.message" = "Please enable Facebook in your device settings and try again.";

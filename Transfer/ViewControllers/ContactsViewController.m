@@ -309,8 +309,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
 - (void)inviteFriends
 {
-	ReferralsCoordinator* coordinator = [ReferralsCoordinator sharedInstance];
-	coordinator.objectModel = self.objectModel;
+	ReferralsCoordinator* coordinator = [ReferralsCoordinator sharedInstanceWithObjectModel:self.objectModel];
 	[coordinator presentOnController:self];
 }
 
@@ -406,7 +405,7 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 	if (!IPAD)
 	{
 		self.footerView = [[[NSBundle mainBundle] loadNibNamed:@"RecipientsFooterView" owner:self options:nil] objectAtIndex:0];
-		[self.footerView commonSetup];
+        [self.footerView setAmountString:[[ReferralsCoordinator sharedInstanceWithObjectModel:self.objectModel] rewardAmountString]];
 		self.footerView.delegate = self;
 		self.footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		self.tableView.tableFooterView = self.footerView;

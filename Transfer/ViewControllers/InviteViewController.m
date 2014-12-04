@@ -55,7 +55,7 @@
     [self.smsButton setTitle:NSLocalizedString(@"invite.sms.button.title", @"") forState:UIControlStateNormal];
     [self.urlCopyButton setTitle:NSLocalizedString(@"invite.copy.button.title", @"") forState:UIControlStateNormal];
     self.titleLabel.text = NSLocalizedString(@"invite.modal.title", nil);
-    self.contextLabel.text = NSLocalizedString(@"invite.context", nil);
+    self.contextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"invite.context.format", nil),self.rewardAmountString];
 	
 	[self parseUrls];
     

@@ -14,8 +14,9 @@
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 
-+ (ReferralsCoordinator *)sharedInstance;
++ (ReferralsCoordinator *)sharedInstanceWithObjectModel:(ObjectModel*)objectModel;
 
 - (void)presentOnController:(UIViewController *)controller;
-
+- (void)requestRewardStatus:(void(^)(NSError*))completionBlock;
+- (NSString*)rewardAmountString;
 @end

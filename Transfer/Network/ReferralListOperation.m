@@ -22,14 +22,20 @@ NSString *const kReferralListPath = @"/referral/list";
 	
 	__weak ReferralListOperation *weakSelf = self;
 	[self setOperationErrorHandler:^(NSError *error) {
-		weakSelf.resultHandler(error);
+        if(weakSelf.resultHandler)
+        {
+            weakSelf.resultHandler(error);
+        }
 	}];
 	
 	[self setOperationSuccessHandler:^(NSDictionary *response) {
 		
                 [weakSelf.workModel saveReferralData:response];
 				[weakSelf.workModel saveContext:^{
-					weakSelf.resultHandler(nil);
+                    if(weakSelf.resultHandler)
+                    {
+                        weakSelf.resultHandler(nil);
+                    }
 				}];
 	}];
 	
