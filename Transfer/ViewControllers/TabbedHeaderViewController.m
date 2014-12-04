@@ -161,6 +161,7 @@
 - (void)addToSuperview:(UIViewController *)first removeOthers:(NSArray *)others
 {
     [self addChildViewController:first];
+    [first didMoveToParentViewController:self];
 	[self.containerView addSubview:first.view];
 	first.view.frame = self.containerView.bounds;
 	first.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
