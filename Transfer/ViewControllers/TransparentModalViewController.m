@@ -55,6 +55,7 @@
     self.hostViewController= hostViewcontroller;
     [self willMoveToParentViewController:hostViewcontroller];
     [self.hostViewController addChildViewController:self];
+    [self didMoveToParentViewController:self.hostViewController];
     
     UIView *blurView;
     if ([UIVisualEffectView class])

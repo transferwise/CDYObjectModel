@@ -47,6 +47,7 @@
 							 if (controller)
 							 {
 								 [self addChildViewController:controller];
+                                 [controller didMoveToParentViewController:self];
 								 [self.detailContainer addSubview:controller.view];
 								 controller.view.alpha = 1.f;
 							 }

@@ -52,6 +52,11 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
+-(void)didMoveToParentViewController:(UIViewController *)parent
+{
+    [self configureForInterfaceOrientation:parent.interfaceOrientation];
+}
+
 - (void)setSectionCellsByTableView:(NSArray *)sectionCellsByTableView
 {
     _sectionCellsByTableView = sectionCellsByTableView;
