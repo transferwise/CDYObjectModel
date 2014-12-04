@@ -18,6 +18,6 @@
 
 @property (weak, nonatomic) id<RecipientsFooterViewDelegate> delegate;
 
-- (void)commonSetup;
+- (void)setAmountString:(NSString*)amountString;
 
 @end

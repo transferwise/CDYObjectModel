@@ -108,7 +108,7 @@
 "contacts.refresh.error.message" = "La list de vos destinataires n'a pas pu etre raffraichie";
 "contacts.refresh.error.title" = "Erreur de raffraichissement";
 "contacts.controller.send.button.title" = "Envoyer %@";
-"contacts.controller.footer.invite" = "Gagner £50 en invitant
+"contacts.controller.footer.invite" = "Gagner %@ en invitant
 vos amis sur TransferWise";
 "contacts.controller.footer.invite.button.title" = "Invitez vos amis";
 "contacts.controller.account.type" = "Compte %@";
@@ -695,7 +695,7 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "invite.sms.button.title" = "Inviter par sms";
 "invite.copy.button.title" = "Copier mon lien";
 "invite.copied.button.title" = "Copié";
-"invite.context" = "Quand 3 amis utilisent TransferWise, vous gagnez £50.";
+"invite.context.format" = "Quand 3 amis utilisent TransferWise, vous gagnez %@.";
 "invite.modal.title" = "Envoyer vos invitations";
 "invite.error.facebook.title" = "Erreur de Facebook";
 "invite.error.facebook.message" = "Activez Facebook sur votre téléphone et réessayez.";
