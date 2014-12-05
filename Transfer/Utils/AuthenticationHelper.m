@@ -1,12 +1,12 @@
 //
-//  LoginHelper.m
+//  AuthenticationHelper.m
 //  Transfer
 //
 //  Created by Juhan Hion on 06.08.14.
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
-#import "LoginHelper.h"
+#import "AuthenticationHelper.h"
 #import "NSString+Validation.h"
 #import "NSMutableString+Issues.h"
 #import "UIApplication+Keyboard.h"
@@ -21,14 +21,20 @@
 #import "ObjectModel+Payments.h"
 #import "NewPaymentViewController.h"
 #import "ConnectionAwareViewController.h"
+#import "GoogleAnalytics.h"
+#import "Credentials.h"
+#import "ObjectModel+Users.h"
+#import "User.h"
+#import "PendingPayment.h"
+#import "TransferwiseClient.h"
 
-@interface LoginHelper ()
+@interface AuthenticationHelper ()
 
 @property (strong, nonatomic) TransferwiseOperation *executedOperation;
 
 @end
 
-@implementation LoginHelper
+@implementation AuthenticationHelper
 
 - (void)validateInputAndPerformLoginWithEmail:(NSString *)email
 									 password:(NSString *)password
@@ -129,7 +135,7 @@
     return [NSString stringWithString:issues];
 }
 
-+(void)proceedFromSuccessfulLoginFromViewController:(UIViewController*)controller objectModel:(ObjectModel*)objectModel
++ (void)proceedFromSuccessfulLoginFromViewController:(UIViewController*)controller objectModel:(ObjectModel*)objectModel
 {
     //If registration upfront is used, these flags won't be set by the intro screen. Set them after logging in.
     [objectModel markIntroShown];
@@ -160,6 +166,15 @@
         ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:mainController];
         controller.view.window.rootViewController = root;
     }
+}
+
++ (void)logOutWithObjectModel:(ObjectModel *)objectModel
+{
+	[objectModel deleteObject:objectModel.currentUser];
+	[PendingPayment removePossibleImages];
+	[Credentials clearCredentials];
+	[[GoogleAnalytics sharedInstance] markLoggedIn];
+	[TransferwiseClient clearCookies];
 }
 
 @end
