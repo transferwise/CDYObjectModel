@@ -8,7 +8,6 @@
 
 #import "TransferDetialsHeaderView.h"
 #import "UIFont+MOMStyle.h"
-#import <OHAttributedLabel.h>
 #import "UIFont+MOMStyle.h"
 #import "UIColor+MOMStyle.h"
 #import "Constants.h"
@@ -17,7 +16,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel* yourTransferLabel;
 @property (strong, nonatomic) IBOutlet UILabel* transferNrLabel;
-@property (strong, nonatomic) IBOutlet OHAttributedLabel* recipientNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel* recipientNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel* statusLabel;
 @property (strong, nonatomic) IBOutlet UILabel* statusLabelWaiting;
 
@@ -51,23 +50,35 @@
 	//last two symbols of the key are %@
 	NSRange toRange = NSMakeRange(0, key.length - 2);
 	
-	NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:key, recipientName]];
+	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+	[paragraphStyle setAlignment:NSTextAlignmentCenter];
+	[paragraphStyle setLineBreakMode:NSLineBreakByTruncatingMiddle];
 	
-    OHParagraphStyle *paragraphStyle = [OHParagraphStyle defaultParagraphStyle];
-    paragraphStyle.textAlignment = kCTTextAlignmentCenter;
-    paragraphStyle.lineBreakMode = kCTLineBreakByTruncatingMiddle;
-    [attributedString setParagraphStyle:paragraphStyle];
+	NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:key, recipientName]
+																						 attributes:@{NSParagraphStyleAttributeName:paragraphStyle}];
+	
 	if(IPAD)
 	{
-		[attributedString setFont:[UIFont fontFromStyle:@"heavy.@20"]];
-		[attributedString setFont:[UIFont fontFromStyle:@"medium.@20"] range:toRange];
+		[attributedString addAttribute:NSFontAttributeName
+								 value:[UIFont fontFromStyle:@"heavy.@20"]
+								 range:NSMakeRange(toRange.location, attributedString.length)];
+		[attributedString addAttribute:NSFontAttributeName
+								 value:[UIFont fontFromStyle:@"medium.@20"]
+								 range:toRange];
 	}
 	else
 	{
-		[attributedString setFont:[UIFont fontFromStyle:@"heavy.@17"]];
-		[attributedString setFont:[UIFont fontFromStyle:@"medium.@17"] range:toRange];
+		[attributedString addAttribute:NSFontAttributeName
+								 value:[UIFont fontFromStyle:@"heavy.@17"]
+								 range:NSMakeRange(toRange.location, attributedString.length)];
+		[attributedString addAttribute:NSFontAttributeName
+								 value:[UIFont fontFromStyle:@"medium.@17"]
+								 range:toRange];
 	}
-    [attributedString setTextColor:[UIColor colorFromStyle:@"DarkFont"]];
+	
+	[attributedString addAttribute:NSForegroundColorAttributeName
+							 value:[UIColor colorFromStyle:@"DarkFont"]
+							 range:NSMakeRange(0, attributedString.length)];
 	
 	[self.recipientNameLabel setAttributedText:attributedString];
 }
