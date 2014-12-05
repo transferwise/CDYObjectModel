@@ -9,12 +9,7 @@
 #import "RemoveTokenOperation.h"
 #import "TransferwiseOperation+Private.h"
 #import "Constants.h"
-#import "TransferwiseClient.h"
-#import "GoogleAnalytics.h"
-#import "Credentials.h"
-#import "ObjectModel+Users.h"
-#import "User.h"
-#import "PendingPayment.h"
+#import "AuthenticationHelper.h"
 
 NSString *const kReleaseTokenPath = @"/token/release";
 
@@ -45,13 +40,12 @@ NSString *const kReleaseTokenPath = @"/token/release";
         MCLog(@"Remove token success");
     }];
 
-    [self postData:@{@"token" : self.token} toPath:path];
+	if (self.token && self.token.length > 0)
+	{
+		[self postData:@{@"token" : self.token} toPath:path];
+	}
 
-    [self.objectModel deleteObject:self.objectModel.currentUser];
-    [PendingPayment removePossibleImages];
-    [Credentials clearCredentials];
-    [[GoogleAnalytics sharedInstance] markLoggedIn];
-    [TransferwiseClient clearCookies];
+	[AuthenticationHelper logOutWithObjectModel:self.objectModel];
 }
 
 @end

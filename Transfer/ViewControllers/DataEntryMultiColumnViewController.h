@@ -127,7 +127,7 @@
  *  @param cell      cell that has been selected
  *  @param tableView tableview the cell resides in.
  */
--(void)scrollToCell:(UITableViewCell*)cell inTableView:(UITableView*)tableView;
+-(void)scrollToCell:(UITableViewCell*)cell inTableView:(UITableView*)tableView animated:(BOOL)animated;
 
 
 /**

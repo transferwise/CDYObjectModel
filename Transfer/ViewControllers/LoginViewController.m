@@ -18,7 +18,7 @@
 #import "YahooButton.h"
 #import "UIColor+MOMStyle.h"
 #import "NavigationBarCustomiser.h"
-#import "LoginHelper.h"
+#import "AuthenticationHelper.h"
 #import "TouchIDHelper.h"
 #import "TouchIdPromptViewController.h"
 #import "TRWAlertView.h"
@@ -27,6 +27,7 @@
 #import "TransferwiseOperation.h"
 #import "MainViewController.h"
 #import "ConnectionAwareViewController.h"
+#import "UITextField+CaretPosition.h"
 
 IB_DESIGNABLE
 
@@ -41,7 +42,8 @@ IB_DESIGNABLE
 @property (strong, nonatomic) IBOutlet UILabel *orLabel;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *emailSeparatorHeight;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *passwordSeparatorHeight;
-@property (strong, nonatomic) LoginHelper *loginHelper;
+@property (strong, nonatomic) AuthenticationHelper *loginHelper;
+
 @property (weak, nonatomic) IBOutlet UIButton *touchIdButton;
 
 @property (nonatomic, strong) IBInspectable NSString* xibNameForResetPassword;
@@ -73,7 +75,7 @@ IB_DESIGNABLE
 
 -(void)commonSetup
 {
-    _loginHelper = [[LoginHelper alloc] init];
+    _loginHelper = [[AuthenticationHelper alloc] init];
 }
 
 #pragma mark - View Life-cycle
@@ -153,6 +155,7 @@ IB_DESIGNABLE
 	{
 		NSString *modified = [textField.text stringByReplacingCharactersInRange:range withString:string];
 		textField.text = [modified lowercaseString];
+        [textField moveCaretToAfterRange:NSMakeRange(range.location, string.length)];
 		
 		return NO;
 	}
@@ -190,7 +193,7 @@ IB_DESIGNABLE
     }
     else
     {
-        [LoginHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
+        [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
     }
 }
 
@@ -289,7 +292,7 @@ IB_DESIGNABLE
                                                                      [alertView show];
                                                                  }
                                                              }
-                                                             waitForDetailsCompletions:NO];
+                                                             waitForDetailsCompletions:YES];
             });
         }
     }];
@@ -298,7 +301,7 @@ IB_DESIGNABLE
 
 -(void)touchIdPromptIsFinished:(TouchIdPromptViewController *)controller
 {
-    [LoginHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
+    [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
 }
 
 @end

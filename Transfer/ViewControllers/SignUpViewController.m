@@ -21,7 +21,7 @@
 #import "GoogleAnalytics.h"
 #import "TransferBackButtonItem.h"
 #import "NavigationBarCustomiser.h"
-#import "LoginHelper.h"
+#import "AuthenticationHelper.h"
 #import "MOMStyle.h"
 
 
@@ -171,7 +171,7 @@
         }
 
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"UserRegistered" withLabel:@"tw"];
-        [LoginHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
+        [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
     }];
 
     [operation execute];
