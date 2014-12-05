@@ -250,7 +250,7 @@ NSInteger const kYearField = 3;
         if (date)
         {
             NSDateComponents *components = [self.gregorianCalendar components:NSDayCalendarUnit|NSMonthCalendarUnit|NSYearCalendarUnit fromDate:date];
-            NSString *resultingDateString = [NSString stringWithFormat:@"%04d-%02d-%02d",[components year],[components month],[components day]];
+            NSString *resultingDateString = [NSString stringWithFormat:@"%04ld-%02ld-%02ld",(long)[components year],(long)[components month],(long)[components day]];
             validDate = [value isEqualToString:resultingDateString];
         }
     }];
