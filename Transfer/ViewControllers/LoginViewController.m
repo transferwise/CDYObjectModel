@@ -18,7 +18,7 @@
 #import "YahooButton.h"
 #import "UIColor+MOMStyle.h"
 #import "NavigationBarCustomiser.h"
-#import "LoginHelper.h"
+#import "AuthenticationHelper.h"
 #import "TouchIDHelper.h"
 #import "TouchIdPromptViewController.h"
 #import "TRWAlertView.h"
@@ -42,7 +42,8 @@ IB_DESIGNABLE
 @property (strong, nonatomic) IBOutlet UILabel *orLabel;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *emailSeparatorHeight;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *passwordSeparatorHeight;
-@property (strong, nonatomic) LoginHelper *loginHelper;
+@property (strong, nonatomic) AuthenticationHelper *loginHelper;
+
 @property (weak, nonatomic) IBOutlet UIButton *touchIdButton;
 
 @property (nonatomic, strong) IBInspectable NSString* xibNameForResetPassword;
@@ -74,7 +75,7 @@ IB_DESIGNABLE
 
 -(void)commonSetup
 {
-    _loginHelper = [[LoginHelper alloc] init];
+    _loginHelper = [[AuthenticationHelper alloc] init];
 }
 
 #pragma mark - View Life-cycle
@@ -192,7 +193,7 @@ IB_DESIGNABLE
     }
     else
     {
-        [LoginHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
+        [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
     }
 }
 
@@ -300,7 +301,7 @@ IB_DESIGNABLE
 
 -(void)touchIdPromptIsFinished:(TouchIdPromptViewController *)controller
 {
-    [LoginHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
+    [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
 }
 
 @end

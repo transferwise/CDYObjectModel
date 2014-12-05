@@ -10,7 +10,7 @@
 #import "TouchIDHelper.h"
 #import "Constants.h"
 #import "GoogleAnalytics.h"
-#import "LoginHelper.h"
+#import "AuthenticationHelper.h"
 
 @interface TouchIdPromptViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
