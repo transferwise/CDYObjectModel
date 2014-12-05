@@ -45,7 +45,10 @@ NSString *const kReleaseTokenPath = @"/token/release";
         MCLog(@"Remove token success");
     }];
 
-    [self postData:@{@"token" : self.token} toPath:path];
+	if (self.token && self.token.length > 0)
+	{
+		[self postData:@{@"token" : self.token} toPath:path];
+	}
 
     [self.objectModel deleteObject:self.objectModel.currentUser];
     [PendingPayment removePossibleImages];
