@@ -153,19 +153,19 @@
 	[self moveFocusOnNextEntryAfterCell:((TextEntryCell*)table.associatedView)];
 }
 
--(void)scrollToCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView
+-(void)scrollToCell:(UITableViewCell *)cell inTableView:(UITableView *)tableView animated:(BOOL)animated
 {
     if(IPAD)
     {
-        [self scrollScrollViewToShowViewWithSuggestions:cell];
+        [self scrollScrollViewToShowViewWithSuggestions:cell animated:animated];
     }
     else
     {
-        [super scrollToCell:cell inTableView:tableView];
+        [super scrollToCell:cell inTableView:tableView animated:animated];
     }
 }
 
--(void)scrollScrollViewToShowViewWithSuggestions:(UIView*)targetView
+-(void)scrollScrollViewToShowViewWithSuggestions:(UIView*)targetView animated:(BOOL)animated
 {
     CGRect showRect = [self.containerScrollView convertRect:targetView.frame fromView:targetView.superview];
     if([[self.suggestionTables valueForKey:@"associatedView"] indexOfObject:targetView]!=NSNotFound)
@@ -177,7 +177,7 @@
     {
         showRect.size.height *= 2;
     }
-    [self.containerScrollView scrollRectToVisible:showRect animated:YES];
+    [self.containerScrollView scrollRectToVisible:showRect animated:animated];
 }
 
 -(void)keyboardWillShow:(NSNotification*)note
