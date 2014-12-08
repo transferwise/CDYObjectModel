@@ -70,6 +70,7 @@ static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
 static NSUInteger const kRecipientFieldsSection = 2;
 static NSUInteger const kAddressSection = 3;
+static NSUInteger const kPhoneActualFieldsSection = 4; //Dodgy workaround to avoid cells scrolling under header, introduce an extra section on phone
 
 
 NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
@@ -337,7 +338,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
     else
     {
-        [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells, @[]]]];
+        [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells, @[], @[]]]];
     }
     [self.tableViews makeObjectsPerformSelector:@selector(reloadData)];
     
@@ -638,11 +639,11 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     {
         if(type.recipientAddressRequiredValue)
         {
-            [self setSectionCellsByTableView:@[@[self.recipientCells, self.addressCells, self.currencyCells, cells]]];
+            [self setSectionCellsByTableView:@[@[self.recipientCells, self.addressCells, self.currencyCells, @[], cells]]];
         }
         else
         {
-            [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells, cells]]];
+            [self setSectionCellsByTableView:@[@[self.recipientCells, self.currencyCells, @[], cells]]];
         }
         
         [self.tableViews[0] reloadData];
@@ -992,6 +993,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         finalSectionCellsByTableView[0] = cells;
         
         [sectionIndexes addObject:@(kRecipientFieldsSection)];
+        [sectionIndexes addObject:@(kPhoneActualFieldsSection)];
         
         [finalPresentedSectionsByTableView addObject:sectionIndexes];
     }
@@ -1100,7 +1102,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
         }
         else
         {
-            [self setSectionCellsByTableView:@[@[self.recipientCells,self.addressCells, self.currencyCells,self.recipientTypeFieldCells]]];
+            [self setSectionCellsByTableView:@[@[self.recipientCells,self.addressCells, self.currencyCells,@[],self.recipientTypeFieldCells]]];
             if(didIncludeState)
             {
                 [self.tableViews[0] insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
