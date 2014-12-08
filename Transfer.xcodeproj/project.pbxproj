@@ -931,10 +931,6 @@
 		EAD7D4D1171D4BB20099063F /* GreenButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4D0171D4BB20099063F /* GreenButton.m */; };
 		EAD85B0B173920C300C22211 /* PersonalProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */; };
 		EAE1E3A317B2519000A45623 /* PaymentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */; };
-		EAE7B6AC17E9AC3F00E03D73 /* IdentificationNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */; };
-		EAE7B6AD17E9AC3F00E03D73 /* IdentificationNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */; };
-		EAE7B6AF17E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */; };
-		EAE7B6B017E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */; };
 		EAE7B6B317E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B6B217E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m */; };
 		EAE7B6B417E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B6B217E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m */; };
 		EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */; };
@@ -1753,9 +1749,6 @@
 		EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileOperation.m; sourceTree = "<group>"; };
 		EAE1E3A117B2519000A45623 /* PaymentDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentDetailsViewController.h; sourceTree = "<group>"; };
 		EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentDetailsViewController.m; sourceTree = "<group>"; };
-		EAE7B6AA17E9AC3F00E03D73 /* IdentificationNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentificationNotificationView.h; sourceTree = "<group>"; };
-		EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentificationNotificationView.m; sourceTree = "<group>"; };
-		EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IdentificationNotificationView.xib; sourceTree = "<group>"; };
 		EAE7B6B117E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckPersonalProfileVerificationOperation.h; sourceTree = "<group>"; };
 		EAE7B6B217E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckPersonalProfileVerificationOperation.m; sourceTree = "<group>"; };
 		EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferCalculationsOperation.h; sourceTree = "<group>"; };
@@ -2216,9 +2209,6 @@
 				EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */,
 				38C7B29119742596004324E8 /* HeaderTabView.h */,
 				38C7B29219742596004324E8 /* HeaderTabView.m */,
-				EAE7B6AA17E9AC3F00E03D73 /* IdentificationNotificationView.h */,
-				EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */,
-				EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */,
 				EA0450D817EC64BC008921DA /* IntroView.h */,
 				EA0450D917EC64BC008921DA /* IntroView.m */,
 				EA0450DC17EC64E4008921DA /* IntroView.xib */,
@@ -3147,7 +3137,6 @@
 				3840862819A20D9900C837C2 /* InvitationsViewController~ipad.xib in Resources */,
 				EA31A1EB17DDB29B00F937F7 /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
 				47AC3F9C1987B2C3005491C6 /* SuggestionCell~ipad.xib in Resources */,
-				EAE7B6B017E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */,
 				47971C5F199A3A560018FDA8 /* TextEntryCell~ipad.xib in Resources */,
 				3876769519BF56A2007B0EE5 /* CustomInfoViewController~ipad.xib in Resources */,
 				EA333F3918A4BEDC00D8A44E /* page_zoom.json in Resources */,
@@ -3295,7 +3284,6 @@
 				47971C6A199A4E830018FDA8 /* DoubleEntryCell~ipad.xib in Resources */,
 				385A668D1978178500D00D1F /* ContactsViewController~ipad.xib in Resources */,
 				BBC691271721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
-				EAE7B6AF17E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */,
 				38675457198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */,
 				EA333F3818A4BEDC00D8A44E /* page_zoom.json in Resources */,
 				47971C67199A3FB60018FDA8 /* SelectionCell~ipad.xib in Resources */,
@@ -3725,7 +3713,6 @@
 				EA31A17017DDB29B00F937F7 /* ButtonCell.m in Sources */,
 				3887CBBF1976AF2B004DFFFD /* CancelHelper.m in Sources */,
 				EA31A17117DDB29B00F937F7 /* PhoneBookProfile.m in Sources */,
-				EAE7B6AD17E9AC3F00E03D73 /* IdentificationNotificationView.m in Sources */,
 				EA31A17217DDB29B00F937F7 /* PhoneBookProfileSelector.m in Sources */,
 				EA31A17317DDB29B00F937F7 /* PhoneBookAddress.m in Sources */,
 				EA31A17417DDB29B00F937F7 /* DismissKeyboardTableView.m in Sources */,
@@ -4026,7 +4013,6 @@
 				EAD66759174A51B900D29BCB /* ButtonCell.m in Sources */,
 				3887CBBE1976AF2B004DFFFD /* CancelHelper.m in Sources */,
 				EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */,
-				EAE7B6AC17E9AC3F00E03D73 /* IdentificationNotificationView.m in Sources */,
 				EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */,
 				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
 				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,

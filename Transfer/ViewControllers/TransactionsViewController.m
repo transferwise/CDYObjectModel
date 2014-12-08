@@ -22,7 +22,6 @@
 #import "RecipientType.h"
 #import "UploadMoneyViewController.h"
 #import "GoogleAnalytics.h"
-#import "IdentificationNotificationView.h"
 #import "UIView+Loading.h"
 #import "CheckPersonalProfileVerificationOperation.h"
 #import "PersonalProfileIdentificationViewController.h"

@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Mooncascade OÜ. All rights reserved.
 //
 
-#import <OHAttributedLabel/OHAttributedLabel.h>
 #import "ConfirmPaymentViewController.h"
 #import "UIColor+Theme.h"
 #import "PlainPresentationCell.h"
