@@ -310,29 +310,6 @@
     [[GoogleAnalytics sharedInstance] sendAppEvent:@"IntroScreensSlided" withLabel:[NSString stringWithFormat:@"%ld", (long) currentPage + 1]];
 }
 
-- (NSAttributedString *)attributedMessage:(NSString *)message
-									 bold:(NSArray *)boldTexts
-{
-    NSMutableAttributedString *result = [[NSMutableAttributedString alloc] initWithString:message];
-	
-	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-	[paragraphStyle setAlignment:NSTextAlignmentCenter];
-	[paragraphStyle setLineBreakMode:NSLineBreakByWordWrapping];
-	
-	[result setAttributes:@{NSParagraphStyleAttributeName: paragraphStyle,
-							NSFontAttributeName: [UIFont systemFontOfSize:18],
-							NSForegroundColorAttributeName: [UIColor whiteColor]} range:NSMakeRange(0, message.length)];
-	
-    for (NSString *toBold in boldTexts)
-	{
-        NSRange range = [message rangeOfString:toBold];
-		[result setAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:18]}
-						range:range];
-    }
-
-    return [[NSAttributedString alloc] initWithAttributedString:result];
-}
-
 -(void)modifyViews:(NSArray*)viewArray withBlock:(void(^)(UIView* view))modificationBlock
 {
     if(modificationBlock)
