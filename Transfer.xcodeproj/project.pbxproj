@@ -466,6 +466,8 @@
 		477319F41A1B62BB00660770 /* AchDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477319F11A1B62BB00660770 /* AchDetailsViewController.m */; };
 		477319F51A1B62BB00660770 /* AchDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477319F21A1B62BB00660770 /* AchDetailsViewController.xib */; };
 		477319F61A1B62BB00660770 /* AchDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477319F21A1B62BB00660770 /* AchDetailsViewController.xib */; };
+		4774F6E71A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */; };
+		4774F6E81A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */; };
 		478031781999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
 		478031791999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
 		47971C5E199A3A560018FDA8 /* TextEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */; };
@@ -1361,6 +1363,8 @@
 		477319F01A1B62BB00660770 /* AchDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchDetailsViewController.h; sourceTree = "<group>"; };
 		477319F11A1B62BB00660770 /* AchDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchDetailsViewController.m; sourceTree = "<group>"; };
 		477319F21A1B62BB00660770 /* AchDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AchDetailsViewController.xib; sourceTree = "<group>"; };
+		4774F6E51A359BB400058D5E /* NSMutableAttributedString+Presentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Presentation.h"; sourceTree = "<group>"; };
+		4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Presentation.m"; sourceTree = "<group>"; };
 		478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SwitchCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TextEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C60199A3C1C0018FDA8 /* DateEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DateEntryCell~ipad.xib"; sourceTree = "<group>"; };
@@ -2438,6 +2442,8 @@
 				47126B5419C2DCD40049F4C5 /* UIView+InheritantOf.m */,
 				38CE6E161A27360300B39665 /* UITextField+CaretPosition.h */,
 				38CE6E171A27360300B39665 /* UITextField+CaretPosition.m */,
+				4774F6E51A359BB400058D5E /* NSMutableAttributedString+Presentation.h */,
+				4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3821,6 +3827,7 @@
 				EA31A1B817DDB29B00F937F7 /* QuickProfileValidationOperation.m in Sources */,
 				EA31A1B917DDB29B00F937F7 /* SwitchCell.m in Sources */,
 				EA31A1BA17DDB29B00F937F7 /* PaymentDetailsViewController.m in Sources */,
+				4774F6E81A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */,
 				EA677B46189B855200505139 /* StartPaymentButton.m in Sources */,
 				389F6824198FC1C6006CF1F6 /* ObjectModel+Currencies.m in Sources */,
 				389F6826198FC1C6006CF1F6 /* ObjectModel+CurrencyPairs.m in Sources */,
@@ -3932,6 +3939,7 @@
 				38F6DE5F19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m in Sources */,
 				389F682D198FC1C6006CF1F6 /* ObjectModel+Recipients.m in Sources */,
 				389F683F198FC1C6006CF1F6 /* PaymentMadeIndicator.m in Sources */,
+				4774F6E71A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */,
 				383FC10019AE1B6700465FCA /* SeeHowView.m in Sources */,
 				479B693419489303001FA4FE /* TransferDetialsHeaderView.m in Sources */,
 				47C4D04F1A237F61005EC7C6 /* AchLoginViewController.m in Sources */,

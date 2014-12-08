@@ -11,6 +11,7 @@
 #import "UIFont+MOMStyle.h"
 #import "UIColor+MOMStyle.h"
 #import "Constants.h"
+#import "NSMutableAttributedString+Presentation.h"
 
 @interface TransferDetialsHeaderView ()
 
@@ -23,15 +24,6 @@
 @end
 
 @implementation TransferDetialsHeaderView
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
 
 - (void)awakeFromNib
 {
@@ -47,8 +39,6 @@
 - (void)setRecipientName:(NSString *)recipientName
 {
 	NSString *key = NSLocalizedString(@"transferdetails.controller.transfer.recipient", nil);
-	//last two symbols of the key are %@
-	NSRange toRange = NSMakeRange(0, key.length - 2);
 	
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
 	[paragraphStyle setAlignment:NSTextAlignmentCenter];
@@ -57,24 +47,13 @@
 	NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:key, recipientName]
 																						 attributes:@{NSParagraphStyleAttributeName:paragraphStyle}];
 	
-	if(IPAD)
-	{
-		[attributedString addAttribute:NSFontAttributeName
-								 value:[UIFont fontFromStyle:@"heavy.@20"]
-								 range:NSMakeRange(toRange.location, attributedString.length)];
-		[attributedString addAttribute:NSFontAttributeName
-								 value:[UIFont fontFromStyle:@"medium.@20"]
-								 range:toRange];
-	}
-	else
-	{
-		[attributedString addAttribute:NSFontAttributeName
-								 value:[UIFont fontFromStyle:@"heavy.@17"]
-								 range:NSMakeRange(toRange.location, attributedString.length)];
-		[attributedString addAttribute:NSFontAttributeName
-								 value:[UIFont fontFromStyle:@"medium.@17"]
-								 range:toRange];
-	}
+	//last two symbols of the key are %@
+	NSRange toRange = NSMakeRange(0, key.length - 2);
+	
+	[attributedString setFont:[UIFont fontFromStyle:IPAD ? @"heavy.@20" : @"heavy.@17"]
+					  toRange:NSMakeRange(toRange.location, attributedString.length)];
+	[attributedString setFont:[UIFont fontFromStyle:IPAD ? @"medium.@20" : @"medium.@17"]
+					  toRange:toRange];
 	
 	[attributedString addAttribute:NSForegroundColorAttributeName
 							 value:[UIColor colorFromStyle:@"DarkFont"]
