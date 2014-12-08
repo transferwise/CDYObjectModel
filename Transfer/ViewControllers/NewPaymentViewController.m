@@ -30,7 +30,6 @@
 #import "GoogleAnalytics.h"
 #import "CXAlertView.h"
 #import "StartPaymentButton.h"
-#import <OHAttributedLabel/OHAttributedLabel.h>
 #import "MOMStyle.h"
 #import "NSString+DeviceSpecificLocalisation.h"
 #import "SeeHowViewController.h"
@@ -48,7 +47,7 @@
 
 static NSUInteger const kRowYouSend = 0;
 
-@interface NewPaymentViewController () <UITextFieldDelegate, OHAttributedLabelDelegate>
+@interface NewPaymentViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 
@@ -96,11 +95,13 @@ static NSUInteger const kRowYouSend = 0;
     return self;
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     [self.tableView setBackgroundView:nil];
@@ -155,8 +156,6 @@ static NSUInteger const kRowYouSend = 0;
                                                                   action:nil];
     [backButton setTintColor:[UIColor blackColor]];
     self.navigationItem.backBarButtonItem = backButton;
-    
-    [[OHAttributedLabel appearance] setLinkColor:[UIColor whiteColor]];
 
     __weak NewPaymentViewController *weakSelf = self;
     [calculator setActivityHandler:^(BOOL calculating) {
@@ -190,26 +189,25 @@ static NSUInteger const kRowYouSend = 0;
     
     [[GoogleAnalytics sharedInstance] sendScreen:[Credentials userLoggedIn]?@"New payment":@"Start screen"];
     
-    // UDS terms link
-    NSString* stateSpecific = NSLocalizedString(@"usd.state.specific", nil);
-    NSString* legaleze = [NSString stringWithFormat:NSLocalizedString(@"usd.legaleze", nil),stateSpecific];
-    NSMutableAttributedString *attributedLegaleze = [NSMutableAttributedString attributedStringWithString:legaleze];
-    NSRange wholeString = NSMakeRange(0, [legaleze length]);
-    [attributedLegaleze addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:self.termsLabel.fontStyle] range:wholeString];
-    [attributedLegaleze addAttribute:NSFontAttributeName value:[UIFont fontFromStyle:self.termsLabel.fontStyle] range:wholeString];
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle setAlignment:NSTextAlignmentCenter];
-    [attributedLegaleze addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:wholeString];
-    NSRange stateRange = [legaleze rangeOfString:stateSpecific];
-    [attributedLegaleze addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%@%@",TRWServerAddress,TRWStateSpecificTermsUrl] range:stateRange];
-    self.termsLabel.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorFromStyle:self.termsLabel.fontStyle], NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
-    self.termsLabel.attributedText = attributedLegaleze;
-    [self.termsLabel setTextContainerInset:UIEdgeInsetsZero];
+	[self generateUsdLegaleze];
+}
 
-    
-    
-    
-    
+- (void)generateUsdLegaleze
+{
+	NSString* stateSpecific = NSLocalizedString(@"usd.state.specific", nil);
+	NSString* legaleze = [NSString stringWithFormat:NSLocalizedString(@"usd.legaleze", nil),stateSpecific];
+	NSMutableAttributedString *attributedLegaleze = [[NSMutableAttributedString alloc] initWithString:legaleze];
+	NSRange wholeString = NSMakeRange(0, [legaleze length]);
+	[attributedLegaleze addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:self.termsLabel.fontStyle] range:wholeString];
+	[attributedLegaleze addAttribute:NSFontAttributeName value:[UIFont fontFromStyle:self.termsLabel.fontStyle] range:wholeString];
+	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+	[paragraphStyle setAlignment:NSTextAlignmentCenter];
+	[attributedLegaleze addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:wholeString];
+	NSRange stateRange = [legaleze rangeOfString:stateSpecific];
+	[attributedLegaleze addAttribute:NSLinkAttributeName value:[NSString stringWithFormat:@"%@%@",TRWServerAddress,TRWStateSpecificTermsUrl] range:stateRange];
+	self.termsLabel.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorFromStyle:self.termsLabel.fontStyle], NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
+	self.termsLabel.attributedText = attributedLegaleze;
+	[self.termsLabel setTextContainerInset:UIEdgeInsetsZero];
 }
 
 -(void)keyboardWillShow:(NSNotification*)note
@@ -276,7 +274,6 @@ static NSUInteger const kRowYouSend = 0;
 	{
         [self dismissViewControllerAnimated:YES completion:nil];
     }
-
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration

@@ -733,7 +733,6 @@
 		EA31A1B717DDB29B00F937F7 /* NSString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6AD0617A91A95006A347D /* NSString+Presentation.m */; };
 		EA31A1B817DDB29B00F937F7 /* QuickProfileValidationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA07BF017AF750A004B97AC /* QuickProfileValidationOperation.m */; };
 		EA31A1B917DDB29B00F937F7 /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7EAE8D17AFE0DE006A7182 /* SwitchCell.m */; };
-		EA31A1BA17DDB29B00F937F7 /* PaymentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */; };
 		EA31A1BB17DDB29B00F937F7 /* SupportCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0253B517D5C89500F54C18 /* SupportCoordinator.m */; };
 		EA31A1BC17DDB29B00F937F7 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0253BD17D5E49100F54C18 /* UIDevice-Hardware.m */; };
 		EA31A1BD17DDB29B00F937F7 /* FeedbackCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FC93D17D864F100E13969 /* FeedbackCoordinator.m */; };
@@ -930,7 +929,6 @@
 		EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */; };
 		EAD7D4D1171D4BB20099063F /* GreenButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4D0171D4BB20099063F /* GreenButton.m */; };
 		EAD85B0B173920C300C22211 /* PersonalProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */; };
-		EAE1E3A317B2519000A45623 /* PaymentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */; };
 		EAE7B6B317E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B6B217E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m */; };
 		EAE7B6B417E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B6B217E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m */; };
 		EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */; };
@@ -1747,8 +1745,6 @@
 		EAD7D4D0171D4BB20099063F /* GreenButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GreenButton.m; path = Views/GreenButton.m; sourceTree = "<group>"; };
 		EAD85B09173920C300C22211 /* PersonalProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileOperation.h; sourceTree = "<group>"; };
 		EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileOperation.m; sourceTree = "<group>"; };
-		EAE1E3A117B2519000A45623 /* PaymentDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentDetailsViewController.h; sourceTree = "<group>"; };
-		EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentDetailsViewController.m; sourceTree = "<group>"; };
 		EAE7B6B117E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckPersonalProfileVerificationOperation.h; sourceTree = "<group>"; };
 		EAE7B6B217E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckPersonalProfileVerificationOperation.m; sourceTree = "<group>"; };
 		EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferCalculationsOperation.h; sourceTree = "<group>"; };
@@ -2782,8 +2778,6 @@
 				EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */,
 				3887CBB8197690FC004DFFFD /* OptionalSplitViewController.h */,
 				3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */,
-				EAE1E3A117B2519000A45623 /* PaymentDetailsViewController.h */,
-				EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */,
 				38288F4419C86A6700661BFB /* PaymentMethodSelectorViewController.h */,
 				38288F4519C86A6700661BFB /* PaymentMethodSelectorViewController.m */,
 				38288F4619C86A6700661BFB /* PaymentMethodSelectorViewController.xib */,
@@ -3813,7 +3807,6 @@
 				389F682A198FC1C6006CF1F6 /* ObjectModel+Payments.m in Sources */,
 				EA31A1B817DDB29B00F937F7 /* QuickProfileValidationOperation.m in Sources */,
 				EA31A1B917DDB29B00F937F7 /* SwitchCell.m in Sources */,
-				EA31A1BA17DDB29B00F937F7 /* PaymentDetailsViewController.m in Sources */,
 				4774F6E81A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */,
 				EA677B46189B855200505139 /* StartPaymentButton.m in Sources */,
 				389F6824198FC1C6006CF1F6 /* ObjectModel+Currencies.m in Sources */,
@@ -4116,7 +4109,6 @@
 				47FC53C11A1F61CF00F5E632 /* TypeFieldHelper.m in Sources */,
 				EAA07BF117AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */,
 				BB7EAE8E17AFE0DF006A7182 /* SwitchCell.m in Sources */,
-				EAE1E3A317B2519000A45623 /* PaymentDetailsViewController.m in Sources */,
 				EA677B45189B855200505139 /* StartPaymentButton.m in Sources */,
 				389F6823198FC1C6006CF1F6 /* ObjectModel+Currencies.m in Sources */,
 				389F6825198FC1C6006CF1F6 /* ObjectModel+CurrencyPairs.m in Sources */,

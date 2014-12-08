@@ -15,7 +15,6 @@
 #import "PaymentMethodSelectionView.h"
 #import "UIView+Loading.h"
 #import "TRWAlertView.h"
-#import "PaymentDetailsViewController.h"
 #import "TransferwiseOperation.h"
 #import "TRWProgressHUD.h"
 #import "PullPaymentDetailsOperation.h"

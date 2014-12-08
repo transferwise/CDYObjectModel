@@ -17,7 +17,6 @@
 #import "Payment.h"
 #import "BankTransferViewController.h"
 #import "ConfirmPaymentViewController.h"
-#import "PaymentDetailsViewController.h"
 #import "Recipient.h"
 #import "RecipientType.h"
 #import "UploadMoneyViewController.h"
