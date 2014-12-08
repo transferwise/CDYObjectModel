@@ -332,8 +332,8 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
 - (void)deleteRecipient:(Recipient *)recipient
 {
-    ContactDetailsViewController* detailsController = (ContactDetailsViewController*)[self currentDetailController];
-    BOOL clearDetailView = detailsController.recipient == recipient;
+	[self clearDeletedRecipient:recipient];
+	
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"Delete recipient:%@", recipient.name);
         TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
@@ -342,16 +342,14 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
         DeleteRecipientOperation *operation = [DeleteRecipientOperation operationWithRecipient:recipient];
         [self setExecutedOperation:operation];
         [operation setObjectModel:self.objectModel];
+		
         [operation setResponseHandler:^(NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
 				[self setExecutedOperation:nil];
                 [hud hide];
                 [self refreshRecipients];
-                if(clearDetailView)
-                {
-                    [self presentDetail:nil];
-                }
-				else if(!IPAD)
+				
+                if(!IPAD)
 				{
 					[self.navigationController popViewControllerAnimated:YES];
 				}
@@ -360,6 +358,21 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
 
         [operation execute];
     });
+}
+
+- (void)clearDeletedRecipient:(Recipient *)recipient
+{
+	//clear selected view before deleting in case recipient to be deleted is selected
+	ContactDetailsViewController* detailsController = (ContactDetailsViewController*)[self currentDetailController];
+	if(detailsController.recipient == recipient)
+	{
+		[self presentDetail:nil];
+	}
+	
+	//delete recipient from current recipient so it cannot be used to initiate transfers while deletion is in progress
+	NSMutableArray *mutableRecipients = [[NSMutableArray alloc] initWithArray:self.allRecipients];
+	[mutableRecipients removeObject:recipient];
+	[self.tableView reloadData];
 }
 
 - (void)handleListRefreshWithPossibleError:(NSError *)error
