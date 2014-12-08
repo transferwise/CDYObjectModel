@@ -731,7 +731,7 @@
             {
                 Event* event = [[EventTracker sharedManager] newEvent:@"InappConversion"];
                 [event setOrderId:[NSString stringWithFormat:@"%@",payment.remoteId]];
-                [event setCustomerId:[[self.objectModel currentUser] pReference]];
+                [event setCustomerId:[[weakSelf.objectModel currentUser] pReference]];
                 [[EventTracker sharedManager] submit:event];
             }
 #endif
