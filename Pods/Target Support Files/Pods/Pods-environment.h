@@ -84,12 +84,6 @@
 #define COCOAPODS_VERSION_MINOR_Mixpanel_MPCategoryHelpers 6
 #define COCOAPODS_VERSION_PATCH_Mixpanel_MPCategoryHelpers 0
 
-// OHAttributedLabel
-#define COCOAPODS_POD_AVAILABLE_OHAttributedLabel
-#define COCOAPODS_VERSION_MAJOR_OHAttributedLabel 3
-#define COCOAPODS_VERSION_MINOR_OHAttributedLabel 5
-#define COCOAPODS_VERSION_PATCH_OHAttributedLabel 4
-
 // Reachability
 #define COCOAPODS_POD_AVAILABLE_Reachability
 #define COCOAPODS_VERSION_MAJOR_Reachability 3

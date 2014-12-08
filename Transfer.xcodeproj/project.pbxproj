@@ -466,6 +466,8 @@
 		477319F41A1B62BB00660770 /* AchDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477319F11A1B62BB00660770 /* AchDetailsViewController.m */; };
 		477319F51A1B62BB00660770 /* AchDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477319F21A1B62BB00660770 /* AchDetailsViewController.xib */; };
 		477319F61A1B62BB00660770 /* AchDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477319F21A1B62BB00660770 /* AchDetailsViewController.xib */; };
+		4774F6E71A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */; };
+		4774F6E81A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */; };
 		478031781999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
 		478031791999F6B000DFFC39 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
 		47971C5E199A3A560018FDA8 /* TextEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */; };
@@ -731,7 +733,6 @@
 		EA31A1B717DDB29B00F937F7 /* NSString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6AD0617A91A95006A347D /* NSString+Presentation.m */; };
 		EA31A1B817DDB29B00F937F7 /* QuickProfileValidationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA07BF017AF750A004B97AC /* QuickProfileValidationOperation.m */; };
 		EA31A1B917DDB29B00F937F7 /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7EAE8D17AFE0DE006A7182 /* SwitchCell.m */; };
-		EA31A1BA17DDB29B00F937F7 /* PaymentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */; };
 		EA31A1BB17DDB29B00F937F7 /* SupportCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0253B517D5C89500F54C18 /* SupportCoordinator.m */; };
 		EA31A1BC17DDB29B00F937F7 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0253BD17D5E49100F54C18 /* UIDevice-Hardware.m */; };
 		EA31A1BD17DDB29B00F937F7 /* FeedbackCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FC93D17D864F100E13969 /* FeedbackCoordinator.m */; };
@@ -928,11 +929,6 @@
 		EAD7D4CE171D4B4C0099063F /* UIButton+Skinning.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */; };
 		EAD7D4D1171D4BB20099063F /* GreenButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4D0171D4BB20099063F /* GreenButton.m */; };
 		EAD85B0B173920C300C22211 /* PersonalProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */; };
-		EAE1E3A317B2519000A45623 /* PaymentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */; };
-		EAE7B6AC17E9AC3F00E03D73 /* IdentificationNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */; };
-		EAE7B6AD17E9AC3F00E03D73 /* IdentificationNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */; };
-		EAE7B6AF17E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */; };
-		EAE7B6B017E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */; };
 		EAE7B6B317E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B6B217E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m */; };
 		EAE7B6B417E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B6B217E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m */; };
 		EAEA6254171FECF700A96770 /* TransferCalculationsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */; };
@@ -1361,6 +1357,8 @@
 		477319F01A1B62BB00660770 /* AchDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchDetailsViewController.h; sourceTree = "<group>"; };
 		477319F11A1B62BB00660770 /* AchDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchDetailsViewController.m; sourceTree = "<group>"; };
 		477319F21A1B62BB00660770 /* AchDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AchDetailsViewController.xib; sourceTree = "<group>"; };
+		4774F6E51A359BB400058D5E /* NSMutableAttributedString+Presentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Presentation.h"; sourceTree = "<group>"; };
+		4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Presentation.m"; sourceTree = "<group>"; };
 		478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SwitchCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TextEntryCell~ipad.xib"; sourceTree = "<group>"; };
 		47971C60199A3C1C0018FDA8 /* DateEntryCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DateEntryCell~ipad.xib"; sourceTree = "<group>"; };
@@ -1747,11 +1745,6 @@
 		EAD7D4D0171D4BB20099063F /* GreenButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GreenButton.m; path = Views/GreenButton.m; sourceTree = "<group>"; };
 		EAD85B09173920C300C22211 /* PersonalProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileOperation.h; sourceTree = "<group>"; };
 		EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileOperation.m; sourceTree = "<group>"; };
-		EAE1E3A117B2519000A45623 /* PaymentDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentDetailsViewController.h; sourceTree = "<group>"; };
-		EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentDetailsViewController.m; sourceTree = "<group>"; };
-		EAE7B6AA17E9AC3F00E03D73 /* IdentificationNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentificationNotificationView.h; sourceTree = "<group>"; };
-		EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentificationNotificationView.m; sourceTree = "<group>"; };
-		EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IdentificationNotificationView.xib; sourceTree = "<group>"; };
 		EAE7B6B117E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckPersonalProfileVerificationOperation.h; sourceTree = "<group>"; };
 		EAE7B6B217E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckPersonalProfileVerificationOperation.m; sourceTree = "<group>"; };
 		EAEA6252171FECF700A96770 /* TransferCalculationsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferCalculationsOperation.h; sourceTree = "<group>"; };
@@ -2212,9 +2205,6 @@
 				EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */,
 				38C7B29119742596004324E8 /* HeaderTabView.h */,
 				38C7B29219742596004324E8 /* HeaderTabView.m */,
-				EAE7B6AA17E9AC3F00E03D73 /* IdentificationNotificationView.h */,
-				EAE7B6AB17E9AC3F00E03D73 /* IdentificationNotificationView.m */,
-				EAE7B6AE17E9AC5000E03D73 /* IdentificationNotificationView.xib */,
 				EA0450D817EC64BC008921DA /* IntroView.h */,
 				EA0450D917EC64BC008921DA /* IntroView.m */,
 				EA0450DC17EC64E4008921DA /* IntroView.xib */,
@@ -2438,6 +2428,8 @@
 				47126B5419C2DCD40049F4C5 /* UIView+InheritantOf.m */,
 				38CE6E161A27360300B39665 /* UITextField+CaretPosition.h */,
 				38CE6E171A27360300B39665 /* UITextField+CaretPosition.m */,
+				4774F6E51A359BB400058D5E /* NSMutableAttributedString+Presentation.h */,
+				4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2786,8 +2778,6 @@
 				EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */,
 				3887CBB8197690FC004DFFFD /* OptionalSplitViewController.h */,
 				3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */,
-				EAE1E3A117B2519000A45623 /* PaymentDetailsViewController.h */,
-				EAE1E3A217B2519000A45623 /* PaymentDetailsViewController.m */,
 				38288F4419C86A6700661BFB /* PaymentMethodSelectorViewController.h */,
 				38288F4519C86A6700661BFB /* PaymentMethodSelectorViewController.m */,
 				38288F4619C86A6700661BFB /* PaymentMethodSelectorViewController.xib */,
@@ -3141,7 +3131,6 @@
 				3840862819A20D9900C837C2 /* InvitationsViewController~ipad.xib in Resources */,
 				EA31A1EB17DDB29B00F937F7 /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
 				47AC3F9C1987B2C3005491C6 /* SuggestionCell~ipad.xib in Resources */,
-				EAE7B6B017E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */,
 				47971C5F199A3A560018FDA8 /* TextEntryCell~ipad.xib in Resources */,
 				3876769519BF56A2007B0EE5 /* CustomInfoViewController~ipad.xib in Resources */,
 				EA333F3918A4BEDC00D8A44E /* page_zoom.json in Resources */,
@@ -3289,7 +3278,6 @@
 				47971C6A199A4E830018FDA8 /* DoubleEntryCell~ipad.xib in Resources */,
 				385A668D1978178500D00D1F /* ContactsViewController~ipad.xib in Resources */,
 				BBC691271721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
-				EAE7B6AF17E9AC5000E03D73 /* IdentificationNotificationView.xib in Resources */,
 				38675457198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */,
 				EA333F3818A4BEDC00D8A44E /* page_zoom.json in Resources */,
 				47971C67199A3FB60018FDA8 /* SelectionCell~ipad.xib in Resources */,
@@ -3719,7 +3707,6 @@
 				EA31A17017DDB29B00F937F7 /* ButtonCell.m in Sources */,
 				3887CBBF1976AF2B004DFFFD /* CancelHelper.m in Sources */,
 				EA31A17117DDB29B00F937F7 /* PhoneBookProfile.m in Sources */,
-				EAE7B6AD17E9AC3F00E03D73 /* IdentificationNotificationView.m in Sources */,
 				EA31A17217DDB29B00F937F7 /* PhoneBookProfileSelector.m in Sources */,
 				EA31A17317DDB29B00F937F7 /* PhoneBookAddress.m in Sources */,
 				EA31A17417DDB29B00F937F7 /* DismissKeyboardTableView.m in Sources */,
@@ -3820,7 +3807,7 @@
 				389F682A198FC1C6006CF1F6 /* ObjectModel+Payments.m in Sources */,
 				EA31A1B817DDB29B00F937F7 /* QuickProfileValidationOperation.m in Sources */,
 				EA31A1B917DDB29B00F937F7 /* SwitchCell.m in Sources */,
-				EA31A1BA17DDB29B00F937F7 /* PaymentDetailsViewController.m in Sources */,
+				4774F6E81A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */,
 				EA677B46189B855200505139 /* StartPaymentButton.m in Sources */,
 				389F6824198FC1C6006CF1F6 /* ObjectModel+Currencies.m in Sources */,
 				389F6826198FC1C6006CF1F6 /* ObjectModel+CurrencyPairs.m in Sources */,
@@ -3932,6 +3919,7 @@
 				38F6DE5F19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m in Sources */,
 				389F682D198FC1C6006CF1F6 /* ObjectModel+Recipients.m in Sources */,
 				389F683F198FC1C6006CF1F6 /* PaymentMadeIndicator.m in Sources */,
+				4774F6E71A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */,
 				383FC10019AE1B6700465FCA /* SeeHowView.m in Sources */,
 				479B693419489303001FA4FE /* TransferDetialsHeaderView.m in Sources */,
 				47C4D04F1A237F61005EC7C6 /* AchLoginViewController.m in Sources */,
@@ -4018,7 +4006,6 @@
 				EAD66759174A51B900D29BCB /* ButtonCell.m in Sources */,
 				3887CBBE1976AF2B004DFFFD /* CancelHelper.m in Sources */,
 				EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */,
-				EAE7B6AC17E9AC3F00E03D73 /* IdentificationNotificationView.m in Sources */,
 				EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */,
 				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
 				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,
@@ -4122,7 +4109,6 @@
 				47FC53C11A1F61CF00F5E632 /* TypeFieldHelper.m in Sources */,
 				EAA07BF117AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */,
 				BB7EAE8E17AFE0DF006A7182 /* SwitchCell.m in Sources */,
-				EAE1E3A317B2519000A45623 /* PaymentDetailsViewController.m in Sources */,
 				EA677B45189B855200505139 /* StartPaymentButton.m in Sources */,
 				389F6823198FC1C6006CF1F6 /* ObjectModel+Currencies.m in Sources */,
 				389F6825198FC1C6006CF1F6 /* ObjectModel+CurrencyPairs.m in Sources */,
