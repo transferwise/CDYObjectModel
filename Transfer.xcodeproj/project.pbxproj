@@ -89,8 +89,8 @@
 		3831DCC819B8646000151A3D /* PullToRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831DCC619B8646000151A3D /* PullToRefreshView.xib */; };
 		38342BAB196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
 		38342BAC196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
-		383FC0F019AE1A1A00465FCA /* StateSuggestionProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0EF19AE1A1A00465FCA /* StateSuggestionProvider.m */; };
-		383FC0F119AE1A1A00465FCA /* StateSuggestionProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0EF19AE1A1A00465FCA /* StateSuggestionProvider.m */; };
+		383FC0F019AE1A1A00465FCA /* StateSuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0EF19AE1A1A00465FCA /* StateSuggestionCellProvider.m */; };
+		383FC0F119AE1A1A00465FCA /* StateSuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0EF19AE1A1A00465FCA /* StateSuggestionCellProvider.m */; };
 		383FC0F819AE1ABC00465FCA /* EmailLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0F319AE1ABC00465FCA /* EmailLookupWrapper.m */; };
 		383FC0F919AE1ABC00465FCA /* EmailLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0F319AE1ABC00465FCA /* EmailLookupWrapper.m */; };
 		383FC0FA19AE1ABC00465FCA /* PersonLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0F519AE1ABC00465FCA /* PersonLookupWrapper.m */; };
@@ -1034,8 +1034,8 @@
 		3831DCC619B8646000151A3D /* PullToRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PullToRefreshView.xib; sourceTree = "<group>"; };
 		38342BA9196E9362002FF371 /* DataEntryMultiColumnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryMultiColumnViewController.h; sourceTree = "<group>"; };
 		38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryMultiColumnViewController.m; sourceTree = "<group>"; };
-		383FC0EE19AE1A1A00465FCA /* StateSuggestionProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateSuggestionProvider.h; sourceTree = "<group>"; };
-		383FC0EF19AE1A1A00465FCA /* StateSuggestionProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateSuggestionProvider.m; sourceTree = "<group>"; };
+		383FC0EE19AE1A1A00465FCA /* StateSuggestionCellProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateSuggestionCellProvider.h; sourceTree = "<group>"; };
+		383FC0EF19AE1A1A00465FCA /* StateSuggestionCellProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateSuggestionCellProvider.m; sourceTree = "<group>"; };
 		383FC0F219AE1ABC00465FCA /* EmailLookupWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailLookupWrapper.h; sourceTree = "<group>"; };
 		383FC0F319AE1ABC00465FCA /* EmailLookupWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailLookupWrapper.m; sourceTree = "<group>"; };
 		383FC0F419AE1ABC00465FCA /* PersonLookupWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonLookupWrapper.h; sourceTree = "<group>"; };
@@ -2903,8 +2903,8 @@
 				EA59296E17589F3A007C0072 /* RecipientProfileValidation.h */,
 				38D8FBD319AF21B4007C73DF /* ReferralsCoordinator.h */,
 				38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */,
-				383FC0EE19AE1A1A00465FCA /* StateSuggestionProvider.h */,
-				383FC0EF19AE1A1A00465FCA /* StateSuggestionProvider.m */,
+				383FC0EE19AE1A1A00465FCA /* StateSuggestionCellProvider.h */,
+				383FC0EF19AE1A1A00465FCA /* StateSuggestionCellProvider.m */,
 				47AC3F8F1987AFAC005491C6 /* SuggestionCellProvider.h */,
 				47AC3F901987AFAC005491C6 /* SuggestionCellProvider.m */,
 				38504B0719C1E83700276203 /* TouchIDHelper.h */,
@@ -3829,7 +3829,7 @@
 				383FC0FD19AE1ABC00465FCA /* PhoneLookupWrapper.m in Sources */,
 				EA2296C317E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
 				470C13221A12660300EEAF25 /* ObjectModel+ReferralLinks.m in Sources */,
-				383FC0F119AE1A1A00465FCA /* StateSuggestionProvider.m in Sources */,
+				383FC0F119AE1A1A00465FCA /* StateSuggestionCellProvider.m in Sources */,
 				EA0523F7191B596B00B32899 /* RefundDetailsViewController.m in Sources */,
 				38002200192F443E009B1D53 /* CurrencyCell.m in Sources */,
 				EAB61715191CDD1000545C21 /* ResetPasswordOperation.m in Sources */,
@@ -4130,7 +4130,7 @@
 				383FC0FC19AE1ABC00465FCA /* PhoneLookupWrapper.m in Sources */,
 				EA0523F6191B596B00B32899 /* RefundDetailsViewController.m in Sources */,
 				470C13211A12660300EEAF25 /* ObjectModel+ReferralLinks.m in Sources */,
-				383FC0F019AE1A1A00465FCA /* StateSuggestionProvider.m in Sources */,
+				383FC0F019AE1A1A00465FCA /* StateSuggestionCellProvider.m in Sources */,
 				380021FF192F443E009B1D53 /* CurrencyCell.m in Sources */,
 				47233CD6196D457300449042 /* LoginViewController.m in Sources */,
 				38CC81A51A1E368F007D965A /* ACHCheckView.m in Sources */,

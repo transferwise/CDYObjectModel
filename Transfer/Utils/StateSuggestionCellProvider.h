@@ -17,7 +17,7 @@
 
 @end
 
-@interface StateSuggestionProvider : SuggestionCellProvider
+@interface StateSuggestionCellProvider : SuggestionCellProvider
 
 - (State *)getByCodeOrName:(NSString*)codeOrName;
 

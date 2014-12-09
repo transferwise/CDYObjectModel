@@ -22,7 +22,7 @@
 #import "DoubleEntryCell.h"
 #import "Country.h"
 #import "SwitchCell.h"
-#import "StateSuggestionProvider.h"
+#import "StateSuggestionCellProvider.h"
 
 #define MIN_PASSWORD_LENGTH	5
 
