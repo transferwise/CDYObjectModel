@@ -62,7 +62,7 @@
 #import "CurrenciesOperation.h"
 #import "CountriesOperation.h"
 #import "CountrySuggestionCellProvider.h"
-#import "StateSuggestionProvider.h"
+#import "StateSuggestionCellProvider.h"
 #import "RecipientUpdateOperation.h"
 #import "Mixpanel+Customisation.h"
 #import "TypeFieldHelper.h"
@@ -126,7 +126,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 @property (nonatomic,strong)TextEntryCell *stateCell;
 
 @property (nonatomic, strong) CountrySuggestionCellProvider *countryCellProvider;
-@property (nonatomic, strong) StateSuggestionProvider *stateCellProvider;
+@property (nonatomic, strong) StateSuggestionCellProvider *stateCellProvider;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewTopContentOffset;
 
@@ -253,7 +253,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     [stateCell setCellTag:@"state"];
     stateCell.selectionDelegate = self;
     
-    self.stateCellProvider = [[StateSuggestionProvider alloc] init];
+    self.stateCellProvider = [[StateSuggestionCellProvider alloc] init];
     [super configureWithDataSource:self.stateCellProvider
                          entryCell:self.stateCell
                             height:self.stateCell.frame.size.height];
