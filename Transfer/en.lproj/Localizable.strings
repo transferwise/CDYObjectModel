@@ -533,10 +533,10 @@ Payment #%@";
 "payment.method.REGULAR" = "Bank transfer";
 "payment.method.REGULAR.USD" = "Wire transfer";
 "payment.method.ADYEN" = "Debit card";
-"payment.method.SWIFT" = "International wire";
-"payment.method.SWIFT.USD" = "International wire";
-"payment.method.ACH" = "Direct debit (ACH)";
-"payment.method.ACH.USD" = "Direct debit (ACH)";
+"payment.method.SWIFT" = "SWIFT";
+"payment.method.SWIFT.USD" = "SWIFT";
+"payment.method.ACH" = "Bank debit (ACH)";
+"payment.method.ACH.USD" = "Bank debit (ACH)";
 
 "payment.method.title.DATA_CASH" = "Pay by debit card";
 "payment.method.title.REGULAR" = "Pay by bank transfer";
