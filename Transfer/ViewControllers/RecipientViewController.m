@@ -66,6 +66,7 @@
 #import "RecipientUpdateOperation.h"
 #import "Mixpanel+Customisation.h"
 #import "TypeFieldHelper.h"
+#import "TargetCountryProvider.h"
 
 static NSUInteger const kRecipientSection = 0;
 static NSUInteger const kCurrencySection = 1;
@@ -144,7 +145,8 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     for (UITableView* tableView in self.tableViews)
@@ -155,7 +157,7 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     
     self.cellHeight = IPAD ? 70.0f : 60.0f;
     
-     __weak typeof(self) weakSelf = self;
+	__weak typeof(self) weakSelf = self;
     
     RecipientEntrySelectionCell *nameCell = [self.tableViews[0] dequeueReusableCellWithIdentifier:TRWRecipientEntrySelectionCellIdentifier];
 
@@ -202,49 +204,9 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
 							height:self.cellHeight];
     
     
-     NSMutableArray *addressCells = [NSMutableArray array];
+	NSMutableArray *addressCells = [NSMutableArray array];
     
-    SelectionCell *countryCell = [SelectionCell loadInstance];
-    [self setCountryCell:countryCell];
-    [addressCells addObject:countryCell];
-    [countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
-    [countryCell setCellTag:@"countryCode"];
-    NSFetchedResultsController* countriesFetcher = [self.objectModel fetchedControllerForAllCountries];
-    
-    self.countryCellProvider = [[CountrySuggestionCellProvider alloc] init];
-    
-    [self.countryCellProvider setAutoCompleteResults:[self.objectModel fetchedControllerForAllCountries]];
-    
-    [super configureWithDataSource:self.countryCellProvider
-						 entryCell:self.countryCell
-							height:self.countryCell.frame.size.height];
-	
-	[self.countryCell setSelectionHandler:^(NSString *countryName) {
-        [weakSelf didSelectCountry:countryName];
-    }];
-    
-	self.countryCell.selectionDelegate = self;
-    
-    TRWProgressHUD * hud = nil;
-    if([countriesFetcher.fetchedObjects count]<=0)
-    {
-        hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
-    }
-    CountriesOperation *operation = [CountriesOperation operation];
-    [self setExecutedOperation:operation];
-    [operation setObjectModel:self.objectModel];
-    [operation setCompletionHandler:^(NSError *error) {
-        [hud hide];
-        if (error) {
-            TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.countries.refresh.error.title", nil)
-                                                               message:NSLocalizedString(@"personal.profile.countries.refresh.error.message", nil)];
-            [alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
-            [alertView show];
-            return;
-        }
-        
-    }];
-    [operation execute];
+	[self createCountryCell:addressCells];
     
     SelectionCell *stateCell = [SelectionCell loadInstance];
     [self setStateCell:stateCell];
@@ -289,6 +251,53 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
 }
 
+- (void)createCountryCell:(NSMutableArray *)addressCells
+{
+	__weak typeof(self) weakSelf = self;
+	
+	SelectionCell *countryCell = [SelectionCell loadInstance];
+	[self setCountryCell:countryCell];
+	[addressCells addObject:countryCell];
+	[countryCell configureWithTitle:NSLocalizedString(@"personal.profile.country.label", nil) value:@""];
+	[countryCell setCellTag:@"countryCode"];
+	NSFetchedResultsController* countriesFetcher = [self.objectModel fetchedControllerForAllCountries];
+	
+	self.countryCellProvider = [[CountrySuggestionCellProvider alloc] init];
+	
+	[self.countryCellProvider setAutoCompleteResults:[self.objectModel fetchedControllerForAllCountries]];
+	
+	[super configureWithDataSource:self.countryCellProvider
+						 entryCell:self.countryCell
+							height:self.countryCell.frame.size.height];
+	
+	[self.countryCell setSelectionHandler:^(NSString *countryName) {
+		[weakSelf didSelectCountry:countryName];
+	}];
+	
+	self.countryCell.selectionDelegate = self;
+	
+	TRWProgressHUD * hud = nil;
+	if([countriesFetcher.fetchedObjects count]<=0)
+	{
+		hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
+	}
+	CountriesOperation *operation = [CountriesOperation operation];
+	[self setExecutedOperation:operation];
+	[operation setObjectModel:self.objectModel];
+	[operation setCompletionHandler:^(NSError *error) {
+		[hud hide];
+		if (error)
+		{
+			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.countries.refresh.error.title", nil)
+															   message:NSLocalizedString(@"personal.profile.countries.refresh.error.message", nil)];
+			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
+			[alertView show];
+			return;
+		}
+	}];
+	
+	[operation execute];
+}
 
 -(void)setupTableView:(UITableView*)tableView
 {
@@ -426,6 +435,16 @@ NSString *const kButtonCellIdentifier = @"kButtonCellIdentifier";
     }
    
     [self didSelectRecipient:self.recipient];
+	
+	if (!self.recipient && !self.noPendingPayment)
+	{
+		//set the recipient country based on targent currency, if pending payment exists
+		if (self.objectModel.pendingPayment
+			&& self.objectModel.pendingPayment.targetCurrency)
+		{
+			[self.countryCell setCode:[TargetCountryProvider getTargetCountryForCurrency:self.objectModel.pendingPayment.targetCurrency]];
+		}
+	}
 
     [self setShown:YES];
 }

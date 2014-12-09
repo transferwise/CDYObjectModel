@@ -423,6 +423,8 @@
 		472D5643198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */; };
 		472D5646198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5645198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m */; };
 		472D5647198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5645198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m */; };
+		47334E831A37121A004C19F7 /* TargetCountryProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 47334E821A37121A004C19F7 /* TargetCountryProvider.m */; };
+		47334E841A37121A004C19F7 /* TargetCountryProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 47334E821A37121A004C19F7 /* TargetCountryProvider.m */; };
 		47343ACE1977E093009D9C3A /* RecipientsFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47343ACD1977E093009D9C3A /* RecipientsFooterView.m */; };
 		47343ACF1977E093009D9C3A /* RecipientsFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47343ACD1977E093009D9C3A /* RecipientsFooterView.m */; };
 		47343AD11977E0B1009D9C3A /* RecipientsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47343AD01977E0B1009D9C3A /* RecipientsFooterView.xib */; };
@@ -1318,6 +1320,8 @@
 		472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalPaymentProfileViewController.m; sourceTree = "<group>"; };
 		472D5644198FEBEE00257BB8 /* BusinessPaymentProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessPaymentProfileViewController.h; sourceTree = "<group>"; };
 		472D5645198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessPaymentProfileViewController.m; sourceTree = "<group>"; };
+		47334E811A37121A004C19F7 /* TargetCountryProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetCountryProvider.h; sourceTree = "<group>"; };
+		47334E821A37121A004C19F7 /* TargetCountryProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TargetCountryProvider.m; sourceTree = "<group>"; };
 		47343ACC1977E093009D9C3A /* RecipientsFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientsFooterView.h; sourceTree = "<group>"; };
 		47343ACD1977E093009D9C3A /* RecipientsFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientsFooterView.m; sourceTree = "<group>"; };
 		47343AD01977E0B1009D9C3A /* RecipientsFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientsFooterView.xib; sourceTree = "<group>"; };
@@ -2919,6 +2923,8 @@
 				47C4D0571A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.m */,
 				47FC53BF1A1F61CF00F5E632 /* TypeFieldHelper.h */,
 				47FC53C01A1F61CF00F5E632 /* TypeFieldHelper.m */,
+				47334E811A37121A004C19F7 /* TargetCountryProvider.h */,
+				47334E821A37121A004C19F7 /* TargetCountryProvider.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -3731,6 +3737,7 @@
 				EA31A17C17DDB29B00F937F7 /* NoUserPaymentFlow.m in Sources */,
 				38288F4819C86A6700661BFB /* PaymentMethodSelectorViewController.m in Sources */,
 				388F09FC1934A1C000DBD93D /* UIView+RenderBlur.m in Sources */,
+				47334E841A37121A004C19F7 /* TargetCountryProvider.m in Sources */,
 				EA31A17E17DDB29B00F937F7 /* ClaimAccountViewController.m in Sources */,
 				EA31A17F17DDB29B00F937F7 /* ClaimAccountOperation.m in Sources */,
 				4723EA301975639E00B4345F /* BlueRoundedButton.m in Sources */,
@@ -3892,6 +3899,7 @@
 				EAD736A7171E87ED00A037B1 /* UserRecipientsOperation.m in Sources */,
 				EAB7215B171FC61B00DE29F5 /* SettingsViewController.m in Sources */,
 				47343ACE1977E093009D9C3A /* RecipientsFooterView.m in Sources */,
+				47334E831A37121A004C19F7 /* TargetCountryProvider.m in Sources */,
 				3887CBBA197690FC004DFFFD /* OptionalSplitViewController.m in Sources */,
 				47FB7EA91941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m in Sources */,
 				38C8A79D19371DBC00714FB3 /* PullToRefreshView.m in Sources */,

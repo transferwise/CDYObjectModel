@@ -232,9 +232,12 @@
     [[Mixpanel sharedInstance] sendPageView:@"Select recipient"];
 
     RecipientViewController *controller = [[RecipientViewController alloc] init];
-    if ([Credentials userLoggedIn]) {
+    if ([Credentials userLoggedIn])
+	{
         [controller setReportingType:RecipientReportingLoggedIn];
-    } else {
+    }
+	else
+	{
         [controller setReportingType:RecipientReportingNotLoggedIn];
     }
     [controller setObjectModel:self.objectModel];
@@ -246,6 +249,7 @@
     [controller setAfterSaveAction:^{
         [weakSelf presentNextPaymentScreen];
     }];
+	
     if(template)
     {
         controller.templateRecipient = template;
@@ -254,6 +258,7 @@
     {
         controller.updateRecipient = updateRecipient;
     }
+	
     [controller setPreLoadRecipientsWithCurrency:self.objectModel.pendingPayment.targetCurrency];
     [self.navigationController pushViewController:controller animated:YES];
 }
