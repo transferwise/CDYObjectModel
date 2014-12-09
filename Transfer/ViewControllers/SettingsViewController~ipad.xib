@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController">
@@ -105,7 +106,7 @@
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RnR-rW-OWQ">
                             <rect key="frame" x="244" y="0.0" width="228" height="60"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="228" id="JTu-le-NX3"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="228" id="JTu-le-NX3"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -142,11 +143,11 @@
                         <constraint firstAttribute="bottom" secondItem="g77-IP-Czb" secondAttribute="bottom" id="6d2-mj-HgV"/>
                         <constraint firstAttribute="trailing" secondItem="ByK-p2-DG0" secondAttribute="trailing" id="7Uh-p7-gTr"/>
                         <constraint firstAttribute="centerX" secondItem="RnR-rW-OWQ" secondAttribute="centerX" constant="26" id="7hT-cA-1PM"/>
+                        <constraint firstItem="mNC-nX-I9A" firstAttribute="leading" secondItem="RnR-rW-OWQ" secondAttribute="trailing" constant="3" id="CEQ-Bt-D2L"/>
                         <constraint firstAttribute="trailing" secondItem="g77-IP-Czb" secondAttribute="trailing" id="HfM-Is-Ee1"/>
                         <constraint firstItem="RnR-rW-OWQ" firstAttribute="top" secondItem="xJR-g2-g36" secondAttribute="top" id="Imc-Ku-ihY"/>
                         <constraint firstAttribute="centerY" secondItem="mNC-nX-I9A" secondAttribute="centerY" id="S0B-Cz-EcQ"/>
                         <constraint firstItem="g77-IP-Czb" firstAttribute="leading" secondItem="xJR-g2-g36" secondAttribute="leading" id="Sj1-7o-KXt"/>
-                        <constraint firstAttribute="centerX" secondItem="mNC-nX-I9A" secondAttribute="centerX" constant="-115.5" id="VND-o9-Ky2"/>
                         <constraint firstAttribute="height" constant="60" id="Wi1-hl-dDZ"/>
                         <constraint firstAttribute="bottom" secondItem="RnR-rW-OWQ" secondAttribute="bottom" id="nb0-bI-OYb"/>
                     </constraints>
