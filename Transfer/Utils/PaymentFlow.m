@@ -735,7 +735,8 @@
             if ([self.objectModel hasNoOrOnlyCancelledPaymentsExeptThis:paymentID])
             {
                 Event* event = [[EventTracker sharedManager] newEvent:@"InappConversion"];
-                [event setOrderId:[NSString stringWithFormat:@"%@",payment.remoteId]];
+                [event setOrderId:[NSString stringWithFormat:@"%@",createdPayment.remoteId]];
+                [event setCustomerId:[[weakSelf.objectModel currentUser] pReference]];
                 [[EventTracker sharedManager] submit:event];
             }
 #endif

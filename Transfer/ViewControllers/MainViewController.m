@@ -23,8 +23,6 @@
 #import "ProfilesEditViewController.h"
 #import "InvitationsViewController.h"
 #import "SendButtonFlashHelper.h"
-#import "TAGManager.h"
-#import "TAGContainerOpener.h"
 #import "NavigationBarCustomiser.h"
 
 
@@ -37,7 +35,6 @@
 @property (nonatomic, strong) ProfilesEditViewController *profileController;
 @property (nonatomic, assign) BOOL launchTableViewGamAdjustmentDone;
 @property (nonatomic) BOOL shown;
-@property (nonatomic, strong) id<TAGContainerFuture> future;
 
 @end
 
@@ -52,8 +49,6 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentsList) name:TRWMoveToPaymentsListNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentView) name:TRWMoveToPaymentViewNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSendButtonFlashNotification:) name:TRWChangeSendButtonFlashStatusNotification object:nil];
-        //TODO: remove and replace with outcome from A/B test
-        _future = [TAGContainerOpener openContainerWithId:TRWGoogleTagManagerContainerId tagManager:[TAGManager instance] openType:kTAGOpenTypePreferNonDefault timeout:nil];
     }
     return self;
 }
@@ -187,28 +182,11 @@
 {
 	UIViewController *presented;
     
-    TAGContainer* container = [self.future get];
-    //A/B test
-    NSString* testName = [container stringForKey:@"iOSRegistrationTestName"];
-    BOOL requireRegistration = [container booleanForKey:testName];
-#ifdef REGISTRATION_UPFRONT_OVERRIDE
-    requireRegistration = REGISTRATION_UPFRONT_OVERRIDE;
-#endif
-    
-	if (requireRegistration)
-	{
-        IntroViewController *introController = [[IntroViewController alloc] init];
-        [introController setObjectModel:self.objectModel];
-        introController.requireRegistration = YES;
-        presented = introController;
-	}
-	else
-	{
-		NewPaymentViewController *controller = [[NewPaymentViewController alloc] init];
-		[controller setObjectModel:self.objectModel];
-		presented = controller;
-	}
-	
+    IntroViewController *introController = [[IntroViewController alloc] init];
+    [introController setObjectModel:self.objectModel];
+    introController.requireRegistration = YES;
+    presented = introController;
+
 	ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:presented navBarHidden:YES];
 	return wrapper;
 }

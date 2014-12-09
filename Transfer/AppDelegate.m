@@ -36,8 +36,6 @@
 #import "ObjectModel+Settings.h"
 #import "IntroViewController.h"
 #import "NewPaymentViewController.h"
-#import "TAGManager.h"
-#import "TAGContainerOpener.h"
 
 @interface AppDelegate ()
 
@@ -48,9 +46,6 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    //TODO: remove and replace with outcome from A/B test
-    id<TAGContainerFuture> future = [TAGContainerOpener openContainerWithId:TRWGoogleTagManagerContainerId tagManager:[TAGManager instance] openType:kTAGOpenTypePreferNonDefault timeout:nil];
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 	
@@ -92,20 +87,11 @@
 	UIViewController* controller;
 
     
-    //TODO: remove and replace with outcome from A/B test
-    //A/B test
-    TAGContainer* container = [future get];
-    NSString* testName = [container stringForKey:@"iOSRegistrationTestName"];
-    BOOL requireRegistration = [container booleanForKey:testName];
-#ifdef REGISTRATION_UPFRONT_OVERRIDE
-    requireRegistration = REGISTRATION_UPFRONT_OVERRIDE;
-#endif
-    
-	if (![Credentials userLoggedIn] && (![self.objectModel hasIntroBeenShown] || (requireRegistration && [self.objectModel hasExistingUserIntroBeenShown])))
+	if (![Credentials userLoggedIn] && (![self.objectModel hasIntroBeenShown] || [self.objectModel hasExistingUserIntroBeenShown]))
 	{
 		IntroViewController *introController = [[IntroViewController alloc] init];
 		[introController setObjectModel:self.objectModel];
-        introController.requireRegistration = requireRegistration;
+        introController.requireRegistration = YES;
         controller = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:introController navBarHidden:YES];
 	}
 	else if(![self.objectModel hasExistingUserIntroBeenShown])
@@ -113,7 +99,7 @@
 		IntroViewController *introController = [[IntroViewController alloc] init];
 		introController.plistFilenameOverride = @"existingUserIntro";
 		[introController setObjectModel:self.objectModel];
-        introController.requireRegistration = requireRegistration && ![Credentials userLoggedIn];
+        introController.requireRegistration = ![Credentials userLoggedIn];
 		[[GoogleAnalytics sharedInstance] sendScreen:@"Whats new screen"];
         controller = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:introController navBarHidden:YES];
 	}
