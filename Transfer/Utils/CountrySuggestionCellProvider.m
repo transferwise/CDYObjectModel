@@ -27,11 +27,12 @@
 
 - (Country *)getCountryByCodeOrName:(NSString *)codeOrName
 {
+	NSString *lowerCoderOrName = [codeOrName lowercaseString];
 	for(Country *country in self.autoCompleteResults.fetchedObjects)
     {
-		if([country.iso3Code isEqualToString:codeOrName]
-		   || [country.iso2Code isEqualToString:codeOrName]
-		   || [[country.name lowercaseString] isEqualToString:[codeOrName lowercaseString]])
+		if([country.iso3Code isEqualToString:lowerCoderOrName]
+		   || [country.iso2Code isEqualToString:lowerCoderOrName]
+		   || [[country.name lowercaseString] isEqualToString:lowerCoderOrName])
 		{
 			return country;
 		}
