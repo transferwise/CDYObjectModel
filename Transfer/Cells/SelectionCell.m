@@ -48,7 +48,7 @@ NSString *const TWSelectionCellIdentifier = @"CountrySelectionCell";
 - (void)setValueFromCode:(NSString *)value
 {
 	id<SelectionItem> selected = [self.selectionDelegate selectionCell:self
-															 getByCodeOrName:value];
+													   getByCodeOrName:value];
 	
     self.selectedItem = selected;
     [self.entryField setText:selected.name];
@@ -60,7 +60,7 @@ NSString *const TWSelectionCellIdentifier = @"CountrySelectionCell";
 	{
 		//this will be either set to a correct country if user typed the name of the country
 		//or nil, if value is incorrect
-		//if user selected country form the list then that selection will be tone after this
+		//if user selected country form the list then that selection will be done after this
 		self.selectedItem = [self.selectionDelegate selectionCell:self
 												  getByCodeOrName:self.entryField.text];
 	}
