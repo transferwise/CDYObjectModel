@@ -122,6 +122,15 @@ NSString *const kRecipientCellIdentifier = @"kRecipientCellIdentifier";
     [SendButtonFlashHelper setSendFlash:NO];
 }
 
+-(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    for(RecipientCell* cell in [self.tableView visibleCells])
+    {
+        [cell setIsCancelVisible:NO animated:NO];
+    }
+}
+
 
 #pragma mark - Table view data source
 

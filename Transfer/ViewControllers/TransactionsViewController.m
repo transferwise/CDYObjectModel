@@ -153,6 +153,15 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [self.refreshView refreshComplete];
 }
 
+-(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    for(PaymentCell* cell in [self.tableView visibleCells])
+    {
+        [cell setIsCancelVisible:NO animated:NO];
+    }
+}
+
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
