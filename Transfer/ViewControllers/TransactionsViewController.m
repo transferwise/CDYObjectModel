@@ -296,15 +296,6 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
             [self setExecutedOperation:nil];
 			
-            if (totalCount > self.payments.count)
-			{
-                [self.tableView setTableFooterView:self.loadingFooterView];
-            }
-			else
-			{
-                [self.tableView setTableFooterView:nil];
-            }
-			
 			[self.tableView reloadData];
             
             if(!error && totalCount == 0)
@@ -320,13 +311,28 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
                 }
             }
 			
-			
+            BOOL footerUpdateScheduled = NO;
 			//data may already be locally stored, this will be overwritten
 			if (delta > 0)
 			{
+                footerUpdateScheduled = YES;
+                [CATransaction begin];
+                __weak typeof(self) weakSelf = self;
+                [CATransaction setCompletionBlock:^{
+                    if (totalCount > self.payments.count)
+                    {
+                        [weakSelf.tableView setTableFooterView:self.loadingFooterView];
+                    }
+                    else
+                    {
+                        [weakSelf.tableView setTableFooterView:nil];
+                    }
+
+                }];
                 [self.tableView reloadRowsAtIndexPaths:[TransactionsViewController generateIndexPathsFrom:currentCount
                                                                                                 withCount:delta]
                                       withRowAnimation:UITableViewRowAnimationFade];
+                [CATransaction commit];
             }
 			
 			if(self.isViewAppearing)
@@ -343,6 +349,18 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 										  scrollPosition:UITableViewScrollPositionMiddle];
 				}
 			}
+            
+            if(!footerUpdateScheduled)
+            {
+                if (totalCount > self.payments.count)
+                {
+                    [self.tableView setTableFooterView:self.loadingFooterView];
+                }
+                else
+                {
+                    [self.tableView setTableFooterView:nil];
+                }
+            }
             
             [self.refreshView refreshComplete];
             
