@@ -8,14 +8,14 @@ PODS:
     - CDYObjectModel/Core (= 1.0)
   - CDYObjectModel/Core (1.0)
   - CXAlertView (1.0.1)
-  - Facebook-iOS-SDK (3.20.0):
+  - Facebook-iOS-SDK (3.21.1):
     - Bolts (~> 1.0)
-  - JVFloatLabeledTextField (0.0.9)
+  - JVFloatLabeledTextField (1.0.0)
   - Lockbox (2.1.0)
   - MBProgressHUD (0.9)
-  - Mixpanel (2.6.0):
-    - Mixpanel/MPCategoryHelpers (= 2.6.0)
-  - Mixpanel/MPCategoryHelpers (2.6.0)
+  - Mixpanel (2.6.2):
+    - Mixpanel/MPCategoryHelpers (= 2.6.2)
+  - Mixpanel/MPCategoryHelpers (2.6.2)
   - Reachability (3.2)
   - SMPageControl (1.2)
   - TestFlightSDK (3.0.2)
@@ -40,17 +40,25 @@ EXTERNAL SOURCES:
   CDYObjectModel:
     :git: https://github.com/coodly/CDYObjectModel.git
 
+CHECKOUT OPTIONS:
+  CDYAnalyticsCoordinator:
+    :commit: 5ca6ba7710acff8bb923ba7c4f7a34df4f4e8b93
+    :git: https://github.com/coodly/CDYAnalyticsCoordinator.git
+  CDYObjectModel:
+    :commit: 4e8d91343197c26197e0ab0b408e3c72c06336c6
+    :git: https://github.com/coodly/CDYObjectModel.git
+
 SPEC CHECKSUMS:
   AFNetworking: 80c4e0652b08eb34e25b9c0ff3c82556fe5967b4
   Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
   CDYAnalyticsCoordinator: 75094418537506be1355dd6cc0248f622d9f591e
   CDYObjectModel: da0ab52fa697ba2df41b32219f3bb90dea544270
   CXAlertView: 29bfa5841d168a016e1a70474ed840d0f4f67c2c
-  Facebook-iOS-SDK: 5854404b4b651f612a8ef79ca06d766858f4cb8e
-  JVFloatLabeledTextField: b6c7d824d231b3c01d14692feada878808480af8
+  Facebook-iOS-SDK: 18c26e86ab25c17854a2ee2a8f60562099c6600f
+  JVFloatLabeledTextField: c2b8124e439cf2b05fe5bb38f44358743588c1bd
   Lockbox: 3168f08cb26680b05a0702b8c0cc6da32788059d
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
-  Mixpanel: e919d14f07a34ee01f81f97e535b7a240af2f793
+  Mixpanel: c075cedebda3328ce1ee29a18429e265ce967cd8
   Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
   SMPageControl: 506b0c561d3ddbe2d5df28cb33acc8e4b1f93f19
   TestFlightSDK: 0c24c533748d0d84bfe7a3cb6036fa79124d84ee

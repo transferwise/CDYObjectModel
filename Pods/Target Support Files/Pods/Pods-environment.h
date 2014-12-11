@@ -51,14 +51,14 @@
 // Facebook-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_Facebook_iOS_SDK
 #define COCOAPODS_VERSION_MAJOR_Facebook_iOS_SDK 3
-#define COCOAPODS_VERSION_MINOR_Facebook_iOS_SDK 20
-#define COCOAPODS_VERSION_PATCH_Facebook_iOS_SDK 0
+#define COCOAPODS_VERSION_MINOR_Facebook_iOS_SDK 21
+#define COCOAPODS_VERSION_PATCH_Facebook_iOS_SDK 1
 
 // JVFloatLabeledTextField
 #define COCOAPODS_POD_AVAILABLE_JVFloatLabeledTextField
-#define COCOAPODS_VERSION_MAJOR_JVFloatLabeledTextField 0
+#define COCOAPODS_VERSION_MAJOR_JVFloatLabeledTextField 1
 #define COCOAPODS_VERSION_MINOR_JVFloatLabeledTextField 0
-#define COCOAPODS_VERSION_PATCH_JVFloatLabeledTextField 9
+#define COCOAPODS_VERSION_PATCH_JVFloatLabeledTextField 0
 
 // Lockbox
 #define COCOAPODS_POD_AVAILABLE_Lockbox
@@ -76,13 +76,13 @@
 #define COCOAPODS_POD_AVAILABLE_Mixpanel
 #define COCOAPODS_VERSION_MAJOR_Mixpanel 2
 #define COCOAPODS_VERSION_MINOR_Mixpanel 6
-#define COCOAPODS_VERSION_PATCH_Mixpanel 0
+#define COCOAPODS_VERSION_PATCH_Mixpanel 2
 
 // Mixpanel/MPCategoryHelpers
 #define COCOAPODS_POD_AVAILABLE_Mixpanel_MPCategoryHelpers
 #define COCOAPODS_VERSION_MAJOR_Mixpanel_MPCategoryHelpers 2
 #define COCOAPODS_VERSION_MINOR_Mixpanel_MPCategoryHelpers 6
-#define COCOAPODS_VERSION_PATCH_Mixpanel_MPCategoryHelpers 0
+#define COCOAPODS_VERSION_PATCH_Mixpanel_MPCategoryHelpers 2
 
 // Reachability
 #define COCOAPODS_POD_AVAILABLE_Reachability
