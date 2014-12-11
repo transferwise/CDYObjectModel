@@ -129,6 +129,471 @@
 		3840D34719A4D6AD00D1485A /* DropdownCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840D34519A4D6AD00D1485A /* DropdownCell~ipad.xib */; };
 		3840D34919A4D90F00D1485A /* RecipientFieldCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840D34819A4D90F00D1485A /* RecipientFieldCell~ipad.xib */; };
 		3840D34A19A4D90F00D1485A /* RecipientFieldCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840D34819A4D90F00D1485A /* RecipientFieldCell~ipad.xib */; };
+		38495ADC1A3899AA005E6AA7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA1479171BC911005B9430 /* main.m */; };
+		38495ADD1A3899AA005E6AA7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA147D171BC911005B9430 /* AppDelegate.m */; };
+		38495ADE1A3899AA005E6AA7 /* SuggestionDataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AC3F8C1987845A005491C6 /* SuggestionDataEntryViewController.m */; };
+		38495ADF1A3899AA005E6AA7 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0450D217EC5BC1008921DA /* IntroViewController.m */; };
+		38495AE01A3899AA005E6AA7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39674171BD4EE00F6D011 /* MainViewController.m */; };
+		38495AE11A3899AA005E6AA7 /* TransactionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39679171BD51400F6D011 /* TransactionsViewController.m */; };
+		38495AE21A3899AA005E6AA7 /* SeparatorViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC11119AE1BF400465FCA /* SeparatorViewCell.m */; };
+		38495AE31A3899AA005E6AA7 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3967E171BD57000F6D011 /* ContactsViewController.m */; };
+		38495AE41A3899AA005E6AA7 /* NewPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD39688171BD82300F6D011 /* NewPaymentViewController.m */; };
+		38495AE51A3899AA005E6AA7 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E031171BDF1A0019FBF0 /* TableHeaderView.m */; };
+		38495AE61A3899AA005E6AA7 /* MoneyEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E035171BE1210019FBF0 /* MoneyEntryCell.m */; };
+		38495AE71A3899AA005E6AA7 /* RedRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA321975644A00B4345F /* RedRoundedButton.m */; };
+		38495AE81A3899AA005E6AA7 /* YahooButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA101973D9B500B4345F /* YahooButton.m */; };
+		38495AE91A3899AA005E6AA7 /* UIColor+Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E043171BEB010019FBF0 /* UIColor+Theme.m */; };
+		38495AEA1A3899AA005E6AA7 /* UIColor+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021DA192CC89B009B1D53 /* UIColor+MOMStyle.m */; };
+		38495AEB1A3899AA005E6AA7 /* UIView+Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E048171BEDC40019FBF0 /* UIView+Loading.m */; };
+		38495AEC1A3899AA005E6AA7 /* TextEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA13E04B171BEF5D0019FBF0 /* TextEntryCell.m */; };
+		38495AED1A3899AA005E6AA7 /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF681171D19B50090A658 /* NSString+Validation.m */; };
+		38495AEE1A3899AA005E6AA7 /* CustomInfoViewControllerDelegateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0571A25F7CC005EC7C6 /* CustomInfoViewControllerDelegateHelper.m */; };
+		38495AEF1A3899AA005E6AA7 /* _Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67B4198FC1C5006CF1F6 /* _Recipient.m */; };
+		38495AF01A3899AA005E6AA7 /* NSMutableString+Issues.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF684171D1A320090A658 /* NSMutableString+Issues.m */; };
+		38495AF11A3899AA005E6AA7 /* UIApplication+Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF687171D1B6D0090A658 /* UIApplication+Keyboard.m */; };
+		38495AF21A3899AA005E6AA7 /* TRWAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF68A171D1FA50090A658 /* TRWAlertView.m */; };
+		38495AF31A3899AA005E6AA7 /* RecipientType.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67EE198FC1C6006CF1F6 /* RecipientType.m */; };
+		38495AF41A3899AA005E6AA7 /* ColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1A9E19518073008BC7A7 /* ColoredButton.m */; };
+		38495AF51A3899AA005E6AA7 /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67C6198FC1C5006CF1F6 /* Currency.m */; };
+		38495AF61A3899AA005E6AA7 /* TRWProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6B3171D23B20090A658 /* TRWProgressHUD.m */; };
+		38495AF71A3899AA005E6AA7 /* ReferralListOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4746EAFB19A7267B00D03557 /* ReferralListOperation.m */; };
+		38495AF81A3899AA005E6AA7 /* TransferwiseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6B7171D25C20090A658 /* TransferwiseOperation.m */; };
+		38495AF91A3899AA005E6AA7 /* LoginOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FF6BA171D26A00090A658 /* LoginOperation.m */; };
+		38495AFA1A3899AA005E6AA7 /* _ReferralLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 474A5A8E1A137EDC0094757B /* _ReferralLink.m */; };
+		38495AFB1A3899AA005E6AA7 /* SetSSNOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3818605619C9A206009A413E /* SetSSNOperation.m */; };
+		38495AFC1A3899AA005E6AA7 /* TabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021F4192F43EA009B1D53 /* TabCell.m */; };
+		38495AFD1A3899AA005E6AA7 /* NSDictionary+SensibleData.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4C1171D43440099063F /* NSDictionary+SensibleData.m */; };
+		38495AFE1A3899AA005E6AA7 /* RedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA0C1973D8E900B4345F /* RedButton.m */; };
+		38495AFF1A3899AA005E6AA7 /* TransferDetailsAmountsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693919499F9B001FA4FE /* TransferDetailsAmountsView.m */; };
+		38495B001A3899AA005E6AA7 /* PaymentMethodViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 38288F5319C8855800661BFB /* PaymentMethodViewControllerFactory.m */; };
+		38495B011A3899AA005E6AA7 /* UIButton+Skinning.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4CD171D4B4C0099063F /* UIButton+Skinning.m */; };
+		38495B021A3899AA005E6AA7 /* InvitationProgressIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52FA3199B69C800B6AEBD /* InvitationProgressIndicatorView.m */; };
+		38495B031A3899AA005E6AA7 /* GreenButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7D4D0171D4BB20099063F /* GreenButton.m */; };
+		38495B041A3899AA005E6AA7 /* UIViewController+SwitchToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 476D78C419B70F7500B561DA /* UIViewController+SwitchToViewController.m */; };
+		38495B051A3899AA005E6AA7 /* GrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD73689171E6CB100A037B1 /* GrayButton.m */; };
+		38495B061A3899AA005E6AA7 /* RecipientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD736A1171E85C300A037B1 /* RecipientCell.m */; };
+		38495B071A3899AA005E6AA7 /* ReferralLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 474A5A921A137EFA0094757B /* ReferralLink.m */; };
+		38495B081A3899AA005E6AA7 /* UserRecipientsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD736A6171E87ED00A037B1 /* UserRecipientsOperation.m */; };
+		38495B091A3899AA005E6AA7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB72159171FC61B00DE29F5 /* SettingsViewController.m */; };
+		38495B0A1A3899AA005E6AA7 /* RecipientsFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47343ACD1977E093009D9C3A /* RecipientsFooterView.m */; };
+		38495B0B1A3899AA005E6AA7 /* TargetCountryProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 47334E821A37121A004C19F7 /* TargetCountryProvider.m */; };
+		38495B0C1A3899AA005E6AA7 /* OptionalSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */; };
+		38495B0D1A3899AA005E6AA7 /* NSString+DeviceSpecificLocalisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FB7EA81941B8AC003B1C8F /* NSString+DeviceSpecificLocalisation.m */; };
+		38495B0E1A3899AA005E6AA7 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8A79C19371DBC00714FB3 /* PullToRefreshView.m */; };
+		38495B0F1A3899AA005E6AA7 /* WhiteRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388B1F741990E04200DF13E8 /* WhiteRoundedButton.m */; };
+		38495B101A3899AA005E6AA7 /* UIView+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021C3192CC531009B1D53 /* UIView+MOMStyle.m */; };
+		38495B111A3899AA005E6AA7 /* InvitationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52F9C199B63B600B6AEBD /* InvitationsViewController.m */; };
+		38495B121A3899AA005E6AA7 /* SettingsTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB7215E171FCAAC00DE29F5 /* SettingsTitleCell.m */; };
+		38495B131A3899AA005E6AA7 /* MoneyCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB72164171FDC7F00DE29F5 /* MoneyCalculator.m */; };
+		38495B141A3899AA005E6AA7 /* _PaymentMadeIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67AE198FC1C5006CF1F6 /* _PaymentMadeIndicator.m */; };
+		38495B151A3899AA005E6AA7 /* DoublePasswordEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47535CAD1981362600DC39D6 /* DoublePasswordEntryCell.m */; };
+		38495B161A3899AA005E6AA7 /* TransferCalculationsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6253171FECF700A96770 /* TransferCalculationsOperation.m */; };
+		38495B171A3899AA005E6AA7 /* _RecipientType.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67B6198FC1C5006CF1F6 /* _RecipientType.m */; };
+		38495B181A3899AA005E6AA7 /* MOMBaseStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021B6192CC531009B1D53 /* MOMBaseStyle.m */; };
+		38495B191A3899AA005E6AA7 /* ProfilesEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 474C45201993CD38001F207C /* ProfilesEditViewController.m */; };
+		38495B1A1A3899AA005E6AA7 /* CalculationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA6256172011C500A96770 /* CalculationResult.m */; };
+		38495B1B1A3899AA005E6AA7 /* SuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AC3F901987AFAC005491C6 /* SuggestionCellProvider.m */; };
+		38495B1C1A3899AA005E6AA7 /* TouchIDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38504B0819C1E83700276203 /* TouchIDHelper.m */; };
+		38495B1D1A3899AA005E6AA7 /* UIColor+SinglePixelImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021B4192CC531009B1D53 /* UIColor+SinglePixelImage.m */; };
+		38495B1E1A3899AA005E6AA7 /* BusinessPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5645198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m */; };
+		38495B1F1A3899AA005E6AA7 /* UIGestureRecognizer+Cancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C580A2196AC1A7007771DB /* UIGestureRecognizer+Cancel.m */; };
+		38495B201A3899AA005E6AA7 /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC691221721416300F0FB1A /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -Wno-deprecated-declarations"; }; };
+		38495B211A3899AA005E6AA7 /* PageZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = EA333F3B18A4C00000D8A44E /* PageZoom.m */; };
+		38495B221A3899AA005E6AA7 /* NanTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = EACD942D18D82C2C00369905 /* NanTracking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		38495B231A3899AA005E6AA7 /* AuthenticationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4735E4D41992258C00F41D1E /* AuthenticationHelper.m */; };
+		38495B241A3899AA005E6AA7 /* RecipientUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F6DE5E19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m */; };
+		38495B251A3899AA005E6AA7 /* ObjectModel+Recipients.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67D4198FC1C5006CF1F6 /* ObjectModel+Recipients.m */; };
+		38495B261A3899AA005E6AA7 /* PaymentMadeIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67E6198FC1C6006CF1F6 /* PaymentMadeIndicator.m */; };
+		38495B271A3899AA005E6AA7 /* NSMutableAttributedString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4774F6E61A359BB400058D5E /* NSMutableAttributedString+Presentation.m */; };
+		38495B281A3899AA005E6AA7 /* SeeHowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0FF19AE1B6700465FCA /* SeeHowView.m */; };
+		38495B291A3899AA005E6AA7 /* TransferDetialsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693319489303001FA4FE /* TransferDetialsHeaderView.m */; };
+		38495B2A1A3899AA005E6AA7 /* AchLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D04D1A237F61005EC7C6 /* AchLoginViewController.m */; };
+		38495B2B1A3899AA005E6AA7 /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E65A172F96490021492C /* Credentials.m */; };
+		38495B2C1A3899AA005E6AA7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67F6198FC1C6006CF1F6 /* User.m */; };
+		38495B2D1A3899AA005E6AA7 /* _Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67BA198FC1C5006CF1F6 /* _Setting.m */; };
+		38495B2E1A3899AA005E6AA7 /* UIFont+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B69361948A2EB001FA4FE /* UIFont+MOMStyle.m */; };
+		38495B2F1A3899AA005E6AA7 /* DataEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E662172F979F0021492C /* DataEntryViewController.m */; };
+		38495B301A3899AA005E6AA7 /* CustomInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876768D19BF4914007B0EE5 /* CustomInfoViewController.m */; };
+		38495B311A3899AA005E6AA7 /* PersonalProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E664172F979F0021492C /* PersonalProfileViewController.m */; };
+		38495B321A3899AA005E6AA7 /* NSError+TRWErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E677172F97C40021492C /* NSError+TRWErrors.m */; };
+		38495B331A3899AA005E6AA7 /* _Country.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67A2198FC1C5006CF1F6 /* _Country.m */; };
+		38495B341A3899AA005E6AA7 /* PairTargetCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67E0198FC1C6006CF1F6 /* PairTargetCurrency.m */; };
+		38495B351A3899AA005E6AA7 /* UIView+InheritantOf.m in Sources */ = {isa = PBXBuildFile; fileRef = 47126B5419C2DCD40049F4C5 /* UIView+InheritantOf.m */; };
+		38495B361A3899AA005E6AA7 /* UIView+Container.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E679172F97C40021492C /* UIView+Container.m */; };
+		38495B371A3899AA005E6AA7 /* CountriesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E67D172F97D50021492C /* CountriesOperation.m */; };
+		38495B381A3899AA005E6AA7 /* _RecipientTypeField.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67B8198FC1C5006CF1F6 /* _RecipientTypeField.m */; };
+		38495B391A3899AA005E6AA7 /* NetworkErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E67F172F97D50021492C /* NetworkErrorCodes.m */; };
+		38495B3A1A3899AA005E6AA7 /* UserDetailsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E683172F97D50021492C /* UserDetailsOperation.m */; };
+		38495B3B1A3899AA005E6AA7 /* SelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E689172F97E20021492C /* SelectionCell.m */; };
+		38495B3C1A3899AA005E6AA7 /* DateEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E68C172F97E20021492C /* DateEntryCell.m */; };
+		38495B3D1A3899AA005E6AA7 /* CircleStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3856691C198157C600BC4230 /* CircleStyle.m */; };
+		38495B3E1A3899AA005E6AA7 /* CountrySuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F84D5E1988D73A00886D41 /* CountrySuggestionCellProvider.m */; };
+		38495B3F1A3899AA005E6AA7 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E692172F97F50021492C /* Constants.m */; };
+		38495B401A3899AA005E6AA7 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA88E695172F980A0021492C /* SignUpViewController.m */; };
+		38495B411A3899AA005E6AA7 /* PaymentsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76B1732790D005602F7 /* PaymentsOperation.m */; };
+		38495B421A3899AA005E6AA7 /* PaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35C76F17327973005602F7 /* PaymentCell.m */; };
+		38495B431A3899AA005E6AA7 /* CurrencyPairsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B23961721323E001AE9DE /* CurrencyPairsOperation.m */; };
+		38495B441A3899AA005E6AA7 /* RecipientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F491733DA1400B65BF3 /* RecipientViewController.m */; };
+		38495B451A3899AA005E6AA7 /* StyledPlaceholderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */; };
+		38495B461A3899AA005E6AA7 /* IntrinsicSizeUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF356194F0A46004CE986 /* IntrinsicSizeUIView.m */; };
+		38495B471A3899AA005E6AA7 /* CurrenciesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F4F1733DC3500B65BF3 /* CurrenciesOperation.m */; };
+		38495B481A3899AA005E6AA7 /* TextContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0450CE17EC3635008921DA /* TextContainerView.m */; };
+		38495B491A3899AA005E6AA7 /* TransferwiseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F571733E8F700B65BF3 /* TransferwiseClient.m */; };
+		38495B4A1A3899AA005E6AA7 /* ValidationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B52F95199B622D00B6AEBD /* ValidationCell.m */; };
+		38495B4B1A3899AA005E6AA7 /* ObjectModel+Countries.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67C8198FC1C5006CF1F6 /* ObjectModel+Countries.m */; };
+		38495B4C1A3899AA005E6AA7 /* RecipientTypesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA54F5A1733EF1A00B65BF3 /* RecipientTypesOperation.m */; };
+		38495B4D1A3899AA005E6AA7 /* CurrencySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AA60C17379C9D00E99150 /* CurrencySelectionCell.m */; };
+		38495B4E1A3899AA005E6AA7 /* RecipientFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069031737B8AE007C8DEE /* RecipientFieldCell.m */; };
+		38495B4F1A3899AA005E6AA7 /* PersonalProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67EA198FC1C6006CF1F6 /* PersonalProfile.m */; };
+		38495B501A3899AA005E6AA7 /* TouchIdPromptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3811674319C1E9A800B29151 /* TouchIdPromptViewController.m */; };
+		38495B511A3899AA005E6AA7 /* ConfigurationOptionsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA347747180D694F00104417 /* ConfigurationOptionsOperation.m */; };
+		38495B521A3899AA005E6AA7 /* RecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD069091737CF57007C8DEE /* RecipientOperation.m */; };
+		38495B531A3899AA005E6AA7 /* InsetRespectingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FE1936434A00DBD93D /* InsetRespectingButton.m */; };
+		38495B541A3899AA005E6AA7 /* NonEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9BA54517252BAE00AAAB5A /* NonEditTextField.m */; };
+		38495B551A3899AA005E6AA7 /* GrayRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 385A66851977C9A200D00D1F /* GrayRoundedButton.m */; };
+		38495B561A3899AA005E6AA7 /* PersonalProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD85B0A173920C300C22211 /* PersonalProfileOperation.m */; };
+		38495B571A3899AA005E6AA7 /* PersonalProfileIdentificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D478FF173A3B5300FC317E /* PersonalProfileIdentificationViewController.m */; };
+		38495B581A3899AA005E6AA7 /* ObjectModel+PendingPayments.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67D2198FC1C5006CF1F6 /* ObjectModel+PendingPayments.m */; };
+		38495B591A3899AA005E6AA7 /* CardPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3648A17E2F6EF001EFE40 /* CardPaymentViewController.m */; };
+		38495B5A1A3899AA005E6AA7 /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC92173B7C28008773FC /* BusinessProfileViewController.m */; };
+		38495B5B1A3899AA005E6AA7 /* FieldGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0431A232AC1005EC7C6 /* FieldGroup.m */; };
+		38495B5C1A3899AA005E6AA7 /* AddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B092E4194F2EB700315BE4 /* AddressBookManager.m */; };
+		38495B5D1A3899AA005E6AA7 /* BusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */; };
+		38495B5E1A3899AA005E6AA7 /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */; };
+		38495B5F1A3899AA005E6AA7 /* TypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67F4198FC1C6006CF1F6 /* TypeFieldValue.m */; };
+		38495B601A3899AA005E6AA7 /* BusinessProfileIdentificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0450C717EC3544008921DA /* BusinessProfileIdentificationViewController.m */; };
+		38495B611A3899AA005E6AA7 /* PaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E32173A676000C5D613 /* PaymentFlow.m */; };
+		38495B621A3899AA005E6AA7 /* ConfirmPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E36173A861000C5D613 /* ConfirmPaymentViewController.m */; };
+		38495B631A3899AA005E6AA7 /* ConfirmPaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E3B173A8A7100C5D613 /* ConfirmPaymentCell.m */; };
+		38495B641A3899AA005E6AA7 /* RecipientEntrySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */; };
+		38495B651A3899AA005E6AA7 /* _PairSourceCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67A6198FC1C5006CF1F6 /* _PairSourceCurrency.m */; };
+		38495B661A3899AA005E6AA7 /* DropdownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAC203A17422AB3001DDE7A /* DropdownCell.m */; };
+		38495B671A3899AA005E6AA7 /* ResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB6170C191CD61900545C21 /* ResetPasswordViewController.m */; };
+		38495B681A3899AA005E6AA7 /* ObjectModel+PayInMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67CE198FC1C5006CF1F6 /* ObjectModel+PayInMethod.m */; };
+		38495B691A3899AA005E6AA7 /* BankTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29BD46173CD2FF0016A6E9 /* BankTransferViewController.m */; };
+		38495B6A1A3899AA005E6AA7 /* _Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67A4198FC1C5006CF1F6 /* _Currency.m */; };
+		38495B6B1A3899AA005E6AA7 /* TextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29BD4C173CDF6F0016A6E9 /* TextCell.m */; };
+		38495B6C1A3899AA005E6AA7 /* PersonLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0F519AE1ABC00465FCA /* PersonLookupWrapper.m */; };
+		38495B6D1A3899AA005E6AA7 /* PaymentMethodSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3647817E2EBF2001EFE40 /* PaymentMethodSelectionView.m */; };
+		38495B6E1A3899AA005E6AA7 /* CreatePaymentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAF8FAF17436730008DF9E2 /* CreatePaymentOperation.m */; };
+		38495B6F1A3899AA005E6AA7 /* MoneyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAF8FB71743B3E4008DF9E2 /* MoneyFormatter.m */; };
+		38495B701A3899AA005E6AA7 /* Transfer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 38CB1F7219ABB47000CD0953 /* Transfer.xcdatamodeld */; };
+		38495B711A3899AA005E6AA7 /* PlainPresentationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3856690E1980FB0500BC4230 /* PlainPresentationCell.m */; };
+		38495B721A3899AA005E6AA7 /* TransferTypeSelectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B093071951FA2A00315BE4 /* TransferTypeSelectionHeader.m */; };
+		38495B731A3899AA005E6AA7 /* UINavigationController+StackManipulations.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1861DF17463F8D00BD01BB /* UINavigationController+StackManipulations.m */; };
+		38495B741A3899AA005E6AA7 /* RegisterOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1861E21746442900BD01BB /* RegisterOperation.m */; };
+		38495B751A3899AA005E6AA7 /* PaymentCancelOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3840863019A2444000C837C2 /* PaymentCancelOperation.m */; };
+		38495B761A3899AA005E6AA7 /* TransferWaitingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF34C194B4E5D004CE986 /* TransferWaitingViewController.m */; };
+		38495B771A3899AA005E6AA7 /* TabbedHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 471CA002197FCB2200BCA3B4 /* TabbedHeaderViewController.m */; };
+		38495B781A3899AA005E6AA7 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67F2198FC1C6006CF1F6 /* Setting.m */; };
+		38495B791A3899AA005E6AA7 /* BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67C2198FC1C5006CF1F6 /* BusinessProfile.m */; };
+		38495B7A1A3899AA005E6AA7 /* UITextField+CaretPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CE6E171A27360300B39665 /* UITextField+CaretPosition.m */; };
+		38495B7B1A3899AA005E6AA7 /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66758174A51B900D29BCB /* ButtonCell.m */; };
+		38495B7C1A3899AA005E6AA7 /* CancelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBBD1976AF2B004DFFFD /* CancelHelper.m */; };
+		38495B7D1A3899AA005E6AA7 /* PhoneBookProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66780174CB34600D29BCB /* PhoneBookProfile.m */; };
+		38495B7E1A3899AA005E6AA7 /* PhoneBookProfileSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66783174CB3AE00D29BCB /* PhoneBookProfileSelector.m */; };
+		38495B7F1A3899AA005E6AA7 /* PhoneBookAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD66786174CD3FE00D29BCB /* PhoneBookAddress.m */; };
+		38495B801A3899AA005E6AA7 /* DismissKeyboardTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD667CA174F6F7B00D29BCB /* DismissKeyboardTableView.m */; };
+		38495B811A3899AA005E6AA7 /* VerificationRequiredOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59292B175621D0007C0072 /* VerificationRequiredOperation.m */; };
+		38495B821A3899AA005E6AA7 /* AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0411A232AC1005EC7C6 /* AchBank.m */; };
+		38495B831A3899AA005E6AA7 /* UploadVerificationFileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59293D17577CCA007C0072 /* UploadVerificationFileOperation.m */; };
+		38495B841A3899AA005E6AA7 /* CurrencySelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021ED192F3DD3009B1D53 /* CurrencySelectorViewController.m */; };
+		38495B851A3899AA005E6AA7 /* OpenIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59298C1758CD6C007C0072 /* OpenIDViewController.m */; };
+		38495B861A3899AA005E6AA7 /* ObjectModel+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67D8198FC1C5006CF1F6 /* ObjectModel+Settings.m */; };
+		38495B871A3899AA005E6AA7 /* DataEntryDefaultHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B093021951FA2A00315BE4 /* DataEntryDefaultHeader.m */; };
+		38495B881A3899AA005E6AA7 /* _PendingPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67B0198FC1C5006CF1F6 /* _PendingPayment.m */; };
+		38495B891A3899AA005E6AA7 /* PersonalProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297017589F5C007C0072 /* PersonalProfileCommitter.m */; };
+		38495B8A1A3899AA005E6AA7 /* _TypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67BC198FC1C5006CF1F6 /* _TypeFieldValue.m */; };
+		38495B8B1A3899AA005E6AA7 /* EmailCheckOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */; };
+		38495B8C1A3899AA005E6AA7 /* RecipientProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */; };
+		38495B8D1A3899AA005E6AA7 /* AchDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477319F11A1B62BB00660770 /* AchDetailsViewController.m */; };
+		38495B8E1A3899AA005E6AA7 /* LoggedInPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */; };
+		38495B8F1A3899AA005E6AA7 /* NoUserPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D5175DD5EE00ACD3F6 /* NoUserPaymentFlow.m */; };
+		38495B901A3899AA005E6AA7 /* RecipientTypeField.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67F0198FC1C6006CF1F6 /* RecipientTypeField.m */; };
+		38495B911A3899AA005E6AA7 /* DismissKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA23197436D000B4345F /* DismissKeyboardViewController.m */; };
+		38495B921A3899AA005E6AA7 /* TransparentModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3831AA33194B31A200B3EE5C /* TransparentModalViewController.m */; };
+		38495B931A3899AA005E6AA7 /* UIView+RenderBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F09FA1934A1BB00DBD93D /* UIView+RenderBlur.m */; };
+		38495B941A3899AA005E6AA7 /* _Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67AC198FC1C5006CF1F6 /* _Payment.m */; };
+		38495B951A3899AA005E6AA7 /* TransferDetialsRecipientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B693D1949C36F001FA4FE /* TransferDetialsRecipientView.m */; };
+		38495B961A3899AA005E6AA7 /* ClaimAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */; };
+		38495B971A3899AA005E6AA7 /* PaymentMethodSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38288F4519C86A6700661BFB /* PaymentMethodSelectorViewController.m */; };
+		38495B981A3899AA005E6AA7 /* ClaimAccountOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB93B471761C74700A7337C /* ClaimAccountOperation.m */; };
+		38495B991A3899AA005E6AA7 /* BlueRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA2E1975639E00B4345F /* BlueRoundedButton.m */; };
+		38495B9A1A3899AA005E6AA7 /* RoundedCellBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */; };
+		38495B9B1A3899AA005E6AA7 /* ProfileEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E29176860EA00904D97 /* ProfileEditViewController.m */; };
+		38495B9C1A3899AA005E6AA7 /* ProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E2F1768673500904D97 /* ProfileSource.m */; };
+		38495B9D1A3899AA005E6AA7 /* PersonalProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E321768674700904D97 /* PersonalProfileSource.m */; };
+		38495B9E1A3899AA005E6AA7 /* BusinessProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EA416E351768675400904D97 /* BusinessProfileSource.m */; };
+		38495B9F1A3899AA005E6AA7 /* MultipleEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B36C821986543B002E66C7 /* MultipleEntryCell.m */; };
+		38495BA01A3899AA005E6AA7 /* HeaderTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C7B29219742596004324E8 /* HeaderTabView.m */; };
+		38495BA11A3899AA005E6AA7 /* BusinessProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92D9531769BD9D0078D0C4 /* BusinessProfileCommitter.m */; };
+		38495BA21A3899AA005E6AA7 /* ImageColoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA141973F32400B4345F /* ImageColoredButton.m */; };
+		38495BA31A3899AA005E6AA7 /* RemoveTokenOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7F8815176F2B44003B0F46 /* RemoveTokenOperation.m */; };
+		38495BA41A3899AA005E6AA7 /* FloatingLabelTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 473DF971196D5ED600524C64 /* FloatingLabelTextField.m */; };
+		38495BA51A3899AA005E6AA7 /* PersonalPaymentProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472D5641198FE98500257BB8 /* PersonalPaymentProfileViewController.m */; };
+		38495BA61A3899AA005E6AA7 /* UITableView+FooterPositioning.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9A2E82176B711400C5E058 /* UITableView+FooterPositioning.m */; };
+		38495BA71A3899AA005E6AA7 /* Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67E4198FC1C6006CF1F6 /* Payment.m */; };
+		38495BA81A3899AA005E6AA7 /* ObjectModel+AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0491A232B1E005EC7C6 /* ObjectModel+AchBank.m */; };
+		38495BA91A3899AA005E6AA7 /* RoundedCellWhiteBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB704E7C177300C30042F8A9 /* RoundedCellWhiteBackgroundView.m */; };
+		38495BAA1A3899AA005E6AA7 /* TransferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 479B692A19487865001FA4FE /* TransferDetailsViewController.m */; };
+		38495BAB1A3899AA005E6AA7 /* LightBlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF343194B2F11004CE986 /* LightBlueButton.m */; };
+		38495BAC1A3899AA005E6AA7 /* Mixpanel+Customisation.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC0B9A19EED51500173E07 /* Mixpanel+Customisation.m */; };
+		38495BAD1A3899AA005E6AA7 /* PendingPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67E8198FC1C6006CF1F6 /* PendingPayment.m */; };
+		38495BAE1A3899AA005E6AA7 /* _AllowedTypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F679E198FC1C5006CF1F6 /* _AllowedTypeFieldValue.m */; };
+		38495BAF1A3899AA005E6AA7 /* NSString+MOMStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021E2192CC99D009B1D53 /* NSString+MOMStyle.m */; };
+		38495BB01A3899AA005E6AA7 /* TabBarActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C73178EA124009D6B83 /* TabBarActivityIndicatorView.m */; };
+		38495BB11A3899AA005E6AA7 /* NameSuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B093141951FA8300315BE4 /* NameSuggestionCellProvider.m */; };
+		38495BB21A3899AA005E6AA7 /* _PayInMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67AA198FC1C5006CF1F6 /* _PayInMethod.m */; };
+		38495BB31A3899AA005E6AA7 /* GoogleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA181973F3CA00B4345F /* GoogleButton.m */; };
+		38495BB41A3899AA005E6AA7 /* NSDictionary+Cleanup.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225C84178EB21C009D6B83 /* NSDictionary+Cleanup.m */; };
+		38495BB51A3899AA005E6AA7 /* VerificationFormOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B386491A1CDC9A00478402 /* VerificationFormOperation.m */; };
+		38495BB61A3899AA005E6AA7 /* SwipeToCancelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 476C6B87196C18BF007002F9 /* SwipeToCancelCell.m */; };
+		38495BB71A3899AA005E6AA7 /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C1A899199CC5A0000BF59C /* InviteViewController.m */; };
+		38495BB81A3899AA005E6AA7 /* ConnectionAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B1C5D5195DBA6400BEE66E /* ConnectionAwareViewController.m */; };
+		38495BB91A3899AA005E6AA7 /* DataEntryMultiColumnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38342BAA196E9362002FF371 /* DataEntryMultiColumnViewController.m */; };
+		38495BBA1A3899AA005E6AA7 /* MOMCompoundStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021BD192CC531009B1D53 /* MOMCompoundStyle.m */; };
+		38495BBB1A3899AA005E6AA7 /* CheckPersonalProfileVerificationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE7B6B217E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m */; };
+		38495BBC1A3899AA005E6AA7 /* BlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF35A195031E7004CE986 /* BlueButton.m */; };
+		38495BBD1A3899AA005E6AA7 /* AllowedTypeFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67C0198FC1C5006CF1F6 /* AllowedTypeFieldValue.m */; };
+		38495BBE1A3899AA005E6AA7 /* SendButtonFlashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C0395A19E598DF00555F65 /* SendButtonFlashHelper.m */; };
+		38495BBF1A3899AA005E6AA7 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA83401949B8DF0065AD2A /* GradientView.m */; };
+		38495BC01A3899AA005E6AA7 /* RedGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D1AA51951A500008BC7A7 /* RedGradientButton.m */; };
+		38495BC11A3899AA005E6AA7 /* PayInMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67E2198FC1C6006CF1F6 /* PayInMethod.m */; };
+		38495BC21A3899AA005E6AA7 /* AchFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F667671A1DD2A0003C018A /* AchFlow.m */; };
+		38495BC31A3899AA005E6AA7 /* SuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AC3F941987B2C3005491C6 /* SuggestionCell.m */; };
+		38495BC41A3899AA005E6AA7 /* _FieldGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D03B1A232A9F005EC7C6 /* _FieldGroup.m */; };
+		38495BC51A3899AA005E6AA7 /* ReferralLinksOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 470C131C1A12598300EEAF25 /* ReferralLinksOperation.m */; };
+		38495BC61A3899AA005E6AA7 /* NSDate+ServerTime.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CA2178EB591009D6B83 /* NSDate+ServerTime.m */; };
+		38495BC71A3899AA005E6AA7 /* RecipientsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA225CAE178ECD68009D6B83 /* RecipientsOperation.m */; };
+		38495BC81A3899AA005E6AA7 /* IntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0450D917EC64BC008921DA /* IntroView.m */; };
+		38495BC91A3899AA005E6AA7 /* TransferPayIPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA271975349C00B4345F /* TransferPayIPadViewController.m */; };
+		38495BCA1A3899AA005E6AA7 /* _PersonalProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67B2198FC1C5006CF1F6 /* _PersonalProfile.m */; };
+		38495BCB1A3899AA005E6AA7 /* CancellableCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC10319AE1B8300465FCA /* CancellableCellViewController.m */; };
+		38495BCC1A3899AA005E6AA7 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FAF347194B3233004CE986 /* UIImage+Color.m */; };
+		38495BCD1A3899AA005E6AA7 /* MOMBasicStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021DE192CC980009B1D53 /* MOMBasicStyle.m */; };
+		38495BCE1A3899AA005E6AA7 /* _BusinessProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67A0198FC1C5006CF1F6 /* _BusinessProfile.m */; };
+		38495BCF1A3899AA005E6AA7 /* _User.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67BE198FC1C5006CF1F6 /* _User.m */; };
+		38495BD01A3899AA005E6AA7 /* SettlementRecipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B093161951FA8300315BE4 /* SettlementRecipient.m */; };
+		38495BD11A3899AA005E6AA7 /* TextFieldSuggestionTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B093051951FA2A00315BE4 /* TextFieldSuggestionTable.m */; };
+		38495BD21A3899AA005E6AA7 /* UIImage+RenderBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 3856690A1980FA1200BC4230 /* UIImage+RenderBlur.m */; };
+		38495BD31A3899AA005E6AA7 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E57F76192A51DD00D864A2 /* TabViewController.m */; };
+		38495BD41A3899AA005E6AA7 /* MOMRoundedCornerStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021C1192CC531009B1D53 /* MOMRoundedCornerStyle.m */; };
+		38495BD51A3899AA005E6AA7 /* UploadMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3648317E2F394001EFE40 /* UploadMoneyViewController.m */; };
+		38495BD61A3899AA005E6AA7 /* PullPaymentDetailsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD33EAA17E84C2700CE0608 /* PullPaymentDetailsOperation.m */; };
+		38495BD71A3899AA005E6AA7 /* NameSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BD98A1195C5973009F9B4A /* NameSuggestionCell.m */; };
+		38495BD81A3899AA005E6AA7 /* MOMStyleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021B8192CC531009B1D53 /* MOMStyleFactory.m */; };
+		38495BD91A3899AA005E6AA7 /* RoundedButtonWithInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA3619756A9800B4345F /* RoundedButtonWithInsets.m */; };
+		38495BDA1A3899AA005E6AA7 /* PairSourceCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67DE198FC1C6006CF1F6 /* PairSourceCurrency.m */; };
+		38495BDB1A3899AA005E6AA7 /* ContactDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 385669031980F9F200BC4230 /* ContactDetailsViewController.m */; };
+		38495BDC1A3899AA005E6AA7 /* NSMutableDictionary+SaneData.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1E4E32179FF1E500F8D932 /* NSMutableDictionary+SaneData.m */; };
+		38495BDD1A3899AA005E6AA7 /* EmailLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0F319AE1ABC00465FCA /* EmailLookupWrapper.m */; };
+		38495BDE1A3899AA005E6AA7 /* SpinningImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA415D4417A7B2A900E9B56A /* SpinningImageView.m */; };
+		38495BDF1A3899AA005E6AA7 /* _PairTargetCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67A8198FC1C5006CF1F6 /* _PairTargetCurrency.m */; };
+		38495BE01A3899AA005E6AA7 /* NSString+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6AD0617A91A95006A347D /* NSString+Presentation.m */; };
+		38495BE11A3899AA005E6AA7 /* ObjectModel+Payments.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67D0198FC1C5006CF1F6 /* ObjectModel+Payments.m */; };
+		38495BE21A3899AA005E6AA7 /* TypeFieldHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FC53C01A1F61CF00F5E632 /* TypeFieldHelper.m */; };
+		38495BE31A3899AA005E6AA7 /* QuickProfileValidationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA07BF017AF750A004B97AC /* QuickProfileValidationOperation.m */; };
+		38495BE41A3899AA005E6AA7 /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7EAE8D17AFE0DE006A7182 /* SwitchCell.m */; };
+		38495BE51A3899AA005E6AA7 /* StartPaymentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA677B44189B855200505139 /* StartPaymentButton.m */; };
+		38495BE61A3899AA005E6AA7 /* ObjectModel+Currencies.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67CA198FC1C5006CF1F6 /* ObjectModel+Currencies.m */; };
+		38495BE71A3899AA005E6AA7 /* ObjectModel+CurrencyPairs.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67CC198FC1C5006CF1F6 /* ObjectModel+CurrencyPairs.m */; };
+		38495BE81A3899AA005E6AA7 /* SupportCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0253B517D5C89500F54C18 /* SupportCoordinator.m */; };
+		38495BE91A3899AA005E6AA7 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0253BD17D5E49100F54C18 /* UIDevice-Hardware.m */; };
+		38495BEA1A3899AA005E6AA7 /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67C4198FC1C5006CF1F6 /* Country.m */; };
+		38495BEB1A3899AA005E6AA7 /* ObjectModel+RecipientTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67D6198FC1C5006CF1F6 /* ObjectModel+RecipientTypes.m */; };
+		38495BEC1A3899AA005E6AA7 /* NavigationBarCustomiser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4723EA1C1974095B00B4345F /* NavigationBarCustomiser.m */; };
+		38495BED1A3899AA005E6AA7 /* DoubleEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F84D69198A638B00886D41 /* DoubleEntryCell.m */; };
+		38495BEE1A3899AA005E6AA7 /* Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67EC198FC1C6006CF1F6 /* Recipient.m */; };
+		38495BEF1A3899AA005E6AA7 /* PaymentMethodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38288F4C19C86DC200661BFB /* PaymentMethodCell.m */; };
+		38495BF01A3899AA005E6AA7 /* FeedbackCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8FC93D17D864F100E13969 /* FeedbackCoordinator.m */; };
+		38495BF11A3899AA005E6AA7 /* ObjectModel+Users.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67DA198FC1C5006CF1F6 /* ObjectModel+Users.m */; };
+		38495BF21A3899AA005E6AA7 /* AchWaitingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38057ACD1A1D03BF005E94DD /* AchWaitingViewController.m */; };
+		38495BF31A3899AA005E6AA7 /* ObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F67DC198FC1C5006CF1F6 /* ObjectModel.m */; };
+		38495BF41A3899AA005E6AA7 /* ReferralsCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D8FBD419AF21B4007C73DF /* ReferralsCoordinator.m */; };
+		38495BF51A3899AA005E6AA7 /* SeeHowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC10519AE1B8300465FCA /* SeeHowViewController.m */; };
+		38495BF61A3899AA005E6AA7 /* PaymentPurposeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2296C117E04D1B001CF541 /* PaymentPurposeOperation.m */; };
+		38495BF71A3899AA005E6AA7 /* PhoneLookupWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0F719AE1ABC00465FCA /* PhoneLookupWrapper.m */; };
+		38495BF81A3899AA005E6AA7 /* RefundDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0523F5191B596B00B32899 /* RefundDetailsViewController.m */; };
+		38495BF91A3899AA005E6AA7 /* ObjectModel+ReferralLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 470C13201A12660300EEAF25 /* ObjectModel+ReferralLinks.m */; };
+		38495BFA1A3899AA005E6AA7 /* StateSuggestionCellProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 383FC0EF19AE1A1A00465FCA /* StateSuggestionCellProvider.m */; };
+		38495BFB1A3899AA005E6AA7 /* CurrencyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 380021FE192F443E009B1D53 /* CurrencyCell.m */; };
+		38495BFC1A3899AA005E6AA7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47233CD4196D457300449042 /* LoginViewController.m */; };
+		38495BFD1A3899AA005E6AA7 /* ACHCheckView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CC81A41A1E368F007D965A /* ACHCheckView.m */; };
+		38495BFE1A3899AA005E6AA7 /* ResetPasswordOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB61713191CDD1000545C21 /* ResetPasswordOperation.m */; };
+		38495BFF1A3899AA005E6AA7 /* VerifyFormOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 471DAA7C1A276DD00077E341 /* VerifyFormOperation.m */; };
+		38495C001A3899AA005E6AA7 /* TransferBackButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2296C517E08027001CF541 /* TransferBackButtonItem.m */; };
+		38495C011A3899AA005E6AA7 /* GoogleAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = BA66546EEC8C630867200E77 /* GoogleAnalytics.m */; };
+		38495C021A3899AA005E6AA7 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AEB3C61966B8BF00B852E1 /* UIResponder+FirstResponder.m */; };
+		38495C031A3899AA005E6AA7 /* _AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0391A232A9F005EC7C6 /* _AchBank.m */; };
+		38495C041A3899AA005E6AA7 /* UIView+SeparatorLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 47535CB41981367C00DC39D6 /* UIView+SeparatorLine.m */; };
+		38495C061A3899AA005E6AA7 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3812FA3919DAD9B5003F9904 /* libsqlite3.dylib */; };
+		38495C071A3899AA005E6AA7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD6675C174A565500D29BCB /* AddressBook.framework */; };
+		38495C081A3899AA005E6AA7 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD6675D174A565500D29BCB /* AddressBookUI.framework */; };
+		38495C091A3899AA005E6AA7 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB92B143172A747300B6F096 /* CoreText.framework */; };
+		38495C0A1A3899AA005E6AA7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EAEA626017202D6100A96770 /* libz.dylib */; };
+		38495C0B1A3899AA005E6AA7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD73693171E7A3200A037B1 /* Security.framework */; };
+		38495C0C1A3899AA005E6AA7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8FF6AC171D22340090A658 /* MobileCoreServices.framework */; };
+		38495C0D1A3899AA005E6AA7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8FF6AA171D222E0090A658 /* SystemConfiguration.framework */; };
+		38495C0E1A3899AA005E6AA7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146B171BC911005B9430 /* UIKit.framework */; };
+		38495C0F1A3899AA005E6AA7 /* libEventTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC0B9619EE84E000173E07 /* libEventTracker.a */; settings = {ATTRIBUTES = (Weak, ); }; };
+		38495C101A3899AA005E6AA7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146D171BC911005B9430 /* Foundation.framework */; };
+		38495C111A3899AA005E6AA7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA146F171BC911005B9430 /* CoreGraphics.framework */; };
+		38495C121A3899AA005E6AA7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA1471171BC911005B9430 /* CoreData.framework */; };
+		38495C131A3899AA005E6AA7 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA84055817F06DCD00F44916 /* AdSupport.framework */; };
+		38495C141A3899AA005E6AA7 /* libAppsFlyerLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38AEB3C21964369F00B852E1 /* libAppsFlyerLib.a */; };
+		38495C151A3899AA005E6AA7 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61557417A69A5A008B6C79 /* Crashlytics.framework */; };
+		38495C161A3899AA005E6AA7 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38057A251A1A5C65005E94DD /* libGoogleAnalyticsServices.a */; };
+		38495C171A3899AA005E6AA7 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0253B817D5D28400F54C18 /* MessageUI.framework */; };
+		38495C181A3899AA005E6AA7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F2D1DE7BECC4078BB45E6AD /* libPods.a */; };
+		38495C191A3899AA005E6AA7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9A2E7D176B5DB300C5E058 /* QuartzCore.framework */; };
+		38495C1B1A3899AA005E6AA7 /* TransferDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479B692E194878CA001FA4FE /* TransferDetailsViewController~ipad.xib */; };
+		38495C1C1A3899AA005E6AA7 /* DoubleEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47F84D6A198A638B00886D41 /* DoubleEntryCell.xib */; };
+		38495C1D1A3899AA005E6AA7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAAA1476171BC911005B9430 /* InfoPlist.strings */; };
+		38495C1E1A3899AA005E6AA7 /* InvitationsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840862619A20D9900C837C2 /* InvitationsViewController~ipad.xib */; };
+		38495C1F1A3899AA005E6AA7 /* TransferTypeSelectionHeader~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38062175196D86C200C239D6 /* TransferTypeSelectionHeader~ipad.xib */; };
+		38495C201A3899AA005E6AA7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAAA148E171BD07E005B9430 /* Localizable.strings */; };
+		38495C211A3899AA005E6AA7 /* AchLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47C4D04E1A237F61005EC7C6 /* AchLoginViewController.xib */; };
+		38495C221A3899AA005E6AA7 /* TabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E57F77192A51DD00D864A2 /* TabViewController.xib */; };
+		38495C231A3899AA005E6AA7 /* RecipientCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385A6689197816AE00D00D1F /* RecipientCell~ipad.xib */; };
+		38495C241A3899AA005E6AA7 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39675171BD4EE00F6D011 /* MainViewController.xib */; };
+		38495C251A3899AA005E6AA7 /* spinner.html in Resources */ = {isa = PBXBuildFile; fileRef = EA84056817F0A40B00F44916 /* spinner.html */; };
+		38495C261A3899AA005E6AA7 /* TransactionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD3967A171BD51400F6D011 /* TransactionsViewController.xib */; };
+		38495C271A3899AA005E6AA7 /* CardPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3827407E199529F0009FAB97 /* CardPaymentViewController~ipad.xib */; };
+		38495C281A3899AA005E6AA7 /* DateEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C60199A3C1C0018FDA8 /* DateEntryCell~ipad.xib */; };
+		38495C291A3899AA005E6AA7 /* RefundDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0523F8191B5AFC00B32899 /* RefundDetailsViewController.xib */; };
+		38495C2A1A3899AA005E6AA7 /* TransferTypeSelectionHeaderNoTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AD6EED19892E1100D0F18F /* TransferTypeSelectionHeaderNoTitle.xib */; };
+		38495C2B1A3899AA005E6AA7 /* ContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD3967F171BD57000F6D011 /* ContactsViewController.xib */; };
+		38495C2C1A3899AA005E6AA7 /* NewPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD39689171BD82300F6D011 /* NewPaymentViewController.xib */; };
+		38495C2D1A3899AA005E6AA7 /* InviteViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840862C19A23F5A00C837C2 /* InviteViewController~ipad.xib */; };
+		38495C2E1A3899AA005E6AA7 /* MoneyEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E037171BE12E0019FBF0 /* MoneyEntryCell.xib */; };
+		38495C2F1A3899AA005E6AA7 /* TabViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021A9192B91A9009B1D53 /* TabViewController~ipad.xib */; };
+		38495C301A3899AA005E6AA7 /* IntroView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0450DC17EC64E4008921DA /* IntroView.xib */; };
+		38495C311A3899AA005E6AA7 /* SeeHowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383FC10619AE1B8300465FCA /* SeeHowViewController.xib */; };
+		38495C321A3899AA005E6AA7 /* TableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E045171BED910019FBF0 /* TableHeaderView.xib */; };
+		38495C331A3899AA005E6AA7 /* TextEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA13E04D171BEF710019FBF0 /* TextEntryCell.xib */; };
+		38495C341A3899AA005E6AA7 /* intro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 385AC115198FE5500088DCD6 /* intro.plist */; };
+		38495C351A3899AA005E6AA7 /* RecipientCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD736A3171E85D100A037B1 /* RecipientCell.xib */; };
+		38495C361A3899AA005E6AA7 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47233CD5196D457300449042 /* LoginViewController.xib */; };
+		38495C371A3899AA005E6AA7 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB7215A171FC61B00DE29F5 /* SettingsViewController.xib */; };
+		38495C381A3899AA005E6AA7 /* CurrencyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4710499619470AFD00660B2F /* CurrencyCell~ipad.xib */; };
+		38495C391A3899AA005E6AA7 /* ValidationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B52F96199B622D00B6AEBD /* ValidationCell.xib */; };
+		38495C3A1A3899AA005E6AA7 /* TextFieldSuggestionTable~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CACA63196EE4D400BFCF82 /* TextFieldSuggestionTable~ipad.xib */; };
+		38495C3B1A3899AA005E6AA7 /* RecipientEntrySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4C9172C19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib */; };
+		38495C3C1A3899AA005E6AA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD3646517E1E19A001EFE40 /* Assets.xcassets */; };
+		38495C3D1A3899AA005E6AA7 /* SettingsTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB72160171FCAB900DE29F5 /* SettingsTitleCell.xib */; };
+		38495C3E1A3899AA005E6AA7 /* TextFieldSuggestionTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EFABDE196D7EAB00126192 /* TextFieldSuggestionTable.xib */; };
+		38495C3F1A3899AA005E6AA7 /* BusinessProfileIdentificationViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840D34219A49E1E00D1485A /* BusinessProfileIdentificationViewController~ipad.xib */; };
+		38495C401A3899AA005E6AA7 /* BankTransferViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C7B29F19756A9C004324E8 /* BankTransferViewController~ipad.xib */; };
+		38495C411A3899AA005E6AA7 /* TabCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021F5192F43EA009B1D53 /* TabCell.xib */; };
+		38495C421A3899AA005E6AA7 /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911C1721416300F0FB1A /* TSAlertViewMessageListViewShadow.png */; };
+		38495C431A3899AA005E6AA7 /* TSAlertViewCancelButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911D1721416300F0FB1A /* TSAlertViewCancelButtonBackground.png */; };
+		38495C441A3899AA005E6AA7 /* IntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0450D317EC5BC1008921DA /* IntroViewController.xib */; };
+		38495C451A3899AA005E6AA7 /* TransferWaitingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FAF352194B4EF9004CE986 /* TransferWaitingViewController.xib */; };
+		38495C461A3899AA005E6AA7 /* ACHCheckView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CC81A71A1E36A2007D965A /* ACHCheckView.xib */; };
+		38495C471A3899AA005E6AA7 /* ResetPasswordViewControllerUpfront.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3863B82019E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib */; };
+		38495C481A3899AA005E6AA7 /* SharpSansFrontieres-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 385AC10F198FE2190088DCD6 /* SharpSansFrontieres-Bold.otf */; };
+		38495C491A3899AA005E6AA7 /* PersonalProfileIdentificationViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840863319A368DD00C837C2 /* PersonalProfileIdentificationViewController~ipad.xib */; };
+		38495C4A1A3899AA005E6AA7 /* IntroViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B4CB6019DC00FC004173C9 /* IntroViewController~ipad.xib */; };
+		38495C4B1A3899AA005E6AA7 /* AchWaitingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38057ACE1A1D03BF005E94DD /* AchWaitingViewController.xib */; };
+		38495C4C1A3899AA005E6AA7 /* NameSuggestionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CACA60196EE21600BFCF82 /* NameSuggestionCell~ipad.xib */; };
+		38495C4D1A3899AA005E6AA7 /* PlainPresentationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3856690F1980FB0500BC4230 /* PlainPresentationCell.xib */; };
+		38495C4E1A3899AA005E6AA7 /* CustomInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3876768E19BF4914007B0EE5 /* CustomInfoViewController.xib */; };
+		38495C4F1A3899AA005E6AA7 /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3800220B192F5774009B1D53 /* CurrencyCell.xib */; };
+		38495C501A3899AA005E6AA7 /* NoRefCurrencyMessages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 385AC112198FE52E0088DCD6 /* NoRefCurrencyMessages.plist */; };
+		38495C511A3899AA005E6AA7 /* LoginViewControllerUpfront.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386B039B19DD687C002285EF /* LoginViewControllerUpfront.xib */; };
+		38495C521A3899AA005E6AA7 /* SeeHowViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383FC10719AE1B8300465FCA /* SeeHowViewController~ipad.xib */; };
+		38495C531A3899AA005E6AA7 /* TextEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C5D199A3A560018FDA8 /* TextEntryCell~ipad.xib */; };
+		38495C541A3899AA005E6AA7 /* DataEntryDefaultHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B093031951FA2A00315BE4 /* DataEntryDefaultHeader.xib */; };
+		38495C551A3899AA005E6AA7 /* TSAlertViewButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911E1721416300F0FB1A /* TSAlertViewButtonBackground.png */; };
+		38495C561A3899AA005E6AA7 /* DoubleEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C69199A4E830018FDA8 /* DoubleEntryCell~ipad.xib */; };
+		38495C571A3899AA005E6AA7 /* ContactsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385A668C1978178500D00D1F /* ContactsViewController~ipad.xib */; };
+		38495C581A3899AA005E6AA7 /* TSAlertViewButtonBackground_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC6911F1721416300F0FB1A /* TSAlertViewButtonBackground_Highlighted.png */; };
+		38495C591A3899AA005E6AA7 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675456198BAEE900DEA359 /* TransferTypeSelectionHeaderNoTitle~ipad.xib */; };
+		38495C5A1A3899AA005E6AA7 /* page_zoom.json in Resources */ = {isa = PBXBuildFile; fileRef = EA333F3718A4BEDC00D8A44E /* page_zoom.json */; };
+		38495C5B1A3899AA005E6AA7 /* SelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C66199A3FB60018FDA8 /* SelectionCell~ipad.xib */; };
+		38495C5C1A3899AA005E6AA7 /* SwitchCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478031771999F6B000DFFC39 /* SwitchCell~ipad.xib */; };
+		38495C5D1A3899AA005E6AA7 /* NameSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BD98A2195C5973009F9B4A /* NameSuggestionCell.xib */; };
+		38495C5E1A3899AA005E6AA7 /* SuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47AC3F951987B2C3005491C6 /* SuggestionCell.xib */; };
+		38495C5F1A3899AA005E6AA7 /* RefundDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38675453198B977800DEA359 /* RefundDetailsViewController~ipad.xib */; };
+		38495C601A3899AA005E6AA7 /* CustomInfoViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3876769319BF56A2007B0EE5 /* CustomInfoViewController~ipad.xib */; };
+		38495C611A3899AA005E6AA7 /* DoublePasswordEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47971C63199A3F1F0018FDA8 /* DoublePasswordEntryCell~ipad.xib */; };
+		38495C621A3899AA005E6AA7 /* CurrencySelectorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021EE192F3DD3009B1D53 /* CurrencySelectorViewController.xib */; };
+		38495C631A3899AA005E6AA7 /* ValidationCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840863619A370A400C837C2 /* ValidationCell~ipad.xib */; };
+		38495C641A3899AA005E6AA7 /* LoginViewControllerUpfront~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394E19E2C75F00555F65 /* LoginViewControllerUpfront~ipad.xib */; };
+		38495C651A3899AA005E6AA7 /* TSAlertViewBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC691201721416300F0FB1A /* TSAlertViewBackground2.png */; };
+		38495C661A3899AA005E6AA7 /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC691211721416300F0FB1A /* TSAlertViewBackground.png */; };
+		38495C671A3899AA005E6AA7 /* ResetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB6170D191CD61900545C21 /* ResetPasswordViewController.xib */; };
+		38495C681A3899AA005E6AA7 /* DateEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E68D172F97E20021492C /* DateEntryCell.xib */; };
+		38495C691A3899AA005E6AA7 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA88E696172F980A0021492C /* SignUpViewController.xib */; };
+		38495C6A1A3899AA005E6AA7 /* TransferTypeSelectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B093081951FA2A00315BE4 /* TransferTypeSelectionHeader.xib */; };
+		38495C6B1A3899AA005E6AA7 /* SignUpViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394B19E2A14300555F65 /* SignUpViewController~ipad.xib */; };
+		38495C6C1A3899AA005E6AA7 /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473DF974196D637200524C64 /* LoginViewController~ipad.xib */; };
+		38495C6D1A3899AA005E6AA7 /* PaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA35C77117327981005602F7 /* PaymentCell.xib */; };
+		38495C6E1A3899AA005E6AA7 /* ResetPasswordViewControllerUpfront~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3863B82319E7EB93004009A2 /* ResetPasswordViewControllerUpfront~ipad.xib */; };
+		38495C6F1A3899AA005E6AA7 /* PaymentMethodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38288F4D19C86DC200661BFB /* PaymentMethodCell.xib */; };
+		38495C701A3899AA005E6AA7 /* RecipientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA54F4A1733DA1400B65BF3 /* RecipientViewController.xib */; };
+		38495C711A3899AA005E6AA7 /* CurrencySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4AA60E17379CAD00E99150 /* CurrencySelectionCell.xib */; };
+		38495C721A3899AA005E6AA7 /* AchDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 388B5CDE1A1FAECA00C507C5 /* AchDetailsViewController~ipad.xib */; };
+		38495C731A3899AA005E6AA7 /* RecipientFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD069061737B8C1007C8DEE /* RecipientFieldCell.xib */; };
+		38495C741A3899AA005E6AA7 /* RecipientViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EFABD8196D7E1D00126192 /* RecipientViewController~ipad.xib */; };
+		38495C751A3899AA005E6AA7 /* TransactionsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021E5192CEB66009B1D53 /* TransactionsViewController~ipad.xib */; };
+		38495C761A3899AA005E6AA7 /* ConfirmPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3813791C1993C06C00B7F568 /* ConfirmPaymentViewController~ipad.xib */; };
+		38495C771A3899AA005E6AA7 /* PlainPresentationCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385669101980FB0500BC4230 /* PlainPresentationCell~ipad.xib */; };
+		38495C781A3899AA005E6AA7 /* PersonalProfileIdentificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D47902173A3B6E00FC317E /* PersonalProfileIdentificationViewController.xib */; };
+		38495C791A3899AA005E6AA7 /* TransferPayIPadViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4723EA281975349C00B4345F /* TransferPayIPadViewController~ipad.xib */; };
+		38495C7A1A3899AA005E6AA7 /* InviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C1A89A199CC5A0000BF59C /* InviteViewController.xib */; };
+		38495C7B1A3899AA005E6AA7 /* DataEntryDefaultHeader~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EFABDB196D7EAB00126192 /* DataEntryDefaultHeader~ipad.xib */; };
+		38495C7C1A3899AA005E6AA7 /* DoublePasswordEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47535CAE1981362600DC39D6 /* DoublePasswordEntryCell.xib */; };
+		38495C7D1A3899AA005E6AA7 /* PaymentMethodSelectorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38288F4619C86A6700661BFB /* PaymentMethodSelectorViewController.xib */; };
+		38495C7E1A3899AA005E6AA7 /* ProfileEditViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474C451C1992874E001F207C /* ProfileEditViewController~ipad.xib */; };
+		38495C7F1A3899AA005E6AA7 /* TabCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380021F6192F43EA009B1D53 /* TabCell~ipad.xib */; };
+		38495C801A3899AA005E6AA7 /* PullToRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3831DCC619B8646000151A3D /* PullToRefreshView.xib */; };
+		38495C811A3899AA005E6AA7 /* PaymentMethodSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD3649017E2F971001EFE40 /* PaymentMethodSelectionView.xib */; };
+		38495C821A3899AA005E6AA7 /* TextEntryCellValidation~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840863919A38A5E00C837C2 /* TextEntryCellValidation~ipad.xib */; };
+		38495C831A3899AA005E6AA7 /* IntroView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BBE4651990F43500A14B9F /* IntroView~ipad.xib */; };
+		38495C841A3899AA005E6AA7 /* ConfirmPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E37173A861000C5D613 /* ConfirmPaymentViewController.xib */; };
+		38495C851A3899AA005E6AA7 /* ConfirmPaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA222E3D173A8A7C00C5D613 /* ConfirmPaymentCell.xib */; };
+		38495C861A3899AA005E6AA7 /* RecipientEntrySelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA042602173CF5E20048BFBD /* RecipientEntrySelectionCell.xib */; };
+		38495C871A3899AA005E6AA7 /* RecipientFieldCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840D34819A4D90F00D1485A /* RecipientFieldCell~ipad.xib */; };
+		38495C881A3899AA005E6AA7 /* ContactDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385669041980F9F200BC4230 /* ContactDetailsViewController.xib */; };
+		38495C891A3899AA005E6AA7 /* SettingsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840862919A2391D00C837C2 /* SettingsViewController~ipad.xib */; };
+		38495C8A1A3899AA005E6AA7 /* NewPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */; };
+		38495C8B1A3899AA005E6AA7 /* CurrencySelectorViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB7EA419419DEF003B1C8F /* CurrencySelectorViewController~ipad.xib */; };
+		38495C8C1A3899AA005E6AA7 /* GTM-TDZF76 in Resources */ = {isa = PBXBuildFile; fileRef = 38C0394819E29CBB00555F65 /* GTM-TDZF76 */; };
+		38495C8D1A3899AA005E6AA7 /* TransferDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479B692B19487865001FA4FE /* TransferDetailsViewController.xib */; };
+		38495C8E1A3899AA005E6AA7 /* CurrencySelectionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CACD681987C43E0085C254 /* CurrencySelectionCell~ipad.xib */; };
+		38495C8F1A3899AA005E6AA7 /* DropdownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAAC203C17422ADB001DDE7A /* DropdownCell.xib */; };
+		38495C901A3899AA005E6AA7 /* MoneyEntryCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470DEFAC1945F02300684FEB /* MoneyEntryCell~ipad.xib */; };
+		38495C911A3899AA005E6AA7 /* CardPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD3648B17E2F6EF001EFE40 /* CardPaymentViewController.xib */; };
+		38495C921A3899AA005E6AA7 /* existingUserIntro.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3831DCC319B764B900151A3D /* existingUserIntro.plist */; };
+		38495C931A3899AA005E6AA7 /* BankTransferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD48173CD30C0016A6E9 /* BankTransferViewController.xib */; };
+		38495C941A3899AA005E6AA7 /* SuggestionCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47AC3F961987B2C3005491C6 /* SuggestionCell~ipad.xib */; };
+		38495C951A3899AA005E6AA7 /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB29BD4A173CDF480016A6E9 /* TextCell.xib */; };
+		38495C961A3899AA005E6AA7 /* InvitationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B52F9D199B63B600B6AEBD /* InvitationsViewController.xib */; };
+		38495C971A3899AA005E6AA7 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD6675A174A51C700D29BCB /* ButtonCell.xib */; };
+		38495C981A3899AA005E6AA7 /* OpenIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA59298D1758CD6C007C0072 /* OpenIDViewController.xib */; };
+		38495C991A3899AA005E6AA7 /* TransferWaitingViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FAF34D194B4E5D004CE986 /* TransferWaitingViewController~ipad.xib */; };
+		38495C9A1A3899AA005E6AA7 /* ResetPasswordViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4723EA1F1974363000B4345F /* ResetPasswordViewController~ipad.xib */; };
+		38495C9B1A3899AA005E6AA7 /* DropdownCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3840D34519A4D6AD00D1485A /* DropdownCell~ipad.xib */; };
+		38495C9C1A3899AA005E6AA7 /* ClaimAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC1051917607C4600B3B018 /* ClaimAccountViewController.xib */; };
+		38495C9D1A3899AA005E6AA7 /* TouchIdPromptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3811674419C1E9A800B29151 /* TouchIdPromptViewController.xib */; };
+		38495C9E1A3899AA005E6AA7 /* Styles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 380021D6192CC570009B1D53 /* Styles.plist */; };
+		38495C9F1A3899AA005E6AA7 /* ProfileEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA416E2A176860EA00904D97 /* ProfileEditViewController.xib */; };
+		38495CA01A3899AA005E6AA7 /* BusinessProfileIdentificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0450C817EC3544008921DA /* BusinessProfileIdentificationViewController.xib */; };
+		38495CA11A3899AA005E6AA7 /* TabbedHeaderViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 471CA008197FCB6700BCA3B4 /* TabbedHeaderViewController~ipad.xib */; };
+		38495CA21A3899AA005E6AA7 /* RecipientsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47343AD01977E0B1009D9C3A /* RecipientsFooterView.xib */; };
+		38495CA31A3899AA005E6AA7 /* ContactDetailsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385669171981437900BC4230 /* ContactDetailsViewController~ipad.xib */; };
+		38495CA41A3899AA005E6AA7 /* TabBarActivityIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA225C74178EA124009D6B83 /* TabBarActivityIndicatorView.xib */; };
+		38495CA51A3899AA005E6AA7 /* SelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47F84D611988E83300886D41 /* SelectionCell.xib */; };
+		38495CA61A3899AA005E6AA7 /* TabbedHeaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 471CA003197FCB2200BCA3B4 /* TabbedHeaderViewController.xib */; };
+		38495CA71A3899AA005E6AA7 /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = EA225CB7178EEA8A009D6B83 /* currencies.json */; };
+		38495CA81A3899AA005E6AA7 /* currency_pairs.json in Resources */ = {isa = PBXBuildFile; fileRef = EA225CB8178EEA8A009D6B83 /* currency_pairs.json */; };
+		38495CA91A3899AA005E6AA7 /* recipient_types.json in Resources */ = {isa = PBXBuildFile; fileRef = EA225CB9178EEA8A009D6B83 /* recipient_types.json */; };
+		38495CAA1A3899AA005E6AA7 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7EAE8917AFE037006A7182 /* SwitchCell.xib */; };
+		38495CAB1A3899AA005E6AA7 /* PaymentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AA83CE1949C7220065AD2A /* PaymentCell~ipad.xib */; };
+		38495CAC1A3899AA005E6AA7 /* AchDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477319F21A1B62BB00660770 /* AchDetailsViewController.xib */; };
+		38495CB61A389ABF005E6AA7 /* calabash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38495CB51A389ABF005E6AA7 /* calabash.framework */; };
+		38495CB81A389B2B005E6AA7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38495CB71A389B2B005E6AA7 /* CFNetwork.framework */; };
 		38504B0919C1E83700276203 /* TouchIDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38504B0819C1E83700276203 /* TouchIDHelper.m */; };
 		38504B0A19C1E83700276203 /* TouchIDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 38504B0819C1E83700276203 /* TouchIDHelper.m */; };
 		385669051980F9F200BC4230 /* ContactDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 385669031980F9F200BC4230 /* ContactDetailsViewController.m */; };
@@ -1092,6 +1557,10 @@
 		3840D34219A49E1E00D1485A /* BusinessProfileIdentificationViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BusinessProfileIdentificationViewController~ipad.xib"; sourceTree = "<group>"; };
 		3840D34519A4D6AD00D1485A /* DropdownCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DropdownCell~ipad.xib"; sourceTree = "<group>"; };
 		3840D34819A4D90F00D1485A /* RecipientFieldCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RecipientFieldCell~ipad.xib"; sourceTree = "<group>"; };
+		38495CB31A3899AA005E6AA7 /* TransferWise-cal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TransferWise-cal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		38495CB41A3899AA005E6AA7 /* TransferWise copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "TransferWise copy-Info.plist"; path = "/Users/matstrovik/Documents/iOSDev/github/transferwise-ios/TransferWise copy-Info.plist"; sourceTree = "<absolute>"; };
+		38495CB51A389ABF005E6AA7 /* calabash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = calabash.framework; sourceTree = "<group>"; };
+		38495CB71A389B2B005E6AA7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		384CF64519F6ADE50011DDAD /* Transfer_v5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transfer_v5.xcdatamodel; sourceTree = "<group>"; };
 		38504B0719C1E83700276203 /* TouchIDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchIDHelper.h; sourceTree = "<group>"; };
 		38504B0819C1E83700276203 /* TouchIDHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchIDHelper.m; sourceTree = "<group>"; };
@@ -1812,6 +2281,35 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		38495C051A3899AA005E6AA7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38495CB81A389B2B005E6AA7 /* CFNetwork.framework in Frameworks */,
+				38495C061A3899AA005E6AA7 /* libsqlite3.dylib in Frameworks */,
+				38495C071A3899AA005E6AA7 /* AddressBook.framework in Frameworks */,
+				38495C081A3899AA005E6AA7 /* AddressBookUI.framework in Frameworks */,
+				38495C091A3899AA005E6AA7 /* CoreText.framework in Frameworks */,
+				38495C0A1A3899AA005E6AA7 /* libz.dylib in Frameworks */,
+				38495C0B1A3899AA005E6AA7 /* Security.framework in Frameworks */,
+				38495C0C1A3899AA005E6AA7 /* MobileCoreServices.framework in Frameworks */,
+				38495C0D1A3899AA005E6AA7 /* SystemConfiguration.framework in Frameworks */,
+				38495C0E1A3899AA005E6AA7 /* UIKit.framework in Frameworks */,
+				38495C0F1A3899AA005E6AA7 /* libEventTracker.a in Frameworks */,
+				38495C101A3899AA005E6AA7 /* Foundation.framework in Frameworks */,
+				38495C111A3899AA005E6AA7 /* CoreGraphics.framework in Frameworks */,
+				38495C121A3899AA005E6AA7 /* CoreData.framework in Frameworks */,
+				38495C131A3899AA005E6AA7 /* AdSupport.framework in Frameworks */,
+				38495C141A3899AA005E6AA7 /* libAppsFlyerLib.a in Frameworks */,
+				38495C151A3899AA005E6AA7 /* Crashlytics.framework in Frameworks */,
+				38495C161A3899AA005E6AA7 /* libGoogleAnalyticsServices.a in Frameworks */,
+				38495CB61A389ABF005E6AA7 /* calabash.framework in Frameworks */,
+				38495C171A3899AA005E6AA7 /* MessageUI.framework in Frameworks */,
+				38495C181A3899AA005E6AA7 /* libPods.a in Frameworks */,
+				38495C191A3899AA005E6AA7 /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		47DC897E1A03950F0042054B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -2742,6 +3240,7 @@
 				EAAA1469171BC911005B9430 /* Products */,
 				EA8FF68C171D22080090A658 /* Thirdparty */,
 				235F7C7030E9A118DDA01767 /* Pods */,
+				38495CB41A3899AA005E6AA7 /* TransferWise copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2751,6 +3250,7 @@
 				EAAA1468171BC911005B9430 /* TransferWise.app */,
 				EA31A23817DDB29B00F937F7 /* TransferDev.app */,
 				47DC89811A03950F0042054B /* TransferTests.xctest */,
+				38495CB31A3899AA005E6AA7 /* TransferWise-cal.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2758,6 +3258,8 @@
 		EAAA146A171BC911005B9430 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				38495CB71A389B2B005E6AA7 /* CFNetwork.framework */,
+				38495CB51A389ABF005E6AA7 /* calabash.framework */,
 				3812FA3919DAD9B5003F9904 /* libsqlite3.dylib */,
 				EA84055817F06DCD00F44916 /* AdSupport.framework */,
 				EAD6675C174A565500D29BCB /* AddressBook.framework */,
@@ -3071,6 +3573,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		38495AD81A3899AA005E6AA7 /* TransferWise-cal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38495CB01A3899AA005E6AA7 /* Build configuration list for PBXNativeTarget "TransferWise-cal" */;
+			buildPhases = (
+				38495AD91A3899AA005E6AA7 /* Check Pods Manifest.lock */,
+				38495ADA1A3899AA005E6AA7 /* mogenerator */,
+				38495ADB1A3899AA005E6AA7 /* Sources */,
+				38495C051A3899AA005E6AA7 /* Frameworks */,
+				38495C1A1A3899AA005E6AA7 /* Resources */,
+				38495CAD1A3899AA005E6AA7 /* Version update */,
+				38495CAE1A3899AA005E6AA7 /* ShellScript */,
+				38495CAF1A3899AA005E6AA7 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TransferWise-cal";
+			productName = Transfer;
+			productReference = 38495CB31A3899AA005E6AA7 /* TransferWise-cal.app */;
+			productType = "com.apple.product-type.application";
+		};
 		47DC89801A03950F0042054B /* TransferTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 47DC898B1A03950F0042054B /* Build configuration list for PBXNativeTarget "TransferTests" */;
@@ -3172,11 +3696,165 @@
 				EAAA1467171BC911005B9430 /* TransferWise */,
 				EA31A12117DDB29B00F937F7 /* TransferDev */,
 				47DC89801A03950F0042054B /* TransferTests */,
+				38495AD81A3899AA005E6AA7 /* TransferWise-cal */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		38495C1A1A3899AA005E6AA7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38495C1B1A3899AA005E6AA7 /* TransferDetailsViewController~ipad.xib in Resources */,
+				38495C1C1A3899AA005E6AA7 /* DoubleEntryCell.xib in Resources */,
+				38495C1D1A3899AA005E6AA7 /* InfoPlist.strings in Resources */,
+				38495C1E1A3899AA005E6AA7 /* InvitationsViewController~ipad.xib in Resources */,
+				38495C1F1A3899AA005E6AA7 /* TransferTypeSelectionHeader~ipad.xib in Resources */,
+				38495C201A3899AA005E6AA7 /* Localizable.strings in Resources */,
+				38495C211A3899AA005E6AA7 /* AchLoginViewController.xib in Resources */,
+				38495C221A3899AA005E6AA7 /* TabViewController.xib in Resources */,
+				38495C231A3899AA005E6AA7 /* RecipientCell~ipad.xib in Resources */,
+				38495C241A3899AA005E6AA7 /* MainViewController.xib in Resources */,
+				38495C251A3899AA005E6AA7 /* spinner.html in Resources */,
+				38495C261A3899AA005E6AA7 /* TransactionsViewController.xib in Resources */,
+				38495C271A3899AA005E6AA7 /* CardPaymentViewController~ipad.xib in Resources */,
+				38495C281A3899AA005E6AA7 /* DateEntryCell~ipad.xib in Resources */,
+				38495C291A3899AA005E6AA7 /* RefundDetailsViewController.xib in Resources */,
+				38495C2A1A3899AA005E6AA7 /* TransferTypeSelectionHeaderNoTitle.xib in Resources */,
+				38495C2B1A3899AA005E6AA7 /* ContactsViewController.xib in Resources */,
+				38495C2C1A3899AA005E6AA7 /* NewPaymentViewController.xib in Resources */,
+				38495C2D1A3899AA005E6AA7 /* InviteViewController~ipad.xib in Resources */,
+				38495C2E1A3899AA005E6AA7 /* MoneyEntryCell.xib in Resources */,
+				38495C2F1A3899AA005E6AA7 /* TabViewController~ipad.xib in Resources */,
+				38495C301A3899AA005E6AA7 /* IntroView.xib in Resources */,
+				38495C311A3899AA005E6AA7 /* SeeHowViewController.xib in Resources */,
+				38495C321A3899AA005E6AA7 /* TableHeaderView.xib in Resources */,
+				38495C331A3899AA005E6AA7 /* TextEntryCell.xib in Resources */,
+				38495C341A3899AA005E6AA7 /* intro.plist in Resources */,
+				38495C351A3899AA005E6AA7 /* RecipientCell.xib in Resources */,
+				38495C361A3899AA005E6AA7 /* LoginViewController.xib in Resources */,
+				38495C371A3899AA005E6AA7 /* SettingsViewController.xib in Resources */,
+				38495C381A3899AA005E6AA7 /* CurrencyCell~ipad.xib in Resources */,
+				38495C391A3899AA005E6AA7 /* ValidationCell.xib in Resources */,
+				38495C3A1A3899AA005E6AA7 /* TextFieldSuggestionTable~ipad.xib in Resources */,
+				38495C3B1A3899AA005E6AA7 /* RecipientEntrySelectionCell~ipad.xib in Resources */,
+				38495C3C1A3899AA005E6AA7 /* Assets.xcassets in Resources */,
+				38495C3D1A3899AA005E6AA7 /* SettingsTitleCell.xib in Resources */,
+				38495C3E1A3899AA005E6AA7 /* TextFieldSuggestionTable.xib in Resources */,
+				38495C3F1A3899AA005E6AA7 /* BusinessProfileIdentificationViewController~ipad.xib in Resources */,
+				38495C401A3899AA005E6AA7 /* BankTransferViewController~ipad.xib in Resources */,
+				38495C411A3899AA005E6AA7 /* TabCell.xib in Resources */,
+				38495C421A3899AA005E6AA7 /* TSAlertViewMessageListViewShadow.png in Resources */,
+				38495C431A3899AA005E6AA7 /* TSAlertViewCancelButtonBackground.png in Resources */,
+				38495C441A3899AA005E6AA7 /* IntroViewController.xib in Resources */,
+				38495C451A3899AA005E6AA7 /* TransferWaitingViewController.xib in Resources */,
+				38495C461A3899AA005E6AA7 /* ACHCheckView.xib in Resources */,
+				38495C471A3899AA005E6AA7 /* ResetPasswordViewControllerUpfront.xib in Resources */,
+				38495C481A3899AA005E6AA7 /* SharpSansFrontieres-Bold.otf in Resources */,
+				38495C491A3899AA005E6AA7 /* PersonalProfileIdentificationViewController~ipad.xib in Resources */,
+				38495C4A1A3899AA005E6AA7 /* IntroViewController~ipad.xib in Resources */,
+				38495C4B1A3899AA005E6AA7 /* AchWaitingViewController.xib in Resources */,
+				38495C4C1A3899AA005E6AA7 /* NameSuggestionCell~ipad.xib in Resources */,
+				38495C4D1A3899AA005E6AA7 /* PlainPresentationCell.xib in Resources */,
+				38495C4E1A3899AA005E6AA7 /* CustomInfoViewController.xib in Resources */,
+				38495C4F1A3899AA005E6AA7 /* CurrencyCell.xib in Resources */,
+				38495C501A3899AA005E6AA7 /* NoRefCurrencyMessages.plist in Resources */,
+				38495C511A3899AA005E6AA7 /* LoginViewControllerUpfront.xib in Resources */,
+				38495C521A3899AA005E6AA7 /* SeeHowViewController~ipad.xib in Resources */,
+				38495C531A3899AA005E6AA7 /* TextEntryCell~ipad.xib in Resources */,
+				38495C541A3899AA005E6AA7 /* DataEntryDefaultHeader.xib in Resources */,
+				38495C551A3899AA005E6AA7 /* TSAlertViewButtonBackground.png in Resources */,
+				38495C561A3899AA005E6AA7 /* DoubleEntryCell~ipad.xib in Resources */,
+				38495C571A3899AA005E6AA7 /* ContactsViewController~ipad.xib in Resources */,
+				38495C581A3899AA005E6AA7 /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
+				38495C591A3899AA005E6AA7 /* TransferTypeSelectionHeaderNoTitle~ipad.xib in Resources */,
+				38495C5A1A3899AA005E6AA7 /* page_zoom.json in Resources */,
+				38495C5B1A3899AA005E6AA7 /* SelectionCell~ipad.xib in Resources */,
+				38495C5C1A3899AA005E6AA7 /* SwitchCell~ipad.xib in Resources */,
+				38495C5D1A3899AA005E6AA7 /* NameSuggestionCell.xib in Resources */,
+				38495C5E1A3899AA005E6AA7 /* SuggestionCell.xib in Resources */,
+				38495C5F1A3899AA005E6AA7 /* RefundDetailsViewController~ipad.xib in Resources */,
+				38495C601A3899AA005E6AA7 /* CustomInfoViewController~ipad.xib in Resources */,
+				38495C611A3899AA005E6AA7 /* DoublePasswordEntryCell~ipad.xib in Resources */,
+				38495C621A3899AA005E6AA7 /* CurrencySelectorViewController.xib in Resources */,
+				38495C631A3899AA005E6AA7 /* ValidationCell~ipad.xib in Resources */,
+				38495C641A3899AA005E6AA7 /* LoginViewControllerUpfront~ipad.xib in Resources */,
+				38495C651A3899AA005E6AA7 /* TSAlertViewBackground2.png in Resources */,
+				38495C661A3899AA005E6AA7 /* TSAlertViewBackground.png in Resources */,
+				38495C671A3899AA005E6AA7 /* ResetPasswordViewController.xib in Resources */,
+				38495C681A3899AA005E6AA7 /* DateEntryCell.xib in Resources */,
+				38495C691A3899AA005E6AA7 /* SignUpViewController.xib in Resources */,
+				38495C6A1A3899AA005E6AA7 /* TransferTypeSelectionHeader.xib in Resources */,
+				38495C6B1A3899AA005E6AA7 /* SignUpViewController~ipad.xib in Resources */,
+				38495C6C1A3899AA005E6AA7 /* LoginViewController~ipad.xib in Resources */,
+				38495C6D1A3899AA005E6AA7 /* PaymentCell.xib in Resources */,
+				38495C6E1A3899AA005E6AA7 /* ResetPasswordViewControllerUpfront~ipad.xib in Resources */,
+				38495C6F1A3899AA005E6AA7 /* PaymentMethodCell.xib in Resources */,
+				38495C701A3899AA005E6AA7 /* RecipientViewController.xib in Resources */,
+				38495C711A3899AA005E6AA7 /* CurrencySelectionCell.xib in Resources */,
+				38495C721A3899AA005E6AA7 /* AchDetailsViewController~ipad.xib in Resources */,
+				38495C731A3899AA005E6AA7 /* RecipientFieldCell.xib in Resources */,
+				38495C741A3899AA005E6AA7 /* RecipientViewController~ipad.xib in Resources */,
+				38495C751A3899AA005E6AA7 /* TransactionsViewController~ipad.xib in Resources */,
+				38495C761A3899AA005E6AA7 /* ConfirmPaymentViewController~ipad.xib in Resources */,
+				38495C771A3899AA005E6AA7 /* PlainPresentationCell~ipad.xib in Resources */,
+				38495C781A3899AA005E6AA7 /* PersonalProfileIdentificationViewController.xib in Resources */,
+				38495C791A3899AA005E6AA7 /* TransferPayIPadViewController~ipad.xib in Resources */,
+				38495C7A1A3899AA005E6AA7 /* InviteViewController.xib in Resources */,
+				38495C7B1A3899AA005E6AA7 /* DataEntryDefaultHeader~ipad.xib in Resources */,
+				38495C7C1A3899AA005E6AA7 /* DoublePasswordEntryCell.xib in Resources */,
+				38495C7D1A3899AA005E6AA7 /* PaymentMethodSelectorViewController.xib in Resources */,
+				38495C7E1A3899AA005E6AA7 /* ProfileEditViewController~ipad.xib in Resources */,
+				38495C7F1A3899AA005E6AA7 /* TabCell~ipad.xib in Resources */,
+				38495C801A3899AA005E6AA7 /* PullToRefreshView.xib in Resources */,
+				38495C811A3899AA005E6AA7 /* PaymentMethodSelectionView.xib in Resources */,
+				38495C821A3899AA005E6AA7 /* TextEntryCellValidation~ipad.xib in Resources */,
+				38495C831A3899AA005E6AA7 /* IntroView~ipad.xib in Resources */,
+				38495C841A3899AA005E6AA7 /* ConfirmPaymentViewController.xib in Resources */,
+				38495C851A3899AA005E6AA7 /* ConfirmPaymentCell.xib in Resources */,
+				38495C861A3899AA005E6AA7 /* RecipientEntrySelectionCell.xib in Resources */,
+				38495C871A3899AA005E6AA7 /* RecipientFieldCell~ipad.xib in Resources */,
+				38495C881A3899AA005E6AA7 /* ContactDetailsViewController.xib in Resources */,
+				38495C891A3899AA005E6AA7 /* SettingsViewController~ipad.xib in Resources */,
+				38495C8A1A3899AA005E6AA7 /* NewPaymentViewController~ipad.xib in Resources */,
+				38495C8B1A3899AA005E6AA7 /* CurrencySelectorViewController~ipad.xib in Resources */,
+				38495C8C1A3899AA005E6AA7 /* GTM-TDZF76 in Resources */,
+				38495C8D1A3899AA005E6AA7 /* TransferDetailsViewController.xib in Resources */,
+				38495C8E1A3899AA005E6AA7 /* CurrencySelectionCell~ipad.xib in Resources */,
+				38495C8F1A3899AA005E6AA7 /* DropdownCell.xib in Resources */,
+				38495C901A3899AA005E6AA7 /* MoneyEntryCell~ipad.xib in Resources */,
+				38495C911A3899AA005E6AA7 /* CardPaymentViewController.xib in Resources */,
+				38495C921A3899AA005E6AA7 /* existingUserIntro.plist in Resources */,
+				38495C931A3899AA005E6AA7 /* BankTransferViewController.xib in Resources */,
+				38495C941A3899AA005E6AA7 /* SuggestionCell~ipad.xib in Resources */,
+				38495C951A3899AA005E6AA7 /* TextCell.xib in Resources */,
+				38495C961A3899AA005E6AA7 /* InvitationsViewController.xib in Resources */,
+				38495C971A3899AA005E6AA7 /* ButtonCell.xib in Resources */,
+				38495C981A3899AA005E6AA7 /* OpenIDViewController.xib in Resources */,
+				38495C991A3899AA005E6AA7 /* TransferWaitingViewController~ipad.xib in Resources */,
+				38495C9A1A3899AA005E6AA7 /* ResetPasswordViewController~ipad.xib in Resources */,
+				38495C9B1A3899AA005E6AA7 /* DropdownCell~ipad.xib in Resources */,
+				38495C9C1A3899AA005E6AA7 /* ClaimAccountViewController.xib in Resources */,
+				38495C9D1A3899AA005E6AA7 /* TouchIdPromptViewController.xib in Resources */,
+				38495C9E1A3899AA005E6AA7 /* Styles.plist in Resources */,
+				38495C9F1A3899AA005E6AA7 /* ProfileEditViewController.xib in Resources */,
+				38495CA01A3899AA005E6AA7 /* BusinessProfileIdentificationViewController.xib in Resources */,
+				38495CA11A3899AA005E6AA7 /* TabbedHeaderViewController~ipad.xib in Resources */,
+				38495CA21A3899AA005E6AA7 /* RecipientsFooterView.xib in Resources */,
+				38495CA31A3899AA005E6AA7 /* ContactDetailsViewController~ipad.xib in Resources */,
+				38495CA41A3899AA005E6AA7 /* TabBarActivityIndicatorView.xib in Resources */,
+				38495CA51A3899AA005E6AA7 /* SelectionCell.xib in Resources */,
+				38495CA61A3899AA005E6AA7 /* TabbedHeaderViewController.xib in Resources */,
+				38495CA71A3899AA005E6AA7 /* currencies.json in Resources */,
+				38495CA81A3899AA005E6AA7 /* currency_pairs.json in Resources */,
+				38495CA91A3899AA005E6AA7 /* recipient_types.json in Resources */,
+				38495CAA1A3899AA005E6AA7 /* SwitchCell.xib in Resources */,
+				38495CAB1A3899AA005E6AA7 /* PaymentCell~ipad.xib in Resources */,
+				38495CAC1A3899AA005E6AA7 /* AchDetailsViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		47DC897F1A03950F0042054B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3529,6 +4207,77 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		38495AD91A3899AA005E6AA7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		38495ADA1A3899AA005E6AA7 /* mogenerator */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = mogenerator;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PATH_TO_MODELD=\"Transfer/Transfer.xcdatamodeld\"\nOUTPUT_PATH=\"Transfer/ObjectModel\"\n\ntype mogenerator >/dev/null 2>&1 || {\n    echo >&2 \"warning: mogenerator not found. You will need it when changing core data model\";\n    exit 0;\n}\n\n#CURRENT_VERSION=$(/usr/libexec/PlistBuddy -c \"Print :_XCCurrentVersionName\" \"${PATH_TO_MODELD}/.xccurrentversion\")\n\nMODEL_PATH=\"${PATH_TO_MODELD}\"\necho \"Used model path ${MODEL_PATH}\"\n\nmogenerator -m $MODEL_PATH -O $OUTPUT_PATH --template-var arc=true";
+		};
+		38495CAD1A3899AA005E6AA7 /* Version update */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Version update";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo -n ${TARGET_BUILD_DIR}/${INFOPLIST_PATH} \\\n| xargs -0 /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion `git rev-list HEAD | wc -l`\"";
+		};
+		38495CAE1A3899AA005E6AA7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 84bc4b5736898e3cfdb50d3d2c162c4f74480862";
+		};
+		38495CAF1A3899AA005E6AA7 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		EA2B238E17212099001AE9DE /* Version update */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3659,6 +4408,310 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		38495ADB1A3899AA005E6AA7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38495ADC1A3899AA005E6AA7 /* main.m in Sources */,
+				38495ADD1A3899AA005E6AA7 /* AppDelegate.m in Sources */,
+				38495ADE1A3899AA005E6AA7 /* SuggestionDataEntryViewController.m in Sources */,
+				38495ADF1A3899AA005E6AA7 /* IntroViewController.m in Sources */,
+				38495AE01A3899AA005E6AA7 /* MainViewController.m in Sources */,
+				38495AE11A3899AA005E6AA7 /* TransactionsViewController.m in Sources */,
+				38495AE21A3899AA005E6AA7 /* SeparatorViewCell.m in Sources */,
+				38495AE31A3899AA005E6AA7 /* ContactsViewController.m in Sources */,
+				38495AE41A3899AA005E6AA7 /* NewPaymentViewController.m in Sources */,
+				38495AE51A3899AA005E6AA7 /* TableHeaderView.m in Sources */,
+				38495AE61A3899AA005E6AA7 /* MoneyEntryCell.m in Sources */,
+				38495AE71A3899AA005E6AA7 /* RedRoundedButton.m in Sources */,
+				38495AE81A3899AA005E6AA7 /* YahooButton.m in Sources */,
+				38495AE91A3899AA005E6AA7 /* UIColor+Theme.m in Sources */,
+				38495AEA1A3899AA005E6AA7 /* UIColor+MOMStyle.m in Sources */,
+				38495AEB1A3899AA005E6AA7 /* UIView+Loading.m in Sources */,
+				38495AEC1A3899AA005E6AA7 /* TextEntryCell.m in Sources */,
+				38495AED1A3899AA005E6AA7 /* NSString+Validation.m in Sources */,
+				38495AEE1A3899AA005E6AA7 /* CustomInfoViewControllerDelegateHelper.m in Sources */,
+				38495AEF1A3899AA005E6AA7 /* _Recipient.m in Sources */,
+				38495AF01A3899AA005E6AA7 /* NSMutableString+Issues.m in Sources */,
+				38495AF11A3899AA005E6AA7 /* UIApplication+Keyboard.m in Sources */,
+				38495AF21A3899AA005E6AA7 /* TRWAlertView.m in Sources */,
+				38495AF31A3899AA005E6AA7 /* RecipientType.m in Sources */,
+				38495AF41A3899AA005E6AA7 /* ColoredButton.m in Sources */,
+				38495AF51A3899AA005E6AA7 /* Currency.m in Sources */,
+				38495AF61A3899AA005E6AA7 /* TRWProgressHUD.m in Sources */,
+				38495AF71A3899AA005E6AA7 /* ReferralListOperation.m in Sources */,
+				38495AF81A3899AA005E6AA7 /* TransferwiseOperation.m in Sources */,
+				38495AF91A3899AA005E6AA7 /* LoginOperation.m in Sources */,
+				38495AFA1A3899AA005E6AA7 /* _ReferralLink.m in Sources */,
+				38495AFB1A3899AA005E6AA7 /* SetSSNOperation.m in Sources */,
+				38495AFC1A3899AA005E6AA7 /* TabCell.m in Sources */,
+				38495AFD1A3899AA005E6AA7 /* NSDictionary+SensibleData.m in Sources */,
+				38495AFE1A3899AA005E6AA7 /* RedButton.m in Sources */,
+				38495AFF1A3899AA005E6AA7 /* TransferDetailsAmountsView.m in Sources */,
+				38495B001A3899AA005E6AA7 /* PaymentMethodViewControllerFactory.m in Sources */,
+				38495B011A3899AA005E6AA7 /* UIButton+Skinning.m in Sources */,
+				38495B021A3899AA005E6AA7 /* InvitationProgressIndicatorView.m in Sources */,
+				38495B031A3899AA005E6AA7 /* GreenButton.m in Sources */,
+				38495B041A3899AA005E6AA7 /* UIViewController+SwitchToViewController.m in Sources */,
+				38495B051A3899AA005E6AA7 /* GrayButton.m in Sources */,
+				38495B061A3899AA005E6AA7 /* RecipientCell.m in Sources */,
+				38495B071A3899AA005E6AA7 /* ReferralLink.m in Sources */,
+				38495B081A3899AA005E6AA7 /* UserRecipientsOperation.m in Sources */,
+				38495B091A3899AA005E6AA7 /* SettingsViewController.m in Sources */,
+				38495B0A1A3899AA005E6AA7 /* RecipientsFooterView.m in Sources */,
+				38495B0B1A3899AA005E6AA7 /* TargetCountryProvider.m in Sources */,
+				38495B0C1A3899AA005E6AA7 /* OptionalSplitViewController.m in Sources */,
+				38495B0D1A3899AA005E6AA7 /* NSString+DeviceSpecificLocalisation.m in Sources */,
+				38495B0E1A3899AA005E6AA7 /* PullToRefreshView.m in Sources */,
+				38495B0F1A3899AA005E6AA7 /* WhiteRoundedButton.m in Sources */,
+				38495B101A3899AA005E6AA7 /* UIView+MOMStyle.m in Sources */,
+				38495B111A3899AA005E6AA7 /* InvitationsViewController.m in Sources */,
+				38495B121A3899AA005E6AA7 /* SettingsTitleCell.m in Sources */,
+				38495B131A3899AA005E6AA7 /* MoneyCalculator.m in Sources */,
+				38495B141A3899AA005E6AA7 /* _PaymentMadeIndicator.m in Sources */,
+				38495B151A3899AA005E6AA7 /* DoublePasswordEntryCell.m in Sources */,
+				38495B161A3899AA005E6AA7 /* TransferCalculationsOperation.m in Sources */,
+				38495B171A3899AA005E6AA7 /* _RecipientType.m in Sources */,
+				38495B181A3899AA005E6AA7 /* MOMBaseStyle.m in Sources */,
+				38495B191A3899AA005E6AA7 /* ProfilesEditViewController.m in Sources */,
+				38495B1A1A3899AA005E6AA7 /* CalculationResult.m in Sources */,
+				38495B1B1A3899AA005E6AA7 /* SuggestionCellProvider.m in Sources */,
+				38495B1C1A3899AA005E6AA7 /* TouchIDHelper.m in Sources */,
+				38495B1D1A3899AA005E6AA7 /* UIColor+SinglePixelImage.m in Sources */,
+				38495B1E1A3899AA005E6AA7 /* BusinessPaymentProfileViewController.m in Sources */,
+				38495B1F1A3899AA005E6AA7 /* UIGestureRecognizer+Cancel.m in Sources */,
+				38495B201A3899AA005E6AA7 /* TSAlertView.m in Sources */,
+				38495B211A3899AA005E6AA7 /* PageZoom.m in Sources */,
+				38495B221A3899AA005E6AA7 /* NanTracking.m in Sources */,
+				38495B231A3899AA005E6AA7 /* AuthenticationHelper.m in Sources */,
+				38495B241A3899AA005E6AA7 /* RecipientUpdateOperation.m in Sources */,
+				38495B251A3899AA005E6AA7 /* ObjectModel+Recipients.m in Sources */,
+				38495B261A3899AA005E6AA7 /* PaymentMadeIndicator.m in Sources */,
+				38495B271A3899AA005E6AA7 /* NSMutableAttributedString+Presentation.m in Sources */,
+				38495B281A3899AA005E6AA7 /* SeeHowView.m in Sources */,
+				38495B291A3899AA005E6AA7 /* TransferDetialsHeaderView.m in Sources */,
+				38495B2A1A3899AA005E6AA7 /* AchLoginViewController.m in Sources */,
+				38495B2B1A3899AA005E6AA7 /* Credentials.m in Sources */,
+				38495B2C1A3899AA005E6AA7 /* User.m in Sources */,
+				38495B2D1A3899AA005E6AA7 /* _Setting.m in Sources */,
+				38495B2E1A3899AA005E6AA7 /* UIFont+MOMStyle.m in Sources */,
+				38495B2F1A3899AA005E6AA7 /* DataEntryViewController.m in Sources */,
+				38495B301A3899AA005E6AA7 /* CustomInfoViewController.m in Sources */,
+				38495B311A3899AA005E6AA7 /* PersonalProfileViewController.m in Sources */,
+				38495B321A3899AA005E6AA7 /* NSError+TRWErrors.m in Sources */,
+				38495B331A3899AA005E6AA7 /* _Country.m in Sources */,
+				38495B341A3899AA005E6AA7 /* PairTargetCurrency.m in Sources */,
+				38495B351A3899AA005E6AA7 /* UIView+InheritantOf.m in Sources */,
+				38495B361A3899AA005E6AA7 /* UIView+Container.m in Sources */,
+				38495B371A3899AA005E6AA7 /* CountriesOperation.m in Sources */,
+				38495B381A3899AA005E6AA7 /* _RecipientTypeField.m in Sources */,
+				38495B391A3899AA005E6AA7 /* NetworkErrorCodes.m in Sources */,
+				38495B3A1A3899AA005E6AA7 /* UserDetailsOperation.m in Sources */,
+				38495B3B1A3899AA005E6AA7 /* SelectionCell.m in Sources */,
+				38495B3C1A3899AA005E6AA7 /* DateEntryCell.m in Sources */,
+				38495B3D1A3899AA005E6AA7 /* CircleStyle.m in Sources */,
+				38495B3E1A3899AA005E6AA7 /* CountrySuggestionCellProvider.m in Sources */,
+				38495B3F1A3899AA005E6AA7 /* Constants.m in Sources */,
+				38495B401A3899AA005E6AA7 /* SignUpViewController.m in Sources */,
+				38495B411A3899AA005E6AA7 /* PaymentsOperation.m in Sources */,
+				38495B421A3899AA005E6AA7 /* PaymentCell.m in Sources */,
+				38495B431A3899AA005E6AA7 /* CurrencyPairsOperation.m in Sources */,
+				38495B441A3899AA005E6AA7 /* RecipientViewController.m in Sources */,
+				38495B451A3899AA005E6AA7 /* StyledPlaceholderTextField.m in Sources */,
+				38495B461A3899AA005E6AA7 /* IntrinsicSizeUIView.m in Sources */,
+				38495B471A3899AA005E6AA7 /* CurrenciesOperation.m in Sources */,
+				38495B481A3899AA005E6AA7 /* TextContainerView.m in Sources */,
+				38495B491A3899AA005E6AA7 /* TransferwiseClient.m in Sources */,
+				38495B4A1A3899AA005E6AA7 /* ValidationCell.m in Sources */,
+				38495B4B1A3899AA005E6AA7 /* ObjectModel+Countries.m in Sources */,
+				38495B4C1A3899AA005E6AA7 /* RecipientTypesOperation.m in Sources */,
+				38495B4D1A3899AA005E6AA7 /* CurrencySelectionCell.m in Sources */,
+				38495B4E1A3899AA005E6AA7 /* RecipientFieldCell.m in Sources */,
+				38495B4F1A3899AA005E6AA7 /* PersonalProfile.m in Sources */,
+				38495B501A3899AA005E6AA7 /* TouchIdPromptViewController.m in Sources */,
+				38495B511A3899AA005E6AA7 /* ConfigurationOptionsOperation.m in Sources */,
+				38495B521A3899AA005E6AA7 /* RecipientOperation.m in Sources */,
+				38495B531A3899AA005E6AA7 /* InsetRespectingButton.m in Sources */,
+				38495B541A3899AA005E6AA7 /* NonEditTextField.m in Sources */,
+				38495B551A3899AA005E6AA7 /* GrayRoundedButton.m in Sources */,
+				38495B561A3899AA005E6AA7 /* PersonalProfileOperation.m in Sources */,
+				38495B571A3899AA005E6AA7 /* PersonalProfileIdentificationViewController.m in Sources */,
+				38495B581A3899AA005E6AA7 /* ObjectModel+PendingPayments.m in Sources */,
+				38495B591A3899AA005E6AA7 /* CardPaymentViewController.m in Sources */,
+				38495B5A1A3899AA005E6AA7 /* BusinessProfileViewController.m in Sources */,
+				38495B5B1A3899AA005E6AA7 /* FieldGroup.m in Sources */,
+				38495B5C1A3899AA005E6AA7 /* AddressBookManager.m in Sources */,
+				38495B5D1A3899AA005E6AA7 /* BusinessProfileOperation.m in Sources */,
+				38495B5E1A3899AA005E6AA7 /* DeleteRecipientOperation.m in Sources */,
+				38495B5F1A3899AA005E6AA7 /* TypeFieldValue.m in Sources */,
+				38495B601A3899AA005E6AA7 /* BusinessProfileIdentificationViewController.m in Sources */,
+				38495B611A3899AA005E6AA7 /* PaymentFlow.m in Sources */,
+				38495B621A3899AA005E6AA7 /* ConfirmPaymentViewController.m in Sources */,
+				38495B631A3899AA005E6AA7 /* ConfirmPaymentCell.m in Sources */,
+				38495B641A3899AA005E6AA7 /* RecipientEntrySelectionCell.m in Sources */,
+				38495B651A3899AA005E6AA7 /* _PairSourceCurrency.m in Sources */,
+				38495B661A3899AA005E6AA7 /* DropdownCell.m in Sources */,
+				38495B671A3899AA005E6AA7 /* ResetPasswordViewController.m in Sources */,
+				38495B681A3899AA005E6AA7 /* ObjectModel+PayInMethod.m in Sources */,
+				38495B691A3899AA005E6AA7 /* BankTransferViewController.m in Sources */,
+				38495B6A1A3899AA005E6AA7 /* _Currency.m in Sources */,
+				38495B6B1A3899AA005E6AA7 /* TextCell.m in Sources */,
+				38495B6C1A3899AA005E6AA7 /* PersonLookupWrapper.m in Sources */,
+				38495B6D1A3899AA005E6AA7 /* PaymentMethodSelectionView.m in Sources */,
+				38495B6E1A3899AA005E6AA7 /* CreatePaymentOperation.m in Sources */,
+				38495B6F1A3899AA005E6AA7 /* MoneyFormatter.m in Sources */,
+				38495B701A3899AA005E6AA7 /* Transfer.xcdatamodeld in Sources */,
+				38495B711A3899AA005E6AA7 /* PlainPresentationCell.m in Sources */,
+				38495B721A3899AA005E6AA7 /* TransferTypeSelectionHeader.m in Sources */,
+				38495B731A3899AA005E6AA7 /* UINavigationController+StackManipulations.m in Sources */,
+				38495B741A3899AA005E6AA7 /* RegisterOperation.m in Sources */,
+				38495B751A3899AA005E6AA7 /* PaymentCancelOperation.m in Sources */,
+				38495B761A3899AA005E6AA7 /* TransferWaitingViewController.m in Sources */,
+				38495B771A3899AA005E6AA7 /* TabbedHeaderViewController.m in Sources */,
+				38495B781A3899AA005E6AA7 /* Setting.m in Sources */,
+				38495B791A3899AA005E6AA7 /* BusinessProfile.m in Sources */,
+				38495B7A1A3899AA005E6AA7 /* UITextField+CaretPosition.m in Sources */,
+				38495B7B1A3899AA005E6AA7 /* ButtonCell.m in Sources */,
+				38495B7C1A3899AA005E6AA7 /* CancelHelper.m in Sources */,
+				38495B7D1A3899AA005E6AA7 /* PhoneBookProfile.m in Sources */,
+				38495B7E1A3899AA005E6AA7 /* PhoneBookProfileSelector.m in Sources */,
+				38495B7F1A3899AA005E6AA7 /* PhoneBookAddress.m in Sources */,
+				38495B801A3899AA005E6AA7 /* DismissKeyboardTableView.m in Sources */,
+				38495B811A3899AA005E6AA7 /* VerificationRequiredOperation.m in Sources */,
+				38495B821A3899AA005E6AA7 /* AchBank.m in Sources */,
+				38495B831A3899AA005E6AA7 /* UploadVerificationFileOperation.m in Sources */,
+				38495B841A3899AA005E6AA7 /* CurrencySelectorViewController.m in Sources */,
+				38495B851A3899AA005E6AA7 /* OpenIDViewController.m in Sources */,
+				38495B861A3899AA005E6AA7 /* ObjectModel+Settings.m in Sources */,
+				38495B871A3899AA005E6AA7 /* DataEntryDefaultHeader.m in Sources */,
+				38495B881A3899AA005E6AA7 /* _PendingPayment.m in Sources */,
+				38495B891A3899AA005E6AA7 /* PersonalProfileCommitter.m in Sources */,
+				38495B8A1A3899AA005E6AA7 /* _TypeFieldValue.m in Sources */,
+				38495B8B1A3899AA005E6AA7 /* EmailCheckOperation.m in Sources */,
+				38495B8C1A3899AA005E6AA7 /* RecipientProfileCommitter.m in Sources */,
+				38495B8D1A3899AA005E6AA7 /* AchDetailsViewController.m in Sources */,
+				38495B8E1A3899AA005E6AA7 /* LoggedInPaymentFlow.m in Sources */,
+				38495B8F1A3899AA005E6AA7 /* NoUserPaymentFlow.m in Sources */,
+				38495B901A3899AA005E6AA7 /* RecipientTypeField.m in Sources */,
+				38495B911A3899AA005E6AA7 /* DismissKeyboardViewController.m in Sources */,
+				38495B921A3899AA005E6AA7 /* TransparentModalViewController.m in Sources */,
+				38495B931A3899AA005E6AA7 /* UIView+RenderBlur.m in Sources */,
+				38495B941A3899AA005E6AA7 /* _Payment.m in Sources */,
+				38495B951A3899AA005E6AA7 /* TransferDetialsRecipientView.m in Sources */,
+				38495B961A3899AA005E6AA7 /* ClaimAccountViewController.m in Sources */,
+				38495B971A3899AA005E6AA7 /* PaymentMethodSelectorViewController.m in Sources */,
+				38495B981A3899AA005E6AA7 /* ClaimAccountOperation.m in Sources */,
+				38495B991A3899AA005E6AA7 /* BlueRoundedButton.m in Sources */,
+				38495B9A1A3899AA005E6AA7 /* RoundedCellBackgroundView.m in Sources */,
+				38495B9B1A3899AA005E6AA7 /* ProfileEditViewController.m in Sources */,
+				38495B9C1A3899AA005E6AA7 /* ProfileSource.m in Sources */,
+				38495B9D1A3899AA005E6AA7 /* PersonalProfileSource.m in Sources */,
+				38495B9E1A3899AA005E6AA7 /* BusinessProfileSource.m in Sources */,
+				38495B9F1A3899AA005E6AA7 /* MultipleEntryCell.m in Sources */,
+				38495BA01A3899AA005E6AA7 /* HeaderTabView.m in Sources */,
+				38495BA11A3899AA005E6AA7 /* BusinessProfileCommitter.m in Sources */,
+				38495BA21A3899AA005E6AA7 /* ImageColoredButton.m in Sources */,
+				38495BA31A3899AA005E6AA7 /* RemoveTokenOperation.m in Sources */,
+				38495BA41A3899AA005E6AA7 /* FloatingLabelTextField.m in Sources */,
+				38495BA51A3899AA005E6AA7 /* PersonalPaymentProfileViewController.m in Sources */,
+				38495BA61A3899AA005E6AA7 /* UITableView+FooterPositioning.m in Sources */,
+				38495BA71A3899AA005E6AA7 /* Payment.m in Sources */,
+				38495BA81A3899AA005E6AA7 /* ObjectModel+AchBank.m in Sources */,
+				38495BA91A3899AA005E6AA7 /* RoundedCellWhiteBackgroundView.m in Sources */,
+				38495BAA1A3899AA005E6AA7 /* TransferDetailsViewController.m in Sources */,
+				38495BAB1A3899AA005E6AA7 /* LightBlueButton.m in Sources */,
+				38495BAC1A3899AA005E6AA7 /* Mixpanel+Customisation.m in Sources */,
+				38495BAD1A3899AA005E6AA7 /* PendingPayment.m in Sources */,
+				38495BAE1A3899AA005E6AA7 /* _AllowedTypeFieldValue.m in Sources */,
+				38495BAF1A3899AA005E6AA7 /* NSString+MOMStyle.m in Sources */,
+				38495BB01A3899AA005E6AA7 /* TabBarActivityIndicatorView.m in Sources */,
+				38495BB11A3899AA005E6AA7 /* NameSuggestionCellProvider.m in Sources */,
+				38495BB21A3899AA005E6AA7 /* _PayInMethod.m in Sources */,
+				38495BB31A3899AA005E6AA7 /* GoogleButton.m in Sources */,
+				38495BB41A3899AA005E6AA7 /* NSDictionary+Cleanup.m in Sources */,
+				38495BB51A3899AA005E6AA7 /* VerificationFormOperation.m in Sources */,
+				38495BB61A3899AA005E6AA7 /* SwipeToCancelCell.m in Sources */,
+				38495BB71A3899AA005E6AA7 /* InviteViewController.m in Sources */,
+				38495BB81A3899AA005E6AA7 /* ConnectionAwareViewController.m in Sources */,
+				38495BB91A3899AA005E6AA7 /* DataEntryMultiColumnViewController.m in Sources */,
+				38495BBA1A3899AA005E6AA7 /* MOMCompoundStyle.m in Sources */,
+				38495BBB1A3899AA005E6AA7 /* CheckPersonalProfileVerificationOperation.m in Sources */,
+				38495BBC1A3899AA005E6AA7 /* BlueButton.m in Sources */,
+				38495BBD1A3899AA005E6AA7 /* AllowedTypeFieldValue.m in Sources */,
+				38495BBE1A3899AA005E6AA7 /* SendButtonFlashHelper.m in Sources */,
+				38495BBF1A3899AA005E6AA7 /* GradientView.m in Sources */,
+				38495BC01A3899AA005E6AA7 /* RedGradientButton.m in Sources */,
+				38495BC11A3899AA005E6AA7 /* PayInMethod.m in Sources */,
+				38495BC21A3899AA005E6AA7 /* AchFlow.m in Sources */,
+				38495BC31A3899AA005E6AA7 /* SuggestionCell.m in Sources */,
+				38495BC41A3899AA005E6AA7 /* _FieldGroup.m in Sources */,
+				38495BC51A3899AA005E6AA7 /* ReferralLinksOperation.m in Sources */,
+				38495BC61A3899AA005E6AA7 /* NSDate+ServerTime.m in Sources */,
+				38495BC71A3899AA005E6AA7 /* RecipientsOperation.m in Sources */,
+				38495BC81A3899AA005E6AA7 /* IntroView.m in Sources */,
+				38495BC91A3899AA005E6AA7 /* TransferPayIPadViewController.m in Sources */,
+				38495BCA1A3899AA005E6AA7 /* _PersonalProfile.m in Sources */,
+				38495BCB1A3899AA005E6AA7 /* CancellableCellViewController.m in Sources */,
+				38495BCC1A3899AA005E6AA7 /* UIImage+Color.m in Sources */,
+				38495BCD1A3899AA005E6AA7 /* MOMBasicStyle.m in Sources */,
+				38495BCE1A3899AA005E6AA7 /* _BusinessProfile.m in Sources */,
+				38495BCF1A3899AA005E6AA7 /* _User.m in Sources */,
+				38495BD01A3899AA005E6AA7 /* SettlementRecipient.m in Sources */,
+				38495BD11A3899AA005E6AA7 /* TextFieldSuggestionTable.m in Sources */,
+				38495BD21A3899AA005E6AA7 /* UIImage+RenderBlur.m in Sources */,
+				38495BD31A3899AA005E6AA7 /* TabViewController.m in Sources */,
+				38495BD41A3899AA005E6AA7 /* MOMRoundedCornerStyle.m in Sources */,
+				38495BD51A3899AA005E6AA7 /* UploadMoneyViewController.m in Sources */,
+				38495BD61A3899AA005E6AA7 /* PullPaymentDetailsOperation.m in Sources */,
+				38495BD71A3899AA005E6AA7 /* NameSuggestionCell.m in Sources */,
+				38495BD81A3899AA005E6AA7 /* MOMStyleFactory.m in Sources */,
+				38495BD91A3899AA005E6AA7 /* RoundedButtonWithInsets.m in Sources */,
+				38495BDA1A3899AA005E6AA7 /* PairSourceCurrency.m in Sources */,
+				38495BDB1A3899AA005E6AA7 /* ContactDetailsViewController.m in Sources */,
+				38495BDC1A3899AA005E6AA7 /* NSMutableDictionary+SaneData.m in Sources */,
+				38495BDD1A3899AA005E6AA7 /* EmailLookupWrapper.m in Sources */,
+				38495BDE1A3899AA005E6AA7 /* SpinningImageView.m in Sources */,
+				38495BDF1A3899AA005E6AA7 /* _PairTargetCurrency.m in Sources */,
+				38495BE01A3899AA005E6AA7 /* NSString+Presentation.m in Sources */,
+				38495BE11A3899AA005E6AA7 /* ObjectModel+Payments.m in Sources */,
+				38495BE21A3899AA005E6AA7 /* TypeFieldHelper.m in Sources */,
+				38495BE31A3899AA005E6AA7 /* QuickProfileValidationOperation.m in Sources */,
+				38495BE41A3899AA005E6AA7 /* SwitchCell.m in Sources */,
+				38495BE51A3899AA005E6AA7 /* StartPaymentButton.m in Sources */,
+				38495BE61A3899AA005E6AA7 /* ObjectModel+Currencies.m in Sources */,
+				38495BE71A3899AA005E6AA7 /* ObjectModel+CurrencyPairs.m in Sources */,
+				38495BE81A3899AA005E6AA7 /* SupportCoordinator.m in Sources */,
+				38495BE91A3899AA005E6AA7 /* UIDevice-Hardware.m in Sources */,
+				38495BEA1A3899AA005E6AA7 /* Country.m in Sources */,
+				38495BEB1A3899AA005E6AA7 /* ObjectModel+RecipientTypes.m in Sources */,
+				38495BEC1A3899AA005E6AA7 /* NavigationBarCustomiser.m in Sources */,
+				38495BED1A3899AA005E6AA7 /* DoubleEntryCell.m in Sources */,
+				38495BEE1A3899AA005E6AA7 /* Recipient.m in Sources */,
+				38495BEF1A3899AA005E6AA7 /* PaymentMethodCell.m in Sources */,
+				38495BF01A3899AA005E6AA7 /* FeedbackCoordinator.m in Sources */,
+				38495BF11A3899AA005E6AA7 /* ObjectModel+Users.m in Sources */,
+				38495BF21A3899AA005E6AA7 /* AchWaitingViewController.m in Sources */,
+				38495BF31A3899AA005E6AA7 /* ObjectModel.m in Sources */,
+				38495BF41A3899AA005E6AA7 /* ReferralsCoordinator.m in Sources */,
+				38495BF51A3899AA005E6AA7 /* SeeHowViewController.m in Sources */,
+				38495BF61A3899AA005E6AA7 /* PaymentPurposeOperation.m in Sources */,
+				38495BF71A3899AA005E6AA7 /* PhoneLookupWrapper.m in Sources */,
+				38495BF81A3899AA005E6AA7 /* RefundDetailsViewController.m in Sources */,
+				38495BF91A3899AA005E6AA7 /* ObjectModel+ReferralLinks.m in Sources */,
+				38495BFA1A3899AA005E6AA7 /* StateSuggestionCellProvider.m in Sources */,
+				38495BFB1A3899AA005E6AA7 /* CurrencyCell.m in Sources */,
+				38495BFC1A3899AA005E6AA7 /* LoginViewController.m in Sources */,
+				38495BFD1A3899AA005E6AA7 /* ACHCheckView.m in Sources */,
+				38495BFE1A3899AA005E6AA7 /* ResetPasswordOperation.m in Sources */,
+				38495BFF1A3899AA005E6AA7 /* VerifyFormOperation.m in Sources */,
+				38495C001A3899AA005E6AA7 /* TransferBackButtonItem.m in Sources */,
+				38495C011A3899AA005E6AA7 /* GoogleAnalytics.m in Sources */,
+				38495C021A3899AA005E6AA7 /* UIResponder+FirstResponder.m in Sources */,
+				38495C031A3899AA005E6AA7 /* _AchBank.m in Sources */,
+				38495C041A3899AA005E6AA7 /* UIView+SeparatorLine.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		47DC897D1A03950F0042054B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4329,6 +5382,130 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		38495CB11A3899AA005E6AA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A92F0FB2A76538EDCB7E38B7 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)",
+					"\"$(SRCROOT)/Thirdparty\"",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
+				INFOPLIST_FILE = "TransferWise copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
+					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
+					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
+					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.10",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-force_load",
+					"\"$(SRCROOT)/calabash.framework/calabash\"",
+					"-lstdc++",
+				);
+				PRODUCT_NAME = "TransferWise-cal";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		38495CB21A3899AA005E6AA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A7F07DC7BBE0A79CA26F843 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)",
+					"\"$(SRCROOT)/Thirdparty\"",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Transfer/Transfer-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
+				INFOPLIST_FILE = "TransferWise copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Thirdparty/AF-iOS-SDK-v2",
+					"$(PROJECT_DIR)/Thirdparty/AF-iOS-SDK-v2",
+					"$(PROJECT_DIR)/Thirdparty/iOS-EventTracker-SDK",
+					"$(PROJECT_DIR)/Thirdparty/GoogleAnalyticsServicesiOS_3.10",
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/CDYAnalyticsCoordinator\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/CDYObjectModel\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/CXAlertView\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Facebook-iOS-SDK\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Facebook-iOS-SDK/FacebookSDK\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/JVFloatLabeledTextField\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Kiwi\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Lockbox\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/MBProgressHUD\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Mixpanel\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/OCMock\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/OHAttributedLabel\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Reachability\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/SMPageControl\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/TestFlightSDK\"",
+					"-DNDEBUG",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-force_load",
+					"\"$(SRCROOT)/calabash.framework/calabash\"",
+					"-lstdc++",
+				);
+				PRODUCT_NAME = "TransferWise-cal";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ee88535e-ac1d-47db-ac1d-1a57297b963a";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		47DC89891A03950F0042054B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A92F0FB2A76538EDCB7E38B7 /* Pods.debug.xcconfig */;
@@ -4648,6 +5825,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		38495CB01A3899AA005E6AA7 /* Build configuration list for PBXNativeTarget "TransferWise-cal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38495CB11A3899AA005E6AA7 /* Debug */,
+				38495CB21A3899AA005E6AA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		47DC898B1A03950F0042054B /* Build configuration list for PBXNativeTarget "TransferTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

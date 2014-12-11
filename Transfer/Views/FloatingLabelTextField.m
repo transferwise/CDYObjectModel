@@ -75,7 +75,7 @@
 
 - (void)configureWithTitle:(NSString *)title value:(NSString *)value
 {
-    self.placeholder = title;
+    [self setTitle:title];
     [self setText:value];
 }
 
@@ -95,5 +95,11 @@
         self.fontStyle = @"heavy.@{17,20}.DarkFont";
     }
     [super setSecureTextEntry:secureTextEntry];
+}
+
+-(void)setPlaceholder:(NSString *)placeholder
+{
+    [super setPlaceholder:placeholder];
+    self.accessibilityLabel = placeholder;
 }
 @end
