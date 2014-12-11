@@ -10,7 +10,7 @@ PODS:
   - CXAlertView (1.0.1)
   - Facebook-iOS-SDK (3.21.1):
     - Bolts (~> 1.0)
-  - JVFloatLabeledTextField (1.0.0)
+  - JVFloatLabeledTextField (0.0.9)
   - Lockbox (2.1.0)
   - MBProgressHUD (0.9)
   - Mixpanel (2.6.2):
@@ -26,7 +26,7 @@ DEPENDENCIES:
   - CDYObjectModel (from `https://github.com/coodly/CDYObjectModel.git`)
   - CXAlertView (~> 1.0.1)
   - Facebook-iOS-SDK
-  - JVFloatLabeledTextField
+  - JVFloatLabeledTextField (~> 0.0.9)
   - Lockbox
   - MBProgressHUD
   - Mixpanel
@@ -55,7 +55,7 @@ SPEC CHECKSUMS:
   CDYObjectModel: da0ab52fa697ba2df41b32219f3bb90dea544270
   CXAlertView: 29bfa5841d168a016e1a70474ed840d0f4f67c2c
   Facebook-iOS-SDK: 18c26e86ab25c17854a2ee2a8f60562099c6600f
-  JVFloatLabeledTextField: c2b8124e439cf2b05fe5bb38f44358743588c1bd
+  JVFloatLabeledTextField: b6c7d824d231b3c01d14692feada878808480af8
   Lockbox: 3168f08cb26680b05a0702b8c0cc6da32788059d
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   Mixpanel: c075cedebda3328ce1ee29a18429e265ce967cd8
