@@ -31,7 +31,7 @@ typedef void (^EmailValidationResultBlock)(BOOL available, NSError *error);
 		   errorHandler:(TRWErrorBlock)errorHandler;
 
 - (void)commitPaymentWithSuccessBlock:(TRWActionBlock)successBlock
-						 ErrorHandler:(TRWErrorBlock)errorHandler;
+						 errorHandler:(TRWErrorBlock)errorHandler;
 
 - (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch
 						 isExisting:(BOOL)isExisting;

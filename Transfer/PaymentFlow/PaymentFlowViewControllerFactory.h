@@ -17,6 +17,7 @@ const NSString *kShowMiniProfile = @"showMiniProfile";
 const NSString *kTemplateRecipient = @"templateRecipient";
 const NSString *kUpdateRecipient = @"updateRecipient";
 const NSString *kPayment = @"payment";
+const NSString *kPendingPayment = @"pendingPayment";
 
 typedef NS_ENUM(short, ControllerType)
 {
@@ -31,7 +32,7 @@ typedef NS_ENUM(short, ControllerType)
 	RefundDetailsController = 9,
 };
 
-typedef void (^CommitActionBlock)(TRWActionBlock *successBlock, TRWErrorBlock *controller);
+typedef void (^CommitActionBlock)(TRWActionBlock successBlock, TRWErrorBlock errorBlock);
 
 @interface PaymentFlowViewControllerFactory : NSObject
 

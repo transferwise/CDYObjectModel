@@ -66,7 +66,7 @@
 			return [self getConfirmPaymentViewController];
 			break;
 		case PersonalProfileIdentificationController:
-			return [self getPersonalProfileIdentificationViewController];
+			return [self getPersonalProfileIdentificationViewController:params[kPendingPayment]];
 			break;
 		case PaymentMethodSelectorController:
 			return [self getPaymentMethodSelectorViewController:params[kPayment]];
@@ -75,10 +75,10 @@
 			return [self getUploadMoneyViewController:params[kPayment]];
 			break;
 		case BusinessProfileIdentificationController:
-			return [self getBusinessProfileIdentificationController];
+			return [self getBusinessProfileIdentificationController:params[kPendingPayment]];
 			break;
 		case RefundDetailsController:
-			return [self getRefundDetailsViewController];
+			return [self getRefundDetailsViewController:params[kPendingPayment]];
 			break;
 		default:
 			return nil;
@@ -127,7 +127,7 @@
 	[controller setTitle:NSLocalizedString(@"recipient.controller.payment.mode.title", nil)];
 	[controller setFooterButtonTitle:NSLocalizedString(@"button.title.continue", nil)];
 	
-	//TODO: use these with block
+	//TODO: use this with block
 //	[controller setRecipientValidation:self];
 	__weak typeof(self) weakSelf = self;
 	[controller setAfterSaveAction:^{
@@ -179,15 +179,12 @@
 	return controller;
 }
 
-- (PersonalProfileIdentificationViewController *)getPersonalProfileIdentificationViewController
+- (PersonalProfileIdentificationViewController *)getPersonalProfileIdentificationViewController:(PendingPayment *)payment
 {
 	PersonalProfileIdentificationViewController *controller = [[PersonalProfileIdentificationViewController alloc] init];
 	[controller setObjectModel:self.objectModel];
 	//TODO: use this with block
 	//[controller setPaymentFlow:self];
-	
-	//TODO: use payment as an argument
-	PendingPayment *payment = [self.objectModel pendingPayment];
 	
 	[controller setIdentificationRequired:(IdentificationRequired) [payment verificiationNeededValue]];
 	[controller setProposedPaymentPurpose:[payment proposedPaymentsPurpose]];
@@ -202,8 +199,7 @@
 			[payment setSocialSecurityNumber:socialSecurityNumber];
 			
 			[weakSelf.objectModel saveContext:^{
-				//TODO: use this with block
-				//[weakSelf commitPaymentWithSuccessBlock:successBlock ErrorHandler:errorBlock];
+				weakSelf.commitActionBlock(successBlock, errorBlock);
 			}];
 		}];
 	}];
@@ -229,19 +225,16 @@
 	return controller;
 }
 
-- (BusinessProfileIdentificationViewController *)getBusinessProfileIdentificationController
+- (BusinessProfileIdentificationViewController *)getBusinessProfileIdentificationController:(PendingPayment *)payment
 {
 	BusinessProfileIdentificationViewController *controller = [[BusinessProfileIdentificationViewController alloc] init];
 	__weak typeof(self) weakSelf = self;
 	
-	//TODO: get payment as an argument
-	PendingPayment *payment = [self.objectModel pendingPayment];
 	[controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, TRWActionBlock successBlock,TRWErrorBlock errorBlock) {
 		[weakSelf.objectModel performBlock:^{
 			[payment setSendVerificationLaterValue:skipIdentification];
 			[weakSelf.objectModel saveContext:^{
-				//TODO: use this with block
-				//[weakSelf commitPaymentWithSuccessBlock:successBlock ErrorHandler:errorBlock];
+				weakSelf.commitActionBlock(successBlock, errorBlock);
 			}];
 		}];
 	}];
@@ -249,10 +242,8 @@
 	return controller;
 }
 
-- (RefundDetailsViewController *)getRefundDetailsViewController
+- (RefundDetailsViewController *)getRefundDetailsViewController:(PendingPayment *)payment
 {
-	//TODO: get payment as an argument
-	PendingPayment *payment = self.objectModel.pendingPayment;
 	RefundDetailsViewController *controller = [[RefundDetailsViewController alloc] init];
 	[controller setObjectModel:self.objectModel];
 	[controller setCurrency:payment.sourceCurrency];

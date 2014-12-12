@@ -356,7 +356,7 @@
             [payment setSocialSecurityNumber:socialSecurityNumber];
 
             [weakSelf.objectModel saveContext:^{
-                [weakSelf commitPaymentWithSuccessBlock:successBlock ErrorHandler:errorBlock];
+                [weakSelf commitPaymentWithSuccessBlock:successBlock errorHandler:errorBlock];
             }];
         }];
 	}];
@@ -504,7 +504,7 @@
         [weakSelf.objectModel performBlock:^{
             [payment setSendVerificationLaterValue:skipIdentification];
             [weakSelf.objectModel saveContext:^{
-                [weakSelf commitPaymentWithSuccessBlock:successBlock ErrorHandler:errorBlock];
+                [weakSelf commitPaymentWithSuccessBlock:successBlock errorHandler:errorBlock];
             }];
         }];
     }];
