@@ -80,6 +80,7 @@
 - (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch
 						 isExisting:(BOOL)isExisting
 {
+	//TODO: user PaymentFlowViewControllerFactory
     [[Mixpanel sharedInstance] sendPageView:@"Your details"];
 
     PersonalPaymentProfileViewController *controller = [[PersonalPaymentProfileViewController alloc] init];
@@ -95,6 +96,7 @@
 	{
         [controller setButtonTitle:NSLocalizedString(@"personal.profile.continue.to.recipient.button.title", nil)];
     }
+	
     [controller setProfileValidation:self];
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -246,6 +248,7 @@
     [[GoogleAnalytics sharedInstance] paymentRecipientProfileScreenShown];
     [[Mixpanel sharedInstance] sendPageView:@"Select recipient"];
 
+	//TODO use PaymentFlowViewControllerFactory
     RecipientViewController *controller = [[RecipientViewController alloc] init];
     if ([Credentials userLoggedIn])
 	{
@@ -296,6 +299,7 @@
 	dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"presentBusinessProfileScreen");
 		
+		//TODO use PaymentFlowViewControllerFactory
 		BusinessPaymentProfileViewController *controller = [[BusinessPaymentProfileViewController alloc] init];
 		
 		[controller setObjectModel:self.objectModel];
@@ -310,6 +314,7 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"presentPaymentConfirmation");
+		//TODO use PaymentFlowViewControllerFactory
         ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
         if ([Credentials userLoggedIn])
 		{
@@ -329,12 +334,15 @@
 
 - (void)presentVerificationScreen
 {
-	PendingPayment *payment = [self.objectModel pendingPayment];
     [[GoogleAnalytics sharedInstance] sendScreen:@"Personal identification"];
 
+	//TODO use PaymentFlowViewControllerFactory
     PersonalProfileIdentificationViewController *controller = [[PersonalProfileIdentificationViewController alloc] init];
     [controller setObjectModel:self.objectModel];
     [controller setPaymentFlow:self];
+	
+	PendingPayment *payment = [self.objectModel pendingPayment];
+	
 	[controller setIdentificationRequired:(IdentificationRequired) [payment verificiationNeededValue]];
 	[controller setProposedPaymentPurpose:[payment proposedPaymentsPurpose]];
     [controller setCompletionMessage:NSLocalizedString(@"identification.creating.payment.message", nil)];
@@ -372,6 +380,7 @@
         
         if(!IPAD && [[payment enabledPayInMethods] count]>2)
         {
+			//TODO use PaymentFlowViewControllerFactory
             PaymentMethodSelectorViewController* selector = [[PaymentMethodSelectorViewController alloc] init];
             selector.objectModel = self.objectModel;
             selector.payment = payment;
@@ -379,9 +388,10 @@
         }
         else
         {
+			//TODO use PaymentFlowViewControllerFactory
             UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
-            [controller setObjectModel:self.objectModel];
-            [controller setPayment:(id) [self.objectModel.managedObjectContext objectWithID:paymentID]];
+			controller.objectModel = self.objectModel;
+			controller.payment = payment;
             [self.navigationController pushViewController:controller animated:YES];
         }
         
@@ -483,12 +493,13 @@
 
 - (void)presentBusinessVerificationScreen
 {
-    PendingPayment *payment = [self.objectModel pendingPayment];
     [[GoogleAnalytics sharedInstance] sendScreen:@"Business verification"];
 
+	//TODO use PaymentFlowViewControllerFactory
     BusinessProfileIdentificationViewController *controller = [[BusinessProfileIdentificationViewController alloc] init];
     __weak typeof(self) weakSelf = self;
 
+	PendingPayment *payment = [self.objectModel pendingPayment];
     [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, VerificationStepSuccessBlock successBlock,PaymentErrorBlock errorBlock) {
         [weakSelf.objectModel performBlock:^{
             [payment setSendVerificationLaterValue:skipIdentification];
@@ -904,7 +915,8 @@
     [operation execute];
 }
 
-- (void)presentNextPaymentScreen {
+- (void)presentNextPaymentScreen
+{
     MCLog(@"presentNextPaymentScreen");
     [self.objectModel performBlock:^{
         PendingPayment *payment = [self.objectModel pendingPayment];

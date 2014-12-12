@@ -456,6 +456,12 @@
 		47535CB21981362600DC39D6 /* DoublePasswordEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47535CAE1981362600DC39D6 /* DoublePasswordEntryCell.xib */; };
 		47535CB51981367C00DC39D6 /* UIView+SeparatorLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 47535CB41981367C00DC39D6 /* UIView+SeparatorLine.m */; };
 		47535CB61981367C00DC39D6 /* UIView+SeparatorLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 47535CB41981367C00DC39D6 /* UIView+SeparatorLine.m */; };
+		4757BE601A3B064B005D7BDD /* NoUserPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757BE5D1A3B064B005D7BDD /* NoUserPaymentFlow.m */; };
+		4757BE611A3B064B005D7BDD /* NoUserPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757BE5D1A3B064B005D7BDD /* NoUserPaymentFlow.m */; };
+		4757BE621A3B064B005D7BDD /* PaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757BE5F1A3B064B005D7BDD /* PaymentFlow.m */; };
+		4757BE631A3B064B005D7BDD /* PaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757BE5F1A3B064B005D7BDD /* PaymentFlow.m */; };
+		4757BE661A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757BE651A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m */; };
+		4757BE671A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757BE651A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m */; };
 		47592CC71940C35800ECDAF2 /* NewPaymentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473F62921940BDD9001E280B /* NewPaymentViewController~ipad.xib */; };
 		476461E91982859F00F16F05 /* StyledPlaceholderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */; };
 		476461EA1982859F00F16F05 /* StyledPlaceholderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */; };
@@ -691,7 +697,6 @@
 		EA31A16217DDB29B00F937F7 /* BusinessProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC92173B7C28008773FC /* BusinessProfileViewController.m */; };
 		EA31A16317DDB29B00F937F7 /* BusinessProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864AC9D173B7C80008773FC /* BusinessProfileOperation.m */; };
 		EA31A16417DDB29B00F937F7 /* DeleteRecipientOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864ACA0173B7C95008773FC /* DeleteRecipientOperation.m */; };
-		EA31A16517DDB29B00F937F7 /* PaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E32173A676000C5D613 /* PaymentFlow.m */; };
 		EA31A16617DDB29B00F937F7 /* ConfirmPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E36173A861000C5D613 /* ConfirmPaymentViewController.m */; };
 		EA31A16717DDB29B00F937F7 /* ConfirmPaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA222E3B173A8A7100C5D613 /* ConfirmPaymentCell.m */; };
 		EA31A16817DDB29B00F937F7 /* RecipientEntrySelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0425FF173CF5C50048BFBD /* RecipientEntrySelectionCell.m */; };
@@ -714,7 +719,6 @@
 		EA31A17917DDB29B00F937F7 /* EmailCheckOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59297E1758AE1C007C0072 /* EmailCheckOperation.m */; };
 		EA31A17A17DDB29B00F937F7 /* RecipientProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF763F175C71B4008F2A03 /* RecipientProfileCommitter.m */; };
 		EA31A17B17DDB29B00F937F7 /* LoggedInPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D1175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m */; };
-		EA31A17C17DDB29B00F937F7 /* NoUserPaymentFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA053D5175DD5EE00ACD3F6 /* NoUserPaymentFlow.m */; };
 		EA31A17E17DDB29B00F937F7 /* ClaimAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC1051817607C4600B3B018 /* ClaimAccountViewController.m */; };
 		EA31A17F17DDB29B00F937F7 /* ClaimAccountOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB93B471761C74700A7337C /* ClaimAccountOperation.m */; };
 		EA31A18017DDB29B00F937F7 /* RoundedCellBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA01331D1765FC7700D63C82 /* RoundedCellBackgroundView.m */; };
@@ -1350,6 +1354,12 @@
 		47535CAE1981362600DC39D6 /* DoublePasswordEntryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoublePasswordEntryCell.xib; sourceTree = "<group>"; };
 		47535CB31981367C00DC39D6 /* UIView+SeparatorLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SeparatorLine.h"; sourceTree = "<group>"; };
 		47535CB41981367C00DC39D6 /* UIView+SeparatorLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SeparatorLine.m"; sourceTree = "<group>"; };
+		4757BE5C1A3B064B005D7BDD /* NoUserPaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoUserPaymentFlow.h; path = PaymentFlow/NoUserPaymentFlow.h; sourceTree = "<group>"; };
+		4757BE5D1A3B064B005D7BDD /* NoUserPaymentFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoUserPaymentFlow.m; path = PaymentFlow/NoUserPaymentFlow.m; sourceTree = "<group>"; };
+		4757BE5E1A3B064B005D7BDD /* PaymentFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaymentFlow.h; path = PaymentFlow/PaymentFlow.h; sourceTree = "<group>"; };
+		4757BE5F1A3B064B005D7BDD /* PaymentFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaymentFlow.m; path = PaymentFlow/PaymentFlow.m; sourceTree = "<group>"; };
+		4757BE641A3B0747005D7BDD /* PaymentFlowViewControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaymentFlowViewControllerFactory.h; path = PaymentFlow/PaymentFlowViewControllerFactory.h; sourceTree = "<group>"; };
+		4757BE651A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaymentFlowViewControllerFactory.m; path = PaymentFlow/PaymentFlowViewControllerFactory.m; sourceTree = "<group>"; };
 		476461E71982859F00F16F05 /* StyledPlaceholderTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyledPlaceholderTextField.h; sourceTree = "<group>"; };
 		476461E81982859F00F16F05 /* StyledPlaceholderTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyledPlaceholderTextField.m; sourceTree = "<group>"; };
 		476C6B86196C18BF007002F9 /* SwipeToCancelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeToCancelCell.h; sourceTree = "<group>"; };
@@ -2129,6 +2139,19 @@
 			path = "iOS-EventTracker-SDK";
 			sourceTree = "<group>";
 		};
+		4757BE5B1A3B0634005D7BDD /* PaymentFlow */ = {
+			isa = PBXGroup;
+			children = (
+				4757BE5C1A3B064B005D7BDD /* NoUserPaymentFlow.h */,
+				4757BE5D1A3B064B005D7BDD /* NoUserPaymentFlow.m */,
+				4757BE5E1A3B064B005D7BDD /* PaymentFlow.h */,
+				4757BE5F1A3B064B005D7BDD /* PaymentFlow.m */,
+				4757BE641A3B0747005D7BDD /* PaymentFlowViewControllerFactory.h */,
+				4757BE651A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m */,
+			);
+			name = PaymentFlow;
+			sourceTree = "<group>";
+		};
 		476EB8E71A15000D00E4E392 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -2651,6 +2674,7 @@
 		EAAA1473171BC911005B9430 /* Transfer */ = {
 			isa = PBXGroup;
 			children = (
+				4757BE5B1A3B0634005D7BDD /* PaymentFlow */,
 				EAD3646517E1E19A001EFE40 /* Assets.xcassets */,
 				EABD864218E2B63A004A5A57 /* Analytics */,
 				EA225CB6178EEA89009D6B83 /* BaseData */,
@@ -3682,9 +3706,9 @@
 				389F684E198FC1C6006CF1F6 /* TypeFieldValue.m in Sources */,
 				EA31A16217DDB29B00F937F7 /* BusinessProfileViewController.m in Sources */,
 				EA31A16317DDB29B00F937F7 /* BusinessProfileOperation.m in Sources */,
+				4757BE611A3B064B005D7BDD /* NoUserPaymentFlow.m in Sources */,
 				EA31A16417DDB29B00F937F7 /* DeleteRecipientOperation.m in Sources */,
 				EA0450CA17EC3544008921DA /* BusinessProfileIdentificationViewController.m in Sources */,
-				EA31A16517DDB29B00F937F7 /* PaymentFlow.m in Sources */,
 				EA31A16617DDB29B00F937F7 /* ConfirmPaymentViewController.m in Sources */,
 				389F6800198FC1C6006CF1F6 /* _PairSourceCurrency.m in Sources */,
 				EA31A16717DDB29B00F937F7 /* ConfirmPaymentCell.m in Sources */,
@@ -3734,10 +3758,10 @@
 				EA31A17A17DDB29B00F937F7 /* RecipientProfileCommitter.m in Sources */,
 				389F6806198FC1C6006CF1F6 /* _Payment.m in Sources */,
 				EA31A17B17DDB29B00F937F7 /* LoggedInPaymentFlow.m in Sources */,
-				EA31A17C17DDB29B00F937F7 /* NoUserPaymentFlow.m in Sources */,
 				38288F4819C86A6700661BFB /* PaymentMethodSelectorViewController.m in Sources */,
 				388F09FC1934A1C000DBD93D /* UIView+RenderBlur.m in Sources */,
 				47334E841A37121A004C19F7 /* TargetCountryProvider.m in Sources */,
+				4757BE671A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m in Sources */,
 				EA31A17E17DDB29B00F937F7 /* ClaimAccountViewController.m in Sources */,
 				EA31A17F17DDB29B00F937F7 /* ClaimAccountOperation.m in Sources */,
 				4723EA301975639E00B4345F /* BlueRoundedButton.m in Sources */,
@@ -3808,6 +3832,7 @@
 				385669061980F9F200BC4230 /* ContactDetailsViewController.m in Sources */,
 				EA31A1B517DDB29B00F937F7 /* NSMutableDictionary+SaneData.m in Sources */,
 				383FC0F919AE1ABC00465FCA /* EmailLookupWrapper.m in Sources */,
+				4757BE631A3B064B005D7BDD /* PaymentFlow.m in Sources */,
 				EA31A1B617DDB29B00F937F7 /* SpinningImageView.m in Sources */,
 				389F6802198FC1C6006CF1F6 /* _PairTargetCurrency.m in Sources */,
 				EA31A1B717DDB29B00F937F7 /* NSString+Presentation.m in Sources */,
@@ -3918,6 +3943,7 @@
 				47AC3F911987AFAC005491C6 /* SuggestionCellProvider.m in Sources */,
 				38504B0919C1E83700276203 /* TouchIDHelper.m in Sources */,
 				380021C6192CC531009B1D53 /* UIColor+SinglePixelImage.m in Sources */,
+				4757BE661A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m in Sources */,
 				472D5646198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */,
 				47C580A3196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */,
 				BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */,
@@ -4015,6 +4041,7 @@
 				3887CBBE1976AF2B004DFFFD /* CancelHelper.m in Sources */,
 				EAD66781174CB34600D29BCB /* PhoneBookProfile.m in Sources */,
 				EAD66784174CB3AE00D29BCB /* PhoneBookProfileSelector.m in Sources */,
+				4757BE621A3B064B005D7BDD /* PaymentFlow.m in Sources */,
 				EAD66787174CD3FE00D29BCB /* PhoneBookAddress.m in Sources */,
 				EAD667CB174F6F7B00D29BCB /* DismissKeyboardTableView.m in Sources */,
 				EA59292C175621D0007C0072 /* VerificationRequiredOperation.m in Sources */,
@@ -4114,6 +4141,7 @@
 				389F6801198FC1C6006CF1F6 /* _PairTargetCurrency.m in Sources */,
 				EAA6AD0717A91A95006A347D /* NSString+Presentation.m in Sources */,
 				389F6829198FC1C6006CF1F6 /* ObjectModel+Payments.m in Sources */,
+				4757BE601A3B064B005D7BDD /* NoUserPaymentFlow.m in Sources */,
 				47FC53C11A1F61CF00F5E632 /* TypeFieldHelper.m in Sources */,
 				EAA07BF117AF750A004B97AC /* QuickProfileValidationOperation.m in Sources */,
 				BB7EAE8E17AFE0DF006A7182 /* SwitchCell.m in Sources */,
