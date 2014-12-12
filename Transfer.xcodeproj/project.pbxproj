@@ -5500,7 +5500,7 @@
 				);
 				PRODUCT_NAME = "TransferWise-cal";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ee88535e-ac1d-47db-ac1d-1a57297b963a";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

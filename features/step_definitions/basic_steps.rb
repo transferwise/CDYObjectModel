@@ -10,11 +10,14 @@ sleep(STEP_PAUSE)
   	touch(query("view marked:'Your email'"))
   	keyboard_enter_text("burkskinka@matsomatic.co.uk")
   	done
-  	keyboard_enter_text "banana"
+  	keyboard_enter_text("banana")
   	done
   	touch(query ("button marked:'Log in'"))
-  	sleep(STEP_PAUSE)
-  	wait_for_elements_exist( ["button marked:'Send'"], :timeout => 20)
+  	wait_for_elements_to_not_exist(["view marked:'Log in'"], :timeout => 20)
+  	if(query("view marked:'No'").count() > 0)
+  		touch(query("view marked:'No'"))
+  		sleep(STEP_PAUSE)
+  	end
   else
     if(element_exists("button marked:'Got it'"))
     	touch ("button marked:'Got it'")
@@ -27,11 +30,11 @@ end
 
 Given /^I select source (.*)$/ do |currencyCode|
   touch("tableViewCell index:0 button")
-  sleep(STEP_PAUSE)
   selectCurrency(currencyCode)
 end
 
 Given /^I select target (.*)$/ do |currencyCode|
+  sleep(STEP_PAUSE)
   touch("tableViewCell index:1 button")
   sleep(STEP_PAUSE)
   selectCurrency(currencyCode)
@@ -50,7 +53,6 @@ def selectCurrency(currencyCode)
   end
   
   if (cell.count() > 0)
-    sleep(STEP_PAUSE)	
   	touch(query(cellQuery)[0])
   	sleep(STEP_PAUSE)
   	touch(query("view marked:'Select'"))
@@ -58,4 +60,37 @@ def selectCurrency(currencyCode)
   else
   	fail(msg="Currency #{currencyCode} not found!")
   end
+end
+
+Given /^I grant access to Address Book in form field (.*)$/ do |key|
+
+# This is tricky. The typing triggers the Addressbook dialog, but also blocks pressing OK.
+# By accident I found that typing a longer string seems to accept the dialog. So let's do that.
+
+  touch(query("label {text CONTAINS '#{key}'}"))
+  keyboard_enter_text("ooooooo")
+  
+  if(uia_query(:alert).count >0)
+    uia_tap_mark 'OK'
+  end
+  
+  sleep(STEP_PAUSE)
+
+  keyboard_enter_char "Delete"
+  keyboard_enter_char "Delete"
+  keyboard_enter_char "Delete"
+  keyboard_enter_char "Delete"
+  keyboard_enter_char "Delete"
+  keyboard_enter_char "Delete"
+  keyboard_enter_char "Delete"
+end	
+
+Given /^I enter (.*) into form field (.*)$/ do |value,key|
+    touch(query("label {text CONTAINS '#{key}'}"))
+  	keyboard_enter_text(value)
+  	done
+end
+
+Given /^I wait a bit$/ do
+	sleep(STEP_PAUSE)
 end
