@@ -458,7 +458,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[controller setProposedFooterButtonTitle:NSLocalizedString(@"transactions.identification.done.button.title", nil)];
     [controller setCompletionMessage:NSLocalizedString(@"transactions.identification.uploading.message", nil)];
     __weak typeof(self) weakSelf = self;
-    [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, VerificationStepSuccessBlock successBlock, PaymentErrorBlock errorBlock) {
+    [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, TRWActionBlock successBlock, TRWErrorBlock errorBlock) {
 		if (!skipIdentification) {
             [weakSelf uploadPaymentPurpose:paymentPurpose andSSN:socialSecurityNumber errorHandler:errorBlock completionHandler:^{
                 [weakSelf.navigationController popViewControllerAnimated:YES];
@@ -480,7 +480,10 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)uploadPaymentPurpose:(NSString *)purpose andSSN:(NSString*)ssn errorHandler:(PaymentErrorBlock)errorBlock completionHandler:(TRWActionBlock)completion
+- (void)uploadPaymentPurpose:(NSString *)purpose
+					  andSSN:(NSString*)ssn
+				errorHandler:(TRWErrorBlock)errorBlock
+		   completionHandler:(TRWActionBlock)completion
 {
     if ((self.identificationRequired & IdentificationPaymentPurposeRequired) != IdentificationPaymentPurposeRequired) {
         [[GoogleAnalytics sharedInstance] sendAppEvent:@"Verification" withLabel:@"sent"];
@@ -509,7 +512,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     [operation execute];
 }
 
-- (void)uploadSocialSecurityNumber:(NSString *)ssn errorHandler:(PaymentErrorBlock)errorBlock completionHandler:(TRWActionBlock)completion
+- (void)uploadSocialSecurityNumber:(NSString *)ssn
+					  errorHandler:(TRWErrorBlock)errorBlock
+				 completionHandler:(TRWActionBlock)completion
 {
     if ((self.identificationRequired & IdentificationSSNRequired) != IdentificationSSNRequired) {
         [self uploadIdImageWithErrorHandler:errorBlock completionHandler:completion];
@@ -534,7 +539,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 }
 
 
-- (void)uploadIdImageWithErrorHandler:(PaymentErrorBlock)errorBlock completionHandler:(TRWActionBlock)completion {
+- (void)uploadIdImageWithErrorHandler:(TRWErrorBlock)errorBlock
+					completionHandler:(TRWActionBlock)completion
+{
     MCLog(@"uploadIdImageWithErrorHandler");
     if ((self.identificationRequired & IdentificationIdRequired) != IdentificationIdRequired)
 	{
@@ -554,7 +561,9 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     }];
 }
 
-- (void)uploadAddressImageWithErrorHandler:(PaymentErrorBlock)errorBlock completionHandler:(TRWActionBlock)completion {
+- (void)uploadAddressImageWithErrorHandler:(TRWErrorBlock)errorBlock
+						 completionHandler:(TRWActionBlock)completion
+{
     MCLog(@"uploadAddressImageWithErrorHandler");
     if ((self.identificationRequired & IdentificationAddressRequired) != IdentificationAddressRequired)
 	{
@@ -584,6 +593,7 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 
     [operation execute];
 }
+
 #pragma mark - TransferPayIPadViewController delegate
 - (void)cancelPaymentWithConfirmation:(Payment *)payment
 {

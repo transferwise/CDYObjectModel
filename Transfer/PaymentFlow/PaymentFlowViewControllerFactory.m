@@ -24,17 +24,23 @@
 @interface PaymentFlowViewControllerFactory ()
 
 @property (strong, nonatomic) ObjectModel *objectModel;
+@property (copy, nonatomic) TRWActionBlock nextActionBlock;
+@property (copy, nonatomic) CommitActionBlock commitActionBlock;
 
 @end
 
 @implementation PaymentFlowViewControllerFactory
 
 - (instancetype)initWithObjectModel:(ObjectModel *)objectModel
+						 nextAction:(TRWActionBlock)nextActionBlock
+					   commitAction:(CommitActionBlock)commitActionBlock
 {
 	self = [super init];
 	if (self)
 	{
 		self.objectModel = objectModel;
+		self.nextActionBlock = nextActionBlock;
+		self.commitActionBlock = commitActionBlock;
 	}
 	return self;
 }
@@ -125,7 +131,7 @@
 //	[controller setRecipientValidation:self];
 	__weak typeof(self) weakSelf = self;
 	[controller setAfterSaveAction:^{
-//		[weakSelf presentNextPaymentScreen];
+		weakSelf.nextActionBlock();
 	}];
 	
 	if(template)
@@ -188,7 +194,7 @@
 	[controller setCompletionMessage:NSLocalizedString(@"identification.creating.payment.message", nil)];
 	__weak typeof(self) weakSelf = self;
 	
-	[controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, VerificationStepSuccessBlock successBlock, PaymentErrorBlock errorBlock) {
+	[controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, TRWActionBlock successBlock, TRWErrorBlock errorBlock) {
 		[weakSelf.objectModel performBlock:^{
 			//TODO: SSN
 			[payment setSendVerificationLaterValue:skipIdentification];
@@ -230,7 +236,7 @@
 	
 	//TODO: get payment as an argument
 	PendingPayment *payment = [self.objectModel pendingPayment];
-	[controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, VerificationStepSuccessBlock successBlock,PaymentErrorBlock errorBlock) {
+	[controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, TRWActionBlock successBlock,TRWErrorBlock errorBlock) {
 		[weakSelf.objectModel performBlock:^{
 			[payment setSendVerificationLaterValue:skipIdentification];
 			[weakSelf.objectModel saveContext:^{
@@ -253,8 +259,7 @@
 	[controller setPayment:payment];
 	__weak typeof(self) weakSelf = self;
 	[controller setAfterValidationBlock:^{
-		//TODO: use this with block
-//		[weakSelf presentNextPaymentScreen];
+		weakSelf.nextActionBlock();
 	}];
 	
 	return controller;

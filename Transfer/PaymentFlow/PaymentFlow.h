@@ -13,16 +13,13 @@
 #import "Constants.h"
 
 @class ObjectModel;
-
-typedef void (^VerificationStepSuccessBlock)(void);
-typedef void (^PaymentErrorBlock)(NSError *error);
 typedef void (^EmailValidationResultBlock)(BOOL available, NSError *error);
 
 @interface PaymentFlow : NSObject <PersonalProfileValidation, RecipientProfileValidation, BusinessProfileValidation>
 
 @property (nonatomic, strong) ObjectModel *objectModel;
-@property (nonatomic, copy) PaymentErrorBlock paymentErrorHandler;
-@property (nonatomic, copy) VerificationStepSuccessBlock verificationSuccessBlock;
+@property (nonatomic, copy) TRWErrorBlock paymentErrorHandler;
+@property (nonatomic, copy) TRWActionBlock verificationSuccessBlock;
 
 - (id)initWithPresentingController:(UINavigationController *)controller;
 
@@ -30,11 +27,11 @@ typedef void (^EmailValidationResultBlock)(BOOL available, NSError *error);
 	withResultBlock:(EmailValidationResultBlock)resultBlock;
 
 - (void)validatePayment:(NSManagedObjectID *)paymentInput
-		   successBlock:(VerificationStepSuccessBlock)successBlock
-		   errorHandler:(PaymentErrorBlock)errorHandler;
+		   successBlock:(TRWActionBlock)successBlock
+		   errorHandler:(TRWErrorBlock)errorHandler;
 
-- (void)commitPaymentWithSuccessBlock:(VerificationStepSuccessBlock)successBlock
-						 ErrorHandler:(PaymentErrorBlock)errorHandler;
+- (void)commitPaymentWithSuccessBlock:(TRWActionBlock)successBlock
+						 ErrorHandler:(TRWErrorBlock)errorHandler;
 
 - (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch
 						 isExisting:(BOOL)isExisting;

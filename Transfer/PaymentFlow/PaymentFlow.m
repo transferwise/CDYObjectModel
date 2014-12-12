@@ -348,7 +348,7 @@
     [controller setCompletionMessage:NSLocalizedString(@"identification.creating.payment.message", nil)];
     __weak typeof(self) weakSelf = self;
 
-	[controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, VerificationStepSuccessBlock successBlock, PaymentErrorBlock errorBlock) {
+	[controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, TRWActionBlock successBlock, TRWErrorBlock errorBlock) {
         [weakSelf.objectModel performBlock:^{
             //TODO: SSN
             [payment setSendVerificationLaterValue:skipIdentification];
@@ -399,8 +399,8 @@
 }
 
 - (void)validatePayment:(NSManagedObjectID *)paymentInput
-		   successBlock:(VerificationStepSuccessBlock)successBlock
-		   errorHandler:(PaymentErrorBlock)errorHandler
+		   successBlock:(TRWActionBlock)successBlock
+		   errorHandler:(TRWErrorBlock)errorHandler
 {
     MCLog(@"Validate payment");
     self.paymentErrorHandler = errorHandler;
@@ -500,7 +500,7 @@
     __weak typeof(self) weakSelf = self;
 
 	PendingPayment *payment = [self.objectModel pendingPayment];
-    [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, VerificationStepSuccessBlock successBlock,PaymentErrorBlock errorBlock) {
+    [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, TRWActionBlock successBlock, TRWErrorBlock errorBlock) {
         [weakSelf.objectModel performBlock:^{
             [payment setSendVerificationLaterValue:skipIdentification];
             [weakSelf.objectModel saveContext:^{
@@ -511,8 +511,8 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)commitPaymentWithSuccessBlock:(VerificationStepSuccessBlock)successBlock
-						 ErrorHandler:(PaymentErrorBlock)errorHandler
+- (void)commitPaymentWithSuccessBlock:(TRWActionBlock)successBlock
+						 errorHandler:(TRWErrorBlock)errorHandler
 {
     MCAssert(NO);
 }

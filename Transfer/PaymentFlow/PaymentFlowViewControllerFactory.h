@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Constants.h"
 
 @class ObjectModel;
 
@@ -30,11 +31,15 @@ typedef NS_ENUM(short, ControllerType)
 	RefundDetailsController = 9,
 };
 
+typedef void (^CommitActionBlock)(TRWActionBlock *successBlock, TRWErrorBlock *controller);
+
 @interface PaymentFlowViewControllerFactory : NSObject
 
 - (id)init __attribute__((unavailable("init unavailable, use initWithObjectModel")));
 
-- (instancetype)initWithObjectModel:(ObjectModel *)objectModel;
+- (instancetype)initWithObjectModel:(ObjectModel *)objectModel
+						 nextAction:(TRWActionBlock)nextActionBlock
+					   commitAction:(CommitActionBlock)commitActionBlock;
 
 - (UIViewController *)getViewControllerWithType:(ControllerType)type
 										 params:(NSDictionary *)params;
