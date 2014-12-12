@@ -13,7 +13,7 @@ sleep(STEP_PAUSE)
   	keyboard_enter_text("banana")
   	done
   	touch(query ("button marked:'Log in'"))
-  	wait_for_elements_to_not_exist(["view marked:'Log in'"], :timeout => 20)
+  	wait_for_elements_do_not_exist(["view marked:'Log in'"], :timeout => 20)
   	if(query("view marked:'No'").count() > 0)
   		touch(query("view marked:'No'"))
   		sleep(STEP_PAUSE)
@@ -29,6 +29,7 @@ sleep(STEP_PAUSE)
 end
 
 Given /^I select source (.*)$/ do |currencyCode|
+  sleep(STEP_PAUSE)
   touch("tableViewCell index:0 button")
   selectCurrency(currencyCode)
 end
@@ -55,7 +56,9 @@ def selectCurrency(currencyCode)
   if (cell.count() > 0)
   	touch(query(cellQuery)[0])
   	sleep(STEP_PAUSE)
-  	touch(query("view marked:'Select'"))
+  	if(query("view marked:'Select'").count() > 0)
+  		touch(query("view marked:'Select'"))
+  	end
   	sleep(STEP_PAUSE)
   else
   	fail(msg="Currency #{currencyCode} not found!")
