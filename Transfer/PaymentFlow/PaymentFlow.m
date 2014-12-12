@@ -339,7 +339,6 @@
 	//TODO use PaymentFlowViewControllerFactory
     PersonalProfileIdentificationViewController *controller = [[PersonalProfileIdentificationViewController alloc] init];
     [controller setObjectModel:self.objectModel];
-    [controller setPaymentFlow:self];
 	
 	PendingPayment *payment = [self.objectModel pendingPayment];
 	

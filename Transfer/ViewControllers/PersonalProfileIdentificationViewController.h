@@ -19,7 +19,6 @@ typedef void (^IdentificationCompleteBlock)(BOOL skipIdentification, NSString *p
 @interface PersonalProfileIdentificationViewController : DataEntryViewController
 
 @property (nonatomic, copy) IdentificationCompleteBlock completionHandler;
-@property (nonatomic, weak) PaymentFlow *paymentFlow;
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, assign) BOOL hideSkipOption;
 @property (nonatomic, assign) IdentificationRequired identificationRequired;

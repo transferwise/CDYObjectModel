@@ -103,7 +103,7 @@
 		[controller setButtonTitle:NSLocalizedString(@"personal.profile.continue.to.recipient.button.title", nil)];
 	}
 	
-	//TODO: use this with a block
+	//TODO: use validation with a provider
 	//[controller setProfileValidation:self];
 	
 	return controller;
@@ -127,7 +127,7 @@
 	[controller setTitle:NSLocalizedString(@"recipient.controller.payment.mode.title", nil)];
 	[controller setFooterButtonTitle:NSLocalizedString(@"button.title.continue", nil)];
 	
-	//TODO: use this with block
+	//TODO: use validation with provider
 //	[controller setRecipientValidation:self];
 	__weak typeof(self) weakSelf = self;
 	[controller setAfterSaveAction:^{
@@ -154,7 +154,9 @@
 	
 	[controller setObjectModel:self.objectModel];
 	[controller setButtonTitle:NSLocalizedString(@"business.profile.confirm.payment.button.title", nil)];
-	[controller setProfileValidation:self];
+	
+	//TODO: use validation with provider
+//	[controller setProfileValidation:self];
 	
 	return controller;
 }
@@ -183,8 +185,6 @@
 {
 	PersonalProfileIdentificationViewController *controller = [[PersonalProfileIdentificationViewController alloc] init];
 	[controller setObjectModel:self.objectModel];
-	//TODO: use this with block
-	//[controller setPaymentFlow:self];
 	
 	[controller setIdentificationRequired:(IdentificationRequired) [payment verificiationNeededValue]];
 	[controller setProposedPaymentPurpose:[payment proposedPaymentsPurpose]];
