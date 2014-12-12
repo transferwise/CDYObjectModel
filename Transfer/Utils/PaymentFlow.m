@@ -99,7 +99,8 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)validateBusinessProfile:(NSManagedObjectID *)profile withHandler:(BusinessProfileValidationBlock)handler
+- (void)validateBusinessProfile:(NSManagedObjectID *)profile
+					withHandler:(BusinessProfileValidationBlock)handler
 {
     MCLog(@"validateBusinessProfile");
     BusinessProfileOperation *operation = [BusinessProfileOperation validateWithData:profile];
@@ -148,7 +149,8 @@
     return [self.objectModel.currentUser personalProfileFilled];
 }
 
-- (void)validatePersonalProfile:(NSManagedObjectID *)profile withHandler:(PersonalProfileValidationBlock)handler
+- (void)validatePersonalProfile:(NSManagedObjectID *)profile
+					withHandler:(PersonalProfileValidationBlock)handler
 {
     MCLog(@"validateProfile");
     PersonalProfileOperation *operation = [PersonalProfileOperation validateOperationWithProfile:profile];
@@ -178,7 +180,8 @@
     [operation execute];
 }
 
-- (void)verifyEmail:(NSString *)email withHandler:(PersonalProfileValidationBlock)handler
+- (void)verifyEmail:(NSString *)email
+		withHandler:(PersonalProfileValidationBlock)handler
 {
     __weak typeof(self) weakSelf = self;
     [self verifyEmail:email withResultBlock:^(BOOL available, NSError *error) {
@@ -190,7 +193,9 @@
 		{
             [[GoogleAnalytics sharedInstance] sendAlertEvent:@"EmailTakenDuringPaymentAlert" withLabel:@""];
 			//TODO: Replace with login screen showing
-            NSError *emailError = [[NSError alloc] initWithDomain:TRWErrorDomain code:ResponseLocalError userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"personal.profile.email.taken.message", nil)}];
+            NSError *emailError = [[NSError alloc] initWithDomain:TRWErrorDomain
+															 code:ResponseLocalError
+														 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"personal.profile.email.taken.message", nil)}];
             handler(emailError);
         }
 		else
@@ -201,7 +206,8 @@
     }];
 }
 
-- (void)verifyEmail:(NSString *)email withResultBlock:(EmailValidationResultBlock)resultBlock
+- (void)verifyEmail:(NSString *)email
+	withResultBlock:(EmailValidationResultBlock)resultBlock
 {
     MCLog(@"Verify email %@ available", email);
     EmailCheckOperation *operation = [EmailCheckOperation operationWithEmail:email];
@@ -213,20 +219,29 @@
 
 - (void)presentRecipientDetails:(BOOL)showMiniProfile
 {
-    [self presentRecipientDetails:showMiniProfile templateRecipient:nil];
+    [self presentRecipientDetails:showMiniProfile
+				templateRecipient:nil];
 }
 
-- (void)presentRecipientDetails:(BOOL)showMiniProfile templateRecipient:(Recipient*)template
+- (void)presentRecipientDetails:(BOOL)showMiniProfile
+			  templateRecipient:(Recipient*)template
 {
-    [self presentRecipientDetails:showMiniProfile templateRecipient:template updateRecipient:nil];
+    [self presentRecipientDetails:showMiniProfile
+				templateRecipient:template
+				  updateRecipient:nil];
 }
 
-- (void)presentRecipientDetails:(BOOL)showMiniProfile updateRecipient:(Recipient*)updateRecipient
+- (void)presentRecipientDetails:(BOOL)showMiniProfile
+				updateRecipient:(Recipient*)updateRecipient
 {
-    [self presentRecipientDetails:showMiniProfile templateRecipient:nil updateRecipient:updateRecipient];
+    [self presentRecipientDetails:showMiniProfile
+				templateRecipient:nil
+				  updateRecipient:updateRecipient];
 }
 
-- (void)presentRecipientDetails:(BOOL)showMiniProfile templateRecipient:(Recipient*)template updateRecipient:(Recipient*)updateRecipient
+- (void)presentRecipientDetails:(BOOL)showMiniProfile
+			  templateRecipient:(Recipient*)template
+				updateRecipient:(Recipient*)updateRecipient
 {
     [[GoogleAnalytics sharedInstance] paymentRecipientProfileScreenShown];
     [[Mixpanel sharedInstance] sendPageView:@"Select recipient"];
@@ -263,7 +278,8 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)presentNextScreenAfterRecipientDetails {
+- (void)presentNextScreenAfterRecipientDetails
+{
     [self.objectModel performBlock:^{
         PendingPayment *payment = [self.objectModel pendingPayment];
         if ([payment.user personalProfileFilled]) {
@@ -290,13 +306,17 @@
     });
 }
 
-- (void)presentPaymentConfirmation {
+- (void)presentPaymentConfirmation
+{
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"presentPaymentConfirmation");
         ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
-        if ([Credentials userLoggedIn]) {
+        if ([Credentials userLoggedIn])
+		{
             [controller setReportingType:ConfirmPaymentReportingLoggedIn];
-        } else {
+        }
+		else
+		{
             [controller setReportingType:ConfirmPaymentReportingNotLoggedIn];
         }
         [controller setObjectModel:self.objectModel];
@@ -307,7 +327,8 @@
     });
 }
 
-- (void)presentVerificationScreen {
+- (void)presentVerificationScreen
+{
 	PendingPayment *payment = [self.objectModel pendingPayment];
     [[GoogleAnalytics sharedInstance] sendScreen:@"Personal identification"];
 
@@ -334,12 +355,16 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)presentUploadMoneyController:(NSManagedObjectID *)paymentID {
+- (void)presentUploadMoneyController:(NSManagedObjectID *)paymentID
+{
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"presentUploadMoneyController");
-        if ([self isKindOfClass:[LoggedInPaymentFlow class]]) {
+        if ([self isKindOfClass:[LoggedInPaymentFlow class]])
+		{
             [[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentCreated" withLabel:@"logged"];
-        } else {
+        }
+		else
+		{
             [[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentCreated" withLabel:@"not logged"];
         }
         
@@ -363,7 +388,10 @@
     });
 }
 
-- (void)validatePayment:(NSManagedObjectID *)paymentInput successBlock:(VerificationStepSuccessBlock)successBlock errorHandler:(PaymentErrorBlock)errorHandler {
+- (void)validatePayment:(NSManagedObjectID *)paymentInput
+		   successBlock:(VerificationStepSuccessBlock)successBlock
+		   errorHandler:(PaymentErrorBlock)errorHandler
+{
     MCLog(@"Validate payment");
     self.paymentErrorHandler = errorHandler;
     self.verificationSuccessBlock = successBlock;
@@ -375,7 +403,8 @@
         __weak typeof(self) weakSelf = self;
 
         [operation setResponseHandler:^(NSManagedObjectID *paymentID, NSError *error) {
-            if (error) {
+            if (error)
+			{
                 weakSelf.paymentErrorHandler(error);
                 return;
             }
@@ -387,14 +416,18 @@
         [operation execute];
     };
 
-    if ([Credentials userLoggedIn]) {
+    if ([Credentials userLoggedIn])
+	{
         [self updateSenderProfile:executeValidationBlock];
-    } else {
+    }
+	else
+	{
         executeValidationBlock();
     }
 }
 
-- (void)checkVerificationNeeded {
+- (void)checkVerificationNeeded
+{
     MCLog(@"checkVerificationNeeded");
     VerificationRequiredOperation *operation = [VerificationRequiredOperation operation];
     [self setExecutedOperation:operation];
@@ -402,7 +435,8 @@
     __weak typeof(self) weakSelf = self;
     [operation setCompletionHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (error) {
+            if (error)
+			{
                 weakSelf.paymentErrorHandler(error);
                 return;
             }
@@ -410,14 +444,17 @@
             PendingPayment *pendingPayment = [weakSelf.objectModel pendingPayment];
             MCLog(@"Any verification required? %d", pendingPayment.isAnyVerificationRequired);
             MCLog(@"Logged in? %d", [Credentials userLoggedIn]);
-            if ([pendingPayment isAnyVerificationRequired] && [[pendingPayment profileUsed] isEqualToString:@"business"]) {
+            if ([pendingPayment isAnyVerificationRequired] && [[pendingPayment profileUsed] isEqualToString:@"business"])
+			{
                 if(weakSelf.verificationSuccessBlock)
                 {
                     weakSelf.verificationSuccessBlock();
                     weakSelf.verificationSuccessBlock = nil;
                 }
                 [weakSelf presentBusinessVerificationScreen];
-            } else if ([pendingPayment isAnyVerificationRequired]) {
+            }
+			else if ([pendingPayment isAnyVerificationRequired])
+			{
                 MCLog(@"Present verification screen");
                 if(weakSelf.verificationSuccessBlock)
                 {
@@ -425,12 +462,16 @@
                     weakSelf.verificationSuccessBlock = nil;
                 }
                 [weakSelf presentVerificationScreen];
-            } else if ([Credentials userLoggedIn]) {
+            }
+			else if ([Credentials userLoggedIn])
+			{
                 MCLog(@"Update sender profile");
                 [weakSelf updateSenderProfile:^{
                     [weakSelf handleNextStepOfPendingPaymentCommit];
                 }];
-            } else {
+            }
+			else
+			{
                 MCLog(@"Register user");
                 [weakSelf registerUser];
             }
@@ -440,7 +481,8 @@
     [operation execute];
 }
 
-- (void)presentBusinessVerificationScreen {
+- (void)presentBusinessVerificationScreen
+{
     PendingPayment *payment = [self.objectModel pendingPayment];
     [[GoogleAnalytics sharedInstance] sendScreen:@"Business verification"];
 
@@ -458,7 +500,9 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)commitPaymentWithSuccessBlock:(VerificationStepSuccessBlock)successBlock ErrorHandler:(PaymentErrorBlock)errorHandler {
+- (void)commitPaymentWithSuccessBlock:(VerificationStepSuccessBlock)successBlock
+						 ErrorHandler:(PaymentErrorBlock)errorHandler
+{
     MCAssert(NO);
 }
 
@@ -472,7 +516,8 @@
     NSString *email = user.email;
 	NSString *password = user.password;
 
-    RegisterOperation *operation = [RegisterOperation operationWithEmail:email password:password];
+    RegisterOperation *operation = [RegisterOperation operationWithEmail:email
+																password:password];
     [self setExecutedOperation:operation];
     [operation setObjectModel:self.objectModel];
     __weak typeof(self) weakSelf = self;
@@ -539,7 +584,8 @@
     __weak typeof(self) weakSelf = self;
 
     [operation setSaveResultHandler:^(NSError *error) {
-        if (error) {
+        if (error)
+		{
             weakSelf.paymentErrorHandler(error);
             return;
         }
@@ -550,7 +596,8 @@
     [operation execute];
 }
 
-- (void)uploadPaymentPurpose {
+- (void)uploadPaymentPurpose
+{
     MCLog(@"uploadPaymentPurpose");
     PendingPayment *pendingPayment = [self.objectModel pendingPayment];
     PaymentPurposeOperation *operation = [PaymentPurposeOperation operationWithPurpose:pendingPayment.paymentPurpose forProfile:pendingPayment.profileUsed];
@@ -560,7 +607,8 @@
 
     [operation setResultHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (error) {
+            if (error)
+			{
                 weakSelf.paymentErrorHandler(error);
                 return;
             }
@@ -577,7 +625,8 @@
     [operation execute];
 }
 
-- (void)uploadAddressVerification {
+- (void)uploadAddressVerification
+{
     MCLog(@"uploadAddressVerification");
     NSString *profile = [self.objectModel pendingPayment].profileUsed;
     UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:@"address" profile:profile filePath:[PendingPayment addressPhotoPath]];
@@ -587,7 +636,8 @@
 
     [operation setCompletionHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (error) {
+            if (error)
+			{
                 weakSelf.paymentErrorHandler(error);
                 return;
             }
@@ -604,7 +654,8 @@
     [operation execute];
 }
 
-- (void)uploadIdVerification {
+- (void)uploadIdVerification
+{
     MCLog(@"uploadIdVerification");
     NSString *profile = [self.objectModel pendingPayment].profileUsed;
     UploadVerificationFileOperation *operation = [UploadVerificationFileOperation verifyOperationFor:@"id" profile:profile filePath:[PendingPayment idPhotoPath]];
@@ -614,7 +665,8 @@
 
     [operation setCompletionHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (error) {
+            if (error)
+			{
                 weakSelf.paymentErrorHandler(error);
                 return;
             }
@@ -631,7 +683,8 @@
     [operation execute];
 }
 
-- (void)uploadSocialSecurityNumber {
+- (void)uploadSocialSecurityNumber
+{
     MCLog(@"uploadPaymentPurpose");
     PendingPayment *pendingPayment = [self.objectModel pendingPayment];
     __weak typeof(self) weakSelf = self;
@@ -639,7 +692,8 @@
     {
         SetSSNOperation *operation = [SetSSNOperation operationWithSsn:pendingPayment.socialSecurityNumber resultHandler:^(NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (error) {
+                if (error)
+				{
                     weakSelf.paymentErrorHandler(error);
                     return;
                 }
@@ -675,7 +729,8 @@
     }
 }
 
-- (void)commitPayment {
+- (void)commitPayment
+{
     MCLog(@"Commit payment");
 
     PendingPayment *payment = self.objectModel.pendingPayment;
@@ -689,7 +744,8 @@
     __weak typeof(self) weakSelf = self;
 
     [operation setResponseHandler:^(NSManagedObjectID *paymentID, NSError *error) {
-        if (error) {
+        if (error)
+		{
             weakSelf.paymentErrorHandler(error);
             return;
         }
@@ -700,7 +756,8 @@
 #endif
 
         static NSNumberFormatter *__formatter;
-        if (!__formatter) {
+        if (!__formatter)
+		{
             __formatter = [[NSNumberFormatter alloc] init];
             [__formatter setGeneratesDecimalNumbers:YES];
             [__formatter setLocale:[CalculationResult defaultLocale]];
@@ -754,7 +811,9 @@
     [operation execute];
 }
 
-- (void)validateRecipient:(NSManagedObjectID *)recipientProfile completion:(RecipientProfileValidationBlock)completion {
+- (void)validateRecipient:(NSManagedObjectID *)recipientProfile
+			   completion:(RecipientProfileValidationBlock)completion
+{
     MCLog(@"Validate recipient");
     RecipientOperation *operation = [RecipientOperation validateOperationWithRecipient:recipientProfile];
     [self setExecutedOperation:operation];
@@ -765,7 +824,8 @@
     [operation execute];
 }
 
-- (void)presentRefundAccountViewController {
+- (void)presentRefundAccountViewController
+{
     PendingPayment *payment = self.objectModel.pendingPayment;
     RefundDetailsViewController *controller = [[RefundDetailsViewController alloc] init];
     [controller setObjectModel:self.objectModel];
@@ -778,37 +838,51 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)handleNextStepOfPendingPaymentCommit {
+- (void)handleNextStepOfPendingPaymentCommit
+{
     MCLog(@"handleNextStepOfPendingPaymentCommit");
     [self.objectModel performBlock:^{
         PendingPayment *payment = self.objectModel.pendingPayment;
-        if ([payment needsToCommitRecipientData]) {
+        if ([payment needsToCommitRecipientData])
+		{
             MCLog(@"commit recipient");
             [[GoogleAnalytics sharedInstance] sendNewRecipentEventWithLabel:@"DuringPayment"];
             [self commitRecipient:payment.recipient];
-        } else if ([payment needsToCommitRefundRecipientData]) {
+        }
+		else if ([payment needsToCommitRefundRecipientData])
+		{
             MCLog(@"commit refund");
             [self commitRecipient:payment.refundRecipient];
-        } else if (!payment.sendVerificationLaterValue &&[payment ssnVerificationRequired]) {
+        }
+		else if (!payment.sendVerificationLaterValue &&[payment ssnVerificationRequired])
+		{
             MCLog(@"Upload SSN");
             [self uploadSocialSecurityNumber];
-        } else if (!payment.sendVerificationLaterValue && [payment idVerificationRequired]) {
+        }
+		else if (!payment.sendVerificationLaterValue && [payment idVerificationRequired])
+		{
             MCLog(@"Upload id");
             [self uploadIdVerification];
-        } else if (!payment.sendVerificationLaterValue && [payment addressVerificationRequired]) {
+        }
+		else if (!payment.sendVerificationLaterValue && [payment addressVerificationRequired])
+		{
             MCLog(@"Upload address");
             [self uploadAddressVerification];
-        } else if (!payment.sendVerificationLaterValue &&[payment paymentPurposeRequired]) {
+        }
+		else if (!payment.sendVerificationLaterValue &&[payment paymentPurposeRequired])
+		{
             MCLog(@"Upload payment purpose");
             [self uploadPaymentPurpose];
         }
-        else {
+        else
+		{
             [self commitPayment];
         }
     }];
 }
 
-- (void)commitRecipient:(Recipient *)recipient {
+- (void)commitRecipient:(Recipient *)recipient
+{
     MCLog(@"commitRecipientData");
     RecipientOperation *operation = [RecipientOperation createOperationWithRecipient:recipient.objectID];
     [self setExecutedOperation:operation];
@@ -818,7 +892,8 @@
     [operation setResponseHandler:^(NSError *error) {
         [weakSelf setExecutedOperation:nil];
 
-        if (error) {
+        if (error)
+		{
             weakSelf.paymentErrorHandler(error);
             return;
         }
