@@ -13,6 +13,8 @@
 #import "Constants.h"
 
 @class ObjectModel;
+
+//TODO: remove and use validator
 typedef void (^EmailValidationResultBlock)(BOOL available, NSError *error);
 
 @interface PaymentFlow : NSObject <PersonalProfileValidation, RecipientProfileValidation, BusinessProfileValidation>
@@ -23,6 +25,7 @@ typedef void (^EmailValidationResultBlock)(BOOL available, NSError *error);
 
 - (id)initWithPresentingController:(UINavigationController *)controller;
 
+//TODO: remove and use validator
 - (void)verifyEmail:(NSString *)email
 	withResultBlock:(EmailValidationResultBlock)resultBlock;
 

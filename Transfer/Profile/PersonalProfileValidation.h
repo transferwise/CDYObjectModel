@@ -15,7 +15,9 @@ typedef void (^PersonalProfileValidationBlock)(NSError *error);
 
 @protocol PersonalProfileValidation <NSObject>
 
-- (void)validatePersonalProfile:(NSManagedObjectID *)profileID withHandler:(PersonalProfileValidationBlock)handler;
+- (void)validatePersonalProfile:(NSManagedObjectID *)profileID
+					withHandler:(PersonalProfileValidationBlock)handler;
+
 - (void)setObjectModel:(ObjectModel *)objectModel;
 
 @end

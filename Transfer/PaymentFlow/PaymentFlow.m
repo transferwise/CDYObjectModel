@@ -101,6 +101,7 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+//TODO: remove and use validator
 - (void)validateBusinessProfile:(NSManagedObjectID *)profile
 					withHandler:(BusinessProfileValidationBlock)handler
 {
@@ -146,11 +147,13 @@
     [operation execute];
 }
 
+//TODO: remove and use validator
 - (BOOL)personalProfileFilled
 {
     return [self.objectModel.currentUser personalProfileFilled];
 }
 
+//TODO: remove and use validator
 - (void)validatePersonalProfile:(NSManagedObjectID *)profile
 					withHandler:(PersonalProfileValidationBlock)handler
 {
@@ -182,6 +185,7 @@
     [operation execute];
 }
 
+//TODO: remove and use validator
 - (void)verifyEmail:(NSString *)email
 		withHandler:(PersonalProfileValidationBlock)handler
 {
@@ -208,6 +212,7 @@
     }];
 }
 
+//TODO: remove and use validator
 - (void)verifyEmail:(NSString *)email
 	withResultBlock:(EmailValidationResultBlock)resultBlock
 {
