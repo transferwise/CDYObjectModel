@@ -9,7 +9,7 @@
 "ach.controller.validation.account.invalid" = "Entered account number is incorrect.";
 "ach.controller.error.title" = "Entered data is not valid";
 "ach.controller.accessing" = "Accessing your bank details";
-"ach.controller.accessing.error" = "Unable to access your bank details";
+"ach.controller.accessing.error" = "Unable to contact your bank at the moment. Please try again.";
 "ach.controller.checkbook.routing" = "Your routing number";
 "ach.controller.checkbook.account" = "Your account number";
 "ach.controller.checkbook" = "%@ on a checkbook.";
