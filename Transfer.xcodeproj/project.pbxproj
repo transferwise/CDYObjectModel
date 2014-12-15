@@ -536,6 +536,8 @@
 		47C1F71F1A3EDAC700014F55 /* ProfileValidatorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F71D1A3EDAC700014F55 /* ProfileValidatorBase.m */; };
 		47C1F7231A3EE04500014F55 /* EmailValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7221A3EE04500014F55 /* EmailValidator.m */; };
 		47C1F7241A3EE04500014F55 /* EmailValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7221A3EE04500014F55 /* EmailValidator.m */; };
+		47C1F7281A3EE6A300014F55 /* RecipientProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7271A3EE6A300014F55 /* RecipientProfileValidator.m */; };
+		47C1F7291A3EE6A300014F55 /* RecipientProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7271A3EE6A300014F55 /* RecipientProfileValidator.m */; };
 		47C4D03C1A232A9F005EC7C6 /* _AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0391A232A9F005EC7C6 /* _AchBank.m */; };
 		47C4D03D1A232A9F005EC7C6 /* _AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0391A232A9F005EC7C6 /* _AchBank.m */; };
 		47C4D03E1A232A9F005EC7C6 /* _FieldGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D03B1A232A9F005EC7C6 /* _FieldGroup.m */; };
@@ -1433,6 +1435,8 @@
 		47C1F7201A3EDF4400014F55 /* EmailValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmailValidation.h; path = Profile/EmailValidation.h; sourceTree = "<group>"; };
 		47C1F7211A3EE04500014F55 /* EmailValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmailValidator.h; path = Profile/EmailValidator.h; sourceTree = "<group>"; };
 		47C1F7221A3EE04500014F55 /* EmailValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmailValidator.m; path = Profile/EmailValidator.m; sourceTree = "<group>"; };
+		47C1F7261A3EE6A300014F55 /* RecipientProfileValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientProfileValidator.h; sourceTree = "<group>"; };
+		47C1F7271A3EE6A300014F55 /* RecipientProfileValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientProfileValidator.m; sourceTree = "<group>"; };
 		47C4D0381A232A9F005EC7C6 /* _AchBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AchBank.h; sourceTree = "<group>"; };
 		47C4D0391A232A9F005EC7C6 /* _AchBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AchBank.m; sourceTree = "<group>"; };
 		47C4D03A1A232A9F005EC7C6 /* _FieldGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _FieldGroup.h; sourceTree = "<group>"; };
@@ -2185,28 +2189,38 @@
 				47C1F6FA1A3B3F4200014F55 /* BusinessProfileCommitter.m */,
 				47C1F6FB1A3B3F4200014F55 /* BusinessProfileSource.h */,
 				47C1F6FC1A3B3F4200014F55 /* BusinessProfileSource.m */,
-				47C1F6FD1A3B3F4200014F55 /* BusinessProfileValidation.h */,
-				47C1F7141A3ED29200014F55 /* BusinessProfileValidator.h */,
-				47C1F7151A3ED29200014F55 /* BusinessProfileValidator.m */,
-				47C1F7201A3EDF4400014F55 /* EmailValidation.h */,
 				47C1F6FE1A3B3F4200014F55 /* PersonalProfileCommitter.h */,
 				47C1F6FF1A3B3F4200014F55 /* PersonalProfileCommitter.m */,
 				47C1F7001A3B3F4200014F55 /* PersonalProfileSource.h */,
 				47C1F7011A3B3F4200014F55 /* PersonalProfileSource.m */,
-				47C1F7021A3B3F4200014F55 /* PersonalProfileValidation.h */,
 				47C1F7031A3B3F4200014F55 /* ProfileSource.h */,
 				47C1F7041A3B3F4200014F55 /* ProfileSource.m */,
 				47C1F7051A3B3F4200014F55 /* RecipientProfileCommitter.h */,
 				47C1F7061A3B3F4200014F55 /* RecipientProfileCommitter.m */,
-				47C1F7071A3B3F4200014F55 /* RecipientProfileValidation.h */,
+				47C1F7251A3EE3D700014F55 /* Validation */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		47C1F7251A3EE3D700014F55 /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				47C1F6FD1A3B3F4200014F55 /* BusinessProfileValidation.h */,
+				47C1F7141A3ED29200014F55 /* BusinessProfileValidator.h */,
+				47C1F7151A3ED29200014F55 /* BusinessProfileValidator.m */,
+				47C1F7201A3EDF4400014F55 /* EmailValidation.h */,
+				47C1F7211A3EE04500014F55 /* EmailValidator.h */,
+				47C1F7221A3EE04500014F55 /* EmailValidator.m */,
+				47C1F7021A3B3F4200014F55 /* PersonalProfileValidation.h */,
 				47C1F7181A3ED9B200014F55 /* PersonalProfileValidator.h */,
 				47C1F7191A3ED9B200014F55 /* PersonalProfileValidator.m */,
 				47C1F71C1A3EDAC700014F55 /* ProfileValidatorBase.h */,
 				47C1F71D1A3EDAC700014F55 /* ProfileValidatorBase.m */,
-				47C1F7211A3EE04500014F55 /* EmailValidator.h */,
-				47C1F7221A3EE04500014F55 /* EmailValidator.m */,
+				47C1F7071A3B3F4200014F55 /* RecipientProfileValidation.h */,
+				47C1F7261A3EE6A300014F55 /* RecipientProfileValidator.h */,
+				47C1F7271A3EE6A300014F55 /* RecipientProfileValidator.m */,
 			);
-			name = Profile;
+			name = Validation;
 			sourceTree = "<group>";
 		};
 		47DC89821A03950F0042054B /* TransferTests */ = {
@@ -3803,6 +3817,7 @@
 				472D5643198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */,
 				389F683E198FC1C6006CF1F6 /* Payment.m in Sources */,
 				47FAF345194B2F11004CE986 /* LightBlueButton.m in Sources */,
+				47C1F7291A3EE6A300014F55 /* RecipientProfileValidator.m in Sources */,
 				EA31A18817DDB29B00F937F7 /* RemoveTokenOperation.m in Sources */,
 				479B693B19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */,
 				38FC0B9C19EED51500173E07 /* Mixpanel+Customisation.m in Sources */,
@@ -3935,6 +3950,7 @@
 				4746EAFC19A7267B00D03557 /* ReferralListOperation.m in Sources */,
 				EA8FF6B8171D25C20090A658 /* TransferwiseOperation.m in Sources */,
 				EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */,
+				47C1F7281A3EE6A300014F55 /* RecipientProfileValidator.m in Sources */,
 				47C1F7121A3B3F4200014F55 /* RecipientProfileCommitter.m in Sources */,
 				474A5A8F1A137EDC0094757B /* _ReferralLink.m in Sources */,
 				3818605719C9A206009A413E /* SetSSNOperation.m in Sources */,

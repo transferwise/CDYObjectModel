@@ -826,6 +826,7 @@
     [operation execute];
 }
 
+//TODO: remove and use validator
 - (void)validateRecipient:(NSManagedObjectID *)recipientProfile
 			   completion:(RecipientProfileValidationBlock)completion
 {
