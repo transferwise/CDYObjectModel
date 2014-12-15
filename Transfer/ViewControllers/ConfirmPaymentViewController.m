@@ -481,16 +481,32 @@
     [input setRecipientEmail:email];
     
     void(^validateBlock)(void) = ^void(){
-        [self.paymentFlow validatePayment:input.objectID successBlock:^{
-            [hud hide];
-        } errorHandler:^(NSError *error) {
-            [hud hide];
-            if (error) {
-                [[GoogleAnalytics sharedInstance] sendAlertEvent:@"CreatingPaymentAlert" withLabel:[error localizedTransferwiseMessage]];
-                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
-                [alertView show];
-            }
-        }];
+		[self.paymentValidator setObjectModel:self.objectModel];
+		[self.paymentValidator setSuccessBlock:^{
+			[hud hide];
+		}];
+		[self.paymentValidator setErrorBlock:^(NSError *error) {
+			[hud hide];
+			if (error) {
+				[[GoogleAnalytics sharedInstance] sendAlertEvent:@"CreatingPaymentAlert" withLabel:[error localizedTransferwiseMessage]];
+				TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
+				[alertView show];
+			}
+		}];
+		
+		[self.paymentValidator validatePayment:input.objectID];
+
+		//TODO: remove when verified that is working
+//        [self.paymentFlow validatePayment:input.objectID successBlock:^{
+//            [hud hide];
+//        } errorHandler:^(NSError *error) {
+//            [hud hide];
+//            if (error) {
+//                [[GoogleAnalytics sharedInstance] sendAlertEvent:@"CreatingPaymentAlert" withLabel:[error localizedTransferwiseMessage]];
+//                TRWAlertView *alertView = [TRWAlertView errorAlertWithTitle:NSLocalizedString(@"confirm.payment.payment.error.title", nil) error:error];
+//                [alertView show];
+//            }
+//        }];
     };
 	
     if(emailAdded)

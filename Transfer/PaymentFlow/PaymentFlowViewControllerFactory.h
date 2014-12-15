@@ -11,6 +11,7 @@
 #import "PersonalProfileValidation.h"
 #import "BusinessProfileValidation.h"
 #import "RecipientProfileValidation.h"
+#import "PaymentValidation.h"
 
 @class ObjectModel;
 
@@ -39,14 +40,16 @@ typedef void (^CommitActionBlock)(TRWActionBlock successBlock, TRWErrorBlock err
 
 @interface PaymentFlowViewControllerFactory : NSObject
 
+@property (copy, nonatomic) TRWActionBlock nextActionBlock;
+@property (copy, nonatomic) CommitActionBlock commitActionBlock;
+
 - (id)init __attribute__((unavailable("init unavailable, use initWithObjectModel")));
 
 - (instancetype)initWithObjectModel:(ObjectModel *)objectModel
-						 nextAction:(TRWActionBlock)nextActionBlock
-					   commitAction:(CommitActionBlock)commitActionBlock
 		   personalProfileValidator:(id<PersonalProfileValidation>)personalProfileValidator
 		   businessProfileValidator:(id<BusinessProfileValidation>)businessProfileValidator
-		  recipientProfileValidator:(id<RecipientProfileValidation>)recipientProfileValidator;
+		  recipientProfileValidator:(id<RecipientProfileValidation>)recipientProfileValidator
+				   paymentValidator:(id<PaymentValidation>)paymentValidator;
 
 - (UIViewController *)getViewControllerWithType:(ControllerType)type
 										 params:(NSDictionary *)params;

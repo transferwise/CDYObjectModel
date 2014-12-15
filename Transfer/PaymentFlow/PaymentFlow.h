@@ -11,19 +11,21 @@
 #import "RecipientProfileValidation.h"
 #import "BusinessProfileValidation.h"
 #import "Constants.h"
+#import "PaymentFlowViewControllerFactory.h"
 
 @class ObjectModel;
 
 //TODO: remove and use validator
 typedef void (^EmailValidationResultBlock)(BOOL available, NSError *error);
 
-@interface PaymentFlow : NSObject <PersonalProfileValidation, RecipientProfileValidation, BusinessProfileValidation>
+@interface PaymentFlow : NSObject
 
 @property (nonatomic, strong) ObjectModel *objectModel;
 @property (nonatomic, copy) TRWErrorBlock paymentErrorHandler;
 @property (nonatomic, copy) TRWActionBlock verificationSuccessBlock;
 
-- (id)initWithPresentingController:(UINavigationController *)controller;
+- (id)initWithPresentingController:(UINavigationController *)controller
+  paymentFlowViewControllerFactory:(PaymentFlowViewControllerFactory *)controllerFactory;
 
 //TODO: remove and use validator
 - (void)verifyEmail:(NSString *)email

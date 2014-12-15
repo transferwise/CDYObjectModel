@@ -60,18 +60,30 @@
 
 @property (nonatomic, strong) UINavigationController *navigationController;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
+@property (nonatomic, strong) PaymentFlowViewControllerFactory *controllerFactory;
 
 @end
 
 @implementation PaymentFlow
 
 - (id)initWithPresentingController:(UINavigationController *)controller
+  paymentFlowViewControllerFactory:(PaymentFlowViewControllerFactory *)controllerFactory
 {
     self = [super init];
 
     if (self)
 	{
         _navigationController = controller;
+		_controllerFactory = controllerFactory;
+		
+		__weak typeof(self) weakSelf = self;
+		
+		self.controllerFactory.nextActionBlock = ^{
+			[weakSelf presentNextPaymentScreen];
+		};
+		self.controllerFactory.commitActionBlock = ^(TRWActionBlock successBlock, TRWErrorBlock errorBlock) {
+			[weakSelf commitPaymentWithSuccessBlock:successBlock errorHandler:errorBlock];
+		};
     }
 
     return self;
@@ -80,110 +92,14 @@
 - (void)presentPersonalProfileEntry:(BOOL)allowProfileSwitch
 						 isExisting:(BOOL)isExisting
 {
-	//TODO: user PaymentFlowViewControllerFactory
     [[Mixpanel sharedInstance] sendPageView:@"Your details"];
 
-    PersonalPaymentProfileViewController *controller = [[PersonalPaymentProfileViewController alloc] init];
-	
-    [controller setObjectModel:self.objectModel];
-    [controller setAllowProfileSwitch:allowProfileSwitch];
-	[controller setIsExisting:isExisting];
-	
-    if (self.objectModel.pendingPayment.recipient)
-	{
-        [controller setButtonTitle:NSLocalizedString(@"personal.profile.confirm.payment.button.title", nil)];
-    } else
-	{
-        [controller setButtonTitle:NSLocalizedString(@"personal.profile.continue.to.recipient.button.title", nil)];
-    }
-	
-    [controller setProfileValidation:self];
-    [self.navigationController pushViewController:controller animated:YES];
+	[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:PersonalPaymentProfileController
+																							 params:@{kAllowProfileSwitch: [NSNumber numberWithBool:allowProfileSwitch],
+																									  kProfileIsExisting: [NSNumber numberWithBool:isExisting]}]
+										 animated:YES];
 }
 
-//TODO: remove and use validator
-- (void)validateBusinessProfile:(NSManagedObjectID *)profile
-					withHandler:(BusinessProfileValidationBlock)handler
-{
-    MCLog(@"validateBusinessProfile");
-    BusinessProfileOperation *operation = [BusinessProfileOperation validateWithData:profile];
-    [self setExecutedOperation:operation];
-    [operation setObjectModel:self.objectModel];
-    __weak typeof(self) weakSelf = self;
-    [operation setSaveResultHandler:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (error)
-			{
-                handler(error);
-                return;
-            }
-
-            handler(nil);
-
-            PendingPayment *payment = [weakSelf.objectModel pendingPayment];
-            [payment setProfileUsed:@"business"];
-            [self.objectModel saveContext];
-
-            if ([weakSelf personalProfileFilled])
-			{
-                [weakSelf presentNextPaymentScreen];
-            }
-			else
-			{
-                //TODO jaanus: this class should not show anything on screen
-                TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.needed.popup.title", nil) message:NSLocalizedString(@"personal.profile.needed.popup.message", nil)];
-                [alertView setLeftButtonTitle:NSLocalizedString(@"button.title.fill", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
-
-                [alertView setLeftButtonAction:^{
-                    [weakSelf presentPersonalProfileEntry:NO
-											   isExisting:NO];
-                }];
-
-                [alertView show];
-            }
-        });
-    }];
-    
-    [operation execute];
-}
-
-//TODO: remove and use validator
-- (BOOL)personalProfileFilled
-{
-    return [self.objectModel.currentUser personalProfileFilled];
-}
-
-//TODO: remove and use validator
-- (void)validatePersonalProfile:(NSManagedObjectID *)profile
-					withHandler:(PersonalProfileValidationBlock)handler
-{
-    MCLog(@"validateProfile");
-    PersonalProfileOperation *operation = [PersonalProfileOperation validateOperationWithProfile:profile];
-    [self setExecutedOperation:operation];
-    [operation setObjectModel:self.objectModel];
-
-    __weak typeof(self) weakSelf = self;
-    [operation setSaveResultHandler:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (error)
-			{
-                handler(error);
-                return;
-            }
-
-            if ([Credentials userLoggedIn])
-			{
-                handler(nil);
-                [weakSelf presentNextPaymentScreen];
-                return;
-            }
-
-			[weakSelf verifyEmail:self.objectModel.currentUser.email withHandler:handler];
-        });
-    }];
-
-    [operation execute];
-}
 
 //TODO: remove and use validator
 - (void)verifyEmail:(NSString *)email
@@ -212,17 +128,16 @@
     }];
 }
 
-//TODO: remove and use validator
-- (void)verifyEmail:(NSString *)email
-	withResultBlock:(EmailValidationResultBlock)resultBlock
-{
-    MCLog(@"Verify email %@ available", email);
-    EmailCheckOperation *operation = [EmailCheckOperation operationWithEmail:email];
-    [self setExecutedOperation:operation];
-    [operation setResultHandler:resultBlock];
-	
-    [operation execute];
-}
+//- (void)verifyEmail:(NSString *)email
+//	withResultBlock:(EmailValidationResultBlock)resultBlock
+//{
+//    MCLog(@"Verify email %@ available", email);
+//    EmailCheckOperation *operation = [EmailCheckOperation operationWithEmail:email];
+//    [self setExecutedOperation:operation];
+//    [operation setResultHandler:resultBlock];
+//	
+//    [operation execute];
+//}
 
 - (void)presentRecipientDetails:(BOOL)showMiniProfile
 {
@@ -253,37 +168,11 @@
     [[GoogleAnalytics sharedInstance] paymentRecipientProfileScreenShown];
     [[Mixpanel sharedInstance] sendPageView:@"Select recipient"];
 
-	//TODO use PaymentFlowViewControllerFactory
-    RecipientViewController *controller = [[RecipientViewController alloc] init];
-    if ([Credentials userLoggedIn])
-	{
-        [controller setReportingType:RecipientReportingLoggedIn];
-    }
-	else
-	{
-        [controller setReportingType:RecipientReportingNotLoggedIn];
-    }
-    [controller setObjectModel:self.objectModel];
-    [controller setShowMiniProfile:showMiniProfile];
-    [controller setTitle:NSLocalizedString(@"recipient.controller.payment.mode.title", nil)];
-    [controller setFooterButtonTitle:NSLocalizedString(@"button.title.continue", nil)];
-    [controller setRecipientValidation:self];
-    __weak typeof(self) weakSelf = self;
-    [controller setAfterSaveAction:^{
-        [weakSelf presentNextPaymentScreen];
-    }];
-	
-    if(template)
-    {
-        controller.templateRecipient = template;
-    }
-    if(updateRecipient)
-    {
-        controller.updateRecipient = updateRecipient;
-    }
-	
-    [controller setPreLoadRecipientsWithCurrency:self.objectModel.pendingPayment.targetCurrency];
-    [self.navigationController pushViewController:controller animated:YES];
+	[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:RecipientController
+																							 params:@{kShowMiniProfile: [NSNumber numberWithBool:showMiniProfile],
+																									  kTemplateRecipient: template,
+																									  kUpdateRecipient: updateRecipient}]
+										 animated:YES];
 }
 
 - (void)presentNextScreenAfterRecipientDetails
@@ -303,15 +192,9 @@
 {
 	dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"presentBusinessProfileScreen");
-		
-		//TODO use PaymentFlowViewControllerFactory
-		BusinessPaymentProfileViewController *controller = [[BusinessPaymentProfileViewController alloc] init];
-		
-		[controller setObjectModel:self.objectModel];
-		[controller setButtonTitle:NSLocalizedString(@"business.profile.confirm.payment.button.title", nil)];
-		[controller setProfileValidation:self];
-        
-        [self.navigationController pushViewController:controller animated:YES];
+		[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:BusinessPaymentProfileController
+																								 params:nil]
+											 animated:YES];
     });
 }
 
@@ -319,52 +202,20 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"presentPaymentConfirmation");
-		//TODO use PaymentFlowViewControllerFactory
-        ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
-        if ([Credentials userLoggedIn])
-		{
-            [controller setReportingType:ConfirmPaymentReportingLoggedIn];
-        }
-		else
-		{
-            [controller setReportingType:ConfirmPaymentReportingNotLoggedIn];
-        }
-        [controller setObjectModel:self.objectModel];
-        [controller setPayment:[self.objectModel pendingPayment]];
-        [controller setFooterButtonTitle:NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
-        [controller setPaymentFlow:self];
-        [self.navigationController pushViewController:controller animated:YES];
+		[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:ConfirmPaymentController
+																								 params:nil]
+											 animated:YES];
     });
 }
 
 - (void)presentVerificationScreen
 {
     [[GoogleAnalytics sharedInstance] sendScreen:@"Personal identification"];
-
-	//TODO use PaymentFlowViewControllerFactory
-    PersonalProfileIdentificationViewController *controller = [[PersonalProfileIdentificationViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
 	
 	PendingPayment *payment = [self.objectModel pendingPayment];
-	
-	[controller setIdentificationRequired:(IdentificationRequired) [payment verificiationNeededValue]];
-	[controller setProposedPaymentPurpose:[payment proposedPaymentsPurpose]];
-    [controller setCompletionMessage:NSLocalizedString(@"identification.creating.payment.message", nil)];
-    __weak typeof(self) weakSelf = self;
-
-	[controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, TRWActionBlock successBlock, TRWErrorBlock errorBlock) {
-        [weakSelf.objectModel performBlock:^{
-            //TODO: SSN
-            [payment setSendVerificationLaterValue:skipIdentification];
-            [payment setPaymentPurpose:paymentPurpose];
-            [payment setSocialSecurityNumber:socialSecurityNumber];
-
-            [weakSelf.objectModel saveContext:^{
-                [weakSelf commitPaymentWithSuccessBlock:successBlock errorHandler:errorBlock];
-            }];
-        }];
-	}];
-    [self.navigationController pushViewController:controller animated:YES];
+	[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:PersonalPaymentProfileController
+																							 params:@{kPendingPayment: payment}]
+										 animated:YES];
 }
 
 - (void)presentUploadMoneyController:(NSManagedObjectID *)paymentID
@@ -384,61 +235,18 @@
         
         if(!IPAD && [[payment enabledPayInMethods] count]>2)
         {
-			//TODO use PaymentFlowViewControllerFactory
-            PaymentMethodSelectorViewController* selector = [[PaymentMethodSelectorViewController alloc] init];
-            selector.objectModel = self.objectModel;
-            selector.payment = payment;
-            [self.navigationController pushViewController:selector animated:YES];
+			[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:PaymentMethodSelectorController
+																									 params:@{kPayment: payment}]
+												 animated:YES];
         }
         else
         {
-			//TODO use PaymentFlowViewControllerFactory
-            UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
-			controller.objectModel = self.objectModel;
-			controller.payment = payment;
-            [self.navigationController pushViewController:controller animated:YES];
+			[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:UploadMoneyController
+																									 params:@{kPayment: payment}]
+												 animated:YES];
         }
         
     });
-}
-
-- (void)validatePayment:(NSManagedObjectID *)paymentInput
-		   successBlock:(TRWActionBlock)successBlock
-		   errorHandler:(TRWErrorBlock)errorHandler
-{
-	//TODO: remove and use validator
-    MCLog(@"Validate payment");
-    self.paymentErrorHandler = errorHandler;
-    self.verificationSuccessBlock = successBlock;
-
-    TRWActionBlock executeValidationBlock = ^{
-        CreatePaymentOperation *operation = [CreatePaymentOperation validateOperationWithInput:paymentInput];
-        [self setExecutedOperation:operation];
-        [operation setObjectModel:self.objectModel];
-        __weak typeof(self) weakSelf = self;
-
-        [operation setResponseHandler:^(NSManagedObjectID *paymentID, NSError *error) {
-            if (error)
-			{
-                weakSelf.paymentErrorHandler(error);
-                return;
-            }
-
-            MCLog(@"Payment valid");
-            [weakSelf checkVerificationNeeded];
-        }];
-
-        [operation execute];
-    };
-
-    if ([Credentials userLoggedIn])
-	{
-        [self updateSenderProfile:executeValidationBlock];
-    }
-	else
-	{
-        executeValidationBlock();
-    }
 }
 
 - (void)checkVerificationNeeded
@@ -500,20 +308,10 @@
 {
     [[GoogleAnalytics sharedInstance] sendScreen:@"Business verification"];
 
-	//TODO use PaymentFlowViewControllerFactory
-    BusinessProfileIdentificationViewController *controller = [[BusinessProfileIdentificationViewController alloc] init];
-    __weak typeof(self) weakSelf = self;
-
 	PendingPayment *payment = [self.objectModel pendingPayment];
-    [controller setCompletionHandler:^(BOOL skipIdentification, NSString *paymentPurpose, NSString *socialSecurityNumber, TRWActionBlock successBlock, TRWErrorBlock errorBlock) {
-        [weakSelf.objectModel performBlock:^{
-            [payment setSendVerificationLaterValue:skipIdentification];
-            [weakSelf.objectModel saveContext:^{
-                [weakSelf commitPaymentWithSuccessBlock:successBlock errorHandler:errorBlock];
-            }];
-        }];
-    }];
-    [self.navigationController pushViewController:controller animated:YES];
+	[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:BusinessProfileIdentificationController
+																							 params:@{kPendingPayment: payment}]
+										 animated:YES];
 }
 
 - (void)commitPaymentWithSuccessBlock:(TRWActionBlock)successBlock
@@ -827,32 +625,13 @@
     [operation execute];
 }
 
-//TODO: remove and use validator
-- (void)validateRecipient:(NSManagedObjectID *)recipientProfile
-			   completion:(RecipientProfileValidationBlock)completion
-{
-    MCLog(@"Validate recipient");
-    RecipientOperation *operation = [RecipientOperation validateOperationWithRecipient:recipientProfile];
-    [self setExecutedOperation:operation];
-    [operation setObjectModel:self.objectModel];
-
-    [operation setResponseHandler:completion];
-
-    [operation execute];
-}
-
 - (void)presentRefundAccountViewController
 {
     PendingPayment *payment = self.objectModel.pendingPayment;
-    RefundDetailsViewController *controller = [[RefundDetailsViewController alloc] init];
-    [controller setObjectModel:self.objectModel];
-    [controller setCurrency:payment.sourceCurrency];
-    [controller setPayment:payment];
-    __weak typeof(self) weakSelf = self;
-    [controller setAfterValidationBlock:^{
-        [weakSelf presentNextPaymentScreen];
-    }];
-    [self.navigationController pushViewController:controller animated:YES];
+    [self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:RefundDetailsController
+																							 params:@{kPendingPayment: payment}]
+										 animated:YES];
+	
 }
 
 - (void)handleNextStepOfPendingPaymentCommit

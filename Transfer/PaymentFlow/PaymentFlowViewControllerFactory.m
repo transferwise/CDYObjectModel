@@ -24,11 +24,10 @@
 @interface PaymentFlowViewControllerFactory ()
 
 @property (strong, nonatomic) ObjectModel *objectModel;
-@property (copy, nonatomic) TRWActionBlock nextActionBlock;
-@property (copy, nonatomic) CommitActionBlock commitActionBlock;
 @property (strong, nonatomic) id<PersonalProfileValidation> personalProfileValidator;
 @property (strong, nonatomic) id<BusinessProfileValidation> businessProfileValidator;
 @property (strong, nonatomic) id<RecipientProfileValidation> recipientProfileValidator;
+@property (strong, nonatomic) id<PaymentValidation> paymentValidator;
 
 @end
 
@@ -40,6 +39,7 @@
 		   personalProfileValidator:(id<PersonalProfileValidation>)personalProfileValidator
 		   businessProfileValidator:(id<BusinessProfileValidation>)businessProfileValidator
 		  recipientProfileValidator:(id<RecipientProfileValidation>)recipientProfileValidator
+				   paymentValidator:(id<PaymentValidation>)paymentValidator
 {
 	self = [super init];
 	if (self)
@@ -47,6 +47,11 @@
 		self.objectModel = objectModel;
 		self.nextActionBlock = nextActionBlock;
 		self.commitActionBlock = commitActionBlock;
+		
+		self.personalProfileValidator = personalProfileValidator;
+		self.businessProfileValidator = businessProfileValidator;
+		self.recipientProfileValidator = recipientProfileValidator;
+		self.paymentValidator = paymentValidator;
 	}
 	return self;
 }
@@ -179,8 +184,7 @@
 	[controller setObjectModel:self.objectModel];
 	[controller setPayment:[self.objectModel pendingPayment]];
 	[controller setFooterButtonTitle:NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
-	//TODO: use this with block
-	//[controller setPaymentFlow:self];
+	[controller setPaymentValidator:self.paymentValidator];
 	
 	return controller;
 }
