@@ -406,6 +406,7 @@
 		   successBlock:(TRWActionBlock)successBlock
 		   errorHandler:(TRWErrorBlock)errorHandler
 {
+	//TODO: remove and use validator
     MCLog(@"Validate payment");
     self.paymentErrorHandler = errorHandler;
     self.verificationSuccessBlock = successBlock;

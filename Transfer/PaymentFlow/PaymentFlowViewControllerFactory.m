@@ -26,6 +26,9 @@
 @property (strong, nonatomic) ObjectModel *objectModel;
 @property (copy, nonatomic) TRWActionBlock nextActionBlock;
 @property (copy, nonatomic) CommitActionBlock commitActionBlock;
+@property (strong, nonatomic) id<PersonalProfileValidation> personalProfileValidator;
+@property (strong, nonatomic) id<BusinessProfileValidation> businessProfileValidator;
+@property (strong, nonatomic) id<RecipientProfileValidation> recipientProfileValidator;
 
 @end
 
@@ -34,6 +37,9 @@
 - (instancetype)initWithObjectModel:(ObjectModel *)objectModel
 						 nextAction:(TRWActionBlock)nextActionBlock
 					   commitAction:(CommitActionBlock)commitActionBlock
+		   personalProfileValidator:(id<PersonalProfileValidation>)personalProfileValidator
+		   businessProfileValidator:(id<BusinessProfileValidation>)businessProfileValidator
+		  recipientProfileValidator:(id<RecipientProfileValidation>)recipientProfileValidator
 {
 	self = [super init];
 	if (self)
@@ -103,8 +109,7 @@
 		[controller setButtonTitle:NSLocalizedString(@"personal.profile.continue.to.recipient.button.title", nil)];
 	}
 	
-	//TODO: use validation with a provider
-	//[controller setProfileValidation:self];
+	[controller setProfileValidation:self.personalProfileValidator];
 	
 	return controller;
 }
@@ -127,8 +132,8 @@
 	[controller setTitle:NSLocalizedString(@"recipient.controller.payment.mode.title", nil)];
 	[controller setFooterButtonTitle:NSLocalizedString(@"button.title.continue", nil)];
 	
-	//TODO: use validation with provider
-//	[controller setRecipientValidation:self];
+	[controller setRecipientValidation:self.recipientProfileValidator];
+	
 	__weak typeof(self) weakSelf = self;
 	[controller setAfterSaveAction:^{
 		weakSelf.nextActionBlock();
@@ -155,8 +160,7 @@
 	[controller setObjectModel:self.objectModel];
 	[controller setButtonTitle:NSLocalizedString(@"business.profile.confirm.payment.button.title", nil)];
 	
-	//TODO: use validation with provider
-//	[controller setProfileValidation:self];
+	[controller setProfileValidation:self.businessProfileValidator];
 	
 	return controller;
 }

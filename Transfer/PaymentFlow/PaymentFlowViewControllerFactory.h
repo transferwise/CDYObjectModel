@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "Constants.h"
+#import "PersonalProfileValidation.h"
+#import "BusinessProfileValidation.h"
+#import "RecipientProfileValidation.h"
 
 @class ObjectModel;
 
@@ -40,7 +43,10 @@ typedef void (^CommitActionBlock)(TRWActionBlock successBlock, TRWErrorBlock err
 
 - (instancetype)initWithObjectModel:(ObjectModel *)objectModel
 						 nextAction:(TRWActionBlock)nextActionBlock
-					   commitAction:(CommitActionBlock)commitActionBlock;
+					   commitAction:(CommitActionBlock)commitActionBlock
+		   personalProfileValidator:(id<PersonalProfileValidation>)personalProfileValidator
+		   businessProfileValidator:(id<BusinessProfileValidation>)businessProfileValidator
+		  recipientProfileValidator:(id<RecipientProfileValidation>)recipientProfileValidator;
 
 - (UIViewController *)getViewControllerWithType:(ControllerType)type
 										 params:(NSDictionary *)params;
