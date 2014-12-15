@@ -528,18 +528,20 @@
 		47C1F7111A3B3F4200014F55 /* ProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7041A3B3F4200014F55 /* ProfileSource.m */; };
 		47C1F7121A3B3F4200014F55 /* RecipientProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7061A3B3F4200014F55 /* RecipientProfileCommitter.m */; };
 		47C1F7131A3B3F4200014F55 /* RecipientProfileCommitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7061A3B3F4200014F55 /* RecipientProfileCommitter.m */; };
-		47C1F7161A3ED29200014F55 /* BusinessProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7151A3ED29200014F55 /* BusinessProfileValidator.m */; };
-		47C1F7171A3ED29200014F55 /* BusinessProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7151A3ED29200014F55 /* BusinessProfileValidator.m */; };
-		47C1F71A1A3ED9B200014F55 /* PersonalProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7191A3ED9B200014F55 /* PersonalProfileValidator.m */; };
-		47C1F71B1A3ED9B200014F55 /* PersonalProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7191A3ED9B200014F55 /* PersonalProfileValidator.m */; };
-		47C1F71E1A3EDAC700014F55 /* ProfileValidatorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F71D1A3EDAC700014F55 /* ProfileValidatorBase.m */; };
-		47C1F71F1A3EDAC700014F55 /* ProfileValidatorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F71D1A3EDAC700014F55 /* ProfileValidatorBase.m */; };
-		47C1F7231A3EE04500014F55 /* EmailValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7221A3EE04500014F55 /* EmailValidator.m */; };
-		47C1F7241A3EE04500014F55 /* EmailValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7221A3EE04500014F55 /* EmailValidator.m */; };
-		47C1F7281A3EE6A300014F55 /* RecipientProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7271A3EE6A300014F55 /* RecipientProfileValidator.m */; };
-		47C1F7291A3EE6A300014F55 /* RecipientProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7271A3EE6A300014F55 /* RecipientProfileValidator.m */; };
 		47C1F72D1A3F0C4D00014F55 /* PaymentValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F72C1A3F0C4D00014F55 /* PaymentValidator.m */; };
 		47C1F72E1A3F0C4D00014F55 /* PaymentValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F72C1A3F0C4D00014F55 /* PaymentValidator.m */; };
+		47C1F7411A3F2AF700014F55 /* BusinessProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7321A3F2AF700014F55 /* BusinessProfileValidator.m */; };
+		47C1F7421A3F2AF700014F55 /* BusinessProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7321A3F2AF700014F55 /* BusinessProfileValidator.m */; };
+		47C1F7431A3F2AF700014F55 /* EmailValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7351A3F2AF700014F55 /* EmailValidator.m */; };
+		47C1F7441A3F2AF700014F55 /* EmailValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7351A3F2AF700014F55 /* EmailValidator.m */; };
+		47C1F7451A3F2AF700014F55 /* PaymentValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7381A3F2AF700014F55 /* PaymentValidator.m */; };
+		47C1F7461A3F2AF700014F55 /* PaymentValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7381A3F2AF700014F55 /* PaymentValidator.m */; };
+		47C1F7471A3F2AF700014F55 /* PersonalProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F73B1A3F2AF700014F55 /* PersonalProfileValidator.m */; };
+		47C1F7481A3F2AF700014F55 /* PersonalProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F73B1A3F2AF700014F55 /* PersonalProfileValidator.m */; };
+		47C1F7491A3F2AF700014F55 /* ProfileValidatorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F73D1A3F2AF700014F55 /* ProfileValidatorBase.m */; };
+		47C1F74A1A3F2AF700014F55 /* ProfileValidatorBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F73D1A3F2AF700014F55 /* ProfileValidatorBase.m */; };
+		47C1F74B1A3F2AF700014F55 /* RecipientProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7401A3F2AF700014F55 /* RecipientProfileValidator.m */; };
+		47C1F74C1A3F2AF700014F55 /* RecipientProfileValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F7401A3F2AF700014F55 /* RecipientProfileValidator.m */; };
 		47C4D03C1A232A9F005EC7C6 /* _AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0391A232A9F005EC7C6 /* _AchBank.m */; };
 		47C4D03D1A232A9F005EC7C6 /* _AchBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D0391A232A9F005EC7C6 /* _AchBank.m */; };
 		47C4D03E1A232A9F005EC7C6 /* _FieldGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C4D03B1A232A9F005EC7C6 /* _FieldGroup.m */; };
@@ -1417,31 +1419,34 @@
 		47C1F6FA1A3B3F4200014F55 /* BusinessProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusinessProfileCommitter.m; path = Profile/BusinessProfileCommitter.m; sourceTree = "<group>"; };
 		47C1F6FB1A3B3F4200014F55 /* BusinessProfileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusinessProfileSource.h; path = Profile/BusinessProfileSource.h; sourceTree = "<group>"; };
 		47C1F6FC1A3B3F4200014F55 /* BusinessProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusinessProfileSource.m; path = Profile/BusinessProfileSource.m; sourceTree = "<group>"; };
-		47C1F6FD1A3B3F4200014F55 /* BusinessProfileValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusinessProfileValidation.h; path = Profile/BusinessProfileValidation.h; sourceTree = "<group>"; };
 		47C1F6FE1A3B3F4200014F55 /* PersonalProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalProfileCommitter.h; path = Profile/PersonalProfileCommitter.h; sourceTree = "<group>"; };
 		47C1F6FF1A3B3F4200014F55 /* PersonalProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonalProfileCommitter.m; path = Profile/PersonalProfileCommitter.m; sourceTree = "<group>"; };
 		47C1F7001A3B3F4200014F55 /* PersonalProfileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalProfileSource.h; path = Profile/PersonalProfileSource.h; sourceTree = "<group>"; };
 		47C1F7011A3B3F4200014F55 /* PersonalProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonalProfileSource.m; path = Profile/PersonalProfileSource.m; sourceTree = "<group>"; };
-		47C1F7021A3B3F4200014F55 /* PersonalProfileValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalProfileValidation.h; path = Profile/PersonalProfileValidation.h; sourceTree = "<group>"; };
 		47C1F7031A3B3F4200014F55 /* ProfileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileSource.h; path = Profile/ProfileSource.h; sourceTree = "<group>"; };
 		47C1F7041A3B3F4200014F55 /* ProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileSource.m; path = Profile/ProfileSource.m; sourceTree = "<group>"; };
 		47C1F7051A3B3F4200014F55 /* RecipientProfileCommitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipientProfileCommitter.h; path = Profile/RecipientProfileCommitter.h; sourceTree = "<group>"; };
 		47C1F7061A3B3F4200014F55 /* RecipientProfileCommitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecipientProfileCommitter.m; path = Profile/RecipientProfileCommitter.m; sourceTree = "<group>"; };
-		47C1F7071A3B3F4200014F55 /* RecipientProfileValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipientProfileValidation.h; path = Profile/RecipientProfileValidation.h; sourceTree = "<group>"; };
-		47C1F7141A3ED29200014F55 /* BusinessProfileValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusinessProfileValidator.h; path = Profile/BusinessProfileValidator.h; sourceTree = "<group>"; };
-		47C1F7151A3ED29200014F55 /* BusinessProfileValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusinessProfileValidator.m; path = Profile/BusinessProfileValidator.m; sourceTree = "<group>"; };
-		47C1F7181A3ED9B200014F55 /* PersonalProfileValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalProfileValidator.h; path = Profile/PersonalProfileValidator.h; sourceTree = "<group>"; };
-		47C1F7191A3ED9B200014F55 /* PersonalProfileValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonalProfileValidator.m; path = Profile/PersonalProfileValidator.m; sourceTree = "<group>"; };
-		47C1F71C1A3EDAC700014F55 /* ProfileValidatorBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileValidatorBase.h; path = Profile/ProfileValidatorBase.h; sourceTree = "<group>"; };
-		47C1F71D1A3EDAC700014F55 /* ProfileValidatorBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileValidatorBase.m; path = Profile/ProfileValidatorBase.m; sourceTree = "<group>"; };
-		47C1F7201A3EDF4400014F55 /* EmailValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmailValidation.h; path = Profile/EmailValidation.h; sourceTree = "<group>"; };
-		47C1F7211A3EE04500014F55 /* EmailValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmailValidator.h; path = Profile/EmailValidator.h; sourceTree = "<group>"; };
-		47C1F7221A3EE04500014F55 /* EmailValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmailValidator.m; path = Profile/EmailValidator.m; sourceTree = "<group>"; };
-		47C1F7261A3EE6A300014F55 /* RecipientProfileValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientProfileValidator.h; sourceTree = "<group>"; };
-		47C1F7271A3EE6A300014F55 /* RecipientProfileValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientProfileValidator.m; sourceTree = "<group>"; };
 		47C1F72A1A3F0A1C00014F55 /* PaymentValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentValidation.h; sourceTree = "<group>"; };
 		47C1F72B1A3F0C4D00014F55 /* PaymentValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentValidator.h; sourceTree = "<group>"; };
 		47C1F72C1A3F0C4D00014F55 /* PaymentValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentValidator.m; sourceTree = "<group>"; };
+		47C1F7301A3F2AF700014F55 /* BusinessProfileValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusinessProfileValidation.h; path = Validation/BusinessProfileValidation.h; sourceTree = "<group>"; };
+		47C1F7311A3F2AF700014F55 /* BusinessProfileValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusinessProfileValidator.h; path = Validation/BusinessProfileValidator.h; sourceTree = "<group>"; };
+		47C1F7321A3F2AF700014F55 /* BusinessProfileValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusinessProfileValidator.m; path = Validation/BusinessProfileValidator.m; sourceTree = "<group>"; };
+		47C1F7331A3F2AF700014F55 /* EmailValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmailValidation.h; path = Validation/EmailValidation.h; sourceTree = "<group>"; };
+		47C1F7341A3F2AF700014F55 /* EmailValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmailValidator.h; path = Validation/EmailValidator.h; sourceTree = "<group>"; };
+		47C1F7351A3F2AF700014F55 /* EmailValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmailValidator.m; path = Validation/EmailValidator.m; sourceTree = "<group>"; };
+		47C1F7361A3F2AF700014F55 /* PaymentValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaymentValidation.h; path = Validation/PaymentValidation.h; sourceTree = "<group>"; };
+		47C1F7371A3F2AF700014F55 /* PaymentValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaymentValidator.h; path = Validation/PaymentValidator.h; sourceTree = "<group>"; };
+		47C1F7381A3F2AF700014F55 /* PaymentValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaymentValidator.m; path = Validation/PaymentValidator.m; sourceTree = "<group>"; };
+		47C1F7391A3F2AF700014F55 /* PersonalProfileValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalProfileValidation.h; path = Validation/PersonalProfileValidation.h; sourceTree = "<group>"; };
+		47C1F73A1A3F2AF700014F55 /* PersonalProfileValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalProfileValidator.h; path = Validation/PersonalProfileValidator.h; sourceTree = "<group>"; };
+		47C1F73B1A3F2AF700014F55 /* PersonalProfileValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonalProfileValidator.m; path = Validation/PersonalProfileValidator.m; sourceTree = "<group>"; };
+		47C1F73C1A3F2AF700014F55 /* ProfileValidatorBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileValidatorBase.h; path = Validation/ProfileValidatorBase.h; sourceTree = "<group>"; };
+		47C1F73D1A3F2AF700014F55 /* ProfileValidatorBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileValidatorBase.m; path = Validation/ProfileValidatorBase.m; sourceTree = "<group>"; };
+		47C1F73E1A3F2AF700014F55 /* RecipientProfileValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipientProfileValidation.h; path = Validation/RecipientProfileValidation.h; sourceTree = "<group>"; };
+		47C1F73F1A3F2AF700014F55 /* RecipientProfileValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipientProfileValidator.h; path = Validation/RecipientProfileValidator.h; sourceTree = "<group>"; };
+		47C1F7401A3F2AF700014F55 /* RecipientProfileValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecipientProfileValidator.m; path = Validation/RecipientProfileValidator.m; sourceTree = "<group>"; };
 		47C4D0381A232A9F005EC7C6 /* _AchBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AchBank.h; sourceTree = "<group>"; };
 		47C4D0391A232A9F005EC7C6 /* _AchBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AchBank.m; sourceTree = "<group>"; };
 		47C4D03A1A232A9F005EC7C6 /* _FieldGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _FieldGroup.h; sourceTree = "<group>"; };
@@ -2205,28 +2210,30 @@
 				47C1F7041A3B3F4200014F55 /* ProfileSource.m */,
 				47C1F7051A3B3F4200014F55 /* RecipientProfileCommitter.h */,
 				47C1F7061A3B3F4200014F55 /* RecipientProfileCommitter.m */,
-				47C1F7251A3EE3D700014F55 /* Validation */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
 		};
-		47C1F7251A3EE3D700014F55 /* Validation */ = {
+		47C1F72F1A3F2AA800014F55 /* Validation */ = {
 			isa = PBXGroup;
 			children = (
-				47C1F6FD1A3B3F4200014F55 /* BusinessProfileValidation.h */,
-				47C1F7141A3ED29200014F55 /* BusinessProfileValidator.h */,
-				47C1F7151A3ED29200014F55 /* BusinessProfileValidator.m */,
-				47C1F7201A3EDF4400014F55 /* EmailValidation.h */,
-				47C1F7211A3EE04500014F55 /* EmailValidator.h */,
-				47C1F7221A3EE04500014F55 /* EmailValidator.m */,
-				47C1F7021A3B3F4200014F55 /* PersonalProfileValidation.h */,
-				47C1F7181A3ED9B200014F55 /* PersonalProfileValidator.h */,
-				47C1F7191A3ED9B200014F55 /* PersonalProfileValidator.m */,
-				47C1F71C1A3EDAC700014F55 /* ProfileValidatorBase.h */,
-				47C1F71D1A3EDAC700014F55 /* ProfileValidatorBase.m */,
-				47C1F7071A3B3F4200014F55 /* RecipientProfileValidation.h */,
-				47C1F7261A3EE6A300014F55 /* RecipientProfileValidator.h */,
-				47C1F7271A3EE6A300014F55 /* RecipientProfileValidator.m */,
+				47C1F7301A3F2AF700014F55 /* BusinessProfileValidation.h */,
+				47C1F7311A3F2AF700014F55 /* BusinessProfileValidator.h */,
+				47C1F7321A3F2AF700014F55 /* BusinessProfileValidator.m */,
+				47C1F7331A3F2AF700014F55 /* EmailValidation.h */,
+				47C1F7341A3F2AF700014F55 /* EmailValidator.h */,
+				47C1F7351A3F2AF700014F55 /* EmailValidator.m */,
+				47C1F7361A3F2AF700014F55 /* PaymentValidation.h */,
+				47C1F7371A3F2AF700014F55 /* PaymentValidator.h */,
+				47C1F7381A3F2AF700014F55 /* PaymentValidator.m */,
+				47C1F7391A3F2AF700014F55 /* PersonalProfileValidation.h */,
+				47C1F73A1A3F2AF700014F55 /* PersonalProfileValidator.h */,
+				47C1F73B1A3F2AF700014F55 /* PersonalProfileValidator.m */,
+				47C1F73C1A3F2AF700014F55 /* ProfileValidatorBase.h */,
+				47C1F73D1A3F2AF700014F55 /* ProfileValidatorBase.m */,
+				47C1F73E1A3F2AF700014F55 /* RecipientProfileValidation.h */,
+				47C1F73F1A3F2AF700014F55 /* RecipientProfileValidator.h */,
+				47C1F7401A3F2AF700014F55 /* RecipientProfileValidator.m */,
 			);
 			name = Validation;
 			sourceTree = "<group>";
@@ -2738,6 +2745,7 @@
 		EAAA1473171BC911005B9430 /* Transfer */ = {
 			isa = PBXGroup;
 			children = (
+				47C1F72F1A3F2AA800014F55 /* Validation */,
 				47C1F6F81A3B3E1E00014F55 /* Profile */,
 				4757BE5B1A3B0634005D7BDD /* PaymentFlow */,
 				EAD3646517E1E19A001EFE40 /* Assets.xcassets */,
@@ -3621,6 +3629,7 @@
 				479B69421949E7ED001FA4FE /* TransferDetialsHeaderView.m in Sources */,
 				479B69411949E7DA001FA4FE /* TransferDetailsViewController.m in Sources */,
 				479B69401949E7BB001FA4FE /* UIFont+MOMStyle.m in Sources */,
+				47C1F7461A3F2AF700014F55 /* PaymentValidator.m in Sources */,
 				47C4D03D1A232A9F005EC7C6 /* _AchBank.m in Sources */,
 				47AC3F8E1987845A005491C6 /* SuggestionDataEntryViewController.m in Sources */,
 				47C1F72E1A3F0C4D00014F55 /* PaymentValidator.m in Sources */,
@@ -3652,6 +3661,7 @@
 				EA31A13317DDB29B00F937F7 /* TextEntryCell.m in Sources */,
 				474A5A901A137EDC0094757B /* _ReferralLink.m in Sources */,
 				3818605819C9A206009A413E /* SetSSNOperation.m in Sources */,
+				47C1F7441A3F2AF700014F55 /* EmailValidator.m in Sources */,
 				47C1F7131A3B3F4200014F55 /* RecipientProfileCommitter.m in Sources */,
 				EA31A13417DDB29B00F937F7 /* NSString+Validation.m in Sources */,
 				4723EA0E1973D8E900B4345F /* RedButton.m in Sources */,
@@ -3714,14 +3724,12 @@
 				47126B5619C2DCD40049F4C5 /* UIView+InheritantOf.m in Sources */,
 				47C1F70D1A3B3F4200014F55 /* PersonalProfileCommitter.m in Sources */,
 				EA31A14C17DDB29B00F937F7 /* NSError+TRWErrors.m in Sources */,
-				47C1F7171A3ED29200014F55 /* BusinessProfileValidator.m in Sources */,
 				EA31A14D17DDB29B00F937F7 /* UIView+Container.m in Sources */,
 				389F6812198FC1C6006CF1F6 /* _RecipientTypeField.m in Sources */,
 				EA31A14E17DDB29B00F937F7 /* CountriesOperation.m in Sources */,
 				EA31A14F17DDB29B00F937F7 /* NetworkErrorCodes.m in Sources */,
 				EA31A15017DDB29B00F937F7 /* UserDetailsOperation.m in Sources */,
 				3831AA38194B31A200B3EE5C /* TransparentModalViewController.m in Sources */,
-				47C1F71F1A3EDAC700014F55 /* ProfileValidatorBase.m in Sources */,
 				3856691E198157C600BC4230 /* CircleStyle.m in Sources */,
 				47F84D601988D73A00886D41 /* CountrySuggestionCellProvider.m in Sources */,
 				EA31A15117DDB29B00F937F7 /* SelectionCell.m in Sources */,
@@ -3739,6 +3747,7 @@
 				EA31A15917DDB29B00F937F7 /* CurrenciesOperation.m in Sources */,
 				38B52F98199B622D00B6AEBD /* ValidationCell.m in Sources */,
 				389F6822198FC1C6006CF1F6 /* ObjectModel+Countries.m in Sources */,
+				47C1F74A1A3F2AF700014F55 /* ProfileValidatorBase.m in Sources */,
 				EA0450D017EC3635008921DA /* TextContainerView.m in Sources */,
 				EA31A15A17DDB29B00F937F7 /* TransferwiseClient.m in Sources */,
 				EA31A15B17DDB29B00F937F7 /* RecipientTypesOperation.m in Sources */,
@@ -3793,6 +3802,7 @@
 				EA31A17217DDB29B00F937F7 /* PhoneBookProfileSelector.m in Sources */,
 				EA31A17317DDB29B00F937F7 /* PhoneBookAddress.m in Sources */,
 				EA31A17417DDB29B00F937F7 /* DismissKeyboardTableView.m in Sources */,
+				47C1F7481A3F2AF700014F55 /* PersonalProfileValidator.m in Sources */,
 				EA31A17517DDB29B00F937F7 /* VerificationRequiredOperation.m in Sources */,
 				47C580A4196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */,
 				EA31A17617DDB29B00F937F7 /* UploadVerificationFileOperation.m in Sources */,
@@ -3826,7 +3836,6 @@
 				472D5643198FE98500257BB8 /* PersonalPaymentProfileViewController.m in Sources */,
 				389F683E198FC1C6006CF1F6 /* Payment.m in Sources */,
 				47FAF345194B2F11004CE986 /* LightBlueButton.m in Sources */,
-				47C1F7291A3EE6A300014F55 /* RecipientProfileValidator.m in Sources */,
 				EA31A18817DDB29B00F937F7 /* RemoveTokenOperation.m in Sources */,
 				479B693B19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */,
 				38FC0B9C19EED51500173E07 /* Mixpanel+Customisation.m in Sources */,
@@ -3850,6 +3859,7 @@
 				38B092E6194F325B00315BE4 /* AddressBookManager.m in Sources */,
 				38057AD01A1D03BF005E94DD /* AchWaitingViewController.m in Sources */,
 				380021CF192CC531009B1D53 /* MOMCompoundStyle.m in Sources */,
+				47C1F74C1A3F2AF700014F55 /* RecipientProfileValidator.m in Sources */,
 				47C4D0451A232AC1005EC7C6 /* AchBank.m in Sources */,
 				389F683C198FC1C6006CF1F6 /* PayInMethod.m in Sources */,
 				EAE7B6B417E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */,
@@ -3890,7 +3900,6 @@
 				EA31A1B917DDB29B00F937F7 /* SwitchCell.m in Sources */,
 				4774F6E81A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */,
 				EA677B46189B855200505139 /* StartPaymentButton.m in Sources */,
-				47C1F71B1A3ED9B200014F55 /* PersonalProfileValidator.m in Sources */,
 				389F6824198FC1C6006CF1F6 /* ObjectModel+Currencies.m in Sources */,
 				389F6826198FC1C6006CF1F6 /* ObjectModel+CurrencyPairs.m in Sources */,
 				EA31A1BB17DDB29B00F937F7 /* SupportCoordinator.m in Sources */,
@@ -3911,7 +3920,6 @@
 				383FC0FD19AE1ABC00465FCA /* PhoneLookupWrapper.m in Sources */,
 				EA2296C317E04D1B001CF541 /* PaymentPurposeOperation.m in Sources */,
 				470C13221A12660300EEAF25 /* ObjectModel+ReferralLinks.m in Sources */,
-				47C1F7241A3EE04500014F55 /* EmailValidator.m in Sources */,
 				383FC0F119AE1A1A00465FCA /* StateSuggestionCellProvider.m in Sources */,
 				EA0523F7191B596B00B32899 /* RefundDetailsViewController.m in Sources */,
 				38002200192F443E009B1D53 /* CurrencyCell.m in Sources */,
@@ -3920,6 +3928,7 @@
 				477319F41A1B62BB00660770 /* AchDetailsViewController.m in Sources */,
 				47C1F7111A3B3F4200014F55 /* ProfileSource.m in Sources */,
 				EA2296C717E08027001CF541 /* TransferBackButtonItem.m in Sources */,
+				47C1F7421A3F2AF700014F55 /* BusinessProfileValidator.m in Sources */,
 				BA665EA5E58A6DA4DEB8E622 /* GoogleAnalytics.m in Sources */,
 				47535CB61981367C00DC39D6 /* UIView+SeparatorLine.m in Sources */,
 			);
@@ -3959,13 +3968,11 @@
 				4746EAFC19A7267B00D03557 /* ReferralListOperation.m in Sources */,
 				EA8FF6B8171D25C20090A658 /* TransferwiseOperation.m in Sources */,
 				EA8FF6BB171D26A00090A658 /* LoginOperation.m in Sources */,
-				47C1F7281A3EE6A300014F55 /* RecipientProfileValidator.m in Sources */,
 				47C1F7121A3B3F4200014F55 /* RecipientProfileCommitter.m in Sources */,
 				474A5A8F1A137EDC0094757B /* _ReferralLink.m in Sources */,
 				3818605719C9A206009A413E /* SetSSNOperation.m in Sources */,
 				47C1F7101A3B3F4200014F55 /* ProfileSource.m in Sources */,
 				380021F7192F43EA009B1D53 /* TabCell.m in Sources */,
-				47C1F7231A3EE04500014F55 /* EmailValidator.m in Sources */,
 				EAD7D4C2171D43440099063F /* NSDictionary+SensibleData.m in Sources */,
 				4723EA0D1973D8E900B4345F /* RedButton.m in Sources */,
 				479B693A19499F9B001FA4FE /* TransferDetailsAmountsView.m in Sources */,
@@ -4002,18 +4009,17 @@
 				4757BE661A3B0747005D7BDD /* PaymentFlowViewControllerFactory.m in Sources */,
 				472D5646198FEBEE00257BB8 /* BusinessPaymentProfileViewController.m in Sources */,
 				47C580A3196AC1A7007771DB /* UIGestureRecognizer+Cancel.m in Sources */,
-				47C1F71E1A3EDAC700014F55 /* ProfileValidatorBase.m in Sources */,
 				BBC6912A1721416300F0FB1A /* TSAlertView.m in Sources */,
 				EA333F3C18A4C00000D8A44E /* PageZoom.m in Sources */,
 				EACD942E18D82C2C00369905 /* NanTracking.m in Sources */,
 				4735E4D51992258C00F41D1E /* AuthenticationHelper.m in Sources */,
 				38F6DE5F19D2DF5A00C5B4B5 /* RecipientUpdateOperation.m in Sources */,
-				47C1F7161A3ED29200014F55 /* BusinessProfileValidator.m in Sources */,
 				389F682D198FC1C6006CF1F6 /* ObjectModel+Recipients.m in Sources */,
 				47C1F72D1A3F0C4D00014F55 /* PaymentValidator.m in Sources */,
 				389F683F198FC1C6006CF1F6 /* PaymentMadeIndicator.m in Sources */,
 				4774F6E71A359BB400058D5E /* NSMutableAttributedString+Presentation.m in Sources */,
 				383FC10019AE1B6700465FCA /* SeeHowView.m in Sources */,
+				47C1F7431A3F2AF700014F55 /* EmailValidator.m in Sources */,
 				479B693419489303001FA4FE /* TransferDetialsHeaderView.m in Sources */,
 				47C4D04F1A237F61005EC7C6 /* AchLoginViewController.m in Sources */,
 				EA88E65B172F96490021492C /* Credentials.m in Sources */,
@@ -4021,6 +4027,7 @@
 				389F6813198FC1C6006CF1F6 /* _Setting.m in Sources */,
 				479B69371948A2EB001FA4FE /* UIFont+MOMStyle.m in Sources */,
 				EA88E666172F979F0021492C /* DataEntryViewController.m in Sources */,
+				47C1F7451A3F2AF700014F55 /* PaymentValidator.m in Sources */,
 				3876768F19BF4914007B0EE5 /* CustomInfoViewController.m in Sources */,
 				EA88E667172F979F0021492C /* PersonalProfileViewController.m in Sources */,
 				EA88E67A172F97C40021492C /* NSError+TRWErrors.m in Sources */,
@@ -4029,6 +4036,7 @@
 				47126B5519C2DCD40049F4C5 /* UIView+InheritantOf.m in Sources */,
 				EA88E67B172F97C40021492C /* UIView+Container.m in Sources */,
 				EA88E684172F97D50021492C /* CountriesOperation.m in Sources */,
+				47C1F7411A3F2AF700014F55 /* BusinessProfileValidator.m in Sources */,
 				389F6811198FC1C6006CF1F6 /* _RecipientTypeField.m in Sources */,
 				EA88E685172F97D50021492C /* NetworkErrorCodes.m in Sources */,
 				EA88E687172F97D50021492C /* UserDetailsOperation.m in Sources */,
@@ -4113,6 +4121,7 @@
 				47C1F7081A3B3F4200014F55 /* BusinessProfileCommitter.m in Sources */,
 				389F6809198FC1C6006CF1F6 /* _PendingPayment.m in Sources */,
 				389F6815198FC1C6006CF1F6 /* _TypeFieldValue.m in Sources */,
+				47C1F74B1A3F2AF700014F55 /* RecipientProfileValidator.m in Sources */,
 				EA59297F1758AE1C007C0072 /* EmailCheckOperation.m in Sources */,
 				477319F31A1B62BB00660770 /* AchDetailsViewController.m in Sources */,
 				EAA053D2175DD5DC00ACD3F6 /* LoggedInPaymentFlow.m in Sources */,
@@ -4157,6 +4166,7 @@
 				38342BAB196E9362002FF371 /* DataEntryMultiColumnViewController.m in Sources */,
 				380021CE192CC531009B1D53 /* MOMCompoundStyle.m in Sources */,
 				EAE7B6B317E9BFAF00E03D73 /* CheckPersonalProfileVerificationOperation.m in Sources */,
+				47C1F7491A3F2AF700014F55 /* ProfileValidatorBase.m in Sources */,
 				47FAF35B195031E7004CE986 /* BlueButton.m in Sources */,
 				389F6819198FC1C6006CF1F6 /* AllowedTypeFieldValue.m in Sources */,
 				38C0395B19E598DF00555F65 /* SendButtonFlashHelper.m in Sources */,
@@ -4169,10 +4179,10 @@
 				470C131D1A12598300EEAF25 /* ReferralLinksOperation.m in Sources */,
 				EA225CA3178EB591009D6B83 /* NSDate+ServerTime.m in Sources */,
 				EA225CAF178ECD68009D6B83 /* RecipientsOperation.m in Sources */,
-				47C1F71A1A3ED9B200014F55 /* PersonalProfileValidator.m in Sources */,
 				EA0450DA17EC64BC008921DA /* IntroView.m in Sources */,
 				4723EA291975349C00B4345F /* TransferPayIPadViewController.m in Sources */,
 				389F680B198FC1C6006CF1F6 /* _PersonalProfile.m in Sources */,
+				47C1F7471A3F2AF700014F55 /* PersonalProfileValidator.m in Sources */,
 				383FC10819AE1B8400465FCA /* CancellableCellViewController.m in Sources */,
 				47FAF348194B3233004CE986 /* UIImage+Color.m in Sources */,
 				380021DF192CC980009B1D53 /* MOMBasicStyle.m in Sources */,
