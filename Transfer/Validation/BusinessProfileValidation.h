@@ -19,6 +19,8 @@ typedef void (^BusinessProfileValidationBlock)(NSError *error);
 					withHandler:(BusinessProfileValidationBlock)handler;
 
 - (void)setObjectModel:(ObjectModel *)objectModel;
+
+@optional
 - (void)setSuccessBlock:(TRWActionBlock)successBlock;
 - (void)setPersonalProfileNotFilledBlock:(TRWActionBlock)personalProfileNotFilledBlock;
 

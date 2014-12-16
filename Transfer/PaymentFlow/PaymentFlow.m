@@ -52,6 +52,7 @@
 #import "SetSSNOperation.h"
 #import "EventTracker.h"
 #import "ObjectModel+Payments.h"
+#import "EmailValidation.h"
 
 #define	PERSONAL_PROFILE	@"personal"
 #define BUSINESS_PROFILE	@"business"
@@ -106,34 +107,6 @@
 																									  kProfileIsExisting: [NSNumber numberWithBool:isExisting],
 																									  kPersonalProfileValidator: validator}]
 										 animated:YES];
-}
-
-
-//TODO: remove and use validator
-- (void)verifyEmail:(NSString *)email
-		withHandler:(PersonalProfileValidationBlock)handler
-{
-    __weak typeof(self) weakSelf = self;
-    [self verifyEmail:email withResultBlock:^(BOOL available, NSError *error) {
-        if (error)
-		{
-            handler(error);
-        }
-		else if (!available)
-		{
-            [[GoogleAnalytics sharedInstance] sendAlertEvent:@"EmailTakenDuringPaymentAlert" withLabel:@""];
-			//TODO: Replace with login screen showing
-            NSError *emailError = [[NSError alloc] initWithDomain:TRWErrorDomain
-															 code:ResponseLocalError
-														 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"personal.profile.email.taken.message", nil)}];
-            handler(emailError);
-        }
-		else
-		{
-            handler(nil);
-            [weakSelf presentNextPaymentScreen];
-        }
-    }];
 }
 
 - (void)presentRecipientDetails:(BOOL)showMiniProfile

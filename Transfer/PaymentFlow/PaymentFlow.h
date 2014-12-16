@@ -16,9 +16,6 @@
 
 @class ObjectModel;
 
-//TODO: remove and use validator
-typedef void (^EmailValidationResultBlock)(BOOL available, NSError *error);
-
 @interface PaymentFlow : NSObject
 
 @property (nonatomic, strong) ObjectModel *objectModel;
@@ -28,10 +25,6 @@ typedef void (^EmailValidationResultBlock)(BOOL available, NSError *error);
 - (id)initWithPresentingController:(UINavigationController *)controller
   paymentFlowViewControllerFactory:(PaymentFlowViewControllerFactory *)controllerFactory
 				  validatorFactory:(ValidatorFactory *)validatorFactory;
-
-//TODO: remove and use validator
-- (void)verifyEmail:(NSString *)email
-	withResultBlock:(EmailValidationResultBlock)resultBlock;
 
 - (void)validatePayment:(NSManagedObjectID *)paymentInput
 		   successBlock:(TRWActionBlock)successBlock

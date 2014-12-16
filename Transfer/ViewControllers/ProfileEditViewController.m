@@ -41,6 +41,8 @@
 #import "SwitchCell.h"
 #import "PersonalPaymentProfileViewController.h"
 #import "StateSuggestionCellProvider.h"
+#import "ValidatorFactory.h"
+#import "EmailValidation.h"
 
 @interface ProfileEditViewController ()<SelectionCellDelegate, TextEntryCellDelegate>
 
@@ -286,7 +288,10 @@
 		TRWProgressHUD *hud = [TRWProgressHUD showHUDOnView:self.navigationController.view];
 		[hud setMessage:NSLocalizedString(@"personal.profile.email.validating", nil)];
 		
-		[self.profileValidation verifyEmail:[self.emailCell value] withResultBlock:^(BOOL available, NSError *error)
+		ValidatorFactory *validatorFactory = [[ValidatorFactory alloc] initWithObjectModel:self.objectModel];
+		id<EmailValidation> validator = [validatorFactory getValidatorWithType:ValidateEmail];
+		
+		[validator verifyEmail:[self.emailCell value] withResultBlock:^(BOOL available, NSError *error)
 		 {
 			 [hud hide];
 			 
@@ -483,7 +488,9 @@
     
     NSManagedObjectID *profile = [self.profileSource enteredProfile];
 	
-    [self.profileSource validateProfile:profile withValidation:self.profileValidation completion:^(NSError *error) {
+    [self.profileSource validateProfile:profile
+						 withValidation:self.profileValidation
+							 completion:^(NSError *error) {
         [hud hide];
 		
         if (error)
