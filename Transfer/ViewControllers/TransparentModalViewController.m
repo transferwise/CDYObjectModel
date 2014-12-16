@@ -124,6 +124,6 @@
 
 -(UIViewController*)hostViewController
 {
-    return self.hostViewController;
+    return _hostViewController;
 }
 @end

@@ -181,16 +181,21 @@
         [self popToRootViewControllerAnimated:NO];
     };
     if(self.presentedViewController){
-        if([self.presentedViewController isKindOfClass:[IntroViewController class]])
+
+        NSTimeInterval delay = 0.0f;
+        if([self.presentedViewController isBeingPresented]||[self.presentedViewController isBeingDismissed])
         {
-            return;
+            delay = 0.3f;
         }
-        [self dismissViewControllerAnimated:YES completion:^{
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.presentedViewController dismissViewControllerAnimated:YES completion:^{
                 dispatch_async(dispatch_get_main_queue(), ^{
                     showLoginBlock();
                 });
-            
-        }];
+                
+            }];
+        });
     }
     else
     {
