@@ -173,8 +173,8 @@
 
 	[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:RecipientController
 																							 params:@{kShowMiniProfile: [NSNumber numberWithBool:showMiniProfile],
-																									  kTemplateRecipient: template,
-																									  kUpdateRecipient: updateRecipient,
+																									  kTemplateRecipient: template ? template : [NSNull null],
+																									  kUpdateRecipient: updateRecipient ? updateRecipient : [NSNull null],
 																									  kRecipientProfileValidator: validator,
 																									  kNextActionBlock: [nextBlock copy]}]
 										 animated:YES];

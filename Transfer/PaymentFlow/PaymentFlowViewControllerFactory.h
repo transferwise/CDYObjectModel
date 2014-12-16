@@ -11,18 +11,18 @@
 
 @class ObjectModel;
 
-const NSString *kAllowProfileSwitch = @"allowProfileSwitch";
-const NSString *kProfileIsExisting = @"profileIsExisting";
-const NSString *kShowMiniProfile = @"showMiniProfile";
-const NSString *kTemplateRecipient = @"templateRecipient";
-const NSString *kUpdateRecipient = @"updateRecipient";
-const NSString *kPayment = @"payment";
-const NSString *kPendingPayment = @"pendingPayment";
-const NSString *kPersonalProfileValidator = @"personalProfileValidator";
-const NSString *kRecipientProfileValidator = @"recipientProfileValidator";
-const NSString *kBusinessProfileValidator = @"businessProfileValidator";
-const NSString *kPaymentValidator = @"paymentValidator";
-const NSString *kNextActionBlock = @"nextActionBlock";
+extern NSString * const kAllowProfileSwitch;
+extern NSString * const kProfileIsExisting;
+extern NSString * const kShowMiniProfile;
+extern NSString * const kTemplateRecipient;
+extern NSString * const kUpdateRecipient;
+extern NSString * const kPayment;
+extern NSString * const kPendingPayment;
+extern NSString * const kPersonalProfileValidator;
+extern NSString * const kRecipientProfileValidator;
+extern NSString * const kBusinessProfileValidator;
+extern NSString * const kPaymentValidator;
+extern NSString * const kNextActionBlock;
 
 typedef NS_ENUM(short, ControllerType)
 {

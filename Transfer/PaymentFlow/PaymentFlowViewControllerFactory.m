@@ -25,6 +25,19 @@
 #import "RecipientProfileValidation.h"
 #import "PaymentValidation.h"
 
+NSString * const kAllowProfileSwitch = @"allowProfileSwitch";
+NSString * const kProfileIsExisting = @"profileIsExisting";
+NSString * const kShowMiniProfile = @"showMiniProfile";
+NSString * const kTemplateRecipient = @"templateRecipient";
+NSString * const kUpdateRecipient = @"updateRecipient";
+NSString * const kPayment = @"payment";
+NSString * const kPendingPayment = @"pendingPayment";
+NSString * const kPersonalProfileValidator = @"personalProfileValidator";
+NSString * const kRecipientProfileValidator = @"recipientProfileValidator";
+NSString * const kBusinessProfileValidator = @"businessProfileValidator";
+NSString * const kPaymentValidator = @"paymentValidator";
+NSString * const kNextActionBlock = @"nextActionBlock";
+
 @interface PaymentFlowViewControllerFactory ()
 
 @property (strong, nonatomic) ObjectModel *objectModel;
