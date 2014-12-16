@@ -8,10 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "Constants.h"
-#import "PersonalProfileValidation.h"
-#import "BusinessProfileValidation.h"
-#import "RecipientProfileValidation.h"
-#import "PaymentValidation.h"
 
 @class ObjectModel;
 
@@ -22,6 +18,11 @@ const NSString *kTemplateRecipient = @"templateRecipient";
 const NSString *kUpdateRecipient = @"updateRecipient";
 const NSString *kPayment = @"payment";
 const NSString *kPendingPayment = @"pendingPayment";
+const NSString *kPersonalProfileValidator = @"personalProfileValidator";
+const NSString *kRecipientProfileValidator = @"recipientProfileValidator";
+const NSString *kBusinessProfileValidator = @"businessProfileValidator";
+const NSString *kPaymentValidator = @"paymentValidator";
+const NSString *kNextActionBlock = @"nextActionBlock";
 
 typedef NS_ENUM(short, ControllerType)
 {
@@ -40,16 +41,11 @@ typedef void (^CommitActionBlock)(TRWActionBlock successBlock, TRWErrorBlock err
 
 @interface PaymentFlowViewControllerFactory : NSObject
 
-@property (copy, nonatomic) TRWActionBlock nextActionBlock;
 @property (copy, nonatomic) CommitActionBlock commitActionBlock;
 
 - (id)init __attribute__((unavailable("init unavailable, use initWithObjectModel")));
 
-- (instancetype)initWithObjectModel:(ObjectModel *)objectModel
-		   personalProfileValidator:(id<PersonalProfileValidation>)personalProfileValidator
-		   businessProfileValidator:(id<BusinessProfileValidation>)businessProfileValidator
-		  recipientProfileValidator:(id<RecipientProfileValidation>)recipientProfileValidator
-				   paymentValidator:(id<PaymentValidation>)paymentValidator;
+- (instancetype)initWithObjectModel:(ObjectModel *)objectModel;
 
 - (UIViewController *)getViewControllerWithType:(ControllerType)type
 										 params:(NSDictionary *)params;

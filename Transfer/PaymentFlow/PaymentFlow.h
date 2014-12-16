@@ -12,6 +12,7 @@
 #import "BusinessProfileValidation.h"
 #import "Constants.h"
 #import "PaymentFlowViewControllerFactory.h"
+#import "ValidatorFactory.h"
 
 @class ObjectModel;
 
@@ -25,7 +26,8 @@ typedef void (^EmailValidationResultBlock)(BOOL available, NSError *error);
 @property (nonatomic, copy) TRWActionBlock verificationSuccessBlock;
 
 - (id)initWithPresentingController:(UINavigationController *)controller
-  paymentFlowViewControllerFactory:(PaymentFlowViewControllerFactory *)controllerFactory;
+  paymentFlowViewControllerFactory:(PaymentFlowViewControllerFactory *)controllerFactory
+				  validatorFactory:(ValidatorFactory *)validatorFactory;
 
 //TODO: remove and use validator
 - (void)verifyEmail:(NSString *)email

@@ -20,38 +20,25 @@
 #import "UploadMoneyViewController.h"
 #import "BusinessProfileIdentificationViewController.h"
 #import "RefundDetailsViewController.h"
+#import "PersonalProfileValidation.h"
+#import "BusinessProfileValidation.h"
+#import "RecipientProfileValidation.h"
+#import "PaymentValidation.h"
 
 @interface PaymentFlowViewControllerFactory ()
 
 @property (strong, nonatomic) ObjectModel *objectModel;
-@property (strong, nonatomic) id<PersonalProfileValidation> personalProfileValidator;
-@property (strong, nonatomic) id<BusinessProfileValidation> businessProfileValidator;
-@property (strong, nonatomic) id<RecipientProfileValidation> recipientProfileValidator;
-@property (strong, nonatomic) id<PaymentValidation> paymentValidator;
 
 @end
 
 @implementation PaymentFlowViewControllerFactory
 
 - (instancetype)initWithObjectModel:(ObjectModel *)objectModel
-						 nextAction:(TRWActionBlock)nextActionBlock
-					   commitAction:(CommitActionBlock)commitActionBlock
-		   personalProfileValidator:(id<PersonalProfileValidation>)personalProfileValidator
-		   businessProfileValidator:(id<BusinessProfileValidation>)businessProfileValidator
-		  recipientProfileValidator:(id<RecipientProfileValidation>)recipientProfileValidator
-				   paymentValidator:(id<PaymentValidation>)paymentValidator
 {
 	self = [super init];
 	if (self)
 	{
 		self.objectModel = objectModel;
-		self.nextActionBlock = nextActionBlock;
-		self.commitActionBlock = commitActionBlock;
-		
-		self.personalProfileValidator = personalProfileValidator;
-		self.businessProfileValidator = businessProfileValidator;
-		self.recipientProfileValidator = recipientProfileValidator;
-		self.paymentValidator = paymentValidator;
 	}
 	return self;
 }
@@ -63,18 +50,21 @@
 	{
 		case PersonalPaymentProfileController:
 			return [self getPersonalProfileViewController:params[kAllowProfileSwitch]
-											   isExisting:params[kProfileIsExisting]];
+											   isExisting:params[kProfileIsExisting]
+								 personalProfileValidator:params[kPersonalProfileValidator]];
 			break;
 		case RecipientController:
 			return [self getRecipientViewController:params[kShowMiniProfile]
 								  templateRecipient:params[kTemplateRecipient]
-									updateRecipient:params[kUpdateRecipient]];
+									updateRecipient:params[kUpdateRecipient]
+						  recipientProfileValidator:params[kRecipientProfileValidator]
+									nextActionBlock:params[kNextActionBlock]];
 			break;
 		case BusinessPaymentProfileController:
-			return [self getBusinessProfileViewController];
+			return [self getBusinessProfileViewController:params[kBusinessProfileValidator]];
 			break;
 		case ConfirmPaymentController:
-			return [self getConfirmPaymentViewController];
+			return [self getConfirmPaymentViewController:params[kPaymentValidator]];
 			break;
 		case PersonalProfileIdentificationController:
 			return [self getPersonalProfileIdentificationViewController:params[kPendingPayment]];
@@ -89,7 +79,8 @@
 			return [self getBusinessProfileIdentificationController:params[kPendingPayment]];
 			break;
 		case RefundDetailsController:
-			return [self getRefundDetailsViewController:params[kPendingPayment]];
+			return [self getRefundDetailsViewController:params[kPendingPayment]
+										nextActionBlock:params[kNextActionBlock]];
 			break;
 		default:
 			return nil;
@@ -99,6 +90,7 @@
 
 - (PersonalPaymentProfileViewController *)getPersonalProfileViewController:(BOOL)allowProfileSwitch
 																isExisting:(BOOL)isExisting
+												  personalProfileValidator:(id<PersonalProfileValidation>)personalProfileValidator
 {
 	PersonalPaymentProfileViewController *controller = [[PersonalPaymentProfileViewController alloc] init];
 	
@@ -114,7 +106,7 @@
 		[controller setButtonTitle:NSLocalizedString(@"personal.profile.continue.to.recipient.button.title", nil)];
 	}
 	
-	[controller setProfileValidation:self.personalProfileValidator];
+	[controller setProfileValidation:personalProfileValidator];
 	
 	return controller;
 }
@@ -122,6 +114,8 @@
 - (RecipientViewController *)getRecipientViewController:(BOOL)showMiniProfile
 									  templateRecipient:(Recipient *)template
 										updateRecipient:(Recipient *)updateRecipient
+							  recipientProfileValidator:(id<RecipientProfileValidation>)recipientProfileValidator
+										nextActionBlock:(TRWActionBlock)nextActionBlock
 {
 	RecipientViewController *controller = [[RecipientViewController alloc] init];
 	if ([Credentials userLoggedIn])
@@ -137,11 +131,10 @@
 	[controller setTitle:NSLocalizedString(@"recipient.controller.payment.mode.title", nil)];
 	[controller setFooterButtonTitle:NSLocalizedString(@"button.title.continue", nil)];
 	
-	[controller setRecipientValidation:self.recipientProfileValidator];
+	[controller setRecipientValidation:recipientProfileValidator];
 	
-	__weak typeof(self) weakSelf = self;
 	[controller setAfterSaveAction:^{
-		weakSelf.nextActionBlock();
+		nextActionBlock();
 	}];
 	
 	if(template)
@@ -158,19 +151,19 @@
 	return controller;
 }
 
-- (BusinessPaymentProfileViewController *)getBusinessProfileViewController
+- (BusinessPaymentProfileViewController *)getBusinessProfileViewController:(id<BusinessProfileValidation>)businessProfileValidator
 {
 	BusinessPaymentProfileViewController *controller = [[BusinessPaymentProfileViewController alloc] init];
 	
 	[controller setObjectModel:self.objectModel];
 	[controller setButtonTitle:NSLocalizedString(@"business.profile.confirm.payment.button.title", nil)];
 	
-	[controller setProfileValidation:self.businessProfileValidator];
+	[controller setProfileValidation:businessProfileValidator];
 	
 	return controller;
 }
 
-- (ConfirmPaymentViewController *)getConfirmPaymentViewController
+- (ConfirmPaymentViewController *)getConfirmPaymentViewController:(id<PaymentValidation>)paymentValidator
 {
 	ConfirmPaymentViewController *controller = [[ConfirmPaymentViewController alloc] init];
 	if ([Credentials userLoggedIn])
@@ -184,7 +177,7 @@
 	[controller setObjectModel:self.objectModel];
 	[controller setPayment:[self.objectModel pendingPayment]];
 	[controller setFooterButtonTitle:NSLocalizedString(@"confirm.payment.footer.button.title", nil)];
-	[controller setPaymentValidator:self.paymentValidator];
+	[controller setPaymentValidator:paymentValidator];
 	
 	return controller;
 }
@@ -251,14 +244,14 @@
 }
 
 - (RefundDetailsViewController *)getRefundDetailsViewController:(PendingPayment *)payment
+												nextActionBlock:(TRWActionBlock)nextActionBlock
 {
 	RefundDetailsViewController *controller = [[RefundDetailsViewController alloc] init];
 	[controller setObjectModel:self.objectModel];
 	[controller setCurrency:payment.sourceCurrency];
 	[controller setPayment:payment];
-	__weak typeof(self) weakSelf = self;
 	[controller setAfterValidationBlock:^{
-		weakSelf.nextActionBlock();
+		nextActionBlock();
 	}];
 	
 	return controller;

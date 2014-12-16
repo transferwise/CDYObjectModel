@@ -61,6 +61,7 @@
 @property (nonatomic, strong) UINavigationController *navigationController;
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) PaymentFlowViewControllerFactory *controllerFactory;
+@property (nonatomic, strong) ValidatorFactory *validatorFactory;
 
 @end
 
@@ -68,6 +69,7 @@
 
 - (id)initWithPresentingController:(UINavigationController *)controller
   paymentFlowViewControllerFactory:(PaymentFlowViewControllerFactory *)controllerFactory
+				  validatorFactory:(ValidatorFactory *)validatorFactory
 {
     self = [super init];
 
@@ -75,12 +77,10 @@
 	{
         _navigationController = controller;
 		_controllerFactory = controllerFactory;
+		_validatorFactory = validatorFactory;
 		
 		__weak typeof(self) weakSelf = self;
 		
-		self.controllerFactory.nextActionBlock = ^{
-			[weakSelf presentNextPaymentScreen];
-		};
 		self.controllerFactory.commitActionBlock = ^(TRWActionBlock successBlock, TRWErrorBlock errorBlock) {
 			[weakSelf commitPaymentWithSuccessBlock:successBlock errorHandler:errorBlock];
 		};
@@ -94,9 +94,17 @@
 {
     [[Mixpanel sharedInstance] sendPageView:@"Your details"];
 
+	id<PersonalProfileValidation> validator = [self.validatorFactory getValidatorWithType:ValidatePersonalProfile];
+	
+	__weak typeof(self) weakSelf = self;
+	[validator setSuccessBlock:^{
+		[weakSelf presentNextPaymentScreen];
+	}];
+	
 	[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:PersonalPaymentProfileController
 																							 params:@{kAllowProfileSwitch: [NSNumber numberWithBool:allowProfileSwitch],
-																									  kProfileIsExisting: [NSNumber numberWithBool:isExisting]}]
+																									  kProfileIsExisting: [NSNumber numberWithBool:isExisting],
+																									  kPersonalProfileValidator: validator}]
 										 animated:YES];
 }
 
@@ -128,17 +136,6 @@
     }];
 }
 
-//- (void)verifyEmail:(NSString *)email
-//	withResultBlock:(EmailValidationResultBlock)resultBlock
-//{
-//    MCLog(@"Verify email %@ available", email);
-//    EmailCheckOperation *operation = [EmailCheckOperation operationWithEmail:email];
-//    [self setExecutedOperation:operation];
-//    [operation setResultHandler:resultBlock];
-//	
-//    [operation execute];
-//}
-
 - (void)presentRecipientDetails:(BOOL)showMiniProfile
 {
     [self presentRecipientDetails:showMiniProfile
@@ -167,11 +164,19 @@
 {
     [[GoogleAnalytics sharedInstance] paymentRecipientProfileScreenShown];
     [[Mixpanel sharedInstance] sendPageView:@"Select recipient"];
+	
+	__weak typeof(self) weakSelf = self;
+	id<RecipientProfileValidation> validator = [self.validatorFactory getValidatorWithType:ValidateRecipientProfile];
+	TRWActionBlock nextBlock = ^{
+		[weakSelf presentNextPaymentScreen];
+	};
 
 	[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:RecipientController
 																							 params:@{kShowMiniProfile: [NSNumber numberWithBool:showMiniProfile],
 																									  kTemplateRecipient: template,
-																									  kUpdateRecipient: updateRecipient}]
+																									  kUpdateRecipient: updateRecipient,
+																									  kRecipientProfileValidator: validator,
+																									  kNextActionBlock: [nextBlock copy]}]
 										 animated:YES];
 }
 
@@ -192,8 +197,29 @@
 {
 	dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"presentBusinessProfileScreen");
+		
+		__weak typeof(self) weakSelf = self;
+		id<BusinessProfileValidation> validator = [self.validatorFactory getValidatorWithType:ValidateBusinessProfile];
+		
+		[validator setSuccessBlock:^{
+			[weakSelf presentNextPaymentScreen];
+		}];
+		
+		[validator setPersonalProfileNotFilledBlock:^{
+			//TODO jaanus: this class should not show anything on screen
+			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"personal.profile.needed.popup.title", nil) message:NSLocalizedString(@"personal.profile.needed.popup.message", nil)];
+			[alertView setLeftButtonTitle:NSLocalizedString(@"button.title.fill", nil) rightButtonTitle:NSLocalizedString(@"button.title.cancel", nil)];
+			
+			[alertView setLeftButtonAction:^{
+				[weakSelf presentPersonalProfileEntry:NO
+										   isExisting:NO];
+			}];
+			
+			[alertView show];
+		}];
+		
 		[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:BusinessPaymentProfileController
-																								 params:nil]
+																								 params:@{kBusinessProfileValidator: validator}]
 											 animated:YES];
     });
 }
@@ -202,8 +228,11 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         MCLog(@"presentPaymentConfirmation");
+		
+		id<PaymentValidation> validator = [self.validatorFactory getValidatorWithType:ValidatePayment];
+		
 		[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:ConfirmPaymentController
-																								 params:nil]
+																								 params:@{kPaymentValidator: validator}]
 											 animated:YES];
     });
 }
@@ -213,6 +242,7 @@
     [[GoogleAnalytics sharedInstance] sendScreen:@"Personal identification"];
 	
 	PendingPayment *payment = [self.objectModel pendingPayment];
+	
 	[self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:PersonalPaymentProfileController
 																							 params:@{kPendingPayment: payment}]
 										 animated:YES];
@@ -628,8 +658,15 @@
 - (void)presentRefundAccountViewController
 {
     PendingPayment *payment = self.objectModel.pendingPayment;
+	
+    __weak typeof(self) weakSelf = self;
+	TRWActionBlock nextBlock = ^{
+		[weakSelf presentNextPaymentScreen];
+	};
+	
     [self.navigationController pushViewController:[self.controllerFactory getViewControllerWithType:RefundDetailsController
-																							 params:@{kPendingPayment: payment}]
+																							 params:@{kPendingPayment: payment,
+																									  kNextActionBlock: nextBlock}]
 										 animated:YES];
 	
 }
