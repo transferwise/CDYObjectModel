@@ -14,7 +14,7 @@
 
 @property (nonatomic, weak) UIImageView* blurImageView;
 @property (nonatomic, weak) UIView* blurEffectView;
-@property (nonatomic, strong) UIViewController* hostViewController;
+@property (nonatomic, weak) UIViewController* hostViewController;
 
 @end
 
@@ -122,5 +122,8 @@
 					 }];
 }
 
-
+-(UIViewController*)hostViewController
+{
+    return self.hostViewController;
+}
 @end
