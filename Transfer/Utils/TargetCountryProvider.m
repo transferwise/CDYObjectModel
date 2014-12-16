@@ -16,10 +16,10 @@
 {
 	DEFINE_SHARED_INSTANCE_USING_BLOCK((^{
 		return @{
-				 @"gbp" : @"uk",
+				 @"gbp" : @"gbr",
 				 @"usd"	: @"usa",
 				 @"pln"	: @"pol",
-				 @"sel"	: @"swe",
+				 @"sek"	: @"swe",
 				 @"dkk" : @"dnk",
 				 @"nok" : @"nor",
 				 @"chf" : @"che",
