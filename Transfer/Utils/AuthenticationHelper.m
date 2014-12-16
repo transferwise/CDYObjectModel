@@ -27,6 +27,7 @@
 #import "User.h"
 #import "PendingPayment.h"
 #import "TransferwiseClient.h"
+#import "AppDelegate.h"
 
 @interface AuthenticationHelper ()
 
@@ -137,44 +138,77 @@
 
 + (void)proceedFromSuccessfulLoginFromViewController:(UIViewController*)controller objectModel:(ObjectModel*)objectModel
 {
+    //This method relies on the root view controller of the window being a ConnectionAwareViewController
+    
     //If registration upfront is used, these flags won't be set by the intro screen. Set them after logging in.
     [objectModel markIntroShown];
     [objectModel markExistingUserIntroShown];
     
+    AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    UIWindow* window = appDelegate.window;
+    
+
     if([[objectModel allPayments] count] <= 0)
     {
         //Use smoke and mirrors to sneak in a MainViewController underneath a modally presented new payment viewcontroller
         
-        ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:controller.navigationController?:controller];
-        controller.view.window.rootViewController = root;
-        
         NewPaymentViewController *paymentView = [[NewPaymentViewController alloc] init];
         [paymentView setObjectModel:objectModel];
-        ConnectionAwareViewController *wrapper =  [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:paymentView navBarHidden:YES];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [root presentViewController:wrapper animated:YES completion:^{
-                MainViewController *mainController = [[MainViewController alloc] init];
-                [mainController setObjectModel:objectModel];
-                [root replaceWrappedViewControllerWithController:mainController];
-            }];
-        });
+        
+        if(controller.presentingViewController)
+        {
+            ConnectionAwareViewController* root = (ConnectionAwareViewController*)[controller.navigationController?:controller parentViewController];
+            [root replaceWrappedViewControllerWithController:paymentView withAnimationStyle:ConnectionModalAnimation];
+        }
+        else
+        {
+            
+            ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:controller.navigationController?:controller];
+            window.rootViewController = root;
+            
+            ConnectionAwareViewController *wrapper =  [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:paymentView navBarHidden:YES];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [root presentViewController:wrapper animated:YES completion:^{
+                    MainViewController *mainController = [[MainViewController alloc] init];
+                    [mainController setObjectModel:objectModel];
+                    [root replaceWrappedViewControllerWithController:mainController];
+                }];
+            });
+        }
     }
     else
     {
-        MainViewController *mainController = [[MainViewController alloc] init];
-        [mainController setObjectModel:objectModel];
-        ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:mainController];
-        controller.view.window.rootViewController = root;
+     
+        if(controller.presentingViewController)
+        {
+            [controller dismissViewControllerAnimated:YES completion:nil];
+        }
+        else
+        {
+            ConnectionAwareViewController* root = (ConnectionAwareViewController*) window.rootViewController;
+            MainViewController *mainController = [[MainViewController alloc] init];
+            [mainController setObjectModel:objectModel];
+            [root replaceWrappedViewControllerWithController:mainController];
+        }
     }
 }
 
-+ (void)logOutWithObjectModel:(ObjectModel *)objectModel
++ (void)logOutWithObjectModel:(ObjectModel *)objectModel completionBlock:(void (^)(void))completionBlock
 {
-	[objectModel deleteObject:objectModel.currentUser];
-	[PendingPayment removePossibleImages];
-	[Credentials clearCredentials];
-	[[GoogleAnalytics sharedInstance] markLoggedIn];
-	[TransferwiseClient clearCookies];
-}
+    [objectModel performBlock:^{
+        [objectModel deleteObject:objectModel.currentUser];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [PendingPayment removePossibleImages];
+            [Credentials clearCredentials];
+            [[GoogleAnalytics sharedInstance] markLoggedIn];
+            [TransferwiseClient clearCookies];
+            if(completionBlock)
+            {
+                completionBlock();
+            }
+        });
+    }];
+	
+	}
 
 @end

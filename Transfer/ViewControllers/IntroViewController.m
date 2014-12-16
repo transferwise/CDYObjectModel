@@ -346,7 +346,8 @@
 	[mainController setObjectModel:self.objectModel];
 	ConnectionAwareViewController* root = [[ConnectionAwareViewController alloc] initWithWrappedViewController:mainController];
 	
-	((AppDelegate *)[[UIApplication sharedApplication] delegate]).window.rootViewController = root;
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+	appDelegate.window.rootViewController = root;
 }
 
 - (IBAction)logInTapped:(id)sender {

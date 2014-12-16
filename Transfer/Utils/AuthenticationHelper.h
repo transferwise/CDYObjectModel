@@ -33,6 +33,6 @@
 
 + (void)proceedFromSuccessfulLoginFromViewController:(UIViewController*)controller objectModel:(ObjectModel*)objectModel;
 
-+ (void)logOutWithObjectModel:(ObjectModel *)objectModel;
++ (void)logOutWithObjectModel:(ObjectModel *)objectModel completionBlock:(void (^)(void))completionBlock;
 
 @end

@@ -176,8 +176,10 @@
                 return;
             }
 
-            [AuthenticationHelper logOutWithObjectModel:self.workModel];
-			[[NSNotificationCenter defaultCenter] postNotificationName:TRWLoggedOutNotification object:nil];
+            [AuthenticationHelper logOutWithObjectModel:self.objectModel completionBlock:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:TRWLoggedOutNotification object:nil];
+            }];
+			
         });
     } else {
         MCLog(@"Other errors");

@@ -18,9 +18,9 @@
 @interface TransparentModalViewController : UIViewController
 
 @property (nonatomic, weak) id<TransparentModalViewControllerDelegate> delegate;
-@property (nonatomic, readonly) UIViewController* hostViewController;
 
 -(void)presentOnViewController:(UIViewController*)hostViewcontroller;
 -(IBAction)dismiss;
+-(UIViewController*)hostViewController;
 
 @end

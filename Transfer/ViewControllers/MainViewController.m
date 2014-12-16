@@ -35,6 +35,7 @@
 @property (nonatomic, strong) ProfilesEditViewController *profileController;
 @property (nonatomic, assign) BOOL launchTableViewGamAdjustmentDone;
 @property (nonatomic) BOOL shown;
+@property (nonatomic) BOOL isShowingLoginScreen;
 
 @end
 
@@ -146,7 +147,7 @@
 	
 	if (![Credentials userLoggedIn])
 	{
-		[self setViewControllers:@[[self getAnonymousViewController]]];
+		[self setViewControllers:@[[self getIntroViewController]]];
 	}
 	else
 	{
@@ -170,24 +171,40 @@
 
 - (void)loggedOut
 {
-	[self clearData];
-	
-	[self presentViewController:[self getAnonymousViewController]
-					   animated:YES
-					 completion:nil];
-	[self popToRootViewControllerAnimated:NO];
+    [self clearData];
+    void (^showLoginBlock)(void) = ^{
+        [self presentViewController:[self getIntroViewController]
+                           animated:YES
+                         completion:^{
+                             [self.tabController selectIndex:IPAD?1:0];
+                         }];
+        [self popToRootViewControllerAnimated:NO];
+    };
+    if(self.presentedViewController){
+        if([self.presentedViewController isKindOfClass:[IntroViewController class]])
+        {
+            return;
+        }
+        [self dismissViewControllerAnimated:YES completion:^{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    showLoginBlock();
+                });
+            
+        }];
+    }
+    else
+    {
+        showLoginBlock();
+    }
 }
 
-- (ConnectionAwareViewController *)getAnonymousViewController
+- (ConnectionAwareViewController *)getIntroViewController
 {
-	UIViewController *presented;
-    
     IntroViewController *introController = [[IntroViewController alloc] init];
     [introController setObjectModel:self.objectModel];
     introController.requireRegistration = YES;
-    presented = introController;
 
-	ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:presented navBarHidden:YES];
+	ConnectionAwareViewController *wrapper = [ConnectionAwareViewController createWrappedNavigationControllerWithRoot:introController navBarHidden:YES];
 	return wrapper;
 }
 
