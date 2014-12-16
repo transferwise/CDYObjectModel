@@ -26,10 +26,6 @@
   paymentFlowViewControllerFactory:(PaymentFlowViewControllerFactory *)controllerFactory
 				  validatorFactory:(ValidatorFactory *)validatorFactory;
 
-- (void)validatePayment:(NSManagedObjectID *)paymentInput
-		   successBlock:(TRWActionBlock)successBlock
-		   errorHandler:(TRWErrorBlock)errorHandler;
-
 - (void)commitPaymentWithSuccessBlock:(TRWActionBlock)successBlock
 						 errorHandler:(TRWErrorBlock)errorHandler;
 
