@@ -441,7 +441,7 @@ This can't be undone.";
 "transferdetails.controller.transferred.header" = "Transfer completed";
 "transferdetails.controller.transfer.header" = "Your transfer";
 "transferdetails.controller.transfer.thankyou" = "Thank you!";
-"transferdetails.controller.transfer.message" = "We're now waiting for your\nbank transfer to reach our account.\nIt generally takes %@.";
+"transferdetails.controller.transfer.message" = "We're now waiting for your\nbank transfer to reach our account.\n%@.";
 "transferdetails.controller.transfer.number" = "#%@";
 "transferdetails.controller.transfer.recipient" = "to %@";
 "transferdetails.controller.transfer.account.to" = "%@'s account details";
@@ -748,11 +748,10 @@ We'll send you an email in order to let you choose a new password.";
 "usd.legaleze" = "By continuing you agree\nto our %@";
 "usd.state.specific" = "state specific notices";
 
-"transfertime.default" = "1 business day";
-"transfertime.EUR.REGULAR" = "1-2 business days";
-"transfertime.GBP.REGULAR" = "a few business hours";
-"transfertime.USD.SWIFT" = "3 business days";
-"transfertime.USD.REGULAR" = "a few business hours";
+"transfertime.default" = "It generally takes 1 business day";
+"transfertime.EUR.REGULAR" = "It generally takes 1-2 business days";
+"transfertime.GBP.REGULAR" = "It generally takes a few business hours";
+"transfertime.USD" = "It takes up to 5 business days";
 
 "upload.money.bankname.title" = "Bank name";
 

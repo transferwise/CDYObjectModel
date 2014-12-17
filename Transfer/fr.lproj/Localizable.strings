@@ -438,7 +438,7 @@ C'est irréversible.";
 "transferdetails.controller.transferred.header" = "Transfert effectué";
 "transferdetails.controller.transfer.header" = "Votre transfert";
 "transferdetails.controller.transfer.thankyou" = "Bravo!";
-"transferdetails.controller.transfer.message" = "Nous sommes maintenant dans l'attente de réception de votre transfert sur notre compte.\nCela prend généralement %@.";
+"transferdetails.controller.transfer.message" = "Nous sommes maintenant dans l'attente de réception de votre transfert sur notre compte.\n%@.";
 "transferdetails.controller.transfer.number" = "#%@";
 "transferdetails.controller.transfer.recipient" = "à %@";
 "transferdetails.controller.transfer.account.to" = "Details bancaires de %@";
@@ -735,10 +735,10 @@ Nous vous enverrons un email afin de vous laisser choisir un nouveau mot de pass
 "usd.legaleze" = "En continuant vous adherez \n aux %@";
 "usd.state.specific" = "conditions spéciales de chaque état";
 
-"transfertime.default" = "1 jour ouvré";
-"transfertime.EUR.REGULAR" = "1-2 jours ouvrés";
-"transfertime.GBP.REGULAR" = "quelques heures ouvrées";
-"transfertime.USD.SWIFT" = "3 jours ouvrés";
-"transfertime.USD.REGULAR" = "quelques heures ouvrées";
+"transfertime.default" = "Cela prend généralement 1 jour ouvré";
+"transfertime.EUR.REGULAR" = "Cela prend généralement 1-2 jours ouvrés";
+"transfertime.GBP.REGULAR" = "Cela prend généralement quelques heures ouvrées";
+"transfertime.USD." = "Cela peut prendre 5 jours ouvrés";
+
 
 "upload.money.bankname.title" = "Nom de la banque";

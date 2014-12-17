@@ -74,7 +74,7 @@
     PaymentMadeIndicator* indicator = [self paymentMadeIndicatorForPayment:payment];
     if(indicator)
     {
-        if(payment.status == PaymentStatusSubmitted || payment.status == PaymentStatusUserHasPaid)
+        if(payment.status == PaymentStatusSubmitted || payment.status == PaymentStatusUserHasPaid || payment.status == PaymentStatusReceived)
         {
             payment.paymentMadeIndicator = indicator;
         }
