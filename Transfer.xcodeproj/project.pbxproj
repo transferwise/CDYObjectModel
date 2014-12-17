@@ -179,6 +179,8 @@
 		388632101A41D8140033CB32 /* ACHCheckView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3886320E1A41D8140033CB32 /* ACHCheckView~ipad.xib */; };
 		388632161A420F8A0033CB32 /* AchLoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 388632151A420F8A0033CB32 /* AchLoginViewController~ipad.xib */; };
 		388632171A420F8A0033CB32 /* AchLoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 388632151A420F8A0033CB32 /* AchLoginViewController~ipad.xib */; };
+		388632191A4211AF0033CB32 /* AchWaitingViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 388632181A4211AF0033CB32 /* AchWaitingViewController~ipad.xib */; };
+		3886321A1A4211AF0033CB32 /* AchWaitingViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 388632181A4211AF0033CB32 /* AchWaitingViewController~ipad.xib */; };
 		3887CBBA197690FC004DFFFD /* OptionalSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */; };
 		3887CBBB197690FC004DFFFD /* OptionalSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */; };
 		3887CBBE1976AF2B004DFFFD /* CancelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBBD1976AF2B004DFFFD /* CancelHelper.m */; };
@@ -1102,6 +1104,7 @@
 		3876769319BF56A2007B0EE5 /* CustomInfoViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomInfoViewController~ipad.xib"; sourceTree = "<group>"; };
 		3886320E1A41D8140033CB32 /* ACHCheckView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ACHCheckView~ipad.xib"; sourceTree = "<group>"; };
 		388632151A420F8A0033CB32 /* AchLoginViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AchLoginViewController~ipad.xib"; sourceTree = "<group>"; };
+		388632181A4211AF0033CB32 /* AchWaitingViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AchWaitingViewController~ipad.xib"; sourceTree = "<group>"; };
 		3887CBB8197690FC004DFFFD /* OptionalSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionalSplitViewController.h; sourceTree = "<group>"; };
 		3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionalSplitViewController.m; sourceTree = "<group>"; };
 		3887CBBC1976AF2B004DFFFD /* CancelHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelHelper.h; sourceTree = "<group>"; };
@@ -2711,6 +2714,7 @@
 				38057ACC1A1D03BF005E94DD /* AchWaitingViewController.h */,
 				38057ACD1A1D03BF005E94DD /* AchWaitingViewController.m */,
 				38057ACE1A1D03BF005E94DD /* AchWaitingViewController.xib */,
+				388632181A4211AF0033CB32 /* AchWaitingViewController~ipad.xib */,
 				BB29BD45173CD2FF0016A6E9 /* BankTransferViewController.h */,
 				BB29BD46173CD2FF0016A6E9 /* BankTransferViewController.m */,
 				BB29BD48173CD30C0016A6E9 /* BankTransferViewController.xib */,
@@ -3121,6 +3125,7 @@
 				EA31A1E617DDB29B00F937F7 /* SettingsViewController.xib in Resources */,
 				EAD3646717E1E19A001EFE40 /* Assets.xcassets in Resources */,
 				47AC3F9A1987B2C3005491C6 /* SuggestionCell.xib in Resources */,
+				3886321A1A4211AF0033CB32 /* AchWaitingViewController~ipad.xib in Resources */,
 				38CC81A91A1E36A2007D965A /* ACHCheckView.xib in Resources */,
 				3863B82219E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib in Resources */,
 				EA31A1E717DDB29B00F937F7 /* SettingsTitleCell.xib in Resources */,
@@ -3276,6 +3281,7 @@
 				BBC691251721416300F0FB1A /* TSAlertViewCancelButtonBackground.png in Resources */,
 				EA0450D617EC5BC1008921DA /* IntroViewController.xib in Resources */,
 				47FAF353194B4EF9004CE986 /* TransferWaitingViewController.xib in Resources */,
+				388632191A4211AF0033CB32 /* AchWaitingViewController~ipad.xib in Resources */,
 				38CC81A81A1E36A2007D965A /* ACHCheckView.xib in Resources */,
 				3863B82119E7E5CF004009A2 /* ResetPasswordViewControllerUpfront.xib in Resources */,
 				385AC110198FE2190088DCD6 /* SharpSansFrontieres-Bold.otf in Resources */,
