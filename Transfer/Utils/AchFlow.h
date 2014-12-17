@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TransparentModalViewController.h"
+#import "Constants.h"
 
 @class Payment;
 @class ObjectModel;
@@ -20,7 +21,8 @@ typedef void (^InitiatePullBlock)(NSDictionary *from, UINavigationController *co
 - (id)init __attribute__((unavailable("init unavailable, use sharedInstance")));
 
 + (AchFlow *)sharedInstanceWithPayment:(Payment *)payment
-						   objectModel:(ObjectModel *)objectModel;
+						   objectModel:(ObjectModel *)objectModel
+						successHandler:(TRWActionBlock)successHandler;
 
 - (UIViewController *)getAccountAndRoutingNumberController;
 
