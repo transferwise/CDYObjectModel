@@ -175,6 +175,8 @@
 		3876769219BF4914007B0EE5 /* CustomInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3876768E19BF4914007B0EE5 /* CustomInfoViewController.xib */; };
 		3876769419BF56A2007B0EE5 /* CustomInfoViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3876769319BF56A2007B0EE5 /* CustomInfoViewController~ipad.xib */; };
 		3876769519BF56A2007B0EE5 /* CustomInfoViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3876769319BF56A2007B0EE5 /* CustomInfoViewController~ipad.xib */; };
+		3886320F1A41D8140033CB32 /* ACHCheckView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3886320E1A41D8140033CB32 /* ACHCheckView~ipad.xib */; };
+		388632101A41D8140033CB32 /* ACHCheckView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3886320E1A41D8140033CB32 /* ACHCheckView~ipad.xib */; };
 		3887CBBA197690FC004DFFFD /* OptionalSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */; };
 		3887CBBB197690FC004DFFFD /* OptionalSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */; };
 		3887CBBE1976AF2B004DFFFD /* CancelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3887CBBD1976AF2B004DFFFD /* CancelHelper.m */; };
@@ -1096,6 +1098,7 @@
 		3876768D19BF4914007B0EE5 /* CustomInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomInfoViewController.m; sourceTree = "<group>"; };
 		3876768E19BF4914007B0EE5 /* CustomInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfoViewController.xib; sourceTree = "<group>"; };
 		3876769319BF56A2007B0EE5 /* CustomInfoViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomInfoViewController~ipad.xib"; sourceTree = "<group>"; };
+		3886320E1A41D8140033CB32 /* ACHCheckView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ACHCheckView~ipad.xib"; sourceTree = "<group>"; };
 		3887CBB8197690FC004DFFFD /* OptionalSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionalSplitViewController.h; sourceTree = "<group>"; };
 		3887CBB9197690FC004DFFFD /* OptionalSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionalSplitViewController.m; sourceTree = "<group>"; };
 		3887CBBC1976AF2B004DFFFD /* CancelHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelHelper.h; sourceTree = "<group>"; };
@@ -2201,6 +2204,7 @@
 				38CC81A31A1E368F007D965A /* ACHCheckView.h */,
 				38CC81A41A1E368F007D965A /* ACHCheckView.m */,
 				38CC81A71A1E36A2007D965A /* ACHCheckView.xib */,
+				3886320E1A41D8140033CB32 /* ACHCheckView~ipad.xib */,
 				38B093011951FA2A00315BE4 /* DataEntryDefaultHeader.h */,
 				38B093021951FA2A00315BE4 /* DataEntryDefaultHeader.m */,
 				38B093031951FA2A00315BE4 /* DataEntryDefaultHeader.xib */,
@@ -3213,6 +3217,7 @@
 				385AC111198FE2190088DCD6 /* SharpSansFrontieres-Bold.otf in Resources */,
 				EA31A22F17DDB29B00F937F7 /* SwitchCell.xib in Resources */,
 				38AA83D01949C7220065AD2A /* PaymentCell~ipad.xib in Resources */,
+				388632101A41D8140033CB32 /* ACHCheckView~ipad.xib in Resources */,
 				B4C9172E19A7A439005991D6 /* RecipientEntrySelectionCell~ipad.xib in Resources */,
 				477319F61A1B62BB00660770 /* AchDetailsViewController.xib in Resources */,
 			);
@@ -3366,6 +3371,7 @@
 				EA225CBB178EEA8A009D6B83 /* currency_pairs.json in Resources */,
 				EA225CBC178EEA8A009D6B83 /* recipient_types.json in Resources */,
 				BB7EAE8A17AFE037006A7182 /* SwitchCell.xib in Resources */,
+				3886320F1A41D8140033CB32 /* ACHCheckView~ipad.xib in Resources */,
 				38AA83CF1949C7220065AD2A /* PaymentCell~ipad.xib in Resources */,
 				477319F51A1B62BB00660770 /* AchDetailsViewController.xib in Resources */,
 			);

@@ -8,11 +8,12 @@
 
 #import "ACHCheckView.h"
 #import "MOMStyle.h"
+#import "Constants.h"
 
-#define xOffset 70.0f
-#define yOffset -140.0
+#define xOffset IPAD ? 0.0f : 70.0f
+#define yOffset IPAD ? -220.0f : -140.0f
 #define rotationAngle M_PI_4/3.0f
-#define magnifyingScale 1.5f
+#define magnifyingScale IPAD ? 1.0f : 1.5f
 #define animationDuration 0.5f
 #define animationSpring 0.65f
 
@@ -183,6 +184,9 @@
     NSMutableAttributedString *attributedMessage = [[NSMutableAttributedString alloc] initWithString:fullMessage];
     NSRange fullRange = NSMakeRange(0, [fullMessage length]);
     NSRange identifierRange = [fullMessage rangeOfString:labelIdentifier];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setAlignment:NSTextAlignmentCenter];
+    [attributedMessage addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:fullRange];
     [attributedMessage addAttribute:NSFontAttributeName value:[UIFont fontFromStyle:self.contextLabel.fontStyle] range:fullRange];
     [attributedMessage addAttribute:NSForegroundColorAttributeName value:[UIColor colorFromStyle:self.contextLabel.fontStyle] range:fullRange];
     [attributedMessage addAttribute:NSFontAttributeName value:[UIFont fontFromStyle:self.contextLabel.selectedFontStyle] range:identifierRange];
