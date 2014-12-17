@@ -77,8 +77,16 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     if (self)
 	{
         [self setTitle:NSLocalizedString(@"transactions.controller.title", nil)];
+		
+		//Observe notification to remove selected payment for iPad
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moveToPaymentsList) name:TRWMoveToPaymentsListNotification object:nil];
     }
     return self;
+}
+
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad
@@ -216,54 +224,16 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
 	[[GoogleAnalytics sharedInstance] sendScreen:@"View payment"];
 	[self removeCancellingFromCell];
 
-    UIViewController *resultController;
-    if ([payment isSubmitted])
-	{
-        
-		if(IPAD)
-		{
-			TransferPayIPadViewController *controller = [[TransferPayIPadViewController alloc] init];
-			controller.payment = payment;
-            controller.objectModel = self.objectModel;
-			controller.delegate = self;
-			resultController = controller;
-		}
-		else
-		{
-            if([[payment enabledPayInMethods] count]>2)
-            {
-                PaymentMethodSelectorViewController* selector = [[PaymentMethodSelectorViewController alloc] init];
-                selector.objectModel = self.objectModel;
-                selector.payment = payment;
-                resultController = selector;
-            }
-            else
-            {
-                UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
-                [controller setPayment:payment];
-                [controller setObjectModel:self.objectModel];
-                [controller setHideBottomButton:YES];
-                [controller setShowContactSupportCell:YES];
-                resultController = controller;
-            }
-		}
-    }
-    else if (payment.status == PaymentStatusUserHasPaid)
-    {
-        TransferWaitingViewController *controller = [[TransferWaitingViewController alloc] init];
-        controller.payment = payment;
-        controller.objectModel = self.objectModel;
-        resultController = controller;
-    }
-    else
-	{
-        TransferDetailsViewController *controller = [[TransferDetailsViewController alloc] init];
-        controller.payment = payment;
-        resultController = controller;
-    }
+	[self showPayment:payment];
+}
 
-    
-    [self presentDetail:resultController];
+- (void)moveToPaymentsList
+{
+	//if we are redisplaying transfers list on IPAD reload the selected transfer because it might have changed
+	if (IPAD)
+	{
+		[self presentDetail:nil];
+	}
 }
 
 - (void)refreshPaymentsList
@@ -418,6 +388,56 @@ NSString *const kPaymentCellIdentifier = @"kPaymentCellIdentifier";
     }
 
     [self refreshPaymentsWithOffset:self.payments.count hud:nil];
+}
+
+- (void)showPayment:(Payment *)payment
+{
+	UIViewController *resultController;
+	if ([payment isSubmitted])
+	{
+		if(IPAD)
+		{
+			TransferPayIPadViewController *controller = [[TransferPayIPadViewController alloc] init];
+			controller.payment = payment;
+			controller.objectModel = self.objectModel;
+			controller.delegate = self;
+			resultController = controller;
+		}
+		else
+		{
+			if([[payment enabledPayInMethods] count]>2)
+			{
+				PaymentMethodSelectorViewController* selector = [[PaymentMethodSelectorViewController alloc] init];
+				selector.objectModel = self.objectModel;
+				selector.payment = payment;
+				resultController = selector;
+			}
+			else
+			{
+				UploadMoneyViewController *controller = [[UploadMoneyViewController alloc] init];
+				[controller setPayment:payment];
+				[controller setObjectModel:self.objectModel];
+				[controller setHideBottomButton:YES];
+				[controller setShowContactSupportCell:YES];
+				resultController = controller;
+			}
+		}
+	}
+	else if (payment.status == PaymentStatusUserHasPaid)
+	{
+		TransferWaitingViewController *controller = [[TransferWaitingViewController alloc] init];
+		controller.payment = payment;
+		controller.objectModel = self.objectModel;
+		resultController = controller;
+	}
+	else
+	{
+		TransferDetailsViewController *controller = [[TransferDetailsViewController alloc] init];
+		controller.payment = payment;
+		resultController = controller;
+	}
+	
+	[self presentDetail:resultController];
 }
 
 - (void)checkPersonalVerificationNeeded
