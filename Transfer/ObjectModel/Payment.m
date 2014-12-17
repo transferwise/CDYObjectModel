@@ -4,7 +4,6 @@
 #import "Currency.h"
 #import "NSString+DeviceSpecificLocalisation.h"
 
-
 @interface Payment ()
 
 @end
@@ -51,7 +50,9 @@ static NSDictionary* statusLookupDictionary;
 {
     NSString* key = [self.paymentStatus lowercaseString];
     NSNumber *statusNumber =[self statusLookup][key];
-    if(self.paymentMadeIndicator && [statusNumber unsignedIntegerValue] == PaymentStatusSubmitted)
+    if(
+       (self.paymentMadeIndicator && [statusNumber unsignedIntegerValue] == PaymentStatusSubmitted) ||
+       ([@"USD" caseInsensitiveCompare:self.sourceCurrency.code] == NSOrderedSame && [statusNumber unsignedIntegerValue] == PaymentStatusReceived))
     {
         statusNumber = @(PaymentStatusUserHasPaid);
     }
@@ -59,7 +60,7 @@ static NSDictionary* statusLookupDictionary;
 }
 
 - (NSString *)localizedStatus {
-    NSString *statusKey = [NSString stringWithFormat:@"payment.status.%@.description", self.paymentStatus];
+    NSString *statusKey = [NSString stringWithFormat:@"payment.status.%@.description", self.paymentStatusString];
     NSString *statusString = NSLocalizedString(statusKey, nil);
     if([statusString rangeOfString:@"%@"].location != NSNotFound)
     {
@@ -198,6 +199,12 @@ static NSDateFormatter *__shortDateFormatter;
 {
     NSOrderedSet *result = [self.payInMethods filteredOrderedSetUsingPredicate:[NSPredicate predicateWithFormat:@"disabled == false"]];
     return result;
+}
+
+-(NSString*)paymentStatusString
+{
+    NSString *status = self.status == PaymentStatusUserHasPaid ? @"submitted" : self.paymentStatus;
+    return status;
 }
 
 @end
