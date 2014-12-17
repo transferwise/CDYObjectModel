@@ -27,11 +27,11 @@ typedef NS_ENUM(short, TransparentModalPresentationStyle)
 @interface TransparentModalViewController : UIViewController
 
 @property (nonatomic, weak) id<TransparentModalViewControllerDelegate> delegate;
-@property (nonatomic, readonly) UIViewController* hostViewController;
 @property (nonatomic, assign) TransparentModalPresentationStyle presentationStyle;
 
 -(void)presentOnViewController:(UIViewController*)hostViewcontroller withPresentationStyle:(TransparentModalPresentationStyle)presentationStyle;
 -(void)presentOnViewController:(UIViewController*)hostViewcontroller;
 -(IBAction)dismiss;
+-(UIViewController*)hostViewController;
 
 @end

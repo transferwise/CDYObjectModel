@@ -6,6 +6,12 @@
 //  Copyright (c) 2014 Mooncascade OÜ. All rights reserved.
 //
 
+typedef NS_ENUM(short, ConnectionAwareAnimationStyle)
+{
+    ConnectionNoAnimation =0,
+    ConnectionModalAnimation
+};
+
 #import <UIKit/UIKit.h>
 
 @interface ConnectionAwareViewController : UIViewController
@@ -35,5 +41,12 @@
  *  @param controller new controller to wrap
  */
 -(void) replaceWrappedViewControllerWithController:(UIViewController*)controller;
+
+/**
+ *  replace the wrapped viewcontroller with animation
+ *
+ *  @param controller new controller to wrap
+ */
+-(void) replaceWrappedViewControllerWithController:(UIViewController*)controller withAnimationStyle:(ConnectionAwareAnimationStyle)animationStyle;
 
 @end

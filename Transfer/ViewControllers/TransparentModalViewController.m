@@ -14,7 +14,7 @@
 
 @property (nonatomic, weak) UIImageView* blurImageView;
 @property (nonatomic, weak) UIView* blurEffectView;
-@property (nonatomic, strong) UIViewController* hostViewController;
+@property (nonatomic, weak) UIViewController* hostViewController;
 
 @end
 
@@ -190,6 +190,11 @@
     {
         [self.delegate dismissCompleted:self];
     }
+}
+
+-(UIViewController*)hostViewController
+{
+    return _hostViewController;
 }
 
 @end

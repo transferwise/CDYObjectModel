@@ -81,11 +81,37 @@
     self.wrappedViewController = controller;
     if(controller)
     {
+        [controller willMoveToParentViewController:self];
         [self addChildViewController:controller];
         [controller didMoveToParentViewController:self];
-        self.wrappedViewController.view.frame = self.view.bounds;
-        self.wrappedViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        controller.view.frame = self.view.bounds;
+        controller.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         [self.view addSubview:self.wrappedViewController.view];
+    }
+}
+
+-(void) replaceWrappedViewControllerWithController:(UIViewController*)controller withAnimationStyle:(ConnectionAwareAnimationStyle)animationStyle
+{
+    if(animationStyle == ConnectionModalAnimation)
+    {
+        [controller willMoveToParentViewController:self];
+        [self addChildViewController:controller];
+        [controller didMoveToParentViewController:self];
+        CGRect newFrame = self.view.bounds;
+        newFrame.origin.y = newFrame.size.height;
+        controller.view.frame = newFrame;
+        controller.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        [self.view addSubview:controller.view];
+        [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+            CGRect endFrame = self.view.bounds;
+            controller.view.frame = endFrame;
+        } completion:^(BOOL finished) {
+            [self replaceWrappedViewControllerWithController:controller];
+        }];
+    }
+    else
+    {
+        [self replaceWrappedViewControllerWithController:controller];
     }
 }
 

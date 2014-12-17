@@ -292,6 +292,7 @@ IB_DESIGNABLE
 -(void)touchIdPromptIsFinished:(TouchIdPromptViewController *)controller
 {
     [AuthenticationHelper proceedFromSuccessfulLoginFromViewController:self objectModel:self.objectModel];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
 
 @end
