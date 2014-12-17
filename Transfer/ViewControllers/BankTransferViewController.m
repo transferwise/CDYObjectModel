@@ -89,21 +89,23 @@
     MCLog(@"loadData");
     
     PayInMethod* method = self.method;
+	NSString* currencyCode = self.payment.sourceCurrency.code;
 	
-	if ([@"SWIFT" caseInsensitiveCompare:method.type] == NSOrderedSame)
-	{
-		[[GoogleAnalytics sharedInstance] sendScreen:@"SWIFT transfer"];
-	}
-	else if ([@"REGULAR" caseInsensitiveCompare:method.type] == NSOrderedSame)
-	{
-		[[GoogleAnalytics sharedInstance] sendScreen:@"Wire transfer"];
-	}
+	[BankTransferViewController trackForPaymentMethod:method.type
+								   sourceCurrencyCode:currencyCode
+									bankTransferBlock:nil
+										   swiftBlock:^{
+											   [[GoogleAnalytics sharedInstance] sendScreen:@"SWIFT transfer"];
+										   }
+											wireBlock:^{
+												[[GoogleAnalytics sharedInstance] sendScreen:@"Wire transfer"];
+											}];
 		
     //Header
     NSString *exactlyString = NSLocalizedString(@"upload.money.header.label.exactly", @"");
     exactlyString = [NSString stringWithFormat:exactlyString,self.payment.payInWithCurrency];
     
-    NSString* currencyCode = self.payment.sourceCurrency.code;
+	
     NSString* headerFormat;
     if ([@"GBP" caseInsensitiveCompare:currencyCode]==NSOrderedSame)
     {
@@ -217,8 +219,20 @@
 {
     __weak typeof(self) weakSelf = self;
     [self.objectModel performBlock:^{
-        [weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment payInMethodName:self.method.type];
-        [[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"BankTransfer"];
+        [weakSelf.objectModel togglePaymentMadeForPayment:weakSelf.payment payInMethodName:weakSelf.method.type];
+		
+		[BankTransferViewController trackForPaymentMethod:weakSelf.method.type
+									   sourceCurrencyCode:weakSelf.payment.sourceCurrency.code
+										bankTransferBlock:^{
+											[[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"BankTransfer"];
+										}
+											   swiftBlock:^{
+												   [[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"Swift"];
+											   }
+												wireBlock:^{
+													[[GoogleAnalytics sharedInstance] sendEvent:@"PaymentMade" category:@"payment" label:@"WireTransfer"];
+												}];
+		
         if ([Credentials temporaryAccount])
         {
             ClaimAccountViewController *controller = [[ClaimAccountViewController alloc] init];
@@ -261,6 +275,38 @@
 -(NSString*)addColon:(NSString*)original
 {
     return [original stringByAppendingString:@":"];
+}
+
++ (void)trackForPaymentMethod:(NSString *)paymentMethod
+		   sourceCurrencyCode:(NSString *)sourceCurrencyCode
+			bankTransferBlock:(void (^)())bankTransferBlock
+				   swiftBlock:(void (^)())swiftBlock
+					wireBlock:(void (^)())wireBlock
+{
+	if ([@"SWIFT" caseInsensitiveCompare:paymentMethod] == NSOrderedSame)
+	{
+		if (swiftBlock)
+		{
+			swiftBlock();
+		}
+	}
+	else if ([@"REGULAR" caseInsensitiveCompare:paymentMethod] == NSOrderedSame)
+	{
+		if ([@"USD" caseInsensitiveCompare:sourceCurrencyCode] == NSOrderedSame)
+		{
+			if (wireBlock)
+			{
+				wireBlock();
+			}
+		}
+		else
+		{
+			if (bankTransferBlock)
+			{
+				bankTransferBlock();
+			}
+		}
+	}
 }
 @end
 

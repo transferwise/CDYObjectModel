@@ -180,7 +180,7 @@
 												   //no known errors so let standard handler deal with it
 												   [weakSelf handleResultWithError:error
 																	  successBlock:^{
-																		  [[GoogleAnalytics sharedInstance] sendScreen:@"ACH success shown"];																		  
+																		  [[GoogleAnalytics sharedInstance] sendScreen:@"ACH success shown"];
 																		  [weakSelf presentCustomInfoWithSuccess:YES
 																									  controller:controller
 																										 message:@"ach.success.message"
