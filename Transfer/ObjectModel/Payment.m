@@ -51,22 +51,22 @@ static NSDictionary* statusLookupDictionary;
 {
     NSString* key = [self.paymentStatus lowercaseString];
     NSNumber *statusNumber =[self statusLookup][key];
-    BOOL isReceivedACHOrUnknownUSD = NO;
+    BOOL overrideReceivedStatus = NO;
     if([@"USD" caseInsensitiveCompare:self.sourceCurrency.code] == NSOrderedSame)
     {
         if([statusNumber unsignedIntegerValue] == PaymentStatusReceived)
         {
             if(self.paymentMadeIndicator)
             {
-                isReceivedACHOrUnknownUSD = [@"ACH" caseInsensitiveCompare:self.paymentMadeIndicator.payInMethodName] == NSOrderedSame;
+                overrideReceivedStatus = [@"ACH" caseInsensitiveCompare:self.paymentMadeIndicator.payInMethodName] == NSOrderedSame;
             }
             else
             {
-                isReceivedACHOrUnknownUSD = YES;
+                overrideReceivedStatus = YES;
             }
         }
     }
-    if((self.paymentMadeIndicator && [statusNumber unsignedIntegerValue] == PaymentStatusSubmitted) || isReceivedACHOrUnknownUSD)
+    if((self.paymentMadeIndicator && [statusNumber unsignedIntegerValue] == PaymentStatusSubmitted) || overrideReceivedStatus)
     {
         statusNumber = @(PaymentStatusUserHasPaid);
     }
