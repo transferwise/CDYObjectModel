@@ -99,7 +99,11 @@
 	else if ([@"ACH" caseInsensitiveCompare:method.type] == NSOrderedSame)
 	{
 		AchFlow *flow = [AchFlow sharedInstanceWithPayment:payment
-											   objectModel:objectModel];
+											   objectModel:objectModel
+											successHandler:^{
+												[[GoogleAnalytics sharedInstance] sendPaymentEvent:@"PaymentMade"
+																						 withLabel:@"ACH"];
+											}];
 		return [flow getAccountAndRoutingNumberController];
 	}
     else

@@ -23,6 +23,7 @@
 #import "ObjectModel+Payments.h"
 #import "UIViewController+SwitchToViewController.h"
 #import "NSError+TRWErrors.h"
+#import "GoogleAnalytics.h"
 
 #define WAIT_SCREEN_MIN_SHOW_TIME	2
 
@@ -38,6 +39,7 @@
 @property (nonatomic, strong) TransferwiseOperation *executedOperation;
 @property (nonatomic, strong) CustomInfoViewControllerDelegateHelper *currentWaitingDelegate;
 @property (nonatomic, strong) AchWaitingViewController *waitingViewController;
+@property (nonatomic, copy) TRWActionBlock successHandler;
 
 @end
 
@@ -52,6 +54,7 @@
 #pragma mark - Init
 + (AchFlow *)sharedInstanceWithPayment:(Payment *)payment
 						   objectModel:(ObjectModel *)objectModel
+						successHandler:(void (^)())successHandler
 {
 	static dispatch_once_t pred = 0;
 	__strong static AchFlow *sharedObject = nil;
@@ -78,10 +81,12 @@
 #pragma mark - Flow
 - (UIViewController *)getAccountAndRoutingNumberController
 {
+	[[GoogleAnalytics sharedInstance] sendScreen:@"ACH step 1 shown"];
 	return [[AchDetailsViewController alloc] initWithPayment:self.payment
 											  loginFormBlock:^(NSString *accountNumber, NSString *routingNumber, UINavigationController *controller) {
+												  [[GoogleAnalytics sharedInstance] sendScreen:@"ACH waiting 1 shown"];
+												  
 												  __weak typeof(self) weakSelf = self;
-											   
 												  [self setOperationWithNavigationController:controller
 																			  operationBlock:^TransferwiseOperation *{
 																				  return [VerificationFormOperation verificationFormOperationWithAccount:accountNumber
@@ -99,6 +104,10 @@
 																			UIViewController *loginController = [weakSelf getLoginForm:form];
 																			[controller pushViewController:loginController animated:YES];
 																		}
+																	  trackErrorBlock:^(NSString* messages){
+																		  [[GoogleAnalytics sharedInstance] sendAlertEvent:@"FindingUSaccountAlert"
+																												 withLabel:messages];
+																	  }
 																				flow:weakSelf];
 												  }];
 												  
@@ -108,12 +117,14 @@
 
 - (UIViewController *)getLoginForm:(AchBank *)form
 {
+	[[GoogleAnalytics sharedInstance] sendScreen:@"ACH step 2 shown"];
 	return [[AchLoginViewController alloc] initWithForm:form
 												payment:self.payment
 											objectModel:self.objectModel
 										   initiatePull:^(NSDictionary *form, UINavigationController *controller){
-											   __weak typeof(self) weakSelf = self;
+											   [[GoogleAnalytics sharedInstance] sendScreen:@"ACH waiting 2 shown"];
 											   
+											   __weak typeof(self) weakSelf = self;
 											   [self setOperationWithNavigationController:controller
 																		   operationBlock:^TransferwiseOperation *{
 																			   return [VerifyFormOperation verifyFormOperationWithData:form];
@@ -129,6 +140,8 @@
 												   {
 													   if ([error containsTwCode:VERIFICATION_FAILURE])
 													   {
+														   [[GoogleAnalytics sharedInstance] sendAlertEvent:@"PullingUSaccountAlert"
+																								  withLabel:@"Account verification failed"];
 														   [weakSelf presentCustomInfoWithSuccess:NO
 																					   controller:controller
 																						  message:@"ach.failure.message.account"
@@ -145,6 +158,8 @@
 													   }
 													   else if ([error containsTwCode:ACCOUNT_NUMBER_MISMATCH])
 													   {
+														   [[GoogleAnalytics sharedInstance] sendAlertEvent:@"PullingUSaccountAlert"
+																								  withLabel:@"Account number mismatch"];
 														   [weakSelf presentCustomInfoWithSuccess:NO
 																					   controller:controller
 																						  message:@"ach.failure.message.mismatch"
@@ -165,6 +180,7 @@
 												   //no known errors so let standard handler deal with it
 												   [weakSelf handleResultWithError:error
 																	  successBlock:^{
+																		  [[GoogleAnalytics sharedInstance] sendScreen:@"ACH success shown"];																		  
 																		  [weakSelf presentCustomInfoWithSuccess:YES
 																									  controller:controller
 																										 message:@"ach.success.message"
@@ -186,7 +202,11 @@
 																										}];
 																									}
 																											flow:weakSelf];
-																	  }
+																		}
+																   trackErrorBlock:^(NSString* messages){
+																		[[GoogleAnalytics sharedInstance] sendAlertEvent:@"PullingUSaccountAlert"
+																											   withLabel:messages];
+																   }
 																			  flow:weakSelf];
 											   }];
 											   
@@ -228,6 +248,7 @@
 
 - (void)handleResultWithError:(NSError *)error
 				 successBlock:(void (^)())successBlock
+			  trackErrorBlock:(void (^)(NSString* messages))trackErrorBlock
 						 flow:(AchFlow *)flow
 {
 	//operation might have been cancelled before reaching here
@@ -247,6 +268,8 @@
 			{
 				messages = [error localizedTransferwiseMessage];
 			}
+			
+			trackErrorBlock(messages);
 			
 			TRWAlertView *alertView = [TRWAlertView alertViewWithTitle:NSLocalizedString(@"ach.controller.accessing.error", nil) message:messages];
 			[alertView setConfirmButtonTitle:NSLocalizedString(@"button.title.ok", nil)];
